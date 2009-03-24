@@ -1,5 +1,5 @@
 use l1jdb;
-charset sjis;
+charset utf8;
 
 source MyISAM/accounts.sql;
 source MyISAM/area.sql;

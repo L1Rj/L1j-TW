@@ -12,7 +12,7 @@ CREATE TABLE `pets` (
   `exp` int(10) unsigned NOT NULL default '0',
   `lawful` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`item_obj_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # No records for table pets
 #----------------------------

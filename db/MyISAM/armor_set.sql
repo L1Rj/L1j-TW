@@ -19,7 +19,7 @@ CREATE TABLE `armor_set` (
   `cha` int(2) NOT NULL default '0',
   `intl` int(2) NOT NULL default '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis COMMENT='MyISAM free: 10240 kB';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 10240 kB';
 
 #----------------------------
 # Records for table armor_set

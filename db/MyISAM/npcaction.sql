@@ -8,7 +8,7 @@ CREATE TABLE `npcaction` (
   `teleport_url` varchar(45) NOT NULL default '',
   `teleport_urla` varchar(45) NOT NULL default '',
   PRIMARY KEY  (`npcid`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # Records for table npcaction
 #----------------------------

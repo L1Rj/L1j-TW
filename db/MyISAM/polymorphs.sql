@@ -11,7 +11,7 @@ CREATE TABLE `polymorphs` (
   `isSkillUse` int(11) default NULL,
   `cause` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis COMMENT='MyISAM free: 10240 kB';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 10240 kB';
 #----------------------------
 # Records for table polymorphs
 #----------------------------

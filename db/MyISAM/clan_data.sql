@@ -9,7 +9,7 @@ CREATE TABLE `clan_data` (
   `hascastle` int(10) unsigned NOT NULL default '0',
   `hashouse` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`clan_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # No records for table clan_data
 #----------------------------

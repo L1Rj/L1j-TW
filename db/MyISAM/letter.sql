@@ -11,7 +11,7 @@ CREATE TABLE `letter` (
   `subject` BLOB,
   `content` BLOB,
   PRIMARY KEY (`item_object_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # No Records for table letter
 #----------------------------

@@ -17,7 +17,7 @@ CREATE TABLE `pettypes` (
   `MessageId5` int(10) NOT NULL,
   `DefyMessageId` int(10) NOT NULL,
    PRIMARY KEY (`BaseNpcId`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records 

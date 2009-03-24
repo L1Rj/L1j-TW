@@ -30,7 +30,7 @@ CREATE TABLE `etcitem` (
   `food_volume` int(10) unsigned NOT NULL default '0',
   `save_at_once` tinyint(1) unsigned NOT NULL default '1',
   PRIMARY KEY  (`item_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # Records for table etcitem
 #----------------------------

@@ -13,7 +13,7 @@ CREATE TABLE `board_auction` (
   `bidder` varchar(45) NOT NULL default '',
   `bidder_id` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY (`house_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # No Records for table board_auction

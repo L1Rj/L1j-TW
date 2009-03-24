@@ -9,7 +9,7 @@ CREATE TABLE `shop` (
   `pack_count` int(10) unsigned NOT NULL default '0',
   `purchasing_price` int(10) NOT NULL default '-1',
   PRIMARY KEY  (`npc_id`,`item_id`,`order_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # Records for table shop_buylists
 #----------------------------

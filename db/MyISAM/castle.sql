@@ -8,7 +8,7 @@ CREATE TABLE `castle` (
   `tax_rate` int(11) NOT NULL default '0',
   `public_money` int(11) NOT NULL default '0',
   PRIMARY KEY  (`castle_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 #----------------------------

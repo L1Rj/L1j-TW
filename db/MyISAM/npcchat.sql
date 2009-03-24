@@ -16,7 +16,7 @@ CREATE TABLE `npcchat` (
   `is_repeat` tinyint(1) unsigned NOT NULL default '0',
   `repeat_interval` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`npc_id`,`chat_timing`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # Records for table npcchat
 #----------------------------

@@ -6,7 +6,7 @@ CREATE TABLE `resolvent` (
   `note` varchar(45) NOT NULL,
   `crystal_count` int(10) NOT NULL DEFAULT '0',
  PRIMARY KEY (`item_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records for table resolvent

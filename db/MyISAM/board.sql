@@ -8,7 +8,7 @@ CREATE TABLE `board` (
   `title` varchar(16) default NULL,
   `content` varchar(1000) default NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # No Records for table board
 #----------------------------

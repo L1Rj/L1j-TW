@@ -65,7 +65,7 @@ CREATE TABLE `npc` (
   `amount_fixed` tinyint(1) unsigned NOT NULL default '0',
   `change_head` int(1) NOT NULL default '0',
   PRIMARY KEY  (`npcid`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # Records for table npc
 #----------------------------

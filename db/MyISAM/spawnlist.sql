@@ -24,7 +24,7 @@ CREATE TABLE `spawnlist` (
   `rest` tinyint(1) unsigned NOT NULL default 0,
   `near_spawn` tinyint(1) unsigned NOT NULL default 0,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # Records for table spawnlist
 #----------------------------

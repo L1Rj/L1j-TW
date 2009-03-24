@@ -17,7 +17,7 @@ CREATE TABLE `petitem` (
   `add_sp` int(10) NOT NULL default '0',
   `m_def` int(2) NOT NULL default '0',
   PRIMARY KEY  (`item_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # Records for table petitem
 #----------------------------

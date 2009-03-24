@@ -17,7 +17,7 @@ CREATE TABLE `mobgroup` (
   `minion5_id` int(10) unsigned NOT NULL default '0',
   `minion5_count` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records for table mobgroup
