@@ -5,7 +5,7 @@ if (!(isset($_SESSION['l1j_telnet_sid']) and $_SESSION['l1j_telnet_sid'] == sess
 	exit;
 }
 if (isset($_POST['txt']) and ereg("globalchat ",$_POST['txt'])) {
-	echo "直接入力でglobalchatコマンドは使えません。";
+	echo "直接入力でglobalchatコマンドは使えません。";//該命令不能直接進入globalchat 。
 	exit;
 }
 

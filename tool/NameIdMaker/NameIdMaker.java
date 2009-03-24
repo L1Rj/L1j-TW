@@ -36,7 +36,7 @@ class NameIdMaker {
 	public static void main(String args[]) {
 		try {
 			if (args.length < 1) {
-				System.out.println("引數が足りません。");
+				System.out.println("我們需要參數。");
 				System.out.println("USAGE: inputfile [language]");
 				return;
 			}

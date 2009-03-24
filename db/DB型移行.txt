@@ -31,3 +31,37 @@ innodb_log_file_size = 64M　（buffer_pool_sizeの25%くらいが適當です�
 innodb_log_buffer_size = 64M　（buffer_pool_sizeの25%くらいが適當です）
 innodb_flush_log_at_trx_commit = 1
 innodb_lock_wait_timeout = 50 （注：ここは鯖の接續人數で適當な值を探してください）
+/////google/////
+InnoDB是一個數據庫文件“ l1jdb_InnoDB.sql ” 。
+
+1 。如果你是建立一個新的數據庫，請使用這些文件直接。然後..
+
+2 。數據庫使用撤出數據續碘化鉀參照。
+
+2月1日。 <How解決它一旦和dump>
+‧所有轉儲就座。 （ L1jdb劉可轉儲到。 ）
+‧使用編輯器來取代MyISAM到InnoDB的。轉變日語保存。
+‧ NaviCAT讀架MI從查詢，如phpMyAdmin或⑸說。
+
+2月2日。 <Manual關於如何解決guts>
+‧ NaviCAT phpMyAdmin或表視圖。
+‧變更InnoDB的表型。
+
+3.MySQL的my.cnf （ my.ini ）的“ innodb_ ** ”引發了評論。值參考設置如下。
+如“ myisam ”關註釋掉的部分。
+
+重新啟動MySQL的。
+
+
+內存設置參考值innodb_ ** 2GB的，珍藏和鯖魚是假設你沒有升降機
+
+innodb_data_home_dir = / usr / local /下無功/
+innodb_data_file_path = ibdata1 ： 10分： autoextend
+innodb_log_group_home_dir = / usr / local /下無功/
+innodb_log_arch_dir = / usr / local /下無功/
+innodb_buffer_pool_size = 256M （上半部分適用於當堆）
+innodb_additional_mem_pool_size = 1600 （ buffer_pool_size約6 ％的適用當）
+innodb_log_file_size = 64M號（ buffer_pool_size約25 ％的適用當）
+innodb_log_buffer_size = 64M號（ buffer_pool_size約25 ％的適用當）
+innodb_flush_log_at_trx_commit = 1
+innodb_lock_wait_timeout = 50 （注：請在這裡找到合適的值當在一個正切數續人鯖魚）

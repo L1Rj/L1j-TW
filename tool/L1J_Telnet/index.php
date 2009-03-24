@@ -6,7 +6,7 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 	header('WWW-Authenticate: Basic realm="L1J-JP Telnet Tool"');
 	header('HTTP/1.0 401 Unauthorized');
 
-	die('このページを見るにはログインが必要です');
+	die('如需觀看此網頁，請先登錄。');
 }else{
 	$password = base64_encode(pack("H*", sha1(utf8_encode($_SERVER['PHP_AUTH_PW']))));
 
@@ -22,7 +22,7 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 
 		mysql_free_result($R_accounts);
 
-		die('このページを見るにはログインが必要です');
+		die('如需觀看此網頁，請先登錄。');
 	}
 
 	mysql_free_result($R_accounts);
@@ -89,7 +89,7 @@ function command(txt) {
 <?php } ?>
 	}
 	if (!isSendCommand) {
-		document.getElementById('command_view').innerHTML = "Result > 何も起こりませんでした。";
+		document.getElementById('command_view').innerHTML = "Result > 何も起こりませんでした。";//可沒有任何反應。
 		document.getElementById('command').value = ""
 		isRunCommand = true;
 	}

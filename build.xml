@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project name="L1J" default="all" basedir=".">
     <description>
         This script will build the L1J server.
@@ -52,7 +52,7 @@
         <mkdir dir="${build.dir}" />
         <javac destdir="${build.dir}"
                optimize="on"
-               encoding="Shift_JIS">
+               encoding="UTF-8">
             <src path="${src.dir}" />
             <classpath refid="classpath" />
         </javac>
