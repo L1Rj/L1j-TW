@@ -27,6 +27,7 @@ import java.util.Random;
 import l1j.server.server.model.Instance.L1EffectInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.types.Point;
 
 public class HpRegeneration extends TimerTask {
 
@@ -115,6 +116,21 @@ public class HpRegeneration extends TimerTask {
 			bonus += 15;
 		}
 		if (L1HouseLocation.isInHouse(_pc.getX(), _pc.getY(), _pc.getMapId())) {
+			bonus += 5;
+		}
+		if (_pc.getMapId() == 16384 || _pc.getMapId() == 16896
+				|| _pc.getMapId() == 17408 || _pc.getMapId() == 17920
+				|| _pc.getMapId() == 18432 || _pc.getMapId() == 18944
+				|| _pc.getMapId() == 19968 || _pc.getMapId() == 19456
+				|| _pc.getMapId() == 20480 || _pc.getMapId() == 20992
+				|| _pc.getMapId() == 21504 || _pc.getMapId() == 22016
+				|| _pc.getMapId() == 22528 || _pc.getMapId() == 23040
+				|| _pc.getMapId() == 23552 || _pc.getMapId() == 24064
+				|| _pc.getMapId() == 24576 || _pc.getMapId() == 25088) { // 宿屋
+			bonus += 5;
+		}
+		if ((_pc.getLocation().isInScreen(new Point(33055,32336))
+				&& _pc.getMapId() == 4 && _pc.isElf())) {
 			bonus += 5;
 		}
  		if (_pc.hasSkillEffect(L1SkillId.COOKING_1_5_N)

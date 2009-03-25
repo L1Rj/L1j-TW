@@ -4810,10 +4810,6 @@ public class C_ItemUSe extends ClientBasePacket {
 	}
 
 	private void useMagicDoll(L1PcInstance pc, int itemId, int itemObjectId) {
-		if (!pc.getInventory().checkItem(41246, 50)) {
-			pc.sendPackets(new S_ServerMessage(337, "$5240")); // \f1%0が不足しています。
-			return;
-		}
 		boolean isAppear = true;
 		L1DollInstance doll = null;
 		Object[] dollList = pc.getDollList().values().toArray();
@@ -4826,6 +4822,10 @@ public class C_ItemUSe extends ClientBasePacket {
 		}
 
 		if (isAppear) {
+			if (!pc.getInventory().checkItem(41246, 50)) {
+				pc.sendPackets(new S_ServerMessage(337, "$5240")); // \f1%0が不足しています。
+				return;
+			}
 			if (dollList.length >= Config.MAX_DOLL_COUNT) {
 				// \f1これ以上のモンスターを操ることはできません。
 				pc.sendPackets(new S_ServerMessage(319));
@@ -4878,6 +4878,10 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(1103)); // アイテムが重すぎて、料理できません。
 			return;
 		}
+		if (pc.hasSkillEffect(COOKING_NOW)) {
+			return;
+		}
+		pc.setSkillEffect(COOKING_NOW, 3 * 1000);
 
 		int chance = _random.nextInt(100) + 1;
 		if (cookNo == 0) { // フローティングアイステーキ

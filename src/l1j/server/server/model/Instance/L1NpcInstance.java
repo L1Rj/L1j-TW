@@ -2215,15 +2215,13 @@ public class L1NpcInstance extends L1Character {
 	private DeleteTimer _deleteTask;
 	private ScheduledFuture<?> _future = null;
 
-	private static final long DELETE_TIME = 10000L;
-
 	protected synchronized void startDeleteTimer() {
 		if (_deleteTask != null) {
 			return;
 		}
 		_deleteTask = new DeleteTimer(getId());
 		_future = GeneralThreadPool.getInstance().schedule(_deleteTask,
-				DELETE_TIME);
+				Config.NPC_DELETION_TIME * 1000);
 	}
 
 	protected static class DeleteTimer extends TimerTask {

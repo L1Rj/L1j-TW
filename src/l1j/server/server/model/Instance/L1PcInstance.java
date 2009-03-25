@@ -987,6 +987,10 @@ public class L1PcInstance extends L1Character {
 				removeSkillEffect(L1SkillId.FOG_OF_SLEEPING);
 			}
 
+			if (getInventory().checkEquipped(145) // バーサーカーアックス
+					|| getInventory().checkEquipped(149)) { // ミノタウルスアックス
+				damage *= 1.5; // 被ダメ1.5倍
+			}
 			int newHp = getCurrentHp() - damage;
 			if (newHp > getMaxHp()) {
 				newHp = getMaxHp();

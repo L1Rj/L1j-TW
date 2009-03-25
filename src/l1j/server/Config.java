@@ -254,6 +254,8 @@ public final class Config {
 
 	public static boolean DELETE_CHARACTER_AFTER_7DAYS;
 
+	public static int NPC_DELETION_TIME;
+
 	/** CharSettings control */
 	public static int PRINCE_MAX_HP;
 
@@ -649,6 +651,8 @@ public final class Config {
 					"MaxClanWarehouseItem", "200"));
 			DELETE_CHARACTER_AFTER_7DAYS = Boolean.parseBoolean(altSettings
 					.getProperty("DeleteCharacterAfter7Days", "True"));
+			NPC_DELETION_TIME = Integer.parseInt(altSettings.getProperty(
+					"NpcDeletionTime", "10"));
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + ALT_SETTINGS_FILE + " File.");
@@ -912,6 +916,8 @@ public final class Config {
 			MAX_CLAN_WAREHOUSE_ITEM = Integer.valueOf(pValue);
 		} else if (pName.equalsIgnoreCase("DeleteCharacterAfter7Days")) {
 			DELETE_CHARACTER_AFTER_7DAYS = Boolean.valueOf(pValue);
+		} else if (pName.equalsIgnoreCase("NpcDeletionTime")) {
+			NPC_DELETION_TIME = Integer.valueOf(pValue);
 		}
 		// charsettings.properties
 		else if (pName.equalsIgnoreCase("PrinceMaxHP")) {
