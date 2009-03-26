@@ -87,12 +87,12 @@ public class GameServer extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println("利用メモリ: " + SystemUtil.getUsedMemoryMB() + "MB");
-		System.out.println("クライアント接續待機中...");
+		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
+		System.out.println("等待客戶端連線...");
 		while (true) {
 			try {
 				Socket socket = _serverSocket.accept();
-				System.out.println("接續試行中IP " + socket.getInetAddress());
+				System.out.println("連線中IP " + socket.getInetAddress());
 				String host = socket.getInetAddress().getHostAddress();
 				if (IpTable.getInstance().isBannedIp(host)) {
 					_log.info("banned IP(" + host + ")");
@@ -132,16 +132,16 @@ public class GameServer extends Thread {
 			InetAddress inetaddress = InetAddress.getByName(s);
 			inetaddress.getHostAddress();
 			_serverSocket = new ServerSocket(_port, 50, inetaddress);
-			System.out.println("サーバーセッティング: サーバーソケット生成");
+			System.out.println("服務器狀態: 生成中");
 		} else {
 			_serverSocket = new ServerSocket(_port);
-			System.out.println("サーバーセッティング: サーバーソケット生成");
+			System.out.println("服務器狀態: 生成中");
 		}
 
-		System.out.println("EXP:" + (rateXp) + "倍  Lawful:" + (LA) + "倍  カルマ:"
-				+ (rateKarma) + "倍  ドロップ率:" + (rateDropItems) + "倍  取得アデナ:"
+		System.out.println("EXP:" + (rateXp) + "倍  正義值:" + (LA) + "倍  カルマ:"
+				+ (rateKarma) + "倍  負重率:" + (rateDropItems) + "倍  金幣取得:"
 				+ (rateDropAdena) + "倍");
-		System.out.println("全体チャット可能Lv " + (chatlvl));
+		System.out.println("全體頻道使用限制 Lv " + (chatlvl));
 		if (Config.ALT_NONPVP) { // Non-PvP設定
 			System.out.println("Non-PvP設定: 無效（PvP可能）");
 		} else {
@@ -149,11 +149,11 @@ public class GameServer extends Thread {
 		}
 
 		System.out.println("=================================================");
-		System.out.println("                                  For All User...");
+		System.out.println("繁體核心 手動翻譯 第一版...");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
-		System.out.println("接續人數制限： 最大" + (maxOnlineUsers) + "人");
+		System.out.println("連線人數限制： 最多" + (maxOnlineUsers) + "人");
 		IdFactory.getInstance();
 		L1WorldMap.getInstance();
 		_loginController = LoginController.getInstance();
@@ -247,7 +247,7 @@ public class GameServer extends Thread {
 		NpcChatTable.getInstance();
 		LightSpawnTable.getInstance();
 
-		System.out.println("ローディング完了");
+		System.out.println("服務器狀態: 啟動完了");
 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
 
 		this.start();
@@ -282,16 +282,16 @@ public class GameServer extends Thread {
 			L1World world = L1World.getInstance();
 			try {
 				int secondsCount = _secondsCount;
-				world.broadcastServerMessage("ただいまより、サーバーをシャットダウンします。");
-				world.broadcastServerMessage("安全な場所でログアウトしてください");
+				world.broadcastServerMessage("服務器即將關閉。");
+				world.broadcastServerMessage("請移動至安全區域。");
 				while (0 < secondsCount) {
 					if (secondsCount <= 30) {
-						world.broadcastServerMessage("ゲームが" + secondsCount
-								+ "秒後にシャットダウンします。ゲームを中斷してください。");
+						world.broadcastServerMessage("服務器將在" + secondsCount
+								+ "秒後關機。請玩家先行離線。");
 					} else {
 						if (secondsCount % 60 == 0) {
-							world.broadcastServerMessage("ゲームが" + secondsCount
-									/ 60 + "分後にシャットダウンします。");
+							world.broadcastServerMessage("服務器將會在" + secondsCount
+									/ 60 + "分後關機。");
 						}
 					}
 					Thread.sleep(1000);
@@ -299,7 +299,7 @@ public class GameServer extends Thread {
 				}
 				shutdown();
 			} catch (InterruptedException e) {
-				world.broadcastServerMessage("シャットダウンが中斷されました。サーバーは通常稼動中です。");
+				world.broadcastServerMessage("取消關機，服務器持續運作。");
 				return;
 			}
 		}

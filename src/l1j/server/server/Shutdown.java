@@ -218,39 +218,37 @@ public class Shutdown extends Thread {
 
 				switch (secondsShut) {
 				case 240:
-					_an.announceToAll("The server will shutdown in 4 minutes.");
+					_an.announceToAll("伺服器關閉倒數 4 分鐘.");
 					break;
 				case 180:
-					_an.announceToAll("The server will shutdown in 3 minutes.");
+					_an.announceToAll("伺服器關閉倒數 3 分鐘.");
 					break;
 				case 120:
-					_an.announceToAll("The server will shutdown in 2 minutes.");
+					_an.announceToAll("伺服器關閉倒數 2 分鐘.");
 					break;
 				case 60:
-					_an.announceToAll("The server will shutdown in 1 minute.");
+					_an.announceToAll("伺服器關閉倒數 1 分鐘.");
 					break;
 				case 30:
-					_an
-							.announceToAll("The server will shutdown in 30 seconds.");
+					_an.announceToAll("伺服器關閉倒數 30 秒.");
 					break;
 				case 10:
-					_an
-							.announceToAll("The server will shutdown in 10 seconds.");
+					_an.announceToAll("伺服器關閉倒數 10 秒.");
 					break;
 				case 5:
-					_an.announceToAll("The server will shutdown in 5 seconds.");
+					_an.announceToAll("伺服器關閉倒數 5 秒.");
 					break;
 				case 4:
-					_an.announceToAll("The server will shutdown in 4 seconds.");
+					_an.announceToAll("伺服器關閉倒數 4 秒.");
 					break;
 				case 3:
-					_an.announceToAll("The server will shutdown in 3 seconds.");
+					_an.announceToAll("伺服器關閉倒數 3 秒.");
 					break;
 				case 2:
-					_an.announceToAll("The server will shutdown in 2 seconds.");
+					_an.announceToAll("伺服器關閉倒數 2 秒.");
 					break;
 				case 1:
-					_an.announceToAll("The server will shutdown in 1 second.");
+					_an.announceToAll("伺服器關閉倒數 1 秒.");
 					break;
 				}
 
@@ -276,24 +274,24 @@ public class Shutdown extends Thread {
 		Announcements _an = Announcements.getInstance();
 		switch (shutdownMode) {
 		case SIGTERM:
-			System.err.println("SIGTERM received. Shutting down NOW!");
+			System.err.println("【 動作：手動關閉!!! 】");
 			break;
 		case GM_SHUTDOWN:
-			System.err.println("GM shutdown received. Shutting down NOW!");
+			System.err.println("【 動作：GM 關閉!!! 】");
 			break;
 		case GM_RESTART:
-			System.err.println("GM restart received. Restarting NOW!");
+			System.err.println("【 動作：GM 重啟!!! 】");
 			break;
 
 		}
-		_an.announceToAll("Server is is " + _modeText[shutdownMode]
+		_an.announceToAll("伺服器目前是 " + _modeText[shutdownMode]
 				+ " NOW! bye bye");
 
 		// we cannt abort shutdown anymore, so i removed the "if"
 		GameServer.getInstance().disconnectAllCharacters();
 
 		System.err
-				.println("Data saved. All players disconnected, shutting down.");
+				.println("【資料儲存完畢，強制玩家全部離線】");
 		try {
 			int delay = 500;
 			Thread.sleep(delay);
@@ -305,9 +303,9 @@ public class Shutdown extends Thread {
 	public void startTelnetShutdown(String IP, int seconds, boolean restart) {
 		Announcements _an = Announcements.getInstance();
 		_log.warning("IP: " + IP + " issued shutdown command. "
-				+ _modeText[shutdownMode] + " in " + seconds + " seconds!");
+				+ _modeText[shutdownMode] + " in " + seconds + " 秒!");
 		_an.announceToAll("Server is " + _modeText[shutdownMode] + " in "
-				+ seconds + " seconds!");
+				+ seconds + " 秒!");
 
 		if (_counterInstance != null) {
 			_counterInstance._abort();

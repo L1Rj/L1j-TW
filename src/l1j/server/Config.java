@@ -411,7 +411,7 @@ public final class Config {
 					"com.mysql.jdbc.Driver");
 			DB_URL = serverSettings
 					.getProperty("URL",
-							"jdbc:mysql://localhost/l1jdb?useUnicode=true&characterEncoding=sjis");
+							"jdbc:mysql://localhost/l1jdb?useUnicode=true&characterEncoding=utf8");
 			DB_LOGIN = serverSettings.getProperty("Login", "root");
 			DB_PASSWORD = serverSettings.getProperty("Password", "");
 			THREAD_P_TYPE_GENERAL = Integer.parseInt(serverSettings

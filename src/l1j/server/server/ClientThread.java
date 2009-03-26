@@ -193,9 +193,9 @@ public class ClientThread implements Runnable, PacketOutput {
 
 	@Override
 	public void run() {
-		_log.info("(" + _hostname + ")がサーバーに接續しました。");
-		System.out.println("利用メモリ: " + SystemUtil.getUsedMemoryMB() + "MB");
-		System.out.println("クライアント接續待機中...");
+		_log.info("(" + _hostname + ")的客戶端開始連線");
+		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
+		System.out.println("等待客戶端連線...");
 
 		Socket socket = _csocket;
 		/*
@@ -324,9 +324,9 @@ public class ClientThread implements Runnable, PacketOutput {
 		_log.fine("Server thread[C] stopped");
 		if (_kick < 1) {
 			_log.info("(" + getAccountName() + ":" + _hostname
-					+ ")との接續を終了しました。");
-			System.out.println("利用メモリ: " + SystemUtil.getUsedMemoryMB() + "MB");
-			System.out.println("クライアント接續待機中...");
+					+ ")客戶端結束連線");
+			System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
+			System.out.println("等待客戶端連線...");
 		}
 		return;
 	}
@@ -415,8 +415,8 @@ public class ClientThread implements Runnable, PacketOutput {
 				if (_activeChar == null // キャラクター選擇前
 						|| _activeChar != null && !_activeChar.isPrivateShop()) { // 個人商店中
 					kick();
-					_log.warning("一定時間應答が得られなかった為(" + _hostname
-							+ ")との接續を強制切斷しました。");
+					_log.warning("過長的等待時間導致(" + _hostname
+							+ ")的連線被強制中斷");
 					cancel();
 					return;
 				}
