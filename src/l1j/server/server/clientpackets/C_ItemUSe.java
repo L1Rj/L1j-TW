@@ -4800,11 +4800,25 @@ public class C_ItemUSe extends ClientBasePacket {
 
 		int rnd = _random.nextInt(100) + 1;
 		if (rnd >= 1 && rnd <= 50) {
+			crystalCount = 0;
+			pc.sendPackets(new S_ServerMessage(158, item.getName())); // \f1%0が蒸發してなくなりました。
 		} else if (rnd >= 51 && rnd <= 90) {
-			pc.getInventory().storeItem(41246, crystalCount);
+			crystalCount *= 1;
 		} else if (rnd >= 91 && rnd <= 100) {
+			crystalCount *= 1.5;
 			pc.getInventory().storeItem(41246, (int) (crystalCount * 1.5));
 		}
+		if (crystalCount != 0) {
+			L1ItemInstance crystal = ItemTable.getInstance().createItem(41246);
+			crystal.setCount(crystalCount);
+			if (pc.getInventory().checkAddItem(crystal, 1) == L1Inventory.OK) {
+				pc.getInventory().storeItem(crystal);
+				pc.sendPackets(new S_ServerMessage(403, crystal.getLogName())); // %0を手に入れました。
+			} else { // 持てない場合は地面に落とす 處理のキャンセルはしない（不正防止）
+				L1World.getInstance().getInventory(pc.getX(), pc.getY(),
+						pc.getMapId()).storeItem(crystal);
+			}
+		} 
 		pc.getInventory().removeItem(item, 1);
 		pc.getInventory().removeItem(resolvent, 1);
 	}

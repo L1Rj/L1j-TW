@@ -123,7 +123,7 @@ public class C_Result extends ClientBasePacket {
 				if (pc.getDwarfInventory().checkAddItemToWarehouse(item, count,
 						L1Inventory.WAREHOUSE_TYPE_PERSONAL) == L1Inventory
 								.SIZE_OVER) {
-					pc.sendPackets(new S_ServerMessage(271)); // \f1相手が物を持ちすぎていて取引できません。
+					pc.sendPackets(new S_ServerMessage(75)); // \f1これ以上ものを置く場所がありません。
 					break;
 				}
 				if (tradable) {
@@ -189,7 +189,7 @@ public class C_Result extends ClientBasePacket {
 								.checkAddItemToWarehouse(item, count,
 										L1Inventory.WAREHOUSE_TYPE_CLAN)
 												== L1Inventory.SIZE_OVER) {
-							pc.sendPackets(new S_ServerMessage(271)); // \f1相手が物を持ちすぎていて取引できません。
+							pc.sendPackets(new S_ServerMessage(75)); // \f1これ以上ものを置く場所がありません。
 							break;
 						}
 						if (tradable) {
@@ -265,7 +265,7 @@ public class C_Result extends ClientBasePacket {
 				if (pc.getDwarfForElfInventory().checkAddItemToWarehouse(item,
 						count, L1Inventory.WAREHOUSE_TYPE_PERSONAL) ==
 								L1Inventory.SIZE_OVER) {
-					pc.sendPackets(new S_ServerMessage(271)); // \f1相手が物を持ちすぎていて取引できません。
+					pc.sendPackets(new S_ServerMessage(75)); // \f1これ以上ものを置く場所がありません。
 					break;
 				}
 				if (tradable) {

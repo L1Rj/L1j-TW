@@ -69,6 +69,9 @@ public class C_TradeAddItem extends ClientBasePacket {
 		if (tradingPartner == null) {
 			return;
 		}
+		if (pc.getTradeOk()) {
+			return;
+		}
 		if (tradingPartner.getInventory().checkAddItem(item, itemcount)
 				!= L1Inventory.OK) { // 容量重量確認及びメッセージ送信
 			tradingPartner.sendPackets(new S_ServerMessage(270)); // \f1持っているものが重くて取引できません。

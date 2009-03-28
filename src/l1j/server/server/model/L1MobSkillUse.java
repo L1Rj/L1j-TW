@@ -234,8 +234,12 @@ public class L1MobSkillUse {
 		}
 		if (usePoly) {
 			// 變身させた場合、オレンジの柱を表示する。
-			_attacker.broadcastPacket(new S_SkillSound(_attacker.getId(), 230));
-
+			for (L1PcInstance pc : L1World.getInstance()
+					.getVisiblePlayer(_attacker)) {
+				pc.sendPackets(new S_SkillSound(pc.getId(), 230));
+				pc.broadcastPacket(new S_SkillSound(pc.getId(), 230));
+				break;
+			}
 			// 魔法を使う動作のエフェクト
 			S_DoActionGFX gfx = new S_DoActionGFX(_attacker.getId(),
 					ActionCodes.ACTION_SkillBuff);

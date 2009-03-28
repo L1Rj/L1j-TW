@@ -1256,6 +1256,7 @@ public class L1PcInstance extends L1Character {
 						item.isStackable() ? item.getCount() : 1,
 						L1World.getInstance().getInventory(getX(), getY(),
 								getMapId()));
+				sendPackets(new S_ServerMessage(638,item.getLogName())); // %0を失いました。
 			} else {
 			}
 		}

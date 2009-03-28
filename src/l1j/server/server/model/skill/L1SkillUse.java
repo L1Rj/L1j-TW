@@ -534,6 +534,14 @@ public class L1SkillUse {
 			return false;
 		}
 
+		// 元のターゲットがガード以外のNPCの場合、ガードは對象外
+		if (_calcType == PC_NPC
+				&& _target instanceof L1NpcInstance
+				&& !(_target instanceof L1GuardInstance)
+				&& cha instanceof L1GuardInstance) {
+			return false;
+		}
+
 		// NPC對PCでターゲットがモンスターの場合ターゲットではない。
 		if ((_skill.getTarget().equals("attack") || _skill.getType() == L1Skills.TYPE_ATTACK)
 				&& _calcType == NPC_PC
