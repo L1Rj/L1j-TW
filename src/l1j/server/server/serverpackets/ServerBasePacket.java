@@ -71,7 +71,7 @@ public abstract class ServerBasePacket {
 	protected void writeS(String text) {
 		try {
 			if (text != null) {
-				_bao.write(text.getBytes("UTF-8"));
+				_bao.write(text.getBytes("big5"));
 			}
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
