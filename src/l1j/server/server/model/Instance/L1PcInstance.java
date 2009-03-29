@@ -1938,7 +1938,7 @@ public class L1PcInstance extends L1Character {
 	public boolean isFastMovable() {
 		return (hasSkillEffect(L1SkillId.HOLY_WALK)
 //XXX 寵物競速 - 超級勇水
-				|| hasSkillEffect(L1SkillId.STATUS_BRAVE2)
+//				|| hasSkillEffect(L1SkillId.STATUS_BRAVE2)
 //END
 				|| hasSkillEffect(L1SkillId.MOVING_ACCELERATION) || hasSkillEffect(L1SkillId.WIND_WALK));
 	}

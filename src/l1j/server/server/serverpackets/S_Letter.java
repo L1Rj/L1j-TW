@@ -55,7 +55,7 @@ public class S_Letter extends ServerBasePacket {
 			pstm.setInt(1, item.getId());
 			rs = pstm.executeQuery();
 			while (rs.next()) {
-				writeC(Opcodes.S_OPCODE_LETTER);
+				writeC(Opcodes.S_OPCODE_MAIL);
 				writeD(item.getId());
 				if (item.get_gfxid() == 465) { // 開く前
 					writeH(466); // 開いた後
