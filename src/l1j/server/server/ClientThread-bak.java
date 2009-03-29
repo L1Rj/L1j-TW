@@ -89,22 +89,10 @@ public class ClientThread implements Runnable, PacketOutput {
 	// (byte) 0x87, (byte) 0x7D, (byte) 0x75, (byte) 0x7D,
 	// (byte) 0xA1, (byte) 0x3B, (byte) 0x62, (byte) 0x2C,
 	// (byte) 0x5E, (byte) 0x3E, (byte) 0x9F }; // for Episode 6
-	
-	
-	/*選擇 1 !! 程式執行中
-	
-	[FristPacket] = 125
-	0000: 7d fa bd 98 7c// ec 64 3e 0d c0 82 00 00 02 08 00 
-	 * 
-	 */
-	
 	private static final byte[] FIRST_PACKET = {
-		(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,		// 3.0C
-		(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,		// 3.0C
-		(byte) 0x02, (byte) 0x08, (byte) 0x00 };				// 3.0C
-	/*日版	(byte) 0xb1, (byte) 0x3c, (byte) 0x2c, (byte) 0x28,
+			(byte) 0xb1, (byte) 0x3c, (byte) 0x2c, (byte) 0x28,
 			(byte) 0xf6, (byte) 0x65, (byte) 0x1d, (byte) 0xdd,
-			(byte) 0x56, (byte) 0xe3, (byte) 0xef };*/
+			(byte) 0x56, (byte) 0xe3, (byte) 0xef };
 
 	/**
 	 * for Test
@@ -205,7 +193,7 @@ public class ClientThread implements Runnable, PacketOutput {
 
 	@Override
 	public void run() {
-		_log.info("(" + _hostname + ")  的客戶端開始連線");
+		_log.info("(" + _hostname + ")的客戶端開始連線");
 		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
 		System.out.println("等待客戶端連線...");
 
@@ -232,12 +220,12 @@ public class ClientThread implements Runnable, PacketOutput {
 		}
 
 		try {
-			// add for 2.70C start			long seed = 0x5cc690ecL;
-			long seed = 0x7c98bdfa;			// 3.0C
+			// add for 2.70C start
+			long seed = 0x5cc690ecL;
 			byte Bogus = (byte)(FIRST_PACKET.length + 7);
 			_out.write(Bogus & 0xFF);
 			_out.write(Bogus >> 8 & 0xFF);
-			_out.write(0x7d);	// 3.0C 	2.70 <-> 0x20;
+			_out.write(0x20);
 			_out.write((byte)(seed & 0xFF));
 			_out.write((byte)(seed >> 8 & 0xFF));
 			_out.write((byte)(seed >> 16 & 0xFF));
@@ -336,7 +324,7 @@ public class ClientThread implements Runnable, PacketOutput {
 		_log.fine("Server thread[C] stopped");
 		if (_kick < 1) {
 			_log.info("(" + getAccountName() + ":" + _hostname
-					+ ") 客戶端結束連線");
+					+ ")客戶端結束連線");
 			System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
 			System.out.println("等待客戶端連線...");
 		}

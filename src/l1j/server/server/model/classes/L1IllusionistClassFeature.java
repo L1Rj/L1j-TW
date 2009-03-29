@@ -16,29 +16,16 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.serverpackets;
+package l1j.server.server.model.classes;
 
-import l1j.server.server.Opcodes;
-
-public class S_CharAmount extends ServerBasePacket {
-
-	private byte[] _byte = null;
-
-	public S_CharAmount(int value) {
-		buildPacket(value);
-	}
-
-	private void buildPacket(int value) {
-		writeC(Opcodes.S_OPCODE_CHARAMOUNT);
-		writeC(value);// 2.70C	writeD(0x00000000);	writeD(0x0000);
-		writeC(6);//max amount
+class L1IllusionistClassFeature extends L1ClassFeature {
+	@Override
+	public int getAcDefenseMax(int ac) {
+		return ac / 3;
 	}
 
 	@Override
-	public byte[] getContent() {
-		if (_byte == null) {
-			_byte = getBytes();
-		}
-		return _byte;
+	public int getMagicLevel(int playerLevel) {
+		return Math.min(6, playerLevel / 8);
 	}
 }

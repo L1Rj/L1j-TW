@@ -30,8 +30,9 @@ public class S_CharAmount extends ServerBasePacket {
 
 	private void buildPacket(int value) {
 		writeC(Opcodes.S_OPCODE_CHARAMOUNT);
-		writeC(value);// 2.70C	writeD(0x00000000);	writeD(0x0000);
-		writeC(6);//max amount
+		writeC(value);
+		writeD(0x00000000);
+		writeD(0x0000);
 	}
 
 	@Override

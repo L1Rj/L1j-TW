@@ -1007,7 +1007,7 @@ public class L1PcInstance extends L1Character {
 			}
 		} else if (!isDead()) { // 念のため
 			System.out
-					.println("警告︰PC的hp減少處理出現錯誤。※將視為hp=0作處理");
+					.println("警告：プレイヤーのＨＰ減少處理が正しく行われていない箇所があります。※もしくは最初からＨＰ０");
 			death(attacker);
 		}
 	}
@@ -1481,22 +1481,7 @@ public class L1PcInstance extends L1Character {
 	public boolean isDarkelf() {
 		return (getClassId() == CLASSID_DARK_ELF_MALE || getClassId() == CLASSID_DARK_ELF_FEMALE);
 	}
-// 3.0C
-	public static final int CLASSID_DRAGON_KNIGHT_MALE = 6658;
-	public static final int CLASSID_DRAGON_KNIGHT_FEMALE = 6661;
-	public static final int CLASSID_ILLUSIONIST_MALE = 6671;
-	public static final int CLASSID_ILLUSIONIST_FEMALE = 6650;
-	//6658 龍騎士(男) → 玩家  
-	//6661 龍騎士(女) → 玩家
-	//6671 幻術士(男) → 玩家
-	//6650 幻術士(女) → 玩家
-	public boolean isDragonKnight() {//龍 奇 試
-		return (getClassId() == CLASSID_DRAGON_KNIGHT_MALE || getClassId() == CLASSID_DRAGON_KNIGHT_FEMALE);
-	}
-	public boolean isIllusionist() {// 換 術 施
-		return (getClassId() == CLASSID_ILLUSIONIST_MALE || getClassId() == CLASSID_ILLUSIONIST_FEMALE);
-	}
-//END
+
 	private static Logger _log = Logger.getLogger(L1PcInstance.class.getName());
 	private ClientThread _netConnection;
 	private int _classId;
@@ -1881,11 +1866,6 @@ public class L1PcInstance extends L1Character {
 			return;
 		}
 
-//XXX char-reset
-//		if(isIsInCharReset()){
-//			return;
-//		}
-//end
 		CharacterTable.getInstance().storeCharacter(this);
 	}
 
@@ -1937,9 +1917,6 @@ public class L1PcInstance extends L1Character {
 
 	public boolean isFastMovable() {
 		return (hasSkillEffect(L1SkillId.HOLY_WALK)
-//XXX 寵物競速 - 超級勇水
-				|| hasSkillEffect(L1SkillId.STATUS_BRAVE2)
-//END
 				|| hasSkillEffect(L1SkillId.MOVING_ACCELERATION) || hasSkillEffect(L1SkillId.WIND_WALK));
 	}
 
@@ -2007,11 +1984,11 @@ public class L1PcInstance extends L1Character {
 					getInventory().storeItem(43000, 1);
 					sendPackets(new S_ServerMessage(403, l1item.getName()));
 				} else {
-					sendPackets(new S_SystemMessage("無法取得轉生藥水。可能此道具不存在！"));
+					sendPackets(new S_SystemMessage("復活のポーションの入手に失敗しました。"));
 				}
 			} catch (Exception e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-				sendPackets(new S_SystemMessage("無法取得轉生藥水。可能此道具不存在！"));
+				sendPackets(new S_SystemMessage("復活のポーションの入手に失敗しました。"));
 			}
 		}
 

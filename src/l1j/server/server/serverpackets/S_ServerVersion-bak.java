@@ -50,21 +50,16 @@ public class S_ServerVersion extends ServerBasePacket {
 		// inputs /ver to be able to print out all version in game
 		// If the user level isn't a administrator
 		// inputs /ver to be able to print out client version in game
-/* 2.70C	writeD(0x00009D7C); // server verion
+		writeD(0x00009D7C); // server verion
 		writeD(0x0000791A); // cache verion
 		writeD(0x0000791A); // auth verion
-		writeD(0x00009DD1); // npc verion*/
-		writeD(0x000160c9); // server verion
-		writeD(0x0001606a); // cache verion
-		writeD(0x0000ee01); // auth verion
-		writeD(0x00013cdb); // npc verion
+		writeD(0x00009DD1); // npc verion
 
 		// ↓ unknown
 		// ↓ Old 270Lin.bin
 		// ↓ New 270Lin.bin
 		// ↓ isn't game time
-		//ec 66 c4 49
-		writeD(0x49c466ec);		// 2.70C<->0x882a2cc6
+		writeD(0x882a2cc6);
 
 		writeC(0x00); // unknown
 		writeC(0x00); // unknown
