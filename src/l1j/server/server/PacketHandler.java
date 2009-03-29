@@ -382,6 +382,14 @@ public class PacketHandler {
 		case C_OPCODE_SHIP:
 			new C_Ship(abyte0, _client);
  			break;
+//XXX
+		case C_OPCODE_MAIL:
+			new Expand_C_Mail(abyte0, _client);
+			break;
+		case C_OPCODE_CHARRESET:
+			new Expand_C_CharReset(abyte0, _client);
+			break;
+//END
 
 		default:
 			// String s = Integer.toHexString(abyte0[0] & 0xff);

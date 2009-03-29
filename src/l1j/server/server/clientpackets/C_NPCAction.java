@@ -350,7 +350,38 @@ public class C_NPCAction extends ClientBasePacket {
 					pc.sendPackets(new S_Drawal(pc.getId(), l1castle
 							.getPublicMoney()));
 				}
+			}			
+			// 3.0C回億蠟燭
+		} else if(((L1NpcInstance)obj).getNpcTemplate().get_npcId()==90002//90002 NPC編號
+				&& s.equalsIgnoreCase("ent")){
+			if(!pc.getInventory().checkItem(70006)){//70006蠟燭編號
+				pc.sendPackets(new S_ServerMessage(1290));
+				return;
 			}
+			L1Teleport.teleport(pc, 32737, 32789,(short)997,4, false);
+			pc.getInventory().takeoffEquip(945);
+			int intiStatusPoint = 75 + pc.getElixirStats();
+			int pcStatusPoint = 
+				pc.getBaseStr()+ pc.getBaseInt()+ pc.getBaseWis()+
+				pc.getBaseDex()+ pc.getBaseCon()+ pc.getBaseCha();
+			
+			if(pc.getLevel() > 50){
+				pcStatusPoint += (
+					pc.getLevel() - 50 - pc.getBonusStats());
+			}
+			int diff = pcStatusPoint - intiStatusPoint;
+			/**
+			 目前點數 - 初始點數 = 人物應有等級 - 50
+			 -> 人物應有等級 = 50 + (目前點數 - 初始點數)
+			 */
+			//最高到99級:也就是說不支援轉生
+			int maxLevel = Math.min(50 + diff, 99);
+
+			pc.setTempMaxLevel(maxLevel);
+			pc.setTempLevel(1);
+			pc.setIsInCharReset(true);
+			pc.sendPackets(new Expand_S_CharReset(pc));
+			// END
 		} else if (s.equalsIgnoreCase("cdeposit")) { // 資金を入金する
 			pc.sendPackets(new S_Deposit(pc.getId()));
 		} else if (s.equalsIgnoreCase("employ")) { // 傭兵の雇用

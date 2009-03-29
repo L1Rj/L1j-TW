@@ -183,6 +183,10 @@ public class GameServer extends Thread {
 			GeneralThreadPool.getInstance().execute(elementalStoneGenerator);
 		}
 
+		// 3.0C
+		MailTable.load();
+		// End
+
 		// ホームタウン
 		HomeTownTimeController.getInstance();
 

@@ -1881,11 +1881,11 @@ public class L1PcInstance extends L1Character {
 			return;
 		}
 
-//XXX char-reset
-//		if(isIsInCharReset()){
-//			return;
-//		}
-//end
+// 3.0C char-reset
+		if(isIsInCharReset()){
+			return;
+		}
+// end
 		CharacterTable.getInstance().storeCharacter(this);
 	}
 
@@ -2680,4 +2680,35 @@ public class L1PcInstance extends L1Character {
 		_callClanHeading = i;
 	}
 
+	
+// 3.0C char-reset
+	private boolean inCharReset = false;
+	
+	public boolean isIsInCharReset(){
+		return inCharReset;
+	}
+	
+	public void setIsInCharReset(boolean t){
+		inCharReset = t;
+	}
+	
+	private int _tempLevel = 1;
+
+	public int getTempLevel() {
+		return _tempLevel;
+	}
+
+	public void setTempLevel(int i) {
+		_tempLevel = i;
+	}
+	private int _tempMaxLevel = 1;
+
+	public int getTempMaxLevel() {
+		return _tempMaxLevel;
+	}
+
+	public void setTempMaxLevel(int i) {
+		_tempMaxLevel = i;
+	}
+// END
 }
