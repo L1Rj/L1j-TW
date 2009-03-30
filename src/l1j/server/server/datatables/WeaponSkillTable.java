@@ -89,7 +89,7 @@ public class WeaponSkillTable {
 					effectTarget, isArrowType, attr);
 			_weaponIdIndex.put(weaponId, weaponSkill);
 		}
-		_log.config("武器スキルリスト " + _weaponIdIndex.size() + "件ロード");
+		_log.config("武器技能列表 " + _weaponIdIndex.size() + "件");
 	}
 
 	public L1WeaponSkill getTemplate(int weaponId) {

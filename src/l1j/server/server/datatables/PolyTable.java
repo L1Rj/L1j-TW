@@ -87,7 +87,7 @@ public class PolyTable {
 			_polyIdIndex.put(polyId, poly);
 		}
 
-		_log.config("變身リスト " + _polymorphs.size() + "件ロード");
+		_log.config("變身清單 " + _polymorphs.size() + "件");
 	}
 
 	public L1PolyMorph getTemplate(String name) {

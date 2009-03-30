@@ -150,8 +150,8 @@ public class NpcSpawnTable {
 			SQLUtil.close(con);
 		}
 
-		_log.config("NPC配置リスト " + _spawntable.size() + "件ロード");
-		_log.fine("總NPC數 " + spawnCount + "件");
+		_log.config("NPC配置清單 " + _spawntable.size() + "件");
+		_log.fine("NPC總數 " + spawnCount + "件");
 	}
 
 	public void storeSpawn(L1PcInstance pc, L1Npc npc) {

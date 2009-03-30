@@ -125,7 +125,7 @@ public class SprTable {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
-		_log.config("SPRデータ " + _dataMap.size() + "件ロード");
+		_log.config("SPR數據 " + _dataMap.size() + "件");
 	}
 	
 	/**

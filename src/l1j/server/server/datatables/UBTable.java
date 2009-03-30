@@ -124,7 +124,7 @@ public class UBTable {
 		} finally {
 			SQLUtil.close(rs, pstm, con);
 		}
-		_log.config("UBリスト " + _ub.size() + "件ロード");
+		_log.config("UB清單 " + _ub.size() + "件");
 	}
 
 	public L1UltimateBattle getUb(int ubId) {

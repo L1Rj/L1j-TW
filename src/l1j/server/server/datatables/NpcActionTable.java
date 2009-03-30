@@ -92,7 +92,7 @@ public class NpcActionTable {
 			_instance = new NpcActionTable();
 			System.out.println("OK! " + timer.get() + "ms");
 		} catch (Exception e) {
-			_log.log(Level.SEVERE, "NpcActionを讀み⑸めませんでした", e);
+			_log.log(Level.SEVERE, "NpcAction沒能讀入", e);
 			System.exit(0);
 		}
 	}

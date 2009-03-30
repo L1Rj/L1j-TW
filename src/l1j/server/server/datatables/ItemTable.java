@@ -271,7 +271,7 @@ public class ItemTable {
 			_log.log(Level.SEVERE, new StringBuilder()
 					.append(item.getName())
 					.append("(" + item.getItemId() + ")")
-					.append("の讀み⑸みに失敗しました。").toString());
+					.append("讀入失敗。").toString());
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
@@ -354,7 +354,7 @@ public class ItemTable {
 			_log.log(Level.SEVERE, new StringBuilder()
 					.append(weapon.getName())
 					.append("(" + weapon.getItemId() + ")")
-					.append("の讀み⑸みに失敗しました。").toString());
+					.append("讀入失敗。").toString());
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 
@@ -444,7 +444,7 @@ public class ItemTable {
 			_log.log(Level.SEVERE, new StringBuilder()
 					.append(armor.getName())
 					.append("(" + armor.getItemId() + ")")
-					.append("の讀み⑸みに失敗しました。").toString());
+					.append("讀入失敗。").toString());
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {

@@ -88,7 +88,7 @@ public class UBSpawnTable {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
-		_log.config("UBモンスター配置リスト " + _spawnTable.size() + "件ロード");
+		_log.config("UB怪物配置清單 " + _spawnTable.size() + "件");
 	}
 
 	public L1UbSpawn getSpawn(int spawnId) {

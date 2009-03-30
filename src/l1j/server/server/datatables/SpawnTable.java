@@ -56,7 +56,7 @@ public class SpawnTable {
 		PerformanceTimer timer = new PerformanceTimer();
 		System.out.print("spawning mob...");
 		fillSpawnTable();
-		_log.config("モンスター配置リスト " + _spawntable.size() + "件ロード");
+		_log.config("怪物配置清單 " + _spawntable.size() + "件");
 		System.out.println("OK! " + timer.get() + " ms");
 	}
 
@@ -155,7 +155,7 @@ public class SpawnTable {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
-		_log.fine("總モンスター數 " + spawnCount + "匹");
+		_log.fine("普通怪物一共 " + spawnCount + "隻");
 	}
 
 	public L1Spawn getTemplate(int Id) {
