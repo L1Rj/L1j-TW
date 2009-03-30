@@ -25,6 +25,7 @@ import java.net.Socket;
 import java.util.Collection;
 import java.util.logging.Logger;
 
+import l1j.expand.MailTable;
 import l1j.server.Config;
 import l1j.server.server.datatables.CastleTable;
 import l1j.server.server.datatables.CharacterTable;

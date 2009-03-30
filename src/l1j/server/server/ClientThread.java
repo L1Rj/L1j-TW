@@ -51,6 +51,7 @@ import l1j.server.server.serverpackets.ServerBasePacket;
 import l1j.server.server.types.UByte8;
 import l1j.server.server.types.UChar8;
 import l1j.server.server.utils.StreamUtil;
+import l1j.server.server.utils.SystemUtil;
 
 
 // Referenced classes of package l1j.server.server:
