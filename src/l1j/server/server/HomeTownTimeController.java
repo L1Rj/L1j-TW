@@ -82,14 +82,14 @@ public class HomeTownTimeController {
 	}
 
 	public void dailyProc() {
-		_log.info("ホームタウンシステム：日時處理開始");
+		_log.info("村莊管理系統：日時處理開始");
 		TownTable.getInstance().updateTaxRate();
 		TownTable.getInstance().updateSalesMoneyYesterday();
 		TownTable.getInstance().load();
 	}
 
 	public void monthlyProc() {
-		_log.info("ホームタウンシステム：月時處理開始");
+		_log.info("村莊管理系統：月時處理開始");
 		L1World.getInstance().setProcessingContributionTotal(true);
 		Collection<L1PcInstance> players = L1World.getInstance()
 				.getAllPlayers();

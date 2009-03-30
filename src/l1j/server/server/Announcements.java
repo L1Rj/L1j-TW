@@ -87,7 +87,7 @@ public class Announcements {
 				}
 			}
 
-			_log.config("告知事項 " + i + "件ロード");
+			_log.config("告知事項 " + i + "件 佈告");
 		} catch (FileNotFoundException e) {
 			// ファイルがない場合は、告知事項なし
 		} catch (IOException e) {

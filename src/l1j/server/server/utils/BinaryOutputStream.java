@@ -72,7 +72,7 @@ public class BinaryOutputStream extends OutputStream {
 	public void writeS(String text) {
 		try {
 			if (text != null) {
-				_bao.write(text.getBytes("Shift-JIS"));
+				_bao.write(text.getBytes("big5"));
 			}
 		} catch (Exception e) {
 		}

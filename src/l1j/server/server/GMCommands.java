@@ -82,7 +82,7 @@ public class GMCommands {
 			_log.info(pc.getName() + "不過." + name + " " + arg + "使用了指令。");
 			return true;
 		} catch (Exception e) {
-			_log.log(Level.SEVERE, "error gm command", e);
+			_log.log(Level.SEVERE, "錯誤的 GM指令", e);
 		}
 		return false;
 	}
