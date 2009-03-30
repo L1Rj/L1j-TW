@@ -88,31 +88,31 @@ public class C_LoginToServer extends ClientBasePacket {
 		String charName = readS();
 
 		if (client.getActiveChar() != null) {
-			_log.info("同一IDでの重複接續の為(" + client.getHostname()
-					+ ")との接續を強制切斷しました。");
+			_log.info("ID(" + client.getHostname()
+					+ ")因重覆連線而遭服務器強制切斷連線。");
 			client.close();
 			return;
 		}
 
 		L1PcInstance pc = L1PcInstance.load(charName);
 		if (pc == null || !login.equals(pc.getAccountName())) {
-			_log.info("無效なログインリクエスト: char=" + charName + " account=" + login
-					+ " host=" + client.getHostname());
+			_log.info("【無效請求】 帳號=" + login + " 角色=" + charName + " 
+					+ " 來原=" + client.getHostname());
 			client.close();
 			return;
 		}
 
 		if (Config.LEVEL_DOWN_RANGE != 0) {
 			if (pc.getHighLevel() - pc.getLevel() >= Config.LEVEL_DOWN_RANGE) {
-				_log.info("レベルダウンの許容範圍を超えたキャラクターのログインリクエスト: char="
-						+ charName + " account=" + login + " host=" + client.getHostname());
+				_log.info("【超越容許要求而拒絕進入要求】 帳號=" + login + " 角色="
+						+ charName + " 來原=" + client.getHostname());
 				client.kick();
 				return;
 			}
 		}
 
-		_log.info("キャラクターログイン: char=" + charName + " account=" + login
-				+ " host=" + client.getHostname());
+		_log.info("【玩家登入】 帳號=" + login
+				+ "角色=" + charName + "  來源=" + client.getHostname());
 
 		pc.setOnlineStatus(1);
 		CharacterTable.updateOnlineStatus(pc);

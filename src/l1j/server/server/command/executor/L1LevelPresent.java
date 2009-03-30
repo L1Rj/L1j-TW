@@ -51,17 +51,17 @@ public class L1LevelPresent implements L1CommandExecutor {
 
 			L1Item temp = ItemTable.getInstance().getTemplate(itemid);
 			if (temp == null) {
-				pc.sendPackets(new S_SystemMessage("存在しないアイテムIDです。"));
+				pc.sendPackets(new S_SystemMessage("要更改的ID不存在。"));
 				return;
 			}
 
 			L1DwarfInventory.present(minlvl, maxlvl, itemid, enchant, count);
 			pc.sendPackets(new S_SystemMessage(temp.getName() + "を" + count
-					+ "個プレゼントしました。(Lv" + minlvl + "～" + maxlvl + ")"));
+					+ "個 強化成功。(Lv" + minlvl + "～" + maxlvl + ")"));
 		} catch (Exception e) {
 			pc
 					.sendPackets(new S_SystemMessage(
-							".lvpresent minlvl maxlvl アイテムID エンチャント數 アイテム數 と入力してください。"));
+							"請輸入『.lvpresent minlvl maxlvl 道具ID 精煉等級 數量』。"));
 		}
 	}
 }

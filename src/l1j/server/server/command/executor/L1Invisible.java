@@ -41,10 +41,10 @@ public class L1Invisible implements L1CommandExecutor {
 			pc.setGmInvis(true);
 			pc.sendPackets(new S_Invis(pc.getId(), 1));
 			pc.broadcastPacket(new S_RemoveObject(pc));
-			pc.sendPackets(new S_SystemMessage("透明狀態になりました。"));
+			pc.sendPackets(new S_SystemMessage("隱身狀態。"));
 
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " コマンドエラー"));
+			pc.sendPackets(new S_SystemMessage(".invisible 指令錯誤"));
 		}
 	}
 }

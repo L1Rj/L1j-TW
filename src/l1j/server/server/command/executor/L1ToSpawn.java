@@ -65,14 +65,14 @@ public class L1ToSpawn implements L1CommandExecutor {
 						.getMapId(), 5, false);
 				pc
 						.sendPackets(new S_SystemMessage("spawnid(" + id
-								+ ")の元へ飛びます"));
+								+ ")重生座標"));
 			} else {
 				pc.sendPackets(new S_SystemMessage("spawnid(" + id
-						+ ")は見つかりません"));
+						+ ")沒有找到"));
 			}
 			_spawnId.put(pc.getId(), id);
 		} catch (Exception exception) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " spawnid|+|-"));
+			pc.sendPackets(new S_SystemMessage("請輸入『.spawn spawnid|+|-』。"));
 		}
 	}
 }

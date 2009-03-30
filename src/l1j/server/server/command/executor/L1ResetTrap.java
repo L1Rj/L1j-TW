@@ -37,6 +37,6 @@ public class L1ResetTrap implements L1CommandExecutor {
 	@Override
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
 		L1WorldTraps.getInstance().resetAllTraps();
-		pc.sendPackets(new S_SystemMessage("トラップを再配置しました"));
+		pc.sendPackets(new S_SystemMessage("再配置"));
 	}
 }

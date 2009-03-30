@@ -44,7 +44,7 @@ public class L1Burf implements L1CommandExecutor {
 			pc.sendPackets(new S_SkillSound(pc.getId(), sprid));
 			pc.broadcastPacket(new S_SkillSound(pc.getId(), sprid));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " castgfx と入力して下さい。"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " castgfx 圖像編號"));
 		}
 	}
 }

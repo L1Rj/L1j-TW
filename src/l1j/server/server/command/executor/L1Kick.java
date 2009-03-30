@@ -42,15 +42,15 @@ public class L1Kick implements L1CommandExecutor {
 
 			if (target != null) {
 				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						.append(target.getName()).append("さんをキックしました。")
+						.append(target.getName()).append("您被GM強制踢除遊戲。")
 						.toString()));
 				target.sendPackets(new S_Disconnect());
 			} else {
 				pc.sendPackets(new S_SystemMessage(
-						"そのような名前のキャラクターはワールド內には存在しません。"));
+						"此玩家並不在這個伺服器內。"));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " キャラクター名 と入力して下さい。"));
+			pc.sendPackets(new S_SystemMessage("請輸入『.kick 玩家ID』。"));
 		}
 	}
 }

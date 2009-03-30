@@ -44,10 +44,10 @@ public class L1Chat implements L1CommandExecutor {
 				String msg;
 				if (flag.compareToIgnoreCase("on") == 0) {
 					L1World.getInstance().set_worldChatElabled(true);
-					msg = "ワールドチャットを有效にしました。";
+					msg = "開啟全體聊天。";
 				} else if (flag.compareToIgnoreCase("off") == 0) {
 					L1World.getInstance().set_worldChatElabled(false);
-					msg = "ワールドチャットを停止しました。";
+					msg = "關閉全體聊天。";
 				} else {
 					throw new Exception();
 				}
@@ -55,14 +55,14 @@ public class L1Chat implements L1CommandExecutor {
 			} else {
 				String msg;
 				if (L1World.getInstance().isWorldChatElabled()) {
-					msg = "現在ワールドチャットは有效です。.chat off で停止できます。";
+					msg = "目前全體聊天開啟中。輸入『.chat off』即可關閉。";
 				} else {
-					msg = "現在ワールドチャットは停止しています。.chat on で有效にできます。";
+					msg = "目前全體聊天關閉中。輸入『.chat on』即可開啟。";
 				}
 				pc.sendPackets(new S_SystemMessage(msg));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " [on|off]"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " [ on | off ]"));
 		}
 	}
 }
