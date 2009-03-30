@@ -60,7 +60,7 @@ import l1j.server.server.serverpackets.S_SkillHaste;
 import l1j.server.server.serverpackets.S_SkillIconGFX;
 import l1j.server.server.serverpackets.S_SummonPack;
 import l1j.server.server.serverpackets.S_Unknown1;
-import l1j.server.server.serverpackets.S_Unknown2;
+//import l1j.server.server.serverpackets.S_Unknown2;
 import l1j.server.server.serverpackets.S_War;
 import l1j.server.server.serverpackets.S_Weather;
 import l1j.server.server.serverpackets.S_bonusstats;
@@ -124,8 +124,8 @@ public class C_LoginToServer extends ClientBasePacket {
 
 		S_Unknown1 s_unknown1 = new S_Unknown1();
 		pc.sendPackets(s_unknown1);
-		S_Unknown2 s_unknown2 = new S_Unknown2();
-		pc.sendPackets(s_unknown2);
+		//S_Unknown2 s_unknown2 = new S_Unknown2();
+		//pc.sendPackets(s_unknown2);
 
 		bookmarks(pc);
 

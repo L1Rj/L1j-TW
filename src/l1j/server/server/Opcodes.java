@@ -238,7 +238,7 @@ public class Opcodes {
 	//public static final int S_OPCODE_SELETESERVER = 65; 	// 無使用
 	//public static final int S_OPCODE_COMMONNEWS2 = 65; 	// 無使用
 	//public static final int S_OPCODE_BLUEMESSAGE2 = ;		// 無使用
-	public static final int S_OPCODE_UNKNOWN2 = 105;			// 無使用
+	//public static final int S_OPCODE_UNKNOWN2 = 105;		// 無使用
 	//public static final int S_OPCODE_MATERIAL = ; 
 /* 2.70C
 	// clientpackets

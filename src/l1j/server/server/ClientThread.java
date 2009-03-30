@@ -102,9 +102,6 @@ public class ClientThread implements Runnable, PacketOutput {
 		(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,		// 3.0C
 		(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,		// 3.0C
 		(byte) 0x02, (byte) 0x08, (byte) 0x00 };				// 3.0C
-	/*日版	(byte) 0xb1, (byte) 0x3c, (byte) 0x2c, (byte) 0x28,
-			(byte) 0xf6, (byte) 0x65, (byte) 0x1d, (byte) 0xdd,
-			(byte) 0x56, (byte) 0xe3, (byte) 0xef };*/
 
 	/**
 	 * for Test
@@ -203,7 +200,7 @@ public class ClientThread implements Runnable, PacketOutput {
 		}
 	}
 
-	@Override
+	//@Override
 	public void run() {
 		_log.info("(" + _hostname + ")  的客戶端開始連線");
 		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
@@ -232,9 +229,9 @@ public class ClientThread implements Runnable, PacketOutput {
 		}
 
 		try {
-			// add for 2.70C start			long seed = 0x5cc690ecL;
 			long seed = 0x7c98bdfa;			// 3.0C
 			byte Bogus = (byte)(FIRST_PACKET.length + 7);
+			
 			_out.write(Bogus & 0xFF);
 			_out.write(Bogus >> 8 & 0xFF);
 			_out.write(0x7d);	// 3.0C 	2.70 <-> 0x20;
@@ -242,13 +239,11 @@ public class ClientThread implements Runnable, PacketOutput {
 			_out.write((byte)(seed >> 8 & 0xFF));
 			_out.write((byte)(seed >> 16 & 0xFF));
 			_out.write((byte)(seed >> 24 & 0xFF));
-			// add for 2.70C end
-
 			_out.write(FIRST_PACKET);
 			_out.flush();
 			try {
-				// long seed = 0x2e70db3aL; // for Episode5
 				// long seed = 0x0cf1821dL; // for Episode6
+				// long seed = 0x5cc690ecL; // for Episode7
 				_clkey = LineageEncryption.initKeys(socket, seed);
 			} catch (ClientIdExistsException e) {}
 
@@ -341,7 +336,7 @@ public class ClientThread implements Runnable, PacketOutput {
 			System.out.println("等待客戶端連線...");
 		}
 		return;
-	}
+	}	
 
 	private int _kick = 0;
 
@@ -375,7 +370,7 @@ public class ClientThread implements Runnable, PacketOutput {
 			_queue.offer(data);
 		}
 
-		@Override
+		//@Override
 		public void run() {
 			byte[] data;
 			while (_csocket != null) {
@@ -443,7 +438,7 @@ public class ClientThread implements Runnable, PacketOutput {
 		}
 	}
 
-	@Override
+	//@Override
 	public void sendPacket(ServerBasePacket packet) {
 		synchronized (this) {
 			try {
