@@ -70,7 +70,7 @@ public class GMCommands {
 				return false;
 			}
 			if (pc.getAccessLevel() < command.getLevel()) {
-				pc.sendPackets(new S_ServerMessage(74, "コマンド" + name)); // \f1%0は使用できません。
+				pc.sendPackets(new S_ServerMessage(74, "指令 ." + name)); // \f1%0は使用できません。
 				return true;
 			}
 
@@ -79,7 +79,7 @@ public class GMCommands {
 			L1CommandExecutor exe = (L1CommandExecutor) cls.getMethod(
 					"getInstance").invoke(null);
 			exe.execute(pc, name, arg);
-			_log.info(pc.getName() + "が." + name + " " + arg + "コマンドを使用しました。");
+			_log.info(pc.getName() + "不過." + name + " " + arg + "使用了指令。");
 			return true;
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, "error gm command", e);
@@ -107,13 +107,13 @@ public class GMCommands {
 		}
 		if (cmd.equalsIgnoreCase("r")) {
 			if (!_lastCommands.containsKey(gm.getId())) {
-				gm.sendPackets(new S_ServerMessage(74, "コマンド" + cmd)); // \f1%0は使用できません。
+				gm.sendPackets(new S_ServerMessage(74, "指令 ." + cmd)); // \f1%0は使用できません。
 				return;
 			}
 			redo(gm, param);
 			return;
 		}
-		gm.sendPackets(new S_SystemMessage("コマンド " + cmd + " は存在しません。"));
+		gm.sendPackets(new S_SystemMessage("指令 . " + cmd + " 不存在或無法使用。"));
 	}
 
 	private static Map<Integer, String> _lastCommands = new HashMap<Integer, String>();
@@ -122,19 +122,19 @@ public class GMCommands {
 		try {
 			String lastCmd = _lastCommands.get(pc.getId());
 			if (arg.isEmpty()) {
-				pc.sendPackets(new S_SystemMessage("コマンド " + lastCmd
-						+ " を再實行します"));
+				pc.sendPackets(new S_SystemMessage("指令 . " + lastCmd
+						+ " 重新執行"));
 				handleCommands(pc, lastCmd);
 			} else {
 				// 引數を變えて實行
 				StringTokenizer token = new StringTokenizer(lastCmd);
 				String cmd = token.nextToken() + " " + arg;
-				pc.sendPackets(new S_SystemMessage("コマンド " + cmd + " を實行します。"));
+				pc.sendPackets(new S_SystemMessage("指令 . " + cmd + " 執行。"));
 				handleCommands(pc, cmd);
 			}
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			pc.sendPackets(new S_SystemMessage(".r コマンドエラー"));
+			pc.sendPackets(new S_SystemMessage(".r  指令錯誤哦！"));
 		}
 	}
 }

@@ -419,8 +419,8 @@ public final class Config {
 			THREAD_P_SIZE_GENERAL = Integer.parseInt(serverSettings
 					.getProperty("GeneralThreadPoolSize", "0"), 10);
 			CLIENT_LANGUAGE = Integer.parseInt(serverSettings.getProperty(
-					"ClientLanguage", "4"));
-			TIME_ZONE = serverSettings.getProperty("TimeZone", "JST");
+					"ClientLanguage", "3"));
+			TIME_ZONE = serverSettings.getProperty("TimeZone", "TST");
 			HOSTNAME_LOOKUPS = Boolean.parseBoolean(serverSettings.getProperty(
 					"HostnameLookups", "false"));
 			AUTOMATIC_KICK = Integer.parseInt(serverSettings.getProperty(

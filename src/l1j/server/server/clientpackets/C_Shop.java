@@ -69,7 +69,7 @@ public class C_Shop extends ClientBasePacket {
 				if (!checkItem.getItem().isTradable()) {
 					tradable = false;
 					pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
-							checkItem.getItem().getName(), "取引不可能です。"));
+							checkItem.getItem().getName(), "不可交易。"));
 				}
 				Object[] petlist = pc.getPetList().values().toArray();
 				for (Object petObject : petlist) {
@@ -79,7 +79,7 @@ public class C_Shop extends ClientBasePacket {
 							tradable = false;
 							pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
 									checkItem.getItem().getName(),
-									"取引不可能です。"));
+									"不可交易。"));
 							break;
 						}
 					}
@@ -103,7 +103,7 @@ public class C_Shop extends ClientBasePacket {
 				if (!checkItem.getItem().isTradable()) {
 					tradable = false;
 					pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
-							checkItem.getItem().getName(), "取引不可能です。"));
+							checkItem.getItem().getName(), "不可交易。"));
 				}
 				Object[] petlist = pc.getPetList().values().toArray();
 				for (Object petObject : petlist) {
@@ -113,7 +113,7 @@ public class C_Shop extends ClientBasePacket {
 							tradable = false;
 							pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
 									checkItem.getItem().getName(),
-									"取引不可能です。"));
+									"不可交易。"));
 							break;
 						}
 					}

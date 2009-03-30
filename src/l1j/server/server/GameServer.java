@@ -138,8 +138,8 @@ public class GameServer extends Thread {
 			System.out.println("服務器狀態: 生成中");
 		}
 
-		System.out.println("EXP:" + (rateXp) + "倍  正義值:" + (LA) + "倍  カルマ:"
-				+ (rateKarma) + "倍  負重率:" + (rateDropItems) + "倍  金幣取得:"
+		System.out.println("EXP:" + (rateXp) + "倍  正義值:" + (LA) + "倍  友好:"
+				+ (rateKarma) + "倍  負重率:" + (rateDropItems) + "倍  金幣:"
 				+ (rateDropAdena) + "倍");
 		System.out.println("全體頻道使用限制 Lv " + (chatlvl));
 		if (Config.ALT_NONPVP) { // Non-PvP設定
@@ -149,7 +149,7 @@ public class GameServer extends Thread {
 		}
 
 		System.out.println("=================================================");
-		System.out.println("繁體核心 手動翻譯 第一版...");
+		System.out.println("繁體核心 手動翻譯 第二版...");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;

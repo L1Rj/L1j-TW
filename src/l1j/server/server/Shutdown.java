@@ -41,8 +41,8 @@ public class Shutdown extends Thread {
 	public static final int GM_SHUTDOWN = 1;
 	public static final int GM_RESTART = 2;
 	public static final int ABORT = 3;
-	private static String[] _modeText = { "SIGTERM", "shuting down",
-			"restarting", "aborting" };
+	private static String[] _modeText = { "【黑箱作業】", "【GM下令關閉】",
+			"【GM下令重啟】", "aborting" };
 
 	/**
 	 * Default constucter is only used internal to create the shutdown-hook
@@ -145,10 +145,10 @@ public class Shutdown extends Thread {
 			boolean restart) {
 		Announcements _an = Announcements.getInstance();
 		_log.warning("GM: " + activeChar.getId()
-				+ " issued shutdown command. " + _modeText[shutdownMode]
-				+ " in " + seconds + " seconds!");
-		_an.announceToAll("Server is " + _modeText[shutdownMode] + " in "
-				+ seconds + " seconds!");
+				+ " 使用關機指令. " + _modeText[shutdownMode]
+				+ " 在 " + seconds + " 秒!");
+		_an.announceToAll("伺服器 是 " + _modeText[shutdownMode] + " ，在 "
+				+ seconds + " 秒!");
 
 		if (_counterInstance != null) {
 			_counterInstance._abort();
@@ -274,7 +274,7 @@ public class Shutdown extends Thread {
 		Announcements _an = Announcements.getInstance();
 		switch (shutdownMode) {
 		case SIGTERM:
-			System.err.println("【 動作：手動關閉!!! 】");
+			System.err.println("【 動作：黑箱作業!!! 】");
 			break;
 		case GM_SHUTDOWN:
 			System.err.println("【 動作：GM 關閉!!! 】");
@@ -302,9 +302,9 @@ public class Shutdown extends Thread {
 
 	public void startTelnetShutdown(String IP, int seconds, boolean restart) {
 		Announcements _an = Announcements.getInstance();
-		_log.warning("IP: " + IP + " issued shutdown command. "
+		_log.warning("IP: " + IP + " 使用關閉指令. "
 				+ _modeText[shutdownMode] + " in " + seconds + " 秒!");
-		_an.announceToAll("Server is " + _modeText[shutdownMode] + " in "
+		_an.announceToAll("服務器 是 " + _modeText[shutdownMode] + "，在 "
 				+ seconds + " 秒!");
 
 		if (_counterInstance != null) {
