@@ -292,7 +292,7 @@ public class L1Magic {
 		}
 
 		String msg0 = "";
-		String msg1 = "受到";
+		String msg1 = "に";
 		String msg2 = "";
 		String msg3 = "";
 		String msg4 = "";
@@ -863,7 +863,7 @@ public class L1Magic {
 		}
 
 		String msg0 = "";
-		String msg1 = "受到";
+		String msg1 = "に";
 		String msg2 = "";
 		String msg3 = "";
 		String msg4 = "";

@@ -2073,7 +2073,7 @@ public class L1PcInstance extends L1Character {
 			if (getHighLevel() - getLevel() >= Config.LEVEL_DOWN_RANGE) {
 				sendPackets(new S_ServerMessage(64)); // ワールドとの接續が切斷されました。
 				sendPackets(new S_Disconnect());
-				_log.info(String.format("レベルダウンの許容範圍を超えたため%sを強制切斷しました。",
+				_log.info(String.format("超過了允許範圍內的水平 %s是被迫切斷連線。",
 						getName()));
 			}
 		}

@@ -112,7 +112,7 @@ public class C_LoginToServer extends ClientBasePacket {
 		}
 
 		_log.info("【玩家登入】 帳號=" + login
-				+ " 角色=" + charName + "  來源=" + client.getHostname());
+				+ "角色=" + charName + "  來源=" + client.getHostname());
 
 		pc.setOnlineStatus(1);
 		CharacterTable.updateOnlineStatus(pc);

@@ -1332,7 +1332,7 @@ public class L1Attack {
 			}
 		}
 		String msg0 = "";
-		String msg1 = "受到";
+		String msg1 = "に";
 		String msg2 = "";
 		String msg3 = "";
 		String msg4 = "";
@@ -1349,7 +1349,7 @@ public class L1Attack {
 			msg4 = _targetNpc.getName();
 			msg2 = "Hit" + _hitRate + "% Hp" + _targetNpc.getCurrentHp();
 		}
-		msg3 = _isHit ? _damage + "傷害值" : "攻擊失敗";
+		msg3 = _isHit ? _damage + "与えた" : "ミスしました";
 
 		if (_calcType == PC_PC || _calcType == PC_NPC) { // アタッカーがＰＣの場合
 			_pc.sendPackets(new S_ServerMessage(166, msg0, msg1, msg2, msg3,

@@ -143,10 +143,8 @@ public class AuctionBoardTable {
 					.prepareStatement("UPDATE board_auction SET house_name=?, house_area=?, deadline=?, price=?, location=?, old_owner=?, old_owner_id=?, bidder=?, bidder_id=? WHERE house_id=?");
 			pstm.setString(1, board.getHouseName());
 			pstm.setInt(2, board.getHouseArea());
-/*			String fm = DateFormat.getDateTimeInstance().format(
-					board.getDeadline().getTime()); // 原有格式未定義 導致報錯 */
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); //TODO 盟屋買賣系統時間自動更新 by pigermin
-			String fm = sdf.format(board.getDeadline().getTime());//end
+			String fm = DateFormat.getDateTimeInstance().format(
+					board.getDeadline().getTime());
 			pstm.setString(3, fm);
 			pstm.setInt(4, board.getPrice());
 			pstm.setString(5, board.getLocation());

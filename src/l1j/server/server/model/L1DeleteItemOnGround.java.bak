@@ -54,7 +54,7 @@ public class L1DeleteItemOnGround {
 					break;
 				}
 				L1World.getInstance().broadcastPacketToAll(
-						new S_ServerMessage(166, "地上的物品",
+						new S_ServerMessage(166, "被清除了",
 								"10秒後將清除")); // \f1%0が%4%1%3 %2
 				try {
 					Thread.sleep(10000);
@@ -64,7 +64,7 @@ public class L1DeleteItemOnGround {
 				}
 				deleteItem();
 				L1World.getInstance().broadcastPacketToAll(
-						new S_ServerMessage(166, "地上的物品", "被清除了")); // \f1%0が%4%1%3
+						new S_ServerMessage(166, "地上的物品, "被清除了")); // \f1%0が%4%1%3
 				// %2
 			}
 		}
