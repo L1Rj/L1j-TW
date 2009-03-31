@@ -72,7 +72,7 @@ public class BinaryOutputStream extends OutputStream {
 	public void writeS(String text) {
 		try {
 			if (text != null) {
-				_bao.write(text.getBytes("big5"));
+				_bao.write(text.getBytes("utf8"));
 			}
 		} catch (Exception e) {
 		}

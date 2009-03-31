@@ -127,8 +127,8 @@ public class L1PcInventory extends L1Inventory {
 		if (itemExist != null && (itemExist.getCount() + count) > MAX_AMOUNT) {
 			if (message) {
 				getOwner().sendPackets(new S_ServerMessage(166,
-						"所持しているアデナ",
-						"2,000,000,000を超過しています。")); // \f1%0が%4%1%3%2
+						"持有金幣",
+						"超過2,000,000,000。")); // \f1%0が%4%1%3%2
 			}
 			return AMOUNT_OVER;
 		}
