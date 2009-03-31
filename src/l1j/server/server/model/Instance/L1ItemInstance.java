@@ -546,6 +546,8 @@ public class L1ItemInstance extends L1Object {
 			bit |= getItem().isUseElf()     ? 4 : 0;
 			bit |= getItem().isUseMage()    ? 8 : 0;
 			bit |= getItem().isUseDarkelf() ? 16 : 0;
+			bit |= getItem().isUseDragonknight() ? 32 : 0;	//	3.0C Test
+			bit |= getItem().isUseIllusionist() ? 64 : 0;	//	3.0C Test
 			// bit |= getItem().isUseHiPet() ? 64 : 0; // ハイペット
 			os.writeC(7);
 			os.writeC(bit);

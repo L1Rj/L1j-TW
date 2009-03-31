@@ -332,7 +332,27 @@ public abstract class L1Item implements Serializable {
 	public void setUseDarkelf(boolean flag) {
 		_useDarkelf = flag;
 	}
+	//	3.0C Test↓
+	private boolean _useDragonknight = false; // ● 龍騎士裝備できるか	引用騎士
 
+	public boolean isUseDragonknight() {
+		return _useDragonknight;
+	}
+
+	public void setUseDragonknight(boolean flag) {
+		_useDragonknight = flag;
+	}
+
+	private boolean _useIllusionist = false; // ● 幻術師裝備できるか	引用法師
+
+	public boolean isUseIllusionist() {
+		return _useIllusionist;
+	}
+
+	public void setUseIllusionist(boolean flag) {
+		_useIllusionist = flag;
+	}
+	//	3.0C Test↑
 	private byte _addstr = 0; // ● ＳＴＲ補正
 
 	public byte get_addstr() {

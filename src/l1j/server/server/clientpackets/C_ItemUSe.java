@@ -2598,8 +2598,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_PacketBox(
 								S_PacketBox.MSG_LEVEL_OVER, max));
 					} else {
-						pc.sendPackets(new S_SystemMessage("このアイテムは" + max
-								+ "レベル以下のみ使用できます。"));
+						pc.sendPackets(new S_SystemMessage("限制 Lv" + max
+								+ "以下才能裝備。"));
 					}
 				} else {
 					if (pc.isCrown() && l1iteminstance.getItem().isUseRoyal()
@@ -2610,7 +2610,11 @@ public class C_ItemUSe extends ClientBasePacket {
 							|| pc.isWizard()
 							&& l1iteminstance.getItem().isUseMage()
 							|| pc.isDarkelf()
-							&& l1iteminstance.getItem().isUseDarkelf()) {
+							&& l1iteminstance.getItem().isUseDarkelf()
+							|| pc.isDragonKnight()	//	3.0C Test↓
+							&& l1iteminstance.getItem().isUseDragonknight()
+							|| pc.isIllusionist()
+							&& l1iteminstance.getItem().isUseIllusionist()) {	//	3.0C Test↑
 						UseWeapon(pc, l1iteminstance);
 					} else {
 						// \f1あなたのクラスではこのアイテムは使用できません。
@@ -2624,7 +2628,9 @@ public class C_ItemUSe extends ClientBasePacket {
 						&& l1iteminstance.getItem().isUseElf() || pc.isWizard()
 						&& l1iteminstance.getItem().isUseMage()
 						|| pc.isDarkelf()
-						&& l1iteminstance.getItem().isUseDarkelf()) {
+						&& l1iteminstance.getItem().isUseDarkelf()
+						|| pc.isDragonKnight()&& l1iteminstance.getItem().isUseDragonknight()	//	3.0C Test↓
+						|| pc.isIllusionist()&& l1iteminstance.getItem().isUseIllusionist()) {	//	3.0C Test↑
 
 					int min = ((L1Armor) l1iteminstance.getItem())
 							.getMinLevel();
@@ -2641,8 +2647,8 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.sendPackets(new S_PacketBox(
 									S_PacketBox.MSG_LEVEL_OVER, max));
 						} else {
-							pc.sendPackets(new S_SystemMessage("このアイテムは" + max
-									+ "レベル以下のみ使用できます。"));
+							pc.sendPackets(new S_SystemMessage("限制 Lv" + max
+									+ "以下才能裝備。"));
 						}
 					} else {
 						UseArmor(pc, l1iteminstance);
