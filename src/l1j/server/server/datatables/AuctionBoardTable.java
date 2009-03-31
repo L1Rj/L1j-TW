@@ -24,7 +24,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;	//­×¥¿¦å·ù¤p«Î³ø¿ù®æ¦¡
+import java.text.SimpleDateFormat;	//ä¿®æ­£è¡€ç›Ÿå°å±‹å ±éŒ¯æ ¼å¼
 import java.util.Calendar;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -113,8 +113,8 @@ public class AuctionBoardTable {
 			pstm.setString(2, board.getHouseName());
 			pstm.setInt(3, board.getHouseArea());
 /*			String fm = DateFormat.getDateTimeInstance().format(
-					board.getDeadline().getTime()); // ­ì¦³®æ¦¡¥¼©w¥ç·|¥X¿ù°İÃD  */
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); // TODO ·ù«Î¶R½æ¨t²Î®É¶¡¦Û°Ê§ó·s by pigermin
+					board.getDeadline().getTime()); // åŸæœ‰æ ¼å¼æœªå®šäº¦æœƒå‡ºéŒ¯å•é¡Œ  */
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); // TODO ç›Ÿå±‹è²·è³£ç³»çµ±æ™‚é–“è‡ªå‹•æ›´æ–° by pigermin
 			String fm = sdf.format(board.getDeadline().getTime());//end
 			pstm.setString(4, fm);
 			pstm.setInt(5, board.getPrice());
@@ -144,8 +144,8 @@ public class AuctionBoardTable {
 			pstm.setString(1, board.getHouseName());
 			pstm.setInt(2, board.getHouseArea());
 /*			String fm = DateFormat.getDateTimeInstance().format(
-					board.getDeadline().getTime()); // ­ì¦³®æ¦¡¥¼©w¸q ¾É­P³ø¿ù */
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); //TODO ·ù«Î¶R½æ¨t²Î®É¶¡¦Û°Ê§ó·s by pigermin
+					board.getDeadline().getTime()); // åŸæœ‰æ ¼å¼æœªå®šç¾© å°è‡´å ±éŒ¯ */
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); //TODO ç›Ÿå±‹è²·è³£ç³»çµ±æ™‚é–“è‡ªå‹•æ›´æ–° by pigermin
 			String fm = sdf.format(board.getDeadline().getTime());//end
 			pstm.setString(3, fm);
 			pstm.setInt(4, board.getPrice());
