@@ -22,7 +22,7 @@ CREATE TABLE `mapids` (
   `usable_item` tinyint(1) unsigned NOT NULL default '0',
   `usable_skill` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY (`mapid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=sjis;
 #----------------------------
 # Records for table mapids
 #----------------------------

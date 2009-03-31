@@ -24,7 +24,7 @@ CREATE TABLE `mobskill` (
   `SummonMax` int(10) NOT NULL DEFAULT '0',
   `PolyId` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`mobid`,`actNo`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=sjis;
 
 #----------------------------
 # Records for table mobskill

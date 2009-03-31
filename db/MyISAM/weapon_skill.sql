@@ -15,7 +15,7 @@ CREATE TABLE `weapon_skill` (
   `arrow_type` int(11) unsigned NOT NULL default '0',
   `attr` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`weapon_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis COMMENT='MyISAM free: 10240 kB';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 10240 kB';
 #----------------------------
 # Records for table weapon_skill
 #----------------------------

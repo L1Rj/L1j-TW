@@ -7,7 +7,7 @@ CREATE TABLE `drop_item` (
   `drop_amount` float(4) unsigned NOT NULL default '0',
   `note` varchar(45) NOT NULL default '',
   PRIMARY KEY (`item_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=sjis;
 
 #----------------------------
 # Records for table drop_item

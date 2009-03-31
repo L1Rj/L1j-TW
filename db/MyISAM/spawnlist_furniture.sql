@@ -8,7 +8,7 @@ CREATE TABLE `spawnlist_furniture` (
   `locy` int(10) NOT NULL default '0',
   `mapid` int(10) NOT NULL default '0',
   PRIMARY KEY  (`item_obj_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # No records for table spawnlist_furniture
 #----------------------------

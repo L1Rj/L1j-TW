@@ -4,7 +4,7 @@
 CREATE TABLE `ub_managers` (
   `ub_id` int(10) unsigned NOT NULL default '0',
   `ub_manager_npc_id` int(10) unsigned NOT NULL default '0'
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records for table ub_managers

@@ -14,7 +14,7 @@ CREATE TABLE `spawnlist_door` (
   `hp` int(11) NOT NULL default '0',
   `keeper` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # Records for table spawnlist_door
 #----------------------------

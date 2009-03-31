@@ -12,7 +12,7 @@ CREATE TABLE `area` (
   `flag` int(1) NOT NULL default '0',
   `restart` int(4) NOT NULL default '0',
   PRIMARY KEY  (`areaid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=sjis;
 #----------------------------
 # Records for table area
 #----------------------------

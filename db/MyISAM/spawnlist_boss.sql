@@ -24,7 +24,7 @@ CREATE TABLE `spawnlist_boss` (
   `spawn_type` tinyint unsigned NOT NULL default 0,
   `percentage` tinyint unsigned NOT NULL default 100,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records for table spawnlist_boss

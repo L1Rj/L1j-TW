@@ -23,7 +23,7 @@ CREATE TABLE `ub_settings` (
   `hpr_bonus` int(10) NOT NULL default '0',
   `mpr_bonus` int(10) NOT NULL default '0',
   PRIMARY KEY  (`ub_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records for table ub_settings

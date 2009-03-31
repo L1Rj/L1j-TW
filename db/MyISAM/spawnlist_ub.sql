@@ -12,7 +12,7 @@ CREATE TABLE `spawnlist_ub` (
   `spawn_delay` int(10) unsigned NOT NULL default '0',
   `seal_count` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # Records for table spawnlist_ub
 #----------------------------

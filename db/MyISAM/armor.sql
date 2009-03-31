@@ -51,7 +51,7 @@ CREATE TABLE `armor` (
  `regist_sustain` int(2) NOT NULL default '0',
  `regist_blind` int(2) NOT NULL default '0',
  PRIMARY KEY (`item_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=sjis;
 #----------------------------
 # Records for table armor
 #----------------------------

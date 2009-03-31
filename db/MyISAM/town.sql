@@ -13,7 +13,7 @@ CREATE TABLE `town` (
   `town_tax` int(10) unsigned NOT NULL default '0',
   `town_fix_tax` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`town_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records 

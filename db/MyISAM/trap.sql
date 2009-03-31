@@ -22,7 +22,7 @@ CREATE TABLE `trap` (
   `skillId` int(4) NOT NULL DEFAULT '0',
   `skillTimeSeconds` int(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records 

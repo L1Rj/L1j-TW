@@ -10,7 +10,7 @@ CREATE TABLE `beginner` (
   `item_name` varchar(50) NOT NULL default '',
   `activate` char(1) NOT NULL default 'A',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=sjis;
 #----------------------------
 # Records for table beginner
 #----------------------------

@@ -44,7 +44,7 @@ CREATE TABLE `weapon` (
   `cant_delete` int(2) unsigned NOT NULL default '0',
   `max_use_time` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`item_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis COMMENT='MyISAM free: 26624 kB; MyISAM free: 26624 kB; MyISAM free: 3';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 26624 kB; MyISAM free: 26624 kB; MyISAM free: 3';
 #----------------------------
 # Records for table weapon
 #----------------------------

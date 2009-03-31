@@ -23,7 +23,7 @@ CREATE TABLE `log_chat` (
   `content` varchar(256) NOT NULL,
   `datetime` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=sjis;
 #----------------------------
 # No Records for table log_chat
 #----------------------------

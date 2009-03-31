@@ -8,7 +8,7 @@ CREATE TABLE `spr_action` (
   `framecount` int(4) unsigned NOT NULL default 0,
   `framerate` int(4) unsigned NOT NULL default 24,
   PRIMARY KEY  (`spr_id`, `act_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records for table area

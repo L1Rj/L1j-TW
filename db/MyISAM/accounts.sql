@@ -10,7 +10,7 @@ CREATE TABLE `accounts` (
   `host` varchar(255) NOT NULL default '',
   `banned` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`login`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 3072 kB';
+) ENGINE=MyISAM DEFAULT CHARSET=sjis COMMENT='MyISAM free: 3072 kB';
 #----------------------------
 # No Records for table accounts
 #----------------------------

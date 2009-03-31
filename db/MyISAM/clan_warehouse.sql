@@ -16,7 +16,7 @@ CREATE TABLE `clan_warehouse` (
   `last_used` datetime default NULL,
   PRIMARY KEY  (`id`),
   KEY `key_id` (`clan_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=sjis;
 #----------------------------
 # No records for table clan_warehouse
 #----------------------------

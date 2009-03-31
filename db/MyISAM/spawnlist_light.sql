@@ -8,7 +8,7 @@ CREATE TABLE `spawnlist_light` (
   `locy` int(10) unsigned NOT NULL default '0',
   `mapid` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 #----------------------------
@@ -187,4 +187,5 @@ INSERT INTO `spawnlist_light` VALUES
 (170, 81180, 32797, 32284, 4),
 (171, 81177, 33492, 33370, 4),
 (172, 81177, 33498, 33370, 4),
-(173, 81177, 33550, 33370, 4);
+(173, 81177, 33550, 33370, 4),
+(174, 81179, 33462, 32778, 4);

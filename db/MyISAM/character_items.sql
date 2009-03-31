@@ -16,7 +16,7 @@ CREATE TABLE `character_items` (
   `last_used` datetime default NULL,
   PRIMARY KEY  (`id`),
   KEY `key_id` (`char_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=sjis;
 #----------------------------
 # No records for table character_items
 #----------------------------

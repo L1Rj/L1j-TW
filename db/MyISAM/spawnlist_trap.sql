@@ -13,7 +13,7 @@ CREATE TABLE `spawnlist_trap` (
   `count` int(4) NOT NULL DEFAULT '1',
   `span` int(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records 

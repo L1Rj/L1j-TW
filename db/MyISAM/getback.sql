@@ -20,7 +20,7 @@ CREATE TABLE `getback` (
   `scrollescape` int(10) NOT NULL default '1',
   `note` varchar(50) NOT NULL default '',
   PRIMARY KEY  (`area_x1`,`area_y1`,`area_x2`,`area_y2`,`area_mapid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=sjis;
 #----------------------------
 # Records for table getback
 #----------------------------
