@@ -52,6 +52,7 @@ import l1j.server.server.model.L1EffectSpawn;
 import l1j.server.server.model.L1HouseLocation;
 import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1ItemDelay;
+import l1j.server.server.model.L1Location;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1PcInventory;
 import l1j.server.server.model.L1PolyMorph;
@@ -1535,8 +1536,26 @@ public class C_ItemUSe extends ClientBasePacket {
 					L1BookMark bookm = pc.getBookMark(btele);
 					if (bookm != null) { // ブックマークを取得出來たらテレポート
 						if (pc.getMap().isEscapable() || pc.isGm()) {
-							L1Teleport.teleport(pc, bookm.getLocX(), bookm
-									.getLocY(), bookm.getMapId(), 5, true);
+							int newX = bookm.getLocX();
+							int newY = bookm.getLocY();
+							short mapId = bookm.getMapId();
+
+							if (itemId == 40086) { // マステレポートスクロール
+								for (L1PcInstance member : L1World.getInstance()
+										.getVisiblePlayer(pc)) {
+									if (pc.getLocation()
+											.getTileLineDistance(member
+													.getLocation()) <= 3
+											&& member.getClanid() == pc
+													.getClanid()
+											&& pc.getClanid() != 0
+											&& member.getId() != pc.getId()) {
+										L1Teleport.teleport(member, newX,
+												newY, mapId, 5, true);
+									}
+								}
+							}
+							L1Teleport.teleport(pc, newX, newY, mapId, 5, true);
 							pc.getInventory().removeItem(l1iteminstance, 1);
 						} else {
 							L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc
@@ -1545,7 +1564,28 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 					} else {
 						if (pc.getMap().isTeleportable() || pc.isGm()) {
-							L1Teleport.randomTeleport(pc, true);
+							L1Location newLocation = pc.getLocation()
+									.randomLocation(200, true);
+							int newX = newLocation.getX();
+							int newY = newLocation.getY();
+							short mapId = (short) newLocation.getMapId();
+
+							if (itemId == 40086) { // マステレポートスクロール
+								for (L1PcInstance member : L1World.getInstance()
+										.getVisiblePlayer(pc)) {
+									if (pc.getLocation()
+											.getTileLineDistance(member
+													.getLocation()) <= 3
+											&& member.getClanid() == pc
+													.getClanid()
+											&& pc.getClanid() != 0
+											&& member.getId() != pc.getId()) {
+										L1Teleport.teleport(member, newX,
+												newY, mapId, 5, true);
+									}
+								}
+							}
+							L1Teleport.teleport(pc, newX, newY, mapId, 5, true);
 							pc.getInventory().removeItem(l1iteminstance, 1);
 						} else {
 							L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc
