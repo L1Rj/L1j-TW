@@ -146,7 +146,9 @@ public class L1AddSkill implements L1CommandExecutor {
 					SkillsTable.getInstance().spellMastery(object_id, skill_id,
 							skill_name, 0, 0); // DBに登錄
 				}
-			}
+			} else if (pc.isDragonKnight()) {//	3.0C Test↓
+			} else if (pc.isIllusionist()) {
+			}//	3.0C Test↑
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(cmdName + " 指令錯誤"));
 		}

@@ -148,8 +148,12 @@ public class C_GiveItem extends ClientBasePacket {
 		} else if (pc.isWizard()) { // WIZ
 			charisma += 6;
 		} else if (pc.isDarkelf()) { // DE
+				charisma += 6;
+		} else if (pc.isDragonKnight()) { //	3.0C Test↓
 			charisma += 6;
-		}
+		} else if (pc.isIllusionist()) { // 龍騎士&幻術師
+			charisma += 6;
+		}//	3.0C Test↑
 		charisma -= petcost;
 
 		L1PcInventory inv = pc.getInventory();

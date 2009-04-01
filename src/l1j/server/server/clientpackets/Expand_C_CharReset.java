@@ -209,7 +209,11 @@ public class Expand_C_CharReset extends ClientBasePacket {
 			hp = 12;
 		}else if (pc.isDarkelf()){
 			hp = 12;
-		}
+		}else if (pc.isDragonKnight()){//	3.0C Test↓
+			hp = 15;
+		}else if (pc.isIllusionist()){
+			hp = 15;
+		}//	3.0C Test↑
 		return hp;
 	}
 	private int getInitialMp(L1PcInstance pc){
@@ -304,6 +308,40 @@ public class Expand_C_CharReset extends ClientBasePacket {
 				mp = 3;
 				break;
 			}
+		}else if(pc.isDragonKnight()){//	3.0C Test↓
+			switch(pc.getWis()){
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+				mp = 4;
+				break;
+			case 16:
+			case 17:
+			case 18:
+				mp = 6;
+				break;
+			default:
+				mp = 4;
+				break;
+			}
+		}else if(pc.isIllusionist()){
+			switch(pc.getWis()){
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+				mp = 4;
+				break;
+			case 16:
+			case 17:
+			case 18:
+				mp = 6;
+				break;
+			default:
+				mp = 4;
+				break;
+			}//	3.0C Test↑
 		}
 		return mp;
 	}

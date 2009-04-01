@@ -121,6 +121,10 @@ public class L1PcInstance extends L1Character {
 	public static final int CLASSID_DARK_ELF_FEMALE = 2796;
 	public static final int CLASSID_PRINCE = 0;
 	public static final int CLASSID_PRINCESS = 1;
+	public static final int CLASSID_DRAGON_KNIGHT_MALE = 6658;
+	public static final int CLASSID_DRAGON_KNIGHT_FEMALE = 6661;
+	public static final int CLASSID_ILLUSIONIST_MALE = 6671;
+	public static final int CLASSID_ILLUSIONIST_FEMALE = 6650;
 
 	private short _hpr = 0;
 	private short _trueHpr = 0;
@@ -1403,7 +1407,11 @@ public class L1PcInstance extends L1Character {
 			er = getLevel() / 6; // ダークエルフ
 		} else if (isWizard()) {
 			er = getLevel() / 10; // ウィザード
-		}
+		} else if (isDragonKnight()) {//	3.0C Test↓
+			er = getLevel() / 4; // 龍騎士
+		} else if (isIllusionist()) {
+			er = getLevel() / 10; // 幻術師
+		}//	3.0C Test↑
 
 		er += (getDex() - 8) / 2;
 
@@ -1482,18 +1490,14 @@ public class L1PcInstance extends L1Character {
 		return (getClassId() == CLASSID_DARK_ELF_MALE || getClassId() == CLASSID_DARK_ELF_FEMALE);
 	}
 // 3.0C
-	public static final int CLASSID_DRAGON_KNIGHT_MALE = 6658;
-	public static final int CLASSID_DRAGON_KNIGHT_FEMALE = 6661;
-	public static final int CLASSID_ILLUSIONIST_MALE = 6671;
-	public static final int CLASSID_ILLUSIONIST_FEMALE = 6650;
 	//6658 龍騎士(男) → 玩家  
 	//6661 龍騎士(女) → 玩家
 	//6671 幻術士(男) → 玩家
 	//6650 幻術士(女) → 玩家
-	public boolean isDragonKnight() {//龍 奇 試
+	public boolean isDragonKnight() {//龍 騎 士
 		return (getClassId() == CLASSID_DRAGON_KNIGHT_MALE || getClassId() == CLASSID_DRAGON_KNIGHT_FEMALE);
 	}
-	public boolean isIllusionist() {// 換 術 施
+	public boolean isIllusionist() {// 幻 術 師
 		return (getClassId() == CLASSID_ILLUSIONIST_MALE || getClassId() == CLASSID_ILLUSIONIST_FEMALE);
 	}
 //END
@@ -1881,11 +1885,6 @@ public class L1PcInstance extends L1Character {
 			return;
 		}
 
-// 3.0C char-reset
-		if(isIsInCharReset()){
-			return;
-		}
-// end
 		CharacterTable.getInstance().storeCharacter(this);
 	}
 
@@ -1937,9 +1936,6 @@ public class L1PcInstance extends L1Character {
 
 	public boolean isFastMovable() {
 		return (hasSkillEffect(L1SkillId.HOLY_WALK)
-//XXX 寵物競速 - 超級勇水
-//				|| hasSkillEffect(L1SkillId.STATUS_BRAVE2)
-//END
 				|| hasSkillEffect(L1SkillId.MOVING_ACCELERATION) || hasSkillEffect(L1SkillId.WIND_WALK));
 	}
 
@@ -2022,6 +2018,10 @@ public class L1PcInstance extends L1Character {
 					getBaseWis());
 			addBaseMaxHp(randomHp);
 			addBaseMaxMp(randomMp);
+			// 升級血魔滿 
+			setCurrentHp(getMaxHp());
+			setCurrentMp(getMaxMp());
+			// 升級血魔滿  end
 		}
 		resetBaseHitup();
 		resetBaseDmgup();
@@ -2437,7 +2437,7 @@ public class L1PcInstance extends L1Character {
 	public void resetBaseDmgup() {
 		int newBaseDmgup = 0;
 		int newBaseBowDmgup = 0;
-		if (isKnight() || isDarkelf()) { // ナイト、ダークエルフ
+		if (isKnight() || isDarkelf() || isDragonKnight()) { // ナイト、ダークエルフ
 			newBaseDmgup = getLevel() / 10;
 			newBaseBowDmgup = 0;
 		} else if (isElf()) { // エルフ
@@ -2470,7 +2470,13 @@ public class L1PcInstance extends L1Character {
 		} else if (isDarkelf()) { // ダークエルフ
 			newBaseHitup = getLevel() / 3;
 			newBaseBowHitup = getLevel() / 3;
-		}
+		} else if (isDragonKnight()) { // エルフ//	3.0C Test↓
+			newBaseHitup = getLevel() / 3;
+			newBaseBowHitup = getLevel() / 3;
+		} else if (isIllusionist()) { // ダークエルフ
+			newBaseHitup = getLevel() / 5;
+			newBaseBowHitup = getLevel() / 5;
+		}//	3.0C Test↑
 		addHitup(newBaseHitup - _baseHitup);
 		addBowHitup(newBaseBowHitup - _baseBowHitup);
 		_baseHitup = newBaseHitup;

@@ -1442,6 +1442,16 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // (原文:闇精靈の水晶はダークエルフのみが習得できます。)
 					}
+/*				} else if (itemId > 40264 && itemId < 40280) { // 技能道具ID	//	3.0C Test↓
+					if (pc.isDragonKnight() || pc.isGm()) {
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // (原文:闇精靈の水晶はダークエルフのみが習得できます。)
+					}
+				} else if (itemId > 40264 && itemId < 40280) { // 技能道具ID
+					if (pc.isIllusionist() || pc.isGm()) {
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // (原文:闇精靈の水晶はダークエルフのみが習得できます。)
+					}	//	3.0C Test↑	*/
 				} else if (itemId >= 40164 && itemId <= 40166 // 技術書
 						|| itemId >= 41147 && itemId <= 41148) {
 					if (pc.isKnight() || pc.isGm()) {
@@ -3592,6 +3602,18 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else {
 					pc.sendPackets(new S_ServerMessage(312)); // レベルが低くてその魔法を覺えることができません。
 				}
+			} else if (pc.isDragonKnight()) {//	3.0C Test↓
+				//if (itemId >= 45000 && itemId <= 45007 && level >= 4) {
+				//	SpellBook(pc, item, isLawful);
+				//} else {
+					pc.sendPackets(new S_ServerMessage(312)); // レベルが低くてその魔法を覺えることができません。
+				//}
+			} else if (pc.isIllusionist()) {
+				//if (itemId >= 45000 && itemId <= 45007 && level >= 4) {
+				//	SpellBook(pc, item, isLawful);
+				//} else {
+					pc.sendPackets(new S_ServerMessage(312)); // レベルが低くてその魔法を覺えることができません。
+				//}//	3.0C Test↑
 			}
 		} else if (itemAttr != locAttr && itemAttr != 0 && locAttr != 0) {
 			// 間違ったテンプルで讀んだ場合雷が落ちる
@@ -4415,6 +4437,14 @@ public class C_ItemUSe extends ClientBasePacket {
 		SkillsTable.getInstance().spellMastery(k6, i, s, 0, 0);
 		pc.getInventory().removeItem(l1iteminstance, 1);
 	}
+
+	private void SpellBook5(L1PcInstance pc, L1ItemInstance l1iteminstance,	//	3.0C Test↓
+			ClientThread clientthread) {
+	}
+
+	private void SpellBook6(L1PcInstance pc, L1ItemInstance l1iteminstance,
+			ClientThread clientthread) {
+	}	//	3.0C Test↑
 
 	private void doWandAction(L1PcInstance user, L1Object target) {
 		if (user.getId() == target.getId()) {

@@ -82,7 +82,7 @@ public class C_PickUpItem extends ClientBasePacket {
 				// 拾った後に2Gを超過しないようにチェック
 				if ((long) inventoryItemCount + (long) pickupCount > 2000000000L) {
 					pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
-							"所持しているアデナ", "2,000,000,000を超過するので拾えません。"));
+							"所持有的金幣", "超過2,000,000,000。"));
 					return;
 				}
 			}

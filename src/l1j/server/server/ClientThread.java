@@ -90,15 +90,15 @@ public class ClientThread implements Runnable, PacketOutput {
 	// (byte) 0x87, (byte) 0x7D, (byte) 0x75, (byte) 0x7D,
 	// (byte) 0xA1, (byte) 0x3B, (byte) 0x62, (byte) 0x2C,
 	// (byte) 0x5E, (byte) 0x3E, (byte) 0x9F }; // for Episode 6
-	
-	
+
+
 	/*選擇 1 !! 程式執行中
-	
+
 	[FristPacket] = 125
-	0000: 7d fa bd 98 7c// ec 64 3e 0d c0 82 00 00 02 08 00 
-	 * 
+	0000: 7d fa bd 98 7c// ec 64 3e 0d c0 82 00 00 02 08 00
+	 *
 	 */
-	
+
 	private static final byte[] FIRST_PACKET = {
 		(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,		// 3.0C
 		(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,		// 3.0C
@@ -213,7 +213,7 @@ public class ClientThread implements Runnable, PacketOutput {
 		 * ex1.サーバに過負荷が掛かっている場合、負荷が落ちたときにクライアントパケットを一氣に處理し、結果的に不正扱いとなる。
 		 * ex2.サーバ側のネットワーク（下り）にラグがある場合、クライアントパケットが一氣に流れ⑸み、結果的に不正扱いとなる。
 		 * ex3.クライアント側のネットワーク（上り）にラグがある場合、以下同樣。
-		 * 
+		 *
 		 * 無制限にする前に不正檢出方法を見直す必要がある。
 		 */
 		HcPacket movePacket = new HcPacket(M_CAPACITY);
@@ -232,7 +232,7 @@ public class ClientThread implements Runnable, PacketOutput {
 		try {
 			long seed = 0x7c98bdfa;			// 3.0C
 			byte Bogus = (byte)(FIRST_PACKET.length + 7);
-			
+
 			_out.write(Bogus & 0xFF);
 			_out.write(Bogus >> 8 & 0xFF);
 			_out.write(0x7d);	// 3.0C 	2.70 <-> 0x20;
@@ -337,7 +337,7 @@ public class ClientThread implements Runnable, PacketOutput {
 			System.out.println("等待客戶端連線...");
 		}
 		return;
-	}	
+	}
 
 	private int _kick = 0;
 
