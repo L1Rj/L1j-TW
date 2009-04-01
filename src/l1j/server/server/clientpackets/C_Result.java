@@ -285,11 +285,11 @@ public class C_Result extends ClientBasePacket {
 				item = pc.getDwarfForElfInventory().getItem(objectId);
 				if (pc.getInventory().checkAddItem(item, count) == L1Inventory
 						.OK) { // 容量重量確認及びメッセージ送信
-					if (pc.getInventory().consumeItem(L1ItemId.ADENA, 30)) {
+					if (pc.getInventory().consumeItem(40494, 2)) { // 軍網??
 						pc.getDwarfForElfInventory().tradeItem(item, count,
 								pc.getInventory());
 					} else {
-						pc.sendPackets(new S_ServerMessage(189)); // \f1アデナが不足しています。
+						pc.sendPackets(new S_ServerMessage(337,"$767")); // \f1%0不足しています。
 						break;
 					}
 				} else {
