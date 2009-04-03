@@ -2470,10 +2470,10 @@ public class L1PcInstance extends L1Character {
 		} else if (isDarkelf()) { // ダークエルフ
 			newBaseHitup = getLevel() / 3;
 			newBaseBowHitup = getLevel() / 3;
-		} else if (isDragonKnight()) { // エルフ//	3.0C Test↓
+		} else if (isDragonKnight()) { // 龍騎士//	3.0C Test↓
 			newBaseHitup = getLevel() / 3;
 			newBaseBowHitup = getLevel() / 3;
-		} else if (isIllusionist()) { // ダークエルフ
+		} else if (isIllusionist()) { // 幻術師
 			newBaseHitup = getLevel() / 5;
 			newBaseBowHitup = getLevel() / 5;
 		}//	3.0C Test↑
@@ -2505,7 +2505,11 @@ public class L1PcInstance extends L1Character {
 			newMr = 15;
 		} else if (isDarkelf()) { // ダークエルフ
 			newMr = 10;
-		}
+		} else if (isDragonKnight()) { // 龍騎士//	3.0C Test↓
+			newMr = 20;
+		} else if (isIllusionist()) { // 幻術師
+			newMr = 15;
+		}//	3.0C Test↑
 		newMr += CalcStat.calcStatMr(getWis()); // WIS分のMRボーナス
 		newMr += getLevel() / 2; // LVの半分だけ追加
 		addMr(newMr - _baseMr);

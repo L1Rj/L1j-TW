@@ -46,6 +46,16 @@ public class S_ItemAmount extends ServerBasePacket {
 		writeD(item.getId());
 		writeD(item.getCount());
 		writeC(0);
+		if (!item.isIdentified()) {//	3.0鑑定測試
+			// 未鑑定の場合ステータスを送る必要はない
+			writeC(0);
+		} else {
+			byte[] status = item.getStatusBytes();
+			writeC(status.length);
+			for (byte b : status) {
+				writeC(b);
+			}
+		}// 3.0C END
 	}
 
 	@Override

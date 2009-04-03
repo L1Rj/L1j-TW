@@ -53,9 +53,12 @@ public class C_DeleteChar extends ClientBasePacket {
 				if (pc.getType() < 32) {
 					Timestamp deleteTime = new Timestamp(System
 							.currentTimeMillis() + 604800000); // 7日後
+					pc.setDeleteTime(deleteTime);
+					pc.save(); // DBにキャラクター情報を書き⑸む
+				} else {
+					pc.setDeleteTime(null);
+					pc.save(); // DBにキャラクター情報を書き⑸む
 				}
-				pc.setDeleteTime(deleteTime);
-				pc.save(); // DBにキャラクター情報を書き⑸む
 				client.sendPacket(new S_DeleteCharOK(S_DeleteCharOK
 						.DELETE_CHAR_AFTER_7DAYS));
 				return;

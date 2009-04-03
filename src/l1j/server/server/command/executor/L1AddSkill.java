@@ -147,7 +147,31 @@ public class L1AddSkill implements L1CommandExecutor {
 							skill_name, 0, 0); // DBに登錄
 				}
 			} else if (pc.isDragonKnight()) {//	3.0C Test↓
+				pc.sendPackets(new S_AddSkill(255, 255, 127, 255, 255, 255,
+						255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0));
+				for (cnt = 1; cnt <= 80; cnt++) // LV1~10魔法
+				{
+					L1Skills l1skills = SkillsTable.getInstance().getTemplate(
+							cnt); // スキル情報を取得
+					skill_name = l1skills.getName();
+					skill_id = l1skills.getSkillId();
+					SkillsTable.getInstance().spellMastery(object_id, skill_id,
+							skill_name, 0, 0); // DBに登錄
+				}
 			} else if (pc.isIllusionist()) {
+				pc.sendPackets(new S_AddSkill(255, 255, 127, 255, 255, 255,
+						255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0));
+				for (cnt = 1; cnt <= 80; cnt++) // LV1~10魔法
+				{
+					L1Skills l1skills = SkillsTable.getInstance().getTemplate(
+							cnt); // スキル情報を取得
+					skill_name = l1skills.getName();
+					skill_id = l1skills.getSkillId();
+					SkillsTable.getInstance().spellMastery(object_id, skill_id,
+							skill_name, 0, 0); // DBに登錄
+				}
 			}//	3.0C Test↑
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(cmdName + " 指令錯誤"));

@@ -1093,7 +1093,7 @@ public class L1Attack {
 				som_lvl = 0;
 			}
 			// MP吸收量をランダム取得
-			_drainMana = _random.nextInt(som_lvl) + 1;
+			_drainMana = _random.nextInt(som_lvl) + 3;
 			// 最大MP吸收量を9に制限
 			if (_drainMana > Config.MANA_DRAIN_LIMIT_PER_SOM_ATTACK) {
 				_drainMana = Config.MANA_DRAIN_LIMIT_PER_SOM_ATTACK;

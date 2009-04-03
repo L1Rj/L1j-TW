@@ -32,7 +32,55 @@ public class S_AddSkill extends ServerBasePacket {
 	private static Logger _log = Logger.getLogger(S_AddSkill.class.getName());
 
 	private byte[] _byte = null;
+	/** addskill packet
+[Server] opcode = 28
+0000: 1c 20/ 01 00 04 00 00 00 00 00 00 00 00 00 00 00    . ..............
+0010: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+0020: 00 00 /85 2e 82 03 08 00                            ........
+*/
+// for single skill
+// EX : pc.sendPackets(new S_AddSkill(L1SkillId.SHIELD));
 
+   public S_AddSkill(int skillid){
+
+      int level = (skillid + 7) / 8 ;
+      int id = (int)Math.pow(2, (skillid + 7) % 8 ) ;
+       
+      int[]skills = new int[32];
+       
+      writeC(Opcodes.S_OPCODE_ADDSKILL);
+       
+      writeC(32); //skills arg size
+       
+      skills[level - 1] = id;
+
+      for(int i : skills){
+         writeC(i);
+      }
+   }   
+   
+// for all skill
+// Wizard
+// pc.sendPackets(new S_AddSkill(new int[]{1,2,3,4,5,6,7,8,9,10}));
+// Elf
+// pc.sendPackets(new S_AddSkill(new int[]{1,2,3,4,5,6,17,18,19,20,21,22}));
+
+   public S_AddSkill(int[] skillLv){
+      int[]skills = new int[32];
+       
+      for(int lv : skillLv){
+         skills[lv - 1] = 0xff;
+      }       
+       
+      writeC(Opcodes.S_OPCODE_ADDSKILL);       
+      writeC(32); //skills arg size
+       
+      for(int i : skills){
+         writeC(i);
+      }
+       
+   }
+/*	Test
 	public S_AddSkill(int level, int id) {
 		int ids[] = new int[24];
 		for (int i = 0; i < ids.length; i++) {
@@ -100,7 +148,7 @@ public class S_AddSkill extends ServerBasePacket {
 		writeD(0);
 		writeD(0);
 	}
-
+*/	//Test
 	@Override
 	public byte[] getContent() {
 		if (_byte == null) {

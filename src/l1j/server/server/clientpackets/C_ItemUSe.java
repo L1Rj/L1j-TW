@@ -3604,14 +3604,10 @@ public class C_ItemUSe extends ClientBasePacket {
 				}
 			} else if (pc.isDragonKnight()) {//	3.0C Test↓
 				//if (itemId >= 45000 && itemId <= 45007 && level >= 4) {
-				//	SpellBook(pc, item, isLawful);
-				//} else {
 					pc.sendPackets(new S_ServerMessage(312)); // レベルが低くてその魔法を覺えることができません。
 				//}
 			} else if (pc.isIllusionist()) {
-				//if (itemId >= 45000 && itemId <= 45007 && level >= 4) {
-				//	SpellBook(pc, item, isLawful);
-				//} else {
+				//if (itemId >= 45000 && itemId <= 45007 && level >= 8) {
 					pc.sendPackets(new S_ServerMessage(312)); // レベルが低くてその魔法を覺えることができません。
 				//}//	3.0C Test↑
 			}

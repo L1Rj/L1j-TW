@@ -136,6 +136,18 @@ public class CalcStat {
 			if (baseMaxHp + randomhp > Config.DARKELF_MAX_HP) {
 				randomhp = (short) (Config.DARKELF_MAX_HP - baseMaxHp);
 			}
+		} else if (charType == 5) { // ダークエルフ
+			randomhp += (short) (6 + rnd.nextInt(6)); // 初期值分追加
+
+			if (baseMaxHp + randomhp > Config.DARKELF_MAX_HP) {
+				randomhp = (short) (Config.DARKELF_MAX_HP - baseMaxHp);
+			}
+		} else if (charType == 6) { // ダークエルフ
+			randomhp += (short) (4 + rnd.nextInt(4)); // 初期值分追加
+
+			if (baseMaxHp + randomhp > Config.DARKELF_MAX_HP) {
+				randomhp = (short) (Config.DARKELF_MAX_HP - baseMaxHp);
+			}
 		}
 		if (randomhp < 0) {
 			randomhp = 0;
@@ -203,6 +215,18 @@ public class CalcStat {
 				randommp = Config.WIZARD_MAX_MP - baseMaxMp;
 			}
 		} else if (charType == 4) { // ダークエルフ
+			randommp = (int) (randommp * 1.5);
+
+			if (baseMaxMp + randommp > Config.DARKELF_MAX_MP) {
+				randommp = Config.DARKELF_MAX_MP - baseMaxMp;
+			}
+		} else if (charType == 5) { // ウィザード
+			randommp *= 2;
+
+			if (baseMaxMp + randommp > Config.WIZARD_MAX_MP) {
+				randommp = Config.WIZARD_MAX_MP - baseMaxMp;
+			}
+		} else if (charType == 6) { // ダークエルフ
 			randommp = (int) (randommp * 1.5);
 
 			if (baseMaxMp + randommp > Config.DARKELF_MAX_MP) {

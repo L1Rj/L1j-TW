@@ -263,21 +263,21 @@ public class C_CreateChar extends ClientBasePacket {
 				break;
 			}
 		}else if(pc.isIllusionist()){
-			init_hp = 15;
+			init_hp = 12;
 			switch (pc.getWis()) {
 			case 12:
 			case 13:
 			case 14:
 			case 15:
-				init_mp = 4;
+				init_mp = 6;
 				break;
 			case 16:
 			case 17:
 			case 18:
-				init_mp = 6;
+				init_mp = 8;
 				break;
 			default:
-				init_mp = 4;
+				init_mp = 6;
 				break;
 			}
 //龍奇AND幻術師的 初始寫模 END		
