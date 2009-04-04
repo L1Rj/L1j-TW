@@ -40,7 +40,7 @@ public class S_AddSkill extends ServerBasePacket {
 */
 // for single skill
 // EX : pc.sendPackets(new S_AddSkill(L1SkillId.SHIELD));
-
+/*
    public S_AddSkill(int skillid){
 
       int level = (skillid + 7) / 8 ;
@@ -79,8 +79,7 @@ public class S_AddSkill extends ServerBasePacket {
          writeC(i);
       }
        
-   }
-/*	Test
+   }*/	//Test
 	public S_AddSkill(int level, int id) {
 		int ids[] = new int[24];
 		for (int i = 0; i < ids.length; i++) {
@@ -148,7 +147,7 @@ public class S_AddSkill extends ServerBasePacket {
 		writeD(0);
 		writeD(0);
 	}
-*/	//Test
+	
 	@Override
 	public byte[] getContent() {
 		if (_byte == null) {

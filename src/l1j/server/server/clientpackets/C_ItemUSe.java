@@ -1375,6 +1375,11 @@ public class C_ItemUSe extends ClientBasePacket {
 						} else if (resobject instanceof L1NpcInstance) {
 							if (!(resobject instanceof L1TowerInstance)) {
 								L1NpcInstance npc = (L1NpcInstance) resobject;
+								if (npc.getNpcTemplate().isCantResurrect()) {
+									pc.getInventory().removeItem(l1iteminstance,
+											1);
+									return;
+								}
 								if (npc instanceof L1PetInstance
 										&& L1World.getInstance()
 												.getVisiblePlayer(npc, 0)
@@ -4433,14 +4438,6 @@ public class C_ItemUSe extends ClientBasePacket {
 		SkillsTable.getInstance().spellMastery(k6, i, s, 0, 0);
 		pc.getInventory().removeItem(l1iteminstance, 1);
 	}
-
-	private void SpellBook5(L1PcInstance pc, L1ItemInstance l1iteminstance,	//	3.0C Test↓
-			ClientThread clientthread) {
-	}
-
-	private void SpellBook6(L1PcInstance pc, L1ItemInstance l1iteminstance,
-			ClientThread clientthread) {
-	}	//	3.0C Test↑
 
 	private void doWandAction(L1PcInstance user, L1Object target) {
 		if (user.getId() == target.getId()) {

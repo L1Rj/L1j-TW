@@ -80,6 +80,7 @@ public class L1NpcInstance extends L1Character {
 	public static final int CHAT_TIMING_APPEARANCE = 0;
 	public static final int CHAT_TIMING_DEAD = 1;
 	public static final int CHAT_TIMING_HIDE = 2;
+	public static final int CHAT_TIMING_GAME_TIME = 3;
 
 	private static Logger _log = Logger
 			.getLogger(L1NpcInstance.class.getName());
@@ -2284,6 +2285,9 @@ public class L1NpcInstance extends L1Character {
 		if (chatTiming == CHAT_TIMING_HIDE && this.isDead()) {
 			return;
 		}
+		if (chatTiming == CHAT_TIMING_GAME_TIME && this.isDead()) {
+			return;
+		}
 
 		int npcId = this.getNpcTemplate().get_npcId();
 		L1NpcChat npcChat = null;
@@ -2293,6 +2297,8 @@ public class L1NpcInstance extends L1Character {
 			npcChat = NpcChatTable.getInstance().getTemplateDead(npcId);
 		} else if (chatTiming == CHAT_TIMING_HIDE) {
 			npcChat = NpcChatTable.getInstance().getTemplateHide(npcId);
+		} else if (chatTiming == CHAT_TIMING_GAME_TIME) {
+			npcChat = NpcChatTable.getInstance().getTemplateGameTime(npcId);
 		}
 		if (npcChat == null) {
 			return;

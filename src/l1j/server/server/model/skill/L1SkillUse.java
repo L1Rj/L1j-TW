@@ -1683,6 +1683,9 @@ public class L1SkillUse {
 					if (cha instanceof L1NpcInstance) {
 						if (!(cha instanceof L1TowerInstance)) {
 							L1NpcInstance npc = (L1NpcInstance) cha;
+							if (npc.getNpcTemplate().isCantResurrect()) {
+								return;
+							}
 							if (npc instanceof L1PetInstance
 									&& L1World.getInstance()
 											.getVisiblePlayer(npc, 0)
@@ -1730,6 +1733,9 @@ public class L1SkillUse {
 					if (cha instanceof L1NpcInstance) {
 						if (!(cha instanceof L1TowerInstance)) {
 							L1NpcInstance npc = (L1NpcInstance) cha;
+							if (npc.getNpcTemplate().isCantResurrect()) {
+								return;
+							}
 							if (npc instanceof L1PetInstance
 									&& L1World.getInstance()
 											.getVisiblePlayer(npc, 0)

@@ -25,7 +25,6 @@ import java.net.Socket;
 import java.util.Collection;
 import java.util.logging.Logger;
 
-import l1j.expand.MailTable;
 import l1j.server.Config;
 import l1j.server.server.datatables.CastleTable;
 import l1j.server.server.datatables.CharacterTable;
@@ -150,7 +149,7 @@ public class GameServer extends Thread {
 		}
 
 		System.out.println("=================================================");
-		System.out.println("繁體核心 手動翻譯 第二版...");
+		System.out.println("=====Lineage 3.0C=====蒲田嘗鮮製作=====L1j1661版====");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
@@ -184,10 +183,6 @@ public class GameServer extends Thread {
 			GeneralThreadPool.getInstance().execute(elementalStoneGenerator);
 		}
 
-		// 3.0C
-		MailTable.load();
-		// End
-
 		// ホームタウン
 		HomeTownTimeController.getInstance();
 
@@ -205,6 +200,11 @@ public class GameServer extends Thread {
 		FishingTimeController fishingTimeController = FishingTimeController
 				.getInstance();
 		GeneralThreadPool.getInstance().execute(fishingTimeController);
+
+		// NPCチャットタイムコントローラー
+		NpcChatTimeController npcChatTimeController = NpcChatTimeController
+				.getInstance();
+		GeneralThreadPool.getInstance().execute(npcChatTimeController);
 
 		Announcements.getInstance();
 		NpcTable.getInstance();
