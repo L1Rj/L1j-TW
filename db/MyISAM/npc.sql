@@ -64,7 +64,7 @@ CREATE TABLE `npc` (
   `light_size` tinyint(3) unsigned NOT NULL default '0',
   `amount_fixed` tinyint(1) unsigned NOT NULL default '0',
   `change_head` int(1) NOT NULL default '0',
-  `change_head` int(1) NOT NULL default '0',
+  `cant_resurrect` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`npcid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
