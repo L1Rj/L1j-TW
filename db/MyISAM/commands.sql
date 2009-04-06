@@ -6,7 +6,7 @@ CREATE TABLE `commands` (
   `access_level` int(10) NOT NULL default '200',
   `class_name` varchar(255) NOT NULL,
   PRIMARY KEY  (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records for commands

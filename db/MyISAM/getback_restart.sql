@@ -8,7 +8,7 @@ CREATE TABLE `getback_restart` (
   `locy` int(10) NOT NULL default '0',
   `mapid` int(10) NOT NULL default '0',
   PRIMARY KEY  (`area`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # Records for table area
 #----------------------------

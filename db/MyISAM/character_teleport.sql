@@ -10,7 +10,7 @@ CREATE TABLE `character_teleport` (
   `mapid` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `key_id` (`char_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # No records for table character_teleport
 #----------------------------

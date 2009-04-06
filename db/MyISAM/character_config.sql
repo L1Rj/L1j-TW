@@ -6,7 +6,7 @@ CREATE TABLE `character_config` (
   `length` int(10) unsigned NOT NULL default '0',
   `data` BLOB,
   PRIMARY KEY (`object_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # No records for table character_config

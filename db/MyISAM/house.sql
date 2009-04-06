@@ -11,7 +11,7 @@ CREATE TABLE `house` (
   `is_purchase_basement` int(10) unsigned NOT NULL default '0',
   `tax_deadline` datetime,
   PRIMARY KEY  (`house_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records for table house

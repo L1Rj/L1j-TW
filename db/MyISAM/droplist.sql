@@ -8,7 +8,7 @@ CREATE TABLE `droplist` (
   `max` int(4) unsigned NOT NULL default '0',
   `chance` int(8) unsigned NOT NULL default '0',
   PRIMARY KEY  (`mobId`,`itemId`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #----------------------------
 # Records for table droplist

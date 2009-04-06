@@ -51,7 +51,7 @@ CREATE TABLE `characters` (
   `DeleteTime` datetime default NULL,
   PRIMARY KEY  (`objid`),
   KEY `key_id` (`account_name`,`char_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # No Records for table characters
 #----------------------------

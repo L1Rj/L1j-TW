@@ -9,7 +9,7 @@ CREATE TABLE `log_enchant` (
   `new_enchantlvl` int(3) default '0',
   PRIMARY KEY  (`id`),
   KEY `key_id` (`char_id`)  
-) ENGINE=MyISAM DEFAULT CHARSET=sjis COMMENT='MyISAM free: 10240 kB; MyISAM free: 10240 kB';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 10240 kB; MyISAM free: 10240 kB';
 #----------------------------
 # No records for table log_enchant
 #----------------------------
