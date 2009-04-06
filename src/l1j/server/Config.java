@@ -277,6 +277,14 @@ public final class Config {
 
 	public static int DARKELF_MAX_MP;
 
+	public static int DRAGONKNIGHT_MAX_HP;	//	3.0C Start
+
+	public static int DRAGONKNIGHT_MAX_MP;
+
+	public static int ILLUSIONIST_MAX_HP;
+
+	public static int ILLUSIONIST_MAX_MP;	//	3.0C End
+
 	public static int LV50_EXP;
 
 	public static int LV51_EXP;
