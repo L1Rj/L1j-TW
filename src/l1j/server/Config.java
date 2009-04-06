@@ -687,13 +687,13 @@ public final class Config {
 			DARKELF_MAX_MP = Integer.parseInt(charSettings.getProperty(
 					"DarkelfMaxMP", "900"));
 			DRAGONKNIGHT_MAX_HP = Integer.parseInt(charSettings.getProperty(	//	3.0C Start
-					"WizardMaxHP", "800"));
+					"DragonKnightMaxHP", "800"));
 			DRAGONKNIGHT_MAX_MP = Integer.parseInt(charSettings.getProperty(
-					"WizardMaxMP", "1200"));
+					"DragonKnightMaxMP", "1200"));
 			ILLUSIONIST_MAX_HP = Integer.parseInt(charSettings.getProperty(
-					"DarkelfMaxHP", "1000"));
+					"IllusionistMaxHP", "1000"));
 			ILLUSIONIST_MAX_MP = Integer.parseInt(charSettings.getProperty(
-					"DarkelfMaxMP", "900"));									//	3.0C End
+					"IllusionistMaxMP", "900"));									//	3.0C End
 			LV50_EXP = Integer.parseInt(charSettings
 					.getProperty("Lv50Exp", "1"));
 			LV51_EXP = Integer.parseInt(charSettings
