@@ -705,6 +705,9 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId >= 41417 && itemId <= 41421) { // 「アデンの夏」イベント限定アイテム
 					UseHeallingPotion(pc, 90, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
+				} else if (itemId == 41337) { // 祝福された麥パン
+					UseHeallingPotion(pc, 85, 197);
+					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 40858) { // liquor（酒）
 					pc.setDrink(true);
 					pc.sendPackets(new S_Liquor(pc.getId()));
