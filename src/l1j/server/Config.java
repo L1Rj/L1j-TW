@@ -686,6 +686,14 @@ public final class Config {
 					"DarkelfMaxHP", "1000"));
 			DARKELF_MAX_MP = Integer.parseInt(charSettings.getProperty(
 					"DarkelfMaxMP", "900"));
+			DRAGONKNIGHT_MAX_HP = Integer.parseInt(charSettings.getProperty(	//	3.0C Start
+					"WizardMaxHP", "800"));
+			DRAGONKNIGHT_MAX_MP = Integer.parseInt(charSettings.getProperty(
+					"WizardMaxMP", "1200"));
+			ILLUSIONIST_MAX_HP = Integer.parseInt(charSettings.getProperty(
+					"DarkelfMaxHP", "1000"));
+			ILLUSIONIST_MAX_MP = Integer.parseInt(charSettings.getProperty(
+					"DarkelfMaxMP", "900"));									//	3.0C End
 			LV50_EXP = Integer.parseInt(charSettings
 					.getProperty("Lv50Exp", "1"));
 			LV51_EXP = Integer.parseInt(charSettings
@@ -796,11 +804,11 @@ public final class Config {
 
 	private static void validate() {
 		if (!IntRange.includes(Config.ALT_ITEM_DELETION_RANGE, 0, 5)) {
-			throw new IllegalStateException("ItemDeletionRangeの值が設定可能範圍外です。");
+			throw new IllegalStateException("ItemDeletionRange的設定值可能超出( 0 ~ 5 )範圍。");
 		}
 
 		if (!IntRange.includes(Config.ALT_ITEM_DELETION_TIME, 1, 35791)) {
-			throw new IllegalStateException("ItemDeletionTimeの值が設定可能範圍外です。");
+			throw new IllegalStateException("ItemDeletionTime的設定值可能超出( 1 ~ 35791 )範圍。");
 		}
 	}
 
@@ -940,6 +948,14 @@ public final class Config {
 			DARKELF_MAX_HP = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("DarkelfMaxMP")) {
 			DARKELF_MAX_MP = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("DragonKnightMaxHP")) {	//	3.0C Start
+			DRAGONKNIGHT_MAX_HP = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("DragonKnightMaxMP")) {
+			DRAGONKNIGHT_MAX_MP = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("IllusionistMaxHP")) {
+			ILLUSIONIST_MAX_HP = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("IllusionistMaxMP")) {
+			ILLUSIONIST_MAX_MP = Integer.parseInt(pValue);		//	3.0C End
 		} else if (pName.equalsIgnoreCase("Lv50Exp")) {
 			LV50_EXP = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("Lv51Exp")) {

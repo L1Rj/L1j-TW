@@ -232,6 +232,7 @@ public class Opcodes {
 	public static final int S_OPCODE_LIGHT = 124;			//亮度(ex:蠟燭)
 	public static final int S_OPCODE_MOVEOBJECT = 126;		//畫面的物件移動
 	public static final int S_OPCODE_MAIL = 127;			//信件 XXX (原本為Letter)
+	public static final int S_OPCODE_UNKNOWN2 = 15;		// 無使用
 	
 
 	//XXX 以下未完成 
