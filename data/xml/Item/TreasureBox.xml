@@ -861,4 +861,13 @@
 	<Item ItemId="78" Count="1" Chance="1" />
 	<Item ItemId="20178" Count="1" Chance="1" />
  </TreasureBox>
+ <!--エブロールの袋-->
+	<TreasureBox Type="RANDOM" ItemId="41336">
+	<Item ItemId="41337" Count="1" Chance="25" />
+	<Item ItemId="41338" Count="1" Chance="25" />
+	<Item ItemId="41337" Count="2" Chance="15" />
+	<Item ItemId="41338" Count="2" Chance="15" />
+	<Item ItemId="41337" Count="3" Chance="10" />
+	<Item ItemId="41338" Count="3" Chance="10" />
+ </TreasureBox>
 </TreasureBoxList>

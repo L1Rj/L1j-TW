@@ -2870,4 +2870,11 @@
 			</Succeed>
 		</MakeItem>
 	</Action>
+	<!--エブロールの袋 / エブロール-->
+	<Action Name="request eveurol bag" NpcId="70872">
+		<MakeItem>
+		<Item Amount="1" ItemId="41336"/>
+		<Material Amount="1" ItemId="41343"/>
+		</MakeItem>
+	</Action>
 </NpcActionList>
