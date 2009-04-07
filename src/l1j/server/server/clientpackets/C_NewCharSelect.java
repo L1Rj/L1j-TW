@@ -31,9 +31,7 @@ public class C_NewCharSelect extends ClientBasePacket {
 
 	public C_NewCharSelect(byte[] decrypt, ClientThread client) {
 		super(decrypt);
-//XXX 台版專用 否則登出會斷線
-		client.sendPacket(new S_PacketBox(S_PacketBox.LOGOUT));
-//END
+		client.sendPacket(new S_PacketBox(S_PacketBox.LOGOUT)); // 2.70C->3.0で追加
 		client.CharReStart(true);
 		if (client.getActiveChar() != null) {
 			L1PcInstance pc = client.getActiveChar();

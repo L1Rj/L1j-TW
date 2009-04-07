@@ -77,6 +77,12 @@ public class L1EquipmentSlot {
 		_owner.addWind(item.get_defense_wind());
 		_owner.addWater(item.get_defense_water());
 		_owner.addFire(item.get_defense_fire());
+		_owner.addRegistStun(item.get_regist_stun());
+		_owner.addRegistStone(item.get_regist_stone());
+		_owner.addRegistSleep(item.get_regist_sleep());
+		_owner.add_regist_freeze(item.get_regist_freeze());
+		_owner.addRegistSustain(item.get_regist_sustain());
+		_owner.addRegistBlind(item.get_regist_blind());
 
 		_armors.add(armor);
 
@@ -144,6 +150,12 @@ public class L1EquipmentSlot {
 		_owner.addWind(-item.get_defense_wind());
 		_owner.addWater(-item.get_defense_water());
 		_owner.addFire(-item.get_defense_fire());
+		_owner.addRegistStun(-item.get_regist_stun());
+		_owner.addRegistStone(-item.get_regist_stone());
+		_owner.addRegistSleep(-item.get_regist_sleep());
+		_owner.add_regist_freeze(-item.get_regist_freeze());
+		_owner.addRegistSustain(-item.get_regist_sustain());
+		_owner.addRegistBlind(-item.get_regist_blind());
 
 		for (L1ArmorSet armorSet : L1ArmorSet.getAllSet()) {
 			if (armorSet.isPartOfSet(itemId)

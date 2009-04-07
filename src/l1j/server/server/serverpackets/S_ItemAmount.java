@@ -42,8 +42,14 @@ public class S_ItemAmount extends ServerBasePacket {
 	}
 
 	private void buildPacket(L1ItemInstance item) {
+// writeC(Opcodes.S_OPCODE_ITEMAMOUNT);
+// writeD(item.getId());
+// writeD(item.getCount());
+// writeC(0);
+		// 3.0
 		writeC(Opcodes.S_OPCODE_ITEMAMOUNT);
 		writeD(item.getId());
+		writeS(item.getViewName());
 		writeD(item.getCount());
 		writeC(0);
 		if (!item.isIdentified()) {//	3.0鑑定測試

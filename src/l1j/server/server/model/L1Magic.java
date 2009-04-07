@@ -428,6 +428,36 @@ public class L1Magic {
 				probability *= probabilityRevision;
 			}
 		}
+
+		// 狀態異常に對する耐性
+		if (skillId == EARTH_BIND) {
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= _targetPc.getRegistSustain();
+			}
+		} else if (skillId == SHOCK_STUN) {
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= 2 * _targetPc.getRegistStun();
+			}
+		} else if (skillId == CURSE_PARALYZE) {
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= _targetPc.getRegistStone();
+			}
+		} else if (skillId == FOG_OF_SLEEPING) {
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= _targetPc.getRegistSleep();
+			}
+		} else if (skillId == ICE_LANCE
+				|| skillId == FREEZING_BLIZZARD) {
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= _targetPc.getRegistFreeze();
+			}
+		} else if (skillId == CURSE_BLIND
+				|| skillId == DARKNESS || skillId == DARK_BLIND) {
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= _targetPc.getRegistBlind();
+			}
+		}
+
 		return probability;
 	}
 
