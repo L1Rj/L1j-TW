@@ -60,6 +60,7 @@ public class S_Letter extends ServerBasePacket {
  * _log.log(Level.SEVERE, e.getLocalizedMessage(), e); } finally {
  * SQLUtil.close(rs); SQLUtil.close(pstm); SQLUtil.close(con); }
  */
+	}
 
 	@Override
 	public byte[] getContent() {
