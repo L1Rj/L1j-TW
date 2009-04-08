@@ -321,8 +321,10 @@ public class ItemTable {
 				weapon.setUseMage(rs.getInt("use_mage") == 0 ? false : true);
 				weapon.setUseDarkelf(rs.getInt("use_darkelf") == 0
 						? false : true);
-				weapon.setUseDragonknight(rs.getInt("use_dragonknight") == 0 ? false : true);	//	3.0C Test
-				weapon.setUseIllusionist(rs.getInt("use_illusionist") == 0 ? false : true);	//	3.0C Test
+				weapon.setUseDragonknight(rs.getInt("use_dragonknight") == 0
+						? false : true);
+				weapon.setUseIllusionist(rs.getInt("use_illusionist") == 0
+						? false : true);
 				weapon.setHitModifier(rs.getInt("hitmodifier"));
 				weapon.setDmgModifier(rs.getInt("dmgmodifier"));
 				weapon.set_addstr(rs.getByte("add_str"));
@@ -406,8 +408,10 @@ public class ItemTable {
 				armor.setUseMage(rs.getInt("use_mage") == 0 ? false : true);
 				armor.setUseDarkelf(rs.getInt("use_darkelf") == 0 ? false
 						: true);
-				armor.setUseDragonknight(rs.getInt("use_dragonknight") == 0 ? false : true);	//	3.0C Test
-				armor.setUseIllusionist(rs.getInt("use_illusionist") == 0 ? false : true);	//	3.0C Test
+				armor.setUseDragonknight(rs.getInt("use_dragonknight") == 0
+						? false : true);
+				armor.setUseIllusionist(rs.getInt("use_illusionist") == 0
+						? false : true);
 				armor.set_addstr(rs.getByte("add_str"));
 				armor.set_addcon(rs.getByte("add_con"));
 				armor.set_adddex(rs.getByte("add_dex"));

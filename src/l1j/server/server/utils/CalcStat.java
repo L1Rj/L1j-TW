@@ -136,17 +136,17 @@ public class CalcStat {
 			if (baseMaxHp + randomhp > Config.DARKELF_MAX_HP) {
 				randomhp = (short) (Config.DARKELF_MAX_HP - baseMaxHp);
 			}
-		} else if (charType == 5) { // ダークエルフ							//	3.0 Start
+		} else if (charType == 5) { // ドラゴンナイト
 			randomhp += (short) (6 + rnd.nextInt(6)); // 初期值分追加
 
 			if (baseMaxHp + randomhp > Config.DRAGONKNIGHT_MAX_HP) {
 				randomhp = (short) (Config.DRAGONKNIGHT_MAX_HP - baseMaxHp);
 			}
-		} else if (charType == 6) { // ダークエルフ
+		} else if (charType == 6) { // イリュージョニスト
 			randomhp += (short) (4 + rnd.nextInt(4)); // 初期值分追加
 
 			if (baseMaxHp + randomhp > Config.ILLUSIONIST_MAX_HP) {
-				randomhp = (short) (Config.ILLUSIONIST_MAX_HP - baseMaxHp);	//	3.0 End
+				randomhp = (short) (Config.ILLUSIONIST_MAX_HP - baseMaxHp);
 			}
 		}
 		if (randomhp < 0) {
@@ -220,13 +220,13 @@ public class CalcStat {
 			if (baseMaxMp + randommp > Config.DARKELF_MAX_MP) {
 				randommp = Config.DARKELF_MAX_MP - baseMaxMp;
 			}
-		} else if (charType == 5) { // ウィザード
+		} else if (charType == 5) { // ドラゴンナイト
 			randommp *= 2;
 
 			if (baseMaxMp + randommp > Config.DRAGONKNIGHT_MAX_MP) {
 				randommp = Config.DRAGONKNIGHT_MAX_MP - baseMaxMp;
 			}
-		} else if (charType == 6) { // ダークエルフ
+		} else if (charType == 6) { // イリュージョニスト
 			randommp = (int) (randommp * 1.5);
 
 			if (baseMaxMp + randommp > Config.ILLUSIONIST_MAX_MP) {

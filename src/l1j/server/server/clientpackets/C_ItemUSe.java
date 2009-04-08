@@ -2629,10 +2629,10 @@ public class C_ItemUSe extends ClientBasePacket {
 							&& l1iteminstance.getItem().isUseMage()
 							|| pc.isDarkelf()
 							&& l1iteminstance.getItem().isUseDarkelf()
-							|| pc.isDragonKnight()	//	3.0C Test↓
+							|| pc.isDragonKnight()
 							&& l1iteminstance.getItem().isUseDragonknight()
 							|| pc.isIllusionist()
-							&& l1iteminstance.getItem().isUseIllusionist()) {	//	3.0C Test↑
+							&& l1iteminstance.getItem().isUseIllusionist()) {
 						UseWeapon(pc, l1iteminstance);
 					} else {
 						// \f1あなたのクラスではこのアイテムは使用できません。
@@ -2647,8 +2647,10 @@ public class C_ItemUSe extends ClientBasePacket {
 						&& l1iteminstance.getItem().isUseMage()
 						|| pc.isDarkelf()
 						&& l1iteminstance.getItem().isUseDarkelf()
-						|| pc.isDragonKnight()&& l1iteminstance.getItem().isUseDragonknight()	//	3.0C Test↓
-						|| pc.isIllusionist()&& l1iteminstance.getItem().isUseIllusionist()) {	//	3.0C Test↑
+						|| pc.isDragonKnight()
+						&& l1iteminstance.getItem().isUseDragonknight()
+						|| pc.isIllusionist()
+						&& l1iteminstance.getItem().isUseIllusionist()) {
 
 					int min = ((L1Armor) l1iteminstance.getItem())
 							.getMinLevel();
@@ -4777,6 +4779,10 @@ public class C_ItemUSe extends ClientBasePacket {
 		} else if (pc.isWizard()) { // WIZ
 			charisma += 6;
 		} else if (pc.isDarkelf()) { // DE
+			charisma += 6;
+		} else if (pc.isDragonKnight()) { // ドラゴンナイト
+			charisma += 6;
+		} else if (pc.isIllusionist()) { // イリュージョニスト
 			charisma += 6;
 		}
 		charisma -= petCost;

@@ -136,49 +136,79 @@ public class L1Attack {
 // -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,
 // 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14 };
 
+/*
+ * private static final int[] strHit = { -2, -2, -2, -2, -2, -2, -2, // 0～7まで
+ * -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, // 8～26まで 7, 7, 7,
+ * 8, 8, 8, 9, 9, 9, 10, 10, 10, 11, 11, 11, 12, 12, 12, // 27～44まで 13, 13, 13,
+ * 14, 14, 14, 15, 15, 15, 16, 16, 16, 17, 17, 17}; // 45～59まで
+ * 
+ * private static final int[] dexHit = { -2, -2, -2, -2, -2, -2, -1, -1, 0, 0, //
+ * 1～10まで 1, 1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, //
+ * 11～30まで 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, //
+ * 31～45まで 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 }; //
+ * 46～60まで
+ * 
+ * private static final int[] strDmg = new int[128];
+ * 
+ * static { // ＳＴＲダメージ補正 int dmg = -6; for (int str = 0; str <= 22; str++) { //
+ * ０～２２は２每に＋１ if (str % 2 == 1) { dmg++; } strDmg[str] = dmg; } for (int str =
+ * 23; str <= 28; str++) { // ２３～２８は３每に＋１ if (str % 3 == 2) { dmg++; }
+ * strDmg[str] = dmg; } for (int str = 29; str <= 32; str++) { // ２９～３２は２每に＋１ if
+ * (str % 2 == 1) { dmg++; } strDmg[str] = dmg; } for (int str = 33; str <= 39;
+ * str++) { // ３３～３９は１每に＋１ dmg++; strDmg[str] = dmg; } for (int str = 40; str <=
+ * 46; str++) { // ４０～４６は１每に＋２ dmg += 2; strDmg[str] = dmg; } for (int str = 47;
+ * str <= 127; str++) { // ４７～１２７は１每に＋１ dmg++; strDmg[str] = dmg; } }
+ * 
+ * private static final int[] dexDmg = new int[128];
+ * 
+ * static { // ＤＥＸダメージ補正 for (int dex = 0; dex <= 14; dex++) { // ０～１４は０
+ * dexDmg[dex] = 0; } dexDmg[15] = 1; dexDmg[16] = 2; dexDmg[17] = 3; dexDmg[18] =
+ * 4; dexDmg[19] = 4; dexDmg[20] = 4; dexDmg[21] = 5; dexDmg[22] = 5; dexDmg[23] =
+ * 5; int dmg = 5; for (int dex = 24; dex <= 127; dex++) { // ２４～１２７は１每に＋１
+ * dmg++; dexDmg[dex] = dmg; } }
+ */
+
 	private static final int[] strHit = { -2, -2, -2, -2, -2, -2, -2, // 0～7まで
-			-1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, // 8～26まで
+			-2, -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, // 8～26まで
 			7, 7, 7, 8, 8, 8, 9, 9, 9, 10, 10, 10, 11, 11, 11, 12, 12, 12, // 27～44まで
 			13, 13, 13, 14, 14, 14, 15, 15, 15, 16, 16, 16, 17, 17, 17}; // 45～59まで
 
 	private static final int[] dexHit = { -2, -2, -2, -2, -2, -2, -1, -1, 0, 0, // 1～10まで
 			1, 1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, // 11～30まで
-			17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, // 31～45まで
-			32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 }; // 46～60まで
+			17, 18, 19, 19, 19, 20, 20, 20, 21, 21, 21, 22, 22, 22, 23, // 31～45まで
+			23, 23, 24, 24, 24, 25, 25, 25, 26, 26, 26, 27, 27, 27, 28 }; // 46～60まで
 
 	private static final int[] strDmg = new int[128];
 
 	static {
-		// ＳＴＲダメージ補正
+		// STRダメージ補正
 		int dmg = -6;
-		for (int str = 0; str <= 22; str++) { // ０～２２は２每に＋１
+		for (int str = 0; str <= 22; str++) { // 0～22は2每に+1
 			if (str % 2 == 1) {
 				dmg++;
 			}
 			strDmg[str] = dmg;
 		}
-		for (int str = 23; str <= 28; str++) { // ２３～２８は３每に＋１
+		for (int str = 23; str <= 28; str++) { // 23～28は3每に+1
 			if (str % 3 == 2) {
 				dmg++;
 			}
 			strDmg[str] = dmg;
 		}
-		for (int str = 29; str <= 32; str++) { // ２９～３２は２每に＋１
+		for (int str = 29; str <= 32; str++) { // 29～32は2每に+1
 			if (str % 2 == 1) {
 				dmg++;
 			}
 			strDmg[str] = dmg;
 		}
-		for (int str = 33; str <= 39; str++) { // ３３～３９は１每に＋１
+		for (int str = 33; str <= 34; str++) { // 33～34は1每に+1
 			dmg++;
 			strDmg[str] = dmg;
 		}
-		for (int str = 40; str <= 46; str++) { // ４０～４６は１每に＋２
-			dmg += 2;
-			strDmg[str] = dmg;
-		}
-		for (int str = 47; str <= 127; str++) { // ４７～１２７は１每に＋１
-			dmg++;
+		for (int str = 35; str <= 127; str++) { // 35～127は4每に+1
+			if (str % 4 == 1) {
+				dmg++;
+			}
 			strDmg[str] = dmg;
 		}
 	}
@@ -186,9 +216,9 @@ public class L1Attack {
 	private static final int[] dexDmg = new int[128];
 
 	static {
-		// ＤＥＸダメージ補正
+		// DEXダメージ補正
 		for (int dex = 0; dex <= 14; dex++) {
-			// ０～１４は０
+			// 0～14は0
 			dexDmg[dex] = 0;
 		}
 		dexDmg[15] = 1;
@@ -201,8 +231,16 @@ public class L1Attack {
 		dexDmg[22] = 5;
 		dexDmg[23] = 5;
 		int dmg = 5;
-		for (int dex = 24; dex <= 127; dex++) { // ２４～１２７は１每に＋１
-			dmg++;
+		for (int dex = 24; dex <= 35; dex++) { // 24～35は3每に+1
+			if (dex % 3 == 1) {
+				dmg++;
+			}
+			dexDmg[dex] = dmg;
+		}
+		for (int dex = 36; dex <= 127; dex++) { // 36～127は4每に1
+			if (dex % 4 == 1) {
+				dmg++;
+			}
 			dexDmg[dex] = dmg;
 		}
 	}

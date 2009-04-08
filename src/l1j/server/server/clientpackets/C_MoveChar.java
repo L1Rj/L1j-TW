@@ -32,108 +32,149 @@ import l1j.server.server.model.trap.L1WorldTraps;
 import l1j.server.server.serverpackets.S_MoveCharPacket;
 import l1j.server.server.serverpackets.S_SystemMessage;
 
-// Referenced classes of package l1j.server.server.clientpackets:
-// ClientBasePacket
+//修正檔案 : l1j.server.server.clientpackets.C_MoveChar
+//修正者 : KIUSBT
 
 public class C_MoveChar extends ClientBasePacket {
 
 	private static Logger _log = Logger.getLogger(C_MoveChar.class.getName());
 
-	// マップタイル調查用
-	private void sendMapTileLog(L1PcInstance pc) {
-		pc.sendPackets(new S_SystemMessage(pc.getMap().toString(
-				pc.getLocation())));
-	}
-
 	// 移動
-	public C_MoveChar(byte decrypt[], ClientThread client)
-			throws Exception {
+	public C_MoveChar(byte[] decrypt, ClientThread client) throws Exception
+	{
 		super(decrypt);
+		
+		L1PcInstance pc = client.getActiveChar();
 		int locx = readH();
 		int locy = readH();
 		int heading = readC();
 
-		L1PcInstance pc = client.getActiveChar();
-
-		if (pc.isTeleport()) { // テレポート處理中
+		// テレポート処理中
+		if (pc.isTeleport())
 			return;
-		}
 
 		// 移動要求間隔をチェックする
-		if (Config.CHECK_MOVE_INTERVAL) {
-			int result;
-			result = pc.getAcceleratorChecker()
-					.checkInterval(AcceleratorChecker.ACT_TYPE.MOVE);
-			if (result == AcceleratorChecker.R_DISCONNECTED) {
+		if (Config.CHECK_MOVE_INTERVAL)
+		{
+			int result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.MOVE);
+			
+			if (result == AcceleratorChecker.R_DISCONNECTED)
 				return;
-			}
 		}
 
 		pc.killSkillEffectTimer(L1SkillId.MEDITATION);
-		pc.setCallClanId(0); // コールクランを唱えた後に移動すると召喚無效
+		pc.setCallClanId(0); // コールクランを唱えた後に移動すると召喚無効
 
-		if (!pc.hasSkillEffect(L1SkillId.ABSOLUTE_BARRIER)) { // アブソルートバリア中ではない
+		// アブソルートバリア中ではない
+		if (!pc.hasSkillEffect(L1SkillId.ABSOLUTE_BARRIER))
 			pc.setRegenState(REGENSTATE_MOVE);
-		}
+
 		pc.getMap().setPassable(pc.getLocation(), true);
 
-		switch (heading) {
-		case 1: // '\001'
-			locx++;
-			locy--;
-			break;
+		// 判斷伺服器國家代碼是否為3
+		if (Config.CLIENT_LANGUAGE == 3)
+		{
+			// 取得真實面向
+			heading ^= 0x49;
+			// 取得真實座標
+			locx = pc.getX(); // X軸座標
+			locy = pc.getY(); // Y軸座標
+			
+			switch (heading)
+			{
+				case 0: // '\000'
+				y++;
+				break;
+					
+				case 1: // '\001'
+				x--;
+				y++;
+				break;
+				
+				case 2: // '\002'
+				x--;
+				break;
 
-		case 2: // '\002'
-			locx++;
-			break;
+				case 3: // '\003'
+				x--;
+				y--;
+				break;
 
-		case 3: // '\003'
-			locx++;
-			locy++;
-			break;
+				case 4: // '\004'
+				y--;
+				break;
 
-		case 4: // '\004'
-			locy++;
-			break;
+				case 5: // '\005'
+				x++;
+				y--;
+				break;
 
-		case 5: // '\005'
-			locx--;
-			locy++;
-			break;
+				case 6: // '\006'
+				x++;
+				break;
 
-		case 6: // '\006'
-			locx--;
-			break;
-
-		case 7: // '\007'
-			locx--;
-			locy--;
-			break;
-
-		case 0: // '\0'
-			locy--;
-			break;
+				case 7: // '\007'
+				x++;
+				y++;
+				break;
+			}
 		}
+		else
+			switch (heading)
+			{
+				case 0: // '\000'
+				locy--;
+				break;
+				
+				case 1: // '\001'
+				locx++;
+				locy--;
+				break;
+				
+				case 2: // '\002'
+				locx++;
+				break;
+			
+				case 3: // '\003'
+				locx++;
+				locy++;
+				break;
+				
+				case 4: // '\004'
+				locy++;
+				break;
+			
+				case 5: // '\005'
+				locx--;
+				locy++;
+				break;
+				
+				case 6: // '\006'
+				locx--;
+				break;
+				
+				case 7: // '\007'
+				locx--;
+				locy--;
+				break;
+			}
 
-		if (Dungeon.getInstance().dg(locx, locy, pc.getMap().getId(), pc)) { // ダンジョンにテレポートした場合
+		// ダンジョンにテレポートした場合
+		if (Dungeon.getInstance().dg(locx, locy, pc.getMap().getId(), pc))
 			return;
-		}
-		if (DungeonRandom.getInstance().dg(locx, locy, pc.getMap().getId(),
-				pc)) { // テレポート先がランダムなテレポート地點
+
+		// テレポート先がランダムなテレポート地点
+		if (DungeonRandom.getInstance().dg(locx, locy, pc.getMap().getId(), pc))
 			return;
-		}
 
 		pc.getLocation().set(locx, locy);
 		pc.setHeading(heading);
-		if (!pc.isGmInvis() && !pc.isGhost() && !pc.isInvisble()) {
-			pc.broadcastPacket(new S_MoveCharPacket(pc));
-		}
 
-		// sendMapTileLog(pc); // 移動先タイルの情報を送る(マップ調查用)
+		if (!pc.isGmInvis() && !pc.isGhost() && !pc.isInvisble())
+			pc.broadcastPacket(new S_MoveCharPacket(pc));
 
 		L1WorldTraps.getInstance().onPlayerMoved(pc);
 
 		pc.getMap().setPassable(pc.getLocation(), false);
-		// user.UpdateObject(); // 可視範圍內の全オブジェクト更新
 	}
 }

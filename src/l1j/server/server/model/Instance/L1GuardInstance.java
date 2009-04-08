@@ -410,6 +410,7 @@ public class L1GuardInstance extends L1NpcInstance {
 			if (newHp > 0) {
 				setCurrentHp(newHp);
 			}
+		} else if (getCurrentHp() == 0 && !isDead()) {
 		} else if (!isDead()) { // 念のため
 			setDead(true);
 			setStatus(ActionCodes.ACTION_Die);
