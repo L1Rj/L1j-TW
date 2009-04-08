@@ -64,7 +64,6 @@ import l1j.server.server.model.npc.L1NpcHtml;
 import l1j.server.server.model.npc.action.L1NpcAction;
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.model.skill.L1SkillUse;
-import l1j.server.server.serverpackets.Expand_S_CharReset;
 import l1j.server.server.serverpackets.S_ApplyAuction;
 import l1j.server.server.serverpackets.S_AuctionBoardRead;
 import l1j.server.server.serverpackets.S_CloseList;
@@ -381,7 +380,6 @@ public class C_NPCAction extends ClientBasePacket {
 			pc.setTempMaxLevel(maxLevel);
 			pc.setTempLevel(1);
 			pc.setIsInCharReset(true);
-			pc.sendPackets(new Expand_S_CharReset(pc));
 			// END
 		} else if (s.equalsIgnoreCase("cdeposit")) { // 資金を入金する
 			pc.sendPackets(new S_Deposit(pc.getId()));
