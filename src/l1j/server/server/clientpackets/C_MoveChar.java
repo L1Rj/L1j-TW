@@ -40,10 +40,9 @@ public class C_MoveChar extends ClientBasePacket {
 	private static Logger _log = Logger.getLogger(C_MoveChar.class.getName());
 
 	// 移動
-	public C_MoveChar(byte[] decrypt, ClientThread client) throws Exception
-	{
+	public C_MoveChar(byte[] decrypt, ClientThread client) throws Exception{
 		super(decrypt);
-		
+
 		L1PcInstance pc = client.getActiveChar();
 		int locx = readH();
 		int locy = readH();
@@ -54,10 +53,9 @@ public class C_MoveChar extends ClientBasePacket {
 			return;
 
 		// 移動要求間隔をチェックする
-		if (Config.CHECK_MOVE_INTERVAL)
-		{
+		if (Config.CHECK_MOVE_INTERVAL){
 			int result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.MOVE);
-			
+
 			if (result == AcceleratorChecker.R_DISCONNECTED)
 				return;
 		}
@@ -72,92 +70,89 @@ public class C_MoveChar extends ClientBasePacket {
 		pc.getMap().setPassable(pc.getLocation(), true);
 
 		// 判斷伺服器國家代碼是否為3
-		if (Config.CLIENT_LANGUAGE == 3)
-		{
+		if (Config.CLIENT_LANGUAGE == 3){
 			// 取得真實面向
 			heading ^= 0x49;
 			// 取得真實座標
 			locx = pc.getX(); // X軸座標
 			locy = pc.getY(); // Y軸座標
-			
-			switch (heading)
-			{
+
+			switch (heading){
 				case 0: // '\000'
-				locy++;
-				break;
-					
+					locy++;
+					break;
+
 				case 1: // '\001'
-				locx--;
-				locy++;
-				break;
-				
+					locx--;
+					locy++;
+					break;
+
 				case 2: // '\002'
-				locx--;
-				break;
+					locx--;
+					break;
 
 				case 3: // '\003'
-				locx--;
-				locy--;
-				break;
+					locx--;
+					locy--;
+					break;
 
 				case 4: // '\004'
-				locy--;
-				break;
+					locy--;
+					break;
 
 				case 5: // '\005'
-				locx++;
-				locy--;
-				break;
+					locx++;
+					locy--;
+					break;
 
 				case 6: // '\006'
-				locx++;
-				break;
+					locx++;
+					break;
 
 				case 7: // '\007'
-				locx++;
-				locy++;
-				break;
+					locx++;
+					locy++;
+					break;
+			}
+		}else{
+			switch (heading){
+				case 0: // '\000'
+					locy--;
+					break;
+
+				case 1: // '\001'
+					locx++;
+					locy--;
+					break;
+
+				case 2: // '\002'
+					locx++;
+					break;
+
+				case 3: // '\003'
+					locx++;
+					locy++;
+					break;
+
+				case 4: // '\004'
+					locy++;
+					break;
+
+				case 5: // '\005'
+					locx--;
+					locy++;
+					break;
+
+				case 6: // '\006'
+					locx--;
+					break;
+
+				case 7: // '\007'
+					locx--;
+					locy--;
+					break;
 			}
 		}
-		else
-			switch (heading)
-			{
-				case 0: // '\000'
-				locy--;
-				break;
-				
-				case 1: // '\001'
-				locx++;
-				locy--;
-				break;
-				
-				case 2: // '\002'
-				locx++;
-				break;
-			
-				case 3: // '\003'
-				locx++;
-				locy++;
-				break;
-				
-				case 4: // '\004'
-				locy++;
-				break;
-			
-				case 5: // '\005'
-				locx--;
-				locy++;
-				break;
-				
-				case 6: // '\006'
-				locx--;
-				break;
-				
-				case 7: // '\007'
-				locx--;
-				locy--;
-				break;
-			}
 
 		// ダンジョンにテレポートした場合
 		if (Dungeon.getInstance().dg(locx, locy, pc.getMap().getId(), pc))
