@@ -79,39 +79,39 @@ public class C_MoveChar extends ClientBasePacket {
 
 			switch (heading){
 				case 0: // '\000'
-					locy++;
+					locy--;
 					break;
 
 				case 1: // '\001'
-					locx--;
-					locy++;
+					locx++;
+					locy--;
 					break;
 
 				case 2: // '\002'
-					locx--;
+					locx++;
 					break;
 
 				case 3: // '\003'
-					locx--;
-					locy--;
+					locx++;
+					locy++;
 					break;
 
 				case 4: // '\004'
-					locy--;
+					locy++;
 					break;
 
 				case 5: // '\005'
-					locx++;
-					locy--;
+					locx--;
+					locy++;
 					break;
 
 				case 6: // '\006'
-					locx++;
+					locx--;
 					break;
 
 				case 7: // '\007'
-					locx++;
-					locy++;
+					locx--;
+					locy--;
 					break;
 			}
 		}else{
