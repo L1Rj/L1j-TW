@@ -112,24 +112,18 @@ public class C_CreateChar extends ClientBasePacket {
 		client.sendPacket(s_charcreatestatus2);
 		initNewChar(client, pc);
 	}
-/* 2.7日
-	private static final int[] MALE_LIST = new int[] { 0, 61, 138, 734, 2786 };
-	private static final int[] FEMALE_LIST = new int[] { 1, 48, 37, 1186, 2796 };
-	private static final int[] LOCX_LIST = new int[] { 32734, 32734, 32734, 32734, 32734 };
-	private static final int[] LOCY_LIST = new int[] { 32798, 32798, 32798, 32798, 32798 };
-	private static final short[] MAPID_LIST = new short[] { 8013, 8013, 8013, 8013, 8013 };
-*/
-//改回台版出生地 + 新職業sprid
-	
-	//6658 龍騎士(男) → 玩家  
-	//6661 龍騎士(女) → 玩家
-	//6671 幻術士(男) → 玩家
-	//6650 幻術士(女) → 玩家
-    private static final int[] MALE_LIST = new int[] { 0, 61, 138, 734, 2786 ,6658,6671};
-    private static final int[] FEMALE_LIST = new int[] { 1, 48, 37, 1186, 2796 ,6661,6650};
-    private static final int[] LOCX_LIST = new int[] { 32780, 32714, 32714, 32780, 32714 ,32714,32714};
-    private static final int[] LOCY_LIST = new int[] { 32781, 32877, 32877, 32781, 32877 ,32877,32877};
-    private static final short[] MAPID_LIST = new short[] { 68, 69, 69, 68, 69 ,69,69};
+
+	private static final int[] MALE_LIST = new int[] { 0, 61, 138, 734, 2786 ,6658,6671};
+	private static final int[] FEMALE_LIST = new int[] { 1, 48, 37, 1186, 2796 ,6661,6650};
+	private static final int[] LOCX_LIST = new int[] { 32780, 32714, 32714, 32780, 32714 ,32714,32714};
+	private static final int[] LOCY_LIST = new int[] { 32781, 32877, 32877, 32781, 32877 ,32877,32877};
+	private static final short[] MAPID_LIST = new short[] { 68, 69, 69, 68, 69 ,69,69};
+// private static final int[] LOCX_LIST = new int[] { 32780, 32714, 32714,
+// 32780, 32714, 32714, 32714 };
+// private static final int[] LOCY_LIST = new int[] { 32781, 32877, 32877,
+// 32781, 32877, 32877, 32877 };
+// private static final short[] MAPID_LIST = new short[] { 68, 69, 69, 68, 69,
+// 69, 69 };
 
 	private static void initNewChar(ClientThread client, L1PcInstance pc)
 			throws IOException, Exception {
@@ -243,7 +237,7 @@ public class C_CreateChar extends ClientBasePacket {
 				init_mp = 3;
 				break;
 			}
-		}else if(pc.isDragonKnight()){//XXX 龍奇Dragon Knight   AND 換數支 Illusionist
+		}else if(pc.isDragonKnight()){// Dragon Knight
 			init_hp = 15;
 			switch (pc.getWis()) {
 			case 12:
@@ -261,7 +255,7 @@ public class C_CreateChar extends ClientBasePacket {
 				init_mp = 4;
 				break;
 			}
-		}else if(pc.isIllusionist()){
+		}else if(pc.isIllusionist()){// Illusionist
 			init_hp = 12;
 			switch (pc.getWis()) {
 			case 12:
@@ -288,7 +282,7 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.setTitle("");
 		pc.setClanid(0);
 		pc.setClanRank(0);
-		pc.set_food(5);
+		pc.set_food(40);
 		pc.setAccessLevel((short) 0);
 		pc.setGm(false);
 		pc.setMonitor(false);

@@ -106,6 +106,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 			if (getBraveSpeed() == 1) { // ちゃんとした方法がわからない
 				perceivedFrom.sendPackets(new S_SkillBrave(getId(), 1, 600000));
 			}
+		} else {
+			perceivedFrom.sendPackets(new S_NPCPack(this));
 		}
 	}
 

@@ -1978,25 +1978,25 @@ public class C_ItemUSe extends ClientBasePacket {
 						|| itemId == 49045 || itemId == 49046
 						|| itemId == 49047) {
 					pc.getInventory().removeItem(l1iteminstance, 1);
-					// XXX 食べ物每の滿腹度(100單位で變動)
-					byte foodvolume1 = (byte)(l1iteminstance.getItem().getFoodVolume() / 100);
-					byte foodvolume2 = 0;
+					// XXX 食べ物每の滿腹度(10單位で變動)
+					short foodvolume1 = (short)(l1iteminstance.getItem().getFoodVolume() / 10);
+					short foodvolume2 = 0;
 					if (foodvolume1 <= 0) {
-						foodvolume1 = 1;
+						foodvolume1 = 5;
 					}
-					if (pc.get_food() >= 29) {
+					if (pc.get_food() >= 225) {
 						pc.sendPackets(new S_PacketBox(
-								S_PacketBox.FOOD, (byte)pc.get_food()));
+								S_PacketBox.FOOD, (short)pc.get_food()));
 					} else {
-						foodvolume2 = (byte)(pc.get_food() + foodvolume1);
-						if (foodvolume2 <= 29) {
+						foodvolume2 = (short)(pc.get_food() + foodvolume1);
+						if (foodvolume2 <= 225) {
 							pc.set_food(foodvolume2);
 							pc.sendPackets(new S_PacketBox(
-									S_PacketBox.FOOD, (byte)pc.get_food()));
+									S_PacketBox.FOOD, (short)pc.get_food()));
 						} else {
-							pc.set_food((byte)29);
+							pc.set_food((short)225);
 							pc.sendPackets(new S_PacketBox(
-									S_PacketBox.FOOD, (byte)pc.get_food()));
+									S_PacketBox.FOOD, (short)pc.get_food()));
 						}
 					}
 					if (itemId == 40057) { // フローティングアイ肉

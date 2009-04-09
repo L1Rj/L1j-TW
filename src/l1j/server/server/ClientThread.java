@@ -53,7 +53,6 @@ import l1j.server.server.types.UChar8;
 import l1j.server.server.utils.StreamUtil;
 import l1j.server.server.utils.SystemUtil;
 
-
 // Referenced classes of package l1j.server.server:
 // PacketHandler, Logins, IpTable, LoginController,
 // ClanTable, IdFactory
@@ -90,15 +89,10 @@ public class ClientThread implements Runnable, PacketOutput {
 	// (byte) 0x87, (byte) 0x7D, (byte) 0x75, (byte) 0x7D,
 	// (byte) 0xA1, (byte) 0x3B, (byte) 0x62, (byte) 0x2C,
 	// (byte) 0x5E, (byte) 0x3E, (byte) 0x9F }; // for Episode 6
-
-
-	/*選擇 1 !! 程式執行中
-
-	[FristPacket] = 125
-	0000: 7d fa bd 98 7c// ec 64 3e 0d c0 82 00 00 02 08 00
-	 *
-	 */
-
+	// private static final byte[] FIRST_PACKET = { 2.70C
+	// (byte) 0xb1, (byte) 0x3c, (byte) 0x2c, (byte) 0x28,
+	// (byte) 0xf6, (byte) 0x65, (byte) 0x1d, (byte) 0xdd,
+	// (byte) 0x56, (byte) 0xe3, (byte) 0xef };
 	private static final byte[] FIRST_PACKET = {
 		(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,		// 3.0C
 		(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,		// 3.0C
@@ -230,6 +224,7 @@ public class ClientThread implements Runnable, PacketOutput {
 		}
 
 		try {
+			// long seed = 0x5cc690ecL; // 2.70C
 			long seed = 0x7c98bdfa;			// 3.0C
 			byte Bogus = (byte)(FIRST_PACKET.length + 7);
 
@@ -240,6 +235,7 @@ public class ClientThread implements Runnable, PacketOutput {
 			_out.write((byte)(seed >> 8 & 0xFF));
 			_out.write((byte)(seed >> 16 & 0xFF));
 			_out.write((byte)(seed >> 24 & 0xFF));
+			
 			_out.write(FIRST_PACKET);
 			_out.flush();
 			try {
@@ -493,7 +489,7 @@ public class ClientThread implements Runnable, PacketOutput {
 			pc.setY(loc[1]);
 			pc.setMap((short) loc[2]);
 			pc.setCurrentHp(pc.getLevel());
-			pc.set_food(5);
+			pc.set_food(40);
 		}
 
 		// トレードを中止する

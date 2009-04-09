@@ -220,8 +220,8 @@ public class C_Chat extends ClientBasePacket {
 							chatType));
 		} else if (pc.getLevel() >= Config.GLOBAL_CHAT_LEVEL) {
 			if (L1World.getInstance().isWorldChatElabled()) {
-				if (pc.get_food() >= 2) {
-					pc.set_food(pc.get_food() - 2);
+				if (pc.get_food() >= 6) {
+					pc.set_food(pc.get_food() - 5);
 					ChatLogTable.getInstance().storeChat(pc, null, chatText,
 							chatType);
 					pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, pc
