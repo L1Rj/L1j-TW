@@ -167,7 +167,7 @@ public class L1Location extends Point {
 	public static L1Location randomLocation(L1Location baseLocation, int min,
 			int max, boolean isRandomTeleport) {
 		if (min > max) {
-			throw new IllegalArgumentException("min > maxとなる引數は無效");
+			throw new IllegalArgumentException("min > max  所以參數無效");
 		}
 		if (max <= 0) {
 			return new L1Location(baseLocation);

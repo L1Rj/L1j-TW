@@ -70,6 +70,8 @@ public class L1UltimateBattle {
 	private boolean _enterMage;
 	private boolean _enterElf;
 	private boolean _enterDarkelf;
+	private boolean _enterDragonKnight;	// 3.0C Start
+	private boolean _enterIllusionist;	// 3.0C End
 	private boolean _enterMale;
 	private boolean _enterFemale;
 	private boolean _usePot;
@@ -266,7 +268,7 @@ public class L1UltimateBattle {
 			sendMessage(MSGID_COUNT, "1"); // 1秒前
 
 			Thread.sleep(1000);
-			sendMessage(MSGID_START, "アルティメット バトル"); // スタート
+			sendMessage(MSGID_START, "無限大戰開始~!!"); // スタート
 			removeRetiredMembers();
 		}
 
@@ -493,7 +495,15 @@ public class L1UltimateBattle {
 	public void setEnterDarkelf(boolean enterDarkelf) {
 		this._enterDarkelf = enterDarkelf;
 	}
+// 3.0C Start
+	public void setEnterDragonKnight(boolean enterDragonKnight) {
+		this._enterDragonKnight = enterDragonKnight;
+	}
 
+	public void setEnterIllusionist(boolean enterIllusionist) {
+		this._enterIllusionist = enterIllusionist;
+	}
+// 3.0C End
 	public void setEnterMale(boolean enterMale) {
 		this._enterMale = enterMale;
 	}
@@ -501,7 +511,7 @@ public class L1UltimateBattle {
 	public void setEnterFemale(boolean enterFemale) {
 		this._enterFemale = enterFemale;
 	}
-
+	
 	public boolean canUsePot() {
 		return _usePot;
 	}
@@ -641,8 +651,9 @@ public class L1UltimateBattle {
 
 		// 參加可能なクラスか
 		if (!((pc.isCrown() && _enterRoyal) || (pc.isKnight() && _enterKnight)
-				|| (pc.isWizard() && _enterMage) || (pc.isElf() && _enterElf) || (pc
-				.isDarkelf() && _enterDarkelf))) {
+				|| (pc.isWizard() && _enterMage) || (pc.isElf() && _enterElf)
+				|| (pc.isDarkelf() && _enterDarkelf) || (pc.isDragonKnight()// 3.0C Start
+				&& _enterDragonKnight) || (pc.isIllusionist() && _enterIllusionist))) {// 3.0C End
 			return false;
 		}
 
@@ -659,20 +670,26 @@ public class L1UltimateBattle {
 		// クラス
 		StringBuilder classesBuff = new StringBuilder();
 		if (_enterDarkelf) {
-			classesBuff.append("ダーク エルフ ");
+			classesBuff.append("黑暗妖精 ");//ダーク エルフ
 		}
 		if (_enterMage) {
-			classesBuff.append("ウィザード ");
+			classesBuff.append("魔法師 ");	//ウィザード
 		}
 		if (_enterElf) {
-			classesBuff.append("エルフ ");
+			classesBuff.append("妖精 ");		//エルフ
 		}
 		if (_enterKnight) {
-			classesBuff.append("ナイト ");
+			classesBuff.append("騎士 ");		//ナイト 
 		}
 		if (_enterRoyal) {
-			classesBuff.append("プリンス ");
+			classesBuff.append("君王 ");	//プリンス
 		}
+		if (_enterDragonKnight) {// 3.0C Start
+			classesBuff.append("龍騎士 ");	//ドラゴンナイト
+		}
+		if (_enterIllusionist) {
+			classesBuff.append("幻術師 ");	//イリュージョニスト
+		}// 3.0C End
 		String classes = classesBuff.toString().trim();
 		// 性別
 		StringBuilder sexBuff = new StringBuilder();

@@ -70,6 +70,10 @@ public class Beginner {
 				pstm1.setString(2, "W");
 			} else if (pc.isDarkelf()) {
 				pstm1.setString(2, "D");
+			} else if (pc.isDragonKnight()) {//ドラゴンナイト
+				pstm1.setString(2, "R");
+			} else if (pc.isIllusionist()) {//イリュージョニスト
+				pstm1.setString(2, "I");
 			} else {
 				pstm1.setString(2, "A");// 万が一どれでもなかった場合のエラー回避用
 			}

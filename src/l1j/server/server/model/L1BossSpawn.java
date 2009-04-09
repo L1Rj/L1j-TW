@@ -156,9 +156,9 @@ public class L1BossSpawn extends L1Spawn {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("[MOB]npcid:" + getNpcId());
-		builder.append(" name:" + getName());
-		builder.append("[Type]" + _cycle.getName());
-		builder.append("[現在の周期]");
+		builder.append(" 名稱 : " + getName());
+		builder.append("[種類]" + _cycle.getName());
+		builder.append("[現在的周期]");
 		builder.append(_cycle.getSpawnStartTime(_activeSpawnTime).getTime());
 		builder.append(" - ");
 		builder.append(_cycle.getSpawnEndTime(_activeSpawnTime).getTime());

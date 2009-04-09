@@ -136,7 +136,7 @@ public class L1BossCycle {
 		// 出現周期の初期化,チェック
 		Cycle spawn = getCycle();
 		if (spawn == null || spawn.getPeriod() == null) {
-			throw new Exception("CycleのPeriodは必須");
+			throw new Exception("循環的周期必須填");
 		}
 
 		String period = spawn.getPeriod();
@@ -365,7 +365,7 @@ public class L1BossCycle {
 			// spawnlist_bossから讀み⑸んで配置
 			BossSpawnTable.fillSpawnTable();
 		} catch (Exception e) {
-			_log.log(Level.SEVERE, "BossCycleを讀み⑸めませんでした", e);
+			_log.log(Level.SEVERE, "BossCycle讀取出現錯誤", e);
 			System.exit(0);
 		}
 		System.out.println("OK! " + timer.get() + "ms");
@@ -376,7 +376,7 @@ public class L1BossCycle {
 	 * @param now 周期を出力する日時
 	 */
 	public void showData(Calendar now) {
-		System.out.println("[Type]" + getName());
+		System.out.println("[種類]" + getName());
 		System.out.print("  [出現期間]");
 		System.out.print(_sdf.format(getSpawnStartTime(now).getTime()) + " - ");
 		System.out.println(_sdf.format(getSpawnEndTime(now).getTime()));

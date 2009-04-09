@@ -222,7 +222,7 @@ public class L1DwarfInventory extends L1Inventory {
 
 		L1Item temp = ItemTable.getInstance().getTemplate(itemid);
 		if (temp == null) {
-			throw new Exception("存在しないアイテムID");
+			throw new Exception("編號不存在");
 		}
 		Connection con = null;
 		PreparedStatement pstm = null;
@@ -284,7 +284,7 @@ public class L1DwarfInventory extends L1Inventory {
 				// ignore
 			}
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			throw new Exception(".present處理中にエラーが發生しました。");
+			throw new Exception(".present 處理時發生錯誤。");
 		} finally {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);

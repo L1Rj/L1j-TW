@@ -92,7 +92,7 @@ public class DungeonRandom {
 				NewDungeonRandom newDungeonRandom = new NewDungeonRandom(newX, newY,
 						newMapId, heading);
 				if (_dungeonMap.containsKey(key)) {
-					_log.log(Level.WARNING, "同じキーのdungeonデータがあります。key=" + key);
+					_log.log(Level.WARNING, "地監的關鍵數據相同。key=" + key);
 				}
 				_dungeonMap.put(key, newDungeonRandom);
 			}

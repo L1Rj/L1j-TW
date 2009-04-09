@@ -74,6 +74,8 @@ public class UBTable {
 				ub.setEnterMage(rs.getBoolean("enter_mage"));
 				ub.setEnterElf(rs.getBoolean("enter_elf"));
 				ub.setEnterDarkelf(rs.getBoolean("enter_darkelf"));
+				ub.setEnterElf(rs.getBoolean("enter_DragonKnight"));// 3.0C Start
+				ub.setEnterDarkelf(rs.getBoolean("enter_Illusionist"));// 3.0C End
 				ub.setEnterMale(rs.getBoolean("enter_male"));
 				ub.setEnterFemale(rs.getBoolean("enter_female"));
 				ub.setUsePot(rs.getBoolean("use_pot"));

@@ -64,7 +64,7 @@ public class L1BookMark {
 				pstm.execute();
 				player.removeBookMark(book);
 			} catch (SQLException e) {
-				_log.log(Level.SEVERE, "ブックマークの削除でエラーが發生しました。", e);
+				_log.log(Level.SEVERE, "因消除Bookmark而產生錯誤。", e);
 			} finally {
 				SQLUtil.close(pstm);
 				SQLUtil.close(con);
@@ -113,7 +113,7 @@ public class L1BookMark {
 				pstm.setInt(6, bookmark.getMapId());
 				pstm.execute();
 			} catch (SQLException e) {
-				_log.log(Level.SEVERE, "ブックマークの追加でエラーが發生しました。", e);
+				_log.log(Level.SEVERE, "因追加Bookmark而發生錯誤。", e);
 			} finally {
 				SQLUtil.close(pstm);
 				SQLUtil.close(con);

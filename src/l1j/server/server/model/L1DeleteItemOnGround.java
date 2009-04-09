@@ -108,6 +108,6 @@ public class L1DeleteItemOnGround {
 				numOfDeleted++;
 			}
 		}
-		_log.fine("ワールドマップ上のアイテムを自動削除。削除數: " + numOfDeleted);
+		_log.fine("自動刪除在地圖上的物品。數量: " + numOfDeleted);
 	}
 }

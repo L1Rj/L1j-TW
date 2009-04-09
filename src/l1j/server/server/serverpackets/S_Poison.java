@@ -48,7 +48,7 @@ public class S_Poison extends ServerBasePacket {
 			writeC(0);
 			writeC(1);
 		} else {
-			throw new IllegalArgumentException("參數不正常。type = " + type);
+			throw new IllegalArgumentException("參數不正常。種類 = " + type);
 		}
 	}
 

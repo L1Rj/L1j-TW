@@ -243,7 +243,6 @@ public class C_CreateChar extends ClientBasePacket {
 				init_mp = 3;
 				break;
 			}
-//XXX 龍奇AND幻術師的 初始寫模( 無資料 - 暫時套用腰精)
 		}else if(pc.isDragonKnight()){//XXX 龍奇Dragon Knight   AND 換數支 Illusionist
 			init_hp = 15;
 			switch (pc.getWis()) {
@@ -280,7 +279,6 @@ public class C_CreateChar extends ClientBasePacket {
 				init_mp = 6;
 				break;
 			}
-//龍奇AND幻術師的 初始寫模 END		
 		}
 		pc.addBaseMaxHp(init_hp);
 		pc.setCurrentHp(init_hp);
