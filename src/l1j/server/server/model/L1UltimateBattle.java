@@ -511,7 +511,7 @@ public class L1UltimateBattle {
 	public void setEnterFemale(boolean enterFemale) {
 		this._enterFemale = enterFemale;
 	}
-	
+
 	public boolean canUsePot() {
 		return _usePot;
 	}
