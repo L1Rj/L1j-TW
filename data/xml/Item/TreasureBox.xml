@@ -686,9 +686,12 @@
   </TreasureBox>
   <!--アルカの魔法の袋-->
   <TreasureBox Type="RANDOM" ItemId="41247">
-    <Item ItemId="41248" Count="1" Chance="33" />
-    <Item ItemId="41249" Count="1" Chance="33" />
-    <Item ItemId="41250" Count="1" Chance="34" />
+    <Item ItemId="41248" Count="1" Chance="16.6" />
+    <Item ItemId="41249" Count="1" Chance="16.6" />
+    <Item ItemId="41250" Count="1" Chance="16.6" />
+    <Item ItemId="49037" Count="1" Chance="16.6" />
+    <Item ItemId="49038" Count="1" Chance="16.6" />
+    <Item ItemId="49039" Count="1" Chance="17" />
   </TreasureBox>
   <!--パルームの作物袋-->
   <TreasureBox Type="RANDOM" ItemId="41355">
