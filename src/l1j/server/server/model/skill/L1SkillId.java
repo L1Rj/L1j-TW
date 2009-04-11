@@ -334,7 +334,85 @@ public class L1SkillId {
 
 	public static final int ADDITIONAL_FIRE = 176;
 
-	public static final int SKILLS_END = 176;
+	// none = 177-180
+	/*
+	 * Dragon Knight skills
+	 */
+	public static final int DRAGON_SKIN = 181;
+
+	public static final int BURNING_SLASH = 182;
+
+	public static final int GUARD_BRAKE = 183;
+
+	public static final int MAGMA_BREATH = 184;
+
+	public static final int AWAKEN_ANTHARAS = 185;
+
+	public static final int BLOODLUST = 186;
+
+	public static final int FOE_SLAYER = 187;
+
+	public static final int RESIST_FEAR = 188;
+
+	public static final int SHOCK_SKIN = 189;
+
+	public static final int AWAKEN_FAFURION = 190;
+
+	public static final int MORTAL_BODY = 191;
+
+	public static final int THUNDER_GRAB = 192;
+
+	public static final int HORROR_OF_DEATH = 193;
+
+	public static final int FRIZEN_BREATH = 194;
+
+	public static final int AWAKEN_VALAKAS = 195;
+
+	// none = 196-200
+	/*
+	 * Illusionist Magic
+	 */
+	public static final int MIRRIR = 201;
+
+	public static final int CONFUSION = 202;
+
+	public static final int SMASH = 203;
+
+	public static final int ILLUSION_OG = 204;
+
+	public static final int CUBE_IGNITION = 205;
+
+	public static final int CONCENTRATION = 206;
+
+	public static final int MIND_BREAK = 207;
+
+	public static final int BONE_BREAK = 208;
+
+	public static final int ILLUSION_LICH = 209;
+
+	public static final int CUBE_QUAKE = 210;
+
+	public static final int PATIENCE = 211;
+
+	public static final int PHANTASM = 212;
+
+	public static final int WEAPON_BREAKER = 213;
+
+	public static final int ILLUSION_DIA_GOLEM = 214;
+
+	public static final int CUBE_SHOCK = 215;
+
+	public static final int INSIGHT = 216;
+
+	public static final int Panic = 217;
+
+	public static final int JOY_OF_PAIN = 218;
+
+	public static final int ILLUSION_AVATAR = 219;
+
+	public static final int CUBE_BALANCE = 220;
+
+	public static final int SKILLS_END = 220;
 
 	/*
 	 * Status

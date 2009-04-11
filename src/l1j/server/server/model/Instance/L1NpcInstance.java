@@ -1901,40 +1901,15 @@ public class L1NpcInstance extends L1Character {
 
 	// 目標の鄰へテレポート
 	public boolean nearTeleport(int nx, int ny) {
-		int rdir = _random.nextInt(8);
-		int dir;
-		for (int i = 0; i < 8; i++) {
-			dir = rdir + i;
-			if (dir > 7) {
-				dir -= 8;
-			}
-			if (dir == 1) {
-				nx++;
-				ny--;
-			} else if (dir == 2) {
-				nx++;
-			} else if (dir == 3) {
-				nx++;
-				ny++;
-			} else if (dir == 4) {
-				ny++;
-			} else if (dir == 5) {
-				nx--;
-				ny++;
-			} else if (dir == 6) {
-				nx--;
-			} else if (dir == 7) {
-				nx--;
-				ny--;
-			} else if (dir == 0) {
-				ny--;
-			}
-			if (getMap().isPassable(nx, ny)) {
-				dir += 4;
-				if (dir > 7) {
-					dir -= 8;
-				}
-				teleport(nx, ny, dir);
+		int tempx;
+		int tempy;
+		for (int i = 1; i < 3; i++){
+			tempx = 0;
+			tempy = 0;
+			tempx = nx + _random.nextInt(7) - 3;
+			tempy = ny + _random.nextInt(7) - 3;
+			if (getMap().isPassable(tempx, tempy)) {
+				teleport(tempx, tempy, 0);
 				setCurrentMp(getCurrentMp() - 10);
 				return true;
 			}

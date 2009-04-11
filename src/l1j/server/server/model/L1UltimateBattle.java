@@ -70,8 +70,8 @@ public class L1UltimateBattle {
 	private boolean _enterMage;
 	private boolean _enterElf;
 	private boolean _enterDarkelf;
-	private boolean _enterDragonKnight;	// 3.0C Start
-	private boolean _enterIllusionist;	// 3.0C End
+	private boolean _enterDragonKnight;
+	private boolean _enterIllusionist;
 	private boolean _enterMale;
 	private boolean _enterFemale;
 	private boolean _usePot;
@@ -90,7 +90,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * ラウンド開始時のメッセージを送信する。
-	 * 
+	 *
 	 * @param curRound
 	 *            開始するラウンド
 	 */
@@ -103,7 +103,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * ポーション等の補給アイテムを出現させる。
-	 * 
+	 *
 	 * @param curRound
 	 *            現在のラウンド
 	 */
@@ -147,7 +147,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * UBに參加しているプレイヤーへメッセージ(S_ServerMessage)を送信する。
-	 * 
+	 *
 	 * @param type
 	 *            メッセージタイプ
 	 * @param msg
@@ -161,7 +161,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * コロシアム上へアイテムを出現させる。
-	 * 
+	 *
 	 * @param itemId
 	 *            出現させるアイテムのアイテムID
 	 * @param stackCount
@@ -236,7 +236,7 @@ public class L1UltimateBattle {
 	class UbThread implements Runnable {
 		/**
 		 * 競技開始までをカウントダウンする。
-		 * 
+		 *
 		 * @throws InterruptedException
 		 */
 		private void countDown() throws InterruptedException {
@@ -274,7 +274,7 @@ public class L1UltimateBattle {
 
 		/**
 		 * 全てのモンスターが出現した後、次のラウンドが始まるまでの時間を待機する。
-		 * 
+		 *
 		 * @param curRound
 		 *            現在のラウンド
 		 * @throws InterruptedException
@@ -346,7 +346,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * アルティメットバトルを開始する。
-	 * 
+	 *
 	 * @param ubId
 	 *            開始するアルティメットバトルのID
 	 */
@@ -361,7 +361,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * プレイヤーを參加メンバーリストへ追加する。
-	 * 
+	 *
 	 * @param pc
 	 *            新たに參加するプレイヤー
 	 */
@@ -373,7 +373,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * プレイヤーを參加メンバーリストから削除する。
-	 * 
+	 *
 	 * @param pc
 	 *            削除するプレイヤー
 	 */
@@ -390,7 +390,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * プレイヤーが、參加メンバーかを返す。
-	 * 
+	 *
 	 * @param pc
 	 *            調べるプレイヤー
 	 * @return 參加メンバーであればtrue、そうでなければfalse。
@@ -401,7 +401,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * 參加メンバーの配列を作成し、返す。
-	 * 
+	 *
 	 * @return 參加メンバーの配列
 	 */
 	public L1PcInstance[] getMembersArray() {
@@ -410,7 +410,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * 參加メンバー數を返す。
-	 * 
+	 *
 	 * @return 參加メンバー數
 	 */
 	public int getMembersCount() {
@@ -419,7 +419,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * UB中かを設定する。
-	 * 
+	 *
 	 * @param i
 	 *            true/false
 	 */
@@ -429,7 +429,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * UB中かを返す。
-	 * 
+	 *
 	 * @return UB中であればtrue、そうでなければfalse。
 	 */
 	public boolean isNowUb() {
@@ -495,7 +495,7 @@ public class L1UltimateBattle {
 	public void setEnterDarkelf(boolean enterDarkelf) {
 		this._enterDarkelf = enterDarkelf;
 	}
-// 3.0C Start
+
 	public void setEnterDragonKnight(boolean enterDragonKnight) {
 		this._enterDragonKnight = enterDragonKnight;
 	}
@@ -503,7 +503,7 @@ public class L1UltimateBattle {
 	public void setEnterIllusionist(boolean enterIllusionist) {
 		this._enterIllusionist = enterIllusionist;
 	}
-// 3.0C End
+
 	public void setEnterMale(boolean enterMale) {
 		this._enterMale = enterMale;
 	}
@@ -636,7 +636,7 @@ public class L1UltimateBattle {
 
 	/**
 	 * UBに參加可能か、レベル、クラスをチェックする。
-	 * 
+	 *
 	 * @param pc
 	 *            UBに參加できるかチェックするPC
 	 * @return 參加出來る場合はtrue,出來ない場合はfalse
@@ -652,8 +652,9 @@ public class L1UltimateBattle {
 		// 參加可能なクラスか
 		if (!((pc.isCrown() && _enterRoyal) || (pc.isKnight() && _enterKnight)
 				|| (pc.isWizard() && _enterMage) || (pc.isElf() && _enterElf)
-				|| (pc.isDarkelf() && _enterDarkelf) || (pc.isDragonKnight()// 3.0C Start
-				&& _enterDragonKnight) || (pc.isIllusionist() && _enterIllusionist))) {// 3.0C End
+				|| (pc.isDarkelf() && _enterDarkelf)
+				|| (pc.isDragonKnight() && _enterDragonKnight)
+				|| (pc.isIllusionist() && _enterIllusionist))) {
 			return false;
 		}
 
@@ -670,26 +671,26 @@ public class L1UltimateBattle {
 		// クラス
 		StringBuilder classesBuff = new StringBuilder();
 		if (_enterDarkelf) {
-			classesBuff.append("黑暗妖精 ");//ダーク エルフ
+			classesBuff.append("黑暗妖精 ");
 		}
 		if (_enterMage) {
-			classesBuff.append("魔法師 ");	//ウィザード
+			classesBuff.append("魔法師 ");
 		}
 		if (_enterElf) {
-			classesBuff.append("妖精 ");		//エルフ
+			classesBuff.append("妖精 ");
 		}
 		if (_enterKnight) {
-			classesBuff.append("騎士 ");		//ナイト 
+			classesBuff.append("騎士 ");
 		}
 		if (_enterRoyal) {
-			classesBuff.append("君王 ");	//プリンス
+			classesBuff.append("君王 ");
 		}
-		if (_enterDragonKnight) {// 3.0C Start
-			classesBuff.append("龍騎士 ");	//ドラゴンナイト
+		if (_enterDragonKnight) {
+			classesBuff.append("龍騎士 ");
 		}
 		if (_enterIllusionist) {
-			classesBuff.append("幻術師 ");	//イリュージョニスト
-		}// 3.0C End
+			classesBuff.append("幻術師 ");
+		}
 		String classes = classesBuff.toString().trim();
 		// 性別
 		StringBuilder sexBuff = new StringBuilder();

@@ -44,7 +44,7 @@ public class L1Cooking {
 	public static void useCookingItem(L1PcInstance pc, L1ItemInstance item) {
 		int itemId = item.getItem().getItemId();
 		if (itemId == 41284 || itemId == 41292) { // デザート
-			if (pc.get_food() != 29) {
+			if (pc.get_food() != 225) {
 				pc.sendPackets(new S_ServerMessage(74, item
 						.getNumberedName(1))); // \f1%0は使用できません。
 				return;

@@ -1,1 +1,2 @@
-Welcome to L1J-TW server.
+Welcome to L1J-TW 測試服務器.
+本服務器僅供測試 JANA搭配封包實驗.

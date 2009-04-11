@@ -38,6 +38,9 @@ public class L1DollInstance extends L1NpcInstance {
 	public static final int DOLLTYPE_BUGBEAR = 0;
 	public static final int DOLLTYPE_SUCCUBUS = 1;
 	public static final int DOLLTYPE_WAREWOLF = 2;
+	public static final int DOLLTYPE_ELDER = 3;
+	public static final int DOLLTYPE_CRUSTANCEAN = 4;
+	public static final int DOLLTYPE_GOLEM = 5;
 	public static final int DOLL_TIME = 1800000;
 
 	private static Logger _log = Logger.getLogger(L1DollInstance.class
@@ -165,7 +168,8 @@ public class L1DollInstance extends L1NpcInstance {
 
 	public int getDamageByDoll() {
 		int damage = 0;
-		if (getDollType() == DOLLTYPE_WAREWOLF) {
+		int dollType = getDollType();
+		if (dollType == DOLLTYPE_WAREWOLF || dollType == DOLLTYPE_CRUSTANCEAN) {
 			int chance = _random.nextInt(100) + 1;
 			if (chance <= 3) {
 				damage = 15;
@@ -183,7 +187,8 @@ public class L1DollInstance extends L1NpcInstance {
 
 	public boolean isMpRegeneration() {
 		boolean isMpRegeneration = false;
-		if (getDollType() == DOLLTYPE_SUCCUBUS) {
+		int dollType = getDollType();
+		if (dollType == DOLLTYPE_SUCCUBUS || dollType == DOLLTYPE_ELDER) {
 			isMpRegeneration = true;
 		}
 		return isMpRegeneration;
@@ -191,10 +196,23 @@ public class L1DollInstance extends L1NpcInstance {
 
 	public int getWeightReductionByDoll() {
 		int weightReduction = 0;
-		if (getDollType() == DOLLTYPE_BUGBEAR) {
+		int dollType = getDollType();
+		if (dollType == DOLLTYPE_BUGBEAR) {
 			weightReduction = 10;
 		}
 		return weightReduction;
+	}
+
+	public int getDamageReductionByDoll() {
+		int damageReduction = 0;
+		int dollType = getDollType();
+		if (dollType == DOLLTYPE_GOLEM) {
+			int chance = _random.nextInt(100) + 1;
+			if (chance <= 4) {
+				damageReduction = 15;
+			}
+		}
+		return damageReduction;
 	}
 
 }

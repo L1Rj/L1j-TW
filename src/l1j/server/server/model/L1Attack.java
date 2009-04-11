@@ -711,6 +711,12 @@ public class L1Attack {
 
 		dmg -= _targetPc.getDamageReductionByArmor(); // 防具によるダメージ輕減
 
+		Object[] targetDollList = _targetPc.getDollList().values().toArray(); // マジックドールによるダメージ輕減
+		for (Object dollObject : targetDollList) {
+			L1DollInstance doll = (L1DollInstance) dollObject;
+			dmg -= doll.getDamageReductionByDoll();
+		}
+
 		if (_targetPc.hasSkillEffect(COOKING_1_0_S) // 料理によるダメージ輕減
 				|| _targetPc.hasSkillEffect(COOKING_1_1_S)
 				|| _targetPc.hasSkillEffect(COOKING_1_2_S)
@@ -926,6 +932,12 @@ public class L1Attack {
 		}
 
 		dmg -= _targetPc.getDamageReductionByArmor(); // 防具によるダメージ輕減
+
+		Object[] targetDollList = _targetPc.getDollList().values().toArray(); // マジックドールによるダメージ輕減
+		for (Object dollObject : targetDollList) {
+			L1DollInstance doll = (L1DollInstance) dollObject;
+			dmg -= doll.getDamageReductionByDoll();
+		}
 
 		if (_targetPc.hasSkillEffect(COOKING_1_0_S) // 料理によるダメージ輕減
 				|| _targetPc.hasSkillEffect(COOKING_1_1_S)

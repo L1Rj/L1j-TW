@@ -2498,7 +2498,8 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 41245) { // 溶解劑
 					useResolvent(pc, l1iteminstance1, l1iteminstance);
 				} else if (itemId == 41248 || itemId == 41249
-						|| itemId == 41250) { // マジックドール
+						|| itemId == 41250 || itemId == 49037
+						|| itemId == 49038 || itemId == 49039) { // マジックドール
 					useMagicDoll(pc, itemId, itemObjid);
 				} else if (itemId >= 41255 && itemId <= 41259) { // 料理の本
 					if (cookStatus == 0) {
@@ -4934,6 +4935,15 @@ public class C_ItemUSe extends ClientBasePacket {
 			} else if (itemId == 41250) {
 				npcId = 80108;
 				dollType = L1DollInstance.DOLLTYPE_WAREWOLF;
+			} else if (itemId == 49037) {
+				npcId = 80129;
+				dollType = L1DollInstance.DOLLTYPE_ELDER;
+			} else if (itemId == 49038) {
+				npcId = 80130;
+				dollType = L1DollInstance.DOLLTYPE_CRUSTANCEAN;
+			} else if (itemId == 49039) {
+				npcId = 80131;
+				dollType = L1DollInstance.DOLLTYPE_GOLEM;
 			}
 			L1Npc template = NpcTable.getInstance().getTemplate(npcId);
 			doll = new L1DollInstance(template, pc, dollType, itemObjectId);

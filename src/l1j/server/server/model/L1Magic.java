@@ -25,6 +25,7 @@ import l1j.server.Config;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.WarTimeController;
 import l1j.server.server.datatables.SkillsTable;
+import l1j.server.server.model.Instance.L1DollInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1MagicInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
@@ -552,6 +553,12 @@ public class L1Magic {
 		}
 
 		dmg -= _targetPc.getDamageReductionByArmor(); // 防具によるダメージ輕減
+
+		Object[] targetDollList = _targetPc.getDollList().values().toArray(); // マジックドールによるダメージ輕減
+		for (Object dollObject : targetDollList) {
+			L1DollInstance doll = (L1DollInstance) dollObject;
+			dmg -= doll.getDamageReductionByDoll();
+		}
 
 		if (_targetPc.hasSkillEffect(COOKING_1_0_S) // 料理によるダメージ輕減
 				|| _targetPc.hasSkillEffect(COOKING_1_1_S)
