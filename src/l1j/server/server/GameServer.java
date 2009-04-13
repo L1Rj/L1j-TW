@@ -87,7 +87,7 @@ public class GameServer extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
+		System.out.println("記憶體使用量: " + SystemUtil.getUsedMemoryMB() + "MB");
 		System.out.println("等待客戶端連線...");
 		while (true) {
 			try {
@@ -132,28 +132,28 @@ public class GameServer extends Thread {
 			InetAddress inetaddress = InetAddress.getByName(s);
 			inetaddress.getHostAddress();
 			_serverSocket = new ServerSocket(_port, 50, inetaddress);
-			System.out.println("服務器狀態: 生成中");
+			System.out.println("伺服器狀態: 建立中");
 		} else {
 			_serverSocket = new ServerSocket(_port);
-			System.out.println("服務器狀態: 生成中");
+			System.out.println("伺服器狀態: 建立中");
 		}
 
-		System.out.println("EXP:" + (rateXp) + "倍  正義值:" + (LA) + "倍  友好度:"
-				+ (rateKarma) + "倍  打寶率:" + (rateDropItems) + "倍  金幣量:"
+		System.out.println("經驗值倍率:" + (rateXp) + "倍  正義值倍率:" + (LA) + "倍  友好度倍率:"
+				+ (rateKarma) + "倍  道具掉落倍率:" + (rateDropItems) + "倍  金幣掉落倍率:"
 				+ (rateDropAdena) + "倍");
-		System.out.println("全體頻道使用限制 Lv " + (chatlvl));
+		System.out.println("公共頻道使用等級限制 " + (chatlvl));
 		if (Config.ALT_NONPVP) { // Non-PvP設定
-			System.out.println("Non-PvP設定: 無效（PvP可能）");
+			System.out.println("Non-PvP設定: 無效（可PVP）");
 		} else {
-			System.out.println("Non-PvP設定: 有效（PvP不可）");
+			System.out.println("Non-PvP設定: 有效（不可PVP）");
 		}
 
 		System.out.println("=================================================");
-		System.out.println("=====Lineage 3.0C=====蒲田製作=====L1j1686版=====");
+		System.out.println("=====Lineage 3.0C=====蒲田製作=====L1j1698版=====");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
-		System.out.println("連線人數限制： 最多" + (maxOnlineUsers) + "人");
+		System.out.println("伺服器最高連線人數： " + (maxOnlineUsers) + "人");
 		IdFactory.getInstance();
 		L1WorldMap.getInstance();
 		_loginController = LoginController.getInstance();
@@ -252,7 +252,7 @@ public class GameServer extends Thread {
 		NpcChatTable.getInstance();
 		LightSpawnTable.getInstance();
 
-		System.out.println("服務器狀態: 啟動完了");
+		System.out.println("伺服器狀態: 啟動完成");
 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
 
 		this.start();
@@ -287,15 +287,15 @@ public class GameServer extends Thread {
 			L1World world = L1World.getInstance();
 			try {
 				int secondsCount = _secondsCount;
-				world.broadcastServerMessage("服務器即將關閉。");
+				world.broadcastServerMessage("伺服器即將關閉。");
 				world.broadcastServerMessage("請移動至安全區域。");
 				while (0 < secondsCount) {
 					if (secondsCount <= 30) {
-						world.broadcastServerMessage("服務器將在" + secondsCount
+						world.broadcastServerMessage("伺服器將在" + secondsCount
 								+ "秒後關機。請玩家先行離線。");
 					} else {
 						if (secondsCount % 60 == 0) {
-							world.broadcastServerMessage("服務器將會在" + secondsCount
+							world.broadcastServerMessage("伺服器將會在" + secondsCount
 									/ 60 + "分後關機。");
 						}
 					}
@@ -304,7 +304,7 @@ public class GameServer extends Thread {
 				}
 				shutdown();
 			} catch (InterruptedException e) {
-				world.broadcastServerMessage("取消關機，服務器持續運作。");
+				world.broadcastServerMessage("取消關機，伺服器繼續運作。");
 				return;
 			}
 		}
