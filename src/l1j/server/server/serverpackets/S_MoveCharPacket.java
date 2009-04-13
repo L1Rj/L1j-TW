@@ -42,43 +42,27 @@ public class S_MoveCharPacket extends ServerBasePacket {
 		// if(cha instanceof L1PcInstance)
 		// {
 
-		switch (cha.getHeading()) {
-		case 1: // '\001'
+		if (cha.getHeading() == 0) {	// 4.14 Start
+			y++;
+		} else if (cha.getHeading() == 1) {
 			x--;
 			y++;
-			break;
-
-		case 2: // '\002'
+		} else if (cha.getHeading() == 2) {
 			x--;
-			break;
-
-		case 3: // '\003'
+		} else if (cha.getHeading() == 3) {
 			x--;
 			y--;
-			break;
-
-		case 4: // '\004'
+		} else if (cha.getHeading() == 4) {
 			y--;
-			break;
-
-		case 5: // '\005'
+		} else if (cha.getHeading() == 5) {
 			x++;
 			y--;
-			break;
-
-		case 6: // '\006'
+		} else if (cha.getHeading() == 6) {
 			x++;
-			break;
-
-		case 7: // '\007'
+		} else if (cha.getHeading() == 7) {
 			x++;
 			y++;
-			break;
-
-		case 0: // '\0'
-			y++;
-			break;
-		}
+		}	// 4.14 End
 
 		writeC(Opcodes.S_OPCODE_MOVEOBJECT);
 		writeD(cha.getId());

@@ -32,56 +32,9 @@ public class S_AddSkill extends ServerBasePacket {
 	private static Logger _log = Logger.getLogger(S_AddSkill.class.getName());
 
 	private byte[] _byte = null;
-	/** addskill packet
-[Server] opcode = 28
-0000: 1c 20/ 01 00 04 00 00 00 00 00 00 00 00 00 00 00    . ..............
-0010: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
-0020: 00 00 /85 2e 82 03 08 00                            ........
-*/
-// for single skill
-// EX : pc.sendPackets(new S_AddSkill(L1SkillId.SHIELD));
-/*
-   public S_AddSkill(int skillid){
 
-      int level = (skillid + 7) / 8 ;
-      int id = (int)Math.pow(2, (skillid + 7) % 8 ) ;
-       
-      int[]skills = new int[32];
-       
-      writeC(Opcodes.S_OPCODE_ADDSKILL);
-       
-      writeC(32); //skills arg size
-       
-      skills[level - 1] = id;
-
-      for(int i : skills){
-         writeC(i);
-      }
-   }   
-   
-// for all skill
-// Wizard
-// pc.sendPackets(new S_AddSkill(new int[]{1,2,3,4,5,6,7,8,9,10}));
-// Elf
-// pc.sendPackets(new S_AddSkill(new int[]{1,2,3,4,5,6,17,18,19,20,21,22}));
-
-   public S_AddSkill(int[] skillLv){
-      int[]skills = new int[32];
-       
-      for(int lv : skillLv){
-         skills[lv - 1] = 0xff;
-      }       
-       
-      writeC(Opcodes.S_OPCODE_ADDSKILL);       
-      writeC(32); //skills arg size
-       
-      for(int i : skills){
-         writeC(i);
-      }
-       
-   }*/	//Test
 	public S_AddSkill(int level, int id) {
-		int ids[] = new int[24];
+		int ids[] = new int[28];
 		for (int i = 0; i < ids.length; i++) {
 			ids[i] = 0;
 		}
@@ -96,7 +49,7 @@ public class S_AddSkill extends ServerBasePacket {
 		} else if (hasLevel9to10) {
 			writeC(100);
 		} else {
-			writeC(22);
+			writeC(32);
 		}
 		for (int i : ids) {
 			writeC(i);
@@ -107,9 +60,9 @@ public class S_AddSkill extends ServerBasePacket {
 
 	public S_AddSkill(int level1, int level2, int level3, int level4,
 			int level5, int level6, int level7, int level8, int level9,
-			int level10, int knight, int l2, int de1, int de2, int royal,/*int l3, int elf1, int elf2, int elf3, int elf4, int elf5, int elf6,int k5, int l5, int m5, int n5, int o5, int p5) { int i6 = level5 + level6 + level7 + level8;int j6 = level9 + level10;writeC(Opcodes.S_OPCODE_ADDSKILL);if (i6 > 0 && j6 == 0) {writeC(50);} else if (j6 > 0) {writeC(100);} else {writeC(23);}writeC(level1);writeC(level2);writeC(level3);writeC(level4);writeC(level5);writeC(level6);writeC(level7);writeC(level8);writeC(level9);writeC(level10);writeC(knight);writeC(l2);writeC(de1);writeC(de2);writeC(royal);writeC(l3);writeC(elf1);writeC(elf2);writeC(elf3);writeC(elf4);writeC(elf5);writeC(elf6);writeC(k5);writeC(l5);writeC(m5);writeC(n5);writeC(o5);writeC(p5);writeD(0);writeD(0); */
+			int level10, int knight, int l2, int de1, int de2, int royal,
 			int l3, int elf1, int elf2, int elf3, int elf4, int elf5, int elf6,
-			int k5, int l5) {
+			int k5, int l5, int m5, int n5, int o5, int p5) {
 		int i6 = level5 + level6 + level7 + level8;
 		int j6 = level9 + level10;
 		writeC(Opcodes.S_OPCODE_ADDSKILL);
@@ -118,7 +71,7 @@ public class S_AddSkill extends ServerBasePacket {
 		} else if (j6 > 0) {
 			writeC(100);
 		} else {
-			writeC(23);
+			writeC(32);
 		}
 		writeC(level1);
 		writeC(level2);
@@ -144,10 +97,14 @@ public class S_AddSkill extends ServerBasePacket {
 		writeC(elf6);
 		writeC(k5);
 		writeC(l5);
+		writeC(m5);
+		writeC(n5);
+		writeC(o5);
+		writeC(p5);
 		writeD(0);
 		writeD(0);
 	}
-	
+
 	@Override
 	public byte[] getContent() {
 		if (_byte == null) {

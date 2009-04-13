@@ -306,7 +306,7 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.setKarma(0);
 		if (pc.isWizard()) { // WIZ
 			pc.sendPackets(new S_AddSkill(3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			int object_id = pc.getId();
 			L1Skills l1skills = SkillsTable.getInstance().getTemplate(4); // EB
 			String skill_name = l1skills.getName();

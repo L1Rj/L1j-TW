@@ -50,7 +50,7 @@ public class L1AddSkill implements L1CommandExecutor {
 
 			if (pc.isCrown()) {
 				pc.sendPackets(new S_AddSkill(255, 255, 0, 0, 0, 0, 0, 0, 0, 0,
-						0, 0, 0, 0, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+						0, 0, 0, 0, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 				for (cnt = 1; cnt <= 16; cnt++) // LV1~2魔法
 				{
 					L1Skills l1skills = SkillsTable.getInstance().getTemplate(
@@ -71,7 +71,7 @@ public class L1AddSkill implements L1CommandExecutor {
 				}
 			} else if (pc.isKnight()) {
 				pc.sendPackets(new S_AddSkill(255, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-						192, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+						192, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 				for (cnt = 1; cnt <= 8; cnt++) // LV1魔法
 				{
 					L1Skills l1skills = SkillsTable.getInstance().getTemplate(
@@ -93,7 +93,7 @@ public class L1AddSkill implements L1CommandExecutor {
 			} else if (pc.isElf()) {
 				pc.sendPackets(new S_AddSkill(255, 255, 127, 255, 255, 255, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 127, 3, 255, 255, 255, 255,
-						0, 0));
+						0, 0, 0, 0, 0, 0));
 				for (cnt = 1; cnt <= 48; cnt++) // LV1~6魔法
 				{
 					L1Skills l1skills = SkillsTable.getInstance().getTemplate(
@@ -115,7 +115,7 @@ public class L1AddSkill implements L1CommandExecutor {
 			} else if (pc.isWizard()) {
 				pc.sendPackets(new S_AddSkill(255, 255, 127, 255, 255, 255,
 						255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-						0, 0));
+						0, 0, 0, 0, 0, 0));
 				for (cnt = 1; cnt <= 80; cnt++) // LV1~10魔法
 				{
 					L1Skills l1skills = SkillsTable.getInstance().getTemplate(
@@ -127,7 +127,7 @@ public class L1AddSkill implements L1CommandExecutor {
 				}
 			} else if (pc.isDarkelf()) {
 				pc.sendPackets(new S_AddSkill(255, 255, 0, 0, 0, 0, 0, 0, 0, 0,
-						0, 0, 255, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+						0, 0, 255, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 				for (cnt = 1; cnt <= 16; cnt++) // LV1~2魔法
 				{
 					L1Skills l1skills = SkillsTable.getInstance().getTemplate(
@@ -138,6 +138,30 @@ public class L1AddSkill implements L1CommandExecutor {
 							skill_name, 0, 0); // DBに登錄
 				}
 				for (cnt = 97; cnt <= 111; cnt++) // DE魔法
+				{
+					L1Skills l1skills = SkillsTable.getInstance().getTemplate(
+							cnt); // スキル情報を取得
+					skill_name = l1skills.getName();
+					skill_id = l1skills.getSkillId();
+					SkillsTable.getInstance().spellMastery(object_id, skill_id,
+							skill_name, 0, 0); // DBに登錄
+				}
+			} else if (pc.isDragonKnight()) {
+				pc.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 240, 255, 7, 0, 0, 0));
+				for (cnt = 181; cnt <= 195; cnt++) // ドラゴンナイト秘技
+				{
+					L1Skills l1skills = SkillsTable.getInstance().getTemplate(
+							cnt); // スキル情報を取得
+					skill_name = l1skills.getName();
+					skill_id = l1skills.getSkillId();
+					SkillsTable.getInstance().spellMastery(object_id, skill_id,
+							skill_name, 0, 0); // DBに登錄
+				}
+			} else if (pc.isIllusionist()) {
+				pc.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 15));
+				for (cnt = 201; cnt <= 220; cnt++) // イリュージョニスト魔法
 				{
 					L1Skills l1skills = SkillsTable.getInstance().getTemplate(
 							cnt); // スキル情報を取得

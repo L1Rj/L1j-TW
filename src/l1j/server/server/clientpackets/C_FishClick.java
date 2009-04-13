@@ -198,42 +198,29 @@ public class C_FishClick extends ClientBasePacket {
 		if (item != null) {
 			item.startItemOwnerTimer(pc);
 
-			int dropX = 0;
-			int dropY = 0;
-			int x = pc.getX();
-			int y = pc.getY();
-			switch (pc.getHeading()) {
-			case 1:
-				dropX = x--;
-				dropY = y++;
-				break;
-			case 2:
-				dropX = x--;
-				break;
-			case 3:
-				dropX = x--;
-				dropY = y--;
-				break;
-			case 4:
-				dropY = y--;
-				break;
-			case 5:
-				dropX = x++;
-				dropY = y--;
-				break;
-			case 6:
-				dropX = x++;
-				break;
-			case 7:
-				dropX = x++;
-				dropY = y++;
-				break;
-			case 0:
-				dropY = y++;
-				break;
-			default:
-				break;
-			}
+			int dropX = pc.getX();	// 4.14 Start
+			int dropY = pc.getY();
+			if (pc.getHeading() == 0) {
+				dropY++;
+			} else if (pc.getHeading() == 1) {
+				dropX--;
+				dropY++;
+			} else if (pc.getHeading() == 2) {
+				dropX--;
+			} else if (pc.getHeading() == 3) {
+				dropX--;
+				dropY--;
+			} else if (pc.getHeading() == 4) {
+				dropY--;
+			} else if (pc.getHeading() == 5) {
+				dropX++;
+				dropY--;
+			} else if (pc.getHeading() == 6) {
+				dropX++;
+			} else if (pc.getHeading() == 7) {
+				dropX++;
+				dropY++;
+			}	// 4.14 End
 
 			L1World.getInstance().getInventory(dropX, dropY,
 					pc.getMapId()).storeItem(item);

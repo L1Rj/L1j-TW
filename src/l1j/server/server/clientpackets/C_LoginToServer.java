@@ -370,6 +370,10 @@ public class C_LoginToServer extends ClientBasePacket {
 			int lv22 = 0;
 			int lv23 = 0;
 			int lv24 = 0;
+			int lv25 = 0;
+			int lv26 = 0;
+			int lv27 = 0;
+			int lv28 = 0;
 			while (rs.next()) {
 				int skillId = rs.getInt("skill_id");
 				L1Skills l1skills = SkillsTable.getInstance().getTemplate(
@@ -446,14 +450,26 @@ public class C_LoginToServer extends ClientBasePacket {
 				if (l1skills.getSkillLevel() == 24) {
 					lv24 |= l1skills.getId();
 				}
+				if (l1skills.getSkillLevel() == 25) {
+					lv25 |= l1skills.getId();
+				}
+				if (l1skills.getSkillLevel() == 26) {
+					lv26 |= l1skills.getId();
+				}
+				if (l1skills.getSkillLevel() == 27) {
+					lv27 |= l1skills.getId();
+				}
+				if (l1skills.getSkillLevel() == 28) {
+					lv28 |= l1skills.getId();
+				}
 				i = lv1 + lv2 + lv3 + lv4 + lv5 + lv6 + lv7 + lv8 + lv9 + lv10
 						+ lv11 + lv12 + lv13 + lv14 + lv15 + lv16 + lv17 + lv18
-						+ lv19 + lv20 + lv21 + lv22 + lv23 + lv24;
+						+ lv19 + lv20 + lv21 + lv22 + lv23 + lv24 + lv25 + lv26 + lv27 + lv28;
 			}
 			if (i > 0) {
 				pc.sendPackets(new S_AddSkill(lv1, lv2, lv3, lv4, lv5, lv6,
 						lv7, lv8, lv9, lv10, lv11, lv12, lv13, lv14, lv15,
-						lv16, lv17, lv18, lv19, lv20, lv21, lv22, lv23, lv24));
+						lv16, lv17, lv18, lv19, lv20, lv21, lv22, lv23, lv24, lv25, lv26, lv27, lv28));
 				// _log.warning("ここたち來るのね＠直譯");
 			}
 		} catch (SQLException e) {

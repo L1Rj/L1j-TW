@@ -653,7 +653,8 @@ public class C_NPCAction extends ClientBasePacket {
 					pc.removeSkillEffect(L1SkillId.ELEMENTAL_PROTECTION);
 				}
 				pc.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-						0, 0, 0, 0, 0, 0, 0, 248, 252, 252, 255, 0, 0)); // 無屬性魔法以外のエルフ魔法を魔法ウィンドウから削除する
+						0, 0, 0, 0, 0, 0, 0, 248, 252, 252, 255, 0, 0, 0, 0, 0,
+						0)); // 無屬性魔法以外のエルフ魔法を魔法ウィンドウから削除する
 				pc.setElfAttr(0);
 				pc.save(); // DBにキャラクター情報を書き⑸む
 				pc.sendPackets(new S_ServerMessage(678));

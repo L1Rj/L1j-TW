@@ -1451,16 +1451,6 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // (原文:闇精靈の水晶はダークエルフのみが習得できます。)
 					}
-/*				} else if (itemId > 40264 && itemId < 40280) { // 技能道具ID	//	3.0C Test↓
-					if (pc.isDragonKnight() || pc.isGm()) {
-					} else {
-						pc.sendPackets(new S_ServerMessage(79)); // (原文:闇精靈の水晶はダークエルフのみが習得できます。)
-					}
-				} else if (itemId > 40264 && itemId < 40280) { // 技能道具ID
-					if (pc.isIllusionist() || pc.isGm()) {
-					} else {
-						pc.sendPackets(new S_ServerMessage(79)); // (原文:闇精靈の水晶はダークエルフのみが習得できます。)
-					}	//	3.0C Test↑	*/
 				} else if (itemId >= 40164 && itemId <= 40166 // 技術書
 						|| itemId >= 41147 && itemId <= 41148) {
 					if (pc.isKnight() || pc.isGm()) {
@@ -1472,6 +1462,43 @@ public class C_ItemUSe extends ClientBasePacket {
 							SpellBook3(pc, l1iteminstance, client);
 						} else if (itemId == 40166 && pc.getLevel() >= 60) { // バウンスアタック
 							SpellBook3(pc, l1iteminstance, client);
+						} else {
+							pc.sendPackets(new S_ServerMessage(312));
+						}
+					} else {
+						pc.sendPackets(new S_ServerMessage(79));
+					}
+				} else if (itemId >= 49102 && itemId <= 49116) { // ドラゴンナイトの書板
+					if (pc.isDragonKnight() || pc.isGm()) {
+						if (itemId >= 49102 && itemId <= 49106 // ドラゴンナイト秘技LV1
+								&& pc.getLevel() >= 15) {
+							SpellBook5(pc, l1iteminstance, client);
+						} else if (itemId >= 49107 && itemId <= 49111 // ドラゴンナイト秘技LV2
+								&& pc.getLevel() >= 30) {
+							SpellBook5(pc, l1iteminstance, client);
+						} else if (itemId >= 49112 && itemId <= 49116 // ドラゴンナイト秘技LV3
+								&& pc.getLevel() >= 45) {
+							SpellBook5(pc, l1iteminstance, client);
+						} else {
+							pc.sendPackets(new S_ServerMessage(312));
+						}
+					} else {
+						pc.sendPackets(new S_ServerMessage(79));
+					}
+				} else if (itemId >= 49117 && itemId <= 49136) { // 記憶の水晶
+					if (pc.isIllusionist() || pc.isGm()) {
+						if (itemId >= 49117 && itemId <= 49121 // イリュージョニスト魔法LV1
+								&& pc.getLevel() >= 10) {
+							SpellBook6(pc, l1iteminstance, client);
+						} else if (itemId >= 49122 && itemId <= 49126 // イリュージョニスト魔法LV2
+								&& pc.getLevel() >= 20) {
+							SpellBook6(pc, l1iteminstance, client);
+						} else if (itemId >= 49127 && itemId <= 49131 // イリュージョニスト魔法LV3
+								&& pc.getLevel() >= 30) {
+							SpellBook6(pc, l1iteminstance, client);
+						} else if (itemId >= 49132 && itemId <= 49136 // イリュージョニスト魔法LV4
+								&& pc.getLevel() >= 40) {
+							SpellBook6(pc, l1iteminstance, client);
 						} else {
 							pc.sendPackets(new S_ServerMessage(312));
 						}
@@ -2575,47 +2602,47 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 190));
 					pc.sendPackets(new S_ServerMessage(1140));
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 49092) { // 
+				} else if (itemId == 49092) { // 歪みのコア
 					int targetItemId = l1iteminstance1.getItem().getItemId();
-					if (targetItemId == 49095 || targetItemId == 49099) { // ?
+					if (targetItemId == 49095 || targetItemId == 49099) { // 閉ざされた寶箱
 						createNewItem(pc, targetItemId + 1, 1);
 						pc.getInventory().consumeItem(targetItemId, 1);
 						pc.getInventory().consumeItem(49092, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(79)); // \f1
+						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 						return;
 					}
-				} else if (itemId == 49093) { // ????
+				} else if (itemId == 49093) { // 下級オシリスの寶箱の欠片：上
 					if (pc.getInventory().checkItem(49094, 1)) {
 						pc.getInventory().consumeItem(49093, 1);
 						pc.getInventory().consumeItem(49094, 1);
 						createNewItem(pc, 49095, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(79)); // \f1
+						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
-				} else if (itemId == 49094) { // ????
+				} else if (itemId == 49094) { // 下級オシリスの寶箱の欠片：下
 					if (pc.getInventory().checkItem(49093, 1)) {
 						pc.getInventory().consumeItem(49093, 1);
 						pc.getInventory().consumeItem(49094, 1);
 						createNewItem(pc, 49095, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(79)); // \f1
+						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
-				} else if (itemId == 49097) { // ????
+				} else if (itemId == 49097) { // 上級オシリスの寶箱の欠片：上
 					if (pc.getInventory().checkItem(49098, 1)) {
 						pc.getInventory().consumeItem(49097, 1);
 						pc.getInventory().consumeItem(49098, 1);
 						createNewItem(pc, 49100, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(79)); // \f1
+						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
-				} else if (itemId == 49098) { // ????
+				} else if (itemId == 49098) { // 上級オシリスの寶箱の欠片：下
 					if (pc.getInventory().checkItem(49097, 1)) {
 						pc.getInventory().consumeItem(49097, 1);
 						pc.getInventory().consumeItem(49098, 1);
 						createNewItem(pc, 49100, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(79)); // \f1
+						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 				} else {
 					int locX = ((L1EtcItem) l1iteminstance.getItem())
@@ -3656,14 +3683,6 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else {
 					pc.sendPackets(new S_ServerMessage(312)); // レベルが低くてその魔法を覺えることができません。
 				}
-			} else if (pc.isDragonKnight()) {//	3.0C Test↓
-				//if (itemId >= 45000 && itemId <= 45007 && level >= 4) {
-					pc.sendPackets(new S_ServerMessage(312)); // レベルが低くてその魔法を覺えることができません。
-				//}
-			} else if (pc.isIllusionist()) {
-				//if (itemId >= 45000 && itemId <= 45007 && level >= 8) {
-					pc.sendPackets(new S_ServerMessage(312)); // レベルが低くてその魔法を覺えることができません。
-				//}//	3.0C Test↑
 			}
 		} else if (itemAttr != locAttr && itemAttr != 0 && locAttr != 0) {
 			// 間違ったテンプルで讀んだ場合雷が落ちる
@@ -3886,7 +3905,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		pc
 				.sendPackets(new S_AddSkill(level1, level2, l, i1, j1, k1, l1,
 						i2, j2, k2, l2, i3, j3, k3, l3, i4, j4, k4, l4, i5, j5,
-						k5, l5, i6));
+						k5, l5, i6, 0, 0, 0, 0));
 		S_SkillSound s_skillSound = new S_SkillSound(objid, isLawful ? 224
 				: 231);
 		pc.sendPackets(s_skillSound);
@@ -4033,7 +4052,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 		int k6 = pc.getId();
 		pc.sendPackets(new S_AddSkill(j, k, l, i1, j1, k1, l1, i2, j2, k2, l2,
-				i3, j3, k3, l3, i4, j4, k4, l4, i5, j5, k5, l5, i6));
+				i3, j3, k3, l3, i4, j4, k4, l4, i5, j5, k5, l5, i6, 0, 0, 0, 0));
 		S_SkillSound s_skillSound = new S_SkillSound(k6, 231);
 		pc.sendPackets(s_skillSound);
 		pc.broadcastPacket(s_skillSound);
@@ -4187,7 +4206,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 		int k6 = pc.getId();
 		pc.sendPackets(new S_AddSkill(j, k, l, i1, j1, k1, l1, i2, j2, k2, l2,
-				i3, j3, k3, l3, i4, j4, k4, l4, i5, j5, k5, l5, i6));
+				i3, j3, k3, l3, i4, j4, k4, l4, i5, j5, k5, l5, i6, 0, 0, 0, 0));
 		S_SkillSound s_skillSound = new S_SkillSound(k6, 224);
 		pc.sendPackets(s_skillSound);
 		pc.broadcastPacket(s_skillSound);
@@ -4334,7 +4353,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 		int k6 = pc.getId();
 		pc.sendPackets(new S_AddSkill(j, k, l, i1, j1, k1, l1, i2, j2, k2, l2,
-				i3, j3, k3, l3, i4, j4, k4, l4, i5, j5, k5, l5, i6));
+				i3, j3, k3, l3, i4, j4, k4, l4, i5, j5, k5, l5, i6, 0, 0, 0, 0));
 		S_SkillSound s_skillSound = new S_SkillSound(k6, 224);
 		pc.sendPackets(s_skillSound);
 		pc.broadcastPacket(s_skillSound);
@@ -4480,7 +4499,338 @@ public class C_ItemUSe extends ClientBasePacket {
 
 		int k6 = pc.getId();
 		pc.sendPackets(new S_AddSkill(j, k, l, i1, j1, k1, l1, i2, j2, k2, l2,
-				i3, j3, k3, l3, i4, j4, k4, l4, i5, j5, k5, l5, i6));
+				i3, j3, k3, l3, i4, j4, k4, l4, i5, j5, k5, l5, i6, 0, 0, 0, 0));
+		S_SkillSound s_skillSound = new S_SkillSound(k6, 224);
+		pc.sendPackets(s_skillSound);
+		pc.broadcastPacket(s_skillSound);
+		SkillsTable.getInstance().spellMastery(k6, i, s, 0, 0);
+		pc.getInventory().removeItem(l1iteminstance, 1);
+	}
+	
+	private void SpellBook5(L1PcInstance pc, L1ItemInstance l1iteminstance,
+			ClientThread clientthread) {
+		String s = "";
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		int l = 0;
+		int i1 = 0;
+		int j1 = 0;
+		int k1 = 0;
+		int l1 = 0;
+		int i2 = 0;
+		int j2 = 0;
+		int k2 = 0;
+		int l2 = 0;
+		int i3 = 0;
+		int j3 = 0;
+		int k3 = 0;
+		int l3 = 0;
+		int i4 = 0;
+		int j4 = 0;
+		int k4 = 0;
+		int l4 = 0;
+		int i5 = 0;
+		int j5 = 0;
+		int k5 = 0;
+		int l5 = 0;
+		int i6 = 0;
+		int i8 = 0;
+		int j8 = 0;
+		int k8 = 0;
+		int l8 = 0;
+		for (int j6 = 181; j6 <= 195; j6++) {
+			L1Skills l1skills = SkillsTable.getInstance().getTemplate(j6);
+			String s1 = "ドラゴンナイトの書板（" + l1skills.getName() + "）";
+			if (l1iteminstance.getItem().getName().equalsIgnoreCase(s1)) {
+				int l6 = l1skills.getSkillLevel();
+				int i7 = l1skills.getId();
+				s = l1skills.getName();
+				i = l1skills.getSkillId();
+				switch (l6) {
+				case 1: // '\001'
+					j = i7;
+					break;
+
+				case 2: // '\002'
+					k = i7;
+					break;
+
+				case 3: // '\003'
+					l = i7;
+					break;
+
+				case 4: // '\004'
+					i1 = i7;
+					break;
+
+				case 5: // '\005'
+					j1 = i7;
+					break;
+
+				case 6: // '\006'
+					k1 = i7;
+					break;
+
+				case 7: // '\007'
+					l1 = i7;
+					break;
+
+				case 8: // '\b'
+					i2 = i7;
+					break;
+
+				case 9: // '\t'
+					j2 = i7;
+					break;
+
+				case 10: // '\n'
+					k2 = i7;
+					break;
+
+				case 11: // '\013'
+					l2 = i7;
+					break;
+
+				case 12: // '\f'
+					i3 = i7;
+					break;
+
+				case 13: // '\r'
+					j3 = i7;
+					break;
+
+				case 14: // '\016'
+					k3 = i7;
+					break;
+
+				case 15: // '\017'
+					l3 = i7;
+					break;
+
+				case 16: // '\020'
+					i4 = i7;
+					break;
+
+				case 17: // '\021'
+					j4 = i7;
+					break;
+
+				case 18: // '\022'
+					k4 = i7;
+					break;
+
+				case 19: // '\023'
+					l4 = i7;
+					break;
+
+				case 20: // '\024'
+					i5 = i7;
+					break;
+
+				case 21: // '\025'
+					j5 = i7;
+					break;
+
+				case 22: // '\026'
+					k5 = i7;
+					break;
+
+				case 23: // '\027'
+					l5 = i7;
+					break;
+
+				case 24: // '\030'
+					i6 = i7;
+					break;
+					
+				case 25: // '\031'
+					j8 = i7;
+					break;
+
+				case 26: // '\032'
+					k8 = i7;
+					break;
+
+				case 27: // '\033'
+					l8 = i7;
+					break;
+				case 28: // '\034'
+					i8 = i7;
+					break;
+				}
+			}
+		}
+
+		int k6 = pc.getId();
+		pc.sendPackets(new S_AddSkill(j, k, l, i1, j1, k1, l1, i2, j2, k2, l2,
+				i3, j3, k3, l3, i4, j4, k4, l4, i5, j5, k5, l5, i6, j8, k8, l8, i8));
+		S_SkillSound s_skillSound = new S_SkillSound(k6, 224);
+		pc.sendPackets(s_skillSound);
+		pc.broadcastPacket(s_skillSound);
+		SkillsTable.getInstance().spellMastery(k6, i, s, 0, 0);
+		pc.getInventory().removeItem(l1iteminstance, 1);
+	}
+
+	private void SpellBook6(L1PcInstance pc, L1ItemInstance l1iteminstance,
+			ClientThread clientthread) {
+		String s = "";
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		int l = 0;
+		int i1 = 0;
+		int j1 = 0;
+		int k1 = 0;
+		int l1 = 0;
+		int i2 = 0;
+		int j2 = 0;
+		int k2 = 0;
+		int l2 = 0;
+		int i3 = 0;
+		int j3 = 0;
+		int k3 = 0;
+		int l3 = 0;
+		int i4 = 0;
+		int j4 = 0;
+		int k4 = 0;
+		int l4 = 0;
+		int i5 = 0;
+		int j5 = 0;
+		int k5 = 0;
+		int l5 = 0;
+		int i6 = 0;
+		int i8 = 0;
+		int j8 = 0;
+		int k8 = 0;
+		int l8 = 0;
+		for (int j6 = 201; j6 <= 220; j6++) {
+			L1Skills l1skills = SkillsTable.getInstance().getTemplate(j6);
+			String s1 = "記憶の水晶（" + l1skills.getName() + "）";
+			if (l1iteminstance.getItem().getName().equalsIgnoreCase(s1)) {
+				int l6 = l1skills.getSkillLevel();
+				int i7 = l1skills.getId();
+				s = l1skills.getName();
+				i = l1skills.getSkillId();
+				switch (l6) {
+				case 1: // '\001'
+					j = i7;
+					break;
+
+				case 2: // '\002'
+					k = i7;
+					break;
+
+				case 3: // '\003'
+					l = i7;
+					break;
+
+				case 4: // '\004'
+					i1 = i7;
+					break;
+
+				case 5: // '\005'
+					j1 = i7;
+					break;
+
+				case 6: // '\006'
+					k1 = i7;
+					break;
+
+				case 7: // '\007'
+					l1 = i7;
+					break;
+
+				case 8: // '\b'
+					i2 = i7;
+					break;
+
+				case 9: // '\t'
+					j2 = i7;
+					break;
+
+				case 10: // '\n'
+					k2 = i7;
+					break;
+
+				case 11: // '\013'
+					l2 = i7;
+					break;
+
+				case 12: // '\f'
+					i3 = i7;
+					break;
+
+				case 13: // '\r'
+					j3 = i7;
+					break;
+
+				case 14: // '\016'
+					k3 = i7;
+					break;
+
+				case 15: // '\017'
+					l3 = i7;
+					break;
+
+				case 16: // '\020'
+					i4 = i7;
+					break;
+
+				case 17: // '\021'
+					j4 = i7;
+					break;
+
+				case 18: // '\022'
+					k4 = i7;
+					break;
+
+				case 19: // '\023'
+					l4 = i7;
+					break;
+
+				case 20: // '\024'
+					i5 = i7;
+					break;
+
+				case 21: // '\025'
+					j5 = i7;
+					break;
+
+				case 22: // '\026'
+					k5 = i7;
+					break;
+
+				case 23: // '\027'
+					l5 = i7;
+					break;
+
+				case 24: // '\030'
+					i6 = i7;
+					break;
+
+				case 25: // '\031'
+					j8 = i7;
+					break;
+
+				case 26: // '\032'
+					k8 = i7;
+					break;
+
+				case 27: // '\033'
+					l8 = i7;
+					break;
+
+				case 28: // '\034'
+					i8 = i7;
+					break;
+				}
+			}
+		}
+
+		int k6 = pc.getId();
+		pc.sendPackets(new S_AddSkill(j, k, l, i1, j1, k1, l1, i2, j2, k2, l2,
+				i3, j3, k3, l3, i4, j4, k4, l4, i5, j5, k5, l5, i6, j8, k8, l8, i8));
 		S_SkillSound s_skillSound = new S_SkillSound(k6, 224);
 		pc.sendPackets(s_skillSound);
 		pc.broadcastPacket(s_skillSound);

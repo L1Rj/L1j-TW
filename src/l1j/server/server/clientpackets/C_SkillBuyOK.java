@@ -276,7 +276,7 @@ public class C_SkillBuyOK extends ClientBasePacket {
 			pc.sendPackets(s_skillSound);
 			pc.broadcastPacket(s_skillSound);
 			pc.sendPackets(new S_AddSkill(level1, level2, level3, 0, 0, 0, 0,
-					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 			if ((level1 & 1) == 1) {
 				L1Skills l1skills = SkillsTable.getInstance().getTemplate(1);
