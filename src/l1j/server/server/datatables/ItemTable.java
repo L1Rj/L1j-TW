@@ -128,6 +128,7 @@ public class ItemTable {
 		// 5と同じ？
 		_useTypes.put("earring", new Integer(40));
 		_useTypes.put("fishing_rod", new Integer(42));
+		_useTypes.put("del", new Integer(46));
 
 		_armorTypes.put("none", new Integer(0));
 		_armorTypes.put("helm", new Integer(1));
