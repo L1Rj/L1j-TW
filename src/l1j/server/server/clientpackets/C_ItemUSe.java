@@ -239,7 +239,8 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == 40953 // 加工された風ダイア
 				|| itemId == 40954 || itemId == 40955 || itemId == 40956
 				|| itemId == 40957 // 加工された火ダイア
-				|| itemId == 40958 || itemId == 40964) { // ダークマジックパウダー
+				|| itemId == 40958 || itemId == 40964 // ダークマジックパウダー
+				|| itemId == 49092) { 
 			l = readD();
 		} else if (itemId == 140100 || itemId == 40100 || itemId == 40099
 				|| itemId == 40086 || itemId == 40863) {
@@ -2574,6 +2575,48 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 190));
 					pc.sendPackets(new S_ServerMessage(1140));
 					pc.getInventory().removeItem(l1iteminstance, 1);
+				} else if (itemId == 49092) { // 
+					int targetItemId = l1iteminstance1.getItem().getItemId();
+					if (targetItemId == 49095 || targetItemId == 49099) { // ?
+						createNewItem(pc, targetItemId + 1, 1);
+						pc.getInventory().consumeItem(targetItemId, 1);
+						pc.getInventory().consumeItem(49092, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // \f1
+						return;
+					}
+				} else if (itemId == 49093) { // ????
+					if (pc.getInventory().checkItem(49094, 1)) {
+						pc.getInventory().consumeItem(49093, 1);
+						pc.getInventory().consumeItem(49094, 1);
+						createNewItem(pc, 49095, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // \f1
+					}
+				} else if (itemId == 49094) { // ????
+					if (pc.getInventory().checkItem(49093, 1)) {
+						pc.getInventory().consumeItem(49093, 1);
+						pc.getInventory().consumeItem(49094, 1);
+						createNewItem(pc, 49095, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // \f1
+					}
+				} else if (itemId == 49097) { // ????
+					if (pc.getInventory().checkItem(49098, 1)) {
+						pc.getInventory().consumeItem(49097, 1);
+						pc.getInventory().consumeItem(49098, 1);
+						createNewItem(pc, 49100, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // \f1
+					}
+				} else if (itemId == 49098) { // ????
+					if (pc.getInventory().checkItem(49097, 1)) {
+						pc.getInventory().consumeItem(49097, 1);
+						pc.getInventory().consumeItem(49098, 1);
+						createNewItem(pc, 49100, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // \f1
+					}
 				} else {
 					int locX = ((L1EtcItem) l1iteminstance.getItem())
 							.get_locx();
