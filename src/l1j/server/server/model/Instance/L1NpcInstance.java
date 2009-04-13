@@ -1378,71 +1378,48 @@ public class L1NpcInstance extends L1Character {
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
 
 	// 指定された方向に移動させる
-	public void setDirectionMove(int dir) {
+	public void setDirectionMove(int dir) {//4.13 Start
 		if (dir >= 0) {
-			int nx = 0;
-			int ny = 0;
-
-			switch (dir) {
-			case 1:
-				nx = 1;
-				ny = -1;
-				setHeading(1);
-				break;
-
-			case 2:
-				nx = 1;
-				ny = 0;
-				setHeading(2);
-				break;
-
-			case 3:
-				nx = 1;
-				ny = 1;
-				setHeading(3);
-				break;
-
-			case 4:
-				nx = 0;
-				ny = 1;
-				setHeading(4);
-				break;
-
-			case 5:
-				nx = -1;
-				ny = 1;
-				setHeading(5);
-				break;
-
-			case 6:
-				nx = -1;
-				ny = 0;
-				setHeading(6);
-				break;
-
-			case 7:
-				nx = -1;
-				ny = -1;
-				setHeading(7);
-				break;
-
-			case 0:
-				nx = 0;
-				ny = -1;
+			int nx = getX();
+			int ny = getY();
+			if (dir == 0) {
+				//nx = 0;
+				ny--;
 				setHeading(0);
-				break;
-
-			default:
-				break;
-
+			} else if (dir == 1) {
+				nx++;
+				ny--;
+				setHeading(1);
+			} else if (dir == 2) {
+				nx++;
+				//ny = 0;
+				setHeading(2);
+			} else if (dir == 3) {
+				nx++;
+				ny++;
+				setHeading(3);
+			} else if (dir == 4) {
+				//nx = 0;
+				ny++;
+				setHeading(4);
+			} else if (dir == 5) {
+				nx--;
+				ny++;
+				setHeading(5);
+			} else if (dir == 6) {
+				nx--;
+				//ny = 0;
+				setHeading(6);
+			} else if (dir == 7) {
+				nx--;
+				ny--;
+				setHeading(7);
 			}
 
 			getMap().setPassable(getLocation(), true);
 
-			int nnx = getX() + nx;
-			int nny = getY() + ny;
-			setX(nnx);
-			setY(nny);
+			setX(nx);
+			setY(ny);//4.13 End
 
 			getMap().setPassable(getLocation(), false);
 
@@ -1506,32 +1483,30 @@ public class L1NpcInstance extends L1Character {
 			return false;
 		}
 
-		int locX = getX();
-		int locY = getY();
-		int targetX = locX;
-		int targetY = locY;
+		int targetX = getX();//4.13 Start
+		int targetY = getY();
 
 		if (dir == 1) {
-			targetX = locX + 1;
-			targetY = locY - 1;
+			targetX++;
+			targetY--;
 		} else if (dir == 2) {
-			targetX = locX + 1;
+			targetX++;
 		} else if (dir == 3) {
-			targetX = locX + 1;
-			targetY = locY + 1;
+			targetX++;
+			targetY++;
 		} else if (dir == 4) {
-			targetY = locY + 1;
+			targetY++;
 		} else if (dir == 5) {
-			targetX = locX - 1;
-			targetY = locY + 1;
+			targetX--;
+			targetY++;
 		} else if (dir == 6) {
-			targetX = locX - 1;
+			targetX--;
 		} else if (dir == 7) {
-			targetX = locX - 1;
-			targetY = locY - 1;
+			targetX--;
+			targetY--;
 		} else if (dir == 0) {
-			targetY = locY - 1;
-		}
+			targetY--;
+		}//4.13 End
 
 		for (L1Object object : L1World.getInstance().getVisibleObjects(this,
 				1)) {
@@ -1573,72 +1548,19 @@ public class L1NpcInstance extends L1Character {
 	public static int checkObject(int x, int y, short m, int d) { // 起點Ｘ 起點Ｙ
 																	// マップＩＤ
 	// 進行方向
-		L1Map map = L1WorldMap.getInstance().getMap(m);
-		if (d == 1) {
-			if (map.isPassable(x, y, 1)) {
-				return 1;
-			} else if (map.isPassable(x, y, 0)) {
-				return 0;
-			} else if (map.isPassable(x, y, 2)) {
-				return 2;
+		L1Map map = L1WorldMap.getInstance().getMap(m);		
+		d -= 2;//4.13 Start
+		for (byte i = 0 ; i<3 ; i++) {
+			d++;
+			if (d<0) {
+				d += 8;
+			} else if (d>8) {
+				d -= 8;
 			}
-		} else if (d == 2) {
-			if (map.isPassable(x, y, 2)) {
-				return 2;
-			} else if (map.isPassable(x, y, 1)) {
-				return 1;
-			} else if (map.isPassable(x, y, 3)) {
-				return 3;
+			if (map.isPassable(x, y, d)) {
+				return d;
 			}
-		} else if (d == 3) {
-			if (map.isPassable(x, y, 3)) {
-				return 3;
-			} else if (map.isPassable(x, y, 2)) {
-				return 2;
-			} else if (map.isPassable(x, y, 4)) {
-				return 4;
-			}
-		} else if (d == 4) {
-			if (map.isPassable(x, y, 4)) {
-				return 4;
-			} else if (map.isPassable(x, y, 3)) {
-				return 3;
-			} else if (map.isPassable(x, y, 5)) {
-				return 5;
-			}
-		} else if (d == 5) {
-			if (map.isPassable(x, y, 5)) {
-				return 5;
-			} else if (map.isPassable(x, y, 4)) {
-				return 4;
-			} else if (map.isPassable(x, y, 6)) {
-				return 6;
-			}
-		} else if (d == 6) {
-			if (map.isPassable(x, y, 6)) {
-				return 6;
-			} else if (map.isPassable(x, y, 5)) {
-				return 5;
-			} else if (map.isPassable(x, y, 7)) {
-				return 7;
-			}
-		} else if (d == 7) {
-			if (map.isPassable(x, y, 7)) {
-				return 7;
-			} else if (map.isPassable(x, y, 6)) {
-				return 6;
-			} else if (map.isPassable(x, y, 0)) {
-				return 0;
-			}
-		} else if (d == 0) {
-			if (map.isPassable(x, y, 0)) {
-				return 0;
-			} else if (map.isPassable(x, y, 7)) {
-				return 7;
-			} else if (map.isPassable(x, y, 1)) {
-				return 1;
-			}
-		}
+		}//4.13 End
 		return -1;
 	}
 

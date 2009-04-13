@@ -1489,18 +1489,15 @@ public class L1PcInstance extends L1Character {
 	public boolean isDarkelf() {
 		return (getClassId() == CLASSID_DARK_ELF_MALE || getClassId() == CLASSID_DARK_ELF_FEMALE);
 	}
-// 3.0C
-	//6658 龍騎士(男) → 玩家  
-	//6661 龍騎士(女) → 玩家
-	//6671 幻術士(男) → 玩家
-	//6650 幻術士(女) → 玩家
+
 	public boolean isDragonKnight() {//龍 騎 士
 		return (getClassId() == CLASSID_DRAGON_KNIGHT_MALE || getClassId() == CLASSID_DRAGON_KNIGHT_FEMALE);
 	}
+
 	public boolean isIllusionist() {// 幻 術 師
 		return (getClassId() == CLASSID_ILLUSIONIST_MALE || getClassId() == CLASSID_ILLUSIONIST_FEMALE);
 	}
-//END
+
 	private static Logger _log = Logger.getLogger(L1PcInstance.class.getName());
 	private ClientThread _netConnection;
 	private int _classId;
