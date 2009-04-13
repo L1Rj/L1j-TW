@@ -49,10 +49,10 @@ public class L1Move implements L1CommandExecutor {
 			}
 			L1Teleport.teleport(pc, locx, locy, mapid, 5, false);
 			pc.sendPackets(new S_SystemMessage("座標 " + locx + ", " + locy
-					+ ", " + mapid + "移動"));
+					+ ", " + mapid + "に移動しました。"));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(
-					"請輸入『.move X座標 Y座標 MapId』。"));
+			pc.sendPackets(new S_SystemMessage(cmdName
+					+ " X座標 Y座標 [マップID] と入力して下さい。"));
 		}
 	}
 }

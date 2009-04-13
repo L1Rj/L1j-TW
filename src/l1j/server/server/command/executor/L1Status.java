@@ -93,7 +93,7 @@ public class L1Status implements L1CommandExecutor {
 					}
 					target.setAccessLevel((short) value);
 					target.sendPackets(new S_SystemMessage(
-							"你被授予GM權限。"));
+							"リスタートすれば、GMに昇格されています。"));
 				} else if (param.equalsIgnoreCase("STR")) {
 					target.addBaseStr((byte) (value - target.getBaseStr()));
 				} else if (param.equalsIgnoreCase("CON")) {
@@ -107,18 +107,18 @@ public class L1Status implements L1CommandExecutor {
 				} else if (param.equalsIgnoreCase("CHA")) {
 					target.addBaseCha((byte) (value - target.getBaseCha()));
 				} else {
-					pc.sendPackets(new S_SystemMessage("變更項目 " + param
-							+ " 不明"));
+					pc.sendPackets(new S_SystemMessage("ステータス " + param
+							+ " は不明です。"));
 					return;
 				}
 				target.save(); // DBにキャラクター情報を書き⑸む
 			}
 			target.sendPackets(new S_OwnCharStatus(target));
-			pc.sendPackets(new S_SystemMessage(target.getName() + " 的" + param
-					+ "被我們變更為" + value));
+			pc.sendPackets(new S_SystemMessage(target.getName() + " の" + param
+					+ "を" + value + "に變更しました。"));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(
-					"請輸入『.setting 玩家ID 變更項目 變更值』。"));
+			pc.sendPackets(new S_SystemMessage(cmdName
+					+ " キャラクター名|me ステータス 變更值 と入力して下さい。"));
 		}
 	}
 }

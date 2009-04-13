@@ -46,11 +46,11 @@ public class L1Adena implements L1CommandExecutor {
 					count);
 			if (adena != null) {
 				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						.append("增加 ").append(count).append("金幣。").toString()));
+						.append(count).append("アデナを生成しました。").toString()));
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage((new StringBuilder()).append(
-					"請輸入『.adena 金幣數量』。").toString()));
+					".adena アデナ數 と入力して下さい。").toString()));
 		}
 	}
 }

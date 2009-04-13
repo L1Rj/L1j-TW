@@ -47,7 +47,7 @@ public class L1Recall implements L1CommandExecutor {
 				targets = new ArrayList<L1PcInstance>();
 				L1PcInstance tg = L1World.getInstance().getPlayer(arg);
 				if (tg == null) {
-					pc.sendPackets(new S_SystemMessage("此玩家不在線上。"));
+					pc.sendPackets(new S_SystemMessage("そのようなキャラクターはいません。"));
 					return;
 				}
 				targets.add(tg);
@@ -59,13 +59,13 @@ public class L1Recall implements L1CommandExecutor {
 				}
 				L1Teleport.teleportToTargetFront(target, pc, 2);
 				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						.append(target.getName()).append("被您召喚過來。")
+						.append(target.getName()).append("さんを召還しました。")
 						.toString()));
-				target.sendPackets(new S_SystemMessage("你被遊戲管理員強制召喚至身邊。"));
+				target.sendPackets(new S_SystemMessage("ゲームマスターに召還されました。"));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(
-					"請輸入『.recall 玩家ID』。"));
+			pc.sendPackets(new S_SystemMessage(cmdName
+					+ " all|キャラクター名 と入力して下さい。"));
 		}
 	}
 }

@@ -55,7 +55,8 @@ public class L1ChatNG implements L1CommandExecutor {
 				pc.sendPackets(new S_ServerMessage(287, name)); // %0のチャットを禁じました。
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage("請輸入『.chatng 玩家ID 時間（分）』。"));
+			pc.sendPackets(new S_SystemMessage(cmdName
+					+ " キャラクター名 時間（分） と入力して下さい。"));
 		}
 	}
 }

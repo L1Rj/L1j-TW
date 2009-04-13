@@ -56,7 +56,7 @@ public class L1Commands {
 			}
 			return fromResultSet(rs);
 		} catch (SQLException e) {
-			_log.log(Level.SEVERE, "指令取得錯誤", e);
+			_log.log(Level.SEVERE, "コマンド取得エラー", e);
 		} finally {
 			SQLUtil.close(rs);
 			SQLUtil.close(pstm);
@@ -80,7 +80,7 @@ public class L1Commands {
 				result.add(fromResultSet(rs));
 			}
 		} catch (SQLException e) {
-			_log.log(Level.SEVERE, "指令取得錯誤", e);
+			_log.log(Level.SEVERE, "コマンド取得エラー", e);
 		} finally {
 			SQLUtil.close(rs);
 			SQLUtil.close(pstm);

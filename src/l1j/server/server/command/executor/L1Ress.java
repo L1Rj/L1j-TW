@@ -44,14 +44,14 @@ public class L1Ress implements L1CommandExecutor {
 			pc.broadcastPacket(new S_SkillSound(objid, 759));
 			for (L1PcInstance tg : L1World.getInstance().getVisiblePlayer(pc)) {
 				if (tg.getCurrentHp() == 0 && tg.isDead()) {
-					tg.sendPackets(new S_SystemMessage("GM賦予你甦醒。"));
+					tg.sendPackets(new S_SystemMessage("GMに蘇生を貰いました。"));
 					tg.broadcastPacket(new S_SkillSound(tg.getId(), 3944));
 					tg.sendPackets(new S_SkillSound(tg.getId(), 3944));
 					// 祝福された 復活スクロールと同じ效果
 					tg.setTempID(objid);
 					tg.sendPackets(new S_Message_YN(322, "")); // また復活したいですか？（Y/N）
 				} else {
-					tg.sendPackets(new S_SystemMessage("GM治療了。"));
+					tg.sendPackets(new S_SystemMessage("GMが癒してくれました。"));
 					tg.broadcastPacket(new S_SkillSound(tg.getId(), 832));
 					tg.sendPackets(new S_SkillSound(tg.getId(), 832));
 					tg.setCurrentHp(tg.getMaxHp());
@@ -59,7 +59,7 @@ public class L1Ress implements L1CommandExecutor {
 				}
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".ress 指令錯誤"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " コマンドエラー"));
 		}
 	}
 }

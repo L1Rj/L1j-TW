@@ -50,7 +50,7 @@ public class L1Describe implements L1CommandExecutor {
 			msg.append("Item: " + pc.getInventory().getSize() + " / ");
 			pc.sendPackets(new S_SystemMessage(msg.toString()));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " 指令錯誤"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " コマンドエラー"));
 		}
 	}
 }

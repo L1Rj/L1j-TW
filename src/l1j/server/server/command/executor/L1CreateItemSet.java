@@ -47,7 +47,7 @@ public class L1CreateItemSet implements L1CommandExecutor {
 			String name = new StringTokenizer(arg).nextToken();
 			List<L1ItemSetItem> list = GMCommandsConfig.ITEM_SETS.get(name);
 			if (list == null) {
-				pc.sendPackets(new S_SystemMessage(name + " 未定義的套裝"));
+				pc.sendPackets(new S_SystemMessage(name + " 未定義のセットです"));
 				return;
 			}
 			for (L1ItemSetItem item : list) {
@@ -64,7 +64,7 @@ public class L1CreateItemSet implements L1CommandExecutor {
 				}
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage("請輸入『.itemset 套裝名稱』。"));
+			pc.sendPackets(new S_SystemMessage(".itemset セット名 と入力してください。"));
 		}
 	}
 }

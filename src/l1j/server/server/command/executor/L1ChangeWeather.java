@@ -47,7 +47,7 @@ public class L1ChangeWeather implements L1CommandExecutor {
 		} catch (Exception e) {
 			pc
 					.sendPackets(new S_SystemMessage(cmdName
-							+ "0取消下雪、[1~3]下雪、16取消下雨、[17~19]下雨。"));
+							+ " 0～3、16～19 と入力して下さい。"));
 		}
 	}
 }

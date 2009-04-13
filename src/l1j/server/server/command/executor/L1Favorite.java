@@ -51,7 +51,7 @@ public class L1Favorite implements L1CommandExecutor {
 				StringTokenizer st = new StringTokenizer(arg);
 				st.nextToken();
 				if (!st.hasMoreTokens()) {
-					pc.sendPackets(new S_SystemMessage("指令是空的。"));
+					pc.sendPackets(new S_SystemMessage("コマンドが空です。"));
 					return;
 				}
 				StringBuilder cmd = new StringBuilder();
@@ -59,7 +59,7 @@ public class L1Favorite implements L1CommandExecutor {
 				if (temp.equalsIgnoreCase(cmdName)) {
 					pc
 							.sendPackets(new S_SystemMessage(cmdName
-									+ " 自己不能登記。"));
+									+ " 自身は登錄できません。"));
 					return;
 				}
 				cmd.append(temp + " ");
@@ -68,11 +68,11 @@ public class L1Favorite implements L1CommandExecutor {
 				}
 				faviCom = cmd.toString().trim();
 				_faviCom.put(pc.getId(), faviCom);
-				pc.sendPackets(new S_SystemMessage(faviCom + " 登記了。"));
+				pc.sendPackets(new S_SystemMessage(faviCom + " を登錄しました。"));
 			} else if (arg.startsWith("show")) {
-				pc.sendPackets(new S_SystemMessage("現在的登記指令: " + faviCom));
+				pc.sendPackets(new S_SystemMessage("現在の登錄コマンド: " + faviCom));
 			} else if (faviCom.isEmpty()) {
-				pc.sendPackets(new S_SystemMessage("沒有登記的指令。"));
+				pc.sendPackets(new S_SystemMessage("登錄しているコマンドがありません。"));
 			} else {
 				StringBuilder cmd = new StringBuilder();
 				StringTokenizer st = new StringTokenizer(arg);
@@ -88,12 +88,12 @@ public class L1Favorite implements L1CommandExecutor {
 				while (st.hasMoreTokens()) {
 					cmd.append(st.nextToken() + " ");
 				}
-				pc.sendPackets(new S_SystemMessage(cmd + " 實行。"));
+				pc.sendPackets(new S_SystemMessage(cmd + " を實行します。"));
 				GMCommands.getInstance().handleCommands(pc, cmd.toString());
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " set 指令名稱 " + "| "
-					+ cmdName + " show | " + cmdName + " [參數] 。"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " set コマンド名 " + "| "
+					+ cmdName + " show | " + cmdName + " [引數] と入力してください。"));
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
 	}

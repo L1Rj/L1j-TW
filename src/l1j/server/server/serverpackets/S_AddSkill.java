@@ -107,7 +107,7 @@ public class S_AddSkill extends ServerBasePacket {
 
 	public S_AddSkill(int level1, int level2, int level3, int level4,
 			int level5, int level6, int level7, int level8, int level9,
-			int level10, int knight, int l2, int de1, int de2, int royal,
+			int level10, int knight, int l2, int de1, int de2, int royal,/*int l3, int elf1, int elf2, int elf3, int elf4, int elf5, int elf6,int k5, int l5, int m5, int n5, int o5, int p5) { int i6 = level5 + level6 + level7 + level8;int j6 = level9 + level10;writeC(Opcodes.S_OPCODE_ADDSKILL);if (i6 > 0 && j6 == 0) {writeC(50);} else if (j6 > 0) {writeC(100);} else {writeC(23);}writeC(level1);writeC(level2);writeC(level3);writeC(level4);writeC(level5);writeC(level6);writeC(level7);writeC(level8);writeC(level9);writeC(level10);writeC(knight);writeC(l2);writeC(de1);writeC(de2);writeC(royal);writeC(l3);writeC(elf1);writeC(elf2);writeC(elf3);writeC(elf4);writeC(elf5);writeC(elf6);writeC(k5);writeC(l5);writeC(m5);writeC(n5);writeC(o5);writeC(p5);writeD(0);writeD(0); */
 			int l3, int elf1, int elf2, int elf3, int elf4, int elf5, int elf6,
 			int k5, int l5) {
 		int i6 = level5 + level6 + level7 + level8;
@@ -118,7 +118,7 @@ public class S_AddSkill extends ServerBasePacket {
 		} else if (j6 > 0) {
 			writeC(100);
 		} else {
-			writeC(22);
+			writeC(23);
 		}
 		writeC(level1);
 		writeC(level2);

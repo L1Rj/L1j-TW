@@ -56,7 +56,7 @@ public class L1BanIp implements L1CommandExecutor {
 			for (L1PcInstance tg : L1World.getInstance().getAllPlayers()) {
 				if (s1.equals(tg.getNetConnection().getIp())) {
 					String msg = new StringBuilder().append("IP:").append(s1)
-							.append(" 連線中的玩家:").append(tg.getName())
+							.append(" で接續中のプレイヤー:").append(tg.getName())
 							.toString();
 					pc.sendPackets(new S_SystemMessage(msg));
 				}
@@ -65,29 +65,29 @@ public class L1BanIp implements L1CommandExecutor {
 			if ("add".equals(s2) && !isBanned) {
 				iptable.banIp(s1); // BANリストへIPを加える
 				String msg = new StringBuilder().append("IP:").append(s1)
-						.append(" 紀錄在BAN IP。").toString();
+						.append(" をBAN IPに登錄しました。").toString();
 				pc.sendPackets(new S_SystemMessage(msg));
 			} else if ("del".equals(s2) && isBanned) {
 				if (iptable.liftBanIp(s1)) { // BANリストからIPを削除する
 					String msg = new StringBuilder().append("IP:").append(s1)
-							.append(" 從BAN IP刪除了。").toString();
+							.append(" をBAN IPから削除しました。").toString();
 					pc.sendPackets(new S_SystemMessage(msg));
 				}
 			} else {
 				// BANの確認
 				if (isBanned) {
 					String msg = new StringBuilder().append("IP:").append(s1)
-							.append(" 已存在BAN IP。").toString();
+							.append(" はBAN IPに登錄されています。").toString();
 					pc.sendPackets(new S_SystemMessage(msg));
 				} else {
 					String msg = new StringBuilder().append("IP:").append(s1)
-							.append("不存在BAN IP。").toString();
+							.append(" はBAN IPに登錄されていません。").toString();
 					pc.sendPackets(new S_SystemMessage(msg));
 				}
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(cmdName
-					+ " IP [ add | del ]"));
+					+ " IP [ add | del ]と入力して下さい。"));
 		}
 	}
 }

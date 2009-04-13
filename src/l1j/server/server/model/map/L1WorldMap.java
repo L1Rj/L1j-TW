@@ -47,7 +47,7 @@ public class L1WorldMap {
 		try {
 			_maps = in.read();
 			if (_maps == null) {
-				throw new RuntimeException("マップの讀み⑸みに失敗");
+				throw new RuntimeException("讀取失敗");
 			}
 		} catch (Exception e) {
 			// 復歸不能

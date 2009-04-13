@@ -73,7 +73,7 @@ public class L1AllBuff implements L1CommandExecutor {
 						.getBuffDuration() * 1000, L1SkillUse.TYPE_GMBUFF);
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".allBuff  請以登場人物名 輸入。"));
+			pc.sendPackets(new S_SystemMessage(".allBuff キャラクター名 と入力して下さい。"));
 		}
 	}
 }

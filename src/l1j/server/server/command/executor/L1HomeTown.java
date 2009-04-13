@@ -49,7 +49,7 @@ public class L1HomeTown implements L1CommandExecutor {
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(
-					"請輸入『.hometown daily 或 .hometown monthly』。"));
+					".hometown daily|monthly と入力して下さい。"));
 		}
 	}
 }

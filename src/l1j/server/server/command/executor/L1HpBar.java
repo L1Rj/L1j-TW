@@ -52,7 +52,7 @@ public class L1HpBar implements L1CommandExecutor {
 				}
 			}
 		} else {
-			pc.sendPackets(new S_SystemMessage("請輸入『.hpbar on | off』。"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " on|off と入力してください。"));
 		}
 	}
 

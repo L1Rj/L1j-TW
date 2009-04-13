@@ -73,8 +73,8 @@ public class L1GfxId implements L1CommandExecutor {
 			}
 		} catch (Exception exception) {
 			pc
-					.sendPackets(new S_SystemMessage(
-							"請輸入『.gfxid id 數量』。"));
+					.sendPackets(new S_SystemMessage(cmdName
+							+ " id 出現させる數 と入力して下さい。"));
 		}
 	}
 }
