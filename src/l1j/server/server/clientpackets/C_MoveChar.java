@@ -76,82 +76,27 @@ public class C_MoveChar extends ClientBasePacket {
 			// 取得真實座標
 			locx = pc.getX(); // X軸座標
 			locy = pc.getY(); // Y軸座標
-
-			switch (heading){
-				case 0: // '\000'
-					locy--;
-					break;
-
-				case 1: // '\001'
-					locx++;
-					locy--;
-					break;
-
-				case 2: // '\002'
-					locx++;
-					break;
-
-				case 3: // '\003'
-					locx++;
-					locy++;
-					break;
-
-				case 4: // '\004'
-					locy++;
-					break;
-
-				case 5: // '\005'
-					locx--;
-					locy++;
-					break;
-
-				case 6: // '\006'
-					locx--;
-					break;
-
-				case 7: // '\007'
-					locx--;
-					locy--;
-					break;
-			}
-		}else{
-			switch (heading){
-				case 0: // '\000'
-					locy--;
-					break;
-
-				case 1: // '\001'
-					locx++;
-					locy--;
-					break;
-
-				case 2: // '\002'
-					locx++;
-					break;
-
-				case 3: // '\003'
-					locx++;
-					locy++;
-					break;
-
-				case 4: // '\004'
-					locy++;
-					break;
-
-				case 5: // '\005'
-					locx--;
-					locy++;
-					break;
-
-				case 6: // '\006'
-					locx--;
-					break;
-
-				case 7: // '\007'
-					locx--;
-					locy--;
-					break;
-			}
+		}
+		if (heading == 0) {
+				locy--;
+		} else if (heading == 1) {
+				locx++;
+				locy--;
+		} else if (heading == 2) {
+				locx++;
+		} else if (heading == 3) {
+				locx++;
+				locy++;
+		} else if (heading == 4) {
+				locy++;
+		} else if (heading == 5) {
+				locx--;
+				locy++;
+		} else if (heading == 6) {
+				locx--;
+		} else if (heading == 7) {
+				locx--;
+				locy--;
 		}
 
 		// ダンジョンにテレポートした場合
