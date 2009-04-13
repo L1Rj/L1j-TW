@@ -197,7 +197,45 @@ public class C_FishClick extends ClientBasePacket {
 		L1ItemInstance item = ItemTable.getInstance().createItem(itemId);
 		if (item != null) {
 			item.startItemOwnerTimer(pc);
-			L1World.getInstance().getInventory(pc.getX(), pc.getY(),
+
+			int dropX = 0;
+			int dropY = 0;
+			int x = pc.getX();
+			int y = pc.getY();
+			switch (pc.getHeading()) {
+			case 1:
+				dropX = x--;
+				dropY = y++;
+				break;
+			case 2:
+				dropX = x--;
+				break;
+			case 3:
+				dropX = x--;
+				dropY = y--;
+				break;
+			case 4:
+				dropY = y--;
+				break;
+			case 5:
+				dropX = x++;
+				dropY = y--;
+				break;
+			case 6:
+				dropX = x++;
+				break;
+			case 7:
+				dropX = x++;
+				dropY = y++;
+				break;
+			case 0:
+				dropY = y++;
+				break;
+			default:
+				break;
+			}
+
+			L1World.getInstance().getInventory(dropX, dropY,
 					pc.getMapId()).storeItem(item);
 			// 釣りに成功して%0%oを釣りました。
 			pc.sendPackets(new S_ServerMessage(1185, message));

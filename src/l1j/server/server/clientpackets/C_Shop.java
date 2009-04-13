@@ -48,6 +48,11 @@ public class C_Shop extends ClientBasePacket {
 		if (pc.isGhost()) {
 			return;
 		}
+		int mapId = pc.getMapId();
+		if (mapId != 340 && mapId != 350 && mapId != 360 && mapId != 370) {
+			pc.sendPackets(new S_ServerMessage(876)); // ?
+			return;
+		}
 
 		ArrayList sellList = pc.getSellList();
 		ArrayList buyList = pc.getBuyList();
