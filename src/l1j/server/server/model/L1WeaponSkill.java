@@ -284,6 +284,60 @@ public class L1WeaponSkill {
 		return dmg;
 	}
 
+	public static int getKiringkuDamage(L1PcInstance pc, L1Character cha) {
+		int dmg = 0;
+		int dice = 5;
+		int diceCount = 2;
+		int value = 14;
+		int kiringkuDamage = 0;
+		int charaIntelligence = 0;
+		int getTargetMr = 0;
+
+		for (int i = 0; i < diceCount; i++) {
+			kiringkuDamage += (_random.nextInt(dice) + 1);
+		}
+		kiringkuDamage += value;
+
+		int spByItem = pc.getSp() - pc.getTrueSp(); // アイテムによるSP變動
+		charaIntelligence = pc.getInt() + spByItem - 12;
+		if (charaIntelligence < 1) {
+			charaIntelligence = 1;
+		}
+		double kiringkuCoefficientA = (1.0 + charaIntelligence * 3.0 / 32.0);
+
+		kiringkuDamage *= kiringkuCoefficientA;
+
+		double mrFloor = 0;
+		if (cha.getMr() <= 100) {
+			mrFloor = Math.floor(cha.getMr() / 2);
+		} else if (cha.getMr() >= 100) {
+			mrFloor = Math.floor(cha.getMr() / 10);
+		}
+
+		double kiringkuCoefficientB = 0;
+		if (cha.getMr() <= 100) {
+			kiringkuCoefficientB = 1 - 0.01 * mrFloor;
+		} else if (cha.getMr() > 100) {
+			kiringkuCoefficientB = 0.6 - 0.01 * mrFloor;
+		}
+
+		double kiringkuFloor = Math.floor(kiringkuDamage);
+
+		dmg += kiringkuFloor + pc.getWeapon().getEnchantLevel();
+
+		dmg *= kiringkuCoefficientB;
+
+		if (pc.getWeapon().getItem().getItemId() == 270) {
+			pc.sendPackets(new S_SkillSound(pc.getId(), 6983));
+			pc.broadcastPacket(new S_SkillSound(pc.getId(), 6983));
+		} else {
+			pc.sendPackets(new S_SkillSound(pc.getId(), 7049));
+			pc.broadcastPacket(new S_SkillSound(pc.getId(), 7049));
+		}
+
+		return dmg;
+	}
+
 	public static void giveFettersEffect(L1PcInstance pc, L1Character cha) {
 		int fettersTime = 8000;
 		if (isFreeze(cha)) { // 凍結狀態orカウンターマジック中

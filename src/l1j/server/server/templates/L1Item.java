@@ -88,7 +88,7 @@ public abstract class L1Item implements Serializable {
 	 * [weapon]<br>
 	 * 1:sword, 2:dagger, 3:tohandsword, 4:bow, 5:spear, 6:blunt, 7:staff,
 	 * 8:throwingknife, 9:arrow, 10:gauntlet, 11:claw, 12:edoryu, 13:singlebow,
-	 * 14:singlespear, 15:tohandblunt, 16:tohandstaff
+	 * 14:singlespear, 15:tohandblunt, 16:tohandstaff, 17:kiringku 18chainsword
 	 * </p>
 	 * <p>
 	 * [armor]<br>
@@ -113,7 +113,7 @@ public abstract class L1Item implements Serializable {
 	 * [weapon]<br>
 	 * sword:4, dagger:46, tohandsword:50, bow:20, blunt:11, spear:24, staff:40,
 	 * throwingknife:2922, arrow:66, gauntlet:62, claw:58, edoryu:54,
-	 * singlebow:20, singlespear:24, tohandblunt:11, tohandstaff:40
+	 * singlebow:20, singlespear:24, tohandblunt:11, tohandstaff:40, kiringku:58, chainsword:24
 	 * </p>
 	 */
 	public int getType1() {

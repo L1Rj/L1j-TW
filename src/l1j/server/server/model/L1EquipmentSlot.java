@@ -350,7 +350,8 @@ public class L1EquipmentSlot {
 		if (item.getItemId() == 20023) { // ウィンドヘルム
 			if (!SkillsTable.getInstance().spellCheck(objectId, 54)) { // グレーターヘイスト
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 0, 32, 0, 0,
-						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0));
 			}
 		}
 	}

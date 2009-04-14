@@ -89,7 +89,7 @@ public class L1Weapon extends L1Item {
 		boolean bool = (weapon_type == 3 || weapon_type == 4
 				|| weapon_type == 5 || weapon_type == 11
 				|| weapon_type == 12 || weapon_type == 15
-				|| weapon_type == 16);
+				|| weapon_type == 16 || weapon_type == 18);
 
 		return bool;
 	}

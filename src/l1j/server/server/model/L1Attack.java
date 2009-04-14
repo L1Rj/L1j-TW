@@ -97,6 +97,8 @@ public class L1Attack {
 
 	private int _weaponType = 0;
 
+	private int _weaponType2 = 0;
+
 	private int _weaponAddHit = 0;
 
 	private int _weaponAddDmg = 0;
@@ -276,6 +278,7 @@ public class L1Attack {
 			if (weapon != null) {
 				_weaponId = weapon.getItem().getItemId();
 				_weaponType = weapon.getItem().getType1();
+				_weaponType2 = weapon.getItem().getType();
 				_weaponAddHit = weapon.getItem().getHitModifier()
 						+ weapon.getHitByMagic();
 				_weaponAddDmg = weapon.getItem().getDmgModifier()
@@ -403,6 +406,10 @@ public class L1Attack {
 			_hitRate = MIN_HITRATE;
 		}
 
+		if (_weaponType2 == 17) {
+			_hitRate = 100; // キーリンクの命中率は100%
+		}
+
 		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
 			_hitRate = 0;
 		}
@@ -458,6 +465,10 @@ public class L1Attack {
 			_hitRate = 95;
 		} else if (_hitRate < 5) {
 			_hitRate = 5;
+		}
+
+		if (_weaponType2 == 17) {
+			_hitRate = 100; // キーリンクの命中率は100%
 		}
 
 		int npcId = _targetNpc.getNpcTemplate().get_npcId();
@@ -703,6 +714,10 @@ public class L1Attack {
 			dmg = (_random.nextInt(5) + 4) / 4;
 		}
 
+		if (_weaponType2 == 17) { // キーリンク
+			dmg = L1WeaponSkill.getKiringkuDamage(_pc, _target);
+		}
+
 		Object[] dollList = _pc.getDollList().values().toArray(); // マジックドールによる追加ダメージ
 		for (Object dollObject : dollList) {
 			L1DollInstance doll = (L1DollInstance) dollObject;
@@ -857,6 +872,10 @@ public class L1Attack {
 
 		if (_weaponType == 0) { // 素手
 			dmg = (_random.nextInt(5) + 4) / 4;
+		}
+
+		if (_weaponType2 == 17) { // キーリンク
+			dmg = L1WeaponSkill.getKiringkuDamage(_pc, _target);
 		}
 
 		Object[] dollList = _pc.getDollList().values().toArray(); // マジックドールによる追加ダメージ
@@ -1052,7 +1071,8 @@ public class L1Attack {
 		// 火武器、バーサーカーのダメージは1.5倍しない
 		if (_pc.hasSkillEffect(BURNING_SPIRIT) 
 				|| (_pc.hasSkillEffect(ELEMENTAL_FIRE)
-						&& _weaponType != 20 && _weaponType != 62)) {
+						&& _weaponType != 20 && _weaponType != 62
+						&& _weaponType2 !=17)) {
 			if ((_random.nextInt(100) + 1) <= 33) {
 				double tempDmg = dmg;
 				if (_pc.hasSkillEffect(FIRE_WEAPON)) {

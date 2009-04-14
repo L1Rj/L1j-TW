@@ -58,6 +58,9 @@ public class L1PolyMorph {
 
 	private static final int BOW_EQUIP = 256; // ガントレット含む
 
+	private static final int KIRINGKU_EQUIP = 512;
+
+	private static final int CHAINSWORD_EQUIP= 1024;
 	// armor equip bit
 	private static final int HELM_EQUIP = 1;
 
@@ -110,6 +113,8 @@ public class L1PolyMorph {
 		weaponFlgMap.put(14, SPEAR_EQUIP);
 		weaponFlgMap.put(15, AXE_EQUIP);
 		weaponFlgMap.put(16, STAFF_EQUIP);
+		weaponFlgMap.put(17, KIRINGKU_EQUIP);
+		weaponFlgMap.put(18, CHAINSWORD_EQUIP);
 	}
 	private static final Map<Integer, Integer> armorFlgMap = new HashMap<Integer, Integer>();
 	static {

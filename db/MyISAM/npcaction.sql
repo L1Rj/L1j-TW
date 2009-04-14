@@ -12,8 +12,6 @@ CREATE TABLE `npcaction` (
 #----------------------------
 # Records for table npcaction
 #----------------------------
-
-
 INSERT INTO `npcaction` VALUES
 (45015, 'duck1', 'duck1', '', ''),
 (45154, 'mermaid', 'mermaid', '', ''),
@@ -956,6 +954,12 @@ INSERT INTO `npcaction` VALUES
 (80105, 'horserestore', 'horserestore', '', ''),
 (80127, 'cook1', 'cook1', '', ''),
 (80128, 'cointrader', 'cointrader', '', ''),
+(80132, 'dekabia1', 'dekabia1', '', ''),
+(80133, 'pual1', 'pual1', '', ''),
+(80134, 'talrion4', 'talrion4', '', ''),
+(80135, 'elas3', 'elas3', '', ''),
+(80136, 'prokel1', 'prokel1', '', ''),
+(80137, 'jepar1', 'jepar1', '', ''),
 (81002, 'cold1', 'cold1', '', ''),
 (81003, 'cold1', 'cold1', '', ''),
 (81004, 'cold1', 'cold1', '', ''),

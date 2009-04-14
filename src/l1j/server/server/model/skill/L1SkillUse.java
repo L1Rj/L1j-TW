@@ -2421,8 +2421,11 @@ public class L1SkillUse {
 										.sendPackets(new S_ShowSummonList(pc
 												.getId()));
 							} else {
-								summons = new int[] { 81083, 81084, 81085,
-										81086, 81087, 81088, 81089 };
+/*
+ * summons = new int[] { 81083, 81084, 81085, 81086, 81087, 81088, 81089 };
+ */
+								summons = new int[] { 81210, 81213, 81216,
+										81219, 81222, 81225, 81228 };
 								int summonid = 0;
 								int summoncost = 6;
 								int levelRange = 32;
