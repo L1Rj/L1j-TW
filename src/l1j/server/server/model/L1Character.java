@@ -300,37 +300,28 @@ public class L1Character extends L1Object {
 	 * @return 指定された座標に對する方向
 	 */
 	public int targetDirection(int tx, int ty) {
-		float dis_x = Math.abs(getX() - tx); // Ｘ方向のターゲットまでの距離
-		float dis_y = Math.abs(getY() - ty); // Ｙ方向のターゲットまでの距離
-		float dis = Math.max(dis_x, dis_y); // ターゲットまでの距離
-		if (dis == 0) {
-			return getHeading(); // 同じ位置ならいま向いてる方向を返しとく
-		}
-		int avg_x = (int) Math.floor((dis_x / dis) + 0.59f); // 上下左右がちょっと優先な丸め
-		int avg_y = (int) Math.floor((dis_y / dis) + 0.59f); // 上下左右がちょっと優先な丸め
-		int dir_x = 0;
-		int dir_y = 0;
-		if (getX() < tx) {
-			if (getY() < ty) {
+		float dis_x = tx - getX(); // Ｘ方向の距離
+		float dis_y = ty - getY(); // Ｙ方向の距離
+		if (dis_x < 0) {
+			if (dis_x == dis_y) return 1; // 右上
+			if (dis_y < 0) {
 				return 3; // 右
-			} else if (getY() > ty) {
+			} else if (dis_y > 0) {
 				return 1; // 上
 			}
-			return 2; // 右上
-		} else if (getX() > tx) {
-			if (getY() < ty) {
+		} else if (dis_x > 0) {
+			if (dis_x == dis_y) return 6; // 左下
+			if (dis_y < 0) {
 				return 5; // 下
-			} else if (getY() > ty) {
+			} else if (dis_y > 0) {
 				return 7; // 左
 			}
-			return 6; // 左下
 		} else {
-			if (getY() < ty) {
+			if (dis_y < 0) {
 				return 4; // 右下
-			} else if (getY() > ty) {
+			} else if (dis_y > 0 {
 				return 0; // 左上
 			}
-			//return ; // 同點
 		}
 		return getHeading(); // ここにはこない。はず
 	}

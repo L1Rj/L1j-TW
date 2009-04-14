@@ -1548,13 +1548,16 @@ public class L1NpcInstance extends L1Character {
 	public static int checkObject(int x, int y, short m, int d) { // 起點Ｘ 起點Ｙ
 																	// マップＩＤ
 	// 進行方向
-		L1Map map = L1WorldMap.getInstance().getMap(m);		
-		d -= 2;//4.13 Start
-		for (byte i = 0 ; i<3 ; i++) {
-			d++;
-			if (d<0) {
+		L1Map map = L1WorldMap.getInstance().getMap(m);
+		for (byte i = 0 ; i < 3 ; i++) {//4.13 Start
+			if (i == 2) {
+				d -= 2;
+			} else {
+				d += i;
+			}
+			if (d < 0) {
 				d += 8;
-			} else if (d>8) {
+			} else if (d > 8) {
 				d -= 8;
 			}
 			if (map.isPassable(x, y, d)) {
