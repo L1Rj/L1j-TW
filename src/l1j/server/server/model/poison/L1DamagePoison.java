@@ -84,7 +84,7 @@ public class L1DamagePoison extends L1Poison {
 
 	private void doInfection() {
 		_target.setSkillEffect(L1SkillId.STATUS_POISON, 30000);
-		_target.setPoisonEffect(1);
+		_target.setPoisonEffect((byte) 1);
 
 		if (isDamageTarget(_target)) {
 			_timer = new NormalPoisonTimer();
@@ -113,7 +113,7 @@ public class L1DamagePoison extends L1Poison {
 			_timer.interrupt(); // 毒タイマー解除
 		}
 
-		_target.setPoisonEffect(0);
+		_target.setPoisonEffect((byte) 0);
 		_target.killSkillEffectTimer(L1SkillId.STATUS_POISON);
 		_target.setPoison(null);
 	}

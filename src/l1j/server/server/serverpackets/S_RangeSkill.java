@@ -38,9 +38,9 @@ public class S_RangeSkill extends ServerBasePacket {
 
 	private byte[] _byte = null;
 
-	public static final int TYPE_NODIR = 0;
+	public static final byte TYPE_NODIR = 0;
 
-	public static final int TYPE_DIR = 8;
+	public static final byte TYPE_DIR = 8;
 
 	public S_RangeSkill(L1Character cha, L1Character[] target, int spellgfx,
 			int actionId, int type) {
@@ -67,7 +67,7 @@ public class S_RangeSkill extends ServerBasePacket {
 		writeC(type); // 0:範圍 6:遠距離 8:範圍&遠距離
 		writeH(0);
 		writeH(target.length);
-		for (int i = 0; i < target.length; i++) {
+		for (byte i = 0; i < target.length; i++) {
 			writeD(target[i].getId());
 			writeC(0x20); // 0:ダメージモーションあり 0以外:なし
 		}
@@ -82,7 +82,7 @@ public class S_RangeSkill extends ServerBasePacket {
 	}
 
 	private static int calcheading(int myx, int myy, int tx, int ty) {
-		int newheading = 0;
+		byte newheading = 0;
 		if (tx > myx && ty > myy) {
 			newheading = 3;
 		}

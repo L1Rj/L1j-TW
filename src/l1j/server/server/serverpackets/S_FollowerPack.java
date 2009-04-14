@@ -34,14 +34,14 @@ public class S_FollowerPack extends ServerBasePacket {
 			.getName());
 	private static final String S_FOLLOWER_PACK = "[S] S_FollowerPack";
 
-	private static final int STATUS_POISON = 1;
-	private static final int STATUS_INVISIBLE = 2;
-	private static final int STATUS_PC = 4;
-	private static final int STATUS_FREEZE = 8;
-	private static final int STATUS_BRAVE = 16;
-	private static final int STATUS_ELFBRAVE = 32;
-	private static final int STATUS_FASTMOVABLE = 64;
-	private static final int STATUS_GHOST = 128;
+	private static final short STATUS_POISON = 1;
+	private static final short STATUS_INVISIBLE = 2;
+	private static final short STATUS_PC = 4;
+	private static final short STATUS_FREEZE = 8;
+	private static final short STATUS_BRAVE = 16;
+	private static final short STATUS_ELFBRAVE = 32;
+	private static final short STATUS_FASTMOVABLE = 64;
+	private static final short STATUS_GHOST = 128;
 
 	private byte[] _byte = null;
 
@@ -59,7 +59,7 @@ public class S_FollowerPack extends ServerBasePacket {
 		writeH(0);
 		writeS(follower.getNameId());
 		writeS(follower.getTitle());
-		int status = 0;
+		short status = 0;
 		if (follower.getPoison() != null) { // 毒狀態
 			if (follower.getPoison().getEffectId() == 1) {
 				status |= STATUS_POISON;

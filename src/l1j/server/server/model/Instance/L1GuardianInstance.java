@@ -76,7 +76,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 			if (!pc.isInvisble() || getNpcTemplate().is_agrocoi()) { // インビジチェック
 				if (!pc.isElf()) { // エルフ以外
 					targetPlayer = pc;
-					wideBroadcastPacket(new S_NpcChatPacket(this, "$804", 2)); // エルフ以外の者よ、命が惜しければ早くここから去れ。ここは神聖な場所だ。
+					wideBroadcastPacket(new S_NpcChatPacket(this, "$804", (byte) 2)); // エルフ以外の者よ、命が惜しければ早くここから去れ。ここは神聖な場所だ。
 					break;
 				}
 			}

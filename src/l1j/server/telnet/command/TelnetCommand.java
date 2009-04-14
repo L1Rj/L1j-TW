@@ -91,7 +91,7 @@ class GlobalChatCommand implements TelnetCommand {
 		ChatLogTable.getInstance().storeChat(pc, null, text, 3);
 
 		L1World.getInstance().broadcastPacketToAll(
-				new S_ChatPacket(pc, text, Opcodes.S_OPCODE_GLOBALCHAT, 3));
+				new S_ChatPacket(pc, text, Opcodes.S_OPCODE_GLOBALCHAT, (byte) 3));
 		return new TelnetCommandResult(CMD_OK, "");
 	}
 }

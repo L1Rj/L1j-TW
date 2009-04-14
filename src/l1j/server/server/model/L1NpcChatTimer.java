@@ -104,16 +104,16 @@ public class L1NpcChatTimer extends TimerTask {
 		}
 
 		if (!isShout) {
-			npc.broadcastPacket(new S_NpcChatPacket(npc, chatId, 0));
+			npc.broadcastPacket(new S_NpcChatPacket(npc, chatId, (byte) 0));
 		} else {
-			npc.wideBroadcastPacket(new S_NpcChatPacket(npc, chatId, 2));
+			npc.wideBroadcastPacket(new S_NpcChatPacket(npc, chatId, (byte) 2));
 		}
 
 		if (isWorldChat) {
 			// XXX npcはsendPacketsできないので、ワールド內のPCからsendPacketsさせる
 			for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 				if (pc != null) {
-					pc.sendPackets(new S_NpcChatPacket(npc, chatId, 3));
+					pc.sendPackets(new S_NpcChatPacket(npc, chatId, (byte) 3));
 				}
 				break;
 			}

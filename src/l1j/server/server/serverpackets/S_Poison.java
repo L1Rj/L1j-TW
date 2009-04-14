@@ -34,7 +34,7 @@ public class S_Poison extends ServerBasePacket {
 	 * @param type
 	 *            外見のタイプ 0 = 通常色, 1 = 綠色, 2 = 灰色
 	 */
-	public S_Poison(int objId, int type) {
+	public S_Poison(int objId, byte type) {
 		writeC(Opcodes.S_OPCODE_POISON);
 		writeD(objId);
 

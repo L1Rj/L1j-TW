@@ -1896,10 +1896,10 @@ public class L1SkillUse {
 						|| _skillId == 10028 || _skillId == 10029) { // 安息攻擊
 					if (_user instanceof L1NpcInstance) {
 						_user.broadcastPacket(new S_NpcChatPacket(_npc,
-								"$3717", 0)); // さあ、おまえに安息を与えよう。
+								"$3717", (byte) 0)); // さあ、おまえに安息を与えよう。
 					} else {
 						_player.broadcastPacket(new S_ChatPacket(_player,
-								"$3717", 0, 0)); // さあ、おまえに安息を与えよう。
+								"$3717", 0, (byte) 0)); // さあ、おまえに安息を与えよう。
 					}
 					dmg = cha.getCurrentHp();
 				} else if (_skillId == 10057) { // 引き寄せ
@@ -1985,15 +1985,15 @@ public class L1SkillUse {
 										cha.getX(), cha.getY(), cha.getMapId());
 						if (cha instanceof L1PcInstance) {
 							L1PcInstance pc = (L1PcInstance) cha;
-							pc.sendPackets(new S_Poison(pc.getId(), 2));
-							pc.broadcastPacket(new S_Poison(pc.getId(), 2));
+							pc.sendPackets(new S_Poison(pc.getId(), (byte) 2));
+							pc.broadcastPacket(new S_Poison(pc.getId(), (byte) 2));
 							pc.sendPackets(new S_Paralysis(
 									S_Paralysis.TYPE_FREEZE, true));
 						} else if (cha instanceof L1MonsterInstance
 								|| cha instanceof L1SummonInstance
 								|| cha instanceof L1PetInstance) {
 							L1NpcInstance npc = (L1NpcInstance) cha;
-							npc.broadcastPacket(new S_Poison(npc.getId(), 2));
+							npc.broadcastPacket(new S_Poison(npc.getId(), (byte) 2));
 							npc.setParalyzed(true);
 							npc.setParalysisTime(time);
 						}
@@ -2001,15 +2001,15 @@ public class L1SkillUse {
 				} else if (_skillId == EARTH_BIND) { // アースバインド
 					if (cha instanceof L1PcInstance) {
 						L1PcInstance pc = (L1PcInstance) cha;
-						pc.sendPackets(new S_Poison(pc.getId(), 2));
-						pc.broadcastPacket(new S_Poison(pc.getId(), 2));
+						pc.sendPackets(new S_Poison(pc.getId(), (byte) 2));
+						pc.broadcastPacket(new S_Poison(pc.getId(), (byte) 2));
 						pc.sendPackets(new S_Paralysis(
 								S_Paralysis.TYPE_FREEZE, true));
 					} else if (cha instanceof L1MonsterInstance
 							|| cha instanceof L1SummonInstance
 							|| cha instanceof L1PetInstance) {
 						L1NpcInstance npc = (L1NpcInstance) cha;
-						npc.broadcastPacket(new S_Poison(npc.getId(), 2));
+						npc.broadcastPacket(new S_Poison(npc.getId(), (byte) 2));
 						npc.setParalyzed(true);
 						npc.setParalysisTime(_skill.getBuffDuration() * 1000);
 					}

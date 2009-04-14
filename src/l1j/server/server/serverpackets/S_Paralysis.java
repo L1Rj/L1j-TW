@@ -26,7 +26,7 @@ import l1j.server.server.Opcodes;
 
 public class S_Paralysis extends ServerBasePacket {
 
-	public S_Paralysis(int type, boolean flag) {
+	public S_Paralysis(byte type, boolean flag) {
 		writeC(Opcodes.S_OPCODE_PARALYSIS);
 		if (type == TYPE_PARALYSIS) // 体が完全に麻痺しました。
 		{
@@ -86,19 +86,19 @@ public class S_Paralysis extends ServerBasePacket {
 		return "[S] S_Paralysis";
 	}
 
-	public static final int TYPE_PARALYSIS = 1;
+	public static final byte TYPE_PARALYSIS = 1;
 
-	public static final int TYPE_PARALYSIS2 = 2;
+	public static final byte TYPE_PARALYSIS2 = 2;
 
-	public static final int TYPE_SLEEP = 3;
+	public static final byte TYPE_SLEEP = 3;
 
-	public static final int TYPE_FREEZE = 4;
+	public static final byte TYPE_FREEZE = 4;
 
-	public static final int TYPE_STUN = 5;
+	public static final byte TYPE_STUN = 5;
 
-	public static final int TYPE_BIND = 6;
+	public static final byte TYPE_BIND = 6;
 
-	public static final int TYPE_TELEPORT_UNLOCK = 7;
+	public static final byte TYPE_TELEPORT_UNLOCK = 7;
 
 	private static final String _S__2F_PARALYSIS = "[S] S_Paralysis";
 }

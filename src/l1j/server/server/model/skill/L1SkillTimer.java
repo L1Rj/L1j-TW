@@ -335,8 +335,8 @@ class L1SkillStop {
 		} else if (skillId == CURSE_PARALYZE) { // カーズ パラライズ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_Poison(pc.getId(), 0));
-				pc.broadcastPacket(new S_Poison(pc.getId(), 0));
+				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));
+				pc.broadcastPacket(new S_Poison(pc.getId(), (byte) 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_PARALYSIS,
 						false));
 			}
@@ -355,27 +355,27 @@ class L1SkillStop {
 		} else if (skillId == ICE_LANCE || skillId == FREEZING_BLIZZARD) { // アイスランス、フリージングブリザード
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_Poison(pc.getId(), 0));
-				pc.broadcastPacket(new S_Poison(pc.getId(), 0));
+				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));
+				pc.broadcastPacket(new S_Poison(pc.getId(), (byte) 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, false));
 			} else if (cha instanceof L1MonsterInstance
 					|| cha instanceof L1SummonInstance
 					|| cha instanceof L1PetInstance) {
 				L1NpcInstance npc = (L1NpcInstance) cha;
-				npc.broadcastPacket(new S_Poison(npc.getId(), 0));
+				npc.broadcastPacket(new S_Poison(npc.getId(), (byte) 0));
 				npc.setParalyzed(false);
 			}
 		} else if (skillId == EARTH_BIND) { // アースバインド
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_Poison(pc.getId(), 0));
-				pc.broadcastPacket(new S_Poison(pc.getId(), 0));
+				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));
+				pc.broadcastPacket(new S_Poison(pc.getId(), (byte) 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, false));
 			} else if (cha instanceof L1MonsterInstance
 					|| cha instanceof L1SummonInstance
 					|| cha instanceof L1PetInstance) {
 				L1NpcInstance npc = (L1NpcInstance) cha;
-				npc.broadcastPacket(new S_Poison(npc.getId(), 0));
+				npc.broadcastPacket(new S_Poison(npc.getId(), (byte) 0));
 				npc.setParalyzed(false);
 			}
 		} else if (skillId == SHOCK_STUN) { // ショック スタン

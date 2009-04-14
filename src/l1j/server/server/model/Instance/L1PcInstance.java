@@ -19,6 +19,7 @@
 
 package l1j.server.server.model.Instance;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -26,12 +27,10 @@ import java.util.Timer;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.sql.Timestamp;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.ClientThread;
-import l1j.server.server.GMCommands;
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.PacketOutput;
 import l1j.server.server.WarTimeController;
@@ -39,8 +38,8 @@ import l1j.server.server.command.executor.L1HpBar;
 import l1j.server.server.datatables.CharacterTable;
 import l1j.server.server.datatables.ExpTable;
 import l1j.server.server.datatables.ItemTable;
-import l1j.server.server.model.HpRegeneration;
 import l1j.server.server.model.AcceleratorChecker;
+import l1j.server.server.model.HpRegeneration;
 import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1CastleLocation;
 import l1j.server.server.model.L1Character;
@@ -74,15 +73,13 @@ import l1j.server.server.model.monitor.L1PcInvisDelay;
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.model.skill.L1SkillUse;
 import l1j.server.server.serverpackets.S_BlueMessage;
-import l1j.server.server.serverpackets.S_Exp;
-import l1j.server.server.serverpackets.S_bonusstats;
 import l1j.server.server.serverpackets.S_CastleMaster;
 import l1j.server.server.serverpackets.S_ChangeShape;
 import l1j.server.server.serverpackets.S_Disconnect;
-import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_DoActionShop;
 import l1j.server.server.serverpackets.S_Emblem;
+import l1j.server.server.serverpackets.S_Exp;
 import l1j.server.server.serverpackets.S_HPMeter;
 import l1j.server.server.serverpackets.S_HPUpdate;
 import l1j.server.server.serverpackets.S_Invis;
@@ -93,9 +90,11 @@ import l1j.server.server.serverpackets.S_OtherCharPacks;
 import l1j.server.server.serverpackets.S_OwnCharStatus;
 import l1j.server.server.serverpackets.S_PacketBox;
 import l1j.server.server.serverpackets.S_Poison;
+import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillIconGFX;
 import l1j.server.server.serverpackets.S_SystemMessage;
+import l1j.server.server.serverpackets.S_bonusstats;
 import l1j.server.server.serverpackets.ServerBasePacket;
 import l1j.server.server.templates.L1BookMark;
 import l1j.server.server.templates.L1Item;
@@ -343,13 +342,13 @@ public class L1PcInstance extends L1Character {
 	}
 
 	private void sendVisualEffect() {
-		int poisonId = 0;
+		byte poisonId = 0;
 		if (getPoison() != null) { // 毒狀態
-			poisonId = getPoison().getEffectId();
+			poisonId = (byte) getPoison().getEffectId();
 		}
 		if (getParalysis() != null) { // 麻痺狀態
 			// 麻痺エフェクトを優先して送りたい為、poisonIdを上書き。
-			poisonId = getParalysis().getEffectId();
+			poisonId = (byte) getParalysis().getEffectId();
 		}
 		if (poisonId != 0) { // このifはいらないかもしれない
 			sendPackets(new S_Poison(getId(), poisonId));
@@ -2207,7 +2206,7 @@ public class L1PcInstance extends L1Character {
 	}
 
 	@Override
-	public void setPoisonEffect(int effectId) {
+	public void setPoisonEffect(byte effectId) {
 		sendPackets(new S_Poison(getId(), effectId));
 
 		if (!isGmInvis() && !isGhost() && !isInvisble()) {

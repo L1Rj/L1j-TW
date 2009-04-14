@@ -40,7 +40,7 @@ public class L1SilencePoison extends L1Poison {
 	}
 
 	private void doInfection() {
-		_target.setPoisonEffect(1);
+		_target.setPoisonEffect((byte) 1);
 		sendMessageIfPlayer(_target, 310);
 
 		_target.setSkillEffect(L1SkillId.STATUS_POISON_SILENCE, 0);
@@ -53,7 +53,7 @@ public class L1SilencePoison extends L1Poison {
 
 	@Override
 	public void cure() {
-		_target.setPoisonEffect(0);
+		_target.setPoisonEffect((byte) 0);
 		sendMessageIfPlayer(_target, 311);
 
 		_target.killSkillEffectTimer(L1SkillId.STATUS_POISON_SILENCE);

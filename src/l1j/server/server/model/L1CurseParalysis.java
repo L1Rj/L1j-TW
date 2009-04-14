@@ -50,7 +50,7 @@ public class L1CurseParalysis extends L1Paralysis {
 			if (_target instanceof L1PcInstance) {
 				L1PcInstance player = (L1PcInstance) _target;
 				if (!player.isDead()) {
-					player.sendPackets(new S_Paralysis(1, true)); // 麻痺狀態にする
+					player.sendPackets(new S_Paralysis((byte) 1, true)); // 麻痺狀態にする
 				}
 			}
 			_target.setParalyzed(true);
@@ -76,7 +76,7 @@ public class L1CurseParalysis extends L1Paralysis {
 			if (_target instanceof L1PcInstance) {
 				L1PcInstance player = (L1PcInstance) _target;
 				if (!player.isDead()) {
-					player.sendPackets(new S_Paralysis(1, false)); // 麻痺狀態を解除する
+					player.sendPackets(new S_Paralysis((byte) 1, false)); // 麻痺狀態を解除する
 				}
 			}
 			_target.setParalyzed(false);
@@ -98,7 +98,7 @@ public class L1CurseParalysis extends L1Paralysis {
 			player.sendPackets(new S_ServerMessage(212));
 		}
 
-		_target.setPoisonEffect(2);
+		_target.setPoisonEffect((byte) 2);
 
 		_timer = new ParalysisDelayTimer();
 		GeneralThreadPool.getInstance().execute(_timer);
@@ -128,7 +128,7 @@ public class L1CurseParalysis extends L1Paralysis {
 			_timer.interrupt(); // 麻痺タイマー解除
 		}
 
-		_target.setPoisonEffect(0);
+		_target.setPoisonEffect((byte) 0);
 		_target.setParalaysis(null);
 	}
 }

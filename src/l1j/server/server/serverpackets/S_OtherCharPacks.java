@@ -33,19 +33,19 @@ public class S_OtherCharPacks extends ServerBasePacket {
 	private static Logger _log = Logger.getLogger(S_OtherCharPacks.class
 			.getName());
 
-	private static final int STATUS_POISON = 1;
-	private static final int STATUS_INVISIBLE = 2;
-	private static final int STATUS_PC = 4;
-	private static final int STATUS_FREEZE = 8;
-	private static final int STATUS_BRAVE = 16;
-	private static final int STATUS_ELFBRAVE = 32;
-	private static final int STATUS_FASTMOVABLE = 64;
-	private static final int STATUS_GHOST = 128;
+	private static final short STATUS_POISON = 1;
+	private static final short STATUS_INVISIBLE = 2;
+	private static final short STATUS_PC = 4;
+	private static final short STATUS_FREEZE = 8;
+	private static final short STATUS_BRAVE = 16;
+	private static final short STATUS_ELFBRAVE = 32;
+	private static final short STATUS_FASTMOVABLE = 64;
+	private static final short STATUS_GHOST = 128;
 
 	private byte[] _byte = null;
 
 	public S_OtherCharPacks(L1PcInstance pc) {
-		int status = STATUS_PC;
+		short status = STATUS_PC;
 
 		if (pc.getPoison() != null) { // 毒狀態
 			if (pc.getPoison().getEffectId() == 1) {

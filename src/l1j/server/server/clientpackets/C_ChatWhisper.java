@@ -80,9 +80,9 @@ public class C_ChatWhisper extends ClientBasePacket {
 
 		ChatLogTable.getInstance().storeChat(whisperFrom, whisperTo, text, 1);
 		whisperFrom.sendPackets(new S_ChatPacket(whisperTo, text,
-				Opcodes.S_OPCODE_GLOBALCHAT, 9));
+				Opcodes.S_OPCODE_GLOBALCHAT, (byte) 9));
 		whisperTo.sendPackets(new S_ChatPacket(whisperFrom, text,
-				Opcodes.S_OPCODE_WHISPERCHAT, 16));
+				Opcodes.S_OPCODE_WHISPERCHAT, (byte) 16));
 	}
 
 	@Override
