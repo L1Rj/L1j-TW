@@ -84,30 +84,24 @@ public class S_RangeSkill extends ServerBasePacket {
 	private static int calcheading(int myx, int myy, int tx, int ty) {
 		byte newheading = 0;
 		if (tx > myx && ty > myy) {
-			newheading = 3;
+			return 3;
+		} else if (tx < myx && ty < myy) {
+			return 7;
+		} else if (tx > myx && ty == myy) {
+			return 2;
+		} else if (tx < myx && ty == myy) {
+			return 6;
+		} else if (tx == myx && ty < myy) {
+			return 0;
+		} else if (tx == myx && ty > myy) {
+			return 4;
+		} else if (tx < myx && ty > myy) {
+			return 5;
+		} else if (tx > myx && ty < myy) {
+			return 1;
+		} else {
+			return 0;
 		}
-		if (tx < myx && ty < myy) {
-			newheading = 7;
-		}
-		if (tx > myx && ty == myy) {
-			newheading = 2;
-		}
-		if (tx < myx && ty == myy) {
-			newheading = 6;
-		}
-		if (tx == myx && ty < myy) {
-			newheading = 0;
-		}
-		if (tx == myx && ty > myy) {
-			newheading = 4;
-		}
-		if (tx < myx && ty > myy) {
-			newheading = 5;
-		}
-		if (tx > myx && ty < myy) {
-			newheading = 1;
-		}
-		return newheading;
 	}
 
 	@Override
