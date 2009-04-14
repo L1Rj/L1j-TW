@@ -302,6 +302,7 @@ public class L1Character extends L1Object {
 	public int targetDirection(int tx, int ty) {
 		float dis_x = tx - getX(); // Ｘ方向の距離
 		float dis_y = ty - getY(); // Ｙ方向の距離
+		//int deff = (int) Math.floor((dis_x / dis_y) + 0.59f);
 		if (dis_x < 0) {
 			if (dis_x == dis_y) return 1; // 右上
 			if (dis_y < 0) {
@@ -319,7 +320,7 @@ public class L1Character extends L1Object {
 		} else {
 			if (dis_y < 0) {
 				return 4; // 右下
-			} else if (dis_y > 0 {
+			} else if (dis_y > 0) {
 				return 0; // 左上
 			}
 		}
