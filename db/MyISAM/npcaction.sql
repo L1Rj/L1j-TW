@@ -12,6 +12,8 @@ CREATE TABLE `npcaction` (
 #----------------------------
 # Records for table npcaction
 #----------------------------
+
+
 INSERT INTO `npcaction` VALUES
 (45015, 'duck1', 'duck1', '', ''),
 (45154, 'mermaid', 'mermaid', '', ''),
@@ -865,6 +867,7 @@ INSERT INTO `npcaction` VALUES
 (71198, 'tion1', 'tion1', '', ''),
 (71199, 'jeron1', 'jeron1', '', ''),
 (71200, 'pieta1', 'pieta1', '', ''),
+(71251, 'baseReset', 'baseReset', '', ''),
 (80010, 'aprincess1', 'aprincess1', 'aprincess2', ''),
 (80019, 'cold1', 'cold1', '', ''),
 (80020, 'cold1', 'cold1', '', ''),
@@ -954,7 +957,7 @@ INSERT INTO `npcaction` VALUES
 (80105, 'horserestore', 'horserestore', '', ''),
 (80127, 'cook1', 'cook1', '', ''),
 (80128, 'cointrader', 'cointrader', '', ''),
-(80132, 'dekabia1', 'dekabia1', '', ''),
+(80132, 'dekabia1', 'dekabia1', 'dekabia2', 'dekabia3'),
 (80133, 'pual1', 'pual1', '', ''),
 (80134, 'talrion4', 'talrion4', '', ''),
 (80135, 'elas3', 'elas3', '', ''),
@@ -1009,4 +1012,10 @@ INSERT INTO `npcaction` VALUES
 (81205, 'minitos2', 'minitos2', '', ''),
 (81206, 'minitos2', 'minitos2', '', ''),
 (81207, 'minitos1', 'minitos1', '', ''),
-(81208, 'minibrob01', 'minibrob01', '', '');
+(81208, 'minibrob01', 'minibrob01', '', ''),
+(80141, 'sbial1', 'sbial1', '', ''),
+(80142, 'batr1', 'batr1', '', ''),
+(80143, 'azel1', 'azel1', '', ''),
+(80144, 'rark1', 'rark1', '', ''),
+(80145, 'silrein1', 'silrein1', '', ''),
+(80146, 'sharial1', 'sharial1', 'sharial2', 'sharial3');
