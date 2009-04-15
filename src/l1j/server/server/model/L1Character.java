@@ -298,41 +298,37 @@ public class L1Character extends L1Object {
 	 *            座標のY值
 	 * @return 指定された座標に對する方向
 	 */
-	public byte targetDirection(int tx, int ty) { // 4.15 Start
+	public int targetDirection(int tx, int ty) { // 4.15 Start
 		float dis_x = tx - getX(); // Ｘ方向の距離 >0 意謂正向軸
 		float dis_y = ty - getY(); // Ｙ方向の距離 <0 負向軸
-		byte deff = 0;
 		if (dis_y != 0) {
-			deff = (byte) Math.floor((dis_x / dis_y) * 2);
+			byte deff = (byte) Math.floor((dis_x / dis_y) * 2);
+			if (deff >= -1 && deff <= 1) {
+				if (dis_y > 0) {
+					return 4;
+				} else if (dis_y < 0) {
+					return 0;
+				}
+			} else if (deff > 1 && deff <= 4) {
+				if (dis_y > 0) {
+					return 3;
+				} else {
+					return 7;
+				}
+			} else if (deff < -1 && deff >= -4) {
+				if (dis_y > 0) {
+					return 5;
+				} else {
+					return 1;
+				}
+			}
 		} // deff = 1 <-> 2*tan(26.5) ; deff = 4 <-> 2*tan(63.5)
-		if (deff >= -1 && deff <= 1) {
-			if (dis_y > 0) {
-				return 4;
-			} else if (dis_y < 0) {
-				return 0;
-			} else if (dis_y == 0) { // 原地
-				return getHeading();
-			}
-		} else if (deff > 1 && deff <= 4) {
-			if (dis_y > 0) {
-				return 3;
-			} else {
-				return 7;
-			}
-		} else if (deff > -1 && deff >= -4) {
-			if (dis_y > 0) {
-				return 5;
-			} else {
-				return 1;
-			}
-		} else if (deff > 4 && deff < -4) {
-			if (dis_x > 0) {
-				return 2;
-			} else {
-				return 6;
-			}
+		if (dis_x > 0) {
+			return 2;
+		} else if (dis_x < 0){
+			return 6;
 		}
-		// return getHeading(); // ここにはこない。はず
+		return getHeading(); // ここにはこない。はず
 	} // 4.15 End
 
 	/**
