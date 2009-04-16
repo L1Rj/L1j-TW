@@ -138,8 +138,8 @@ public class GameServer extends Thread {
 			System.out.println("伺服器狀態: 建立中");
 		}
 
-		System.out.println("經驗值倍率:" + (rateXp) + "倍  正義值倍率:" + (LA) + "倍  友好度倍率:"
-				+ (rateKarma) + "倍  道具掉落倍率:" + (rateDropItems) + "倍  金幣掉落倍率:"
+		System.out.println("經驗值:" + (rateXp) + "倍  正義值:" + (LA) + "倍  友好度:"
+				+ (rateKarma) + "倍  道具掉落:" + (rateDropItems) + "倍  金幣掉落:"
 				+ (rateDropAdena) + "倍");
 		System.out.println("公共頻道使用等級限制 " + (chatlvl));
 		if (Config.ALT_NONPVP) { // Non-PvP設定
@@ -149,7 +149,7 @@ public class GameServer extends Thread {
 		}
 
 		System.out.println("=================================================");
-		System.out.println("=====Lineage 3.0C=====興趣製作=====L1j1711版=====");
+		System.out.println("=====Lineage 3.0C=====興趣製作=====L1j1720版=====");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;

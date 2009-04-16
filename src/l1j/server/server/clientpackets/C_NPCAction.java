@@ -100,9 +100,11 @@ import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class C_NPCAction extends ClientBasePacket {
 
-	private static final String C_NPC_ACTION = "[C] C_NPCAction";
-	private static Logger _log = Logger.getLogger(C_NPCAction.class.getName());
-	private static Random _random = new Random();
+	private static final String	C_NPC_ACTION	= "[C] C_NPCAction";
+	private static Logger		_log			= Logger
+														.getLogger(C_NPCAction.class
+																.getName());
+	private static Random		_random			= new Random();
 
 	public C_NPCAction(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
@@ -683,10 +685,10 @@ public class C_NPCAction extends ClientBasePacket {
 					pc.sendPackets(new S_ServerMessage(1290)); // ステータス初期化に必要なアイテムがありません。
 					return;
 				}
-				L1Teleport.teleport(pc, 32737, 32789,(short) 997, 4, false);
+				L1Teleport.teleport(pc, 32737, 32789, (short) 997, 4, false);
 				pc.getInventory().takeoffEquip(945); // 牛のpolyIdで裝備を全部外す。
 				int initStatusPoint = 75 + pc.getElixirStats();
-				int pcStatusPoint = pc.getBaseStr() + pc.getBaseInt() 
+				int pcStatusPoint = pc.getBaseStr() + pc.getBaseInt()
 						+ pc.getBaseWis() + pc.getBaseDex() + pc.getBaseCon()
 						+ pc.getBaseCha();
 				if (pc.getLevel() > 50) {
@@ -694,11 +696,19 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 				int diff = pcStatusPoint - initStatusPoint;
 				/**
+				 * 
+				 * 
 				 * 目前點數 - 初始點數 = 人物應有等級 - 50 -> 人物應有等級 = 50 + (目前點數 - 初始點數)
 				 */
-				// 最高到99級:也就是?不支援轉生
-				int maxLevel = Math.min(50 + diff, 99);
+				// 最高到99級:也就是不支援轉生
+				int maxLevel = 1;
 
+				if (diff > 0) {
+					// ??99?:??蔰
+					maxLevel = Math.min(50 + diff, 99);
+				} else {
+					maxLevel = pc.getLevel();
+				}
 				pc.setTempMaxLevel(maxLevel);
 				pc.setTempLevel(1);
 				pc.setInCharReset(true);
@@ -2250,13 +2260,16 @@ public class C_NPCAction extends ClientBasePacket {
 						int htmlB = _random.nextInt(100) + 1;
 						switch (htmlA) {
 						case 1:
-							htmlid = "horosa" + htmlB; // horosa1 ~ horosa100
+							htmlid = "horosa" + htmlB; // horosa1 ~
+														// horosa100
 							break;
 						case 2:
-							htmlid = "horosb" + htmlB; // horosb1 ~ horosb100
+							htmlid = "horosb" + htmlB; // horosb1 ~
+														// horosb100
 							break;
 						case 3:
-							htmlid = "horosc" + htmlB; // horosc1 ~ horosc100
+							htmlid = "horosc" + htmlB; // horosc1 ~
+														// horosc100
 							break;
 						default:
 							break;
@@ -3294,17 +3307,17 @@ public class C_NPCAction extends ClientBasePacket {
 		int summonid = 0;
 		int levelrange = 0;
 		int summoncost = 0;
-/*
- * summonstr_list = new String[] { "7", "263", "8", "264", "9", "265", "10",
- * "266", "11", "267", "12", "268", "13", "269", "14", "270", "526", "15",
- * "271", "527", "17", "18" }; summonid_list = new int[] { 81083, 81090, 81084,
- * 81091, 81085, 81092, 81086, 81093, 81087, 81094, 81088, 81095, 81089, 81096,
- * 81097, 81098, 81099, 81100, 81101, 81102, 81103, 81104 }; summonlvl_list =
- * new int[] { 28, 28, 32, 32, 36, 36, 40, 40, 44, 44, 48, 48, 52, 52, 56, 56,
- * 56, 60, 60, 60, 68, 72 }; // ドッペルゲンガーボス、クーガーにはペットボーナスが付かないので+6しておく
- * summoncha_list = new int[] { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 8, 8, 8,
- * 8, 10, 10, 10, 36, 40 };
- */
+		/*
+		 * summonstr_list = new String[] { "7", "263", "8", "264", "9", "265",
+		 * "10", "266", "11", "267", "12", "268", "13", "269", "14", "270",
+		 * "526", "15", "271", "527", "17", "18" }; summonid_list = new int[] {
+		 * 81083, 81090, 81084, 81091, 81085, 81092, 81086, 81093, 81087, 81094,
+		 * 81088, 81095, 81089, 81096, 81097, 81098, 81099, 81100, 81101, 81102,
+		 * 81103, 81104 }; summonlvl_list = new int[] { 28, 28, 32, 32, 36, 36,
+		 * 40, 40, 44, 44, 48, 48, 52, 52, 56, 56, 56, 60, 60, 60, 68, 72 }; //
+		 * ??+6 summoncha_list = new int[] { 6,
+		 * 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 8, 8, 8, 8, 10, 10, 10, 36, 40 };
+		 */
 		summonstr_list = new String[] { "7", "263", "519", "8", "264", "520",
 				"9", "265", "521", "10", "266", "522", "11", "267", "523",
 				"12", "268", "524", "13", "269", "525", "14", "270", "526",
@@ -3313,9 +3326,9 @@ public class C_NPCAction extends ClientBasePacket {
 				81216, 81217, 81218, 81219, 81220, 81221, 81222, 81223, 81224,
 				81225, 81226, 81227, 81228, 81229, 81230, 81231, 81232, 81233,
 				81234, 81235, 81236, 81237, 81238, 81239, 81240 };
-		summonlvl_list = new int[] { 28, 28, 28, 32, 32, 32, 36, 36, 36, 40, 40,
-				40, 44, 44, 44, 48, 48, 48, 52, 52, 52, 56, 56, 56, 60, 60, 60,
-				64, 68, 72, 72 };
+		summonlvl_list = new int[] { 28, 28, 28, 32, 32, 32, 36, 36, 36, 40,
+				40, 40, 44, 44, 44, 48, 48, 48, 52, 52, 52, 56, 56, 56, 60, 60,
+				60, 64, 68, 72, 72 };
 		// ドッペルゲンガーボス、クーガーにはペットボーナスが付かないので+6しておく
 		summoncha_list = new int[] { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
 				8, 8, 8, 8, 8, 8, 8, 10, 10, 10, 12, 12, 12, 20, 42, 42, 50 };
