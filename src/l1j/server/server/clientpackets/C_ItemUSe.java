@@ -3797,7 +3797,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		int i6 = 0;
 		for (int skillId = 1; skillId < 81; skillId++) {
 			L1Skills l1skills = SkillsTable.getInstance().getTemplate(skillId);
-			String s1 = "魔法書(" + l1skills.getName() + ")";
+			String s1 = "魔法書 (" + l1skills.getName() + ")";
 			if (item.getItem().getName().equalsIgnoreCase(s1)) {
 				int skillLevel = l1skills.getSkillLevel();
 				int i7 = l1skills.getId();
@@ -4393,7 +4393,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		int i6 = 0;
 		for (int j6 = 113; j6 < 121; j6++) {
 			L1Skills l1skills = SkillsTable.getInstance().getTemplate(j6);
-			String s1 = "魔法書(" + l1skills.getName() + ")";
+			String s1 = "魔法書 (" + l1skills.getName() + ")";
 			if (l1iteminstance.getItem().getName().equalsIgnoreCase(s1)) {
 				int l6 = l1skills.getSkillLevel();
 				int i7 = l1skills.getId();
