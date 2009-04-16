@@ -818,7 +818,7 @@ public class L1Attack {
 		if (_targetPc.hasSkillEffect(COOKING_1_7_S) // デザートによるダメージ輕減
 				|| _targetPc.hasSkillEffect(COOKING_2_7_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {
-			dmg -= 5
+			dmg -= 5;
 		}
 
 		if (_targetPc.hasSkillEffect(REDUCTION_ARMOR)) {
