@@ -66,6 +66,7 @@ import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.model.skill.L1SkillUse;
 import l1j.server.server.serverpackets.S_ApplyAuction;
 import l1j.server.server.serverpackets.S_AuctionBoardRead;
+import l1j.server.server.serverpackets.S_CharReset;
 import l1j.server.server.serverpackets.S_CloseList;
 import l1j.server.server.serverpackets.S_DelSkill;
 import l1j.server.server.serverpackets.S_Deposit;
@@ -350,37 +351,7 @@ public class C_NPCAction extends ClientBasePacket {
 					pc.sendPackets(new S_Drawal(pc.getId(), l1castle
 							.getPublicMoney()));
 				}
-			}			
-			// 3.0C回億蠟燭
-		} else if(((L1NpcInstance)obj).getNpcTemplate().get_npcId()==90002//90002 NPC編號
-				&& s.equalsIgnoreCase("ent")){
-			if(!pc.getInventory().checkItem(70006)){//70006蠟燭編號
-				pc.sendPackets(new S_ServerMessage(1290));
-				return;
 			}
-			L1Teleport.teleport(pc, 32737, 32789,(short)997,4, false);
-			pc.getInventory().takeoffEquip(945);
-			int intiStatusPoint = 75 + pc.getElixirStats();
-			int pcStatusPoint = 
-				pc.getBaseStr()+ pc.getBaseInt()+ pc.getBaseWis()+
-				pc.getBaseDex()+ pc.getBaseCon()+ pc.getBaseCha();
-			
-			if(pc.getLevel() > 50){
-				pcStatusPoint += (
-					pc.getLevel() - 50 - pc.getBonusStats());
-			}
-			int diff = pcStatusPoint - intiStatusPoint;
-			/**
-			 目前點數 - 初始點數 = 人物應有等級 - 50
-			 -> 人物應有等級 = 50 + (目前點數 - 初始點數)
-			 */
-			//最高到99級:也就是說不支援轉生
-			int maxLevel = Math.min(50 + diff, 99);
-
-			pc.setTempMaxLevel(maxLevel);
-			pc.setTempLevel(1);
-			pc.setIsInCharReset(true);
-			// END
 		} else if (s.equalsIgnoreCase("cdeposit")) { // 資金を入金する
 			pc.sendPackets(new S_Deposit(pc.getId()));
 		} else if (s.equalsIgnoreCase("employ")) { // 傭兵の雇用
@@ -698,6 +669,7 @@ public class C_NPCAction extends ClientBasePacket {
 			// 「お化け屋敷に入る」
 			// 「アルティメット バトルに參加する」または
 			// 「觀覽モードで鬥技場に入る」
+			// 「ステータス再分配」
 			int npcId = ((L1NpcInstance) obj).getNpcId();
 			if (npcId == 80085 || npcId == 80086 || npcId == 80087) {
 				htmlid = enterHauntedHouse(pc);
@@ -706,6 +678,31 @@ public class C_NPCAction extends ClientBasePacket {
 			} else if (npcId == 50038 || npcId == 50042 || npcId == 50029
 					|| npcId == 50019 || npcId == 50062) { // 副管理人の場合は觀戰
 				htmlid = watchUb(pc, npcId);
+			} else if (npcId == 71251) { // ロロ
+				if (!pc.getInventory().checkItem(49142)) { // 希望のロウソク
+					pc.sendPackets(new S_ServerMessage(1290)); // ステータス初期化に必要なアイテムがありません。
+					return;
+				}
+				L1Teleport.teleport(pc, 32737, 32789,(short) 997, 4, false);
+				pc.getInventory().takeoffEquip(945); // 牛のpolyIdで裝備を全部外す。
+				int initStatusPoint = 75 + pc.getElixirStats();
+				int pcStatusPoint = pc.getBaseStr() + pc.getBaseInt() 
+						+ pc.getBaseWis() + pc.getBaseDex() + pc.getBaseCon()
+						+ pc.getBaseCha();
+				if (pc.getLevel() > 50) {
+					pcStatusPoint += (pc.getLevel() - 50 - pc.getBonusStats());
+				}
+				int diff = pcStatusPoint - initStatusPoint;
+				/**
+				 * 目前點數 - 初始點數 = 人物應有等級 - 50 -> 人物應有等級 = 50 + (目前點數 - 初始點數)
+				 */
+				// 最高到99級:也就是?不支援轉生
+				int maxLevel = Math.min(50 + diff, 99);
+
+				pc.setTempMaxLevel(maxLevel);
+				pc.setTempLevel(1);
+				pc.setInCharReset(true);
+				pc.sendPackets(new S_CharReset(pc));
 			} else {
 				htmlid = enterUb(pc, npcId);
 			}

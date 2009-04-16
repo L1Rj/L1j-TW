@@ -566,10 +566,26 @@ public class L1Magic {
 				|| _targetPc.hasSkillEffect(COOKING_1_3_S)
 				|| _targetPc.hasSkillEffect(COOKING_1_4_S)
 				|| _targetPc.hasSkillEffect(COOKING_1_5_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_6_S)) {
+				|| _targetPc.hasSkillEffect(COOKING_1_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_0_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_1_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_2_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_3_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_4_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_5_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_0_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_1_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_2_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_3_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_4_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_5_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_6_S)) {
 			dmg -= 5;
 		}
-		if (_targetPc.hasSkillEffect(COOKING_1_7_S)) { // デザートによるダメージ輕減
+		if (_targetPc.hasSkillEffect(COOKING_1_7_S) // デザートによるダメージ輕減
+				|| _targetPc.hasSkillEffect(COOKING_2_7_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {
 			dmg -= 5;
 		}
 

@@ -240,7 +240,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == 40954 || itemId == 40955 || itemId == 40956
 				|| itemId == 40957 // 加工された火ダイア
 				|| itemId == 40958 || itemId == 40964 // ダークマジックパウダー
-				|| itemId == 49092) { 
+				|| itemId == 49092) { // 歪みのコア
 			l = readD();
 		} else if (itemId == 140100 || itemId == 40100 || itemId == 40099
 				|| itemId == 40086 || itemId == 40863) {
@@ -2006,7 +2006,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						|| itemId == 49045 || itemId == 49046
 						|| itemId == 49047) {
 					pc.getInventory().removeItem(l1iteminstance, 1);
-					// XXX 食べ物每の滿腹度(10單位で變動)
+					// XXX 食べ物每の滿腹度(100單位で變動)
 					short foodvolume1 = (short)(l1iteminstance.getItem().getFoodVolume() / 10);
 					short foodvolume2 = 0;
 					if (foodvolume1 <= 0) {
@@ -2553,7 +2553,9 @@ public class C_ItemUSe extends ClientBasePacket {
 					L1EffectSpawn.getInstance().spawnEffect(81170, 600000,
 							loc[0], loc[1], pc.getMapId());
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId >= 41277 && itemId <= 41292) { // 料理
+				} else if (itemId >= 41277 && itemId <= 41292
+						|| itemId >= 49049 && itemId <= 49064
+						|| itemId >= 49244 && itemId <= 49259) { // 料理
 					L1Cooking.useCookingItem(pc, l1iteminstance);
 				} else if (itemId >= 41383 && itemId <= 41400) { // 家具
 					useFurnitureItem(pc, itemId, itemObjid);
@@ -2687,8 +2689,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_PacketBox(
 								S_PacketBox.MSG_LEVEL_OVER, max));
 					} else {
-						pc.sendPackets(new S_SystemMessage("限制 Lv" + max
-								+ "以下才能裝備。"));
+						pc.sendPackets(new S_SystemMessage("このアイテムは" + max
+								+ "レベル以下のみ使用できます。"));
 					}
 				} else {
 					if (pc.isCrown() && l1iteminstance.getItem().isUseRoyal()
@@ -2738,8 +2740,8 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.sendPackets(new S_PacketBox(
 									S_PacketBox.MSG_LEVEL_OVER, max));
 						} else {
-							pc.sendPackets(new S_SystemMessage("限制 Lv" + max
-									+ "以下才能裝備。"));
+							pc.sendPackets(new S_SystemMessage("このアイテムは" + max
+									+ "レベル以下のみ使用できます。"));
 						}
 					} else {
 						UseArmor(pc, l1iteminstance);
@@ -3795,7 +3797,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		int i6 = 0;
 		for (int skillId = 1; skillId < 81; skillId++) {
 			L1Skills l1skills = SkillsTable.getInstance().getTemplate(skillId);
-			String s1 = "魔法書 (" + l1skills.getName() + ")";
+			String s1 = "魔法書(" + l1skills.getName() + ")";
 			if (item.getItem().getName().equalsIgnoreCase(s1)) {
 				int skillLevel = l1skills.getSkillLevel();
 				int i7 = l1skills.getId();
@@ -3944,7 +3946,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		int i6 = 0;
 		for (int j6 = 97; j6 < 112; j6++) {
 			L1Skills l1skills = SkillsTable.getInstance().getTemplate(j6);
-			String s1 = "黑暗精靈水晶(" + l1skills.getName() + ")";
+			String s1 = "闇精靈の水晶(" + l1skills.getName() + ")";
 			if (l1iteminstance.getItem().getName().equalsIgnoreCase(s1)) {
 				int l6 = l1skills.getSkillLevel();
 				int i7 = l1skills.getId();
@@ -4089,7 +4091,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		int i6 = 0;
 		for (int j6 = 129; j6 <= 176; j6++) {
 			L1Skills l1skills = SkillsTable.getInstance().getTemplate(j6);
-			String s1 = "精靈水晶(" + l1skills.getName() + ")";
+			String s1 = "精靈の水晶(" + l1skills.getName() + ")";
 			if (l1iteminstance.getItem().getName().equalsIgnoreCase(s1)) {
 				if (!pc.isGm() && l1skills.getAttr() != 0
 						&& pc.getElfAttr() != l1skills.getAttr()) {
@@ -4808,7 +4810,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				case 24: // '\030'
 					i6 = i7;
 					break;
-
+					
 				case 25: // '\031'
 					j8 = i7;
 					break;
@@ -4820,7 +4822,6 @@ public class C_ItemUSe extends ClientBasePacket {
 				case 27: // '\033'
 					l8 = i7;
 					break;
-
 				case 28: // '\034'
 					i8 = i7;
 					break;
@@ -4837,7 +4838,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		SkillsTable.getInstance().spellMastery(k6, i, s, 0, 0);
 		pc.getInventory().removeItem(l1iteminstance, 1);
 	}
-
+	
 	private void doWandAction(L1PcInstance user, L1Object target) {
 		if (user.getId() == target.getId()) {
 			return; // 自分自身に當てた
@@ -5676,6 +5677,174 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6392));
 				} else if (chance >= 91 && chance <= 95) {
 					createNewItem(pc, 49064, 1);
+					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6390));
+				} else if (chance >= 96 && chance <= 100) {
+					pc.sendPackets(new S_ServerMessage(1101)); // 料理が失敗しました。
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6394));
+				}
+			} else {
+				pc.sendPackets(new S_ServerMessage(1102)); // 料理の材料が足りません。
+			}
+		} else if (cookNo == 16) { // クラスタシアンのハサミ燒き
+			if (pc.getInventory().checkItem(49048, 1)
+					&& pc.getInventory().checkItem(49243, 1)
+					&& pc.getInventory().checkItem(49260, 1)) {
+				pc.getInventory().consumeItem(49048, 1);
+				pc.getInventory().consumeItem(49243, 1);
+				pc.getInventory().consumeItem(49260, 1);
+				if (chance >= 1 && chance <= 90) {
+					createNewItem(pc, 49244, 1);
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6392));
+				} else if (chance >= 91 && chance <= 95) {
+					createNewItem(pc, 49252, 1);
+					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6390));
+				} else if (chance >= 96 && chance <= 100) {
+					pc.sendPackets(new S_ServerMessage(1101)); // 料理が失敗しました。
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6394));
+				}
+			} else {
+				pc.sendPackets(new S_ServerMessage(1102)); // 料理の材料が足りません。
+			}
+		} else if (cookNo == 17) { // グリフォン燒き
+			if (pc.getInventory().checkItem(49048, 1)
+					&& pc.getInventory().checkItem(49243, 1)
+					&& pc.getInventory().checkItem(49261, 1)) {
+				pc.getInventory().consumeItem(49048, 1);
+				pc.getInventory().consumeItem(49243, 1);
+				pc.getInventory().consumeItem(49261, 1);
+				if (chance >= 1 && chance <= 90) {
+					createNewItem(pc, 49245, 1);
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6392));
+				} else if (chance >= 91 && chance <= 95) {
+					createNewItem(pc, 49253, 1);
+					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6390));
+				} else if (chance >= 96 && chance <= 100) {
+					pc.sendPackets(new S_ServerMessage(1101)); // 料理が失敗しました。
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6394));
+				}
+			} else {
+				pc.sendPackets(new S_ServerMessage(1102)); // 料理の材料が足りません。
+			}
+		} else if (cookNo == 18) { // コカトリスステーキ
+			if (pc.getInventory().checkItem(49048, 1)
+					&& pc.getInventory().checkItem(49243, 1)
+					&& pc.getInventory().checkItem(49262, 1)) {
+				pc.getInventory().consumeItem(49048, 1);
+				pc.getInventory().consumeItem(49243, 1);
+				pc.getInventory().consumeItem(49262, 1);
+				if (chance >= 1 && chance <= 90) {
+					createNewItem(pc, 49246, 1);
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6392));
+				} else if (chance >= 91 && chance <= 95) {
+					createNewItem(pc, 49254, 1);
+					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6390));
+				} else if (chance >= 96 && chance <= 100) {
+					pc.sendPackets(new S_ServerMessage(1101)); // 料理が失敗しました。
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6394));
+				}
+			} else {
+				pc.sendPackets(new S_ServerMessage(1102)); // 料理の材料が足りません。
+			}
+		} else if (cookNo == 19) { // タートルドラゴン燒き
+			if (pc.getInventory().checkItem(49048, 1)
+					&& pc.getInventory().checkItem(49243, 1)
+					&& pc.getInventory().checkItem(49263, 1)) {
+				pc.getInventory().consumeItem(49048, 1);
+				pc.getInventory().consumeItem(49243, 1);
+				pc.getInventory().consumeItem(49263, 1);
+				if (chance >= 1 && chance <= 90) {
+					createNewItem(pc, 49247, 1);
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6392));
+				} else if (chance >= 91 && chance <= 95) {
+					createNewItem(pc, 49255, 1);
+					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6390));
+				} else if (chance >= 96 && chance <= 100) {
+					pc.sendPackets(new S_ServerMessage(1101)); // 料理が失敗しました。
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6394));
+				}
+			} else {
+				pc.sendPackets(new S_ServerMessage(1102)); // 料理の材料が足りません。
+			}
+		} else if (cookNo == 20) { // レッサードラゴンの手羽先
+			if (pc.getInventory().checkItem(49048, 1)
+					&& pc.getInventory().checkItem(49243, 1)
+					&& pc.getInventory().checkItem(49264, 1)) {
+				pc.getInventory().consumeItem(49048, 1);
+				pc.getInventory().consumeItem(49243, 1);
+				pc.getInventory().consumeItem(49264, 1);
+				if (chance >= 1 && chance <= 90) {
+					createNewItem(pc, 49248, 1);
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6392));
+				} else if (chance >= 91 && chance <= 95) {
+					createNewItem(pc, 49256, 1);
+					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6390));
+				} else if (chance >= 96 && chance <= 100) {
+					pc.sendPackets(new S_ServerMessage(1101)); // 料理が失敗しました。
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6394));
+				}
+			} else {
+				pc.sendPackets(new S_ServerMessage(1102)); // 料理の材料が足りません。
+			}
+		} else if (cookNo == 21) { // ドレイク燒き
+			if (pc.getInventory().checkItem(49048, 1)
+					&& pc.getInventory().checkItem(49243, 1)
+					&& pc.getInventory().checkItem(49265, 1)) {
+				pc.getInventory().consumeItem(49048, 1);
+				pc.getInventory().consumeItem(49243, 1);
+				pc.getInventory().consumeItem(49265, 1);
+				if (chance >= 1 && chance <= 90) {
+					createNewItem(pc, 49249, 1);
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6392));
+				} else if (chance >= 91 && chance <= 95) {
+					createNewItem(pc, 49257, 1);
+					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6390));
+				} else if (chance >= 96 && chance <= 100) {
+					pc.sendPackets(new S_ServerMessage(1101)); // 料理が失敗しました。
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6394));
+				}
+			} else {
+				pc.sendPackets(new S_ServerMessage(1102)); // 料理の材料が足りません。
+			}
+		} else if (cookNo == 22) { // 深海魚のシチュー
+			if (pc.getInventory().checkItem(49048, 1)
+					&& pc.getInventory().checkItem(49243, 1)
+					&& pc.getInventory().checkItem(49266, 1)) {
+				pc.getInventory().consumeItem(49048, 1);
+				pc.getInventory().consumeItem(49243, 1);
+				pc.getInventory().consumeItem(49266, 1);
+				if (chance >= 1 && chance <= 90) {
+					createNewItem(pc, 49250, 1);
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6392));
+				} else if (chance >= 91 && chance <= 95) {
+					createNewItem(pc, 49258, 1);
+					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6390));
+				} else if (chance >= 96 && chance <= 100) {
+					pc.sendPackets(new S_ServerMessage(1101)); // 料理が失敗しました。
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6394));
+				}
+			} else {
+				pc.sendPackets(new S_ServerMessage(1102)); // 料理の材料が足りません。
+			}
+		} else if (cookNo == 23) { // バシリスクの卵スープ
+			if (pc.getInventory().checkItem(49048, 1)
+					&& pc.getInventory().checkItem(49243, 1)
+					&& pc.getInventory().checkItem(49267, 1)) {
+				pc.getInventory().consumeItem(49048, 1);
+				pc.getInventory().consumeItem(49243, 1);
+				pc.getInventory().consumeItem(49267, 1);
+				if (chance >= 1 && chance <= 90) {
+					createNewItem(pc, 49251, 1);
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6392));
+				} else if (chance >= 91 && chance <= 95) {
+					createNewItem(pc, 49259, 1);
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {

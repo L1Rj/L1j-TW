@@ -89,6 +89,12 @@ public class MpRegeneration extends TimerTask {
 				|| _pc.hasSkillEffect(L1SkillId.COOKING_1_2_S)) {
 			baseMpr += 3;
 		}
+ 		if (_pc.hasSkillEffect(L1SkillId.COOKING_2_4_N)
+				|| _pc.hasSkillEffect(L1SkillId.COOKING_2_4_S)
+				|| _pc.hasSkillEffect(L1SkillId.COOKING_3_5_N)
+				|| _pc.hasSkillEffect(L1SkillId.COOKING_3_5_S)) {
+			baseMpr += 2;
+		}
 
 		int itemMpr = _pc.getInventory().mpRegenPerTick();
 		itemMpr += _pc.getMpr();

@@ -537,7 +537,11 @@ public class C_LoginToServer extends ClientBasePacket {
 					pc.sendPackets(new S_SkillIconGFX(36, remaining_time));
 					pc.setSkillEffect(skillid, remaining_time * 1000);
 				} else if (skillid >= COOKING_1_0_N && skillid <= COOKING_1_6_N
-						|| skillid >= COOKING_1_0_S && skillid <= COOKING_1_6_S) { // 料理(デザートは除く)
+						|| skillid >= COOKING_1_0_S && skillid <= COOKING_1_6_S
+						|| skillid >= COOKING_2_0_N && skillid <= COOKING_2_6_N
+						|| skillid >= COOKING_2_0_S && skillid <= COOKING_2_6_S
+						|| skillid >= COOKING_3_0_N && skillid <= COOKING_3_6_N
+						|| skillid >= COOKING_3_0_S && skillid <= COOKING_3_6_S) { // 料理(デザートは除く)
 					L1Cooking.eatCooking(pc, skillid, remaining_time);
 				} else {
 					L1SkillUse l1skilluse = new L1SkillUse();

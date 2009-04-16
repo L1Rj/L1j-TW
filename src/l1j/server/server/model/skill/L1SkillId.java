@@ -485,23 +485,87 @@ public class L1SkillId {
 
 	public static final int COOKING_1_7_N = 3007;
 
-	public static final int COOKING_1_0_S = 3050;
+	public static final int COOKING_1_0_S = 3008;
 
-	public static final int COOKING_1_1_S = 3051;
+	public static final int COOKING_1_1_S = 3009;
 
-	public static final int COOKING_1_2_S = 3052;
+	public static final int COOKING_1_2_S = 3010;
 
-	public static final int COOKING_1_3_S = 3053;
+	public static final int COOKING_1_3_S = 3011;
 
-	public static final int COOKING_1_4_S = 3054;
+	public static final int COOKING_1_4_S = 3012;
 
-	public static final int COOKING_1_5_S = 3055;
+	public static final int COOKING_1_5_S = 3013;
 
-	public static final int COOKING_1_6_S = 3056;
+	public static final int COOKING_1_6_S = 3014;
 
-	public static final int COOKING_1_7_S = 3057;
+	public static final int COOKING_1_7_S = 3015;
 
-	public static final int COOKING_END = 3057;
+	public static final int COOKING_2_0_N = 3016;
+
+	public static final int COOKING_2_1_N = 3017;
+
+	public static final int COOKING_2_2_N = 3018;
+
+	public static final int COOKING_2_3_N = 3019;
+
+	public static final int COOKING_2_4_N = 3020;
+
+	public static final int COOKING_2_5_N = 3021;
+
+	public static final int COOKING_2_6_N = 3022;
+
+	public static final int COOKING_2_7_N = 3023;
+
+	public static final int COOKING_2_0_S = 3024;
+
+	public static final int COOKING_2_1_S = 3025;
+
+	public static final int COOKING_2_2_S = 3026;
+
+	public static final int COOKING_2_3_S = 3027;
+
+	public static final int COOKING_2_4_S = 3028;
+
+	public static final int COOKING_2_5_S = 3029;
+
+	public static final int COOKING_2_6_S = 3030;
+
+	public static final int COOKING_2_7_S = 3031;
+
+	public static final int COOKING_3_0_N = 3032;
+
+	public static final int COOKING_3_1_N = 3033;
+
+	public static final int COOKING_3_2_N = 3034;
+
+	public static final int COOKING_3_3_N = 3035;
+
+	public static final int COOKING_3_4_N = 3036;
+
+	public static final int COOKING_3_5_N = 3037;
+
+	public static final int COOKING_3_6_N = 3038;
+
+	public static final int COOKING_3_7_N = 3039;
+
+	public static final int COOKING_3_0_S = 3040;
+
+	public static final int COOKING_3_1_S = 3041;
+
+	public static final int COOKING_3_2_S = 3042;
+
+	public static final int COOKING_3_3_S = 3043;
+
+	public static final int COOKING_3_4_S = 3044;
+
+	public static final int COOKING_3_5_S = 3045;
+
+	public static final int COOKING_3_6_S = 3046;
+
+	public static final int COOKING_3_7_S = 3047;
+
+	public static final int COOKING_END = 3047;
 
 	public static final int STATUS_FREEZE = 10071;
 

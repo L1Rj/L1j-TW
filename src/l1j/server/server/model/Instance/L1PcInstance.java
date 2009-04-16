@@ -2686,18 +2686,16 @@ public class L1PcInstance extends L1Character {
 		_callClanHeading = i;
 	}
 
-	
-// 3.0C char-reset
-	private boolean inCharReset = false;
-	
-	public boolean isIsInCharReset(){
-		return inCharReset;
+	private boolean _isInCharReset = false;
+
+	public boolean isInCharReset() {
+		return _isInCharReset;
 	}
-	
-	public void setIsInCharReset(boolean t){
-		inCharReset = t;
+
+	public void setInCharReset(boolean flag) {
+		_isInCharReset = flag;
 	}
-	
+
 	private int _tempLevel = 1;
 
 	public int getTempLevel() {
@@ -2716,5 +2714,5 @@ public class L1PcInstance extends L1Character {
 	public void setTempMaxLevel(int i) {
 		_tempMaxLevel = i;
 	}
-// END
+
 }

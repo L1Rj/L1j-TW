@@ -402,6 +402,27 @@ public class L1Attack {
 			_hitRate -= 20;
 		}
 
+		if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加命中
+				|| _pc.hasSkillEffect(COOKING_2_0_S)) {
+			if (_weaponType != 20 && _weaponType != 62) {
+				_hitRate += 1;
+			}
+		}
+		if (_pc.hasSkillEffect(COOKING_3_2_N) // 料理による追加命中
+				|| _pc.hasSkillEffect(COOKING_3_2_S)) {
+			if (_weaponType != 20 && _weaponType != 62) {
+				_hitRate += 2;
+			}
+		}
+		if (_pc.hasSkillEffect(COOKING_2_3_N) // 料理による追加命中
+				|| _pc.hasSkillEffect(COOKING_2_3_S)
+				|| _pc.hasSkillEffect(COOKING_3_0_N)
+				|| _pc.hasSkillEffect(COOKING_3_0_S)) {
+			if (_weaponType == 20 || _weaponType == 62) {
+				_hitRate += 1;
+			}
+		}
+
 		if (_hitRate < MIN_HITRATE) {
 			_hitRate = MIN_HITRATE;
 		}
@@ -460,6 +481,27 @@ public class L1Attack {
 
 		_hitRate *= 5;
 		_hitRate += _targetNpc.getAc() * 5;
+
+		if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加命中
+				|| _pc.hasSkillEffect(COOKING_2_0_S)) {
+			if (_weaponType != 20 && _weaponType != 62) {
+				_hitRate += 1;
+			}
+		}
+		if (_pc.hasSkillEffect(COOKING_3_2_N) // 料理による追加命中
+				|| _pc.hasSkillEffect(COOKING_3_2_S)) {
+			if (_weaponType != 20 && _weaponType != 62) {
+				_hitRate += 2;
+			}
+		}
+		if (_pc.hasSkillEffect(COOKING_2_3_N) // 料理による追加命中
+				|| _pc.hasSkillEffect(COOKING_2_3_S)
+				|| _pc.hasSkillEffect(COOKING_3_0_N)
+				|| _pc.hasSkillEffect(COOKING_3_0_S)) {
+			if (_weaponType == 20 || _weaponType == 62) {
+				_hitRate += 1;
+			}
+		}
 
 		if (_hitRate > 95) {
 			_hitRate = 95;
@@ -710,8 +752,9 @@ public class L1Attack {
 			dmg += L1WeaponSkill.getWeaponSkillDamage(_pc, _target, _weaponId);
 		}
 
-		if (_weaponType == 0) { // 素手
-			dmg = (_random.nextInt(5) + 4) / 4;
+		if (_weaponType == 0) { // 素手 pc.getStr()
+//			dmg = (_random.nextInt(5) + 4) / 4;	日系原廠
+			dmg = _random.nextInt(5) + _pc.getStr();
 		}
 
 		if (_weaponType2 == 17) { // キーリンク
@@ -722,6 +765,23 @@ public class L1Attack {
 		for (Object dollObject : dollList) {
 			L1DollInstance doll = (L1DollInstance) dollObject;
 			dmg += doll.getDamageByDoll();
+		}
+
+		if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加ダメージ
+				|| _pc.hasSkillEffect(COOKING_2_0_S)
+				|| _pc.hasSkillEffect(COOKING_3_2_N)
+				|| _pc.hasSkillEffect(COOKING_3_2_S)) {
+			if (_weaponType != 20 && _weaponType != 62) {
+				dmg += 1;
+			}
+		}
+		if (_pc.hasSkillEffect(COOKING_2_3_N) // 料理による追加ダメージ
+				|| _pc.hasSkillEffect(COOKING_2_3_S)
+				|| _pc.hasSkillEffect(COOKING_3_0_N)
+				|| _pc.hasSkillEffect(COOKING_3_0_S)) {
+			if (_weaponType == 20 || _weaponType == 62) {
+				dmg += 1;
+			}
 		}
 
 		dmg -= _targetPc.getDamageReductionByArmor(); // 防具によるダメージ輕減
@@ -738,11 +798,27 @@ public class L1Attack {
 				|| _targetPc.hasSkillEffect(COOKING_1_3_S)
 				|| _targetPc.hasSkillEffect(COOKING_1_4_S)
 				|| _targetPc.hasSkillEffect(COOKING_1_5_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_6_S)) {
+				|| _targetPc.hasSkillEffect(COOKING_1_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_0_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_1_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_2_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_3_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_4_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_5_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_0_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_1_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_2_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_3_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_4_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_5_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_6_S)) {
 			dmg -= 5;
 		}
-		if (_targetPc.hasSkillEffect(COOKING_1_7_S)) { // デザートによるダメージ輕減
-			dmg -= 5;
+		if (_targetPc.hasSkillEffect(COOKING_1_7_S) // デザートによるダメージ輕減
+				|| _targetPc.hasSkillEffect(COOKING_2_7_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {
+			dmg -= 5
 		}
 
 		if (_targetPc.hasSkillEffect(REDUCTION_ARMOR)) {
@@ -871,7 +947,8 @@ public class L1Attack {
 		}
 
 		if (_weaponType == 0) { // 素手
-			dmg = (_random.nextInt(5) + 4) / 4;
+//			dmg = (_random.nextInt(5) + 4) / 4;	日系原廠
+			dmg = _random.nextInt(5) + _pc.getStr();
 		}
 
 		if (_weaponType2 == 17) { // キーリンク
@@ -882,6 +959,23 @@ public class L1Attack {
 		for (Object dollObject : dollList) {
 			L1DollInstance doll = (L1DollInstance) dollObject;
 			dmg += doll.getDamageByDoll();
+		}
+
+		if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加ダメージ
+				|| _pc.hasSkillEffect(COOKING_2_0_S)
+				|| _pc.hasSkillEffect(COOKING_3_2_N)
+				|| _pc.hasSkillEffect(COOKING_3_2_S)) {
+			if (_weaponType != 20 && _weaponType != 62) {
+				dmg += 1;
+			}
+		}
+		if (_pc.hasSkillEffect(COOKING_2_3_N) // 料理による追加ダメージ
+				|| _pc.hasSkillEffect(COOKING_2_3_S)
+				|| _pc.hasSkillEffect(COOKING_3_0_N)
+				|| _pc.hasSkillEffect(COOKING_3_0_S)) {
+			if (_weaponType == 20 || _weaponType == 62) {
+				dmg += 1;
+			}
 		}
 
 		dmg -= calcNpcDamageReduction();
@@ -964,10 +1058,26 @@ public class L1Attack {
 				|| _targetPc.hasSkillEffect(COOKING_1_3_S)
 				|| _targetPc.hasSkillEffect(COOKING_1_4_S)
 				|| _targetPc.hasSkillEffect(COOKING_1_5_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_6_S)) {
+				|| _targetPc.hasSkillEffect(COOKING_1_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_0_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_1_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_2_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_3_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_4_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_5_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_0_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_1_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_2_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_3_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_4_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_5_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_6_S)) {
 			dmg -= 5;
 		}
-		if (_targetPc.hasSkillEffect(COOKING_1_7_S)) { // デザートによるダメージ輕減
+		if (_targetPc.hasSkillEffect(COOKING_1_7_S) // デザートによるダメージ輕減
+				|| _targetPc.hasSkillEffect(COOKING_2_7_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {
 			dmg -= 5;
 		}
 

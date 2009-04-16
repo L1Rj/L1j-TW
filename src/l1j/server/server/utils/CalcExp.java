@@ -352,6 +352,14 @@ public class CalcExp {
 				|| pc.hasSkillEffect(L1SkillId.COOKING_1_7_S)) {
 			foodBonus = 1.01;
 		}
+		if (pc.hasSkillEffect(L1SkillId.COOKING_2_7_N)
+				|| pc.hasSkillEffect(L1SkillId.COOKING_2_7_S)) {
+			foodBonus = 1.02;
+		}
+		if (pc.hasSkillEffect(L1SkillId.COOKING_3_7_N)
+				|| pc.hasSkillEffect(L1SkillId.COOKING_3_7_S)) {
+			foodBonus = 1.03;
+		}
 		int add_exp = (int) (exp * exppenalty * Config.RATE_XP * foodBonus);
 		pc.addExp(add_exp);
 	}

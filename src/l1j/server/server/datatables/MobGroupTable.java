@@ -67,7 +67,7 @@ public class MobGroupTable {
 						.getBoolean("remove_group_if_leader_die"));
 				int leaderId = rs.getInt("leader_id");
 				List<L1NpcCount> minions = Lists.newArrayList();
-				for (int i = 1; i <= 5; i++) {
+				for (int i = 1; i <= 7; i++) {
 					int id = rs.getInt("minion" + i + "_id");
 					int count = rs.getInt("minion" + i + "_count");
 					minions.add(new L1NpcCount(id, count));
@@ -76,7 +76,7 @@ public class MobGroupTable {
 						minions, isRemoveGroup);
 				_mobGroupIndex.put(mobGroupId, mobGroup);
 			}
-			_log.config("MOB清單 " + _mobGroupIndex.size() + "件");
+			_log.config("MOBグループリスト " + _mobGroupIndex.size() + "件ロード");
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, "error while creating mobgroup table", e);
 		} finally {

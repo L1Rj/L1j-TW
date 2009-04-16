@@ -35,6 +35,7 @@ import l1j.server.server.serverpackets.S_AddSkill;
 import l1j.server.server.serverpackets.S_CharCreateStatus;
 import l1j.server.server.serverpackets.S_NewCharPacket;
 import l1j.server.server.templates.L1Skills;
+import l1j.server.server.utils.CalcInitHpMp;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
@@ -128,9 +129,6 @@ public class C_CreateChar extends ClientBasePacket {
 	private static void initNewChar(ClientThread client, L1PcInstance pc)
 			throws IOException, Exception {
 
-		short init_hp = 0;
-		short init_mp = 0;
-
 		pc.setId(IdFactory.getInstance().nextId());
 		if (pc.get_sex() == 0) {
 			pc.setClassId(MALE_LIST[pc.getType()]);
@@ -142,142 +140,13 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.setMap(MAPID_LIST[pc.getType()]);
 		pc.setHeading(0);
 		pc.setLawful(0);
-		if (pc.isCrown()) { // 君主
-			init_hp = 14;
-			switch (pc.getWis()) {
-			case 11:
-				init_mp = 2;
-				break;
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				init_mp = 3;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				init_mp = 4;
-				break;
-			default:
-				init_mp = 2;
-				break;
-			}
-		} else if (pc.isKnight()) { // ナイト
-			init_hp = 16;
-			switch (pc.getWis()) {
-			case 9:
-			case 10:
-			case 11:
-				init_mp = 1;
-				break;
-			case 12:
-			case 13:
-				init_mp = 2;
-				break;
-			default:
-				init_mp = 1;
-				break;
-			}
-		} else if (pc.isElf()) { // エルフ
-			init_hp = 15;
-			switch (pc.getWis()) {
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				init_mp = 4;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				init_mp = 6;
-				break;
-			default:
-				init_mp = 4;
-				break;
-			}
-		} else if (pc.isWizard()) { // WIZ
-			init_hp = 12;
-			switch (pc.getWis()) {
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				init_mp = 6;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				init_mp = 8;
-				break;
-			default:
-				init_mp = 6;
-				break;
-			}
-		} else if (pc.isDarkelf()) { // DE
-			init_hp = 12;
-			switch (pc.getWis()) {
-			case 10:
-			case 11:
-				init_mp = 3;
-				break;
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				init_mp = 4;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				init_mp = 6;
-				break;
-			default:
-				init_mp = 3;
-				break;
-			}
-		}else if(pc.isDragonKnight()){// Dragon Knight
-			init_hp = 15;
-			switch (pc.getWis()) {
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				init_mp = 4;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				init_mp = 6;
-				break;
-			default:
-				init_mp = 4;
-				break;
-			}
-		}else if(pc.isIllusionist()){// Illusionist
-			init_hp = 12;
-			switch (pc.getWis()) {
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				init_mp = 6;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				init_mp = 8;
-				break;
-			default:
-				init_mp = 6;
-				break;
-			}
-		}
-		pc.addBaseMaxHp(init_hp);
-		pc.setCurrentHp(init_hp);
-		pc.addBaseMaxMp(init_mp);
-		pc.setCurrentMp(init_mp);
+		
+		int initHp = CalcInitHpMp.calcInitHp(pc);
+		int initMp = CalcInitHpMp.calcInitMp(pc);
+		pc.addBaseMaxHp((short) initHp);
+		pc.setCurrentHp((short) initHp);
+		pc.addBaseMaxMp((short) initMp);
+		pc.setCurrentMp((short) initMp);
 		pc.resetBaseAc();
 		pc.setTitle("");
 		pc.setClanid(0);
