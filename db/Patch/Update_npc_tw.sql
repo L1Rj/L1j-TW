@@ -2512,9 +2512,3 @@ Update npc Set name = '選ばれなかった者' Where npcid = '81206';
 Update npc Set name = '選ばれなかった者' Where npcid = '81207';
 Update npc Set name = '汚れたブロッブ' Where npcid = '81208';
 Update npc Set name = '羅伊' Where npcid = '81209';
-/* 20090412 waja add 新手村 正義者 邪惡者正義值*/
-Update npc Set lawful = '65535' Where npcid = '70503';
-Update npc Set lawful = '-65535' Where npcid = '70511';
-/* 守護神行走速度降低 */
-Update npc Set passispeed = '240' Where npcid = '70848';
-Update npc Set passispeed = '240' Where npcid = '70850';
