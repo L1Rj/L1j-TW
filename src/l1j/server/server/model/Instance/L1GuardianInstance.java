@@ -43,6 +43,7 @@ import l1j.server.server.serverpackets.S_NPCTalkReturn;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.CalcExp;
+import l1j.server.server.utils.RandomArrayList;
 
 public class L1GuardianInstance extends L1NpcInstance {
 	/**
@@ -113,7 +114,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 
 			if (attack.calcHit()) {
 				if (getNpcTemplate().get_npcId() == 70848) { // エント
-					int chance = _random.nextInt(100) + 1;
+					byte chance =  RandomArrayList.getArray100List();
 					if (chance <= 10) {
 						player.getInventory().storeItem(40506, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
@@ -129,7 +130,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					}
 				}
 				if (getNpcTemplate().get_npcId() == 70850) { // パン
-					int chance = _random.nextInt(100) + 1;
+					byte chance =  RandomArrayList.getArray100List();
 					if (chance <= 30) {
 						player.getInventory().storeItem(40519, 5);
 						player.sendPackets(new S_ServerMessage(143, "$753",
@@ -137,7 +138,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					}
 				}
 				if (getNpcTemplate().get_npcId() == 70846) { // アラクネ
-					int chance = _random.nextInt(100) + 1;
+					byte chance =  RandomArrayList.getArray100List();
 					if (chance <= 30) {
 						player.getInventory().storeItem(40503, 1);
 						player.sendPackets(new S_ServerMessage(143, "$752",

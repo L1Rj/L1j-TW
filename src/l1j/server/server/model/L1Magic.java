@@ -36,6 +36,7 @@ import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1Skills;
+import l1j.server.server.utils.RandomArrayList;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1Magic {
@@ -634,7 +635,7 @@ public class L1Magic {
 
 		if (_targetPc.hasSkillEffect(COUNTER_MIRROR)) {
 			if (_calcType == PC_PC) {
-				if (_targetPc.getWis() >= _random.nextInt(100)) {
+				if (_targetPc.getWis() >= RandomArrayList.getArray100List()) {
 					_pc.sendPackets(new S_DoActionGFX(_pc.getId(),
 							ActionCodes.ACTION_Damage));
 					_pc.broadcastPacket(new S_DoActionGFX(_pc.getId(),
@@ -653,7 +654,7 @@ public class L1Magic {
 						|| npcId == 45684) {
 				} else if (!_npc.getNpcTemplate().get_IsErase()) {
 				} else {
-					if (_targetPc.getWis() >= _random.nextInt(100)) {
+					if (_targetPc.getWis() >= RandomArrayList.getArray100List()) {
 						_npc.broadcastPacket(new S_DoActionGFX(_npc.getId(),
 								ActionCodes.ACTION_Damage));
 						_targetPc.sendPackets(new S_SkillSound(_targetPc

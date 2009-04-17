@@ -43,6 +43,7 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Pet;
 import l1j.server.server.templates.L1PetType;
+import l1j.server.server.utils.RandomArrayList;
 
 public class L1PetInstance extends L1NpcInstance {
 
@@ -88,8 +89,8 @@ public class L1PetInstance extends L1NpcInstance {
 				_currentPetStatus = 3;
 				return true;
 			}
-			int locx = _petMaster.getX() + _random.nextInt(1);
-			int locy = _petMaster.getY() + _random.nextInt(1);
+			int locx = _petMaster.getX() + RandomArrayList.getArray3List() - (byte) 1;
+			int locy = _petMaster.getY() + RandomArrayList.getArray3List() - (byte) 1;
 			int dir = moveDirection(locx, locy);
 			if (dir == -1) { // 主人を見失うかはなれたらその場で休憩狀態に
 				_currentPetStatus = 3;
@@ -139,8 +140,8 @@ public class L1PetInstance extends L1NpcInstance {
 		setTempLawful(l1pet.get_lawful());
 
 		setMaster(master);
-		setX(master.getX() + _random.nextInt(5) - 2);
-		setY(master.getY() + _random.nextInt(5) - 2);
+		setX(master.getX() + RandomArrayList.getArray5List() - (byte) 2);
+		setY(master.getY() + RandomArrayList.getArray5List() - (byte) 2);
 		setMap(master.getMapId());
 		setHeading(5);
 		setLightSize(template.getLightSize());

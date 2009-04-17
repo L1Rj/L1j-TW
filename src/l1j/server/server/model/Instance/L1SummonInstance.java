@@ -23,6 +23,7 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_SummonPack;
 import l1j.server.server.templates.L1Npc;
+import l1j.server.server.utils.RandomArrayList;
 
 public class L1SummonInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
@@ -117,8 +118,8 @@ public class L1SummonInstance extends L1NpcInstance {
 				new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);
-		setX(master.getX() + _random.nextInt(5) - 2);
-		setY(master.getY() + _random.nextInt(5) - 2);
+		setX(master.getX() + RandomArrayList.getArray5List() - (byte) 2);
+		setY(master.getY() + RandomArrayList.getArray5List() - (byte) 2);
 		setMap(master.getMapId());
 		setHeading(5);
 		setLightSize(template.getLightSize());

@@ -68,6 +68,7 @@ import l1j.server.server.model.gametime.L1GameTimeClock;
 import l1j.server.server.model.item.L1TreasureBox;
 import l1j.server.server.model.map.L1WorldMap;
 import l1j.server.server.model.trap.L1WorldTraps;
+import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.SystemUtil;
 
 // Referenced classes of package l1j.server.server:
@@ -158,6 +159,9 @@ public class GameServer extends Thread {
 		L1WorldMap.getInstance();
 		_loginController = LoginController.getInstance();
 		_loginController.setMaxAllowedOnlinePlayers(maxOnlineUsers);
+		
+		// 隨機列表生成
+		RandomArrayList.setArrayList();
 
 		// 全キャラクターネームロード
 		CharacterTable.getInstance().loadAllCharName();

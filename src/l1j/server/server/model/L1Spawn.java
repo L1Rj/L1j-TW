@@ -39,6 +39,7 @@ import l1j.server.server.model.gametime.L1GameTimeClock;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1SpawnTime;
 import l1j.server.server.types.Point;
+import l1j.server.server.utils.RandomArrayList;
 
 public class L1Spawn extends L1GameTimeAdapter {
 	private static Logger _log = Logger.getLogger(L1Spawn.class.getName());
@@ -352,7 +353,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 			if (npcId == 45488 && getMapId() == 9) { // カスパー
 				mob.setMap((short) (getMapId() + _random.nextInt(2)));
 			} else if (npcId == 45601 && getMapId() == 11) { // デスナイト
-				mob.setMap((short) (getMapId() + _random.nextInt(3)));
+				mob.setMap((short) (getMapId() + RandomArrayList.getArray3List()));
 			} else {
 				mob.setMap(getMapId());
 			}

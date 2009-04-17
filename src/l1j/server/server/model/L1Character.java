@@ -298,82 +298,25 @@ public class L1Character extends L1Object {
 	 *            座標のY值
 	 * @return 指定された座標に對する方向
 	 */
-	public int targetDirection(int tx, int ty) { 
-		float dis_x = Math.abs(getX() - tx); // Ｘ方向のターゲットまでの距離
-		float dis_y = Math.abs(getY() - ty); // Ｙ方向のターゲットまでの距離
-		float dis = Math.max(dis_x, dis_y); // ターゲットまでの距離
-		if (dis == 0) {
-			return getHeading(); // 同じ位置ならいま向いてる方向を返しとく
-		}
-		int avg_x = (int) Math.floor((dis_x / dis) + 0.59f); // 上下左右がちょっと優先な丸め
-		int avg_y = (int) Math.floor((dis_y / dis) + 0.59f); // 上下左右がちょっと優先な丸め
-
-		int dir_x = 0;
-		int dir_y = 0;
-		if (getX() < tx) {
-			dir_x = 1;
-		}
-		if (getX() > tx) {
-			dir_x = -1;
-		}
-		if (getY() < ty) {
-			dir_y = 1;
-		}
-		if (getY() > ty) {
-			dir_y = -1;
-		}
-
-		if (avg_x == 0) {
-			dir_x = 0;
-		}
-		if (avg_y == 0) {
-			dir_y = 0;
-		}
-
-		if (dir_x == 1 && dir_y == -1) {
-			return 1; // 上
-		}
-		if (dir_x == 1 && dir_y == 0) {
-			return 2; // 右上
-		}
-		if (dir_x == 1 && dir_y == 1) {
-			return 3; // 右
-		}
-		if (dir_x == 0 && dir_y == 1) {
-			return 4; // 右下
-		}
-		if (dir_x == -1 && dir_y == 1) {
-			return 5; // 下
-		}
-		if (dir_x == -1 && dir_y == 0) {
-			return 6; // 左下
-		}
-		if (dir_x == -1 && dir_y == -1) {
-			return 7; // 左
-		}
-		if (dir_x == 0 && dir_y == -1) {
-			return 0; // 左上
-		}
-		return getHeading(); // ここにはこない。はず
-	}
-		/*// 4.15 Start
+	public int targetDirection(int tx, int ty) {
+		// 4.15 Start
 		float dis_x = tx - getX(); // Ｘ方向の距離 >0 意謂正向軸
 		float dis_y = ty - getY(); // Ｙ方向の距離 <0 負向軸
 		if (dis_y != 0) {
 			byte deff = (byte) Math.floor((dis_x / dis_y) * 2);
-			if (deff >= -1 && deff <= 1) {
+			if (deff > -1 && deff < 1) {
 				if (dis_y > 0) {
 					return 4;
 				} else if (dis_y < 0) {
 					return 0;
 				}
-			} else if (deff > 1 && deff <= 4) {
+			} else if (deff >= 1 && deff < 4) {
 				if (dis_y > 0) {
 					return 3;
 				} else {
 					return 7;
 				}
-			} else if (deff < -1 && deff >= -4) {
+			} else if (deff <= -1 && deff > -4) {
 				if (dis_y > 0) {
 					return 5;
 				} else {
@@ -383,11 +326,11 @@ public class L1Character extends L1Object {
 		} // deff = 1 <-> 2*tan(26.5) ; deff = 4 <-> 2*tan(63.5)
 		if (dis_x > 0) {
 			return 2;
-		} else if (dis_x < 0){
+		} else if (dis_x < 0) {
 			return 6;
 		}
 		return getHeading(); // ここにはこない。はず
-	} // 4.15 End*/
+	} // 4.15 End
 
 	/**
 	 * 指定された座標までの直線上に、障害物が存在*しないか*を返す。

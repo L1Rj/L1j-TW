@@ -42,6 +42,7 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_UseArrowSkill;
 import l1j.server.server.serverpackets.S_UseAttackSkill;
+import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.types.Point;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
@@ -443,7 +444,7 @@ public class L1Attack {
 		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
 			_hitRate = 0;
 		}
-		int rnd = _random.nextInt(100) + 1;
+		byte rnd = RandomArrayList.getArray100List();
 		if (_weaponType == 20 && _hitRate > rnd) { // 弓の場合、ヒットした場合でもERでの回避を再度行う。
 			return calcErEvasion();
 		}
@@ -563,7 +564,7 @@ public class L1Attack {
 			_hitRate = 0;
 		}
 
- 		int rnd = _random.nextInt(100) + 1;
+		byte rnd = RandomArrayList.getArray100List();
 
 		return _hitRate >= rnd;
 	}
@@ -613,7 +614,7 @@ public class L1Attack {
 			_hitRate = 0;
 		}
 
-		int rnd = _random.nextInt(100) + 1;
+		byte rnd = RandomArrayList.getArray100List();
 
 		// NPCの攻擊レンジが10以上の場合で、2以上離れている場合弓攻擊とみなす
 		if (_npc.getNpcTemplate().get_ranged() >= 10
@@ -652,7 +653,7 @@ public class L1Attack {
 			_hitRate = 5; // 攻擊者Lvが５未滿の時は命中率５％
 		}
 
-		int rnd = _random.nextInt(100) + 1;
+		byte rnd = RandomArrayList.getArray100List();
 		return _hitRate >= rnd;
 	}
 
@@ -660,7 +661,7 @@ public class L1Attack {
 	private boolean calcErEvasion() {
 		int er = _targetPc.getEr();
 
-		int rnd = _random.nextInt(100) + 1;
+		byte rnd = RandomArrayList.getArray100List();
 		return er < rnd;
 	}
 
@@ -684,7 +685,7 @@ public class L1Attack {
 		int weaponMaxDamage = _weaponSmall;
 
 		int weaponDamage = 0;
-		if (_weaponType == 58 && (_random.nextInt(100) + 1) <=
+		if (_weaponType == 58 && RandomArrayList.getArray100List() <=
 				_weaponDoubleDmgChance) { // クリティカルヒット
 			weaponDamage = weaponMaxDamage;
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3671));
@@ -703,12 +704,12 @@ public class L1Attack {
 		int weaponTotalDamage = weaponDamage + _weaponAddDmg + _weaponEnchant;
 		if (_pc.hasSkillEffect(DOUBLE_BRAKE)
 				&& (_weaponType == 54 || _weaponType == 58)) {
-			if ((_random.nextInt(100) + 1) <= 33) {
+			if (RandomArrayList.getArray100List() <= 33) {
 				weaponTotalDamage *= 2;
 			}
 		}
 
-		if (_weaponType == 54 && (_random.nextInt(100) + 1) <=
+		if (_weaponType == 54 && RandomArrayList.getArray100List() <=
 				_weaponDoubleDmgChance) { // ダブルヒット
 			weaponTotalDamage *= 2;
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3398));
@@ -730,7 +731,7 @@ public class L1Attack {
 				}
 				dmg = dmg + _random.nextInt(add_dmg) + 1;
 			} else if (_weaponId == 190) { // サイハの弓
-				dmg = dmg + _random.nextInt(15) + 1;
+				dmg = dmg + RandomArrayList.getArray9List() + RandomArrayList.getArray7List();
 			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = _sting.getItem().getDmgSmall();
@@ -754,7 +755,7 @@ public class L1Attack {
 
 		if (_weaponType == 0) { // 素手 pc.getStr()
 //			dmg = (_random.nextInt(5) + 4) / 4;	日系原廠
-			dmg = _random.nextInt(5) + _pc.getStr();
+			dmg = RandomArrayList.getArray7List() + _pc.getStr() / 2;
 		}
 
 		if (_weaponType2 == 17) { // キーリンク
@@ -864,7 +865,7 @@ public class L1Attack {
 		}
 
 		int weaponDamage = 0;
-		if (_weaponType == 58 && (_random.nextInt(100) + 1) <=
+		if (_weaponType == 58 && RandomArrayList.getArray100List() <=
 				_weaponDoubleDmgChance) { // クリティカルヒット
 			weaponDamage = weaponMaxDamage;
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3671));
@@ -883,13 +884,13 @@ public class L1Attack {
 		int weaponTotalDamage = weaponDamage + _weaponAddDmg + _weaponEnchant;
 		if (_pc.hasSkillEffect(DOUBLE_BRAKE)
 				&& (_weaponType == 54 || _weaponType == 58)) {
-			if ((_random.nextInt(100) + 1) <= 33) {
+			if (RandomArrayList.getArray100List() <= 33) {
 				weaponTotalDamage *= 2;
 			}
 		}
 
 		weaponTotalDamage += calcMaterialBlessDmg(); // 銀祝福ダメージボーナス
-		if (_weaponType == 54 && (_random.nextInt(100) + 1) <=
+		if (_weaponType == 54 && RandomArrayList.getArray100List() <=
 				_weaponDoubleDmgChance) { // ダブルヒット
 			weaponTotalDamage *= 2;
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3398));
@@ -920,7 +921,7 @@ public class L1Attack {
 				}
 				dmg = dmg + _random.nextInt(add_dmg) + 1;
 			} else if (_weaponId == 190) { // サイハの弓
-				dmg = dmg + _random.nextInt(15) + 1;
+				dmg = dmg + RandomArrayList.getArray9List() + RandomArrayList.getArray7List();
 			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = 0;
@@ -948,7 +949,7 @@ public class L1Attack {
 
 		if (_weaponType == 0) { // 素手
 //			dmg = (_random.nextInt(5) + 4) / 4;	日系原廠
-			dmg = _random.nextInt(5) + _pc.getStr();
+			dmg = RandomArrayList.getArray7List() + _pc.getStr()/2;
 		}
 
 		if (_weaponType2 == 17) { // キーリンク
@@ -1183,7 +1184,7 @@ public class L1Attack {
 				|| (_pc.hasSkillEffect(ELEMENTAL_FIRE)
 						&& _weaponType != 20 && _weaponType != 62
 						&& _weaponType2 !=17)) {
-			if ((_random.nextInt(100) + 1) <= 33) {
+			if (RandomArrayList.getArray100List() <= 33) {
 				double tempDmg = dmg;
 				if (_pc.hasSkillEffect(FIRE_WEAPON)) {
 					tempDmg -= 4;
@@ -1249,7 +1250,7 @@ public class L1Attack {
 	// ●●●● ＮＰＣの毒攻擊を付加 ●●●●
 	private void addNpcPoisonAttack(L1Character attacker, L1Character target) {
 		if (_npc.getNpcTemplate().get_poisonatk() != 0) { // 毒攻擊あり
-			if (15 >= _random.nextInt(100) + 1) { // 15%の確率で毒攻擊
+			if (15 >= RandomArrayList.getArray100List()) { // 15%の確率で毒攻擊
 				if (_npc.getNpcTemplate().get_poisonatk() == 1) { // 通常毒
 					// 3秒周期でダメージ5
 					L1DamagePoison.doInfection(attacker, target, 3000, 5);
@@ -1283,7 +1284,7 @@ public class L1Attack {
 
 	// ■■■■ ＰＣの毒攻擊を付加 ■■■■
 	public void addPcPoisonAttack(L1Character attacker, L1Character target) {
-		int chance = _random.nextInt(100) + 1;
+		byte chance = RandomArrayList.getArray100List();
 		if ((_weaponId == 13 || _weaponId == 44 // FOD、古代のダークエルフソード
 				|| (_weaponId != 0 && _pc.hasSkillEffect(ENCHANT_VENOM))) // エンチャント
 																			// ベノム中
@@ -1681,7 +1682,7 @@ public class L1Attack {
 		}
 		// 通常の武器‧咒われた武器
 		if ((_weaponBless == 1 || _weaponBless == 2)
-				&& ((_random.nextInt(100) + 1) < chance)) {
+				&& (RandomArrayList.getArray100List() < chance)) {
 			// \f1あなたの%0が損傷しました。
 			_pc.sendPackets(new S_ServerMessage(268, weapon.getLogName()));
 			_pc.getInventory().receiveDamage(weapon);

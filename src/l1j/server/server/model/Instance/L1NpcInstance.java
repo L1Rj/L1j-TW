@@ -63,6 +63,7 @@ import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1NpcChat;
 import l1j.server.server.types.Point;
+import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.TimerPool;
 import static l1j.server.server.model.item.L1ItemId.*;
 
@@ -435,7 +436,7 @@ public class L1NpcInstance extends L1Character {
 					}
 
 					if (getNpcTemplate().is_teleport()
-							&& 20 > _random.nextInt(100)
+							&& 20 > RandomArrayList.getArray100List()
 							&& getCurrentMp() >= 10 && distance > 6
 							&& distance < 15) { // テレポート移動
 						if (nearTeleport(target.getX(), target.getY()) == true) {
@@ -683,12 +684,12 @@ public class L1NpcInstance extends L1Character {
 					// 移動する予定の距離を移動し終えたら、新たに距離と方向を決める
 					// そうでないなら、移動する予定の距離をデクリメント
 					if (_randomMoveDistance == 0) {
-						_randomMoveDistance = _random.nextInt(5) + 1;
-						_randomMoveDirection = _random.nextInt(20);
+						_randomMoveDistance = RandomArrayList.getArray5List() + (byte) 1;
+						_randomMoveDirection = RandomArrayList.getArray9List()+RandomArrayList.getArray7List()+RandomArrayList.getArray5List();
 						// ホームポイントから離れすぎないように、一定の確率でホームポイントの方向に補正
 						if (getHomeX() != 0 && getHomeY() != 0
 								&& _randomMoveDirection < 8
-								&& _random.nextInt(3) == 0) {
+								&& RandomArrayList.getArray3List() == 0) {
 							_randomMoveDirection = moveDirection(getHomeX(),
 									getHomeY());
 						}
@@ -1831,8 +1832,8 @@ public class L1NpcInstance extends L1Character {
 		for (int i = 1; i < 3; i++){
 			tempx = 0;
 			tempy = 0;
-			tempx = nx + _random.nextInt(7) - 3;
-			tempy = ny + _random.nextInt(7) - 3;
+			tempx = nx + RandomArrayList.getArray7List() - 3;
+			tempy = ny + RandomArrayList.getArray7List() - 3;
 			if (getMap().isPassable(tempx, tempy)) {
 				teleport(tempx, tempy, 0);
 				setCurrentMp(getCurrentMp() - 10);

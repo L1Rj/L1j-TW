@@ -43,6 +43,7 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillBrave;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.CalcExp;
+import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.datatables.NPCTalkDataTable;
 import l1j.server.server.serverpackets.S_NPCTalkReturn;
 
@@ -642,7 +643,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				|| npcid == 45161 // スパルトイ
 				|| npcid == 45181 // スパルトイ
 				|| npcid == 45455) { // デッドリースパルトイ
-			int rnd = _random.nextInt(3);
+			byte rnd = RandomArrayList.getArray3List();
 			if (1 > rnd) {
 				setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_SINK);
 				setStatus(13);
@@ -651,7 +652,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				|| npcid == 45126 // ストーンゴーレム
 				|| npcid == 45134 // ストーンゴーレム
 				|| npcid == 45281) { // ギランストーンゴーレム
-			int rnd = _random.nextInt(3);
+			byte rnd = RandomArrayList.getArray3List();
 			if (1 > rnd) {
 				setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_SINK);
 				setStatus(4);

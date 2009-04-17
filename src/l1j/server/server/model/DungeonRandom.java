@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.SQLUtil;
 import java.util.Random;
 
@@ -126,7 +127,7 @@ public class DungeonRandom {
 		String key = new StringBuilder().append(mapId).append(locX)
 				.append(locY).toString();
 		if (_dungeonMap.containsKey(key)) {
-			int rnd = _random.nextInt(5);
+			byte rnd = RandomArrayList.getArray5List();
 			NewDungeonRandom newDungeonRandom = _dungeonMap.get(key);
 			short newMap = newDungeonRandom._newMapId[rnd];
 			int newX = newDungeonRandom._newX[rnd];

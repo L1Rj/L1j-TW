@@ -28,6 +28,7 @@ import l1j.server.server.model.Instance.L1MonsterInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.templates.L1MobGroup;
 import l1j.server.server.templates.L1NpcCount;
+import l1j.server.server.utils.RandomArrayList;
 
 // Referenced classes of package l1j.server.server.model:
 // L1MobGroupSpawn
@@ -97,8 +98,8 @@ public class L1MobGroupSpawn {
 			mob.setMovementDistance(leader.getMovementDistance());
 			mob.setRest(leader.isRest());
 
-			mob.setX(leader.getX() + _random.nextInt(5) - 2);
-			mob.setY(leader.getY() + _random.nextInt(5) - 2);
+			mob.setX(leader.getX() + RandomArrayList.getArray100List() - (byte) 2);
+			mob.setY(leader.getY() + RandomArrayList.getArray100List() - (byte) 2);
 			// マップ外、障害物上、畫面內沸き不可で畫面內にPCがいる場合、リーダーと同じ座標
 			if (!canSpawn(mob)) {
 				mob.setX(leader.getX());

@@ -31,6 +31,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_DollPack;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1Npc;
+import l1j.server.server.utils.RandomArrayList;
 
 public class L1DollInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
@@ -98,8 +99,8 @@ public class L1DollInstance extends L1NpcInstance {
 				new DollTimer(), DOLL_TIME);
 
 		setMaster(master);
-		setX(master.getX() + _random.nextInt(5) - 2);
-		setY(master.getY() + _random.nextInt(5) - 2);
+		setX(master.getX() + RandomArrayList.getArray5List() - (byte) 2);
+		setY(master.getY() + RandomArrayList.getArray5List() - (byte) 2);
 		setMap(master.getMapId());
 		setHeading(5);
 		setLightSize(template.getLightSize());
@@ -170,7 +171,7 @@ public class L1DollInstance extends L1NpcInstance {
 		int damage = 0;
 		int dollType = getDollType();
 		if (dollType == DOLLTYPE_WAREWOLF || dollType == DOLLTYPE_CRUSTANCEAN) {
-			int chance = _random.nextInt(100) + 1;
+			byte chance =  RandomArrayList.getArray100List();
 			if (chance <= 3) {
 				damage = 15;
 				if (_master instanceof L1PcInstance) {
@@ -207,7 +208,7 @@ public class L1DollInstance extends L1NpcInstance {
 		int damageReduction = 0;
 		int dollType = getDollType();
 		if (dollType == DOLLTYPE_GOLEM) {
-			int chance = _random.nextInt(100) + 1;
+			byte chance =  RandomArrayList.getArray100List();
 			if (chance <= 4) {
 				damageReduction = 15;
 			}

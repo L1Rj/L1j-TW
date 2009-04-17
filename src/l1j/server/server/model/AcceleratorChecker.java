@@ -28,6 +28,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_Disconnect;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SystemMessage;
+import l1j.server.server.utils.RandomArrayList;
 
 /**
  * 加速器の使用をチェックするクラス。

@@ -38,6 +38,7 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_UseAttackSkill;
 import l1j.server.server.templates.L1Skills;
+import l1j.server.server.utils.RandomArrayList;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
@@ -140,7 +141,7 @@ public class L1WeaponSkill {
 			return 0;
 		}
 
-		int chance = _random.nextInt(100) + 1;
+		byte chance = RandomArrayList.getArray100List();
 		if (weaponSkill.getProbability() < chance) {
 			return 0;
 		}
@@ -248,7 +249,7 @@ public class L1WeaponSkill {
 	public static double getBaphometStaffDamage(L1PcInstance pc,
 			L1Character cha) {
 		double dmg = 0;
-		int chance = _random.nextInt(100) + 1;
+		byte chance = RandomArrayList.getArray100List();
 		if (14 >= chance) {
 			int locx = cha.getX();
 			int locy = cha.getY();
@@ -270,7 +271,7 @@ public class L1WeaponSkill {
 	public static double getDiceDaggerDamage(L1PcInstance pc,
 			L1PcInstance targetPc, L1ItemInstance weapon) {
 		double dmg = 0;
-		int chance = _random.nextInt(100) + 1;
+		byte chance = RandomArrayList.getArray100List();
 		if (3 >= chance) {
 			dmg = targetPc.getCurrentHp() * 2 / 3;
 			if (targetPc.getCurrentHp() - dmg < 0) {
@@ -343,7 +344,7 @@ public class L1WeaponSkill {
 		if (isFreeze(cha)) { // 凍結狀態orカウンターマジック中
 			return;
 		}
-		if ((_random.nextInt(100) + 1) <= 2) {
+		if (RandomArrayList.getArray100List() <= 2) {
 			L1EffectSpawn.getInstance().spawnEffect(81182, fettersTime,
 					cha.getX(), cha.getY(), cha.getMapId());
 			if (cha instanceof L1PcInstance) {
@@ -373,7 +374,7 @@ public class L1WeaponSkill {
 
 		// MRによるダメージ輕減
 		int mr = cha.getMr();
-		int rnd = _random.nextInt(100) + 1;
+		byte rnd = RandomArrayList.getArray100List();
 		if (mr >= rnd) {
 			dmg /= 2;
 		}
