@@ -51,8 +51,8 @@ public class C_AuthLogin extends ClientBasePacket {
 			for (ClientThread tempClient : LoginController.getInstance()
 					.getAllAccounts()) {
 				if (ip.equalsIgnoreCase(tempClient.getIp())) {
-					_log.info("2PCのログインを拒否しました。account="
-							+ accountName + " host=" + host);
+					_log.info("拒絕兩台電腦同時登入。帳號="
+							+ accountName + " 來源=" + host);
 					client.sendPacket(new S_LoginResult(
 							S_LoginResult.REASON_USER_OR_PASS_WRONG));
 					return;
@@ -74,7 +74,7 @@ public class C_AuthLogin extends ClientBasePacket {
 			return;
 		}
 		if (account.isBanned()) { // BANアカウント
-			_log.info("BANアカウントのログインを拒否しました。account=" + accountName + " host="
+			_log.info("拒絕禁止列表(BAN List)中的帳號登入。帳號=" + accountName + " 來源="
 					+ host);
 			client.sendPacket(new S_LoginResult(
 					S_LoginResult.REASON_USER_OR_PASS_WRONG));
@@ -89,13 +89,13 @@ public class C_AuthLogin extends ClientBasePacket {
 			client.sendPacket(new S_CommonNews());
 		} catch (GameServerFullException e) {
 			client.kick();
-			_log.info("接續人數上限に達している為(" + client.getHostname()
-					+ ")のログインを拒否し、切斷しました。");
+			_log.info("因為登入人數到達上限(" + client.getHostname()
+					+ ")所以連線中斷。");
 			return;
 		} catch (AccountAlreadyLoginException e) {
 			client.kick();
-			_log.info("同一IDでの重複接續の為(" + client.getHostname()
-					+ ")との接續を強制切斷しました。");
+			_log.info("因為相同帳號同時登入(" + client.getHostname()
+					+ ")所以強制切斷連線。");
 			return;
 		}
 	}

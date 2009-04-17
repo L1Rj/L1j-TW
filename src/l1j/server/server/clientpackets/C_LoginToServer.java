@@ -89,7 +89,7 @@ public class C_LoginToServer extends ClientBasePacket {
 
 		if (client.getActiveChar() != null) {
 			_log.info("ID(" + client.getHostname()
-					+ ")因重覆連線而遭服務器強制切斷連線。");
+					+ ")因重覆連線而遭伺服器強制切斷連線。");
 			client.close();
 			return;
 		}
@@ -97,15 +97,15 @@ public class C_LoginToServer extends ClientBasePacket {
 		L1PcInstance pc = L1PcInstance.load(charName);
 		if (pc == null || !login.equals(pc.getAccountName())) {
 			_log.info("【無效請求】 帳號=" + login + " 角色=" + charName 
-					+ " 來原=" + client.getHostname());
+					+ " 來源=" + client.getHostname());
 			client.close();
 			return;
 		}
 
 		if (Config.LEVEL_DOWN_RANGE != 0) {
 			if (pc.getHighLevel() - pc.getLevel() >= Config.LEVEL_DOWN_RANGE) {
-				_log.info("【超越容許要求而拒絕進入要求】 帳號=" + login + " 角色="
-						+ charName + " 來原=" + client.getHostname());
+				_log.info("【超過等級容許限制拒絕登入】 帳號=" + login + " 角色="
+						+ charName + " 來源=" + client.getHostname());
 				client.kick();
 				return;
 			}
