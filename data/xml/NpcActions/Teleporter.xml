@@ -1156,8 +1156,55 @@
 	<Action Name="teleport si-in" NpcId="50083">
 		<Teleport X="32778" Y="32779" Map="68" Heading="2" Price="0"/>
 	</Action>
-	<!-- 歌唱之島 -> 龍騎士村 -->
-	<Action Name="teleport dragonknight island-in" NpcId="50083">
-		<Teleport X="32790" Y="32838" Map="1001" Heading="2" Price="0"/>
+	<!-- シルベリア シャリエル -->
+	<Action Name="teleport silveria-silver" NpcId="80146">
+		<Teleport X="33080" Y="33386" Map="4" Heading="5" Price="132"/>
+	</Action>
+	<Action Name="teleport silveria-kent" NpcId="80146">
+		<Teleport X="33050" Y="32782" Map="4" Heading="5" Price="55"/>
+	</Action>
+	<Action Name="teleport silveria-woods" NpcId="80146">
+		<Teleport X="32640" Y="33203" Map="4" Heading="5" Price="55"/>
+	</Action>
+	<Action Name="teleport silveria-heine" NpcId="80146">
+		<Teleport X="33612" Y="33257" Map="4" Heading="5" Price="55"/>
+	</Action>
+	<Action Name="teleport silveria-gludin" NpcId="80146">
+		<Teleport X="32608" Y="32734" Map="4" Heading="5" Price="132"/>
+	</Action>
+	<Action Name="teleport silveria-giran" NpcId="80146">
+		<Teleport X="33438" Y="32796" Map="4" Heading="5" Price="132"/>
+	</Action>
+	<Action Name="teleport silveria-aden" NpcId="80146">
+		<Teleport X="33965" Y="33253" Map="4" Heading="5" Price="132"/>
+	</Action>
+	<Action Name="teleport silveria-willow" NpcId="80146">
+		<Teleport X="32715" Y="32448" Map="4" Heading="5" Price="198"/>
+	</Action>
+	<Action Name="teleport silveria-werldern" NpcId="80146">
+		<Teleport X="33709" Y="32500" Map="4" Heading="5" Price="198"/>
+	</Action>
+	<Action Name="teleport silveria-oren" NpcId="80146">
+		<Teleport X="34062" Y="32278" Map="4" Heading="5" Price="246"/>
+	</Action>
+	<Action Name="teleport silveria-lowful" NpcId="80146">
+		<Teleport X="33118" Y="32933" Map="4" Heading="5" Price="330"/>
+	</Action>
+	<Action Name="teleport silveria-chaos" NpcId="80146">
+		<Teleport X="32885" Y="32652" Map="4" Heading="5" Price="330"/>
+	</Action>
+	<Action Name="teleport silveria-island" NpcId="80146">
+		<Teleport X="32583" Y="32924" Map="0" Heading="5" Price="770"/>
+	</Action>
+	<Action Name="teleport silveria-diad" NpcId="80146">
+		<Teleport X="32828" Y="32900" Map="320" Heading="5" Price="7480"/>
+	</Action>
+	<!-- シルベリア行き メット -->
+	<Action Name="teleport silver-silveria" NpcId="50056">
+		<Teleport X="32841" Y="32856" Map="1000" Heading="2" Price="1000"/>
+	</Action>
+	<!-- シルベリア行き アスター -->
+	<Action Name="teleport gludin-silveria" NpcId="50024">
+		<Teleport X="32841" Y="32856" Map="1000" Heading="2" Price="1000"/>
 	</Action>
 </NpcActionList>

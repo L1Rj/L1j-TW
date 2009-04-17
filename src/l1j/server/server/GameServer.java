@@ -38,6 +38,7 @@ import l1j.server.server.datatables.GetBackRestartTable;
 import l1j.server.server.datatables.IpTable;
 import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.datatables.LightSpawnTable;
+import l1j.server.server.datatables.MailTable;
 import l1j.server.server.datatables.MapsTable;
 import l1j.server.server.datatables.MobGroupTable;
 import l1j.server.server.datatables.NpcActionTable;
@@ -255,6 +256,7 @@ public class GameServer extends Thread {
 		FurnitureSpawnTable.getInstance();
 		NpcChatTable.getInstance();
 		LightSpawnTable.getInstance();
+		MailTable.getInstance();
 
 		System.out.println("伺服器狀態: 啟動完成");
 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());

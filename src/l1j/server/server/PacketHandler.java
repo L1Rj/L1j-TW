@@ -383,6 +383,14 @@ public class PacketHandler {
 			new C_Ship(abyte0, _client);
  			break;
 
+		case C_OPCODE_MAIL:
+			new C_Mail(abyte0, _client);
+			break;
+
+		case C_OPCODE_CHARRESET:
+			new C_CharReset(abyte0, _client);
+			break;
+
 		default:
 			// String s = Integer.toHexString(abyte0[0] & 0xff);
 			// _log.warning("用途不明オペコード:データ內容");

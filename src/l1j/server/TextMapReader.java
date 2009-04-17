@@ -35,7 +35,7 @@ import l1j.server.server.model.map.L1Map;
 import l1j.server.server.model.map.L1V1Map;
 
 /**
- * テキストマップ(maps/\d*.txt)を讀み⑸む.
+ * テキストマップ(maps/\d*.txt)を読み込む.
  */
 public class TextMapReader extends MapReader {
 
@@ -46,7 +46,7 @@ public class TextMapReader extends MapReader {
 	/** マップホルダー. */
 	private static final String MAP_DIR = "./maps/";
 
-	/** MAP_INFO用 マップ番號位置. */
+	/** MAP_INFO用 マップ番号位置. */
 	public static final int MAPINFO_MAP_NO = 0;
 
 	/** MAP_INFO用 開始X座標の位置. */
@@ -62,10 +62,10 @@ public class TextMapReader extends MapReader {
 	public static final int MAPINFO_END_Y = 4;
 
 	/**
-	 * 指定のマップ番號のテキストマップを讀み⑸む.
+	 * 指定のマップ番号のテキストマップを読み込む.
 	 * 
 	 * @param mapId
-	 *            マップ番號
+	 *            マップ番号
 	 * @param xSize
 	 *            X座標のサイズ
 	 * @param ySize
@@ -101,10 +101,10 @@ public class TextMapReader extends MapReader {
 	}
 
 	/**
-	 * 指定のマップ番號のテキストマップを讀み⑸む.
+	 * 指定のマップ番号のテキストマップを読み込む.
 	 * 
 	 * @param id
-	 *            マップ番號
+	 *            マップ番号
 	 * @return L1Map
 	 * @throws IOException
 	 */
@@ -137,7 +137,7 @@ public class TextMapReader extends MapReader {
 	}
 
 	/**
-	 * 全てのテキストマップを讀み⑸む.
+	 * 全てのテキストマップを読み込む.
 	 * 
 	 * @return Map
 	 * @throws IOException
@@ -673,7 +673,7 @@ public class TextMapReader extends MapReader {
 			{ 5132, 32768, 32831, 32832, 32895 },
 			{ 5133, 32768, 32831, 32832, 32895 },
 			{ 5134, 32768, 32831, 32832, 32895 },
-			{ 5140, 32704, 32895, 32768, 32895 },
+			{ 5140, 32704, 32895, 32768, 32895 },			
 			{ 5701, 32576, 33023, 32512, 32959 },
 			{ 5801, 32512, 32831, 32704, 33023 },
 			{ 5802, 32512, 32831, 32704, 33023 },
