@@ -387,8 +387,10 @@ public class L1Attack {
 			_hitRate += _weaponAddHit + _pc.getBowHitup() + (_weaponEnchant / 2);
 		}
 
-		if (_weaponType == 20 || _weaponType == 62) {
-			_hitRate += _pc.getBowHitRate();
+		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中
+			_hitRate += _pc.getHitModifierByArmor();
+		} else {
+			_hitRate += _pc.getBowHitModifierByArmor();
 		}
 
 		int hitAc = (int) (_hitRate * 0.68 - 10) * -1;
@@ -476,8 +478,10 @@ public class L1Attack {
 			_hitRate += _weaponAddHit + _pc.getBowHitup() + (_weaponEnchant / 2);
 		}
 
-		if (_weaponType == 20 || _weaponType == 62) {
-			_hitRate += _pc.getBowHitRate();
+		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中
+			_hitRate += _pc.getHitModifierByArmor();
+		} else {
+			_hitRate += _pc.getBowHitModifierByArmor();
 		}
 
 		_hitRate *= 5;
@@ -762,6 +766,12 @@ public class L1Attack {
 			dmg = L1WeaponSkill.getKiringkuDamage(_pc, _target);
 		}
 
+		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加ダメージ
+			dmg += _pc.getDmgModifierByArmor();
+		} else {
+			dmg += _pc.getBowDmgModifierByArmor();
+		}
+			
 		Object[] dollList = _pc.getDollList().values().toArray(); // マジックドールによる追加ダメージ
 		for (Object dollObject : dollList) {
 			L1DollInstance doll = (L1DollInstance) dollObject;
@@ -954,6 +964,12 @@ public class L1Attack {
 
 		if (_weaponType2 == 17) { // キーリンク
 			dmg = L1WeaponSkill.getKiringkuDamage(_pc, _target);
+		}
+
+		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加ダメージ
+			dmg += _pc.getDmgModifierByArmor();
+		} else {
+			dmg += _pc.getBowDmgModifierByArmor();
 		}
 
 		Object[] dollList = _pc.getDollList().values().toArray(); // マジックドールによる追加ダメージ

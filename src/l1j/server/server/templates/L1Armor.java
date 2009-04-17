@@ -60,15 +60,48 @@ public class L1Armor extends L1Item {
 		_weightReduction = i;
 	}
 
-	private int _bowHitRate = 0; // ● 弓の命中率
+	private int _hitModifierByArmor = 0; // ● 命中率補正
 
 	@Override
-	public int getBowHitRate() {
-		return _bowHitRate;
+	public int getHitModifierByArmor() {
+		return _hitModifierByArmor;
 	}
 
-	public void setBowHitRate(int i) {
-		_bowHitRate = i;
+	public void setHitModifierByArmor(int i) {
+		_hitModifierByArmor = i;
+	}
+
+	private int _dmgModifierByArmor = 0; // ● ダメージ補正
+
+	@Override
+	public int getDmgModifierByArmor() {
+		return _dmgModifierByArmor;
+	}
+
+	public void setDmgModifierByArmor(int i) {
+		_dmgModifierByArmor = i;
+	}
+
+	private int _bowHitModifierByArmor = 0; // ● 弓の命中率補正
+
+	@Override
+	public int getBowHitModifierByArmor() {
+		return _bowHitModifierByArmor;
+	}
+
+	public void setBowHitModifierByArmor(int i) {
+		_bowHitModifierByArmor = i;
+	}
+
+	private int _bowDmgModifierByArmor = 0; // ● 弓のダメージ補正
+
+	@Override
+	public int getBowDmgModifierByArmor() {
+		return _bowDmgModifierByArmor;
+	}
+
+	public void setBowDmgModifierByArmor(int i) {
+		_bowDmgModifierByArmor = i;
 	}
 
 	private int _defense_water = 0; // ● 水の屬性防御

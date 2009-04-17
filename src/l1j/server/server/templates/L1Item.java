@@ -112,9 +112,9 @@ public abstract class L1Item implements Serializable {
 	 * <p>
 	 * [weapon]<br>
 	 * sword:4, dagger:46, tohandsword:50, bow:20, blunt:11, spear:24, staff:40,
-	 * throwingknife:2922, arrow:66, gauntlet:62, claw:58, edoryu:54,
-	 * singlebow:20, singlespear:24, tohandblunt:11, tohandstaff:40, kiringku:58, chainsword:24
-	 * </p>
+	 * singlebow:20, singlespear:24, tohandblunt:11, tohandstaff:40,
+	 * kiringku:58, chainsword:24
+	 *</p>
 	 */
 	public int getType1() {
 		return _type1;
@@ -622,7 +622,19 @@ public abstract class L1Item implements Serializable {
 		return 0;
 	}
 
-	public int getBowHitRate() {
+	public int getHitModifierByArmor() {
+		return 0;
+	}
+
+	public int getDmgModifierByArmor() {
+		return 0;
+	}
+
+	public int getBowHitModifierByArmor() {
+		return 0;
+	}
+
+	public int getBowDmgModifierByArmor() {
 		return 0;
 	}
 

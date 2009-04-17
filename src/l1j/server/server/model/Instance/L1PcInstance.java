@@ -2355,14 +2355,44 @@ public class L1PcInstance extends L1Character {
 		_damageReductionByArmor += i;
 	}
 
-	private int _bowHitRate = 0; // 防具による弓の命中率
+	private int _hitModifierByArmor = 0; // 防具による命中率補正
 
-	public int getBowHitRate() {
-		return _bowHitRate;
+	public int getHitModifierByArmor() {
+		return _hitModifierByArmor;
 	}
 
-	public void addBowHitRate(int i) {
-		_bowHitRate += i;
+	public void addHitModifierByArmor(int i) {
+		_hitModifierByArmor += i;
+	}
+
+	private int _dmgModifierByArmor = 0; // 防具によるダメージ補正
+
+	public int getDmgModifierByArmor() {
+		return _dmgModifierByArmor;
+	}
+
+	public void addDmgModifierByArmor(int i) {
+		_dmgModifierByArmor += i;
+	}
+
+	private int _bowHitModifierByArmor = 0; // 防具による弓の命中率補正
+
+	public int getBowHitModifierByArmor() {
+		return _bowHitModifierByArmor;
+	}
+
+	public void addBowHitModifierByArmor(int i) {
+		_bowHitModifierByArmor += i;
+	}
+
+	private int _bowDmgModifierByArmor = 0; // 防具による弓のダメージ補正
+
+	public int getBowDmgModifierByArmor() {
+		return _bowDmgModifierByArmor;
+	}
+
+	public void addBowDmgModifierByArmor(int i) {
+		_bowDmgModifierByArmor += i;
 	}
 
 	private boolean _gresValid; // G-RESが有效か

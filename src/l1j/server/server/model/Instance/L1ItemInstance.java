@@ -551,14 +551,23 @@ public class L1ItemInstance extends L1Object {
 			// bit |= getItem().isUseHiPet() ? 64 : 0; // ハイペット
 			os.writeC(7);
 			os.writeC(bit);
-			// 弓命中率
-			if (getItem().getBowHitRate() != 0) {
+			// 弓の命中率補正
+			if (getItem().getBowHitModifierByArmor() != 0) {
 				os.writeC(24);
-				os.writeC(getItem().getBowHitRate());
+				os.writeC(getItem().getBowHitModifierByArmor());
 			}
-			// MP吸收
-			if (itemId == 126 || itemId == 127) { // マナスタッフ、鋼鐵のマナスタッフ
+			// 弓のダメージ補正
+			if (getItem().getBowDmgModifierByArmor() != 0) {
+				os.writeC(35);
+				os.writeC(getItem().getBowDmgModifierByArmor());
+			}
+			// MP吸収
+			if (itemId == 126 || itemId == 127) { // マナスタッフ、鋼鉄のマナスタッフ
 				os.writeC(16);
+			}
+			// HP吸収
+			if (itemId == 262) { // ディストラクション
+				os.writeC(34);
 			}
 			// STR~CHA
 			if (getItem().get_addstr() != 0) {

@@ -3453,6 +3453,11 @@ public class C_ItemUSe extends ClientBasePacket {
 				return;
 			}
 
+			if (type == 13 && pcInventory.getTypeEquipped(2, 7) >= 1
+					|| type == 7 && pcInventory.getTypeEquipped(2, 13) >= 1) { // ??槼
+				activeChar.sendPackets(new S_ServerMessage(124)); // \f1?
+				return;
+			}
 			if (type == 7 && activeChar.getWeapon() != null) { // シールドの場合、武器を裝備していたら兩手武器チェック
 				if (activeChar.getWeapon().getItem().isTwohandedWeapon()) { // 兩手武器
 					activeChar.sendPackets(new S_ServerMessage(129)); // \f1兩手の武器を武裝したままシールドを著用することはできません。

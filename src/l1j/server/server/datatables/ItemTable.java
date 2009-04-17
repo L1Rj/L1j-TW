@@ -111,6 +111,7 @@ public class ItemTable {
 		_useTypes.put("ring", new Integer(23));
 		_useTypes.put("amulet", new Integer(24));
 		_useTypes.put("shield", new Integer(25));
+		_useTypes.put("guarder", new Integer(25));
 		_useTypes.put("dai", new Integer(26));
 		_useTypes.put("zel", new Integer(27));
 		_useTypes.put("blank", new Integer(28));
@@ -143,6 +144,7 @@ public class ItemTable {
 		_armorTypes.put("belt", new Integer(10));
 		_armorTypes.put("ring2", new Integer(11));
 		_armorTypes.put("earring", new Integer(12));
+		_armorTypes.put("guarder", new Integer(13));
 
 		_weaponTypes.put("sword", new Integer(1));
 		_weaponTypes.put("dagger", new Integer(2));
@@ -432,8 +434,10 @@ public class ItemTable {
 				armor.setMaxLevel(rs.getInt("max_lvl"));
 				armor.set_mdef(rs.getInt("m_def"));
 				armor.setDamageReduction(rs.getInt("damage_reduction"));
-				armor.setWeightReduction(rs.getInt("weight_reduction"));
-				armor.setBowHitRate(rs.getInt("bow_hit_rate"));
+				armor.setHitModifierByArmor(rs.getInt("hit_modifier"));
+				armor.setDmgModifierByArmor(rs.getInt("dmg_modifier"));
+				armor.setBowHitModifierByArmor(rs.getInt("bow_hit_modifier"));
+				armor.setBowDmgModifierByArmor(rs.getInt("bow_dmg_modifier"));
 				armor.setHasteItem(rs.getInt("haste_item") == 0 ? false : true);
 				armor.setBless(rs.getInt("bless"));
 				armor.setTradable(rs.getInt("trade") == 0 ? true : false);

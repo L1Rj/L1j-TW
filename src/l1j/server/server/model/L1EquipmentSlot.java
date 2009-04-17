@@ -72,7 +72,10 @@ public class L1EquipmentSlot {
 				.getAcByMagic());
 		_owner.addDamageReductionByArmor(item.getDamageReduction());
 		_owner.addWeightReduction(item.getWeightReduction());
-		_owner.addBowHitRate(item.getBowHitRate());
+		_owner.addHitModifierByArmor(item.getHitModifierByArmor());
+		_owner.addDmgModifierByArmor(item.getDmgModifierByArmor());
+		_owner.addBowHitModifierByArmor(item.getBowHitModifierByArmor());
+		_owner.addBowDmgModifierByArmor(item.getBowDmgModifierByArmor());
 		_owner.addEarth(item.get_defense_earth());
 		_owner.addWind(item.get_defense_wind());
 		_owner.addWater(item.get_defense_water());
@@ -145,7 +148,10 @@ public class L1EquipmentSlot {
 				.getAcByMagic()));
 		_owner.addDamageReductionByArmor(-item.getDamageReduction());
 		_owner.addWeightReduction(-item.getWeightReduction());
-		_owner.addBowHitRate(-item.getBowHitRate());
+		_owner.addHitModifierByArmor(-item.getHitModifierByArmor());
+		_owner.addDmgModifierByArmor(-item.getDmgModifierByArmor());
+		_owner.addBowHitModifierByArmor(-item.getBowHitModifierByArmor());
+		_owner.addBowDmgModifierByArmor(-item.getBowDmgModifierByArmor());
 		_owner.addEarth(-item.get_defense_earth());
 		_owner.addWind(-item.get_defense_wind());
 		_owner.addWater(-item.get_defense_water());
