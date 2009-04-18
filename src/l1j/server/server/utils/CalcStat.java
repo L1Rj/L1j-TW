@@ -103,7 +103,7 @@ public class CalcStat {
 	 * @param originalHpup
 	 * @return HP上昇值
 	 */
-	public static short calcStatHp(int charType, int baseMaxHp, byte baseCon) {
+	public static short calcStatHp(int charType, int baseMaxHp, byte baseCon, int originalHpup) {
 		short randomhp = 0;
 		if (baseCon > 15) {
 			randomhp = (short) (baseCon - 15);
