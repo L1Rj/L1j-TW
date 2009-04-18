@@ -1199,6 +1199,9 @@
 	<Action Name="teleport silveria-diad" NpcId="80146">
 		<Teleport X="32828" Y="32900" Map="320" Heading="5" Price="7480"/>
 	</Action>
+    <Action Name="teleport silveria-behemoth" NpcId="80146">
+        <Teleport X="32779" Y="32887" Map="1001" Heading="5" Price="220"/>
+    </Action>
 	<!-- シルベリア行き メット -->
 	<Action Name="teleport silver-silveria" NpcId="50056">
 		<Teleport X="32841" Y="32856" Map="1000" Heading="2" Price="1000"/>
@@ -1206,5 +1209,59 @@
 	<!-- シルベリア行き アスター -->
 	<Action Name="teleport gludin-silveria" NpcId="50024">
 		<Teleport X="32841" Y="32856" Map="1000" Heading="2" Price="1000"/>
+	</Action>
+	<!-- ベヒモス デカビア -->
+	<Action Name="teleport behemoth-silver" NpcId="80132">
+		<Teleport X="33080" Y="33386" Map="4" Heading="5" Price="132"/>
+	</Action>
+	<Action Name="teleport behemoth-kent" NpcId="80132">
+		<Teleport X="33050" Y="32782" Map="4" Heading="5" Price="55"/>
+	</Action>
+	<Action Name="teleport behemoth-woods" NpcId="80132">
+		<Teleport X="32640" Y="33203" Map="4" Heading="5" Price="55"/>
+	</Action>
+	<Action Name="teleport behemoth-heine" NpcId="80132">
+		<Teleport X="33612" Y="33257" Map="4" Heading="5" Price="55"/>
+	</Action>
+	<Action Name="teleport behemoth-gludin" NpcId="80132">
+		<Teleport X="32608" Y="32734" Map="4" Heading="5" Price="132"/>
+	</Action>
+	<Action Name="teleport behemoth-giran" NpcId="80132">
+		<Teleport X="33438" Y="32796" Map="4" Heading="5" Price="132"/>
+	</Action>
+	<Action Name="teleport behemoth-aden" NpcId="80132">
+		<Teleport X="33965" Y="33253" Map="4" Heading="5" Price="132"/>
+	</Action>
+	<Action Name="teleport behemoth-willow" NpcId="80132">
+		<Teleport X="32715" Y="32448" Map="4" Heading="5" Price="198"/>
+	</Action>
+	<Action Name="teleport behemoth-werldern" NpcId="80132">
+		<Teleport X="33709" Y="32500" Map="4" Heading="5" Price="198"/>
+	</Action>
+	<Action Name="teleport behemoth-oren" NpcId="80132">
+		<Teleport X="34062" Y="32278" Map="4" Heading="5" Price="246"/>
+	</Action>
+	<Action Name="teleport behemoth-lowful" NpcId="80132">
+		<Teleport X="33118" Y="32933" Map="4" Heading="5" Price="330"/>
+	</Action>
+	<Action Name="teleport behemoth-chaos" NpcId="80132">
+		<Teleport X="32885" Y="32652" Map="4" Heading="5" Price="330"/>
+	</Action>
+	<Action Name="teleport behemoth-island" NpcId="80132">
+		<Teleport X="32583" Y="32924" Map="0" Heading="5" Price="770"/>
+	</Action>
+	<Action Name="teleport behemoth-diad" NpcId="80132">
+		<Teleport X="32828" Y="32900" Map="320" Heading="5" Price="7480"/>
+	</Action>
+	<Action Name="teleport behemoth-silveria" NpcId="80132">
+		<Teleport X="32841" Y="32856" Map="1000" Heading="5" Price="220"/>
+	</Action>
+	<!-- ベヒモス行き メット -->
+	<Action Name="teleport silver-behemoth" NpcId="50056">
+		<Teleport X="32779" Y="32887" Map="1001" Heading="5" Price="1000"/>
+	</Action>
+	<!-- ベヒモス行き アスタ・#91; -->
+	<Action Name="teleport gludin-behemoth" NpcId="50024">
+		<Teleport X="32779" Y="32887" Map="1001" Heading="5" Price="1000"/>
 	</Action>
 </NpcActionList>

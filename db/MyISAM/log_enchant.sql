@@ -13,4 +13,3 @@ CREATE TABLE `log_enchant` (
 #----------------------------
 # No records for table log_enchant
 #----------------------------
-

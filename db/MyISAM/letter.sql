@@ -15,5 +15,3 @@ CREATE TABLE `letter` (
 #----------------------------
 # No Records for table letter
 #----------------------------
-
-

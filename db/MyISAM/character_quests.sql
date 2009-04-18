@@ -10,5 +10,3 @@ CREATE TABLE `character_quests` (
 #----------------------------
 # No records for table character_quests
 #----------------------------
-
-

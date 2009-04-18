@@ -15,5 +15,3 @@ CREATE TABLE `mail` (
 #----------------------------
 # No Records for table mail
 #----------------------------
-
-

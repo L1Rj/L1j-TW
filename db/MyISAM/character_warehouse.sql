@@ -20,4 +20,3 @@ CREATE TABLE `character_warehouse` (
 #----------------------------
 # No records for table character_warehouse
 #----------------------------
-

@@ -14,4 +14,3 @@ CREATE TABLE `character_skills` (
 #----------------------------
 # No records for table character_skills
 #----------------------------
-

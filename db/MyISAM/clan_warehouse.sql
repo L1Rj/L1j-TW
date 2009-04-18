@@ -20,5 +20,3 @@ CREATE TABLE `clan_warehouse` (
 #----------------------------
 # No records for table clan_warehouse
 #----------------------------
-
-

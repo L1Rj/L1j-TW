@@ -20,5 +20,3 @@ CREATE TABLE `character_items` (
 #----------------------------
 # No records for table character_items
 #----------------------------
-
-

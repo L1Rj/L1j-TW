@@ -11,4 +11,3 @@ CREATE TABLE `character_buff` (
 #----------------------------
 # No records for table character_buff
 #----------------------------
-

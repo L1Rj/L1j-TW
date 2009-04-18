@@ -12,5 +12,3 @@ CREATE TABLE `character_buddys` (
 #----------------------------
 # No records for table character_buddys
 #----------------------------
-
-

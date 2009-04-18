@@ -13,5 +13,3 @@ CREATE TABLE `clan_data` (
 #----------------------------
 # No records for table clan_data
 #----------------------------
-
-

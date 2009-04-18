@@ -15,6 +15,3 @@ CREATE TABLE `characters_reset` (
 #----------------------------
 # No Records for table characters_reset
 #----------------------------
-
-
-

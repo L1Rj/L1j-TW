@@ -14,4 +14,3 @@ CREATE TABLE `character_teleport` (
 #----------------------------
 # No records for table character_teleport
 #----------------------------
-

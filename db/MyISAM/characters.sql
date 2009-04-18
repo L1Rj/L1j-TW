@@ -49,12 +49,15 @@ CREATE TABLE `characters` (
   `Karma` int(10) NOT NULL default '0',
   `LastPk` datetime default NULL,
   `DeleteTime` datetime default NULL,
+  `OriginalStr` int(3) default NULL,
+  `OriginalCon` int(3) default NULL,
+  `OriginalDex` int(3) default NULL,
+  `OriginalCha` int(3) default NULL,
+  `OriginalInt` int(3) default NULL,
+  `OriginalWis` int(3) default NULL,
   PRIMARY KEY  (`objid`),
   KEY `key_id` (`account_name`,`char_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # No Records for table characters
 #----------------------------
-
-
-
