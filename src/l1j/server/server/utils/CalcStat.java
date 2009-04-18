@@ -22,6 +22,7 @@ package l1j.server.server.utils;
 import java.util.Random;
 
 import l1j.server.Config;
+import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.utils.RandomArrayList;
 
 public class CalcStat {
@@ -105,47 +106,49 @@ public class CalcStat {
 	 */
 	public static short calcStatHp(int charType, int baseMaxHp, byte baseCon, int originalHpup) {
 		short randomhp = 0;
+		byte randomadd = RandomArrayList.getArray3List();
+		byte playerbasecon = (byte) (baseCon / 2);
 		if (baseCon > 15) {
 			randomhp = (short) (baseCon - 15);
 		}
 		if (charType == 0) { // プリンス
-			randomhp += (short) (8 + RandomArrayList.getArray3List()); // 初期值分追加 5 <-> 11
+			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 5 <-> 11
 
 			if (baseMaxHp + randomhp > Config.PRINCE_MAX_HP) {
 				randomhp = (short) (Config.PRINCE_MAX_HP - baseMaxHp);
 			}
 		} else if (charType == 1) { // ナイト
-			randomhp += (short) (12 + RandomArrayList.getArray3List()); // 初期值分追加 6 <-> 17
+			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 6 <-> 17
 
 			if (baseMaxHp + randomhp > Config.KNIGHT_MAX_HP) {
 				randomhp = (short) (Config.KNIGHT_MAX_HP - baseMaxHp);
 			}
 		} else if (charType == 2) { // エルフ
-			randomhp += (short) (8 + RandomArrayList.getArray3List()); // 初期值分追加 5 <-> 10
+			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 5 <-> 10
 
 			if (baseMaxHp + randomhp > Config.ELF_MAX_HP) {
 				randomhp = (short) (Config.ELF_MAX_HP - baseMaxHp);
 			}
 		} else if (charType == 3) { // ウィザード
-			randomhp += (short) (5 + RandomArrayList.getArray3List()); // 初期值分追加 3 <-> 7
+			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 3 <-> 7
 
 			if (baseMaxHp + randomhp > Config.WIZARD_MAX_HP) {
 				randomhp = (short) (Config.WIZARD_MAX_HP - baseMaxHp);
 			}
 		} else if (charType == 4) { // ダークエルフ
-			randomhp += (short) (8 + RandomArrayList.getArray3List()); // 初期值分追加 5 <-> 10
+			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 5 <-> 10
 
 			if (baseMaxHp + randomhp > Config.DARKELF_MAX_HP) {
 				randomhp = (short) (Config.DARKELF_MAX_HP - baseMaxHp);
 			}
 		} else if (charType == 5) { // ドラゴンナイト
-			randomhp += (short) (10 + RandomArrayList.getArray3List()); // 初期值分追加 6 <-> 13
+			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 6 <-> 13
 
 			if (baseMaxHp + randomhp > Config.DRAGONKNIGHT_MAX_HP) {
 				randomhp = (short) (Config.DRAGONKNIGHT_MAX_HP - baseMaxHp);
 			}
 		} else if (charType == 6) { // イリュージョニスト
-			randomhp += (short) (7 + RandomArrayList.getArray3List()); // 初期值分追加 4 <-> 9
+			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 4 <-> 9
 
 			if (baseMaxHp + randomhp > Config.ILLUSIONIST_MAX_HP) {
 				randomhp = (short) (Config.ILLUSIONIST_MAX_HP - baseMaxHp);
