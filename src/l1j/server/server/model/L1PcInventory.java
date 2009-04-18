@@ -241,7 +241,7 @@ public class L1PcInventory extends L1Inventory {
 				_owner.sendPackets(new S_ItemName(item));
 			}
 			if (item.getItem().getWeight() != 0) {
-				// XXX 30段階のウェイトが變化しない場合は送らなくてよい
+				// XXX 240段階のウェイトが變化しない場合は送らなくてよい
 				_owner.sendPackets(new S_PacketBox(
 						S_PacketBox.WEIGHT, getWeight240()));
 			}

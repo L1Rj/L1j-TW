@@ -382,9 +382,9 @@ public class L1Attack {
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) {
-			_hitRate += _weaponAddHit + _pc.getHitup() + (_weaponEnchant / 2);
+			_hitRate += _weaponAddHit + _pc.getHitup() + _pc.getOriginalHitup() + (_weaponEnchant / 2);
 		} else {
-			_hitRate += _weaponAddHit + _pc.getBowHitup() + (_weaponEnchant / 2);
+			_hitRate += _weaponAddHit + _pc.getBowHitup() + _pc.getOriginalBowHitup() + (_weaponEnchant / 2);
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中
@@ -473,9 +473,9 @@ public class L1Attack {
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) {
-			_hitRate += _weaponAddHit + _pc.getHitup() + (_weaponEnchant / 2);
+			_hitRate += _weaponAddHit + _pc.getHitup() + _pc.getOriginalHitup() + (_weaponEnchant / 2);
 		} else {
-			_hitRate += _weaponAddHit + _pc.getBowHitup() + (_weaponEnchant / 2);
+			_hitRate += _weaponAddHit + _pc.getBowHitup() + _pc.getOriginalBowHitup() + (_weaponEnchant / 2);
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中
@@ -722,9 +722,9 @@ public class L1Attack {
 
 		double dmg;
 		if (_weaponType != 20 && _weaponType != 62) {
-			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup();
+			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup() + _pc.getOriginalDmgup();
 		} else {
-			dmg = weaponTotalDamage + _statusDamage + _pc.getBowDmgup();
+			dmg = weaponTotalDamage + _statusDamage + _pc.getBowDmgup() + _pc.getOriginalBowDmgup();
 		}
 
 		if (_weaponType == 20) { // 弓
@@ -841,7 +841,7 @@ public class L1Attack {
 		}
 		if (_targetPc.hasSkillEffect(DRAGON_SKIN)) {
 			dmg -= 2;
-		}		
+		}
 		if (_targetPc.hasSkillEffect(IMMUNE_TO_HARM)) {
 			dmg /= 2;
 		}
@@ -912,9 +912,9 @@ public class L1Attack {
 
 		double dmg;
 		if (_weaponType != 20 && _weaponType != 62) {
-			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup();
+			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup() + _pc.getOriginalDmgup();
 		} else {
-			dmg = weaponTotalDamage + _statusDamage + _pc.getBowDmgup();
+			dmg = weaponTotalDamage + _statusDamage + _pc.getBowDmgup() + _pc.getOriginalBowDmgup();
 		}
 
 		if (_weaponType == 20) { // 弓

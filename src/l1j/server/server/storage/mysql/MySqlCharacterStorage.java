@@ -145,6 +145,12 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			pc.setKarma(rs.getInt("Karma"));
 			pc.setLastPk(rs.getTimestamp("LastPk"));
 			pc.setDeleteTime(rs.getTimestamp("DeleteTime"));
+			pc.setOriginalStr(rs.getInt("OriginalStr"));
+			pc.setOriginalCon(rs.getInt("OriginalCon"));
+			pc.setOriginalDex(rs.getInt("OriginalDex"));
+			pc.setOriginalCha(rs.getInt("OriginalCha"));
+			pc.setOriginalInt(rs.getInt("OriginalInt"));
+			pc.setOriginalWis(rs.getInt("OriginalWis"));
 
 			pc.refresh();
 			pc.setMoveSpeed(0);

@@ -31,6 +31,7 @@ import java.util.logging.Logger;
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.ClientThread;
+import l1j.server.server.GMCommands;
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.PacketOutput;
 import l1j.server.server.WarTimeController;
@@ -61,6 +62,7 @@ import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1TownLocation;
 import l1j.server.server.model.L1War;
 import l1j.server.server.model.L1World;
+import l1j.server.server.model.MpReductionByAwake;
 import l1j.server.server.model.MpRegeneration;
 import l1j.server.server.model.MpRegenerationByDoll;
 import l1j.server.server.model.classes.L1ClassFeature;
@@ -101,6 +103,7 @@ import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1PrivateShopBuyList;
 import l1j.server.server.templates.L1PrivateShopSellList;
 import l1j.server.server.utils.CalcStat;
+import l1j.server.server.utils.IntRange;
 
 // Referenced classes of package l1j.server.server.model:
 // L1Character, L1DropTable, L1Object, L1ItemInstance,
@@ -149,6 +152,20 @@ public class L1PcInstance extends L1Character {
 		_mpr = (short) Math.max(0, _trueMpr);
 	}
 
+	public short _originalHpr = 0; // ● オリジナルCON HPR
+
+	public short getOriginalHpr() {
+
+		return _originalHpr;
+	}
+
+	public short _originalMpr = 0; // ● オリジナルWIS MPR
+
+	public short getOriginalMpr() {
+
+		return _originalMpr;
+	}
+
 	public void startHpRegeneration() {
 		final int INTERVAL = 1000;
 
@@ -195,6 +212,16 @@ public class L1PcInstance extends L1Character {
 		}
 	}
 
+	public void startMpReductionByAwake() {
+		final int INTERVAL_BY_AWAKE = 4000;
+		if (!_mpReductionActiveByAwake) {
+			_mpReductionByAwake = new MpReductionByAwake(this);
+			_regenTimer.scheduleAtFixedRate(_mpReductionByAwake,
+					INTERVAL_BY_AWAKE, INTERVAL_BY_AWAKE);
+			_mpReductionActiveByAwake = true;
+		}
+	}
+
 	public void stopMpRegeneration() {
 		if (_mpRegenActive) {
 			_mpRegen.cancel();
@@ -208,6 +235,14 @@ public class L1PcInstance extends L1Character {
 			_mpRegenByDoll.cancel();
 			_mpRegenByDoll = null;
 			_mpRegenActiveByDoll = false;
+		}
+	}
+
+	public void stopMpReductionByAwake() {
+		if (_mpReductionActiveByAwake) {
+			_mpReductionByAwake.cancel();
+			_mpReductionByAwake = null;
+			_mpReductionActiveByAwake = false;
 		}
 	}
 
@@ -1392,6 +1427,13 @@ public class L1PcInstance extends L1Character {
 		addExp(-exp);
 	}
 
+	private int _originalEr = 0; // ● オリジナルDEX ER補正
+
+	public int getOriginalEr() {
+
+		return _originalEr;	
+	}
+
 	public int getEr() {
 		if (hasSkillEffect(L1SkillId.STRIKER_GALE)) {
 			return 0;
@@ -1406,13 +1448,15 @@ public class L1PcInstance extends L1Character {
 			er = getLevel() / 6; // ダークエルフ
 		} else if (isWizard()) {
 			er = getLevel() / 10; // ウィザード
-		} else if (isDragonKnight()) {//	3.0C Test↓
+		} else if (isDragonKnight()) {//	3.0C Test↓	//懸賞
 			er = getLevel() / 4; // 龍騎士
 		} else if (isIllusionist()) {
 			er = getLevel() / 10; // 幻術師
 		}//	3.0C Test↑
 
 		er += (getDex() - 8) / 2;
+
+		er += getOriginalEr();
 
 		if (hasSkillEffect(L1SkillId.DRESS_EVASION)) {
 			er += 12;
@@ -1527,10 +1571,12 @@ public class L1PcInstance extends L1Character {
 	private L1Quest _quest;
 	private MpRegeneration _mpRegen;
 	private MpRegenerationByDoll _mpRegenByDoll;
+	private MpReductionByAwake _mpReductionByAwake;
 	private HpRegeneration _hpRegen;
 	private static Timer _regenTimer = new Timer(true);
 	private boolean _mpRegenActive;
 	private boolean _mpRegenActiveByDoll;
+	private boolean _mpReductionActiveByAwake;
 	private boolean _hpRegenActive;
 	private L1EquipmentSlot _equipSlot;
 
@@ -1582,6 +1628,12 @@ public class L1PcInstance extends L1Character {
 
 	public int getBaseAc() {
 		return _baseAc;
+	}
+
+	private int _originalAc = 0; // ● オリジナルDEX ＡＣ補正
+
+	public int getOriginalAc() {
+		return _originalAc;
 	}
 
 	private byte _baseStr = 0; // ● ＳＴＲベース（1～127）
@@ -1684,6 +1736,143 @@ public class L1PcInstance extends L1Character {
 		}
 		addWis((byte) (i - _baseWis));
 		_baseWis = i;
+	}
+
+	private int _originalStr = 0; // ● オリジナル STR
+
+	public int getOriginalStr() {
+		return _originalStr;
+	}
+
+	public void setOriginalStr(int i) {
+		_originalStr = i;
+	}
+
+	private int _originalCon = 0; // ● オリジナル CON
+
+	public int getOriginalCon() {
+		return _originalCon;
+	}
+
+	public void setOriginalCon(int i) {
+		_originalCon = i;
+	}
+
+	private int _originalDex = 0; // ● オリジナル DEX
+
+	public int getOriginalDex() {
+		return _originalDex;
+	}
+
+	public void setOriginalDex(int i) {
+		_originalDex = i;
+	}
+
+	private int _originalCha = 0; // ● オリジナル CHA
+
+	public int getOriginalCha() {
+		return _originalCha;
+	}
+
+	public void setOriginalCha(int i) {
+		_originalCha = i;
+	}
+
+	private int _originalInt = 0; // ● オリジナル INT
+
+	public int getOriginalInt() {
+		return _originalInt;
+	}
+
+	public void setOriginalInt(int i) {
+		_originalInt = i;
+	}
+
+	private int _originalWis = 0; // ● オリジナル WIS
+
+	public int getOriginalWis() {
+		return _originalWis;
+	}
+
+	public void setOriginalWis(int i) {
+		_originalWis = i;		
+	}
+
+	private int _originalDmgup = 0; // ● オリジナルSTR ダメージ補正
+
+	public int getOriginalDmgup() {
+
+		return _originalDmgup;
+	}
+
+	private int _originalBowDmgup = 0; // ● オリジナルDEX 弓ダメージ補正
+
+	public int getOriginalBowDmgup() {
+
+		return _originalBowDmgup;
+	}
+
+	private int _originalHitup = 0; // ● オリジナルSTR 命中補正
+
+	public int getOriginalHitup() {
+
+		return _originalHitup;
+	}
+
+	private int _originalBowHitup = 0; // ● オリジナルDEX 命中補正
+
+	public int getOriginalBowHitup() {
+
+		return _originalHitup;
+	}
+
+	private int _originalMr = 0; // ● オリジナルWIS 魔法防御
+
+	public int getOriginalMr() {
+
+		return _originalMr;
+	}
+
+	private int _originalMagicHit = 0; // ● オリジナルINT 魔法命中
+
+	public int getOriginalMagicHit() {
+
+		return _originalMagicHit;
+	}
+
+	private int _originalMagicCritical = 0; // ● オリジナルINT 魔法クリティカル
+
+	public int getOriginalMagicCritical() {
+
+		return _originalMagicCritical;
+	}
+
+	private int _originalMagicConsumeReduction = 0; // ● オリジナルINT 消費MP輕減
+
+	public int getOriginalMagicConsumeReduction() {
+
+		return _originalMagicConsumeReduction;
+	}
+
+	private int _originalMagicDamage = 0; // ● オリジナルINT 魔法ダメージ
+
+	public int getOirginalMagicDamage() {
+
+		return _originalMagicDamage;
+	}
+
+	private int _originalHpup = 0; // ● オリジナルCON HP上昇值補正
+
+	public int getOriginalHpup() {
+
+		return _originalHpup;
+	}
+
+	private int _originalMpup = 0; // ● オリジナルWIS MP上昇值補正
+
+	public int getOriginalMpup() {
+
+		return _originalMpup;
 	}
 
 	private int _baseDmgup = 0; // ● ダメージ補正ベース（-128～127）
@@ -2009,9 +2198,9 @@ public class L1PcInstance extends L1Character {
 
 		for (int i = 0; i < gap; i++) {
 			short randomHp = CalcStat.calcStatHp(getType(), getBaseMaxHp(),
-					getBaseCon());
+					getBaseCon(), getOriginalHpup());
 			short randomMp = CalcStat.calcStatMp(getType(), getBaseMaxMp(),
-					getBaseWis());
+					getBaseWis(), getOriginalMpup());
 			addBaseMaxHp(randomHp);
 			addBaseMaxMp(randomMp);
 			// 升級血魔滿 
@@ -2036,7 +2225,7 @@ public class L1PcInstance extends L1Character {
 		// ボーナスステータス
 		if (getLevel() >= 51 && getLevel() - 50 > getBonusStats()) {
 			if ((getBaseStr() + getBaseDex() + getBaseCon() + getBaseInt()
-					+ getBaseWis() + getBaseCha()) < 150) {
+					+ getBaseWis() + getBaseCha()) < 210) {
 				sendPackets(new S_bonusstats(getId(), 1));
 			}
 		}
@@ -2056,8 +2245,8 @@ public class L1PcInstance extends L1Character {
 
 		for (int i = 0; i > gap; i--) {
 			// レベルダウン時はランダム值をそのままマイナスする為に、base值に0を設定
-			short randomHp = CalcStat.calcStatHp(getType(), 0, getBaseCon());
-			short randomMp = CalcStat.calcStatMp(getType(), 0, getBaseWis());
+			short randomHp = CalcStat.calcStatHp(getType(), 0, getBaseCon(), getOriginalHpup());
+			short randomMp = CalcStat.calcStatMp(getType(), 0, getBaseWis(), getOriginalMpup());
 			addBaseMaxHp((short) -randomHp);
 			addBaseMaxMp((short) -randomMp);
 		}
@@ -2314,6 +2503,20 @@ public class L1PcInstance extends L1Character {
 		_weightReduction += i;
 	}
 
+	private int _originalStrWeightReduction = 0; // ● オリジナルSTR 重量輕減
+
+	public int getOriginalStrWeightReduction() {
+
+		return _originalStrWeightReduction;
+	}
+
+	private int _originalConWeightReduction = 0; // ● オリジナルCON 重量輕減
+
+	public int getoriginalConWeightReduction() {
+
+		return _originalConWeightReduction;		
+	}
+
 	private int _hasteItemEquipped = 0;
 
 	public int getHasteItemEquipped() {
@@ -2496,7 +2699,7 @@ public class L1PcInstance extends L1Character {
 		} else if (isDarkelf()) { // ダークエルフ
 			newBaseHitup = getLevel() / 3;
 			newBaseBowHitup = getLevel() / 3;
-		} else if (isDragonKnight()) { // 龍騎士//	3.0C Test↓
+		} else if (isDragonKnight()) { // 龍騎士//	3.0C Test↓	//懸賞
 			newBaseHitup = getLevel() / 3;
 			newBaseBowHitup = getLevel() / 3;
 		} else if (isIllusionist()) { // 幻術師
@@ -2531,7 +2734,7 @@ public class L1PcInstance extends L1Character {
 			newMr = 15;
 		} else if (isDarkelf()) { // ダークエルフ
 			newMr = 10;
-		} else if (isDragonKnight()) { // 龍騎士//	3.0C Test↓
+		} else if (isDragonKnight()) { // 龍騎士//	3.0C Test↓	//懸賞
 			newMr = 20;
 		} else if (isIllusionist()) { // 幻術師
 			newMr = 15;
@@ -2553,12 +2756,916 @@ public class L1PcInstance extends L1Character {
 		}
 	}
 
+	/**
+	 * 初期ステータスから現在のボーナスを再計算して設定する 初期設定時、再配分時に呼び出す
+	 */
+	public void resetOriginalHpup() {
+		int originalCon = getOriginalCon();
+		if (isCrown()) {
+			if(originalCon == 12 || originalCon == 13) {
+				_originalHpup = 1;
+			} else if(originalCon == 14 || originalCon == 15) {
+				_originalHpup = 2;
+			} else if(originalCon >= 16) {
+				_originalHpup = 3;
+			} else {
+				_originalHpup = 0;
+			}
+		} else if(isKnight()) {
+			if(originalCon == 15 || originalCon == 16) {
+				_originalHpup = 1;
+			} else if(originalCon >= 17) {
+				_originalHpup = 3;
+			} else {
+				_originalHpup = 0;
+			}
+		} else if(isElf()) {
+			if(originalCon >= 13 && originalCon <= 17) {
+				_originalHpup = 1;
+			} else if(originalCon == 18) {
+				_originalHpup = 2;
+			} else {
+				_originalHpup = 0;
+			}
+		} else if(isDarkelf()) {
+			if(originalCon == 10 || originalCon == 11) {
+				_originalHpup = 1;
+			} else if(originalCon >= 12) {
+				_originalHpup = 2;
+			} else {
+				_originalHpup = 0;
+			}
+		} else if(isWizard()) {
+			if(originalCon == 14 || originalCon == 15) {
+				_originalHpup = 1;
+			} else if(originalCon >= 16) {
+				_originalHpup = 2;
+			} else {
+				_originalHpup = 0;
+			}
+		} else if(isDragonKnight()) {
+			if(originalCon == 15 || originalCon == 16) {
+				_originalHpup = 1;
+			} else if(originalCon >= 17) {
+				_originalHpup = 3;
+			} else {
+				_originalHpup = 0;
+			}
+		} else if(isIllusionist()) {
+			if(originalCon == 13 || originalCon == 14) {
+				_originalHpup = 1;
+			} else if(originalCon >= 15) {
+				_originalHpup = 2;
+			} else {
+				_originalHpup = 0;
+			}
+		}
+	}
+
+	public void resetOriginalMpup() {
+		int originalWis = getOriginalWis(); {
+			if (isCrown()) {
+				if(originalWis >= 16) {
+					_originalMpup = 1;
+				} else {
+					_originalMpup = 0;
+				}
+			} else if(isKnight()) {
+					_originalMpup = 0;
+			} else if(isElf()) {
+				if(originalWis >= 14 && originalWis <= 16) {
+					_originalMpup = 1;
+				} else if(originalWis >= 17) {
+					_originalMpup = 2;
+				} else {
+					_originalMpup = 0;
+				}
+			} else if(isDarkelf()) {
+				if(originalWis >= 12) {
+					_originalMpup = 1;
+				} else {
+					_originalMpup = 0;
+				}
+			} else if(isWizard()) {
+				if(originalWis >= 13 && originalWis <= 16) {
+					_originalMpup = 1;
+				} else if(originalWis >= 17) {
+					_originalMpup = 2;
+				} else {
+					_originalMpup = 0;
+				}
+			} else if(isDragonKnight()) {
+				if(originalWis >= 13 && originalWis <= 15) {
+					_originalMpup = 1;
+				} else if(originalWis >= 16) {
+					_originalMpup = 2;
+				} else {
+					_originalMpup = 0;
+				}
+			} else if(isIllusionist()) {
+				if(originalWis >= 13 && originalWis <= 15) {
+					_originalMpup = 1;
+				} else if(originalWis >= 16) {
+					_originalMpup = 2;
+				} else {
+					_originalMpup = 0;
+				}
+			}
+		}
+	}
+
+	public void resetOriginalStrWeightReduction() {
+		int originalStr = getOriginalStr();
+		if (isCrown()) {
+			if(originalStr >= 14 && originalStr <= 16) {
+				_originalStrWeightReduction = 1;
+			} else if(originalStr >= 17 && originalStr <= 19) {
+				_originalStrWeightReduction = 2;
+			} else if(originalStr == 20) {
+				_originalStrWeightReduction = 3;
+			} else {
+				_originalStrWeightReduction = 0;
+			}
+		} else if(isKnight()) {
+				_originalStrWeightReduction = 0;
+		} else if(isElf()) {
+			if(originalStr >= 16) {
+				_originalStrWeightReduction = 2;
+			} else {
+				_originalStrWeightReduction = 0;
+			}
+		} else if(isDarkelf()) {
+			if(originalStr >= 13 && originalStr <= 15) {
+				_originalStrWeightReduction = 2;
+			} else if(originalStr >= 16) {
+				_originalStrWeightReduction = 3;
+			} else {
+				_originalStrWeightReduction = 0;
+			}
+		} else if(isWizard()) {
+			if(originalStr >= 9) {
+				_originalStrWeightReduction = 1;
+			} else {
+				_originalStrWeightReduction = 0;
+			}
+		} else if(isDragonKnight()) {
+			if(originalStr >= 16) {
+				_originalStrWeightReduction = 1;
+			} else {
+				_originalStrWeightReduction = 0;
+			}
+		} else if(isIllusionist()) {
+			if(originalStr == 18) {
+				_originalStrWeightReduction = 1;
+			} else {
+				_originalStrWeightReduction = 0;
+			}
+		}
+	}
+
+	public void resetOriginalDmgup() {
+		int originalStr = getOriginalStr();
+		if (isCrown()) {
+			if(originalStr >= 15 && originalStr <= 17) {
+				_originalDmgup = 1;
+			} else if(originalStr >= 18) {
+				_originalDmgup = 2;
+			} else {
+				_originalDmgup = 0;
+			}
+		} else if(isKnight()) {
+			if(originalStr == 18 || originalStr == 19) {
+				_originalDmgup = 2;
+			} else if(originalStr == 20) {
+				_originalDmgup = 4;
+			} else {
+				_originalDmgup = 0;
+			}
+		} else if(isElf()) {
+			if(originalStr == 12 || originalStr == 13) {
+				_originalDmgup = 1;
+			} else if(originalStr >= 14) {
+				_originalDmgup = 2;
+			} else {
+				_originalDmgup = 0;
+			}
+		} else if(isDarkelf()) {
+			if(originalStr >= 14 && originalStr <= 17) {
+				_originalDmgup = 1;
+			} else if(originalStr == 18) {
+				_originalDmgup = 2;
+			} else {
+				_originalDmgup = 0;
+			}
+		} else if(isWizard()) {
+			if(originalStr == 10 || originalStr == 11) {
+				_originalDmgup = 1;
+			} else if(originalStr >= 12) {
+				_originalDmgup = 2;
+			} else {
+				_originalDmgup = 0;
+			}
+		} else if(isDragonKnight()) {
+			if(originalStr >= 15 && originalStr <= 17) {
+				_originalDmgup = 1;
+			} else if(originalStr >= 18) {
+				_originalDmgup = 3;
+			} else {
+				_originalDmgup = 0;
+			}
+		} else if(isIllusionist()) {
+			if(originalStr == 13 || originalStr == 14) {
+				_originalDmgup = 1;
+			} else if(originalStr >= 15) {
+				_originalDmgup = 2;
+			} else {
+				_originalDmgup = 0;
+			}
+		}
+	}
+
+	public void resetOriginalConWeightReduction() {
+		int originalCon = getOriginalCon();
+		if (isCrown()) {
+			if(originalCon >= 11) {
+				_originalConWeightReduction = 1;
+			} else {
+				_originalConWeightReduction = 0;
+			}
+		} else if(isKnight()) {
+			if(originalCon >= 15) {
+				_originalConWeightReduction = 1;
+			} else {
+				_originalConWeightReduction = 0;
+			}
+		} else if(isElf()) {
+			if(originalCon >= 15) {
+				_originalConWeightReduction = 2;
+			} else {
+				_originalConWeightReduction = 0;
+			}
+		} else if(isDarkelf()) {
+			if(originalCon >= 9) {
+				_originalConWeightReduction = 1;
+			} else {
+				_originalConWeightReduction = 0;
+			}
+		} else if(isWizard()) {
+			if(originalCon == 13 || originalCon == 14) {
+				_originalConWeightReduction = 1;
+			} else if(originalCon >= 15) {
+				_originalConWeightReduction = 2;
+			} else {
+				_originalConWeightReduction = 0;
+			}
+		} else if(isDragonKnight()) {
+				_originalConWeightReduction = 0;
+		} else if(isIllusionist()) {
+			if(originalCon == 17) {
+				_originalConWeightReduction = 1;
+			} else if(originalCon == 18) {
+				_originalConWeightReduction = 2;
+			} else {
+				_originalConWeightReduction = 0;
+			}
+		}
+	}
+
+	public void resetOriginalBowDmgup() {
+		int originalDex = getOriginalDex();
+		if (isCrown()) {
+			if(originalDex >= 13) {
+				_originalBowDmgup = 1;
+			} else {
+				_originalBowDmgup = 0;
+			}
+		} else if(isKnight()) {
+				_originalBowDmgup = 0;
+		} else if(isElf()) {
+			if(originalDex >= 14 && originalDex <= 16) {
+				_originalBowDmgup = 2;
+			} else if(originalDex >= 17) {
+				_originalBowDmgup = 3;
+			} else {
+				_originalBowDmgup = 0;
+			}
+		} else if(isDarkelf()) {
+			if(originalDex == 18) {
+				_originalBowDmgup = 2;
+			} else {
+				_originalBowDmgup = 0;
+			}
+		} else if(isWizard()) {
+				_originalBowDmgup = 0;
+		} else if(isDragonKnight()) {
+				_originalBowDmgup = 0;
+		} else if(isIllusionist()) {
+				_originalBowDmgup = 0;
+		}
+	}
+
+	public void resetOriginalHitup() {
+		int originalStr = getOriginalStr();
+		if (isCrown()) {
+			if(originalStr >= 16 && originalStr <= 18) {
+				_originalHitup = 1;
+			} else if(originalStr >= 19) {
+				_originalHitup = 2;
+			} else {
+				_originalHitup = 0;
+			}
+		} else if(isKnight()) {
+			if(originalStr == 17 || originalStr == 18) {
+				_originalHitup = 2;
+			} else if(originalStr >= 19) {
+				_originalHitup = 4;
+			} else {
+				_originalHitup = 0;
+			}
+		} else if(isElf()) {
+			if(originalStr == 13 || originalStr == 14) {
+				_originalHitup = 1;
+			} else if(originalStr >= 15) {
+				_originalHitup = 2;
+			} else {
+				_originalHitup = 0;
+			}
+		} else if(isDarkelf()) {
+			if(originalStr >= 15 && originalStr <= 17) {
+				_originalHitup = 1;
+			} else if(originalStr == 18) {
+				_originalHitup = 2;
+			} else {
+				_originalHitup = 0;
+			}
+		} else if(isWizard()) {
+			if(originalStr == 11 || originalStr == 12) {
+				_originalHitup = 1;
+			} else if(originalStr >= 13) {
+				_originalHitup = 2;
+			} else {
+				_originalHitup = 0;
+			}
+		} else if(isDragonKnight()) {
+			if(originalStr >= 14 && originalStr <= 16) {
+				_originalHitup = 1;
+			} else if(originalStr >= 17) {
+				_originalHitup = 3;
+			} else {
+				_originalHitup = 0;
+			}
+		} else if(isIllusionist()) {
+			if(originalStr == 12 || originalStr == 13) {
+				_originalHitup = 1;
+			} else if(originalStr == 14 || originalStr == 15) {
+				_originalHitup = 2;
+			} else if(originalStr == 16) {
+				_originalHitup = 3;
+			} else if(originalStr >= 17) {
+				_originalHitup = 4;
+			} else {
+				_originalHitup = 0;
+			}
+		}
+	}
+
+	public void resetOriginalBowHitup() {
+		int originalDex = getOriginalDex();
+		if (isCrown()) {
+				_originalBowHitup = 0;
+		} else if(isKnight()) {
+				_originalBowHitup = 0;
+		} else if(isElf()) {
+			if(originalDex >= 13 && originalDex <= 15) {
+				_originalBowHitup = 2;
+			} else if(originalDex >= 16) {
+				_originalBowHitup = 3;
+			} else {
+				_originalBowHitup = 0;
+			}
+		} else if(isDarkelf()) {
+			if(originalDex == 17) {
+				_originalBowHitup = 1;
+			} else if(originalDex == 18) {
+				_originalBowHitup = 2;
+			} else {
+				_originalBowHitup = 0;
+			}
+		} else if(isWizard()) {
+				_originalBowHitup = 0;
+		} else if(isDragonKnight()) {
+				_originalBowHitup = 0;
+		} else if(isIllusionist()) {
+				_originalBowHitup = 0;
+		}
+	}
+
+	public void resetOriginalMr() {
+		int originalWis = getOriginalWis();
+		if (isCrown()) {
+			if(originalWis == 12 || originalWis == 13) {
+				_originalMr = 1;
+			} else if(originalWis >= 14) {
+				_originalMr = 2;
+			} else {
+				_originalMr = 0;
+			}
+		} else if(isKnight()) {
+			if(originalWis == 10 || originalWis == 11) {
+				_originalMr = 1;
+			} else if(originalWis >= 12) {
+				_originalMr = 2;
+			} else {
+				_originalMr = 0;
+			}
+		} else if(isElf()) {
+			if(originalWis >= 13 && originalWis <= 15) {
+				_originalMr = 1;
+			} else if(originalWis >= 16) {
+				_originalMr = 2;
+			} else {
+				_originalMr = 0;
+			}
+		} else if(isDarkelf()) {
+			if(originalWis >= 11 && originalWis <= 13) {
+				_originalMr = 1;
+			} else if(originalWis == 14) {
+				_originalMr = 2;
+			} else if(originalWis == 15) {
+				_originalMr = 3;
+			} else if(originalWis >= 16) {
+				_originalMr = 4;
+			} else {
+				_originalMr = 0;
+			}
+		} else if(isWizard()) {
+			if(originalWis >= 15) {
+				_originalMr = 1;
+			} else {
+				_originalMr = 0;
+			}
+		} else if(isDragonKnight()) {
+			if(originalWis >= 14) {
+				_originalMr = 2;
+			} else {
+				_originalMr = 0;
+			}
+		} else if(isIllusionist()) {
+			if(originalWis >= 15 && originalWis <= 17) {
+				_originalMr = 2;
+			} else if(originalWis == 18) {
+				_originalMr = 4;
+			} else {
+				_originalMr = 0;
+			}
+		}
+		
+	addMr(_originalMr);
+	}
+
+	public void resetOriginalMagicHit() {
+		int originalInt = getOriginalInt();
+		if (isCrown()) {
+			if(originalInt == 12 || originalInt == 13) {
+				_originalMagicHit = 1;
+			} else if(originalInt >= 14) {
+				_originalMagicHit = 2;
+			} else {
+				_originalMagicHit = 0;
+			}
+		} else if(isKnight()) {
+			if(originalInt == 10 || originalInt == 11) {
+				_originalMagicHit = 1;
+			} else if(originalInt == 12) {
+				_originalMagicHit = 2;
+			} else {
+				_originalMagicHit = 0;
+			}
+		} else if(isElf()) {
+			if(originalInt == 13 || originalInt == 14) {
+				_originalMagicHit = 1;
+			} else if(originalInt >= 15) {
+				_originalMagicHit = 2;
+			} else {
+				_originalMagicHit = 0;
+			}
+		} else if(isDarkelf()) {
+			if(originalInt == 12 || originalInt == 13) {
+				_originalMagicHit = 1;
+			} else if(originalInt >= 14) {
+				_originalMagicHit = 2;
+			} else {
+				_originalMagicHit = 0;
+			}
+		} else if(isWizard()) {
+			if(originalInt >= 14) {
+				_originalMagicHit = 1;
+			} else {
+				_originalMagicHit = 0;
+			}
+		} else if(isDragonKnight()) {
+			if(originalInt == 12 || originalInt == 13) {
+				_originalMagicHit = 2;
+			} else if(originalInt == 14 || originalInt == 15) {
+				_originalMagicHit = 3;
+			} else if(originalInt >= 16) {
+				_originalMagicHit = 4;
+			} else {
+				_originalMagicHit = 0;
+			}
+		} else if(isIllusionist()) {
+			if(originalInt >= 13) {
+				_originalMagicHit = 1;
+			} else {
+				_originalMagicHit = 0;
+			}
+		}
+	}
+
+	public void resetOriginalMagicCritical() {
+		int originalInt = getOriginalInt();
+		if (isCrown()) {
+				_originalMagicCritical = 0;
+		} else if(isKnight()) {
+				_originalMagicCritical = 0;
+		} else if(isElf()) {
+			if(originalInt == 14 || originalInt == 15) {
+				_originalMagicCritical = 2;
+			} else if(originalInt >= 16) {
+				_originalMagicCritical = 4;
+			} else {
+				_originalMagicCritical = 0;
+			}
+		} else if(isDarkelf()) {
+				_originalMagicCritical = 0;
+		} else if(isWizard()) {
+			if(originalInt == 15) {
+				_originalMagicCritical = 2;
+			} else if(originalInt == 16) {
+				_originalMagicCritical = 4;
+			} else if(originalInt == 17) {
+				_originalMagicCritical = 6;
+			} else if(originalInt == 18) {
+				_originalMagicCritical = 8;
+			} else {
+				_originalMagicCritical = 0;
+			}
+		} else if(isDragonKnight()) {
+				_originalMagicCritical = 0;
+		} else if(isIllusionist()) {
+				_originalMagicCritical = 0;
+		}
+	}
+
+	public void resetOriginalMagicConsumeReduction() {
+		int originalInt = getOriginalInt();
+		if (isCrown()) {
+			if(originalInt == 11 || originalInt == 12) {
+				_originalMagicConsumeReduction = 1;
+			} else if(originalInt >= 13) {
+				_originalMagicConsumeReduction = 2;
+			} else {
+				_originalMagicConsumeReduction = 0;
+			}
+		} else if(isKnight()) {
+			if(originalInt == 9 || originalInt == 10) {
+				_originalMagicConsumeReduction = 1;
+			} else if(originalInt >= 11) {
+				_originalMagicConsumeReduction = 2;
+			} else {
+				_originalMagicConsumeReduction = 0;
+			}
+		} else if(isElf()) {
+				_originalMagicConsumeReduction = 0;
+		} else if(isDarkelf()) {
+			if(originalInt == 13 || originalInt == 14) {
+				_originalMagicConsumeReduction = 1;
+			} else if(originalInt >= 15) {
+				_originalMagicConsumeReduction = 2;
+			} else {
+				_originalMagicConsumeReduction = 0;
+			}
+		} else if(isWizard()) {
+				_originalMagicConsumeReduction = 0;
+		} else if(isDragonKnight()) {
+				_originalMagicConsumeReduction = 0;
+		} else if(isIllusionist()) {
+			if(originalInt == 14) {
+				_originalMagicConsumeReduction = 1;
+			} else if(originalInt >= 15) {
+				_originalMagicConsumeReduction = 2;
+			} else {
+				_originalMagicConsumeReduction = 0;
+			}
+		}
+	}
+
+	public void resetOriginalMagicDamage() {
+		int originalInt = getOriginalInt();
+		if (isCrown()) {
+				_originalMagicDamage = 0;
+		} else if(isKnight()) {
+				_originalMagicDamage = 0;
+		} else if(isElf()) {
+				_originalMagicDamage = 0;
+		} else if(isDarkelf()) {
+				_originalMagicDamage = 0;
+		} else if(isWizard()) {
+			if(originalInt >= 13) {
+				_originalMagicDamage = 1;
+			} else {
+				_originalMagicDamage = 0;
+			}
+		} else if(isDragonKnight()) {
+			if(originalInt == 13 || originalInt == 14) {
+				_originalMagicDamage = 1;
+			} else if(originalInt == 15 || originalInt == 16) {
+				_originalMagicDamage = 2;
+			} else if(originalInt == 17) {
+				_originalMagicDamage = 3;
+			} else {
+				_originalMagicDamage = 0;
+			}
+		} else if(isIllusionist()) {
+			if(originalInt == 16) {
+				_originalMagicDamage = 1;
+			} else if(originalInt == 17) {
+				_originalMagicDamage = 2;
+			} else {
+				_originalMagicDamage = 0;
+			}
+		}
+	}
+
+	public void resetOriginalAc() {
+		int originalDex = getOriginalDex();
+		if (isCrown()) {
+			if(originalDex >= 12 && originalDex <= 14) {
+				_originalAc = 1;
+			} else if(originalDex == 15 || originalDex == 16) {
+				_originalAc = 2;
+			} else if(originalDex >= 17) {
+				_originalAc = 3;
+			} else {
+				_originalAc = 0;
+			}
+		} else if(isKnight()) {
+			if(originalDex == 13 || originalDex == 14) {
+				_originalAc = 1;
+			} else if(originalDex >= 15) {
+				_originalAc = 3;
+			} else {
+				_originalAc = 0;
+			}
+		} else if(isElf()) {
+			if(originalDex >= 15 && originalDex <= 17) {
+				_originalAc = 1;
+			} else if(originalDex == 18) {
+				_originalAc = 2;
+			} else {
+				_originalAc = 0;
+			}
+		} else if(isDarkelf()) {
+			if(originalDex >= 17) {
+				_originalAc = 1;
+			} else {
+				_originalAc = 0;
+			}
+		} else if(isWizard()) {
+			if(originalDex == 8 || originalDex == 9) {
+				_originalAc = 1;
+			} else if(originalDex >= 10) {
+				_originalAc = 2;
+			} else {
+				_originalAc = 0;
+			}
+		} else if(isDragonKnight()) {
+			if(originalDex == 12 || originalDex == 13) {
+				_originalAc = 1;
+			} else if(originalDex >= 14) {
+				_originalAc = 2;
+			} else {
+				_originalAc = 0;
+			}
+		} else if(isIllusionist()) {
+			if(originalDex == 11 || originalDex == 12) {
+				_originalAc = 1;
+			} else if(originalDex >= 13) {
+				_originalAc = 2;
+			} else {
+				_originalAc = 0;
+			}
+		}
+		
+		addAc(0 - _originalAc);
+	}
+
+	public void resetOriginalEr() {
+		int originalDex = getOriginalDex();
+		if (isCrown()) {
+			if(originalDex == 14 || originalDex == 15) {
+				_originalEr = 1;
+			} else if(originalDex == 16 || originalDex == 17) {
+				_originalEr = 2;
+			} else if(originalDex == 18) {
+				_originalEr = 3;
+			} else {
+				_originalEr = 0;
+			}
+		} else if(isKnight()) {
+			if(originalDex == 14 || originalDex == 15) {
+				_originalEr = 1;
+			} else if(originalDex == 16) {
+				_originalEr = 3;
+			} else {
+				_originalEr = 0;
+			}
+		} else if(isElf()) {
+				_originalEr = 0;
+		} else if(isDarkelf()) {
+			if(originalDex >= 16) {
+				_originalEr = 2;
+			} else {
+				_originalEr = 0;
+			}
+		} else if(isWizard()) {
+			if(originalDex == 9 || originalDex == 10) {
+				_originalEr = 1;
+			} else if(originalDex == 11) {
+				_originalEr = 2;
+			} else {
+				_originalEr = 0;
+			}
+		} else if(isDragonKnight()) {
+			if(originalDex == 13 || originalDex == 14) {
+				_originalEr = 1;
+			} else if(originalDex >= 15) {
+				_originalEr = 2;
+			} else {
+				_originalEr = 0;
+			}
+		} else if(isIllusionist()) {
+			if(originalDex == 12 || originalDex == 13) {
+				_originalEr = 1;
+			} else if(originalDex >= 14) {
+				_originalEr = 2;
+			} else {
+				_originalEr = 0;
+			}
+		}
+	}
+
+	public void resetOriginalHpr() {
+		int originalCon = getOriginalCon();
+		if (isCrown()) {
+			if(originalCon == 13 || originalCon == 14) {
+				_originalHpr = 1;
+			} else if(originalCon == 15 || originalCon == 16) {
+				_originalHpr = 2;
+			} else if(originalCon == 17) {
+				_originalHpr = 3;
+			} else if(originalCon == 18) {
+				_originalHpr = 4;
+			} else {
+				_originalHpr = 0;
+			}
+		} else if(isKnight()) {
+			if(originalCon == 16 || originalCon == 17) {
+				_originalHpr = 2;
+			} else if(originalCon == 18) {
+				_originalHpr = 4;
+			} else {
+				_originalHpr = 0;
+			}
+		} else if(isElf()) {
+			if(originalCon == 14 || originalCon == 15) {
+				_originalHpr = 1;
+			} else if(originalCon == 16) {
+				_originalHpr = 2;
+			} else if(originalCon >= 17) {
+				_originalHpr = 3;
+			} else {
+				_originalHpr = 0;
+			}
+		} else if(isDarkelf()) {
+			if(originalCon == 11 || originalCon == 12) {
+				_originalHpr = 1;
+			} else if(originalCon >= 13) {
+				_originalHpr = 2;
+			} else {
+				_originalHpr = 0;
+			}
+		} else if(isWizard()) {
+			if(originalCon == 17) {
+				_originalHpr = 1;
+			} else if(originalCon == 18) {
+				_originalHpr = 2;
+			} else {
+				_originalHpr = 0;
+			}
+		} else if(isDragonKnight()) {
+			if(originalCon == 16 || originalCon == 17) {
+				_originalHpr = 1;
+			} else if(originalCon == 18) {
+				_originalHpr = 3;
+			} else {
+				_originalHpr = 0;
+			}
+		} else if(isIllusionist()) {
+			if(originalCon == 14 || originalCon == 15) {
+				_originalHpr = 1;
+			} else if(originalCon >= 16) {
+				_originalHpr = 2;
+			} else {
+				_originalHpr = 0;
+			}
+		}
+	}
+
+	public void resetOriginalMpr() {
+		int originalWis = getOriginalWis();
+		if (isCrown()) {
+			if(originalWis == 13 || originalWis == 14) {
+				_originalMpr = 1;
+			} else if(originalWis >= 15) {
+				_originalMpr = 2;
+			} else {
+				_originalMpr = 0;
+			}
+		} else if(isKnight()) {
+			if(originalWis == 11 || originalWis == 12) {
+				_originalMpr = 1;
+			} else if(originalWis == 13) {
+				_originalMpr = 2;
+			} else {
+				_originalMpr = 0;
+			}
+		} else if(isElf()) {
+			if(originalWis >= 15 && originalWis <= 17) {
+				_originalMpr = 1;
+			} else if(originalWis == 18) {
+				_originalMpr = 2;
+			} else {
+				_originalMpr = 0;
+			}
+		} else if(isDarkelf()) {
+			if(originalWis >= 13) {
+				_originalMpr = 1;
+			} else {
+				_originalMpr = 0;
+			}
+		} else if(isWizard()) {
+			if(originalWis == 14 || originalWis == 15) {
+				_originalMpr = 1;
+			} else if(originalWis == 16 || originalWis == 17) {
+				_originalMpr = 2;
+			} else if(originalWis == 18) {
+				_originalMpr = 3;
+			} else {
+				_originalMpr = 0;
+			}
+		} else if(isDragonKnight()) {
+			if(originalWis == 15 || originalWis == 16) {
+				_originalMpr = 1;
+			} else if(originalWis >= 17) {
+				_originalMpr = 2;
+			} else {
+				_originalMpr = 0;
+			}
+		} else if(isIllusionist()) {
+			if(originalWis >= 14 && originalWis <= 16) {
+				_originalMpr = 1;
+			} else if(originalWis >= 17) {
+				_originalMpr = 2;
+			} else {
+				_originalMpr = 0;
+			}
+		}
+	}
+
 	public void refresh() {
 		resetLevel();
 		resetBaseHitup();
 		resetBaseDmgup();
 		resetBaseMr();
 		resetBaseAc();
+		resetOriginalHpup();
+		resetOriginalMpup();
+		resetOriginalDmgup();
+		resetOriginalBowDmgup();
+		resetOriginalHitup();
+		resetOriginalBowHitup();
+		resetOriginalMr();
+		resetOriginalMagicHit();
+		resetOriginalMagicCritical();
+		resetOriginalMagicConsumeReduction();
+		resetOriginalMagicDamage();
+		resetOriginalAc();
+		resetOriginalEr();
+		resetOriginalHpr();
+		resetOriginalMpr();
+		resetOriginalStrWeightReduction();
+		resetOriginalConWeightReduction();
 	}
 
 	private final L1ExcludingList _excludingList = new L1ExcludingList();
@@ -2743,6 +3850,16 @@ public class L1PcInstance extends L1Character {
 
 	public void setTempMaxLevel(int i) {
 		_tempMaxLevel = i;
+	}
+
+	private int _awakeSkillId = 0;
+
+	public int getAwakeSkillId() {
+		return _awakeSkillId;
+	}
+
+	public void setAwakeSkillId(int i) {
+		_awakeSkillId = i;
 	}
 
 }

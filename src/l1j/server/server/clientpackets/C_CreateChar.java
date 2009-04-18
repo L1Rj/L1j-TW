@@ -21,12 +21,17 @@ package l1j.server.server.clientpackets;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import l1j.server.L1DatabaseFactory;
 import l1j.server.server.BadNamesList;
 import l1j.server.server.ClientThread;
 import l1j.server.server.IdFactory;
+import l1j.server.server.datatables.CharacterResetTable;
 import l1j.server.server.datatables.CharacterTable;
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.model.Beginner;
@@ -36,6 +41,7 @@ import l1j.server.server.serverpackets.S_CharCreateStatus;
 import l1j.server.server.serverpackets.S_NewCharPacket;
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.utils.CalcInitHpMp;
+import l1j.server.server.utils.SQLUtil;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
@@ -188,6 +194,8 @@ public class C_CreateChar extends ClientBasePacket {
 		CharacterTable.getInstance().storeNewCharacter(pc);
 		S_NewCharPacket s_newcharpacket = new S_NewCharPacket(pc);
 		client.sendPacket(s_newcharpacket);
+		CharacterResetTable.getInstance().saveCharStatus(pc);
+		pc.refresh();
 	}
 
 	private static boolean isAlphaNumeric(String s) {

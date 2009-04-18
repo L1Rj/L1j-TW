@@ -31,6 +31,7 @@ import l1j.server.server.ActionCodes;
 import l1j.server.server.datatables.NpcTable;
 import l1j.server.server.datatables.PolyTable;
 import l1j.server.server.datatables.SkillsTable;
+import l1j.server.server.model.L1Awake;
 import l1j.server.server.model.L1CastleLocation;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1CurseParalysis;
@@ -139,7 +140,8 @@ public class L1SkillUse {
 			101, 102, 104, 105, 106, 107, 109, 110, 111, 113, 114, 115, 116,
 			117, 118, 129, 130, 131, 133, 134, 137, 138, 146, 147, 148, 149,
 			150, 151, 155, 156, 158, 159, 163, 164, 165, 166, 168, 169, 170,
-			171, SOUL_OF_FLAME, ADDITIONAL_FIRE, DRAGON_SKIN };
+			171, SOUL_OF_FLAME, ADDITIONAL_FIRE, DRAGON_SKIN, AWAKEN_ANTHARAS,
+			AWAKEN_FAFURION, AWAKEN_VALAKAS };
 
 	private static final int[] EXCEPT_COUNTER_MAGIC = { 1, 2, 3, 5, 8, 9, 12,
 			13, 14, 19, 21, 26, 31, 32, 35, 37, 42, 43, 44, 48, 49, 52, 54, 55,
@@ -149,7 +151,8 @@ public class L1SkillUse {
 			114, 115, 116, 117, 118, 129, 130, 131, 132, 134, 137, 138, 146,
 			147, 148, 149, 150, 151, 155, 156, 158, 159, 161, 163, 164, 165,
 			166, 168, 169, 170, 171, SOUL_OF_FLAME, ADDITIONAL_FIRE,
-			DRAGON_SKIN, 10026, 10027, 10028, 10029 };
+			DRAGON_SKIN, AWAKEN_ANTHARAS, AWAKEN_FAFURION, AWAKEN_VALAKAS,
+			10026, 10027, 10028, 10029 };
 
 	public L1SkillUse() {
 	}
@@ -375,6 +378,17 @@ public class L1SkillUse {
 			if (_skillId == DISINTEGRATE && pc.getLawful() < 500) {
 				// このメッセージであってるか未確認
 				pc.sendPackets(new S_ServerMessage(352, "$967")); // この魔法を利用するには性向值が%0でなければなりません。
+				return false;
+			}
+
+			// 覺醒狀態では覺醒スキル以外使用不可
+			if (pc.getAwakeSkillId() == AWAKEN_ANTHARAS
+					&& _skillId != AWAKEN_ANTHARAS
+					|| pc.getAwakeSkillId() == AWAKEN_FAFURION
+					&& _skillId != AWAKEN_FAFURION
+					|| pc.getAwakeSkillId() == AWAKEN_VALAKAS
+					&& _skillId != AWAKEN_VALAKAS) {
+				pc.sendPackets(new S_ServerMessage(1385)); // 現在の狀態では覺醒魔法が使えません。
 				return false;
 			}
 
@@ -1032,6 +1046,11 @@ public class L1SkillUse {
 			if (0 < _skill.getMpConsume()) { // MPを消費するスキルであれば
 				_mpConsume = Math.max(_mpConsume, 1); // 最低でも1消費する。
 			}
+
+			//MPのオリジナルINT輕減
+			if(_player.getOriginalMagicConsumeReduction() > 0) {
+				_mpConsume -= _player.getOriginalMagicConsumeReduction();
+			}
 		}
 
 		if (currentHp < _hpConsume + 1) {
@@ -1150,6 +1169,11 @@ public class L1SkillUse {
 				&& !_isFreeze) { // 凍結失敗
 			return;
 		}
+		if (_skillId == AWAKEN_ANTHARAS || _skillId == AWAKEN_FAFURION
+				|| _skillId == AWAKEN_VALAKAS) { // 覺醒の效果處理はL1Awakeに移讓。
+			return;
+		}
+
 		cha.setSkillEffect(_skillId, _getBuffDuration);
 
 		if (cha instanceof L1PcInstance && repetition) { // 對象がPCで既にスキルが重複している場合
@@ -2773,6 +2797,15 @@ public class L1SkillUse {
 								_getBuffIconDuration));
 						pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4,
 								0));
+					} else if (_skillId == AWAKEN_ANTHARAS) { // 覺醒：アンタラス
+						L1PcInstance pc = (L1PcInstance) cha;
+						L1Awake.start(pc, _skillId);
+					} else if (_skillId == AWAKEN_FAFURION) { // 覺醒：パプリオン
+						L1PcInstance pc = (L1PcInstance) cha;
+						L1Awake.start(pc, _skillId);
+					} else if (_skillId == AWAKEN_VALAKAS) { // 覺醒：ヴァラカス
+						L1PcInstance pc = (L1PcInstance) cha;
+						L1Awake.start(pc, _skillId);
 					}
 				}
 
@@ -2925,7 +2958,8 @@ public class L1SkillUse {
 				|| skillNum == ABSOLUTE_BARRIER || skillNum == ADVANCE_SPIRIT
 				|| skillNum == SHOCK_STUN || skillNum == SHADOW_FANG
 				|| skillNum == REDUCTION_ARMOR || skillNum == SOLID_CARRIAGE
-				|| skillNum == COUNTER_BARRIER;
+				|| skillNum == COUNTER_BARRIER || skillNum == AWAKEN_ANTHARAS
+				|| skillNum == AWAKEN_FAFURION || skillNum == AWAKEN_VALAKAS;
 	}
 
 	private void detection(L1PcInstance pc) {

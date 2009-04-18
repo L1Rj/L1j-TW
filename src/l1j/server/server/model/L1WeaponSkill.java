@@ -310,9 +310,9 @@ public class L1WeaponSkill {
 
 		double mrFloor = 0;
 		if (cha.getMr() <= 100) {
-			mrFloor = Math.floor(cha.getMr() / 2);
+			mrFloor = Math.floor((cha.getMr() - pc.getOriginalMagicHit()) / 2);
 		} else if (cha.getMr() >= 100) {
-			mrFloor = Math.floor(cha.getMr() / 10);
+			mrFloor = Math.floor((cha.getMr() - pc.getOriginalMagicHit()) / 10);
 		}
 
 		double kiringkuCoefficientB = 0;

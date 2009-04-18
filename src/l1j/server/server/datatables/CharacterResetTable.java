@@ -47,58 +47,20 @@ public class CharacterResetTable {
 	public static void saveCharStatus(L1PcInstance pc) {
 		Connection con = null;
 		PreparedStatement pstm = null;
-		ResultSet rset = null;
-		try {
-			con = L1DatabaseFactory.getInstance().getConnection();
-			rset = con.createStatement().executeQuery(
-					"SELECT * FROM characters_reset WHERE objectId="
-							+ pc.getId());
-			if (rset != null && rset.next()) {
-				pstm = con
-						.prepareStatement("UPDATE characters_reset SET charName = ?"
-								+ ", originalStr= ?, originalCon= ?, originalDex= ?"
-								+ ", originalCha= ?, originalInt= ?, originalWis= ?"
-								+ " WHERE objectId=" + pc.getId());
-				pstm.setString(1, pc.getName());
-				pstm.setInt(2, pc.getStr());
-				pstm.setInt(3, pc.getCon());
-				pstm.setInt(4, pc.getDex());
-				pstm.setInt(5, pc.getCha());
-				pstm.setInt(6, pc.getInt());
-				pstm.setInt(7, pc.getWis());
-				pstm.execute();
-			} else {
-				pstm = con
-						.prepareStatement("INSERT INTO characters_reset SET objectId = ?, charName = ?"
-								+ ", originalStr= ?, originalCon= ?, originalDex= ?"
-								+ ", originalCha= ?, originalInt= ?, originalWis= ?");
-				pstm.setInt(1, pc.getId());
-				pstm.setString(2, pc.getName());
-				pstm.setInt(3, pc.getStr());
-				pstm.setInt(4, pc.getCon());
-				pstm.setInt(5, pc.getDex());
-				pstm.setInt(6, pc.getCha());
-				pstm.setInt(7, pc.getInt());
-				pstm.setInt(8, pc.getWis());
-				pstm.execute();
-			}
-		} catch (Exception e) {
-			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-		} finally {
-			SQLUtil.close(rset);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
-		}
-	}
-
-	public static void deleteCharStatus(L1PcInstance pc) {
-		Connection con = null;
-		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con
-					.prepareStatement("DELETE FROM characters_reset WHERE characters_reset = ?");
-			pstm.setInt(1, pc.getId());
+					.prepareStatement("UPDATE Characters SET OriginalStr= ?"
+							+ ", OriginalCon= ?, OriginalDex= ?, OriginalCha= ?"
+							+ ", OriginalInt= ?, OriginalWis= ?"
+							+ " WHERE objid=?");
+			pstm.setInt(1, pc.getStr());
+			pstm.setInt(2, pc.getCon());
+			pstm.setInt(3, pc.getDex());
+			pstm.setInt(4, pc.getCha());
+			pstm.setInt(5, pc.getInt());
+			pstm.setInt(6, pc.getWis());
+			pstm.setInt(7, pc.getId());
 			pstm.execute();
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -108,4 +70,21 @@ public class CharacterResetTable {
 		}
 	}
 
+//	public static void deleteCharStatus(L1PcInstance pc) {
+//		Connection con = null;
+//		PreparedStatement pstm = null;
+//		try {
+//			con = L1DatabaseFactory.getInstance().getConnection();
+//			pstm = con
+//					.prepareStatement("DELETE FROM characters_reset WHERE characters_reset = ?");
+//			pstm.setInt(1, pc.getId());
+//			pstm.execute();
+//		} catch (Exception e) {
+//			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+//		} finally {
+//			SQLUtil.close(pstm);
+//			SQLUtil.close(con);
+//		}
+//	}
+//
 }

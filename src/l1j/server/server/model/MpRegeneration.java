@@ -95,6 +95,9 @@ public class MpRegeneration extends TimerTask {
 				|| _pc.hasSkillEffect(L1SkillId.COOKING_3_5_S)) {
 			baseMpr += 2;
 		}
+ 		if (_pc.getOriginalMpr() > 0) { // オリジナルWIS MPR補正
+ 			baseMpr += _pc.getOriginalMpr();
+ 		}
 
 		int itemMpr = _pc.getInventory().mpRegenPerTick();
 		itemMpr += _pc.getMpr();

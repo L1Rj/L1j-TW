@@ -143,6 +143,9 @@ public class HpRegeneration extends TimerTask {
 				|| _pc.hasSkillEffect(L1SkillId.COOKING_3_6_S)) {
 			bonus += 2;
 		}
+ 		if (_pc.getOriginalHpr() > 0) { // オリジナルCON HPR補正
+ 			bonus += _pc.getOriginalHpr();
+ 		}
 
 		boolean inLifeStream = false;
 		if (isPlayerInLifeStream(_pc)) {
