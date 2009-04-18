@@ -1,31 +1,3 @@
-/* 20090419 waja 修正新武器名稱 */
-Update weapon Set name = '底比斯歐西里斯雙刀' Where item_id = '265';
-Update weapon Set name = '底比斯歐西里斯雙手劍' Where item_id = '266';
-Update weapon Set name = '底比斯歐西里斯弓' Where item_id = '267';
-Update weapon Set name = '底比斯歐西里斯魔杖' Where item_id = '268';
-Update weapon Set name = '幻術士魔杖' Where item_id = '269';
-Update weapon Set name = '藍寶石奇古獸' Where item_id = '270';
-Update weapon Set name = '黑曜石奇古獸' Where item_id = '271';
-Update weapon Set name = '消滅者鎖鏈劍' Where item_id = '272';
-Update weapon Set name = '破滅者鎖鏈劍' Where item_id = '273';
-
-/* 20090419 waja 修正新防具名稱 */
-
-Update armor Set name = '底比斯赫洛斯戒指' Where item_id = '21093';
-Update armor Set name = '底比斯阿比努斯戒指' Where item_id = '21094';
-Update armor Set name = '底比斯歐西里斯腰帶' Where item_id = '21095';
-Update armor Set name = '命運耳環' Where item_id = '21096';
-Update armor Set name = '射擊手耳環' Where item_id = '21097';
-Update armor Set name = '鬥劍士耳環' Where item_id = '21098';
-Update armor Set name = '大法師耳環' Where item_id = '21099';
-Update armor Set name = '幻術士斗篷' Where item_id = '21100';
-Update armor Set name = '幻術士法書' Where item_id = '21101';
-Update armor Set name = '龍騎士斗篷' Where item_id = '21102';
-Update armor Set name = '龍鱗臂甲' Where item_id = '21103';
-Update armor Set name = '水晶臂甲' Where item_id = '21104';
-Update armor Set name = '古代神射臂甲' Where item_id = '21105';
-Update armor Set name = '古代鬥士臂甲' Where item_id = '21106';
-
 /* 20090419 waja 修正新道具名稱 未完 */
 Update etcitem Set name = '路西爾斯邪念碎片' Where item_id = '49231';
 Update etcitem Set name = '初級秘笈書' Where item_id = '49232';

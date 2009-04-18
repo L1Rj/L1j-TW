@@ -1,4 +1,4 @@
-/*	[4/15]
+/*	[4/19] waja提供
 L1j1711
 */
 Update armor Set name = '皮帽子' Where item_id = '20001';
@@ -527,9 +527,20 @@ Update armor Set name = '冰之女皇的耳環LV.8' Where item_id = '21089';
 Update armor Set name = '冰之女皇的耳環LV.9' Where item_id = '21090';
 Update armor Set name = '冰之女皇的耳環' Where item_id = '21091';
 Update armor Set name = '新生のリング' Where item_id = '21092';
-Update armor Set name = 'テーベ ホルス リング' Where item_id = '21093';
-Update armor Set name = 'テーベ アヌビス リング' Where item_id = '21094';
-Update armor Set name = 'テーベ オシリス ベルト' Where item_id = '21095';
+Update armor Set name = '底比斯赫洛斯戒指' Where item_id = '21093';
+Update armor Set name = '底比斯阿比努斯戒指' Where item_id = '21094';
+Update armor Set name = '底比斯歐西里斯腰帶' Where item_id = '21095';
+Update armor Set name = '命運耳環' Where item_id = '21096';
+Update armor Set name = '射擊手耳環' Where item_id = '21097';
+Update armor Set name = '鬥劍士耳環' Where item_id = '21098';
+Update armor Set name = '大法師耳環' Where item_id = '21099';
+Update armor Set name = '幻術士斗篷' Where item_id = '21100';
+Update armor Set name = '幻術士法書' Where item_id = '21101';
+Update armor Set name = '龍騎士斗篷' Where item_id = '21102';
+Update armor Set name = '龍鱗臂甲' Where item_id = '21103';
+Update armor Set name = '水晶臂甲' Where item_id = '21104';
+Update armor Set name = '古代神射臂甲' Where item_id = '21105';
+Update armor Set name = '古代鬥士臂甲' Where item_id = '21106';
 Update armor Set name = '抗魔法頭盔' Where item_id = '120011';
 Update armor Set name = '曼波帽子' Where item_id = '120016';
 Update armor Set name = '鋼盔' Where item_id = '120043';

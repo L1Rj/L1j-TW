@@ -1,4 +1,4 @@
-/*	[4/15]
+/*	[4/19] waja提供
 L1j1711
 */
 Update weapon Set name ='歐西斯匕首' Where item_id = '1';
@@ -260,15 +260,15 @@ Update weapon Set name ='大法師魔仗' Where item_id = '261';
 Update weapon Set name ='毀滅巨劍' Where item_id = '262';
 Update weapon Set name ='酷寒之矛' Where item_id = '263';
 Update weapon Set name ='雷雨之劍' Where item_id = '264';
-Update weapon Set name ='テーベ オシリス デュアルブレード' Where item_id = '265';
-Update weapon Set name ='テーベ オシリス ツーハンドソード' Where item_id = '266';
-Update weapon Set name ='テーベ オシリス ボウ' Where item_id = '267';
-Update weapon Set name ='テーベ オシリス スタッフ' Where item_id = '268';
-Update weapon Set name ='イリュージョニストのバトル スティック' Where item_id = '269';
-Update weapon Set name ='サファイア キーリンク' Where item_id = '270';
-Update weapon Set name ='ダーク ストーン キーリンク' Where item_id = '271';
-Update weapon Set name ='消滅者のチェーンソード' Where item_id = '272';
-Update weapon Set name ='破滅者のチェーンソード' Where item_id = '273';
+Update weapon Set name ='底比斯歐西里斯雙刀' Where item_id = '265';
+Update weapon Set name ='底比斯歐西里斯雙手劍' Where item_id = '266';
+Update weapon Set name ='底比斯歐西里斯弓' Where item_id = '267';
+Update weapon Set name ='底比斯歐西里斯魔杖' Where item_id = '268';
+Update weapon Set name ='幻術士魔杖' Where item_id = '269';
+Update weapon Set name ='藍寶石奇古獸' Where item_id = '270';
+Update weapon Set name ='黑曜石奇古獸' Where item_id = '271';
+Update weapon Set name ='消滅者鎖鏈劍' Where item_id = '272';
+Update weapon Set name ='破滅者鎖鏈劍' Where item_id = '273';
 Update weapon Set name ='匕首' Where item_id = '100004';
 Update weapon Set name ='精靈匕首' Where item_id = '100005';
 Update weapon Set name ='米索莉短劍' Where item_id = '100008';
