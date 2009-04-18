@@ -839,6 +839,9 @@ public class L1Attack {
 			}
 			dmg -= (targetPcLvl - 50) / 5 + 1;
 		}
+		if (_targetPc.hasSkillEffect(DRAGON_SKIN)) {
+			dmg -= 2;
+		}		
 		if (_targetPc.hasSkillEffect(IMMUNE_TO_HARM)) {
 			dmg /= 2;
 		}
@@ -1104,6 +1107,9 @@ public class L1Attack {
 				targetPcLvl = 50;
 			}
 			dmg -= (targetPcLvl - 50) / 5 + 1;
+		}
+		if (_targetPc.hasSkillEffect(DRAGON_SKIN)) {
+			dmg -= 2;
 		}
 		if (_targetPc.hasSkillEffect(IMMUNE_TO_HARM)) {
 			dmg /= 2;

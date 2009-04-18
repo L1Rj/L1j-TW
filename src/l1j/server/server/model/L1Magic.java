@@ -597,7 +597,10 @@ public class L1Magic {
 			}
 			dmg -= (targetPcLvl - 50) / 5 + 1;
 		}
-
+		if (_targetPc.hasSkillEffect(DRAGON_SKIN)) {
+			dmg -= 2;
+		}
+		
 		if (_calcType == NPC_PC) { // ペット、サモンからプレイヤーに攻擊
 			boolean isNowWar = false;
 			int castleId = L1CastleLocation.getCastleIdByArea(_targetPc);
