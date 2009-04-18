@@ -53,7 +53,7 @@ public class C_Mail extends ClientBasePacket {
 
 		if (type == 0x00 || type == 0x01 || type == 0x02) { // 開く
 			pc.sendPackets(new S_Mail(pc.getName(), type));
-		} else if (type == 0x10 || type == 0x11 || type == 0x12) { // 読む
+		} else if (type == 0x10 || type == 0x11 || type == 0x12) { // 讀む
 			int mailId = readD();
 			L1Mail mail = MailTable.getInstance().getMail(mailId);
 			if (mail.getReadStatus() == 0) {

@@ -100,11 +100,9 @@ import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class C_NPCAction extends ClientBasePacket {
 
-	private static final String	C_NPC_ACTION	= "[C] C_NPCAction";
-	private static Logger		_log			= Logger
-														.getLogger(C_NPCAction.class
-																.getName());
-	private static Random		_random			= new Random();
+	private static final String C_NPC_ACTION = "[C] C_NPCAction";
+	private static Logger _log = Logger.getLogger(C_NPCAction.class.getName());
+	private static Random _random = new Random();
 
 	public C_NPCAction(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
@@ -700,15 +698,15 @@ public class C_NPCAction extends ClientBasePacket {
 				 * 
 				 * 目前點數 - 初始點數 = 人物應有等級 - 50 -> 人物應有等級 = 50 + (目前點數 - 初始點數)
 				 */
-				// 最高到99級:也就是不支援轉生
 				int maxLevel = 1;
 
 				if (diff > 0) {
-					// ??99?:??蔰
+					// 最高到99級:也就是不支援轉生
 					maxLevel = Math.min(50 + diff, 99);
 				} else {
 					maxLevel = pc.getLevel();
 				}
+
 				pc.setTempMaxLevel(maxLevel);
 				pc.setTempLevel(1);
 				pc.setInCharReset(true);
@@ -2253,20 +2251,20 @@ public class C_NPCAction extends ClientBasePacket {
 						int htmlA = _random.nextInt(3) + 1;
 						int htmlB = _random.nextInt(100) + 1;
 						switch (htmlA) {
-						case 1:
-							htmlid = "horosa" + htmlB; // horosa1 ~
-														// horosa100
-							break;
-						case 2:
-							htmlid = "horosb" + htmlB; // horosb1 ~
-														// horosb100
-							break;
-						case 3:
-							htmlid = "horosc" + htmlB; // horosc1 ~
-														// horosc100
-							break;
-						default:
-							break;
+							case 1:
+								htmlid = "horosa" + htmlB; // horosa1 ~
+															// horosa100
+								break;
+							case 2:
+								htmlid = "horosb" + htmlB; // horosb1 ~
+															// horosb100
+								break;
+							case 3:
+								htmlid = "horosc" + htmlB; // horosc1 ~
+															// horosc100
+								break;
+							default:
+								break;
 						}
 					} else {
 						htmlid = "keplisha8";
@@ -2284,35 +2282,35 @@ public class C_NPCAction extends ClientBasePacket {
 						int PolyId = 6180 + _random.nextInt(64);
 						polyByKeplisha(client, PolyId);
 						switch (html) {
-						case 1:
-							htmlid = "horomon11";
-							break;
-						case 2:
-							htmlid = "horomon12";
-							break;
-						case 3:
-							htmlid = "horomon13";
-							break;
-						case 4:
-							htmlid = "horomon21";
-							break;
-						case 5:
-							htmlid = "horomon22";
-							break;
-						case 6:
-							htmlid = "horomon23";
-							break;
-						case 7:
-							htmlid = "horomon31";
-							break;
-						case 8:
-							htmlid = "horomon32";
-							break;
-						case 9:
-							htmlid = "horomon33";
-							break;
-						default:
-							break;
+							case 1:
+								htmlid = "horomon11";
+								break;
+							case 2:
+								htmlid = "horomon12";
+								break;
+							case 3:
+								htmlid = "horomon13";
+								break;
+							case 4:
+								htmlid = "horomon21";
+								break;
+							case 5:
+								htmlid = "horomon22";
+								break;
+							case 6:
+								htmlid = "horomon23";
+								break;
+							case 7:
+								htmlid = "horomon31";
+								break;
+							case 8:
+								htmlid = "horomon32";
+								break;
+							case 9:
+								htmlid = "horomon33";
+								break;
+							default:
+								break;
 						}
 					}
 				}

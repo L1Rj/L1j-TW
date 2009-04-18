@@ -679,6 +679,11 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(33);
 				os.writeC(6);
 			}
+			// srwh補
+			if (getItem().getBowHitModifier() != 0){
+				os.writeC(35);
+				os.writeC(getItem().getBowHitModifier() );
+			}
 			// 幸運
 // if (getItem.getLuck() != 0) {
 // os.writeC(20);
