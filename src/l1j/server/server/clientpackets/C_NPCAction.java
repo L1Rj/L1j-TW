@@ -96,6 +96,7 @@ import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.templates.L1Town;
+import l1j.server.server.utils.RandomArrayList;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class C_NPCAction extends ClientBasePacket {
@@ -1675,7 +1676,7 @@ public class C_NPCAction extends ClientBasePacket {
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 70512) {
 			// 治療を受ける("fullheal"でリクエストが來ることはあるのか？)
 			if (s.equalsIgnoreCase("0") || s.equalsIgnoreCase("fullheal")) {
-				int hp = _random.nextInt(21) + 70;
+				int hp = RandomArrayList.getArray100List() % 21 + 70;
 				pc.setCurrentHp(pc.getCurrentHp() + hp);
 				pc.sendPackets(new S_ServerMessage(77));
 				pc.sendPackets(new S_SkillSound(pc.getId(), 830));
@@ -2248,8 +2249,8 @@ public class C_NPCAction extends ClientBasePacket {
 						counts = new int[] { 1000, 1 };
 						createitem = new int[] { 41314 }; // 占星術師のお守り
 						createcount = new int[] { 1 };
-						int htmlA = _random.nextInt(3) + 1;
-						int htmlB = _random.nextInt(100) + 1;
+						byte htmlA = (byte) (RandomArrayList.getArray3List() + 1);
+						byte htmlB = RandomArrayList.getArray100List();
 						switch (htmlA) {
 							case 1:
 								htmlid = "horosa" + htmlB; // horosa1 ~
@@ -2278,8 +2279,8 @@ public class C_NPCAction extends ClientBasePacket {
 				} else {
 					if (pc.getInventory().checkItem(41314)) { // 占星術師のお守り
 						pc.getInventory().consumeItem(41314, 1); // 占星術師のお守り
-						int html = _random.nextInt(9) + 1;
-						int PolyId = 6180 + _random.nextInt(64);
+						byte html = (byte) (RandomArrayList.getArray9List() + 1);
+						int PolyId = 6180 + RandomArrayList.getArray100List() % 64;
 						polyByKeplisha(client, PolyId);
 						switch (html) {
 							case 1:

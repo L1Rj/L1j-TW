@@ -113,6 +113,7 @@ import l1j.server.server.templates.L1Pet;
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.L1SpawnUtil;
+import l1j.server.server.utils.RandomArrayList;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.clientpackets:
@@ -375,7 +376,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else {
 					pc.getInventory().removeItem(l1iteminstance, 1);
 
-					int rnd = _random.nextInt(100) + 1;
+					byte rnd = RandomArrayList.getArray100List();
 					int enchant_chance_wepon;
 					if (enchant_level >= 9) {
 						enchant_chance_wepon = (100 + 3 * Config.ENCHANT_CHANCE_WEAPON) / 6;
@@ -448,7 +449,7 @@ public class C_ItemUSe extends ClientBasePacket {
 							l1iteminstance1, itemId));
 				} else {
 					pc.getInventory().removeItem(l1iteminstance, 1);
-					int rnd = _random.nextInt(100) + 1;
+					byte rnd = RandomArrayList.getArray100List();
 					int enchant_chance_armor;
 					int enchant_level_tmp;
 					if (safe_enchant == 0) { // 骨、ブラックミスリル用補正
@@ -777,12 +778,12 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 40066 || itemId == 41413) { // お餅、月餅
 					pc.sendPackets(new S_ServerMessage(338, "$1084")); // あなたの%0が回復していきます。
 					pc.setCurrentMp(pc.getCurrentMp()
-							+ (7 + _random.nextInt(6))); // 7~12
+							+ (7 + RandomArrayList.getArray100List() % 6)); // 7~12
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 40067 || itemId == 41414) { // よもぎ餅、福餅
 					pc.sendPackets(new S_ServerMessage(338, "$1084")); // あなたの%0が回復していきます。
 					pc.setCurrentMp(pc.getCurrentMp()
-							+ (15 + _random.nextInt(16))); // 15~30
+							+ (15 + RandomArrayList.getArray100List() % 16)); // 15~30
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 40735) { // 勇氣のコイン
 					pc.sendPackets(new S_ServerMessage(338, "$1084")); // あなたの%0が回復していきます。
@@ -795,12 +796,12 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 41404) { // クジャクの靈藥
 					pc.sendPackets(new S_ServerMessage(338, "$1084")); // あなたの%0が回復していきます。
 					pc.setCurrentMp(pc.getCurrentMp()
-							+ (80 + _random.nextInt(21))); // 80~100
+							+ (80 + RandomArrayList.getArray100List() % 21)); // 80~100
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41412) { // 金のチョンズ
 					pc.sendPackets(new S_ServerMessage(338, "$1084")); // あなたの%0が回復していきます。
 					pc.setCurrentMp(pc.getCurrentMp()
-							+ (5 + _random.nextInt(16))); // 5~20
+							+ (5 + RandomArrayList.getArray100List() % 16)); // 5~20
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 40032 || itemId == 40041
 						|| itemId == 41344) { // エヴァの祝福、マーメイドの鱗、水の精粹
@@ -938,7 +939,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 40925) { // 淨化のポーション
 					int earingId = l1iteminstance1.getItem().getItemId();
 					if (earingId >= 40987 && 40989 >= earingId) { // 咒われたブラックイアリング
-						if (_random.nextInt(100) < Config.CREATE_CHANCE_RECOLLECTION) {
+						if (RandomArrayList.getArray100List() < Config.CREATE_CHANCE_RECOLLECTION) {
 							createNewItem(pc, earingId + 186, 1);
 						} else {
 							pc.sendPackets(new S_ServerMessage(158,
@@ -1301,7 +1302,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40325) { // 2面コイン
 					if (pc.getInventory().checkItem(40318, 1)) {
-						int gfxid = 3237 + _random.nextInt(2);
+						int gfxid = 3237 + RandomArrayList.getArray100List() % 2;
 						pc.sendPackets(new S_SkillSound(pc.getId(), gfxid));
 						pc.broadcastPacket(new S_SkillSound(pc.getId(), gfxid));
 						pc.getInventory().consumeItem(40318, 1);
@@ -1310,7 +1311,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40326) { // 3方向ルーレット
 					if (pc.getInventory().checkItem(40318, 1)) {
-						int gfxid = 3229 + _random.nextInt(3);
+						int gfxid = 3229 + RandomArrayList.getArray3List();
 						pc.sendPackets(new S_SkillSound(pc.getId(), gfxid));
 						pc.broadcastPacket(new S_SkillSound(pc.getId(), gfxid));
 						pc.getInventory().consumeItem(40318, 1);
@@ -1319,7 +1320,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40327) { // 4方向ルーレット
 					if (pc.getInventory().checkItem(40318, 1)) {
-						int gfxid = 3241 + _random.nextInt(4);
+						int gfxid = 3241 + RandomArrayList.getArray100List() % 4;
 						pc.sendPackets(new S_SkillSound(pc.getId(), gfxid));
 						pc.broadcastPacket(new S_SkillSound(pc.getId(), gfxid));
 						pc.getInventory().consumeItem(40318, 1);
@@ -1328,7 +1329,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40328) { // 6面ダイス
 					if (pc.getInventory().checkItem(40318, 1)) {
-						int gfxid = 3204 + _random.nextInt(6);
+						int gfxid = 3204 + RandomArrayList.getArray100List() % 6;
 						pc.sendPackets(new S_SkillSound(pc.getId(), gfxid));
 						pc.broadcastPacket(new S_SkillSound(pc.getId(), gfxid));
 						pc.getInventory().consumeItem(40318, 1);
@@ -2046,13 +2047,13 @@ public class C_ItemUSe extends ClientBasePacket {
 					UseHeallingPotion(pc, 35, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41301) { // シャイニングレッドフィッシュ
-					int chance = _random.nextInt(10);
+					int chance =  RandomArrayList.getArray100List() % 10;
 					if (chance >= 0 && chance < 5) {
 						UseHeallingPotion(pc, 15, 189);
 					} else if (chance >= 5 && chance < 9) {
 						createNewItem(pc, 40019, 1);
 					} else if (chance >= 9) {
-						int gemChance = _random.nextInt(3);
+						byte gemChance = RandomArrayList.getArray3List();
 						if (gemChance == 0) {
 							createNewItem(pc, 40045, 1);
 						} else if (gemChance == 1) {
@@ -2063,13 +2064,13 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41302) { // シャイニンググリーンフィッシュ
-					int chance = _random.nextInt(3);
+					byte chance = RandomArrayList.getArray3List();
 					if (chance >= 0 && chance < 5) {
 						UseHeallingPotion(pc, 15, 189);
 					} else if (chance >= 5 && chance < 9) {
 						createNewItem(pc, 40018, 1);
 					} else if (chance >= 9) {
-						int gemChance = _random.nextInt(3);
+						byte gemChance = RandomArrayList.getArray3List();
 						if (gemChance == 0) {
 							createNewItem(pc, 40047, 1);
 						} else if (gemChance == 1) {
@@ -2080,13 +2081,13 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41303) { // シャイニングブルーフィッシュ
-					int chance = _random.nextInt(3);
+					byte chance = RandomArrayList.getArray3List();
 					if (chance >= 0 && chance < 5) {
 						UseHeallingPotion(pc, 15, 189);
 					} else if (chance >= 5 && chance < 9) {
 						createNewItem(pc, 40015, 1);
 					} else if (chance >= 9) {
-						int gemChance = _random.nextInt(3);
+						byte gemChance = RandomArrayList.getArray3List();
 						if (gemChance == 0) {
 							createNewItem(pc, 40046, 1);
 						} else if (gemChance == 1) {
@@ -2097,13 +2098,13 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41304) { // シャイニングホワイトフィッシュ
-					int chance = _random.nextInt(3);
+					byte chance = RandomArrayList.getArray3List();
 					if (chance >= 0 && chance < 5) {
 						UseHeallingPotion(pc, 15, 189);
 					} else if (chance >= 5 && chance < 9) {
 						createNewItem(pc, 40021, 1);
 					} else if (chance >= 9) {
-						int gemChance = _random.nextInt(3);
+						byte gemChance = RandomArrayList.getArray3List();
 						if (gemChance == 0) {
 							createNewItem(pc, 40044, 1);
 						} else if (gemChance == 1) {
@@ -2689,8 +2690,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_PacketBox(
 								S_PacketBox.MSG_LEVEL_OVER, max));
 					} else {
-						pc.sendPackets(new S_SystemMessage("このアイテムは" + max
-								+ "レベル以下のみ使用できます。"));
+						pc.sendPackets(new S_SystemMessage("武器 Lv: " + max
+								+ "以下 裝備不可。"));
 					}
 				} else {
 					if (pc.isCrown() && l1iteminstance.getItem().isUseRoyal()
@@ -2740,8 +2741,8 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.sendPackets(new S_PacketBox(
 									S_PacketBox.MSG_LEVEL_OVER, max));
 						} else {
-							pc.sendPackets(new S_SystemMessage("このアイテムは" + max
-									+ "レベル以下のみ使用できます。"));
+							pc.sendPackets(new S_SystemMessage("防具 Lv: " + max
+									+ "以下 裝備不可。"));
 						}
 					} else {
 						UseArmor(pc, l1iteminstance);
@@ -3555,7 +3556,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == L1ItemId.B_SCROLL_OF_ENCHANT_WEAPON
 				|| itemId == 140129 || itemId == 140130) {
 			if (item.getEnchantLevel() <= 2) {
-				int j = _random.nextInt(100) + 1;
+				byte j = RandomArrayList.getArray100List();
 				if (j < 32) {
 					return 1;
 				} else if (j >= 33 && j <= 76) {
@@ -3565,7 +3566,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				}
 			} else if (item.getEnchantLevel() >= 3
 					&& item.getEnchantLevel() <= 5) {
-				int j = _random.nextInt(100) + 1;
+				byte j = RandomArrayList.getArray100List();
 				if (j < 50) {
 					return 2;
 				} else {
@@ -3765,7 +3766,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		int pcMapId = pc.getMapId();
 		if (pcX >=32786 && pcX <= 32797 && pcY >= 32842 && pcY <= 32859
 				&& pcMapId == 75 // 象牙の塔
-				|| pc.getLocation().isInScreen(new Point(33055,32336))
+				|| pc.getLocation().isInScreen(new Point(33053,32336))
 				&& pcMapId == 4) { // マザーツリー
 			return true;
 		}
@@ -4853,7 +4854,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		}
 
 		// XXX 適當なダメージ計算、要修正
-		int dmg = (_random.nextInt(11) - 5) + user.getStr();
+		int dmg = (RandomArrayList.getArray100List() % 11 - 5) + user.getStr();
 		dmg = Math.max(1, dmg);
 
 		if (target instanceof L1PcInstance) {
@@ -4903,8 +4904,8 @@ public class C_ItemUSe extends ClientBasePacket {
 		if (attacker.getId() != cha.getId() && !isSameClan) { // 自分以外と違うクラン
 			int probability = 3 * (attacker.getLevel() - cha.getLevel()) + 100
 					- cha.getMr();
-			int rnd = _random.nextInt(100) + 1;
-			if (rnd > probability) {
+			//int rnd = RandomArrayList.getArray100List();
+			if (RandomArrayList.getArray100List() > probability) {
 				return;
 			}
 		}
@@ -5236,7 +5237,7 @@ public class C_ItemUSe extends ClientBasePacket {
 							ActionCodes.ACTION_Fishing, fishX, fishY));
 					pc.setFishing(true);
 					long time = System.currentTimeMillis() + 10000
-							+ _random.nextInt(5) * 1000;
+							+ RandomArrayList.getArray5List() * 1000;
 					pc.setFishingTime(time);
 					FishingTimeController.getInstance().addMember(pc);
 				} else {
@@ -5276,7 +5277,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			return;
 		}
 
-		int rnd = _random.nextInt(100) + 1;
+		byte rnd = RandomArrayList.getArray100List();
 		if (rnd >= 1 && rnd <= 50) {
 			crystalCount = 0;
 			pc.sendPackets(new S_ServerMessage(158, item.getName())); // \f1%0が蒸發してなくなりました。
@@ -5384,7 +5385,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		}
 		pc.setSkillEffect(COOKING_NOW, 3 * 1000);
 
-		int chance = _random.nextInt(100) + 1;
+		byte chance = RandomArrayList.getArray100List();
 		if (cookNo == 0) { // フローティングアイステーキ
 			if (pc.getInventory().checkItem(40057, 1)) {
 				pc.getInventory().consumeItem(40057, 1);
