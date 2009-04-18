@@ -1123,12 +1123,6 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 		}
-		// 3.0 Start
-		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 6793) { // 「龍騎士」
-			if (s.equalsIgnoreCase("teleportURL")) {
-				htmlid = "feaena3";
-			}
-		}// 3.0 End
 		// バルログの執政官
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80064) {
 			// 「私の永遠の主はバルログ樣だけです…」
