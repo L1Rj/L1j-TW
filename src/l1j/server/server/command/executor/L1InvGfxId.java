@@ -50,8 +50,8 @@ public class L1InvGfxId implements L1CommandExecutor {
 			}
 		} catch (Exception exception) {
 			pc
-					.sendPackets(new S_SystemMessage(cmdName
-							+ " id 出現させる數 と入力して下さい。"));
+					.sendPackets(new S_SystemMessage("請輸入 " + cmdName
+							+ " id 外觀編號。"));
 		}
 	}
 }

@@ -172,7 +172,7 @@ public class L1AddSkill implements L1CommandExecutor {
 				}
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " コマンドエラー"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " 指令錯誤"));
 		}
 	}
 }

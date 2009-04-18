@@ -44,13 +44,13 @@ public class L1ToPC implements L1CommandExecutor {
 				L1Teleport.teleport(pc, target.getX(), target.getY(), target
 						.getMapId(), 5, false);
 				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						.append(arg).append("さんの元へ移動しました。").toString()));
+						.append(arg).append("已移動到該角色位置。").toString()));
 			} else {
 				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						.append(arg).append("さんはいません。").toString()));
+						.append(arg).append("角色不存在").toString()));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " キャラクター名 と入力して下さい。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 角色名稱。"));
 		}
 	}
 }

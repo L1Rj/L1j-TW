@@ -64,7 +64,7 @@ public class L1CreateItem implements L1CommandExecutor {
 				itemid = ItemTable.getInstance().findItemIdByNameWithoutSpace(
 						nameid);
 				if (itemid == 0) {
-					pc.sendPackets(new S_SystemMessage("該當アイテムが見つかりません。"));
+					pc.sendPackets(new S_SystemMessage("找不到這個道具編號。"));
 					return;
 				}
 			}
@@ -104,12 +104,12 @@ public class L1CreateItem implements L1CommandExecutor {
 					}
 				}
 			} else {
-				pc.sendPackets(new S_SystemMessage("指定IDのアイテムは存在しません"));
+				pc.sendPackets(new S_SystemMessage("指定道具編號規則不符！"));
 			}
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			pc.sendPackets(new S_SystemMessage(
-					".item itemid|name [個數] [エンチャント數] [鑑定狀態] と入力して下さい。"));
+					"請輸入 .item itemid|name [數量] [增強等級] [鑑定狀態]。"));
 		}
 	}
 }

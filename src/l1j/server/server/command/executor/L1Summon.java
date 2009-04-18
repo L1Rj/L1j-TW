@@ -49,7 +49,7 @@ public class L1Summon implements L1CommandExecutor {
 				npcid = NpcTable.getInstance().findNpcIdByNameWithoutSpace(
 						nameid);
 				if (npcid == 0) {
-					pc.sendPackets(new S_SystemMessage("該當NPCが見つかりません。"));
+					pc.sendPackets(new S_SystemMessage("找不到這個NPC編號。"));
 					return;
 				}
 			}
@@ -64,10 +64,10 @@ public class L1Summon implements L1CommandExecutor {
 			}
 			nameid = NpcTable.getInstance().getTemplate(npcid).get_name();
 			pc.sendPackets(new S_SystemMessage(nameid + "(ID:" + npcid + ") ("
-					+ count + ") を召還しました。"));
+					+ count + ") 已招喚。"));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName
-					+ " npcid|name [數] と入力して下さい。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName
+					+ " npcid|name [數量] 。"));
 		}
 	}
 }

@@ -52,12 +52,12 @@ public class L1InsertSpawn implements L1CommandExecutor {
 			L1Npc template = NpcTable.getInstance().getTemplate(npcId);
 
 			if (template == null) {
-				msg = "該當するNPCが見つかりません。";
+				msg = "該NPC不存在。";
 				return;
 			}
 			if (type.equals("mob")) {
 				if (!template.getImpl().equals("L1Monster")) {
-					msg = "指定したNPCはL1Monsterではありません。";
+					msg = "指定的NPC並不屬於L1Monster。";
 					return;
 				}
 				SpawnTable.storeSpawn(pc, template);
@@ -66,10 +66,10 @@ public class L1InsertSpawn implements L1CommandExecutor {
 			}
 			L1SpawnUtil.spawn(pc, npcId, 0, 0);
 			msg = new StringBuilder().append(template.get_name()).append(
-					" (" + npcId + ") ").append("を追加しました。").toString();
+					" (" + npcId + ") ").append("追加。").toString();
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, "", e);
-			msg = cmdName + " mob|npc NPCID と入力して下さい。";
+			msg = "請輸入 " + cmdName + " mob|npc NPCID 。";
 		} finally {
 			if (msg != null) {
 				pc.sendPackets(new S_SystemMessage(msg));

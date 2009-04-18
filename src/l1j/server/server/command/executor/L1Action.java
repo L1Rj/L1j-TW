@@ -42,7 +42,7 @@ public class L1Action implements L1CommandExecutor {
 			int actId = Integer.parseInt(st.nextToken(), 10);
 			pc.sendPackets(new S_DoActionGFX(pc.getId(), actId));
 		} catch (Exception exception) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " actid と入力して下さい。"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " 輸入 actid 。"));
 		}
 	}
 }

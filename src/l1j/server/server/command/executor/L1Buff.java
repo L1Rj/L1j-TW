@@ -78,11 +78,11 @@ public class L1Buff implements L1CommandExecutor {
 							L1SkillUse.TYPE_GMBUFF);
 				}
 			} else {
-				pc.sendPackets(new S_SystemMessage("buff系のスキルではありません。"));
+				pc.sendPackets(new S_SystemMessage("並非Buff系列技能。"));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName
-					+ " [all|me] skillId time と入力して下さい。"));
+			pc.sendPackets(new S_SystemMessage(" 請輸入 " + cmdName
+					+ " [all|me] skillId time 。"));
 		}
 	}
 }

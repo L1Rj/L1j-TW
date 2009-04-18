@@ -46,14 +46,14 @@ public class L1AccountBanKick implements L1CommandExecutor {
 				// アカウントをBANする
 				Account.ban(target.getAccountName());
 				pc.sendPackets(new S_SystemMessage(target.getName()
-						+ "さんをキックしました。"));
+						+ " 已被封鎖並強制登出。"));
 				target.sendPackets(new S_Disconnect());
 			} else {
 				pc.sendPackets(new S_SystemMessage(
-						"そのような名前のキャラクターはワールド內には存在しません。"));
+						" 角色名稱輸入錯誤或是該角色不存在。"));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " キャラクター名 と入力して下さい。"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " 角色名稱。"));
 		}
 	}
 }

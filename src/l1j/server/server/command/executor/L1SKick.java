@@ -42,7 +42,7 @@ public class L1SKick implements L1CommandExecutor {
 			L1PcInstance target = L1World.getInstance().getPlayer(arg);
 			if (target != null) {
 				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						.append(target.getName()).append("さんをキックしました。")
+						.append(target.getName()).append("剔除角色。")
 						.toString()));
 				// SKTへ移動させる
 				target.setX(33080);
@@ -51,14 +51,14 @@ public class L1SKick implements L1CommandExecutor {
 				target.sendPackets(new S_Disconnect());
 				ClientThread targetClient = target.getNetConnection();
 				targetClient.kick();
-				_log.warning("GMのskickコマンドにより(" + targetClient.getAccountName()
-						+ ":" + targetClient.getHostname() + ")との接續を強制切斷しました。");
+				_log.warning("按照GM的skick指令(" + targetClient.getAccountName()
+						+ ":" + targetClient.getHostname() + ")被強制切斷連線。");
 			} else {
 				pc.sendPackets(new S_SystemMessage(
-						"そのような名前のキャラクターはワールド內には存在しません。"));
+						"該角色不存在。"));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " キャラクター名 と入力して下さい。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 角色名稱。"));
 		}
 	}
 }

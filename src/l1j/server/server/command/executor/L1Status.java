@@ -93,7 +93,7 @@ public class L1Status implements L1CommandExecutor {
 					}
 					target.setAccessLevel((short) value);
 					target.sendPackets(new S_SystemMessage(
-							"リスタートすれば、GMに昇格されています。"));
+							"GM變更你的素質,重登之後生效。"));
 				} else if (param.equalsIgnoreCase("STR")) {
 					target.addBaseStr((byte) (value - target.getBaseStr()));
 				} else if (param.equalsIgnoreCase("CON")) {
@@ -107,18 +107,18 @@ public class L1Status implements L1CommandExecutor {
 				} else if (param.equalsIgnoreCase("CHA")) {
 					target.addBaseCha((byte) (value - target.getBaseCha()));
 				} else {
-					pc.sendPackets(new S_SystemMessage("ステータス " + param
-							+ " は不明です。"));
+					pc.sendPackets(new S_SystemMessage("角色素質 " + param
+							+ " 未知。"));
 					return;
 				}
 				target.save(); // DBにキャラクター情報を書き⑸む
 			}
 			target.sendPackets(new S_OwnCharStatus(target));
-			pc.sendPackets(new S_SystemMessage(target.getName() + " の" + param
-					+ "を" + value + "に變更しました。"));
+			pc.sendPackets(new S_SystemMessage(target.getName() + " 的" + param
+					+ "數值" + value + "已變更。"));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName
-					+ " キャラクター名|me ステータス 變更值 と入力して下さい。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName
+					+ " 角色名稱|me 素質變更數值。"));
 		}
 	}
 }

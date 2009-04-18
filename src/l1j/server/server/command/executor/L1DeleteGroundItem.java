@@ -82,6 +82,6 @@ public class L1DeleteGroundItem implements L1CommandExecutor {
 			}
 		}
 		L1World.getInstance().broadcastServerMessage(
-				"ワールドマップ上のアイテムがGMにより削除されました。");
+				"地面上的物品已被GM刪除。");
 	}
 }
