@@ -300,23 +300,23 @@ public class L1Character extends L1Object {
 	 */
 	public int targetDirection(int tx, int ty) {
 		// 4.15 Start
-		float dis_x = tx - getX(); // Ｘ方向の距離 >0 意謂正向軸
-		float dis_y = ty - getY(); // Ｙ方向の距離 <0 負向軸
+		int dis_x = tx - getX(); // Ｘ方向の距離 >0 意謂正向軸
+		int dis_y = ty - getY(); // Ｙ方向の距離 <0 負向軸
 		if (dis_y != 0) {
-			byte deff = (byte) Math.floor((dis_x / dis_y) * 2);
+			double deff = Math.floor((dis_x / dis_y) * 2);
 			if (deff > -1 && deff < 1) {
 				if (dis_y > 0) {
 					return 4;
 				} else if (dis_y < 0) {
 					return 0;
 				}
-			} else if (deff >= 1 && deff < 4) {
+			} else if (deff >= 1 && deff <= 4) {
 				if (dis_y > 0) {
 					return 3;
 				} else {
 					return 7;
 				}
-			} else if (deff <= -1 && deff > -4) {
+			} else if (deff <= -1 && deff >= -4) {
 				if (dis_y > 0) {
 					return 5;
 				} else {

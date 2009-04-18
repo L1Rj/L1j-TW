@@ -735,7 +735,7 @@ public class L1Attack {
 				}
 				dmg = dmg + _random.nextInt(add_dmg) + 1;
 			} else if (_weaponId == 190) { // サイハの弓
-				dmg = dmg + RandomArrayList.getArray9List() + RandomArrayList.getArray7List();
+				dmg = dmg + 1 + RandomArrayList.getArray100List() % 15;
 			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = _sting.getItem().getDmgSmall();
@@ -759,7 +759,7 @@ public class L1Attack {
 
 		if (_weaponType == 0) { // 素手 pc.getStr()
 //			dmg = (_random.nextInt(5) + 4) / 4;	日系原廠
-			dmg = RandomArrayList.getArray7List() + _pc.getStr() / 2;
+			dmg = RandomArrayList.getArray9List() + _pc.getStr() / 2;
 		}
 
 		if (_weaponType2 == 17) { // キーリンク
@@ -931,7 +931,7 @@ public class L1Attack {
 				}
 				dmg = dmg + _random.nextInt(add_dmg) + 1;
 			} else if (_weaponId == 190) { // サイハの弓
-				dmg = dmg + RandomArrayList.getArray9List() + RandomArrayList.getArray7List();
+				dmg = dmg + 1 +RandomArrayList.getArray100List() % 15;
 			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = 0;
@@ -959,7 +959,7 @@ public class L1Attack {
 
 		if (_weaponType == 0) { // 素手
 //			dmg = (_random.nextInt(5) + 4) / 4;	日系原廠
-			dmg = RandomArrayList.getArray7List() + _pc.getStr()/2;
+			dmg = RandomArrayList.getArray9List() + _pc.getStr()/2;
 		}
 
 		if (_weaponType2 == 17) { // キーリンク

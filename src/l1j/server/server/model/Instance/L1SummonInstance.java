@@ -118,8 +118,8 @@ public class L1SummonInstance extends L1NpcInstance {
 				new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);
-		setX(master.getX() + RandomArrayList.getArray5List() - (byte) 2);
-		setY(master.getY() + RandomArrayList.getArray5List() - (byte) 2);
+		setX(master.getX() + RandomArrayList.getArray5List() - 2);
+		setY(master.getY() + RandomArrayList.getArray5List() - 2);
 		setMap(master.getMapId());
 		setHeading(5);
 		setLightSize(template.getLightSize());
