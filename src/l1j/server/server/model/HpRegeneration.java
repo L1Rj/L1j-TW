@@ -235,7 +235,7 @@ public class HpRegeneration extends TimerTask {
 			return false;
 		}
 
-		return (14 < pc.getInventory().getWeight30()) ? true : false;
+		return (120 <= pc.getInventory().getWeight240()) ? true : false;
 	}
 
 	private boolean isLv50Quest(L1PcInstance pc) {

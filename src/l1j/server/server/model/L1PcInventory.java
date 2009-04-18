@@ -66,29 +66,29 @@ public class L1PcInventory extends L1Inventory {
 		return _owner;
 	}
 	
-	// ３０段階のウェイトを返す
-	public int getWeight30() {
-		return calcWeight30(getWeight());
+	// 240段階のウェイトを返す
+	public int getWeight240() {
+		return calcWeight240(getWeight());
 	}
 
-	// ３０段階のウェイトを算出する
-	public int calcWeight30(int weight) {
-		int weight30 = 0;
+	// 240段階のウェイトを算出する
+	public int calcWeight240(int weight) {
+		int weight240 = 0;
 		if (Config.RATE_WEIGHT_LIMIT != 0) {
 			double maxWeight = _owner.getMaxWeight();
 			if (weight > maxWeight) {
-				weight30 = 29;
+				weight240 = 240;
 			} else {
-				double wpTemp = (weight * 100 / maxWeight) * 29.00 / 100.00;
+				double wpTemp = (weight * 100 / maxWeight) * 240.00 / 100.00;
 				DecimalFormat df = new DecimalFormat("00.##");
 				df.format(wpTemp);
 				wpTemp = Math.round(wpTemp);
-				weight30 = (int) (wpTemp);
+				weight240 = (int) (wpTemp);
 			}
 		} else { // ウェイトレートが０なら重量常に０
-			weight30 = 0;
+			weight240 = 0;
 		}
-		return weight30;
+		return weight240;
 	}
 
 	@Override
@@ -116,7 +116,7 @@ public class L1PcInventory extends L1Inventory {
 			}
 			return WEIGHT_OVER;
 		}
-		if (calcWeight30(weight) >= 29) {
+		if (calcWeight240(weight) >= 240) {
 			if (message) {
 				sendOverMessage(82); // アイテムが重すぎて、これ以上持てません。
 			}
@@ -166,7 +166,7 @@ public class L1PcInventory extends L1Inventory {
 		_owner.sendPackets(new S_AddItem(item));
 		if (item.getItem().getWeight() != 0) {
 			_owner.sendPackets(
-					new S_PacketBox(S_PacketBox.WEIGHT, getWeight30()));
+					new S_PacketBox(S_PacketBox.WEIGHT, getWeight240()));
 		}
 		try {
 			CharactersItemStorage storage = CharactersItemStorage.create();
@@ -224,7 +224,7 @@ public class L1PcInventory extends L1Inventory {
 			_owner.sendPackets(new S_ItemStatus(item));
 			_owner.sendPackets(new S_ItemColor(item));
 			_owner.sendPackets(new S_PacketBox(
-					S_PacketBox.WEIGHT, getWeight30()));
+					S_PacketBox.WEIGHT, getWeight240()));
 			column -= COL_ITEMID;
 		}
 		if (column >= COL_DELAY_EFFECT) { // 效果ディレイ
@@ -243,7 +243,7 @@ public class L1PcInventory extends L1Inventory {
 			if (item.getItem().getWeight() != 0) {
 				// XXX 30段階のウェイトが變化しない場合は送らなくてよい
 				_owner.sendPackets(new S_PacketBox(
-						S_PacketBox.WEIGHT, getWeight30()));
+						S_PacketBox.WEIGHT, getWeight240()));
 			}
 			column -= COL_COUNT;
 		}
@@ -339,7 +339,7 @@ public class L1PcInventory extends L1Inventory {
 		_items.remove(item);
 		if (item.getItem().getWeight() != 0) {
 			_owner.sendPackets(
-					new S_PacketBox(S_PacketBox.WEIGHT, getWeight30()));
+					new S_PacketBox(S_PacketBox.WEIGHT, getWeight240()));
 		}
 	}
 

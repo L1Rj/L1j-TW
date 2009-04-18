@@ -337,7 +337,7 @@ public class L1SkillUse {
 			if ((pc.isInvisble() || pc.isInvisDelay()) && !isInvisUsableSkill()) { // インビジ中に使用不可のスキル
 				return false;
 			}
-			if (pc.getInventory().getWeight30() > 24) { // 重量オーバーならスキルを使用できない
+			if (pc.getInventory().getWeight240() >= 192) { // 重量オーバーならスキルを使用できない
 				pc.sendPackets(new S_ServerMessage(316));
 				return false;
 			}
