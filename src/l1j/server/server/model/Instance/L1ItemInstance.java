@@ -680,9 +680,9 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(6);
 			}
 			// srwh補
-			if (getItem().getBowHitModifier() != 0){
+			if (getItem().getBowDmgModifierByArmor() != 0){
 				os.writeC(35);
-				os.writeC(getItem().getBowHitModifier() );
+				os.writeC(getItem().getBowDmgModifierByArmor() );
 			}
 			// 幸運
 // if (getItem.getLuck() != 0) {
