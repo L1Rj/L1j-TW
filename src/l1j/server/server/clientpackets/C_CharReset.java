@@ -23,7 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.server.ClientThread;
-import l1j.server.server.datatables.CharacterResetTable;
+import l1j.server.server.datatables.CharacterTable;
 import l1j.server.server.datatables.ExpTable;
 import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -69,7 +69,7 @@ public class C_CharReset extends ClientBasePacket {
 			pc.sendPackets(new S_CharReset(pc, 1, hp, mp, 10, str, intel, wis,
 					dex, con, cha));
 			initCharStatus(pc, hp, mp, str, intel, wis, dex, con, cha);
-			CharacterResetTable.getInstance().saveCharStatus(pc);
+			CharacterTable.getInstance().saveCharStatus(pc);
 		} else if (stage == 0x02) { // 0x02:ステータス再分配
 			int type2 = readC();
 			if (type2 == 0x00) { // 0x00:Lv1UP
@@ -183,9 +183,9 @@ public class C_CharReset extends ClientBasePacket {
 		pc.setTempLevel(pc.getTempLevel()+ addLv);
 		for (int i = 0; i < addLv; i++) {
 			short randomHp = CalcStat.calcStatHp(pc.getType(),
-					pc.getBaseMaxHp(),pc.getBaseCon(),pc.getOriginalHpup());
+					pc.getBaseMaxHp(), pc.getBaseCon(),pc.getOriginalHpup());
 			short randomMp = CalcStat.calcStatMp(pc.getType(),
-					pc.getBaseMaxMp(),pc.getBaseWis(),pc.getOriginalMpup());
+					pc.getBaseMaxMp(), pc.getBaseWis(),pc.getOriginalMpup());
 			pc.addBaseMaxHp(randomHp);
 			pc.addBaseMaxMp(randomMp);
 		}

@@ -141,7 +141,7 @@ public class L1SkillUse {
 			117, 118, 129, 130, 131, 133, 134, 137, 138, 146, 147, 148, 149,
 			150, 151, 155, 156, 158, 159, 163, 164, 165, 166, 168, 169, 170,
 			171, SOUL_OF_FLAME, ADDITIONAL_FIRE, DRAGON_SKIN, AWAKEN_ANTHARAS,
-			AWAKEN_FAFURION, AWAKEN_VALAKAS };
+			AWAKEN_FAFURION, AWAKEN_VALAKAS, MIRROR_IMAGE, PATIENCE };
 
 	private static final int[] EXCEPT_COUNTER_MAGIC = { 1, 2, 3, 5, 8, 9, 12,
 			13, 14, 19, 21, 26, 31, 32, 35, 37, 42, 43, 44, 48, 49, 52, 54, 55,
@@ -152,7 +152,7 @@ public class L1SkillUse {
 			147, 148, 149, 150, 151, 155, 156, 158, 159, 161, 163, 164, 165,
 			166, 168, 169, 170, 171, SOUL_OF_FLAME, ADDITIONAL_FIRE,
 			DRAGON_SKIN, AWAKEN_ANTHARAS, AWAKEN_FAFURION, AWAKEN_VALAKAS,
-			10026, 10027, 10028, 10029 };
+			MIRROR_IMAGE, PATIENCE, 10026, 10027, 10028, 10029 };
 
 	public L1SkillUse() {
 	}
@@ -1047,8 +1047,8 @@ public class L1SkillUse {
 				_mpConsume = Math.max(_mpConsume, 1); // 最低でも1消費する。
 			}
 
-			//MPのオリジナルINT輕減
-			if(_player.getOriginalMagicConsumeReduction() > 0) {
+			// MPのオリジナルINT輕減
+			if (_player.getOriginalMagicConsumeReduction() > 0) {
 				_mpConsume -= _player.getOriginalMagicConsumeReduction();
 			}
 		}

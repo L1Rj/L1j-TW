@@ -382,9 +382,11 @@ public class L1Attack {
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) {
-			_hitRate += _weaponAddHit + _pc.getHitup() + _pc.getOriginalHitup() + (_weaponEnchant / 2);
+			_hitRate += _weaponAddHit + _pc.getHitup()
+					+ _pc.getOriginalHitup() + (_weaponEnchant / 2);
 		} else {
-			_hitRate += _weaponAddHit + _pc.getBowHitup() + _pc.getOriginalBowHitup() + (_weaponEnchant / 2);
+			_hitRate += _weaponAddHit + _pc.getBowHitup() + _pc.
+					getOriginalBowHitup() + (_weaponEnchant / 2);
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中
@@ -402,6 +404,10 @@ public class L1Attack {
 		}
 
 		if (_targetPc.hasSkillEffect(UNCANNY_DODGE)) {
+			_hitRate -= 20;
+		}
+
+		if (_targetPc.hasSkillEffect(MIRROR_IMAGE)) {
 			_hitRate -= 20;
 		}
 
@@ -473,9 +479,11 @@ public class L1Attack {
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) {
-			_hitRate += _weaponAddHit + _pc.getHitup() + _pc.getOriginalHitup() + (_weaponEnchant / 2);
+			_hitRate += _weaponAddHit + _pc.getHitup() + _pc.getOriginalHitup()
+					+ (_weaponEnchant / 2);
 		} else {
-			_hitRate += _weaponAddHit + _pc.getBowHitup() + _pc.getOriginalBowHitup() + (_weaponEnchant / 2);
+			_hitRate += _weaponAddHit + _pc.getBowHitup() + _pc
+					.getOriginalBowHitup() + (_weaponEnchant / 2);
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中
@@ -601,6 +609,10 @@ public class L1Attack {
 			_hitRate -= 20;
 		}
 
+		if (_targetPc.hasSkillEffect(MIRROR_IMAGE)) {
+			_hitRate -= 20;
+		}
+
 		if (_hitRate < 5) {
 			_hitRate = 5;
 		}
@@ -722,9 +734,11 @@ public class L1Attack {
 
 		double dmg;
 		if (_weaponType != 20 && _weaponType != 62) {
-			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup() + _pc.getOriginalDmgup();
+			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup()
+					+ _pc.getOriginalDmgup();
 		} else {
-			dmg = weaponTotalDamage + _statusDamage + _pc.getBowDmgup() + _pc.getOriginalBowDmgup();
+			dmg = weaponTotalDamage + _statusDamage + _pc.getBowDmgup()
+					+ _pc.getOriginalBowDmgup();
 		}
 
 		if (_weaponType == 20) { // 弓
@@ -912,9 +926,11 @@ public class L1Attack {
 
 		double dmg;
 		if (_weaponType != 20 && _weaponType != 62) {
-			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup() + _pc.getOriginalDmgup();
+			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup()
+					+ _pc.getOriginalDmgup();
 		} else {
-			dmg = weaponTotalDamage + _statusDamage + _pc.getBowDmgup() + _pc.getOriginalBowDmgup();
+			dmg = weaponTotalDamage + _statusDamage + _pc.getBowDmgup()
+					+ _pc.getOriginalBowDmgup();
 		}
 
 		if (_weaponType == 20) { // 弓

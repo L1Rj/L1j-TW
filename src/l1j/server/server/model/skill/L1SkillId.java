@@ -372,13 +372,13 @@ public class L1SkillId {
 	/*
 	 * Illusionist Magic
 	 */
-	public static final int MIRRIR = 201;
+	public static final int MIRROR_IMAGE = 201;
 
 	public static final int CONFUSION = 202;
 
 	public static final int SMASH = 203;
 
-	public static final int ILLUSION_OG = 204;
+	public static final int ILLUSION_OGRE = 204;
 
 	public static final int CUBE_IGNITION = 205;
 
@@ -396,7 +396,7 @@ public class L1SkillId {
 
 	public static final int PHANTASM = 212;
 
-	public static final int WEAPON_BREAKER = 213;
+	public static final int ARM_BREAKER = 213;
 
 	public static final int ILLUSION_DIA_GOLEM = 214;
 
@@ -404,7 +404,7 @@ public class L1SkillId {
 
 	public static final int INSIGHT = 216;
 
-	public static final int Panic = 217;
+	public static final int PANIC = 217;
 
 	public static final int JOY_OF_PAIN = 218;
 
