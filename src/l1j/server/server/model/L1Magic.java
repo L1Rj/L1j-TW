@@ -862,7 +862,7 @@ public class L1Magic {
 	private int calcMrDefense(int dmg) {
 		int mr = getTargetMr();
 		Random random = new Random();
-		int rnd = random.nextInt(100) + 1;
+		byte rnd = RandomArrayList.getArray100List();
 		if (mr >= rnd) {
 			dmg /= 2;
 		}

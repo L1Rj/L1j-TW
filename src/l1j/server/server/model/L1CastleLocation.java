@@ -29,6 +29,7 @@ import l1j.server.server.model.gametime.L1GameTime;
 import l1j.server.server.model.gametime.L1GameTimeAdapter;
 import l1j.server.server.model.gametime.L1GameTimeClock;
 import l1j.server.server.templates.L1Castle;
+import l1j.server.server.utils.RandomArrayList;
 
 // Referenced classes of package l1j.server.server.model:
 // L1CastleLocation
@@ -479,8 +480,7 @@ public class L1CastleLocation {
 			loc = L1TownLocation.getGetBackLoc(L1TownLocation.TOWNID_ADEN);
 		} else if (castle_id == DIAD_CASTLE_ID) { // ディアド要塞
 			// ディアド要塞の歸還先は未調查
-			Random random = new Random();
-			int rnd = random.nextInt(3);
+			byte rnd = RandomArrayList.getArray3List();
 			loc = new int[3];
 			if (rnd == 0) {
 				loc[0] = 32792;

@@ -46,6 +46,7 @@ import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1MobSkill;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Skills;
+import l1j.server.server.utils.RandomArrayList;
 
 public class L1MobSkillUse {
 	private static Logger _log = Logger
@@ -397,7 +398,7 @@ public class L1MobSkillUse {
 		boolean useble = false;
 
 		if (getMobSkillTemplate().getTriggerRandom(skillIdx) > 0) {
-			int chance = _rnd.nextInt(100) + 1;
+			byte chance = RandomArrayList.getArray100List();
 			if (chance < getMobSkillTemplate().getTriggerRandom(skillIdx)) {
 				useble = true;
 			} else {
@@ -504,7 +505,7 @@ public class L1MobSkillUse {
 					mob.setId(IdFactory.getInstance().nextId());
 					L1Location loc = _attacker.getLocation().randomLocation(8,
 							false);
-					int heading = _rnd.nextInt(8);
+					int heading = RandomArrayList.getArray100List() % 8;
 					mob.setX(loc.getX());
 					mob.setY(loc.getY());
 					mob.setHomeX(loc.getX());

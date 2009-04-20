@@ -114,7 +114,7 @@ public class DungeonRandom {
 
 		private NewDungeonRandom(int[] newX, int[] newY, short[] newMapId,
 				int heading) {
-			for (int i = 0; i < 5; i++) {
+			for (byte i = 0; i < 5; i++) {
 				_newX[i] = newX[i];
 				_newY[i] = newY[i];
 				_newMapId[i] = newMapId[i];
