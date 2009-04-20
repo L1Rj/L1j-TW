@@ -114,32 +114,32 @@ public class L1GuardianInstance extends L1NpcInstance {
 
 			if (attack.calcHit()) {
 				if (getNpcTemplate().get_npcId() == 70848) { // エント
-					byte chance =  RandomArrayList.getArray100List();
-					if (chance <= 10) {
+					byte chance =  RandomArrayList.getArray10List();
+					if (chance == 1) {
 						player.getInventory().storeItem(40506, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
 								"$794")); // \f1%0が%1をくれました。
-					} else if (chance <= 60 && chance > 10) {
+					} else if (chance <= 6) {
 						player.getInventory().storeItem(40507, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
 								"$763")); // \f1%0が%1をくれました。
-					} else if (chance <= 70 && chance > 60) {
+					} else if (chance <= 7) {
 						player.getInventory().storeItem(40505, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
 								"$770")); // \f1%0が%1をくれました。
 					}
 				}
 				if (getNpcTemplate().get_npcId() == 70850) { // パン
-					byte chance =  RandomArrayList.getArray100List();
-					if (chance <= 30) {
+					byte chance =  RandomArrayList.getArray10List();
+					if (chance <= 3) {
 						player.getInventory().storeItem(40519, 5);
 						player.sendPackets(new S_ServerMessage(143, "$753",
 								"$760" + " (" + 5 + ")")); // \f1%0が%1をくれました。
 					}
 				}
 				if (getNpcTemplate().get_npcId() == 70846) { // アラクネ
-					byte chance =  RandomArrayList.getArray100List();
-					if (chance <= 30) {
+					byte chance =  RandomArrayList.getArray10List();
+					if (chance <= 3) {
 						player.getInventory().storeItem(40503, 1);
 						player.sendPackets(new S_ServerMessage(143, "$752",
 								"$769")); // \f1%0が%1をくれました。

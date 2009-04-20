@@ -2047,7 +2047,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					UseHeallingPotion(pc, 35, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41301) { // シャイニングレッドフィッシュ
-					int chance =  RandomArrayList.getArray100List() % 10;
+					int chance =  RandomArrayList.getArray10List();
 					if (chance >= 0 && chance < 5) {
 						UseHeallingPotion(pc, 15, 189);
 					} else if (chance >= 5 && chance < 9) {
@@ -4854,7 +4854,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		}
 
 		// XXX 適當なダメージ計算、要修正
-		int dmg = (RandomArrayList.getArray100List() % 11 - 5) + user.getStr();
+		int dmg = (RandomArrayList.getArray10List() - 5) + user.getStr();
 		dmg = Math.max(1, dmg);
 
 		if (target instanceof L1PcInstance) {
@@ -5277,13 +5277,13 @@ public class C_ItemUSe extends ClientBasePacket {
 			return;
 		}
 
-		byte rnd = RandomArrayList.getArray100List();
-		if (rnd >= 1 && rnd <= 50) {
+		byte rnd = RandomArrayList.getArray10List();
+		if (rnd <= 5) {
 			crystalCount = 0;
 			pc.sendPackets(new S_ServerMessage(158, item.getName())); // \f1%0が蒸發してなくなりました。
-		} else if (rnd >= 51 && rnd <= 90) {
+		} else if (rnd <= 9) {
 			crystalCount *= 1;
-		} else if (rnd >= 91 && rnd <= 100) {
+		} else if (rnd <= 10) {
 			crystalCount *= 1.5;
 			pc.getInventory().storeItem(41246, (int) (crystalCount * 1.5));
 		}
@@ -5389,14 +5389,14 @@ public class C_ItemUSe extends ClientBasePacket {
 		if (cookNo == 0) { // フローティングアイステーキ
 			if (pc.getInventory().checkItem(40057, 1)) {
 				pc.getInventory().consumeItem(40057, 1);
-				if (chance >= 1 && chance <= 90) {
+				if (chance <= 90) {
 					createNewItem(pc, 41277, 1);
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6392));
-				} else if (chance >= 91 && chance <= 95) {
+				} else if (chance <= 95) {
 					createNewItem(pc, 41285, 1);
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6390));
-				} else if (chance >= 96 && chance <= 100) {
+				} else if (chance <= 100) {
 					pc.sendPackets(new S_ServerMessage(1101)); // 料理が失敗しました。
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6394));
 				}

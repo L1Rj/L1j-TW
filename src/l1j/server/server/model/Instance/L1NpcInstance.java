@@ -99,7 +99,7 @@ public class L1NpcInstance extends L1Character {
 	private boolean firstFound = true;
 
 	// 經路探索範圍（半徑） ※上げすぎ注意！！
-	public static int courceRange = 15;
+	public static byte courceRange = 18;
 
 	// 吸われたMP
 	private int _drainedMana = 0;
@@ -108,7 +108,7 @@ public class L1NpcInstance extends L1Character {
 	private boolean _rest = false;
 
 	// ランダム移動時の距離と方向
-	private int _randomMoveDistance = 0;
+	private byte _randomMoveDistance = 0;
 
 	private int _randomMoveDirection = 0;
 
@@ -436,7 +436,7 @@ public class L1NpcInstance extends L1Character {
 					}
 
 					if (getNpcTemplate().is_teleport()
-							&& 20 > RandomArrayList.getArray100List()
+							&& 2 > RandomArrayList.getArray10List()
 							&& getCurrentMp() >= 10 && distance > 6
 							&& distance < 15) { // テレポート移動
 						if (nearTeleport(target.getX(), target.getY()) == true) {
@@ -684,7 +684,7 @@ public class L1NpcInstance extends L1Character {
 					// 移動する予定の距離を移動し終えたら、新たに距離と方向を決める
 					// そうでないなら、移動する予定の距離をデクリメント
 					if (_randomMoveDistance == 0) {
-						_randomMoveDistance = RandomArrayList.getArray5List() + 1;
+						_randomMoveDistance = (byte) (RandomArrayList.getArray5List() + 1);
 						_randomMoveDirection = RandomArrayList.getArray100List() / 5;
 						// ホームポイントから離れすぎないように、一定の確率でホームポイントの方向に補正
 						if (getHomeX() != 0 && getHomeY() != 0
@@ -1379,12 +1379,11 @@ public class L1NpcInstance extends L1Character {
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
 
 	// 指定された方向に移動させる
-	public void setDirectionMove(int dir) {//4.13 Start
+	public void setDirectionMove(int dir) {// 4.20 Start
 		if (dir >= 0) {
 			int nx = getX();
 			int ny = getY();
 			if (dir == 0) {
-				//nx = 0;
 				ny--;
 				setHeading(0);
 			} else if (dir == 1) {
@@ -1393,14 +1392,12 @@ public class L1NpcInstance extends L1Character {
 				setHeading(1);
 			} else if (dir == 2) {
 				nx++;
-				//ny = 0;
 				setHeading(2);
 			} else if (dir == 3) {
 				nx++;
 				ny++;
 				setHeading(3);
 			} else if (dir == 4) {
-				//nx = 0;
 				ny++;
 				setHeading(4);
 			} else if (dir == 5) {
@@ -1409,7 +1406,6 @@ public class L1NpcInstance extends L1Character {
 				setHeading(5);
 			} else if (dir == 6) {
 				nx--;
-				//ny = 0;
 				setHeading(6);
 			} else if (dir == 7) {
 				nx--;
@@ -1420,7 +1416,7 @@ public class L1NpcInstance extends L1Character {
 			getMap().setPassable(getLocation(), true);
 
 			setX(nx);
-			setY(ny);//4.13 End
+			setY(ny);//4.20 End
 
 			getMap().setPassable(getLocation(), false);
 
@@ -1550,21 +1546,19 @@ public class L1NpcInstance extends L1Character {
 																	// マップＩＤ
 	// 進行方向
 		L1Map map = L1WorldMap.getInstance().getMap(m);
-		for (byte i = 0 ; i < 3 ; i++) {//4.13 Start
+		for (byte i = 0 ; i < 3 ; i++) {// 4.20 Start
 			if (i == 2) {
-				d -= 2;
+				d += 6;
 			} else {
 				d += i;
 			}
-			if (d < 0) {
-				d += 8;
-			} else if (d > 8) {
+			if (d > 7) {
 				d -= 8;
 			}
 			if (map.isPassable(x, y, d)) {
 				return d;
 			}
-		}//4.13 End
+		}// 4.20 End
 		return -1;
 	}
 
@@ -1827,11 +1821,9 @@ public class L1NpcInstance extends L1Character {
 
 	// 目標の鄰へテレポート
 	public boolean nearTeleport(int nx, int ny) {
-		int tempx;
-		int tempy;
+		int tempx = 0;
+		int tempy = 0;
 		for (int i = 1; i < 3; i++){
-			tempx = 0;
-			tempy = 0;
 			tempx = nx + RandomArrayList.getArray7List() - 3;
 			tempy = ny + RandomArrayList.getArray7List() - 3;
 			if (getMap().isPassable(tempx, tempy)) {

@@ -709,7 +709,7 @@ public class L1Attack {
 		} else if (_weaponType == 0 || _weaponType == 20 || _weaponType == 62) { // 素手、弓、ガントトレット
 			weaponDamage = 0;
 		} else {
-			weaponDamage = _random.nextInt(weaponMaxDamage) + 1;
+			weaponDamage = RandomArrayList.getArray100List() % weaponMaxDamage + 1;
 		}
 		if (_pc.hasSkillEffect(SOUL_OF_FLAME)) {
 			if (_weaponType != 20 && _weaponType != 62) {
@@ -720,7 +720,7 @@ public class L1Attack {
 		int weaponTotalDamage = weaponDamage + _weaponAddDmg + _weaponEnchant;
 		if (_pc.hasSkillEffect(DOUBLE_BRAKE)
 				&& (_weaponType == 54 || _weaponType == 58)) {
-			if (RandomArrayList.getArray100List() <= 33) {
+			if (RandomArrayList.getArray3List() == 0) {
 				weaponTotalDamage *= 2;
 			}
 		}
@@ -747,7 +747,7 @@ public class L1Attack {
 				if (add_dmg == 0) {
 					add_dmg = 1;
 				}
-				dmg = dmg + _random.nextInt(add_dmg) + 1;
+				dmg = dmg + RandomArrayList.getArray100List() % add_dmg + 1;
 			} else if (_weaponId == 190) { // サイハの弓
 				dmg = dmg + 1 + RandomArrayList.getArray100List() % 15;
 			}
@@ -900,7 +900,7 @@ public class L1Attack {
 		} else if (_weaponType == 0 || _weaponType == 20 || _weaponType == 62) { // 素手、弓、ガントトレット
 			weaponDamage = 0;
 		} else {
-			weaponDamage = _random.nextInt(weaponMaxDamage) + 1;
+			weaponDamage = RandomArrayList.getArray100List() % weaponMaxDamage + 1;
 		}
 		if (_pc.hasSkillEffect(SOUL_OF_FLAME)) {
 			if (_weaponType != 20 && _weaponType != 62) {
@@ -911,7 +911,7 @@ public class L1Attack {
 		int weaponTotalDamage = weaponDamage + _weaponAddDmg + _weaponEnchant;
 		if (_pc.hasSkillEffect(DOUBLE_BRAKE)
 				&& (_weaponType == 54 || _weaponType == 58)) {
-			if (RandomArrayList.getArray100List() <= 33) {
+			if (RandomArrayList.getArray3List() == 0) {
 				weaponTotalDamage *= 2;
 			}
 		}
@@ -978,7 +978,7 @@ public class L1Attack {
 
 		if (_weaponType == 0) { // 素手
 //			dmg = (_random.nextInt(5) + 4) / 4;	日系原廠
-			dmg = RandomArrayList.getArray9List() + _pc.getStr()/2;
+			dmg = RandomArrayList.getArray9List() + _pc.getStr() / 2;
 		}
 
 		if (_weaponType2 == 17) { // キーリンク
@@ -1056,9 +1056,9 @@ public class L1Attack {
 		int lvl = _npc.getLevel();
 		double dmg = 0D;
 		if (lvl < 10) {
-			dmg = _random.nextInt(lvl) + 10D + _npc.getStr() / 2 + 1;
+			dmg = RandomArrayList.getArray100List() % lvl + 10D + _npc.getStr() / 2 + 1;
 		} else {
-			dmg = _random.nextInt(lvl) + _npc.getStr() / 2 + 1;
+			dmg = RandomArrayList.getArray100List() % lvl + _npc.getStr() / 2 + 1;
 		}
 
 		if (_npc instanceof L1PetInstance) {
@@ -1222,7 +1222,7 @@ public class L1Attack {
 				|| (_pc.hasSkillEffect(ELEMENTAL_FIRE)
 						&& _weaponType != 20 && _weaponType != 62
 						&& _weaponType2 !=17)) {
-			if (RandomArrayList.getArray100List() <= 33) {
+			if (RandomArrayList.getArray3List() == 0) {
 				double tempDmg = dmg;
 				if (_pc.hasSkillEffect(FIRE_WEAPON)) {
 					tempDmg -= 4;
@@ -1262,10 +1262,10 @@ public class L1Attack {
 		int undead = _targetNpc.getNpcTemplate().get_undead();
 		if ((_weaponMaterial == 14 || _weaponMaterial == 17 || _weaponMaterial == 22)
 				&& (undead == 1 || undead == 3)) { // 銀‧ミスリル‧オリハルコン、かつ、アンデッド系‧アンデッド系ボス
-			damage += _random.nextInt(20) + 1;
+			damage += RandomArrayList.getArray100List() / 5 + 1;
 		}
 		if (_weaponBless == 0 && (undead == 1 || undead == 2 || undead == 3)) { // 祝福武器、かつ、アンデッド系‧惡魔系‧アンデッド系ボス
-			damage += _random.nextInt(4) + 1;
+			damage += RandomArrayList.getArray5List() + 1;
 		}
 		if (_pc.getWeapon() != null && _weaponType != 20 && _weaponType != 62
 				&& weapon.getHolyDmgByMagic() != 0 && (undead == 1 || undead == 3)) {
@@ -1706,8 +1706,8 @@ public class L1Attack {
 	 * 武器を損傷させる。 對NPCの場合、損傷確率は10%とする。祝福武器は3%とする。
 	 */
 	private void damageNpcWeaponDurability() {
-		int chance = 10;
-		int bchance = 3;
+		byte chance = 10;
+		byte bchance = 3;
 
 		/*
 		 * 損傷しないNPC、素手、損傷しない武器使用、SOF中の場合何もしない。
@@ -1726,7 +1726,7 @@ public class L1Attack {
 			_pc.getInventory().receiveDamage(weapon);
 		}
 		// 祝福された武器
-		if (_weaponBless == 0 && ((_random.nextInt(100) + 1) < bchance)) {
+		if (_weaponBless == 0 && (RandomArrayList.getArray100List() < bchance)) {
 			// \f1あなたの%0が損傷しました。
 			_pc.sendPackets(new S_ServerMessage(268, weapon.getLogName()));
 			_pc.getInventory().receiveDamage(weapon);
@@ -1745,7 +1745,7 @@ public class L1Attack {
 			return;
 		}
 
-		if (_random.nextInt(100) + 1 <= 10) {
+		if (RandomArrayList.getArray100List() <= 10) {
 			// \f1あなたの%0が損傷しました。
 			_pc.sendPackets(new S_ServerMessage(268, weapon.getLogName()));
 			_pc.getInventory().receiveDamage(weapon);

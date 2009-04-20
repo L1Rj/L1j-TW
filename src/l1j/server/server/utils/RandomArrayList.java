@@ -8,6 +8,7 @@ public class RandomArrayList {
 	private static byte[] array5 = new byte[128];
 	private static byte[] array7 = new byte[128];
 	private static byte[] array9 = new byte[128];
+	private static byte[] array10 = new byte[128];
 	private static byte[] Array100 = new byte[1000];
 	private static byte listnum = 0;
 	private static int listint = 0;
@@ -18,6 +19,7 @@ public class RandomArrayList {
 		setArray5List();
 		setArray7List();
 		setArray9List();
+		setArray10List();
 		setArray100List();
 	}
 
@@ -76,6 +78,21 @@ public class RandomArrayList {
 	public static byte getArray9List() {
 		if (listnum != 127) {
 			return array9[listnum++];
+		}
+		listnum = 0;
+		return array9[127];
+	}
+
+	private static void setArray10List() {
+		for (byte i = 0; i < 127; i++) {
+			array9[i] = (byte) (_random.nextInt(10) + 1);
+		}
+		array9[127] = (byte) (_random.nextInt(10) + 1);
+	}
+
+	public static byte getArray10List() {
+		if (listnum != 127) {
+			return array10[listnum++];
 		}
 		listnum = 0;
 		return array9[127];
