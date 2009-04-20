@@ -601,6 +601,10 @@ public class L1Magic {
 			dmg -= 2;
 		}
 
+		if (_targetPc.hasSkillEffect(PATIENCE)) {
+			dmg -= 2;
+		}
+
 		if (_calcType == NPC_PC) { // ペット、サモンからプレイヤーに攻擊
 			boolean isNowWar = false;
 			int castleId = L1CastleLocation.getCastleIdByArea(_targetPc);
