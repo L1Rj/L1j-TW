@@ -106,7 +106,7 @@ public class CalcStat {
 	 */
 	public static short calcStatHp(int charType, int baseMaxHp, byte baseCon, int originalHpup) {
 		short randomhp = 0;
-		byte randomadd = RandomArrayList.getArray5List() - (byte) 2;
+		byte randomadd = (byte) (RandomArrayList.getArray5List() - 2);
 		byte playerbasecon = (byte) (baseCon / 2);
 		if (baseCon > 15) {
 			randomhp = (short) (baseCon - 15);
