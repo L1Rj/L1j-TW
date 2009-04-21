@@ -265,6 +265,7 @@ public class L1SkillUse {
 		}
 
 		// ファイアーウォール、ライフストリームは詠唱對象が座標
+		// キューブは詠唱者の座標に配置されるため例外
 		if (_skillId == FIRE_WALL || _skillId == LIFE_STREAM) {
 			return true;
 		}
@@ -383,6 +384,31 @@ public class L1SkillUse {
 				// このメッセージであってるか未確認
 				pc.sendPackets(new S_ServerMessage(352, "$967")); // この魔法を利用するには性向值が%0でなければなりません。
 				return false;
+			}
+
+			// 同じキューブは效果範圍外であれば配置可能
+			if (_skillId == CUBE_IGNITION || _skillId == CUBE_QUAKE
+					|| _skillId == CUBE_SHOCK || _skillId == CUBE_BALANCE) {
+				boolean isNearSameCube = false;
+				int gfxId = 0;
+				for (L1Object obj : L1World.getInstance()
+						.getVisibleObjects(pc, 3)) {
+					if (obj instanceof L1EffectInstance) {
+						L1EffectInstance effect = (L1EffectInstance) obj;
+						gfxId = effect.getGfxId();
+						if (_skillId == CUBE_IGNITION && gfxId == 6706
+								|| _skillId == CUBE_QUAKE && gfxId == 6712
+								|| _skillId == CUBE_SHOCK && gfxId == 6718
+								|| _skillId == CUBE_BALANCE && gfxId == 6724) {
+							isNearSameCube = true;
+							break;
+						}
+					}
+				}
+				if (isNearSameCube) {
+					pc.sendPackets(new S_ServerMessage(1412)); // すでに床にキューブが召喚されています。
+					return false;
+				}
 			}
 
 			// 覺醒狀態では覺醒スキル以外使用不可
@@ -1505,6 +1531,26 @@ public class L1SkillUse {
 
 		if (_skillId == LIFE_STREAM) {
 			L1EffectSpawn.getInstance().spawnEffect(81169,
+					_skill.getBuffDuration() * 1000,
+					_targetX, _targetY, _user.getMapId());
+			return;
+		} else if (_skillId == CUBE_IGNITION) {
+			L1EffectSpawn.getInstance().spawnEffect(80149,
+					_skill.getBuffDuration() * 1000,
+					_targetX, _targetY, _user.getMapId());
+			return;
+		} else if (_skillId == CUBE_QUAKE) {
+			L1EffectSpawn.getInstance().spawnEffect(80150,
+					_skill.getBuffDuration() * 1000,
+					_targetX, _targetY, _user.getMapId());
+			return;
+		} else if (_skillId == CUBE_SHOCK) {
+			L1EffectSpawn.getInstance().spawnEffect(80151,
+					_skill.getBuffDuration() * 1000,
+					_targetX, _targetY, _user.getMapId());
+			return;
+		} else if (_skillId == CUBE_BALANCE) {
+			L1EffectSpawn.getInstance().spawnEffect(80152,
 					_skill.getBuffDuration() * 1000,
 					_targetX, _targetY, _user.getMapId());
 			return;
