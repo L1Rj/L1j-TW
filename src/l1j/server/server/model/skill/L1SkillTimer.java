@@ -324,6 +324,37 @@ class L1SkillStop {
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			}
+		} else if (skillId == ILLUSION_OGRE) { // イリュージョン：オーガ
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.addDmgup(-4);
+				pc.addHitup(-4);
+			}
+		} else if (skillId == ILLUSION_LICH) { // イリュージョン：リッチ
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.addSp(-2);
+				pc.sendPackets(new S_SPMR(pc));
+			}
+		} else if (skillId == ILLUSION_DIA_GOLEM) { // イリュージョン：ダイアモンドゴーレム
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.addAc(20);
+			}
+		} else if (skillId == ILLUSION_AVATAR) { // イリュージョン：アバター
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.addDmgup(-10);
+			}
+		} else if (skillId == INSIGHT) { // インサイト
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.addStr((byte) -1);
+				pc.addCon((byte) -1);
+				pc.addDex((byte) -1);
+				pc.addWis((byte) -1);
+				pc.addInt((byte) -1);
+			}
 		}
 
 		// ****** 狀態變化が解けた場合

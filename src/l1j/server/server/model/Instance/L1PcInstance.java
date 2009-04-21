@@ -1029,6 +1029,9 @@ public class L1PcInstance extends L1Character {
 					|| getInventory().checkEquipped(149)) { // ミノタウルスアックス
 				damage *= 1.5; // 被ダメ1.5倍
 			}
+			if (hasSkillEffect(L1SkillId.ILLUSION_AVATAR)) {
+				damage *= 1.5; // 被ダメ1.5倍
+			}
 			int newHp = getCurrentHp() - damage;
 			if (newHp > getMaxHp()) {
 				newHp = getMaxHp();

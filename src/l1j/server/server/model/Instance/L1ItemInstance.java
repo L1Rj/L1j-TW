@@ -529,15 +529,29 @@ public class L1ItemInstance extends L1Object {
 			if (getItem().isTwohandedWeapon()) {
 				os.writeC(4);
 			}
-			// 攻擊成功
-			if (getItem().getHitModifier() != 0) {
-				os.writeC(5);
-				os.writeC(getItem().getHitModifier());
+			// 攻撃成功
+			if (itemType2 == 1) { // weapon
+				if (getItem().getHitModifier() != 0) {
+					os.writeC(5);
+					os.writeC(getItem().getHitModifier());
+				}
+			} else if (itemType2 == 2) { // armor
+				if (getItem().getHitModifierByArmor() != 0) {
+					os.writeC(5);
+					os.writeC(getItem().getHitModifierByArmor());
+				}
 			}
-			// 追加打擊
-			if (getItem().getDmgModifier() != 0) {
-				os.writeC(6);
-				os.writeC(getItem().getDmgModifier());
+ 			// 追加打撃
+			if (itemType2 == 1) { // weapon
+				if (getItem().getDmgModifier() != 0) {
+					os.writeC(6);
+					os.writeC(getItem().getDmgModifier());
+				}
+			} else if (itemType2 == 2) { // armor
+				if (getItem().getDmgModifierByArmor() != 0) {
+					os.writeC(6);
+					os.writeC(getItem().getDmgModifierByArmor());
+				}
 			}
 			// 使用可能
 			int bit = 0;

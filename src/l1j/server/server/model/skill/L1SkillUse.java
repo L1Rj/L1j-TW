@@ -142,7 +142,9 @@ public class L1SkillUse {
 			117, 118, 129, 130, 131, 133, 134, 137, 138, 146, 147, 148, 149,
 			150, 151, 155, 156, 158, 159, 163, 164, 165, 166, 168, 169, 170,
 			171, SOUL_OF_FLAME, ADDITIONAL_FIRE, DRAGON_SKIN, AWAKEN_ANTHARAS,
-			AWAKEN_FAFURION, AWAKEN_VALAKAS, MIRROR_IMAGE, PATIENCE };
+			AWAKEN_FAFURION, AWAKEN_VALAKAS, MIRROR_IMAGE, ILLUSION_OGRE,
+			ILLUSION_LICH, PATIENCE, ILLUSION_DIA_GOLEM, INSIGHT,
+			ILLUSION_AVATAR };
 
 	private static final int[] EXCEPT_COUNTER_MAGIC = { 1, 2, 3, 5, 8, 9, 12,
 			13, 14, 19, 21, 26, 31, 32, 35, 37, 42, 43, 44, 48, 49, 52, 54, 55,
@@ -153,7 +155,8 @@ public class L1SkillUse {
 			147, 148, 149, 150, 151, 155, 156, 158, 159, 161, 163, 164, 165,
 			166, 168, 169, 170, 171, SOUL_OF_FLAME, ADDITIONAL_FIRE,
 			DRAGON_SKIN, AWAKEN_ANTHARAS, AWAKEN_FAFURION, AWAKEN_VALAKAS,
-			MIRROR_IMAGE, PATIENCE, 10026, 10027, 10028, 10029 };
+			MIRROR_IMAGE, ILLUSION_OGRE, ILLUSION_LICH, PATIENCE, 10026, 10027,
+			ILLUSION_DIA_GOLEM, INSIGHT, ILLUSION_AVATAR, 10028, 10029 };
 
 	public L1SkillUse() {
 	}
@@ -2804,6 +2807,27 @@ public class L1SkillUse {
 					} else if (_skillId == AWAKEN_VALAKAS) { // 覺醒：ヴァラカス
 						L1PcInstance pc = (L1PcInstance) cha;
 						L1Awake.start(pc, _skillId);
+					} else if (_skillId == ILLUSION_OGRE) { // イリュージョン：オーガ
+						L1PcInstance pc = (L1PcInstance) cha;
+						pc.addDmgup(4);
+						pc.addHitup(4);
+					} else if (_skillId == ILLUSION_LICH) { // イリュージョン：リッチ
+						L1PcInstance pc = (L1PcInstance) cha;
+						pc.addSp(2);
+						pc.sendPackets(new S_SPMR(pc));
+					} else if (_skillId == ILLUSION_DIA_GOLEM) { // イリュージョン：ダイアモンドゴーレム
+						L1PcInstance pc = (L1PcInstance) cha;
+						pc.addAc(-20);
+					} else if (_skillId == ILLUSION_AVATAR) { // イリュージョン：アバター
+						L1PcInstance pc = (L1PcInstance) cha;
+						pc.addDmgup(10);
+					} else if (_skillId == INSIGHT) { // インサイト
+						L1PcInstance pc = (L1PcInstance) cha;
+						pc.addStr((byte) 1);
+						pc.addCon((byte) 1);
+						pc.addDex((byte) 1);
+						pc.addWis((byte) 1);
+						pc.addInt((byte) 1);
 					}
 				}
 
