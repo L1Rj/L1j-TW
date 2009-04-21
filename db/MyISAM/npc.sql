@@ -66,7 +66,7 @@ CREATE TABLE `npc` (
   `change_head` int(1) NOT NULL default '0',
   `cant_resurrect` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`npcid`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # Records for table npc
 #----------------------------

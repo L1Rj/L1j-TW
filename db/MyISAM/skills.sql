@@ -33,7 +33,7 @@ CREATE TABLE `skills` (
   `sysmsgID_stop` int(10) unsigned NOT NULL default 0,
   `sysmsgID_fail` int(10) unsigned NOT NULL default 0,
   PRIMARY KEY  (`skill_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis COMMENT='MyISAM free: 10240 kB; MyISAM free: 10240 kB';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 10240 kB; MyISAM free: 10240 kB';
 #----------------------------
 # Records for table skills
 #----------------------------
