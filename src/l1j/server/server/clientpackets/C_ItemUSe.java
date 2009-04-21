@@ -5277,13 +5277,13 @@ public class C_ItemUSe extends ClientBasePacket {
 			return;
 		}
 
-		byte rnd = RandomArrayList.getArray10List();
-		if (rnd <= 5) {
+		byte rnd = RandomArrayList.getArray100List();
+		if (rnd >= 1 && rnd <= 50) {
 			crystalCount = 0;
-			pc.sendPackets(new S_ServerMessage(158, item.getName())); // \f1%0が蒸發してなくなりました。
-		} else if (rnd <= 9) {
+			pc.sendPackets(new S_ServerMessage(158, item.getName())); // \f1%0が蒸発してなくなりました。
+		} else if (rnd >= 51 && rnd <= 90) {
 			crystalCount *= 1;
-		} else if (rnd <= 10) {
+		} else if (rnd >= 91 && rnd <= 100) {
 			crystalCount *= 1.5;
 			pc.getInventory().storeItem(41246, (int) (crystalCount * 1.5));
 		}
