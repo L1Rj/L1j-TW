@@ -1672,25 +1672,25 @@ public class L1NpcInstance extends L1Character {
 
 	private void _moveLocation(int[] ary, int d) {
 		if (d == 1) {
-			ary[0] = ary[0] + 1;
-			ary[1] = ary[1] - 1;
+			ary[0]++;
+			ary[1]--;
 		} else if (d == 2) {
-			ary[0] = ary[0] + 1;
+			ary[0]++;
 		} else if (d == 3) {
-			ary[0] = ary[0] + 1;
-			ary[1] = ary[1] + 1;
+			ary[0]++;
+			ary[1]++;
 		} else if (d == 4) {
-			ary[1] = ary[1] + 1;
+			ary[1]++;
 		} else if (d == 5) {
-			ary[0] = ary[0] - 1;
-			ary[1] = ary[1] + 1;
+			ary[0]--;
+			ary[1]++;
 		} else if (d == 6) {
-			ary[0] = ary[0] - 1;
+			ary[0]--;
 		} else if (d == 7) {
-			ary[0] = ary[0] - 1;
-			ary[1] = ary[1] - 1;
+			ary[0]--;
+			ary[1]--;
 		} else if (d == 0) {
-			ary[1] = ary[1] - 1;
+			ary[1]--;
 		}
 		ary[2] = d;
 	}
@@ -1784,8 +1784,7 @@ public class L1NpcInstance extends L1Character {
 			return; // ディケイ ポーション狀態かチェック
 		}
 
-		Random random = new Random();
-		if (random.nextInt(100) > chance) {
+		if (RandomArrayList.getArray100List() >= chance) {
 			return; // 使用する可能性
 		}
 

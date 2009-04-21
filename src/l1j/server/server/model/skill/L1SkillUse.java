@@ -86,6 +86,7 @@ import l1j.server.server.serverpackets.S_UseAttackSkill;
 import l1j.server.server.templates.L1BookMark;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Skills;
+import l1j.server.server.utils.RandomArrayList;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1SkillUse {
@@ -2188,8 +2189,7 @@ public class L1SkillUse {
 					// ダメージを對象のHPとする。
 					dmg = cha.getCurrentHp();
 				} else if (_skillId == MANA_DRAIN) { // マナ ドレイン
-					Random random = new Random();
-					int chance = random.nextInt(10) + 5;
+					int chance = RandomArrayList.getArray10List() + 4;
 					drainMana = chance + (_user.getInt() / 2);
 					if (cha.getCurrentMp() < drainMana) {
 						drainMana = cha.getCurrentMp();
@@ -2387,7 +2387,6 @@ public class L1SkillUse {
 						}
 					} else if (_skillId == BRING_STONE) { // ブリング ストーン
 						L1PcInstance pc = (L1PcInstance) cha;
-						Random random = new Random();
 						L1ItemInstance item = pc.getInventory().getItem(
 								_itemobjid);
 						if (item != null) {
@@ -2396,7 +2395,7 @@ public class L1SkillUse {
 							int brave = (int) (dark / 2.1);
 							int wise = (int) (brave / 2.0);
 							int kayser = (int) (wise / 1.9);
-							int chance = random.nextInt(100) + 1;
+							byte chance = RandomArrayList.getArray100List();
 							if (item.getItem().getItemId() == 40320) {
 								pc.getInventory().removeItem(item, 1);
 								if (dark >= chance) {
@@ -2520,8 +2519,7 @@ public class L1SkillUse {
 									}
 									// 特殊設定の場合ランダムで出現
 									if (summonid == 0) {
-										Random random = new Random();
-										int k3 = random.nextInt(4);
+										int k3 = RandomArrayList.getArray100List() % 4;
 										summonid = summons[k3];
 									}
 
