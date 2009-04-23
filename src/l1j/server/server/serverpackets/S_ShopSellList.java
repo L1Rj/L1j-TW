@@ -56,7 +56,7 @@ public class S_ShopSellList extends ServerBasePacket {
 		List<L1ShopItem> shopItems = shop.getSellingItems();
 
 		writeH(shopItems.size());
-		
+
 		// L1ItemInstanceのgetStatusBytesを利用するため
 		L1ItemInstance dummy = new L1ItemInstance();
 
@@ -86,7 +86,8 @@ public class S_ShopSellList extends ServerBasePacket {
 				}
 			}
 		}
-	}
+		writeH(0x07); // 0x00:kaimo 0x01:pearl 0x07:adena
+	
 
 	@Override
 	public byte[] getContent() throws IOException {
