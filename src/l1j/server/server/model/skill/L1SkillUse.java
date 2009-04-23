@@ -1402,6 +1402,17 @@ public class L1SkillUse {
 								castgfx));
 					} else if (_skillId == TRUE_TARGET) { // トゥルーターゲットは個別處理で送信濟
 						return;
+					} else if (_skillId == AWAKEN_ANTHARAS // 覺醒：アンタラス
+							|| _skillId == AWAKEN_FAFURION // 覺醒：パプリオン
+							|| _skillId == AWAKEN_VALAKAS) { // 覺醒：ヴァラカス
+						if (_skillId == _player.getAwakeSkillId()) { // 再詠唱なら解除でエフェクトなし
+							_player.sendPackets(new S_SkillSound(targetid,
+									castgfx));
+							_player.broadcastPacket(new S_SkillSound(targetid,
+									castgfx));
+						} else {
+							return;
+						}
 					} else {
 						_player.sendPackets(new S_SkillSound(targetid,
 								castgfx));

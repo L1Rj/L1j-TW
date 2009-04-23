@@ -2097,25 +2097,34 @@ public class L1PcInstance extends L1Character {
 	public double getMaxWeight() {
 		int str = getStr();
 		int con = getCon();
-		double maxWeight = 1500 + 150 * ((str + con - 18) / 2);
+		double maxWeight = 150 * (Math.floor(0.6 * str + 0.4 * con + 1));
 
-		int weightReductionByArmor = getWeightReduction(); // 防具による重量輕減
+		double weightReductionByArmor = getWeightReduction(); // 防具による重量輕減
+		weightReductionByArmor /= 100;
 
-		int weightReductionByDoll = 0; // マジックドールによる重量輕減
+		double weightReductionByDoll = 0; // マジックドールによる重量輕減
 		Object[] dollList = getDollList().values().toArray();
 		for (Object dollObject : dollList) {
 			L1DollInstance doll = (L1DollInstance) dollObject;
 			weightReductionByDoll += doll.getWeightReductionByDoll();
+			weightReductionByDoll /= 100;
 		}
 
 		int weightReductionByMagic = 0;
 		if (hasSkillEffect(L1SkillId.DECREASE_WEIGHT)) { // ディクリースウェイト
-			weightReductionByMagic = 10;
+			weightReductionByMagic = 180;
 		}
 
-		int weightReduction = weightReductionByArmor + weightReductionByDoll
-				+ weightReductionByMagic;
-		maxWeight += ((maxWeight / 100) * weightReduction);
+		double originalWeightReduction = 0; // オリジナルステータスによる重量輕減
+		originalWeightReduction += 0.04 * (getOriginalStrWeightReduction()
+				+ getOriginalConWeightReduction());
+
+		double weightReduction = 1 + weightReductionByArmor
+				+ weightReductionByDoll + originalWeightReduction;
+
+		maxWeight *= weightReduction;
+
+		maxWeight += weightReductionByMagic;
 
 		maxWeight *= Config.RATE_WEIGHT_LIMIT; // ウェイトレートを掛ける
 
@@ -2515,9 +2524,9 @@ public class L1PcInstance extends L1Character {
 
 	private int _originalConWeightReduction = 0; // ● オリジナルCON 重量輕減
 
-	public int getoriginalConWeightReduction() {
+	public int getOriginalConWeightReduction() {
 
-		return _originalConWeightReduction;		
+		return _originalConWeightReduction;
 	}
 
 	private int _hasteItemEquipped = 0;

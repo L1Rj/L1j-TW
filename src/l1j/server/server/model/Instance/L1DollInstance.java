@@ -199,7 +199,7 @@ public class L1DollInstance extends L1NpcInstance {
 		int weightReduction = 0;
 		int dollType = getDollType();
 		if (dollType == DOLLTYPE_BUGBEAR) {
-			weightReduction = 10;
+			weightReduction = 20;
 		}
 		return weightReduction;
 	}
