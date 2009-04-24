@@ -684,8 +684,12 @@ public class C_NPCAction extends ClientBasePacket {
 					pc.sendPackets(new S_ServerMessage(1290)); // ステータス初期化に必要なアイテムがありません。
 					return;
 				}
-				L1Teleport.teleport(pc, 32737, 32789, (short) 997, 4, false);
+				L1SkillUse l1skilluse = new L1SkillUse();
+				l1skilluse.handleCommands(pc, L1SkillId.CANCELLATION,
+						pc.getId(), pc.getX(), pc.getY(), null, 0,
+						L1SkillUse.TYPE_LOGIN);
 				pc.getInventory().takeoffEquip(945); // 牛のpolyIdで裝備を全部外す。
+				L1Teleport.teleport(pc, 32737, 32789, (short) 997, 4, false);
 				int initStatusPoint = 75 + pc.getElixirStats();
 				int pcStatusPoint = pc.getBaseStr() + pc.getBaseInt()
 						+ pc.getBaseWis() + pc.getBaseDex() + pc.getBaseCon()

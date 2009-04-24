@@ -785,11 +785,13 @@ public class L1Attack {
 		} else {
 			dmg += _pc.getBowDmgModifierByArmor();
 		}
-			
-		Object[] dollList = _pc.getDollList().values().toArray(); // マジックドールによる追加ダメージ
-		for (Object dollObject : dollList) {
-			L1DollInstance doll = (L1DollInstance) dollObject;
-			dmg += doll.getDamageByDoll();
+
+		if (_weaponType != 20 && _weaponType != 62) {
+			Object[] dollList = _pc.getDollList().values().toArray(); // マジックドールによる追加ダメージ
+			for (Object dollObject : dollList) {
+				L1DollInstance doll = (L1DollInstance) dollObject;
+				dmg += doll.getDamageByDoll();
+			}
 		}
 
 		if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加ダメージ
@@ -991,10 +993,12 @@ public class L1Attack {
 			dmg += _pc.getBowDmgModifierByArmor();
 		}
 
-		Object[] dollList = _pc.getDollList().values().toArray(); // マジックドールによる追加ダメージ
-		for (Object dollObject : dollList) {
-			L1DollInstance doll = (L1DollInstance) dollObject;
-			dmg += doll.getDamageByDoll();
+		if (_weaponType != 20 && _weaponType != 62) {
+			Object[] dollList = _pc.getDollList().values().toArray(); // マジックドールによる追加ダメージ
+			for (Object dollObject : dollList) {
+				L1DollInstance doll = (L1DollInstance) dollObject;
+				dmg += doll.getDamageByDoll();
+			}
 		}
 
 		if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加ダメージ
