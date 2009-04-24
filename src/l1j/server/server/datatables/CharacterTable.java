@@ -165,12 +165,12 @@ public class CharacterTable {
 							+ ", OriginalCon= ?, OriginalDex= ?, OriginalCha= ?"
 							+ ", OriginalInt= ?, OriginalWis= ?"
 							+ " WHERE objid=?");
-			pstm.setInt(1, pc.getStr());
-			pstm.setInt(2, pc.getCon());
-			pstm.setInt(3, pc.getDex());
-			pstm.setInt(4, pc.getCha());
-			pstm.setInt(5, pc.getInt());
-			pstm.setInt(6, pc.getWis());
+			pstm.setInt(1, pc.getBaseStr());
+			pstm.setInt(2, pc.getBaseCon());
+			pstm.setInt(3, pc.getBaseDex());
+			pstm.setInt(4, pc.getBaseCha());
+			pstm.setInt(5, pc.getBaseInt());
+			pstm.setInt(6, pc.getBaseWis());
 			pstm.setInt(7, pc.getId());
 			pstm.execute();
 		} catch (Exception e) {
