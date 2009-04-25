@@ -28,7 +28,7 @@ public class ByteArrayUtil {
 
 	public String getTerminatedString(int i) {
 		StringBuffer stringbuffer = new StringBuffer();
-		for (short j = i; j < _byteArray.length && _byteArray[j] != 0; j++) {
+		for (int j = i; j < _byteArray.length && _byteArray[j] != 0; j++) {
 			stringbuffer.append((char) _byteArray[j]);
 		}
 
@@ -49,7 +49,7 @@ public class ByteArrayUtil {
 				continue;
 			}
 			stringbuffer.append("   ");
-			short i1 = k - 15;
+			short i1 = (short) (k - 15);
 			for (short l1 = 0; l1 < 16; l1++) {
 				byte byte0 = _byteArray[i1++];
 				if (byte0 > 31 && byte0 < 128) {
@@ -63,13 +63,13 @@ public class ByteArrayUtil {
 			j = 0;
 		}
 
-		short l = _byteArray.length % 16;
+		short l = (short) (_byteArray.length % 16);
 		if (l > 0) {
 			for (short j1 = 0; j1 < 17 - l; j1++) {
 				stringbuffer.append("   ");
 			}
 
-			short k1 = _byteArray.length - l;
+			short k1 = (short) (_byteArray.length - l);
 			for (short i2 = 0; i2 < l; i2++) {
 				byte byte1 = _byteArray[k1++];
 				if (byte1 > 31 && byte1 < 128) {
@@ -86,7 +86,7 @@ public class ByteArrayUtil {
 
 	private String fillHex(int i, int j) {
 		String s = Integer.toHexString(i);
-		for (short k = s.length(); k < j; k++) {
+		for (int k = s.length(); k < j; k++) {
 			s = (new StringBuilder()).append("0").append(s).toString();
 		}
 

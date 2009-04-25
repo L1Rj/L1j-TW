@@ -1201,7 +1201,7 @@ public class L1PcInstance extends L1Character {
 				if (getLawful() < 0) {
 					lostRate *= 2;
 				}
-				short rnd = RandomArrayList.getArrayshortList(1000);
+				short rnd = RandomArrayList.getArrayshortList((short) 1000);
 				if (rnd <= lostRate) {
 					int count = 1;
 					if (getLawful() <= -30000) {

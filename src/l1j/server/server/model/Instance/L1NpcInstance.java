@@ -1489,11 +1489,11 @@ public class L1NpcInstance extends L1Character {
 	}
 	
 	// 面向是否可能
-	public int targetFace(int heading) { // 目標點Ｘ 目標點Ｙ
-		if (dir > 7) {
-			dir -= 8;
+	public static int targetFace(int heading) { // 目標點Ｘ 目標點Ｙ
+		if (heading > 7) {
+			heading -= 8;
 		}
-		return dir;
+		return heading;
 	}
 
 	// 目標の逆方向を返す
@@ -1515,7 +1515,7 @@ public class L1NpcInstance extends L1Character {
 		}
 		for (byte i = 0 ; i < 4 ; i++) {
 			heading++;
-			if (i == 2) heading + 3;
+			if (i == 2) heading += 3;
 			targetFace(heading);
 			if (map.isPassable(x + HEADING_TABLE_X[heading], y + HEADING_TABLE_Y[heading], heading)) {
 				return heading;
