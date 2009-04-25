@@ -234,6 +234,12 @@ public class L1SkillUse {
 		_skillTime = time;
 		_type = type;
 		boolean checkedResult = true;
+		
+		//waja add 確認有學習該魔法
+		if(!SkillsTable.getInstance().spellCheck(player.getId(), skillid)){
+		return false;
+		}
+		//確認有學習該魔法 end
 
 		if (attacker == null) {
 			// pc

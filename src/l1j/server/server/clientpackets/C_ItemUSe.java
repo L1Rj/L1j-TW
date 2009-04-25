@@ -773,12 +773,12 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 49158) { // waja add 生命之樹果實
-					if (pc.isDragonKnight()) {
+					if ((pc.isDragonKnight())|| (pc.isIllusionist()))  {
 						useBravePotion(pc, itemId);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
-					pc.getInventory().removeItem(l1iteminstance, 1);					
+					pc.getInventory().removeItem(l1iteminstance, 1); // waja add end					
 				} else if (itemId == 40733) { // 名譽のコイン
 					useBravePotion(pc, itemId);
 					pc.getInventory().removeItem(l1iteminstance, 1);
@@ -3200,6 +3200,8 @@ public class C_ItemUSe extends ClientBasePacket {
 			time = 300;
 		} else if (item_id == L1ItemId.B_POTION_OF_EMOTION_BRAVERY) { // 祝福されたブレイブポーション
 			time = 350;
+		} else if (item_id == 49158) { // waja add 生命之樹果實
+			time = 480; // waja add end
 		} else if (item_id == 41415) { // 強化ブレイブ ポーション
 			time = 1800;
 		} else if (item_id == 40068) { // エルヴン ワッフル
