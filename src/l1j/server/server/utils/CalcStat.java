@@ -174,40 +174,40 @@ public class CalcStat {
 	 */
 	public static short calcStatMp(int charType, int baseMaxMp, byte baseWis, int originalMpup) {
 		int randommp = 0;
-		int seedY = 0;
-		int seedZ = 0;
+		byte seedY = 0;
+		byte seedZ = 0;
 		if (baseWis < 9 || baseWis > 9 && baseWis < 12) {
-			seedY = 2;
+			seedY = RandomArrayList.getArray2List();
 		} else if (baseWis == 9 || baseWis >= 12 && baseWis <= 17) {
-			seedY = 3;
+			seedY = RandomArrayList.getArray3List();
 		} else if (baseWis >= 18 && baseWis <= 23 || baseWis == 25
 					|| baseWis == 26 || baseWis == 29
 					|| baseWis == 30 || baseWis == 33
 					|| baseWis == 34) {
-			seedY = 4;
+			seedY = RandomArrayList.getArray4List();
 		} else if (baseWis == 24 ||baseWis == 27
 				 ||baseWis == 28 ||baseWis == 31
 				 ||baseWis == 32 ||baseWis == 35) {
-			seedY = 5;
+			seedY = RandomArrayList.getArray5List();
 		}
 
 		if (baseWis >= 7 && baseWis <= 9) {
-			seedZ = 0;
+			seedZ = 1; // seedZ = 0;
 		} else if (baseWis >= 10 && baseWis <= 14) {
-			seedZ = 1;
+			seedZ = 2; // seedZ = 1;
 		} else if (baseWis >= 15 && baseWis <= 20) {
-			seedZ = 2;
+			seedZ = 3; // seedZ = 2;
 		} else if (baseWis >= 21 && baseWis <= 24) {
-			seedZ = 3;
+			seedZ = 4; // seedZ = 3;
 		} else if (baseWis >= 25 && baseWis <= 28) {
-			seedZ = 4;
+			seedZ = 5; // seedZ = 4;
 		} else if (baseWis >= 29 && baseWis <= 32) {
-			seedZ = 5;
+			seedZ = 6; // seedZ = 5;
 		} else if (baseWis >= 33 && baseWis <= 35) {
-			seedZ = 5;
+			seedZ = 7; // seedZ = 5;
 		}
 
-		randommp = rnd.nextInt(seedY) + 1 + seedZ;
+		randommp = seedY + seedZ; // seedY + 1 + seedZ;
 
 		if (charType == 0) { // プリンス
 			if (baseMaxMp + randommp > Config.PRINCE_MAX_MP) {

@@ -27,6 +27,7 @@ import l1j.server.server.model.L1NpcDeleteTimer;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.utils.RandomArrayList;
 
 public class L1SpawnUtil {
 	private static Logger _log = Logger.getLogger(L1SpawnUtil.class.getName());
@@ -44,10 +45,10 @@ public class L1SpawnUtil {
 				int tryCount = 0;
 				do {
 					tryCount++;
-					npc.setX(pc.getX() + (int) (Math.random() * randomRange)
-							- (int) (Math.random() * randomRange));
-					npc.setY(pc.getY() + (int) (Math.random() * randomRange)
-							- (int) (Math.random() * randomRange));
+					npc.setX(pc.getX() + RandomArrayList.getArrayshortList((short) (randomRange * 2 + 1)) - randomRange);
+					//+ (int) (Math.random() * randomRange) - (int) (Math.random() * randomRange));
+					npc.setY(pc.getY() + RandomArrayList.getArrayshortList((short) (randomRange * 2 + 1)) - randomRange);
+					//+ (int) (Math.random() * randomRange)- (int) (Math.random() * randomRange));
 					if (npc.getMap().isInMap(npc.getLocation())
 							&& npc.getMap().isPassable(npc.getLocation())) {
 						break;

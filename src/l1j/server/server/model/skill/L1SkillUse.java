@@ -2579,7 +2579,7 @@ public class L1SkillUse {
 									}
 									// 特殊設定の場合ランダムで出現
 									if (summonid == 0) {
-										int k3 = RandomArrayList.getArray100List() % 4;
+										int k3 = RandomArrayList.getArray4List();
 										summonid = summons[k3];
 									}
 
