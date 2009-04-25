@@ -2863,18 +2863,64 @@
 	<!--航海士の袋 / 倒れた航海士-->
 	<Action Name="B" NpcId="80076">
 		<MakeItem>
-		<Item Amount="1" ItemId="41059"/>
-		<Material Amount="1" ItemId="41058"/>
-			<Succeed>
-				<ShowHtml HtmlId="voyager10"/>
-			</Succeed>
+			<Item Amount="1" ItemId="41059"/>
+			<Material Amount="1" ItemId="41058"/>
+				<Succeed>
+					<ShowHtml HtmlId="voyager10"/>
+				</Succeed>
 		</MakeItem>
 	</Action>
 	<!--エブロールの袋 / エブロール-->
 	<Action Name="request eveurol bag" NpcId="70872">
 		<MakeItem>
-		<Item Amount="1" ItemId="41336"/>
-		<Material Amount="1" ItemId="41343"/>
+			<Item Amount="1" ItemId="41336"/>
+			<Material Amount="1" ItemId="41343"/>
+		</MakeItem>
+	</Action>
+	<!--破滅者のチェーンソード / 鍛冶屋ピューアルス-->
+	<Action Name="request chainsword destroyer" NpcId="80133">
+		<MakeItem>
+			<Item Amount="1" ItemId="17"/>
+			<Item Amount="20" ItemId="40406"/>
+			<Item Amount="20" ItemId="40503"/>
+			<Item Amount="1" ItemId="40393"/>
+			<Item Amount="1000000" ItemId="40308"/>
+			<Material Amount="1" ItemId="273"/>
+		</MakeItem>
+	</Action>
+	<!--古代弓射手のガーダー / 鍛冶屋ピューアルス-->
+	<Action Name="request guarder of ancient archer" NpcId="80133">
+		<MakeItem>
+			<Item Amount="1" ItemId="20140"/>
+			<Item Amount="3" ItemId="40445"/>
+			<Item Amount="20" ItemId="40504"/>
+			<Item Amount="50" ItemId="40505"/>
+			<Item Amount="20" ItemId="40521"/>
+			<Item Amount="50" ItemId="40495"/>
+			<Item Amount="1000000" ItemId="40308"/>
+			<Material Amount="1" ItemId="21105"/>
+		</MakeItem>
+	</Action>
+	<!--古代闘士のガーダー / 鍛冶屋ピューアルス-->
+	<Action Name="request guarder of ancient champion" NpcId="80133">
+		<MakeItem>
+			<Item Amount="1" ItemId="20143"/>
+			<Item Amount="5" ItemId="40445"/>
+			<Item Amount="1000000" ItemId="40308"/>
+			<Material Amount="1" ItemId="21106"/>
+		</MakeItem>
+	</Action>
+	<!--ダークストーンキーリンク / 鍛冶屋バトール-->
+	<Action Name="request obsidian kiringku" NpcId="80142">
+		<MakeItem>
+			<Item Amount="10" ItemId="40052"/>
+			<Item Amount="10" ItemId="40053"/>
+			<Item Amount="10" ItemId="40054"/>
+			<Item Amount="10" ItemId="40055"/>
+			<Item Amount="30" ItemId="40520"/>
+			<Item Amount="2" ItemId="49092"/>
+			<Item Amount="1000000" ItemId="40308"/>
+			<Material Amount="1" ItemId="271"/>
 		</MakeItem>
 	</Action>
 </NpcActionList>

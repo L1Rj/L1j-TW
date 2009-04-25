@@ -868,6 +868,7 @@ INSERT INTO `npcaction` VALUES
 (71199, 'jeron1', 'jeron1', '', ''),
 (71200, 'pieta1', 'pieta1', '', ''),
 (71251, 'baseReset', 'baseReset', '', ''),
+(71252, 'joegolem', 'joegolem', '', ''),
 (80010, 'aprincess1', 'aprincess1', 'aprincess2', ''),
 (80019, 'cold1', 'cold1', '', ''),
 (80020, 'cold1', 'cold1', '', ''),
