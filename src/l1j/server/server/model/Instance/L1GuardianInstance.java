@@ -114,16 +114,16 @@ public class L1GuardianInstance extends L1NpcInstance {
 
 			if (attack.calcHit()) {
 				if (getNpcTemplate().get_npcId() == 70848) { // エント
-					byte chance =  RandomArrayList.getArray10List();
+					byte chance =  RandomArrayList.getArray100List();
 					if (chance == 1) {
 						player.getInventory().storeItem(40506, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
 								"$794")); // \f1%0が%1をくれました。
-					} else if (chance <= 6) {
+					} else if (chance <= 50) {
 						player.getInventory().storeItem(40507, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
 								"$763")); // \f1%0が%1をくれました。
-					} else if (chance <= 7) {
+					} else if (chance <= 60) {
 						player.getInventory().storeItem(40505, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
 								"$770")); // \f1%0が%1をくれました。
