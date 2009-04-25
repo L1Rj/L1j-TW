@@ -21,12 +21,12 @@ package l1j.server.server.model.Instance;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Random;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.datatables.DropTable;
+import l1j.server.server.datatables.NPCTalkDataTable;
 import l1j.server.server.datatables.UBTable;
 import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1Character;
@@ -38,14 +38,13 @@ import l1j.server.server.model.L1World;
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_RemoveObject;
+import l1j.server.server.serverpackets.S_NPCTalkReturn;
 import l1j.server.server.serverpackets.S_NPCPack;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillBrave;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.CalcExp;
 import l1j.server.server.utils.RandomArrayList;
-import l1j.server.server.datatables.NPCTalkDataTable;
-import l1j.server.server.serverpackets.S_NPCTalkReturn;
 
 public class L1MonsterInstance extends L1NpcInstance {
 
@@ -56,8 +55,6 @@ public class L1MonsterInstance extends L1NpcInstance {
 
 	private static Logger _log = Logger.getLogger(L1MonsterInstance.class
 			.getName());
-
-	private static Random _random = new Random();
 
 	private boolean _storeDroped; // ドロップアイテムの讀⑸が完了したか
 
@@ -580,8 +577,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 				|| npcid == 45181 // スパルトイ
 				|| npcid == 45455) { // デッドリースパルトイ
 			if (getMaxHp() / 3 > getCurrentHp()) {
-				int rnd = _random.nextInt(10);
-				if (1 > rnd) {
+				byte rnd = RandomArrayList.getArray10List();
+				if (2 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_SINK);
 					broadcastPacket(new S_DoActionGFX(getId(),
@@ -592,8 +589,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 			}
 		} else if (npcid == 45682) { // アンタラス
 			if (getMaxHp() / 3 > getCurrentHp()) {
-				int rnd = _random.nextInt(50);
-				if (1 > rnd) {
+				byte rnd = RandomArrayList.getArray100List();
+				if (3 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_SINK);
 					broadcastPacket(new S_DoActionGFX(getId(),
@@ -609,8 +606,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 				|| npcid == 45321 // グリフォン
 				|| npcid == 45445) { // グリフォン
 			if (getMaxHp() / 3 > getCurrentHp()) {
-				int rnd = _random.nextInt(10);
-				if (1 > rnd) {
+				byte rnd = RandomArrayList.getArray10List();
+				if (2 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_FLY);
 					broadcastPacket(new S_DoActionGFX(getId(),
@@ -621,8 +618,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 			}
 		} else if (npcid == 45681) { // リンドビオル
 			if (getMaxHp() / 3 > getCurrentHp()) {
-				int rnd = _random.nextInt(50);
-				if (1 > rnd) {
+				byte rnd = RandomArrayList.getArray100List();
+				if (3 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_FLY);
 					broadcastPacket(new S_DoActionGFX(getId(),

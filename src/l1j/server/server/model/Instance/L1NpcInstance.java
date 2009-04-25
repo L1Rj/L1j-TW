@@ -1377,46 +1377,23 @@ public class L1NpcInstance extends L1Character {
 	}
 
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
+	private static final int HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };
+	private static final int HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
+
+
 
 	// 指定された方向に移動させる
-	public void setDirectionMove(int dir) {// 4.20 Start
+	public void setDirectionMove(int dir) {// 4.26 Start
 		if (dir >= 0) {
 			int nx = getX();
 			int ny = getY();
-			if (dir == 0) {
-				ny--;
-				setHeading(0);
-			} else if (dir == 1) {
-				nx++;
-				ny--;
-				setHeading(1);
-			} else if (dir == 2) {
-				nx++;
-				setHeading(2);
-			} else if (dir == 3) {
-				nx++;
-				ny++;
-				setHeading(3);
-			} else if (dir == 4) {
-				ny++;
-				setHeading(4);
-			} else if (dir == 5) {
-				nx--;
-				ny++;
-				setHeading(5);
-			} else if (dir == 6) {
-				nx--;
-				setHeading(6);
-			} else if (dir == 7) {
-				nx--;
-				ny--;
-				setHeading(7);
-			}
+			nx += HEADING_TABLE_X[dir];
+			ny += HEADING_TABLE_Y[dir];
 
 			getMap().setPassable(getLocation(), true);
 
 			setX(nx);
-			setY(ny);//4.20 End
+			setY(ny);//4.26 End
 
 			getMap().setPassable(getLocation(), false);
 
@@ -1480,30 +1457,11 @@ public class L1NpcInstance extends L1Character {
 			return false;
 		}
 
-		int targetX = getX();//4.13 Start
+		int targetX = getX();// 4.26 Start
 		int targetY = getY();
-
-		if (dir == 1) {
-			targetX++;
-			targetY--;
-		} else if (dir == 2) {
-			targetX++;
-		} else if (dir == 3) {
-			targetX++;
-			targetY++;
-		} else if (dir == 4) {
-			targetY++;
-		} else if (dir == 5) {
-			targetX--;
-			targetY++;
-		} else if (dir == 6) {
-			targetX--;
-		} else if (dir == 7) {
-			targetX--;
-			targetY--;
-		} else if (dir == 0) {
-			targetY--;
-		}//4.13 End
+		
+		targetX += HEADING_TABLE_X[dir];
+		targetY += HEADING_TABLE_Y[dir];// 4.26 End
 
 		for (L1Object object : L1World.getInstance().getVisibleObjects(this,
 				1)) {
@@ -1529,36 +1487,40 @@ public class L1NpcInstance extends L1Character {
 		}
 		return false;
 	}
-
-	// 目標の逆方向を返す
-	public int targetReverseDirection(int tx, int ty) { // 目標點Ｘ 目標點Ｙ
-		int dir = targetDirection(tx, ty);
-		dir += 4;
+	
+	// 面向是否可能
+	public int targetFace(int heading) { // 目標點Ｘ 目標點Ｙ
 		if (dir > 7) {
 			dir -= 8;
 		}
 		return dir;
 	}
 
+	// 目標の逆方向を返す
+	public int targetReverseDirection(int tx, int ty) { // 目標點Ｘ 目標點Ｙ
+		int dir = targetDirection(tx, ty);
+		dir += 4;
+		targetFace(dir);
+		return dir;
+	}
+
 	// 進みたい方向に障害物がないか確認、ある場合は前方斜め左右も確認後進める方向を返す
 	// ※從來あった處理に、バックできない仕樣を省いて、目標の反對（左右含む）には進まないようにしたもの
-	public static int checkObject(int x, int y, short m, int d) { // 起點Ｘ 起點Ｙ
+	public static int checkObject(int x, int y, short m, int heading) { // 起點Ｘ 起點Ｙ
 																	// マップＩＤ
 	// 進行方向
-		L1Map map = L1WorldMap.getInstance().getMap(m);
-		for (byte i = 0 ; i < 3 ; i++) {// 4.20 Start
-			if (i == 2) {
-				d += 6;
-			} else {
-				d += i;
+		L1Map map = L1WorldMap.getInstance().getMap(m);// 4.25 Start
+		if (map.isPassable(x + HEADING_TABLE_X[heading], y + HEADING_TABLE_Y[heading], heading)) {
+			return heading;
+		}
+		for (byte i = 0 ; i < 4 ; i++) {
+			heading++;
+			if (i == 2) heading + 3;
+			targetFace(heading);
+			if (map.isPassable(x + HEADING_TABLE_X[heading], y + HEADING_TABLE_Y[heading], heading)) {
+				return heading;
 			}
-			if (d > 7) {
-				d -= 8;
-			}
-			if (map.isPassable(x, y, d)) {
-				return d;
-			}
-		}// 4.20 End
+		}// 4.25 End
 		return -1;
 	}
 
@@ -1670,82 +1632,19 @@ public class L1NpcInstance extends L1Character {
 		return -1; // 目標までの經路がない場合
 	}
 
-	private void _moveLocation(int[] ary, int d) {
-		if (d == 1) {
-			ary[0]++;
-			ary[1]--;
-		} else if (d == 2) {
-			ary[0]++;
-		} else if (d == 3) {
-			ary[0]++;
-			ary[1]++;
-		} else if (d == 4) {
-			ary[1]++;
-		} else if (d == 5) {
-			ary[0]--;
-			ary[1]++;
-		} else if (d == 6) {
-			ary[0]--;
-		} else if (d == 7) {
-			ary[0]--;
-			ary[1]--;
-		} else if (d == 0) {
-			ary[1]--;
-		}
-		ary[2] = d;
-	}
+	private void _moveLocation(int[] ary, int heading) {// 4.26 Start
+		ary[0] += HEADING_TABLE_X[heading];
+		ary[1] += HEADING_TABLE_Y[heading];
+		ary[2] = heading;
+	}// 4.26 End
 
-	private void _getFront(int[] ary, int d) {
-		if (d == 1) {
-			ary[4] = 2;
-			ary[3] = 0;
-			ary[2] = 1;
-			ary[1] = 3;
-			ary[0] = 7;
-		} else if (d == 2) {
-			ary[4] = 2;
-			ary[3] = 4;
-			ary[2] = 0;
-			ary[1] = 1;
-			ary[0] = 3;
-		} else if (d == 3) {
-			ary[4] = 2;
-			ary[3] = 4;
-			ary[2] = 1;
-			ary[1] = 3;
-			ary[0] = 5;
-		} else if (d == 4) {
-			ary[4] = 2;
-			ary[3] = 4;
-			ary[2] = 6;
-			ary[1] = 3;
-			ary[0] = 5;
-		} else if (d == 5) {
-			ary[4] = 4;
-			ary[3] = 6;
-			ary[2] = 3;
-			ary[1] = 5;
-			ary[0] = 7;
-		} else if (d == 6) {
-			ary[4] = 4;
-			ary[3] = 6;
-			ary[2] = 0;
-			ary[1] = 5;
-			ary[0] = 7;
-		} else if (d == 7) {
-			ary[4] = 6;
-			ary[3] = 0;
-			ary[2] = 1;
-			ary[1] = 5;
-			ary[0] = 7;
-		} else if (d == 0) {
-			ary[4] = 2;
-			ary[3] = 6;
-			ary[2] = 0;
-			ary[1] = 1;
-			ary[0] = 7;
-		}
-	}
+	private void _getFront(int[] ary, int heading) {// 4.26 Start
+		ary[4] = heading;
+		ary[3] = targetFace(heading - 1);
+		ary[2] = targetFace(heading + 1);
+		ary[1] = targetFace(heading - 2);
+		ary[0] = targetFace(heading + 2);
+	}// 4.26 End
 
 	// ■■■■■■■■■■■■ アイテム關連 ■■■■■■■■■■
 
@@ -1822,11 +1721,11 @@ public class L1NpcInstance extends L1Character {
 	public boolean nearTeleport(int nx, int ny) {
 		int tempx = 0;
 		int tempy = 0;
-		for (int i = 1; i < 3; i++){
+		for (byte i = 1; i < 3; i++){
 			tempx = nx + RandomArrayList.getArray7List() - 3;
 			tempy = ny + RandomArrayList.getArray7List() - 3;
 			if (getMap().isPassable(tempx, tempy)) {
-				teleport(tempx, tempy, 0);
+				teleport(tempx, tempy, RandomArrayList.getArray8List());
 				setCurrentMp(getCurrentMp() - 10);
 				return true;
 			}

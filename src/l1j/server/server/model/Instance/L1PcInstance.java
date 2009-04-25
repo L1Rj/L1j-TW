@@ -22,7 +22,6 @@ package l1j.server.server.model.Instance;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Timer;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
@@ -104,6 +103,7 @@ import l1j.server.server.templates.L1PrivateShopBuyList;
 import l1j.server.server.templates.L1PrivateShopSellList;
 import l1j.server.server.utils.CalcStat;
 import l1j.server.server.utils.IntRange;
+import l1j.server.server.utils.RandomArrayList;
 
 // Referenced classes of package l1j.server.server.model:
 // L1Character, L1DropTable, L1Object, L1ItemInstance,
@@ -960,9 +960,8 @@ public class L1PcInstance extends L1Character {
 
 	// 魔法のダメージの場合はここを使用 (ここで魔法ダメージ輕減處理) attr:0.無屬性魔法,1.地魔法,2.火魔法,3.水魔法,4.風魔法
 	public void receiveDamage(L1Character attacker, int damage, int attr) {
-		Random random = new Random();
 		int player_mr = getMr();
-		int rnd = random.nextInt(100) + 1;
+		byte rnd = RandomArrayList.getArray100List();
 		if (player_mr >= rnd) {
 			damage /= 2;
 		}
@@ -1202,18 +1201,17 @@ public class L1PcInstance extends L1Character {
 				if (getLawful() < 0) {
 					lostRate *= 2;
 				}
-				Random random = new Random();
-				int rnd = random.nextInt(1000) + 1;
+				short rnd = RandomArrayList.getArrayshortList(1000);
 				if (rnd <= lostRate) {
 					int count = 1;
 					if (getLawful() <= -30000) {
-						count = random.nextInt(4) + 1;
+						count = RandomArrayList.getArray4List() + 1;
 					} else if (getLawful() <= -20000) {
-						count = random.nextInt(3) + 1;
+						count = RandomArrayList.getArray3List() + 1;
 					} else if (getLawful() <= -10000) {
-						count = random.nextInt(2) + 1;
+						count = RandomArrayList.getArray2List() + 1;
 					} else if (getLawful() < 0) {
-						count = random.nextInt(1) + 1;
+						count = 1;
 					}
 					caoPenaltyResult(count);
 				}

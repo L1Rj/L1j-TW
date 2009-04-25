@@ -19,7 +19,6 @@
 
 package l1j.server.server.model.Instance;
 
-import java.util.Random;
 import java.util.logging.Logger;
 
 import l1j.server.server.GeneralThreadPool;
@@ -32,6 +31,7 @@ import l1j.server.server.model.L1World;
 import l1j.server.server.model.npc.L1NpcHtml;
 import l1j.server.server.serverpackets.S_NPCTalkReturn;
 import l1j.server.server.templates.L1Npc;
+import l1j.server.server.utils.RandomArrayList;
 
 // Referenced classes of package l1j.server.server.model:
 // L1NpcInstance, L1Teleport, L1NpcTalkData, L1PcInstance,
@@ -96,8 +96,7 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				if (player.isElf()) { // エルフ
 					if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1) {
 						if (!player.getInventory().checkItem(40592)) { // 咒われた精靈書
-							Random random = new Random();
-							if (random.nextInt(100) < 50) { // 50%でダークマールダンジョン
+							if (RandomArrayList.getArray100List() < 50) { // 50%でダークマールダンジョン
 								htmlid = "fairyp2";
 							} else { // ダークエルフダンジョン
 								htmlid = "fairyp1";

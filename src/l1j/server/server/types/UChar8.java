@@ -30,7 +30,7 @@ public class UChar8 {
 	public static char[] fromArray(long[] buff) {
 		char[] charBuff = new char[buff.length * 4];
 
-		for (int i = 0; i < buff.length; ++i) {
+		for (short i = 0; i < buff.length; ++i) {
 			charBuff[(i * 4) + 0] = (char) (buff[i] & 0xFF);
 			charBuff[(i * 4) + 1] = (char) ((buff[i] >> 8) & 0xFF);
 			charBuff[(i * 4) + 2] = (char) ((buff[i] >> 16) & 0xFF);
@@ -50,7 +50,7 @@ public class UChar8 {
 	public static char[] fromArray(byte[] buff) {
 		char[] charBuff = new char[buff.length];
 
-		for (int i = 0; i < buff.length; ++i) {
+		for (short i = 0; i < buff.length; ++i) {
 			charBuff[i] = (char) (buff[i] & 0xFF);
 		}
 
@@ -67,7 +67,7 @@ public class UChar8 {
 	public static char[] fromArray(byte[] buff, int length) {
 		char[] charBuff = new char[length];
 
-		for (int i = 0; i < length; ++i) {
+		for (short i = 0; i < length; ++i) {
 			charBuff[i] = (char) (buff[i] & 0xFF);
 		}
 

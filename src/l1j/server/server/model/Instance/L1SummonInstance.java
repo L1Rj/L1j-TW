@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
-import java.util.Random;
 
 import l1j.server.server.ActionCodes;
 import l1j.server.server.GeneralThreadPool;
@@ -35,7 +34,6 @@ public class L1SummonInstance extends L1NpcInstance {
 	private int _currentPetStatus;
 	private boolean _tamed;
 	private boolean _isReturnToNature = false;
-	private static Random _random = new Random();
 
 	// ターゲットがいない場合の處理
 	@Override

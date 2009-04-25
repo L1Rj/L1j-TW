@@ -22,7 +22,6 @@ package l1j.server.server.model.Instance;
 import java.util.Arrays;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
-import java.util.Random;
 
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.IdFactory;
@@ -47,7 +46,6 @@ public class L1DollInstance extends L1NpcInstance {
 	private static Logger _log = Logger.getLogger(L1DollInstance.class
 			.getName());
 	private ScheduledFuture<?> _dollFuture;
-	private static Random _random = new Random();
 	private int _dollType;
 	private int _itemObjId;
 

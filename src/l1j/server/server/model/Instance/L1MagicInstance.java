@@ -18,10 +18,10 @@
  */
 package l1j.server.server.model.Instance;
 
-import java.util.Random;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.serverpackets.S_AttackPacket;
 import l1j.server.server.serverpackets.S_SkillSound;
+import l1j.server.server.utils.RandomArrayList;
 
 public class L1MagicInstance {
 	public void UseMagicAttacke(L1PcInstance player, L1MonsterInstance npc) {
@@ -29,8 +29,8 @@ public class L1MagicInstance {
 		int magicMob = npc.getInt();
 		int rangeMonster = npc.getNpcTemplate().get_ranged();
 		int mobDmg = npc.getLevel() + 6;
-		int randomMobDmg = 0;
-		int useMagic = 0;
+		int randomMobDmg = 1;
+		byte useMagic = 0;
 		int bID = npc.getNpcTemplate().get_npcId();
 
 		if (rangeMonster == 1) {
@@ -40,21 +40,18 @@ public class L1MagicInstance {
 					ActionCodes.ACTION_SkillAttack));
 		} else {
 			if (magicMob == 99) {
-				Random random = new Random();
-				useMagic = random.nextInt(100) + 1;
+				useMagic = RandomArrayList.getArray100List();
 			}
 		}
 
 		if (useMagic > 80) {
-			Random random = new Random();
-			int useMagicA = random.nextInt(100) + 1;
+			byte useMagicA = RandomArrayList.getArray100List();
 			if (useMagicA < 25) {
 				// npc.sendPackets(new S_AttackPacket(player, targetobjid,
 				// ActionCodes.ACTION_SkillAttack));
 				npc.broadcastPacket(new S_AttackPacket(player, targetobjid,
 						ActionCodes.ACTION_SkillAttack));
-				Random random2 = new Random();
-				randomMobDmg = (random2.nextInt(mobDmg) + 1) * 2;
+				randomMobDmg += (RandomArrayList.getArray100List() % mobDmg) * 2;
 				// CalcHpPlayer (player, npc, randomMobDmg);
 				player.receiveDamage(npc, randomMobDmg, 0);
 			} else if (useMagicA >= 25 && useMagicA < 50) {
@@ -62,12 +59,10 @@ public class L1MagicInstance {
 				// ActionCodes.ACTION_SkillBuff));
 				npc.broadcastPacket(new S_AttackPacket(player, targetobjid,
 						ActionCodes.ACTION_SkillBuff));
-				Random random2 = new Random();
-				randomMobDmg = (random2.nextInt(mobDmg) + 1) * 3;
+				randomMobDmg += (RandomArrayList.getArray100List() % mobDmg) * 3;
 				// CalcHpPlayer (player, npc, randomMobDmg);
 				player.receiveDamage(npc, randomMobDmg, 0);
 			} else {
-				int bDmg = 5;
 				int mortalBlow = 0;
 
 				if (mortalBlow != 0) {
@@ -75,8 +70,7 @@ public class L1MagicInstance {
 					// mortalBlow));
 					npc.broadcastPacket(new S_SkillSound(player.getId(),
 							mortalBlow));
-					Random random2 = new Random();
-					randomMobDmg = (random2.nextInt(mobDmg) + 1) * bDmg;
+					randomMobDmg += (RandomArrayList.getArray100List() % mobDmg) * 5;
 					// CalcHpPlayer (player, npc, randomMobDmg);
 					player.receiveDamage(npc, randomMobDmg, 0);
 				} else {
@@ -84,8 +78,7 @@ public class L1MagicInstance {
 					// ActionCodes.ACTION_AltAttack));
 					npc.broadcastPacket(new S_AttackPacket(player, targetobjid,
 							ActionCodes.ACTION_AltAttack));
-					Random random2 = new Random();
-					randomMobDmg = (random2.nextInt(mobDmg) + 1) * 2;
+					randomMobDmg += (RandomArrayList.getArray100List() % mobDmg) * 2;
 					// CalcHpPlayer (player, npc, randomMobDmg);
 					player.receiveDamage(npc, randomMobDmg, 0);
 				}
@@ -95,8 +88,7 @@ public class L1MagicInstance {
 			// ActionCodes.ACTION_Attack));
 			npc.broadcastPacket(new S_AttackPacket(player, targetobjid,
 					ActionCodes.ACTION_Attack));
-			Random random = new Random();
-			randomMobDmg = random.nextInt(mobDmg) + 1;
+			randomMobDmg += RandomArrayList.getArray100List() % mobDmg;
 			// CalcHpPlayer (player, npc, randomMobDmg);
 			player.receiveDamage(npc, randomMobDmg, 0);
 		}

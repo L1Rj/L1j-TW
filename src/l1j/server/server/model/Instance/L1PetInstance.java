@@ -22,7 +22,6 @@ package l1j.server.server.model.Instance;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.Random;
 
 import l1j.server.server.ActionCodes;
 import l1j.server.server.IdFactory;
@@ -48,7 +47,6 @@ import l1j.server.server.utils.RandomArrayList;
 public class L1PetInstance extends L1NpcInstance {
 
 	private static final long serialVersionUID = 1L;
-	private static Random _random = new Random();
 
 	// ターゲットがいない場合の處理
 	@Override
