@@ -772,6 +772,13 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
+				} else if (itemId == 49158) { // waja add 生命之樹果實
+					if (pc.isDragonKnight()) {
+						useBravePotion(pc, itemId);
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+					}
+					pc.getInventory().removeItem(l1iteminstance, 1);					
 				} else if (itemId == 40733) { // 名譽のコイン
 					useBravePotion(pc, itemId);
 					pc.getInventory().removeItem(l1iteminstance, 1);
