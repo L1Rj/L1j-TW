@@ -192,6 +192,6 @@ public class RandomArrayList {
 		if (listint != 10000) {
 			return (short)(Arrayshort[listint++] % rang);
 		}
-		return (short)(Arrayshort[listint++] % rang);
+		return (short)(Arrayshort[listint = 0] % rang);
 	}
 }
