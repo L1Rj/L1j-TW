@@ -90,11 +90,11 @@ import l1j.server.server.utils.RandomArrayList;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1SkillUse {
-	public static final int TYPE_NORMAL = 0;
-	public static final int TYPE_LOGIN = 1;
-	public static final int TYPE_SPELLSC = 2;
-	public static final int TYPE_NPCBUFF = 3;
-	public static final int TYPE_GMBUFF = 4;
+	public static final byte TYPE_NORMAL = 0;
+	public static final byte TYPE_LOGIN = 1;
+	public static final byte TYPE_SPELLSC = 2;
+	public static final byte TYPE_NPCBUFF = 3;
+	public static final byte TYPE_GMBUFF = 4;
 
 	private L1Skills _skill;
 	private int _skillId;
@@ -125,10 +125,10 @@ public class L1SkillUse {
 	private L1NpcInstance _targetNpc = null;
 
 	private int _calcType;
-	private static final int PC_PC = 1;
-	private static final int PC_NPC = 2;
-	private static final int NPC_PC = 3;
-	private static final int NPC_NPC = 4;
+	private static final byte PC_PC = 1;
+	private static final byte PC_NPC = 2;
+	private static final byte NPC_PC = 3;
+	private static final byte NPC_NPC = 4;
 
 	private ArrayList<TargetStatus> _targetList;
 
@@ -1970,7 +1970,7 @@ public class L1SkillUse {
 						return;
 					}
 
-					for (int i = 3; i > 0; i--) {
+					for (byte i = 3; i > 0; i--) {
 						_target.onAction(_player);
 					}
  					_player.sendPackets(new S_SkillSound(_player.getId(),
@@ -2100,8 +2100,7 @@ public class L1SkillUse {
 					}
 				} else if (_skillId == SHOCK_STUN) {
 					int[] stunTimeArray = { 500, 1000, 1500, 2000, 2500, 3000 };
-					Random random = new Random();
-					int rnd = random.nextInt(stunTimeArray.length);
+					byte rnd = RandomArrayList.getArray6List(); // 依存 stunTimeArray[] 大小
 					_shockStunDuration = stunTimeArray[rnd];
 					if (cha instanceof L1PcInstance
 							&& cha.hasSkillEffect(SHOCK_STUN)) {
@@ -2512,7 +2511,7 @@ public class L1SkillUse {
 								int summonid = 0;
 								int summoncost = 6;
 								int levelRange = 32;
-								for (int i = 0; i < summons.length; i++) { // 該當ＬＶ範圍檢索
+								for (byte i = 0; i < summons.length; i++) { // 該當ＬＶ範圍檢索
 									if (level < levelRange
 											|| i == summons.length - 1) {
 										summonid = summons[i];
@@ -2533,7 +2532,7 @@ public class L1SkillUse {
 								int summoncount = charisma / summoncost;
 								L1Npc npcTemp = NpcTable.getInstance()
 										.getTemplate(summonid);
-								for (int i = 0; i < summoncount; i++) {
+								for (byte i = 0; i < summoncount; i++) {
 									L1SummonInstance summon = new L1SummonInstance(
 											npcTemp, pc);
 									summon.setPetcost(summoncost);
@@ -2579,7 +2578,7 @@ public class L1SkillUse {
 									}
 									// 特殊設定の場合ランダムで出現
 									if (summonid == 0) {
-										int k3 = RandomArrayList.getArray4List();
+										byte k3 = RandomArrayList.getArray4List();
 										summonid = summons[k3];
 									}
 

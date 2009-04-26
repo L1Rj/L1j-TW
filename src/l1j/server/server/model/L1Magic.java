@@ -18,7 +18,6 @@
  */
 package l1j.server.server.model;
 
-import java.util.Random;
 import java.util.logging.Logger;
 
 import l1j.server.Config;
@@ -43,15 +42,15 @@ public class L1Magic {
 	private static Logger _log = Logger.getLogger(L1MagicInstance.class
 			.getName());
 
-	private int _calcType;
+	private byte _calcType;
 
-	private final int PC_PC = 1;
+	private final byte PC_PC = 1;
 
-	private final int PC_NPC = 2;
+	private final byte PC_NPC = 2;
 
-	private final int NPC_PC = 3;
+	private final byte NPC_PC = 3;
 
-	private final int NPC_NPC = 4;
+	private final byte NPC_NPC = 4;
 
 	private L1PcInstance _pc = null;
 
@@ -62,8 +61,6 @@ public class L1Magic {
 	private L1NpcInstance _targetNpc = null;
 
 	private int _leverage = 10; // 1/10倍で表現する。
-
-	private static Random _random = new Random();
 
 	public void setLeverage(int i) {
 		_leverage = i;
@@ -266,8 +263,7 @@ public class L1Magic {
 
 		probability = calcProbability(skillId);
 
-		Random random = new Random();
-		int rnd = random.nextInt(100) + 1;
+		byte rnd = RandomArrayList.getArray100List();
 		if (probability > 90) {
 			probability = 90; // 最高成功率を90%とする。
 		}
@@ -391,7 +387,6 @@ public class L1Magic {
 			// 成功確率は 基本確率 + LV差1每に+-1%
 			probability = l1skills.getProbabilityValue() + attackLevel - defenseLevel;
 		} else {
-			Random random = new Random();
 			int dice = l1skills.getProbabilityDice();
 			int diceCount = 0;
 			if (_calcType == PC_PC || _calcType == PC_NPC) {
@@ -410,7 +405,7 @@ public class L1Magic {
 			}
 
 			for (int i = 0; i < diceCount; i++) {
-				probability += (random.nextInt(dice) + 1);
+				probability += (RandomArrayList.getArrayshortList((short) dice) + 1);
 			}
 			probability = probability * getLeverage() / 10;
 
@@ -789,10 +784,9 @@ public class L1Magic {
 		int value = l1skills.getDamageValue();
 		int magicDamage = 0;
 		int charaIntelligence = 0;
-		Random random = new Random();
 
-		for (int i = 0; i < diceCount; i++) {
-			magicDamage += (random.nextInt(dice) + 1);
+		for (short i = 0; i < diceCount; i++) {
+			magicDamage += (RandomArrayList.getArrayshortList((short) dice) + 1);
 		}
 		magicDamage += value;
 
@@ -840,10 +834,9 @@ public class L1Magic {
 			magicBonus = 10;
 		}
 
-		Random random = new Random();
 		int diceCount = value + magicBonus;
-		for (int i = 0; i < diceCount; i++) {
-			magicDamage += (random.nextInt(dice) + 1);
+		for (short i = 0; i < diceCount; i++) {
+			magicDamage += (RandomArrayList.getArrayshortList((short) dice) + 1);
 		}
 
 		double alignmentRevision = 1.0;
@@ -861,7 +854,6 @@ public class L1Magic {
 	// ●●●● ＭＲによるダメージ輕減 ●●●●
 	private int calcMrDefense(int dmg) {
 		int mr = getTargetMr();
-		Random random = new Random();
 		byte rnd = RandomArrayList.getArray100List();
 		if (mr >= rnd) {
 			dmg /= 2;

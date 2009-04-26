@@ -67,7 +67,7 @@ public class S_RangeSkill extends ServerBasePacket {
 		writeC(type); // 0:範圍 6:遠距離 8:範圍&遠距離
 		writeH(0);
 		writeH(target.length);
-		for (byte i = 0; i < target.length; i++) {
+		for (short i = 0; i < target.length; i++) {
 			writeD(target[i].getId());
 			writeC(0x20); // 0:ダメージモーションあり 0以外:なし
 		}
