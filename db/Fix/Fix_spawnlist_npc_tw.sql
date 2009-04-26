@@ -1,0 +1,1 @@
+Update spawnlist_npc Set npc_templateid = '81111' Where id = '89543'; /* 亞丁守護塔 ~ 原本的打不倒 */
