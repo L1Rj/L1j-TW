@@ -128,7 +128,7 @@ public class RandomArrayList {
 		for (byte i = 0; i < 127; i++) {
 			Array8[i] = (byte) _random.nextInt(8);
 		}
-		Array3[127] = (byte) _random.nextInt(8);
+		Array8[127] = (byte) _random.nextInt(8);
 	}
 
 	public static byte getArray8List() {
@@ -166,7 +166,7 @@ public class RandomArrayList {
 			return Array10[listnum++];
 		}
 		listnum = 0;
-		return Array9[127];
+		return Array10[127];
 	}
 
 	private static void setArray100List() {
