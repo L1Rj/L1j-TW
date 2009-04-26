@@ -15,9 +15,9 @@
  * 02111-1307, USA.
  *
  * http://www.gnu.org/copyleft/gpl.html
- * 
+ *
  * # FishingThread.java - Team Void Factory
- * 
+ *
  */
 
 package l1j.server.server.clientpackets;
@@ -33,6 +33,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.L1World;
 import l1j.server.server.serverpackets.S_CharVisualUpdate;
 import l1j.server.server.serverpackets.S_ServerMessage;
+import l1j.server.server.utils.RandomArrayList;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
@@ -42,6 +43,9 @@ public class C_FishClick extends ClientBasePacket {
 	private static final String C_FISHCLICK = "[C] C_FishClick";
 	private static Logger _log = Logger.getLogger(C_FishClick.class.getName());
 	private static Random _random = new Random();
+	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
+	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 4.26 Start
+	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 4.26 End
 
 	public C_FishClick(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -53,7 +57,7 @@ public class C_FishClick extends ClientBasePacket {
 				&& pc.isFishingReady()) {
 			finishFishing(pc);
 
-			int chance = _random.nextInt(200) + 1;
+			int chance = RandomArrayList.getArrayshortList((short) 200) + 1;
 			if (chance >= 0 && chance < 50) {
 				successFishing(pc, 41298);
 			} else if (chance >= 50 && chance < 65) {
@@ -198,29 +202,9 @@ public class C_FishClick extends ClientBasePacket {
 		if (item != null) {
 			item.startItemOwnerTimer(pc);
 
-			int dropX = pc.getX();	// 4.14 Start
-			int dropY = pc.getY();
-			if (pc.getHeading() == 0) {
-				dropY++;
-			} else if (pc.getHeading() == 1) {
-				dropX--;
-				dropY++;
-			} else if (pc.getHeading() == 2) {
-				dropX--;
-			} else if (pc.getHeading() == 3) {
-				dropX--;
-				dropY--;
-			} else if (pc.getHeading() == 4) {
-				dropY--;
-			} else if (pc.getHeading() == 5) {
-				dropX++;
-				dropY--;
-			} else if (pc.getHeading() == 6) {
-				dropX++;
-			} else if (pc.getHeading() == 7) {
-				dropX++;
-				dropY++;
-			}	// 4.14 End
+			int heading = pc.getHeading();// 4.26 Start
+			int dropX = pc.getX() - HEADING_TABLE_X[heading];
+			int dropY = pc.getY() - HEADING_TABLE_Y[heading];// 4.26 End
 
 			L1World.getInstance().getInventory(dropX, dropY,
 					pc.getMapId()).storeItem(item);

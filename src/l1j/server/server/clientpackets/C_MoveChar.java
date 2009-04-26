@@ -38,6 +38,9 @@ import l1j.server.server.serverpackets.S_SystemMessage;
 public class C_MoveChar extends ClientBasePacket {
 
 	private static Logger _log = Logger.getLogger(C_MoveChar.class.getName());
+	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
+	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 4.26 Start
+	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 4.26 End
 
 	// 移動
 	public C_MoveChar(byte[] decrypt, ClientThread client) throws Exception{
@@ -77,27 +80,8 @@ public class C_MoveChar extends ClientBasePacket {
 			locx = pc.getX(); // X軸座標
 			locy = pc.getY(); // Y軸座標
 		}
-		if (heading == 0) {
-				locy--;
-		} else if (heading == 1) {
-				locx++;
-				locy--;
-		} else if (heading == 2) {
-				locx++;
-		} else if (heading == 3) {
-				locx++;
-				locy++;
-		} else if (heading == 4) {
-				locy++;
-		} else if (heading == 5) {
-				locx--;
-				locy++;
-		} else if (heading == 6) {
-				locx--;
-		} else if (heading == 7) {
-				locx--;
-				locy--;
-		}
+		locx += HEADING_TABLE_X[heading];// 4.26 Start
+		locy += HEADING_TABLE_Y[heading];// 4.26 End
 
 		// ダンジョンにテレポートした場合
 		if (Dungeon.getInstance().dg(locx, locy, pc.getMap().getId(), pc))
