@@ -87,6 +87,8 @@ public class L1Attack {
 
 	private int _drainMana = 0;
 
+	private int _drainHp = 0;
+
 	private int _attckGrfxId = 0;
 
 	private int _attckActId = 0;
@@ -731,7 +733,11 @@ public class L1Attack {
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3398));
 			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3398));
 		}
-
+		
+		if (_weaponId == 262 && RandomArrayList.getArray100List() + 1 <= 75) { // ディストラクション装備かつ成功確率(暫定)75%
+			weaponTotalDamage += calcDestruction(weaponTotalDamage);
+		}
+		
 		double dmg;
 		if (_weaponType != 20 && _weaponType != 62) {
 			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup()
@@ -767,6 +773,13 @@ public class L1Attack {
 			dmg = L1WeaponSkill.getDiceDaggerDamage(_pc, _targetPc, weapon);
 		} else if (_weaponId == 204 || _weaponId == 100204) { // 真紅のクロスボウ
 			L1WeaponSkill.giveFettersEffect(_pc, _targetPc);
+		} else if (_weaponId == 264) { // ライトニングエッジ
+			dmg += L1WeaponSkill.getLightningEdgeDamage(_pc, _target);
+		} else if (_weaponId == 260 || _weaponId == 263) { // レイジングウィンド、フリージングランサー
+			dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
+					_weaponId);
+		} else if (_weaponId == 261) { // アークメイジスタッフ
+			L1WeaponSkill.giveArkMageDiseaseEffect(_pc, _target);
 		} else {
 			dmg += L1WeaponSkill.getWeaponSkillDamage(_pc, _target, _weaponId);
 		}
@@ -875,7 +888,8 @@ public class L1Attack {
 		}
 
 		if (dmg <= 0) {
-			_isHit = false;
+
+		_drainHp = 0; // ダメージ無しの場合は吸収による回復はしない
 		}
 
 		return (int) dmg;
@@ -926,6 +940,10 @@ public class L1Attack {
 			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3398));
 		}
 
+		if (_weaponId == 262 && RandomArrayList.getArray100List() + 1 <= 75) { // ディストラクション装備かつ成功確率(暫定)75%
+			weaponTotalDamage += calcDestruction(weaponTotalDamage);
+		}
+		
 		double dmg;
 		if (_weaponType != 20 && _weaponType != 62) {
 			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup()
@@ -974,6 +992,13 @@ public class L1Attack {
 			dmg += L1WeaponSkill.getBaphometStaffDamage(_pc, _target);
 		} else if (_weaponId == 204 || _weaponId == 100204) { // 真紅のクロスボウ
 			L1WeaponSkill.giveFettersEffect(_pc, _targetNpc);
+		} else if (_weaponId == 264) { // ライトニングエッジ
+			dmg += L1WeaponSkill.getLightningEdgeDamage(_pc, _target);
+		} else if (_weaponId == 260 || _weaponId == 263) { // レイジングウィンド、フリージングランサー
+			dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
+					_weaponId);
+		} else if (_weaponId == 261) { // アークメイジスタッフ
+			L1WeaponSkill.giveArkMageDiseaseEffect(_pc, _target);
 		} else {
 			dmg += L1WeaponSkill.getWeaponSkillDamage(_pc, _target, _weaponId);
 		}
@@ -1050,6 +1075,7 @@ public class L1Attack {
 
 		if (dmg <= 0) {
 			_isHit = false;
+			_drainHp = 0; // ダメージ無しの場合は吸収による回復はしない
 		}
 
 		return (int) dmg;
@@ -1310,21 +1336,39 @@ public class L1Attack {
 		}
 	}
 
-	// ■■■■ マナスタッフと鋼鐵のマナスタッフのＭＰ吸收量算出 ■■■■
+	// ■■■■ マナスタッフ、鋼鉄のマナスタッフ、マナバーラードのMP吸収量算出 ■■■■
 	public void calcStaffOfMana() {
-		// SOMまたは鋼鐵のSOM
-		if (_weaponId == 126 || _weaponId == 127) {
-			int som_lvl = _weaponEnchant + 3; // 最大MP吸收量を設定
+		if (_weaponId == 126 || _weaponId == 127) { // SOMまたは鋼鉄のSOM
+			int som_lvl = _weaponEnchant + 3; // 最大MP吸収量を設定
 			if (som_lvl < 0) {
 				som_lvl = 0;
 			}
-			// MP吸收量をランダム取得
-			_drainMana = _random.nextInt(som_lvl) + 3;
-			// 最大MP吸收量を9に制限
+			// MP吸収量をランダム取得
+			_drainMana = _random.nextInt(som_lvl) + 1;
+			// 最大MP吸収量を9に制限
 			if (_drainMana > Config.MANA_DRAIN_LIMIT_PER_SOM_ATTACK) {
 				_drainMana = Config.MANA_DRAIN_LIMIT_PER_SOM_ATTACK;
 			}
+		} else if (_weaponId == 259) { // マナバーラード
+			if (_calcType == PC_PC) {
+				if (_targetPc.getMr() <= RandomArrayList.getArray100List() + 1) { // 確率はターゲットのMRに依存
+					_drainMana = 1; // 吸収量は1固定
+				}
+			} else if (_calcType == PC_NPC) {
+				if (_targetNpc.getMr() <= RandomArrayList.getArray100List() + 1) { // 確率はターゲットのMRに依存
+					_drainMana = 1; // 吸収量は1固定
+				}
+			}
 		}
+	}
+
+	// ■■■■ ディストラクションのHP吸収量算出 ■■■■
+	private int calcDestruction(int dmg) {
+		_drainHp = (dmg / 8) + 1;
+		if (_drainHp <= 0) {
+			_drainHp = 1;
+		}
+		return _drainHp;
 	}
 
 	// ■■■■ ＰＣの毒攻擊を付加 ■■■■
@@ -1599,6 +1643,10 @@ public class L1Attack {
 				newMp = (short) (_pc.getCurrentMp() + _drainMana);
 				_pc.setCurrentMp(newMp);
 			}
+			if (_drainHp > 0) { // HP吸収による回復
+				short newHp = (short) (_pc.getCurrentHp() + _drainHp);
+				_pc.setCurrentHp(newHp);
+			}			
 			damagePcWeaponDurability(); // 武器を損傷させる。
 			_targetPc.receiveDamage(_pc, _damage);
 		} else if (_calcType == NPC_PC) {
@@ -1619,7 +1667,10 @@ public class L1Attack {
 					_targetNpc.setCurrentMpDirect(newMp2);
 				}
 			}
-
+			if (_drainHp > 0) { // HP吸収による回復
+				short newHp = (short) (_pc.getCurrentHp() + _drainHp);
+				_pc.setCurrentHp(newHp);
+			}
 			damageNpcWeaponDurability(); // 武器を損傷させる。
 			_targetNpc.receiveDamage(_pc, _damage);
 		} else if (_calcType == NPC_NPC) {

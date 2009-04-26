@@ -3134,6 +3134,83 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 		}
+		// ゾウのストーンゴーレム
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71252) {
+			int weapon1 = 0;
+			int weapon2 = 0;
+			int newWeapon = 0;
+			if (s.equalsIgnoreCase("A")) {
+				weapon1 = 5; // +7エルヴンダガー
+				weapon2 = 10; // +7ラスタバドダガー
+				newWeapon = 259; // マナバーラード
+				htmlid = "joegolem9";
+			} else if (s.equalsIgnoreCase("B")) {
+				weapon1 = 145; // +7バーサーカーアックス
+				weapon2 = 148; // +7グレートアックス
+				newWeapon = 260; // レイジングウィンド
+				htmlid = "joegolem10";
+			} else if (s.equalsIgnoreCase("C")) {
+				weapon1 = 52; // +7ツーハンドソード
+				weapon2 = 64; // +7グレートソード
+				newWeapon = 262; // ディストラクション
+				htmlid = "joegolem11";
+			} else if (s.equalsIgnoreCase("D")) {
+				weapon1 = 125; // +7ソーサリースタッフ
+				weapon2 = 129; // +7メイジスタッフ
+				newWeapon = 261; // アークメイジスタッフ
+				htmlid = "joegolem12";
+			} else if (s.equalsIgnoreCase("E")) {
+				weapon1 = 99; // +7エルブンスピアー
+				weapon2 = 104; // +7フォチャード
+				newWeapon = 263; // フリージングランサー
+				htmlid = "joegolem13";
+			} else if (s.equalsIgnoreCase("F")) {
+				weapon1 = 32; // +7グラディウス
+				weapon2 = 42; // +7レイピア
+				newWeapon = 264; // ライトニングエッジ
+				htmlid = "joegolem14";
+			}
+			if (pc.getInventory().checkEnchantItem(weapon1, 7, 1)
+					&& pc.getInventory().checkEnchantItem(weapon2, 7, 1)
+					&& pc.getInventory().checkItem(41246, 1000) // 結晶体
+					&& pc.getInventory().checkItem(49143, 10)) { // 勇気の結晶
+				pc.getInventory().consumeEnchantItem(weapon1, 7, 1);
+				pc.getInventory().consumeEnchantItem(weapon2, 7, 1);
+				pc.getInventory().consumeItem(41246,1000);
+				pc.getInventory().consumeItem(49143,10);
+				L1ItemInstance item = pc.getInventory().storeItem(newWeapon, 1);
+				pc.sendPackets(new S_ServerMessage(143,
+						((L1NpcInstance) obj).getNpcTemplate().get_name(),
+						item.getItem().getName()));
+			} else {
+				htmlid = "joegolem15";
+				if (!pc.getInventory().checkEnchantItem(weapon1, 7, 1)) {
+					pc.sendPackets(new S_ServerMessage(337, "+7 "
+							+ ItemTable.getInstance().getTemplate(weapon1)
+							.getName())); // \f1%0が不足しています。
+				}
+				if (!pc.getInventory().checkEnchantItem(weapon2, 7, 1)) {
+					pc.sendPackets(new S_ServerMessage(337, "+7 "
+							+ ItemTable.getInstance().getTemplate(weapon2)
+							.getName())); // \f1%0が不足しています。
+				}
+				if (!pc.getInventory().checkItem(41246, 1000)) {
+					int itemCount = 0;
+					itemCount = 1000 - pc.getInventory().countItems(41246);
+					pc.sendPackets(new S_ServerMessage(337, ItemTable
+							.getInstance().getTemplate(41246).getName()
+							+ "(" + itemCount + ")" )); // \f1%0が不足しています。
+				}
+				if (!pc.getInventory().checkItem(49143, 10)) {
+					int itemCount = 0;
+					itemCount = 10 - pc.getInventory().countItems(49143);
+					pc.sendPackets(new S_ServerMessage(337, ItemTable
+							.getInstance().getTemplate(49143).getName()
+							+ "(" + itemCount + ")" )); // \f1%0が不足しています。
+				}
+			}
+		}
+
 		// else System.out.println("C_NpcAction: " + s);
 		if (htmlid != null && htmlid.equalsIgnoreCase("colos2")) {
 			htmldata = makeUbInfoStrings(((L1NpcInstance) obj).getNpcTemplate()

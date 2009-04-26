@@ -31,6 +31,7 @@ import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
+import l1j.server.server.model.skill.L1SkillUse;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_EffectLocation;
 import l1j.server.server.serverpackets.S_Paralysis;
@@ -337,6 +338,141 @@ public class L1WeaponSkill {
 		}
 
 		return dmg;
+	}
+	
+	public static double getAreaSkillWeaponDamage(L1PcInstance pc,
+			L1Character cha, int weaponId) {
+		double dmg = 0;
+		int probability = 0;
+		int attr = 0;
+		int chance = RandomArrayList.getArray100List() + 1;
+		if (weaponId == 263) { // フリージングランサー
+			probability = 5;
+			attr = L1Skills.ATTR_WATER;
+		} else if (weaponId == 260) { // レイジングウィンド
+			probability = 4;
+			attr = L1Skills.ATTR_WIND;
+		}
+		if (probability >= chance) {
+			int sp = pc.getSp();
+			int intel = pc.getInt();
+			int area = 0;
+			int effectTargetId = 0;
+			int effectId = 0;
+			L1Character areaBase = cha;
+			double damageRate = 0;
+
+			if (weaponId == 263) { // フリージングランサー
+				area = 3;
+				damageRate = 1.4D;
+				effectTargetId = cha.getId();
+				effectId = 1804;
+				areaBase = cha;
+			} else if (weaponId == 260) { // レイジングウィンド
+				area = 4;
+				damageRate = 1.5D;
+				effectTargetId = pc.getId();
+				effectId = 758;
+				areaBase = pc;
+			}
+			double bsk = 0;
+			if (pc.hasSkillEffect(BERSERKERS)) {
+				bsk = 0.2;
+			}
+			dmg = (intel + sp) * (damageRate + bsk) + _random.nextInt(intel
+				+ sp) * damageRate;
+			pc.sendPackets(new S_SkillSound(effectTargetId, effectId));
+			pc.broadcastPacket(new S_SkillSound(effectTargetId, effectId));
+
+			for (L1Object object : L1World.getInstance()
+					.getVisibleObjects(areaBase, area)) {
+				if (object == null) {
+					continue;
+				}
+				if (!(object instanceof L1Character)) {
+					continue;
+				}
+				if (object.getId() == pc.getId()) {
+					continue;
+				}
+				if (object.getId() == cha.getId()) { // 攻撃対象は除外
+					continue;
+				}
+
+				// 攻撃対象がMOBの場合は、範囲内のMOBにのみ当たる
+				// 攻撃対象がPC,Summon,Petの場合は、範囲内のPC,Summon,Pet,MOBに当たる
+				if (cha instanceof L1MonsterInstance) {
+					if (!(object instanceof L1MonsterInstance)) {
+						continue;
+					}
+				}
+				if (cha instanceof L1PcInstance
+						|| cha instanceof L1SummonInstance
+						|| cha instanceof L1PetInstance) {
+					if (!(object instanceof L1PcInstance
+							|| object instanceof L1SummonInstance
+							|| object instanceof L1PetInstance
+							|| object instanceof L1MonsterInstance)) {
+						continue;
+					}
+				}
+
+				dmg = calcDamageReduction((L1Character) object, dmg, attr);
+				if (dmg <= 0) {
+					continue;
+				}
+				if (object instanceof L1PcInstance) {
+					L1PcInstance targetPc = (L1PcInstance) object;
+					targetPc.sendPackets(new S_DoActionGFX(targetPc.getId(),
+							ActionCodes.ACTION_Damage));
+				   targetPc.broadcastPacket(new S_DoActionGFX(targetPc.getId(),
+							ActionCodes.ACTION_Damage));
+				   targetPc.receiveDamage(pc, (int) dmg);
+				} else if (object instanceof L1SummonInstance
+						|| object instanceof L1PetInstance
+						|| object instanceof L1MonsterInstance) {
+					L1NpcInstance targetNpc = (L1NpcInstance) object;
+					targetNpc.broadcastPacket(new S_DoActionGFX(targetNpc
+						.getId(), ActionCodes.ACTION_Damage));
+					targetNpc.receiveDamage(pc, (int) dmg);
+				}
+			}
+		}
+		return calcDamageReduction(cha, dmg, attr);
+	}
+
+	public static double getLightningEdgeDamage(L1PcInstance pc,
+			L1Character cha) {
+		double dmg = 0;
+		int chance = RandomArrayList.getArray100List() + 1;
+		if (4 >= chance) {
+			int sp = pc.getSp();
+			int intel = pc.getInt();
+			double bsk = 0;
+			if (pc.hasSkillEffect(BERSERKERS)) {
+				bsk = 0.2;
+			}
+			dmg = (intel + sp) * (2 + bsk) + _random.nextInt(intel + sp) * 2;
+
+			pc.sendPackets(new S_SkillSound(cha.getId(), 10));
+			pc.broadcastPacket(new S_SkillSound(cha.getId(), 10));
+		}
+		return calcDamageReduction(cha, dmg, L1Skills.ATTR_WIND);
+	}
+
+	public static void giveArkMageDiseaseEffect(L1PcInstance pc,
+			L1Character cha) {
+		int chance = _random.nextInt(1000) + 1;
+		int probability = (5 - ((cha.getMr() / 10) * 5)) * 10;
+		if (probability == 0) {
+			probability = 10;
+		}
+		if (probability >= chance) {
+			L1SkillUse l1skilluse = new L1SkillUse();
+			l1skilluse.handleCommands(pc, 56,
+					cha.getId(), cha.getX(), cha.getY(), null, 0,
+					L1SkillUse.TYPE_GMBUFF);
+	   }
 	}
 
 	public static void giveFettersEffect(L1PcInstance pc, L1Character cha) {

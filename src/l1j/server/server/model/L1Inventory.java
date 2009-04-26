@@ -508,7 +508,39 @@ public class L1Inventory extends L1Object {
 		}
 		return false;
 	}
+	// 強化された特定のアイテムを指定された個数以上所持しているか確認
+	// 装備中のアイテムは所持していないと判別する
+	public boolean checkEnchantItem(int id, int enchant, int count) {
+		int num = 0;
+		for (L1ItemInstance item : _items) {
+			if (item.isEquipped()) { // 装備しているものは該当しない
+				continue;
+			}
+			if (item.getItemId() == id && item.getEnchantLevel() == enchant) {
+				num ++;
+				if (num == count) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
+	// 強化された特定のアイテムを消費する
+	// 装備中のアイテムは所持していないと判別する
+	public boolean consumeEnchantItem(int id, int enchant, int count) {
+		for (L1ItemInstance item : _items) {
+			if (item.isEquipped()) { // 装備しているものは該当しない
+				continue;
+			}
+			if (item.getItemId() == id && item.getEnchantLevel() == enchant) {
+				removeItem(item);
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	// 特定のアイテムを指定された個數以上所持しているか確認
 	// 裝備中のアイテムは所持していないと判別する
 	public boolean checkItemNotEquipped(int id, int count) {
