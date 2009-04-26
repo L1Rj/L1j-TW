@@ -855,10 +855,15 @@ public class L1Magic {
 	private int calcMrDefense(int dmg) {
 		int mr = getTargetMr();
 		byte rnd = RandomArrayList.getArray100List();
-		if (mr >= rnd) {
-			dmg /= 2;
+		if (mr >= rnd) { // waja change 魔法防禦公式
+			dmg = dmg/3;
 		}
-
+		else if (mr < rnd) {
+			dmg = dmg - (mr/3) ; //基本魔法防禦減傷 魔法防禦 1/3 作為減傷依據
+		}
+		if (dmg <= 0) // 防止負值
+		dmg=1 ;
+		
 		return dmg;
 	}
 
