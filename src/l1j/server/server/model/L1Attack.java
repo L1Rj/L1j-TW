@@ -733,11 +733,11 @@ public class L1Attack {
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3398));
 			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3398));
 		}
-		
-		if (_weaponId == 262 && RandomArrayList.getArray100List() + 1 <= 75) { // ディストラクション装備かつ成功確率(暫定)75%
+
+		if (_weaponId == 262 && RandomArrayList.getArray100List() <= 75) { // ディストラクション装備かつ成功確率(暫定)75%
 			weaponTotalDamage += calcDestruction(weaponTotalDamage);
 		}
-		
+
 		double dmg;
 		if (_weaponType != 20 && _weaponType != 62) {
 			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup()
@@ -755,7 +755,7 @@ public class L1Attack {
 				}
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
 			} else if (_weaponId == 190) { // サイハの弓
-				dmg += 1 + RandomArrayList.getArray100List() % 15;
+				dmg += 1 + RandomArrayList.getArrayshortList((short) 15);
 			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = _sting.getItem().getDmgSmall();
@@ -940,10 +940,10 @@ public class L1Attack {
 			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3398));
 		}
 
-		if (_weaponId == 262 && RandomArrayList.getArray100List() + 1 <= 75) { // ディストラクション装備かつ成功確率(暫定)75%
+		if (_weaponId == 262 && RandomArrayList.getArray100List() <= 75) { // ディストラクション装備かつ成功確率(暫定)75%
 			weaponTotalDamage += calcDestruction(weaponTotalDamage);
 		}
-		
+
 		double dmg;
 		if (_weaponType != 20 && _weaponType != 62) {
 			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup()
@@ -970,7 +970,7 @@ public class L1Attack {
 				}
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
 			} else if (_weaponId == 190) { // サイハの弓
-				dmg += 1 +RandomArrayList.getArray100List() % 15;
+				dmg += 1 +RandomArrayList.getArrayshortList((short) 15);
 			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = 0;
@@ -1214,7 +1214,7 @@ public class L1Attack {
 			dmg += (lvl / 16); // ペットはLV16每に追加打擊
 			dmg += ((L1PetInstance) _npc).getDamageByWeapon();
 		} else {
-			dmg = _random.nextInt(lvl) + _npc.getStr() / 2 + 1;
+			dmg = RandomArrayList.getArrayshortList((short) lvl) + _npc.getStr() / 2 + 1;
 		}
 
 		if (isUndeadDamage()) {
@@ -1344,18 +1344,18 @@ public class L1Attack {
 				som_lvl = 0;
 			}
 			// MP吸収量をランダム取得
-			_drainMana = _random.nextInt(som_lvl) + 1;
+			_drainMana = RandomArrayList.getArrayshortList((short) som_lvl) + 1;
 			// 最大MP吸収量を9に制限
 			if (_drainMana > Config.MANA_DRAIN_LIMIT_PER_SOM_ATTACK) {
 				_drainMana = Config.MANA_DRAIN_LIMIT_PER_SOM_ATTACK;
 			}
 		} else if (_weaponId == 259) { // マナバーラード
 			if (_calcType == PC_PC) {
-				if (_targetPc.getMr() <= RandomArrayList.getArray100List() + 1) { // 確率はターゲットのMRに依存
+				if (_targetPc.getMr() <= RandomArrayList.getArray100List()) { // 確率はターゲットのMRに依存
 					_drainMana = 1; // 吸収量は1固定
 				}
 			} else if (_calcType == PC_NPC) {
-				if (_targetNpc.getMr() <= RandomArrayList.getArray100List() + 1) { // 確率はターゲットのMRに依存
+				if (_targetNpc.getMr() <= RandomArrayList.getArray100List()) { // 確率はターゲットのMRに依存
 					_drainMana = 1; // 吸収量は1固定
 				}
 			}
@@ -1646,7 +1646,7 @@ public class L1Attack {
 			if (_drainHp > 0) { // HP吸収による回復
 				short newHp = (short) (_pc.getCurrentHp() + _drainHp);
 				_pc.setCurrentHp(newHp);
-			}			
+			}
 			damagePcWeaponDurability(); // 武器を損傷させる。
 			_targetPc.receiveDamage(_pc, _damage);
 		} else if (_calcType == NPC_PC) {
