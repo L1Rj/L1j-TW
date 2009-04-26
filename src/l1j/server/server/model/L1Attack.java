@@ -144,15 +144,15 @@ public class L1Attack {
  * -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, // 8～26まで 7, 7, 7,
  * 8, 8, 8, 9, 9, 9, 10, 10, 10, 11, 11, 11, 12, 12, 12, // 27～44まで 13, 13, 13,
  * 14, 14, 14, 15, 15, 15, 16, 16, 16, 17, 17, 17}; // 45～59まで
- * 
+ *
  * private static final int[] dexHit = { -2, -2, -2, -2, -2, -2, -1, -1, 0, 0, //
  * 1～10まで 1, 1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, //
  * 11～30まで 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, //
  * 31～45まで 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 }; //
  * 46～60まで
- * 
+ *
  * private static final int[] strDmg = new int[128];
- * 
+ *
  * static { // ＳＴＲダメージ補正 int dmg = -6; for (int str = 0; str <= 22; str++) { //
  * ０～２２は２每に＋１ if (str % 2 == 1) { dmg++; } strDmg[str] = dmg; } for (int str =
  * 23; str <= 28; str++) { // ２３～２８は３每に＋１ if (str % 3 == 2) { dmg++; }
@@ -161,9 +161,9 @@ public class L1Attack {
  * str++) { // ３３～３９は１每に＋１ dmg++; strDmg[str] = dmg; } for (int str = 40; str <=
  * 46; str++) { // ４０～４６は１每に＋２ dmg += 2; strDmg[str] = dmg; } for (int str = 47;
  * str <= 127; str++) { // ４７～１２７は１每に＋１ dmg++; strDmg[str] = dmg; } }
- * 
+ *
  * private static final int[] dexDmg = new int[128];
- * 
+ *
  * static { // ＤＥＸダメージ補正 for (int dex = 0; dex <= 14; dex++) { // ０～１４は０
  * dexDmg[dex] = 0; } dexDmg[15] = 1; dexDmg[16] = 2; dexDmg[17] = 3; dexDmg[18] =
  * 4; dexDmg[19] = 4; dexDmg[20] = 4; dexDmg[21] = 5; dexDmg[22] = 5; dexDmg[23] =
@@ -706,8 +706,8 @@ public class L1Attack {
 			weaponDamage = weaponMaxDamage;
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3671));
 			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3671));
-		} else if (_weaponType == 0 || _weaponType == 20 || _weaponType == 62) { // 素手、弓、ガントトレット
-			weaponDamage = 0;
+		//} else if (_weaponType == 0 || _weaponType == 20 || _weaponType == 62) { // 素手、弓、ガントトレット
+		//	weaponDamage = 0;
 		} else {
 			weaponDamage = RandomArrayList.getArray100List() % weaponMaxDamage + 1;
 		}
@@ -747,16 +747,16 @@ public class L1Attack {
 				if (add_dmg == 0) {
 					add_dmg = 1;
 				}
-				dmg = dmg + RandomArrayList.getArray100List() % add_dmg + 1;
+				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
 			} else if (_weaponId == 190) { // サイハの弓
-				dmg = dmg + 1 + RandomArrayList.getArray100List() % 15;
+				dmg += 1 + RandomArrayList.getArray100List() % 15;
 			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = _sting.getItem().getDmgSmall();
 			if (add_dmg == 0) {
 				add_dmg = 1;
 			}
-			dmg = dmg + _random.nextInt(add_dmg) + 1;
+			dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
 		}
 
 		dmg = calcBuffDamage(dmg);
@@ -766,7 +766,7 @@ public class L1Attack {
 		} else if (_weaponId == 2 || _weaponId == 200002) { // ダイスダガー
 			dmg = L1WeaponSkill.getDiceDaggerDamage(_pc, _targetPc, weapon);
 		} else if (_weaponId == 204 || _weaponId == 100204) { // 真紅のクロスボウ
-			L1WeaponSkill.giveFettersEffect(_pc, _targetPc); 
+			L1WeaponSkill.giveFettersEffect(_pc, _targetPc);
 		} else {
 			dmg += L1WeaponSkill.getWeaponSkillDamage(_pc, _target, _weaponId);
 		}
@@ -899,10 +899,10 @@ public class L1Attack {
 			weaponDamage = weaponMaxDamage;
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3671));
 			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3671));
-		} else if (_weaponType == 0 || _weaponType == 20 || _weaponType == 62) { // 素手、弓、ガントトレット
-			weaponDamage = 0;
+		//} else if (_weaponType == 0 || _weaponType == 20 || _weaponType == 62) { // 素手、弓、ガントトレット
+		//	weaponDamage = 0;
 		} else {
-			weaponDamage = RandomArrayList.getArray100List() % weaponMaxDamage + 1;
+			weaponDamage = RandomArrayList.getArrayshortList((short) weaponMaxDamage) + 1;
 		}
 		if (_pc.hasSkillEffect(SOUL_OF_FLAME)) {
 			if (_weaponType != 20 && _weaponType != 62) {
@@ -950,9 +950,9 @@ public class L1Attack {
 				if (_targetNpc.getNpcTemplate().is_hard()) {
 					add_dmg /= 2;
 				}
-				dmg = dmg + _random.nextInt(add_dmg) + 1;
+				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
 			} else if (_weaponId == 190) { // サイハの弓
-				dmg = dmg + 1 +RandomArrayList.getArray100List() % 15;
+				dmg += 1 +RandomArrayList.getArray100List() % 15;
 			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = 0;
@@ -965,7 +965,7 @@ public class L1Attack {
 			if (add_dmg == 0) {
 				add_dmg = 1;
 			}
-			dmg = dmg + _random.nextInt(add_dmg) + 1;
+			dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
 		}
 
 		dmg = calcBuffDamage(dmg);
@@ -973,7 +973,7 @@ public class L1Attack {
 		if (_weaponId == 124) { // バフォメットスタッフ
 			dmg += L1WeaponSkill.getBaphometStaffDamage(_pc, _target);
 		} else if (_weaponId == 204 || _weaponId == 100204) { // 真紅のクロスボウ
-			L1WeaponSkill.giveFettersEffect(_pc, _targetNpc); 
+			L1WeaponSkill.giveFettersEffect(_pc, _targetNpc);
 		} else {
 			dmg += L1WeaponSkill.getWeaponSkillDamage(_pc, _target, _weaponId);
 		}
@@ -1060,7 +1060,7 @@ public class L1Attack {
 		int lvl = _npc.getLevel();
 		double dmg = 0D;
 		if (lvl < 10) {
-			dmg = RandomArrayList.getArray100List() % lvl + 10D + _npc.getStr() / 2 + 1;
+			dmg = RandomArrayList.getArray10List() % lvl + 10D + _npc.getStr() / 2 + 1;
 		} else {
 			dmg = RandomArrayList.getArray100List() % lvl + _npc.getStr() / 2 + 1;
 		}
@@ -1076,7 +1076,7 @@ public class L1Attack {
 			dmg *= 1.1;
 		}
 
-		dmg = dmg * getLeverage() / 10;
+		dmg *= getLeverage() / 10;
 
 		dmg -= calcPcDefense();
 
@@ -1225,7 +1225,7 @@ public class L1Attack {
 	// ●●●● プレイヤーのダメージ強化魔法 ●●●●
 	private double calcBuffDamage(double dmg) {
 		// 火武器、バーサーカーのダメージは1.5倍しない
-		if (_pc.hasSkillEffect(BURNING_SPIRIT) 
+		if (_pc.hasSkillEffect(BURNING_SPIRIT)
 				|| (_pc.hasSkillEffect(ELEMENTAL_FIRE)
 						&& _weaponType != 20 && _weaponType != 62
 						&& _weaponType2 !=17)) {

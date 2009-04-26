@@ -699,8 +699,8 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 				int diff = pcStatusPoint - initStatusPoint;
 				/**
-				 * 
-				 * 
+				 *
+				 *
 				 * 目前點數 - 初始點數 = 人物應有等級 - 50 -> 人物應有等級 = 50 + (目前點數 - 初始點數)
 				 */
 				int maxLevel = 1;
@@ -1680,7 +1680,7 @@ public class C_NPCAction extends ClientBasePacket {
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 70512) {
 			// 治療を受ける("fullheal"でリクエストが來ることはあるのか？)
 			if (s.equalsIgnoreCase("0") || s.equalsIgnoreCase("fullheal")) {
-				int hp = RandomArrayList.getArray100List() % 21 + 70;
+				int hp = RandomArrayList.getArrayshortList((short) 21) + 70;
 				pc.setCurrentHp(pc.getCurrentHp() + hp);
 				pc.sendPackets(new S_ServerMessage(77));
 				pc.sendPackets(new S_SkillSound(pc.getId(), 830));
@@ -2284,7 +2284,7 @@ public class C_NPCAction extends ClientBasePacket {
 					if (pc.getInventory().checkItem(41314)) { // 占星術師のお守り
 						pc.getInventory().consumeItem(41314, 1); // 占星術師のお守り
 						byte html = (byte) (RandomArrayList.getArray9List() + 1);
-						int PolyId = 6180 + RandomArrayList.getArray100List() % 64;
+						int PolyId = 6180 + RandomArrayList.getArrayshortList((short) 64);
 						polyByKeplisha(client, PolyId);
 						switch (html) {
 							case 1:
