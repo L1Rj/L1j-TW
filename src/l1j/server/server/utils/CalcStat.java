@@ -187,7 +187,7 @@ public class CalcStat {
 			seedY = RandomArrayList.getArray4List();
 		} else if (baseWis == 24 ||baseWis == 27
 				 ||baseWis == 28 ||baseWis == 31
-				 ||baseWis == 32 ||baseWis == 35) {
+				 ||baseWis == 32 ||baseWis >= 35) {
 			seedY = RandomArrayList.getArray5List();
 		}
 
@@ -203,7 +203,7 @@ public class CalcStat {
 			seedZ = 5; // seedZ = 4;
 		} else if (baseWis >= 29 && baseWis <= 32) {
 			seedZ = 6; // seedZ = 5;
-		} else if (baseWis >= 33 && baseWis <= 35) {
+		} else if (baseWis >= 33) {
 			seedZ = 7; // seedZ = 5;
 		}
 
