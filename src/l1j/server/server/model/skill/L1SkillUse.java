@@ -1548,12 +1548,14 @@ public class L1SkillUse {
 		} else if (_skillId == CUBE_IGNITION) {
 			L1EffectSpawn.getInstance().spawnEffect(80149,
 					_skill.getBuffDuration() * 1000,
-					_targetX, _targetY, _user.getMapId());
+					_targetX, _targetY, _user.getMapId(),
+					(L1PcInstance) _user, _skillId);
 			return;
 		} else if (_skillId == CUBE_QUAKE) {
 			L1EffectSpawn.getInstance().spawnEffect(80150,
 					_skill.getBuffDuration() * 1000,
-					_targetX, _targetY, _user.getMapId());
+					_targetX, _targetY, _user.getMapId(),
+					(L1PcInstance) _user, _skillId);
 			return;
 		} else if (_skillId == CUBE_SHOCK) {
 			L1EffectSpawn.getInstance().spawnEffect(80151,
@@ -1563,7 +1565,8 @@ public class L1SkillUse {
 		} else if (_skillId == CUBE_BALANCE) {
 			L1EffectSpawn.getInstance().spawnEffect(80152,
 					_skill.getBuffDuration() * 1000,
-					_targetX, _targetY, _user.getMapId());
+					_targetX, _targetY, _user.getMapId(),
+					(L1PcInstance) _user, _skillId);
 			return;
 		}
 
@@ -1981,10 +1984,10 @@ public class L1SkillUse {
 						|| _skillId == 10028 || _skillId == 10029) { // 安息攻擊
 					if (_user instanceof L1NpcInstance) {
 						_user.broadcastPacket(new S_NpcChatPacket(_npc,
-								"$3717", (byte) 0)); // さあ、おまえに安息を与えよう。
+					   (cha.getName())+("! ")+("$3717"),  (byte) 0)); // waja change 龍的安息字串
 					} else {
 						_player.broadcastPacket(new S_ChatPacket(_player,
-								"$3717", 0, (byte) 0)); // さあ、おまえに安息を与えよう。
+					   (cha.getName())+("! ")+("$3717"), 0, (byte) 0)); // waja change 龍的安息字串
 					}
 					dmg = cha.getCurrentHp();
 				} else if (_skillId == 10057) { // 引き寄せ

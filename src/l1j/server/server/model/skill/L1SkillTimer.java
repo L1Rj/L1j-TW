@@ -456,6 +456,29 @@ class L1SkillStop {
 				L1NpcInstance npc = (L1NpcInstance) cha;
 				npc.setParalyzed(false);
 			}
+		} else if (skillId == STATUS_CUBE_IGNITION_TO_ALLY) { // キューブ[イグニション]：味方
+			cha.addFire(-30);
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.sendPackets(new S_OwnCharAttrDef(pc));
+			}
+		} else if (skillId == STATUS_CUBE_QUAKE_TO_ALLY) { // キューブ[クエイク]：味方
+			cha.addEarth(-30);
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.sendPackets(new S_OwnCharAttrDef(pc));
+			}
+		} else if (skillId == STATUS_CUBE_SHOCK_TO_ALLY) { // キューブ[ショック]：味方
+			cha.addWind(-30);
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.sendPackets(new S_OwnCharAttrDef(pc));
+			}
+		} else if (skillId == STATUS_CUBE_BALANCE_TO_ALLY) { // キューブ[バランス]：味方
+		} else if (skillId == STATUS_CUBE_IGNITION_TO_ENEMY) { // キューブ[イグニション]：敵
+		} else if (skillId == STATUS_CUBE_QUAKE_TO_ENEMY) { // キューブ[クエイク]：敵
+		} else if (skillId == STATUS_CUBE_SHOCK_TO_ENEMY) { // キューブ[ショック]：敵
+		} else if (skillId == STATUS_CUBE_BALANCE_TO_ENEMY) { // キューブ[バランス]：敵
 		}
 
 		// ****** アイテム關係

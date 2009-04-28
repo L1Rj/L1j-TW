@@ -2880,47 +2880,47 @@
 	<!--破滅者のチェーンソード / 鍛冶屋ピューアルス-->
 	<Action Name="request chainsword destroyer" NpcId="80133">
 		<MakeItem>
-			<Item Amount="1" ItemId="17"/>
-			<Item Amount="20" ItemId="40406"/>
-			<Item Amount="20" ItemId="40503"/>
-			<Item Amount="1" ItemId="40393"/>
-			<Item Amount="1000000" ItemId="40308"/>
-			<Material Amount="1" ItemId="273"/>
+			<Material Amount="1" ItemId="17"/>
+			<Material Amount="20" ItemId="40406"/>
+			<Material Amount="20" ItemId="40503"/>
+			<Material Amount="1" ItemId="40393"/>
+			<Material Amount="1000000" ItemId="40308"/>
+			<Item Amount="1" ItemId="273"/>
 		</MakeItem>
 	</Action>
 	<!--古代弓射手のガーダー / 鍛冶屋ピューアルス-->
 	<Action Name="request guarder of ancient archer" NpcId="80133">
 		<MakeItem>
-			<Item Amount="1" ItemId="20140"/>
-			<Item Amount="3" ItemId="40445"/>
-			<Item Amount="20" ItemId="40504"/>
-			<Item Amount="50" ItemId="40505"/>
-			<Item Amount="20" ItemId="40521"/>
-			<Item Amount="50" ItemId="40495"/>
-			<Item Amount="1000000" ItemId="40308"/>
-			<Material Amount="1" ItemId="21105"/>
+			<Material Amount="1" ItemId="20140"/>
+			<Material Amount="3" ItemId="40445"/>
+			<Material Amount="20" ItemId="40504"/>
+			<Material Amount="50" ItemId="40505"/>
+			<Material Amount="20" ItemId="40521"/>
+			<Material Amount="50" ItemId="40495"/>
+			<Material Amount="1000000" ItemId="40308"/>
+			<Item Amount="1" ItemId="21105"/>
 		</MakeItem>
 	</Action>
 	<!--古代闘士のガーダー / 鍛冶屋ピューアルス-->
 	<Action Name="request guarder of ancient champion" NpcId="80133">
 		<MakeItem>
-			<Item Amount="1" ItemId="20143"/>
-			<Item Amount="5" ItemId="40445"/>
-			<Item Amount="1000000" ItemId="40308"/>
-			<Material Amount="1" ItemId="21106"/>
+			<Material Amount="1" ItemId="20143"/>
+			<Material Amount="5" ItemId="40445"/>
+			<Material Amount="1000000" ItemId="40308"/>
+			<Item Amount="1" ItemId="21106"/>
 		</MakeItem>
 	</Action>
 	<!--ダークストーンキーリンク / 鍛冶屋バトール-->
 	<Action Name="request obsidian kiringku" NpcId="80142">
 		<MakeItem>
-			<Item Amount="10" ItemId="40052"/>
-			<Item Amount="10" ItemId="40053"/>
-			<Item Amount="10" ItemId="40054"/>
-			<Item Amount="10" ItemId="40055"/>
-			<Item Amount="30" ItemId="40520"/>
-			<Item Amount="2" ItemId="49092"/>
-			<Item Amount="1000000" ItemId="40308"/>
-			<Material Amount="1" ItemId="271"/>
+			<Material Amount="10" ItemId="40052"/>
+			<Material Amount="10" ItemId="40053"/>
+			<Material Amount="10" ItemId="40054"/>
+			<Material Amount="10" ItemId="40055"/>
+			<Material Amount="30" ItemId="40520"/>
+			<Material Amount="2" ItemId="49092"/>
+			<Material Amount="1000000" ItemId="40308"/>
+			<Item Amount="1" ItemId="271"/>
 		</MakeItem>
 	</Action>
 </NpcActionList>

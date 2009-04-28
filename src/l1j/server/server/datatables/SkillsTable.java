@@ -105,6 +105,7 @@ public class SkillsTable {
 			l1skills.setNameId(rs.getString("nameid"));
 			l1skills.setActionId(rs.getInt("action_id"));
 			l1skills.setCastGfx(rs.getInt("castgfx"));
+			l1skills.setCastGfx2(rs.getInt("castgfx2"));
 			l1skills.setSysmsgIdHappen(rs.getInt("sysmsgID_happen"));
 			l1skills.setSysmsgIdStop(rs.getInt("sysmsgID_stop"));
 			l1skills.setSysmsgIdFail(rs.getInt("sysmsgID_fail"));

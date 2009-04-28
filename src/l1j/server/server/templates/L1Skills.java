@@ -344,6 +344,16 @@ public class L1Skills {
 		_castGfx = i;
 	}
 
+	private int _castGfx2;
+
+	public int getCastGfx2() {
+		return _castGfx2;
+	}
+
+	public void setCastGfx2(int i) {
+		_castGfx2 = i;
+	}
+
 	private int _sysmsgIdHappen;
 
 	public int getSysmsgIdHappen() {

@@ -453,7 +453,24 @@ public class L1SkillId {
 
 	public static final int STATUS_ELFBRAVE = 1016;
 
-	public static final int STATUS_END = 1016;
+	public static final int STATUS_CUBE_IGNITION_TO_ALLY = 1017;
+
+	public static final int STATUS_CUBE_IGNITION_TO_ENEMY = 1018;
+
+	public static final int STATUS_CUBE_QUAKE_TO_ALLY = 1019;
+
+	public static final int STATUS_CUBE_QUAKE_TO_ENEMY = 1020;
+
+	public static final int STATUS_CUBE_SHOCK_TO_ALLY = 1021;
+
+	public static final int STATUS_CUBE_SHOCK_TO_ENEMY = 1022;
+
+	public static final int STATUS_CUBE_BALANCE_TO_ALLY = 1023;
+
+	public static final int STATUS_CUBE_BALANCE_TO_ENEMY = 1024;
+
+	public static final int STATUS_END = 1024;
+
 
 	public static final int GMSTATUS_BEGIN = 2000;
 
