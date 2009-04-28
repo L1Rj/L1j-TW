@@ -49,6 +49,7 @@ import l1j.server.server.serverpackets.S_SkillIconBlessOfEva;
 import l1j.server.server.serverpackets.S_SkillIconShield;
 import l1j.server.server.serverpackets.S_SkillIconWindShackle;
 import l1j.server.server.serverpackets.S_SkillIconWisdomPotion;
+import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_Strup;
 import l1j.server.server.templates.L1Skills;
 import static l1j.server.server.model.skill.L1SkillId.*;
@@ -489,6 +490,12 @@ class L1SkillStop {
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			}
 			cha.setBraveSpeed(0);
+		} else if (skillId == STATUS_RIBRAVE) { // 生命之樹果實
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				// XXX 消除生命之樹果實圖案標示的方式仍未知
+			}
+			cha.setBraveSpeed(0);			
 		} else if (skillId == STATUS_HASTE) { // グリーン ポーション
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;

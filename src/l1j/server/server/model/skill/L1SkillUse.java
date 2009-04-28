@@ -1503,7 +1503,7 @@ public class L1SkillUse {
 				{ SHIELD, SHADOW_ARMOR, EARTH_SKIN, EARTH_BLESS, IRON_SKIN },
 				// ホーリー ウォーク、ムービング アクセレーション、ウィンド ウォーク、BP
 				{ HOLY_WALK, MOVING_ACCELERATION, WIND_WALK, STATUS_BRAVE,
-						STATUS_ELFBRAVE },
+					STATUS_ELFBRAVE, STATUS_RIBRAVE },
 				// ヘイスト、グレーター ヘイスト、GP
 				{ HASTE, GREATER_HASTE, STATUS_HASTE },
 				// フィジカル エンチャント：DEX、ドレス デクスタリティー

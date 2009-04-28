@@ -3208,7 +3208,12 @@ public class C_ItemUSe extends ClientBasePacket {
 		} else if (item_id == L1ItemId.B_POTION_OF_EMOTION_BRAVERY) { // 祝福されたブレイブポーション
 			time = 350;
 		} else if (item_id == 49158) { // waja add 生命之樹果實
-			time = 480; // waja add end
+			if (pc.hasSkillEffect(STATUS_BRAVE)) { // 名誉のコインとは重複しない
+				pc.killSkillEffectTimer(STATUS_BRAVE);
+				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+				pc.setBraveSpeed(0);
+			}
 		} else if (item_id == 41415) { // 強化ブレイブ ポーション
 			time = 1800;
 		} else if (item_id == 40068) { // エルヴン ワッフル
