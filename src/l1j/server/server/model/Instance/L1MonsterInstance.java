@@ -628,6 +628,19 @@ public class L1MonsterInstance extends L1NpcInstance {
 					broadcastPacket(new S_NPCPack(this));
 				}
 			}
+		} else if (npcid == 46107 // テーベ マンドラゴラ(白)
+				 || npcid == 46108) { // テーベ マンドラゴラ(黒)
+			if (getMaxHp() / 4> getCurrentHp()) {
+				int rnd = RandomArrayList.getArray10List();
+				if (1 > rnd) {
+					allTargetClear();
+					setHiddenStatus(HIDDEN_STATUS_SINK);
+					broadcastPacket(new S_DoActionGFX(getId(),
+							ActionCodes.ACTION_Hide));
+					setStatus(13);
+					broadcastPacket(new S_NPCPack(this));
+				}
+			}			
 		}
 	}
 

@@ -3211,6 +3211,45 @@ public class C_NPCAction extends ClientBasePacket {
 			}
 		}
 
+		// ゾウのストーンゴーレム テーベ砂漠
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71253) {
+			// 「歪みのコアを作る」
+			if (s.equalsIgnoreCase("A")) {
+				if (pc.getInventory().checkItem(49101, 100)) {
+					materials = new int[] { 49101 };
+					counts = new int[] { 100 };
+					createitem = new int[] { 49092 };
+					createcount = new int[] { 1 };
+					htmlid = "joegolem18";
+				} else {
+					htmlid = "joegolem19";
+				}
+			} else if (s.equalsIgnoreCase("B")) {
+				if (pc.getInventory().checkItem(49101, 1)) {
+					pc.getInventory().consumeItem(49101, 1);
+					L1Teleport.teleport(pc, 33966, 33253, (short) 4, 5, true);
+					htmlid = "";
+				} else {
+					htmlid = "joegolem20";
+				}
+			}
+		}
+		// テーベ オシリス祭壇のキーパー
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71255) {
+			// 「テーベオシリス祭壇の鍵を持っているなら、オシリスの祭壇にお送りしましょう。」
+			if (s.equalsIgnoreCase("e")) {
+				if (pc.getInventory().checkItem(49242, 1)) { // 鍵のチェック(20人限定/時の歪みが現れてから2h30は未実装)
+					pc.getInventory().consumeItem(49242, 1);
+					L1Teleport.teleport(pc, 32735, 32831, (short) 782, 2, true);
+					htmlid = "";
+				} else {
+					htmlid = "tebegate3";
+					// 「上限人数に達している場合は」
+					// htmlid = "tebegate4";
+				}
+			}
+		}
+	
 		// else System.out.println("C_NpcAction: " + s);
 		if (htmlid != null && htmlid.equalsIgnoreCase("colos2")) {
 			htmldata = makeUbInfoStrings(((L1NpcInstance) obj).getNpcTemplate()

@@ -2649,7 +2649,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					if (pc.getInventory().checkItem(49098, 1)) {
 						pc.getInventory().consumeItem(49097, 1);
 						pc.getInventory().consumeItem(49098, 1);
-						createNewItem(pc, 49100, 1);
+						createNewItem(pc, 49099, 1);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
@@ -2657,7 +2657,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					if (pc.getInventory().checkItem(49097, 1)) {
 						pc.getInventory().consumeItem(49097, 1);
 						pc.getInventory().consumeItem(49098, 1);
-						createNewItem(pc, 49100, 1);
+						createNewItem(pc, 49099, 1);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
