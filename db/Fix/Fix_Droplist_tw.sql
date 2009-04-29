@@ -19,8 +19,8 @@ Update droplist Set chance = '4000' Where mobid='45534' and itemid = '40240';
 Update droplist Set chance = '4000' Where mobid='45535' and itemid = '40240';
 Update droplist Set chance = '10000' Where mobid='45926' and itemid = '40240';
 Update droplist Set chance = '4000' Where mobid='81173' and itemid = '40240';
-/* l1j db 20090416 降低魔法書沉睡之霧掉落機率 */
-Update droplist Set chance = '4000' Where mobid='45136' and itemid = '40211';
+/* l1j db 20090416 降低魔法書 沉睡之霧 掉落機率 */
+Update droplist Set chance = '2000' Where mobid='45136' and itemid = '40251';
 Update droplist Set chance = '4000' Where mobid='45184' and itemid = '40211';
 Update droplist Set chance = '4000' Where mobid='45263' and itemid = '40211';
 Update droplist Set chance = '4000' Where mobid='45312' and itemid = '40211';
@@ -38,3 +38,15 @@ Update droplist Set chance = '4000' Where mobid='45653' and itemid = '40211';
 Update droplist Set chance = '4000' Where mobid='45680' and itemid = '40211';
 Update droplist Set chance = '4000' Where mobid='45906' and itemid = '40211';
 Update droplist Set chance = '4000' Where mobid='45959' and itemid = '40211';
+/* l1j db 20090429 降低精靈水晶 鋼鐵防護 掉落機率 */
+Update droplist Set chance = '2000' Where mobid='45316' and itemid = '40211';
+Update droplist Set chance = '5000' Where mobid='45345' and itemid = '40211';
+Update droplist Set chance = '5000' Where mobid='45372' and itemid = '40211';
+Update droplist Set chance = '20000' Where mobid='45609' and itemid = '40211';
+Update droplist Set chance = '20000' Where mobid='45610' and itemid = '40211';
+Update droplist Set chance = '20000' Where mobid='45614' and itemid = '40211';
+Update droplist Set chance = '200000' Where mobid='45682' and itemid = '40211';
+Update droplist Set chance = '5000' Where mobid='45795' and itemid = '40211';
+Update droplist Set chance = '5000' Where mobid='45949' and itemid = '40211';
+Update droplist Set chance = '10000' Where mobid='45950' and itemid = '40211';
+Update droplist Set chance = '5000' Where mobid='46037' and itemid = '40211';
