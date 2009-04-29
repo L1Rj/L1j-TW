@@ -11,6 +11,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.map.L1Map;
 import l1j.server.server.model.map.L1WorldMap;
 import l1j.server.server.types.Point;
+import l1j.server.server.utils.RandomArrayList;
 
 public class ElementalStoneGenerator implements Runnable {
 
@@ -29,7 +30,7 @@ public class ElementalStoneGenerator implements Runnable {
 
 	private ArrayList<L1GroundInventory> _itemList = new ArrayList<L1GroundInventory>(
 			MAX_COUNT);
-	private Random _random = new Random();
+	//private Random _random = new Random();
 
 	private static ElementalStoneGenerator _instance = null;
 
@@ -64,8 +65,8 @@ public class ElementalStoneGenerator implements Runnable {
 	 * 次の設置ポイントを決める。
 	 */
 	private Point nextPoint() {
-		int newX = _random.nextInt(LAST_X - FIRST_X) + FIRST_X;
-		int newY = _random.nextInt(LAST_Y - FIRST_Y) + FIRST_Y;
+		int newX = RandomArrayList.getArrayshortList((short) (LAST_X - FIRST_X)) + FIRST_X;
+		int newY = RandomArrayList.getArrayshortList((short) (LAST_Y - FIRST_Y)) + FIRST_Y;
 
 		return new Point(newX, newY);
 	}
@@ -74,7 +75,7 @@ public class ElementalStoneGenerator implements Runnable {
 	 * 拾われた石をリストから削除する。
 	 */
 	private void removeItemsPickedUp() {
-		for (int i = 0; i < _itemList.size(); i++) {
+		for (short i = 0; i < _itemList.size(); i++) {
 			L1GroundInventory gInventory = _itemList.get(i);
 			if (!gInventory.checkItem(ELEMENTAL_STONE_ID)) {
 				_itemList.remove(i);
@@ -115,9 +116,9 @@ public class ElementalStoneGenerator implements Runnable {
 
 					putElementalStone(loc);
 
-					Thread.sleep(INTERVAL * 1000); // 一定時間每に設置
+					Thread.sleep(INTERVAL * 10000); // 一定時間每に設置
 				}
-				Thread.sleep(SLEEP_TIME * 1000); // maxまで設置終了後一定時間は再設置しない
+				Thread.sleep(SLEEP_TIME * 10000); // maxまで設置終了後一定時間は再設置しない
 			}
 		} catch (Throwable e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);

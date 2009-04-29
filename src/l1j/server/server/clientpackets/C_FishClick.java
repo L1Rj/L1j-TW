@@ -42,7 +42,7 @@ public class C_FishClick extends ClientBasePacket {
 
 	private static final String C_FISHCLICK = "[C] C_FishClick";
 	private static Logger _log = Logger.getLogger(C_FishClick.class.getName());
-	private static Random _random = new Random();
+	//private static Random _random = new Random();
 	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
 	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 4.26 Start
 	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 4.26 End

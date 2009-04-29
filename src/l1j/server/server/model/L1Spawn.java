@@ -257,7 +257,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 	private int calcRespawnDelay() {
 		int respawnDelay = _minRespawnDelay * 1000;
 		if (_delayInterval > 0) {
-			respawnDelay += _random.nextInt(_delayInterval) * 1000;
+			respawnDelay += RandomArrayList.getArrayshortList((short) _delayInterval) * 1000;
 		}
 		L1GameTime currentTime = L1GameTimeClock.getInstance().currentTime();
 		if (_time != null && !_time.getTimePeriod().includes(currentTime)) { // 指定時間外なら指定時間までの時間を足す
@@ -351,7 +351,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 
 			int npcId = mob.getNpcTemplate().get_npcId();
 			if (npcId == 45488 && getMapId() == 9) { // カスパー
-				mob.setMap((short) (getMapId() + _random.nextInt(2)));
+				mob.setMap((short) (getMapId() + RandomArrayList.getArray2List()));
 			} else if (npcId == 45601 && getMapId() == 11) { // デスナイト
 				mob.setMap((short) (getMapId() + RandomArrayList.getArray3List()));
 			} else {
@@ -371,8 +371,8 @@ public class L1Spawn extends L1GameTimeAdapter {
 							}
 						}
 						if (players.size() > 0) {
-							L1PcInstance pc = players.get(_random
-									.nextInt(players.size()));
+							L1PcInstance pc = players.get(RandomArrayList
+									.getArrayshortList((short) players.size()));
 							L1Location loc = pc.getLocation().randomLocation(
 									PC_AROUND_DISTANCE, false);
 							newlocx = loc.getX();
@@ -395,8 +395,8 @@ public class L1Spawn extends L1GameTimeAdapter {
 						} else {
 							int rangeX = getLocX2() - getLocX1();
 							int rangeY = getLocY2() - getLocY1();
-							newlocx = _random.nextInt(rangeX) + getLocX1();
-							newlocy = _random.nextInt(rangeY) + getLocY1();
+							newlocx = RandomArrayList.getArrayshortList((short) rangeX) + getLocX1();
+							newlocy = RandomArrayList.getArrayshortList((short) rangeY) + getLocY1();
 						}
 						if (tryCount > 49) { // 出現位置が決まらない時はlocx,locyの值
 							newlocx = getLocX();

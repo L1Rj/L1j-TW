@@ -184,7 +184,7 @@ public class RandomArrayList {
 
 	private static void setArrayshortList() {
 		for (short i = 0; i < 10000; i++) {
-			Arrayshort[i] = (short) (_random.nextInt(32767) + 1);
+			Arrayshort[i] = (short) _random.nextInt(32767);
 		}
 	}
 

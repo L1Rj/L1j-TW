@@ -42,6 +42,7 @@ import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Item;
 import l1j.server.server.utils.IntRange;
+import l1j.server.server.utils.RandomArrayList;
 
 // Referenced classes of package l1j.server.server.model:
 // L1UltimateBattle
@@ -326,11 +327,11 @@ public class L1UltimateBattle {
 
 				for (L1PcInstance pc : getMembersArray()) // コロシアム內に居るPCを外へ出す
 				{
-					Random random = new Random();
-					int rndx = random.nextInt(4);
-					int rndy = random.nextInt(4);
-					int locx = 33503 + rndx;
-					int locy = 32764 + rndy;
+					//Random random = new Random();
+					//int rndx = random.nextInt(4);
+					//int rndy = random.nextInt(4);
+					int locx = 33503 + RandomArrayList.getArray4List();
+					int locy = 32764 + RandomArrayList.getArray4List();
 					short mapid = 4;
 					L1Teleport.teleport(pc, locx, locy, mapid, 5, true);
 					removeMember(pc);

@@ -126,7 +126,7 @@ public class C_War extends ClientBasePacket {
 			int castle_id = enemyClan.getCastleId();
 			if (WarTimeController.getInstance().isNowWar(castle_id)) { // 戰爭時間內
 				L1PcInstance clanMember[] = clan.getOnlineClanMember();
-				for (int k = 0; k < clanMember.length; k++) {
+				for (short k = 0; k < clanMember.length; k++) {
 					if (L1CastleLocation.checkInWarArea(castle_id,
 							clanMember[k])) {
 						player.sendPackets(new S_ServerMessage(477)); // あなたを含む全ての血盟員が城の外に出なければ攻城戰は宣言できません。

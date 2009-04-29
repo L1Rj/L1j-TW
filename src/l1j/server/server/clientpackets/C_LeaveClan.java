@@ -55,7 +55,7 @@ public class C_LeaveClan extends ClientBasePacket {
 		L1Clan clan = L1World.getInstance().getClan(clan_name);
 		if (clan != null) {
 			String clan_member_name[] = clan.getAllMembers();
-			int i;
+			short i;
 			if (player.isCrown() && player.getId() == clan.getLeaderId()) { // プリンスまたはプリンセス、かつ、血盟主
 				int castleId = clan.getCastleId();
 				int houseId = clan.getHouseId();

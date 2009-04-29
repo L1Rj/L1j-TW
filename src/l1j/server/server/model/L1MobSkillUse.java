@@ -505,7 +505,7 @@ public class L1MobSkillUse {
 					mob.setId(IdFactory.getInstance().nextId());
 					L1Location loc = _attacker.getLocation().randomLocation(8,
 							false);
-					int heading = RandomArrayList.getArray100List() % 8;
+					int heading = RandomArrayList.getArray8List();
 					mob.setX(loc.getX());
 					mob.setY(loc.getY());
 					mob.setHomeX(loc.getX());

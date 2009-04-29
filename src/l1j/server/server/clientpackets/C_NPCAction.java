@@ -1784,7 +1784,7 @@ public class C_NPCAction extends ClientBasePacket {
 				htmlid = "maptbox1";
 				pc.getQuest().set_end(L1Quest.QUEST_TBOX1);
 				int[] nextbox = { 1, 2, 3 };
-				int pid = _random.nextInt(nextbox.length);
+				int pid = RandomArrayList.getArrayshortList((short) nextbox.length);
 				int nb = nextbox[pid];
 				if (nb == 1) { // b地點
 					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 2);
@@ -1807,7 +1807,7 @@ public class C_NPCAction extends ClientBasePacket {
 				htmlid = "maptbox1";
 				pc.getQuest().set_end(L1Quest.QUEST_TBOX2);
 				int[] nextbox2 = { 1, 2, 3, 4, 5, 6 };
-				int pid = _random.nextInt(nextbox2.length);
+				int pid = RandomArrayList.getArrayshortList((short) nextbox2.length);
 				int nb2 = nextbox2[pid];
 				if (nb2 == 1) { // e地點
 					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 5);
@@ -2532,7 +2532,7 @@ public class C_NPCAction extends ClientBasePacket {
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80076) {
 			if (s.equalsIgnoreCase("A")) {
 				int[] diaryno = { 49082, 49083 };
-				int pid = _random.nextInt(diaryno.length);
+				int pid = RandomArrayList.getArrayshortList((short) diaryno.length);
 				int di = diaryno[pid];
 				if (di == 49082) { // 奇數ページ拔け
 					htmlid = "voyager6a";

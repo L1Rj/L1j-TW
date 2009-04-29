@@ -711,7 +711,7 @@ public class L1Attack {
 		//} else if (_weaponType == 0 || _weaponType == 20 || _weaponType == 62) { // 素手、弓、ガントトレット
 		//	weaponDamage = 0;
 		} else {
-			weaponDamage = RandomArrayList.getArray100List() % weaponMaxDamage + 1;
+			weaponDamage = RandomArrayList.getArrayshortList((short) weaponMaxDamage) + 1;
 		}
 		if (_pc.hasSkillEffect(SOUL_OF_FLAME)) {
 			if (_weaponType != 20 && _weaponType != 62) {
@@ -970,7 +970,7 @@ public class L1Attack {
 				}
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
 			} else if (_weaponId == 190) { // サイハの弓
-				dmg += 1 +RandomArrayList.getArrayshortList((short) 15);
+				dmg += 1 + RandomArrayList.getArrayshortList((short) 15);
 			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = 0;
@@ -1086,9 +1086,9 @@ public class L1Attack {
 		int lvl = _npc.getLevel();
 		double dmg = 0D;
 		if (lvl < 10) {
-			dmg = RandomArrayList.getArray10List() % lvl + 10D + _npc.getStr() / 2 + 1;
+			dmg = RandomArrayList.getArrayshortList((short) lvl) + 10D + _npc.getStr() / 2 + 1;
 		} else {
-			dmg = RandomArrayList.getArray100List() % lvl + _npc.getStr() / 2 + 1;
+			dmg = RandomArrayList.getArrayshortList((short) lvl) + _npc.getStr() / 2 + 1;
 		}
 
 		if (_npc instanceof L1PetInstance) {
@@ -1209,7 +1209,7 @@ public class L1Attack {
 		double dmg = 0;
 
 		if (_npc instanceof L1PetInstance) {
-			dmg = _random.nextInt(_npc.getNpcTemplate().get_level())
+			dmg = RandomArrayList.getArrayshortList((short) _npc.getNpcTemplate().get_level())
 					+ _npc.getStr() / 2 + 1;
 			dmg += (lvl / 16); // ペットはLV16每に追加打擊
 			dmg += ((L1PetInstance) _npc).getDamageByWeapon();
@@ -1281,7 +1281,7 @@ public class L1Attack {
 	private int calcPcDefense() {
 		int ac = Math.max(0, 10 - _targetPc.getAc());
 		int acDefMax = _targetPc.getClassFeature().getAcDefenseMax(ac);
-		return _random.nextInt(acDefMax + 1);
+		return RandomArrayList.getArrayshortList((short) (acDefMax + 1));
 	}
 
 	// ●●●● ＮＰＣのダメージリダクションによる輕減 ●●●●
@@ -1295,7 +1295,7 @@ public class L1Attack {
 		int undead = _targetNpc.getNpcTemplate().get_undead();
 		if ((_weaponMaterial == 14 || _weaponMaterial == 17 || _weaponMaterial == 22)
 				&& (undead == 1 || undead == 3)) { // 銀‧ミスリル‧オリハルコン、かつ、アンデッド系‧アンデッド系ボス
-			damage += RandomArrayList.getArray100List() / 5 + 1;
+			damage += RandomArrayList.getArray5List() + 1;
 		}
 		if (_weaponBless == 0 && (undead == 1 || undead == 2 || undead == 3)) { // 祝福武器、かつ、アンデッド系‧惡魔系‧アンデッド系ボス
 			damage += RandomArrayList.getArray5List() + 1;

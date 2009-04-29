@@ -26,6 +26,7 @@ import java.util.Random;
 import l1j.server.Config;
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.templates.L1Npc;
+import l1j.server.server.utils.RandomArrayList;
 
 public class L1BossSpawn extends L1Spawn {
 	private static Logger _log = Logger.getLogger(L1BossSpawn.class.getName());
@@ -116,7 +117,7 @@ public class L1BossSpawn extends L1Spawn {
 		Calendar now = Calendar.getInstance();
 		// 出現時間
 		Calendar spawnTime;
-		if (Config.INIT_BOSS_SPAWN && _percentage > _rnd.nextInt(100)) {
+		if (Config.INIT_BOSS_SPAWN && _percentage > RandomArrayList.getArray100List()) {
 			spawnTime = _cycle.calcSpawnTime(now);
 
 		} else {
@@ -129,7 +130,7 @@ public class L1BossSpawn extends L1Spawn {
 	private Calendar calcNextSpawnTime(Calendar cal) {
 		do {
 			cal = _cycle.nextSpawnTime(cal);
-		} while (!(_percentage > _rnd.nextInt(100)));
+		} while (!(_percentage > RandomArrayList.getArray100List()));
 		return cal;
 	}
 

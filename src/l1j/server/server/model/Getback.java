@@ -36,7 +36,7 @@ public class Getback {
 
 	private static Logger _log = Logger.getLogger(Getback.class.getName());
 
-	private static Random _random = new Random();
+	//private static Random _random = new Random();
 
 	private static HashMap<Integer, ArrayList<Getback>> _getback = new HashMap<Integer, ArrayList<Getback>>();
 

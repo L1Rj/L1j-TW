@@ -919,7 +919,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 41036) { // 糊
 					int diaryId = l1iteminstance1.getItem().getItemId();
 					if (diaryId >= 41038 && 41047 >= diaryId) {
-						if ((_random.nextInt(99) + 1) <= Config.CREATE_CHANCE_DIARY) {
+						if (RandomArrayList.getArray100List() <= Config.CREATE_CHANCE_DIARY) {
 							createNewItem(pc, diaryId + 10, 1);
 						} else {
 							pc.sendPackets(new S_ServerMessage(158,
@@ -986,7 +986,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 						if (earing2Id >= (itemId + potion1)
 								&& (itemId + potion2) >= earing2Id) {
-							if ((_random.nextInt(99) + 1) < Config.CREATE_CHANCE_MYSTERIOUS) {
+							if (RandomArrayList.getArray100List() < Config.CREATE_CHANCE_MYSTERIOUS) {
 								createNewItem(pc, (earing2Id - 12), 1);
 								pc.getInventory()
 										.removeItem(l1iteminstance1, 1);
@@ -1010,7 +1010,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					if (earing3Id >= 41161 && 41172 >= earing3Id) {
 						// ミステリアスイアリング類
 						if (earing3Id == (itemId + 230)) {
-							if ((_random.nextInt(99) + 1) < Config.CREATE_CHANCE_PROCESSING) {
+							if (RandomArrayList.getArray100List() < Config.CREATE_CHANCE_PROCESSING) {
 								if (earing3Id == 41161) {
 									earinglevel = 21014;
 								} else if (earing3Id == 41162) {
@@ -1076,7 +1076,7 @@ public class C_ItemUSe extends ClientBasePacket {
 							gmam = 448;
 						}
 						if (ringId == (itemId + 242)) {
-							if ((_random.nextInt(99) + 1) < Config.CREATE_CHANCE_PROCESSING_DIAMOND) {
+							if (RandomArrayList.getArray100List() < Config.CREATE_CHANCE_PROCESSING_DIAMOND) {
 								if (ringId == 41185) {
 									ringlevel = 20435;
 								} else if (ringId == 41186) {
@@ -1130,7 +1130,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 41029) { // 召喚球の欠片
 					int dantesId = l1iteminstance1.getItem().getItemId();
 					if (dantesId >= 41030 && 41034 >= dantesId) { // 召喚球のコア‧各段階
-						if ((_random.nextInt(99) + 1) < Config.CREATE_CHANCE_DANTES) {
+						if (RandomArrayList.getArray100List() < Config.CREATE_CHANCE_DANTES) {
 							createNewItem(pc, dantesId + 1, 1);
 						} else {
 							pc.sendPackets(new S_ServerMessage(158,
@@ -1144,7 +1144,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 40964) { // ダークマジックパウダー
 					int historybookId = l1iteminstance1.getItem().getItemId();
 					if (historybookId >= 41011 && 41018 >= historybookId) {
-						if ((_random.nextInt(99) + 1) <= Config.CREATE_CHANCE_HISTORY_BOOK) {
+						if (RandomArrayList.getArray100List() <= Config.CREATE_CHANCE_HISTORY_BOOK) {
 							createNewItem(pc, historybookId + 8, 1);
 						} else {
 							pc.sendPackets(new S_ServerMessage(158,
@@ -1905,7 +1905,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						 * スパイダー、リザードマン、グール、 // スパルトイ、ライカンスロープ、ドレッド スパイダー、 //
 						 * バグベアー
 						 */
-						int rnd = _random.nextInt(mobArray.length);
+						int rnd = RandomArrayList.getArrayshortList((short) mobArray.length);
 						L1SpawnUtil.spawn(pc, mobArray[rnd], 0, 300000);
 						if (itemId == 40006 || itemId == 140006) {
 							l1iteminstance.setChargeCount(l1iteminstance
@@ -2083,7 +2083,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						UseHeallingPotion(pc, 15, 189);
 					} else if (chance < 10) {
 						createNewItem(pc, 40018, 1);
-					} else if (chance == 9) {
+					} else if (chance == 10) {
 						byte gemChance = RandomArrayList.getArray3List();
 						if (gemChance == 0) {
 							createNewItem(pc, 40047, 1);
@@ -2095,12 +2095,12 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41303) { // シャイニングブルーフィッシュ
-					byte chance = RandomArrayList.getArray3List();
-					if (chance >= 0 && chance < 5) {
+					byte chance = RandomArrayList.getArray10List();
+					if (chance < 6) {
 						UseHeallingPotion(pc, 15, 189);
-					} else if (chance >= 5 && chance < 9) {
+					} else if (chance < 10) {
 						createNewItem(pc, 40015, 1);
-					} else if (chance >= 9) {
+					} else if (chance == 10) {
 						byte gemChance = RandomArrayList.getArray3List();
 						if (gemChance == 0) {
 							createNewItem(pc, 40046, 1);
@@ -2112,12 +2112,12 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41304) { // シャイニングホワイトフィッシュ
-					byte chance = RandomArrayList.getArray3List();
-					if (chance >= 0 && chance < 5) {
+					byte chance = RandomArrayList.getArray10List();
+					if (chance < 6) {
 						UseHeallingPotion(pc, 15, 189);
-					} else if (chance >= 5 && chance < 9) {
+					} else if (chance < 10) {
 						createNewItem(pc, 40021, 1);
-					} else if (chance >= 9) {
+					} else if (chance == 10) {
 						byte gemChance = RandomArrayList.getArray3List();
 						if (gemChance == 0) {
 							createNewItem(pc, 40044, 1);
@@ -5132,7 +5132,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				3866, 3867, 3868, 3869, 3870, 3871, 3872, 3873, 3874, 3875,
 				3876 };
 
-		int pid = _random.nextInt(polyArray.length);
+		int pid = RandomArrayList.getArrayshortList((short) polyArray.length);
 		int polyId = polyArray[pid];
 
 		if (cha instanceof L1PcInstance) {
@@ -5495,12 +5495,12 @@ public class C_ItemUSe extends ClientBasePacket {
 		}
 
 		byte rnd = RandomArrayList.getArray100List();
-		if (rnd >= 1 && rnd <= 50) {
+		if (rnd <= 50) {
 			crystalCount = 0;
 			pc.sendPackets(new S_ServerMessage(158, item.getName())); // \f1%0が蒸発してなくなりました。
-		} else if (rnd >= 51 && rnd <= 90) {
+		} else if (rnd <= 90) {
 			crystalCount *= 1;
-		} else if (rnd >= 91 && rnd <= 100) {
+		} else if (rnd <= 100) {
 			crystalCount *= 1.5;
 			pc.getInventory().storeItem(41246, (int) (crystalCount * 1.5));
 		}

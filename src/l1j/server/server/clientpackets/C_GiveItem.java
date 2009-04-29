@@ -43,7 +43,7 @@ public class C_GiveItem extends ClientBasePacket {
 	private static Logger _log = Logger.getLogger(C_GiveItem.class.getName());
 	private static final String C_GIVE_ITEM = "[C] C_GiveItem";
 
-	private static Random _random = new Random();
+	//private static Random _random = new Random();
 
 	public C_GiveItem(byte decrypt[], ClientThread client) {
 		super(decrypt);
@@ -149,7 +149,7 @@ public class C_GiveItem extends ClientBasePacket {
 		} else if (pc.isWizard()) { // WIZ
 			charisma += 6;
 		} else if (pc.isDarkelf()) { // DE
-				charisma += 6;
+			charisma += 6;
 		} else if (pc.isDragonKnight()) { // ドラゴンナイト
 			charisma += 6;
 		} else if (pc.isIllusionist()) { // イリュージョニスト

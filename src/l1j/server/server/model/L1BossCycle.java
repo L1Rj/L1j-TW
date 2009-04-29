@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import l1j.server.server.datatables.BossSpawnTable;
 import l1j.server.server.utils.PerformanceTimer;
+import l1j.server.server.utils.RandomArrayList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class L1BossCycle {
@@ -91,7 +92,7 @@ public class L1BossCycle {
 		}
 	}
 
-	private static final Random _rnd = new Random();
+	//private static final Random _rnd = new Random();
 	private Calendar _baseDate;
 	private int _period; // 分換算
 	private int _periodDay;
@@ -244,7 +245,7 @@ public class L1BossCycle {
 		base.add(Calendar.MINUTE, _startTime);
 		// 出現時間の決定 start～end迄の間でランダムの秒
 		int diff = (_endTime - _startTime) * 60;
-		int random = diff > 0 ? _rnd.nextInt(diff) : 0;
+		int random = diff > 0 ? RandomArrayList.getArrayshortList((short) diff) : 0;
 		base.add(Calendar.SECOND, random);
 		return base;
 	}

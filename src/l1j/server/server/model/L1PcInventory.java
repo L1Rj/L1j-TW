@@ -40,6 +40,7 @@ import l1j.server.server.serverpackets.S_PacketBox;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.storage.CharactersItemStorage;
 import l1j.server.server.templates.L1Item;
+import l1j.server.server.utils.RandomArrayList;
 
 public class L1PcInventory extends L1Inventory {
 
@@ -587,8 +588,8 @@ public class L1PcInventory extends L1Inventory {
 	}
 
 	public L1ItemInstance CaoPenalty() {
-		Random random = new Random();
-		int rnd = random.nextInt(_items.size());
+		//Random random = new Random();
+		short rnd = RandomArrayList.getArrayshortList((short) _items.size());
 		L1ItemInstance penaltyItem = _items.get(rnd);
 		if (penaltyItem.getItem().getItemId() == L1ItemId.ADENA // アデナ、トレード不可のアイテムは落とさない
 				|| !penaltyItem.getItem().isTradable()) {

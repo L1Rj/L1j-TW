@@ -40,7 +40,7 @@ public class L1MobGroupSpawn {
 
 	private static L1MobGroupSpawn _instance;
 
-	private static Random _random = new Random();
+	//private static Random _random = new Random();
 
 	private boolean _isRespawnScreen;
 

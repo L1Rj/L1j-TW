@@ -295,7 +295,7 @@ public class L1WeaponSkill {
 		int charaIntelligence = 0;
 		int getTargetMr = 0;
 
-		for (int i = 0; i < diceCount; i++) {
+		for (byte i = 0; i < diceCount; i++) {
 			kiringkuDamage += (RandomArrayList.getArrayshortList((short) dice) + 1);
 		}
 		kiringkuDamage += value;

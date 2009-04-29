@@ -53,7 +53,7 @@ public class C_BoardWrite extends ClientBasePacket {
 			pc.getInventory().consumeItem(L1ItemId.ADENA, 300);
 			BoardTable.getInstance().writeTopic(pc, date, title, content);
 		} else {
-			_log.warning("不正なNPCID : " + id);
+			_log.warning("非正確的NPC編號：" + id);
 		}
 	}
 
