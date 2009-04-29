@@ -1,3 +1,7 @@
+/* 20090429 奇岩道具店 邁爾 70030 收購 長靴 短統靴 */
+Update shop Set purchasing_price = '150' Where npc_id='70030' and item_id='20213';/* 短統靴 */
+Update shop Set purchasing_price = '1000' Where npc_id='70030' and item_id='20205';/* 長靴 */
+
 /* l1j db 20090416 修正奇岩范吉爾(防具商人 npcid 70032)收購物品 */
 Update shop Set purchasing_price = '1500' Where npc_id='70032' and item_id='20011';/* 抗魔法頭盔 */
 Update shop Set purchasing_price = '11000' Where npc_id='70032' and item_id='20013';/* 敏捷魔法頭盔 */
@@ -71,6 +75,46 @@ Update shop Set purchasing_price = '1750' Where npc_id='70039' and item_id='146'
 Update shop Set purchasing_price = '6000' Where npc_id='70039' and item_id='148';/* 巨斧 */
 Update shop Set purchasing_price = '25' Where npc_id='70039' and item_id='172';/* 弓 */
 
+/* 歐瑞 70061 曼德拉 武器商人收購物品 */
+Update shop Set purchasing_price = '15' Where npc_id='70061' and item_id='23';
+Update shop Set purchasing_price = '55' Where npc_id='70061' and item_id='24';
+Update shop Set purchasing_price = '900' Where npc_id='70061' and item_id='25';
+Update shop Set purchasing_price = '660' Where npc_id='70061' and item_id='27';
+Update shop Set purchasing_price = '6500' Where npc_id='70061' and item_id='29';
+Update shop Set purchasing_price = '1650' Where npc_id='70061' and item_id='31';
+Update shop Set purchasing_price = '1275' Where npc_id='70061' and item_id='32';
+Update shop Set purchasing_price = '2250' Where npc_id='70061' and item_id='37';
+Update shop Set purchasing_price = '11000' Where npc_id='70061' and item_id='41';
+Update shop Set purchasing_price = '9900' Where npc_id='70061' and item_id='52';
+Update shop Set purchasing_price = '19' Where npc_id='70061' and item_id='90';
+Update shop Set purchasing_price = '99' Where npc_id='70061' and item_id='92';
+Update shop Set purchasing_price = '13' Where npc_id='70061' and item_id='93';
+Update shop Set purchasing_price = '275' Where npc_id='70061' and item_id='94';
+Update shop Set purchasing_price = '33' Where npc_id='70061' and item_id='95';
+Update shop Set purchasing_price = '110' Where npc_id='70061' and item_id='97';
+Update shop Set purchasing_price = '192' Where npc_id='70061' and item_id='98';
+Update shop Set purchasing_price = '5500' Where npc_id='70061' and item_id='102';
+Update shop Set purchasing_price = '1100' Where npc_id='70061' and item_id='103';
+Update shop Set purchasing_price = '4400' Where npc_id='70061' and item_id='104';
+Update shop Set purchasing_price = '8800' Where npc_id='70061' and item_id='106';
+Update shop Set purchasing_price = '4500' Where npc_id='70061' and item_id='125';
+Update shop Set purchasing_price = '115' Where npc_id='70061' and item_id='128';
+Update shop Set purchasing_price = '1250' Where npc_id='70061' and item_id='129';
+Update shop Set purchasing_price = '11' Where npc_id='70061' and item_id='136';
+Update shop Set purchasing_price = '16' Where npc_id='70061' and item_id='138';
+Update shop Set purchasing_price = '22' Where npc_id='70061' and item_id='139';
+Update shop Set purchasing_price = '550' Where npc_id='70061' and item_id='141';
+Update shop Set purchasing_price = '4400' Where npc_id='70061' and item_id='142';
+Update shop Set purchasing_price = '335' Where npc_id='70061' and item_id='143';
+Update shop Set purchasing_price = '1925' Where npc_id='70061' and item_id='146';
+Update shop Set purchasing_price = '7150' Where npc_id='70061' and item_id='148';
+Update shop Set purchasing_price = '27' Where npc_id='70061' and item_id='172';
+Update shop Set purchasing_price = '1' Where npc_id='70061' and item_id='40738';
+Update shop Set purchasing_price = '1' Where npc_id='70061' and item_id='40739';
+Update shop Set purchasing_price = '1' Where npc_id='70061' and item_id='40740';
+Update shop Set purchasing_price = '1' Where npc_id='70061' and item_id='40743';
+Update shop Set purchasing_price = '1' Where npc_id='70061' and item_id='40744';
+
 /* 20090429 修正奇岩 祝福 詛咒裝備出售 */
 /* 格式: NPC編號,道具編號,買賣順序,賣價,每組數量,收購價 */
 INSERT INTO `shop` VALUES
@@ -102,10 +146,25 @@ INSERT INTO `shop` VALUES
 (70039, 100098, 48, -1, 0, 180),/* 祝福闊矛 */
 (70039, 100102, 49, -1, 0, 5000),/* 祝福露西錘 */
 (70039, 100103, 50, -1, 0, 1000),/* 祝福戟 */
+
 /* l1j db 20090429 修正 奇岩愛弗特 70038 收購抗魔法斗篷 */
 (70038, 20056, 3, -1, 0, 100),/* 抗魔法斗篷 */
 (70038, 120056, 4, -1, 0, 100),/* 祝福抗魔法斗篷 */
 (70038, 220056, 5, -1, 0, 100),/* 詛咒抗魔法斗篷 */
+
+/* 歐瑞 70061 曼德拉 武器商人收購詛咒 祝福 物品 */
+(70061, 1000027, 38, -1, 0, 500),/* 祝福彎刀 */
+(70061, 2000027, 39, -1, 0, 500),/* 詛咒彎刀 */
+(70061, 1000029, 40, -1, 0, 6500),/* 祝福銀長劍 */
+(70061, 2000032, 41, -1, 0, 1250),/* 詛咒侵略者之劍 */
+(70061, 1000052, 42, -1, 0, 9000),/* 祝福雙手劍 */
+(70061, 2000052, 43, -1, 0, 9000),/* 詛咒雙手劍 */
+(70061, 100095, 44, -1, 0, 30),/* 祝福矛 */
+(70061, 100098, 45, -1, 0, 180),/* 祝福闊矛 */
+(70061, 100172, 46, -1, 0, 172),/* 祝福弓 */
+
+/* 奇岩道具店 邁爾 70030 收購祝福短統靴 */
+(70030, 20213, 31, -1, 0, 150),/* 祝福短統靴 */
 
 /* 奇岩道具店 邁爾 70030 收購法書 */
 /* 格式: NPC編號,道具編號,買賣順序,賣價,每組數量,收購價 */
