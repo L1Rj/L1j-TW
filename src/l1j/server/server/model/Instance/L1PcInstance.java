@@ -1857,7 +1857,7 @@ public class L1PcInstance extends L1Character {
 
 	private int _originalMagicDamage = 0; // ● オリジナルINT 魔法ダメージ
 
-	public int getOirginalMagicDamage() {
+	public int getOriginalMagicDamage() {
 
 		return _originalMagicDamage;
 	}
