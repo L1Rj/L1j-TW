@@ -154,6 +154,10 @@ public class L1PcInventory extends L1Inventory {
 					item.setEquipped(false);
 					setEquipped(item, true, true, false);
 				}
+				if (item.getItem().getType2() == 0 && item.getItem()
+						.getType() == 2) { // light系アイテム
+					item.setRemainingTime(item.getItem().getLightFuel());
+				}
 				L1World.getInstance().storeObject(item);
 			}
 		} catch (Exception e) {

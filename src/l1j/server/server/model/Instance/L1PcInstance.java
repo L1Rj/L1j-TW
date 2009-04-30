@@ -1442,18 +1442,18 @@ public class L1PcInstance extends L1Character {
 
 		int er = 0;
 		if (isKnight()) {
-			er = getLevel() / 4; // ナイト
+			er = getLevel() / 4; // 騎士
 		} else if (isCrown() || isElf()) {
-			er = getLevel() / 8; // 君主‧エルフ
+			er = getLevel() / 8; // 王族 妖精
 		} else if (isDarkelf()) {
-			er = getLevel() / 6; // ダークエルフ
+			er = getLevel() / 6; // 黑暗妖精
 		} else if (isWizard()) {
-			er = getLevel() / 10; // ウィザード
-		} else if (isDragonKnight()) {//	3.0C Test↓	//懸賞
-			er = getLevel() / 4; // 龍騎士
+			er = getLevel() / 10; // 法師
+		} else if (isDragonKnight()) {
+			er = getLevel() / 7; // 龍騎士
 		} else if (isIllusionist()) {
-			er = getLevel() / 10; // 幻術師
-		}//	3.0C Test↑
+			er = getLevel() / 9; // 幻術師
+		}
 
 		er += (getDex() - 8) / 2;
 
@@ -2710,13 +2710,13 @@ public class L1PcInstance extends L1Character {
 		} else if (isDarkelf()) { // ダークエルフ
 			newBaseHitup = getLevel() / 3;
 			newBaseBowHitup = getLevel() / 3;
-		} else if (isDragonKnight()) { // 龍騎士//	3.0C Test↓	//懸賞
+		} else if (isDragonKnight()) { // ドラゴンナイト
 			newBaseHitup = getLevel() / 3;
 			newBaseBowHitup = getLevel() / 3;
-		} else if (isIllusionist()) { // 幻術師
+		} else if (isIllusionist()) { // イリュージョニスト
 			newBaseHitup = getLevel() / 5;
 			newBaseBowHitup = getLevel() / 5;
-		}//	3.0C Test↑
+		}
 		addHitup(newBaseHitup - _baseHitup);
 		addBowHitup(newBaseBowHitup - _baseBowHitup);
 		_baseHitup = newBaseHitup;
