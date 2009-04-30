@@ -33,13 +33,13 @@ public class NumberUtil {
 		double percentage = (number - Math.floor(number)) * 100;
 		
 		if (percentage == 0) {
-			return ((int) number);
+			return 0; // 意謂 失敗
 		} else {
 			int r = new Random().nextInt(100);
 			if (r < percentage) {
-				return ((int) number + 1);
+				return 1; // 意謂 有過機率條件
 			} else {
-				return ((int) number);
+				return 0; // 意謂 失敗
 			}
 		}
 	}

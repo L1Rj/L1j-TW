@@ -35,14 +35,14 @@ public class S_NPCPack extends ServerBasePacket {
 	private static final String S_NPC_PACK = "[S] S_NPCPack";
 	private static Logger _log = Logger.getLogger(S_NPCPack.class.getName());
 
-	private static final int STATUS_POISON = 1;
-	private static final int STATUS_INVISIBLE = 2;
-	private static final int STATUS_PC = 4;
-	private static final int STATUS_FREEZE = 8;
-	private static final int STATUS_BRAVE = 16;
-	private static final int STATUS_ELFBRAVE = 32;
-	private static final int STATUS_FASTMOVABLE = 64;
-	private static final int STATUS_GHOST = 128;
+	private static final short STATUS_POISON = 1;
+	private static final short STATUS_INVISIBLE = 2;
+	private static final short STATUS_PC = 4;
+	private static final short STATUS_FREEZE = 8;
+	private static final short STATUS_BRAVE = 16;
+	private static final short STATUS_ELFBRAVE = 32;
+	private static final short STATUS_FASTMOVABLE = 64;
+	private static final short STATUS_GHOST = 128;
 
 	private byte[] _byte = null;
 

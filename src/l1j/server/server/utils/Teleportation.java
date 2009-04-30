@@ -42,6 +42,7 @@ import l1j.server.server.serverpackets.S_OwnCharPack;
 import l1j.server.server.serverpackets.S_PetPack;
 import l1j.server.server.serverpackets.S_SummonPack;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.server.server.utils.StaticFinalList;
 
 // Referenced classes of package l1j.server.server.utils:
 // FaceToFace
@@ -124,8 +125,8 @@ public class Teleportation {
 				if (pc.getMapId() == 5125 || pc.getMapId() == 5131
 						|| pc.getMapId() == 5132 || pc.getMapId() == 5133
 						|| pc.getMapId() == 5134) { // ペットマッチ會場
-					nx = 32799 + RandomArrayList.getArray5List() - 3;
-					ny = 32864 + RandomArrayList.getArray5List() - 3;
+					nx = 32799 + StaticFinalList.getRang3();
+					ny = 32864 + StaticFinalList.getRang3();
 				}
 				teleport(petNpc, nx, ny, mapId, head);
 				if (petNpc instanceof L1SummonInstance) { // サモンモンスター

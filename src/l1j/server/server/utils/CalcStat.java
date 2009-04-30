@@ -24,6 +24,7 @@ import java.util.Random;
 import l1j.server.Config;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.server.server.utils.StaticFinalList;
 
 public class CalcStat {
 
@@ -106,7 +107,7 @@ public class CalcStat {
 	 */
 	public static short calcStatHp(int charType, int baseMaxHp, byte baseCon, int originalHpup) {
 		short randomhp = 0;
-		byte randomadd = (byte) (RandomArrayList.getArray5List() - 2);
+		byte randomadd = StaticFinalList.getRang2();
 		byte playerbasecon = (byte) (baseCon / 2);
 		if (baseCon > 15) {
 			randomhp = (short) (baseCon - 15);

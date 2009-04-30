@@ -20,6 +20,8 @@ package l1j.server.server.utils;
 
 import java.util.Random;
 
+import l1j.server.server.utils.RandomArrayList;
+
 /**
  * <p>
  * 最低值lowと最大值highによって圍まれた、數值の範圍を指定するクラス。
@@ -85,7 +87,7 @@ public class IntRange {
 	 * @return 範圍內のランダムな值
 	 */
 	public int randomValue() {
-		return _rnd.nextInt(getWidth() + 1) + _low;
+		return RandomArrayList.getArrayshortList((short) getWidth()) + 1 + _low;
 	}
 
 	public int getLow() {

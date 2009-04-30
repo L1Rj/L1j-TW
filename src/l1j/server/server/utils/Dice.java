@@ -20,6 +20,8 @@ package l1j.server.server.utils;
 
 import java.util.Random;
 
+import l1j.server.server.utils.RandomArrayList;
+
 public class Dice {
 	private static final Random _rnd = new Random();
 	private final int _faces;
@@ -33,12 +35,12 @@ public class Dice {
 	}
 
 	public int roll() {
-		return _rnd.nextInt(_faces) + 1;
+		return RandomArrayList.getArrayshortList((short) _faces) + 1;
 	}
 
 	public int roll(int count) {
 		int n = 0;
-		for(int i = 0; i < count; i++) {
+		for(byte i = 0; i < count; i++) {
 			n += roll();
 		}
 		return n;
