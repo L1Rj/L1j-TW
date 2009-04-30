@@ -39,6 +39,7 @@ import l1j.server.server.templates.L1Castle;
 import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1ShopItem;
 import l1j.server.server.utils.IntRange;
+import l1j.server.server.utils.RandomArrayList;
 
 public class L1Shop {
 	private final int _npcId;
@@ -292,19 +293,19 @@ public class L1Shop {
 			inv.storeItem(item);
 			if (_npcId == 70068 || _npcId == 70020) {
 				item.setIdentified(false);
-				Random random = new Random();
-				int chance = random.nextInt(100) + 1;
+				//Random random = new Random();
+				byte chance = RandomArrayList.getArray100List();
 				if (chance <= 15) {
 					item.setEnchantLevel(-2);
-				} else if (chance >= 16 && chance <= 30) {
+				} else if (chance <= 30) {
 					item.setEnchantLevel(-1);
-				} else if (chance >= 31 && chance <= 70) {
+				} else if (chance <= 70) {
 					item.setEnchantLevel(0);
-				} else if (chance >= 71 && chance <= 87) {
-					item.setEnchantLevel(random.nextInt(2)+1);
-				} else if (chance >= 88 && chance <= 97) {
-					item.setEnchantLevel(random.nextInt(3)+3);
-				} else if (chance >= 98 && chance <= 99) {
+				} else if (chance <= 87) {
+					item.setEnchantLevel(RandomArrayList.getArray2List()+1);
+				} else if (chance <= 97) {
+					item.setEnchantLevel(RandomArrayList.getArray3List()+3);
+				} else if (chance <= 99) {
 					item.setEnchantLevel(6);
 				} else if (chance == 100) {
 					item.setEnchantLevel(7);

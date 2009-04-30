@@ -47,7 +47,7 @@ public class L1QuestInstance extends L1NpcInstance {
 			return;
 		}
 		if (npcId == 71075 || npcId == 70957 || npcId == 81209) {
-			return;			
+			return;
 		} else {
 			setActived(false);
 			startAI();

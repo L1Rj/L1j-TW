@@ -39,9 +39,6 @@ import l1j.server.server.utils.RandomArrayList;
 
 public class L1TeleporterInstance extends L1NpcInstance {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public L1TeleporterInstance(L1Npc template) {

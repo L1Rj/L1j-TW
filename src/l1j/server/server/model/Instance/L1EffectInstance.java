@@ -40,9 +40,7 @@ import l1j.server.server.templates.L1Npc;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1EffectInstance extends L1NpcInstance {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private static Logger _log = Logger.getLogger(L1EffectInstance.class
 			.getName());

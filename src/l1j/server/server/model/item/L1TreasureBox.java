@@ -1,5 +1,5 @@
-package l1j.server.server.model.item;
 
+package l1j.server.server.model.item;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,6 +24,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.utils.PerformanceTimer;
+import l1j.server.server.utils.RandomArrayList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class L1TreasureBox {
@@ -126,7 +127,7 @@ public class L1TreasureBox {
 			}
 		}
 		if (getTotalChance() != 0 && getTotalChance() != 1000000) {
-			_log.warning("ID " + getBoxId() + " の確率の合計が100%になりません。");
+			_log.warning("ID ：" + getBoxId() + " 的機率總合不等於100%。");
 		}
 	}
 
@@ -177,10 +178,10 @@ public class L1TreasureBox {
 
 		} else if (getType().equals(TYPE.RANDOM)) {
 			// 出るアイテムがランダムに決まるもの
-			Random random = new Random();
+			//Random random = new Random();
 			int chance = 0;
 
-			int r = random.nextInt(getTotalChance());
+			int r = RandomArrayList.getArrayshortList((short) getTotalChance());
 
 			for (Item each : getItems()) {
 				chance += each.getChance();

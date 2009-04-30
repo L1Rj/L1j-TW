@@ -495,7 +495,7 @@ class L1SkillStop {
 				L1PcInstance pc = (L1PcInstance) cha;
 				// XXX 消除生命之樹果實圖案標示的方式仍未知
 			}
-			cha.setBraveSpeed(0);			
+			cha.setBraveSpeed(0);
 		} else if (skillId == STATUS_HASTE) { // グリーン ポーション
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;

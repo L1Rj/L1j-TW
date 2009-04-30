@@ -37,9 +37,7 @@ import l1j.server.server.serverpackets.S_NPCPack;
 import l1j.server.server.templates.L1Npc;
 
 public class L1TowerInstance extends L1NpcInstance {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private static Logger _log = Logger.getLogger(L1TowerInstance.class
 			.getName());

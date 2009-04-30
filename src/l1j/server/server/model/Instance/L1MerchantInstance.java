@@ -39,9 +39,7 @@ import l1j.server.server.templates.L1Npc;
 import l1j.server.server.serverpackets.S_ChangeHeading;
 
 public class L1MerchantInstance extends L1NpcInstance {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private static Logger _log = Logger.getLogger(L1MerchantInstance.class
 			.getName());
@@ -59,7 +57,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 		attack.calcHit();
 		attack.action();
 	}
-	
+
 	@Override
 	public void onNpcAI() {
 		if (isAiRunning()) {
@@ -113,7 +111,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				_restTimer.schedule(_monitor, REST_MILLISEC);
 			}
 		}
-	
+
 		if (talking != null) {
 			if (npcid == 70841) { // ルーディエル
 				if (player.isElf()) { // エルフ
@@ -265,7 +263,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 			} else if (npcid == 71200) { // 白魔術師 ピエタ
 				if (player.isCrown()) { // 君主
 					int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
-					if (lv45_step == 2 && player.getInventory().checkItem(41422)) {	
+					if (lv45_step == 2 && player.getInventory().checkItem(41422)) {
 						player.getInventory().consumeItem(41422, 1);
 						final int[] item_ids = { 40568 };
 						final int[] item_amounts = { 1 };
@@ -1422,7 +1420,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				} else if (player.getLevel() >= 12 && player.getLevel() < 25) {
 					if (player.getInventory().checkItem(41233)
 							|| player.getInventory().checkItem(41234)) {
-						htmlid = "jpe0143";	
+						htmlid = "jpe0143";
 					} else if (player.getInventory().checkItem(41238)
 							|| player.getInventory().checkItem(41239)
 							|| player.getInventory().checkItem(41240)) {
@@ -1438,7 +1436,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "jpe0125";
 				} else if (player.getLevel() >= 12 && player.getLevel() < 25) {
 					if (player.getInventory().checkItem(41231)) {
-						htmlid = "jpe0123";	
+						htmlid = "jpe0123";
 					} else if (player.getInventory().checkItem(41232)
 							|| player.getInventory().checkItem(41233)
 							|| player.getInventory().checkItem(41234)
@@ -1712,13 +1710,13 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== 2) {
 					htmlid = "resta16";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_SIMIZZ)
-						== 2 
+						== 2
 							&& player.getQuest().get_step(L1Quest.
 									QUEST_CADMUS) == 1
 							|| player.getInventory().checkItem(40647)) {
 					htmlid = "resta1a";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_CADMUS)
-						== 1 
+						== 1
 						|| player.getInventory().checkItem(40647)) {
 					htmlid = "resta1c";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_SIMIZZ)
@@ -1867,7 +1865,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 						|| player.getQuest().get_step(71199) == 255) {
 					htmlid = "jeron7";
 				}
-			
+
 			} else if (npcid == 81200) { // 特典アイテム管理人
 				if (player.getInventory().checkItem(21069) // 新生のベルト
 						|| player.getInventory().checkItem(21074)) { // 親睦のイアリング
@@ -1932,7 +1930,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				if (player.getQuest().get_step(L1Quest.QUEST_DESIRE)
 						== L1Quest.QUEST_END) {
 					htmlid = "minicod10";
-				} else if (player.getKarmaLevel() >= 1) {				
+				} else if (player.getKarmaLevel() >= 1) {
 					htmlid = "minicod07";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_DESIRE)
 						== 1 && player.getTempCharGfx() == 6034) { // コラププリースト變身
@@ -1955,7 +1953,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				if (player.getQuest().get_step(L1Quest.QUEST_SHADOWS)
 						== L1Quest.QUEST_END) {
 					htmlid = "minitos10";
-				} else if (player.getKarmaLevel() <= -1) {				
+				} else if (player.getKarmaLevel() <= -1) {
 					htmlid = "minitos07";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_SHADOWS)
 						== 1 && player.getTempCharGfx() == 6035) { // レッサーデーモン變身
@@ -2030,7 +2028,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== 13) {
 					htmlid = "orena13";
 				}
-			} else if (npcid == 50112) { // 舊‧歌う島 セリアン	
+			} else if (npcid == 50112) { // 舊‧歌う島 セリアン
 				if (player.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 						== L1Quest.QUEST_END) {
 					htmlid = "orenb14";
@@ -2074,7 +2072,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== 13) {
 					htmlid = "orenb13";
 				}
-			} else if (npcid == 50111) { // 話せる島 リリー	
+			} else if (npcid == 50111) { // 話せる島 リリー
 				if (player.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 						== L1Quest.QUEST_END) {
 					htmlid = "orenc14";
@@ -2647,7 +2645,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "oreno1";
 				}
 			}
-			
+
 			// html表示パケット送信
 			if (htmlid != null) { // htmlidが指定されている場合
 				if (htmldata != null) { // html指定がある場合は表示
@@ -2922,7 +2920,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 		}
 		return htmlid;
 	}
-	
+
 	private static final long REST_MILLISEC = 10000;
 
 	private static final Timer _restTimer = new Timer(true);

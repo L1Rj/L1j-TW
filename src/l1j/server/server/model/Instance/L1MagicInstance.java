@@ -54,7 +54,7 @@ public class L1MagicInstance {
 				randomMobDmg += (RandomArrayList.getArray100List() % mobDmg) * 2;
 				// CalcHpPlayer (player, npc, randomMobDmg);
 				player.receiveDamage(npc, randomMobDmg, 0);
-			} else if (useMagicA >= 25 && useMagicA < 50) {
+			} else if (useMagicA < 50) {
 				// npc.sendPackets(new S_AttackPacket(player, targetobjid,
 				// ActionCodes.ACTION_SkillBuff));
 				npc.broadcastPacket(new S_AttackPacket(player, targetobjid,

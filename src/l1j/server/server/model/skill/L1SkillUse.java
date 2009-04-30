@@ -2266,9 +2266,9 @@ public class L1SkillUse {
 							L1PcInstance pc = (L1PcInstance) cha;
 							L1ItemInstance weapon = pc.getWeapon();
 							if (weapon != null) {
-								Random random = new Random();
-								int weaponDamage = random.nextInt(_user
-										.getInt() / 3) + 1;
+								//Random random = new Random();
+								int weaponDamage = RandomArrayList.getArrayshortList((short) (_user
+										.getInt() / 3)) + 1;
 								// \f1あなたの%0が損傷しました。
 								pc.sendPackets(new S_ServerMessage(268, weapon
 										.getLogName()));

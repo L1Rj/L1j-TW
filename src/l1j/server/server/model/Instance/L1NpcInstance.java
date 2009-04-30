@@ -685,7 +685,7 @@ public class L1NpcInstance extends L1Character {
 					// そうでないなら、移動する予定の距離をデクリメント
 					if (_randomMoveDistance == 0) {
 						_randomMoveDistance = (byte) (RandomArrayList.getArray5List() + 1);
-						_randomMoveDirection = RandomArrayList.getArray100List() % 20;
+						_randomMoveDirection = RandomArrayList.getArrayshortList((short) 20);
 						// ホームポイントから離れすぎないように、一定の確率でホームポイントの方向に補正
 						if (getHomeX() != 0 && getHomeY() != 0
 								&& _randomMoveDirection < 8

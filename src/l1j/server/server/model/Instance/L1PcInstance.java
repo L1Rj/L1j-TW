@@ -1432,7 +1432,7 @@ public class L1PcInstance extends L1Character {
 
 	public int getOriginalEr() {
 
-		return _originalEr;	
+		return _originalEr;
 	}
 
 	public int getEr() {
@@ -1796,7 +1796,7 @@ public class L1PcInstance extends L1Character {
 	}
 
 	public void setOriginalWis(int i) {
-		_originalWis = i;		
+		_originalWis = i;
 	}
 
 	private int _originalDmgup = 0; // ● オリジナルSTR ダメージ補正
@@ -2214,7 +2214,7 @@ public class L1PcInstance extends L1Character {
 					getBaseWis(), getOriginalMpup());
 			addBaseMaxHp(randomHp);
 			addBaseMaxMp(randomMp);
-			// 升級血魔滿 
+			// 升級血魔滿
 			setCurrentHp(getMaxHp());
 			setCurrentMp(getMaxMp());
 			// 升級血魔滿  end
@@ -3230,7 +3230,7 @@ public class L1PcInstance extends L1Character {
 				_originalMr = 0;
 			}
 		}
-		
+
 	addMr(_originalMr);
 	}
 
@@ -3467,7 +3467,7 @@ public class L1PcInstance extends L1Character {
 				_originalAc = 0;
 			}
 		}
-		
+
 		addAc(0 - _originalAc);
 	}
 

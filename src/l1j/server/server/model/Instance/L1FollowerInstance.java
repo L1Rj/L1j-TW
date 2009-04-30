@@ -69,10 +69,10 @@ public class L1FollowerInstance extends L1NpcInstance {
 				} else if (npc.getNpcTemplate().get_npcId() == 71061 // カドモス
 						&& getNpcTemplate().get_npcId() == 71062) { // カミット
 					if (getLocation().getTileLineDistance(_master.getLocation()) < 3) {
-						L1PcInstance pc = (L1PcInstance) _master;	
+						L1PcInstance pc = (L1PcInstance) _master;
 						if((pc.getX() >= 32448 && pc.getX() <= 32452) // カドモス周邊座標
 								&& (pc.getY() >= 33048 && pc.getY() <= 33052)
-								&& (pc.getMapId() == 440)) {						
+								&& (pc.getMapId() == 440)) {
 							setParalyzed(true);
 							if (!pc.getInventory().checkItem(40711)) {
 								createNewItem(pc, 40711, 1);
@@ -83,10 +83,10 @@ public class L1FollowerInstance extends L1NpcInstance {
 						}
 					}
 				} else if (npc.getNpcTemplate().get_npcId() == 71074 // リザードマンの長老
-						&& getNpcTemplate().get_npcId() == 71075) { 
+						&& getNpcTemplate().get_npcId() == 71075) {
 					// 疲れ果てたリザードマンファイター
 					if (getLocation().getTileLineDistance(_master.getLocation()) < 3) {
-						L1PcInstance pc = (L1PcInstance) _master;	
+						L1PcInstance pc = (L1PcInstance) _master;
 						if((pc.getX() >= 32731 && pc.getX() <= 32735) // リザードマン長老周邊座標
 								&& (pc.getY() >= 32854 && pc.getY() <= 32858)
 								&& (pc.getMapId() == 480)) {
@@ -102,13 +102,13 @@ public class L1FollowerInstance extends L1NpcInstance {
 				} else if (npc.getNpcTemplate().get_npcId() == 70964 // バッシュ
 						&& getNpcTemplate().get_npcId() == 70957) { // ロイ
 					if (getLocation().getTileLineDistance(_master.getLocation()) < 3){
-						L1PcInstance pc = (L1PcInstance) _master;	
+						L1PcInstance pc = (L1PcInstance) _master;
 						if((pc.getX() >= 32917 && pc.getX() <= 32921) // バッシュ周邊座標
 								&& (pc.getY() >= 32974 && pc.getY() <= 32978)
 								&& (pc.getMapId() == 410)) {
 							setParalyzed(true);
 							createNewItem(pc, 41003, 1);
-							pc.getQuest().set_step(L1Quest.QUEST_ROI, 0);					
+							pc.getQuest().set_step(L1Quest.QUEST_ROI, 0);
 							deleteMe();
 							return true;
 						}
@@ -116,7 +116,7 @@ public class L1FollowerInstance extends L1NpcInstance {
 				}
 			}
 		}
-			
+
 		if (_master.isDead() || getLocation().getTileLineDistance(_master
 				.getLocation()) > 10) {
 			setParalyzed(true);

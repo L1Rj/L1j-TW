@@ -36,9 +36,7 @@ import l1j.server.server.templates.L1Npc;
 import l1j.server.server.types.Point;
 
 public class L1GuardInstance extends L1NpcInstance {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private static Logger _log = Logger.getLogger(L1GuardInstance.class
 			.getName());

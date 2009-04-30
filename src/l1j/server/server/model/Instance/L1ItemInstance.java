@@ -257,8 +257,8 @@ public class L1ItemInstance extends L1Object {
 			return Math.max(getCount() * getItem().getWeight() / 1000, 1);
 		}
 	}
-	
-	
+
+
 	/**
 	 * 前回DBへ保存した際のアイテムのステータスを格納するクラス
 	 */
@@ -370,7 +370,7 @@ public class L1ItemInstance extends L1Object {
 
 		return column;
 	}
-	
+
 	/**
 	 * 鞄や倉庫で表示される形式の名前を個數を指定して取得する。<br>
 	 */
@@ -471,7 +471,7 @@ public class L1ItemInstance extends L1Object {
 		int itemType2 = getItem().getType2();
 		int itemId = getItemId();
 		BinaryOutputStream os = new BinaryOutputStream();
-		
+
 		if (itemType2 == 0) { // etcitem
 			switch (getItem().getType()) {
 			case 2: // light
@@ -495,7 +495,7 @@ public class L1ItemInstance extends L1Object {
 			}
 			os.writeC(getItem().getMaterial());
 			os.writeD(getWeight());
-			
+
 		} else if (itemType2 == 1 || itemType2 == 2) { // weapon | armor
 			if (itemType2 == 1) { // weapon
 				// 打擊值
@@ -506,7 +506,7 @@ public class L1ItemInstance extends L1Object {
 				os.writeD(getWeight());
 			} else if (itemType2 == 2) { // armor
 				// AC
-				os.writeC(19); 
+				os.writeC(19);
 				int ac = ((L1Armor) getItem()).get_ac();
 				if (ac < 0) {
 					ac = ac - ac - ac;

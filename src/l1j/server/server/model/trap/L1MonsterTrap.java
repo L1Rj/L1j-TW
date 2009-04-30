@@ -111,7 +111,7 @@ public class L1MonsterTrap extends L1Trap {
 		sendEffect(trapObj);
 
 		List<Point> points = getSpawnablePoints(trapObj.getLocation(), 5);
-		
+
 		// 沸ける場所が無ければ終了
 		if (points.isEmpty()) {
 			return;

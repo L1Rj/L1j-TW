@@ -372,7 +372,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 			return;
 		}
 		if (getLocation().getTileLineDistance(pc.getLocation()) > 4) {
-			for (int count = 0; count < 10; count++) {
+			for (byte count = 0; count < 10; count++) {
 				L1Location newLoc = getLocation().randomLocation(3, 4, false);
 				if (glanceCheck(newLoc.getX(), newLoc.getY())) {
 					L1Teleport.teleport(pc, newLoc.getX(), newLoc.getY(),
@@ -632,7 +632,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				 || npcid == 46108) { // テーベ マンドラゴラ(黒)
 			if (getMaxHp() / 4> getCurrentHp()) {
 				int rnd = RandomArrayList.getArray10List();
-				if (1 > rnd) {
+				if (2 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_SINK);
 					broadcastPacket(new S_DoActionGFX(getId(),
