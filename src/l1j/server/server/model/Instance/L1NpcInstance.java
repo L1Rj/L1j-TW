@@ -64,6 +64,7 @@ import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1NpcChat;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.server.server.utils.StaticFinalList;
 import l1j.server.server.utils.TimerPool;
 import static l1j.server.server.model.item.L1ItemId.*;
 
@@ -1770,9 +1771,9 @@ public class L1NpcInstance extends L1Character {
 	public boolean nearTeleport(int nx, int ny) {
 		int tempx = 0;
 		int tempy = 0;
-		for (byte i = 1; i < 3; i++){
-			tempx = nx + RandomArrayList.getArray7List() - 3;
-			tempy = ny + RandomArrayList.getArray7List() - 3;
+		for (byte i = 1; i < 5; i++){
+			tempx = nx + StaticFinalList.getRang3();
+			tempy = ny + StaticFinalList.getRang3();
 			if (getMap().isPassable(tempx, tempy)) {
 				teleport(tempx, tempy, RandomArrayList.getArray8List());
 				setCurrentMp(getCurrentMp() - 10);
