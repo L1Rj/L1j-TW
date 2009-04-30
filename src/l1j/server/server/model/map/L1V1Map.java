@@ -57,6 +57,9 @@ public class L1V1Map extends L1Map {
 	private boolean _isUsableItem;
 
 	private boolean _isUsableSkill;
+	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
+	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 5.01 Start
+	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 5.01 End
 
 	/*
 	 * マップ情報を1面で保持するために仕方なくビットフラグ。 可讀性が大きく下がるので良い子は真似しない。
@@ -337,8 +340,8 @@ public class L1V1Map extends L1Map {
 		// 移動予定のタイル
 		int tile2;
 		// 移動予定の座標
-		int newX;
-		int newY;
+		int newX = x; // 5.01 Start
+		int newY = y;/*
 
 		if (heading == 0) {
 			tile2 = accessTile(x, y - 1);
@@ -374,7 +377,10 @@ public class L1V1Map extends L1Map {
 			newY = y - 1;
 		} else {
 			return false;
-		}
+		}*/
+		newX += HEADING_TABLE_X[heading];
+		newY += HEADING_TABLE_Y[heading];
+		tile2 = accessOriginalTile(newX, newY); // 5.01 End
 
 		if (isExistDoor(newX, newY)) {
 			return false;

@@ -122,8 +122,8 @@ public class L1TreasureBox {
 			_totalChance += each.getChance();
 			if (ItemTable.getInstance().getTemplate(each.getItemId()) == null) {
 				getItems().remove(each);
-				_log.warning("アイテムID " + each.getItemId()
-						+ " のテンプレートが見つかりません。");
+				_log.warning("對象 ID ：" + each.getItemId()
+						+ " 無法找到對應的Template。");
 			}
 		}
 		if (getTotalChance() != 0 && getTotalChance() != 1000000) {
@@ -149,7 +149,7 @@ public class L1TreasureBox {
 				_dataMap.put(each.getBoxId(), each);
 			}
 		} catch (Exception e) {
-			_log.log(Level.SEVERE, PATH + "のロードに失敗。", e);
+			_log.log(Level.SEVERE, PATH + "的載入失敗。", e);
 			System.exit(0);
 		}
 		System.out.println("OK! " + timer.get() + "ms");

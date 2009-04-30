@@ -41,6 +41,9 @@ public class L1V2Map extends L1Map {
 	private boolean _isRecallPets;
 	private boolean _isUsableItem;
 	private boolean _isUsableSkill;
+	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
+	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 5.01 Start
+	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 5.01 End
 
 
 	/**
@@ -137,8 +140,8 @@ public class L1V2Map extends L1Map {
 	public boolean isArrowPassable(int x, int y, int heading) {
 		int tile;
 		// 移動予定の座標
-		int newX;
-		int newY;
+		int newX = x; // 5.01 Start
+		int newY = y; /*
 
 		if (heading == 0) {
 			tile = accessOriginalTile(x, y - 1);
@@ -174,7 +177,11 @@ public class L1V2Map extends L1Map {
 			newY = y - 1;
 		} else {
 			return false;
-		}
+		}*/
+		newX += HEADING_TABLE_X[heading];
+		newY += HEADING_TABLE_Y[heading];
+		tile = accessOriginalTile(newX, newY); // 5.01 End
+
 
 		if (isExistDoor(newX, newY)) {
 			return false;
@@ -238,8 +245,8 @@ public class L1V2Map extends L1Map {
 
 	@Override
 	public boolean isPassable(int x, int y, int heading) {
-		int tile;
-		if (heading == 0) {
+		int tile; // 5.01 Start
+		/*if (heading == 0) {
 			tile = accessOriginalTile(x, y - 1);
 		} else if (heading == 1) {
 			tile = accessOriginalTile(x + 1, y - 1);
@@ -257,7 +264,8 @@ public class L1V2Map extends L1Map {
 			tile = accessOriginalTile(x - 1, y - 1);
 		} else {
 			return false;
-		}
+		}*/
+		tile = accessOriginalTile(x + HEADING_TABLE_X[heading], y + HEADING_TABLE_Y[heading]); // 5.01 End
 
 		if (tile == 1 || tile == 9 || tile == 65 || tile == 69 || tile == 73) {
 			return false;

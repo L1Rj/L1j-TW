@@ -48,7 +48,7 @@ public class L1NpcActionFactory {
 			_actions
 					.put("Teleport", loadConstructor(L1NpcTeleportAction.class));
 		} catch (NoSuchMethodException e) {
-			_log.log(Level.SEVERE, "NpcActionのクラスロードに失敗", e);
+			_log.log(Level.SEVERE, "載入NpcAction 失敗", e);
 		}
 	}
 
@@ -57,9 +57,9 @@ public class L1NpcActionFactory {
 			Constructor<L1NpcAction> con = _actions.get(element.getNodeName());
 			return con.newInstance(element);
 		} catch (NullPointerException e) {
-			_log.warning(element.getNodeName() + " 未定義のNPCアクションです");
+			_log.warning(element.getNodeName() + " NPC動作 未定義");
 		} catch (Exception e) {
-			_log.log(Level.SEVERE, "NpcActionのクラスロードに失敗", e);
+			_log.log(Level.SEVERE, "載入NpcAction 失敗", e);
 		}
 		return null;
 	}
