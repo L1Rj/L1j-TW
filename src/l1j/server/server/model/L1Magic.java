@@ -382,10 +382,19 @@ public class L1Magic {
 			probability = (int) (((l1skills.getProbabilityDice()) / 10D)
 					* (attackLevel - defenseLevel)) + l1skills
 					.getProbabilityValue();
+			// オリジナルINTによる魔法命中
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				probability += 2 * _pc.getOriginalMagicHit();
+			}
 		} else if (skillId == SHOCK_STUN
 				|| skillId == COUNTER_BARRIER) {
-			// 成功確率は 基本確率 + LV差1每に+-1%
+			// 成功確率は 基本確率 + LV差1毎に+-1%
 			probability = l1skills.getProbabilityValue() + attackLevel - defenseLevel;
+
+			// オリジナルINTによる魔法命中
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				probability += 2 * _pc.getOriginalMagicHit();
+			}
 		} else {
 			int dice = l1skills.getProbabilityDice();
 			int diceCount = 0;
@@ -818,6 +827,24 @@ public class L1Magic {
 		}
 
 		magicDamage *= coefficient;
+		
+		double criticalCoefficient = 1.5; // 魔法クリティカル
+		int rnd = RandomArrayList.getArray100List() + 1;
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			if (l1skills.getSkillLevel() <= 6) {
+				if (rnd <= (10 + _pc.getOriginalMagicCritical())) {
+					magicDamage *= criticalCoefficient;
+				}
+			}
+		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
+			if (rnd <= 10) {
+				magicDamage *= criticalCoefficient;
+			}
+		}
+
+		if (_calcType == PC_PC || _calcType == PC_NPC) { // オリジナルINTによる魔法ダメージ
+			magicDamage += _pc.getOriginalMagicDamage();
+		}
 
 		return magicDamage;
 	}
@@ -854,16 +881,31 @@ public class L1Magic {
 	// ●●●● ＭＲによるダメージ輕減 ●●●●
 	private int calcMrDefense(int dmg) {
 		int mr = getTargetMr();
-		byte rnd = RandomArrayList.getArray100List();
-		if (mr >= rnd) { // waja change 魔法防禦公式
-			dmg = dmg/3;
+
+		double mrFloor = 0;
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			if (mr <= 100) {
+				mrFloor = Math.floor((mr - _pc.getOriginalMagicHit()) / 2);
+			} else if (mr >= 100) {
+				mrFloor = Math.floor((mr - _pc.getOriginalMagicHit()) / 10);
+			}
+		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
+			if (mr <= 100) {
+				mrFloor = Math.floor(mr / 2);
+			} else if (mr >= 100) {
+				mrFloor = Math.floor(mr / 10);
+			}
 		}
-		else if (mr < rnd) {
-			dmg = dmg - (mr/3) ; //基本魔法防禦減傷 魔法防禦 1/3 作為減傷依據
+
+		double mrCoefficient = 0;
+		if (mr <= 100) {
+			mrCoefficient = 1 - 0.01 * mrFloor;
+		} else if (mr >= 100) {
+			mrCoefficient = 0.6 - 0.01 * mrFloor;
 		}
-		if (dmg <= 0) // 防止負值
-		dmg=1 ;
-		
+
+		dmg *= mrCoefficient;
+
 		return dmg;
 	}
 

@@ -2551,7 +2551,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						makeCooking(pc, cookNo);
 					}
-				} else if (itemId == 41260) { // 薪
+				} else if (itemId == 41260) { // 柴火
 					for (L1Object object : L1World.getInstance()
 							.getVisibleObjects(pc, 3)) {
 						if (object instanceof L1EffectInstance) {
