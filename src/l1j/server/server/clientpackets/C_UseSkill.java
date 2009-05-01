@@ -29,6 +29,7 @@ import l1j.server.server.model.AcceleratorChecker;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.serverpackets.S_Disconnect;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
@@ -58,6 +59,13 @@ public class C_UseSkill extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(563)); // \f1ここでは使えません。
 			return;
 		}
+
+//waja add 判斷skill
+	    if(!pc.isSkillMastery(skillId)){
+	        /* 要斷線 要鎖帳號 要公告 要扣經驗值 都放在這邊  */
+	        return;
+	    }
+//END
 
 		// 要求間隔をチェックする
 		if (Config.CHECK_SPELL_INTERVAL) {
