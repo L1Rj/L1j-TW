@@ -185,12 +185,4 @@ public class RandomArrayList {
 		}
 		return (short) (Arrayshort[listint = 0] % rang);
 	}
-
-	private static short getlistshort() {
-		if (listshort < 999 && listshort > 0) {
-			return listshort++;
-		} else {
-			return listshort = 0;
-		}
-	}
 }
