@@ -60,14 +60,6 @@ public class C_UseSkill extends ClientBasePacket {
 			return;
 		}
 
-//waja add 判斷skill
-	    if(!pc.isSkillMastery(skillId)){
-	        /* 要斷線 要鎖帳號 要公告 要扣經驗值 都放在這邊  */
-	    	pc.sendPackets(new S_ServerMessage(285));
-	        return;
-	    }
-//END
-
 		// 要求間隔をチェックする
 		if (Config.CHECK_SPELL_INTERVAL) {
 			int result;

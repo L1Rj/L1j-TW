@@ -465,9 +465,6 @@ public class C_LoginToServer extends ClientBasePacket {
 				i = lv1 + lv2 + lv3 + lv4 + lv5 + lv6 + lv7 + lv8 + lv9 + lv10
 						+ lv11 + lv12 + lv13 + lv14 + lv15 + lv16 + lv17 + lv18
 						+ lv19 + lv20 + lv21 + lv22 + lv23 + lv24 + lv25 + lv26 + lv27 + lv28;
-//waja add 登入時紀錄學過的skill
-			    pc.setSkillMastery(skillId);
-//END
 
 			}
 			if (i > 0) {

@@ -1944,7 +1944,7 @@ public class L1SkillUse {
 						|| _skillId == NATURES_BLESSING)
 						&& (_user instanceof L1PcInstance)) {
 //waja add 特殊狀態中則無法施展回復系法術
-					if ( cha.hasSkillEffect(STATUS_CURSE_PARALYZED) //木乃尹狀態
+					 if ( cha.hasSkillEffect(STATUS_CURSE_PARALYZED) //木乃尹狀態
 						||cha.hasSkillEffect(SHOCK_STUN) //衝暈
 			        	||cha.hasSkillEffect(FOG_OF_SLEEPING) //沉睡之霧
 			        	||cha.hasSkillEffect(ICE_LANCE)) //冰茅

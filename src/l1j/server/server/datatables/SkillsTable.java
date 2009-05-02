@@ -121,14 +121,7 @@ public class SkillsTable {
 
 	public void spellMastery(int playerobjid, int skillid, String skillname,
 			int active, int time) {
-//waja add  記錄新學的skill
-	    L1PcInstance pc = (L1PcInstance)
-	        L1World.getInstance().findObject(playerobjid);
-	        
-	    if(pc != null){
-	        pc.setSkillMastery(skillid);
-	    }
-//END
+
 		if (spellCheck(playerobjid, skillid)) {
 			return;
 		}

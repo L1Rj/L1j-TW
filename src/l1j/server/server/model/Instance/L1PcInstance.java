@@ -3872,17 +3872,5 @@ public class L1PcInstance extends L1Character {
 	public void setAwakeSkillId(int i) {
 		_awakeSkillId = i;
 	}
-//waja add 施法檢測
-    private ArrayList<Integer> skillList = new ArrayList<Integer>();
-
-    public void setSkillMastery(int skillid){
-        if(!skillList.contains(skillid)){
-            skillList.add(skillid);
-        }
-    }
-     public boolean isSkillMastery(int skillid){
-         return skillList.contains(skillid);
-     }
-//end add
 
 }
