@@ -175,7 +175,153 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				getNpcTemplate().get_npcId());
 		if (action.equalsIgnoreCase("teleportURL")) {
 			L1NpcHtml html = new L1NpcHtml(talking.getTeleportURL());
+// waja add 刪除player.sendPackets(new S_NPCTalkReturn(objid, html));
+//waja add修正傳送師顯示傳送金額 by 阿傑
+			String[] price = null;
+			int npcid = getNpcTemplate().get_npcId();
+			switch(npcid)
+			{
+				case 50015: { // 說話島-魔法師盧卡斯
+					price = new String[]{"2100"};
+				}
+				break;
+				case 50020: { // 肯特村-魔法師史坦利
+					price = new String[]{ "75","75","75","180","180","180","180","270","270","300","300","900","10650" };
+				}
+				break;
+				case 50024: { // 古魯丁-魔法師史提夫
+					price = new String[]{ "70","70","70","168","168","252","252","1000","1000","336","336","280","280","700","9520" };
+				}
+				break;
+				case 50036: { // 奇岩村-魔法師爾瑪
+					price = new String[]{ "75","75","75","180","180","180","180","270","270","450","450","1050","11100" };
+				}
+				break;
+				case 50039: { // 威頓村-魔法師萊思利
+					price = new String[]{ "75","75","180","180","270","270","270","360","360","600","600","1200","11550" };
+				}
+				break;
+				case 50044: { // 亞丁城-魔法師西里烏斯
+					price = new String[]{ "50","120","120","180","180","180","240","240","300","500","500","900","7400" };
+				}
+				break;
+				case 50046: { // 亞丁城-魔法師艾勒里斯
+					price = new String[]{ "50","120","120","120","180","180","180","240","300","500","500","900","7400" };
+				}
+				break;
+				case 50051: { // 歐瑞村-魔法師吉利烏斯
+					price = new String[]{ "75","180","270","270","360","360","360","450","450","750","750","1350","12000" };
+				}
+				break;
+				case 50054: { // 風木村-魔法師特萊
+					price = new String[]{ "75","75","75","180","180","270","270","360","450","300","300","750","9750" };
+				}
+				break;
+				case 50056: { // 銀騎村-魔法師麥特
+					price = new String[]{"75","75","75","180","180","180","270","270","1000","1000","360","450","450","1050","10200"};
+				}
+				break;
+				case 50066: { // 海音村-魔法師里歐
+					price = new String[]{ "55","55","55","132","132","132","198","198","264","440","440","880","7810" };
+				}
+				break;
+				case 50068: { // 沉默洞穴-迪亞諾斯
+					price = new String[]{ "1500","800","600","1800","1800","1000" };
+				}
+				break;
+				case 50026: { // 古魯丁-商店村傳送師(內)
+					price = new String[]{ "550","700","810"};
+				}
+				break;
+				case 50033: { // 奇岩-商店村傳送師(內)
+					price = new String[]{ "560","720","560"};
+				}
+				break;
+				case 50049: { // 歐瑞-商店村傳送師(內)
+					price = new String[]{ "1150","980","590"};
+				}
+				break;
+				case 50059: { // 銀騎村-商店村傳送師(內)
+					price = new String[]{ "580","680","680"};
+				}
+				break;
+				default: {
+					price = new String[]{""};
+				}
+			}
+			player.sendPackets(new S_NPCTalkReturn(objid, html, price));
+			// 修正傳送師顯示傳送金額  end
+		} /*刪除else if (action.equalsIgnoreCase("teleportURLA")) {
+			L1NpcHtml html = new L1NpcHtml(talking.getTeleportURLA());
 			player.sendPackets(new S_NPCTalkReturn(objid, html));
+		}刪除*/
+		// 傳送師狩獵區設定 
+		else if (action.equalsIgnoreCase("teleportURLA")) {
+			// 刪除L1NpcHtml html = new L1NpcHtml(talking.getTeleportURL());
+			// 刪除player.sendPackets(new S_NPCTalkReturn(objid, html));
+			// 修正傳送師顯示傳送金額 
+			String html = "";
+			String[] price = null;
+			int npcid = getNpcTemplate().get_npcId();
+			switch(npcid)
+			{
+				case 50020: { // 魔法師史坦利
+					html = "telekent3";
+					price = new String[]{ "150","330","330","330","330","330","495","495","495","660","660" };
+				}
+				break;
+				case 50024: { // 魔法師史提夫
+					html = "telegludin3";
+					price = new String[]{ "140","308","308","308","462","462","462","462","616","770","770" };
+				}
+				break;
+				case 50036: { // 魔法師爾瑪
+					html = "telegiran3";
+					price = new String[]{ "150","150","150","330","330","330","330","495","495","495","660" };
+				}
+				break;
+				case 50039: { // 魔法師萊思利
+					html = "televala3";
+					price = new String[]{ "150","330","330","330","495","495","495","495","495","660","660" };
+				}
+				break;
+				case 50044: { // 魔法師西里烏斯
+					html = "sirius3";
+					price = new String[]{ "100","220","220","220","330","330","440","440","550","550","550" };
+				}
+				break;
+				case 50051: { // 魔法師吉利烏斯
+					html = "kirius3";
+					price = new String[]{ "150","330","495","495","495","660","660","825","825","825","825" };
+				}
+				break;
+				case 50046: { // 魔法師艾勒里斯
+					html = "elleris3";
+					price = new String[]{ "100","220","220","220","330","330","440","440","550","550","550" };
+				}
+				break;
+				case 50054: { // 魔法師特萊
+					html = "telewoods3";
+					price = new String[]{ "150","150","330","330","495","495","495","495","660","825","825" };
+				}
+				break;
+				case 50056: { // 魔法師麥特
+					html = "telesilver3";
+					price = new String[]{ "150","150","330","330","330","330","495","495","495","495","495" };
+				}
+				break;
+				case 50066: { // 魔法師里歐
+					html = "teleheine3";
+					price = new String[]{ "110","110","242","242","242","242","363","363","484","484","605" };
+				}
+				break;
+				default: {
+					price = new String[]{""};
+				}
+			}
+			player.sendPackets(new S_NPCTalkReturn(objid, html, price));
+			// 修正傳送師顯示傳送金額  end
+//add end 傳送師狩獵區設定 
 		} else if (action.equalsIgnoreCase("teleportURLA")) {
 			L1NpcHtml html = new L1NpcHtml(talking.getTeleportURLA());
 			player.sendPackets(new S_NPCTalkReturn(objid, html));
@@ -186,6 +332,7 @@ public class L1TeleporterInstance extends L1NpcInstance {
 			doFinalAction(player, action);
 		}
 	}
+
 
 	private void doFinalAction(L1PcInstance player, String action) {
 		int objid = getId();

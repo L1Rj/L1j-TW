@@ -57,6 +57,12 @@ public class S_NPCTalkReturn extends ServerBasePacket {
 	public S_NPCTalkReturn(int objid, L1NpcHtml html) {
 		buildPacket(objid, html.getName(), html.getArgs());
 	}
+	
+//waja add 修正傳送師顯示傳送金額 by 阿傑
+	public S_NPCTalkReturn(int objid, L1NpcHtml html, String[] data) {
+		buildPacket(objid, html.getName(), data);
+	}
+//修正傳送師顯示傳送金額  end
 
 	private void buildPacket(int objid, String htmlid, String[] data) {
 
