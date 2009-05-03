@@ -999,6 +999,14 @@ public class L1Attack {
 					_weaponId);
 		} else if (_weaponId == 261) { // アークメイジスタッフ
 			L1WeaponSkill.giveArkMageDiseaseEffect(_pc, _target);
+//waja add 			
+		} else if( _weaponId == 2 && RandomArrayList.getArray10List() == 1) // 骰子匕首
+		{	
+		    dmg += (_target.getCurrentHp()/2); // 取得目標的血量再除以2
+		    L1PcInventory pcInventory = (L1PcInventory)_pc.getInventory();
+		    pcInventory.setEquipped(_pc.getWeapon(),  false, false, false); // (把目前已裝備武器脫掉)
+//		    _pc.getInventory().removeItem(_pc.getInventory().getItem(weapon.getItemId()), 1); // 刪除武器	    
+//add end
 		} else {
 			dmg += L1WeaponSkill.getWeaponSkillDamage(_pc, _target, _weaponId);
 		}
