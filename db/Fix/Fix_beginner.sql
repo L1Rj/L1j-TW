@@ -26,14 +26,7 @@ CREATE TABLE `beginner` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
+/*  */
 INSERT INTO `beginner` VALUES ('1', '40005', '1', '0', '0', '蠟燭', 'A');
 INSERT INTO `beginner` VALUES ('2', '40005', '1', '0', '0', '蠟燭', 'A');
 INSERT INTO `beginner` VALUES ('3', '40641', '1', '0', '0', '說話卷軸', 'A');
-INSERT INTO `beginner` VALUES ('4', '22', '1', '0', '6', '鎖子甲破壞者', 'A');
-INSERT INTO `beginner` VALUES ('5', '20011', '1', '0', '4', '抗魔法頭盔', 'A');
-INSERT INTO `beginner` VALUES ('6', '20057', '1', '0', '4', '冥法軍王斗篷', 'A');
-INSERT INTO `beginner` VALUES ('7', '20085', '1', '0', '4', 'T恤', 'A');
-INSERT INTO `beginner` VALUES ('8', '20126', '1', '0', '4', '象牙塔皮盔甲', 'A');
-INSERT INTO `beginner` VALUES ('9', '20173', '1', '0', '4', '象牙塔皮手套', 'A');
-INSERT INTO `beginner` VALUES ('10', '20206', '1', '0', '4', '象牙塔皮涼鞋', 'A');
-INSERT INTO `beginner` VALUES ('11', '20221', '1', '0', '4', '骷髏盾牌', 'A');
