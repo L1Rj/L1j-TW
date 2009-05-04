@@ -40,6 +40,7 @@ import l1j.server.server.serverpackets.S_AttackStatus;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillSound;
+import l1j.server.server.serverpackets.S_SystemMessage;//waja add 骰子匕首
 import l1j.server.server.serverpackets.S_UseArrowSkill;
 import l1j.server.server.serverpackets.S_UseAttackSkill;
 import l1j.server.server.utils.RandomArrayList;
@@ -1000,12 +1001,13 @@ public class L1Attack {
 		} else if (_weaponId == 261) { // アークメイジスタッフ
 			L1WeaponSkill.giveArkMageDiseaseEffect(_pc, _target);
 //waja add 			
-		} else if( _weaponId == 2 && RandomArrayList.getArray10List() == 1) // 骰子匕首
+		} else if( _weaponId == 2 && RandomArrayList.getArray100List() <= 5) // 骰子匕首
 		{	
 		    dmg += (_target.getCurrentHp()/2); // 取得目標的血量再除以2
 		    L1PcInventory pcInventory = (L1PcInventory)_pc.getInventory();
 		    pcInventory.setEquipped(_pc.getWeapon(),  false, false, false); // (把目前已裝備武器脫掉)
-//		    _pc.getInventory().removeItem(_pc.getInventory().getItem(weapon.getItemId()), 1); // 刪除武器	    
+		    _pc.getInventory().removeItem(_pc.getInventory().getItem(weapon.getId()), 1);  // 刪除武器
+		    _pc.sendPackets(new S_SystemMessage("骰子匕首 消失了"));
 //add end
 		} else {
 			dmg += L1WeaponSkill.getWeaponSkillDamage(_pc, _target, _weaponId);

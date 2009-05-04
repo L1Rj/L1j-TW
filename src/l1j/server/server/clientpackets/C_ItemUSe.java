@@ -82,6 +82,7 @@ import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_Fishing;
 import l1j.server.server.serverpackets.S_IdentifyDesc;
 import l1j.server.server.serverpackets.S_ItemName;
+import l1j.server.server.serverpackets.S_ItemStatus; // waja add 裝備保護捲軸
 import l1j.server.server.serverpackets.S_Letter;
 import l1j.server.server.serverpackets.S_Liquor;
 import l1j.server.server.serverpackets.S_Message_YN;
@@ -195,6 +196,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == L1ItemId.B_SCROLL_OF_ENCHANT_WEAPON
 				|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_ARMOR
 				|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_WEAPON
+				|| itemId == 90000 // waja add 裝備保護捲軸				
 				|| itemId == 41029 // 召喚球の欠片
 				|| itemId == 40317
 				|| itemId == 41036
@@ -313,6 +315,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					|| itemId == 40130 || itemId == 140130
 					|| itemId == L1ItemId.B_SCROLL_OF_ENCHANT_WEAPON
 					|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_WEAPON
+					|| itemId == 90000 // waja add 裝備保護捲軸						
 					|| itemId == 40128) { // 武器強化スクロール
 				if (l1iteminstance1 == null
 						|| l1iteminstance1.getItem().getType2() != 1) {
@@ -2629,6 +2632,26 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 						return;
 					}
+//waja add 裝備保護卷軸 
+			    } else if (itemId == 90000) { 
+			     if (l1iteminstance1 != null){ 
+			      if (l1iteminstance1.getItem().get_safeenchant() <= -1){ 
+			       pc.sendPackets(new S_ServerMessage(1309)); 
+			       return; 
+			      } 
+			      if (l1iteminstance1.getproctect() == true){ 
+			       pc.sendPackets(new S_ServerMessage(1300)); 
+			       return; 
+			      } 
+			      if (l1iteminstance1.getItem().getType2() == 0){ 
+			       pc.sendPackets(new S_ServerMessage(79)); 
+			       return; 
+			      } else { 
+			      l1iteminstance1.setproctect(true); 
+			      pc.sendPackets(new S_ServerMessage(1308, l1iteminstance1.getLogName()));            pc.getInventory().removeItem(l1iteminstance, 1); 
+			    } 
+			     } 
+//裝備保護卷軸 					
 				} else if (itemId == 49093) { // 下級オシリスの寶箱の欠片：上
 					if (pc.getInventory().checkItem(49094, 1)) {
 						pc.getInventory().consumeItem(49093, 1);
@@ -2783,6 +2806,9 @@ public class C_ItemUSe extends ClientBasePacket {
 
 	private void SuccessEnchant(L1PcInstance pc, L1ItemInstance item,
 			ClientThread client, int i) {
+//waja add 裝備保護卷軸 
+		  item.setproctect(false); 
+//裝備保護卷軸 		
 		String s = "";
 		String sa = "";
 		String sb = "";
@@ -2966,6 +2992,21 @@ public class C_ItemUSe extends ClientBasePacket {
 
 	private void FailureEnchant(L1PcInstance pc, L1ItemInstance item,
 			ClientThread client) {
+//waja add 裝備保護卷軸 
+		  if (item.getproctect() == true){ 
+		//2009/04/25
+		   if(item.isEquipped()) {
+		            pc.addAc(+item.getEnchantLevel());
+		            }
+		//2009/04/25
+		   item.setEnchantLevel(0); 
+		   pc.sendPackets(new S_ItemStatus(item)); 
+		   pc.getInventory().saveItem(item, L1PcInventory.COL_ENCHANTLVL); 
+		   item.setproctect(false); 
+		   pc.sendPackets(new S_ServerMessage(1310)); 
+		   return; 
+		  } 
+//裝備保護卷軸 		
 		String s = "";
 		String sa = "";
 		int itemType = item.getItem().getType2();

@@ -900,4 +900,15 @@ class EnchantTimer extends TimerTask {
 		_isNowLighting = flag;
 	}
 
+//waja add 裝備保護卷軸  
+	 private boolean proctect = false; 
+	  
+	 public boolean getproctect() { 
+	  return proctect; 
+	 } 
+	 public void setproctect(boolean i) { 
+	  proctect = i; 
+	 } 
+//裝備保護卷軸 	
+	
 }
