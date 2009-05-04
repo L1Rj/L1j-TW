@@ -15,7 +15,7 @@ CREATE TABLE `spawnlist_npc` (
   `mapid` int(10) unsigned NOT NULL default '0',
   `movement_distance` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=sjis;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # Records for table spawnlist_npc
 #----------------------------
