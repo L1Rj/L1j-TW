@@ -175,7 +175,7 @@ Update weapon Set name ='歐西斯弓' Where item_id = '171';
 Update weapon Set name ='弓' Where item_id = '172';
 Update weapon Set name ='短弓' Where item_id = '173';
 Update weapon Set name ='象牙塔石弓' Where item_id = '174';
-Update weapon Set name ='象牙塔長弓' Where item_id = '175';
+Update weapon Set name ='象牙塔弓' Where item_id = '175';
 Update weapon Set name ='拉斯塔巴德弓' Where item_id = '176';
 Update weapon Set name ='幽暗十字弓' Where item_id = '177';
 Update weapon Set name ='寂靜十字弓' Where item_id = '178';
