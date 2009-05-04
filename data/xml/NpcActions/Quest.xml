@@ -774,7 +774,6 @@
 		<Item Amount="1" ItemId="20232"/><!--象牙塔皮盾牌 -->
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -794,7 +793,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50111" AmountInputable="false" QuestId="toscroll" QuestStep="1">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -812,7 +810,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50116" AmountInputable="false" QuestId="toscroll" QuestStep="2">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -830,7 +827,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50117" AmountInputable="false" QuestId="toscroll" QuestStep="3">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -848,7 +844,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50119" AmountInputable="false" QuestId="toscroll" QuestStep="4">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -866,7 +861,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50121" AmountInputable="false" QuestId="toscroll" QuestStep="5">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -884,7 +878,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50114" AmountInputable="false" QuestId="toscroll" QuestStep="6">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -903,7 +896,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50120" AmountInputable="false" QuestId="toscroll" QuestStep="7">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -921,7 +913,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50122" AmountInputable="false" QuestId="toscroll" QuestStep="8">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -939,7 +930,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50123" AmountInputable="false" QuestId="toscroll" QuestStep="9">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -957,7 +947,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50125" AmountInputable="false" QuestId="toscroll" QuestStep="10">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -975,7 +964,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50124" AmountInputable="false" QuestId="toscroll" QuestStep="11">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -993,7 +981,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50126" AmountInputable="false" QuestId="toscroll" QuestStep="12">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -1011,7 +998,6 @@
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50115" AmountInputable="false" QuestId="toscroll" QuestStep="13">
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="100" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
