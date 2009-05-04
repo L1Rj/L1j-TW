@@ -234,7 +234,7 @@ public class L1SkillUse {
 		_skillTime = time;
 		_type = type;
 		boolean checkedResult = true;
-		
+
 		if (attacker == null) {
 			// pc
 			_player = player;
@@ -2000,7 +2000,7 @@ public class L1SkillUse {
 					_player.broadcastPacket(new S_SkillSound(_target.getId(),
 							6509));
 					_player.broadcastPacket(new S_SkillSound(_player.getId(),
-							7020));					
+							7020));
 				} else if (_skillId == 10026 || _skillId == 10027
 						|| _skillId == 10028 || _skillId == 10029) { // 安息攻擊
 					if (_user instanceof L1NpcInstance) {
@@ -2287,9 +2287,10 @@ public class L1SkillUse {
 							L1PcInstance pc = (L1PcInstance) cha;
 							L1ItemInstance weapon = pc.getWeapon();
 							if (weapon != null) {
-								Random random = new Random();//waja 測試0值錯誤
-//								int weaponDamage = RandomArrayList.getArrayshortList((short)(_user.getInt() / 3)) + 1;
-								int weaponDamage = random.nextInt(_user.getInt() / 3) + 1;//waja 測試0值錯誤									
+								//Random random = new Random();//waja 測試0值錯誤
+								int weaponDamage = RandomArrayList.getArrayshortList((short)(_user.getInt() / 3)) + 1;// 完全正常
+								//System.out.println("修正後 weaponDamage = " + weaponDamage + "; (short)(_user.getInt() / 3) = " +(short)(_user.getInt() / 3));
+								//int weaponDamage = random.nextInt(_user.getInt() / 3) + 1;//waja 測試0值錯誤
 								// \f1あなたの%0が損傷しました。
 								pc.sendPackets(new S_ServerMessage(268, weapon
 										.getLogName()));

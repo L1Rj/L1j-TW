@@ -52,10 +52,10 @@ public class L1TreasureBox {
 		private int _count;
 
 		private int _chance;
-		
+
 		@XmlAttribute(name = "Chance")
 		private void setChance(double chance) {
-			_chance = (int) (chance * 10000);
+			_chance = (int) (chance * 100);
 		}
 
 		public int getItemId() {
@@ -126,7 +126,7 @@ public class L1TreasureBox {
 						+ " 無法找到對應的Template。");
 			}
 		}
-		if (getTotalChance() != 0 && getTotalChance() != 1000000) {
+		if (getTotalChance() != 0 && getTotalChance() != 10000) {
 			_log.warning("ID ：" + getBoxId() + " 的機率總合不等於100%。");
 		}
 	}
@@ -181,8 +181,8 @@ public class L1TreasureBox {
 			Random random = new Random();//waja 測試道具固定只會開出第一號問題
 			int chance = 0;
 
-//			int r = RandomArrayList.getArrayshortList((short) getTotalChance());
-			int r = random.nextInt(getTotalChance());//waja 測試道具固定只會開出第一號問題 例如魔法娃娃袋子 只會開出第一種娃娃
+			int r = RandomArrayList.getArrayshortList((short) getTotalChance());
+//			int r = random.nextInt(getTotalChance());//waja 測試道具固定只會開出第一號問題 例如魔法娃娃袋子 只會開出第一種娃娃
 
 			for (Item each : getItems()) {
 				chance += each.getChance();
