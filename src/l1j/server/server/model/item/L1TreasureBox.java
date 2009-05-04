@@ -178,10 +178,11 @@ public class L1TreasureBox {
 
 		} else if (getType().equals(TYPE.RANDOM)) {
 			// 出るアイテムがランダムに決まるもの
-			//Random random = new Random();
+			Random random = new Random();//waja 測試道具固定只會開出第一號問題
 			int chance = 0;
 
-			int r = RandomArrayList.getArrayshortList((short) getTotalChance());
+//			int r = RandomArrayList.getArrayshortList((short) getTotalChance());
+			int r = random.nextInt(getTotalChance());//waja 測試道具固定只會開出第一號問題 例如魔法娃娃袋子 只會開出第一種娃娃
 
 			for (Item each : getItems()) {
 				chance += each.getChance();
