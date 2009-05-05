@@ -88,9 +88,9 @@ public class NpcActionTable {
 	public static void load() {
 		try {
 			PerformanceTimer timer = new PerformanceTimer();
-			System.out.print("loading npcaction...");
+			System.out.print("╠》Loading『Npc Action』設定 ...");
 			_instance = new NpcActionTable();
-			System.out.println("OK! " + timer.get() + "ms");
+			System.out.println("完成！\t\t花費：" + timer.get() + "ms");
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, "NpcAction沒能讀入", e);
 			System.exit(0);

@@ -61,7 +61,10 @@ public final class Config {
 	public static String TIME_ZONE;
 
 	public static int CLIENT_LANGUAGE;
-
+	// 5.05 Start 系統語系自動切換
+	public static String CLIENT_LANGUAGE_CODE;
+	public static String[] LANGUAGE_CODE = { "UTF8", "EUCKR", "UTF8", "BIG5", "SJIS", "GBK"};
+	// 5.05 End 
 	public static boolean HOSTNAME_LOOKUPS;
 
 	public static int AUTOMATIC_KICK;
@@ -403,7 +406,7 @@ public final class Config {
 	public static final int MANA_DRAIN_LIMIT_PER_SOM_ATTACK = 9;
 
 	public static void load() {
-		_log.info("loading gameserver config");
+		_log.info("Loading『GameServer Config』");
 		// server.properties
 		try {
 			Properties serverSettings = new Properties();

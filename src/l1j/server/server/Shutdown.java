@@ -41,8 +41,8 @@ public class Shutdown extends Thread {
 	public static final int GM_SHUTDOWN = 1;
 	public static final int GM_RESTART = 2;
 	public static final int ABORT = 3;
-	private static String[] _modeText = { "【黑箱作業】", "【GM下令關閉】",
-			"【GM下令重啟】", "aborting" };
+	private static String[] _modeText = { "【經由『黑盒子』 關閉伺服器】", "【『遊戲管理員』執行 關閉伺服器 動作】",
+			"【『遊戲管理員』執行 重啟伺服器 動作】", "【中斷動作】" };
 
 	/**
 	 * Default constucter is only used internal to create the shutdown-hook
@@ -116,7 +116,7 @@ public class Shutdown extends Thread {
 			// sequence
 			countdown();
 			// last point where logging is operational :(
-			_log.warning("GM shutdown countdown is over. "
+			_log.warning("『遊戲管理員』 關閉伺服器 倒數. "
 					+ _modeText[shutdownMode] + " NOW!");
 			switch (shutdownMode) {
 			case GM_SHUTDOWN:
@@ -144,7 +144,7 @@ public class Shutdown extends Thread {
 	public void startShutdown(L1PcInstance activeChar, int seconds,
 			boolean restart) {
 		Announcements _an = Announcements.getInstance();
-		_log.warning("GM: " + activeChar.getId()
+		_log.warning("『遊戲管理員』: " + activeChar.getId()
 				+ " 使用關機指令. " + _modeText[shutdownMode]
 				+ " 在 " + seconds + " 秒!");
 		_an.announceToAll("伺服器 是 " + _modeText[shutdownMode] + " ，在 "
@@ -168,10 +168,10 @@ public class Shutdown extends Thread {
 	 */
 	public void abort(L1PcInstance activeChar) {
 		Announcements _an = Announcements.getInstance();
-		_log.warning("GM: " + activeChar.getName()
-				+ " issued shutdown ABORT. ");
+		_log.warning("『遊戲管理員』: " + activeChar.getName()
+				+ "使用指令中斷之前的行為. ");
 		_an
-				.announceToAll("Server aborts shutdown and continues normal operation!");
+				.announceToAll("伺服器【中斷關機】 並維持正常運作!");
 
 		if (_counterInstance != null) {
 			_counterInstance._abort();
@@ -274,13 +274,13 @@ public class Shutdown extends Thread {
 		Announcements _an = Announcements.getInstance();
 		switch (shutdownMode) {
 		case SIGTERM:
-			System.err.println("【 動作：黑箱作業!!! 】");
+			System.err.println("【 動作：經由『黑盒子』 執行關閉 】");
 			break;
 		case GM_SHUTDOWN:
-			System.err.println("【 動作：GM 關閉!!! 】");
+			System.err.println("【 動作：『遊戲管理員』 執行關閉!!! 】");
 			break;
 		case GM_RESTART:
-			System.err.println("【 動作：GM 重啟!!! 】");
+			System.err.println("【 動作：『遊戲管理員』 執行重啟!!! 】");
 			break;
 
 		}
@@ -322,10 +322,10 @@ public class Shutdown extends Thread {
 	 */
 	public void Telnetabort(String IP) {
 		Announcements _an = Announcements.getInstance();
-		_log.warning("IP: " + IP + " issued shutdown ABORT. "
-				+ _modeText[shutdownMode] + " has been stopped!");
-		_an.announceToAll("Server aborts " + _modeText[shutdownMode]
-				+ " and continues normal operation!");
+		_log.warning("IP: " + IP + "使用中斷關閉指令 "
+				+ _modeText[shutdownMode] + "將被停止!");
+		_an.announceToAll("伺服器中斷了 " + _modeText[shutdownMode]
+				+ " 並維持正常運作!");
 
 		if (_counterInstance != null) {
 			_counterInstance._abort();

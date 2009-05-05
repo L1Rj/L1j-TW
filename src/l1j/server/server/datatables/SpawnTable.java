@@ -54,10 +54,10 @@ public class SpawnTable {
 
 	private SpawnTable() {
 		PerformanceTimer timer = new PerformanceTimer();
-		System.out.print("spawning mob...");
+		System.out.print("╠》Loading『Spawning Mob』設定 ...");
 		fillSpawnTable();
 		_log.config("怪物配置清單 " + _spawntable.size() + "件");
-		System.out.println("OK! " + timer.get() + " ms");
+		System.out.println("完成！\t花費：" + timer.get() + "ms");
 	}
 
 	private void fillSpawnTable() {
