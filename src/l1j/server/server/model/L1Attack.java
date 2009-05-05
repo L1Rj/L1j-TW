@@ -6,7 +6,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
@@ -68,7 +68,7 @@ public class L1Attack {
 
 	private int _statusDamage = 0;
 
-	private static final Random _random = new Random();
+	//private static final Random _random = new Random();
 
 	private int _hitRate = 0;
 
@@ -840,6 +840,7 @@ public class L1Attack {
 				|| _targetPc.hasSkillEffect(COOKING_1_4_S)
 				|| _targetPc.hasSkillEffect(COOKING_1_5_S)
 				|| _targetPc.hasSkillEffect(COOKING_1_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_1_7_S)
 				|| _targetPc.hasSkillEffect(COOKING_2_0_S)
 				|| _targetPc.hasSkillEffect(COOKING_2_1_S)
 				|| _targetPc.hasSkillEffect(COOKING_2_2_S)
@@ -847,20 +848,19 @@ public class L1Attack {
 				|| _targetPc.hasSkillEffect(COOKING_2_4_S)
 				|| _targetPc.hasSkillEffect(COOKING_2_5_S)
 				|| _targetPc.hasSkillEffect(COOKING_2_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_7_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_0_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_1_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_2_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_3_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_4_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_5_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_6_S)) {
-			dmg -= 5;
-		}
-		if (_targetPc.hasSkillEffect(COOKING_1_7_S) // デザートによるダメージ輕減
-				|| _targetPc.hasSkillEffect(COOKING_2_7_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_6_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {
 			dmg -= 5;
 		}
+		/*if (_targetPc.hasSkillEffect(COOKING_1_7_S)|| _targetPc.hasSkillEffect(COOKING_2_7_S)|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {dmg -= 5;}
+		*/ //檢查透視鏡資料後 發現該段程式碼 可以與上面合體
 
 		if (_targetPc.hasSkillEffect(REDUCTION_ARMOR)) {
 			int targetPcLvl = _targetPc.getLevel();
@@ -1000,14 +1000,14 @@ public class L1Attack {
 					_weaponId);
 		} else if (_weaponId == 261) { // アークメイジスタッフ
 			L1WeaponSkill.giveArkMageDiseaseEffect(_pc, _target);
-//waja add 			
+//waja add
 		} else if( _weaponId == 2 && RandomArrayList.getArray100List() <= 5) // 骰子匕首
-		{	
-		    dmg += (_target.getCurrentHp()/2); // 取得目標的血量再除以2
-		    L1PcInventory pcInventory = (L1PcInventory)_pc.getInventory();
-		    pcInventory.setEquipped(_pc.getWeapon(),  false, false, false); // (把目前已裝備武器脫掉)
-		    _pc.getInventory().removeItem(_pc.getInventory().getItem(weapon.getId()), 1);  // 刪除武器
-		    _pc.sendPackets(new S_SystemMessage("骰子匕首 消失了"));
+		{
+			dmg += (_target.getCurrentHp()/2); // 取得目標的血量再除以2
+			L1PcInventory pcInventory = (L1PcInventory)_pc.getInventory();
+			pcInventory.setEquipped(_pc.getWeapon(), false, false, false); // (把目前已裝備武器脫掉)
+			_pc.getInventory().removeItem(_pc.getInventory().getItem(weapon.getId()), 1); // 刪除武器
+			_pc.sendPackets(new S_SystemMessage("骰子匕首 消失了"));
 //add end
 		} else {
 			dmg += L1WeaponSkill.getWeaponSkillDamage(_pc, _target, _weaponId);
@@ -1135,6 +1135,7 @@ public class L1Attack {
 				|| _targetPc.hasSkillEffect(COOKING_1_4_S)
 				|| _targetPc.hasSkillEffect(COOKING_1_5_S)
 				|| _targetPc.hasSkillEffect(COOKING_1_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_1_7_S)
 				|| _targetPc.hasSkillEffect(COOKING_2_0_S)
 				|| _targetPc.hasSkillEffect(COOKING_2_1_S)
 				|| _targetPc.hasSkillEffect(COOKING_2_2_S)
@@ -1142,20 +1143,19 @@ public class L1Attack {
 				|| _targetPc.hasSkillEffect(COOKING_2_4_S)
 				|| _targetPc.hasSkillEffect(COOKING_2_5_S)
 				|| _targetPc.hasSkillEffect(COOKING_2_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_7_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_0_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_1_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_2_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_3_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_4_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_5_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_6_S)) {
-			dmg -= 5;
-		}
-		if (_targetPc.hasSkillEffect(COOKING_1_7_S) // デザートによるダメージ輕減
-				|| _targetPc.hasSkillEffect(COOKING_2_7_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_6_S)
 				|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {
 			dmg -= 5;
 		}
+		/*if (_targetPc.hasSkillEffect(COOKING_1_7_S)|| _targetPc.hasSkillEffect(COOKING_2_7_S)|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {dmg -= 5;}
+		*/ //檢查透視鏡資料後 發現該段程式碼 可以與上面合體
 
 		if (_targetPc.hasSkillEffect(REDUCTION_ARMOR)) {
 			int targetPcLvl = _targetPc.getLevel();

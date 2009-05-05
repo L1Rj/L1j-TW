@@ -6,7 +6,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
@@ -1946,10 +1946,10 @@ public class L1SkillUse {
 //waja add 特殊狀態中則無法施展回復系法術
 					 if ( cha.hasSkillEffect(STATUS_CURSE_PARALYZED) //木乃尹狀態
 						||cha.hasSkillEffect(SHOCK_STUN) //衝暈
-			        	||cha.hasSkillEffect(FOG_OF_SLEEPING) //沉睡之霧
-			        	||cha.hasSkillEffect(ICE_LANCE)) //冰茅
+						||cha.hasSkillEffect(FOG_OF_SLEEPING) //沉睡之霧
+						||cha.hasSkillEffect(ICE_LANCE)) //冰茅
 					{ _player.sendPackets(new S_ServerMessage(285)); //285 : \f1在此狀態下無法使用魔法
-			   		return;
+						return;
 					}
 //end add
 					cha.removeSkillEffect(WATER_LIFE);
@@ -2005,10 +2005,10 @@ public class L1SkillUse {
 						|| _skillId == 10028 || _skillId == 10029) { // 安息攻擊
 					if (_user instanceof L1NpcInstance) {
 						_user.broadcastPacket(new S_NpcChatPacket(_npc,
-					   (cha.getName())+("! ")+("$3717"),  (byte) 0)); // waja change 龍的安息字串
+								(cha.getName())+("! ")+("$3717"), (byte) 0)); // waja change 龍的安息字串
 					} else {
 						_player.broadcastPacket(new S_ChatPacket(_player,
-					   (cha.getName())+("! ")+("$3717"), 0, (byte) 0)); // waja change 龍的安息字串
+								(cha.getName())+("! ")+("$3717"), 0, (byte) 0)); // waja change 龍的安息字串
 					}
 					dmg = cha.getCurrentHp();
 				} else if (_skillId == 10057) { // 引き寄せ

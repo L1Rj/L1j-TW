@@ -6,7 +6,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
@@ -250,16 +250,16 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				}
 			}
 			player.sendPackets(new S_NPCTalkReturn(objid, html, price));
-			// 修正傳送師顯示傳送金額  end
+			// 修正傳送師顯示傳送金額 end
 		} /*刪除else if (action.equalsIgnoreCase("teleportURLA")) {
 			L1NpcHtml html = new L1NpcHtml(talking.getTeleportURLA());
 			player.sendPackets(new S_NPCTalkReturn(objid, html));
 		}刪除*/
-		// 傳送師狩獵區設定 
+		// 傳送師狩獵區設定
 		else if (action.equalsIgnoreCase("teleportURLA")) {
 			// 刪除L1NpcHtml html = new L1NpcHtml(talking.getTeleportURL());
 			// 刪除player.sendPackets(new S_NPCTalkReturn(objid, html));
-			// 修正傳送師顯示傳送金額 
+			// 修正傳送師顯示傳送金額
 			String html = "";
 			String[] price = null;
 			int npcid = getNpcTemplate().get_npcId();
@@ -320,8 +320,8 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				}
 			}
 			player.sendPackets(new S_NPCTalkReturn(objid, html, price));
-			// 修正傳送師顯示傳送金額  end
-//add end 傳送師狩獵區設定 
+			// 修正傳送師顯示傳送金額 end
+//add end 傳送師狩獵區設定
 		} else if (action.equalsIgnoreCase("teleportURLA")) {
 			L1NpcHtml html = new L1NpcHtml(talking.getTeleportURLA());
 			player.sendPackets(new S_NPCTalkReturn(objid, html));

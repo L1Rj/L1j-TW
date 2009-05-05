@@ -305,7 +305,7 @@ public class L1EquipmentSlot {
 		}
 		if (item.getItemId() == 20008) {
 			_owner.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0,
-					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));			
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 		}
 		if (item.getItemId() == 20023) {
 			_owner.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0,
@@ -314,7 +314,7 @@ public class L1EquipmentSlot {
 	}
 
 	public void removeMagicHelm(int objectId, L1ItemInstance item) {
-	
+
 		if (item.getItemId() == 20013) { // 魔法のヘルム：迅速
 			if (!SkillsTable.getInstance().spellCheck(objectId, 26)) { // フィジカルエンチャント：DEX
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 2, 0, 0, 0, 0, 0, 0,
@@ -338,28 +338,28 @@ public class L1EquipmentSlot {
 		if (item.getItemId() == 20015) { // 魔法のヘルム：力
 			if (!SkillsTable.getInstance().spellCheck(objectId, 12)) { // エンチャントウェポン
 				_owner.sendPackets(new S_DelSkill(0, 8, 0, 0, 0, 0, 0, 0, 0, 0,
-						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));			
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			}
 			if (!SkillsTable.getInstance().spellCheck(objectId, 13)) { // ディテクション
 				_owner.sendPackets(new S_DelSkill(0, 16, 0, 0, 0, 0, 0, 0, 0,
-						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));				
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			}
 			if (!SkillsTable.getInstance().spellCheck(objectId, 42)) { // フィジカルエンチャント：STR
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
-						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));			
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			}
 		}
 		if (item.getItemId() == 20008) { // マイナーウィンドヘルム
 			if (!SkillsTable.getInstance().spellCheck(objectId, 43)) { // ヘイスト
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0,
-						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));				
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			}
 		}
 		if (item.getItemId() == 20023) { // ウィンドヘルム
 			if (!SkillsTable.getInstance().spellCheck(objectId, 54)) { // グレーターヘイスト
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 0, 32, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-						0));			
+						0));
 			}
 		}
 	}

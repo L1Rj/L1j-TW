@@ -6,7 +6,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
@@ -555,13 +555,13 @@ public class L1ItemInstance extends L1Object {
 			}
 			// 使用可能
 			int bit = 0;
-			bit |= getItem().isUseRoyal()   ? 1 : 0;
-			bit |= getItem().isUseKnight()  ? 2 : 0;
-			bit |= getItem().isUseElf()     ? 4 : 0;
-			bit |= getItem().isUseMage()    ? 8 : 0;
-			bit |= getItem().isUseDarkelf() ? 16 : 0;
+			bit |= getItem().isUseRoyal()        ? 1 : 0;
+			bit |= getItem().isUseKnight()       ? 2 : 0;
+			bit |= getItem().isUseElf()          ? 4 : 0;
+			bit |= getItem().isUseMage()         ? 8 : 0;
+			bit |= getItem().isUseDarkelf()      ? 16 : 0;
 			bit |= getItem().isUseDragonknight() ? 32 : 0;
-			bit |= getItem().isUseIllusionist() ? 64 : 0;
+			bit |= getItem().isUseIllusionist()  ? 64 : 0;
 			// bit |= getItem().isUseHiPet() ? 64 : 0; // ハイペット
 			os.writeC(7);
 			os.writeC(bit);
@@ -860,7 +860,7 @@ class EnchantTimer extends TimerTask {
 	private int _itemOwnerId = 0;
 
 	public int getItemOwnerId() {
-	return _itemOwnerId;
+		return _itemOwnerId;
 	}
 
 	public void setItemOwnerId(int i) {
@@ -893,22 +893,21 @@ class EnchantTimer extends TimerTask {
 	private boolean _isNowLighting = false;
 
 	public boolean isNowLighting() {
-	return _isNowLighting;
+		return _isNowLighting;
 	}
 
 	public void setNowLighting(boolean flag) {
 		_isNowLighting = flag;
 	}
 
-//waja add 裝備保護卷軸  
-	 private boolean proctect = false; 
-	  
-	 public boolean getproctect() { 
-	  return proctect; 
-	 } 
-	 public void setproctect(boolean i) { 
-	  proctect = i; 
-	 } 
-//裝備保護卷軸 	
-	
+// waja add 裝備保護卷軸
+	private boolean proctect = false;
+
+	public boolean getproctect() {
+		return proctect;
+	}
+
+	public void setproctect(boolean i) {
+		proctect = i;
+	} // 裝備保護卷軸
 }
