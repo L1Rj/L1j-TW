@@ -456,6 +456,30 @@
 			<Material Amount="200" ItemId="40743"/>
 		</MakeItem>
 	</Action>
+	<!--ウッドン ジャケット / ネルファ-->
+	<Action Name="request wooden jacket" NpcId="70838">
+		<MakeItem>
+			<Material Amount="10" ItemId="40507"/>
+			<Material Amount="6" ItemId="40502"/>
+			<Item Amount="1" ItemId="21107"/>
+		</MakeItem>
+	</Action>
+	<!--シルバー アロー / ロビンウッド-->
+	<Action Name="request silver arrow" NpcId="70840">
+		<MakeItem>
+			<Material Amount="1" ItemId="173"/>
+			<Material Amount="1" ItemId="100000"/>
+			<Material Amount="1" ItemId="40507"/>
+			<Item Amount="200" ItemId="40744"/>
+		</MakeItem>
+	</Action>
+	<!--地図：エルフの森 / エスト-->
+	<Action Name="request elvenforest map" NpcId="70847">
+		<MakeItem>
+			<Material Amount="1" ItemId="40507"/>
+			<Item Amount="1" ItemId="40378"/>
+		</MakeItem>
+	</Action>
 	<!--エントの実 / ルーディエル-->
 	<Action Name="request a fruit of ent">
 		<MakeItem>

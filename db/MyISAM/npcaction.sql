@@ -871,6 +871,7 @@ INSERT INTO `npcaction` VALUES
 (71252, 'joegolem', 'joegolem', '', ''),
 (71253, 'joegolem17', 'joegolem17', '', ''),
 (71255, 'tebegate1', 'tebegate1', '', ''),
+(71256, 'robinhood1', 'robinhood1', '', ''),
 (80010, 'aprincess1', 'aprincess1', 'aprincess2', ''),
 (80019, 'cold1', 'cold1', '', ''),
 (80020, 'cold1', 'cold1', '', ''),
