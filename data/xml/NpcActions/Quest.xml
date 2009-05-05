@@ -730,7 +730,7 @@
 		<Item Amount="1" ItemId="105"/><!--象牙塔長矛 -->
 		<Item Amount="1" ItemId="175"/><!--象牙塔弓 -->
 		<Item Amount="1" ItemId="174"/><!--象牙塔石弓 -->
-		<Item Amount="1" ItemId="224"/><!--象牙塔魔杖 -->
+		<Item Amount="1" ItemId="120"/><!--象牙塔魔杖 -->
 		<Item Amount="1" ItemId="73"/> <!--象牙塔雙刀 -->
 		<Item Amount="1" ItemId="156"/><!--象牙塔鋼爪 -->
 		<Item Amount="1" ItemId="20028"/><!--象牙塔皮頭盔 -->
@@ -749,6 +749,7 @@
 		<Item Amount="10" ItemId="40085"/><!--說話之島指定傳送卷軸 -->
 		<Item Amount="1" ItemId="40384"/><!--地圖:隱藏之谷 -->
 		<Item Amount="5" ItemId="40082"/><!--指定傳送卷軸(歌唱之島) -->
+		<Item Amount="100" ItemId="40308"/><!--金幣 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -764,7 +765,7 @@
 		<Item Amount="1" ItemId="105"/><!--象牙塔長矛 -->
 		<Item Amount="1" ItemId="175"/><!--象牙塔弓 -->
 		<Item Amount="1" ItemId="174"/><!--象牙塔石弓 -->
-		<Item Amount="1" ItemId="224"/><!--象牙塔魔杖 -->
+		<Item Amount="1" ItemId="120"/><!--象牙塔魔杖 -->
 		<Item Amount="1" ItemId="73"/> <!--象牙塔雙刀 -->
 		<Item Amount="1" ItemId="156"/><!--象牙塔鋼爪 -->
 		<Item Amount="1" ItemId="20028"/><!--象牙塔皮頭盔 -->
@@ -774,6 +775,7 @@
 		<Item Amount="1" ItemId="20232"/><!--象牙塔皮盾牌 -->
 		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
 		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
+		<Item Amount="1000" ItemId="40743"/><!--箭 -->
 		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
 		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
 		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
@@ -782,6 +784,7 @@
 		<Item Amount="10" ItemId="40085"/><!--說話之島指定傳送卷軸 -->
 		<Item Amount="1" ItemId="40383"/><!--地圖:歌唱之島 -->
 		<Item Amount="5" ItemId="40101"/><!--指定傳送卷軸(歌唱之島) -->
+		<Item Amount="100" ItemId="40308"/><!--金幣 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
