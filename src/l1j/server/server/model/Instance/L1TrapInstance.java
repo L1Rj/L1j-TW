@@ -6,7 +6,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
@@ -19,7 +19,7 @@
 package l1j.server.server.model.Instance;
 
 import java.util.List;
-import java.util.Random;
+//import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import l1j.server.server.model.L1Location;

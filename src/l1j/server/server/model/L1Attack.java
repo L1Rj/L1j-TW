@@ -331,8 +331,15 @@ public class L1Attack {
 		}
 		_target = target;
 		_targetId = target.getId();
-		_targetX = target.getX();
-		_targetY = target.getY();
+// 5.05 Start 目標不存在時 遠距離發功
+		if (target != null && !((L1Character) target).isDead()) {
+			_targetX = target.getX();
+			_targetY = target.getY();
+		/*} else { // 目前無效
+			_targetX = Point.getX();
+			_targetY = Point.getY();
+		*/}
+// 5.05 End
 	}
 
 	/* ■■■■■■■■■■■■■■■■ 命中判定 ■■■■■■■■■■■■■■■■ */
@@ -1534,16 +1541,20 @@ public class L1Attack {
 		}
 	}
 
-	// 飛び道具（矢、スティング）がミスだったときの軌道を計算
+	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
+	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 5.05 Start
+	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 5.05 End
+
+	// 飛び道具（矢、スティング）がミスだったときの軌道を計算 // 5.05 標記 城上NPC問題
 	public void calcOrbit(int cx, int cy, int head) // 起點Ｘ 起點Ｙ 今向いてる方向
 	{
 		float dis_x = Math.abs(cx - _targetX); // Ｘ方向のターゲットまでの距離
 		float dis_y = Math.abs(cy - _targetY); // Ｙ方向のターゲットまでの距離
-		float dis = Math.max(dis_x, dis_y); // ターゲットまでの距離
-		float avg_x = 0;
-		float avg_y = 0;
+		float dis = Math.max(dis_x, dis_y); // ターゲットまでの距離 // 5.05 Start
+		float avg_x = HEADING_TABLE_X[head];
+		float avg_y = HEADING_TABLE_Y[head];
 		if (dis == 0) { // 目標と同じ位置なら向いてる方向へ真っ直ぐ
-			if (head == 1) {
+			/*if (head == 1) {
 				avg_x = 1;
 				avg_y = -1;
 			} else if (head == 2) {
@@ -1567,11 +1578,11 @@ public class L1Attack {
 			} else if (head == 0) {
 				avg_x = 0;
 				avg_y = -1;
-			}
+			}*/
 		} else {
 			avg_x = dis_x / dis;
 			avg_y = dis_y / dis;
-		}
+		} // 5.05 End
 
 		int add_x = (int) Math.floor((avg_x * 15) + 0.59f); // 上下左右がちょっと優先な丸め
 		int add_y = (int) Math.floor((avg_y * 15) + 0.59f); // 上下左右がちょっと優先な丸め

@@ -6,7 +6,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
@@ -26,13 +26,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+//import java.util.Random;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.SQLUtil;
-import java.util.Random;
 
 // Referenced classes of package l1j.server.server.model:
 // L1Teleport, L1PcInstance
@@ -46,7 +46,7 @@ public class DungeonRandom {
 
 	private static Map<String, NewDungeonRandom> _dungeonMap =
 			new HashMap<String, NewDungeonRandom>();
-	private static Random _random = new Random();
+//	private static Random _random = new Random();
 
 	public static DungeonRandom getInstance() {
 		if (_instance == null) {

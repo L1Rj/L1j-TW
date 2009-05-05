@@ -6,7 +6,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
@@ -142,7 +142,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				continue;
 			}
 			// 見棄てられた者たちの地　カルマクエストの變身中は、各陣營のモンスターから先制攻擊されない
-			if (pc.getTempCharGfx() == 6034 && getNpcTemplate().getKarma() < 0 
+			if (pc.getTempCharGfx() == 6034 && getNpcTemplate().getKarma() < 0
 					|| pc.getTempCharGfx() == 6035 && getNpcTemplate().getKarma() > 0
 					|| pc.getTempCharGfx() == 6035 && getNpcTemplate().get_npcId() == 46070
 					|| pc.getTempCharGfx() == 6035 && getNpcTemplate().get_npcId() == 46072) {
@@ -502,7 +502,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 		try {
 			int npcId = getNpcTemplate().get_npcId();
 			if (npcId != 45640
-					|| (npcId == 45640 && getTempCharGfx() == 2332)) { 
+					|| (npcId == 45640 && getTempCharGfx() == 2332)) {
 				DropTable.getInstance().dropShare(L1MonsterInstance.this,
 						dropTargetList, dropHateList);
 			}
@@ -640,7 +640,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 					setStatus(13);
 					broadcastPacket(new S_NPCPack(this));
 				}
-			}			
+			}
 		}
 	}
 

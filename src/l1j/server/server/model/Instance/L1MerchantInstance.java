@@ -6,7 +6,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
@@ -1760,7 +1760,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== 1 ) {
 					htmlid = "kamyla8";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_CADMUS)
-						==  L1Quest.QUEST_END && player.getInventory()
+						== L1Quest.QUEST_END && player.getInventory()
 							.checkItem(40621)) {
 					htmlid = "kamyla1";
 				}
@@ -1787,13 +1787,13 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== L1Quest.QUEST_END) {
 					htmlid = "lelder0";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_LIZARD)
-						== 3  && player.getInventory().checkItem(40634)) {
+						== 3 && player.getInventory().checkItem(40634)) {
 					htmlid = "lelder12";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_LIZARD)
 						== 3) {
 					htmlid = "lelder11";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_LIZARD)
-						== 2  && player.getInventory().checkItem(40633)) {
+						== 2 && player.getInventory().checkItem(40633)) {
 					htmlid = "lelder7";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_LIZARD)
 						== 2) {
@@ -2895,7 +2895,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 
 	private String talkToSecondtbox(L1PcInstance pc) {
 		String htmlid = "";
-		if (pc.getQuest().get_step(L1Quest.QUEST_TBOX1) ==  L1Quest.QUEST_END) {
+		if (pc.getQuest().get_step(L1Quest.QUEST_TBOX1) == L1Quest.QUEST_END) {
 			if (pc.getInventory().checkItem(40701)) {
 				htmlid = "maptboxa";
 			} else {
@@ -2909,7 +2909,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 
 	private String talkToThirdtbox(L1PcInstance pc) {
 		String htmlid = "";
-		if (pc.getQuest().get_step(L1Quest.QUEST_TBOX2) ==  L1Quest.QUEST_END) {
+		if (pc.getQuest().get_step(L1Quest.QUEST_TBOX2) == L1Quest.QUEST_END) {
 			if (pc.getInventory().checkItem(40701)) {
 				htmlid = "maptboxd";
 			} else {
