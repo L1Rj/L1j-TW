@@ -196,7 +196,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == L1ItemId.B_SCROLL_OF_ENCHANT_WEAPON
 				|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_ARMOR
 				|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_WEAPON
-				|| itemId == 90000 // waja add 裝備保護捲軸
+				|| itemId == 30001 // waja add 裝備保護捲軸
 				|| itemId == 41029 // 召喚球の欠片
 				|| itemId == 40317
 				|| itemId == 41036
@@ -270,7 +270,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		} else if (itemId >= 41255 && itemId <= 41259) { // 料理の本
 			cookStatus = readC();
 			cookNo = readC();
-		} else if (itemId == 41293 || itemId == 41294) { // 釣り竿
+		} else if (itemId == 41293 || itemId == 41294) { // 釣竿
 			fishX = readH();
 			fishY = readH();
 		} else {
@@ -315,7 +315,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					|| itemId == 40130 || itemId == 140130
 					|| itemId == L1ItemId.B_SCROLL_OF_ENCHANT_WEAPON
 					|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_WEAPON
-					|| itemId == 90000 // waja add 裝備保護捲軸
+					|| itemId == 30001 // waja add 裝備保護捲軸
 					|| itemId == 40128) { // 武器強化スクロール
 				if (l1iteminstance1 == null
 						|| l1iteminstance1.getItem().getType2() != 1) {
@@ -324,7 +324,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				}
 
 				int safe_enchant = l1iteminstance1.getItem().get_safeenchant();
-				if (safe_enchant < 0) { // 強化不可
+				if (safe_enchant < 0) { // 安定值小於0不可強化
 					pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					return;
 				}
@@ -658,14 +658,14 @@ public class C_ItemUSe extends ClientBasePacket {
 						|| itemId == L1ItemId.CONDENSED_POTION_OF_EXTRA_HEALING) {
 					UseHeallingPotion(pc, 45, 194);
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 40023) { // 古代の高級体力回復劑
+				} else if (itemId == 40023) { // 古代強力體力恢復劑
 					UseHeallingPotion(pc, 30, 194);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == L1ItemId.POTION_OF_GREATER_HEALING
 						|| itemId == L1ItemId.CONDENSED_POTION_OF_GREATER_HEALING) {
 					UseHeallingPotion(pc, 75, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 40024) { // 古代の強力体力回復劑
+				} else if (itemId == 40024 ||  itemId == 49137) { // 古代終極體力恢復劑  鮮奶油蛋糕
 					UseHeallingPotion(pc, 55, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 40506) { // エントの實
@@ -675,13 +675,13 @@ public class C_ItemUSe extends ClientBasePacket {
 						|| itemId == 40028) { // ジュース
 					UseHeallingPotion(pc, 25, 189);
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 40058) { // きつね色のパン
+				} else if (itemId == 40058) { // 煙燻的麵包屑
 					UseHeallingPotion(pc, 30, 189);
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 40071) { // 黑こげのパン
+				} else if (itemId == 40071) { // 烤焦的麵包屑
 					UseHeallingPotion(pc, 70, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 40734) { // 信賴のコイン
+				} else if (itemId == 40734) { // 信賴貨幣
 					UseHeallingPotion(pc, 50, 189);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == L1ItemId.B_POTION_OF_HEALING) {
@@ -782,7 +782,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1); // waja add end
-				} else if (itemId == 40733) { // 名譽のコイン
+				} else if (itemId == 40733 || itemId == 49138) { // 名譽貨幣 巧克力蛋糕
 					useBravePotion(pc, itemId);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 40066 || itemId == 41413) { // お餅、月餅
@@ -820,7 +820,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == L1ItemId.POTION_OF_MANA // ブルー ポーション
 						|| itemId == L1ItemId.B_POTION_OF_MANA // 祝福されたブルー
 						// ポーション
-						|| itemId == 40736) { // 知惠のコイン
+						|| itemId == 40736) { // 智慧貨幣
 					useBluePotion(pc, itemId);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == L1ItemId.POTION_OF_EMOTION_WISDOM // ウィズダム
@@ -2632,7 +2632,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 						return;
 					}
-				} else if (itemId == 90000) {//waja add 裝備保護卷軸
+				} else if (itemId == 30001) {//waja add 裝備保護卷軸
 					if (l1iteminstance1 != null){
 						if (l1iteminstance1.getItem().get_safeenchant() <= -1){
 							pc.sendPackets(new S_ServerMessage(1309));
@@ -3338,7 +3338,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		cancelAbsoluteBarrier(pc);
 
 		int time = 0;
-		if (item_id == 40015 || item_id == 40736) { // ブルーポーション、知惠のコイン
+		if (item_id == 40015 || item_id == 40736) { // ブルーポーション、智慧貨幣
 			time = 600;
 		} else if (item_id == 140015) { // 祝福されたブルー ポーション
 			time = 700;
