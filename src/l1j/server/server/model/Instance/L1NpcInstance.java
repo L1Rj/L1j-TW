@@ -18,7 +18,6 @@
  */
 package l1j.server.server.model.Instance;
 
-//
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -685,11 +684,12 @@ public class L1NpcInstance extends L1Character {
 					// 移動する予定の距離を移動し終えたら、新たに距離と方向を決める
 					// そうでないなら、移動する予定の距離をデクリメント
 					if (_randomMoveDistance == 0) {
+						setSleepTime((RandomArrayList.getArray9List() + 1) * 1000);
 						_randomMoveDistance = (byte) (RandomArrayList.getArray5List() + 1);
-						_randomMoveDirection = RandomArrayList.getArrayshortList((short) 20);
+						_randomMoveDirection = RandomArrayList.getArray8List();
 						// ホームポイントから離れすぎないように、一定の確率でホームポイントの方向に補正
 						if (getHomeX() != 0 && getHomeY() != 0
-								&& _randomMoveDirection < 8
+								// && _randomMoveDirection < 8
 								&& RandomArrayList.getArray3List() == 0) {
 							_randomMoveDirection = moveDirection(getHomeX(),
 									getHomeY());
@@ -1382,7 +1382,7 @@ public class L1NpcInstance extends L1Character {
 	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 
 	// 指定された方向に移動させる
-	public void setDirectionMove(int dir) {// 4.26 Start
+	public void setDirectionMove(int dir) { // 5.06 Start
 		if (dir >= 0) {
 			int nx = getX();
 			int ny = getY();
@@ -1393,7 +1393,7 @@ public class L1NpcInstance extends L1Character {
 			getMap().setPassable(getLocation(), true);
 
 			setX(nx);
-			setY(ny);//4.26 End
+			setY(ny);
 
 			getMap().setPassable(getLocation(), false);
 
@@ -1419,7 +1419,7 @@ public class L1NpcInstance extends L1Character {
 					teleport(getHomeX(), getHomeY(), getHeading());
 				}
 			}
-		}
+		} // 5.06 End
 	}
 
 	public int moveDirection(int x, int y) { // 目標點Ｘ 目標點Ｙ
@@ -1491,42 +1491,42 @@ public class L1NpcInstance extends L1Character {
 	// 面向是否可能
 	private static int targetFace(int heading) {
 		if (heading > 7) {
-			heading -= 8;
-		}
+			return heading % 8;
+		}/* else if (heading < 0) {
+			return heading + 8; // 5.06 Start
+		}*/
 		return heading;
 	}
 
 	// 目標の逆方向を返す
 	public int targetReverseDirection(int tx, int ty) { // 目標點Ｘ 目標點Ｙ
 		int heading = targetDirection(tx, ty);
-		heading += 4;// 4.26 Start
-		return targetFace(heading);
-	}// 4.26 End
+		//heading += 4;// 5.06 Start
+		return targetFace(heading + 4);
+	}// 5.06 End
 
+	// ■■■■■■■■■■■■■ 轉向關連 ■■■■■■■■■■■
+	private static final byte FIND_HEADING_TABLE[] = { 0, 1, 6, 3, 4, 5, 2, 7 }; // 5.06 Start
 	// 進みたい方向に障害物がないか確認、ある場合は前方斜め左右も確認後進める方向を返す
 	// ※從來あった處理に、バックできない仕樣を省いて、目標の反對（左右含む）には進まないようにしたもの
 	public static int checkObject(int x, int y, short m, int heading) { // 起點Ｘ 起點Ｙ
 																	// マップＩＤ
 	// 進行方向
-		L1Map map = L1WorldMap.getInstance().getMap(m);// 4.26 Start
-		if (map.isPassable(x, y, heading)) {
-			return heading;
-		}
-		for (byte i = 0 ; i < 4 ; i++) {
-			heading++;
-			if (i == 2) heading += 3;
+		L1Map map = L1WorldMap.getInstance().getMap(m); // 5.06 Start
+		for (byte i = 0 ; i < 8 ; i++) {
+			heading += FIND_HEADING_TABLE[i];
 			heading = targetFace(heading);
 			if (map.isPassable(x, y, heading)) {
 				return heading;
 			}
-		}// 4.26 End
+		} // 5.06 End
 		return -1;
 	}
 
 	// 目標までの最短經路の方向を返す
 	// ※目標を中心とした探索範圍のマップで探索
 	private int _serchCource(int x, int y) // 目標點Ｘ 目標點Ｙ
-	{
+	{ // 5.06 Start
 		int i;
 		int locCenter = courceRange + 1;
 		int diff_x = x - locCenter; // Ｘの實際のロケーションとの差
@@ -1536,7 +1536,7 @@ public class L1NpcInstance extends L1Character {
 		// 初期方向
 		int[] locNext = new int[4];
 		int[] locCopy;
-		int[] dirFront = new int[5];
+		//int[] dirFront = new int[5];
 		boolean serchMap[][] = new boolean[locCenter * 2 + 1][locCenter * 2 + 1];
 		LinkedList<int[]> queueSerch = new LinkedList<int[]>();
 
@@ -1549,19 +1549,22 @@ public class L1NpcInstance extends L1Character {
 		}
 
 		// 初期方向の設置
-		int[] firstCource = { 2, 4, 6, 0, 1, 3, 5, 7 };
+		int _rndHeading = RandomArrayList.getArray8List();// FIND_HEADING_TABLE[];
+		//int[] firstCource = { 2, 4, 6, 0, 1, 3, 5, 7 };
 		for (i = 0; i < 8; i++) {
 			System.arraycopy(locBace, 0, locNext, 0, 4);
-			_moveLocation(locNext, firstCource[i]);
+			_rndHeading = targetFace(_rndHeading + FIND_HEADING_TABLE[i]);
+			_moveLocation(locNext, _rndHeading); // _moveLocation(locNext, firstCource[i]);
 			if (locNext[0] - locCenter == 0 && locNext[1] - locCenter == 0) {
 				// 最短經路が見つかった場合:鄰
-				return firstCource[i];
+				return _rndHeading; // return firstCource[i];
 			}
 			if (serchMap[locNext[0]][locNext[1]]) {
-				int tmpX = locNext[0] + diff_x;
-				int tmpY = locNext[1] + diff_y;
+				int tmpX = locNext[0] + diff_x - HEADING_TABLE_X[_rndHeading];
+				int tmpY = locNext[1] + diff_y - HEADING_TABLE_X[_rndHeading];
 				boolean found = false;
-				if (i == 0) {
+				found = getMap().isPassable(tmpX, tmpY, _rndHeading);
+				/*if (i == 0) {
 					found = getMap().isPassable(tmpX, tmpY + 1, i);
 				} else if (i == 1) {
 					found = getMap().isPassable(tmpX - 1, tmpY + 1, i);
@@ -1577,13 +1580,13 @@ public class L1NpcInstance extends L1Character {
 					found = getMap().isPassable(tmpX + 1, tmpY, i);
 				} else if (i == 7) {
 					found = getMap().isPassable(tmpX + 1, tmpY + 1, i);
-				}
+				}*/
 				if (found)// 移動經路があった場合
 				{
 					locCopy = new int[4];
 					System.arraycopy(locNext, 0, locCopy, 0, 4);
-					locCopy[2] = firstCource[i];
-					locCopy[3] = firstCource[i];
+					locCopy[2] = _rndHeading; // locCopy[2] = firstCource[i];
+					locCopy[3] = _rndHeading; // locCopy[3] = firstCource[i];
 					queueSerch.add(locCopy);
 				}
 				serchMap[locNext[0]][locNext[1]] = false;
@@ -1594,18 +1597,20 @@ public class L1NpcInstance extends L1Character {
 		// 最短經路を探索
 		while (queueSerch.size() > 0) {
 			locBace = queueSerch.removeFirst();
-			_getFront(dirFront, locBace[2]);
-			for (i = 4; i >= 0; i--) {
+			//_getFront(dirFront, locBace[2]); // 5.06 16:50 封閉對應
+			for (i = 0; i < 8; i++) {
 				System.arraycopy(locBace, 0, locNext, 0, 4);
-				_moveLocation(locNext, dirFront[i]);
+				_rndHeading = targetFace(locBace[2] + FIND_HEADING_TABLE[i]); // 從這裡開始 _rndHeading  不含隨機因子
+				_moveLocation(locNext, _rndHeading);
 				if (locNext[0] - locCenter == 0 && locNext[1] - locCenter == 0) {
 					return locNext[3];
 				}
 				if (serchMap[locNext[0]][locNext[1]]) {
-					int tmpX = locNext[0] + diff_x;
-					int tmpY = locNext[1] + diff_y;
+					int tmpX = locNext[0] + diff_x - HEADING_TABLE_X[_rndHeading];
+					int tmpY = locNext[1] + diff_y - HEADING_TABLE_X[_rndHeading];
 					boolean found = false;
-					if (i == 0) {
+					found = getMap().isPassable(tmpX, tmpY, _rndHeading);
+					/*if (i == 0) {
 						found = getMap().isPassable(tmpX, tmpY + 1, i);
 					} else if (i == 1) {
 						found = getMap().isPassable(tmpX - 1, tmpY + 1, i);
@@ -1615,12 +1620,12 @@ public class L1NpcInstance extends L1Character {
 						found = getMap().isPassable(tmpX - 1, tmpY - 1, i);
 					} else if (i == 4) {
 						found = getMap().isPassable(tmpX, tmpY - 1, i);
-					}
+					}*/
 					if (found) // 移動經路があった場合
 					{
 						locCopy = new int[4];
 						System.arraycopy(locNext, 0, locCopy, 0, 4);
-						locCopy[2] = dirFront[i];
+						locCopy[2] = _rndHeading;
 						queueSerch.add(locCopy);
 					}
 					serchMap[locNext[0]][locNext[1]] = false;
@@ -1629,7 +1634,7 @@ public class L1NpcInstance extends L1Character {
 			locBace = null;
 		}
 		return -1; // 目標までの經路がない場合
-	}
+	} // 5.06 End
 
 	private void _moveLocation(int[] ary, int heading) {// 4.26 Start
 		ary[0] += HEADING_TABLE_X[heading];
@@ -1637,64 +1642,25 @@ public class L1NpcInstance extends L1Character {
 		ary[2] = heading;
 	}// 4.26 End
 
-	private void _getFront(int[] ary, int d) {
-		if (d == 1) {
-			ary[4] = 2;
-			ary[3] = 0;
-			ary[2] = 1;
-			ary[1] = 3;
-			ary[0] = 7;
-		} else if (d == 2) {
-			ary[4] = 2;
-			ary[3] = 4;
-			ary[2] = 0;
-			ary[1] = 1;
-			ary[0] = 3;
-		} else if (d == 3) {
-			ary[4] = 2;
-			ary[3] = 4;
-			ary[2] = 1;
-			ary[1] = 3;
-			ary[0] = 5;
-		} else if (d == 4) {
-			ary[4] = 2;
-			ary[3] = 4;
-			ary[2] = 6;
-			ary[1] = 3;
-			ary[0] = 5;
-		} else if (d == 5) {
-			ary[4] = 4;
-			ary[3] = 6;
-			ary[2] = 3;
-			ary[1] = 5;
-			ary[0] = 7;
-		} else if (d == 6) {
-			ary[4] = 4;
-			ary[3] = 6;
-			ary[2] = 0;
-			ary[1] = 5;
-			ary[0] = 7;
-		} else if (d == 7) {
-			ary[4] = 6;
-			ary[3] = 0;
-			ary[2] = 1;
-			ary[1] = 5;
-			ary[0] = 7;
-		} else if (d == 0) {
-			ary[4] = 2;
-			ary[3] = 6;
-			ary[2] = 0;
-			ary[1] = 1;
-			ary[0] = 7;
-		}
-	// 4.26 Start
-	//	ary[4] = heading;
-	//	ary[3] = targetFace(heading - 1);
-	//	ary[2] = targetFace(heading + 1);
-	//	ary[1] = targetFace(heading - 2);
-	//	ary[0] = targetFace(heading + 2);
-	// 4.26 End
-	}
+	/*
+	 * private void _getFront(int[] ary, int heading) { // 5.06 Start
+	 * 
+	 * if (d == 1) { ary[4] = 2; ary[3] = 0; ary[2] = 1; ary[1] = 3; ary[0] = 7;
+	 * } else if (d == 2) { ary[4] = 2; ary[3] = 4; ary[2] = 0; ary[1] = 1;
+	 * ary[0] = 3; } else if (d == 3) { ary[4] = 2; ary[3] = 4; ary[2] = 1;
+	 * ary[1] = 3; ary[0] = 5; } else if (d == 4) { ary[4] = 2; ary[3] = 4;
+	 * ary[2] = 6; ary[1] = 3; ary[0] = 5; } else if (d == 5) { ary[4] = 4;
+	 * ary[3] = 6; ary[2] = 3; ary[1] = 5; ary[0] = 7; } else if (d == 6) {
+	 * ary[4] = 4; ary[3] = 6; ary[2] = 0; ary[1] = 5; ary[0] = 7; } else if (d
+	 * == 7) { ary[4] = 6; ary[3] = 0; ary[2] = 1; ary[1] = 5; ary[0] = 7; }
+	 * else if (d == 0) { ary[4] = 2; ary[3] = 6; ary[2] = 0; ary[1] = 1; ary[0]
+	 * = 7; }
+	 * 
+	 * 
+	 * ary[4] = targetFace(heading + 6); ary[3] = targetFace(heading + 2);
+	 * ary[2] = targetFace(heading + 7); ary[1] = targetFace(heading + 1);
+	 * ary[0] = heading;// 5.06 End }
+	 */// 5.06 16:50封閉無使用區段
 
 	// ■■■■■■■■■■■■ アイテム關連 ■■■■■■■■■■
 

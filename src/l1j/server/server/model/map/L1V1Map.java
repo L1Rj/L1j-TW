@@ -218,9 +218,15 @@ public class L1V1Map extends L1Map {
 		// 現在のタイル
 		int tile1 = accessTile(x, y);
 		// 移動予定のタイル
+		if (heading > 7) {
+			heading = heading % 8; // 日本很神奇的地方
+		}
+		int NewX = x + HEADING_TABLE_X[heading]; // 5.06 Start
+		int NewY = y + HEADING_TABLE_Y[heading];
 		int tile2;
+		tile2 = accessTile(NewX, NewY);
 
-		if (heading == 0) {
+		/*if (heading == 0) {
 			tile2 = accessTile(x, y - 1);
 		} else if (heading == 1) {
 			tile2 = accessTile(x + 1, y - 1);
@@ -238,7 +244,7 @@ public class L1V1Map extends L1Map {
 			tile2 = accessTile(x - 1, y - 1);
 		} else {
 			return false;
-		}
+		}*/ // 5.06 End
 
 		if ((tile2 & BITFLAG_IS_IMPASSABLE) == BITFLAG_IS_IMPASSABLE) {
 			return false;
