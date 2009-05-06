@@ -196,7 +196,6 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == L1ItemId.B_SCROLL_OF_ENCHANT_WEAPON
 				|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_ARMOR
 				|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_WEAPON
-				|| itemId == 30001 // waja add 裝備保護捲軸
 				|| itemId == 41029 // 召喚球の欠片
 				|| itemId == 40317
 				|| itemId == 41036
@@ -243,7 +242,9 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == 40954 || itemId == 40955 || itemId == 40956
 				|| itemId == 40957 // 加工された火ダイア
 				|| itemId == 40958 || itemId == 40964 // ダークマジックパウダー
-				|| itemId == 49092) { // 歪みのコア
+				|| itemId == 49092 // 歪みのコア
+				|| itemId == 30001 // waja add 裝備保護捲軸
+					) {
 			l = readD();
 		} else if (itemId == 140100 || itemId == 40100 || itemId == 40099
 				|| itemId == 40086 || itemId == 40863) {
@@ -401,6 +402,27 @@ public class C_ItemUSe extends ClientBasePacket {
 						FailureEnchant(pc, l1iteminstance1, client);
 					}
 				}
+
+//waja add 裝備保護卷軸
+			} else if (itemId == 30001) {
+		        if (l1iteminstance1 != null){
+		         if (l1iteminstance1.getItem().get_safeenchant() <= -1){
+		          pc.sendPackets(new S_ServerMessage(1309));
+		          return;
+		         }
+		         if (l1iteminstance1.getproctect() == true){
+		          pc.sendPackets(new S_ServerMessage(1300));
+		          return;
+		         }
+		         if (l1iteminstance1.getItem().getType2() == 0){
+		          pc.sendPackets(new S_ServerMessage(79)); 
+		         } else {
+		         l1iteminstance1.setproctect(true);
+		         pc.sendPackets(new S_ServerMessage(1308, l1iteminstance1.getLogName()));
+		         pc.getInventory().removeItem(l1iteminstance1, 1);
+		         	}
+		        }
+//end add
 			} else if (itemId == 40078
 					|| itemId == L1ItemId.SCROLL_OF_ENCHANT_ARMOR
 					|| itemId == 40129 || itemId == 140129
@@ -1257,8 +1279,11 @@ public class C_ItemUSe extends ClientBasePacket {
 							spellsc_objid, spellsc_x, spellsc_y, null, 0,
 							L1SkillUse.TYPE_SPELLSC);
 
-				} else if (itemId >= 40373 && itemId <= 40382 // 地圖各種
-						|| itemId >= 40385 && itemId <= 40390) {
+// waja change 歌唱之島&隱藏之谷 地圖改回台版
+//				} else if (itemId >= 40373 && itemId <= 40382 // 地圖各種
+//						|| itemId >= 40385 && itemId <= 40390) {
+				} else	if (itemId >= 40373 && itemId <= 40390) {
+//end change
 					pc.sendPackets(new S_UseMap(pc, l1iteminstance.getId(),
 							l1iteminstance.getItem().getItemId()));
 				} else if (itemId == 40310 || itemId == 40730
@@ -2632,25 +2657,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 						return;
 					}
-				} else if (itemId == 30001) {//waja add 裝備保護卷軸
-					if (l1iteminstance1 != null){
-						if (l1iteminstance1.getItem().get_safeenchant() <= -1){
-							pc.sendPackets(new S_ServerMessage(1309));
-							return;
-						}
-						if (l1iteminstance1.getproctect() == true){
-							pc.sendPackets(new S_ServerMessage(1300));
-							return;
-						}
-						if (l1iteminstance1.getItem().getType2() == 0){
-							pc.sendPackets(new S_ServerMessage(79));
-							return;
-						} else {
-							l1iteminstance1.setproctect(true);
-							pc.sendPackets(new S_ServerMessage(1308, l1iteminstance1.getLogName()));
-							pc.getInventory().removeItem(l1iteminstance, 1);
-						}
-					}//裝備保護卷軸
 				} else if (itemId == 49093) { // 下級オシリスの寶箱の欠片：上
 					if (pc.getInventory().checkItem(49094, 1)) {
 						pc.getInventory().consumeItem(49093, 1);
@@ -2726,8 +2732,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_PacketBox(
 								S_PacketBox.MSG_LEVEL_OVER, max));
 					} else {
-						pc.sendPackets(new S_SystemMessage("武器 Lv: " + max
-								+ "以下 裝備不可。"));
+						pc.sendPackets(new S_SystemMessage("等級 " + max
+								+ " 以下才可使用此道具。"));
 					}
 				} else {
 					if (pc.isCrown() && l1iteminstance.getItem().isUseRoyal()
@@ -2777,8 +2783,8 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.sendPackets(new S_PacketBox(
 									S_PacketBox.MSG_LEVEL_OVER, max));
 						} else {
-							pc.sendPackets(new S_SystemMessage("防具 Lv: " + max
-									+ "以下 裝備不可。"));
+							pc.sendPackets(new S_SystemMessage("等級 " + max
+									+ "  以下才可使用此道具。"));
 						}
 					} else {
 						UseArmor(pc, l1iteminstance);
@@ -2807,7 +2813,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			ClientThread client, int i) {
 //waja add 裝備保護卷軸
 		item.setproctect(false);
-//裝備保護卷軸
+//add end
 		String s = "";
 		String sa = "";
 		String sb = "";
@@ -2993,11 +2999,9 @@ public class C_ItemUSe extends ClientBasePacket {
 			ClientThread client) {
 //waja add 裝備保護卷軸
 		if (item.getproctect() == true){
-			//2009/04/25
 			if(item.isEquipped()) {
 				pc.addAc(+item.getEnchantLevel());
 			}
-			//2009/04/25
 			item.setEnchantLevel(0);
 			pc.sendPackets(new S_ItemStatus(item));
 			pc.getInventory().saveItem(item, L1PcInventory.COL_ENCHANTLVL);
@@ -3005,7 +3009,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(1310));
 			return;
 		}
-//裝備保護卷軸
+//add end
 		String s = "";
 		String sa = "";
 		int itemType = item.getItem().getType2();
@@ -3840,7 +3844,7 @@ public class C_ItemUSe extends ClientBasePacket {
 	private void useSpellBook(L1PcInstance pc, L1ItemInstance item,
 			int itemId) {
 		int itemAttr = 0;
-		int locAttr = 0 ; // 0:other 1:law 2:chaos
+		int locAttr = 0 ; // 0:其他地方 1:正義神殿  2:邪惡神殿
 		boolean isLawful = true;
 		int pcX = pc.getX();
 		int pcY = pc.getY();

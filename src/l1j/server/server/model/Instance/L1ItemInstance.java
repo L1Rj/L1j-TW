@@ -263,6 +263,18 @@ public class L1ItemInstance extends L1Object {
 	 * 前回DBへ保存した際のアイテムのステータスを格納するクラス
 	 */
 	public class LastStatus {
+
+// waja add 飾品強化卷軸
+		public int firemr;
+		public int watermr;
+		public int earthmr;
+		public int windmr;
+		public int addhp;
+		public int addmp;
+		public int hpr;
+		public int mpr;
+		public int addsp;
+//end add
 		public int count;
 
 		public int itemId;
@@ -367,7 +379,6 @@ public class L1ItemInstance extends L1Object {
 		if (getRemainingTime() != _lastStatus.remainingTime) {
 			column += L1PcInventory.COL_REMAINING_TIME;
 		}
-
 		return column;
 	}
 
@@ -463,6 +474,17 @@ public class L1ItemInstance extends L1Object {
 
 		return name.toString();
 	}
+
+//waja add 裝備保護卷軸
+	private boolean proctect = false;
+
+	public boolean getproctect() {
+		return proctect;
+	}
+	public void setproctect(boolean i) {
+		proctect = i;
+	}
+//add end
 
 	/**
 	 * アイテムの狀態からサーバーパケットで利用する形式のバイト列を生成し、返す。
@@ -899,15 +921,4 @@ class EnchantTimer extends TimerTask {
 	public void setNowLighting(boolean flag) {
 		_isNowLighting = flag;
 	}
-
-// waja add 裝備保護卷軸
-	private boolean proctect = false;
-
-	public boolean getproctect() {
-		return proctect;
-	}
-
-	public void setproctect(boolean i) {
-		proctect = i;
-	} // 裝備保護卷軸
 }
