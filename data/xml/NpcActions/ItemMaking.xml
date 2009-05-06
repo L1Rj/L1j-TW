@@ -468,7 +468,7 @@
 	<Action Name="request silver arrow" NpcId="70840">
 		<MakeItem>
 			<Material Amount="1" ItemId="173"/>
-			<Material Amount="1" ItemId="100000"/>
+			<Material Amount="1" ItemId="21107"/>
 			<Material Amount="1" ItemId="40507"/>
 			<Item Amount="200" ItemId="40744"/>
 		</MakeItem>

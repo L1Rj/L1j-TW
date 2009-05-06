@@ -57,6 +57,9 @@ public class Account {
 	/** アクセス禁止の有無(Trueで禁止). */
 	private boolean _banned;
 
+	/** キャラクターの追加スロット数 */
+	private int _characterSlot;
+
 	/** アカウントが有效か否か(Trueで有效). */
 	private boolean _isValid = false;
 
@@ -116,7 +119,7 @@ public class Account {
 			account._lastActive = new Timestamp(System.currentTimeMillis());
 
 			con = L1DatabaseFactory.getInstance().getConnection();
-			String sqlstr = "INSERT INTO accounts SET login=?,password=?,lastactive=?,access_level=?,ip=?,host=?,banned=?";
+			String sqlstr = "INSERT INTO accounts SET login=?,password=?,lastactive=?,access_level=?,ip=?,host=?,banned=?,character_slot=?";
 			pstm = con.prepareStatement(sqlstr);
 			pstm.setString(1, account._name);
 			pstm.setString(2, account._password);
@@ -125,6 +128,7 @@ public class Account {
 			pstm.setString(5, account._ip);
 			pstm.setString(6, account._host);
 			pstm.setInt(7, account._banned ? 1 : 0);
+			pstm.setInt(8, 0);
 			pstm.execute();
 			_log.info("created new account for " + name);
 
@@ -172,6 +176,7 @@ public class Account {
 			account._ip = rs.getString("ip");
 			account._host = rs.getString("host");
 			account._banned = rs.getInt("banned") == 0 ? false : true;
+			account._characterSlot = rs.getInt("character_slot");
 
 			_log.fine("account exists");
 		} catch (SQLException e) {
@@ -186,6 +191,7 @@ public class Account {
 	}
 
 	/**
+	 *
 	 * 最終ログイン日をDBに反映する.
 	 *
 	 * @param account
@@ -214,6 +220,7 @@ public class Account {
 	}
 
 	/**
+	 *
 	 * キャラクター所有數をカウントする.
 	 *
 	 * @return int
@@ -243,6 +250,7 @@ public class Account {
 	}
 
 	/**
+	 *
 	 * アカウントを無效にする.
 	 *
 	 * @param login
@@ -266,6 +274,7 @@ public class Account {
 	}
 
 	/**
+	 *
 	 * 入力されたパスワードとDB上のパスワードを照合する.
 	 *
 	 * @param rawPassword
@@ -357,5 +366,14 @@ public class Account {
 	 */
 	public boolean isBanned() {
 		return _banned;
+	}
+
+	/**
+	 * キャラクターの追加スロット数を取得する.
+	 * 
+	 * @return int
+	 */
+	public int getCharacterSlot() {
+		return _characterSlot;
 	}
 }

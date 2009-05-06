@@ -9,6 +9,7 @@ CREATE TABLE `accounts` (
   `ip` varchar(20) NOT NULL default '',
   `host` varchar(255) NOT NULL default '',
   `banned` int(11) unsigned NOT NULL default '0',
+  `character_slot` int(2) unsigned NOT NULL default '0',
   PRIMARY KEY  (`login`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 3072 kB';
 #----------------------------

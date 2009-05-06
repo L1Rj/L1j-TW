@@ -263,6 +263,8 @@ public final class Config {
 
 	public static int NPC_DELETION_TIME;
 
+	public static int DEFAULT_CHARACTER_SLOT;
+
 	/** CharSettings control */
 	public static int PRINCE_MAX_HP;
 
@@ -669,6 +671,8 @@ public final class Config {
 					.getProperty("DeleteCharacterAfter7Days", "True"));
 			NPC_DELETION_TIME = Integer.parseInt(altSettings.getProperty(
 					"NpcDeletionTime", "10"));
+			DEFAULT_CHARACTER_SLOT = Integer.parseInt(altSettings.getProperty(
+					"DefaultCharacterSlot", "6"));
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + ALT_SETTINGS_FILE + " File.");
@@ -942,6 +946,8 @@ public final class Config {
 			DELETE_CHARACTER_AFTER_7DAYS = Boolean.valueOf(pValue);
 		} else if (pName.equalsIgnoreCase("NpcDeletionTime")) {
 			NPC_DELETION_TIME = Integer.valueOf(pValue);
+		} else if (pName.equalsIgnoreCase("DefaultCharacterSlot")) {
+			DEFAULT_CHARACTER_SLOT = Integer.valueOf(pValue);
 		}
 		// charsettings.properties
 		else if (pName.equalsIgnoreCase("PrinceMaxHP")) {

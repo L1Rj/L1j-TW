@@ -24,6 +24,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import l1j.server.Config;
+import l1j.server.server.Account;
 import l1j.server.server.BadNamesList;
 import l1j.server.server.ClientThread;
 import l1j.server.server.IdFactory;
@@ -51,6 +53,10 @@ public class C_CreateChar extends ClientBasePacket {
 		L1PcInstance pc = new L1PcInstance();
 		String name = readS();
 
+		Account account = Account.load(client.getAccountName());
+		int characterSlot = account.getCharacterSlot();
+		int maxAmount = Config.DEFAULT_CHARACTER_SLOT + characterSlot;
+
 		name = name.replaceAll("\\s", "");
 		name = name.replaceAll("　", "");
 		if (name.length() == 0) {
@@ -76,9 +82,9 @@ public class C_CreateChar extends ClientBasePacket {
 			return;
 		}
 		
-		if (client.getAccount().countCharacters() >= 6) {//3.0C 4->6
+		if (client.getAccount().countCharacters() >= maxAmount) {
 			_log.fine("account: " + client.getAccountName()
-					+ " 無法創造超過六名的角色。");
+					+ " " + maxAmount + "超過可創造角色數量。");
 			S_CharCreateStatus s_charcreatestatus1 = new S_CharCreateStatus(
 					S_CharCreateStatus.REASON_WRONG_AMOUNT);
 			client.sendPacket(s_charcreatestatus1);
