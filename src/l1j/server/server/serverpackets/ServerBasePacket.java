@@ -23,7 +23,10 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import l1j.server.Config; // 5.06
+
 public abstract class ServerBasePacket {
+	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE; // 5.06
 	private static Logger _log = Logger.getLogger(ServerBasePacket.class
 			.getName());
 
@@ -71,7 +74,7 @@ public abstract class ServerBasePacket {
 	protected void writeS(String text) {
 		try {
 			if (text != null) {
-				_bao.write(text.getBytes("big5"));
+				_bao.write(text.getBytes(CLIENT_LANGUAGE_CODE));
 			}
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);

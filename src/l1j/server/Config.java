@@ -62,8 +62,12 @@ public final class Config {
 
 	public static int CLIENT_LANGUAGE;
 	// 5.05 Start 系統語系自動切換
-	public static String CLIENT_LANGUAGE_CODE;
-	public static String[] LANGUAGE_CODE = { "UTF8", "EUCKR", "UTF8", "BIG5", "SJIS", "GBK"};
+	public static String CLIENT_LANGUAGE_CODE;// 把下面的字串組放進來 擬暫存 其他檔案若需要判斷語系可以讀取該變數
+	/* 使用 import l1j.server.Config; 或 import l1j.server.Config.CLIENT_LANGUAGE_CODE; 
+	 * 使用前宣告
+	 * private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE; // 避免每次都要透過函數呼叫(較快)
+	 */
+	public static String[] LANGUAGE_CODE_ARRAY = { "UTF8", "EUCKR", "UTF8", "BIG5", "SJIS", "GBK"}; // 僅用來避免 使用if判斷要用哪一個字串
 	// 5.05 End 
 	public static boolean HOSTNAME_LOOKUPS;
 
@@ -431,6 +435,7 @@ public final class Config {
 					.getProperty("GeneralThreadPoolSize", "0"), 10);
 			CLIENT_LANGUAGE = Integer.parseInt(serverSettings.getProperty(
 					"ClientLanguage", "3"));
+			CLIENT_LANGUAGE_CODE = LANGUAGE_CODE_ARRAY[CLIENT_LANGUAGE];
 			TIME_ZONE = serverSettings.getProperty("TimeZone", "TST");
 			HOSTNAME_LOOKUPS = Boolean.parseBoolean(serverSettings.getProperty(
 					"HostnameLookups", "false"));

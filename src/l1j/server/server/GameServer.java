@@ -140,10 +140,10 @@ public class GameServer extends Thread {
 			System.out.println("伺服器狀態: 建立中");
 		}
 
-		System.out.println("經驗值:" + (rateXp) + "倍  正義值:" + (LA) + "倍  友好度:"
-				+ (rateKarma) + "倍  道具掉落:" + (rateDropItems) + "倍  金幣掉落:"
+		System.out.println("經驗值: x" + (rateXp) + "倍 \t正義值: x" + (LA) + "倍 \t\t友好度: x"
+				+ (rateKarma) + "倍 \r\n道具掉落: x" + (rateDropItems) + "倍 \t金幣掉落: x"
 				+ (rateDropAdena) + "倍");
-		System.out.println("公共頻道使用等級限制 " + (chatlvl));
+		System.out.println("公共頻道使用等級限制: " + (chatlvl));
 		if (Config.ALT_NONPVP) { // Non-PvP設定
 			System.out.println("Non-PvP設定: 無效（可PVP）");
 		} else {

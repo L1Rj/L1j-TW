@@ -23,8 +23,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import l1j.server.server.ClientThread;
 
-public abstract class ClientBasePacket {
+import l1j.server.Config; // 5.06
 
+public abstract class ClientBasePacket {
+	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE; // 5.06
 	private static Logger _log = Logger.getLogger(ClientBasePacket.class
 			.getName());
 
@@ -82,9 +84,9 @@ public abstract class ClientBasePacket {
 	public String readS() {
 		String s = null;
 		try {
-			s = new String(_decrypt, _off, _decrypt.length - _off, "big5");
+			s = new String(_decrypt, _off, _decrypt.length - _off, CLIENT_LANGUAGE_CODE);
 			s = s.substring(0, s.indexOf('\0'));
-			_off += s.getBytes("big5").length + 1;
+			_off += s.getBytes(CLIENT_LANGUAGE_CODE).length + 1;
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, "OpCode=" + (_decrypt[0] & 0xff), e);
 		}
