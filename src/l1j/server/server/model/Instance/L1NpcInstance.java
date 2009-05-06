@@ -684,7 +684,6 @@ public class L1NpcInstance extends L1Character {
 					// 移動する予定の距離を移動し終えたら、新たに距離と方向を決める
 					// そうでないなら、移動する予定の距離をデクリメント
 					if (_randomMoveDistance == 0) {
-						setSleepTime((RandomArrayList.getArray9List() + 1) * 1000);
 						_randomMoveDistance = (byte) (RandomArrayList.getArray5List() + 1);
 						_randomMoveDirection = RandomArrayList.getArray8List();
 						// ホームポイントから離れすぎないように、一定の確率でホームポイントの方向に補正
@@ -1501,8 +1500,8 @@ public class L1NpcInstance extends L1Character {
 	// 目標の逆方向を返す
 	public int targetReverseDirection(int tx, int ty) { // 目標點Ｘ 目標點Ｙ
 		int heading = targetDirection(tx, ty);
-		//heading += 4;// 5.06 Start
-		return targetFace(heading + 4);
+		heading += 4;// 5.06 Start
+		return targetFace(heading);
 	}// 5.06 End
 
 	// ■■■■■■■■■■■■■ 轉向關連 ■■■■■■■■■■■
@@ -1513,7 +1512,10 @@ public class L1NpcInstance extends L1Character {
 																	// マップＩＤ
 	// 進行方向
 		L1Map map = L1WorldMap.getInstance().getMap(m); // 5.06 Start
-		for (byte i = 0 ; i < 8 ; i++) {
+		if (map.isPassable(x, y, heading)) {
+			return heading;
+		}
+		for (byte i = 1 ; i < 8 ; i++) {
 			heading += FIND_HEADING_TABLE[i];
 			heading = targetFace(heading);
 			if (map.isPassable(x, y, heading)) {
@@ -1560,8 +1562,8 @@ public class L1NpcInstance extends L1Character {
 				return _rndHeading; // return firstCource[i];
 			}
 			if (serchMap[locNext[0]][locNext[1]]) {
-				int tmpX = locNext[0] + diff_x - HEADING_TABLE_X[_rndHeading];
-				int tmpY = locNext[1] + diff_y - HEADING_TABLE_X[_rndHeading];
+				int tmpX = locNext[0] - diff_x - HEADING_TABLE_X[_rndHeading];
+				int tmpY = locNext[1] - diff_y - HEADING_TABLE_X[_rndHeading];
 				boolean found = false;
 				found = getMap().isPassable(tmpX, tmpY, _rndHeading);
 				/*if (i == 0) {
@@ -1606,8 +1608,8 @@ public class L1NpcInstance extends L1Character {
 					return locNext[3];
 				}
 				if (serchMap[locNext[0]][locNext[1]]) {
-					int tmpX = locNext[0] + diff_x - HEADING_TABLE_X[_rndHeading];
-					int tmpY = locNext[1] + diff_y - HEADING_TABLE_X[_rndHeading];
+					int tmpX = locNext[0] - diff_x - HEADING_TABLE_X[_rndHeading];
+					int tmpY = locNext[1] - diff_y - HEADING_TABLE_X[_rndHeading];
 					boolean found = false;
 					found = getMap().isPassable(tmpX, tmpY, _rndHeading);
 					/*if (i == 0) {
