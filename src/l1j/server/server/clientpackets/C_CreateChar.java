@@ -68,8 +68,8 @@ public class C_CreateChar extends ClientBasePacket {
 		}
 
 		if (CharacterTable.doesCharNameExist(name)) {
-			_log.fine("charname: " + pc.getName()
-					+ " already exists. creation failed.");
+			_log.fine("角色名稱: " + pc.getName()
+					+ " 已存在. 建立角色失敗.");
 			S_CharCreateStatus s_charcreatestatus1 = new S_CharCreateStatus(
 					S_CharCreateStatus.REASON_ALREADY_EXSISTS);
 			client.sendPacket(s_charcreatestatus1);

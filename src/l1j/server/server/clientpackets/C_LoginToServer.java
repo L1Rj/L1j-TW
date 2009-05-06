@@ -88,7 +88,7 @@ public class C_LoginToServer extends ClientBasePacket {
 		String charName = readS();
 
 		if (client.getActiveChar() != null) {
-			_log.info("ID(" + client.getHostname()
+			_log.info("相同帳號 (" + client.getHostname()
 					+ ")因重覆連線而遭伺服器強制切斷連線。");
 			client.close();
 			return;
@@ -97,22 +97,31 @@ public class C_LoginToServer extends ClientBasePacket {
 		L1PcInstance pc = L1PcInstance.load(charName);
 		if (pc == null || !login.equals(pc.getAccountName())) {
 			_log.info("【無效請求】 帳號=" + login + " 角色=" + charName 
-					+ " 來源=" + client.getHostname());
+					+ " IP位址:" + client.getHostname());
 			client.close();
 			return;
 		}
-
+//waja add 限制同一角色無法同時登入
+        if (pc != null){
+            if (pc.getOnlineStatus()==1){
+                _log.info("【禁止同一角色同時登入伺服器】 角色名稱: " + charName + " 帳號: " + login
+                        + " IP位址:" + client.getHostname());
+                client.close();
+                return;
+            }
+        }
+//add end
 		if (Config.LEVEL_DOWN_RANGE != 0) {
 			if (pc.getHighLevel() - pc.getLevel() >= Config.LEVEL_DOWN_RANGE) {
 				_log.info("【超過等級容許限制拒絕登入】 帳號=" + login + " 角色="
-						+ charName + " 來源=" + client.getHostname());
+						+ charName + " IP位址:" + client.getHostname());
 				client.kick();
 				return;
 			}
 		}
 
 		_log.info("【玩家登入】 帳號=" + login
-				+ " 角色=" + charName + "  來源=" + client.getHostname());
+				+ " 角色=" + charName + " IP位址:" + client.getHostname());
 
 		pc.setOnlineStatus(1);
 		CharacterTable.updateOnlineStatus(pc);
