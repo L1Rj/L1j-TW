@@ -127,10 +127,10 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			pc.setExpRes(rs.getInt("ExpRes"));
 			pc.setPartnerId(rs.getInt("PartnerID"));
 			pc.setAccessLevel(rs.getShort("AccessLevel"));
-			if (pc.getAccessLevel() == 200) {
+			if (pc.getAccessLevel() >= 150) { // waja change 設定Accessleve 150以上為GM
 				pc.setGm(true);
 				pc.setMonitor(false);
-			} else if (pc.getAccessLevel() == 100) {
+			} else if (pc.getAccessLevel() == 100) { // 100級原設定為監視者
 				pc.setGm(false);
 				pc.setMonitor(true);
 			} else {

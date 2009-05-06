@@ -2545,7 +2545,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					useResolvent(pc, l1iteminstance1, l1iteminstance);
 				} else if (itemId == 41248 || itemId == 41249
 						|| itemId == 41250 || itemId == 49037
-						|| itemId == 49038 || itemId == 49039) { // マジックドール
+						|| itemId == 49038 || itemId == 49039) { // 魔法娃娃
 					useMagicDoll(pc, itemId, itemObjid);
 				} else if (itemId >= 41255 && itemId <= 41259) { // 料理の本
 					if (cookStatus == 0) {
