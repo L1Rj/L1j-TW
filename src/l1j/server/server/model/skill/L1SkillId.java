@@ -467,9 +467,9 @@ public class L1SkillId {
 
 	public static final int STATUS_CUBE_SHOCK_TO_ENEMY = 1023;
 
-	public static final int STATUS_CUBE_BALANCE_TO_ALLY = 1024;
+	public static final int STATUS_MR_REDUCTION_BY_CUBE_SHOCK = 1024;
 
-	public static final int STATUS_CUBE_BALANCE_TO_ENEMY = 1025;
+	public static final int STATUS_CUBE_BALANCE = 1025;
 
 	public static final int STATUS_END = 1025;
 

@@ -68,6 +68,9 @@ public interface L1SkillTimer {
  * XXX 2008/02/13 vala 本來、このクラスはあるべきではないが暫定處置。
  */
 class L1SkillStop {
+	private static Logger _log = Logger.getLogger(L1SkillStop.class
+			.getName());
+
 	public static void stopSkill(L1Character cha, int skillId) {
 		if (skillId == LIGHT) { // ライト
 			if (cha instanceof L1PcInstance) {
@@ -475,11 +478,16 @@ class L1SkillStop {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_OwnCharAttrDef(pc));
 			}
-		} else if (skillId == STATUS_CUBE_BALANCE_TO_ALLY) { // キューブ[バランス]：味方
 		} else if (skillId == STATUS_CUBE_IGNITION_TO_ENEMY) { // キューブ[イグニション]：敵
 		} else if (skillId == STATUS_CUBE_QUAKE_TO_ENEMY) { // キューブ[クエイク]：敵
 		} else if (skillId == STATUS_CUBE_SHOCK_TO_ENEMY) { // キューブ[ショック]：敵
-		} else if (skillId == STATUS_CUBE_BALANCE_TO_ENEMY) { // キューブ[バランス]：敵
+		} else if (skillId == STATUS_MR_REDUCTION_BY_CUBE_SHOCK) { // キューブ[ショック]によるMR減少
+// cha.addMr(10);
+// if (cha instanceof L1PcInstance) {
+// L1PcInstance pc = (L1PcInstance) cha;
+// pc.sendPackets(new S_SPMR(pc));
+// }
+		} else if (skillId == STATUS_CUBE_BALANCE) { // キューブ[バランス]
 		}
 
 		// ****** アイテム關係
