@@ -2570,7 +2570,8 @@ public class C_ItemUSe extends ClientBasePacket {
 					useResolvent(pc, l1iteminstance1, l1iteminstance);
 				} else if (itemId == 41248 || itemId == 41249
 						|| itemId == 41250 || itemId == 49037
-						|| itemId == 49038 || itemId == 49039) { // 魔法娃娃
+						|| itemId == 49038 || itemId == 49039
+						|| itemId == 31001 ) { // 魔法娃娃
 					useMagicDoll(pc, itemId, itemObjid);
 				} else if (itemId >= 41255 && itemId <= 41259) { // 料理の本
 					if (cookStatus == 0) {
@@ -5222,6 +5223,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.startHpRegeneration();
 			pc.startMpRegeneration();
 			pc.startMpRegenerationByDoll();
+			pc.startHpRegenerationByDoll();//waja add 魔法娃娃回血功能
 		}
 	}
 
@@ -5605,6 +5607,11 @@ public class C_ItemUSe extends ClientBasePacket {
 			} else if (itemId == 49039) {
 				npcId = 80131;
 				dollType = L1DollInstance.DOLLTYPE_GOLEM;
+// waja add 魔法娃娃：希爾黛絲
+			} else if (itemId == 31001) {// 魔法娃娃：希爾黛絲
+            npcId = 90001;
+            dollType = L1DollInstance.DOLLTYPE_SEADANCER;
+//add end
 			}
 			L1Npc template = NpcTable.getInstance().getTemplate(npcId);
 			doll = new L1DollInstance(template, pc, dollType, itemObjectId);

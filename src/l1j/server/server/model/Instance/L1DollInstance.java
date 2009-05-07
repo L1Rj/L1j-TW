@@ -41,6 +41,7 @@ public class L1DollInstance extends L1NpcInstance {
 	public static final int DOLLTYPE_ELDER = 3;
 	public static final int DOLLTYPE_CRUSTANCEAN = 4;
 	public static final int DOLLTYPE_GOLEM = 5;
+	public static final int DOLLTYPE_SEADANCER = 6;// waja add 希爾黛絲
 	public static final int DOLL_TIME = 1800000;
 
 	private static Logger _log = Logger.getLogger(L1DollInstance.class
@@ -115,6 +116,11 @@ public class L1DollInstance extends L1NpcInstance {
 		if (isMpRegeneration()) {
 			master.startMpRegenerationByDoll();
 		}
+//waja add 魔法娃娃回血功能
+		if (isHpRegeneration()) {
+            master.startHpRegenerationByDoll();
+        }
+//end
 	}
 
 	public void deleteDoll() {
@@ -192,6 +198,16 @@ public class L1DollInstance extends L1NpcInstance {
 		}
 		return isMpRegeneration;
 	}
+
+//waja add 魔法娃娃回血功能
+    public boolean isHpRegeneration() {
+        boolean isHpRegeneration = false;
+        if (getDollType() == DOLLTYPE_SEADANCER) {
+            isHpRegeneration = true;
+        }
+        return isHpRegeneration;
+    }
+//add end
 
 	public int getWeightReductionByDoll() {
 		int weightReduction = 0;
