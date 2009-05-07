@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
-import l1j.server.server.serverpackets.S_SkillSound; //«½«½¦^¦å®ÄªG
+import l1j.server.server.serverpackets.S_SkillSound; //å¨ƒå¨ƒå›žè¡€æ•ˆæžœ
 
 public class HpRegenerationByDoll extends TimerTask {
     private static Logger _log = Logger.getLogger(HpRegenerationByDoll.class
@@ -35,9 +35,9 @@ public class HpRegenerationByDoll extends TimerTask {
         if (newHp < 0) {
             newHp = 0;
         }
-//add «½«½¦^¦å®ÄªG
-        _pc.sendPackets(new S_SkillSound(_pc.getId(), 6506));
-        _pc.broadcastPacket(new S_SkillSound(_pc.getId(), 6506));
+//add å¨ƒå¨ƒå›žè¡€æ•ˆæžœ
+//		_pc.sendPackets(new S_SkillSound(_pc.getId(), 6506));
+//		_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 6506));
 //end
         _pc.setCurrentHp(newHp);
 

@@ -261,7 +261,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			spellsc_objid = readD();
 			spellsc_x = readH();
 			spellsc_y = readH();
-		} else if (itemId == 40089 || itemId == 140089) { // 復活スクロール、祝福された復活スクロール
+		} else if (itemId == 40089 || itemId == 140089) { // 復活捲軸、祝福的復活捲軸
 			resid = readD();
 		} else if (itemId == 40310 || itemId == 40311 || itemId == 40730
 				|| itemId == 40731 || itemId == 40732) { // 便箋
@@ -405,23 +405,23 @@ public class C_ItemUSe extends ClientBasePacket {
 
 //waja add 裝備保護卷軸
 			} else if (itemId == 30001) {
-		        if (l1iteminstance1 != null){
-		         if (l1iteminstance1.getItem().get_safeenchant() <= -1){
-		          pc.sendPackets(new S_ServerMessage(1309));
-		          return;
-		         }
-		         if (l1iteminstance1.getproctect() == true){
-		          pc.sendPackets(new S_ServerMessage(1300));
-		          return;
-		         }
-		         if (l1iteminstance1.getItem().getType2() == 0){
-		          pc.sendPackets(new S_ServerMessage(79)); 
-		         } else {
-		         l1iteminstance1.setproctect(true);
-		         pc.sendPackets(new S_ServerMessage(1308, l1iteminstance1.getLogName()));
-		         pc.getInventory().removeItem(l1iteminstance1, 1);
-		         	}
-		        }
+				if (l1iteminstance1 != null){
+					if (l1iteminstance1.getItem().get_safeenchant() <= -1){
+						pc.sendPackets(new S_ServerMessage(1309));
+						return;
+					}
+					if (l1iteminstance1.getproctect() == true){
+						pc.sendPackets(new S_ServerMessage(1300));
+						return;
+					}
+					if (l1iteminstance1.getItem().getType2() == 0){
+						pc.sendPackets(new S_ServerMessage(79));
+						return;
+					} else {
+						l1iteminstance1.setproctect(true);
+						pc.sendPackets(new S_ServerMessage(1308, l1iteminstance1.getLogName()));            pc.getInventory().removeItem(l1iteminstance, 1);
+					}
+				}
 //end add
 			} else if (itemId == 40078
 					|| itemId == L1ItemId.SCROLL_OF_ENCHANT_ARMOR
@@ -1379,7 +1379,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						// \f1何も起きませんでした。
 						pc.sendPackets(new S_ServerMessage(79));
 					}
-				} else if (itemId == 40089 || itemId == 140089) { // 復活スクロール、祝福された復活スクロール
+				} else if (itemId == 40089 || itemId == 140089) { // 復活捲軸、祝福的復活捲軸
 					L1Character resobject = (L1Character) L1World.getInstance()
 							.findObject(resid);
 					if (resobject != null) {
