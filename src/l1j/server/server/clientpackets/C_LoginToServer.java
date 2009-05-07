@@ -109,6 +109,13 @@ public class C_LoginToServer extends ClientBasePacket {
                 client.close();
                 return;
             }
+//waja add 被鎖定角色無法登入
+            else if(pc.isBanned()== true ){ 
+                    _log.info("【被鎖定角色登入】 帳號=" + login + " 角色=" + charName 
+        					+ " IP位址:" + client.getHostname());
+                    client.kick(); // 狀態待修改
+                  return;
+              }
         }
 //add end
 		if (Config.LEVEL_DOWN_RANGE != 0) {
