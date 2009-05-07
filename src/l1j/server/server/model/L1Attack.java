@@ -762,9 +762,14 @@ public class L1Attack {
 					add_dmg = 1;
 				}
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
-			} else if (_weaponId == 190) { // サイハの弓
+			} else if (_weaponId == 190) { // 沙哈之弓
 				dmg += 1 + RandomArrayList.getArrayshortList((short) 15);
 			}
+//waja add 玄冰弓
+		} else if (_weaponId == 507) {
+			dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
+					_weaponId);	
+//add end
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = _sting.getItem().getDmgSmall();
 			if (add_dmg == 0) {
@@ -781,9 +786,9 @@ public class L1Attack {
 			dmg = L1WeaponSkill.getDiceDaggerDamage(_pc, _targetPc, weapon);
 		} else if (_weaponId == 204 || _weaponId == 100204) { // 真紅のクロスボウ
 			L1WeaponSkill.giveFettersEffect(_pc, _targetPc);
-		} else if (_weaponId == 264) { // ライトニングエッジ
+		} else if (_weaponId == 264 || _weaponId == 506) { // 雷雨之劍 & waja add 天雷劍
 			dmg += L1WeaponSkill.getLightningEdgeDamage(_pc, _target);
-		} else if (_weaponId == 260 || _weaponId == 263) { // レイジングウィンド、フリージングランサー
+		} else if (_weaponId == 260 || _weaponId == 263) { // 狂風之斧 /酷寒之矛
 			dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
 					_weaponId);
 		} else if (_weaponId == 261) { // アークメイジスタッフ
@@ -977,9 +982,14 @@ public class L1Attack {
 					add_dmg /= 2;
 				}
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
-			} else if (_weaponId == 190) { // サイハの弓
+			} else if (_weaponId == 190) { // 沙哈之弓
 				dmg += 1 + RandomArrayList.getArrayshortList((short) 15);
 			}
+//waja add 玄冰弓
+			} else if (_weaponId == 507) {
+				dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
+						_weaponId);
+//add end
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = 0;
 			if (_targetNpc.getNpcTemplate().get_size().
@@ -1000,9 +1010,9 @@ public class L1Attack {
 			dmg += L1WeaponSkill.getBaphometStaffDamage(_pc, _target);
 		} else if (_weaponId == 204 || _weaponId == 100204) { // 真紅のクロスボウ
 			L1WeaponSkill.giveFettersEffect(_pc, _targetNpc);
-		} else if (_weaponId == 264) { // ライトニングエッジ
+		} else if (_weaponId == 264 || _weaponId == 506) { // 雷雨之劍 & waja add 天雷劍
 			dmg += L1WeaponSkill.getLightningEdgeDamage(_pc, _target);
-		} else if (_weaponId == 260 || _weaponId == 263) { // レイジングウィンド、フリージングランサー
+		} else if (_weaponId == 260 || _weaponId == 263) { // 狂風之斧 /酷寒之矛
 			dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
 					_weaponId);
 		} else if (_weaponId == 261) { // アークメイジスタッフ
