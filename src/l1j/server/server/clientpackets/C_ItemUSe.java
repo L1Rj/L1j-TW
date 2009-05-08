@@ -1279,11 +1279,8 @@ public class C_ItemUSe extends ClientBasePacket {
 							spellsc_objid, spellsc_x, spellsc_y, null, 0,
 							L1SkillUse.TYPE_SPELLSC);
 
-// waja change 歌唱之島&隱藏之谷 地圖改回台版
-//				} else if (itemId >= 40373 && itemId <= 40382 // 地圖各種
-//						|| itemId >= 40385 && itemId <= 40390) {
-				} else	if (itemId >= 40373 && itemId <= 40390) {
-//end change
+				} else if (itemId >= 40373 && itemId <= 40382 // 地圖各種
+						|| itemId >= 40385 && itemId <= 40390) {
 					pc.sendPackets(new S_UseMap(pc, l1iteminstance.getId(),
 							l1iteminstance.getItem().getItemId()));
 				} else if (itemId == 40310 || itemId == 40730

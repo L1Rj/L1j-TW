@@ -35,7 +35,7 @@ public class HpRegenerationByDoll extends TimerTask {
         if (newHp < 0) {
             newHp = 0;
         }
-//add 娃娃回血效果
+//add 娃娃回血效果 waja 註: 效果變成幻術士的恐慌?
 //		_pc.sendPackets(new S_SkillSound(_pc.getId(), 6506));
 //		_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 6506));
 //end
