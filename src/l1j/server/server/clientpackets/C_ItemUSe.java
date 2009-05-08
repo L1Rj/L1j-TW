@@ -61,8 +61,10 @@ import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1TownLocation;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1DollInstance;
+import l1j.server.server.model.Instance.L1DoorInstance;
 import l1j.server.server.model.Instance.L1EffectInstance;
 import l1j.server.server.model.Instance.L1FurnitureInstance;
+import l1j.server.server.model.Instance.L1GuardInstance;
 import l1j.server.server.model.Instance.L1GuardianInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1MonsterInstance;
@@ -402,7 +404,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						FailureEnchant(pc, l1iteminstance1, client);
 					}
 				}
-
 //waja add 裝備保護卷軸
 			} else if (itemId == 30001) {
 				if (l1iteminstance1 != null){
@@ -1392,9 +1393,7 @@ public class C_ItemUSe extends ClientBasePacket {
 												0)) {
 									if (!visiblePc.isDead()) {
 										// \f1その場所に他の人が立っているので復活させることができません。
-										pc
-												.sendPackets(new S_ServerMessage(
-														592));
+										pc.sendPackets(new S_ServerMessage(592));
 										return;
 									}
 								}
@@ -1417,7 +1416,9 @@ public class C_ItemUSe extends ClientBasePacket {
 								}
 							}
 						} else if (resobject instanceof L1NpcInstance) {
-							if (!(resobject instanceof L1TowerInstance)) {
+							if (!(resobject instanceof L1TowerInstance)&& 
+									!(resobject instanceof L1DoorInstance) && //waja add 門不可復活
+									!(resobject instanceof L1GuardInstance)) {//waja add 守衛不可復活
 								L1NpcInstance npc = (L1NpcInstance) resobject;
 								if (npc.getNpcTemplate().isCantResurrect()) {
 									pc.getInventory().removeItem(l1iteminstance,
