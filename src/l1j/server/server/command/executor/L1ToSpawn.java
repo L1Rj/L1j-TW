@@ -64,11 +64,11 @@ public class L1ToSpawn implements L1CommandExecutor {
 				L1Teleport.teleport(pc, spawn.getLocX(), spawn.getLocY(), spawn
 						.getMapId(), 5, false);
 				pc
-						.sendPackets(new S_SystemMessage("spawnid(" + id
-								+ ")の元へ飛びます"));
+						.sendPackets(new S_SystemMessage("移動到刷怪編號 spawnid(" + id
+								+ ")"));
 			} else {
-				pc.sendPackets(new S_SystemMessage("spawnid(" + id
-						+ ")は見つかりません"));
+				pc.sendPackets(new S_SystemMessage("刷怪編號 spawnid(" + id
+						+ ")沒找到!!"));
 			}
 			_spawnId.put(pc.getId(), id);
 		} catch (Exception exception) {

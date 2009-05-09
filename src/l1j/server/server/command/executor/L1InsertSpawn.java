@@ -69,7 +69,7 @@ public class L1InsertSpawn implements L1CommandExecutor {
 					" (" + npcId + ") ").append("追加。").toString();
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, "", e);
-			msg = "請輸入 " + cmdName + " mob|npc NPCID 。";
+			msg = "請輸入 " + cmdName + " mob|npc NPCID。";
 		} finally {
 			if (msg != null) {
 				pc.sendPackets(new S_SystemMessage(msg));
