@@ -215,16 +215,15 @@ public class L1V1Map extends L1Map {
 
 	@Override
 	public boolean isPassable(int x, int y, int heading) {
-		if (heading == -1) { // -1 解
+		if (heading == -1) { // -1 解 // 5.10 Start
 			return false;
 		}
 		// 現在のタイル
 		int tile1 = accessTile(x, y);
 		// 移動予定のタイル
-		int NewX = x + HEADING_TABLE_X[heading]; // 5.06 Start
+		int NewX = x + HEADING_TABLE_X[heading];
 		int NewY = y + HEADING_TABLE_Y[heading];
-		int tile2;
-		tile2 = accessTile(NewX, NewY);
+		int tile2 = accessTile(NewX, NewY);
 
 		/*if (heading == 0) {
 			tile2 = accessTile(x, y - 1);
@@ -244,7 +243,7 @@ public class L1V1Map extends L1Map {
 			tile2 = accessTile(x - 1, y - 1);
 		} else {
 			return false;
-		}*/ // 5.06 End
+		}*/ // 5.10 End
 
 		if ((tile2 & BITFLAG_IS_IMPASSABLE) == BITFLAG_IS_IMPASSABLE) {
 			return false;
@@ -341,18 +340,18 @@ public class L1V1Map extends L1Map {
 
 	@Override
 	public boolean isArrowPassable(int x, int y, int heading) {
-		if (heading == -1) { // -1 解
+		if (heading == -1) { // -1 解 // 5.10 Start
 			return false;
 		}
 		// 現在のタイル
 		int tile1 = accessTile(x, y);
-		// 移動予定のタイル
-		int tile2;
 		// 移動予定の座標
-		int newX = x; // 5.01 Start
-		int newY = y;/*
+		int newX = x + HEADING_TABLE_X[heading];
+		int newY = y + HEADING_TABLE_Y[heading];
+		// 移動予定のタイル
+		int tile2 = accessTile(newX, newY);
 
-		if (heading == 0) {
+		/*if (heading == 0) {
 			tile2 = accessTile(x, y - 1);
 			newX = x;
 			newY = y - 1;
@@ -386,10 +385,7 @@ public class L1V1Map extends L1Map {
 			newY = y - 1;
 		} else {
 			return false;
-		}*/
-		newX += HEADING_TABLE_X[heading];
-		newY += HEADING_TABLE_Y[heading];
-		tile2 = accessOriginalTile(newX, newY); // 5.01 End
+		}*/ // 5.10 End
 
 		if (isExistDoor(newX, newY)) {
 			return false;

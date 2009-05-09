@@ -138,12 +138,18 @@ public class L1V2Map extends L1Map {
 
 	@Override
 	public boolean isArrowPassable(int x, int y, int heading) {
+		if (heading == -1) { // -1 解 // 5.10 Start
+			return false;
+		}
 		int tile;
 		// 移動予定の座標
-		int newX = x; // 5.01 Start
-		int newY = y; /*
+		int newX = x; // 5.10 Start
+		int newY = y; 
+		newX += HEADING_TABLE_X[heading];
+		newY += HEADING_TABLE_Y[heading];
+		tile = accessOriginalTile(newX, newY);
 
-		if (heading == 0) {
+		/*if (heading == 0) {
 			tile = accessOriginalTile(x, y - 1);
 			newX = x;
 			newY = y - 1;
@@ -177,11 +183,7 @@ public class L1V2Map extends L1Map {
 			newY = y - 1;
 		} else {
 			return false;
-		}*/
-		newX += HEADING_TABLE_X[heading];
-		newY += HEADING_TABLE_Y[heading];
-		tile = accessOriginalTile(newX, newY); // 5.01 End
-
+		}*/ // 5.10 End
 
 		if (isExistDoor(newX, newY)) {
 			return false;
@@ -245,7 +247,11 @@ public class L1V2Map extends L1Map {
 
 	@Override
 	public boolean isPassable(int x, int y, int heading) {
-		int tile; // 5.01 Start
+		if (heading == -1) { // -1 解 // 5.10 Start
+			return false;
+		}
+		int tile; // 5.10 Start
+		tile = accessOriginalTile(x + HEADING_TABLE_X[heading], y + HEADING_TABLE_Y[heading]); // 5.10 End
 		/*if (heading == 0) {
 			tile = accessOriginalTile(x, y - 1);
 		} else if (heading == 1) {
@@ -265,7 +271,6 @@ public class L1V2Map extends L1Map {
 		} else {
 			return false;
 		}*/
-		tile = accessOriginalTile(x + HEADING_TABLE_X[heading], y + HEADING_TABLE_Y[heading]); // 5.01 End
 
 		if (tile == 1 || tile == 9 || tile == 65 || tile == 69 || tile == 73) {
 			return false;

@@ -21,9 +21,9 @@ package l1j.server.server.clientpackets;
 import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import l1j.server.server.ClientThread;
 
 import l1j.server.Config; // 5.06
+import l1j.server.server.ClientThread;
 
 public abstract class ClientBasePacket {
 	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE; // 5.06
