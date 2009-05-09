@@ -61,10 +61,10 @@ import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1TownLocation;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1DollInstance;
-import l1j.server.server.model.Instance.L1DoorInstance;
+import l1j.server.server.model.Instance.L1DoorInstance;//waja add 門
 import l1j.server.server.model.Instance.L1EffectInstance;
 import l1j.server.server.model.Instance.L1FurnitureInstance;
-import l1j.server.server.model.Instance.L1GuardInstance;
+import l1j.server.server.model.Instance.L1GuardInstance;//waja add 守衛
 import l1j.server.server.model.Instance.L1GuardianInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1MonsterInstance;
