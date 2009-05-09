@@ -1621,12 +1621,12 @@ Update etcitem Set name = '龍騎士書板(寒冰噴吐)' Where item_id = '49115
 Update etcitem Set name = '龍騎士書板(覺醒：巴拉卡斯)' Where item_id = '49116';
 Update etcitem Set name = '記憶水晶(鏡像)' Where item_id = '49117';
 Update etcitem Set name = '記憶水晶(混亂)' Where item_id = '49118';
-Update etcitem Set name = '記憶水晶(爆擊)' Where item_id = '49119';
+Update etcitem Set name = '記憶水晶(暴擊)' Where item_id = '49119';
 Update etcitem Set name = '記憶水晶(幻覺：歐吉)' Where item_id = '49120';
 Update etcitem Set name = '記憶水晶(立方：燃燒)' Where item_id = '49121';
 Update etcitem Set name = '記憶水晶(專注)' Where item_id = '49122';
 Update etcitem Set name = '記憶水晶(心靈破壞)' Where item_id = '49123';
-Update etcitem Set name = '記憶水晶(骷髏破壞)' Where item_id = '49124';
+Update etcitem Set name = '記憶水晶(骷髏毀壞)' Where item_id = '49124';
 Update etcitem Set name = '記憶水晶(幻覺：巫妖)' Where item_id = '49125';
 Update etcitem Set name = '記憶水晶(立方：地裂)' Where item_id = '49126';
 Update etcitem Set name = '記憶水晶(耐力)' Where item_id = '49127';
@@ -1636,7 +1636,7 @@ Update etcitem Set name = '記憶水晶(幻覺：鑽石高崙)' Where item_id = 
 Update etcitem Set name = '記憶水晶(立方：衝擊)' Where item_id = '49131';
 Update etcitem Set name = '記憶水晶(洞察)' Where item_id = '49132';
 Update etcitem Set name = '記憶水晶(恐慌)' Where item_id = '49133';
-Update etcitem Set name = '記憶水晶(疼痛的歡逾)' Where item_id = '49134';
+Update etcitem Set name = '記憶水晶(疼痛的歡愉)' Where item_id = '49134';
 Update etcitem Set name = '記憶水晶(幻覺：化身)' Where item_id = '49135';
 Update etcitem Set name = '記憶水晶(立方：和諧)' Where item_id = '49136';
 Update etcitem Set name = '鮮奶油蛋糕' Where item_id = '49137';
