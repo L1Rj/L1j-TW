@@ -21,9 +21,10 @@ package l1j.server.server.clientpackets;
 import java.io.BufferedWriter;// waja add 丟棄物品紀錄文件版
 import java.io.FileWriter;// waja add 丟棄物品紀錄文件版
 import java.io.IOException;// waja add 丟棄物品紀錄文件版
+import java.sql.Timestamp;// waja add 丟棄物品紀錄文件版
 import java.util.logging.Logger;// waja add 丟棄物品紀錄文件版
 
-import com.sun.jmx.snmp.Timestamp;// waja add 丟棄物品紀錄文件版
+
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.model.L1World;
@@ -93,7 +94,7 @@ public class C_DropItem extends ClientBasePacket {
 			pc.turnOnOffLight();
 		}
 	}
-//waja add 丟棄物品紀錄 文件版
+//waja add 丟棄物品紀錄 文件版 寫入檔案
 	public static void dropitem(String info) { 
 	try { 
 	BufferedWriter out = new BufferedWriter(new FileWriter("dropitem.txt", true)); 

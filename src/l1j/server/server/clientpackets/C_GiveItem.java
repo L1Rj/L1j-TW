@@ -22,10 +22,11 @@ package l1j.server.server.clientpackets;
 import java.io.BufferedWriter;//waja add 給予NPC物品記錄 文件版
 import java.io.FileWriter;//waja add 給予NPC物品記錄 文件版
 import java.io.IOException;//waja add 給予NPC物品記錄 文件版
+import java.sql.Timestamp;//waja add 給予NPC物品記錄 文件版
 import java.util.logging.Logger;
 import java.util.Random;
 
-import com.sun.jmx.snmp.Timestamp;//waja add 給予物品記錄 文件版
+
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.PetTypeTable;
@@ -133,7 +134,7 @@ public class C_GiveItem extends ClientBasePacket {
 		}
 	}
 
-//waja add 給予NPC道具紀錄文件版
+//waja add 給予NPC道具紀錄 文件版 寫入檔案
     public static void giveitem(String info) {
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter("giveitem.txt", true));

@@ -21,9 +21,10 @@ package l1j.server.server.model;
 import java.io.BufferedWriter;//waja add 交易紀錄文件版
 import java.io.FileWriter;//waja add 交易紀錄文件版
 import java.io.IOException;//waja add 交易紀錄文件版
+import java.sql.Timestamp;//waja add 交易紀錄文件版
 import java.util.List;
 
-import com.sun.jmx.snmp.Timestamp;//waja add 交易紀錄文件版
+
 
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -136,7 +137,7 @@ public class L1Trade {
 		}
 	}
 
-//waja add 交易紀錄文件版
+//waja add 交易紀錄 文件版 寫入檔案
     public static void trade(String info) { 
      try { 
       BufferedWriter out = new BufferedWriter(new FileWriter("trade.txt", true)); 
