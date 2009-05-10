@@ -137,7 +137,7 @@ public class C_GiveItem extends ClientBasePacket {
 //waja add 給予NPC道具紀錄 文件版 寫入檔案
     public static void giveitem(String info) {
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("giveitem.txt", true));
+            BufferedWriter out = new BufferedWriter(new FileWriter("log/giveitem.log", true));
             out.write(info + "\r\n");
             out.close();
         } catch (IOException e) {

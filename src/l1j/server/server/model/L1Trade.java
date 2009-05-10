@@ -140,7 +140,7 @@ public class L1Trade {
 //waja add 交易紀錄 文件版 寫入檔案
     public static void trade(String info) { 
      try { 
-      BufferedWriter out = new BufferedWriter(new FileWriter("trade.txt", true)); 
+      BufferedWriter out = new BufferedWriter(new FileWriter("log/trade.log", true)); 
       out.write(info + "\r\n"); 
       out.close(); 
      } catch (IOException e) { 

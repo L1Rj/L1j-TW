@@ -97,7 +97,7 @@ public class C_DropItem extends ClientBasePacket {
 //waja add 丟棄物品紀錄 文件版 寫入檔案
 	public static void dropitem(String info) { 
 	try { 
-	BufferedWriter out = new BufferedWriter(new FileWriter("dropitem.txt", true)); 
+	BufferedWriter out = new BufferedWriter(new FileWriter("log/dropitem.log", true)); 
 	out.write(info + "\r\n"); 
 	out.close(); 
 	} catch (IOException e) { 
