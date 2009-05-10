@@ -93,15 +93,15 @@ public class L1Trade {
 						trading_partner.getInventory());
 //waja add 交易記錄文件版 (主動找交易的玩家)
                 trade("IP" 
-                      + "(" + player.getNetConnection().getIp() + ")" 
-                      +"玩家" 
-                      + ":【" + player.getName() + "】 " 
-                      + "的" 
-                      + "【+" + l1iteminstance1.getEnchantLevel() 
-                      + " " + l1iteminstance1.getName() + 
-                      "(" + l1iteminstance1.getCount() + ")" + "】" 
-                      + " 轉移給玩家" 
-                      + ":【" + trading_partner.getName() + "】，" 
+                      + "(" + player.getNetConnection().getIp() + ")"
+                      +"玩家"
+                      + ":【" + player.getName() + "】 "
+                      + "的"
+                      + "【+" + l1iteminstance1.getEnchantLevel()
+                      + " " + l1iteminstance1.getName() +
+                      "(" + l1iteminstance1.getCount() + ")" + "】"
+                      + " 轉移給玩家"
+                      + ":【" + trading_partner.getName() + "】，"
                       + "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。"); 	
 //add end
 			}
@@ -111,18 +111,18 @@ public class L1Trade {
 				trading_partner.getTradeWindowInventory().tradeItem(
 						l1iteminstance2, l1iteminstance2.getCount(),
 						player.getInventory());
-//waja add 交易記錄 (被邀請交易的玩家)
-                trade("IP" 
-                      + "(" + trading_partner.getNetConnection().getIp() + ")" 
-                      +"玩家" 
-                      + ":【" + trading_partner.getName() + "】 " 
-                      + "的" 
-                      + "【+" + l1iteminstance2.getEnchantLevel() 
-                      + " " + l1iteminstance2.getName() + 
-                      "(" + l1iteminstance2.getCount() + ")" + "】" 
-                      + " 轉移給玩家" 
-                      + ":【" + player.getName() + "】，" 
-                      + "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。"); 	
+//waja add 交易記錄  文件版 (被邀請交易的玩家)
+				trade("IP" 
+						+ "(" + trading_partner.getNetConnection().getIp() + ")"
+						+"玩家"
+						+ ":【" + trading_partner.getName() + "】 "
+						+ "的"
+						+ "【+" + l1iteminstance2.getEnchantLevel()
+						+ " " + l1iteminstance2.getName() +
+						"(" + l1iteminstance2.getCount() + ")" + "】"
+						+ " 轉移給玩家"
+						+ ":【" + player.getName() + "】，"
+						+ "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。"); 	
 //add end
 			}
 

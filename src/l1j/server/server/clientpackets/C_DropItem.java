@@ -78,16 +78,16 @@ public class C_DropItem extends ClientBasePacket {
 				return;
 			}
 //waja add 丟棄物品記錄 文件版
-            dropitem("IP" 
-                    + "(" + pc.getNetConnection().getIp() + ")" 
-                    +"玩家" 
-                    + ":【" + pc.getName() + "】 " 
-                    + "的" 
-                    + "【+" + item.getEnchantLevel() 
-                    + " " + item.getName() + 
-                    "(" + count + ")" + "】" 
-                    + " 丟棄到地上," 
-                    + "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。"); 
+			dropitem("IP"
+					+ "(" + pc.getNetConnection().getIp() + ")"
+					+"玩家"
+					+ ":【" + pc.getName() + "】 "
+					+ "的"
+					+ "【+" + item.getEnchantLevel()
+					+ " " + item.getName() +
+					"(" + count + ")" + "】"
+					+ " 丟棄到地上,"
+					+ "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。"); 
 //end add
 			pc.getInventory().tradeItem(item, count,
 					L1World.getInstance().getInventory(x, y, pc.getMapId()));
