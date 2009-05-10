@@ -104,7 +104,7 @@ public class SkillsTable {
 			l1skills.setLawful(rs.getInt("lawful"));
 			l1skills.setRanged(rs.getInt("ranged"));
 			l1skills.setArea(rs.getInt("area"));
-			l1skills.setIsThrough(rs.getInt("through"));
+			l1skills.setThrough(rs.getBoolean("through"));
 			l1skills.setId(rs.getInt("id"));
 			l1skills.setNameId(rs.getString("nameid"));
 			l1skills.setActionId(rs.getInt("action_id"));

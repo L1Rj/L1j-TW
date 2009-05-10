@@ -684,10 +684,11 @@ public class L1SkillUse {
 			return false; // 攻擊スキルでPKモードじゃない場合
 		}
 
-		if (_user.glanceCheck(cha.getX(), cha.getY()) == false
-				&& _skill.getIsThrough() == false) {
+		if (_user.glanceCheck(cha.getX(), cha.getY()) == false 
+				&& _skill.isThrough() == false) {
 			// エンチャント、復活スキルは障害物の判定をしない
-			if (!(_skill.getType() == L1Skills.TYPE_CHANGE || _skill.getType() == L1Skills.TYPE_RESTORE)) {
+			if (!(_skill.getType() == L1Skills.TYPE_CHANGE
+					|| _skill.getType() == L1Skills.TYPE_RESTORE)) {
 				return false; // 直線上に障害物がある
 			}
 		}
@@ -869,10 +870,12 @@ public class L1SkillUse {
 			}
 
 			if (_skill.getArea() == 0) { // 單体の場合
-				if (_user.glanceCheck(_target.getX(), _target.getY()) // 直線上に障害物があるか
-				== false) {
-					if ((_skill.getType() & L1Skills.TYPE_ATTACK) == L1Skills.TYPE_ATTACK) {
-						_targetList.add(new TargetStatus(_target, false)); // ダメージも發生しないし、ダメージモーションも發生しないが、スキルは發動
+				if (!_user.glanceCheck(_target.getX(), _target.getY())) { // 直線上に障害物があるか
+					if ((_skill.getType() & L1Skills.TYPE_ATTACK) == L1Skills
+							.TYPE_ATTACK && _skillId != 10026
+							&& _skillId != 10027 && _skillId != 10028
+							&& _skillId != 10029) { // 安息攻撃以外の攻撃スキル
+						_targetList.add(new TargetStatus(_target, false)); // ダメージも発生しないし、ダメージモーションも発生しないが、スキルは発動
 						return;
 					}
 				}
@@ -2010,7 +2013,6 @@ public class L1SkillUse {
 						_player.broadcastPacket(new S_ChatPacket(_player,
 								(cha.getName())+("! ")+("$3717"), 0, (byte) 0)); // waja change 龍的安息字串
 					}
-					dmg = cha.getCurrentHp();
 				} else if (_skillId == 10057) { // 引き寄せ
 					L1Teleport.teleportToTargetFront(cha, _user, 1);
 				}

@@ -292,16 +292,12 @@ public class L1Skills {
 
 	boolean _isThrough;
 
-	public boolean getIsThrough() {
+	public boolean isThrough() {
 		return _isThrough;
 	}
 
-	public void setIsThrough(int flag) {
-		if (flag == 0) {
-			_isThrough = false;
-		} else {
-			_isThrough = true;
-		}
+	public void setThrough(boolean flag) {
+		_isThrough = flag;
 	}
 
 	private int _id;
