@@ -387,16 +387,13 @@ public class L1NpcInstance extends L1Character {
 		_targetItemList.clear();
 		_targetItem = null;
 		L1Character target = _target; // ここから先は_targetが變わると影響出るので別領域に參照確保
-		if (getAtkspeed() == 0) // 逃げるキャラ
-		{
-			if (getPassispeed() > 0) // 移動できるキャラ
-			{
+		if (getAtkspeed() == 0) { // 逃げるキャラ
+			if (getPassispeed() > 0) { // 移動できるキャラ
 				int escapeDistance = 15;
 				if (hasSkillEffect(40) == true) {
 					escapeDistance = 1;
 				}
-				if (getLocation().getTileLineDistance(target.getLocation()) > escapeDistance) {
-					// ターゲットから逃げるの終了
+				if (getLocation().getTileLineDistance(target.getLocation()) > escapeDistance) { // ターゲットから逃げるの終了
 					tagertClear();
 				} else { // ターゲットから逃げる
 					int dir = targetReverseDirection(target.getX(), target
@@ -407,21 +404,33 @@ public class L1NpcInstance extends L1Character {
 				}
 			}
 		} else { // 逃げないキャラ
-			boolean isSkillUse = false;
-			isSkillUse = mobSkill.skillUse(target);
-			if (isSkillUse == true) {
-				setSleepTime(calcSleepTime(mobSkill.getSleepTime(),
-						MAGIC_SPEED));
-				return;
-			}
-
 			if (isAttackPosition(target.getX(), target.getY(), getNpcTemplate()
-					.get_ranged())) {
-				// 攻擊可能位置
-				setHeading(targetDirection(target.getX(), target.getY()));
-				attackTarget(target);
-			} else {
-				// 攻擊不可能位置
+					.get_ranged())) { // 攻擊可能位置
+				if (mobSkill.isSkillTrigger(target)) { // トリガの條件に合うスキルがある
+					if (_random.nextInt(2) >= 1) { // 一定の確率で物理攻擊
+						setHeading(targetDirection(target.getX(), target
+								.getY()));
+						attackTarget(target);
+					} else {
+						if (mobSkill.skillUse(target, true)) { // スキル使用(mobskill.sqlのTriRndに從う)
+							setSleepTime(calcSleepTime(mobSkill.getSleepTime(),
+									MAGIC_SPEED));
+						} else { // スキル使用が失敗したら物理攻擊
+							setHeading(targetDirection(target.getX(), target
+									.getY()));
+							attackTarget(target);
+						}
+					}
+				} else {
+					setHeading(targetDirection(target.getX(), target.getY()));
+					attackTarget(target);
+				}
+			} else { // 攻擊不可能位置
+				if (mobSkill.skillUse(target, false)) { // スキル使用(mobskill.sqlのTriRndに從わず、發動確率は100%)
+					setSleepTime(calcSleepTime(mobSkill.getSleepTime(),
+							MAGIC_SPEED));
+					return;
+				}
 
 				if (getPassispeed() > 0) {
 					// 移動できるキャラ

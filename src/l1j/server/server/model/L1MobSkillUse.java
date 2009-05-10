@@ -107,9 +107,9 @@ public class L1MobSkillUse {
 	}
 
 	/*
-	 * スキル攻擊 スキル攻擊可能ならばtrueを返す。 攻擊できなければ、falseを返し、通常攻擊を行う。
+	 * トリガーの條件のみチェック。
 	 */
-	public boolean skillUse(L1Character tg) {
+	public boolean isSkillTrigger(L1Character tg) {
 		if (_mobSkillTemplate == null) {
 			return false;
 		}
@@ -135,7 +135,43 @@ public class L1MobSkillUse {
 				_target = tg;
 			}
 
-			if (isSkillUseble(i) == false) {
+			if (isSkillUseble(i, false)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/*
+	 * スキル攻擊 スキル攻擊可能ならばtrueを返す。 攻擊できなければfalseを返す。
+	 */
+	public boolean skillUse(L1Character tg, boolean isTriRnd) {
+		if (_mobSkillTemplate == null) {
+			return false;
+		}
+		_target = tg;
+
+		int type;
+		type = getMobSkillTemplate().getType(0);
+
+		if (type == L1MobSkill.TYPE_NONE) {
+			return false;
+		}
+
+		int i = 0;
+		for (i = 0; i < getMobSkillTemplate().getSkillSize()
+				&& getMobSkillTemplate().getType(i) != L1MobSkill.TYPE_NONE; i++) {
+
+			// changeTargetが設定されている場合、ターゲットの入れ替え
+			int changeType = getMobSkillTemplate().getChangeTarget(i);
+			if (changeType > 0) {
+				_target = changeTarget(changeType, i);
+			} else {
+				// 設定されてない場合は本來のターゲットにする
+				_target = tg;
+			}
+
+			if (isSkillUseble(i, isTriRnd) == false) {
 				continue;
 			}
 
@@ -394,15 +430,17 @@ public class L1MobSkillUse {
 	/*
 	 * トリガーの條件のみチェック
 	 */
-	private boolean isSkillUseble(int skillIdx) {
+	private boolean isSkillUseble(int skillIdx, boolean isTriRnd) {
 		boolean useble = false;
 
-		if (getMobSkillTemplate().getTriggerRandom(skillIdx) > 0) {
-			byte chance = RandomArrayList.getArray100List();
-			if (chance < getMobSkillTemplate().getTriggerRandom(skillIdx)) {
-				useble = true;
-			} else {
-				return false;
+		if (isTriRnd) {
+			if (getMobSkillTemplate().getTriggerRandom(skillIdx) > 0) {
+				int chance = RandomArrayList.getArray100List();
+				if (chance < getMobSkillTemplate().getTriggerRandom(skillIdx)) {
+					useble = true;
+				} else {
+					return false;
+				}
 			}
 		}
 
