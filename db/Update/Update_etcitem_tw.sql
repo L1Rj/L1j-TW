@@ -1482,7 +1482,7 @@ Update etcitem Set name = '指定傳送(慾望洞窟地之領域)' Where item_id
 Update etcitem Set name = '指定傳送(底比斯沙漠)' Where item_id = '42088';
 Update etcitem Set name = '指定傳送(底比斯金字塔內部)' Where item_id = '42089';
 Update etcitem Set name = '指定傳送(底比斯歐西里斯祭壇)' Where item_id = '42090';
-Update etcitem Set name = '暴風疾走(10/0)' Where item_id = '42501';
+Update etcitem Set name = '暴風疾走(道具欄)' Where item_id = '42501';
 Update etcitem Set name = '返生藥水' Where item_id = '43000';
 Update etcitem Set name = '魔法書 (初級治癒術)' Where item_id = '45000';
 Update etcitem Set name = '魔法書 (日光術)' Where item_id = '45001';
@@ -1952,4 +1952,4 @@ Update etcitem Set name_id = '指定傳送(慾望洞窟地之領域)' Where item
 Update etcitem Set name_id = '底比斯沙漠 $230' Where item_id = '42088';
 Update etcitem Set name_id = '底比斯金字塔內部 $230' Where item_id = '42089';
 Update etcitem Set name_id = '底比斯歐西里斯祭壇 $230' Where item_id = '42090';
-Update etcitem Set name_id = '暴風疾走(10/0)' Where item_id = '42501';
+Update etcitem Set name_id = '暴風疾走(道具欄)' Where item_id = '42501';
