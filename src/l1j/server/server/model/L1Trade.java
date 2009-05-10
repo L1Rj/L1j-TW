@@ -18,7 +18,12 @@
  */
 package l1j.server.server.model;
 
+import java.io.BufferedWriter;//waja add 交易紀錄文件版
+import java.io.FileWriter;//waja add 交易紀錄文件版
+import java.io.IOException;//waja add 交易紀錄文件版
 import java.util.List;
+
+import com.sun.jmx.snmp.Timestamp;//waja add 交易紀錄文件版
 
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -85,6 +90,19 @@ public class L1Trade {
 				player.getTradeWindowInventory().tradeItem(l1iteminstance1,
 						l1iteminstance1.getCount(),
 						trading_partner.getInventory());
+//waja add 交易記錄文件版 (主動找交易的玩家)
+                trade("IP" 
+                      + "(" + player.getNetConnection().getIp() + ")" 
+                      +"玩家" 
+                      + ":【" + player.getName() + "】 " 
+                      + "的" 
+                      + "【+" + l1iteminstance1.getEnchantLevel() 
+                      + " " + l1iteminstance1.getName() + 
+                      "(" + l1iteminstance1.getCount() + ")" + "】" 
+                      + " 轉移給玩家" 
+                      + ":【" + trading_partner.getName() + "】，" 
+                      + "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。"); 	
+//add end
 			}
 			for (cnt = 0; cnt < trading_partner_tradecount; cnt++) {
 				L1ItemInstance l1iteminstance2 = (L1ItemInstance) trading_partner_tradelist
@@ -92,6 +110,19 @@ public class L1Trade {
 				trading_partner.getTradeWindowInventory().tradeItem(
 						l1iteminstance2, l1iteminstance2.getCount(),
 						player.getInventory());
+//waja add 交易記錄 (被邀請交易的玩家)
+                trade("IP" 
+                      + "(" + trading_partner.getNetConnection().getIp() + ")" 
+                      +"玩家" 
+                      + ":【" + trading_partner.getName() + "】 " 
+                      + "的" 
+                      + "【+" + l1iteminstance2.getEnchantLevel() 
+                      + " " + l1iteminstance2.getName() + 
+                      "(" + l1iteminstance2.getCount() + ")" + "】" 
+                      + " 轉移給玩家" 
+                      + ":【" + player.getName() + "】，" 
+                      + "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。"); 	
+//add end
 			}
 
 			player.sendPackets(new S_TradeStatus(0));
@@ -105,6 +136,17 @@ public class L1Trade {
 		}
 	}
 
+//waja add 交易紀錄文件版
+    public static void trade(String info) { 
+     try { 
+      BufferedWriter out = new BufferedWriter(new FileWriter("trade.txt", true)); 
+      out.write(info + "\r\n"); 
+      out.close(); 
+     } catch (IOException e) { 
+      e.printStackTrace(); 
+     } 
+    } 
+//add end
 	public void TradeCancel(L1PcInstance player) {
 		int cnt;
 		L1PcInstance trading_partner = (L1PcInstance) L1World.getInstance()

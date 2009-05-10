@@ -18,7 +18,12 @@
  */
 package l1j.server.server.clientpackets;
 
-import java.util.logging.Logger;
+import java.io.BufferedWriter;// waja add 丟棄物品紀錄文件版
+import java.io.FileWriter;// waja add 丟棄物品紀錄文件版
+import java.io.IOException;// waja add 丟棄物品紀錄文件版
+import java.util.logging.Logger;// waja add 丟棄物品紀錄文件版
+
+import com.sun.jmx.snmp.Timestamp;// waja add 丟棄物品紀錄文件版
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.model.L1World;
@@ -71,12 +76,35 @@ public class C_DropItem extends ClientBasePacket {
 				pc.sendPackets(new S_ServerMessage(125));
 				return;
 			}
-
+//waja add 丟棄物品記錄 文件版
+            dropitem("IP" 
+                    + "(" + pc.getNetConnection().getIp() + ")" 
+                    +"玩家" 
+                    + ":【" + pc.getName() + "】 " 
+                    + "的" 
+                    + "【+" + item.getEnchantLevel() 
+                    + " " + item.getName() + 
+                    "(" + count + ")" + "】" 
+                    + " 丟棄到地上," 
+                    + "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。"); 
+//end add
 			pc.getInventory().tradeItem(item, count,
 					L1World.getInstance().getInventory(x, y, pc.getMapId()));
 			pc.turnOnOffLight();
 		}
 	}
+//waja add 丟棄物品紀錄 文件版
+	public static void dropitem(String info) { 
+	try { 
+	BufferedWriter out = new BufferedWriter(new FileWriter("dropitem.txt", true)); 
+	out.write(info + "\r\n"); 
+	out.close(); 
+	} catch (IOException e) { 
+	e.printStackTrace(); 
+	} 
+	} 
+
+//end add
 
 	@Override
 	public String getType() {

@@ -19,8 +19,13 @@
 
 package l1j.server.server.clientpackets;
 
+import java.io.BufferedWriter;//waja add 給予NPC物品記錄 文件版
+import java.io.FileWriter;//waja add 給予NPC物品記錄 文件版
+import java.io.IOException;//waja add 給予NPC物品記錄 文件版
 import java.util.logging.Logger;
 import java.util.Random;
+
+import com.sun.jmx.snmp.Timestamp;//waja add 給予物品記錄 文件版
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.PetTypeTable;
@@ -96,6 +101,19 @@ public class C_GiveItem extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(942)); // 相手のアイテムが重すぎるため、これ以上あげられません。
 			return;
 		}
+//waja add 給予NPC物品記錄 文件版
+        giveitem("IP"
+                + "(" + pc.getNetConnection().getIp() + ")"
+                +"玩家"
+                + ":【" + pc.getName() + "】 "
+                + "的" 
+                + "【+" + item.getEnchantLevel()
+                + " " + item.getName() + 
+                "(" + count + ")" + "】"
+                + " 道具丟給NPC,"
+                + "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。");
+
+//add end
 		item = inv.tradeItem(item, count, targetInv);
 		target.onGetItem(item);
 		target.turnOnOffLight();
@@ -115,6 +133,17 @@ public class C_GiveItem extends ClientBasePacket {
 		}
 	}
 
+//waja add 給予NPC道具紀錄文件版
+    public static void giveitem(String info) {
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter("giveitem.txt", true));
+            out.write(info + "\r\n");
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+//add end
 	private final static String receivableImpls[] = new String[] { "L1Npc", // NPC
 			"L1Monster", // モンスター
 			"L1Guardian", // エルフの森の守護者
