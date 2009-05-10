@@ -47,6 +47,9 @@ public class C_CreateChar extends ClientBasePacket {
 	private static Logger _log = Logger.getLogger(C_CreateChar.class.getName());
 	private static final String C_CREATE_CHAR = "[C] C_CreateChar";
 
+	private static final String CLIENT_LANGUAGE_CODE = Config
+	.CLIENT_LANGUAGE_CODE;
+
 	public C_CreateChar(byte[] abyte0, ClientThread client)
 			throws Exception {
 		super(abyte0);
@@ -218,7 +221,7 @@ public class C_CreateChar extends ClientBasePacket {
 	private static boolean isInvalidName(String name) {
 		int numOfNameBytes = 0;
 		try {
-			numOfNameBytes = name.getBytes("UTF-8").length;
+			numOfNameBytes = name.getBytes(CLIENT_LANGUAGE_CODE).length;
 		} catch (UnsupportedEncodingException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			return false;

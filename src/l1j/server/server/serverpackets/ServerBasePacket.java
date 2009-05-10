@@ -26,9 +26,10 @@ import java.util.logging.Logger;
 import l1j.server.Config; // 5.06
 
 public abstract class ServerBasePacket {
-	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE; // 5.06
 	private static Logger _log = Logger.getLogger(ServerBasePacket.class
 			.getName());
+	
+	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
 
 	ByteArrayOutputStream _bao = new ByteArrayOutputStream();
 
@@ -110,7 +111,7 @@ public abstract class ServerBasePacket {
 	}
 
 	public abstract byte[] getContent() throws IOException;
-	
+
 	/**
 	 * サーバーパケットの種類を表す文字列を返す。("[S] S_WhoAmount" 等)
 	 */
