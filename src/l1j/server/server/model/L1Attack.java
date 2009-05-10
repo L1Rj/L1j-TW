@@ -331,15 +331,13 @@ public class L1Attack {
 		}
 		_target = target;
 		_targetId = target.getId();
-// 5.05 Start 目標不存在時 遠距離發功
-		if (target != null && !((L1Character) target).isDead()) {
+		if (target != null && !((L1Character) target).isDead()) { // 5.05 Start 目標不存在時 遠距離發功
 			_targetX = target.getX();
 			_targetY = target.getY();
 		/*} else { // 目前無效
 			_targetX = Point.getX();
 			_targetY = Point.getY();
-		*/}
-// 5.05 End
+		*/} // 5.05 End
 	}
 
 	/* ■■■■■■■■■■■■■■■■ 命中判定 ■■■■■■■■■■■■■■■■ */
@@ -716,8 +714,13 @@ public class L1Attack {
 			weaponDamage = weaponMaxDamage;
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3671));
 			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3671));
-		//} else if (_weaponType == 0 || _weaponType == 20 || _weaponType == 62) { // 素手、弓、ガントトレット
-		//	weaponDamage = 0;
+		} else if (_weaponType == 20 || _weaponType == 62) { // 弓、ガントトレット
+			weaponDamage = 0;
+		} else if (_weaponType == 0) { // 素手
+			weaponDamage = 0;
+			// int PT_Value = (int) ((_statusDamage + RandomArrayList.getArray10List()) / (RandomArrayList.getArray3List() + 1));
+			// System.out.println("空手給與打擊值 : " + PT_Value);
+			// return PT_Value;
 		} else {
 			weaponDamage = RandomArrayList.getArrayshortList((short) weaponMaxDamage) + 1;
 		}
@@ -756,22 +759,26 @@ public class L1Attack {
 		}
 
 		if (_weaponType == 20) { // 弓
-			if (_arrow != null) {
+			/*if (_arrow != null) {
 				int add_dmg = _arrow.getItem().getDmgSmall();
 				if (add_dmg == 0) {
 					add_dmg = 1;
 				}
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
-			} else if (_weaponId == 190) { // 沙哈之弓
+			} else */if (_weaponId == 190) { // 沙哈之弓
 				dmg += 1 + RandomArrayList.getArrayshortList((short) 15);
+			} else if (_weaponId == 507) { // waja add 玄冰弓
+				dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
+						_weaponId); // add end
 			}
-//waja add 玄冰弓
-		} else if (_weaponId == 507) {
-			dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
-					_weaponId);	
-//add end
 		} else if (_weaponType == 62) { // ガントトレット
-			int add_dmg = _sting.getItem().getDmgSmall();
+			int add_dmg;
+			if (_targetNpc.getNpcTemplate().get_size().
+					equalsIgnoreCase("large")) {
+				add_dmg = _sting.getItem().getDmgLarge();
+			} else {
+				add_dmg = _sting.getItem().getDmgSmall();
+			}
 			if (add_dmg == 0) {
 				add_dmg = 1;
 			}
@@ -797,9 +804,11 @@ public class L1Attack {
 			dmg += L1WeaponSkill.getWeaponSkillDamage(_pc, _target, _weaponId);
 		}
 
-		if (_weaponType == 0) { // 素手 pc.getStr()
-//			dmg = (_random.nextInt(5) + 4) / 4;	日系原廠
-			dmg = RandomArrayList.getArray9List() + _pc.getStr() / 2;
+		if (_weaponType == 0) { // 素手
+			dmg -= RandomArrayList.getArray10List(); // 5.10 修正空手無法攻擊&力量因素補入 - 額外1~10打擊
+			// int PT_Value = (int) ((_statusDamage + RandomArrayList.getArray10List()) / (RandomArrayList.getArray3List() + 1));
+			// System.out.println("空手給與打擊值 : " + dmg + " ; 基準數據值 : " + _statusDamage);
+			// return PT_Value;
 		}
 
 		if (_weaponType2 == 17) { // キーリンク
@@ -926,8 +935,13 @@ public class L1Attack {
 			weaponDamage = weaponMaxDamage;
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3671));
 			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3671));
-		//} else if (_weaponType == 0 || _weaponType == 20 || _weaponType == 62) { // 素手、弓、ガントトレット
-		//	weaponDamage = 0;
+		} else if (_weaponType == 20 || _weaponType == 62) { // 弓、ガントトレット
+			weaponDamage = 0;
+		} else if (_weaponType == 0) { // 素手
+			weaponDamage = 0;
+			// int PT_Value = (int) ((_statusDamage + RandomArrayList.getArray10List()) / (RandomArrayList.getArray3List() + 1));
+			// System.out.println("空手給與打擊值 : " + PT_Value);
+			// return PT_Value;
 		} else {
 			weaponDamage = RandomArrayList.getArrayshortList((short) weaponMaxDamage) + 1;
 		}
@@ -967,7 +981,7 @@ public class L1Attack {
 		}
 
 		if (_weaponType == 20) { // 弓
-			if (_arrow != null) {
+			/*if (_arrow != null) {
 				int add_dmg = 0;
 				if (_targetNpc.getNpcTemplate().get_size().
 						equalsIgnoreCase("large")) {
@@ -982,14 +996,12 @@ public class L1Attack {
 					add_dmg /= 2;
 				}
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
-			} else if (_weaponId == 190) { // 沙哈之弓
+			} else */if (_weaponId == 190) { // 沙哈之弓
 				dmg += 1 + RandomArrayList.getArrayshortList((short) 15);
-			}
-//waja add 玄冰弓
-			} else if (_weaponId == 507) {
+			} else if (_weaponId == 507) { // waja add 玄冰弓
 				dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
-						_weaponId);
-//add end
+						_weaponId); // add end
+			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = 0;
 			if (_targetNpc.getNpcTemplate().get_size().
@@ -1031,8 +1043,10 @@ public class L1Attack {
 		}
 
 		if (_weaponType == 0) { // 素手
-//			dmg = (_random.nextInt(5) + 4) / 4;	日系原廠
-			dmg = RandomArrayList.getArray9List() + _pc.getStr() / 2;
+			dmg -= RandomArrayList.getArray10List(); // 5.10 修正空手無法攻擊&力量因素補入 - 額外1~10打擊
+			// int PT_Value = (int) ((_statusDamage + RandomArrayList.getArray10List()) / (RandomArrayList.getArray3List() + 1));
+			// System.out.println("空手給與打擊值 : " + dmg + " ; 基準數據值 : " + _statusDamage);
+			// return PT_Value;
 		}
 
 		if (_weaponType2 == 17) { // キーリンク
