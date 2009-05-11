@@ -40,10 +40,10 @@ public class RandomArrayList {
 	}
 
 	public static byte getArray2List() {
-		if (listshort < 999) {
-			return Array2[listshort++];
-		} else {
+		if (listshort == 999) {
 			return Array2[listshort = 0];
+		}else{
+			return Array2[++listshort];
 		}
 	}
 
@@ -54,10 +54,10 @@ public class RandomArrayList {
 	}
 
 	public static byte getArray3List() {
-		if (listshort < 999) {
-			return Array3[listshort++];
-		} else {
+		if (listshort == 999) {
 			return Array3[listshort = 0];
+		}else{
+			return Array3[++listshort];
 		}
 	}
 
@@ -68,10 +68,10 @@ public class RandomArrayList {
 	}
 
 	public static byte getArray4List() {
-		if (listshort < 999) {
-			return Array4[listshort++];
-		} else {
+		if (listshort == 999) {
 			return Array4[listshort = 0];
+		}else{
+			return Array4[++listshort];
 		}
 	}
 
@@ -82,10 +82,10 @@ public class RandomArrayList {
 	}
 
 	public static byte getArray5List() {
-		if (listshort < 999) {
-			return Array5[listshort++];
-		} else {
+		if (listshort == 999) {
 			return Array5[listshort = 0];
+		}else{
+			return Array5[++listshort];
 		}
 	}
 
@@ -96,10 +96,10 @@ public class RandomArrayList {
 	}
 
 	public static byte getArray6List() {
-		if (listshort < 999) {
-			return Array6[listshort++];
-		} else {
+		if (listshort == 999) {
 			return Array6[listshort = 0];
+		}else{
+			return Array6[++listshort];
 		}
 	}
 
@@ -110,10 +110,10 @@ public class RandomArrayList {
 	}
 
 	public static byte getArray7List() {
-		if (listshort < 999) {
-			return Array7[listshort++];
-		} else {
+		if (listshort == 999) {
 			return Array7[listshort = 0];
+		}else{
+			return Array7[++listshort];
 		}
 	}
 
@@ -124,10 +124,10 @@ public class RandomArrayList {
 	}
 
 	public static byte getArray8List() {
-		if (listshort < 999) {
-			return Array8[listshort++];
-		} else {
+		if (listshort == 999) {
 			return Array8[listshort = 0];
+		}else{
+			return Array8[++listshort];
 		}
 	}
 
@@ -138,10 +138,10 @@ public class RandomArrayList {
 	}
 
 	public static byte getArray9List() {
-		if (listshort < 999) {
-			return Array9[listshort++];
-		} else {
+		if (listshort == 999) {
 			return Array9[listshort = 0];
+		}else{
+			return Array9[++listshort];
 		}
 	}
 
@@ -152,10 +152,10 @@ public class RandomArrayList {
 	}
 
 	public static byte getArray10List() {
-		if (listshort < 999) {
-			return Array10[listshort++];
-		} else {
+		if (listshort == 999) {
 			return Array10[listshort = 0];
+		}else{
+			return Array10[++listshort];
 		}
 	}
 
@@ -166,10 +166,10 @@ public class RandomArrayList {
 	}
 
 	public static byte getArray100List() {
-		if (listshort < 999) {
-			return Array100[listshort++];
-		} else {
+		if (listshort == 999) {
 			return Array100[listshort = 0];
+		}else{
+			return Array100[++listshort];
 		}
 	}
 
@@ -180,11 +180,13 @@ public class RandomArrayList {
 	}
 
 	public static short getArrayshortList(short rang) {
-		if (rang == 0)
+		if (rang == 0){
 			return 0;
-		if (listint < 9999) {
-			return (short) (Arrayshort[listint++] % rang);
 		}
-		return (short) (Arrayshort[listint = 0] % rang);
+		if (listint == 9999) {
+			return (short) (Arrayshort[listint = 0] % rang);
+		}else{
+			return (short) (Arrayshort[++listint] % rang);
+		}
 	}
 }
