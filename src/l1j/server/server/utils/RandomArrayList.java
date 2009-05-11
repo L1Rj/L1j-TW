@@ -180,6 +180,8 @@ public class RandomArrayList {
 	}
 
 	public static short getArrayshortList(short rang) {
+		if (rang == 0)
+			return 0;
 		if (listint < 9999) {
 			return (short) (Arrayshort[listint++] % rang);
 		}
