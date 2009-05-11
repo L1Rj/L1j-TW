@@ -27,28 +27,28 @@ import l1j.server.server.Opcodes;
 public class S_Poison extends ServerBasePacket {
 
 	/**
-	 * キャラクターの外見を毒狀態へ變更する際に送信するパケットを構築する
+	 * キャラクターの外見を毒状態へ変更する際に送信するパケットを構築する
 	 * 
 	 * @param objId
-	 *            外見を變えるキャラクターのID
+	 *            外見を変えるキャラクターのID
 	 * @param type
-	 *            外見のタイプ 0 = 通常色, 1 = 綠色, 2 = 灰色
+	 *            外見のタイプ 0 = 通常色, 1 = 緑色, 2 = 灰色
 	 */
-	public S_Poison(int objId, byte type) {
+	public S_Poison(int objId, int type) {
 		writeC(Opcodes.S_OPCODE_POISON);
 		writeD(objId);
 
 		if (type == 0) { // 通常
 			writeC(0);
 			writeC(0);
-		} else if (type == 1) { // 綠色
+		} else if (type == 1) { // 緑色
 			writeC(1);
 			writeC(0);
 		} else if (type == 2) { // 灰色
 			writeC(0);
 			writeC(1);
 		} else {
-			throw new IllegalArgumentException("參數不正常。種類 = " + type);
+			throw new IllegalArgumentException("不正な引数です。type = " + type);
 		}
 	}
 

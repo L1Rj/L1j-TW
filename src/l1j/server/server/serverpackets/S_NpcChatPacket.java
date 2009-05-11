@@ -31,11 +31,11 @@ public class S_NpcChatPacket extends ServerBasePacket {
 
 	private byte[] _byte = null;
 
-	public S_NpcChatPacket(L1NpcInstance npc, String chat, byte type) {
+	public S_NpcChatPacket(L1NpcInstance npc, String chat, int type) {
 		buildPacket(npc, chat, type);
 	}
 
-	private void buildPacket(L1NpcInstance npc, String chat, byte type) {
+	private void buildPacket(L1NpcInstance npc, String chat, int type) {
 		switch (type) {
 		case 0: // normal chat
 			writeC(Opcodes.S_OPCODE_NPCSHOUT); // Key is 16 , can use
