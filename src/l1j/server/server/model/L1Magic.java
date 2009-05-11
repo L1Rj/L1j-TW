@@ -414,8 +414,14 @@ public class L1Magic {
 				diceCount = 1;
 			}
 
-			for (int i = 0; i < diceCount; i++) {
-				probability += (RandomArrayList.getArrayshortList((short) dice) + 1);
+			if (dice < 2){
+				for (int i = 0; i < diceCount; i++) {
+					probability += 1;
+				}
+			}else{
+				for (int i = 0; i < diceCount; i++) {
+					probability += (RandomArrayList.getArrayshortList((short) dice) + 1);
+				}
 			}
 			probability = probability * getLeverage() / 10;
 
