@@ -205,7 +205,9 @@ public class L1V1Map extends L1Map {
 	@Override
 	public boolean isPassable(int x, int y) {
 		return isPassable(x, y - 1, 4) || isPassable(x + 1, y, 6)
-				|| isPassable(x, y + 1, 0) || isPassable(x - 1, y, 2);
+				|| isPassable(x, y + 1, 0) || isPassable(x - 1, y, 2) // 5.10 Start
+				|| isPassable(x - 1, y + 1, 1) || isPassable(x - 1, y - 1, 3)
+				|| isPassable(x + 1, y - 1, 5) || isPassable(x + 1, y + 1, 7); // 5.10 End
 	}
 
 	@Override
