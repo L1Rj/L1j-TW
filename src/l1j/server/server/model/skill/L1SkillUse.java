@@ -413,11 +413,14 @@ public class L1SkillUse {
 
 			// 覺醒狀態では覺醒スキル以外使用不可
 			if (pc.getAwakeSkillId() == AWAKEN_ANTHARAS
-					&& _skillId != AWAKEN_ANTHARAS
+					&& _skillId != AWAKEN_ANTHARAS && _skillId != MAGMA_BREATH
+					&& _skillId != SHOCK_SKIN && _skillId != FREEZING_BREATH
 					|| pc.getAwakeSkillId() == AWAKEN_FAFURION
-					&& _skillId != AWAKEN_FAFURION
+					&& _skillId != AWAKEN_FAFURION && _skillId != MAGMA_BREATH
+					&& _skillId != SHOCK_SKIN && _skillId != FREEZING_BREATH
 					|| pc.getAwakeSkillId() == AWAKEN_VALAKAS
-					&& _skillId != AWAKEN_VALAKAS) {
+					&& _skillId != AWAKEN_VALAKAS && _skillId != MAGMA_BREATH
+					&& _skillId != SHOCK_SKIN && _skillId != FREEZING_BREATH) {
 				pc.sendPackets(new S_ServerMessage(1385)); // 現在の狀態では覺醒魔法が使えません。
 				return false;
 			}
@@ -694,13 +697,21 @@ public class L1SkillUse {
 		}
 
 		if (cha.hasSkillEffect(ICE_LANCE)
-				&& (_skillId == ICE_LANCE || _skillId == FREEZING_BLIZZARD)) {
-			return false; // アイスランス中にアイスランス、フリージングブリザード
+				&& (_skillId == ICE_LANCE || _skillId == FREEZING_BLIZZARD
+						|| _skillId == FREEZING_BREATH)) {
+			return false; // アイスランス中にアイスランス、フリージングブリザード、フリージングブレス
 		}
 
 		if (cha.hasSkillEffect(FREEZING_BLIZZARD)
-				&& (_skillId == ICE_LANCE || _skillId == FREEZING_BLIZZARD)) {
-			return false; // フリージングブリザード中にアイスランス、フリージングブリザード
+				&& (_skillId == ICE_LANCE || _skillId == FREEZING_BLIZZARD
+						|| _skillId == FREEZING_BREATH)) {
+			return false; // フリージングブリザード中にアイスランス、フリージングブリザード、フリージングブレス
+		}
+
+		if (cha.hasSkillEffect(FREEZING_BREATH)
+				&& (_skillId == ICE_LANCE || _skillId == FREEZING_BLIZZARD
+						|| _skillId == FREEZING_BREATH)) {
+			return false; // フリージングブレス中にアイスランス、フリージングブリザード、フリージングブレス
 		}
 
 		if (cha.hasSkillEffect(EARTH_BIND) && _skillId == EARTH_BIND) {
@@ -848,8 +859,7 @@ public class L1SkillUse {
 				return;
 			}
 
-			if (_skillId == LIGHTNING) {
-				// ライトニング直線的に範圍を決める。
+			if (_skillId == LIGHTNING || _skillId == FREEZING_BREATH) { // ライトニング、フリージングブレス直線的に範囲を決める
 				ArrayList<L1Object> al1object = L1World.getInstance()
 						.getVisibleLineObjects(_user, _target);
 
@@ -949,16 +959,17 @@ public class L1SkillUse {
 		}
 	}
 
-	// 精靈魔法の屬性と使用者の屬性は一致するか？（とりあえずの對處なので、對應できたら消去して下さい)
+	// 精霊魔法の属性と使用者の属性は一致するか？（とりあえずの対処なので、対応できたら消去して下さい)
 	private boolean isAttrAgrees() {
 		int magicattr = _skill.getAttr();
 		if (_user instanceof L1NpcInstance) { // NPCが使った場合なんでもOK
 			return true;
 		}
 
-		if ((_skill.getSkillLevel() >= 17 && magicattr != 0) // 精靈魔法で、無屬性魔法ではなく、
-				&& (magicattr != _player.getElfAttr() // 使用者と魔法の屬性が一致しない。
-				&& !_player.isGm())) { // ただしGMは例外
+		if (_skill.getSkillLevel() >= 17 && _skill.getSkillLevel() <= 22
+				&& magicattr != 0 // 精霊魔法で、無属性魔法ではなく、
+				&& magicattr != _player.getElfAttr() // 使用者と魔法の属性が一致しない。
+				&& !_player.isGm()) { // ただしGMは例外
 			return false;
 		}
 		return true;
@@ -1198,8 +1209,8 @@ public class L1SkillUse {
 				|| _skillId == SHADOW_FANG) {
 			return;
 		}
-		if ((_skillId == ICE_LANCE || _skillId == FREEZING_BLIZZARD)
-				&& !_isFreeze) { // 凍結失敗
+		if ((_skillId == ICE_LANCE || _skillId == FREEZING_BLIZZARD
+				|| _skillId == FREEZING_BREATH) && !_isFreeze) { // 凍結失敗
 			return;
 		}
 		if (_skillId == AWAKEN_ANTHARAS || _skillId == AWAKEN_FAFURION
@@ -2067,7 +2078,8 @@ public class L1SkillUse {
 						|| _skillId == CURSE_PARALYZE2) {
 					if (!cha.hasSkillEffect(EARTH_BIND)
 							&& !cha.hasSkillEffect(ICE_LANCE)
-							&& !cha.hasSkillEffect(FREEZING_BLIZZARD)) {
+							&& !cha.hasSkillEffect(FREEZING_BLIZZARD)
+							&& !cha.hasSkillEffect(FREEZING_BREATH)) {
 						if (cha instanceof L1PcInstance) {
 							L1CurseParalysis.curse(cha, 8000, 16000);
 						} else if (cha instanceof L1MonsterInstance) {

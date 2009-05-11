@@ -364,7 +364,7 @@ public class L1SkillId {
 
 	public static final int HORROR_OF_DEATH = 193;
 
-	public static final int FRIZEN_BREATH = 194;
+	public static final int FREEZING_BREATH = 194;
 
 	public static final int AWAKEN_VALAKAS = 195;
 

@@ -387,7 +387,9 @@ class L1SkillStop {
 				pc.addDmgup(6);
 				pc.addAc(-12);
 			}
-		} else if (skillId == ICE_LANCE || skillId == FREEZING_BLIZZARD) { // アイスランス、フリージングブリザード
+		} else if (skillId == ICE_LANCE // アイスランス
+				|| skillId == FREEZING_BLIZZARD // フリージングブリザード
+				|| skillId == FREEZING_BREATH) { // フリージングブレス
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));

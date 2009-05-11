@@ -338,6 +338,7 @@ public class L1Magic {
 						|| skillId == STRIKER_GALE || skillId == SHOCK_STUN
 						|| skillId == FOG_OF_SLEEPING || skillId == ICE_LANCE
 						|| skillId == FREEZING_BLIZZARD
+						|| skillId == FREEZING_BREATH
 						|| skillId == POLLUTE_WATER
 						|| skillId == ELEMENTAL_FALL_DOWN
 						|| skillId == RETURN_TO_NATURE) {
@@ -453,7 +454,8 @@ public class L1Magic {
 				probability -= _targetPc.getRegistSleep();
 			}
 		} else if (skillId == ICE_LANCE
-				|| skillId == FREEZING_BLIZZARD) {
+				|| skillId == FREEZING_BLIZZARD
+				|| skillId == FREEZING_BREATH) {
 			if (_calcType == PC_PC || _calcType == NPC_PC) {
 				probability -= _targetPc.getRegistFreeze();
 			}
@@ -508,6 +510,9 @@ public class L1Magic {
 		if (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
+		if (_targetPc.hasSkillEffect(FREEZING_BREATH)) {
+			dmg = 0;
+		}
 		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
 			dmg = 0;
 		}
@@ -530,6 +535,9 @@ public class L1Magic {
 			dmg = 0;
 		}
 		if (_targetNpc.hasSkillEffect(FREEZING_BLIZZARD)) {
+			dmg = 0;
+		}
+		if (_targetNpc.hasSkillEffect(FREEZING_BREATH)) {
 			dmg = 0;
 		}
 		if (_targetNpc.hasSkillEffect(EARTH_BIND)) {
@@ -640,6 +648,9 @@ public class L1Magic {
 		if (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
+		if (_targetPc.hasSkillEffect(FREEZING_BREATH)) {
+			dmg = 0;
+		}
 		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
 			dmg = 0;
 		}
@@ -724,6 +735,9 @@ public class L1Magic {
 			dmg = 0;
 		}
 		if (_targetNpc.hasSkillEffect(FREEZING_BLIZZARD)) {
+			dmg = 0;
+		}
+		if (_targetNpc.hasSkillEffect(FREEZING_BREATH)) {
 			dmg = 0;
 		}
 		if (_targetNpc.hasSkillEffect(EARTH_BIND)) {

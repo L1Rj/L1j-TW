@@ -457,6 +457,9 @@ public class L1Attack {
 		if (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) {
 			_hitRate = 0;
 		}
+		if (_targetPc.hasSkillEffect(FREEZING_BREATH)) {
+			_hitRate = 0;
+		}
 		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
 			_hitRate = 0;
 		}
@@ -632,6 +635,9 @@ public class L1Attack {
 			_hitRate = 0;
 		}
 		if (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) {
+			_hitRate = 0;
+		}
+		if (_targetPc.hasSkillEffect(FREEZING_BREATH)) {
 			_hitRate = 0;
 		}
 		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
@@ -905,6 +911,9 @@ public class L1Attack {
 		if (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
+		if (_targetPc.hasSkillEffect(FREEZING_BREATH)) {
+			dmg = 0;
+		}
 		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
 			dmg = 0;
 		}
@@ -1110,6 +1119,9 @@ public class L1Attack {
 		if (_targetNpc.hasSkillEffect(FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
+		if (_targetNpc.hasSkillEffect(FREEZING_BREATH)) {
+			dmg = 0;
+		}
 		if (_targetNpc.hasSkillEffect(EARTH_BIND)) {
 			dmg = 0;
 		}
@@ -1213,6 +1225,9 @@ public class L1Attack {
 		if (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
+		if (_targetPc.hasSkillEffect(FREEZING_BREATH)) {
+			dmg = 0;
+		}
 		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
 			dmg = 0;
 		}
@@ -1276,6 +1291,9 @@ public class L1Attack {
 			dmg = 0;
 		}
 		if (_targetNpc.hasSkillEffect(FREEZING_BLIZZARD)) {
+			dmg = 0;
+		}
+		if (_targetNpc.hasSkillEffect(FREEZING_BREATH)) {
 			dmg = 0;
 		}
 		if (_targetNpc.hasSkillEffect(EARTH_BIND)) {

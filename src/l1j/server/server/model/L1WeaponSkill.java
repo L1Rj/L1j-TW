@@ -551,6 +551,9 @@ public class L1WeaponSkill {
 		if (cha.hasSkillEffect(FREEZING_BLIZZARD)) {
 			return true;
 		}
+		if (cha.hasSkillEffect(FREEZING_BREATH)) {
+			return true;
+		}
 		if (cha.hasSkillEffect(EARTH_BIND)) {
 			return true;
 		}
