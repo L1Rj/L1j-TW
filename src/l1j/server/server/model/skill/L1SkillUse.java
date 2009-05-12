@@ -2301,10 +2301,7 @@ public class L1SkillUse {
 							L1PcInstance pc = (L1PcInstance) cha;
 							L1ItemInstance weapon = pc.getWeapon();
 							if (weapon != null) {
-								//Random random = new Random();//waja 測試0值錯誤
-								int weaponDamage = RandomArrayList.getArrayshortList((short)(_user.getInt() / 3)) + 1;// 完全正常
-								//System.out.println("修正後 weaponDamage = " + weaponDamage + "; (short)(_user.getInt() / 3) = " +(short)(_user.getInt() / 3));
-								//int weaponDamage = random.nextInt(_user.getInt() / 3) + 1;//waja 測試0值錯誤
+								int weaponDamage = RandomArrayList.getArrayshortList((short)(_user.getInt() / 3)) + 1;
 								// \f1あなたの%0が損傷しました。
 								pc.sendPackets(new S_ServerMessage(268, weapon
 										.getLogName()));

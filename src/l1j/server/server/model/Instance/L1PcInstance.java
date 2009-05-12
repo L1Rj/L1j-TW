@@ -216,22 +216,22 @@ public class L1PcInstance extends L1Character {
 
 //add 魔法娃娃回血功能
 	public void startHpRegenerationByDoll() {
-        final int INTERVAL_BY_DOLL = 60000;
-        boolean isExistHprDoll = false;
-        Object[] dollList = getDollList().values().toArray();
-        for (Object dollObject : dollList) {
-            L1DollInstance doll = (L1DollInstance) dollObject;
-            if (doll.isHpRegeneration()) {
-                isExistHprDoll = true;
-            }
-        }
-        if (!_hpRegenActiveByDoll && isExistHprDoll) {
-            _hpRegenByDoll = new HpRegenerationByDoll(this);
-            _regenTimer.scheduleAtFixedRate(_hpRegenByDoll, INTERVAL_BY_DOLL,
-                    INTERVAL_BY_DOLL);
-            _hpRegenActiveByDoll = true;
-        }
-    }
+		final int INTERVAL_BY_DOLL = 60000;
+		boolean isExistHprDoll = false;
+		Object[] dollList = getDollList().values().toArray();
+		for (Object dollObject : dollList) {
+			L1DollInstance doll = (L1DollInstance) dollObject;
+			if (doll.isHpRegeneration()) {
+				isExistHprDoll = true;
+			}
+		}
+		if (!_hpRegenActiveByDoll && isExistHprDoll) {
+			_hpRegenByDoll = new HpRegenerationByDoll(this);
+			_regenTimer.scheduleAtFixedRate(_hpRegenByDoll, INTERVAL_BY_DOLL,
+					INTERVAL_BY_DOLL);
+			_hpRegenActiveByDoll = true;
+		}
+	}
 //add end
 	public void startMpReductionByAwake() {
 		final int INTERVAL_BY_AWAKE = 4000;
@@ -260,13 +260,13 @@ public class L1PcInstance extends L1Character {
 	}
 
 //waja add 魔法娃娃回血功能
-    public void stopHpRegenerationByDoll() {
-        if (_hpRegenActiveByDoll) {
-            _hpRegenByDoll.cancel();
-            _hpRegenByDoll = null;
-            _hpRegenActiveByDoll = false;
-        }
-    }
+	public void stopHpRegenerationByDoll() {
+		if (_hpRegenActiveByDoll) {
+			_hpRegenByDoll.cancel();
+			_hpRegenByDoll = null;
+			_hpRegenActiveByDoll = false;
+		}
+	}
 //add end
 
 	public void stopMpReductionByAwake() {

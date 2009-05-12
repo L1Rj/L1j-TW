@@ -28,7 +28,7 @@ import l1j.server.Config; // 5.06
 public abstract class ServerBasePacket {
 	private static Logger _log = Logger.getLogger(ServerBasePacket.class
 			.getName());
-	
+
 	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
 
 	ByteArrayOutputStream _bao = new ByteArrayOutputStream();

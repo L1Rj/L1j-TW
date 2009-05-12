@@ -118,8 +118,8 @@ public class L1DollInstance extends L1NpcInstance {
 		}
 //waja add 魔法娃娃回血功能
 		if (isHpRegeneration()) {
-            master.startHpRegenerationByDoll();
-        }
+			master.startHpRegenerationByDoll();
+		}
 //end
 	}
 
@@ -200,13 +200,13 @@ public class L1DollInstance extends L1NpcInstance {
 	}
 
 //waja add 魔法娃娃回血功能
-    public boolean isHpRegeneration() {
-        boolean isHpRegeneration = false;
-        if (getDollType() == DOLLTYPE_SEADANCER) {
-            isHpRegeneration = true;
-        }
-        return isHpRegeneration;
-    }
+	public boolean isHpRegeneration() {
+		boolean isHpRegeneration = false;
+		if (getDollType() == DOLLTYPE_SEADANCER) {
+			isHpRegeneration = true;
+		}
+		return isHpRegeneration;
+	}
 //add end
 
 	public int getWeightReductionByDoll() {

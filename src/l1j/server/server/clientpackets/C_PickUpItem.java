@@ -91,16 +91,16 @@ public class C_PickUpItem extends ClientBasePacket {
 				}
 			}
 //waja add 撿拾物品記錄 文件版
-            Pickupitem("IP"
-                    + "(" + pc.getNetConnection().getIp() + ")"
-                    +"玩家"
-                    + ":【" + pc.getName() + "】 "
-                    + "拾取"
-                    + "【+" + item.getEnchantLevel()
-                    + " " + item.getName()+
-                    "(" + pickupCount + ")" + "】"
-                    + " 物品,"
-                    + "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。");
+			Pickupitem("IP"
+					+ "(" + pc.getNetConnection().getIp() + ")"
+					+"玩家"
+					+ ":【" + pc.getName() + "】 "
+					+ "拾取"
+					+ "【+" + item.getEnchantLevel()
+					+ " " + item.getName()+
+					"(" + pickupCount + ")" + "】"
+					+ " 物品,"
+					+ "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。");
 //end add
 			if (pc.getInventory().checkAddItem( // 容量重量確認及びメッセージ送信
 					item, pickupCount) == L1Inventory.OK) {
@@ -121,15 +121,15 @@ public class C_PickUpItem extends ClientBasePacket {
 	}
 
 //waja add 撿拾物品紀錄 文件版 寫入檔案
-	public static void Pickupitem(String info) { 
-	try { 
-	BufferedWriter out = new BufferedWriter(new FileWriter("log/Pickupitem.log", true)); 
-	out.write(info + "\r\n"); 
-	out.close(); 
-	} catch (IOException e) { 
-	e.printStackTrace(); 
-	} 
-	} 
+	public static void Pickupitem(String info) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("log/Pickupitem.log", true));
+			out.write(info + "\r\n");
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 //end add
 	@Override

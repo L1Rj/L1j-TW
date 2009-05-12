@@ -92,17 +92,17 @@ public class L1Trade {
 						l1iteminstance1.getCount(),
 						trading_partner.getInventory());
 //waja add 交易記錄文件版 (主動找交易的玩家)
-                trade("IP" 
-                      + "(" + player.getNetConnection().getIp() + ")"
-                      +"玩家"
-                      + ":【" + player.getName() + "】 "
-                      + "的"
-                      + "【+" + l1iteminstance1.getEnchantLevel()
-                      + " " + l1iteminstance1.getName() +
-                      "(" + l1iteminstance1.getCount() + ")" + "】"
-                      + " 轉移給玩家"
-                      + ":【" + trading_partner.getName() + "】，"
-                      + "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。"); 	
+				trade("IP"
+					  + "(" + player.getNetConnection().getIp() + ")"
+					  +"玩家"
+					  + ":【" + player.getName() + "】 "
+					  + "的"
+					  + "【+" + l1iteminstance1.getEnchantLevel()
+					  + " " + l1iteminstance1.getName() +
+					  "(" + l1iteminstance1.getCount() + ")" + "】"
+					  + " 轉移給玩家"
+					  + ":【" + trading_partner.getName() + "】，"
+					  + "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。");
 //add end
 			}
 			for (cnt = 0; cnt < trading_partner_tradecount; cnt++) {
@@ -112,7 +112,7 @@ public class L1Trade {
 						l1iteminstance2, l1iteminstance2.getCount(),
 						player.getInventory());
 //waja add 交易記錄  文件版 (被邀請交易的玩家)
-				trade("IP" 
+				trade("IP"
 						+ "(" + trading_partner.getNetConnection().getIp() + ")"
 						+"玩家"
 						+ ":【" + trading_partner.getName() + "】 "
@@ -122,7 +122,7 @@ public class L1Trade {
 						"(" + l1iteminstance2.getCount() + ")" + "】"
 						+ " 轉移給玩家"
 						+ ":【" + player.getName() + "】，"
-						+ "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。"); 	
+						+ "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。");
 //add end
 			}
 
@@ -138,15 +138,15 @@ public class L1Trade {
 	}
 
 //waja add 交易紀錄 文件版 寫入檔案
-    public static void trade(String info) { 
-     try { 
-      BufferedWriter out = new BufferedWriter(new FileWriter("log/trade.log", true)); 
-      out.write(info + "\r\n"); 
-      out.close(); 
-     } catch (IOException e) { 
-      e.printStackTrace(); 
-     } 
-    } 
+	public static void trade(String info) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("log/trade.log", true));
+			out.write(info + "\r\n");
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 //add end
 	public void TradeCancel(L1PcInstance player) {
 		int cnt;

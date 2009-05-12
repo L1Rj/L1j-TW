@@ -326,37 +326,37 @@ public class L1TeleporterInstance extends L1NpcInstance {
 			player.sendPackets(new S_NPCTalkReturn(objid, html));
 		}
 //waja add 狩獵區傳送(金額無法顯示)
-        else if (action.equalsIgnoreCase("teleportURLC")) {
-            String htmlid = "guide_1_2";
-            player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
-        } else if (action.equalsIgnoreCase("teleportURLB")) {
-            String htmlid = "guide_1_1";
-            player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
-        } else if (action.equalsIgnoreCase("teleportURLD")) {
-            String htmlid = "guide_1_3";
-            player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
-        } else if (action.equalsIgnoreCase("teleportURLF")) {
-            String htmlid = "guide_2_2";
-            player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
-        } else if (action.equalsIgnoreCase("teleportURLE")) {
-            String htmlid = "guide_2_1";
-            player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
-        } else if (action.equalsIgnoreCase("teleportURLG")) {
-            String htmlid = "guide_2_3";
-            player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
-        } else if (action.equalsIgnoreCase("teleportURLI")) {
-            String htmlid = "guide_3_2";
-            player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
-        } else if (action.equalsIgnoreCase("teleportURLH")) {
-            String htmlid = "guide_3_1";
-            player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
-        } else if (action.equalsIgnoreCase("teleportURLJ")) {
-            String htmlid = "guide_3_3";
-            player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
-        } else if (action.equalsIgnoreCase("teleportURLK")) {
-            String htmlid = "guide_4";
-            player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
-        }
+		else if (action.equalsIgnoreCase("teleportURLC")) {
+			String htmlid = "guide_1_2";
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+		} else if (action.equalsIgnoreCase("teleportURLB")) {
+			String htmlid = "guide_1_1";
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+		} else if (action.equalsIgnoreCase("teleportURLD")) {
+			String htmlid = "guide_1_3";
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+		} else if (action.equalsIgnoreCase("teleportURLF")) {
+			String htmlid = "guide_2_2";
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+		} else if (action.equalsIgnoreCase("teleportURLE")) {
+			String htmlid = "guide_2_1";
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+		} else if (action.equalsIgnoreCase("teleportURLG")) {
+			String htmlid = "guide_2_3";
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+		} else if (action.equalsIgnoreCase("teleportURLI")) {
+			String htmlid = "guide_3_2";
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+		} else if (action.equalsIgnoreCase("teleportURLH")) {
+			String htmlid = "guide_3_1";
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+		} else if (action.equalsIgnoreCase("teleportURLJ")) {
+			String htmlid = "guide_3_3";
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+		} else if (action.equalsIgnoreCase("teleportURLK")) {
+			String htmlid = "guide_4";
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+		}
 //add end
 		if (action.startsWith("teleport ")) {
 			_log.finest((new StringBuilder()).append("Setting action to : ")

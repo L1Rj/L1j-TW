@@ -87,7 +87,7 @@ public class C_DropItem extends ClientBasePacket {
 					+ " " + item.getName() +
 					"(" + count + ")" + "】"
 					+ " 丟棄到地上,"
-					+ "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。"); 
+					+ "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。");
 //end add
 			pc.getInventory().tradeItem(item, count,
 					L1World.getInstance().getInventory(x, y, pc.getMapId()));
@@ -95,15 +95,15 @@ public class C_DropItem extends ClientBasePacket {
 		}
 	}
 //waja add 丟棄物品紀錄 文件版 寫入檔案
-	public static void dropitem(String info) { 
-	try { 
-	BufferedWriter out = new BufferedWriter(new FileWriter("log/dropitem.log", true)); 
-	out.write(info + "\r\n"); 
-	out.close(); 
-	} catch (IOException e) { 
-	e.printStackTrace(); 
-	} 
-	} 
+	public static void dropitem(String info) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("log/dropitem.log", true));
+			out.write(info + "\r\n");
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 //end add
 

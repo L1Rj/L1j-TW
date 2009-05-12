@@ -420,7 +420,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						return;
 					} else {
 						l1iteminstance1.setproctect(true);
-						pc.sendPackets(new S_ServerMessage(1308, l1iteminstance1.getLogName()));            pc.getInventory().removeItem(l1iteminstance, 1);
+						pc.sendPackets(new S_ServerMessage(1308, l1iteminstance1.getLogName()));
+						pc.getInventory().removeItem(l1iteminstance, 1);
 					}
 				}
 //end add
@@ -1416,7 +1417,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								}
 							}
 						} else if (resobject instanceof L1NpcInstance) {
-							if (!(resobject instanceof L1TowerInstance)&& 
+							if (!(resobject instanceof L1TowerInstance)&&
 									!(resobject instanceof L1DoorInstance) && //waja add 門不可復活
 									!(resobject instanceof L1GuardInstance)) {//waja add 守衛不可復活
 								L1NpcInstance npc = (L1NpcInstance) resobject;
