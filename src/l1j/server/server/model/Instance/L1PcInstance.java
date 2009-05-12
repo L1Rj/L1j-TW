@@ -992,7 +992,7 @@ public class L1PcInstance extends L1Character {
 	// 魔法のダメージの場合はここを使用 (ここで魔法ダメージ軽減処理) attr:0.無属性魔法,1.地魔法,2.火魔法,3.水魔法,4.風魔法
 	public void receiveDamage(L1Character attacker, int damage, int attr) {
 		int player_mr = getMr();
-		int rnd = RandomArrayList.getArrayshortList((short) 100) + 1;
+		int rnd = RandomArrayList.getArray100List();
 		if (player_mr >= rnd) {
 			damage /= 2;
 		}
@@ -1057,7 +1057,7 @@ public class L1PcInstance extends L1Character {
 
 			if (hasSkillEffect(MORTAL_BODY)
 					&& getId() != attacker.getId()) {
-				int rnd = RandomArrayList.getArrayshortList((short) 100) + 1;
+				int rnd = RandomArrayList.getArray100List();
 				if (damage > 0 && rnd <= 10) {
 					if (attacker instanceof L1PcInstance) {
 						L1PcInstance attackPc = (L1PcInstance) attacker;
