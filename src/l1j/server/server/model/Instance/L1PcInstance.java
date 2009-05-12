@@ -105,6 +105,7 @@ import l1j.server.server.templates.L1PrivateShopSellList;
 import l1j.server.server.utils.CalcStat;
 import l1j.server.server.utils.IntRange;
 import l1j.server.server.utils.RandomArrayList;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
 // L1Character, L1DropTable, L1Object, L1ItemInstance,
@@ -399,7 +400,7 @@ public class L1PcInstance extends L1Character {
 					}
 				}
 			}
-			if (hasSkillEffect(L1SkillId.GMSTATUS_HPBAR)
+			if (hasSkillEffect(GMSTATUS_HPBAR)
 					&& L1HpBar.isHpBarTarget(visible)) {
 				sendPackets(new S_HPMeter((L1Character) visible));
 			}
@@ -875,10 +876,10 @@ public class L1PcInstance extends L1Character {
 			boolean isCounterBarrier = false;
 			L1Attack attack = new L1Attack(attacker, this);
 			if (attack.calcHit()) {
-				if (hasSkillEffect(L1SkillId.COUNTER_BARRIER)) {
+				if (hasSkillEffect(COUNTER_BARRIER)) {
 					L1Magic magic = new L1Magic(this, attacker);
 					boolean isProbability = magic
-							.calcProbabilityMagic(L1SkillId.COUNTER_BARRIER);
+					.calcProbabilityMagic(COUNTER_BARRIER);
 					boolean isShortDistance = attack.isShortDistance();
 					if (isProbability && isShortDistance) {
 						isCounterBarrier = true;
@@ -968,30 +969,30 @@ public class L1PcInstance extends L1Character {
 	}
 
 	public void delInvis() {
-		// 魔法接續時間內はこちらを利用
-		if (hasSkillEffect(L1SkillId.INVISIBILITY)) { // インビジビリティ
-			killSkillEffectTimer(L1SkillId.INVISIBILITY);
+		// 魔法接続時間内はこちらを利用
+		if (hasSkillEffect(INVISIBILITY)) { // インビジビリティ
+			killSkillEffectTimer(INVISIBILITY);
 			sendPackets(new S_Invis(getId(), 0));
 			broadcastPacket(new S_OtherCharPacks(this));
 		}
-		if (hasSkillEffect(L1SkillId.BLIND_HIDING)) { // ブラインド ハイディング
-			killSkillEffectTimer(L1SkillId.BLIND_HIDING);
+		if (hasSkillEffect(BLIND_HIDING)) { // ブラインド ハイディング
+			killSkillEffectTimer(BLIND_HIDING);
 			sendPackets(new S_Invis(getId(), 0));
 			broadcastPacket(new S_OtherCharPacks(this));
 		}
 	}
 
 	public void delBlindHiding() {
-		// 魔法接續時間終了はこちら
-		killSkillEffectTimer(L1SkillId.BLIND_HIDING);
+		// 魔法接続時間終了はこちら
+		killSkillEffectTimer(BLIND_HIDING);
 		sendPackets(new S_Invis(getId(), 0));
 		broadcastPacket(new S_OtherCharPacks(this));
 	}
 
-	// 魔法のダメージの場合はここを使用 (ここで魔法ダメージ輕減處理) attr:0.無屬性魔法,1.地魔法,2.火魔法,3.水魔法,4.風魔法
+	// 魔法のダメージの場合はここを使用 (ここで魔法ダメージ軽減処理) attr:0.無属性魔法,1.地魔法,2.火魔法,3.水魔法,4.風魔法
 	public void receiveDamage(L1Character attacker, int damage, int attr) {
 		int player_mr = getMr();
-		byte rnd = RandomArrayList.getArray100List();
+		int rnd = RandomArrayList.getArrayshortList((short) 100) + 1;
 		if (player_mr >= rnd) {
 			damage /= 2;
 		}
@@ -1051,14 +1052,53 @@ public class L1PcInstance extends L1Character {
 						}
 					}
 				}
-				removeSkillEffect(L1SkillId.FOG_OF_SLEEPING);
+				removeSkillEffect(FOG_OF_SLEEPING);
+			}
+
+			if (hasSkillEffect(MORTAL_BODY)
+					&& getId() != attacker.getId()) {
+				int rnd = RandomArrayList.getArrayshortList((short) 100) + 1;
+				if (damage > 0 && rnd <= 10) {
+					if (attacker instanceof L1PcInstance) {
+						L1PcInstance attackPc = (L1PcInstance) attacker;
+						attackPc.sendPackets(new S_DoActionGFX(attackPc
+								.getId(), ActionCodes.ACTION_Damage));
+						attackPc.broadcastPacket(new S_DoActionGFX(attackPc
+								.getId(), ActionCodes.ACTION_Damage));
+						attackPc.receiveDamage(this, 30);
+					} else if (attacker instanceof L1NpcInstance) {
+						L1NpcInstance attackNpc = (L1NpcInstance) attacker;
+						attackNpc.broadcastPacket(new S_DoActionGFX(attackNpc
+								.getId(), ActionCodes.ACTION_Damage));
+						attackNpc.receiveDamage(this, 30);
+					}
+				}
+			}
+			if (hasSkillEffect(JOY_OF_PAIN)
+					&& getId() != attacker.getId()) {
+				int nowDamage = getMaxHp() - getCurrentHp();
+				if (nowDamage > 0) {
+					if (attacker instanceof L1PcInstance) {
+						L1PcInstance attackPc = (L1PcInstance) attacker;
+						attackPc.sendPackets(new S_DoActionGFX(attackPc
+								.getId(), ActionCodes.ACTION_Damage));
+						attackPc.broadcastPacket(new S_DoActionGFX(attackPc
+								.getId(), ActionCodes.ACTION_Damage));
+						attackPc.receiveDamage(this, (int) (nowDamage / 5));
+					} else if (attacker instanceof L1NpcInstance) {
+						L1NpcInstance attackNpc = (L1NpcInstance) attacker;
+						attackNpc.broadcastPacket(new S_DoActionGFX(attackNpc
+								.getId(), ActionCodes.ACTION_Damage));
+						attackNpc.receiveDamage(this, (int) (nowDamage / 5));
+					}
+				}
 			}
 
 			if (getInventory().checkEquipped(145) // バーサーカーアックス
 					|| getInventory().checkEquipped(149)) { // ミノタウルスアックス
 				damage *= 1.5; // 被ダメ1.5倍
 			}
-			if (hasSkillEffect(L1SkillId.ILLUSION_AVATAR)) {
+			if (hasSkillEffect(ILLUSION_AVATAR)) {
 				damage *= 1.5; // 被ダメ1.5倍
 			}
 			int newHp = getCurrentHp() - damage;
@@ -1123,7 +1163,7 @@ public class L1PcInstance extends L1Character {
 			// エンチャントを解除する
 			// 變身狀態も解除されるため、キャンセレーションをかけてから變身狀態に戾す
 			int tempchargfx = 0;
-			if (hasSkillEffect(L1SkillId.SHAPE_CHANGE)) {
+			if (hasSkillEffect(SHAPE_CHANGE)) {
 				tempchargfx = getTempCharGfx();
 				setTempCharGfxAtDead(tempchargfx);
 			} else {
@@ -1133,7 +1173,7 @@ public class L1PcInstance extends L1Character {
 			// キャンセレーションをエフェクトなしでかける
 			L1SkillUse l1skilluse = new L1SkillUse();
 			l1skilluse.handleCommands(L1PcInstance.this,
-					L1SkillId.CANCELLATION, getId(), getX(), getY(), null, 0,
+					CANCELLATION, getId(), getX(), getY(), null, 0,
 					L1SkillUse.TYPE_LOGIN);
 
 			// シャドウ系變身中に死亡するとクライアントが落ちるため暫定對應
@@ -1466,7 +1506,7 @@ public class L1PcInstance extends L1Character {
 	}
 
 	public int getEr() {
-		if (hasSkillEffect(L1SkillId.STRIKER_GALE)) {
+		if (hasSkillEffect(STRIKER_GALE)) {
 			return 0;
 		}
 
@@ -1489,10 +1529,10 @@ public class L1PcInstance extends L1Character {
 
 		er += getOriginalEr();
 
-		if (hasSkillEffect(L1SkillId.DRESS_EVASION)) {
+		if (hasSkillEffect(DRESS_EVASION)) {
 			er += 12;
 		}
-		if (hasSkillEffect(L1SkillId.SOLID_CARRIAGE)) {
+		if (hasSkillEffect(SOLID_CARRIAGE)) {
 			er += 15;
 		}
 		return er;
@@ -2141,7 +2181,7 @@ public class L1PcInstance extends L1Character {
 		}
 
 		int weightReductionByMagic = 0;
-		if (hasSkillEffect(L1SkillId.DECREASE_WEIGHT)) { // ディクリースウェイト
+		if (hasSkillEffect(DECREASE_WEIGHT)) { // ディクリースウェイト
 			weightReductionByMagic = 180;
 		}
 
@@ -2162,23 +2202,24 @@ public class L1PcInstance extends L1Character {
 	}
 
 	public boolean isFastMovable() {
-		return (hasSkillEffect(L1SkillId.HOLY_WALK)
-				|| hasSkillEffect(L1SkillId.MOVING_ACCELERATION)
-				|| hasSkillEffect(L1SkillId.WIND_WALK)
-				|| hasSkillEffect(L1SkillId.STATUS_RIBRAVE));
+		return (hasSkillEffect(HOLY_WALK)
+				|| hasSkillEffect(MOVING_ACCELERATION)
+				|| hasSkillEffect(WIND_WALK)
+				|| hasSkillEffect(STATUS_RIBRAVE));
 	}
+
 	public boolean isBrave() {
-		return hasSkillEffect(L1SkillId.STATUS_BRAVE);
+		return hasSkillEffect(STATUS_BRAVE);
 	}
 
 	public boolean isElfBrave() {
-		return hasSkillEffect(L1SkillId.STATUS_ELFBRAVE);
+		return hasSkillEffect(STATUS_ELFBRAVE);
 	}
 
 	public boolean isHaste() {
-		return (hasSkillEffect(L1SkillId.STATUS_HASTE)
-				|| hasSkillEffect(L1SkillId.HASTE)
-				|| hasSkillEffect(L1SkillId.GREATER_HASTE) || getMoveSpeed() == 1);
+		return (hasSkillEffect(STATUS_HASTE)
+				|| hasSkillEffect(HASTE)
+				|| hasSkillEffect(GREATER_HASTE) || getMoveSpeed() == 1);
 	}
 
 	private int invisDelayCounter = 0;
@@ -2571,23 +2612,23 @@ public class L1PcInstance extends L1Character {
 	}
 
 	public void removeHasteSkillEffect() {
-		if (hasSkillEffect(L1SkillId.SLOW)) {
-			removeSkillEffect(L1SkillId.SLOW);
+		if (hasSkillEffect(SLOW)) {
+			removeSkillEffect(SLOW);
 		}
-		if (hasSkillEffect(L1SkillId.MASS_SLOW)) {
-			removeSkillEffect(L1SkillId.MASS_SLOW);
+		if (hasSkillEffect(MASS_SLOW)) {
+			removeSkillEffect(MASS_SLOW);
 		}
-		if (hasSkillEffect(L1SkillId.ENTANGLE)) {
-			removeSkillEffect(L1SkillId.ENTANGLE);
+		if (hasSkillEffect(ENTANGLE)) {
+			removeSkillEffect(ENTANGLE);
 		}
-		if (hasSkillEffect(L1SkillId.HASTE)) {
-			removeSkillEffect(L1SkillId.HASTE);
+		if (hasSkillEffect(HASTE)) {
+			removeSkillEffect(HASTE);
 		}
-		if (hasSkillEffect(L1SkillId.GREATER_HASTE)) {
-			removeSkillEffect(L1SkillId.GREATER_HASTE);
+		if (hasSkillEffect(GREATER_HASTE)) {
+			removeSkillEffect(GREATER_HASTE);
 		}
-		if (hasSkillEffect(L1SkillId.STATUS_HASTE)) {
-			removeSkillEffect(L1SkillId.STATUS_HASTE);
+		if (hasSkillEffect(STATUS_HASTE)) {
+			removeSkillEffect(STATUS_HASTE);
 		}
 	}
 
@@ -3836,7 +3877,7 @@ public class L1PcInstance extends L1Character {
 			_oldChatTimeInMillis = 0;
 		} else {
 			if (_chatCount >= 3) {
-				setSkillEffect(L1SkillId.STATUS_CHAT_PROHIBITED, 120 * 1000);
+				setSkillEffect(STATUS_CHAT_PROHIBITED, 120 * 1000);
 				sendPackets(new S_SkillIconGFX(36, 120));
 				sendPackets(new S_ServerMessage(153)); // \f3迷惑なチャット流しをしたので、今後2分間チャットを行うことはできません。
 				_chatCount = 0;

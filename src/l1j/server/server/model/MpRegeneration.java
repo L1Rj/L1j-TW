@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.types.Point;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class MpRegeneration extends TimerTask {
 	private static Logger _log = Logger.getLogger(MpRegeneration.class
@@ -58,14 +59,17 @@ public class MpRegeneration extends TimerTask {
 			baseMpr = 3;
 		}
 
-		if (_pc.hasSkillEffect(L1SkillId.STATUS_BLUE_POTION) == true) { // ブルーポーション使用中
+		if (_pc.hasSkillEffect(STATUS_BLUE_POTION)) { // ブルーポーション使用中
 			if (wis < 11) { // WIS11未滿でもMPR+1
 				wis = 11;
 			}
 			baseMpr += wis - 10;
 		}
-		if (_pc.hasSkillEffect(L1SkillId.MEDITATION) == true) { // メディテーション中
+		if (_pc.hasSkillEffect(MEDITATION)) { // メディテーション中
 			baseMpr += 5;
+		}
+		if (_pc.hasSkillEffect(CONCENTRATION)) { // コンセントレーション中
+			baseMpr += 2;
 		}
 		if (L1HouseLocation.isInHouse(_pc.getX(), _pc.getY(), _pc.getMapId())) {
 			baseMpr += 3;
@@ -85,14 +89,14 @@ public class MpRegeneration extends TimerTask {
 				&& _pc.getMapId() == 4 && _pc.isElf())) {
 			baseMpr += 3;
 		}
-		if (_pc.hasSkillEffect(L1SkillId.COOKING_1_2_N)
-				|| _pc.hasSkillEffect(L1SkillId.COOKING_1_2_S)) {
+		if (_pc.hasSkillEffect(COOKING_1_2_N)
+				|| _pc.hasSkillEffect(COOKING_1_2_S)) {
 			baseMpr += 3;
 		}
- 		if (_pc.hasSkillEffect(L1SkillId.COOKING_2_4_N)
-				|| _pc.hasSkillEffect(L1SkillId.COOKING_2_4_S)
-				|| _pc.hasSkillEffect(L1SkillId.COOKING_3_5_N)
-				|| _pc.hasSkillEffect(L1SkillId.COOKING_3_5_S)) {
+ 		if (_pc.hasSkillEffect(COOKING_2_4_N)
+				|| _pc.hasSkillEffect(COOKING_2_4_S)
+				|| _pc.hasSkillEffect(COOKING_3_5_N)
+				|| _pc.hasSkillEffect(COOKING_3_5_S)) {
 			baseMpr += 2;
 		}
  		if (_pc.getOriginalMpr() > 0) { // オリジナルWIS MPR補正
@@ -119,8 +123,8 @@ public class MpRegeneration extends TimerTask {
 	private boolean isOverWeight(L1PcInstance pc) {
 		// エキゾチックバイタライズ狀態、アディショナルファイアー狀態であれば、
 		// 重量オーバーでは無いとみなす。
-		if (pc.hasSkillEffect(L1SkillId.EXOTIC_VITALIZE)
-				|| pc.hasSkillEffect(L1SkillId.ADDITIONAL_FIRE)) {
+		if (pc.hasSkillEffect(EXOTIC_VITALIZE)
+				|| pc.hasSkillEffect(ADDITIONAL_FIRE)) {
 			return false;
 		}
 

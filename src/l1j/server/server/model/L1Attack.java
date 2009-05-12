@@ -899,6 +899,9 @@ public class L1Attack {
 		if (_targetPc.hasSkillEffect(DRAGON_SKIN)) {
 			dmg -= 2;
 		}
+		if (_targetPc.hasSkillEffect(PATIENCE)) {
+			dmg -= 2;
+		}
 		if (_targetPc.hasSkillEffect(IMMUNE_TO_HARM)) {
 			dmg /= 2;
 		}
