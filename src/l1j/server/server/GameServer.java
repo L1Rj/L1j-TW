@@ -151,7 +151,7 @@ public class GameServer extends Thread {
 		}
 
 		System.out.println("=================================================");
-		System.out.println("=====Lineage 3.0C=====興趣製作=====L1j1800版=====");
+		System.out.println("=====Lineage 3.0C=====興趣製作=====L1j1802版=====");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;

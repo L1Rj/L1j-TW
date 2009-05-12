@@ -464,6 +464,9 @@ public class L1MonsterInstance extends L1NpcInstance {
 	}
 
 	private void distributeExpDropKarma(L1Character lastAttacker) {
+		if (lastAttacker == null) {
+			return;
+		}
 		L1PcInstance pc = null;
 		if (lastAttacker instanceof L1PcInstance) {
 			pc = (L1PcInstance) lastAttacker;
@@ -505,12 +508,14 @@ public class L1MonsterInstance extends L1NpcInstance {
 					pc = (L1PcInstance) ((L1SummonInstance)
 							lastAttacker).getMaster();
 				}
-				int exp = getExp();
-				CalcExp.calcExp(pc, getId(), targetList, hateList, exp);
-				// 死亡した場合はドロップとカルマも分配、死亡せず變身した場合はEXPのみ
-				if (isDead()) {
-					distributeDrop();
-					giveKarma(pc);
+				if (pc != null) {
+					int exp = getExp();
+					CalcExp.calcExp(pc, getId(), targetList, hateList, exp);
+					// 死亡した場合はドロップとカルマも分配、死亡せず変身した場合はEXPのみ
+					if (isDead()) {
+						distributeDrop();
+						giveKarma(pc);
+					}
 				}
 			}
 		}
