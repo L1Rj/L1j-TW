@@ -117,6 +117,7 @@ import l1j.server.server.templates.L1Skills;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.L1SpawnUtil;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.server.server.utils.StaticFinalList;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.clientpackets:
@@ -5115,7 +5116,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		}
 
 		// XXX 適當なダメージ計算、要修正
-		int dmg = (RandomArrayList.getArray10List() - 5) + user.getStr();
+		int dmg = StaticFinalList.getRang4() + user.getStr(); // 5.14
 		dmg = Math.max(1, dmg);
 
 		if (target instanceof L1PcInstance) {

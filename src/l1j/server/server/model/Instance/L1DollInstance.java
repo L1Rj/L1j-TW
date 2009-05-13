@@ -31,6 +31,7 @@ import l1j.server.server.serverpackets.S_DollPack;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.server.server.utils.StaticFinalList;
 
 public class L1DollInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
@@ -98,8 +99,8 @@ public class L1DollInstance extends L1NpcInstance {
 				new DollTimer(), DOLL_TIME);
 
 		setMaster(master);
-		setX(master.getX() + RandomArrayList.getArray5List() - (byte) 2);
-		setY(master.getY() + RandomArrayList.getArray5List() - (byte) 2);
+		setX(master.getX() + StaticFinalList.getRang2()); // 5.14
+		setY(master.getY() + StaticFinalList.getRang2()); // 5.14
 		setMap(master.getMapId());
 		setHeading(5);
 		setLightSize(template.getLightSize());

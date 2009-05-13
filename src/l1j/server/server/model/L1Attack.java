@@ -772,7 +772,7 @@ public class L1Attack {
 				}
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
 			} else */if (_weaponId == 190) { // 沙哈之弓
-				dmg += 1 + RandomArrayList.getArrayshortList((short) 15);
+				dmg += RandomArrayList.getArrayshortList((short) 15) + 1;
 			} else if (_weaponId == 507) { // waja add 玄冰弓
 				dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
 						_weaponId); // add end
@@ -1009,7 +1009,7 @@ public class L1Attack {
 				}
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
 			} else */if (_weaponId == 190) { // 沙哈之弓
-				dmg += 1 + RandomArrayList.getArrayshortList((short) 15);
+				dmg += RandomArrayList.getArrayshortList((short) 15) + 1;
 			} else if (_weaponId == 507) { // waja add 玄冰弓
 				dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
 						_weaponId); // add end
