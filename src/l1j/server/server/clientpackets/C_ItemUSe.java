@@ -689,7 +689,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						|| itemId == L1ItemId.CONDENSED_POTION_OF_GREATER_HEALING) {
 					UseHeallingPotion(pc, 75, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 40024 ||  itemId == 49137) { // 古代終極體力恢復劑  鮮奶油蛋糕
+				} else if (itemId == 40024 || itemId == 49137) { // 古代終極體力恢復劑 鮮奶油蛋糕
 					UseHeallingPotion(pc, 55, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 40506) { // エントの實
@@ -2784,7 +2784,7 @@ public class C_ItemUSe extends ClientBasePacket {
 									S_PacketBox.MSG_LEVEL_OVER, max));
 						} else {
 							pc.sendPackets(new S_SystemMessage("等級 " + max
-									+ "  以下才可使用此道具。"));
+									+ " 以下才可使用此道具。"));
 						}
 					} else {
 						UseArmor(pc, l1iteminstance);
@@ -3844,7 +3844,7 @@ public class C_ItemUSe extends ClientBasePacket {
 	private void useSpellBook(L1PcInstance pc, L1ItemInstance item,
 			int itemId) {
 		int itemAttr = 0;
-		int locAttr = 0 ; // 0:其他地方 1:正義神殿  2:邪惡神殿
+		int locAttr = 0 ; // 0:其他地方 1:正義神殿 2:邪惡神殿
 		boolean isLawful = true;
 		int pcX = pc.getX();
 		int pcY = pc.getY();
@@ -5608,8 +5608,8 @@ public class C_ItemUSe extends ClientBasePacket {
 				dollType = L1DollInstance.DOLLTYPE_GOLEM;
 // waja add 魔法娃娃：希爾黛絲
 			} else if (itemId == 31001) {// 魔法娃娃：希爾黛絲
-            npcId = 90001;
-            dollType = L1DollInstance.DOLLTYPE_SEADANCER;
+				npcId = 90001;
+				dollType = L1DollInstance.DOLLTYPE_SEADANCER;
 //add end
 			}
 			L1Npc template = NpcTable.getInstance().getTemplate(npcId);

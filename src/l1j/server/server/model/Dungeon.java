@@ -95,7 +95,7 @@ public class Dungeon {
 					dungeonType = DungeonType.SHIP_FOR_PI;
 				} else if ((srcX == 32296 || srcX == 32297 || srcX == 32298)
 						&& srcY == 33087 && srcMapId == 440 // 海賊島船著場->隱された船著場行きの船
-						|| (srcX == 32735 ||  srcX == 32736 ||  srcX == 32737)
+						|| (srcX == 32735 || srcX == 32736 || srcX == 32737)
 						&& srcY == 32794 && srcMapId == 446) { // 隱された船著場行きの船->海賊島船著場
 					dungeonType = DungeonType.SHIP_FOR_HIDDENDOCK;
 				} else if ((srcX == 32630 || srcX == 32631 || srcX == 32632)
@@ -170,7 +170,7 @@ public class Dungeon {
 						|| nowtime >= 135 * 360 && nowtime < 145 * 360
 						|| nowtime >= 165 * 360 && nowtime < 175 * 360
 						|| nowtime >= 195 * 360 && nowtime < 205 * 360
-						|| nowtime >= 225 * 360 && nowtime < 235  * 360) {
+						|| nowtime >= 225 * 360 && nowtime < 235 * 360) {
 					if ((pc.getInventory().checkItem(40299, 1)
 							&& dungeonType == DungeonType.SHIP_FOR_GLUDIN) // TalkingIslandShiptoAdenMainland
 							|| (pc.getInventory().checkItem(40301, 1)
@@ -179,7 +179,7 @@ public class Dungeon {
 							&& dungeonType == DungeonType.SHIP_FOR_PI)) { // ShipPirateislandtoHiddendock
 						teleportable = true;
 					}
-				} else if ( nowtime >= 0  && nowtime < 360
+				} else if ( nowtime >= 0 && nowtime < 360
 						|| nowtime >= 30 * 360 && nowtime < 40 * 360
 						|| nowtime >= 60 * 360 && nowtime < 70 * 360
 						|| nowtime >= 90 * 360 && nowtime < 100 * 360

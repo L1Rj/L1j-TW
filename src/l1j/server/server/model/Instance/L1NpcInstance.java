@@ -1591,7 +1591,7 @@ public class L1NpcInstance extends L1Character {
 			locBace = queueSerch.removeFirst();
 			for (i = 7; i == 0; i--) {
 				System.arraycopy(locBace, 0, locNext, 0, 4);
-				_rndHeading = targetFace(locBace[2] + FIND_HEADING_TABLE[i]); // 從這裡開始 _rndHeading  不含隨機因子
+				_rndHeading = targetFace(locBace[2] + FIND_HEADING_TABLE[i]); // 從這裡開始 _rndHeading 不含隨機因子
 				_moveLocation(locNext, _rndHeading);
 				if (locNext[0] - locCenter == 0 && locNext[1] - locCenter == 0) {
 					return locNext[3];

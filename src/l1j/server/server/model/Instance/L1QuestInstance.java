@@ -93,7 +93,7 @@ public class L1QuestInstance extends L1NpcInstance {
 		broadcastPacket(new S_ChangeHeading(this));
 
 		int npcId = getNpcTemplate().get_npcId();
-		if (npcId ==  71092 || npcId == 71093) { // 調查員
+		if (npcId == 71092 || npcId == 71093) { // 調查員
 			if (pc.isKnight() && pc.getQuest().get_step(3) == 4) {
 				pc.sendPackets(new S_NPCTalkReturn(getId(), "searcherk1"));
 			} else {

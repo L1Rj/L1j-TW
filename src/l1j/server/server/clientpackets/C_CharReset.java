@@ -50,7 +50,7 @@ public class C_CharReset extends ClientBasePacket {
  * //提升完等級 127.0.0.1 Request Work ID : 120 0000: 78 02 08 00 x...
  * 
  * //萬能藥 127.0.0.1 Request Work ID : 120 0000: 78 03 23 0a 0b 17 12 0d
- */	
+ */
 
 	public C_CharReset(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -73,7 +73,7 @@ public class C_CharReset extends ClientBasePacket {
 		} else if (stage == 0x02) { // 0x02:ステータス再分配
 			int type2 = readC();
 			if (type2 == 0x00) { // 0x00:Lv1UP
-				setLevelUp(pc, 1); 
+				setLevelUp(pc, 1);
 			} else if (type2 == 0x07) { // 0x07:Lv10UP
 				if (pc.getTempMaxLevel() - pc.getTempLevel() < 10) {
 					return;
@@ -175,8 +175,8 @@ public class C_CharReset extends ClientBasePacket {
 		pc.addBaseCon((byte)(con - pc.getBaseCon()));
 		pc.addBaseCha((byte)(cha - pc.getBaseCha()));
 		pc.addMr(0 - pc.getMr());
-    	pc.addDmgup(0 - pc.getDmgup());
-    	pc.addHitup(0 - pc.getHitup());
+		pc.addDmgup(0 - pc.getDmgup());
+		pc.addHitup(0 - pc.getHitup());
 	}
 
 	private void setLevelUp(L1PcInstance pc ,int addLv) {

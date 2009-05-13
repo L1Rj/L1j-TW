@@ -605,7 +605,7 @@ public class C_Attr extends ClientBasePacket {
 		petTemplate.set_name(name);
 		PetTable.getInstance().storePet(petTemplate); // DBに書き⑸み
 		L1ItemInstance item = pc.getInventory().getItem(pet.getItemObjId());
-		pc.getInventory().updateItem(item); 
+		pc.getInventory().updateItem(item);
 		pc.sendPackets(new S_ChangeName(pet.getId(), name));
 		pc.broadcastPacket(new S_ChangeName(pet.getId(), name));
 	}

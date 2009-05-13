@@ -175,7 +175,7 @@ public class L1DollInstance extends L1NpcInstance {
 		int damage = 0;
 		int dollType = getDollType();
 		if (dollType == DOLLTYPE_WAREWOLF || dollType == DOLLTYPE_CRUSTANCEAN) {
-			byte chance =  RandomArrayList.getArray100List();
+			byte chance = RandomArrayList.getArray100List();
 			if (chance <= 3) {
 				damage = 15;
 				if (_master instanceof L1PcInstance) {
@@ -222,7 +222,7 @@ public class L1DollInstance extends L1NpcInstance {
 		int damageReduction = 0;
 		int dollType = getDollType();
 		if (dollType == DOLLTYPE_GOLEM) {
-			byte chance =  RandomArrayList.getArray100List();
+			byte chance = RandomArrayList.getArray100List();
 			if (chance <= 4) {
 				damageReduction = 15;
 			}

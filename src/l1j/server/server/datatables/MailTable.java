@@ -66,7 +66,7 @@ public class MailTable {
 			pstm = con.prepareStatement("SELECT * FROM mail");
 			rs = pstm.executeQuery();
 			while (rs.next()) {
-				L1Mail mail =  new L1Mail();
+				L1Mail mail = new L1Mail();
 				mail.setId(rs.getInt("id"));
 				mail.setType(rs.getInt("type"));
 				mail.setSenderName(rs.getString("sender"));
@@ -207,7 +207,7 @@ public class MailTable {
 			pstm2.setBytes(8, content);
 			pstm2.execute();
 
-			L1Mail mail =  new L1Mail();
+			L1Mail mail = new L1Mail();
 			mail.setId(id);
 			mail.setType(type);
 			mail.setSenderName(writer.getName());
