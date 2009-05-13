@@ -41,7 +41,7 @@ public class C_HireSoldier extends ClientBasePacket {
 		int something3 = readD(); // 1以外入らない？
 		int something4 = readD(); // S_HireSoldierパケットの引數
 		int number = readH(); // 雇用する數
-		
+
 		// < 傭兵雇用處理
 	}
 

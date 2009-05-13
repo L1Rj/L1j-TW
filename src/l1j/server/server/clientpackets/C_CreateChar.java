@@ -84,7 +84,7 @@ public class C_CreateChar extends ClientBasePacket {
 			client.sendPacket(s_charcreatestatus1);
 			return;
 		}
-		
+
 		if (client.getAccount().countCharacters() >= maxAmount) {
 			_log.fine("account: " + client.getAccountName()
 					+ " " + maxAmount + "超過可創造角色數量。");
@@ -149,7 +149,7 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.setMap(MAPID_LIST[pc.getType()]);
 		pc.setHeading(0);
 		pc.setLawful(0);
-		
+
 		int initHp = CalcInitHpMp.calcInitHp(pc);
 		int initMp = CalcInitHpMp.calcInitMp(pc);
 		pc.addBaseMaxHp((short) initHp);

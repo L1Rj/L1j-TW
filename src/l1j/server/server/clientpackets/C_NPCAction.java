@@ -3249,7 +3249,7 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 		}
-	
+
 		// else System.out.println("C_NpcAction: " + s);
 		if (htmlid != null && htmlid.equalsIgnoreCase("colos2")) {
 			htmldata = makeUbInfoStrings(((L1NpcInstance) obj).getNpcTemplate()
