@@ -76,9 +76,9 @@ public class L1TrapInstance extends L1Object {
 		}
 
 		for (byte i = 0; i < 50; i++) {
-			int rndX = RandomArrayList.getArrayshortList((short) (_rndPt.getX() + 1))
+			int rndX = RandomArrayList.getArrayshortList((short) (_rndPt.getX()/* + 1*/)) // 5.14
 					* WorR_Way[RandomArrayList.getArray2List()]; // 1/2の確率でマイナスにする
-			int rndY = RandomArrayList.getArrayshortList((short) (_rndPt.getY() + 1))
+			int rndY = RandomArrayList.getArrayshortList((short) (_rndPt.getY()/* + 1*/)) // 5.14
 					* WorR_Way[RandomArrayList.getArray2List()];
 
 			rndX += _baseLoc.getX();

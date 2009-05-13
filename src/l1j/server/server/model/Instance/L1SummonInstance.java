@@ -23,6 +23,7 @@ import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_SummonPack;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.server.server.utils.StaticFinalList;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1SummonInstance extends L1NpcInstance {
@@ -117,8 +118,8 @@ public class L1SummonInstance extends L1NpcInstance {
 				new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);
-		setX(master.getX() + RandomArrayList.getArray5List() - 2);
-		setY(master.getY() + RandomArrayList.getArray5List() - 2);
+		setX(master.getX() + StaticFinalList.getRang2()); // 5.14
+		setY(master.getY() + StaticFinalList.getRang2()); // 5.14
 		setMap(master.getMapId());
 		setHeading(5);
 		setLightSize(template.getLightSize());

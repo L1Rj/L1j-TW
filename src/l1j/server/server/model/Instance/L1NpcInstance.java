@@ -590,7 +590,7 @@ public class L1NpcInstance extends L1Character {
 		}
 
 		// 拾うアイテム(のインベントリ)をランダムで選定
-		int pickupIndex = (int) (Math.random() * gInventorys.size());
+		int pickupIndex = RandomArrayList.getArrayshortList((short) gInventorys.size()); // 5.14
 		L1GroundInventory inventory = gInventorys.get(pickupIndex);
 		for (L1ItemInstance item : inventory.getItems()) {
 			if (item.getItem().getType() == 6 // potion
@@ -615,7 +615,7 @@ public class L1NpcInstance extends L1Character {
 
 	public static void shuffle(L1Object[] arr) {
 		for (int i = arr.length - 1; i > 0; i--) {
-			int t = (int) (Math.random() * i);
+			int t = RandomArrayList.getArrayshortList((short) i); // 5.14
 
 			// 選ばれた值と交換する
 			L1Object tmp = arr[i];
