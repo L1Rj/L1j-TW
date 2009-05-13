@@ -2428,7 +2428,8 @@ Update npc Set name = '毒蠍' Where npcid = '81077';
 Update npc Set name = '變種巨大兵蟻' Where npcid = '81078';
 Update npc Set name = '金屬蜈蚣' Where npcid = '81079';
 Update npc Set name = '強盜' Where npcid = '81080';
-Update npc Set name = '法利昂的信仰者' Where npcid = '81081';
+Update npc Set name = '法利昂的信奉者' Where npcid = '81081';
+Update npc Set nameid = '法利昂的信奉者' Where npcid = '81081';/* 日版boss 台版無顯示字串 */
 Update npc Set name = '火焰之影' Where npcid = '81082';
 Update npc Set name = '歐熊' Where npcid = '81083';
 Update npc Set name = '蟑螂人' Where npcid = '81084';
