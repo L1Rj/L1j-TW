@@ -43,6 +43,7 @@ import l1j.server.server.serverpackets.S_PetPack;
 import l1j.server.server.serverpackets.S_SummonPack;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.StaticFinalList;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.utils:
 // FaceToFace
@@ -103,7 +104,7 @@ public class Teleportation {
 		// 武器を著脫すると移動できるようになるため、S_CharVisualUpdateを送信する
 		pc.sendPackets(new S_CharVisualUpdate(pc));
 
-		pc.killSkillEffectTimer(L1SkillId.MEDITATION);
+		pc.killSkillEffectTimer(MEDITATION);
 		pc.setCallClanId(0); // コールクランを唱えた後に移動すると召喚無效
 
 		/*
@@ -173,9 +174,9 @@ public class Teleportation {
 
 		pc.setTeleport(false);
 
-		if (pc.hasSkillEffect(L1SkillId.WIND_SHACKLE)) {
+		if (pc.hasSkillEffect(WIND_SHACKLE)) {
 			pc.sendPackets(new S_SkillIconWindShackle(pc.getId(),
-					pc.getSkillEffectTimeSec(L1SkillId.WIND_SHACKLE)));
+					pc.getSkillEffectTimeSec(WIND_SHACKLE)));
 		}
 	}
 

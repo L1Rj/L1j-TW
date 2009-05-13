@@ -23,6 +23,7 @@ import l1j.server.server.model.L1Character;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.serverpackets.S_Paralysis;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1ParalysisPoison extends L1Poison {
 	// 麻痺毒の性能一覽 猶予 持續 (參考值、未適用)
@@ -40,13 +41,13 @@ public class L1ParalysisPoison extends L1Poison {
 	private class ParalysisPoisonTimer extends Thread {
 		@Override
 		public void run() {
-			_target.setSkillEffect(L1SkillId.STATUS_POISON_PARALYZING, 0);
+			_target.setSkillEffect(STATUS_POISON_PARALYZING, 0);
 
 			try {
 				Thread.sleep(_delay); // 麻痺するまでの猶予時間を待つ。
 			} catch (InterruptedException e) {
 				_target
-						.killSkillEffectTimer(L1SkillId.STATUS_POISON_PARALYZING);
+						.killSkillEffectTimer(STATUS_POISON_PARALYZING);
 				return;
 			}
 
@@ -71,14 +72,14 @@ public class L1ParalysisPoison extends L1Poison {
 	private class ParalysisTimer extends Thread {
 		@Override
 		public void run() {
-			_target.killSkillEffectTimer(L1SkillId.STATUS_POISON_PARALYZING);
-			_target.setSkillEffect(L1SkillId.STATUS_POISON_PARALYZED, 0);
+			_target.killSkillEffectTimer(STATUS_POISON_PARALYZING);
+			_target.setSkillEffect(STATUS_POISON_PARALYZED, 0);
 			try {
 				Thread.sleep(_time);
 			} catch (InterruptedException e) {
 			}
 
-			_target.killSkillEffectTimer(L1SkillId.STATUS_POISON_PARALYZED);
+			_target.killSkillEffectTimer(STATUS_POISON_PARALYZED);
 			if (_target instanceof L1PcInstance) {
 				L1PcInstance player = (L1PcInstance) _target;
 				if (!player.isDead()) {

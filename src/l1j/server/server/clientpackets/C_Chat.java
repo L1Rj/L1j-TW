@@ -36,6 +36,7 @@ import l1j.server.server.serverpackets.S_ChatPacket;
 import l1j.server.server.serverpackets.S_NpcChatPacket;
 import l1j.server.server.serverpackets.S_PacketBox;
 import l1j.server.server.serverpackets.S_ServerMessage;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
@@ -51,9 +52,9 @@ public class C_Chat extends ClientBasePacket {
 		L1PcInstance pc = clientthread.getActiveChar();
 		int chatType = readC();
 		String chatText = readS();
-		if (pc.hasSkillEffect(L1SkillId.SILENCE)
-				|| pc.hasSkillEffect(L1SkillId.AREA_OF_SILENCE)
-				|| pc.hasSkillEffect(L1SkillId.STATUS_POISON_SILENCE)) {
+		if (pc.hasSkillEffect(SILENCE)
+				|| pc.hasSkillEffect(AREA_OF_SILENCE)
+				|| pc.hasSkillEffect(STATUS_POISON_SILENCE)) {
 			return;
 		}
 		if (pc.hasSkillEffect(1005)) { // チャット禁止中

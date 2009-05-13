@@ -211,7 +211,7 @@ public class L1SummonInstance extends L1NpcInstance {
 		if (getCurrentHp() > 0) {
 			if (damage > 0) {
 				setHate(attacker, 0); // サモンはヘイト無し
-				removeSkillEffect(L1SkillId.FOG_OF_SLEEPING);
+				removeSkillEffect(FOG_OF_SLEEPING);
 				if (!isExsistMaster()) {
 					_currentPetStatus = 1;
 					setTarget(attacker);

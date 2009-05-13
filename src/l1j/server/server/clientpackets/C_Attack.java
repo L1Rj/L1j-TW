@@ -34,6 +34,7 @@ import l1j.server.server.model.skill.L1SkillId;
 import static l1j.server.server.model.Instance.L1PcInstance.REGENSTATE_ATTACK;
 import l1j.server.server.serverpackets.S_AttackStatus;
 import l1j.server.server.serverpackets.S_ServerMessage;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
@@ -94,13 +95,13 @@ public class C_Attack extends ClientBasePacket {
 		}
 
 		// 攻擊アクションがとれる場合の處理
-		if (pc.hasSkillEffect(L1SkillId.ABSOLUTE_BARRIER)) { // アブソルート バリアの解除
-			pc.killSkillEffectTimer(L1SkillId.ABSOLUTE_BARRIER);
+		if (pc.hasSkillEffect(ABSOLUTE_BARRIER)) { // アブソルート バリアの解除
+			pc.killSkillEffectTimer(ABSOLUTE_BARRIER);
 			pc.startHpRegeneration();
 			pc.startMpRegeneration();
 			pc.startMpRegenerationByDoll();
 		}
-		pc.killSkillEffectTimer(L1SkillId.MEDITATION);
+		pc.killSkillEffectTimer(MEDITATION);
 
 		pc.delInvis(); // 透明狀態の解除
 

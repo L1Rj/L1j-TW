@@ -203,7 +203,7 @@ public class L1PetInstance extends L1NpcInstance {
 		if (getCurrentHp() > 0) {
 			if (damage > 0) { // 回復の場合は攻擊しない。
 				setHate(attacker, 0); // ペットはヘイト無し
-				removeSkillEffect(L1SkillId.FOG_OF_SLEEPING);
+				removeSkillEffect(FOG_OF_SLEEPING);
 			}
 
 			if (attacker instanceof L1PcInstance && damage > 0) {

@@ -41,6 +41,7 @@ import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.ServerBasePacket;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.IntRange;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
 // L1Object, Die, L1PcInstance, L1MonsterInstance,
@@ -1449,7 +1450,7 @@ public class L1Character extends L1Object {
 	}
 
 	public boolean isInvisble() {
-		return (hasSkillEffect(L1SkillId.INVISIBILITY) || hasSkillEffect(L1SkillId.BLIND_HIDING));
+		return (hasSkillEffect(INVISIBILITY) || hasSkillEffect(BLIND_HIDING));
 	}
 
 	public void healHp(int pt) {
@@ -1492,7 +1493,7 @@ public class L1Character extends L1Object {
 			L1NpcInstance npc = (L1NpcInstance) this;
 			lightSize = npc.getLightSize(); // npc.sqlのライトサイズ
 		}
-		if (hasSkillEffect(L1SkillId.LIGHT)) {
+		if (hasSkillEffect(LIGHT)) {
 			lightSize = 14;
 		}
 

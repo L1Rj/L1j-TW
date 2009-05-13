@@ -312,7 +312,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				}
 			}
 			if (damage > 0) {
-				removeSkillEffect(L1SkillId.FOG_OF_SLEEPING);
+				removeSkillEffect(FOG_OF_SLEEPING);
 			}
 
 			onNpcAI();

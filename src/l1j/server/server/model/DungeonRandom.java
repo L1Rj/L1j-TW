@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 //import java.util.Random;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -135,7 +136,7 @@ public class DungeonRandom {
 			int heading = newDungeonRandom._heading;
 
 			// 2秒間は無敵（アブソルートバリア狀態）にする。
-			pc.setSkillEffect(L1SkillId.ABSOLUTE_BARRIER, 2000);
+			pc.setSkillEffect(ABSOLUTE_BARRIER, 2000);
 			pc.stopHpRegeneration();
 			pc.stopMpRegeneration();
 			pc.stopMpRegenerationByDoll();

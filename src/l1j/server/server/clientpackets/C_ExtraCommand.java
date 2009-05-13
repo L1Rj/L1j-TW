@@ -25,6 +25,7 @@ import l1j.server.server.ClientThread;
 import l1j.server.server.model.Instance.L1PcInstance;
 import static l1j.server.server.model.skill.L1SkillId.*;
 import l1j.server.server.serverpackets.S_DoActionGFX;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket

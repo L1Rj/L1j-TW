@@ -25,6 +25,7 @@ import l1j.server.server.model.L1Character;
 import l1j.server.server.model.Instance.L1MonsterInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1DamagePoison extends L1Poison {
 	private static Logger _log = Logger.getLogger(L1DamagePoison.class
@@ -56,7 +57,7 @@ public class L1DamagePoison extends L1Poison {
 					break;
 				}
 
-				if (!_target.hasSkillEffect(L1SkillId.STATUS_POISON)) {
+				if (!_target.hasSkillEffect(STATUS_POISON)) {
 					break;
 				}
 				if (_target instanceof L1PcInstance) {
@@ -83,7 +84,7 @@ public class L1DamagePoison extends L1Poison {
 	}
 
 	private void doInfection() {
-		_target.setSkillEffect(L1SkillId.STATUS_POISON, 30000);
+		_target.setSkillEffect(STATUS_POISON, 30000);
 		_target.setPoisonEffect((byte) 1);
 
 		if (isDamageTarget(_target)) {
@@ -114,7 +115,7 @@ public class L1DamagePoison extends L1Poison {
 		}
 
 		_target.setPoisonEffect((byte) 0);
-		_target.killSkillEffectTimer(L1SkillId.STATUS_POISON);
+		_target.killSkillEffectTimer(STATUS_POISON);
 		_target.setPoison(null);
 	}
 }

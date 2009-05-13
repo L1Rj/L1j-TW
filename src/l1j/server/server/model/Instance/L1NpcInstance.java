@@ -66,6 +66,7 @@ import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.StaticFinalList;
 import l1j.server.server.utils.TimerPool;
 import static l1j.server.server.model.item.L1ItemId.*;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1NpcInstance extends L1Character {
 	private static final long serialVersionUID = 1L;
@@ -525,10 +526,10 @@ public class L1NpcInstance extends L1Character {
 		boolean isCounterBarrier = false;
 		L1Attack attack = new L1Attack(this, target);
 		if (attack.calcHit()) {
-			if (target.hasSkillEffect(L1SkillId.COUNTER_BARRIER)) {
+			if (target.hasSkillEffect(COUNTER_BARRIER)) {
 				L1Magic magic = new L1Magic(target, this);
 				boolean isProbability = magic
-						.calcProbabilityMagic(L1SkillId.COUNTER_BARRIER);
+						.calcProbabilityMagic(COUNTER_BARRIER);
 				boolean isShortDistance = attack.isShortDistance();
 				if (isProbability && isShortDistance) {
 					isCounterBarrier = true;
@@ -1628,7 +1629,7 @@ public class L1NpcInstance extends L1Character {
 
 	private void useHealPotion(int healHp, int effectId) {
 		broadcastPacket(new S_SkillSound(getId(), effectId));
-		if (this.hasSkillEffect(L1SkillId.POLLUTE_WATER)) { // ポルートウォーター中は回復量1/2倍
+		if (this.hasSkillEffect(POLLUTE_WATER)) { // ポルートウォーター中は回復量1/2倍
 			healHp /= 2;
 		}
 		if (this instanceof L1PetInstance) {
@@ -1644,7 +1645,7 @@ public class L1NpcInstance extends L1Character {
 		broadcastPacket(new S_SkillHaste(getId(), 1, time));
 		broadcastPacket(new S_SkillSound(getId(), 191));
 		setMoveSpeed(1);
-		setSkillEffect(L1SkillId.STATUS_HASTE, time * 1000);
+		setSkillEffect(STATUS_HASTE, time * 1000);
 	}
 
 	// アイテムの使用判定及び使用
@@ -1860,7 +1861,7 @@ public class L1NpcInstance extends L1Character {
 		if (getBraveSpeed() == 1) {
 			sleepTime -= (sleepTime * 0.25);
 		}
-		if (hasSkillEffect(L1SkillId.WIND_SHACKLE)) {
+		if (hasSkillEffect(WIND_SHACKLE)) {
 			if (type == ATTACK_SPEED || type == MAGIC_SPEED) {
 				sleepTime += (sleepTime * 0.25);
 			}
@@ -1977,7 +1978,7 @@ public class L1NpcInstance extends L1Character {
 		// キャンセレーションをエフェクトなしでかける
 		// 本來は死亡時に行うべきだが、負荷が大きくなるため復活時に行う
 		L1SkillUse skill = new L1SkillUse();
-		skill.handleCommands(null, L1SkillId.CANCELLATION, getId(), getX(),
+		skill.handleCommands(null, CANCELLATION, getId(), getX(),
 				getY(), null, 0, L1SkillUse.TYPE_LOGIN, this);
 	}
 

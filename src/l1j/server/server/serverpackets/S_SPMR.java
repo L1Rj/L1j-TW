@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import l1j.server.server.Opcodes;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class S_SPMR extends ServerBasePacket {
 
@@ -38,7 +39,7 @@ public class S_SPMR extends ServerBasePacket {
 	private void buildPacket(L1PcInstance pc) {
 		writeC(Opcodes.S_OPCODE_SPMR);
 		// ウィズダムポーションのSPはS_SkillBrave送信時に更新されるため差し引いておく
-		if (pc.hasSkillEffect(L1SkillId.STATUS_WISDOM_POTION)) {
+		if (pc.hasSkillEffect(STATUS_WISDOM_POTION)) {
 			writeC(pc.getSp() - pc.getTrueSp() - 2); // 裝備增加したSP
 		} else {
 			writeC(pc.getSp() - pc.getTrueSp()); // 裝備增加したSP

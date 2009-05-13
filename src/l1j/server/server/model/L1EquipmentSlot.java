@@ -105,9 +105,9 @@ public class L1EquipmentSlot {
 		}
 
 		if (itemId == 20077 || itemId == 20062 || itemId == 120077) {
-			if (!_owner.hasSkillEffect(L1SkillId.INVISIBILITY)) {
-				_owner.killSkillEffectTimer(L1SkillId.BLIND_HIDING);
-				_owner.setSkillEffect(L1SkillId.INVISIBILITY, 0);
+			if (!_owner.hasSkillEffect(INVISIBILITY)) {
+				_owner.killSkillEffectTimer(BLIND_HIDING);
+				_owner.setSkillEffect(INVISIBILITY, 0);
 				_owner.sendPackets(new S_Invis(_owner.getId(), 1));
 				_owner.broadcastPacket(new S_RemoveObject(_owner));
 			}
@@ -135,8 +135,8 @@ public class L1EquipmentSlot {
 		_owner.setCurrentWeapon(0);
 		weapon.stopEquipmentTimer(_owner);
 		_weapon = null;
-		if (_owner.hasSkillEffect(L1SkillId.COUNTER_BARRIER)) {
-			_owner.removeSkillEffect(L1SkillId.COUNTER_BARRIER);
+		if (_owner.hasSkillEffect(COUNTER_BARRIER)) {
+			_owner.removeSkillEffect(COUNTER_BARRIER);
 		}
 	}
 

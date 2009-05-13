@@ -29,6 +29,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.model.skill.L1SkillUse;
 import l1j.server.server.serverpackets.S_ServerMessage;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1HauntedHouse {
 	private static final Logger _log = Logger.getLogger(L1HauntedHouse.class
@@ -72,7 +73,7 @@ public class L1HauntedHouse {
 		for (L1PcInstance pc : getMembersArray()) {
 			L1SkillUse l1skilluse = new L1SkillUse();
 			l1skilluse.handleCommands(pc,
-					L1SkillId.CANCELLATION, pc.getId(), pc.getX(), pc.getY(),
+					CANCELLATION, pc.getId(), pc.getX(), pc.getY(),
 					null, 0, L1SkillUse.TYPE_LOGIN);
 			L1PolyMorph.doPoly(pc, 6284, 300, L1PolyMorph.MORPH_BY_NPC);
 		}
@@ -95,7 +96,7 @@ public class L1HauntedHouse {
 			if (pc.getMapId() == 5140) {
 				L1SkillUse l1skilluse = new L1SkillUse();
 				l1skilluse.handleCommands(pc,
-						L1SkillId.CANCELLATION, pc.getId(), pc.getX(),
+						CANCELLATION, pc.getId(), pc.getX(),
 						pc.getY(), null, 0, L1SkillUse.TYPE_LOGIN);
 				L1Teleport.teleport(pc, 32624, 32813, (short) 4, 5, true);
 			}

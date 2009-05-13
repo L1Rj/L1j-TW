@@ -27,6 +27,7 @@ import l1j.server.server.Opcodes;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
@@ -73,7 +74,7 @@ public class S_UseAttackSkill extends ServerBasePacket {
 			int x, int y, int actionId, int isHit, boolean withCastMotion) {
 		if (cha instanceof L1PcInstance) {
 			// シャドウ系變身中に攻擊魔法を使用するとクライアントが落ちるため暫定對應
-			if (cha.hasSkillEffect(L1SkillId.SHAPE_CHANGE)
+			if (cha.hasSkillEffect(SHAPE_CHANGE)
 					&& actionId == ActionCodes.ACTION_SkillAttack) {
 				int tempchargfx = cha.getTempCharGfx();
 				if (tempchargfx == 5727 || tempchargfx == 5730) {

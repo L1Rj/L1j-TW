@@ -31,6 +31,7 @@ import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.model.trap.L1WorldTraps;
 import l1j.server.server.serverpackets.S_MoveCharPacket;
 import l1j.server.server.serverpackets.S_SystemMessage;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 //修正檔案 : l1j.server.server.clientpackets.C_MoveChar
 //修正者 : KIUSBT
@@ -64,11 +65,11 @@ public class C_MoveChar extends ClientBasePacket {
 				return;
 		}
 
-		pc.killSkillEffectTimer(L1SkillId.MEDITATION);
+		pc.killSkillEffectTimer(MEDITATION);
 		pc.setCallClanId(0); // コールクランを唱えた後に移動すると召喚無効
 
 		// アブソルートバリア中ではない
-		if (!pc.hasSkillEffect(L1SkillId.ABSOLUTE_BARRIER))
+		if (!pc.hasSkillEffect(ABSOLUTE_BARRIER))
 			pc.setRegenState(REGENSTATE_MOVE);
 
 		pc.getMap().setPassable(pc.getLocation(), true);

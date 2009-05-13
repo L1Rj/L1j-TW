@@ -29,6 +29,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class HpRegeneration extends TimerTask {
 
@@ -113,7 +114,7 @@ public class HpRegeneration extends TimerTask {
 		equipHpr += _pc.getHpr();
 		int bonus = RandomArrayList.getArrayshortList((short) maxBonus) + 1;
 
-		if (_pc.hasSkillEffect(L1SkillId.NATURES_TOUCH)) {
+		if (_pc.hasSkillEffect(NATURES_TOUCH)) {
 			bonus += 15;
 		}
 		if (L1HouseLocation.isInHouse(_pc.getX(), _pc.getY(), _pc.getMapId())) {
@@ -134,14 +135,14 @@ public class HpRegeneration extends TimerTask {
 				&& _pc.getMapId() == 4 && _pc.isElf())) {
 			bonus += 5;
 		}
- 		if (_pc.hasSkillEffect(L1SkillId.COOKING_1_5_N)
-				|| _pc.hasSkillEffect(L1SkillId.COOKING_1_5_S)) {
+ 		if (_pc.hasSkillEffect(COOKING_1_5_N)
+				|| _pc.hasSkillEffect(COOKING_1_5_S)) {
 			bonus += 3;
 		}
- 		if (_pc.hasSkillEffect(L1SkillId.COOKING_2_4_N)
-				|| _pc.hasSkillEffect(L1SkillId.COOKING_2_4_S)
-				|| _pc.hasSkillEffect(L1SkillId.COOKING_3_6_N)
-				|| _pc.hasSkillEffect(L1SkillId.COOKING_3_6_S)) {
+ 		if (_pc.hasSkillEffect(COOKING_2_4_N)
+				|| _pc.hasSkillEffect(COOKING_2_4_S)
+				|| _pc.hasSkillEffect(COOKING_3_6_N)
+				|| _pc.hasSkillEffect(COOKING_3_6_S)) {
 			bonus += 2;
 		}
  		if (_pc.getOriginalHpr() > 0) { // オリジナルCON HPR補正
@@ -157,7 +158,7 @@ public class HpRegeneration extends TimerTask {
 
 		// 空腹と重量のチェック
 		if (_pc.get_food() < 3 || isOverWeight(_pc)
-				|| _pc.hasSkillEffect(L1SkillId.BERSERKERS)) {
+				|| _pc.hasSkillEffect(BERSERKERS)) {
 			bonus = 0;
 			// 裝備によるＨＰＲ增加は滿腹度、重量によってなくなるが、 減少である場合は滿腹度、重量に關係なく效果が殘る
 			if (equipHpr > 0) {
@@ -216,7 +217,7 @@ public class HpRegeneration extends TimerTask {
 		if (pc.getInventory().checkEquipped(20207)) {
 			return false;
 		}
-		if (pc.hasSkillEffect(L1SkillId.STATUS_UNDERWATER_BREATH)) {
+		if (pc.hasSkillEffect(STATUS_UNDERWATER_BREATH)) {
 			return false;
 		}
 		if (pc.getInventory().checkEquipped(21048)
@@ -231,8 +232,8 @@ public class HpRegeneration extends TimerTask {
 	private boolean isOverWeight(L1PcInstance pc) {
 		// エキゾチックバイタライズ狀態、アディショナルファイアー狀態か
 		// ゴールデンウィング裝備時であれば、重量オーバーでは無いとみなす。
-		if (pc.hasSkillEffect(L1SkillId.EXOTIC_VITALIZE)
-				|| pc.hasSkillEffect(L1SkillId.ADDITIONAL_FIRE)) {
+		if (pc.hasSkillEffect(EXOTIC_VITALIZE)
+				|| pc.hasSkillEffect(ADDITIONAL_FIRE)) {
 			return false;
 		}
 		if (pc.getInventory().checkEquipped(20049)) {

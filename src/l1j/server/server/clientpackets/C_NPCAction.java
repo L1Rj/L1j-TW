@@ -369,7 +369,7 @@ public class C_NPCAction extends ClientBasePacket {
 				for (L1ItemInstance item : pc.getInventory().getItems()) {
 					if (pc.getWeapon().equals(item)) {
 						L1SkillUse l1skilluse = new L1SkillUse();
-						l1skilluse.handleCommands(pc, L1SkillId.ENCHANT_WEAPON,
+						l1skilluse.handleCommands(pc, ENCHANT_WEAPON,
 								item.getId(), 0, 0, null, 0,
 								L1SkillUse.TYPE_SPELLSC);
 						break;
@@ -381,7 +381,7 @@ public class C_NPCAction extends ClientBasePacket {
 			L1ItemInstance item = pc.getInventory().getItemEquipped(2, 2);
 			if (item != null) {
 				L1SkillUse l1skilluse = new L1SkillUse();
-				l1skilluse.handleCommands(pc, L1SkillId.BLESSED_ARMOR, item
+				l1skilluse.handleCommands(pc, BLESSED_ARMOR, item
 						.getId(), 0, 0, null, 0, L1SkillUse.TYPE_SPELLSC);
 			} else {
 				pc.sendPackets(new S_ServerMessage(79));
@@ -621,8 +621,8 @@ public class C_NPCAction extends ClientBasePacket {
 					}
 				}
 				// エレメンタルプロテクションによって上昇している屬性防御をリセット
-				if (pc.hasSkillEffect(L1SkillId.ELEMENTAL_PROTECTION)) {
-					pc.removeSkillEffect(L1SkillId.ELEMENTAL_PROTECTION);
+				if (pc.hasSkillEffect(ELEMENTAL_PROTECTION)) {
+					pc.removeSkillEffect(ELEMENTAL_PROTECTION);
 				}
 				pc.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 248, 252, 252, 255, 0, 0, 0, 0, 0,
@@ -685,7 +685,7 @@ public class C_NPCAction extends ClientBasePacket {
 					return;
 				}
 				L1SkillUse l1skilluse = new L1SkillUse();
-				l1skilluse.handleCommands(pc, L1SkillId.CANCELLATION,
+				l1skilluse.handleCommands(pc, CANCELLATION,
 						pc.getId(), pc.getX(), pc.getY(), null, 0,
 						L1SkillUse.TYPE_LOGIN);
 				pc.getInventory().takeoffEquip(945); // 牛のpolyIdで裝備を全部外す。
@@ -742,7 +742,7 @@ public class C_NPCAction extends ClientBasePacket {
 				pc.sendPackets(new S_SkillSound(pc.getId(), 755));
 				pc.broadcastPacket(new S_SkillSound(pc.getId(), 755));
 				pc.setMoveSpeed(1);
-				pc.setSkillEffect(L1SkillId.STATUS_HASTE, 1600 * 1000);
+				pc.setSkillEffect(STATUS_HASTE, 1600 * 1000);
 				htmlid = ""; // ウィンドウを消す
 			}
 		}
@@ -1732,7 +1732,7 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("0")) {
 				if (pc.getLevel() <= 13) {
 					L1SkillUse skillUse = new L1SkillUse();
-					skillUse.handleCommands(pc, L1SkillId.CANCELLATION, pc
+					skillUse.handleCommands(pc, CANCELLATION, pc
 							.getId(), pc.getX(), pc.getY(), null, 0,
 							L1SkillUse.TYPE_NPCBUFF, (L1NpcInstance) obj);
 					htmlid = ""; // ウィンドウを消す

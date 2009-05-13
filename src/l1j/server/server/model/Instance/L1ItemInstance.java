@@ -38,6 +38,7 @@ import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Pet;
 import l1j.server.server.utils.BinaryOutputStream;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
 // L1Object, L1PcInstance
@@ -851,21 +852,21 @@ class EnchantTimer extends TimerTask {
 		}
 
 		switch(skillId) {
-			case L1SkillId.HOLY_WEAPON:
+			case HOLY_WEAPON:
 				setHolyDmgByMagic(1);
 				setHitByMagic(1);
 				break;
 
-			case L1SkillId.ENCHANT_WEAPON:
+			case ENCHANT_WEAPON:
 				setDmgByMagic(2);
 				break;
 
-			case L1SkillId.BLESS_WEAPON:
+			case BLESS_WEAPON:
 				setDmgByMagic(2);
 				setHitByMagic(2);
 				break;
 
-			case L1SkillId.SHADOW_FANG:
+			case SHADOW_FANG:
 				setDmgByMagic(5);
 				break;
 

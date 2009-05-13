@@ -30,6 +30,7 @@ import l1j.server.server.model.map.L1WorldMap;
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.serverpackets.S_NPCPack;
 import l1j.server.server.templates.L1Npc;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
 // L1EffectSpawn
@@ -123,7 +124,7 @@ public class L1EffectSpawn {
 	public void doSpawnFireWall(L1Character cha, int targetX, int targetY) {
 		L1Npc firewall = NpcTable.getInstance().getTemplate(81157); // ファイアーウォール
 		int duration = SkillsTable.getInstance().getTemplate(
-				L1SkillId.FIRE_WALL).getBuffDuration();
+				FIRE_WALL).getBuffDuration();
 
 		if (firewall == null) {
 			throw new NullPointerException(

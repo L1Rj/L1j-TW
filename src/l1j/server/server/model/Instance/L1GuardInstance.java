@@ -34,6 +34,7 @@ import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_NPCTalkReturn;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.types.Point;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1GuardInstance extends L1NpcInstance {
 
@@ -387,7 +388,7 @@ public class L1GuardInstance extends L1NpcInstance {
 				}
 			}
 			if (damage > 0) {
-				removeSkillEffect(L1SkillId.FOG_OF_SLEEPING);
+				removeSkillEffect(FOG_OF_SLEEPING);
 			}
 
 			onNpcAI();
