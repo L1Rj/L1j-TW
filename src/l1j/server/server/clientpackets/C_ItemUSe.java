@@ -800,13 +800,30 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 49158) { // waja add 生命之樹果實
+//waja add 法師專用勇水 紅酒
+				}else if (itemId == 40039) { // 紅酒
+					if (pc.isWizard()) {
+						useBravePotion(pc, itemId);
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+					}
+					pc.getInventory().removeItem(l1iteminstance, 1);
+//黑妖專用勇水  威士忌
+				}else if (itemId == 40040) { // 強化ブレイブポーション
+					if (pc.isDarkelf()) {
+						useBravePotion(pc, itemId);
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+					}
+					pc.getInventory().removeItem(l1iteminstance, 1);
+//add end
+				} else if (itemId == 49158) {//幻術&龍騎勇水 生命之樹果實
 					if ((pc.isDragonKnight())|| (pc.isIllusionist())) {
 						useBravePotion(pc, itemId);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
-					pc.getInventory().removeItem(l1iteminstance, 1); // waja add end
+					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 40733 || itemId == 49138) { // 名譽貨幣 巧克力蛋糕
 					useBravePotion(pc, itemId);
 					pc.getInventory().removeItem(l1iteminstance, 1);
@@ -3000,8 +3017,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			ClientThread client) {
 //waja add 裝備保護卷軸
 		if (item.getproctect() == true){
-			if(item.isEquipped()) {
-				pc.addAc(+item.getEnchantLevel());
+			if(item.isEquipped()) { pc.addAc(+item.getEnchantLevel());
 			}
 			item.setEnchantLevel(0);
 			pc.sendPackets(new S_ItemStatus(item));

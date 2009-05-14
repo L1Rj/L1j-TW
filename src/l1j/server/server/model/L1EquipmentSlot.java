@@ -104,7 +104,7 @@ public class L1EquipmentSlot {
 			}
 		}
 
-		if (itemId == 20077 || itemId == 20062 || itemId == 120077) {
+		if (itemId == 20077 || itemId == 20062 || itemId == 120077) {//隱身道具
 			if (!_owner.hasSkillEffect(INVISIBILITY)) {
 				_owner.killSkillEffectTimer(BLIND_HIDING);
 				_owner.setSkillEffect(INVISIBILITY, 0);
@@ -112,10 +112,10 @@ public class L1EquipmentSlot {
 				_owner.broadcastPacket(new S_RemoveObject(_owner));
 			}
 		}
-		if (itemId == 20288) { // ROTC
+		if (itemId == 20288) { // 傳送控制戒指
 			_owner.sendPackets(new S_Ability(1, true));
 		}
-		if (itemId == 20383) { // 騎馬用ヘルム
+		if (itemId == 20383) { // 軍馬頭盔
 			if (armor.getChargeCount() != 0) {
 				armor.setChargeCount(armor.getChargeCount() - 1);
 				_owner.getInventory().updateItem(armor, L1PcInventory
@@ -173,9 +173,9 @@ public class L1EquipmentSlot {
 		}
 
 		if (itemId == 20077 || itemId == 20062 || itemId == 120077) {
-			_owner.delInvis(); // インビジビリティ狀態解除
+			_owner.delInvis(); // 隱身狀態解除
 		}
-		if (itemId == 20288) { // ROTC
+		if (itemId == 20288) { // 軍馬頭盔
 			_owner.sendPackets(new S_Ability(1, false));
 		}
 		armor.stopEquipmentTimer(_owner);
