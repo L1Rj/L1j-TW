@@ -697,7 +697,7 @@ public class L1NpcInstance extends L1Character {
 						try { // 5.15 Start
 							_randomMoveDistance = RandomArrayList.getArray7List() + 2;
 							_randomMoveDirection = RandomArrayList.getArray8List();
-							short sleeptime_PT = (short) (RandomArrayList.getArray9List() * 600);
+							short sleeptime_PT = (short) (RandomArrayList.getArray9List() * 500);
 							Thread.sleep(sleeptime_PT); // 讓怪懂得忙裡偷閒
 						} catch (Exception exception) {
 						}

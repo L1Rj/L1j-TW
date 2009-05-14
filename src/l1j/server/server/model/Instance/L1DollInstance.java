@@ -73,13 +73,33 @@ public class L1DollInstance extends L1NpcInstance {
 					setDirectionMove(dir);
 					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 				}
-			} */
+			} *//*
+			int dir = moveDirection(_master.getX(), _master.getY());
+			if (getLocation().getTileLineDistance(_master.getLocation()) < 3) {
+				for(int a = 1;a > 0; a--){
+					try{
+						Thread.sleep(600);
+						byte chance = RandomArrayList.getArray10List();
+						switch(chance){
+						case 5:
+							broadcastPacket(new S_DoActionGFX(getId(),ActionCodes.ACTION_Think)); 
+							Thread.sleep(2000);
+							break;
+						case 10:
+							broadcastPacket(new S_DoActionGFX(getId(),ActionCodes.ACTION_Aggress)); 
+							Thread.sleep(2200);
+							break;
+						}
+					}catch(Exception exception){
+						break;
+					}
+				}*/
 			int dir = moveDirection(_master.getX(), _master.getY()); // 5.15 Start
 			while (getLocation().getTileLineDistance(_master.getLocation()) < 2) {
 				try { // 執行娃娃閒置動作 無窮迴圈版 就算放在那邊1小時 也會根據機率判定
 					Thread.sleep(500);
-					switch(RandomArrayList.getArray100List()){
-					case 10: // 1%可能性觸動
+					switch (RandomArrayList.getArrayshortList((short) 200)) {
+					case 10: // 1%可能性觸動 正常而言 平均50秒內會觸發一次 
 						broadcastPacket(new S_DoActionGFX(getId(), ACTION_Think)); // 發動時面像被強制為5的Bug 請復查
 						// System.out.println("觸動『ACTION_Think』"); // 視情況註解 檢查機率用
 						Thread.sleep(2500);
