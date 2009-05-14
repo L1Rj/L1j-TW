@@ -23,10 +23,12 @@ import java.util.Arrays;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
 
+import l1j.server.server.ActionCodes; //waja add 魔法娃娃閒置動作
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.IdFactory;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.serverpackets.S_DoActionGFX;//waja add 魔法娃娃閒置動作
 import l1j.server.server.serverpackets.S_DollPack;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1Npc;
@@ -58,6 +60,8 @@ public class L1DollInstance extends L1NpcInstance {
 			deleteDoll();
 			return true;
 		} else if (_master != null && _master.getMapId() == getMapId()) {
+//waja change&add 魔法娃娃動作修改
+/*	日版		
 			if (getLocation().getTileLineDistance(_master.getLocation()) > 2) {
 				int dir = moveDirection(_master.getX(), _master.getY());
 				if (dir == -1) {
@@ -70,6 +74,33 @@ public class L1DollInstance extends L1NpcInstance {
 					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 				}
 			}
+*/
+			int dir = moveDirection(_master.getX(), _master.getY());
+			if (getLocation().getTileLineDistance(_master.getLocation()) < 3) {
+				for(int a = 1;a > 0; a--){
+					try{
+						Thread.sleep(600);
+						byte chance = RandomArrayList.getArray10List();
+						switch(chance){
+						case 5:
+							broadcastPacket(new S_DoActionGFX(getId(),ActionCodes.ACTION_Think)); 
+							Thread.sleep(2000);
+							break;
+						case 10:
+							broadcastPacket(new S_DoActionGFX(getId(),ActionCodes.ACTION_Aggress)); 
+							Thread.sleep(2200);
+							break;
+						}
+					}catch(Exception exception){
+						break;
+					}
+				}
+			} else
+			{
+				setDirectionMove(dir);
+				setSleepTime(calcSleepTime(getPassispeed(), dir));
+			}
+//end add
 		} else {
 			deleteDoll();
 			return true;

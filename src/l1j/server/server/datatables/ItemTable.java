@@ -434,6 +434,9 @@ public class ItemTable {
 				armor.setMaxLevel(rs.getInt("max_lvl"));
 				armor.set_mdef(rs.getInt("m_def"));
 				armor.setDamageReduction(rs.getInt("damage_reduction"));
+//waja add 讀入負重減輕
+				armor.setWeightReduction(rs.getInt("weight_reduction"));
+//add end
 				armor.setHitModifierByArmor(rs.getInt("hit_modifier"));
 				armor.setDmgModifierByArmor(rs.getInt("dmg_modifier"));
 				armor.setBowHitModifierByArmor(rs.getInt("bow_hit_modifier"));
