@@ -61,7 +61,7 @@ public class L1Recall implements L1CommandExecutor {
 				pc.sendPackets(new S_SystemMessage((new StringBuilder())
 						.append(target.getName()).append("已招回。")
 						.toString()));
-				target.sendPackets(new S_SystemMessage("您被GM招喚。"));
+				target.sendPackets(new S_SystemMessage("您被GM召喚。"));
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName

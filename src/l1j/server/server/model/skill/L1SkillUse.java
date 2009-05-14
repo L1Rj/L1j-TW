@@ -1746,6 +1746,15 @@ public class L1SkillUse {
 				} else if (_skillId == CURE_POISON) {
 					cha.curePoison();
 				} else if (_skillId == REMOVE_CURSE) {
+//waja add 特殊狀態下狀態無法使用技能補血&聖光
+					if (cha.hasSkillEffect(STATUS_CURSE_PARALYZED) //木乃尹
+						||cha.hasSkillEffect(SHOCK_STUN) //衝擊之暈
+						||cha.hasSkillEffect(FOG_OF_SLEEPING) //沉睡之霧
+						||cha.hasSkillEffect(ICE_LANCE)){ //冰矛圍籬
+						_player.sendPackets(new S_ServerMessage(285));//285 : \f1在此狀態下無法使用魔法。
+						return;
+					} 
+//add end
 					cha.curePoison();
 					if (cha.hasSkillEffect(STATUS_CURSE_PARALYZING)
 							|| cha.hasSkillEffect(STATUS_CURSE_PARALYZED)) {
@@ -1958,15 +1967,19 @@ public class L1SkillUse {
 						|| _skillId == NATURES_BLESSING)
 						&& (_user instanceof L1PcInstance)) {
 //waja add 特殊狀態中則無法施展回復系法術
-					 if ( cha.hasSkillEffect(STATUS_CURSE_PARALYZED) //木乃尹狀態
-						||cha.hasSkillEffect(SHOCK_STUN) //衝暈
+					if (cha.hasSkillEffect(STATUS_CURSE_PARALYZED) //木乃伊
+						||cha.hasSkillEffect(SHOCK_STUN) //衝擊之暈
 						||cha.hasSkillEffect(FOG_OF_SLEEPING) //沉睡之霧
-						||cha.hasSkillEffect(ICE_LANCE)) //冰茅
-					{ _player.sendPackets(new S_ServerMessage(285)); //285 : \f1在此狀態下無法使用魔法
+						||cha.hasSkillEffect(ICE_LANCE)){ //冰矛圍籬
+					
+						_player.sendPackets(new S_ServerMessage(285));//285 : \f1在此狀態下無法使用魔法。
 						return;
 					}
-//end add
-					cha.removeSkillEffect(WATER_LIFE);
+					else if (_user instanceof L1PcInstance) {
+						cha.removeSkillEffect(WATER_LIFE);
+					} 
+					//cha.removeSkillEffect(WATER_LIFE);
+//add end
 				}
 				// ★★★ 攻擊系スキル ★★★
 				// チルタッチ、バンパイアリックタッチ
@@ -2137,7 +2150,7 @@ public class L1SkillUse {
 						npc.setParalysisTime(_skill.getBuffDuration() * 1000);
 					}
 				} else if (_skillId == SHOCK_STUN) {
-					int[] stunTimeArray = { 500, 1000, 1500, 2000, 2500, 3000 };
+					int[] stunTimeArray = { 1000, 2000, 3000, 4000, 5000, 6000 }; //waja chang 衝擊之暈時間為1-6秒
 					byte rnd = RandomArrayList.getArray6List(); // 依存 stunTimeArray[] 大小
 					_shockStunDuration = stunTimeArray[rnd];
 					if (cha instanceof L1PcInstance

@@ -173,11 +173,12 @@ public class L1TeleporterInstance extends L1NpcInstance {
 		int objid = getId();
 		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(
 				getNpcTemplate().get_npcId());
+		String[] price = null;
 		if (action.equalsIgnoreCase("teleportURL")) {
 			L1NpcHtml html = new L1NpcHtml(talking.getTeleportURL());
-// waja add 刪除player.sendPackets(new S_NPCTalkReturn(objid, html));
-//waja add修正傳送師顯示傳送金額 by 阿傑
-			String[] price = null;
+			// 刪除player.sendPackets(new S_NPCTalkReturn(objid, html));
+//waja add 修正傳送師顯示傳送金額 by 阿傑
+			//String[] price = null;
 			int npcid = getNpcTemplate().get_npcId();
 			switch(npcid)
 			{
@@ -250,18 +251,17 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				}
 			}
 			player.sendPackets(new S_NPCTalkReturn(objid, html, price));
-			// 修正傳送師顯示傳送金額 end
+// 修正傳送師顯示傳送金額  end
 		} /*刪除else if (action.equalsIgnoreCase("teleportURLA")) {
 			L1NpcHtml html = new L1NpcHtml(talking.getTeleportURLA());
 			player.sendPackets(new S_NPCTalkReturn(objid, html));
 		}刪除*/
-		// 傳送師狩獵區設定
+// 傳送師狩獵區設定 
 		else if (action.equalsIgnoreCase("teleportURLA")) {
 			// 刪除L1NpcHtml html = new L1NpcHtml(talking.getTeleportURL());
 			// 刪除player.sendPackets(new S_NPCTalkReturn(objid, html));
-			// 修正傳送師顯示傳送金額
+// 修正傳送師顯示傳送金額 
 			String html = "";
-			String[] price = null;
 			int npcid = getNpcTemplate().get_npcId();
 			switch(npcid)
 			{
@@ -320,44 +320,55 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				}
 			}
 			player.sendPackets(new S_NPCTalkReturn(objid, html, price));
-//add end
+// 修正傳送師顯示傳送金額  end
+// 傳送師狩獵區設定  end
 		} else if (action.equalsIgnoreCase("teleportURLA")) {
 			L1NpcHtml html = new L1NpcHtml(talking.getTeleportURLA());
 			player.sendPackets(new S_NPCTalkReturn(objid, html));
-		}
-//waja add 狩獵區傳送(金額無法顯示)
+		} //修正狩獵區
 		else if (action.equalsIgnoreCase("teleportURLC")) {
 			String htmlid = "guide_1_2";
-			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+			price=new String[]{"403","403","403","403","923","923"};
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
 		} else if (action.equalsIgnoreCase("teleportURLB")) {
 			String htmlid = "guide_1_1";
-			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+			price=new String[]{"390","390","390","390"};
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
 		} else if (action.equalsIgnoreCase("teleportURLD")) {
 			String htmlid = "guide_1_3";
-			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+			price=new String[]{"480","480","480","480","630","1080","630"};
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
 		} else if (action.equalsIgnoreCase("teleportURLF")) {
 			String htmlid = "guide_2_2";
-			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+			price=new String[]{"533","533","793","663"};
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
 		} else if (action.equalsIgnoreCase("teleportURLE")) {
 			String htmlid = "guide_2_1";
-			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+			price=new String[]{"600","600","750","750"};
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
 		} else if (action.equalsIgnoreCase("teleportURLG")) {
 			String htmlid = "guide_2_3";
-			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+			price=new String[]{"630","780","630","1080","930"};
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
 		} else if (action.equalsIgnoreCase("teleportURLI")) {
 			String htmlid = "guide_3_2";
-			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+			price=new String[]{"663","663","663","663","1313","1053","793"};
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
 		} else if (action.equalsIgnoreCase("teleportURLH")) {
 			String htmlid = "guide_3_1";
-			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+			price=new String[]{"750","750","750","1200","1050"};
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
 		} else if (action.equalsIgnoreCase("teleportURLJ")) {
 			String htmlid = "guide_3_3";
-			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+			price=new String[]{"780","780","780","780","780","1230","1080"};
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
 		} else if (action.equalsIgnoreCase("teleportURLK")) {
 			String htmlid = "guide_4";
-			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+			price=new String[]{"676","676","676","676","676","1066","936"};
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
 		}
 //add end
+		
 		if (action.startsWith("teleport ")) {
 			_log.finest((new StringBuilder()).append("Setting action to : ")
 					.append(action).toString());
