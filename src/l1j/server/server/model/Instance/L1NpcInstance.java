@@ -408,7 +408,7 @@ public class L1NpcInstance extends L1Character {
 			if (isAttackPosition(target.getX(), target.getY(), getNpcTemplate()
 					.get_ranged())) { // 攻擊可能位置
 				if (mobSkill.isSkillTrigger(target)) { // トリガの條件に合うスキルがある
-					if (_random.nextInt(2) >= 1) { // 一定の確率で物理攻擊
+					if (RandomArrayList.getArray2List() == 1) { // 一定の確率で物理攻擊
 						setHeading(targetDirection(target.getX(), target
 								.getY()));
 						attackTarget(target);
@@ -694,14 +694,19 @@ public class L1NpcInstance extends L1Character {
 					// 移動する予定の距離を移動し終えたら、新たに距離と方向を決める
 					// そうでないなら、移動する予定の距離をデクリメント
 					if (_randomMoveDistance == 0) {
-						_randomMoveDistance = RandomArrayList.getArray5List() + 1;
-						_randomMoveDirection = RandomArrayList.getArray8List();
+						try { // 5.15 Start
+							_randomMoveDistance = RandomArrayList.getArray7List() + 2;
+							_randomMoveDirection = RandomArrayList.getArray8List();
+							short sleeptime_PT = (short) (RandomArrayList.getArray9List() * 600);
+							Thread.sleep(sleeptime_PT); // 讓怪懂得忙裡偷閒
+						} catch (Exception exception) {
+						}
 						// ホームポイントから離れすぎないように、一定の確率でホームポイントの方向に補正
-						if (getHomeX() != 0 && getHomeY() != 0
+						/*if (getHomeX() != 0 && getHomeY() != 0
 								&& RandomArrayList.getArray3List() == 0) {
 							_randomMoveDirection = moveDirection(getHomeX(),
 									getHomeY());
-						}
+						}*/ // 5.15 End
 					} else {
 						_randomMoveDistance--;
 					}
