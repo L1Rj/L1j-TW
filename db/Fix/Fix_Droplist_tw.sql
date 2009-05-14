@@ -119,3 +119,62 @@ Update droplist Set chance = '200000' Where itemid='41149' and chance = '300000'
 Update droplist Set chance = '5000' Where itemid='40278' and chance = '10000';
 Update droplist Set chance = '2500' Where itemid='40278' and chance = '5000';
 Update droplist Set chance = '10000' Where itemid='40278' and chance = '20000';
+
+/* 20090514 ÃT³½±¼¸¨ÃT³½§Z */
+INSERT INTO `droplist` VALUES (45160, 49040, 1, 1, 50000);
+/* 20090514 Æs³½±¼¸¨Æs³½¦× */
+INSERT INTO `droplist` VALUES (45101, 49041, 1, 1, 50000);
+INSERT INTO `droplist` VALUES (45196, 49041, 1, 1, 50000);
+INSERT INTO `droplist` VALUES (45307, 49041, 1, 1, 50000);
+/* 20090514 ÀsÀt±¼¸¨ÀsÀt³J */
+INSERT INTO `droplist` VALUES (45240, 49042, 1, 1, 50000);
+INSERT INTO `droplist` VALUES (45262, 49042, 1, 1, 50000);
+/* 20090514 ©_²§ÆxÄM±¼¸¨©_²§ÆxÄM¦× */
+INSERT INTO `droplist` VALUES (45249, 49043, 1, 1, 50000);
+/* 20090514 ¬rÃÈ±¼¸¨¬rÃÈ¦× */
+INSERT INTO `droplist` VALUES (45259, 49044, 1, 1, 50000);
+/* 20090514 ¥ìµÜ§J¹y±¼¸¨¥ìµÜ§J¹y¦× ¤w¦³*/
+/*
+INSERT INTO `droplist` VALUES (45279, 49045, 1, 1, 50000);
+*/
+/* 20090514 ·¨ªG¸Ì®¦&®L¬¥§B&²ö©g¨È  ±¼¸¨»jµï»L¦× */
+INSERT INTO `droplist` VALUES (45184, 49046, 1, 1, 50000); /*·¨ªG¸Ì®¦*/
+INSERT INTO `droplist` VALUES (45401, 49046, 1, 1, 50000); /*·¨ªG¸Ì®¦*/
+INSERT INTO `droplist` VALUES (45312, 49046, 1, 1, 50000); /*©_©¥ ·¨ªG¸Ì®¦*/
+INSERT INTO `droplist` VALUES (45348, 49046, 1, 1, 50000); /*ÅÜºØ ·¨ªG¸Ì®¦*/
+INSERT INTO `droplist` VALUES (45059, 49046, 1, 1, 50000); /*®z¤Æ·¨ªG¸Ì®¦*/
+INSERT INTO `droplist` VALUES (45136, 49046, 1, 1, 50000); /*®L¬¥§B*/
+INSERT INTO `droplist` VALUES (45358, 49046, 1, 1, 50000); /*®L¬¥§B*/
+INSERT INTO `droplist` VALUES (45038, 49046, 1, 1, 50000); /*®z¤Æ®L¬¥§B*/
+INSERT INTO `droplist` VALUES (45289, 49046, 1, 1, 50000); /*²ö©g¨È*/
+INSERT INTO `droplist` VALUES (45308, 49046, 1, 1, 50000); /*²ö©g¨È*/
+INSERT INTO `droplist` VALUES (45070, 49046, 1, 1, 50000); /*®z¤Æ²ö©g¨È*/
+/* 20090514 ÃÉ¤H±¼¸¨ÃÉ¦× ¤w¦³*/
+/*
+INSERT INTO `droplist` VALUES (45164, 49047, 1, 1, 50000);
+INSERT INTO `droplist` VALUES (45806, 49047, 1, 1, 50000);
+*/
+
+/* 20090514 «¶´µ©Z­×±¼¸¨«¶´µ©Z­×ªºîg */
+INSERT INTO `droplist` VALUES (45285, 49260, 1, 1, 50000);
+INSERT INTO `droplist` VALUES (45823, 49260, 1, 1, 50000);
+/* 20090514 ®æ§Qªâ±¼¸¨®æ§Qªâ¦× */
+INSERT INTO `droplist` VALUES (45321, 49261, 1, 1, 50000);
+INSERT INTO `droplist` VALUES (45445, 49261, 1, 1, 50000);
+/* 20090514 ¨È¤O¦w±¼¸¨¨È¤O¦wªº§À¤Ú */
+INSERT INTO `droplist` VALUES (45361, 49262, 1, 1, 50000);
+INSERT INTO `droplist` VALUES (45362, 49262, 1, 1, 50000);
+INSERT INTO `droplist` VALUES (81102, 49262, 1, 1, 50000);
+INSERT INTO `droplist` VALUES (81173, 49262, 1, 1, 50000);
+/* 20090514 ¦a©³¥¨¤ýÀt±¼¸¨¥¨¤ýÀt¦× */
+INSERT INTO `droplist` VALUES (45422, 49263, 1, 1, 50000);
+/* 20090514 ¥®Às±¼¸¨¥®Às¯Í»H */
+INSERT INTO `droplist` VALUES (45496, 49264, 1, 1, 50000);
+/* 20090514 ­¸Às±¼¸¨­¸Às¦× */
+INSERT INTO `droplist` VALUES (45529, 49265, 1, 1, 50000);
+INSERT INTO `droplist` VALUES (45578, 49265, 1, 1, 50000);
+/* 20090514 ²`®ü³½±¼¸¨²`®ü³½¦× */
+INSERT INTO `droplist` VALUES (45728, 49266, 1, 1, 50000);
+/* 20090514 ¨¸´c»h»i±¼¸¨¨¸´c»h»i³J */
+INSERT INTO `droplist` VALUES (45381, 49267, 1, 1, 50000);
+INSERT INTO `droplist` VALUES (45531, 49267, 1, 1, 50000);
