@@ -10,7 +10,7 @@ delete from skills where skill_id = 46 ;
 delete from skills where skill_id = 50 ;
 delete from skills where skill_id = 65 ;
 
-insert  into skills values
+insert into skills values
 (10, 'チル タッチ', 2, 1, 8, 0, 0, 0, 0, 0, 'attack', 3, 10, 10, 2, 0, 0, 4, 64, -2, 3, 0, 0, 2, '$1442', 18, 252, 0, 0, 0, 0),
 (15, 'ファイアー アロー', 2, 6, 6, 0, 0, 0, 0, 0, 'attack', 3, 10, 10, 2, 0, 0, 2, 64, 0, 10, 0, 0, 64, '$1968', 18, 1583, 0, 0, 0, 0),
 (16, 'スタラック', 2, 7, 6, 0, 0, 0, 0, 0, 'attack', 3, 10, 10, 2, 0, 0, 1, 64, 0, 10, 0, 0, 128, '$1969', 18, 1801, 0, 0, 0, 0),

@@ -1,1 +1,1 @@
-alter table accounts add  `character_slot` int(2) default '0';
+alter table accounts add `character_slot` int(2) default '0';
