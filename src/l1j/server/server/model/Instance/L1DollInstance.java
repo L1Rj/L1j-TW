@@ -61,7 +61,7 @@ public class L1DollInstance extends L1NpcInstance {
 			return true;
 		} else if (_master != null && _master.getMapId() == getMapId()) {
 //waja change&add 魔法娃娃動作修改
-/*	日版		
+/* 日版
 			if (getLocation().getTileLineDistance(_master.getLocation()) > 2) {
 				int dir = moveDirection(_master.getX(), _master.getY());
 				if (dir == -1) {
@@ -95,8 +95,7 @@ public class L1DollInstance extends L1NpcInstance {
 						break;
 					}
 				}
-			} else
-			{
+			} else {
 				setDirectionMove(dir);
 				setSleepTime(calcSleepTime(getPassispeed(), dir));
 			}

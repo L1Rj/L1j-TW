@@ -3017,7 +3017,8 @@ public class C_ItemUSe extends ClientBasePacket {
 			ClientThread client) {
 //waja add 裝備保護卷軸
 		if (item.getproctect() == true){
-			if(item.isEquipped()) { pc.addAc(+item.getEnchantLevel());
+			if(item.isEquipped()) {
+				pc.addAc(+item.getEnchantLevel());
 			}
 			item.setEnchantLevel(0);
 			pc.sendPackets(new S_ItemStatus(item));

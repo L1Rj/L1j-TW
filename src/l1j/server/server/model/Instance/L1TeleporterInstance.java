@@ -251,7 +251,7 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				}
 			}
 			player.sendPackets(new S_NPCTalkReturn(objid, html, price));
-// 修正傳送師顯示傳送金額  end
+// 修正傳送師顯示傳送金額 end
 		} /*刪除else if (action.equalsIgnoreCase("teleportURLA")) {
 			L1NpcHtml html = new L1NpcHtml(talking.getTeleportURLA());
 			player.sendPackets(new S_NPCTalkReturn(objid, html));
@@ -320,8 +320,8 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				}
 			}
 			player.sendPackets(new S_NPCTalkReturn(objid, html, price));
-// 修正傳送師顯示傳送金額  end
-// 傳送師狩獵區設定  end
+// 修正傳送師顯示傳送金額 end
+// 傳送師狩獵區設定 end
 		} else if (action.equalsIgnoreCase("teleportURLA")) {
 			L1NpcHtml html = new L1NpcHtml(talking.getTeleportURLA());
 			player.sendPackets(new S_NPCTalkReturn(objid, html));
@@ -368,7 +368,7 @@ public class L1TeleporterInstance extends L1NpcInstance {
 			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
 		}
 //add end
-		
+
 		if (action.startsWith("teleport ")) {
 			_log.finest((new StringBuilder()).append("Setting action to : ")
 					.append(action).toString());
