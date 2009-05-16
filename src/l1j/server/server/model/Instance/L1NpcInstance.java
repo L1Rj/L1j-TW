@@ -1269,9 +1269,9 @@ public class L1NpcInstance extends L1Character {
 		int id = 0;
 		if (isReuseId) {
 			id = getId();
-		} else {
+		}/* else { // 5.16 Start
 			id = 0;
-		}
+		}*/ // 5.16 End
 		_spawn.executeSpawnTask(_spawnNumber, id);
 	}
 
@@ -1511,8 +1511,9 @@ public class L1NpcInstance extends L1Character {
 	private static int targetFace(int heading) {
 		if (heading > 7) {
 			return heading % 8;
-		}
-		return heading;
+		} else { // 5.16 Start
+			return heading;
+		} // 5.16 End
 	}
 
 	// 目標の逆方向を返す
@@ -1532,15 +1533,16 @@ public class L1NpcInstance extends L1Character {
 		L1Map map = L1WorldMap.getInstance().getMap(m); // 5.06 Start
 		if (map.isPassable(x, y, heading)) {
 			return heading;
-		}
-		for (byte i = 1 ; i < 8 ; i++) {
-			heading += FIND_HEADING_TABLE[i];
-			heading = targetFace(heading);
-			if (map.isPassable(x, y, heading)) {
-				return heading;
-			}
-		} // 5.06 End
-		return -1;
+		} else { // 5.16 Start
+			for (byte i = 1 ; i < 8 ; i++) {
+				heading += FIND_HEADING_TABLE[i];
+				heading = targetFace(heading);
+				if (map.isPassable(x, y, heading)) {
+					return heading;
+				}
+			} // 5.06 End
+			return -1;
+		} // 5.16 End
 	}
 
 	// 目標までの最短經路の方向を返す
