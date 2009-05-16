@@ -109,6 +109,8 @@ public class L1NpcInstance extends L1Character {
 	private boolean _rest = false;
 
 	// ランダム移動時の距離と方向
+	private short sleeptime_PT = -1;
+
 	private int _randomMoveDistance = 0;
 
 	private int _randomMoveDirection = 0;
@@ -693,20 +695,24 @@ public class L1NpcInstance extends L1Character {
 								.isLeader(this)) {
 					// 移動する予定の距離を移動し終えたら、新たに距離と方向を決める
 					// そうでないなら、移動する予定の距離をデクリメント
-					if (_randomMoveDistance == 0) {
-						try { // 5.15 Start
-							_randomMoveDistance = RandomArrayList.getArray7List() + 2;
-							_randomMoveDirection = RandomArrayList.getArray8List();
-							short sleeptime_PT = (short) (RandomArrayList.getArray9List() * 500);
-							Thread.sleep(sleeptime_PT); // 讓怪懂得忙裡偷閒
+					if (_randomMoveDistance == 0) { // 5.16 Start
+						_randomMoveDistance = RandomArrayList.getArray7List() + 2;
+						_randomMoveDirection = RandomArrayList.getArray8List();
+						try {
+							if (sleeptime_PT == -1) { // 第一次看見人的怪物，不需要休息
+								++sleeptime_PT;
+							} else {
+								sleeptime_PT = (short) (RandomArrayList.getArray9List() * 500); // 需要常先得自己解除 註解 缺點被打時可能會不正常
+								Thread.sleep(sleeptime_PT); // 讓怪懂得忙裡偷閒
+							}
 						} catch (Exception exception) {
 						}
 						// ホームポイントから離れすぎないように、一定の確率でホームポイントの方向に補正
-						/*if (getHomeX() != 0 && getHomeY() != 0
-								&& RandomArrayList.getArray3List() == 0) {
+						if (getHomeX() != 0 && getHomeY() != 0
+								&& RandomArrayList.getArray5List() == 0) {
 							_randomMoveDirection = moveDirection(getHomeX(),
 									getHomeY());
-						}*/ // 5.15 End
+						} // 5.16 End
 					} else {
 						_randomMoveDistance--;
 					}
