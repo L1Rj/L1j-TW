@@ -178,3 +178,6 @@ INSERT INTO `droplist` VALUES (45728, 49266, 1, 1, 50000);
 /* 20090514 ¨¸´c»h»i±¼¸¨¨¸´c»h»i³J */
 INSERT INTO `droplist` VALUES (45381, 49267, 1, 1, 50000);
 INSERT INTO `droplist` VALUES (45531, 49267, 1, 1, 50000);
+
+/* 20090514 ­×¥¿Às¤§¤ß±¼¸¨¾÷²v */
+Update droplist Set chance = '500' Where itemid='40466' and chance = '45496';
