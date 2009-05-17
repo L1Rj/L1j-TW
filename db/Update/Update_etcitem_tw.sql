@@ -1802,9 +1802,9 @@ Update etcitem Set name = '對武器施法的卷軸' Where item_id = '240087';
 Update etcitem Set name = '瞬間移動卷軸' Where item_id = '240100';
 
 /* name_id 針對日文部分做出修正 採現有的中文翻譯為主 */
-Update etcitem Set name_id = '$1672' Where item_id = '40073';
+Update etcitem Set name_id = '$1672' Where item_id = '40073'; /*復活蛋*/
 Update etcitem Set name_id = '大洞穴移動卷軸' Where item_id = '40083';
-Update etcitem Set name_id = '$2720' Where item_id = '40326'; /*復活蛋*/
+Update etcitem Set name_id = '$2720' Where item_id = '40326'; /*3階段魔法骰子*/
 Update etcitem Set name_id = '$3514' Where item_id = '40747'; /*黑色米索莉箭*/
 Update etcitem Set name_id = '指定傳送(黃昏山脈)' Where item_id = '40801';
 Update etcitem Set name_id = '指定傳送(亞丁城庭園)' Where item_id = '40802';
