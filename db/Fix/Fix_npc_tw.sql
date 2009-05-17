@@ -7,6 +7,11 @@ Update npc Set passispeed = '1700' Where npcid = '70848'; /* 安特 */
 Update npc Set passispeed = '1500' Where npcid = '70850'; /* 潘 */
 Update npc Set passispeed = '1500' Where npcid = '70846'; /* 芮克妮 */
 Update npc Set passispeed = '1200' Where npcid = '70851'; /* 精靈 */
+/* 20090517 藍尾蜥蜴行走速度降低 */
+Update npc Set passispeed = '500' Where npcid = '45239'; /* 藍尾蜥蜴 */
+/* 20090518 修正黑暗精靈攻速 */
+Update npc Set atkspeed = '1020' Where npcid = '45265'; /* 黑暗精靈 */
+Update npc Set atkspeed = '1020' Where npcid = '45364'; /* 黑暗精靈 */
 
 /* 20090510 修正弱化NPC為非主動 */
 Update npc Set agro = 0 Where npcid = '45026';
