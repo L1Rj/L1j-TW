@@ -320,8 +320,8 @@ Update armor Set name = '曼波兔帽' Where item_id = '20343';
 Update armor Set name = '曼波兔帽' Where item_id = '20344';
 Update armor Set name = '柯利的項鍊' Where item_id = '20345';
 Update armor Set name = '浣熊的項鍊' Where item_id = '20346';
-Update armor Set name = '韓服' Where item_id = '20347';
-Update armor Set name = '和服' Where item_id = '20348';
+Update armor Set name = '和服(男性)' Where item_id = '20347';
+Update armor Set name = '和服(女性)' Where item_id = '20348';
 Update armor Set name = '獵犬項鍊' Where item_id = '20349';
 Update armor Set name = '雪人的項鍊' Where item_id = '20350';
 Update armor Set name = '雪人的胡蘿蔔' Where item_id = '20351';
@@ -541,6 +541,7 @@ Update armor Set name = '龍鱗臂甲' Where item_id = '21103';
 Update armor Set name = '水晶臂甲' Where item_id = '21104';
 Update armor Set name = '古代神射臂甲' Where item_id = '21105';
 Update armor Set name = '古代鬥士臂甲' Where item_id = '21106';
+Update armor Set name = '木製的夾克' Where item_id = '21107';
 Update armor Set name = '抗魔法頭盔' Where item_id = '120011';
 Update armor Set name = '曼波帽子' Where item_id = '120016';
 Update armor Set name = '鋼盔' Where item_id = '120043';
@@ -605,11 +606,20 @@ Update armor Set name = '受詛咒的藍寶石戒指' Where item_id = '220295';
 Update armor Set name = '受詛咒的綠寶石戒指' Where item_id = '220296';
 
 /* name_id 針對日文部分做出修正 採現有的中文翻譯為主 */
-Update armor Set name_id = '$797' Where item_id = '20251';
-Update armor Set name_id = '情人項鍊' Where item_id = '20270';
-Update armor Set name_id = '$3008' Where item_id = '20286';
-Update armor Set name_id = '$1379' Where item_id = '20305';
+Update armor Set name_id = '$2454$225' Where item_id = '20074'; /*銀光斗篷*/
+Update armor Set name_id = '$2452$2466' Where item_id = '20132'; /*黑暗披肩*/
+Update armor Set name_id = '$797' Where item_id = '20251'; /*都佩傑諾的項鍊*/
+Update armor Set name_id = '情人項鍊' Where item_id = '20270'; /*情人項鍊*/
+Update armor Set name_id = '$3008' Where item_id = '20286'; /*守護團戒指*/
+Update armor Set name_id = '$1379' Where item_id = '20305'; /*情人戒指*/
+Update armor Set name_id = '$3614' Where item_id = '20347'; /*和服(男性)*/
+Update armor Set name_id = '$3217' Where item_id = '20348'; /*和服(女性)*/
+Update armor Set name_id = '$2454$225' Where item_id = '120074'; /*銀光斗篷*/
 /*
 $3216	韓服(女性)
 $3217	和服(女性)
-$3218	旗袍(女性)*/
+$3218	旗袍(女性)
+$3613	韓服(男性)
+$3614	和服(男性)
+$3615	阿大裝	中国正装(男性)
+*/
