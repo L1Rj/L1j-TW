@@ -1,4 +1,4 @@
-/* 20090418 l1j rev 1736 ¨¤¦âÄæ¦ìÅÜ§ó */
+/* 20090418 l1j rev 1736 è§’è‰²æ¬„ä½è®Šæ›´ */
 alter table characters add `OriginalStr` int(3) default '0';
 alter table characters add `OriginalCon` int(3) default '0';
 alter table characters add `OriginalDex` int(3) default '0';

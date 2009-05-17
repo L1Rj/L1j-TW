@@ -1,4 +1,4 @@
-/* l1j db 20090416 ­°§CºëÆF¤ô´¹¤T­«¥Ú±¼¸¨¾÷²v */
+/* l1j db 20090416 é™ä½ç²¾éˆæ°´æ™¶ä¸‰é‡çŸ¢æ‰è½æ©Ÿç‡ */
 Update droplist Set chance = '2000' Where mobid='45118' and itemid = '40240';
 Update droplist Set chance = '2000' Where mobid='45122' and itemid = '40240';
 Update droplist Set chance = '1000' Where mobid='45291' and itemid = '40240';
@@ -19,7 +19,7 @@ Update droplist Set chance = '2000' Where mobid='45534' and itemid = '40240';
 Update droplist Set chance = '2000' Where mobid='45535' and itemid = '40240';
 Update droplist Set chance = '6000' Where mobid='45926' and itemid = '40240';
 Update droplist Set chance = '2000' Where mobid='81173' and itemid = '40240';
-/* l1j db 20090416 ­°§CÅ]ªk®Ñ ¨IºÎ¤§Ãú ±¼¸¨¾÷²v */
+/* l1j db 20090416 é™ä½é­”æ³•æ›¸ æ²‰ç¡ä¹‹éœ§ æ‰è½æ©Ÿç‡ */
 Update droplist Set chance = '2000' Where mobid='45136' and itemid = '40211';
 Update droplist Set chance = '4000' Where mobid='45184' and itemid = '40211';
 Update droplist Set chance = '4000' Where mobid='45263' and itemid = '40211';
@@ -38,7 +38,7 @@ Update droplist Set chance = '4000' Where mobid='45653' and itemid = '40211';
 Update droplist Set chance = '4000' Where mobid='45680' and itemid = '40211';
 Update droplist Set chance = '4000' Where mobid='45906' and itemid = '40211';
 Update droplist Set chance = '4000' Where mobid='45959' and itemid = '40211';
-/* l1j db 20090429 ­°§CºëÆF¤ô´¹ ¿ûÅK¨¾Å@ ±¼¸¨¾÷²v */
+/* l1j db 20090429 é™ä½ç²¾éˆæ°´æ™¶ é‹¼éµé˜²è­· æ‰è½æ©Ÿç‡ */
 Update droplist Set chance = '1000' Where mobid='45316' and itemid = '40251';
 Update droplist Set chance = '2000' Where mobid='45345' and itemid = '40251';
 Update droplist Set chance = '2000' Where mobid='45372' and itemid = '40251';
@@ -50,7 +50,7 @@ Update droplist Set chance = '2000' Where mobid='45795' and itemid = '40251';
 Update droplist Set chance = '2000' Where mobid='45949' and itemid = '40251';
 Update droplist Set chance = '2000' Where mobid='45950' and itemid = '40251';
 Update droplist Set chance = '1000' Where mobid='46037' and itemid = '40251';
-/* l1j db 20090430 ­°§CÅ]ªk®Ñ ¸tµ²¬É ±¼¸¨¾÷²v */
+/* l1j db 20090430 é™ä½é­”æ³•æ›¸ è–çµç•Œ æ‰è½æ©Ÿç‡ */
 Update droplist Set chance = '300' Where mobid='45221' and itemid = '40213';
 Update droplist Set chance = '300' Where mobid='45241' and itemid = '40213';
 Update droplist Set chance = '300' Where mobid='45244' and itemid = '40213';
@@ -75,116 +75,116 @@ Update droplist Set chance = '1500' Where mobid='45969' and itemid = '40213';
 Update droplist Set chance = '500' Where mobid='45979' and itemid = '40213';
 Update droplist Set chance = '100000' Where mobid='81163' and itemid = '40213';
 
-/* 20090512 ­°§C¨¾¨÷ªZ¨÷¯¬¨¾¾÷²v */
-Update droplist Set chance = '5000' Where itemid='40087' and chance = '10000';/* ªZ¨÷ */
-Update droplist Set chance = '20000' Where itemid='40087' and chance = '50000';/* ªZ¨÷ */
-Update droplist Set chance = '12500' Where itemid='40087' and chance = '25000';/* ªZ¨÷ */
-Update droplist Set chance = '6000' Where itemid='40074' and chance = '10000';/* ¨¾¨÷ */
-Update droplist Set chance = '2500' Where itemid='40074' and chance = '5000';/* ¨¾¨÷ */
-Update droplist Set chance = '6000' Where itemid='240074' and chance = '10000';/* ¯¬ºÖ¨¾¨÷ */
-Update droplist Set chance = '2500' Where itemid='240074' and chance = '5000';/* ¯¬ºÖ¨¾¨÷ */
-Update droplist Set chance = '1000' Where itemid='240074' and chance = '2000';/* ¯¬ºÖ¨¾¨÷ */
-Update droplist Set chance = '25000' Where itemid='240074' and chance = '50000';/* ¯¬ºÖ¨¾¨÷ */
-Update droplist Set chance = '40000' Where itemid='240074' and chance = '100000';/* ¯¬ºÖ¨¾¨÷ */
+/* 20090512 é™ä½é˜²å·æ­¦å·ç¥é˜²æ©Ÿç‡ */
+Update droplist Set chance = '5000' Where itemid='40087' and chance = '10000';/* æ­¦å· */
+Update droplist Set chance = '20000' Where itemid='40087' and chance = '50000';/* æ­¦å· */
+Update droplist Set chance = '12500' Where itemid='40087' and chance = '25000';/* æ­¦å· */
+Update droplist Set chance = '6000' Where itemid='40074' and chance = '10000';/* é˜²å· */
+Update droplist Set chance = '2500' Where itemid='40074' and chance = '5000';/* é˜²å· */
+Update droplist Set chance = '6000' Where itemid='240074' and chance = '10000';/* ç¥ç¦é˜²å· */
+Update droplist Set chance = '2500' Where itemid='240074' and chance = '5000';/* ç¥ç¦é˜²å· */
+Update droplist Set chance = '1000' Where itemid='240074' and chance = '2000';/* ç¥ç¦é˜²å· */
+Update droplist Set chance = '25000' Where itemid='240074' and chance = '50000';/* ç¥ç¦é˜²å· */
+Update droplist Set chance = '40000' Where itemid='240074' and chance = '100000';/* ç¥ç¦é˜²å· */
 
-/* 20090512 ´£°ª ²ÊÁWªº¦Ì¯Á²ú¶ô ¾÷²v */
+/* 20090512 æé«˜ ç²—ç³™çš„ç±³ç´¢è‰å¡Š æ©Ÿç‡ */
 Update droplist Set chance = '70000' Where itemid='40496' and chance = '50000';
 Update droplist Set chance = '150000' Where itemid='40496' and chance = '100000';
 Update droplist Set chance = '250000' Where itemid='40496' and chance = '200000';
 
-/* 20090512 ­°§C ¥l³ê±±¨î§Ù«ü ¾÷²v */
+/* 20090512 é™ä½ å¬å–šæ§åˆ¶æˆ’æŒ‡ æ©Ÿç‡ */
 Update droplist Set chance = '500' Where itemid='20284' and chance = '1000';
 Update droplist Set chance = '2500' Where itemid='20284' and chance = '5000';
 Update droplist Set chance = '5000' Where itemid='20284' and chance = '10000';
 
-/* 20090512 ­°§C ¶Ç°e±±¨î§Ù«ü ¾÷²v */
+/* 20090512 é™ä½ å‚³é€æ§åˆ¶æˆ’æŒ‡ æ©Ÿç‡ */
 Update droplist Set chance = '500' Where itemid='20288' and chance = '1000';
 Update droplist Set chance = '2500' Where itemid='20288' and chance = '5000';
 Update droplist Set chance = '200000' Where itemid='20288' and chance = '300000';
 
-/* 20090512 ­°§C ÅÜ§Î±±¨î§Ù«ü ¾÷²v */
+/* 20090512 é™ä½ è®Šå½¢æ§åˆ¶æˆ’æŒ‡ æ©Ÿç‡ */
 Update droplist Set chance = '500' Where itemid='20281' and chance = '1000';
 Update droplist Set chance = '2500' Where itemid='20281' and chance = '5000';
 Update droplist Set chance = '200000' Where itemid='20281' and chance = '300000';
 
-/* 20090512 ´£°ª ºëÆF¸H¤ù ¾÷²v */
+/* 20090512 æé«˜ ç²¾éˆç¢ç‰‡ æ©Ÿç‡ */
 Update droplist Set chance = '20000' Where itemid='40471' and chance = '10000';
 Update droplist Set chance = '200000' Where itemid='40471' and chance = '100000';
 
-/* 20090512 ­°§C ºëÆF¤ô´¹(¯PµK¤§»î) ¾÷²v */
+/* 20090512 é™ä½ ç²¾éˆæ°´æ™¶(çƒˆç„°ä¹‹é­‚) æ©Ÿç‡ */
 Update droplist Set chance = '500' Where itemid='41149' and chance = '1000';
 Update droplist Set chance = '200000' Where itemid='41149' and chance = '300000';
 
-/* 20090512 ­°§C ¶Â·tºëÆF¤ô´¹(·|¤ß¤@À») ¾÷²v */
+/* 20090512 é™ä½ é»‘æš—ç²¾éˆæ°´æ™¶(æœƒå¿ƒä¸€æ“Š) æ©Ÿç‡ */
 Update droplist Set chance = '5000' Where itemid='40278' and chance = '10000';
 Update droplist Set chance = '2500' Where itemid='40278' and chance = '5000';
 Update droplist Set chance = '10000' Where itemid='40278' and chance = '20000';
 
-/* 20090514 ÃT³½±¼¸¨ÃT³½§Z */
+/* 20090514 é¯Šé­šæ‰è½é¯Šé­šåµ */
 INSERT INTO `droplist` VALUES (45160, 49040, 1, 1, 50000);
-/* 20090514 Æs³½±¼¸¨Æs³½¦× */
+/* 20090514 é±·é­šæ‰è½é±·é­šè‚‰ */
 INSERT INTO `droplist` VALUES (45101, 49041, 1, 1, 50000);
 INSERT INTO `droplist` VALUES (45196, 49041, 1, 1, 50000);
 INSERT INTO `droplist` VALUES (45307, 49041, 1, 1, 50000);
-/* 20090514 ÀsÀt±¼¸¨ÀsÀt³J */
+/* 20090514 é¾é¾œæ‰è½é¾é¾œè›‹ */
 INSERT INTO `droplist` VALUES (45240, 49042, 1, 1, 50000);
 INSERT INTO `droplist` VALUES (45262, 49042, 1, 1, 50000);
-/* 20090514 ©_²§ÆxÄM±¼¸¨©_²§ÆxÄM¦× */
+/* 20090514 å¥‡ç•°é¸šéµ¡æ‰è½å¥‡ç•°é¸šéµ¡è‚‰ */
 INSERT INTO `droplist` VALUES (45249, 49043, 1, 1, 50000);
-/* 20090514 ¬rÃÈ±¼¸¨¬rÃÈ¦× */
+/* 20090514 æ¯’è æ‰è½æ¯’è è‚‰ */
 INSERT INTO `droplist` VALUES (45259, 49044, 1, 1, 50000);
-/* 20090514 ¥ìµÜ§J¹y±¼¸¨¥ìµÜ§J¹y¦× ¤w¦³*/
+/* 20090514 ä¼ŠèŠå…‹é “æ‰è½ä¼ŠèŠå…‹é “è‚‰ å·²æœ‰*/
 /*
 INSERT INTO `droplist` VALUES (45279, 49045, 1, 1, 50000);
 */
-/* 20090514 ·¨ªG¸Ì®¦&®L¬¥§B&²ö©g¨È  ±¼¸¨»jµï»L¦× */
-INSERT INTO `droplist` VALUES (45184, 49046, 1, 1, 50000); /*·¨ªG¸Ì®¦*/
-INSERT INTO `droplist` VALUES (45401, 49046, 1, 1, 50000); /*·¨ªG¸Ì®¦*/
-INSERT INTO `droplist` VALUES (45312, 49046, 1, 1, 50000); /*©_©¥ ·¨ªG¸Ì®¦*/
-INSERT INTO `droplist` VALUES (45348, 49046, 1, 1, 50000); /*ÅÜºØ ·¨ªG¸Ì®¦*/
-INSERT INTO `droplist` VALUES (45059, 49046, 1, 1, 50000); /*®z¤Æ·¨ªG¸Ì®¦*/
-INSERT INTO `droplist` VALUES (45136, 49046, 1, 1, 50000); /*®L¬¥§B*/
-INSERT INTO `droplist` VALUES (45358, 49046, 1, 1, 50000); /*®L¬¥§B*/
-INSERT INTO `droplist` VALUES (45038, 49046, 1, 1, 50000); /*®z¤Æ®L¬¥§B*/
-INSERT INTO `droplist` VALUES (45289, 49046, 1, 1, 50000); /*²ö©g¨È*/
-INSERT INTO `droplist` VALUES (45308, 49046, 1, 1, 50000); /*²ö©g¨È*/
-INSERT INTO `droplist` VALUES (45070, 49046, 1, 1, 50000); /*®z¤Æ²ö©g¨È*/
-/* 20090514 ÃÉ¤H±¼¸¨ÃÉ¦× ¤w¦³*/
+/* 20090514 æ¥Šæœè£¡æ©&å¤æ´›ä¼¯&è«å¦®äº  æ‰è½èœ˜è››è…¿è‚‰ */
+INSERT INTO `droplist` VALUES (45184, 49046, 1, 1, 50000); /*æ¥Šæœè£¡æ©*/
+INSERT INTO `droplist` VALUES (45401, 49046, 1, 1, 50000); /*æ¥Šæœè£¡æ©*/
+INSERT INTO `droplist` VALUES (45312, 49046, 1, 1, 50000); /*å¥‡å²© æ¥Šæœè£¡æ©*/
+INSERT INTO `droplist` VALUES (45348, 49046, 1, 1, 50000); /*è®Šç¨® æ¥Šæœè£¡æ©*/
+INSERT INTO `droplist` VALUES (45059, 49046, 1, 1, 50000); /*å¼±åŒ–æ¥Šæœè£¡æ©*/
+INSERT INTO `droplist` VALUES (45136, 49046, 1, 1, 50000); /*å¤æ´›ä¼¯*/
+INSERT INTO `droplist` VALUES (45358, 49046, 1, 1, 50000); /*å¤æ´›ä¼¯*/
+INSERT INTO `droplist` VALUES (45038, 49046, 1, 1, 50000); /*å¼±åŒ–å¤æ´›ä¼¯*/
+INSERT INTO `droplist` VALUES (45289, 49046, 1, 1, 50000); /*è«å¦®äº*/
+INSERT INTO `droplist` VALUES (45308, 49046, 1, 1, 50000); /*è«å¦®äº*/
+INSERT INTO `droplist` VALUES (45070, 49046, 1, 1, 50000); /*å¼±åŒ–è«å¦®äº*/
+/* 20090514 èŸ¹äººæ‰è½èŸ¹è‚‰ å·²æœ‰*/
 /*
 INSERT INTO `droplist` VALUES (45164, 49047, 1, 1, 50000);
 INSERT INTO `droplist` VALUES (45806, 49047, 1, 1, 50000);
 */
 
-/* 20090514 «¶´µ©Z­×±¼¸¨«¶´µ©Z­×ªºîg */
+/* 20090514 å¥æ–¯å¦ä¿®æ‰è½å¥æ–¯å¦ä¿®çš„è¯ */
 INSERT INTO `droplist` VALUES (45285, 49260, 1, 1, 50000);
 INSERT INTO `droplist` VALUES (45823, 49260, 1, 1, 50000);
-/* 20090514 ®æ§Qªâ±¼¸¨®æ§Qªâ¦× */
+/* 20090514 æ ¼åˆ©èŠ¬æ‰è½æ ¼åˆ©èŠ¬è‚‰ */
 INSERT INTO `droplist` VALUES (45321, 49261, 1, 1, 50000);
 INSERT INTO `droplist` VALUES (45445, 49261, 1, 1, 50000);
-/* 20090514 ¨È¤O¦w±¼¸¨¨È¤O¦wªº§À¤Ú */
+/* 20090514 äºåŠ›å®‰æ‰è½äºåŠ›å®‰çš„å°¾å·´ */
 INSERT INTO `droplist` VALUES (45361, 49262, 1, 1, 50000);
 INSERT INTO `droplist` VALUES (45362, 49262, 1, 1, 50000);
 INSERT INTO `droplist` VALUES (81102, 49262, 1, 1, 50000);
 INSERT INTO `droplist` VALUES (81173, 49262, 1, 1, 50000);
-/* 20090514 ¦a©³¥¨¤ıÀt±¼¸¨¥¨¤ıÀt¦× */
+/* 20090514 åœ°åº•å·¨ç‹é¾œæ‰è½å·¨ç‹é¾œè‚‰ */
 INSERT INTO `droplist` VALUES (45422, 49263, 1, 1, 50000);
-/* 20090514 ¥®Às±¼¸¨¥®Às¯Í»H */
+/* 20090514 å¹¼é¾æ‰è½å¹¼é¾ç¿…è†€ */
 INSERT INTO `droplist` VALUES (45496, 49264, 1, 1, 50000);
-/* 20090514 ­¸Às±¼¸¨­¸Às¦× */
+/* 20090514 é£›é¾æ‰è½é£›é¾è‚‰ */
 INSERT INTO `droplist` VALUES (45529, 49265, 1, 1, 50000);
 INSERT INTO `droplist` VALUES (45578, 49265, 1, 1, 50000);
-/* 20090514 ²`®ü³½±¼¸¨²`®ü³½¦× */
+/* 20090514 æ·±æµ·é­šæ‰è½æ·±æµ·é­šè‚‰ */
 INSERT INTO `droplist` VALUES (45728, 49266, 1, 1, 50000);
-/* 20090514 ¨¸´c»h»i±¼¸¨¨¸´c»h»i³J */
+/* 20090514 é‚ªæƒ¡èœ¥èœ´æ‰è½é‚ªæƒ¡èœ¥èœ´è›‹ */
 INSERT INTO `droplist` VALUES (45381, 49267, 1, 1, 50000);
 INSERT INTO `droplist` VALUES (45531, 49267, 1, 1, 50000);
 
-/* 20090514 ­×¥¿Às¤§¤ß±¼¸¨¾÷²v */
+/* 20090514 ä¿®æ­£é¾ä¹‹å¿ƒæ‰è½æ©Ÿç‡ */
 Update droplist Set chance = '500' Where itemid='40466' and chance = '45496';
 
-/* 20090516 «èÆF·s¼W±¼¸¨ «ÕÆF¤§®ğ®§ */
+/* 20090516 æ€¨éˆæ–°å¢æ‰è½ å¹½éˆä¹‹æ°£æ¯ */
 INSERT INTO `droplist` VALUES (45914, 41327, 1, 1, 1000);
 INSERT INTO `droplist` VALUES (45915, 41327, 1, 1, 1000);
 
-/* 20090516 §R°£¼ä¥§´µ¤k¤ı±¼¸¨¤éª©¹D¨ã  41224 */
+/* 20090516 åˆªé™¤æ½”å°¼æ–¯å¥³ç‹æ‰è½æ—¥ç‰ˆé“å…·  41224 */
 delete from `droplist` where itemId = 41224 ;

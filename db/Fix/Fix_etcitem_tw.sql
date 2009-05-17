@@ -1,4 +1,4 @@
-/* 20090425 ÀsÃM¤h§Ş¯à®Ñ¹D¨ã­«¶q­×¥¿ ¸ê®Æ¨Ó·½¤Ñ°ó³zµøÃè */
+/* 20090425 é¾é¨å£«æŠ€èƒ½æ›¸é“å…·é‡é‡ä¿®æ­£ è³‡æ–™ä¾†æºå¤©å ‚é€è¦–é¡ */
 Update etcitem Set weight = '7' Where item_id = '49102';
 Update etcitem Set weight = '7' Where item_id = '49103';
 Update etcitem Set weight = '7' Where item_id = '49104';
@@ -15,10 +15,10 @@ Update etcitem Set weight = '7' Where item_id = '49114';
 Update etcitem Set weight = '7' Where item_id = '49115';
 Update etcitem Set weight = '7' Where item_id = '49116';
 
-/* ­×¥¿ «ü©w¶Ç°e¨÷¶b(ºq°Û¤§®q) ¶µ¥Ø */
+/* ä¿®æ­£ æŒ‡å®šå‚³é€å·è»¸(æ­Œå”±ä¹‹å³¶) é …ç›® */
 Update etcitem Set locx = '32778' Where item_id = '40082';
 Update etcitem Set locy = '32779' Where item_id = '40082';
 Update etcitem Set mapid = '68' Where item_id = '40082';
 
-/* 20090512 ¼È®É§ó§ï¥¢¥h¥ú½÷ªºÆF»î¸H¤ù 41422 ¬°¥i¥H§R°£(¥ô°È¹D¨ã¤£¦PÂ¾·~¥´¨ì«Ü³Â·Ğ) */
+/* 20090512 æš«æ™‚æ›´æ”¹å¤±å»å…‰è¼çš„éˆé­‚ç¢ç‰‡ 41422 ç‚ºå¯ä»¥åˆªé™¤(ä»»å‹™é“å…·ä¸åŒè·æ¥­æ‰“åˆ°å¾ˆéº»ç…©) */
 Update etcitem Set cant_delete = '0' Where item_id = '41422';

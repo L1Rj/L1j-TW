@@ -1,2 +1,2 @@
-/* 20090516 ¯«©x¤æÁO¦WºÙ­×¥¿ */
-Update armor Set name_id = '¯«©x¤æÁO' Where item_id = '20067';
+/* 20090516 ç¥å®˜æ–—ç¯·åç¨±ä¿®æ­£ */
+Update armor Set name_id = 'ç¥å®˜æ–—ç¯·' Where item_id = '20067';
