@@ -43,7 +43,7 @@ class NameIdMaker {
 			if (args.length >= 2) {
 				loadTable(args[1]);
 			} else {
-				loadTable("j");
+				loadTable("c"); // loadTable("j");
 			}
 			convert(args[0]);
 		} catch (Exception e) {
@@ -135,7 +135,7 @@ class NameIdMaker {
 		String outputpath = inputpath.replace(".txt", "_id.txt");
 		LineNumberReader inr = null;
 		FileOutputStream fos = new FileOutputStream(outputpath);
-		OutputStreamWriter osw = new OutputStreamWriter(fos, "Shift-JIS");
+		OutputStreamWriter osw = new OutputStreamWriter(fos, "BIG5"); // new OutputStreamWriter(fos, "Shift-JIS");
 		PrintWriter pw = new PrintWriter(osw);
 		try {
 			File file = new File(inputpath);
