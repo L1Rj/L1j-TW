@@ -67,13 +67,17 @@ public class FishingTimeController implements Runnable {
 		_fishingList.remove(pc);
 	}
 
+	// 釣魚關連
+	private static long time;
+	private static long currentTime;
+
 	private void fishing() {
 		if (_fishingList.size() > 0) {
-			long currentTime = System.currentTimeMillis();
+			currentTime = System.currentTimeMillis();
 			for (int i = 0; i < _fishingList.size(); i++) {
 				L1PcInstance pc = _fishingList.get(i);
 				if (pc.isFishing()) {
-					long time = pc.getFishingTime();
+					time = pc.getFishingTime();
 					if (currentTime <= (time + 1000)
 							&& currentTime >= (time - 1000)
 							&& !pc.isFishingReady()) {
