@@ -107,45 +107,45 @@ public class L1GuardianInstance extends L1NpcInstance {
 		startAI();
 	}
 
+	// 跟NPC打材料需要的變數
+	private static byte chance; // 5.19 Start
+	private static int PT_Npc_id;
 	@Override
 	public void onAction(L1PcInstance player) {
 		if (player.getType() == 2 && player.getCurrentWeapon() == 0
 				&& player.isElf()) {
 			L1Attack attack = new L1Attack(player, this);
+			chance = RandomArrayList.getArray100List();
+			PT_Npc_id = getNpcTemplate().get_npcId();
 
 			if (attack.calcHit()) {
-				if (getNpcTemplate().get_npcId() == 70848) { // エント
-					byte chance = RandomArrayList.getArray100List();
+				if (PT_Npc_id == 70848) { // エント
 					if (chance <= 10) {
 						player.getInventory().storeItem(40506, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
-								"$794")); // \f1%0が%1をくれました。
+								"$794")); // \f1%0が%1をくれました。 安特的水果
 					} else if (chance <= 60) {
 						player.getInventory().storeItem(40507, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
-								"$763")); // \f1%0が%1をくれました。
+								"$763")); // \f1%0が%1をくれました。 安特之樹枝
 					} else if (chance <= 70) {
 						player.getInventory().storeItem(40505, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
-								"$770")); // \f1%0が%1をくれました。
+								"$770")); // \f1%0が%1をくれました。 安特之樹皮
 					}
-				}
-				if (getNpcTemplate().get_npcId() == 70850) { // パン
-					byte chance = RandomArrayList.getArray100List();
+				} else if (PT_Npc_id == 70850) { // パン
 					if (chance <= 30) {
 						player.getInventory().storeItem(40519, 5);
 						player.sendPackets(new S_ServerMessage(143, "$753",
-								"$760" + " (" + 5 + ")")); // \f1%0が%1をくれました。
+								"$760" + " (" + 5 + ")")); // \f1%0が%1をくれました。 潘的鬃毛
 					}
-				}
-				if (getNpcTemplate().get_npcId() == 70846) { // アラクネ
-					byte chance = RandomArrayList.getArray100List();
+				} else if (PT_Npc_id == 70846) { // アラクネ
 					if (chance <= 30) {
 						player.getInventory().storeItem(40503, 1);
 						player.sendPackets(new S_ServerMessage(143, "$752",
-								"$769")); // \f1%0が%1をくれました。
+								"$769")); // \f1%0が%1をくれました。 芮克妮的網
 					}
-				}
+				} // 5.19 End
 				attack.calcDamage();
 				attack.calcStaffOfMana();
 				attack.addPcPoisonAttack(player, this);

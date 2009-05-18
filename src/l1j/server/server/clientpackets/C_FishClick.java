@@ -42,60 +42,64 @@ public class C_FishClick extends ClientBasePacket {
 
 	private static final String C_FISHCLICK = "[C] C_FishClick";
 	private static Logger _log = Logger.getLogger(C_FishClick.class.getName());
-	//private static Random _random = new Random();
+	// private static Random _random = new Random();
 	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
 	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 4.26 Start
 	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 4.26 End
+	// 釣魚關連
+	private static short chance; // 5.19 Start
+	private static long currentTime;
+	private static long time; // 5.19 End
 
 	public C_FishClick(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 		L1PcInstance pc = clientthread.getActiveChar();
-		long currentTime = System.currentTimeMillis();
-		long time = pc.getFishingTime();
+		currentTime = System.currentTimeMillis(); // 5.19 Start
+		time = pc.getFishingTime();
+		chance = RandomArrayList.getArrayshortList((short) 200);
 
 		if (currentTime < (time + 500) && currentTime > (time - 500)
 				&& pc.isFishingReady()) {
 			finishFishing(pc);
 
-			int chance = RandomArrayList.getArrayshortList((short) 200) + 1;
-			if (chance >= 0 && chance < 50) {
-				successFishing(pc, 41298);
-			} else if (chance >= 50 && chance < 65) {
-				successFishing(pc, 41300);
-			} else if (chance >= 65 && chance < 80) {
-				successFishing(pc, 41299);
-			} else if (chance >= 80 && chance < 90) {
-				successFishing(pc, 41296);
-			} else if (chance >= 90 && chance < 100) {
-				successFishing(pc, 41297);
-			} else if (chance >= 100 && chance < 105) {
-				successFishing(pc, 41301);
-			} else if (chance >= 105 && chance < 110) {
-				successFishing(pc, 41302);
-			} else if (chance >= 110 && chance < 115) {
-				successFishing(pc, 41303);
-			} else if (chance >= 115 && chance < 120) {
-				successFishing(pc, 41304);
-			} else if (chance >= 120 && chance < 123) {
-				successFishing(pc, 41306);
-			} else if (chance >= 123 && chance < 126) {
-				successFishing(pc, 41307);
-			} else if (chance >= 126 && chance < 129) {
-				successFishing(pc, 41305);
-			} else if (chance >= 129 && chance < 134) {
-				successFishing(pc, 21051);
-			} else if (chance >= 134 && chance < 139) {
-				successFishing(pc, 21052);
-			} else if (chance >= 139 && chance < 144) {
-				successFishing(pc, 21053);
-			} else if (chance >= 144 && chance < 159) {
-				successFishing(pc, 21054);
-			} else if (chance >= 159 && chance < 164) {
-				successFishing(pc, 21055);
-			} else if (chance >= 164 && chance < 169) {
-				successFishing(pc, 21056);
-			} else if (chance >= 170 && chance < 171) {
-				successFishing(pc, 41252);
+			if (chance < 50) {
+				successFishing(pc, 41298, "$5256"); // 25%
+			} else if (chance < 65) { 
+				successFishing(pc, 41300, "$5258"); // 7.5%
+			} else if (chance < 80) {
+				successFishing(pc, 41299, "$5257"); // 7.5%
+			} else if (chance < 90) {
+				successFishing(pc, 41296, "$5249"); // 5%
+			} else if (chance < 100) {
+				successFishing(pc, 41297, "$5250"); // 5%
+			} else if (chance < 105) {
+				successFishing(pc, 41301, "$5259"); // 2.5%
+			} else if (chance < 110) {
+				successFishing(pc, 41302, "$5260"); // 2.5%
+			} else if (chance < 115) {
+				successFishing(pc, 41303, "$5261"); // 2.5%
+			} else if (chance < 120) {
+				successFishing(pc, 41304, "$5262"); // 2.5%
+			} else if (chance < 123) {
+				successFishing(pc, 41306, "$5263"); // 1.5%
+			} else if (chance < 126) {
+				successFishing(pc, 41307, "$5265"); // 1.5%
+			} else if (chance < 129) {
+				successFishing(pc, 41305, "$5264"); // 1.5%
+			} else if (chance < 134) {
+				successFishing(pc, 21051, "$5269"); // 2.5%
+			} else if (chance < 139) {
+				successFishing(pc, 21052, "$5270"); // 2.5%
+			} else if (chance < 144) {
+				successFishing(pc, 21053, "$5271"); // 2.5%
+			} else if (chance < 159) {
+				successFishing(pc, 21054, "$5272"); // 2.5%
+			} else if (chance < 164) {
+				successFishing(pc, 21055, "$5273"); // 2.5%
+			} else if (chance < 169) {
+				successFishing(pc, 21056, "$5274"); // 2.5%
+			} else if (chance < 171) {
+				successFishing(pc, 41252, "$5248"); // 1.0%
 			} else {
 				pc.sendPackets(new S_ServerMessage(1136, "")); // 釣りに失敗しました。
 			}
@@ -103,7 +107,7 @@ public class C_FishClick extends ClientBasePacket {
 			finishFishing(pc);
 			pc.sendPackets(new S_ServerMessage(1136, "")); // 釣りに失敗しました。
 		}
-	}
+	} // 5.19 End
 
 	private void finishFishing(L1PcInstance pc) {
 		pc.setFishingTime(0);
@@ -114,90 +118,7 @@ public class C_FishClick extends ClientBasePacket {
 		FishingTimeController.getInstance().removeMember(pc);
 	}
 
-	private void successFishing(L1PcInstance pc, int itemId) {
-		String message = null;
-
-		switch (itemId) {
-		case 41296: // フナ
-			message = "$5249";
-			break;
-
-		case 41297: // コイ
-			message = "$5250";
-			break;
-
-		case 41298: // ヤング フィッシュ
-			message = "$5256";
-			break;
-
-		case 41299: // スウィフト フィッシュ
-			message = "$5257";
-			break;
-
-		case 41300: // ストロング フィッシュ
-			message = "$5258";
-			break;
-
-		case 41301: // シャイニング レッド フィッシュ
-			message = "$5259";
-			break;
-
-		case 41302: // シャイニング グリーン フィッシュ
-			message = "$5260";
-			break;
-
-		case 41303: // シャイニング ブルー フィッシュ
-			message = "$5261";
-			break;
-
-		case 41304: // シャイニング ホワイト フィッシュ
-			message = "$5262";
-			break;
-
-		case 41305: // 壞れたイアリング
-			message = "$5264";
-			break;
-
-		case 41306: // 壞れたリング
-			message = "$5263";
-			break;
-
-		case 41307: // 壞れたネックレス
-			message = "$5265";
-			break;
-
-		case 21051: // 濡れたヘルム
-			message = "$5269";
-			break;
-
-		case 21052: // 濡れたマント
-			message = "$5270";
-			break;
-
-		case 21053: // 濡れたアーマー
-			message = "$5271";
-			break;
-
-		case 21054: // 濡れたグローブ
-			message = "$5272";
-			break;
-
-		case 21055: // 濡れたブーツ
-			message = "$5273";
-			break;
-
-		case 21056: // 濡れたシールド
-			message = "$5274";
-			break;
-
-		case 41252: // レア タートル
-			message = "$5248";
-			break;
-
-		default:
-			break;
-		}
-
+	private void successFishing(L1PcInstance pc, int itemId, String message) { // 5.19 Start
 		L1ItemInstance item = ItemTable.getInstance().createItem(itemId);
 		if (item != null) {
 			item.startItemOwnerTimer(pc);
@@ -211,7 +132,7 @@ public class C_FishClick extends ClientBasePacket {
 			// 釣りに成功して%0%oを釣りました。
 			pc.sendPackets(new S_ServerMessage(1185, message));
 		}
-	}
+	} // 5.19End
 
 	@Override
 	public String getType() {

@@ -3,15 +3,16 @@ Update npc Set lawful = '65535' Where npcid = '70503';
 Update npc Set lawful = '-65535' Where npcid = '70511';
 
 /* 守護神行走速度降低 */
-Update npc Set passispeed = '1700' Where npcid = '70848'; /* 安特 */
-Update npc Set passispeed = '1500' Where npcid = '70850'; /* 潘 */
-Update npc Set passispeed = '1500' Where npcid = '70846'; /* 芮克妮 */
-Update npc Set passispeed = '1200' Where npcid = '70851'; /* 精靈 */
+Update npc Set passispeed = '1440' Where npcid = '70848'; /* 安特 日:840 尚未實測(蒲) */
+Update npc Set passispeed = '720' Where npcid = '70850'; /* 潘 日:840 實測感覺(5/18) */
+Update npc Set passispeed = '720' Where npcid = '70846'; /* 芮克妮 日:840 實測感覺(5/18) */
+Update npc Set passispeed = '1200' Where npcid = '70851'; /* 精靈 日:840 尚未實測(蒲) */
 /* 20090517 藍尾蜥蜴行走速度降低 */
 Update npc Set passispeed = '500' Where npcid = '45239'; /* 藍尾蜥蜴 */
-/* 20090518 修正黑暗精靈攻速 */
-Update npc Set atkspeed = '1020' Where npcid = '45265'; /* 黑暗精靈 */
-Update npc Set atkspeed = '1020' Where npcid = '45364'; /* 黑暗精靈 */
+/* 20090518 修正(普通)黑暗精靈走速 */
+Update npc Set passispeed = '720' Where npcid = '45265'; /* 黑暗精靈 (普通 攻速正常)*/
+/* 20090518 修正(遺忘)黑暗精靈攻速 */
+Update npc Set atkspeed = '1080' Where npcid = '45364'; /* 黑暗精靈 (遺忘 走速正常)*/
 
 /* 20090510 修正弱化NPC為非主動 */
 Update npc Set agro = 0 Where npcid = '45026';
