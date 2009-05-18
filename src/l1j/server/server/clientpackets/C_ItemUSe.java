@@ -105,6 +105,7 @@ import l1j.server.server.serverpackets.S_SkillIconWisdomPotion;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_Sound;
 import l1j.server.server.serverpackets.S_SystemMessage;
+import l1j.server.server.serverpackets.S_UseAttackSkill;
 import l1j.server.server.serverpackets.S_UseMap;
 import l1j.server.server.storage.CharactersItemStorage;
 import l1j.server.server.templates.L1Armor;
@@ -1966,10 +1967,10 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40007) { // エボニー ワンド
 					cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
-					pc.sendPackets(new S_AttackStatus(pc, 0,
-							ActionCodes.ACTION_Wand));
-					pc.broadcastPacket(new S_AttackStatus(pc, 0,
-							ActionCodes.ACTION_Wand));
+// pc.sendPackets(new S_AttackStatus(pc, 0,
+// ActionCodes.ACTION_Wand));
+// pc.broadcastPacket(new S_AttackStatus(pc, 0,
+// ActionCodes.ACTION_Wand));
 					int chargeCount = l1iteminstance.getChargeCount();
 					if (chargeCount <= 0) {
 						// \f1何も起きませんでした。
@@ -1978,8 +1979,12 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					L1Object target = L1World.getInstance().findObject(
 							spellsc_objid);
-					pc.sendPackets(new S_SkillSound(spellsc_objid, 10));
-					pc.broadcastPacket(new S_SkillSound(spellsc_objid, 10));
+// pc.sendPackets(new S_SkillSound(spellsc_objid, 10));
+// pc.broadcastPacket(new S_SkillSound(spellsc_objid, 10));
+					pc.sendPackets(new S_UseAttackSkill(pc, spellsc_objid,
+							10, spellsc_x, spellsc_y, ActionCodes.ACTION_Wand));
+					pc.broadcastPacket(new S_UseAttackSkill(pc, spellsc_objid,
+												10, spellsc_x, spellsc_y, ActionCodes.ACTION_Wand));
 					if (target != null) {
 						doWandAction(pc, target);
 					}
@@ -3345,8 +3350,8 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 1, 0));
 			pc.setSkillEffect(STATUS_BRAVE, time * 1000);
 		}
-		pc.sendPackets(new S_SkillSound(pc.getId(), 751));
-		pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
+//		pc.sendPackets(new S_SkillSound(pc.getId(), 751));
+//		pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
 		pc.setBraveSpeed(1);
 	}
 
@@ -5151,10 +5156,10 @@ public class C_ItemUSe extends ClientBasePacket {
 
 			int newHp = pc.getCurrentHp() - dmg;
 			if (newHp > 0) {
-				pc.sendPackets(new S_AttackStatus(pc, 0,
-						ActionCodes.ACTION_Damage));
-				pc.broadcastPacket(new S_AttackStatus(pc, 0,
-						ActionCodes.ACTION_Damage));
+//				pc.sendPackets(new S_AttackStatus(pc, 0,
+//						ActionCodes.ACTION_Damage));
+//				pc.broadcastPacket(new S_AttackStatus(pc, 0,
+//						ActionCodes.ACTION_Damage));
 				pc.setCurrentHp(newHp);
 			} else if (newHp <= 0 && pc.isGm()) {
 				pc.setCurrentHp(pc.getMaxHp());
@@ -5163,12 +5168,12 @@ public class C_ItemUSe extends ClientBasePacket {
 			}
 		} else if (target instanceof L1MonsterInstance) {
 			L1MonsterInstance mob = (L1MonsterInstance) target;
-			mob.broadcastPacket(new S_AttackPacket(user, mob.getId(), 2));
+//			mob.broadcastPacket(new S_AttackPacket(user, mob.getId(), 2));
 			mob.receiveDamage(user, dmg);
 		} else if (target instanceof L1NpcInstance) {
 			L1NpcInstance npc = (L1NpcInstance) target;
-			npc.broadcastPacket(new S_DoActionGFX(npc.getId(),
-					ActionCodes.ACTION_Damage));
+//			npc.broadcastPacket(new S_DoActionGFX(npc.getId(),
+//					ActionCodes.ACTION_Damage));
 		}
 	}
 
