@@ -68,8 +68,8 @@ public class FishingTimeController implements Runnable {
 	}
 
 	// 釣魚關連
-	private static long time;
-	private static long currentTime;
+	private long time;
+	private long currentTime;
 
 	private void fishing() {
 		if (_fishingList.size() > 0) {

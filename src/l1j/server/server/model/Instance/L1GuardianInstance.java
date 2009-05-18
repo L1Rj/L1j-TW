@@ -108,8 +108,8 @@ public class L1GuardianInstance extends L1NpcInstance {
 	}
 
 	// 跟NPC打材料需要的變數
-	private static byte chance; // 5.19 Start
-	private static int PT_Npc_id;
+	private byte chance; // 5.19 Start
+	private int PT_Npc_id;
 	@Override
 	public void onAction(L1PcInstance player) {
 		if (player.getType() == 2 && player.getCurrentWeapon() == 0

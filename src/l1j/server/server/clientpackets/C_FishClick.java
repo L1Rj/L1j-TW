@@ -49,9 +49,9 @@ public class C_FishClick extends ClientBasePacket {
 	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 4.26 End
 
 	// 釣魚關連
-	private static short chance; // 5.19 Start
-	private static long currentTime;
-	private static long time; // 5.19 End
+	private short chance; // 5.19 Start
+	private long currentTime;
+	private long time; // 5.19 End
 
 	public C_FishClick(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -120,9 +120,9 @@ public class C_FishClick extends ClientBasePacket {
 	}
 
 	// 釣魚關連
-	private static int heading; // 5.19 Start
-	private static int[] DropLoc = new int[2];
-	private static int[] Loc = new int[2]; // pc.getX(), pc.getY()
+	private int heading; // 5.19 Start
+	private int[] DropLoc = new int[2];
+	private int[] Loc = new int[2]; // pc.getX(), pc.getY()
 
 	private void successFishing(L1PcInstance pc, int itemId, String message) { // 5.19 Start
 		L1ItemInstance item = ItemTable.getInstance().createItem(itemId);
