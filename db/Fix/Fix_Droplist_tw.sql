@@ -182,9 +182,11 @@ INSERT INTO `droplist` VALUES (45531, 49267, 1, 1, 50000);
 /* 20090514 修正龍之心掉落機率 */
 Update droplist Set chance = '500' Where itemid='40466' and chance = '45496';
 
-/* 20090516 怨靈新增掉落 幽靈之氣息 */
-INSERT INTO `droplist` VALUES (45914, 41327, 1, 1, 1000);
-INSERT INTO `droplist` VALUES (45915, 41327, 1, 1, 1000);
+/* 20090516 怨靈(男,女) 士兵的怨靈新增掉落 幽靈之氣息 */
+INSERT INTO `droplist` VALUES (45912, 41327, 1, 1, 40000);
+INSERT INTO `droplist` VALUES (45913, 41327, 1, 1, 40000);
+INSERT INTO `droplist` VALUES (45914, 41327, 1, 1, 40000);
+INSERT INTO `droplist` VALUES (45915, 41327, 1, 1, 40000);
 
 /* 20090516 刪除潔尼斯女王掉落日版道具  41224 */
 delete from `droplist` where itemId = 41224 ;
