@@ -247,7 +247,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == 40957 // 加工された火ダイア
 				|| itemId == 40958 || itemId == 40964 // ダークマジックパウダー
 				|| itemId == 49092 // 歪みのコア
-				|| itemId == 30001 // waja add 裝備保護捲軸
+				|| itemId == 30001 //waja add 裝備保護卷軸
 					) {
 			l = readD();
 		} else if (itemId == 140100 || itemId == 40100 || itemId == 40099
@@ -320,7 +320,6 @@ public class C_ItemUSe extends ClientBasePacket {
 					|| itemId == 40130 || itemId == 140130
 					|| itemId == L1ItemId.B_SCROLL_OF_ENCHANT_WEAPON
 					|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_WEAPON
-					|| itemId == 30001 // waja add 裝備保護捲軸
 					|| itemId == 40128) { // 武器強化スクロール
 				if (l1iteminstance1 == null
 						|| l1iteminstance1.getItem().getType2() != 1) {
@@ -818,7 +817,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
 //add end
-				} else if (itemId == 49158) {//幻術&龍騎勇水 生命之樹果實
+				} else if (itemId == 49158) {//幻術&龍騎  生命之樹果實
 					if ((pc.isDragonKnight())|| (pc.isIllusionist())) {
 						useBravePotion(pc, itemId);
 					} else {
@@ -3022,7 +3021,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			ClientThread client) {
 //waja add 裝備保護卷軸
 		if (item.getproctect() == true){
-			if(item.isEquipped()) {
+			if(item.getItem().getType2()==2 && item.isEquipped()) {
 				pc.addAc(+item.getEnchantLevel());
 			}
 			item.setEnchantLevel(0);

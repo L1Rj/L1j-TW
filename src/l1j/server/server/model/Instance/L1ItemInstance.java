@@ -265,17 +265,6 @@ public class L1ItemInstance extends L1Object {
 	 */
 	public class LastStatus {
 
-// waja add 飾品強化卷軸
-		public int firemr;
-		public int watermr;
-		public int earthmr;
-		public int windmr;
-		public int addhp;
-		public int addmp;
-		public int hpr;
-		public int mpr;
-		public int addsp;
-//end add
 		public int count;
 
 		public int itemId;
