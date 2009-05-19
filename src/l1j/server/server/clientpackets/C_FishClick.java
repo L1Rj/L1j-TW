@@ -23,7 +23,7 @@
 package l1j.server.server.clientpackets;
 
 import java.util.logging.Logger;
-import java.util.Random;
+// import java.util.Random;
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.FishingTimeController;

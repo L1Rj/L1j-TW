@@ -23,7 +23,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Random;
+// import java.util.Random;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;

@@ -138,58 +138,21 @@ public class L1V2Map extends L1Map {
 
 	@Override
 	public boolean isArrowPassable(int x, int y, int heading) {
-		if (heading == -1) { // -1 解 // 5.10 Start
+		if (heading == -1) { // -1 解
 			return false;
-		}
-		int tile;
-		// 移動予定の座標
-		int newX = x; // 5.10 Start
-		int newY = y; 
-		newX += HEADING_TABLE_X[heading];
-		newY += HEADING_TABLE_Y[heading];
-		tile = accessOriginalTile(newX, newY);
+		} else { // 5.20 Start
+			int tile;
+			// 移動予定の座標
+			int newX = x + HEADING_TABLE_X[heading];
+			int newY = y + HEADING_TABLE_Y[heading];
+			tile = accessOriginalTile(newX, newY);
 
-		/*if (heading == 0) {
-			tile = accessOriginalTile(x, y - 1);
-			newX = x;
-			newY = y - 1;
-		} else if (heading == 1) {
-			tile = accessOriginalTile(x + 1, y - 1);
-			newX = x + 1;
-			newY = y - 1;
-		} else if (heading == 2) {
-			tile = accessOriginalTile(x + 1, y);
-			newX = x + 1;
-			newY = y;
-		} else if (heading == 3) {
-			tile = accessOriginalTile(x + 1, y + 1);
-			newX = x + 1;
-			newY = y + 1;
-		} else if (heading == 4) {
-			tile = accessOriginalTile(x, y + 1);
-			newX = x;
-			newY = y + 1;
-		} else if (heading == 5) {
-			tile = accessOriginalTile(x - 1, y + 1);
-			newX = x - 1;
-			newY = y + 1;
-		} else if (heading == 6) {
-			tile = accessOriginalTile(x - 1, y);
-			newX = x - 1;
-			newY = y;
-		} else if (heading == 7) {
-			tile = accessOriginalTile(x - 1, y - 1);
-			newX = x - 1;
-			newY = y - 1;
-		} else {
-			return false;
-		}*/ // 5.10 End
-
-		if (isExistDoor(newX, newY)) {
-			return false;
-		}
-
-		return (tile != 1);
+			if (isExistDoor(newX, newY)) {
+				return false;
+			} else {
+				return (tile != 1);
+			}
+		} // 5.20 End
 	}
 
 	@Override
@@ -247,38 +210,21 @@ public class L1V2Map extends L1Map {
 
 	@Override
 	public boolean isPassable(int x, int y, int heading) {
-		if (heading == -1) { // -1 解 // 5.10 Start
+		if (heading == -1) { // -1 解
 			return false;
 		}
-		int tile; // 5.10 Start
+		int tile;
 		tile = accessOriginalTile(x + HEADING_TABLE_X[heading], y + HEADING_TABLE_Y[heading]); // 5.10 End
-		/*if (heading == 0) {
-			tile = accessOriginalTile(x, y - 1);
-		} else if (heading == 1) {
-			tile = accessOriginalTile(x + 1, y - 1);
-		} else if (heading == 2) {
-			tile = accessOriginalTile(x + 1, y);
-		} else if (heading == 3) {
-			tile = accessOriginalTile(x + 1, y + 1);
-		} else if (heading == 4) {
-			tile = accessOriginalTile(x, y + 1);
-		} else if (heading == 5) {
-			tile = accessOriginalTile(x - 1, y + 1);
-		} else if (heading == 6) {
-			tile = accessOriginalTile(x - 1, y);
-		} else if (heading == 7) {
-			tile = accessOriginalTile(x - 1, y - 1);
-		} else {
-			return false;
-		}*/
 
-		if (tile == 1 || tile == 9 || tile == 65 || tile == 69 || tile == 73) {
+		if (tile == 1 || tile == 9 || tile == 65 || tile == 69 || tile == 73) { // 5.20 Start
 			return false;
-		}
-		if (0 != (_map[offset(x, y)] & BITFLAG_IS_IMPASSABLE)) {
-			return false;
-		}
-		return true;
+		} else {
+			if (0 != (_map[offset(x, y)] & BITFLAG_IS_IMPASSABLE)) {
+				return false;
+			} else {
+				return true;
+			}
+		} // 5.20 End
 	}
 
 	@Override

@@ -70,7 +70,6 @@ public class L1V1Map extends L1Map {
 	private static final byte BITFLAG_IS_IMPASSABLE = (byte) 128; // 1000 0000
 
 	protected L1V1Map() {
-
 	}
 
 	public L1V1Map(int mapId, byte map[][], int worldTopLeftX,
@@ -217,63 +216,44 @@ public class L1V1Map extends L1Map {
 
 	@Override
 	public boolean isPassable(int x, int y, int heading) {
-		if (heading == -1) { // -1 解 // 5.10 Start
+		if (heading == -1) { // -1 解 // 5.20 Start
 			return false;
-		}
-		// 現在のタイル
-		int tile1 = accessTile(x, y);
-		// 移動予定のタイル
-		int NewX = x + HEADING_TABLE_X[heading];
-		int NewY = y + HEADING_TABLE_Y[heading];
-		int tile2 = accessTile(NewX, NewY);
-
-		/*if (heading == 0) {
-			tile2 = accessTile(x, y - 1);
-		} else if (heading == 1) {
-			tile2 = accessTile(x + 1, y - 1);
-		} else if (heading == 2) {
-			tile2 = accessTile(x + 1, y);
-		} else if (heading == 3) {
-			tile2 = accessTile(x + 1, y + 1);
-		} else if (heading == 4) {
-			tile2 = accessTile(x, y + 1);
-		} else if (heading == 5) {
-			tile2 = accessTile(x - 1, y + 1);
-		} else if (heading == 6) {
-			tile2 = accessTile(x - 1, y);
-		} else if (heading == 7) {
-			tile2 = accessTile(x - 1, y - 1);
 		} else {
-			return false;
-		}*/ // 5.10 End
+			// 現在のタイル
+			int tile1 = accessTile(x, y);
+			// 移動予定のタイル
+			int NewX = x + HEADING_TABLE_X[heading];
+			int NewY = y + HEADING_TABLE_Y[heading];
+			int tile2 = accessTile(NewX, NewY);
 
-		if ((tile2 & BITFLAG_IS_IMPASSABLE) == BITFLAG_IS_IMPASSABLE) {
-			return false;
-		}
-
-		if (heading == 0) {
-			return (tile1 & 0x02) == 0x02;
-		} else if (heading == 1) {
-			int tile3 = accessTile(x, y - 1);
-			int tile4 = accessTile(x + 1, y);
-			return (tile3 & 0x01) == 0x01 || (tile4 & 0x02) == 0x02;
-		} else if (heading == 2) {
-			return (tile1 & 0x01) == 0x01;
-		} else if (heading == 3) {
-			int tile3 = accessTile(x, y + 1);
-			return (tile3 & 0x01) == 0x01;
-		} else if (heading == 4) {
-			return (tile2 & 0x02) == 0x02;
-		} else if (heading == 5) {
-			return (tile2 & 0x01) == 0x01 || (tile2 & 0x02) == 0x02;
-		} else if (heading == 6) {
-			return (tile2 & 0x01) == 0x01;
-		} else if (heading == 7) {
-			int tile3 = accessTile(x - 1, y);
-			return (tile3 & 0x02) == 0x02;
-		}
-
-		return false;
+			if ((tile2 & BITFLAG_IS_IMPASSABLE) == BITFLAG_IS_IMPASSABLE) {
+				return false;
+			} else {
+				if (heading == 0) {
+					return (tile1 & 0x02) == 0x02;
+				} else if (heading == 1) {
+					int tile3 = accessTile(x, y - 1);
+					int tile4 = accessTile(x + 1, y);
+					return (tile3 & 0x01) == 0x01 || (tile4 & 0x02) == 0x02;
+				} else if (heading == 2) {
+					return (tile1 & 0x01) == 0x01;
+				} else if (heading == 3) {
+					int tile3 = accessTile(x, y + 1);
+					return (tile3 & 0x01) == 0x01;
+				} else if (heading == 4) {
+					return (tile2 & 0x02) == 0x02;
+				} else if (heading == 5) {
+					return (tile2 & 0x01) == 0x01 || (tile2 & 0x02) == 0x02;
+				} else if (heading == 6) {
+					return (tile2 & 0x01) == 0x01;
+				} else if (heading == 7) {
+					int tile3 = accessTile(x - 1, y);
+					return (tile3 & 0x02) == 0x02;
+				} else {
+					return false;
+				}
+			}
+		} // 5.20 End
 	}
 
 	@Override
@@ -342,80 +322,45 @@ public class L1V1Map extends L1Map {
 
 	@Override
 	public boolean isArrowPassable(int x, int y, int heading) {
-		if (heading == -1) { // -1 解 // 5.10 Start
+		if (heading == -1) { // -1 解 // 5.20 Start
 			return false;
-		}
-		// 現在のタイル
-		int tile1 = accessTile(x, y);
-		// 移動予定の座標
-		int newX = x + HEADING_TABLE_X[heading];
-		int newY = y + HEADING_TABLE_Y[heading];
-		// 移動予定のタイル
-		int tile2 = accessTile(newX, newY);
-
-		/*if (heading == 0) {
-			tile2 = accessTile(x, y - 1);
-			newX = x;
-			newY = y - 1;
-		} else if (heading == 1) {
-			tile2 = accessTile(x + 1, y - 1);
-			newX = x + 1;
-			newY = y - 1;
-		} else if (heading == 2) {
-			tile2 = accessTile(x + 1, y);
-			newX = x + 1;
-			newY = y;
-		} else if (heading == 3) {
-			tile2 = accessTile(x + 1, y + 1);
-			newX = x + 1;
-			newY = y + 1;
-		} else if (heading == 4) {
-			tile2 = accessTile(x, y + 1);
-			newX = x;
-			newY = y + 1;
-		} else if (heading == 5) {
-			tile2 = accessTile(x - 1, y + 1);
-			newX = x - 1;
-			newY = y + 1;
-		} else if (heading == 6) {
-			tile2 = accessTile(x - 1, y);
-			newX = x - 1;
-			newY = y;
-		} else if (heading == 7) {
-			tile2 = accessTile(x - 1, y - 1);
-			newX = x - 1;
-			newY = y - 1;
 		} else {
-			return false;
-		}*/ // 5.10 End
+			// 現在のタイル
+			int tile1 = accessTile(x, y);
+			// 移動予定の座標
+			int newX = x + HEADING_TABLE_X[heading];
+			int newY = y + HEADING_TABLE_Y[heading];
+			// 移動予定のタイル
+			int tile2 = accessTile(newX, newY);
 
-		if (isExistDoor(newX, newY)) {
-			return false;
-		}
-
-		if (heading == 0) {
-			return (tile1 & 0x08) == 0x08;
-		} else if (heading == 1) {
-			int tile3 = accessTile(x, y - 1);
-			int tile4 = accessTile(x + 1, y);
-			return (tile3 & 0x04) == 0x04 || (tile4 & 0x08) == 0x08;
-		} else if (heading == 2) {
-			return (tile1 & 0x04) == 0x04;
-		} else if (heading == 3) {
-			int tile3 = accessTile(x, y + 1);
-			return (tile3 & 0x04) == 0x04;
-		} else if (heading == 4) {
-			return (tile2 & 0x08) == 0x08;
-		} else if (heading == 5) {
-			return (tile2 & 0x04) == 0x04 || (tile2 & 0x08) == 0x08;
-		} else if (heading == 6) {
-			return (tile2 & 0x04) == 0x04;
-		} else if (heading == 7) {
-			int tile3 = accessTile(x - 1, y);
-			return (tile3 & 0x08) == 0x08;
-		}
-
-		return false;
+			if (isExistDoor(newX, newY)) {
+				return false;
+			} else {
+				if (heading == 0) {
+					return (tile1 & 0x08) == 0x08;
+				} else if (heading == 1) {
+					int tile3 = accessTile(x, y - 1);
+					int tile4 = accessTile(x + 1, y);
+					return (tile3 & 0x04) == 0x04 || (tile4 & 0x08) == 0x08;
+				} else if (heading == 2) {
+					return (tile1 & 0x04) == 0x04;
+				} else if (heading == 3) {
+					int tile3 = accessTile(x, y + 1);
+					return (tile3 & 0x04) == 0x04;
+				} else if (heading == 4) {
+					return (tile2 & 0x08) == 0x08;
+				} else if (heading == 5) {
+					return (tile2 & 0x04) == 0x04 || (tile2 & 0x08) == 0x08;
+				} else if (heading == 6) {
+					return (tile2 & 0x04) == 0x04;
+				} else if (heading == 7) {
+					int tile3 = accessTile(x - 1, y);
+					return (tile3 & 0x08) == 0x08;
+				} else {
+					return false;
+				}
+			}
+		} // 5.20 End
 	}
 
 	@Override
