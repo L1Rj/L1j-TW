@@ -3349,8 +3349,8 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 1, 0));
 			pc.setSkillEffect(STATUS_BRAVE, time * 1000);
 		}
-//		pc.sendPackets(new S_SkillSound(pc.getId(), 751));
-//		pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
+		pc.sendPackets(new S_SkillSound(pc.getId(), 751));//waja 改回(勇水無特效)
+		pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));//waja 改回
 		pc.setBraveSpeed(1);
 	}
 
