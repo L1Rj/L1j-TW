@@ -39,74 +39,60 @@ public class RandomArrayList {
 		}
 	}
 
-	public static byte getArray2List() {
-		if (listshort == 999)
-			return Array2[listshort = 0];
+	public static byte setlistshort() {
+		if (listshort < 999)
+			++listshort;
 		else
-			return Array2[++listshort];
+			listshort = 0;
+	}
+	public static byte getArray2List() {
+		setlistshort();
+		return Array2[listshort];
 	}
 
 	public static byte getArray3List() {
-		if (listshort == 999)
-			return Array3[listshort = 0];
-		else
-			return Array3[++listshort];
+		setlistshort();
+		return Array3[listshort];
 	}
 
 	public static byte getArray4List() {
-		if (listshort == 999)
-			return Array4[listshort = 0];
-		else
-			return Array4[++listshort];
+		setlistshort();
+		return Array4[listshort];
 	}
 
 	public static byte getArray5List() {
-		if (listshort == 999)
-			return Array5[listshort = 0];
-		else
-			return Array5[++listshort];
+		setlistshort();
+		return Array5[listshort];
 	}
 
 	public static byte getArray6List() {
-		if (listshort == 999)
-			return Array6[listshort = 0];
-		else
-			return Array6[++listshort];
+		setlistshort();
+		return Array6[listshort];
 	}
 
 	public static byte getArray7List() {
-		if (listshort == 999)
-			return Array7[listshort = 0];
-		else
-			return Array7[++listshort];
+		setlistshort();
+		return Array7[listshort];
 	}
 
 	public static byte getArray8List() {
-		if (listshort == 999) 
-			return Array8[listshort = 0];
-		else
-			return Array8[++listshort];
+		setlistshort();
+		return Array8[listshort];
 	}
 
 	public static byte getArray9List() {
-		if (listshort == 999)
-			return Array9[listshort = 0];
-		else
-			return Array9[++listshort];
+		setlistshort();
+		return Array9[listshort];
 	}
 
 	public static byte getArray10List() {
-		if (listshort == 999)
-			return Array10[listshort = 0];
-		else
-			return Array10[++listshort];
+		setlistshort();
+		return Array10[listshort];
 	}
 
 	public static byte getArray100List() {
-		if (listshort == 999)
-			return Array100[listshort = 0];
-		else
-			return Array100[++listshort];
+		setlistshort();
+		return Array100[listshort];
 	}
 
 	private static void setArrayshortList() {
@@ -116,10 +102,10 @@ public class RandomArrayList {
 
 	public static short getArrayshortList(short rang) {
 		if (rang > 0) {
-			if (listint == 9999)
-				return (short) (Arrayshort[listint = 0] % rang);
-			else
+			if (listint < 9999)
 				return (short) (Arrayshort[++listint] % rang);
+			else
+				return (short) (Arrayshort[listint = 0] % rang);
 		} else
 			return 0;
 	}
