@@ -37,7 +37,6 @@ import l1j.server.server.datatables.FurnitureSpawnTable;
 import l1j.server.server.datatables.GetBackRestartTable;
 import l1j.server.server.datatables.IpTable;
 import l1j.server.server.datatables.ItemTable;
-import l1j.server.server.datatables.LightSpawnTable;
 import l1j.server.server.datatables.MailTable;
 import l1j.server.server.datatables.MapsTable;
 import l1j.server.server.datatables.MobGroupTable;
@@ -151,7 +150,7 @@ public class GameServer extends Thread {
 		}
 
 		System.out.println("=================================================");
-		System.out.println("=====Lineage 3.0C=====興趣製作=====L1j1804版=====");
+		System.out.println("=====Lineage 3.0C=====興趣製作=====L1j1806版=====");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
@@ -255,7 +254,6 @@ public class GameServer extends Thread {
 		ResolventTable.getInstance();
 		FurnitureSpawnTable.getInstance();
 		NpcChatTable.getInstance();
-		LightSpawnTable.getInstance();
 		MailTable.getInstance();
 
 		System.out.println("伺服器狀態: 啟動完成");

@@ -542,15 +542,15 @@ public abstract class L1Item implements Serializable {
 	 */
 	public int getLightFuel() {
 		if (_itemId == 40001) { // ランプ
-			return 600;
+			return 6000;
 		} else if (_itemId == 40002) { // ランタン
 			return 0;
 		} else if (_itemId == 40003) { // ランタンオイル
-			return 600;
+			return 12000;
 		} else if (_itemId == 40004) { // マジックランタン
 			return 0;
 		} else if (_itemId == 40005) { // キャンドル
-			return 600;
+			return 12000;
 		} else {
 			return 0;
 		}
