@@ -39,7 +39,7 @@ public class RandomArrayList {
 		}
 	}
 
-	public static byte setlistshort() {
+	public static void setlistshort() {
 		if (listshort < 999)
 			++listshort;
 		else
