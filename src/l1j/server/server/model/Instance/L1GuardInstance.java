@@ -52,8 +52,7 @@ public class L1GuardInstance extends L1NpcInstance {
 					|| pc.isGhost()) {
 				continue;
 			}
-			if (!pc.isInvisble() || getNpcTemplate().is_agrocoi()) // インビジチェック
-			{
+			if (!pc.isInvisble() || getNpcTemplate().is_agrocoi()) { // インビジチェック
 				if (pc.isWanted()) { // PKで手配中か
 					targetPlayer = pc;
 					break;

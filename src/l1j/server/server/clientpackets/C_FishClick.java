@@ -119,17 +119,13 @@ public class C_FishClick extends ClientBasePacket {
 		FishingTimeController.getInstance().removeMember(pc);
 	}
 
-	// 釣魚關連
-	private int heading; // 5.19 Start
-	private int[] DropLoc = new int[2];
-	private int[] Loc = new int[2]; // pc.getX(), pc.getY()
-
 	private void successFishing(L1PcInstance pc, int itemId, String message) { // 5.19 Start
 		L1ItemInstance item = ItemTable.getInstance().createItem(itemId);
 		item.startItemOwnerTimer(pc);
-		heading = pc.getHeading();
-		Loc[0] = pc.getX();
-		Loc[1] = pc.getY();
+		int heading = pc.getHeading();
+		int[] Loc = {pc.getX(), pc.getY()};
+		int[] DropLoc = new int[2];
+
 		DropLoc[0] = Loc[0] - HEADING_TABLE_X[heading];
 		DropLoc[1] = Loc[1] - HEADING_TABLE_Y[heading];
 

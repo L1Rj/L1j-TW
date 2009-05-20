@@ -140,18 +140,17 @@ public class L1V2Map extends L1Map {
 	public boolean isArrowPassable(int x, int y, int heading) {
 		if (heading == -1) { // -1 解
 			return false;
-		} else { // 5.20 Start
-			int tile;
-			// 移動予定の座標
-			int newX = x + HEADING_TABLE_X[heading];
-			int newY = y + HEADING_TABLE_Y[heading];
-			tile = accessOriginalTile(newX, newY);
+		}
+		int tile;
+		// 移動予定の座標
+		int newX = x + HEADING_TABLE_X[heading];
+		int newY = y + HEADING_TABLE_Y[heading];
+		tile = accessOriginalTile(newX, newY);
 
-			if (isExistDoor(newX, newY)) {
-				return false;
-			} else {
-				return (tile != 1);
-			}
+		if (isExistDoor(newX, newY)) {
+			return false;
+		} else {
+			return (tile != 1);
 		} // 5.20 End
 	}
 
@@ -196,11 +195,11 @@ public class L1V2Map extends L1Map {
 		int tile = accessOriginalTile(x, y);
 		if (tile == 1 || tile == 9 || tile == 65 || tile == 69 || tile == 73) {
 			return false;
-		}
-		if (0 != (_map[offset(x, y)] & BITFLAG_IS_IMPASSABLE)) {
+		} else if (0 != (_map[offset(x, y)] & BITFLAG_IS_IMPASSABLE)) {
 			return false;
+		} else {
+			return true;
 		}
-		return true;
 	}
 
 	@Override
@@ -218,13 +217,11 @@ public class L1V2Map extends L1Map {
 
 		if (tile == 1 || tile == 9 || tile == 65 || tile == 69 || tile == 73) { // 5.20 Start
 			return false;
+		} else if (0 != (_map[offset(x, y)] & BITFLAG_IS_IMPASSABLE)) {
+			return false;
 		} else {
-			if (0 != (_map[offset(x, y)] & BITFLAG_IS_IMPASSABLE)) {
-				return false;
-			} else {
-				return true;
-			}
-		} // 5.20 End
+			return true; // 5.20 End
+		}
 	}
 
 	@Override

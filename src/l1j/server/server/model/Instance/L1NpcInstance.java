@@ -670,6 +670,8 @@ public class L1NpcInstance extends L1Character {
 		setSleepTime(1000);
 	}
 
+	private static short[] SleepTimeArray = { 750, 1500, 2500, 3000, 3500, 5000, 5500, 6000, 8000};
+
 	// ターゲットがいない場合の處理 (返り值はＡＩ處理を終了するかどうか)
 	public boolean noTarget() {
 		if (_master != null && _master.getMapId() == getMapId()
@@ -699,11 +701,11 @@ public class L1NpcInstance extends L1Character {
 						_randomMoveDistance = RandomArrayList.getArray7List() + 2;
 						_randomMoveDirection = RandomArrayList.getArray8List();
 						try {
-							if (sleeptime_PT == -1) { // 第一次看見人的怪物，不需要休息
-								++sleeptime_PT;
-							} else {
-								sleeptime_PT = (short) (RandomArrayList.getArray9List() * 500); // 需要常先得自己解除 註解 缺點被打時可能會不正常
+							if (sleeptime_PT == 0) { // 第一次看見人的怪物，不需要休息
+								sleeptime_PT = SleepTimeArray[RandomArrayList.getArray9List()]; // 需要常先得自己解除 註解 缺點被打時可能會不正常
 								Thread.sleep(sleeptime_PT); // 讓怪懂得忙裡偷閒
+							} else {
+								++sleeptime_PT;
 							}
 						} catch (Exception exception) {
 						}
@@ -1534,7 +1536,7 @@ public class L1NpcInstance extends L1Character {
 		if (map.isPassable(x, y, heading)) {
 			return heading;
 		} else { // 5.16 Start
-			for (byte i = 1 ; i < 8 ; i++) {
+			for (byte i = 1 ; i < 7 ; i++) {
 				heading += FIND_HEADING_TABLE[i];
 				heading = targetFace(heading);
 				if (map.isPassable(x, y, heading)) {
@@ -1547,8 +1549,7 @@ public class L1NpcInstance extends L1Character {
 
 	// 目標までの最短經路の方向を返す
 	// ※目標を中心とした探索範圍のマップで探索
-	private int _serchCource(int x, int y) // 目標點Ｘ 目標點Ｙ
-	{ // 5.06 Start
+	private int _serchCource(int x, int y) {// 目標點Ｘ 目標點Ｙ 5.06 Start
 		int i;
 		int locCenter = courceRange + 1;
 		int diff_x = x - locCenter; // Ｘの實際のロケーションとの差
@@ -1572,7 +1573,7 @@ public class L1NpcInstance extends L1Character {
 
 		// 初期方向の設置
 		int _rndHeading = RandomArrayList.getArray8List();
-		for (i = 0; i < 8; i++) {
+		for (i = 0; i < 5; i++) {
 			System.arraycopy(locBace, 0, locNext, 0, 4);
 			_rndHeading = targetFace(_rndHeading + FIND_HEADING_TABLE[i]);
 			_moveLocation(locNext, _rndHeading); // _moveLocation(locNext, firstCource[i]);
@@ -1587,8 +1588,7 @@ public class L1NpcInstance extends L1Character {
 				tmpX -= HEADING_TABLE_X[_rndHeading];
 				tmpY -= HEADING_TABLE_X[_rndHeading];
 				found = getMap().isPassable(tmpX, tmpY, _rndHeading);
-				if (found)// 移動經路があった場合
-				{
+				if (found) {// 移動經路があった場合
 					locCopy = new int[4];
 					System.arraycopy(locNext, 0, locCopy, 0, 4);
 					locCopy[2] = _rndHeading; // locCopy[2] = firstCource[i];
@@ -1617,8 +1617,7 @@ public class L1NpcInstance extends L1Character {
 					tmpY -= HEADING_TABLE_X[_rndHeading];
 					boolean found = false;
 					found = getMap().isPassable(tmpX, tmpY, _rndHeading);
-					if (found) // 移動經路があった場合
-					{
+					if (found) { // 移動經路があった場合
 						locCopy = new int[4];
 						System.arraycopy(locNext, 0, locCopy, 0, 4);
 						locCopy[2] = _rndHeading;

@@ -120,15 +120,15 @@ public class L1GuardianInstance extends L1NpcInstance {
 
 			if (attack.calcHit()) {
 				if (PT_Npc_id == 70848) { // エント
-					if (chance <= 10) {
+					if (chance <= 5) {
 						player.getInventory().storeItem(40506, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
 								"$794")); // \f1%0が%1をくれました。 安特的水果
-					} else if (chance <= 60) {
+					} else if (chance <= 30) {
 						player.getInventory().storeItem(40507, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
 								"$763")); // \f1%0が%1をくれました。 安特之樹枝
-					} else if (chance <= 70) {
+					} else if (chance <= 40) {
 						player.getInventory().storeItem(40505, 1);
 						player.sendPackets(new S_ServerMessage(143, "$755",
 								"$770")); // \f1%0が%1をくれました。 安特之樹皮
