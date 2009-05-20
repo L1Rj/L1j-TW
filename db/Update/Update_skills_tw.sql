@@ -198,7 +198,7 @@ Update skills Set name = '幻覺：歐吉' Where skill_id = '204';
 Update skills Set name = '立方：燃燒' Where skill_id = '205';
 Update skills Set name = '專注' Where skill_id = '206';
 Update skills Set name = '心靈破壞' Where skill_id = '207';
-Update skills Set name = '骷髏毀壞 ' Where skill_id = '208';
+Update skills Set name = '骷髏毀壞' Where skill_id = '208';
 Update skills Set name = '幻覺：巫妖' Where skill_id = '209';
 Update skills Set name = '立方：地裂' Where skill_id = '210';
 Update skills Set name = '耐力' Where skill_id = '211';
