@@ -3,18 +3,18 @@ package l1j.server.server.utils;
 import java.util.Random;
 
 public class RandomArrayList {
-	// private static byte Array[];
-	private static byte[] Array2 = new byte[1000]; /* 0 ~ 1 */
-	private static byte[] Array3 = new byte[1000]; /* 0 ~ 2 */
-	private static byte[] Array4 = new byte[1000]; /* 0 ~ 3 */
-	private static byte[] Array5 = new byte[1000]; /* 0 ~ 4 */
-	private static byte[] Array6 = new byte[1000]; /* 0 ~ 5 */
-	private static byte[] Array7 = new byte[1000]; /* 0 ~ 6 */
-	private static byte[] Array8 = new byte[1000]; /* 0 ~ 7 */
-	private static byte[] Array9 = new byte[1000]; /* 0 ~ 9 */
-	private static byte[] Array10 = new byte[1000]; /* 1 ~ 10 */
-	private static byte[] Array100 = new byte[1000]; /* 1 ~ 100 */
-	private static short[] Arrayshort = new short[10000]; /* 1 ~ 32767 */
+	/** 先宣告空間來做 隨機數值的緩存 */
+	private static byte[] Array2 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 1 */
+	private static byte[] Array3 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 2 */
+	private static byte[] Array4 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 3 */
+	private static byte[] Array5 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 4 */
+	private static byte[] Array6 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 5 */
+	private static byte[] Array7 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 6 */
+	private static byte[] Array8 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 7 */
+	private static byte[] Array9 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 9 */
+	private static byte[] Array10 = new byte[1000];	 /** 預定存放範圍 : 1 ~ 10 */
+	private static byte[] Array100 = new byte[1000]; /** 預定存放範圍 : 1 ~ 100 */
+	private static short[] Arrayshort = new short[10000]; /** 預定存放範圍 : 1 ~ 32767 */
 	private static short listshort = 0;
 	private static int listint = 0;
 	private static Random _random = new Random(); // 亂數產生物件
@@ -24,6 +24,9 @@ public class RandomArrayList {
 		setArrayshortList();
 	}
 
+	/**
+	 * 將創造隨機值 並輸入至Array100後 再針對Array100取餘數 丟進其他矩陣
+	 */
 	private static void setArraybyteList() {
 		for (short i = 0; i < 1000; i++) {
 			Array100[i] = (byte) (_random.nextInt(100) + 1);
@@ -39,60 +42,54 @@ public class RandomArrayList {
 		}
 	}
 
-	public static void setlistshort() {
+	/**
+	 * 針對listshort的 運算/檢查 統一運作 以免共用變數出現大於 999 的情況發生
+	 */
+	public static short getlistshort() {
 		if (listshort < 999)
-			++listshort;
+			return ++listshort;
 		else
-			listshort = 0;
+			return listshort = 0;
 	}
+
 	public static byte getArray2List() {
-		setlistshort();
-		return Array2[listshort];
+		return Array2[getlistshort()];
 	}
 
 	public static byte getArray3List() {
-		setlistshort();
-		return Array3[listshort];
+		return Array3[getlistshort()];
 	}
 
 	public static byte getArray4List() {
-		setlistshort();
-		return Array4[listshort];
+		return Array4[getlistshort()];
 	}
 
 	public static byte getArray5List() {
-		setlistshort();
-		return Array5[listshort];
+		return Array5[getlistshort()];
 	}
 
 	public static byte getArray6List() {
-		setlistshort();
-		return Array6[listshort];
+		return Array6[getlistshort()];
 	}
 
 	public static byte getArray7List() {
-		setlistshort();
-		return Array7[listshort];
+		return Array7[getlistshort()];
 	}
 
 	public static byte getArray8List() {
-		setlistshort();
-		return Array8[listshort];
+		return Array8[getlistshort()];
 	}
 
 	public static byte getArray9List() {
-		setlistshort();
-		return Array9[listshort];
+		return Array9[getlistshort()];
 	}
 
 	public static byte getArray10List() {
-		setlistshort();
-		return Array10[listshort];
+		return Array10[getlistshort()];
 	}
 
 	public static byte getArray100List() {
-		setlistshort();
-		return Array100[listshort];
+		return Array100[getlistshort()];
 	}
 
 	private static void setArrayshortList() {
