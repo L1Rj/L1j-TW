@@ -701,7 +701,7 @@ public class L1NpcInstance extends L1Character {
 						_randomMoveDistance = RandomArrayList.getArray7List() + 2;
 						_randomMoveDirection = RandomArrayList.getArray8List();
 						try {
-							if (sleeptime_PT == 0) { // 第一次看見人的怪物，不需要休息
+							if (sleeptime_PT != -1) { // 第一次看見人的怪物，不需要休息
 								sleeptime_PT = SleepTimeArray[RandomArrayList.getArray9List()]; // 需要常先得自己解除 註解 缺點被打時可能會不正常
 								Thread.sleep(sleeptime_PT); // 讓怪懂得忙裡偷閒
 							} else {
