@@ -88,8 +88,8 @@ INSERT INTO `shop` VALUES
 (70032, 220125, 28, -1, 0, 3000),/* 詛咒鏈甲 */
 (70032, 220147, 29, -1, 0, 150),/* 詛咒銀釘皮甲 */
 (70032, 120149, 30, -1, 0, 8000),/* 祝福青銅盔甲 */
+(70032, 220149, 32, -1, 0, 8000),/* 詛咒青銅盔甲 */
 (70032, 120154, 31, -1, 0, 18500),/* 祝福金屬盔甲 */
-(70032, 220149, 32, -1, 0, 18500),/* 詛咒金屬盔甲 */
 (70032, 220242, 33, -1, 0, 600),/* 祝福大盾牌 */
 /* 武器商人 */
 (70039, 100027, 38, -1, 0, 500),/* 祝福彎刀 */
@@ -521,3 +521,47 @@ INSERT INTO `shop` VALUES
 (70074, 40192, 53, -1, 0, 1000),/* 魔法書 (弱化術) */
 (70074, 40193, 54, -1, 0, 1000);/* 魔法書 祝福魔法武器) */
 
+/* 銀騎士村武器商人 格林 70073 收購裝備 */
+Update shop Set purchasing_price = '15' Where npc_id='70073' and item_id='23';
+Update shop Set purchasing_price = '55' Where npc_id='70073' and item_id='24';
+Update shop Set purchasing_price = '650' Where npc_id='70073' and item_id='27';
+Update shop Set purchasing_price = '1650' Where npc_id='70073' and item_id='31';
+Update shop Set purchasing_price = '15' Where npc_id='70073' and item_id='90';
+Update shop Set purchasing_price = '44' Where npc_id='70073' and item_id='96';
+Update shop Set purchasing_price = '11' Where npc_id='70073' and item_id='136';
+Update shop Set purchasing_price = '9' Where npc_id='70073' and item_id='137';
+Update shop Set purchasing_price = '45' Where npc_id='70073' and item_id='140';
+Update shop Set purchasing_price = '25' Where npc_id='70073' and item_id='172';
+Update shop Set purchasing_price = '50' Where npc_id='70073' and item_id='20089';
+Update shop Set purchasing_price = '250' Where npc_id='70073' and item_id='20096';
+Update shop Set purchasing_price = '500' Where npc_id='70073' and item_id='20114';
+Update shop Set purchasing_price = '1000' Where npc_id='70073' and item_id='20122';
+Update shop Set purchasing_price = '3000' Where npc_id='70073' and item_id='20125';
+Update shop Set purchasing_price = '150' Where npc_id='70073' and item_id='20147';
+Update shop Set purchasing_price = '30' Where npc_id='70073' and item_id='20239';
+Update shop Set purchasing_price = '600' Where npc_id='70073' and item_id='20242';
+Update shop Set purchasing_price = '15' Where npc_id='70073' and item_id='40010';
+Update shop Set purchasing_price = '100' Where npc_id='70073' and item_id='40011';
+Update shop Set purchasing_price = '100' Where npc_id='70073' and item_id='40013';
+Update shop Set purchasing_price = '35' Where npc_id='70073' and item_id='40017';
+Update shop Set purchasing_price = '750' Where npc_id='70073' and item_id='40018';
+Update shop Set purchasing_price = '25' Where npc_id='70073' and item_id='400126';
+INSERT INTO `shop` VALUES
+(70073, 20011, 31, -1, 0, 1500),/* 抗魔法頭盔 */
+(70073, 120011, 33, -1, 0, 1500),/* 祝福抗魔法頭盔 */
+(70073, 20101, 34, -1, 0, 11500),/* 皮甲 */
+(70073, 120101, 35, -1, 0, 11500),/* 祝福皮甲 */
+(70073, 220101, 36, -1, 0, 11500),/* 詛咒皮甲 */
+(70073, 20043, 37, -1, 0, 100),/* 鋼盔 */
+(70073, 120043, 38, -1, 0, 100),/* 祝福鋼盔 */
+(70073, 220043, 39, -1, 0, 100),/* 詛咒鋼盔 */
+(70073, 20115, 40, -1, 0, 10000),/* 藤甲 */
+(70073, 220115, 41, -1, 0, 10000),/* 詛咒藤甲 */
+(70073, 220122, 42, -1, 0, 1000),/* 詛咒鱗甲 */
+(70073, 220125, 43, -1, 0, 3000),/* 詛咒鏈甲 */
+(70073, 220147, 44, -1, 0, 150),/* 詛咒銀釘皮甲 */
+(70073, 20149, 45, -1, 0, 8000),/* 青銅盔甲 */
+(70073, 120149, 46, -1, 0, 8000),/* 祝福青銅盔甲 */
+(70073, 220149, 47, -1, 0, 8500),/* 詛咒青銅盔甲 */
+(70073, 120154, 48, -1, 0, 18500),/* 祝福金屬盔甲 */
+(70073, 220242, 49, -1, 0, 600);/* 祝福大盾牌 */
