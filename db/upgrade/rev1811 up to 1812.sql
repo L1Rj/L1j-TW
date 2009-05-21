@@ -3,6 +3,9 @@
 /* character_elf_warehouse 欄位新增 */
 alter table character_elf_warehouse add `bless` int(11) default NULL;
 
+/* character_items 欄位新增 */
+alter table character_items add `bless` int(11) default NULL;
+
 /* character_warehouse 欄位新增 */
 alter table character_warehouse add `bless` int(11) default NULL;
 

@@ -14,9 +14,12 @@ CREATE TABLE `character_items` (
   `charge_count` int(11) default NULL,
   `remaining_time` int(11) default NULL,
   `last_used` datetime default NULL,
-  PRIMARY KEY  (`id`),
+   `bless` int(11) default NULL,
+ PRIMARY KEY  (`id`),
   KEY `key_id` (`char_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # No records for table character_items
 #----------------------------
+
+
