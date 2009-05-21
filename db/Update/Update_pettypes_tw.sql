@@ -1,6 +1,6 @@
-/*	[4/22]
-L1j1749
-*/
+/*
+ *
+ */
 Update pettypes Set Name = '牧羊犬' Where BaseNpcId = '45034';
 Update pettypes Set Name = '貓' Where BaseNpcId = '45039';
 Update pettypes Set Name = '熊' Where BaseNpcId = '45040';

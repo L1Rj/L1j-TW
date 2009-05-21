@@ -1,4 +1,6 @@
-/* 武器技能 Weapon_Skill */
+/*
+ * 武器技能 Weapon_Skill
+ */
 Update weapon_skill Set note ='沉默之劍' Where weapon_id = '47';
 Update weapon_skill Set note ='克特之劍' Where weapon_id = '54';
 Update weapon_skill Set note ='死亡騎士的烈炎之劍' Where weapon_id = '58';

@@ -1,6 +1,6 @@
-/*	[4/22]
-L1j1749
-*/
+/*
+ *
+ */
 Update resolvent Set note = '歐西斯匕首' Where item_id = '1';
 Update resolvent Set note = '歐西斯匕首' Where item_id = '200001';
 Update resolvent Set note = '歐西斯短劍' Where item_id = '21';

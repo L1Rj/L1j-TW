@@ -1,6 +1,6 @@
-/*	[4/19] waja提供
-L1j1711
-*/
+/*
+ *
+ */
 Update armor Set name = '皮帽子' Where item_id = '20001';
 Update armor Set name = '皮頭盔' Where item_id = '20002';
 Update armor Set name = '鋼鐵頭盔' Where item_id = '20003';

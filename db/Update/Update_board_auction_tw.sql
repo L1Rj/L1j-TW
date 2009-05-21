@@ -1,6 +1,6 @@
-/*	[4/22]
-L1j1749
-*/
+/*
+ *
+ */
 Update board_auction Set house_name = '奇岩血盟小屋1' Where house_id = '262145';
 Update board_auction Set house_name = '奇岩血盟小屋2' Where house_id = '262146';
 Update board_auction Set house_name = '奇岩血盟小屋3' Where house_id = '262147';

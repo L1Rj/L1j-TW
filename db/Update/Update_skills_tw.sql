@@ -1,6 +1,6 @@
-/*	[4/10]
-L1j1677
-*/
+/*
+ *
+ */
 Update skills Set name = '初級治癒術' Where skill_id = '1';
 Update skills Set name = '日光術' Where skill_id = '2';
 Update skills Set name = '保護罩' Where skill_id = '3';

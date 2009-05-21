@@ -1,6 +1,6 @@
-/*[4/10]
-L1j1677
-*/
+/*
+ *
+ */
 Update castle Set name = '肯特城' Where castle_id = '1';
 Update castle Set name = '妖魔城' Where castle_id = '2';
 Update castle Set name = '風木城' Where castle_id = '3';

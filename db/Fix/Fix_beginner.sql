@@ -22,11 +22,11 @@ CREATE TABLE `beginner` (
   `activate` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
-
 -- ----------------------------
 -- Records 
 -- ----------------------------
-/*  */
-INSERT INTO `beginner` VALUES ('1', '40005', '1', '0', '0', '蠟燭', 'A');
-INSERT INTO `beginner` VALUES ('2', '40005', '1', '0', '0', '蠟燭', 'A');
-INSERT INTO `beginner` VALUES ('3', '40641', '1', '0', '0', '說話卷軸', 'A');
+/* */
+Insert Into `beginner` Values
+('1', '40005', '1', '0', '0', '蠟燭', 'A'),
+('2', '40005', '1', '0', '0', '蠟燭', 'A'),
+('3', '40641', '1', '0', '0', '說話卷軸', 'A');

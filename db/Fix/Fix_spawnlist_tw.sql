@@ -1,5 +1,5 @@
 /* 20090516 新增妖森怪物分佈 */
-INSERT INTO `spawnlist` (`id`, `location`, `count`, `npc_templateid`, `group_id`, `locx`, `locy`, `randomx`, `randomy`, `locx1`, `locy1`, `locx2`, `locy2`, `heading`, `min_respawn_delay`, `max_respawn_delay`, `mapid`, `respawn_screen`, `movement_distance`, `rest`, `near_spawn`) VALUES
+Insert Into `spawnlist` (`id`, `location`, `count`, `npc_templateid`, `group_id`, `locx`, `locy`, `randomx`, `randomy`, `locx1`, `locy1`, `locx2`, `locy2`, `heading`, `min_respawn_delay`, `max_respawn_delay`, `mapid`, `respawn_screen`, `movement_distance`, `rest`, `near_spawn`) Values
 (801500414, '蘑菇', 4, 45029, 0, 33131, 32241, 12, 12, 0, 0, 0, 0, 6, 60, 120, 4, 0, 0, 0, 0),
 (801500415, '蘑菇', 5, 45029, 0, 33155, 32236, 12, 12, 0, 0, 0, 0, 2, 60, 120, 4, 0, 0, 0, 0),
 (801500416, '蘑菇', 4, 45029, 0, 33140, 32229, 12, 12, 0, 0, 0, 0, 6, 60, 120, 4, 0, 0, 0, 0),
@@ -272,7 +272,7 @@ INSERT INTO `spawnlist` (`id`, `location`, `count`, `npc_templateid`, `group_id`
 (801500677, '冰之女王侍女', 1, 45102, 0, 32856, 32838, 12, 12, 0, 0, 0, 0, 0, 60, 120, 74, 0, 0, 0, 0);
 
 /* 20090520 新增獨眼巨人區刷怪 */
-INSERT INTO `spawnlist` (`id`, `location`, `count`, `npc_templateid`, `group_id`, `locx`, `locy`, `randomx`, `randomy`, `locx1`, `locy1`, `locx2`, `locy2`, `heading`, `min_respawn_delay`, `max_respawn_delay`, `mapid`, `respawn_screen`, `movement_distance`, `rest`, `near_spawn`) VALUES
+Insert Into `spawnlist` (`id`, `location`, `count`, `npc_templateid`, `group_id`, `locx`, `locy`, `randomx`, `randomy`, `locx1`, `locy1`, `locx2`, `locy2`, `heading`, `min_respawn_delay`, `max_respawn_delay`, `mapid`, `respawn_screen`, `movement_distance`, `rest`, `near_spawn`) Values
 (801500678, '獨眼巨人', 1, 45420, 0, 33704, 32931, 12, 12, 0, 0, 0, 0, 4, 60, 120, 4, 0, 0, 0, 0),
 (801500679, '獨眼巨人', 1, 45420, 0, 33692, 32907, 12, 12, 0, 0, 0, 0, 0, 60, 120, 4, 0, 0, 0, 0),
 (801500680, '獨眼巨人', 1, 45420, 0, 33694, 32874, 12, 12, 0, 0, 0, 0, 0, 60, 120, 4, 0, 0, 0, 0),

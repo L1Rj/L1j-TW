@@ -1,6 +1,6 @@
-/*	[4/22] sanday0603@yahoo.com.tw提供
-L1j1749
-*/
+/*
+ * sanday0603@yahoo.com.tw提供
+ */
 Update house Set house_name = '奇岩血盟小屋1' Where house_id = '262145';
 Update house Set house_name = '奇岩血盟小屋2' Where house_id = '262146';
 Update house Set house_name = '奇岩血盟小屋3' Where house_id = '262147';

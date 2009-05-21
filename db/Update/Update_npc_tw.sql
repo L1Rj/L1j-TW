@@ -1,6 +1,6 @@
-/*	[4/9]
-L1j1672
-*/
+/*
+ *
+ */
 Update npc Set name = 'scarecrow' Where npcid = '45001';
 Update npc Set name = 'scarecrow' Where npcid = '45002';
 Update npc Set name = 'scarecrow' Where npcid = '45003';
