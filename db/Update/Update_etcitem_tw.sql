@@ -1,6 +1,6 @@
-/*	[5/10] lifetime520 修正 item_id排序原則修正
-L1j1749
-*/
+/*
+ * item_id排序原則修正
+ */
 Update etcitem Set name = '燈' Where item_id = '40001';
 Update etcitem Set name = '燈籠' Where item_id = '40002';
 Update etcitem Set name = '燈油' Where item_id = '40003';
