@@ -88,7 +88,8 @@ public class C_ChatParty extends ClientBasePacket {
 						.getLeader().getName(), chatParty
 						.getMembersNameList()));
 			} else {
-				pc.sendPackets(new S_Party("party", pc.getId()));
+				pc.sendPackets(new S_ServerMessage(425)); // パーティーに加入していません。
+// pc.sendPackets(new S_Party("party", pc.getId()));
 			}
 		}
 	}

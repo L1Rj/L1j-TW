@@ -298,12 +298,23 @@ public class C_Attr extends ClientBasePacket {
 
 		case 653: // 離婚をするとリングは消えてしまいます。離婚を望みますか？（Y/N）
 			c = readC();
+			L1PcInstance target653 = (L1PcInstance) L1World.getInstance()
+					.findObject(pc.getPartnerId());
 			if (c == 0) { // No
-				;
+				return;
 			} else if (c == 1) { // Yes
-				pc.setPartnerId(0);
-				pc.save(); // DBにキャラクター情報を書き⑸む
+				if (target653 != null) {
+					target653.setPartnerId(0);
+					target653.save();
+					target653.sendPackets(new S_ServerMessage(662)); // \f1あなたは結婚していません。
+				} else {
+					CharacterTable.getInstance().updatePartnerId(pc
+							.getPartnerId());
+				}
 			}
+			pc.setPartnerId(0);
+			pc.save(); // DBにキャラクター情報を書き込む
+			pc.sendPackets(new S_ServerMessage(662)); // \f1あなたは結婚していません。
 			break;
 
 		case 654: // %0%sあなたと結婚したがっています。%0と結婚しますか？（Y/N）

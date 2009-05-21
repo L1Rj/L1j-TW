@@ -155,6 +155,28 @@ public class CharacterTable {
 		}
 	}
 
+	public static void updatePartnerId(int targetId) {
+		updatePartnerId(targetId, 0);
+	}
+
+	public static void updatePartnerId(int targetId, int partnerId) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con
+					.prepareStatement("UPDATE Characters SET PartnerID=? WHERE objid=?");
+			pstm.setInt(1, partnerId);
+			pstm.setInt(2, targetId);
+			pstm.execute();
+		} catch (Exception e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+	}
+
 	public static void saveCharStatus(L1PcInstance pc) {
 		Connection con = null;
 		PreparedStatement pstm = null;
