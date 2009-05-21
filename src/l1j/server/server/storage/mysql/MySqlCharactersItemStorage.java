@@ -73,6 +73,7 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 				item.setChargeCount(rs.getInt("charge_count"));
 				item.setRemainingTime(rs.getInt("remaining_time"));
 				item.setLastUsed(rs.getTimestamp("last_used"));
+				item.setBless(rs.getInt("bless"));
 				item.getLastStatus().updateAll();
 				items.add(item);
 			}
@@ -93,7 +94,7 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con
-					.prepareStatement("INSERT INTO character_items SET id = ?, item_id = ?, char_id = ?, item_name = ?, count = ?, is_equipped = 0, enchantlvl = ?, is_id = ?, durability = ?, charge_count = ?, remaining_time = ?, last_used = ?");
+			.prepareStatement("INSERT INTO character_items SET id = ?, item_id = ?, char_id = ?, item_name = ?, count = ?, is_equipped = 0, enchantlvl = ?, is_id = ?, durability = ?, charge_count = ?, remaining_time = ?, last_used = ?, bless = ?");
 			pstm.setInt(1, item.getId());
 			pstm.setInt(2, item.getItem().getItemId());
 			pstm.setInt(3, objId);
@@ -105,6 +106,7 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 			pstm.setInt(9, item.getChargeCount());
 			pstm.setInt(10, item.getRemainingTime());
 			pstm.setTimestamp(11, item.getLastUsed());
+			pstm.setInt(12, item.getBless());
 			pstm.execute();
 
 		} catch (SQLException e) {
@@ -204,6 +206,14 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 				"UPDATE character_items SET last_used = ? WHERE id = ?", item
 						.getLastUsed());
 		item.getLastStatus().updateLastUsed();
+	}
+
+	@Override
+	public void updateItemBless(L1ItemInstance item) throws Exception {
+		executeUpdate(item.getId(),
+				"UPDATE character_items SET bless = ? WHERE id = ?", item
+						.getBless());
+		item.getLastStatus().updateBless();
 	}
 
 	@Override

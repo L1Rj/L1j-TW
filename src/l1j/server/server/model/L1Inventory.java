@@ -206,6 +206,7 @@ public class L1Inventory extends L1Object {
 		} else {
 			item.setRemainingTime(item.getItem().getMaxUseTime());
 		}
+		item.setBless(item.getItem().getBless());
 		_items.add(item);
 		insertItem(item);
 		return item;

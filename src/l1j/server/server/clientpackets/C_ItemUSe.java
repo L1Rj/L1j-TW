@@ -247,6 +247,8 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == 40957 // 加工された火ダイア
 				|| itemId == 40958 || itemId == 40964 // ダークマジックパウダー
 				|| itemId == 49092 // 歪みのコア
+				|| itemId == 41426 // 封印捲軸
+				|| itemId == 41427 // 解封印捲軸
 				|| itemId == 30001 //waja add 裝備保護卷軸
 					) {
 			l = readD();
@@ -2708,6 +2710,76 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().consumeItem(49097, 1);
 						pc.getInventory().consumeItem(49098, 1);
 						createNewItem(pc, 49099, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+					}
+				} else if (itemId == 41426) { // 封印スクロール
+					L1ItemInstance lockItem = pc.getInventory().getItem(l);
+					if (lockItem != null && lockItem.getItem().getType2() == 1
+							|| lockItem.getItem().getType2() == 2) {
+						if (lockItem.getBless() == 0
+								|| lockItem.getBless() == 1
+								|| lockItem.getBless() == 2
+								|| lockItem.getBless() == 3) {
+							int bless = 1;
+							switch (lockItem.getBless()) {
+							case 0:
+								bless = 128;
+								break;
+							case 1:
+								bless = 129;
+								break;
+							case 2:
+								bless = 130;
+								break;
+							case 3:
+								bless = 131;
+								break;
+							}
+							lockItem.setBless(bless);
+							pc.getInventory().updateItem(lockItem,
+									L1PcInventory.COL_BLESS);
+							pc.getInventory().saveItem(lockItem,
+									L1PcInventory.COL_BLESS);
+							pc.getInventory().removeItem(l1iteminstance, 1);
+						} else {
+							pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+						}
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+					}
+				} else if (itemId == 41427) { // 封印解除スクロール
+					L1ItemInstance lockItem = pc.getInventory().getItem(l);
+					if (lockItem != null && lockItem.getItem().getType2() == 1
+							|| lockItem.getItem().getType2() == 2) {
+						if (lockItem.getBless() == 128
+								|| lockItem.getBless() == 129
+								|| lockItem.getBless() == 130
+								|| lockItem.getBless() == 131) {
+							int bless = 1;
+							switch (lockItem.getBless()) {
+							case 128:
+								bless = 0;
+								break;
+							case 129:
+								bless = 1;
+								break;
+							case 130:
+								bless = 2;
+								break;
+							case 131:
+								bless = 3;
+								break;
+							}
+							lockItem.setBless(bless);
+							pc.getInventory().updateItem(lockItem,
+									L1PcInventory.COL_BLESS);
+							pc.getInventory().saveItem(lockItem,
+									L1PcInventory.COL_BLESS);
+							pc.getInventory().removeItem(l1iteminstance, 1);
+						} else {
+							pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+						}
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}

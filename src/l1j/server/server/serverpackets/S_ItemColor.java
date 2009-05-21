@@ -43,7 +43,9 @@ public class S_ItemColor extends ServerBasePacket {
 	private void buildPacket(L1ItemInstance item) {
 		writeC(Opcodes.S_OPCODE_ITEMCOLOR);
 		writeD(item.getId());
-		writeC(item.getItem().getBless()); // 0:b 1:n 2:c -の值:アイテムが封印される？
+		// 0:祝福 1:通常 2:呪い 3:未鑑定
+		// 128:祝福&封印 129:&封印 130:呪い&封印 131:未鑑定&封印
+		writeC(item.getBless());
 	}
 
 	@Override

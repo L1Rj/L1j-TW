@@ -181,6 +181,8 @@ public class L1PcInventory extends L1Inventory {
 		}
 	}
 
+	public static final int COL_BLESS = 512;
+
 	public static final int COL_REMAINING_TIME = 256;
 
 	public static final int COL_CHARGE_COUNT = 128;
@@ -217,6 +219,10 @@ public class L1PcInventory extends L1Inventory {
 	 */
 	@Override
 	public void updateItem(L1ItemInstance item, int column) {
+		if (column >= COL_BLESS) { // 祝福・封印
+			_owner.sendPackets(new S_ItemColor(item));
+			column -= COL_BLESS;
+		}
 		if (column >= COL_REMAINING_TIME) { // 使用可能な殘り時間
 			_owner.sendPackets(new S_ItemName(item));
 			column -= COL_REMAINING_TIME;
@@ -286,6 +292,10 @@ public class L1PcInventory extends L1Inventory {
 
 		try {
 			CharactersItemStorage storage = CharactersItemStorage.create();
+			if (column >= COL_BLESS) { // 祝福・封印
+				storage.updateItemBless(item);
+				column -= COL_BLESS;
+			}
 			if (column >= COL_REMAINING_TIME) { // 使用可能な殘り時間
 				storage.updateItemRemainingTime(item);
 				column -= COL_REMAINING_TIME;

@@ -38,19 +38,9 @@ public class S_TradeAddItem extends ServerBasePacket {
 		writeC(type); // 0:トレードウィンドウ上段 1:トレードウィンドウ下段
 		writeH(item.getItem().getGfxId());
 		writeS(item.getNumberedViewName(count));
-
-		// 0:祝福 1:通常 2:咒い 3:未鑑定
-		if (!item.isIdentified()) { // 未鑑定
-			writeC(3);
-		} else { // 鑑定濟み
-			if (item.getItem().getBless() == 0) { // 祝福
-				writeC(0);
-			} else if (item.getItem().getBless() == 1) { // 通常
-				writeC(1);
-			} else if (item.getItem().getBless() == 2) { // 咒い
-				writeC(2);
-			}
-		}
+		// 0:祝福  1:通常 2:呪い 3:未鑑定
+		// 128:祝福&封印 129:&封印 130:呪い&封印 131:未鑑定&封印
+		writeC(item.getBless());
 		writeC(0x00);
 	}
 

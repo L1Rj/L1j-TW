@@ -14,9 +14,12 @@ CREATE TABLE `clan_warehouse` (
   `charge_count` int(11) default NULL,
   `remaining_time` int(11) default NULL,
   `last_used` datetime default NULL,
+  `bless` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `key_id` (`clan_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 #----------------------------
 # No records for table clan_warehouse
 #----------------------------
+
+

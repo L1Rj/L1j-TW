@@ -77,6 +77,8 @@ public class L1ItemInstance extends L1Object {
 
 	private boolean _isRunning = false;
 
+	private int _bless;
+
 	private EnchantTimer _timer;
 
 	public L1ItemInstance() {
@@ -224,6 +226,14 @@ public class L1ItemInstance extends L1Object {
 		_lastWeight = weight;
 	}
 
+	public void setBless(int i) {
+		_bless = i;
+	}
+
+	public int getBless() {
+		return _bless;
+	}
+
 	public int getMr() {
 		int mr = _item.get_mdef();
 		if (getItemId() == 20011 || getItemId() == 20110
@@ -283,6 +293,8 @@ public class L1ItemInstance extends L1Object {
 
 		public Timestamp lastUsed = null;
 
+		public int bless;
+
 		public void updateAll() {
 			count = getCount();
 			itemId = getItemId();
@@ -293,6 +305,7 @@ public class L1ItemInstance extends L1Object {
 			chargeCount = getChargeCount();
 			remainingTime = getRemainingTime();
 			lastUsed = getLastUsed();
+			bless = getBless();
 		}
 
 		public void updateCount() {
@@ -329,6 +342,10 @@ public class L1ItemInstance extends L1Object {
 
 		public void updateLastUsed() {
 			lastUsed = getLastUsed();
+		}
+
+		public void updateBless() {
+			bless = getBless();
 		}
 	}
 
@@ -368,6 +385,9 @@ public class L1ItemInstance extends L1Object {
 		}
 		if (getRemainingTime() != _lastStatus.remainingTime) {
 			column += L1PcInventory.COL_REMAINING_TIME;
+		}
+		if (getBless() != _lastStatus.bless) {
+			column += L1PcInventory.COL_BLESS;
 		}
 		return column;
 	}

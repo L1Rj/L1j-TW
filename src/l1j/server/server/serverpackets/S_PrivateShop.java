@@ -59,7 +59,7 @@ public class S_PrivateShop extends ServerBasePacket {
 						.getItem(itemObjectId);
 				if (item != null) {
 					writeC(i);
-					writeC(item.getItem().getBless());
+					writeC(item.getBless());
 					writeH(item.getItem().getGfxId());
 					writeD(count);
 					writeD(price);

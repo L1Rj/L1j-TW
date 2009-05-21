@@ -49,7 +49,7 @@ public class S_PetInventory extends ServerBasePacket {
 				writeD(item.getId());
 				writeC(0x13);
 				writeH(item.get_gfxid());
-				writeC(item.getItem().getBless());
+				writeC(item.getBless());
 				writeD(item.getCount());
 				writeC(item.isIdentified() ? 1 : 0);
 				writeS(item.getViewName());

@@ -44,7 +44,7 @@ public class S_InvList extends ServerBasePacket {
 			writeC(item.getItem().getUseType());
 			writeC(0);
 			writeH(item.get_gfxid());
-			writeC(item.getItem().getBless());
+			writeC(item.getBless());
 			writeD(item.getCount());
 			writeC((item.isIdentified()) ? 1 : 0);
 			writeS(item.getViewName());

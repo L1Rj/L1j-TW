@@ -60,6 +60,9 @@ public abstract class CharactersItemStorage {
 	public abstract int getItemCount(int objId)
 			throws Exception;
 
+	public abstract void updateItemBless(L1ItemInstance item)
+	throws Exception;
+
 	public static CharactersItemStorage create() {
 		if (_instance == null) {
 			_instance = new MySqlCharactersItemStorage();
