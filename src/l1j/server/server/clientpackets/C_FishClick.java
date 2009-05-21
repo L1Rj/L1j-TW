@@ -126,6 +126,9 @@ public class C_FishClick extends ClientBasePacket {
 		int[] Loc = {pc.getX(), pc.getY()};
 		int[] DropLoc = new int[2];
 
+		/**
+		 * 記錄： 日版在1808時，加入面向8的討論 與面向0相同處理
+		 */
 		DropLoc[0] = Loc[0] - HEADING_TABLE_X[heading];
 		DropLoc[1] = Loc[1] - HEADING_TABLE_Y[heading];
 
