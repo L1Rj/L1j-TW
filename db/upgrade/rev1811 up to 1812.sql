@@ -21,15 +21,19 @@ INSERT INTO `etcitem` VALUES
 Update character_items Set bless = '1';
 Update character_items Set bless = '0' Where item_id > 100000 ;
 Update character_items Set bless = '2' Where item_id > 200000 ;
+Update character_items Set bless = '1' Where item_id > 300000 ;
 
 Update clan_warehouse Set bless = '1';
 Update clan_warehouse Set bless = '0' Where item_id > 100000 ;
 Update clan_warehouse Set bless = '2' Where item_id > 200000 ;
+Update clan_warehouse Set bless = '1' Where item_id > 300000 ;
 
 Update character_warehouse Set bless = '1';
 Update character_warehouse Set bless = '0' Where item_id > 100000 ;
 Update character_warehouse Set bless = '2' Where item_id > 200000 ;
+Update character_warehouse Set bless = '1' Where item_id > 300000 ;
 
 Update character_elf_warehouse Set bless = '1';
 Update character_elf_warehouse Set bless = '0' Where item_id > 100000 ;
 Update character_elf_warehouse Set bless = '2' Where item_id > 200000 ;
+Update character_elf_warehouse Set bless = '1' Where item_id > 300000 ;
