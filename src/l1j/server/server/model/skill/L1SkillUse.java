@@ -116,6 +116,7 @@ public class L1SkillUse {
 	private int _leverage = 10; // 1/10倍なので10で1倍
 	private boolean _isFreeze = false;
 	private boolean _isCounterMagic = true;
+	private boolean _isGlanceCheckFail = false;
 
 	private L1Character _user = null;
 	private L1Character _target = null;
@@ -503,11 +504,14 @@ public class L1SkillUse {
 			}
 
 			if (type == TYPE_NORMAL) { // 魔法詠唱時
-				runSkill();
-				useConsume();
-				sendGrfx(true);
-				sendFailMessageHandle();
-				setDelay();
+				if (!_isGlanceCheckFail || _skill.getArea() > 0
+						|| _skill.getTarget().equals("none")) {
+					runSkill();
+					useConsume();
+					sendGrfx(true);
+					sendFailMessageHandle();
+					setDelay();
+				}
 			} else if (type == TYPE_LOGIN) { // ログイン時（HPMP材料消費なし、グラフィックなし）
 				runSkill();
 			} else if (type == TYPE_SPELLSC) { // スペルスクロール使用時（HPMP材料消費なし）
@@ -692,6 +696,7 @@ public class L1SkillUse {
 			// エンチャント、復活スキルは障害物の判定をしない
 			if (!(_skill.getType() == L1Skills.TYPE_CHANGE
 					|| _skill.getType() == L1Skills.TYPE_RESTORE)) {
+				_isGlanceCheckFail = true;
 				return false; // 直線上に障害物がある
 			}
 		}
