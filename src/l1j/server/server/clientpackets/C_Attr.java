@@ -621,6 +621,9 @@ public class C_Attr extends ClientBasePacket {
 		pc.broadcastPacket(new S_ChangeName(pet.getId(), name));
 	}
 
+	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
+	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 }; // 5.23 Start
+	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 }; // 5.23 End
 	private void callClan(L1PcInstance pc) {
 		L1PcInstance callClanPc = (L1PcInstance) L1World.getInstance()
 				.findObject(pc.getTempID());
@@ -654,59 +657,26 @@ public class C_Attr extends ClientBasePacket {
 		}
 
 		L1Map map = callClanPc.getMap();
-		int callCalnX = callClanPc.getX();
-		int callCalnY = callClanPc.getY();
-		int locX = 0;
-		int locY = 0;
-		int heading = 0;
-		switch (callClanPc.getCallClanHeading()) {
-		case 0:
-			locY = callCalnY - 1;
-			heading = 4;
-			break;
-
-		case 1:
-			locX = callCalnX + 1;
-			locY = callCalnY - 1;
-			heading = 5;
-			break;
-
-		case 2:
-			locX = callCalnX + 1;
-			heading = 6;
-			break;
-
-		case 3:
-			locX = callCalnX + 1;
-			locY = callCalnY + 1;
-			heading = 7;
-			break;
-
-		case 4:
-			locY = callCalnY + 1;
-			heading = 0;
-			break;
-
-		case 5:
-			locX = callCalnX - 1;
-			locY = callCalnY + 1;
-			heading = 1;
-			break;
-
-		case 6:
-			locX = callCalnX - 1;
-			heading = 2;
-			break;
-
-		case 7:
-			locX = callCalnX - 1;
-			locY = callCalnY - 1;
-			heading = 3;
-			break;
-
-		default:
-			break;
-		}
+		// int callCalnX = callClanPc.getX(); // 5.23 Start
+		// int callCalnY = callClanPc.getY();
+		int locX = callClanPc.getX();
+		int locY = callClanPc.getY();
+		int heading = callClanPc.getCallClanHeading();
+		//int heading = 0;
+		locX += HEADING_TABLE_X[heading];
+		locY += HEADING_TABLE_Y[heading];
+		heading = (heading + 4) % 4;
+		/*switch (callClanPc.getCallClanHeading()) {
+			case 0:locY = callCalnY - 1;heading = 4;break;
+			case 1:locX = callCalnX + 1;locY = callCalnY - 1;heading = 5;break;
+			case 2:locX = callCalnX + 1;heading = 6;break;
+			case 3:locX = callCalnX + 1;locY = callCalnY + 1;heading = 7;break;
+			case 4:locY = callCalnY + 1;heading = 0;break;
+			case 5:locX = callCalnX - 1;locY = callCalnY + 1;heading = 1;break;
+			case 6:locX = callCalnX - 1;heading = 2;break;
+			case 7:locX = callCalnX - 1;locY = callCalnY - 1;heading = 3;break;
+			default:break;
+		}*/ // 5.23 End
 
 		boolean isExsistCharacter = false;
 		for (L1Object object : L1World.getInstance()
