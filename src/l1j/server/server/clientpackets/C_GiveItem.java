@@ -87,6 +87,11 @@ public class C_GiveItem extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0は捨てたりまたは他人に讓ることができません。
 			return;
 		}
+		if (item.getBless() >= 128) { // 封印された装備
+			// \f1%0は捨てたりまたは他人に讓ることができません。
+			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName()));
+			return;
+		}
 		for (Object petObject : pc.getPetList().values()) {
 			if (petObject instanceof L1PetInstance) {
 				L1PetInstance pet = (L1PetInstance) petObject;

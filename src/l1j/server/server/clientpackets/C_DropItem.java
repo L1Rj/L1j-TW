@@ -89,6 +89,12 @@ public class C_DropItem extends ClientBasePacket {
 					+ " 丟棄到地上,"
 					+ "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。");
 //end add
+			if (item.getBless() >= 128) { // 封印された装備
+				// \f1%0は捨てたりまたは他人に讓ることができません。
+				pc.sendPackets(new S_ServerMessage(210, item.getItem()
+						.getName()));
+				return;
+			}
 			pc.getInventory().tradeItem(item, count,
 					L1World.getInstance().getInventory(x, y, pc.getMapId()));
 			pc.turnOnOffLight();

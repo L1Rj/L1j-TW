@@ -407,8 +407,8 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						FailureEnchant(pc, l1iteminstance1, client);
 					}
-				}
 //waja add 裝備保護卷軸
+				}
 					} else if (itemId == 30001) {
 				if	(l1iteminstance1 != null){
 					if	(l1iteminstance1.getItem().get_safeenchant() <= -1){
@@ -552,7 +552,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						storage.updateHpr(l1iteminstance1);
 						storage.updateMpr(l1iteminstance1);
 						pc.getInventory().removeItem(l1iteminstance, 1);// 刪除道具
-					}
+				}
 //end add
 			} else if (itemId == 40078
 					|| itemId == L1ItemId.SCROLL_OF_ENCHANT_ARMOR

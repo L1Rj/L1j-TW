@@ -81,6 +81,9 @@ public class L1Shop {
 		if (item.getEnchantLevel() != 0) { // 強化(or弱化)されていれば不可
 			return false;
 		}
+		if (item.getBless() >= 128) { // 封印された装備
+			return false;
+		}
 
 		return true;
 	}

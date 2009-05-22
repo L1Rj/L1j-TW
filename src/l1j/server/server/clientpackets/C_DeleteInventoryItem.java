@@ -72,6 +72,11 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(125));
 			return;
 		}
+		if (item.getBless() >= 128) { // 封印された装備
+			// \f1%0は捨てたりまたは他人に讓ることができません。
+			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName()));
+			return;
+		}
 		pc.getInventory().removeItem(item, item.getCount());
 		pc.turnOnOffLight();
 	}
