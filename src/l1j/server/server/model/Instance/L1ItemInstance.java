@@ -295,6 +295,25 @@ public class L1ItemInstance extends L1Object {
 
 		public int bless;
 
+//waja add 飾品強化卷軸
+		public int firemr;
+		
+		public int watermr;
+		
+		public int earthmr;
+		
+		public int windmr;
+		
+		public int addhp;
+		
+		public int addmp;
+		
+		public int hpr;
+		
+		public int mpr;
+		
+		public int addsp;
+//add end
 		public void updateAll() {
 			count = getCount();
 			itemId = getItemId();
@@ -306,8 +325,50 @@ public class L1ItemInstance extends L1Object {
 			remainingTime = getRemainingTime();
 			lastUsed = getLastUsed();
 			bless = getBless();
+//waja add 飾品強化卷軸
+		    //飾品強化卷軸
+			firemr = getFireMr();
+			watermr = getWaterMr();
+			earthmr = getEarthMr();
+			windmr = getWindMr();
+			addhp = getaddHp();
+			addmp = getaddMp();
+			addsp = getaddSp();
+			hpr = getHpr();
+			mpr = getMpr();
+			//飾品強化卷軸	
+//add end
 		}
 
+//waja add 飾品強化卷軸
+		public void updateFireMr(){
+			firemr = getFireMr();
+		}
+		public void updateWaterMr(){
+			watermr = getWaterMr();
+		}
+		public void updateEarthMr(){
+			earthmr = getEarthMr();
+		}
+		public void updateWindMr(){
+			windmr = getWindMr();
+		}
+		public void updateSp(){
+			addsp = getaddSp();
+		}
+		public void updateaddHp(){
+			addhp = getaddHp();
+		}
+		public void updateaddMp(){
+			addmp = getaddMp();
+		}
+		public void updateHpr(){
+			hpr = getHpr();
+		}
+		public void updateMpr(){
+			mpr = getMpr();
+		}
+//add end
 		public void updateCount() {
 			count = getCount();
 		}
@@ -389,6 +450,35 @@ public class L1ItemInstance extends L1Object {
 		if (getBless() != _lastStatus.bless) {
 			column += L1PcInventory.COL_BLESS;
 		}
+//waja add 飾品強化卷軸
+		if (getFireMr() != _lastStatus.firemr ) {
+			column += L1PcInventory.COL_FIREMR;
+		}
+		if (getWaterMr() != _lastStatus.watermr ) {
+			column += L1PcInventory.COL_WATERMR;
+		}
+		if (getEarthMr() != _lastStatus.earthmr ) {
+			column += L1PcInventory.COL_EARTHMR;
+		}
+		if (getWindMr() != _lastStatus.windmr ) {
+			column += L1PcInventory.COL_WINDMR;
+		}
+		if (getaddSp() != _lastStatus.addsp ) {
+			column += L1PcInventory.COL_ADDSP;
+		}
+		if (getaddHp() != _lastStatus.addhp ) {
+			column += L1PcInventory.COL_ADDHP;
+		}
+		if (getaddMp() != _lastStatus.addmp ) {
+			column += L1PcInventory.COL_ADDMP;
+		}
+		if (getHpr() != _lastStatus.hpr ) {
+			column += L1PcInventory.COL_HPR;
+		}
+		if (getMpr() != _lastStatus.mpr ) {
+			column += L1PcInventory.COL_MPR;
+		}
+//add end
 		return column;
 	}
 
@@ -494,6 +584,87 @@ public class L1ItemInstance extends L1Object {
 	public void setproctect(boolean i) {
 		proctect = i;
 	}
+//waja add 飾品強化卷軸
+	private int _FireMr = 0;
+	
+	public int getFireMr() {
+		return _FireMr;
+	}
+	public void setFireMr(int i) {
+		_FireMr = i;
+	}
+	
+	private int _WaterMr = 0;
+	
+	public int getWaterMr() {
+		return _WaterMr;
+	}
+	public void setWaterMr(int i) {
+		_WaterMr = i;
+	}
+	
+	private int _EarthMr = 0;
+	
+	public int getEarthMr() {
+		return _EarthMr;
+	}
+	public void setEarthMr(int i) {
+		_EarthMr = i;
+	}
+	
+	private int _WindMr = 0;
+	
+	public int getWindMr() {
+		return _WindMr;
+	}
+	public void setWindMr(int i) {
+		_WindMr = i;
+	}
+	
+	private int _Mpr = 0;
+	
+	public int getMpr() {
+		return _Mpr;
+	}
+	public void setMpr(int i) {
+		_Mpr = i;
+	}
+	
+	private int _Hpr = 0;
+	
+	public int getHpr() {
+		return _Hpr;
+	}
+	public void setHpr(int i) {
+		_Hpr = i;
+	}
+	
+	private int _addHp = 0;
+	
+	public int getaddHp() {
+		return _addHp;
+	}
+	public void setaddHp(int i) {
+		_addHp = i;
+	}
+	
+	private int _addMp = 0;
+	
+	public int getaddMp() {
+		return _addMp;
+	}
+	public void setaddMp(int i) {
+		_addMp = i;
+	}
+	
+	private int _addSp = 0;
+	
+	public int getaddSp() {
+		return _addSp;
+	}
+	public void setaddSp(int i) {
+		_addSp = i;
+	}
 //add end
 
 	/**
@@ -521,6 +692,11 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(getItem().getDmgSmall());
 				os.writeC(getItem().getDmgLarge());
 				break;
+//waja add 修正高等寵物裝備顯示 可否裝備
+			case 11:
+				os.writeC(7);
+				os.writeC(128);
+//add end
 			default:
 				os.writeC(23); // 材質
 				break;
@@ -548,10 +724,28 @@ public class L1ItemInstance extends L1Object {
 				os.writeD(getWeight());
 			}
 			// 強化數
+//waja add & change 飾品強化卷軸
+/* 原本寫法
 			if (getEnchantLevel() != 0) {
 				os.writeC(2);
 				os.writeC(getEnchantLevel());
-			}
+			} 
+*/
+			if (getEnchantLevel() != 0) { 
+	               os.writeC(2);
+	               if (getItem().getType2() !=2){
+	               os.writeC(getEnchantLevel());
+	               } else if (getItem().getType2() == 2
+	               &&getItem().getType() == 8
+	               ||getItem().getType() == 9
+	               ||getItem().getType() == 10
+	               ||getItem().getType() == 12){
+	               os.writeC(0);
+	               } else {
+	                os.writeC(getEnchantLevel());
+	               }
+	               }	
+//add end
 			// 損傷度
 			if (get_durability() != 0) {
 				os.writeC(3);
@@ -663,6 +857,8 @@ public class L1ItemInstance extends L1Object {
 			if (getItem().isHasteItem()) {
 				os.writeC(18);
 			}
+//waja add & change 飾品強化卷軸
+/* 原本寫法
 			// 火の屬性
 			if (getItem().get_defense_fire() != 0) {
 				os.writeC(27);
@@ -683,6 +879,38 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(30);
 				os.writeC(getItem().get_defense_earth());
 			}
+*/
+			if (getItem().get_addhp() != 0 || getaddHp() != 0) {
+				os.writeC(14);
+				os.writeH(getItem().get_addhp() + getaddHp());
+			}
+			if (getItem().get_addmp() != 0 || getaddMp() != 0) {
+				os.writeC(32);
+				os.writeC(getItem().get_addmp() + getaddMp());
+			}
+
+			if (getItem().get_addsp() != 0 || getaddSp() != 0) {
+				os.writeC(17);
+				os.writeC(getItem().get_addsp() + getaddSp());
+			}
+
+			if (getItem().get_defense_fire() != 0 || getFireMr() != 0) {
+				os.writeC(27);
+				os.writeC(getItem().get_defense_fire() + getFireMr());
+			}
+			if (getItem().get_defense_water() != 0 || getWaterMr() != 0) {
+				os.writeC(28);
+				os.writeC(getItem().get_defense_water() + getWaterMr());
+			}
+			if (getItem().get_defense_wind() != 0 || getWindMr() != 0) {
+				os.writeC(29);
+				os.writeC(getItem().get_defense_wind() + getWindMr());
+			}
+			if (getItem().get_defense_earth() != 0 || getEarthMr() != 0) {
+				os.writeC(30);
+				os.writeC(getItem().get_defense_earth() + getEarthMr());
+			}
+//add end
 			// 凍結耐性
 			if (getItem().get_regist_freeze() != 0) {
 				os.writeC(15);

@@ -250,6 +250,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == 41426 // 封印捲軸
 				|| itemId == 41427 // 解封印捲軸
 				|| itemId == 30001 //waja add 裝備保護卷軸
+				|| itemId == 49148 //waja add 飾品強化卷軸
 					) {
 			l = readD();
 		} else if (itemId == 140100 || itemId == 40100 || itemId == 40099
@@ -408,9 +409,9 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				}
 //waja add 裝備保護卷軸
-			} else if (itemId == 30001) {
-				if (l1iteminstance1 != null){
-					if (l1iteminstance1.getItem().get_safeenchant() <= -1){
+					} else if (itemId == 30001) {
+				if	(l1iteminstance1 != null){
+					if	(l1iteminstance1.getItem().get_safeenchant() <= -1){
 						pc.sendPackets(new S_ServerMessage(1309));
 						return;
 					}
@@ -427,6 +428,131 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().removeItem(l1iteminstance, 1);
 					}
 				}
+				//飾品強化卷軸
+				} else if (itemId == 49148) {
+					if (l1iteminstance1.getItem().getType2() != 2) {
+						pc.sendPackets(new S_ServerMessage(79));
+						return;
+					} else if (l1iteminstance1 != null
+							&& (l1iteminstance1.getItem().getType() == 8
+							|| l1iteminstance1.getItem().getType() == 9
+							|| l1iteminstance1.getItem().getType() == 10
+							|| l1iteminstance1.getItem().getType() == 12)) {
+						int chance = RandomArrayList.getArray100List() + 1 ;
+						switch (l1iteminstance1.getEnchantLevel()) {
+						case -1:
+						case 0:
+						case 1:
+						case 2:
+						case 3:
+						case 4:
+						case 6:
+						case 7:
+						case 8:
+						case 9:
+							if(l1iteminstance1.getEnchantLevel()==-1){
+								l1iteminstance1.setEnchantLevel(0);
+							}
+							if (chance < 25) {
+								l1iteminstance1
+										.setaddHp(l1iteminstance1.getaddHp() + 2);
+								if (l1iteminstance1.isEquipped()) {
+									pc.addMaxHp(2);
+									pc.addAc(1);
+								}
+							} else if (chance > 25 && chance < 50) {
+								l1iteminstance1
+										.setaddMp(l1iteminstance1.getaddMp() + 1);
+								if (l1iteminstance1.isEquipped()) {
+									pc.addMaxMp(1);
+									pc.addAc(1);
+								}
+							} else if (chance > 50 && chance < 75) {
+								l1iteminstance1.setFireMr(l1iteminstance1
+										.getFireMr() + 1);
+								l1iteminstance1.setWaterMr(l1iteminstance1
+										.getWaterMr() + 1);
+								l1iteminstance1.setEarthMr(l1iteminstance1
+										.getEarthMr() + 1);
+								l1iteminstance1.setWindMr(l1iteminstance1
+										.getWindMr() + 1);
+								if (l1iteminstance1.isEquipped()) {
+									pc.addFire(1);
+									pc.addWater(1);
+									pc.addEarth(1);
+									pc.addWind(1);
+									pc.addAc(1);
+								}
+							} else {
+								FailureEnchant(pc, l1iteminstance1, client);
+								pc.getInventory().removeItem(l1iteminstance, 1);
+								return;
+							}
+							break;
+						case 5:
+							if (chance < 25) {
+								l1iteminstance1
+										.setaddHp(l1iteminstance1.getaddHp() + 2);
+								l1iteminstance1.setMpr(l1iteminstance1.getItem()
+										.get_addmpr() + 1);
+								if (l1iteminstance1.isEquipped()) {
+									pc.addMaxHp(2);
+									pc.addAc(1);
+								}
+							} else if (chance > 25 && chance < 50) {
+								l1iteminstance1
+										.setaddMp(l1iteminstance1.getaddMp() + 1);
+								l1iteminstance1.setaddSp(l1iteminstance1.getItem()
+										.get_addsp() + 1);
+								if (l1iteminstance1.isEquipped()) {
+									pc.addMaxMp(1);
+									pc.addAc(1);
+								}
+							} else if (chance > 50 && chance < 75) {
+								l1iteminstance1.setFireMr(l1iteminstance1
+										.getFireMr() + 1);
+								l1iteminstance1.setWaterMr(l1iteminstance1
+										.getWaterMr() + 1);
+								l1iteminstance1.setEarthMr(l1iteminstance1
+										.getEarthMr() + 1);
+								l1iteminstance1.setWindMr(l1iteminstance1
+										.getWindMr() + 1);
+								l1iteminstance1
+										.setMpr(l1iteminstance1.getMpr() + 1);
+								l1iteminstance1
+										.setHpr(l1iteminstance1.getHpr() + 1);
+								if (l1iteminstance1.isEquipped()) {
+									pc.addFire(1);
+									pc.addWater(1);
+									pc.addEarth(1);
+									pc.addWind(1);
+									pc.addAc(1);
+								}
+							} else {
+								FailureEnchant(pc, l1iteminstance1, client);
+								pc.getInventory().removeItem(l1iteminstance, 1);
+								return;
+							}
+							break;
+						default:
+							pc.sendPackets(new S_ServerMessage(79));
+							return;
+						}
+						SuccessEnchant(pc, l1iteminstance1, client, 1);
+						pc.sendPackets(new S_ItemStatus(l1iteminstance1));// 線上更新
+						CharactersItemStorage storage = CharactersItemStorage
+								.create();// 儲存道具
+						storage.updateFireMr(l1iteminstance1);
+						storage.updateWaterMr(l1iteminstance1);
+						storage.updateEarthMr(l1iteminstance1);
+						storage.updateWindMr(l1iteminstance1);
+						storage.updateaddSp(l1iteminstance1);
+						storage.updateaddHp(l1iteminstance1);
+						storage.updateaddMp(l1iteminstance1);
+						storage.updateHpr(l1iteminstance1);
+						storage.updateMpr(l1iteminstance1);
+						pc.getInventory().removeItem(l1iteminstance, 1);// 刪除道具
+					}
 //end add
 			} else if (itemId == 40078
 					|| itemId == L1ItemId.SCROLL_OF_ENCHANT_ARMOR

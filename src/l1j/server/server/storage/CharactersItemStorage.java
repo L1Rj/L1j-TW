@@ -71,4 +71,33 @@ public abstract class CharactersItemStorage {
 	}
 
 	private static CharactersItemStorage _instance;
+
+//waja add 飾品強化卷軸
+	public abstract void updateFireMr(L1ItemInstance item)
+	throws Exception;
+	
+	public abstract void updateWaterMr(L1ItemInstance item)
+	throws Exception;
+	
+	public abstract void updateEarthMr(L1ItemInstance item)
+	throws Exception;
+	
+	public abstract void updateWindMr(L1ItemInstance item)
+	throws Exception;
+	
+	public abstract void updateaddSp(L1ItemInstance item)
+	throws Exception;
+	
+	public abstract void updateaddHp(L1ItemInstance item)
+	throws Exception;
+	
+	public abstract void updateaddMp(L1ItemInstance item)
+	throws Exception;
+	
+	public abstract void updateHpr(L1ItemInstance item)
+	throws Exception;
+	
+	public abstract void updateMpr(L1ItemInstance item)
+	throws Exception;
+//add end
 }

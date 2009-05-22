@@ -31,6 +31,7 @@ import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.serverpackets.S_AddItem;
 import l1j.server.server.serverpackets.S_CharVisualUpdate;
 import l1j.server.server.serverpackets.S_DeleteInventoryItem;
+import l1j.server.server.serverpackets.S_Disconnect; // waja add 判斷裝備穿著數量
 import l1j.server.server.serverpackets.S_ItemColor;
 import l1j.server.server.serverpackets.S_ItemStatus;
 import l1j.server.server.serverpackets.S_OwnCharStatus;
@@ -48,6 +49,26 @@ public class L1PcInventory extends L1Inventory {
 
 	private static Logger _log = Logger
 			.getLogger(L1PcInventory.class.getName());
+
+//waja add 飾品強化卷軸
+	public static final int COL_FIREMR = 137;
+	
+	public static final int COL_WATERMR = 136;
+	
+	public static final int COL_WINDMR = 135;
+	
+	public static final int COL_EARTHMR = 134;
+	
+	public static final int COL_ADDSP = 133;
+	
+	public static final int COL_ADDHP = 132;
+	
+	public static final int COL_ADDMP = 131;
+	
+	public static final int COL_HPR = 130;
+	
+	public static final int COL_MPR = 129;
+//end add
 
 	private static final int MAX_SIZE = 180;
 
@@ -275,6 +296,44 @@ public class L1PcInventory extends L1Inventory {
 			_owner.sendPackets(new S_ItemStatus(item));
 			column -= COL_DURABILITY;
 		}
+//waja add 飾品強化卷軸
+		if (column >= COL_FIREMR) {
+			_owner.sendPackets(new S_ItemStatus(item));
+			column -= COL_FIREMR;
+		}
+		if (column >= COL_WATERMR) {
+			_owner.sendPackets(new S_ItemStatus(item));
+			column -= COL_WATERMR;
+		}
+		if (column >= COL_EARTHMR) {
+			_owner.sendPackets(new S_ItemStatus(item));
+			column -= COL_EARTHMR;
+		}
+		if (column >= COL_WINDMR) {
+			_owner.sendPackets(new S_ItemStatus(item));
+			column -= COL_WINDMR;
+		}
+		if (column >= COL_ADDSP) {
+			_owner.sendPackets(new S_ItemStatus(item));
+			column -= COL_ADDSP;
+		}
+		if (column >= COL_ADDHP) {
+			_owner.sendPackets(new S_ItemStatus(item));
+			column -= COL_ADDHP;
+		}
+		if (column >= COL_ADDMP) {
+			_owner.sendPackets(new S_ItemStatus(item));
+			column -= COL_ADDMP;
+		}
+		if (column >= COL_HPR) {
+			_owner.sendPackets(new S_ItemStatus(item));
+			column -= COL_HPR;
+		}
+		if (column >= COL_MPR) {
+			_owner.sendPackets(new S_ItemStatus(item));
+			column -= COL_MPR;
+		}
+//end add
 	}
 
 	/**
@@ -332,6 +391,44 @@ public class L1PcInventory extends L1Inventory {
 				storage.updateItemDurability(item);
 				column -= COL_DURABILITY;
 			}
+//waja add 飾品強化卷軸
+			if (column >= COL_FIREMR) {
+				storage.updateFireMr(item);
+				column -= COL_FIREMR;
+			}
+			if (column >= COL_WATERMR) {
+				storage.updateWaterMr(item);
+				column -= COL_WATERMR;
+			}
+			if (column >= COL_EARTHMR) {
+				storage.updateEarthMr(item);
+				column -= COL_EARTHMR;
+			}
+			if (column >= COL_WINDMR) {
+				storage.updateWindMr(item);
+				column -= COL_WINDMR;
+			}
+			if (column >= COL_ADDSP) {
+				storage.updateaddSp(item);;
+				column -= COL_ADDSP;
+			}
+			if (column >= COL_ADDHP) {
+				storage.updateaddHp(item);
+				column -= COL_ADDHP;
+			}
+			if (column >= COL_ADDMP) {
+				storage.updateaddMp(item);
+				column -= COL_ADDMP;
+			}
+			if (column >= COL_HPR) {
+				storage.updateHpr(item);
+				column -= COL_HPR;
+			}
+			if (column >= COL_MPR) {
+				storage.updateMpr(item);
+				column -= COL_MPR;
+			}	
+//add end
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
@@ -368,6 +465,22 @@ public class L1PcInventory extends L1Inventory {
 		if (item.isEquipped() != equipped) { // 設定值と違う場合だけ處理
 			L1Item temp = item.getItem();
 			if (equipped) { // 裝著
+//waja add 判斷裝備穿著數量
+//TODO 判斷裝備穿著數量 by elfooxx
+                int count = 0 ; 
+               if ( temp.getType2() ==2) { 
+                for ( L1ItemInstance hasEquip : _owner.getEquipSlot().getArmors() ) { 
+                  // 如果要穿的裝備 跟已經穿上的種類一樣 計算穿上的數量  
+                  if ( temp.getType() == hasEquip.getItem().getType() ) 
+                    count ++ ; 
+                  // 9為戒指 可以裝兩個  
+                  if ( ( temp.getType() == 9 && count >= 2 ) || ( temp.getType() != 9 && count >= 1 ) ) {   
+                    _owner.getNetConnection().sendPacket(new S_Disconnect()); // 裝備出異常　斷線 
+                    return;
+                  }
+                }
+                }
+//add end
 				item.setEquipped(true);
 				_owner.getEquipSlot().set(item);
 			} else { // 脫著
@@ -583,7 +696,10 @@ public class L1PcInventory extends L1Inventory {
 		for (Object itemObject : _items) {
 			L1ItemInstance item = (L1ItemInstance) itemObject;
 			if (item.isEquipped()) {
-				hpr += item.getItem().get_addhpr();
+//waja add & change 飾品強化卷軸
+//				hpr += item.getItem().get_addhpr();
+				hpr += item.getItem().get_addhpr()+ item.getHpr();
+//end add
 			}
 		}
 		return hpr;
@@ -595,7 +711,10 @@ public class L1PcInventory extends L1Inventory {
 		for (Object itemObject : _items) {
 			L1ItemInstance item = (L1ItemInstance) itemObject;
 			if (item.isEquipped()) {
-				mpr += item.getItem().get_addmpr();
+//waja add & change 飾品強化卷軸
+//				mpr += item.getItem().get_addmpr();
+				mpr += item.getItem().get_addmpr()+ item.getMpr();
+//add end
 			}
 		}
 		return mpr;
