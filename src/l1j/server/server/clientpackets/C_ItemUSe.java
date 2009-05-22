@@ -428,7 +428,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().removeItem(l1iteminstance, 1);
 					}
 				}
-				//飾品強化卷軸
+//飾品強化卷軸
 				} else if (itemId == 49148) {
 					if (l1iteminstance1.getItem().getType2() != 2) {
 						pc.sendPackets(new S_ServerMessage(79));

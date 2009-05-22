@@ -76,10 +76,18 @@ public class L1EquipmentSlot {
 		_owner.addDmgModifierByArmor(item.getDmgModifierByArmor());
 		_owner.addBowHitModifierByArmor(item.getBowHitModifierByArmor());
 		_owner.addBowDmgModifierByArmor(item.getBowDmgModifierByArmor());
+//waja add & change 飾品強化卷軸
+/*
 		_owner.addEarth(item.get_defense_earth());
 		_owner.addWind(item.get_defense_wind());
 		_owner.addWater(item.get_defense_water());
 		_owner.addFire(item.get_defense_fire());
+*/	
+        _owner.addEarth(item.get_defense_earth() + armor.getEarthMr());
+        _owner.addWind(item.get_defense_wind() + armor.getWindMr());
+        _owner.addWater(item.get_defense_water() + armor.getWaterMr());
+        _owner.addFire(item.get_defense_fire() + armor.getFireMr());
+//add end
 		_owner.addRegistStun(item.get_regist_stun());
 		_owner.addRegistStone(item.get_regist_stone());
 		_owner.addRegistSleep(item.get_regist_sleep());
@@ -152,10 +160,18 @@ public class L1EquipmentSlot {
 		_owner.addDmgModifierByArmor(-item.getDmgModifierByArmor());
 		_owner.addBowHitModifierByArmor(-item.getBowHitModifierByArmor());
 		_owner.addBowDmgModifierByArmor(-item.getBowDmgModifierByArmor());
+//waja add & chang 飾品強化卷軸
+/*
 		_owner.addEarth(-item.get_defense_earth());
 		_owner.addWind(-item.get_defense_wind());
 		_owner.addWater(-item.get_defense_water());
 		_owner.addFire(-item.get_defense_fire());
+*/		
+        _owner.addEarth(-item.get_defense_earth() - armor.getEarthMr());
+        _owner.addWind(-item.get_defense_wind() - armor.getWindMr());
+        _owner.addWater(-item.get_defense_water() - armor.getWaterMr());
+        _owner.addFire(-item.get_defense_fire() - armor.getFireMr());
+//add end
 		_owner.addRegistStun(-item.get_regist_stun());
 		_owner.addRegistStone(-item.get_regist_stone());
 		_owner.addRegistSleep(-item.get_regist_sleep());
@@ -188,9 +204,14 @@ public class L1EquipmentSlot {
 		if (item.getType2() == 0) {
 			return;
 		}
-
+//waja add & chnage 飾品強化卷軸
+/*
 		_owner.addMaxHp(item.get_addhp());
 		_owner.addMaxMp(item.get_addmp());
+*/
+		_owner.addMaxHp(item.get_addhp() + equipment.getaddHp());
+		_owner.addMaxMp(item.get_addmp() + equipment.getaddMp());
+//add end
 		_owner.addStr(item.get_addstr());
 		_owner.addCon(item.get_addcon());
 		_owner.addDex(item.get_adddex());
@@ -214,6 +235,13 @@ public class L1EquipmentSlot {
 			_owner.addSp(item.get_addsp());
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
+//waja add 飾品強化卷軸
+		if (item.get_addsp() != 0 || equipment.getaddSp() !=0) {
+			_owner.addSp(item.get_addsp() + equipment.getaddSp());
+			_owner.sendPackets(new S_SPMR(_owner));
+		}
+//add end		
+
 		if (item.isHasteItem()) {
 			_owner.addHasteItemEquipped(1);
 			_owner.removeHasteSkillEffect();
@@ -247,8 +275,14 @@ public class L1EquipmentSlot {
 			return;
 		}
 
+//waja add & change 飾品強化卷軸
+/*
 		_owner.addMaxHp(-item.get_addhp());
 		_owner.addMaxMp(-item.get_addmp());
+*/
+		_owner.addMaxHp( - (item.get_addhp() + equipment.getaddHp()));
+		_owner.addMaxMp( - (item.get_addmp() + equipment.getaddMp()));
+//add end
 		_owner.addStr((byte) -item.get_addstr());
 		_owner.addCon((byte) -item.get_addcon());
 		_owner.addDex((byte) -item.get_adddex());
@@ -272,6 +306,12 @@ public class L1EquipmentSlot {
 			_owner.addSp(-item.get_addsp());
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
+//waja add 飾品強化卷軸
+		if (item.get_addsp() != 0 || equipment.getaddSp() != 0) {
+			_owner.addSp( - (item.get_addsp() + equipment.getaddSp()));
+			_owner.sendPackets(new S_SPMR(_owner));
+		}
+//add end
 		if (item.isHasteItem()) {
 			_owner.addHasteItemEquipped(-1);
 			if (_owner.getHasteItemEquipped() == 0) {
