@@ -44,14 +44,21 @@ public class C_MoveChar extends ClientBasePacket {
 	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 4.26 End
 	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.10
 
+	// マップタイル調查用
+	private void sendMapTileLog(L1PcInstance pc) {
+		pc.sendPackets(new S_SystemMessage(pc.getMap().toString(
+				pc.getLocation())));
+	}
+
 	// 移動
 	public C_MoveChar(byte[] decrypt, ClientThread client) throws Exception{
 		super(decrypt);
 
-		L1PcInstance pc = client.getActiveChar();
 		int locx = readH();
 		int locy = readH();
 		int heading = readC();
+
+		L1PcInstance pc = client.getActiveChar();
 
 		// テレポート処理中
 		if (pc.isTeleport())
@@ -74,7 +81,7 @@ public class C_MoveChar extends ClientBasePacket {
 
 		pc.getMap().setPassable(pc.getLocation(), true);
 
-		// 判斷伺服器國家代碼是否為3
+		// 判斷伺服器國家代碼是否為3 (Taiwan Only)
 		if (CLIENT_LANGUAGE == 3){
 			// 取得真實面向
 			heading ^= 0x49;
@@ -95,12 +102,14 @@ public class C_MoveChar extends ClientBasePacket {
 
 		pc.getLocation().set(locx, locy);
 		pc.setHeading(heading);
-
 		if (!pc.isGmInvis() && !pc.isGhost() && !pc.isInvisble())
 			pc.broadcastPacket(new S_MoveCharPacket(pc));
+
+		// sendMapTileLog(pc); // 移動先タイルの情報を送る(マップ調查用)
 
 		L1WorldTraps.getInstance().onPlayerMoved(pc);
 
 		pc.getMap().setPassable(pc.getLocation(), false);
+		// user.UpdateObject(); // 可視範圍內の全オブジェクト更新
 	}
 }
