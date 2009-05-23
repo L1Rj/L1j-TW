@@ -43,23 +43,17 @@ public class C_FishClick extends ClientBasePacket {
 	private static final String C_FISHCLICK = "[C] C_FishClick";
 	private static Logger _log = Logger.getLogger(C_FishClick.class.getName());
 	// private static Random _random = new Random();
-
 	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
 	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 4.26 Start
 	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 4.26 End
 
-	// 釣魚關連
-	private short chance; // 5.19 Start
-	private long currentTime;
-	private long time; // 5.19 End
-
 	public C_FishClick(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 		L1PcInstance pc = clientthread.getActiveChar();
-		currentTime = System.currentTimeMillis(); // 5.19 Start
-		time = pc.getFishingTime();
+		long currentTime = System.currentTimeMillis(); // 5.19 Start
+		long time = pc.getFishingTime();
 
-		chance = RandomArrayList.getArrayshortList((short) 200);
+		short chance = RandomArrayList.getArrayshortList((short) 200);
 		if (currentTime < (time + 500) && currentTime > (time - 500)
 				&& pc.isFishingReady()) {
 			finishFishing(pc);
@@ -126,9 +120,6 @@ public class C_FishClick extends ClientBasePacket {
 		int[] Loc = {pc.getX(), pc.getY()};
 		int[] DropLoc = new int[2];
 
-		/**
-		 * 記錄： 日版在1808時，加入面向8的討論 與面向0相同處理
-		 */
 		DropLoc[0] = Loc[0] - HEADING_TABLE_X[heading];
 		DropLoc[1] = Loc[1] - HEADING_TABLE_Y[heading];
 

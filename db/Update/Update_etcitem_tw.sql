@@ -1394,6 +1394,8 @@ Update etcitem Set name = '失去光輝的靈魂碎片' Where item_id = '41422';
 Update etcitem Set name = '袋鼠的食物' Where item_id = '41423';
 Update etcitem Set name = '貓熊的食物' Where item_id = '41424';
 Update etcitem Set name = '沉默洞穴指定傳送捲軸' Where item_id = '41425';
+Update etcitem Set name = '封印捲軸' Where item_id = '41426';
+Update etcitem Set name = '解封印捲軸' Where item_id = '41427';
 Update etcitem Set name = '指定傳送(GM招待室)' Where item_id = '42001';
 Update etcitem Set name = '指定傳送(水晶洞穴1F)' Where item_id = '42002';
 Update etcitem Set name = '指定傳送(水晶洞穴2F)' Where item_id = '42003';
@@ -1804,8 +1806,6 @@ Update etcitem Set name = '瞬間移動卷軸' Where item_id = '240100';
 /* name_id 針對日文部分做出修正 採現有的中文翻譯為主 */
 Update etcitem Set name_id = '$1672' Where item_id = '40073'; /*復活蛋*/
 Update etcitem Set name_id = '大洞穴移動卷軸' Where item_id = '40083';
-Update etcitem Set name_id = '$2720' Where item_id = '40326'; /*3階段魔法骰子*/
-Update etcitem Set name_id = '$3514' Where item_id = '40747'; /*黑色米索莉箭*/
 Update etcitem Set name_id = '指定傳送(黃昏山脈)' Where item_id = '40801';
 Update etcitem Set name_id = '指定傳送(亞丁城庭園)' Where item_id = '40802';
 Update etcitem Set name_id = '指定傳送(鏡子森林)' Where item_id = '40803';
@@ -1867,8 +1867,6 @@ Update etcitem Set name_id = '檸檬刨冰' Where item_id = '41418';
 Update etcitem Set name_id = '芒果刨冰' Where item_id = '41419';
 Update etcitem Set name_id = '甜瓜刨冰' Where item_id = '41420';
 Update etcitem Set name_id = '紅豆刨冰' Where item_id = '41421';
-Update etcitem Set name = '封印捲軸' Where item_id = '41426';
-Update etcitem Set name = '解封印捲軸' Where item_id = '41427';
 Update etcitem Set name_id = '指定傳送(GM招待室)' Where item_id = '42001';
 Update etcitem Set name_id = '指定傳送(水晶洞穴1F)' Where item_id = '42002';
 Update etcitem Set name_id = '指定傳送(水晶洞穴2F)' Where item_id = '42003';

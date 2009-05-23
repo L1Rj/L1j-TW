@@ -83,8 +83,7 @@ public class C_MoveChar extends ClientBasePacket {
 
 		// 判斷伺服器國家代碼是否為3 (Taiwan Only)
 		if (CLIENT_LANGUAGE == 3){
-			// 取得真實面向
-			heading ^= 0x49;
+			heading ^= 0x49;// 取得真實面向
 			// 取得真實座標
 			locx = pc.getX(); // X軸座標
 			locy = pc.getY(); // Y軸座標
