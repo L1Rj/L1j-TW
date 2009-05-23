@@ -8,11 +8,56 @@
 	<Action Name="teleport talking-island-for-newbie" NpcId="50010">
 		<Teleport X="32593" Y="32922" Map="0" Heading="5" Price="0"/>
 	</Action>
-
 	<!-- 歌う島⇒エルフの森 -->
 	<Action Name="teleport elvenforest-in" NpcId="50001">
 		<Teleport X="33059" Y="32343" Map="4" Heading="5" Price="0"/>
 	</Action>
+	<!-- waja add -->
+	<!-- 歌唱之島-伊斯塔⇒傳送說話之島 -->
+	<Action Name="teleport talking-island-for-newbie" NpcId="50009">
+		<Teleport X="32593" Y="32922" Map="0" Heading="5" Price="0"/>
+	</Action>
+	<!-- 沉默洞穴-艾納⇒傳送新手村-隱藏之谷 -->
+	<Action Name="teleport valley-go" NpcId="50069">
+		<Teleport X="32682" Y="32850" Map="69" Heading="5" Price="0"/>
+	</Action>
+	<!-- 德瑞斯特⇒傳送新手村-隱藏之谷 -->
+	<Action Name="teleport hidden-valley" NpcId="50055">
+		<Teleport X="32675" Y="32861" Map="69" Heading="5" Price="0"/>
+	</Action>
+	<!-- 小柯⇒傳送新手村-隱藏之谷地監內 -->
+	<Action Name="teleport dungeon-in" NpcId="50006">
+		<Teleport X="32871" Y="32866" Map="86" Heading="5" Price="0"/>
+	</Action>
+	<!-- 史蓋⇒傳送新手村-隱藏之谷地監入口 -->
+	<Action Name="teleport dungeon-out" NpcId="50002">
+		<Teleport X="32678" Y="32813" Map="69" Heading="5" Price="0"/>
+	</Action>
+	<!-- 隱藏之谷-伊爾卓斯⇒傳送銀騎士村莊 -->
+	<Action Name="teleport hidden-velley-for-newbie" NpcId="50003">
+		<Teleport X="33084" Y="33391" Map="4" Heading="5" Price="0"/>
+	</Action>
+	<!-- 隱藏之谷-卡連⇒傳送沉默洞穴 -->
+	<Action Name="teleport dark island-in" NpcId="50005">
+		<Teleport X="32923" Y="32798" Map="304" Heading="5" Price="0"/>
+	</Action>
+	<!-- 說話之島-傑諾⇒傳送歌唱之島 -->
+	<Action Name="teleport singing-island" NpcId="50016">
+		<Teleport X="32803" Y="32762" Map="68" Heading="5" Price="0"/>
+	</Action>
+	<!-- 歌唱之島-昆⇒傳送歌唱之島地監 -->
+	<Action Name="teleport dungeon-in" NpcId="50011">
+		<Teleport X="32675" Y="32867" Map="85" Heading="5" Price="0"/>
+	</Action>
+	<!-- 歌唱之島地監-奇耀⇒傳送歌唱之島 -->
+	<Action Name="teleport dungeon-out" NpcId="50012">
+		<Teleport X="32782" Y="32853" Map="68" Heading="5" Price="0"/>
+	</Action>
+	<!-- 妖森-魯比恩⇒傳送隱藏之谷 -->
+	<Action Name="teleport valley-in" NpcId="50065">
+		<Teleport X="32695" Y="32852" Map="69" Heading="5" Price="0"/>
+	</Action>
+	<!-- waja add end -->
 	<!-- 歌う島⇒話せる島、シルバーナイトタウン、エルフの森、沈黙の洞窟 -->
 	<Action Name="teleport ti-in" NpcId="50082">
 		<Teleport X="32593" Y="32922" Map="0" Heading="5" Price="0"/>
