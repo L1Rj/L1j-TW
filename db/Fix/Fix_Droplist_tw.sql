@@ -128,3 +128,8 @@ Update droplist Set chance = '1000' Where itemid = '40466';
 
 /* 20090516 刪除潔尼斯女王掉落日版道具 41224 */
 Delete From `droplist` Where itemId = '41224';
+
+/* 20090523 提高靈魂石碎片掉落機率 */
+Update droplist Set chance = '30000' Where itemid = '40678' And chance = '10000';
+Update droplist Set chance = '40000' Where itemid = '40678' And chance = '20000';
+Update droplist Set chance = '50000' Where itemid = '40678' And chance = '50000';
