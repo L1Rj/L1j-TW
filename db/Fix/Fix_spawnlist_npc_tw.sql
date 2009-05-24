@@ -6,3 +6,9 @@ Delete From spawnlist_npc Where npc_templateid = '71035' ;
 
 /* 20090520 刪除吉倫對面的代理魔法商人 */
 Delete From spawnlist_npc Where npc_templateid = '81110' ;
+
+/* 20090523 修正歌唱之島隱藏之谷 傳回NPC */
+Update spawnlist_npc Set count = '1' Where id = '50016';
+Update spawnlist_npc Set count = '1' Where id = '50059';
+Update spawnlist_npc Set count = '1' Where id = '50031';
+Update spawnlist_npc Set count = '1' Where id = '50066';

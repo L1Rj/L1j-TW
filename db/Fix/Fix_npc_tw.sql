@@ -48,8 +48,5 @@ Update npc Set agro = '0' Where npcid = '45111';
 Update npc Set agro = '0' Where npcid = '45113';
 Update npc Set agro = '0' Where npcid = '45114';
 
-/* 20090523 修正歌唱之島隱藏之谷 傳回NPC */
-Update spawnlist_npc Set count = '1' Where id = '50016';
-Update spawnlist_npc Set count = '1' Where id = '50059';
-Update spawnlist_npc Set count = '1' Where id = '50031';
-Update spawnlist_npc Set count = '1' Where id = '50066';
+/* 20090524 虎男魔防修正 */
+Update npc Set mr = '15' Where npcid = '45313';
