@@ -1,14 +1,12 @@
 package l1j.server.server.utils;
 
-import static l1j.server.server.utils.RandomArrayList.*;
-
 public class StaticFinalList {
 	/** 附值給矩陣. */
-	private static final byte Rang0[] = { -1, 1};
-	private static final byte Rang1[] = { -1, 0, 1};
-	private static final byte Rang2[] = { -2, -1, 0, 1, 2};
-	private static final byte Rang3[] = { -3, -2, -1, 0, 1, 2, 3};
-	private static final byte Rang4[] = { -4, -3, -2, -1, 0, 1, 2, 3, 4};
+	private static final byte[] Rang0 = { -1, 1};
+	private static final byte[] Rang1 = { -1, 0, 1};
+	private static final byte[] Rang2 = { -2, -1, 0, 1, 2};
+	private static final byte[] Rang3 = { -3, -2, -1, 0, 1, 2, 3};
+	private static final byte[] Rang4 = { -4, -3, -2, -1, 0, 1, 2, 3, 4};
 
 	/**
 	 * 用來決定方向權 or 隨機性判斷的應用化.
@@ -54,4 +52,12 @@ public class StaticFinalList {
 	public static byte getRang4() {
 		return Rang4[RandomArrayList.getArray9List()];
 	}
+
+	/**
+	 * 面向&座標&移動 關連等 重複code取出 並獨立宣告為靜態值
+	 * 
+	 * 
+	 */
+	public static final byte[] HEADING_TABLE_X = { 0, 1, 1, 1, 0, -1, -1, -1 };
+	public static final byte[] HEADING_TABLE_Y = { -1, -1, 0, 1, 1, 1, 0, -1 };
 }

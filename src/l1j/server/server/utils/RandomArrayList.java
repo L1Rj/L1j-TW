@@ -20,25 +20,25 @@ public class RandomArrayList {
 	private static Random _random = new Random(); // 亂數產生物件
 
 	public static void setArrayList() {
-		setArraybyteList();
 		setArrayshortList();
+		setArraybyteList();
 	}
 
 	/**
-	 * 將創造隨機值 並輸入至Array100後 再針對Array100取餘數 丟進其他矩陣
+	 * getArrayshortList((short) Num)隨機值 輸入至Array後 減少隨機函數的讀取次數
 	 */
 	private static void setArraybyteList() {
-		for (short i = 0; i < 1000; i++) {
-			Array100[i] = (byte) (_random.nextInt(100) + 1);
-			Array2[i] = (byte) (Array100[i] % 2);
-			Array3[i] = (byte) (Array100[i] % 3);
-			Array4[i] = (byte) (Array100[i] % 4);
-			Array5[i] = (byte) (Array100[i] % 5);
-			Array6[i] = (byte) (Array100[i] % 6);
-			Array7[i] = (byte) (Array100[i] % 7);
-			Array8[i] = (byte) (Array100[i] % 8);
-			Array9[i] = (byte) (Array100[i] % 9);
-			Array10[i] = (byte) (Array100[i] % 10 + 1);
+		for (listshort = 0; listshort < 1000; listshort++) {
+			Array100[listshort] = (byte) (_random.nextInt(100) + 1);
+			Array10[listshort] = (byte) (_random.nextInt(10) + 1);
+			Array9[listshort] = (byte) _random.nextInt(9);
+			Array8[listshort] = (byte) _random.nextInt(8);
+			Array7[listshort] = (byte) _random.nextInt(7);
+			Array6[listshort] = (byte) _random.nextInt(6);
+			Array5[listshort] = (byte) _random.nextInt(5);
+			Array4[listshort] = (byte) _random.nextInt(4);
+			Array3[listshort] = (byte) _random.nextInt(3);
+			Array2[listshort] = (byte) _random.nextInt(2);
 		}
 	}
 
@@ -93,8 +93,8 @@ public class RandomArrayList {
 	}
 
 	private static void setArrayshortList() {
-		for (short i = 0; i < 10000; i++)
-			Arrayshort[i] = (short) (_random.nextInt(32767) + 1);
+		for (listint = 0; listint < 10000; listint++)
+			Arrayshort[listint] = (short) (_random.nextInt(30000) + 1);
 	}
 
 	public static short getArrayshortList(short rang) {
