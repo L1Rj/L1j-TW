@@ -1,24 +1,24 @@
-/* l1j db 20090416 降低精靈水晶三重矢掉落機率 */
-Update droplist Set chance = '2000' Where mobid = '45118' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45122' And itemid = '40240';
-Update droplist Set chance = '1000' Where mobid = '45291' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45321' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45349' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45361' And itemid = '40240';
-Update droplist Set chance = '1000' Where mobid = '45365' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45366' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45393' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45418' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45420' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45422' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45424' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45440' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45502' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45532' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45534' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '45535' And itemid = '40240';
-Update droplist Set chance = '6000' Where mobid = '45926' And itemid = '40240';
-Update droplist Set chance = '2000' Where mobid = '81173' And itemid = '40240';
+/* l1j db 20090524 降低精靈水晶三重矢掉落機率 */
+Update droplist Set chance = '1000' Where mobid = '45118' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45122' And itemid = '40240';
+Update droplist Set chance = '500' Where mobid = '45291' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45321' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45349' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45361' And itemid = '40240';
+Update droplist Set chance = '500' Where mobid = '45365' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45366' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45393' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45418' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45420' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45422' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45424' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45440' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45502' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45532' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45534' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '45535' And itemid = '40240';
+Update droplist Set chance = '3000' Where mobid = '45926' And itemid = '40240';
+Update droplist Set chance = '1000' Where mobid = '81173' And itemid = '40240';
 
 /* l1j db 20090416 降低魔法書 沉睡之霧 掉落機率 */
 Update droplist Set chance = '2000' Where mobid = '45136' And itemid = '40211';
@@ -133,3 +133,6 @@ Delete From `droplist` Where itemId = '41224';
 Update droplist Set chance = '30000' Where itemid = '40678' And chance = '10000';
 Update droplist Set chance = '40000' Where itemid = '40678' And chance = '20000';
 Update droplist Set chance = '50000' Where itemid = '40678' And chance = '50000';
+
+/* 20090524 修正受詛咒的鼠人 掉落相消術 應為加速書 */
+Update droplist Set itemId = '40188' Where mobId = '45924' And itemId = '40189';
