@@ -1,4 +1,4 @@
-/*
+﻿/*
  * sanday0603提供
  */
 Update weapon Set name = '歐西斯匕首' Where item_id = '1';
@@ -191,7 +191,7 @@ Update weapon Set name = '拉斯塔巴德十字弓' Where item_id = '187';
 Update weapon Set name = '拉斯塔巴德重十字弓' Where item_id = '188';
 Update weapon Set name = '暗黑十字弓' Where item_id = '189';
 Update weapon Set name = '沙哈之弓' Where item_id = '190';
-Update weapon Set name = '水之豎琴' Where item_id = '191';
+Update weapon Set name = '弒神者之弓' Where item_id = '191';
 Update weapon Set name = '水精靈之弓' Where item_id = '192';
 Update weapon Set name = '鐵手甲' Where item_id = '193';
 Update weapon Set name = '真鐵手甲' Where item_id = '194';

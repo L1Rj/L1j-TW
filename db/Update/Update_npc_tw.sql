@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  */
 Update npc Set name = 'scarecrow' Where npcid = '45001';
@@ -2567,3 +2567,38 @@ Update npc Set name = '古代鎖鏈劍商人' Where npcid = '81241';
 Update npc Set name = '古代奇古獸商人' Where npcid = '81242';
 Update npc Set name = '古代書板商人' Where npcid = '81243';
 Update npc Set name = '古代記憶水晶商人' Where npcid = '81244';
+
+/*20090525修正名稱*/
+
+Update npc Set nameid = '古代耳飾商人' Where npcid = '81002';
+Update npc Set nameid = '古代短劍商人' Where npcid = '81003';
+Update npc Set nameid = '古代長劍商人' Where npcid = '81004';
+Update npc Set nameid = '古代雙手劍商人' Where npcid = '81005';
+Update npc Set nameid = '古代長槍商人' Where npcid = '81006';
+Update npc Set nameid = '古代鈍器商人' Where npcid = '81007';
+Update npc Set nameid = '古代雙刀商人' Where npcid = '81008';
+Update npc Set nameid = '古代爪商人' Where npcid = '81009';
+Update npc Set nameid = '古代魔杖商人' Where npcid = '81010';
+Update npc Set nameid = '古代弓商人' Where npcid = '81011';
+Update npc Set nameid = '古代頭盔商人' Where npcid = '81012';
+Update npc Set nameid = '古代盾牌商人' Where npcid = '81013';
+Update npc Set nameid = '古代手套商人' Where npcid = '81014';
+Update npc Set nameid = '古代長靴商人' Where npcid = '81015';
+Update npc Set nameid = '古代內衣商人' Where npcid = '81016';
+Update npc Set nameid = '古代盔甲商人' Where npcid = '81017';
+Update npc Set nameid = '古代斗篷商人' Where npcid = '81018';
+Update npc Set nameid = '古代首飾商人' Where npcid = '81019';
+Update npc Set nameid = '古代戒指商人' Where npcid = '81020';
+Update npc Set nameid = '古代腰帶商人' Where npcid = '81021';
+Update npc Set nameid = '古代魔法商人' Where npcid = '81022';
+Update npc Set nameid = '古代精靈魔法商人' Where npcid = '81023';
+Update npc Set nameid = '古代黑妖魔法商人' Where npcid = '81024';
+Update npc Set nameid = '古代騎士技能商人' Where npcid = '81025';
+Update npc Set nameid = '古代王族魔法商人' Where npcid = '81026';
+Update npc Set nameid = '古代藥水商人' Where npcid = '81027';
+Update npc Set nameid = '古代藥水商人' Where npcid = '81028';
+Update npc Set nameid = '古代藥水商人' Where npcid = '81029';
+Update npc Set nameid = '古代鎖鏈劍商人' Where npcid = '81241';
+Update npc Set nameid = '古代奇古獸商人' Where npcid = '81242';
+Update npc Set nameid = '古代書板商人' Where npcid = '81243';
+Update npc Set nameid = '古代記憶水晶商人' Where npcid = '81244';
