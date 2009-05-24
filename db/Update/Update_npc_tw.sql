@@ -284,7 +284,7 @@ Update npc Set name = '黑虎' Where npcid = '45309';
 Update npc Set name = '召喚精靈使' Where npcid = '45310';
 Update npc Set name = '鼴鼠' Where npcid = '45311';
 Update npc Set name = '奇岩 楊果里恩' Where npcid = '45312';
-Update npc Set name = '老虎' Where npcid = '45313';
+Update npc Set name = '虎男' Where npcid = '45313';
 Update npc Set name = '海賊骷髏刀手' Where npcid = '45314';
 Update npc Set name = '炎魔的分身' Where npcid = '45315';
 Update npc Set name = '45316' Where npcid = '45316';
