@@ -136,3 +136,22 @@ Update droplist Set chance = '50000' Where itemid = '40678' And chance = '50000'
 
 /* 20090524 修正受詛咒的鼠人 掉落相消術 應為加速書 */
 Update droplist Set itemId = '40188' Where mobId = '45924' And itemId = '40189';
+
+/* 20090526 降低祝福武士刀掉落機率 */
+Update droplist Set chance = '50000' Where mobId = '45316' And itemId = '100041';
+Update droplist Set chance = '5000' Where mobId = '45516' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '45573' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '45583' And itemId = '100041';
+Update droplist Set chance = '10000' Where mobId = '45584' And itemId = '100041';
+Update droplist Set chance = '5000' Where mobId = '45600' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '45601' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '45610' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '45614' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '45617' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '45681' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '45682' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '45683' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '45684' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '45943' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '45944' And itemId = '100041';
+Update droplist Set chance = '50000' Where mobId = '81163' And itemId = '100041';
