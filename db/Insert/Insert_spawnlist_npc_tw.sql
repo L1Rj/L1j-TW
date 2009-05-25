@@ -26,3 +26,7 @@ INSERT INTO `spawnlist_npc` (`id`, `location`, `count`, `npc_templateid`, `locx`
 ('1310435', '底比斯臨時傳點', '1', '81169', '32919', '33423', '0', '0', '5', '0', '4', '0'),
 ('1310436', '底比斯臨時傳點', '1', '81169', '34259', '33197', '0', '0', '5', '0', '4', '0'),
 ('1310437', '底比斯臨時傳點', '1', '81169', '34273', '33362', '0', '0', '5', '0', '4', '0');
+
+/* NPC 列表新增 夏依藍 */
+INSERT INTO `spawnlist_npc` (`id`, `location`, `count`, `npc_templateid`, `locx`, `locy`, `randomx`, `randomy`, `heading`, `respawn_delay`, `mapid`, `movement_distance`) VALUES
+(1310438, '夏依藍', 1, 91001, 34022, 33107, 0, 0, 4, 0, 4, 100);
