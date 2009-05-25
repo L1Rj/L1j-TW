@@ -913,4 +913,13 @@
 		<Item ItemId="   267" Count="1" Chance=" 3" />
 		<Item ItemId="   268" Count="1" Chance=" 3" />
 	</TreasureBox>
+	<!-- 遠征隊員の遺品 -->
+	<TreasureBox Type="RANDOM" ItemId="40696">
+		<Item ItemId="40679" Count="1" Chance="20" />
+		<Item ItemId="40680" Count="1" Chance="16" />
+		<Item ItemId="40681" Count="1" Chance="16" />
+		<Item ItemId="40682" Count="1" Chance="16" />
+		<Item ItemId="40683" Count="1" Chance="16" />
+		<Item ItemId="40684" Count="1" Chance="16" />
+	</TreasureBox>
 </TreasureBoxList>

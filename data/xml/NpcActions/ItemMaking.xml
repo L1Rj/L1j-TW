@@ -2947,4 +2947,181 @@
 			<Item Amount="1" ItemId="271"/>
 		</MakeItem>
 	</Action>
+	<!-- マルバ -->
+	<Action Name="1" NpcId="71258">
+		<MakeItem>
+			<Material Amount="1" ItemId="40699"/>
+			<Material Amount="3" ItemId="40516"/>
+			<Material Amount="3" ItemId="40517"/>
+			<Material Amount="3" ItemId="40518"/>
+			<Material Amount="5" ItemId="40512"/>
+			<Material Amount="10" ItemId="40495"/>
+			<Item Amount="1" ItemId="214"/>
+			<Succeed>
+				<ShowHtml HtmlId="marba21"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="marba16"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="2" NpcId="71258">
+		<MakeItem>
+			<Material Amount="1" ItemId="40698"/>
+			<Material Amount="3" ItemId="40492"/>
+			<Material Amount="3" ItemId="40501"/>
+			<Material Amount="3" ItemId="40523"/>
+			<Material Amount="5" ItemId="40510"/>
+			<Material Amount="10" ItemId="40495"/>
+			<Item Amount="1" ItemId="20389"/>
+			<Succeed>
+				<ShowHtml HtmlId="marba21"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="marba16"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="3" NpcId="71258">
+		<MakeItem>
+			<Material Amount="1" ItemId="40693"/>
+			<Material Amount="5" ItemId="40516"/>
+			<Material Amount="5" ItemId="40517"/>
+			<Material Amount="5" ItemId="40518"/>
+			<Material Amount="6" ItemId="40510"/>
+			<Material Amount="10" ItemId="40510"/>
+			<Material Amount="100" ItemId="40508"/>
+			<Item Amount="1" ItemId="20393"/>
+			<Succeed>
+				<ShowHtml HtmlId="marba21"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="marba16"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="4" NpcId="71258">
+		<MakeItem>
+			<Material Amount="1" ItemId="40697"/>
+			<Material Amount="5" ItemId="40500"/>
+			<Material Amount="5" ItemId="40522"/>
+			<Material Amount="5" ItemId="40523"/>
+			<Material Amount="3" ItemId="40510"/>
+			<Material Amount="10" ItemId="40495"/>
+			<Item Amount="1" ItemId="20409"/>
+			<Succeed>
+				<ShowHtml HtmlId="marba21"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="marba16"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="5" NpcId="71258">
+		<MakeItem>
+			<Material Amount="1" ItemId="40695"/>
+			<Material Amount="5" ItemId="40500"/>
+			<Material Amount="5" ItemId="40522"/>
+			<Material Amount="5" ItemId="40523"/>
+			<Material Amount="3" ItemId="40510"/>
+			<Material Amount="50" ItemId="40508"/>
+			<Item Amount="1" ItemId="20406"/>
+			<Succeed>
+				<ShowHtml HtmlId="marba21"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="marba16"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="6" NpcId="71258">
+		<MakeItem>
+			<Material Amount="1" ItemId="40694"/>
+			<Material Amount="1" ItemId="40492"/>
+			<Material Amount="1" ItemId="40500"/>
+			<Material Amount="1" ItemId="40501"/>
+			<Material Amount="10" ItemId="40495"/>
+			<Material Amount="35" ItemId="40520"/>
+			<Item Amount="1" ItemId="20401"/>
+			<Succeed>
+				<ShowHtml HtmlId="marba21"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="marba16"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<!-- アラス -->
+	<Action Name="1" NpcId="71259">
+		<MakeItem>
+			<Material Amount="1" ItemId="40684"/>
+			<Item Amount="1" ItemId="40699"/>
+			<Succeed>
+				<ShowHtml HtmlId="aras4"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="aras5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="2" NpcId="71259">
+		<MakeItem>
+			<Material Amount="1" ItemId="40683"/>
+			<Item Amount="1" ItemId="40698"/>
+			<Succeed>
+				<ShowHtml HtmlId="aras4"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="aras5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="3" NpcId="71259">
+		<MakeItem>
+			<Material Amount="1" ItemId="40679"/>
+			<Item Amount="1" ItemId="40693"/>
+			<Succeed>
+				<ShowHtml HtmlId="aras4"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="aras5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="4" NpcId="71259">
+		<MakeItem>
+			<Material Amount="1" ItemId="40682"/>
+			<Item Amount="1" ItemId="40697"/>
+			<Succeed>
+				<ShowHtml HtmlId="aras4"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="aras5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="5" NpcId="71259">
+		<MakeItem>
+			<Material Amount="1" ItemId="40681"/>
+			<Item Amount="1" ItemId="40695"/>
+			<Succeed>
+				<ShowHtml HtmlId="aras4"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="aras5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="6" NpcId="71259">
+		<MakeItem>
+			<Material Amount="1" ItemId="40680"/>
+			<Item Amount="1" ItemId="40694"/>
+			<Succeed>
+				<ShowHtml HtmlId="aras4"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="aras5"/>
+			</Fail>
+		</MakeItem>
+	</Action> 
 </NpcActionList>
