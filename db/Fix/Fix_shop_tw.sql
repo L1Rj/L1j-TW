@@ -1,4 +1,4 @@
-﻿ /* 20090429 奇岩道具店 邁爾 70030 收購 長靴 短統靴 */
+ /* 20090429 奇岩道具店 邁爾 70030 收購 長靴 短統靴 */
 Update shop Set purchasing_price = '150' Where npc_id = '70030' And item_id = '20213'; /* 短統靴 */
 Update shop Set purchasing_price = '1000' Where npc_id = '70030' And item_id = '20205'; /* 長靴 */
 

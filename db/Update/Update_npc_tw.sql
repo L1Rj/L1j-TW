@@ -1,4 +1,4 @@
-﻿/*
+/*
  *
  */
 Update npc Set name = 'scarecrow' Where npcid = '45001';
@@ -2602,3 +2602,4 @@ Update npc Set nameid = '古代鎖鏈劍商人' Where npcid = '81241';
 Update npc Set nameid = '古代奇古獸商人' Where npcid = '81242';
 Update npc Set nameid = '古代書板商人' Where npcid = '81243';
 Update npc Set nameid = '古代記憶水晶商人' Where npcid = '81244';
+Update npc Set nameid = '喬漢' Where npcid = '70004';

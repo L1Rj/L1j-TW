@@ -1,4 +1,4 @@
-﻿/*
+/*
  * sanday0603提供
  */
 Update weapon Set name = '歐西斯匕首' Where item_id = '1';
@@ -196,14 +196,14 @@ Update weapon Set name = '水精靈之弓' Where item_id = '192';
 Update weapon Set name = '鐵手甲' Where item_id = '193';
 Update weapon Set name = '真鐵手甲' Where item_id = '194';
 Update weapon Set name = '受詛咒的真．冥皇執行劍' Where item_id = '195';
-Update weapon Set name = '炎魔的雙手劍' Where item_id = '196';
-Update weapon Set name = '炎魔的雙手劍' Where item_id = '197';
-Update weapon Set name = '炎魔的雙手劍' Where item_id = '198';
-Update weapon Set name = '炎魔的雙手劍' Where item_id = '199';
-Update weapon Set name = '炎魔的雙手劍' Where item_id = '200';
-Update weapon Set name = '炎魔的雙手劍' Where item_id = '201';
-Update weapon Set name = '炎魔的雙手劍' Where item_id = '202';
-Update weapon Set name = '炎魔的雙手劍' Where item_id = '203';
+Update weapon Set name = '炎魔的雙手劍 Lv.1' Where item_id = '196';
+Update weapon Set name = '炎魔的雙手劍 Lv.2' Where item_id = '197';
+Update weapon Set name = '炎魔的雙手劍 Lv.3' Where item_id = '198';
+Update weapon Set name = '炎魔的雙手劍 Lv.4' Where item_id = '199';
+Update weapon Set name = '炎魔的雙手劍 Lv.5' Where item_id = '200';
+Update weapon Set name = '炎魔的雙手劍 Lv.6' Where item_id = '201';
+Update weapon Set name = '炎魔的雙手劍 Lv.7' Where item_id = '202';
+Update weapon Set name = '炎魔的雙手劍 Lv.8' Where item_id = '203';
 Update weapon Set name = '深紅之弩' Where item_id = '204';
 Update weapon Set name = '熾炎天使弓' Where item_id = '205';
 Update weapon Set name = '黑暗精靈之劍' Where item_id = '206';
@@ -318,3 +318,16 @@ Update weapon Set name = '侵略者之劍' Where item_id = '200032';
 Update weapon Set name = '武士刀' Where item_id = '200041';
 Update weapon Set name = '雙手劍' Where item_id = '200052';
 Update weapon Set name = '歐西斯弓' Where item_id = '200171';
+/*20090525 修正name_id名稱*/
+Update weapon Set name_id = '炎魔的雙手劍 Lv.1' Where item_id = '196';
+Update weapon Set name_id = '炎魔的雙手劍 Lv.2' Where item_id = '197';
+Update weapon Set name_id = '炎魔的雙手劍 Lv.3' Where item_id = '198';
+Update weapon Set name_id = '炎魔的雙手劍 Lv.4' Where item_id = '199';
+Update weapon Set name_id = '炎魔的雙手劍 Lv.5' Where item_id = '200';
+Update weapon Set name_id = '炎魔的雙手劍 Lv.6' Where item_id = '201';
+Update weapon Set name_id = '炎魔的雙手劍 Lv.7' Where item_id = '202';
+Update weapon Set name_id = '炎魔的雙手劍 Lv.8' Where item_id = '203';
+Update weapon Set name_id = '終極萬聖節南瓜長劍' Where item_id = '258';
+Update weapon Set name_id = '銀光鋼爪' Where item_id = '157';
+Update weapon Set name_id = '銀光鋼爪' Where item_id = '100157';
+Update weapon Set name_id = '幽暗鋼爪' Where item_id = '162';
