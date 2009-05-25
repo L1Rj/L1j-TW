@@ -30,3 +30,6 @@ INSERT INTO `spawnlist_npc` (`id`, `location`, `count`, `npc_templateid`, `locx`
 /* NPC 列表新增 夏依藍 */
 INSERT INTO `spawnlist_npc` (`id`, `location`, `count`, `npc_templateid`, `locx`, `locy`, `randomx`, `randomy`, `heading`, `respawn_delay`, `mapid`, `movement_distance`) VALUES
 (1310438, '夏依藍', 1, 91001, 34022, 33107, 0, 0, 4, 0, 4, 100);
+
+/* 寵物競速NPC */
+INSERT INTO `spawnlist_npc` VALUES ('1310439', '寵物競速管理人杜波', '1', '91002', '32616', '32778', '0', '0', '0', '0', '4', '0');

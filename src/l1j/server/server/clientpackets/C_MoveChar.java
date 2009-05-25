@@ -105,7 +105,9 @@ public class C_MoveChar extends ClientBasePacket {
 			pc.broadcastPacket(new S_MoveCharPacket(pc));
 
 		// sendMapTileLog(pc); // 移動先タイルの情報を送る(マップ調查用)
-
+//waja add 寵物競速-判斷圈數
+		l1j.server.server.model.L1PolyRace.getInstance().checkLapFinish(pc);
+//add end
 		L1WorldTraps.getInstance().onPlayerMoved(pc);
 
 		pc.getMap().setPassable(pc.getLocation(), false);

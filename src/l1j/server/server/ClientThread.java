@@ -562,7 +562,9 @@ public class ClientThread implements Runnable, PacketOutput {
 		CharBuffTable.DeleteBuff(pc);
 		CharBuffTable.SaveBuff(pc);
 		pc.clearSkillEffectTimer();
-
+//waja add 寵物競速 - 登出從名單刪除 
+		l1j.server.server.model.L1PolyRace.getInstance().checkLeaveGame(pc);
+//add end
 		// pcのモニターをstopする。
 		pc.stopEtcMonitor();
 		// オンライン狀態をOFFにし、DBにキャラクター情報を書き⑸む

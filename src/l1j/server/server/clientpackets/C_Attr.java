@@ -515,6 +515,11 @@ public class C_Attr extends ClientBasePacket {
 				}
 			}
 			break;
+//waja add 寵物競速 預約名單回應
+		case 1256:
+			l1j.server.server.model.L1PolyRace.getInstance().requsetAttr(pc, readC());
+			break;
+//add end
 		default:
 			break;
 		}

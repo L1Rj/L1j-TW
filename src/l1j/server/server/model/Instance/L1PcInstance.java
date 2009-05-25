@@ -2205,6 +2205,9 @@ public class L1PcInstance extends L1Character {
 		return (hasSkillEffect(HOLY_WALK)
 				|| hasSkillEffect(MOVING_ACCELERATION)
 				|| hasSkillEffect(WIND_WALK)
+//waja add 寵物競速
+				|| hasSkillEffect(STATUS_BRAVE2)
+//add end
 				|| hasSkillEffect(STATUS_RIBRAVE));
 	}
 
@@ -3945,5 +3948,35 @@ public class L1PcInstance extends L1Character {
 	public void setAwakeSkillId(int i) {
 		_awakeSkillId = i;
 	}
-
+//waja add 寵物競速
+	private int _lap = 1;
+	public void setLap(int i){
+		_lap = i;
+	}
+	public int getLap(){
+		return _lap;
+	}
+	
+	private int _lapCheck = 0;
+	public void setLapCheck(int i){
+		_lapCheck = i;
+	}
+	public int getLapCheck(){
+		return _lapCheck;
+	}
+	/**
+	 只是將總圈數的完程度數量化
+	 */
+	public int getLapScore(){
+		return _lap*29 + _lapCheck;
+	}
+	//補充
+	private boolean _order_list=false;
+	public boolean isInOrderList(){
+		return _order_list;
+	}
+	public void setInOrderList(boolean bool){
+		_order_list=bool;
+	}
+//add end
 }

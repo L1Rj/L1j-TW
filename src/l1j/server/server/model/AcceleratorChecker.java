@@ -183,7 +183,11 @@ public class AcceleratorChecker {
 		if (_pc.isElfBrave()) {
 			interval *= WAFFLE_RATE;
 		}
-
+//waja add 寵物競速
+		if(_pc.getMapId() == 5143){
+			interval *= 0.1;
+		}
+//add end
 		return interval;
 	}
 }

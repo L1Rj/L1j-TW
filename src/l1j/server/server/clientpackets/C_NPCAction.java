@@ -220,6 +220,11 @@ public class C_NPCAction extends ClientBasePacket {
 				// 買い取りリスト表示
 				pc.sendPackets(new S_ShopBuyList(objid, pc));
 			}
+//waja add 寵物競速NPC的編號
+		} else if(((L1NpcInstance)obj).getNpcTemplate().get_npcId()==91002  
+			&& s.equalsIgnoreCase("ent")){
+			l1j.server.server.model.L1PolyRace.getInstance().enterGame(pc);
+//add end
 		} else if (s.equalsIgnoreCase("retrieve")) { // 「個人倉庫：アイテムを受け取る」
 			if (pc.getLevel() >= 5) {
 				pc.sendPackets(new S_RetrieveList(objid, pc));
