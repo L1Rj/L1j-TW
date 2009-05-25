@@ -158,6 +158,13 @@ public class L1MobSkillUse {
 			return false;
 		}
 
+		int[] skills = null;
+		int skillSizeCounter = 0;
+		int skillSize = getMobSkillTemplate().getSkillSize();
+		if (skillSize >= 0) {
+			skills = new int[skillSize];
+		}
+
 		int i = 0;
 		for (i = 0; i < getMobSkillTemplate().getSkillSize()
 				&& getMobSkillTemplate().getType(i) != L1MobSkill.TYPE_NONE; i++) {
@@ -167,43 +174,46 @@ public class L1MobSkillUse {
 			if (changeType > 0) {
 				_target = changeTarget(changeType, i);
 			} else {
-				// 設定されてない場合は本來のターゲットにする
+				// 設定されてない場合は本来のターゲットにする
 				_target = tg;
 			}
 
 			if (isSkillUseble(i, isTriRnd) == false) {
 				continue;
-			}
-
-			type = getMobSkillTemplate().getType(i);
-			if (type == L1MobSkill.TYPE_PHYSICAL_ATTACK) {
-				// 物理攻擊
-				if (physicalAttack(i) == true) {
-					skillUseCountUp(i);
-					return true;
-				}
-			} else if (type == L1MobSkill.TYPE_MAGIC_ATTACK) {
-				// 魔法攻擊
-				if (magicAttack(i) == true) {
-					skillUseCountUp(i);
-					return true;
-				}
-			} else if (type == L1MobSkill.TYPE_SUMMON) {
-				// サモンする
-				if (summon(i) == true) {
-					skillUseCountUp(i);
-					return true;
-				}
-			} else if (type == L1MobSkill.TYPE_POLY) {
-				// 強制變身させる
-				if (poly(i) == true) {
-					skillUseCountUp(i);
-					return true;
-				}
+			} else { // 条件にあうスキルが存在する
+				skills[skillSizeCounter] = i;
+				skillSizeCounter++;
 			}
 		}
 
+		if (skillSizeCounter != 0) {
+			int num = _rnd.nextInt(skillSizeCounter);
+			useSkill(skills[num]); // スキル使用
+			return true;
+		}
+
 		return false;
+	}
+
+	private void useSkill(int i) {
+		int type = getMobSkillTemplate().getType(i);
+		if (type == L1MobSkill.TYPE_PHYSICAL_ATTACK) { // 物理攻撃
+			if (physicalAttack(i) == true) {
+				skillUseCountUp(i);
+			}
+		} else if (type == L1MobSkill.TYPE_MAGIC_ATTACK) { // 魔法攻撃
+			if (magicAttack(i) == true) {
+				skillUseCountUp(i);
+			}
+		} else if (type == L1MobSkill.TYPE_SUMMON) { // サモンする
+			if (summon(i) == true) {
+				skillUseCountUp(i);
+			}
+		} else if (type == L1MobSkill.TYPE_POLY) { // 強制変身させる
+			if (poly(i) == true) {
+				skillUseCountUp(i);
+			}
+		}
 	}
 
 	private boolean summon(int idx) {
