@@ -28,6 +28,7 @@ import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.IdFactory;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
+import static l1j.server.server.model.Instance.L1NpcInstance.nearTeleport;
 import l1j.server.server.serverpackets.S_DoActionGFX;//waja add 魔法娃娃閒置動作
 import l1j.server.server.serverpackets.S_DollPack;
 import l1j.server.server.serverpackets.S_SkillSound;
@@ -74,7 +75,7 @@ public class L1DollInstance extends L1NpcInstance {
 					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 				}
 			} */
-			while (getLocation().getTileLineDistance(_master.getLocation()) < 2) { // 5.15 Start
+			while (getLocation().getTileLineDistance(_master.getLocation()) < 3 && _master != null) { // 5.25 Start
 				try { // 執行娃娃閒置動作 無窮迴圈版 就算放在那邊1小時 也會根據機率判定
 					Thread.sleep(500);
 					switch (RandomArrayList.getArrayshortList((short) 200)) {
@@ -93,9 +94,15 @@ public class L1DollInstance extends L1NpcInstance {
 					break;
 				}
 			}
-			int dir = moveDirection(_master.getX(), _master.getY());
-			setDirectionMove(dir);
-			setSleepTime(calcSleepTime(getPassispeed(), dir)); // 5.15 End
+			if (getLocation().getTileLineDistance(_master.getLocation()) > 20) // 5.25 waja所說明的方式測試版
+				nearTeleport(_master.getX(), _master.getY());
+			else {
+				int dir = moveDirection(_master.getX(), _master.getY());
+				if (dir == -1) 
+					return true;
+				setDirectionMove(dir);
+				setSleepTime(calcSleepTime(getPassispeed(), dir)); // 5.15 End
+			}
 		} else {
 			deleteDoll();
 			return true;
