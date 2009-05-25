@@ -28,7 +28,7 @@ import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.IdFactory;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
-import static l1j.server.server.model.Instance.L1NpcInstance.nearTeleport;
+//import static l1j.server.server.model.Instance.L1NpcInstance.nearTeleport; // waja 註: 這行不行編譯
 import l1j.server.server.serverpackets.S_DoActionGFX;//waja add 魔法娃娃閒置動作
 import l1j.server.server.serverpackets.S_DollPack;
 import l1j.server.server.serverpackets.S_SkillSound;
@@ -94,7 +94,7 @@ public class L1DollInstance extends L1NpcInstance {
 					break;
 				}
 			}
-			if (getLocation().getTileLineDistance(_master.getLocation()) > 20) // 5.25 waja所說明的方式測試版
+			if (getLocation().getTileLineDistance(_master.getLocation()) > 18) // 5.25 waja所說明的方式測試版
 				nearTeleport(_master.getX(), _master.getY());
 			else {
 				int dir = moveDirection(_master.getX(), _master.getY());

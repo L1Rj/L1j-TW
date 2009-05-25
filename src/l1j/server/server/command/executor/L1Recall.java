@@ -54,7 +54,8 @@ public class L1Recall implements L1CommandExecutor {
 			}
 
 			for (L1PcInstance target : targets) {
-				if (target.isGm() && pc.getAccessLevel() >= 200) { // waja add 200級GM可召回其他GM
+// if (target.isGm()) {
+				if (target.getAccessLevel() >= 200) { // waja add 200級GM可召回其他GM
 					continue;
 				}
 				L1Teleport.teleportToTargetFront(target, pc, 2);

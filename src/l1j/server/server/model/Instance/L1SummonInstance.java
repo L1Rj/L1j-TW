@@ -75,7 +75,11 @@ public class L1SummonInstance extends L1NpcInstance {
 			// ●主人を追尾
 			if (getLocation().getTileLineDistance(_master.getLocation()) > 2) {
 				int dir = moveDirection(_master.getX(), _master.getY());
-				if (dir == -1) {
+//waja add 寵物太遠瞬移 
+			if (getLocation().getTileLineDistance(_master.getLocation()) > 18) // 5.25 waja所說明的方式測試版
+				nearTeleport(_master.getX(), _master.getY());		
+//add end
+			if (dir == -1) {
 					// 主人が離れすぎたら休憩狀態に
 					_currentPetStatus = 3;
 					return true;
