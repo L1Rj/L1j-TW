@@ -1117,7 +1117,7 @@ public class L1PcInstance extends L1Character {
 			}
 		} else if (!isDead()) { // 念のため
 			System.out
-					.println("警告︰PC的hp減少處理出現錯誤。※將視為hp=0作處理");
+					.println("警告︰PC的hp減少的運算出現錯誤。※將視為hp=0作處理");
 			death(attacker);
 		}
 	}
@@ -2345,7 +2345,7 @@ public class L1PcInstance extends L1Character {
 			if (getHighLevel() - getLevel() >= Config.LEVEL_DOWN_RANGE) {
 				sendPackets(new S_ServerMessage(64)); // ワールドとの接續が切斷されました。
 				sendPackets(new S_Disconnect());
-				_log.info(String.format("超過了允許範圍內的水平 %s是被迫切斷連線。",
+				_log.info(String.format("超過允許範圍的水平，被迫切斷 %的連線。",
 						getName()));
 			}
 		}

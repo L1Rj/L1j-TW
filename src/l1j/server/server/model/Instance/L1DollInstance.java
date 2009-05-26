@@ -28,7 +28,6 @@ import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.IdFactory;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
-//import static l1j.server.server.model.Instance.L1NpcInstance.nearTeleport; // waja 註: 這行不行編譯
 import l1j.server.server.serverpackets.S_DoActionGFX;//waja add 魔法娃娃閒置動作
 import l1j.server.server.serverpackets.S_DollPack;
 import l1j.server.server.serverpackets.S_SkillSound;
@@ -61,48 +60,44 @@ public class L1DollInstance extends L1NpcInstance {
 			deleteDoll();
 			return true;
 		} else if (_master != null && _master.getMapId() == getMapId()) {
-//waja change&add 魔法娃娃動作修改
 /* 日版
 			if (getLocation().getTileLineDistance(_master.getLocation()) > 2) {
 				int dir = moveDirection(_master.getX(), _master.getY());
 				if (dir == -1) {
-					if (!isAiRunning()) {
+					if (!isAiRunning())
 						startAI();
-					}
 					return true;
 				} else {
 					setDirectionMove(dir);
 					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 				}
 			} */
-			while (getLocation().getTileLineDistance(_master.getLocation()) < 3 && _master != null) { // 5.25 Start
-				try { // 執行娃娃閒置動作 無窮迴圈版 就算放在那邊1小時 也會根據機率判定
-					Thread.sleep(500);
+			int[] MasterLoc = {_master.getX(), _master.getY()}; // 5.25 Start 寵物修正
+			int dir = moveDirection(MasterLoc[0], MasterLoc[1]);
+			if (dir == -1) {
+				deleteDoll(); // 跟隨主人不在線上自動刪除
+				return true;
+			} else {
+				int Distance = getLocation().getTileLineDistance(_master.getLocation());
+				if (Distance > 10) {
+					nearTeleport(MasterLoc[0], MasterLoc[1]);
+				} else if (Distance > 3) {
+					setDirectionMove(dir);
+				} else {
 					switch (RandomArrayList.getArrayshortList((short) 200)) {
-					case 10: // 1%可能性觸動 正常而言 平均50秒內會觸發一次 
-						broadcastPacket(new S_DoActionGFX(getId(), ACTION_Think)); // 發動時面像被強制為5的Bug 請復查
-						// System.out.println("觸動『ACTION_Think』"); // 視情況註解 檢查機率用
-						Thread.sleep(2500);
+					case 10: // 0.5%可能性觸動 正常而言 平均50秒內會觸發一次 
+						broadcastPacket(new S_DoActionGFX(getId(), ACTION_Think));
+						setSleepTime(2500);
 						break;
-					case 50: // 1%可能性觸動
-						broadcastPacket(new S_DoActionGFX(getId(), ACTION_Aggress)); // 發動時面像被強制為5的Bug 請復查
-						// System.out.println("觸動『ACTION_Aggress』"); // 視情況註解 檢查機率用
-						Thread.sleep(2700);
+					case 50: // 0.5%可能性觸動
+						broadcastPacket(new S_DoActionGFX(getId(), ACTION_Aggress));
+						setSleepTime(2700);
 						break;
 					}
-				} catch (Exception exception) {
-					break;
+					setHeading(dir);
 				}
-			}
-			if (getLocation().getTileLineDistance(_master.getLocation()) > 18) // 5.25 waja所說明的方式測試版
-				nearTeleport(_master.getX(), _master.getY());
-			else {
-				int dir = moveDirection(_master.getX(), _master.getY());
-				if (dir == -1) 
-					return true;
-				setDirectionMove(dir);
-				setSleepTime(calcSleepTime(getPassispeed(), dir)); // 5.15 End
-			}
+				setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
+			} // 5.25 End 寵物修正
 		} else {
 			deleteDoll();
 			return true;

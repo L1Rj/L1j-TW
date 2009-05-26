@@ -58,36 +58,28 @@ public class L1SummonInstance extends L1NpcInstance {
 				return true;
 			}
 		} else if (_currentPetStatus == 5) {
-			// ● 警戒の場合はホームへ
-			if (Math.abs(getHomeX() - getX()) > 1
-					|| Math.abs(getHomeY() - getY()) > 1) {
-				int dir = moveDirection(getHomeX(), getHomeY());
-				if (dir == -1) {
-					// ホームが離れすぎてたら現在地がホーム
-					setHomeX(getX());
-					setHomeY(getY());
-				} else {
-					setDirectionMove(dir);
-					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
-				}
-			}
-		} else if (_master != null && _master.getMapId() == getMapId()) {
-			// ●主人を追尾
-			if (getLocation().getTileLineDistance(_master.getLocation()) > 2) {
-				int dir = moveDirection(_master.getX(), _master.getY());
-//waja add 寵物太遠瞬移 
-			if (getLocation().getTileLineDistance(_master.getLocation()) > 18) // 5.25 waja所說明的方式測試版
-				nearTeleport(_master.getX(), _master.getY());		
-//add end
+			int dir = moveDirection(getHomeX(), getHomeY());
 			if (dir == -1) {
-					// 主人が離れすぎたら休憩狀態に
-					_currentPetStatus = 3;
-					return true;
-				} else {
-					setDirectionMove(dir);
-					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
-				}
+				// ホームが離れすぎてたら現在地がホーム
+				setHomeX(getX());
+				setHomeY(getY());
+			} else {
+				setDirectionMove(dir);
+				setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 			}
+		} else if (_master != null && _master.getMapId() == getMapId()) { // 5.26 Start 寵物修正
+			// ●主人を追尾
+			int dir = moveDirection(_master.getX(), _master.getY());
+			if (dir == -1) {
+				// 主人が離れすぎたら休憩狀態に
+				_currentPetStatus = 3;
+				return true;
+			} else {
+				if (getLocation().getTileLineDistance(_master.getLocation()) > 2) {
+					setDirectionMove(dir);
+				}
+				setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
+			} // 5.26 End 寵物修正
 		} else {
 			// ● 主人を見失ったら休憩狀態に
 			_currentPetStatus = 3;
@@ -255,7 +247,7 @@ public class L1SummonInstance extends L1NpcInstance {
 			}
 		} else if (!isDead()) // 念のため
 		{
-			System.out.println("警告：サモンのＨＰ減少處理が正しく行われていない箇所があります。※もしくは最初からＨＰ０");
+			System.out.println("警告︰寵物的hp減少的運算出現錯誤。※將視為hp=0作處理");
 			Death(attacker);
 		}
 	}
