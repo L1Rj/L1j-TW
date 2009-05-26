@@ -19,6 +19,7 @@
 
 package l1j.server.server.clientpackets;
 
+import java.sql.Timestamp;
 import java.util.logging.Logger;
 
 import l1j.server.server.ClientThread;
@@ -29,6 +30,14 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.serverpackets.S_ServerMessage;
+//waja add 防止複製道具
+import l1j.server.server.model.L1CheckPcItem;
+import java.io.BufferedWriter;// waja add 違法交易物品紀錄文件版
+import java.io.FileWriter;// waja add 違法交易物品紀錄文件版
+import java.io.IOException;// waja add 違法交易物品紀錄文件版
+import java.sql.Timestamp;// waja add 違法交易物品紀錄文件版
+import java.util.logging.Logger;// waja add 違法交易物品紀錄文件版
+//add end
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
@@ -47,6 +56,21 @@ public class C_TradeAddItem extends ClientBasePacket {
 		L1PcInstance pc = client.getActiveChar();
 		L1Trade trade = new L1Trade();
 		L1ItemInstance item = pc.getInventory().getItem(itemid);
+//waja add 防止複製道具並紀錄
+		L1CheckPcItem checkPcItem = new L1CheckPcItem();
+		boolean isCheat = checkPcItem.checkPcItem(item, pc);
+		if (isCheat) {
+			Cheatitem("IP"
+					+ "(" + pc.getNetConnection().getIp() + ")"
+					+"玩家"
+					+ ":【" + pc.getName() + "】 "
+					+ "交易違法道具.(道具刪除)"
+					+ "【+" + item.getEnchantLevel()
+					+ " " + item.getName()
+					+ "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。");
+			return;
+		}
+//add end
 		if (!item.getItem().isTradable()) {
 			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0は捨てたりまたは他人に讓ることができません。
 			return;
@@ -86,6 +110,18 @@ public class C_TradeAddItem extends ClientBasePacket {
 
 		trade.TradeAddItem(pc, itemid, itemcount);
 	}
+//waja add 違法物品紀錄 文件版 寫入檔案
+	public static void Cheatitem(String info) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("log/Cheatitem.log", true));
+			out.write(info + "\r\n");
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+//end add
 
 	@Override
 	public String getType() {
