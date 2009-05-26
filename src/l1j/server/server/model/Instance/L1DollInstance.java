@@ -60,20 +60,14 @@ public class L1DollInstance extends L1NpcInstance {
 			deleteDoll();
 			return true;
 		} else if (_master != null && _master.getMapId() == getMapId()) {
-/* 日版
-			if (getLocation().getTileLineDistance(_master.getLocation()) > 2) {
-				int dir = moveDirection(_master.getX(), _master.getY());
-				if (dir == -1) {
-					if (!isAiRunning())
-						startAI();
-					return true;
-				} else {
-					setDirectionMove(dir);
-					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
-				}
-			} */
-			//int[] MasterLoc = {_master.getX(), _master.getY()}; // 5.25 Start 寵物修正
-			int dir = moveDirection(_master.getX(), _master.getY());
+			/** 日版
+			 * if (getLocation().getTileLineDistance(_master.getLocation()) > 2) {
+			 * int dir = moveDirection(_master.getX(), _master.getY());
+			 * if (dir == -1) { if (!isAiRunning()) startAI(); return true;
+			 * } else { setDirectionMove(dir);
+			 * setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED)); }}
+			 */
+			int dir = moveDirection(_master.getX(), _master.getY()); // 5.25 Start 寵物修正
 			if (dir == -1) {
 				deleteDoll(); // 跟隨主人不在線上自動刪除
 				return true;
