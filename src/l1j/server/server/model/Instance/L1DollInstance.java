@@ -72,16 +72,13 @@ public class L1DollInstance extends L1NpcInstance {
 					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 				}
 			} */
-			int[] MasterLoc = {_master.getX(), _master.getY()}; // 5.25 Start 寵物修正
-			int dir = moveDirection(MasterLoc[0], MasterLoc[1]);
+			//int[] MasterLoc = {_master.getX(), _master.getY()}; // 5.25 Start 寵物修正
+			int dir = moveDirection(_master.getX(), _master.getY());
 			if (dir == -1) {
 				deleteDoll(); // 跟隨主人不在線上自動刪除
 				return true;
 			} else {
-				int Distance = getLocation().getTileLineDistance(_master.getLocation());
-				if (Distance > 10) {
-					nearTeleport(MasterLoc[0], MasterLoc[1]);
-				} else if (Distance > 3) {
+				if (getLocation().getTileLineDistance(_master.getLocation()) > 3) {
 					setDirectionMove(dir);
 				} else {
 					switch (RandomArrayList.getArrayshortList((short) 200)) {

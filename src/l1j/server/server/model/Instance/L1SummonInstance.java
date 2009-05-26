@@ -74,12 +74,12 @@ public class L1SummonInstance extends L1NpcInstance {
 				// 主人が離れすぎたら休憩狀態に
 				_currentPetStatus = 3;
 				return true;
-				}/*  else {
+			} else {
 				if (getLocation().getTileLineDistance(_master.getLocation()) > 2) {
 					setDirectionMove(dir);
 				}
 				setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
-			} // 5.26 End 寵物修正 */
+			} // 5.26 End 寵物修正 
 		} else {
 			// ● 主人を見失ったら休憩狀態に
 			_currentPetStatus = 3;
