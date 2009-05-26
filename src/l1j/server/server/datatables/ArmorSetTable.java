@@ -89,6 +89,10 @@ public class ArmorSetTable {
 			as.setWis(rs.getInt("wis"));
 			as.setCha(rs.getInt("cha"));
 			as.setIntl(rs.getInt("intl"));
+			as.setDefenseWater(rs.getInt("defense_water"));
+			as.setDefenseWind(rs.getInt("defense_wind"));
+			as.setDefenseFire(rs.getInt("defense_fire"));
+			as.setDefenseEarth(rs.getInt("defense_earth"));
 
 			_armorSetList.add(as);
 		}

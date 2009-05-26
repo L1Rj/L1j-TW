@@ -47,6 +47,10 @@ public abstract class L1ArmorSet {
 						armorSets.getDex(), armorSets.getCon(),
 						armorSets.getWis(), armorSets.getCha(),
 						armorSets.getIntl()));
+				impl.addEffect(new DefenseBonusEffect(armorSets
+						.getDefenseWater(), armorSets.getDefenseWind(),
+						armorSets.getDefenseFire(),armorSets.getDefenseWind()));
+
 				_allSet.add(impl);
 			} catch(Exception ex) {
 				ex.printStackTrace();
@@ -228,6 +232,37 @@ class StatBonusEffect implements L1ArmorSetEffect {
 		pc.addWis((byte) -_wis);
 		pc.addCha((byte) -_cha);
 		pc.addInt((byte) -_intl);
+	}
+}
+
+class DefenseBonusEffect implements L1ArmorSetEffect {
+	private final int _defenseWater;
+	private final int _defenseWind;
+	private final int _defenseFire;
+	private final int _defenseEarth;
+
+	public DefenseBonusEffect(int defenseWater, int defenseWind,
+			int defenseFire, int defenseEarth) {
+		_defenseWater = defenseWater;
+		_defenseWind = defenseWind;
+		_defenseFire = defenseFire;
+		_defenseEarth = defenseEarth;
+	}
+
+	// @Override
+	public void giveEffect(L1PcInstance pc) {
+		pc.addWater(_defenseWater);
+		pc.addWind(_defenseWind);
+		pc.addFire(_defenseFire);
+		pc.addEarth(_defenseEarth);
+	}
+
+	// @Override
+	public void cancelEffect(L1PcInstance pc) {
+		pc.addWater(-_defenseWater);
+		pc.addWind(-_defenseWind);
+		pc.addFire(-_defenseFire);
+		pc.addEarth(-_defenseEarth);
 	}
 }
 

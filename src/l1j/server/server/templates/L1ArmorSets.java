@@ -173,4 +173,44 @@ public class L1ArmorSets {
 		_intl = i;
 	}
 
+	private int _defenseWater;
+
+	public int getDefenseWater() {
+		return _defenseWater;
+	}
+
+	public void setDefenseWater(int i) {
+		_defenseWater = i;
+	}
+
+	private int _defenseWind;
+
+	public int getDefenseWind() {
+		return _defenseWind;
+	}
+
+	public void setDefenseWind(int i) {
+		_defenseWind = i;
+	}
+
+	private int _defenseFire;
+
+	public int getDefenseFire() {
+		return _defenseFire;
+	}
+
+	public void setDefenseFire(int i) {
+		_defenseFire = i;
+	}
+
+	private int _defenseEarth;
+
+	public int getDefenseEarth() {
+		return _defenseEarth;
+	}
+
+	public void setDefenseEarth(int i) {
+		_defenseEarth = i;
+	}
+
 }
