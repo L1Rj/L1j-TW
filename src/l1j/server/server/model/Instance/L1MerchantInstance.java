@@ -2644,6 +2644,49 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== 13) {
 					htmlid = "oreno1";
 				}
+//waja add 遠征隊遺物
+			} else if (npcid == 71258) {
+                if (player.getInventory().checkItem(40665)
+                        &&(player.getInventory().checkItem(40693)
+                        || player.getInventory().checkItem(40694)
+                        || player.getInventory().checkItem(40695)
+                        || player.getInventory().checkItem(40697)
+                        || player.getInventory().checkItem(40698)
+                        || player.getInventory().checkItem(40699))) {
+                    htmlid = "marba8";
+                } else if(player.getInventory().checkItem(40665)) {
+                    htmlid = "marba17";
+                } else if (player.getInventory().checkItem(40664)) {
+                    htmlid = "marba19";
+                } else if (player.getInventory().checkItem(40637)) {
+                    htmlid = "marba18";
+                } else {
+                    htmlid = "marba3";
+                }
+            } else if (npcid == 71259) {
+                if (player.getInventory().checkItem(40665)) {
+                    htmlid = "aras8";
+                } else if (player.getInventory().checkItem(40679)
+                        || player.getInventory().checkItem(40680)
+                        || player.getInventory().checkItem(40681)
+                        || player.getInventory().checkItem(40682)
+                        || player.getInventory().checkItem(40683)
+                        || player.getInventory().checkItem(40684)
+                        || player.getInventory().checkItem(40693)
+                        || player.getInventory().checkItem(40694)
+                        || player.getInventory().checkItem(40695)
+                        || player.getInventory().checkItem(40697)
+                        || player.getInventory().checkItem(40698)
+                        || player.getInventory().checkItem(40699)) {
+                    htmlid = "aras3";
+                } else if(player.getInventory().checkItem(40664)) {
+                    htmlid = "aras6";
+                } else if(player.getInventory().checkItem(40637)){
+                    htmlid = "aras1";
+                } else {
+                    htmlid ="aras7";
+                }
+//add end
 			}
 
 			// html表示パケット送信

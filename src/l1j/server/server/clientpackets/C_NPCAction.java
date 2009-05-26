@@ -905,6 +905,89 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("teleportURL")) {
 				htmlid = "amisoo2";
 			}
+//waja add 遠征隊遺物
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71258) {
+            if (pc.getInventory().checkItem(40665)) {
+                htmlid = "marba17";
+                if (s.equalsIgnoreCase("B")) {
+                    htmlid = "marba7";
+                    if (pc.getInventory().checkItem(214) && pc.getInventory().checkItem(20389)
+                           && pc.getInventory().checkItem(20393) && pc.getInventory().checkItem(20401)
+                           && pc.getInventory().checkItem(20406) && pc.getInventory().checkItem(20409)) {
+                        htmlid = "marba15";
+                    }
+                }
+            } else if (s.equalsIgnoreCase("A")) {
+                if(pc.getInventory().checkItem(40637)) {
+                    htmlid = "marba20";
+                } else {
+                    L1NpcInstance npc = (L1NpcInstance) obj;
+                    L1ItemInstance item = pc.getInventory().storeItem(40637, 1);
+                    String npcName = npc.getNpcTemplate().get_name();
+                    String itemName = item.getItem().getName();
+                    pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
+                    htmlid = "marba6";
+                }        
+            }
+        }
+        else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71259) {
+             if (pc.getInventory().checkItem(40665)) {
+                htmlid = "aras8";
+             } else if (pc.getInventory().checkItem(40637)) {
+                htmlid = "aras1";
+                if (s.equalsIgnoreCase("A")) {
+                    if (pc.getInventory().checkItem(40664)) {
+                            htmlid = "aras6";
+                            if (pc.getInventory().checkItem(40679) || pc.getInventory().checkItem(40680)
+                                || pc.getInventory().checkItem(40681) || pc.getInventory().checkItem(40682)
+                                || pc.getInventory().checkItem(40683) || pc.getInventory().checkItem(40684)
+                                || pc.getInventory().checkItem(40693) || pc.getInventory().checkItem(40694)
+                                || pc.getInventory().checkItem(40695) || pc.getInventory().checkItem(40697)
+                                || pc.getInventory().checkItem(40698) || pc.getInventory().checkItem(40699)) {
+                                    htmlid = "aras3";
+                            } else {
+                                    htmlid = "aras6";
+                            }
+                    } else {
+                        L1NpcInstance npc = (L1NpcInstance) obj;
+                        L1ItemInstance item = pc.getInventory().storeItem(40664, 1);
+                        String npcName = npc.getNpcTemplate().get_name();
+                        String itemName = item.getItem().getName();
+                        pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
+                        htmlid = "aras6";
+                    }
+                } else if (s.equalsIgnoreCase("B")) {
+                    if(pc.getInventory().checkItem(40664)) {
+                        pc.getInventory().consumeItem(40664, 1);
+                        L1NpcInstance npc = (L1NpcInstance) obj;
+                        L1ItemInstance item = pc.getInventory().storeItem(40665, 1);
+                        String npcName = npc.getNpcTemplate().get_name();
+                        String itemName = item.getItem().getName();
+                        pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
+                        htmlid = "aras13";
+                    } else {
+                        htmlid = "aras14";
+                        L1NpcInstance npc = (L1NpcInstance) obj;
+                        L1ItemInstance item = pc.getInventory().storeItem(40665, 1);
+                        String npcName = npc.getNpcTemplate().get_name();
+                        String itemName = item.getItem().getName();
+                        pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
+                    }
+                } else {
+                     if(s.equalsIgnoreCase("7")) {
+                        if(pc.getInventory().checkItem(40693) && pc.getInventory().checkItem(40694)
+                        && pc.getInventory().checkItem(40695) && pc.getInventory().checkItem(40697)
+                        && pc.getInventory().checkItem(40698) && pc.getInventory().checkItem(40699)) {
+                            htmlid = "aras10";
+                        } else {
+                            htmlid = "aras9";
+                        }
+                    }
+                }
+            } else {
+                htmlid = "aras7";
+            }
+//add end
 		}
 		// 空間の歪み
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80048) {
