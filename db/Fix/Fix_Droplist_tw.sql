@@ -185,3 +185,11 @@ Update droplist Set chance = '50000' Where mobId = '45463' And itemId = '40415';
 Update droplist Set chance = '50000' Where mobId = '45476' And itemId = '40415';
 Update droplist Set chance = '50000' Where mobId = '45499' And itemId = '40415';
 Update droplist Set chance = '150000' Where mobId = '45671' And itemId = '40415';
+
+/* 20090526 降低古代卷軸掉落機率 */
+Update droplist Set chance = '500' Where mobId = '45362' And itemId = '40076';
+Update droplist Set chance = '500' Where mobId = '45390' And itemId = '40076';
+Update droplist Set chance = '500' Where mobId = '45449' And itemId = '40076';
+Update droplist Set chance = '500' Where mobId = '45457' And itemId = '40076';
+Update droplist Set chance = '500' Where mobId = '45531' And itemId = '40076';
+Update droplist Set chance = '500' Where mobId = '45578' And itemId = '40076';
