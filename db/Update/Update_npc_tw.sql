@@ -2570,6 +2570,19 @@ Update npc Set name = '古代記憶水晶商人' Where npcid = '81244';
 
 /*20090525修正名稱*/
 
+Update npc Set nameid = '黑暗騎士' Where npcid = '81030';
+Update npc Set nameid = '黑暗法師' Where npcid = '81031';
+Update npc Set nameid = '黑暗巡守' Where npcid = '81032';
+Update npc Set nameid = '銀光騎士' Where npcid = '81033';
+Update npc Set nameid = '銀光法師' Where npcid = '81034';
+Update npc Set nameid = '銀光巡守' Where npcid = '81035';
+Update npc Set nameid = '黃金騎士' Where npcid = '81036';
+Update npc Set nameid = '黃金法師' Where npcid = '81037';
+Update npc Set nameid = '黃金巡守' Where npcid = '81038';
+Update npc Set nameid = '白金騎士' Where npcid = '81039';
+Update npc Set nameid = '白金法師' Where npcid = '81040';
+Update npc Set nameid = '白金巡守' Where npcid = '81041';
+
 Update npc Set nameid = '古代耳飾商人' Where npcid = '81002';
 Update npc Set nameid = '古代短劍商人' Where npcid = '81003';
 Update npc Set nameid = '古代長劍商人' Where npcid = '81004';
