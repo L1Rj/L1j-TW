@@ -287,7 +287,7 @@ Update npc Set name = '奇岩 楊果里恩' Where npcid = '45312';
 Update npc Set name = '虎男' Where npcid = '45313';
 Update npc Set name = '海賊骷髏刀手' Where npcid = '45314';
 Update npc Set name = '炎魔的分身' Where npcid = '45315';
-Update npc Set name = '45316' Where npcid = '45316';
+Update npc Set name = '試煉靈魂' Where npcid = '45316'; /*日版頭目*/
 Update npc Set name = '強盜' Where npcid = '45317';
 Update npc Set name = '巨人' Where npcid = '45318';
 Update npc Set name = '格利芬' Where npcid = '45321';
