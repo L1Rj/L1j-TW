@@ -549,3 +549,15 @@ Insert Into `shop` Values
 (70073, 120154, 48, -1, 0, 18500), /* 祝福金屬盔甲 */
 (70073, 220154, 49, -1, 0, 18500), /* 詛咒金屬盔甲 */
 (70073, 220242, 50, -1, 0, 600); /* 祝福大盾牌 */
+
+/* 20090526 修正 肯特內城NPC 尼奇 50118 收購裝備價格 */
+Update shop Set purchasing_price = '5000' Where npc_id = '50118' And item_id = '40331'; /* 肯特勇士之劍 */
+Update shop Set purchasing_price = '3000' Where npc_id = '50118' And item_id = '40332'; /* 肯特射手之弓 */
+Update shop Set purchasing_price = '80000' Where npc_id = '50118' And item_id = '40333'; /* 肯特法師魔杖 */
+Update shop Set purchasing_price = '20000' Where npc_id = '50118' And item_id = '40334'; /* 肯特刺客雙刀 */
+Update shop Set purchasing_price = '1000' Where npc_id = '50118' And item_id = '40335'; /* 肯特戰士斧頭 */
+Update shop Set purchasing_price = '8000' Where npc_id = '50118' And item_id = '40336'; /* 肯特徽章長靴 */
+Update shop Set purchasing_price = '100000' Where npc_id = '50118' And item_id = '40337'; /* 肯特徽章盔甲 */
+Update shop Set purchasing_price = '10000' Where npc_id = '50118' And item_id = '40338'; /* 肯特徽章手套 */
+Update shop Set purchasing_price = '30000' Where npc_id = '50118' And item_id = '40339'; /* 肯特徽章盾牌 */
+Update shop Set purchasing_price = '50000' Where npc_id = '50118' And item_id = '40340'; /* 肯特徽章頭盔 */
