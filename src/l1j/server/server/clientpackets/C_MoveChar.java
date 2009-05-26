@@ -27,7 +27,7 @@ import l1j.server.server.model.AcceleratorChecker;
 import l1j.server.server.model.Dungeon;
 import l1j.server.server.model.DungeonRandom;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.map.L1Map; //waja add 判斷站立座標是否合法
+// import l1j.server.server.model.map.L1Map; //waja add 判斷站立座標是否合法
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.model.trap.L1WorldTraps;
 import l1j.server.server.serverpackets.S_MoveCharPacket;
@@ -90,7 +90,7 @@ public class C_MoveChar extends ClientBasePacket {
 			locy = pc.getY(); // Y軸座標
 		}
 //waja add 測試code 判斷所站位置是否正確
-		L1Map map = pc.getMap();
+/*		L1Map map = pc.getMap();
 		if(map.isPassable(locx,locy)){
 			pc.getLocation().set(locx, locy);
 			pc.setHeading(heading);
@@ -100,7 +100,7 @@ public class C_MoveChar extends ClientBasePacket {
 			pc.sendPackets(new S_SystemMessage("角色座標異常!!"));
 //			pc.setCurrentHp(0);// 應改為移動到最後正確座標
 //			pc.death(null);//據說會亂死 先拿掉
-		}
+		} */
 //end add
 		locx += HEADING_TABLE_X[heading];// 4.26 Start
 		locy += HEADING_TABLE_Y[heading];// 4.26 End
