@@ -91,10 +91,15 @@ public class C_MoveChar extends ClientBasePacket {
 		}
 //waja add 測試code 判斷所站位置是否正確
 		L1Map map = pc.getMap();
-		if(!map.isPassable(locx,locy)){
+		if(map.isPassable(locx,locy)){
+			pc.getLocation().set(locx, locy);
+			pc.setHeading(heading);
+			if (!pc.isGmInvis() && !pc.isGhost() && !pc.isInvisble())
+				pc.broadcastPacket(new S_MoveCharPacket(pc));
+		} else {
 			pc.sendPackets(new S_SystemMessage("角色座標異常!!"));
-			pc.setCurrentHp(0);// 應改為移動到最後正確座標
-			pc.death(null);
+//			pc.setCurrentHp(0);// 應改為移動到最後正確座標
+//			pc.death(null);//據說會亂死 先拿掉
 		}
 //end add
 		locx += HEADING_TABLE_X[heading];// 4.26 Start
