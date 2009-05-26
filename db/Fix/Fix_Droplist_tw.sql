@@ -157,34 +157,34 @@ Update droplist Set chance = '50000' Where mobId = '45944' And itemId = '100041'
 Update droplist Set chance = '50000' Where mobId = '81163' And itemId = '100041';
 
 /* 20090526 降低古老皮袋掉落機率 */
-Update droplist Set chance = '50000' Where mobId = '45369' And itemId = '40167';
-Update droplist Set chance = '50000' Where mobId = '45385' And itemId = '40167';
-Update droplist Set chance = '50000' Where mobId = '45400' And itemId = '40167';
-Update droplist Set chance = '50000' Where mobId = '45417' And itemId = '40167';
-Update droplist Set chance = '50000' Where mobId = '45463' And itemId = '40167';
-Update droplist Set chance = '50000' Where mobId = '45476' And itemId = '40167';
-Update droplist Set chance = '50000' Where mobId = '45499' And itemId = '40167';
-Update droplist Set chance = '150000' Where mobId = '45671' And itemId = '40167';
+Update droplist Set chance = '80000' Where mobId = '45369' And itemId = '40167';
+Update droplist Set chance = '80000' Where mobId = '45385' And itemId = '40167';
+Update droplist Set chance = '80000' Where mobId = '45400' And itemId = '40167';
+Update droplist Set chance = '80000' Where mobId = '45417' And itemId = '40167';
+Update droplist Set chance = '80000' Where mobId = '45463' And itemId = '40167';
+Update droplist Set chance = '80000' Where mobId = '45476' And itemId = '40167';
+Update droplist Set chance = '80000' Where mobId = '45499' And itemId = '40167';
+Update droplist Set chance = '200000' Where mobId = '45671' And itemId = '40167';
 
 /* 20090526 降低古老絲袋掉落機率 */
-Update droplist Set chance = '50000' Where mobId = '45369' And itemId = '40168';
-Update droplist Set chance = '50000' Where mobId = '45385' And itemId = '40168';
-Update droplist Set chance = '50000' Where mobId = '45400' And itemId = '40168';
-Update droplist Set chance = '50000' Where mobId = '45417' And itemId = '40168';
-Update droplist Set chance = '50000' Where mobId = '45463' And itemId = '40168';
-Update droplist Set chance = '50000' Where mobId = '45476' And itemId = '40168';
-Update droplist Set chance = '50000' Where mobId = '45499' And itemId = '40168';
-Update droplist Set chance = '150000' Where mobId = '45671' And itemId = '40168';
+Update droplist Set chance = '80000' Where mobId = '45369' And itemId = '40168';
+Update droplist Set chance = '80000' Where mobId = '45385' And itemId = '40168';
+Update droplist Set chance = '80000' Where mobId = '45400' And itemId = '40168';
+Update droplist Set chance = '80000' Where mobId = '45417' And itemId = '40168';
+Update droplist Set chance = '80000' Where mobId = '45463' And itemId = '40168';
+Update droplist Set chance = '80000' Where mobId = '45476' And itemId = '40168';
+Update droplist Set chance = '80000' Where mobId = '45499' And itemId = '40168';
+Update droplist Set chance = '200000' Where mobId = '45671' And itemId = '40168';
 
 /* 20090526 降低遺物袋子掉落機率 */
-Update droplist Set chance = '50000' Where mobId = '45369' And itemId = '40415';
-Update droplist Set chance = '50000' Where mobId = '45385' And itemId = '40415';
-Update droplist Set chance = '50000' Where mobId = '45400' And itemId = '40415';
-Update droplist Set chance = '50000' Where mobId = '45417' And itemId = '40415';
-Update droplist Set chance = '50000' Where mobId = '45463' And itemId = '40415';
-Update droplist Set chance = '50000' Where mobId = '45476' And itemId = '40415';
-Update droplist Set chance = '50000' Where mobId = '45499' And itemId = '40415';
-Update droplist Set chance = '150000' Where mobId = '45671' And itemId = '40415';
+Update droplist Set chance = '80000' Where mobId = '45369' And itemId = '40415';
+Update droplist Set chance = '80000' Where mobId = '45385' And itemId = '40415';
+Update droplist Set chance = '80000' Where mobId = '45400' And itemId = '40415';
+Update droplist Set chance = '80000' Where mobId = '45417' And itemId = '40415';
+Update droplist Set chance = '80000' Where mobId = '45463' And itemId = '40415';
+Update droplist Set chance = '80000' Where mobId = '45476' And itemId = '40415';
+Update droplist Set chance = '80000' Where mobId = '45499' And itemId = '40415';
+Update droplist Set chance = '200000' Where mobId = '45671' And itemId = '40415';
 
 /* 20090526 降低古代卷軸掉落機率 */
 Update droplist Set chance = '500' Where mobId = '45362' And itemId = '40076';

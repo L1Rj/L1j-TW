@@ -1,4 +1,4 @@
-/* 20090522 l1jtw 欄位內容變更 */
+/* 20090522 l1j-tw 欄位內容變更 l1j-tw用 與l1j更新無關 */
 
 /* character_items 欄位新增 */
 alter table character_items add `firemr` int(11) default '0' ;

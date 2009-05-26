@@ -187,6 +187,10 @@ public class AcceleratorChecker {
 		if(_pc.getMapId() == 5143){
 			interval *= 0.1;
 		}
+//幽靈之家地圖放寬檢測
+		if(_pc.getMapId() == 15){
+			interval *= HASTE_RATE;
+		}
 //add end
 		return interval;
 	}
