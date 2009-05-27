@@ -3962,22 +3962,22 @@ public class L1PcInstance extends L1Character {
 		_awakeSkillId = i;
 	}
 //waja add 施法前判斷法術
-	private ArrayList<Integer> skillList = new ArrayList<Integer>();
+	private ArrayList<Object> skillList = new ArrayList<Object>();
 
 	public void setSkillMastery(int skillid) {
-		if (!skillList.contains(skillid)) {
-			skillList.add(skillid);
+		if (!skillList.contains((Object)skillid)) {
+			skillList.add((Object)skillid);
 		}
 	}
 
 	public void removeSkillMastery(int skillid) {
-		if (skillList.contains(skillid)) {
-			skillList.remove(skillid);
-		}
-	}
+        if(skillList.contains((Object)skillid)){
+            skillList.remove((Object)skillid);
+         }
+     }
 	
 	public boolean isSkillMastery(int skillid) {
-		return skillList.contains(skillid);
+		return skillList.contains((Object)skillid);
 	}
 //waja add 寵物競速
 	private int _lap = 1;
