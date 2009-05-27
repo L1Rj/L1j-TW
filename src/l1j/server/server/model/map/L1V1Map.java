@@ -230,6 +230,11 @@ public class L1V1Map extends L1Map {
 		if ((tile2 & BITFLAG_IS_IMPASSABLE) == BITFLAG_IS_IMPASSABLE) {
 			return false;
 		}
+//waja add 據說可以修正怪物穿牆
+		if(!((tile2& 0x02) == 0x02 || (tile2 & 0x01) == 0x01)){
+			return false;
+		}
+//add end
 		if (heading == 0) {
 			return (tile1 & 0x02) == 0x02;
 		} else if (heading == 1) {

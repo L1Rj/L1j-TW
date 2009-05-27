@@ -678,7 +678,7 @@ public final class Config {
 					"NpcDeletionTime", "10"));
 			DEFAULT_CHARACTER_SLOT = Integer.parseInt(altSettings.getProperty(
 					"DefaultCharacterSlot", "6"));
-// =waja add 施法前判斷法術
+//waja add 施法前判斷法術
 			Skillcheck = Boolean.parseBoolean(altSettings.getProperty(
 					"Skillcheck", "false"));
 //waja add 怪物血條開關
