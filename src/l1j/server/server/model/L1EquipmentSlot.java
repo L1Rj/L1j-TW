@@ -331,35 +331,12 @@ public class L1EquipmentSlot {
 
 	public void setMagicHelm(L1ItemInstance item) {
 //waja change 施法前判斷法術 智力敏大小風盔
-
-/*
-		if (item.getItemId() == 20013) {
-			_owner.sendPackets(new S_AddSkill(0, 0, 0, 2, 0, 4, 0, 0, 0, 0, 0,
-					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-		}
-		if (item.getItemId() == 20014) {
-			_owner.sendPackets(new S_AddSkill(1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-		}
-		if (item.getItemId() == 20015) {
-			_owner.sendPackets(new S_AddSkill(0, 24, 0, 0, 0, 2, 0, 0, 0, 0, 0,
-					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-		}
-		if (item.getItemId() == 20008) {
-			_owner.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0,
-					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-		}
-		if (item.getItemId() == 20023) {
-			_owner.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0,
-					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-		}
-*/
 		switch(item.getItemId()){
 		case 20013:
 			_owner.sendPackets(new S_AddSkill(0, 0, 0, 2, 0, 4, 0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-			_owner.setSkillMastery(26);
-			_owner.setSkillMastery(43);
+			_owner.setSkillMastery(26);//加入可施展法術列表
+			_owner.setSkillMastery(43);//加入可施展法術列表
 			break;
 		case 20014:
 			_owner.sendPackets(new S_AddSkill(1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -385,17 +362,17 @@ public class L1EquipmentSlot {
 			_owner.setSkillMastery(54);
 			break;
 		}
-//add end
+//change end
 	}
 
 	public void removeMagicHelm(int objectId, L1ItemInstance item) {
 //waja change 施法前判斷法術 移除敏力治 大小風盔  順便改用switch
 		switch(item.getItemId()){
-		case 20013:  // 魔法のヘルム：迅速
+		case 20013:  // 魔法頭盔：敏捷魔法頭盔
 			if (!SkillsTable.getInstance().spellCheck(objectId, 26)) { // フィジカルエンチャント：DEX
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 2, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-				_owner.removeSkillMastery(26);
+				_owner.removeSkillMastery(26);//移除可施展法術列表
 			}
 			if (!SkillsTable.getInstance().spellCheck(objectId, 43)) { // ヘイスト
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0,
@@ -403,7 +380,7 @@ public class L1EquipmentSlot {
 				_owner.removeSkillMastery(43);
 			}
 		break;
-		case 20014:  // 魔法のヘルム：治癒
+		case 20014:  // 魔法頭盔：治癒魔法頭盔
 			if (!SkillsTable.getInstance().spellCheck(objectId, 1)) { // ヒール
 				_owner.sendPackets(new S_DelSkill(1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
@@ -415,7 +392,7 @@ public class L1EquipmentSlot {
 				_owner.removeSkillMastery(19);
 			}
 		break;
-		case 20015:  // 魔法のヘルム：力
+		case 20015:  // 魔法頭盔：力量魔法頭盔
 			if (!SkillsTable.getInstance().spellCheck(objectId, 12)) { // エンチャントウェポン
 				_owner.sendPackets(new S_DelSkill(0, 8, 0, 0, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
@@ -447,7 +424,7 @@ public class L1EquipmentSlot {
 				_owner.removeSkillMastery(54);
 			}
 		}
-//add end
+//change end
 	}
 
 }

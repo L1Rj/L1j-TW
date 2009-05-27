@@ -34,6 +34,7 @@ import l1j.server.Config;
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1Inventory;
+import l1j.server.server.model.L1Quest;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
@@ -218,11 +219,13 @@ public class DropTable {
 		int chanceHate;
 		for (int i = inventory.getSize(); i > 0; i--) {
 			item = inventory.getItems().get(0);
+			int itemId = item.getItem().getItemId();
+			boolean isGround = false;
 			if (item.getItem().getType2() == 0 && item.getItem().getType() == 2) { // light系アイテム
 				item.setNowLighting(false);
 			}
 
-			if (((Config.AUTO_LOOT != 0) || item.getItem().getItemId() == L1ItemId.ADENA)
+			if (((Config.AUTO_LOOT != 0) || itemId == L1ItemId.ADENA)
 					&& totalHate > 0) { // オートルーティングかアデナで取得者がいる場合
 				randomInt = random.nextInt(totalHate);
 				chanceHate = 0;
@@ -230,6 +233,18 @@ public class DropTable {
 					chanceHate += (Integer) hateList.get(j);
 					if (chanceHate > randomInt) {
 						acquisitor = (L1Character) acquisitorList.get(j);
+						if (itemId >= 40131 && itemId <= 40135) {
+							if (!(acquisitor instanceof L1PcInstance)) {
+								inventory.removeItem(item, item.getCount());
+								break;
+							}
+							L1PcInstance pc = (L1PcInstance) acquisitor;
+							if (pc.getQuest().get_step(L1Quest
+									.QUEST_LYRA) != 1) {
+								inventory.removeItem(item, item.getCount());
+								break;
+							}
+						}
 						if (acquisitor.getInventory().checkAddItem(item,
 								item.getCount()) == L1Inventory.OK) {
 							targetInventory = acquisitor.getInventory();
@@ -244,6 +259,7 @@ public class DropTable {
 											.getInventory(acquisitor.getX(),
 													acquisitor.getY(),
 													acquisitor.getMapId()); // 持てないので足元に落とす
+									isGround = true;
 									player.sendPackets(new S_ServerMessage(166,
 											"持有金幣",
 											"超過2,000,000,000。")); // \f1%0が%4%1%3%2
@@ -271,6 +287,7 @@ public class DropTable {
 									.getInventory(acquisitor.getX(),
 											acquisitor.getY(),
 											acquisitor.getMapId()); // 持てないので足元に落とす
+							isGround = true;
 						}
 						break;
 					}
@@ -329,6 +346,11 @@ public class DropTable {
 				} while (!npc.getMap().isPassable(npc.getX(), npc.getY(), dir));
 				targetInventory = L1World.getInstance().getInventory(
 						npc.getX() + x, npc.getY() + y, npc.getMapId());
+				isGround = true;
+			}
+			if (itemId >= 40131 && itemId <= 40135 && isGround) {
+				inventory.removeItem(item, item.getCount());
+				continue;
 			}
 			inventory.tradeItem(item, item.getCount(), targetInventory);
 		}

@@ -188,32 +188,39 @@ public class L1MobSkillUse {
 
 		if (skillSizeCounter != 0) {
 			int num = _rnd.nextInt(skillSizeCounter);
-			useSkill(skills[num]); // スキル使用
-			return true;
+			if (useSkill(skills[num])) { // スキル使用
+				return true;
+			}
 		}
 
 		return false;
 	}
 
-	private void useSkill(int i) {
+	private boolean useSkill(int i) {
+		boolean isUseSkill = false;
 		int type = getMobSkillTemplate().getType(i);
 		if (type == L1MobSkill.TYPE_PHYSICAL_ATTACK) { // 物理攻撃
 			if (physicalAttack(i) == true) {
 				skillUseCountUp(i);
+				isUseSkill = true;
 			}
 		} else if (type == L1MobSkill.TYPE_MAGIC_ATTACK) { // 魔法攻撃
 			if (magicAttack(i) == true) {
 				skillUseCountUp(i);
+				isUseSkill = true;
 			}
 		} else if (type == L1MobSkill.TYPE_SUMMON) { // サモンする
 			if (summon(i) == true) {
 				skillUseCountUp(i);
+				isUseSkill = true;
 			}
 		} else if (type == L1MobSkill.TYPE_POLY) { // 強制変身させる
 			if (poly(i) == true) {
 				skillUseCountUp(i);
+				isUseSkill = true;
 			}
 		}
+		return isUseSkill;
 	}
 
 	private boolean summon(int idx) {
