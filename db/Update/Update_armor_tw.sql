@@ -614,7 +614,6 @@ Update armor Set name_id = '$3008' Where item_id = '20286'; /*守護團戒指*/
 Update armor Set name_id = '$1379' Where item_id = '20305'; /*情人戒指*/
 Update armor Set name_id = '$3614' Where item_id = '20347'; /*和服(男性)*/
 Update armor Set name_id = '$3217' Where item_id = '20348'; /*和服(女性)*/
-Update armor Set name_id = '$2454$225' Where item_id = '120074'; /*銀光斗篷*/
 Update armor Set name_id = '灼熱的頭盔' Where item_id = '21039';
 Update armor Set name_id = '灼熱的盾牌' Where item_id = '21040';
 Update armor Set name_id = '灼熱的長靴' Where item_id = '21041';
@@ -624,6 +623,7 @@ Update armor Set name_id = '慧知的護身符' Where item_id = '21044';
 Update armor Set name_id = '暗躍的護身符' Where item_id = '21045';
 Update armor Set name_id = '翻弄的護身符' Where item_id = '21046';
 Update armor Set name_id = '幸運的金幣' Where item_id = '21047';
+Update armor Set name_id = '$2454$225' Where item_id = '120074'; /*銀光斗篷*/
 /*
 $3216	韓服(女性)	$3613	韓服(男性)
 $3217	和服(女性)	$3614	和服(男性)

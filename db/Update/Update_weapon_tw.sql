@@ -318,7 +318,10 @@ Update weapon Set name = '侵略者之劍' Where item_id = '200032';
 Update weapon Set name = '武士刀' Where item_id = '200041';
 Update weapon Set name = '雙手劍' Where item_id = '200052';
 Update weapon Set name = '歐西斯弓' Where item_id = '200171';
+
 /*20090525 修正name_id名稱*/
+Update weapon Set name_id = '$2454 $2450' Where item_id = '157'; /* 銀光鋼爪 */
+Update weapon Set name_id = '$2453 $2450' Where item_id = '162'; /* 幽暗鋼爪'  */
 Update weapon Set name_id = '炎魔的雙手劍 Lv.1' Where item_id = '196';
 Update weapon Set name_id = '炎魔的雙手劍 Lv.2' Where item_id = '197';
 Update weapon Set name_id = '炎魔的雙手劍 Lv.3' Where item_id = '198';
@@ -327,7 +330,5 @@ Update weapon Set name_id = '炎魔的雙手劍 Lv.5' Where item_id = '200';
 Update weapon Set name_id = '炎魔的雙手劍 Lv.6' Where item_id = '201';
 Update weapon Set name_id = '炎魔的雙手劍 Lv.7' Where item_id = '202';
 Update weapon Set name_id = '炎魔的雙手劍 Lv.8' Where item_id = '203';
-Update weapon Set name_id = '終極萬聖節南瓜長劍' Where item_id = '258';
-Update weapon Set name_id = '銀光 鋼爪' Where item_id = '157';
-Update weapon Set name_id = '銀光 鋼爪' Where item_id = '100157';
-Update weapon Set name_id = '幽暗 鋼爪' Where item_id = '162';
+Update weapon Set name_id = '終極$5254' Where item_id = '258'; /* 終極萬聖節南瓜長劍 */
+Update weapon Set name_id = '$2454 $2450' Where item_id = '100157'; /* 銀光鋼爪'  */
