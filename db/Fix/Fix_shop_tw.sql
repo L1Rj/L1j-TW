@@ -561,3 +561,7 @@ Update shop Set purchasing_price = '100000' Where npc_id = '50118' And item_id =
 Update shop Set purchasing_price = '10000' Where npc_id = '50118' And item_id = '40338'; /* 肯特徽章手套 */
 Update shop Set purchasing_price = '30000' Where npc_id = '50118' And item_id = '40339'; /* 肯特徽章盾牌 */
 Update shop Set purchasing_price = '50000' Where npc_id = '50118' And item_id = '40340'; /* 肯特徽章頭盔 */
+
+/* 20090527 修正歐瑞 武器商人 曼德拉 70061 銀箭售價 */
+Update shop Set selling_price = '1' Where npc_id = '70061' And item_id = '40744'; /* 銀箭 */
+Update shop Set purchasing_price = '-1' Where npc_id = '70061' And item_id = '40744'; /* 銀箭改為不收購 */
