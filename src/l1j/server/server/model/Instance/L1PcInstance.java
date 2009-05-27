@@ -2317,6 +2317,19 @@ public class L1PcInstance extends L1Character {
 			}
 		}
 		sendPackets(new S_OwnCharStatus(this));
+//waja add 13級傳出新手村
+		if (getLevel() >= 13) { 
+			switch(getMapId()){
+				case 69: case 86:
+					L1Teleport.teleport(this, 33080, 33392, (short)4, (byte)5, true); //<-銀騎士村の座標
+				break; 
+				
+				case 68: case 85:
+					L1Teleport.teleport(this, 32580, 32931, (short)0, (byte)5, true); //<-說話之島の座標
+				break;
+			}
+		}
+//add end
 		if (getLevel() >= 52) { // 指定レベル
 			if (getMapId() == 777) { // 見捨てられた者たちの地(影の神殿)
 				L1Teleport.teleport(this, 34043, 32184, (short) 4, 5, true); // 象牙の塔前
@@ -3947,6 +3960,24 @@ public class L1PcInstance extends L1Character {
 
 	public void setAwakeSkillId(int i) {
 		_awakeSkillId = i;
+	}
+//waja add 施法前判斷法術
+	private ArrayList<Integer> skillList = new ArrayList<Integer>();
+
+	public void setSkillMastery(int skillid) {
+		if (!skillList.contains(skillid)) {
+			skillList.add(skillid);
+		}
+	}
+
+	public void removeSkillMastery(int skillid) {
+		if (skillList.contains(skillid)) {
+			skillList.remove(skillid);
+		}
+	}
+	
+	public boolean isSkillMastery(int skillid) {
+		return skillList.contains(skillid);
 	}
 //waja add 寵物競速
 	private int _lap = 1;

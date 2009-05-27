@@ -330,7 +330,9 @@ public class L1EquipmentSlot {
 	}
 
 	public void setMagicHelm(L1ItemInstance item) {
+//waja change 施法前判斷法術 智力敏大小風盔
 
+/*
 		if (item.getItemId() == 20013) {
 			_owner.sendPackets(new S_AddSkill(0, 0, 0, 2, 0, 4, 0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
@@ -351,10 +353,44 @@ public class L1EquipmentSlot {
 			_owner.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 		}
+*/
+		switch(item.getItemId()){
+		case 20013:
+			_owner.sendPackets(new S_AddSkill(0, 0, 0, 2, 0, 4, 0, 0, 0, 0, 0,
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			_owner.setSkillMastery(26);
+			_owner.setSkillMastery(43);
+			break;
+		case 20014:
+			_owner.sendPackets(new S_AddSkill(1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			_owner.setSkillMastery(1);
+			_owner.setSkillMastery(19);
+			break;
+		case 20015:
+			_owner.sendPackets(new S_AddSkill(0, 24, 0, 0, 0, 2, 0, 0, 0, 0, 0,
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			_owner.setSkillMastery(12);
+			_owner.setSkillMastery(13);
+			_owner.setSkillMastery(42);
+			break;
+		case 20008:
+			_owner.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0,
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			_owner.setSkillMastery(43);
+			break;
+		case 20023:
+			_owner.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0,
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			_owner.setSkillMastery(54);
+			break;
+		}
+//add end
 	}
 
 	public void removeMagicHelm(int objectId, L1ItemInstance item) {
-
+// waja change 施法前判斷法術
+/*
 		if (item.getItemId() == 20013) { // 魔法のヘルム：迅速
 			if (!SkillsTable.getInstance().spellCheck(objectId, 26)) { // フィジカルエンチャント：DEX
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 2, 0, 0, 0, 0, 0, 0,
@@ -402,6 +438,65 @@ public class L1EquipmentSlot {
 						0));
 			}
 		}
+*/
+		if (item.getItemId() == 20013) { // 魔法のヘルム：迅速
+			if (!SkillsTable.getInstance().spellCheck(objectId, 26)) { // フィジカルエンチャント：DEX
+				_owner.sendPackets(new S_DelSkill(0, 0, 0, 2, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+				//_owner.removeSkillMastery(26);
+			}
+			if (!SkillsTable.getInstance().spellCheck(objectId, 43)) { // ヘイスト
+				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0,
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+				//_owner.removeSkillMastery(43);
+			}
+		}
+		if (item.getItemId() == 20014) { // 魔法のヘルム：治癒
+			if (!SkillsTable.getInstance().spellCheck(objectId, 1)) { // ヒール
+				_owner.sendPackets(new S_DelSkill(1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+				//_owner.removeSkillMastery(1);
+			}
+			if (!SkillsTable.getInstance().spellCheck(objectId, 19)) { // エキストラヒール
+				_owner.sendPackets(new S_DelSkill(0, 0, 4, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+				//_owner.removeSkillMastery(19);
+			}
+		}
+		if (item.getItemId() == 20015) { // 魔法のヘルム：力
+			if (!SkillsTable.getInstance().spellCheck(objectId, 12)) { // エンチャントウェポン
+				_owner.sendPackets(new S_DelSkill(0, 8, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+				//_owner.removeSkillMastery(12);
+			}
+			if (!SkillsTable.getInstance().spellCheck(objectId, 13)) { // ディテクション
+				_owner.sendPackets(new S_DelSkill(0, 16, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0));
+				//_owner.removeSkillMastery(13);
+			}
+			if (!SkillsTable.getInstance().spellCheck(objectId, 42)) { // フィジカルエンチャント：STR
+				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+				//_owner.removeSkillMastery(42);
+			}
+		}
+		if (item.getItemId() == 20008) { // マイナーウィンドヘルム
+			if (!SkillsTable.getInstance().spellCheck(objectId, 43)) { // ヘイスト
+				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0,
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+				//_owner.removeSkillMastery(43);
+			}
+		}
+		if (item.getItemId() == 20023) { // ウィンドヘルム
+			if (!SkillsTable.getInstance().spellCheck(objectId, 54)) { // グレーターヘイスト
+				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 0, 32, 0, 0,
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0));
+				//_owner.removeSkillMastery(54);
+			}
+		}
+//add end
 	}
 
 }

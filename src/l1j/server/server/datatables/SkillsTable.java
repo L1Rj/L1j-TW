@@ -121,7 +121,14 @@ public class SkillsTable {
 
 	public void spellMastery(int playerobjid, int skillid, String skillname,
 			int active, int time) {
+//waja add 施法前判斷法術
+		L1PcInstance pc = (L1PcInstance) L1World.getInstance().findObject(
+				playerobjid);
 
+		if (pc != null) {
+			pc.setSkillMastery(skillid);// 記錄新學的法術
+		}
+//add end
 		if (spellCheck(playerobjid, skillid)) {
 			return;
 		}

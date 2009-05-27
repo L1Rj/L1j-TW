@@ -394,6 +394,9 @@ public final class Config {
 
 	public static int LV99_EXP;
 
+//waja add 施法前判斷法術
+	public static boolean Skillcheck;
+//add end
 	/** Configuration files */
 	public static final String SERVER_CONFIG_FILE = "./config/server.properties";
 
@@ -673,6 +676,10 @@ public final class Config {
 					"NpcDeletionTime", "10"));
 			DEFAULT_CHARACTER_SLOT = Integer.parseInt(altSettings.getProperty(
 					"DefaultCharacterSlot", "6"));
+// waja add 施法前判斷法術
+			Skillcheck = Boolean.parseBoolean(altSettings.getProperty(
+					"Skillcheck", "false"));	
+//add end
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + ALT_SETTINGS_FILE + " File.");

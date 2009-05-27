@@ -60,6 +60,13 @@ public class C_UseSkill extends ClientBasePacket {
 			return;
 		}
 
+//waja add 施法前判斷法術
+		if (Config.Skillcheck && !pc.isSkillMastery(skillId)) {
+			pc.sendPackets(new S_Disconnect());//斷線 return;
+			return;
+			}
+//add END
+
 		// 要求間隔をチェックする
 		if (Config.CHECK_SPELL_INTERVAL) {
 			int result;
