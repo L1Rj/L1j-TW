@@ -1954,3 +1954,6 @@ Update etcitem Set name_id = '底比斯沙漠 $230' Where item_id = '42088';
 Update etcitem Set name_id = '底比斯金字塔內部 $230' Where item_id = '42089';
 Update etcitem Set name_id = '底比斯歐西里斯祭壇 $230' Where item_id = '42090';
 Update etcitem Set name_id = '暴風疾走(道具欄)' Where item_id = '42501';
+
+/*20090627 中文化*/
+Update etcitem Set name_id = '指定傳送(礦物洞穴)' Where item_id = '40121';

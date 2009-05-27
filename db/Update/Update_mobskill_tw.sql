@@ -19,3 +19,7 @@ Update mobskill Set mobname = '混沌(地裂術)' Where mobid = '45625' AND actN
 Update mobskill Set mobname = '混沌(召喚混沌的司祭A)' Where mobid = '45625' AND actNo = '4';
 Update mobskill Set mobname = '混沌(召喚混沌的司祭b)' Where mobid = '45625' AND actNo = '5';
 Update mobskill Set mobname = '混沌(召喚混沌的司祭c)' Where mobid = '45625' AND actNo = '6';
+
+/* 20090527 修正移除技能後的順序*/
+Update mobskill Set actNo = '0' Where mobid = '45614' AND actNo = '3';
+Update mobskill Set actNo = '1' Where mobid = '45614' AND actNo = '5';
