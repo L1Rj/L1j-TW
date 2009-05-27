@@ -53,9 +53,9 @@
 		<Item ItemId="40068" Count="1" Chance="1" />
 		<Item ItemId="40307" Count="1" Chance="1" />
 	</TreasureBox>
-	<!--カリフの福袋 エメラルド-->
+	<!--卡立普的袋子-->
 	<TreasureBox Type="RANDOM" ItemId="49008">
-		<Item ItemId="40010" Count="3" Chance="20" />
+		<Item ItemId="40010" Count="3" Chance="20" /><!--治癒藥水-->
 		<Item ItemId="40408" Count="3" Chance="17" />
 		<Item ItemId="40508" Count="4" Chance="8" />
 		<Item ItemId="40015" Count="1" Chance="8" />
@@ -70,78 +70,78 @@
 		<Item ItemId="40444" Count="1" Chance="1" />
 		<Item ItemId="40306" Count="1" Chance="1" />
 	</TreasureBox>
-	<!--カリフの高級福袋 ダイアモンド-->
+	<!--卡立普的高級袋子-->
 	<TreasureBox Type="RANDOM" ItemId="49009">
-		<Item ItemId="40010" Count="20" Chance="15" />
-		<Item ItemId="40014" Count="2" Chance="9" />
-		<Item ItemId="40018" Count="3" Chance="9" />
-		<Item ItemId="40021" Count="2" Chance="9" />
-		<Item ItemId="40317" Count="1" Chance="9" />
-		<Item ItemId="40318" Count="3" Chance="9" />
-		<Item ItemId="40408" Count="3" Chance="9" />
-		<Item ItemId="40779" Count="2" Chance="9" />
-		<Item ItemId="40494" Count="30" Chance="9" />
-		<Item ItemId="40400" Count="2" Chance="9" />
-		<Item ItemId="40304" Count="1" Chance="1" />
-		<Item ItemId="40487" Count="1" Chance="1" />
-		<Item ItemId="40428" Count="1" Chance="1" />
-		<Item ItemId="40396" Count="1" Chance="1" />
+		<Item ItemId="40010" Count="20" Chance="15" /><!--治癒藥水-->
+		<Item ItemId="40014" Count="2" Chance="9" /><!--勇敢藥水-->
+		<Item ItemId="40018" Count="3" Chance="9" /><!--強化綠色藥水-->
+		<Item ItemId="40021" Count="2" Chance="9" /><!--濃縮終極體力恢復劑-->
+		<Item ItemId="40317" Count="1" Chance="9" /><!--磨刀石-->
+		<Item ItemId="40318" Count="3" Chance="9" /><!--魔法寶石-->
+		<Item ItemId="40408" Count="3" Chance="9" /><!--金屬塊-->
+		<Item ItemId="40779" Count="2" Chance="9" /><!--鋼鐵塊-->
+		<Item ItemId="40494" Count="30" Chance="9" /><!--純粹的米索莉塊-->
+		<Item ItemId="40400" Count="2" Chance="9" /><!--奇美拉之皮(蛇)-->
+		<Item ItemId="40304" Count="1" Chance="1" /><!--馬普勒之石-->
+		<Item ItemId="40487" Count="1" Chance="1.5" /><!--黃金金屬板-->
+		<Item ItemId="40428" Count="1" Chance="1" /><!--月光之淚-->
+		<Item ItemId="40396" Count="1" Chance="0.5" /><!--地龍鱗-->
 	</TreasureBox>
-	<!--カリフの高級福袋 ルビー-->
-	<TreasureBox Type="RANDOM" ItemId="49011">
-		<Item ItemId="40011" Count="5" Chance="15" />
-		<Item ItemId="40013" Count="5" Chance="8" />
-		<Item ItemId="40018" Count="2" Chance="8" />
-		<Item ItemId="40014" Count="2" Chance="8" />
-		<Item ItemId="40020" Count="5" Chance="8" />
-		<Item ItemId="40021" Count="2" Chance="8" />
-		<Item ItemId="40320" Count="5" Chance="8" />
-		<Item ItemId="40408" Count="4" Chance="8" />
-		<Item ItemId="40496" Count="3" Chance="8" />
-		<Item ItemId="40458" Count="2" Chance="8" />
-		<Item ItemId="40399" Count="1" Chance="8" />
-		<Item ItemId="40489" Count="1" Chance="1" />
-		<Item ItemId="40441" Count="1" Chance="1" />
-		<Item ItemId="40305" Count="1" Chance="1" />
-		<Item ItemId="40513" Count="1" Chance="1" />
-		<Item ItemId="40393" Count="1" Chance="1" />
-	</TreasureBox>
-	<!--カリフの高級福袋 サファイア-->
-	<TreasureBox Type="RANDOM" ItemId="49012">
-		<Item ItemId="40010" Count="20" Chance="15" />
-		<Item ItemId="40016" Count="2" Chance="8" />
-		<Item ItemId="40018" Count="2" Chance="8" />
-		<Item ItemId="40015" Count="2" Chance="8" />
-		<Item ItemId="40318" Count="4" Chance="8" />
-		<Item ItemId="40068" Count="2" Chance="8" />
-		<Item ItemId="40408" Count="5" Chance="8" />
-		<Item ItemId="40494" Count="40" Chance="8" />
-		<Item ItemId="40521" Count="2" Chance="8" />
-		<Item ItemId="40458" Count="1" Chance="8" />
-		<Item ItemId="40398" Count="1" Chance="8" />
-		<Item ItemId="40444" Count="1" Chance="1" />
-		<Item ItemId="40489" Count="2" Chance="1" />
-		<Item ItemId="40441" Count="1" Chance="1" />
-		<Item ItemId="40307" Count="1" Chance="1" />
-		<Item ItemId="40394" Count="1" Chance="1" />
-	</TreasureBox>
-	<!--カリフの高級福袋 エメラルド-->
+	<!--卡立普的高級袋子-->
 	<TreasureBox Type="RANDOM" ItemId="49010">
-		<Item ItemId="40011" Count="8" Chance="14" />
-		<Item ItemId="40012" Count="5" Chance="9" />
-		<Item ItemId="40016" Count="2" Chance="9" />
-		<Item ItemId="40015" Count="3" Chance="9" />
-		<Item ItemId="40014" Count="1" Chance="9" />
-		<Item ItemId="40408" Count="5" Chance="9" />
-		<Item ItemId="40508" Count="8" Chance="9" />
-		<Item ItemId="40458" Count="2" Chance="9" />
-		<Item ItemId="40779" Count="1" Chance="9" />
-		<Item ItemId="40397" Count="1" Chance="9" />
-		<Item ItemId="40515" Count="1" Chance="1" />
-		<Item ItemId="40468" Count="2" Chance="1" />
-		<Item ItemId="40444" Count="1" Chance="1" />
-		<Item ItemId="40306" Count="1" Chance="1" />
-		<Item ItemId="40395" Count="1" Chance="1" />
+		<Item ItemId="40011" Count="8" Chance="14" /><!--強力治癒藥水-->
+		<Item ItemId="40012" Count="5" Chance="9" /><!--終極治癒藥水-->
+		<Item ItemId="40016" Count="2" Chance="9" /><!--慎重藥水-->
+		<Item ItemId="40015" Count="3" Chance="9" /><!--加速魔力回覆藥水-->
+		<Item ItemId="40014" Count="1" Chance="9" /><!--勇敢藥水-->
+		<Item ItemId="40408" Count="5" Chance="9" /><!--金屬塊-->
+		<Item ItemId="40508" Count="8" Chance="9" /><!--奧裡哈魯根-->
+		<Item ItemId="40458" Count="2" Chance="9" /><!--光明的鱗片-->
+		<Item ItemId="40779" Count="1" Chance="9" /><!--鋼鐵塊-->
+		<Item ItemId="40397" Count="1" Chance="9" /><!--奇美拉之皮(龍)-->
+		<Item ItemId="40515" Count="1" Chance="1" /><!--元素石-->
+		<Item ItemId="40468" Count="2" Chance="1" /><!--銀原石-->
+		<Item ItemId="40444" Count="1" Chance="1.5" /><!--鑽石-->
+		<Item ItemId="40306" Count="1" Chance="1" /><!--伊娃之石-->
+		<Item ItemId="40395" Count="1" Chance="0.5" /><!--水龍鱗-->
+	</TreasureBox>
+	<!--卡立普的高級袋子-->
+	<TreasureBox Type="RANDOM" ItemId="49011">
+		<Item ItemId="40011" Count="5" Chance="15" /><!--強力治癒藥水-->
+		<Item ItemId="40013" Count="5" Chance="8" /><!--自我加速藥水-->
+		<Item ItemId="40018" Count="2" Chance="8" /><!--強化綠色藥水-->
+		<Item ItemId="40014" Count="2" Chance="8" /><!--勇敢藥水-->
+		<Item ItemId="40020" Count="5" Chance="8" /><!--濃縮強力體力恢復劑-->
+		<Item ItemId="40021" Count="2" Chance="8" /><!--濃縮終極體力恢復劑-->
+		<Item ItemId="40320" Count="5" Chance="8" /><!--一級黑魔石-->
+		<Item ItemId="40408" Count="4" Chance="8" /><!--金屬塊-->
+		<Item ItemId="40496" Count="3" Chance="8" /><!--粗糙的米索莉塊-->
+		<Item ItemId="40458" Count="2" Chance="8" /><!--金屬蜈蚣的牙-->
+		<Item ItemId="40399" Count="1" Chance="8" /><!--奇美拉之皮(獅子)-->
+		<Item ItemId="40489" Count="1" Chance="1" /><!--黃金原石-->
+		<Item ItemId="40441" Count="1" Chance="1.5" /><!--白金原石-->
+		<Item ItemId="40305" Count="1" Chance="1.5" /><!--帕格里奧之石-->
+		<Item ItemId="40513" Count="1" Chance="0.5" /><!--食人巨魔的血-->
+		<Item ItemId="40393" Count="1" Chance="0.5" /><!--火龍鱗-->
+	</TreasureBox>
+	<!--卡立普的高級袋子-->
+	<TreasureBox Type="RANDOM" ItemId="49012">
+		<Item ItemId="40010" Count="20" Chance="15" /><!--治癒藥水-->
+		<Item ItemId="40016" Count="2" Chance="8" /><!--慎重藥水-->
+		<Item ItemId="40018" Count="2" Chance="8" /><!--強化綠色藥水-->
+		<Item ItemId="40015" Count="2" Chance="8" /><!--加速魔力回覆藥水-->
+		<Item ItemId="40318" Count="4" Chance="8" /><!--魔法寶石-->
+		<Item ItemId="40068" Count="2" Chance="8" /><!--精靈餅乾-->
+		<Item ItemId="40408" Count="5" Chance="8" /><!--金屬塊-->
+		<Item ItemId="40494" Count="40" Chance="8" /><!--金屬塊-->
+		<Item ItemId="40521" Count="2" Chance="8" /><!--純粹的米索莉塊-->
+		<Item ItemId="40458" Count="1" Chance="8" /><!--光明的鱗片-->
+		<Item ItemId="40398" Count="1" Chance="8" /><!--奇美拉之皮(山羊)-->
+		<Item ItemId="40444" Count="1" Chance="1" /><!--黑色米索莉原石-->
+		<Item ItemId="40489" Count="2" Chance="1" /><!--黃金原石-->
+		<Item ItemId="40441" Count="1" Chance="1" /><!--白金原石-->
+		<Item ItemId="40307" Count="1" Chance="1.5" /><!--沙哈之石-->
+		<Item ItemId="40394" Count="1" Chance="0.5" /><!--風龍鱗-->
 	</TreasureBox>
 	<!--ドルーガ家1世の家宝-->
 	<TreasureBox Type="RANDOM" ItemId="40623">
@@ -411,7 +411,7 @@
 		<Item ItemId="40339" Count="1" Chance="3" />
 		<Item ItemId="40340" Count="1" Chance="3" />
 	</TreasureBox>
-	<!--無限の矢筒-->
+	<!--無限箭桶-->
 	<TreasureBox Type="RANDOM" ItemId="40330">
 		<Item ItemId="40744" Count="4000" Chance="80" />
 		<Item ItemId="40746" Count="1000" Chance="10" />
@@ -644,7 +644,7 @@
 		<Item ItemId="140087" Count="1" Chance="1" />	<!--BDAI-->
 		<Item ItemId="140100" Count="3" Chance="3" />	<!--Bテレ-->
 	</TreasureBox>
-	<!--ラスタバド補給品の箱-->
+	<!--拉斯塔巴德補給箱-->
 	<TreasureBox Type="RANDOM" ItemId="41244">
 		<Item ItemId="6" Count="1" Chance="1" />		<!--ラスタバドダガー-->
 		<Item ItemId="10" Count="1" Chance="1" />		<!--ラスタバドブレード-->
@@ -675,16 +675,24 @@
 		<Item ItemId="40746" Count="40" Chance="2" />	<!--ミスリルの矢-->
 		<Item ItemId="40746" Count="50" Chance="1" />	<!--ミスリルの矢-->
 	</TreasureBox>
-	<!--勇者のパンプキン袋-->
+	<!--勇者的南瓜袋子-->
 	<TreasureBox Type="RANDOM" ItemId="41308">
-		<Item ItemId="41251" Count="1" Chance="10" />
-		<Item ItemId="40010" Count="30" Chance="10" />
-		<Item ItemId="40010" Count="15" Chance="20" />
-		<Item ItemId="40011" Count="15" Chance="20" />
-		<Item ItemId="40012" Count="15" Chance="20" />
-		<Item ItemId="40088" Count="6" Chance="20" />
+		<Item ItemId="41251" Count="1" Chance="3" /> <!--骷髏聖盃-->
+		<Item ItemId="49143" Count="1" Chance="3" /> <!--勇氣結晶-->
+		<Item ItemId="40087" Count="1" Chance="3" /> <!--對武器施法的卷軸-->
+		<Item ItemId="40074" Count="1" Chance="3" /> <!--對盔甲施法的卷軸-->
+		<Item ItemId="40318" Count="5" Chance="8" /> <!--魔法寶石-->
+		<Item ItemId="40318" Count="10" Chance="5" /> <!--魔法寶石-->
+		<Item ItemId="40319" Count="10" Chance="5" /> <!--精靈玉-->
+		<Item ItemId="40010" Count="30" Chance="10" /> <!--治癒藥水-->
+		<Item ItemId="40010" Count="15" Chance="10" /> <!--治癒藥水-->
+		<Item ItemId="40011" Count="8" Chance="10" /> <!--強力治癒藥水-->
+		<Item ItemId="40011" Count="16" Chance="10" /> <!--強力治癒藥水-->
+		<Item ItemId="40012" Count="4" Chance="10" /> <!--終極治癒藥水-->
+		<Item ItemId="40013" Count="8" Chance="10" /> <!--自我加速藥水-->
+		<Item ItemId="40088" Count="2" Chance="10" /> <!--變形捲軸-->
 	</TreasureBox>
-	<!--アルカの魔法の袋-->
+	<!--魔法娃娃的袋子-->
 	<TreasureBox Type="RANDOM" ItemId="41247">
 		<Item ItemId="41248" Count="1" Chance="16.6" />
 		<Item ItemId="41249" Count="1" Chance="16.6" />
