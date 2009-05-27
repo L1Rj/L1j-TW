@@ -396,6 +396,8 @@ public final class Config {
 
 //waja add 施法前判斷法術
 	public static boolean Skillcheck;
+//waja add 怪物血條開關	
+	public static boolean SHOW_HP_BAR;
 //add end
 	/** Configuration files */
 	public static final String SERVER_CONFIG_FILE = "./config/server.properties";
@@ -676,9 +678,12 @@ public final class Config {
 					"NpcDeletionTime", "10"));
 			DEFAULT_CHARACTER_SLOT = Integer.parseInt(altSettings.getProperty(
 					"DefaultCharacterSlot", "6"));
-// waja add 施法前判斷法術
+// =waja add 施法前判斷法術
 			Skillcheck = Boolean.parseBoolean(altSettings.getProperty(
-					"Skillcheck", "false"));	
+					"Skillcheck", "false"));
+//waja add 怪物血條開關
+			SHOW_HP_BAR = Boolean.parseBoolean(altSettings.getProperty(
+					"ShowHPBar", "false"));
 //add end
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
