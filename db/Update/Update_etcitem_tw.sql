@@ -1806,6 +1806,7 @@ Update etcitem Set name = '瞬間移動卷軸' Where item_id = '240100';
 /* name_id 針對日文部分做出修正 採現有的中文翻譯為主 */
 Update etcitem Set name_id = '$1672' Where item_id = '40073'; /*復活蛋*/
 Update etcitem Set name_id = '大洞穴移動卷軸' Where item_id = '40083';
+Update etcitem Set name_id = '指定傳送(礦物洞穴)' Where item_id = '40121';
 Update etcitem Set name_id = '指定傳送(黃昏山脈)' Where item_id = '40801';
 Update etcitem Set name_id = '指定傳送(亞丁城庭園)' Where item_id = '40802';
 Update etcitem Set name_id = '指定傳送(鏡子森林)' Where item_id = '40803';
@@ -1954,6 +1955,3 @@ Update etcitem Set name_id = '底比斯沙漠 $230' Where item_id = '42088';
 Update etcitem Set name_id = '底比斯金字塔內部 $230' Where item_id = '42089';
 Update etcitem Set name_id = '底比斯歐西里斯祭壇 $230' Where item_id = '42090';
 Update etcitem Set name_id = '暴風疾走(道具欄)' Where item_id = '42501';
-
-/*20090627 中文化*/
-Update etcitem Set name_id = '指定傳送(礦物洞穴)' Where item_id = '40121';
