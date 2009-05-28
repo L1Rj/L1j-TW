@@ -217,9 +217,10 @@ public class DropTable {
 		Random random = new Random();
 		int randomInt;
 		int chanceHate;
+		int itemId;
 		for (int i = inventory.getSize(); i > 0; i--) {
 			item = inventory.getItems().get(0);
-			int itemId = item.getItem().getItemId();
+			itemId = item.getItemId();
 			boolean isGround = false;
 			if (item.getItem().getType2() == 0 && item.getItem().getType() == 2) { // light系アイテム
 				item.setNowLighting(false);
@@ -234,14 +235,15 @@ public class DropTable {
 					if (chanceHate > randomInt) {
 						acquisitor = (L1Character) acquisitorList.get(j);
 						if (itemId >= 40131 && itemId <= 40135) {
-							if (!(acquisitor instanceof L1PcInstance)) {
-								inventory.removeItem(item, item.getCount());
+							if (!(acquisitor instanceof L1PcInstance)
+									|| hateList.size() > 1) {
+								targetInventory = null;
 								break;
 							}
-							L1PcInstance pc = (L1PcInstance) acquisitor;
-							if (pc.getQuest().get_step(L1Quest
+							player = (L1PcInstance) acquisitor;
+							if (player.getQuest().get_step(L1Quest
 									.QUEST_LYRA) != 1) {
-								inventory.removeItem(item, item.getCount());
+								targetInventory = null;
 								break;
 							}
 						}
@@ -348,9 +350,11 @@ public class DropTable {
 						npc.getX() + x, npc.getY() + y, npc.getMapId());
 				isGround = true;
 			}
-			if (itemId >= 40131 && itemId <= 40135 && isGround) {
-				inventory.removeItem(item, item.getCount());
-				continue;
+			if (itemId >= 40131 && itemId <= 40135) {
+				if (isGround || targetInventory == null) {
+					inventory.removeItem(item, item.getCount());
+					continue;
+				}
 			}
 			inventory.tradeItem(item, item.getCount(), targetInventory);
 		}

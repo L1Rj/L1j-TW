@@ -365,6 +365,7 @@ public class L1Inventory extends L1Object {
 			carryItem.setChargeCount(item.getChargeCount());
 			carryItem.setRemainingTime(item.getRemainingTime());
 			carryItem.setLastUsed(item.getLastUsed());
+			carryItem.setBless(item.getBless());
 		}
 		return inventory.storeTradeItem(carryItem);
 	}

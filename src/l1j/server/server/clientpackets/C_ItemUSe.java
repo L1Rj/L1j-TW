@@ -854,7 +854,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 140506) { // 祝福されたエントの實
 					UseHeallingPotion(pc, 80, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 40043) { // 兔の肝
+				} else if (itemId == 40043) { // 兔子的肝
 					UseHeallingPotion(pc, 600, 189);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41403) { // クジャクの食糧
@@ -978,7 +978,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.setCurrentMp(pc.getCurrentMp()
 							+ (80 + RandomArrayList.getArrayshortList((short) 21))); // 80~100
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 41412) { // 金のチョンズ
+				} else if (itemId == 41412) { // 金粽子
 					pc.sendPackets(new S_ServerMessage(338, "$1084")); // あなたの%0が回復していきます。
 					pc.setCurrentMp(pc.getCurrentMp()
 							+ (5 + RandomArrayList.getArrayshortList((short) 16))); // 5~20
@@ -2754,7 +2754,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					useFurnitureItem(pc, itemId, itemObjid);
 				} else if (itemId == 41401) { // 家具除去ワンド
 					useFurnitureRemovalWand(pc, spellsc_objid, l1iteminstance);
-				} else if (itemId == 41411) { // 銀のチョンズ
+				} else if (itemId == 41411) { // 銀粽子
 					UseHeallingPotion(pc, 10, 189);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41345) { // 酸性の乳液

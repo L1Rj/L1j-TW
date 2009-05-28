@@ -2147,6 +2147,9 @@ public class L1PcInstance extends L1Character {
 		if (isGhost()) {
 			return;
 		}
+		if (isInCharReset()) {
+			return;
+		}
 
 		CharacterTable.getInstance().storeCharacter(this);
 	}

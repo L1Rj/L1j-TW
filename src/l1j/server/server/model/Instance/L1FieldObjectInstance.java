@@ -53,7 +53,7 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 				int goalCount = L1HauntedHouse.getInstance().getGoalCount();
 				if (winnersCount == goalCount + 1) {
 					L1ItemInstance item = ItemTable.getInstance()
-							.createItem(41308); // 勇者のパンプキン袋
+							.createItem(41308); // 勇者的南瓜袋子
 					int count = 1;
 					if (item != null) {
 						if (pc.getInventory().checkAddItem(item, count) ==
@@ -69,7 +69,7 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 					L1HauntedHouse.getInstance().setGoalCount(goalCount + 1);
 					L1HauntedHouse.getInstance().removeMember(pc);
 					L1ItemInstance item = ItemTable.getInstance()
-							.createItem(41308); // 勇者のパンプキン袋
+							.createItem(41308); // 勇者的南瓜袋子
 					int count = 1;
 					if (item != null) {
 						if (pc.getInventory().checkAddItem(item, count) ==

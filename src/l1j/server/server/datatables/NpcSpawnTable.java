@@ -73,34 +73,34 @@ public class NpcSpawnTable {
 			pstm = con.prepareStatement("SELECT * FROM spawnlist_npc");
 			rs = pstm.executeQuery();
 			while (rs.next()) {
-				if (Config.ALT_GMSHOP == false) {
+				if (Config.ALT_GMSHOP == false) {//GM商店
 					int npcid = rs.getInt(1);
 					if (npcid >= Config.ALT_GMSHOP_MIN_ID
 							&& npcid <= Config.ALT_GMSHOP_MAX_ID) {
 						continue;
 					}
 				}
-				if (Config.ALT_HALLOWEENIVENT == false) {
+				if (Config.ALT_HALLOWEENIVENT == false) {//南瓜怪任務
 					int npcid = rs.getInt("id");
 					if (npcid >= 130852 && npcid <= 130862 || npcid >= 26656
 							&& npcid <= 26734) {
 						continue;
 					}
 				}
-				if (Config.ALT_JPPRIVILEGED == false) {
+				if (Config.ALT_JPPRIVILEGED == false) {//日本特典
 					int npcid = rs.getInt("id");
 					if (npcid >= 1310368 && npcid <= 1310379) {
 						continue;
 					}
 				}
-				if (Config.ALT_TALKINGSCROLLQUEST == false) {
+				if (Config.ALT_TALKINGSCROLLQUEST == false) { //說話任務
 					int npcid = rs.getInt("id");
 					if (npcid >= 87537 && npcid <= 87551 || npcid >= 1310387
 							&& npcid <= 1310389) {
 						continue;
 					}
 				}
-				if (Config.ALT_TALKINGSCROLLQUEST == true) {
+				if (Config.ALT_TALKINGSCROLLQUEST == true) {//說話任務
 					int npcid = rs.getInt("id");
 					if (npcid >= 90066 && npcid <= 90069) {
 						continue;
@@ -150,8 +150,8 @@ public class NpcSpawnTable {
 			SQLUtil.close(con);
 		}
 
-		_log.config("NPC配置清單 " + _spawntable.size() + "件");
-		_log.fine("NPC總數 " + spawnCount + "件");
+		_log.config("NPC配置清單 " + _spawntable.size() + "個");
+		_log.fine("NPC總數 " + spawnCount + "個");
 	}
 
 	public void storeSpawn(L1PcInstance pc, L1Npc npc) {
