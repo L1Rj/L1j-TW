@@ -29,7 +29,7 @@ import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_CharReset;
-import l1j.server.server.serverpackets.S_Disconnect;
+import l1j.server.server.serverpackets.S_Disconnect;//waja add 檢查角色素質狀態
 import l1j.server.server.serverpackets.S_OwnCharStatus;
 import l1j.server.server.utils.CalcInitHpMp;
 import l1j.server.server.utils.CalcStat;
@@ -56,6 +56,11 @@ public class C_CharReset extends ClientBasePacket {
 	public C_CharReset(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
 		L1PcInstance pc = clientthread.getActiveChar();
+//waja add 檢查角色素質狀態
+		if(!pc.isInCharReset()){ //如果不是重置狀態
+			return;
+		}
+//add end
 		int stage = readC();
 
 		if (stage == 0x01) { // 0x01:キャラクター初期化
@@ -65,6 +70,14 @@ public class C_CharReset extends ClientBasePacket {
 			int dex = readC();
 			int con = readC();
 			int cha = readC();
+//waja add 檢查角色素質狀態 加入初始化判斷
+			int statusAmount = str + intel + wis
+				+ dex + con + cha;
+			if (statusAmount != 75) {
+				pc.sendPackets(new S_Disconnect());
+				return;
+			}
+//add end
 			int hp = CalcInitHpMp.calcInitHp(pc);
 			int mp = CalcInitHpMp.calcInitMp(pc);
 			pc.sendPackets(new S_CharReset(pc, 1, hp, mp, 10, str, intel, wis,
@@ -132,10 +145,6 @@ public class C_CharReset extends ClientBasePacket {
 			pc.addBaseDex((byte) (readC() - pc.getBaseDex()));
 			pc.addBaseCon((byte) (readC() - pc.getBaseCon()));
 			pc.addBaseCha((byte) (readC() - pc.getBaseCha()));
-//waja add 愚蠢的素質超過35斷線
-			if (pc.getBaseStr() > 35 || pc.getBaseInt() > 35 || pc.getBaseWis() > 35 || pc.getBaseDex() > 35 || pc.getBaseCon() > 35 || pc.getBaseCha() > 35);
-			{ pc.sendPackets(new S_Disconnect());} // 斷線
-//add end
 			saveNewCharStatus(pc);
 		}
 	}
