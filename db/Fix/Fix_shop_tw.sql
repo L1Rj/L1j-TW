@@ -291,6 +291,7 @@ Update shop Set purchasing_price = '100' Where npc_id = '70016' And item_id = '4
 Update shop Set purchasing_price = '35' Where npc_id = '70016' And item_id = '40017';
 Update shop Set purchasing_price = '750' Where npc_id = '70016' And item_id = '40018';
 Update shop Set purchasing_price = '25' Where npc_id = '70016' And item_id = '400126';
+Update shop Set purchasing_price = '6000' Where npc_id = '70016' And item_id = '148';
 
 Insert Into `shop` Values
 (70016, 20011, 32, -1, 0, 1500), /* 抗魔法頭盔 */

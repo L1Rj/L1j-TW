@@ -46,3 +46,6 @@ Update weapon Set dmgmodifier = '11' Where item_id = '203';
 
 /*20090526修正雙手劍(依照天透)*/
 Update weapon Set dmgmodifier = '3' Where item_id = '100052';
+
+/*20090527 武器使用修正(依照天透)*/
+Update weapon Set use_dragonknight = '1' Where item_id = '217';
