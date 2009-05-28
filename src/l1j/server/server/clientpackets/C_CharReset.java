@@ -29,6 +29,7 @@ import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_CharReset;
+import l1j.server.server.serverpackets.S_Disconnect;
 import l1j.server.server.serverpackets.S_OwnCharStatus;
 import l1j.server.server.utils.CalcInitHpMp;
 import l1j.server.server.utils.CalcStat;
@@ -131,6 +132,10 @@ public class C_CharReset extends ClientBasePacket {
 			pc.addBaseDex((byte) (readC() - pc.getBaseDex()));
 			pc.addBaseCon((byte) (readC() - pc.getBaseCon()));
 			pc.addBaseCha((byte) (readC() - pc.getBaseCha()));
+//waja add 愚蠢的素質超過35斷線
+			if (pc.getBaseStr() > 35 || pc.getBaseInt() > 35 || pc.getBaseWis() > 35 || pc.getBaseDex() > 35 || pc.getBaseCon() > 35 || pc.getBaseCha() > 35);
+			{ pc.sendPackets(new S_Disconnect());} // 斷線
+//add end
 			saveNewCharStatus(pc);
 		}
 	}
