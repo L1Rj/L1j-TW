@@ -72,5 +72,10 @@ Insert Into `mobskill` Values
  delete from mobskill where mobid = '45614' AND SkillId = '10071' ;
  delete from mobskill where mobid = '45614' AND SkillId = '44' ;
  delete from mobskill where mobid = '45614' AND SkillId = '10019' ;
-
+ 
+ /*20090529移除天透沒有的怪物技能*/
+  delete from mobskill where mobid = '45416' AND SkillId = '47' ;
+  delete from mobskill where mobid = '45418' AND SkillId = '47' ;
+  delete from mobskill where mobid = '45806' AND SkillId = '6' ;
+  delete from mobskill where mobid = '45874' AND SkillId = '10080' ;
  
