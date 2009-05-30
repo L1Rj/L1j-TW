@@ -249,8 +249,8 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == 49092 // 歪みのコア
 				|| itemId == 41426 // 封印捲軸
 				|| itemId == 41427 // 解封印捲軸
-				|| itemId == 30001 //waja add 裝備保護卷軸
-				|| itemId == 49148 //waja add 飾品強化卷軸
+				|| itemId == 30001 // 裝備保護卷軸
+				|| itemId == 49148 // 飾品強化卷軸
 					) {
 			l = readD();
 		} else if (itemId == 140100 || itemId == 40100 || itemId == 40099
@@ -407,9 +407,8 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						FailureEnchant(pc, l1iteminstance1, client);
 					}
-//waja add 裝備保護卷軸
 				}
-					} else if (itemId == 30001) {
+					} else if (itemId == 30001) { //裝備保護卷軸
 				if	(l1iteminstance1 != null){
 					if	(l1iteminstance1.getItem().get_safeenchant() <= -1){
 						pc.sendPackets(new S_ServerMessage(1309));
@@ -428,8 +427,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().removeItem(l1iteminstance, 1);
 					}
 				}
-//飾品強化卷軸
-				} else if (itemId == 49148) {
+				} else if (itemId == 49148) {// 飾品強化卷軸
 					if (l1iteminstance1.getItem().getType2() != 2) {
 						pc.sendPackets(new S_ServerMessage(79));
 						return;
@@ -553,7 +551,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						storage.updateMpr(l1iteminstance1);
 						pc.getInventory().removeItem(l1iteminstance, 1);// 刪除道具
 				}
-//end add
 			} else if (itemId == 40078
 					|| itemId == L1ItemId.SCROLL_OF_ENCHANT_ARMOR
 					|| itemId == 40129 || itemId == 140129
@@ -928,7 +925,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
-//waja add 法師專用 紅酒
 				}else if (itemId == 40039) { // 紅酒
 					if (pc.isWizard()) {
 						useBravePotion(pc, itemId);
@@ -936,7 +932,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
-//黑妖專用  威士忌
 				}else if (itemId == 40040) { // 強化ブレイブポーション
 					if (pc.isDarkelf()) {
 						useBravePotion(pc, itemId);
@@ -944,7 +939,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
-//add end
 				} else if (itemId == 49158) {//幻術&龍騎  生命之樹果實
 					if ((pc.isDragonKnight())|| (pc.isIllusionist())) {
 						useBravePotion(pc, itemId);
@@ -3031,9 +3025,9 @@ public class C_ItemUSe extends ClientBasePacket {
 
 	private void SuccessEnchant(L1PcInstance pc, L1ItemInstance item,
 			ClientThread client, int i) {
-//waja add 裝備保護卷軸
-		item.setproctect(false);
-//add end
+
+		item.setproctect(false);// 裝備保護卷軸
+
 		String s = "";
 		String sa = "";
 		String sb = "";
@@ -3217,7 +3211,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 	private void FailureEnchant(L1PcInstance pc, L1ItemInstance item,
 			ClientThread client) {
-//waja add 裝備保護卷軸
+// 裝備保護卷軸
 		if (item.getproctect() == true){
 			if(item.getItem().getType2()==2 && item.isEquipped()) {
 				pc.addAc(+item.getEnchantLevel());
@@ -3229,7 +3223,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(1310));
 			return;
 		}
-//add end
+
 		String s = "";
 		String sa = "";
 		int itemType = item.getItem().getType2();
@@ -3471,7 +3465,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			time = 300;
 		} else if (item_id == L1ItemId.B_POTION_OF_EMOTION_BRAVERY) { // 祝福されたブレイブポーション
 			time = 350;
-		} else if (item_id == 49158) { // waja add 生命之樹果實
+		} else if (item_id == 49158) { // 生命之樹果實
 			if (pc.hasSkillEffect(STATUS_BRAVE)) { // 名誉のコインとは重複しない
 				pc.killSkillEffectTimer(STATUS_BRAVE);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
@@ -3547,8 +3541,8 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 1, 0));
 			pc.setSkillEffect(STATUS_BRAVE, time * 1000);
 		}
-		pc.sendPackets(new S_SkillSound(pc.getId(), 751));//waja 改回(勇水無特效)
-		pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));//waja 改回
+		pc.sendPackets(new S_SkillSound(pc.getId(), 751));// 勇水特效
+		pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));// 勇水特效
 		pc.setBraveSpeed(1);
 	}
 
@@ -5442,7 +5436,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.startHpRegeneration();
 			pc.startMpRegeneration();
 			pc.startMpRegenerationByDoll();
-			pc.startHpRegenerationByDoll();//waja add 魔法娃娃回血功能
+			pc.startHpRegenerationByDoll();// 魔法娃娃回血功能
 		}
 	}
 
@@ -5826,11 +5820,9 @@ public class C_ItemUSe extends ClientBasePacket {
 			} else if (itemId == 49039) {
 				npcId = 80131;
 				dollType = L1DollInstance.DOLLTYPE_GOLEM;
-// waja add 魔法娃娃：希爾黛絲
 			} else if (itemId == 31001) {// 魔法娃娃：希爾黛絲
 				npcId = 90001;
 				dollType = L1DollInstance.DOLLTYPE_SEADANCER;
-//add end
 			}
 			L1Npc template = NpcTable.getInstance().getTemplate(npcId);
 			doll = new L1DollInstance(template, pc, dollType, itemObjectId);

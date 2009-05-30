@@ -94,7 +94,7 @@ public class C_CreateChar extends ClientBasePacket {
 
 		if (client.getAccount().countCharacters() >= maxAmount) {
 			_log.fine("account: " + client.getAccountName()
-					+ " " + maxAmount + "超過可創造角色數量。");
+					+ " " + maxAmount + "超過可建立角色數量。");
 			S_CharCreateStatus s_charcreatestatus1 = new S_CharCreateStatus(
 					S_CharCreateStatus.REASON_WRONG_AMOUNT);
 			client.sendPacket(s_charcreatestatus1);

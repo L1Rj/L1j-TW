@@ -72,7 +72,7 @@ public abstract class CharactersItemStorage {
 
 	private static CharactersItemStorage _instance;
 
-//waja add 飾品強化卷軸
+// 飾品強化卷軸
 	public abstract void updateFireMr(L1ItemInstance item)
 	throws Exception;
 	
@@ -99,5 +99,4 @@ public abstract class CharactersItemStorage {
 	
 	public abstract void updateMpr(L1ItemInstance item)
 	throws Exception;
-//add end
 }

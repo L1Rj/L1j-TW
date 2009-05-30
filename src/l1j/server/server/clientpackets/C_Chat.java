@@ -67,10 +67,9 @@ public class C_Chat extends ClientBasePacket {
 				return;
 			}
 			// GMコマンド
-//waja change & add
-//			if (chatText.startsWith(".")) {
-				if (chatText.startsWith(".") && (pc.isGm())) { 
-//add end
+
+//			if (chatText.startsWith(".")) {//waja change & add
+				if (chatText.startsWith(".") && (pc.isGm())) {
 				String cmd = chatText.substring(1);
 				GMCommands.getInstance().handleCommands(pc, cmd);
 				return;

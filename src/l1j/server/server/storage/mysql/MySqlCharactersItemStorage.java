@@ -74,17 +74,15 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 				item.setRemainingTime(rs.getInt("remaining_time"));
 				item.setLastUsed(rs.getTimestamp("last_used"));
 				item.setBless(rs.getInt("bless"));
-//waja add 飾品強化卷軸
-				item.setFireMr(rs.getInt("firemr"));
-				item.setWaterMr(rs.getInt("watermr"));
-				item.setEarthMr(rs.getInt("earthmr"));
-				item.setWindMr(rs.getInt("windmr"));
-				item.setaddSp(rs.getInt("addsp"));
-				item.setaddHp(rs.getInt("addhp"));
-				item.setaddMp(rs.getInt("addmp"));
-				item.setHpr(rs.getInt("hpr"));
-				item.setMpr(rs.getInt("mpr"));	
-//add end
+				item.setFireMr(rs.getInt("firemr"));// 飾品強化卷軸
+				item.setWaterMr(rs.getInt("watermr"));// 飾品強化卷軸
+				item.setEarthMr(rs.getInt("earthmr"));// 飾品強化卷軸
+				item.setWindMr(rs.getInt("windmr"));// 飾品強化卷軸
+				item.setaddSp(rs.getInt("addsp"));// 飾品強化卷軸
+				item.setaddHp(rs.getInt("addhp"));// 飾品強化卷軸
+				item.setaddMp(rs.getInt("addmp"));// 飾品強化卷軸
+				item.setHpr(rs.getInt("hpr"));// 飾品強化卷軸
+				item.setMpr(rs.getInt("mpr"));// 飾品強化卷軸
 				item.getLastStatus().updateAll();
 				items.add(item);
 			}
@@ -118,17 +116,15 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 			pstm.setInt(10, item.getRemainingTime());
 			pstm.setTimestamp(11, item.getLastUsed());
 			pstm.setInt(12, item.getBless());
-//waj add 飾品強化卷軸
-			pstm.setInt(13, item.getFireMr());
-			pstm.setInt(14, item.getWaterMr());
-			pstm.setInt(15, item.getEarthMr());
-			pstm.setInt(16, item.getWindMr());
-			pstm.setInt(17, item.getaddSp());
-			pstm.setInt(18, item.getaddHp());
-			pstm.setInt(19, item.getaddMp());
-			pstm.setInt(20, item.getHpr());
-			pstm.setInt(21, item.getMpr());
-//add end
+			pstm.setInt(13, item.getFireMr());// 飾品強化卷軸
+			pstm.setInt(14, item.getWaterMr());// 飾品強化卷軸
+			pstm.setInt(15, item.getEarthMr());// 飾品強化卷軸
+			pstm.setInt(16, item.getWindMr());// 飾品強化卷軸
+			pstm.setInt(17, item.getaddSp());// 飾品強化卷軸
+			pstm.setInt(18, item.getaddHp());// 飾品強化卷軸
+			pstm.setInt(19, item.getaddMp());// 飾品強化卷軸
+			pstm.setInt(20, item.getHpr());// 飾品強化卷軸
+			pstm.setInt(21, item.getMpr());// 飾品強化卷軸
 			pstm.execute();
 
 		} catch (SQLException e) {

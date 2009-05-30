@@ -39,7 +39,7 @@ public class C_CheckPK extends ClientBasePacket {
 
 		L1PcInstance player = clientthread.getActiveChar();
 		player.sendPackets(new S_ServerMessage(562, String.valueOf(player
-				.get_PKcount()))); // 現在のPK回數は%0です。
+				.get_PKcount()))); // 目前PK次數。
 	}
 
 	@Override
