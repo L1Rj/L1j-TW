@@ -2095,5 +2095,22 @@ public class L1NpcInstance extends L1Character {
 					npcChat.getRepeatInterval());
 		}
 	}
+//waja add 妖森守護神道具控制 by seroidv
+	private boolean _isDropitems = false; 
+	public boolean isDropitems() {
+	return _isDropitems;
+	} 
 
+	public void setDropItems(boolean i) {
+	_isDropitems = i;
+	}
+	
+	private boolean _forDropitems = false;
+	public boolean forDropitems() {
+	return _forDropitems;
+	}
+	public void giveDropItems(boolean i) {
+	_forDropitems = i;
+	}
+//add end
 }

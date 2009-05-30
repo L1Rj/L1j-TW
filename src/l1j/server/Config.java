@@ -265,6 +265,12 @@ public final class Config {
 
 	public static int DEFAULT_CHARACTER_SLOT;
 
+	public static boolean Skillcheck;// 施法前判斷法術
+	
+	public static boolean SHOW_HP_BAR;// 怪物血條
+	
+	public static int GDROPITEM_TIME;// 妖森道具掉落時間控制
+
 	/** CharSettings control */
 	public static int PRINCE_MAX_HP;
 
@@ -394,11 +400,6 @@ public final class Config {
 
 	public static int LV99_EXP;
 
-//waja add 施法前判斷法術
-	public static boolean Skillcheck;
-//waja add 怪物血條開關	
-	public static boolean SHOW_HP_BAR;
-//add end
 	/** Configuration files */
 	public static final String SERVER_CONFIG_FILE = "./config/server.properties";
 
@@ -678,13 +679,15 @@ public final class Config {
 					"NpcDeletionTime", "10"));
 			DEFAULT_CHARACTER_SLOT = Integer.parseInt(altSettings.getProperty(
 					"DefaultCharacterSlot", "6"));
-//waja add 施法前判斷法術
+
 			Skillcheck = Boolean.parseBoolean(altSettings.getProperty(
-					"Skillcheck", "false"));
-//waja add 怪物血條開關
+					"Skillcheck", "false"));// 施法前判斷法術
+
 			SHOW_HP_BAR = Boolean.parseBoolean(altSettings.getProperty(
-					"ShowHPBar", "false"));
-//add end
+					"ShowHPBar", "false"));// 怪物血條
+
+			GDROPITEM_TIME = Integer.parseInt(altSettings.getProperty("GDropItemTime", "15"));// 妖森守護神道具時間控制
+
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + ALT_SETTINGS_FILE + " File.");
@@ -960,6 +963,8 @@ public final class Config {
 			NPC_DELETION_TIME = Integer.valueOf(pValue);
 		} else if (pName.equalsIgnoreCase("DefaultCharacterSlot")) {
 			DEFAULT_CHARACTER_SLOT = Integer.valueOf(pValue);
+		} else if (pName.equalsIgnoreCase("GDropItemTime")) {//妖森守護神道具控制
+		GDROPITEM_TIME = Integer.parseInt(pValue);
 		}
 		// charsettings.properties
 		else if (pName.equalsIgnoreCase("PrinceMaxHP")) {
