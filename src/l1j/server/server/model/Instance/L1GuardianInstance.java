@@ -164,7 +164,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 */
 				try {
 //					int chance = 0;
-					int npcId = getNpcTemplate().get_npcId();
+//					int npcId = getNpcTemplate().get_npcId();
 					String npcName = getNpcTemplate().get_name();
 					String itemName = "";
 					int itemCount = 0;
@@ -174,7 +174,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					L1Item item40506 = ItemTable.getInstance().getTemplate(40506);
 					L1Item item40507 = ItemTable.getInstance().getTemplate(40507);
 					L1Item item40519 = ItemTable.getInstance().getTemplate(40519);
-					if (npcId == 70848) { // 安特
+					if (PT_Npc_id == 70848) { // 安特
 					if(_inventory.checkItem(40499)
 					&& !_inventory.checkItem(40505)) { // 蘑菇汁 換 安特之樹皮
 					itemName = item40505.getName();
@@ -239,7 +239,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					}
 					}
 					}
-					if (npcId == 70850) { // 潘
+					if (PT_Npc_id == 70850) { // 潘
 					if(_inventory.checkItem(40519)) { // 潘的鬃毛
 //					chance = _random.nextInt(100) + 1;
 					if (chance <= 25) {
@@ -260,7 +260,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					}
 					}
 					}
-					if (npcId == 70846) { // 芮克妮
+					if (PT_Npc_id == 70846) { // 芮克妮
 					if(_inventory.checkItem(40507)) { // 安特之樹枝 換 芮克妮的網
 					itemName = item40503.getName();
 					itemCount = _inventory.countItems(40507);
@@ -524,14 +524,14 @@ public class L1GuardianInstance extends L1NpcInstance {
 		if(!_inventory.checkItem(40505)
 		&& !_inventory.checkItem(40506)
 		&& !_inventory.checkItem(40507)){
-		_inventory.storeItem(40506, 1);
-		_inventory.storeItem(40507, 66);
-		_inventory.storeItem(40505, 8);
+		_inventory.storeItem(40506, 1);//水果
+		_inventory.storeItem(40507, 66);//樹枝
+		_inventory.storeItem(40505, 8);//樹皮
 		}
 		}
 		if (npcId == 70850) { // 潘
 		if(!_inventory.checkItem(40519)) {
-		_inventory.storeItem(40519, 30);
+		_inventory.storeItem(40519, 30);//潘毛
 		}
 		}
 		setDropItems(true);
