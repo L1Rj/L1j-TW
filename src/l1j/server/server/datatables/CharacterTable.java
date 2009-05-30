@@ -165,7 +165,7 @@ public class CharacterTable {
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con
-					.prepareStatement("UPDATE Characters SET PartnerID=? WHERE objid=?");
+					.prepareStatement("UPDATE characters SET PartnerID=? WHERE objid=?");
 			pstm.setInt(1, partnerId);
 			pstm.setInt(2, targetId);
 			pstm.execute();
@@ -183,7 +183,7 @@ public class CharacterTable {
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con
-					.prepareStatement("UPDATE Characters SET OriginalStr= ?"
+					.prepareStatement("UPDATE characters SET OriginalStr= ?"
 							+ ", OriginalCon= ?, OriginalDex= ?, OriginalCha= ?"
 							+ ", OriginalInt= ?, OriginalWis= ?"
 							+ " WHERE objid=?");

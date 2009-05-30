@@ -33,7 +33,7 @@ import l1j.server.server.datatables.HouseTable;
 import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.datatables.NpcActionTable;
 import l1j.server.server.datatables.NpcTable;
-import l1j.server.server.datatables.PolyTable;//waja add 判斷是否無道具施法(召戒清單、變身清單)
+import l1j.server.server.datatables.PolyTable;//waja add 判斷是否無道具施法(召戒清單、變身清單) by seroidv
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.datatables.TownTable;
 import l1j.server.server.datatables.UBTable;
@@ -150,7 +150,7 @@ public class C_NPCAction extends ClientBasePacket {
 				npc.onFinalAction(pc, s);
 			} else if (obj instanceof L1PcInstance) {
 				target = (L1PcInstance) obj;
-//waja change add  判斷是否無道具施法(召戒清單、變身清單)
+//waja change add  判斷是否無道具施法(召戒清單、變身清單) by seroidv
 /*				if (s.matches("[0-9]+")) {
 					summonMonster(target, s);
 				} else {
@@ -935,7 +935,7 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("teleportURL")) {
 				htmlid = "amisoo2";
 			}
-//waja add 遠征隊遺物
+//waja add 遠征隊遺物 by BAO
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71258) {
             if (pc.getInventory().checkItem(40665)) {
                 htmlid = "marba17";
