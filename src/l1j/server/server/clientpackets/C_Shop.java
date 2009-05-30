@@ -111,7 +111,7 @@ public class C_Shop extends ClientBasePacket {
 					pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
 							checkItem.getItem().getName(), "不可交易。"));
 				}
-				if (checkItem.getBless() >= 128) { // 封印された装備
+				if (checkItem.getBless() >= 128) { // 封印的裝備
 					// \f1%0は捨てたりまたは他人に讓ることができません。
 					pc.sendPackets(new S_ServerMessage(210, checkItem.getItem()
 							.getName()));

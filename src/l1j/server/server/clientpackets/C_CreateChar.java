@@ -46,17 +46,13 @@ public class C_CreateChar extends ClientBasePacket {
 
 	private static Logger _log = Logger.getLogger(C_CreateChar.class.getName());
 	private static final String C_CREATE_CHAR = "[C] C_CreateChar";
-//waja add 角色能力設定 by seroidv
-// 新創角色能力最小值
 	private static final int[] ORIGINAL_STR = new int[] { 13, 16, 11, 8, 12, 13, 11 };
 	private static final int[] ORIGINAL_DEX = new int[] { 10, 12, 12, 7, 15, 11, 10 };
 	private static final int[] ORIGINAL_CON = new int[] { 10, 14, 12, 12, 8, 14, 12 };
 	private static final int[] ORIGINAL_WIS = new int[] { 11, 9, 12, 12, 10, 12, 12 };
 	private static final int[] ORIGINAL_CHA = new int[] { 13, 12, 9, 8, 9, 8, 8 };
 	private static final int[] ORIGINAL_INT = new int[] { 10, 8, 12, 12, 11, 11, 12 }; 
-// 新創角色點數分配
 	private static final int[] ORIGINAL_AMOUNT = new int[] { 8, 4, 7, 16, 10, 6, 10 }; 
-//add end
 
 	private static final String CLIENT_LANGUAGE_CODE = Config
 	.CLIENT_LANGUAGE_CODE;
@@ -114,7 +110,6 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.addBaseWis((byte) readC());
 		pc.addBaseCha((byte) readC());
 		pc.addBaseInt((byte) readC());
-//waja add 角色能力設定 by seroidv
 		boolean statusError = false;
 		int original_str = ORIGINAL_STR[pc.getType()];
 		int original_dex = ORIGINAL_DEX[pc.getType()];
@@ -137,7 +132,6 @@ public class C_CreateChar extends ClientBasePacket {
 		|| pc.getBaseInt() > original_int + originalAmount)) {
 		statusError = true;
 		}
-//add end
 
 		int statusAmount = pc.getDex() + pc.getCha() + pc.getCon()
 				+ pc.getInt() + pc.getStr() + pc.getWis();

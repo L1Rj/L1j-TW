@@ -928,7 +928,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
-//waja add 法師專用勇水 紅酒
+//waja add 法師專用 紅酒
 				}else if (itemId == 40039) { // 紅酒
 					if (pc.isWizard()) {
 						useBravePotion(pc, itemId);
@@ -936,7 +936,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
-//黑妖專用勇水  威士忌
+//黑妖專用  威士忌
 				}else if (itemId == 40040) { // 強化ブレイブポーション
 					if (pc.isDarkelf()) {
 						useBravePotion(pc, itemId);
@@ -1006,9 +1006,9 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == L1ItemId.POTION_OF_BLINDNESS) { // オペイクポーション
 					useBlindPotion(pc);
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 40088 // 變身スクロール
-						|| itemId == 40096 // 象牙の塔の變身スクロール
-						|| itemId == 140088) { // 祝福された變身スクロール
+				} else if (itemId == 40088 // 變形卷軸
+						|| itemId == 40096 // 象牙塔變形卷軸
+						|| itemId == 140088) { // 祝福變形卷軸
 					if (usePolyScroll(pc, itemId, s)) {
 						pc.getInventory().removeItem(l1iteminstance, 1);
 					} else {
