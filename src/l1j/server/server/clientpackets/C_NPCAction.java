@@ -33,6 +33,7 @@ import l1j.server.server.datatables.HouseTable;
 import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.datatables.NpcActionTable;
 import l1j.server.server.datatables.NpcTable;
+import l1j.server.server.datatables.PolyTable;//waja add 判斷是否無道具施法(召戒清單、變身清單)
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.datatables.TownTable;
 import l1j.server.server.datatables.UBTable;
@@ -149,11 +150,40 @@ public class C_NPCAction extends ClientBasePacket {
 				npc.onFinalAction(pc, s);
 			} else if (obj instanceof L1PcInstance) {
 				target = (L1PcInstance) obj;
-				if (s.matches("[0-9]+")) {
+//waja change add  判斷是否無道具施法(召戒清單、變身清單)
+/*				if (s.matches("[0-9]+")) {
 					summonMonster(target, s);
 				} else {
 					L1PolyMorph.handleCommands(target, s);
-				}
+				} */
+				if (s.matches("[0-9]+")) {
+					if (target.isSummonMonster()) { // 判斷是否施法
+					summonMonster(target, s);
+					target.setSummonMonster(false);
+					} else {
+					target.sendPackets(new S_ServerMessage(79)); // \f1沒有任何事情發生。
+					} 
+					} else {
+					if (target.isShapeChange()) { // 判斷是否施法
+					L1PolyMorph.handleCommands(target, s);
+					target.setShapeChange(false); 
+					} else {
+					boolean _checkpoly = false;
+					if (target.getInventory().checkItem(40088)
+					&& usePolyScroll(target, 40088, s)) {
+					_checkpoly = true;
+					} if (target.getInventory().checkItem(40096)
+					&& usePolyScroll(target, 40096, s)) {
+					_checkpoly = true;
+					} if (target.getInventory().checkItem(140088)
+					&& usePolyScroll(target, 140088, s)) {
+					_checkpoly = true;
+					} if (!_checkpoly && !target.isShapeChange()) {
+					target.sendPackets(new S_ServerMessage(181)); // \f1無法變成你指定的怪物。
+					}
+					}
+					}
+//change end
 				return;
 			}
 		} else {
@@ -4165,6 +4195,38 @@ public class C_NPCAction extends ClientBasePacket {
 		}
 	}
 
+//waja add 判斷是否無道具施法(召戒清單、變身清單)
+	private boolean usePolyScroll(L1PcInstance pc, int item_id, String s) {
+	int time = 0; 
+	if (item_id == 40088 || item_id == 40096) { // 象牙塔變形卷軸
+	time = 1800;
+	} else if (item_id == 140088) { // 祝福變形卷軸
+	time = 2100;
+	} 
+	L1PolyMorph poly = PolyTable.getInstance().getTemplate(s);
+	L1ItemInstance _l1item = pc.getInventory().findItemId(item_id);
+	boolean _itemturn = false;
+	if (poly != null || s.equals("none")) {
+	if (s.equals("none")) {  
+	if (pc.getTempCharGfx() == 6034
+	|| pc.getTempCharGfx() == 6035) {
+	_itemturn = true;
+	} else {
+	pc.removeSkillEffect(SHAPE_CHANGE);
+	_itemturn = true;
+	}
+	} else if (poly.getMinLevel() <= pc.getLevel() || pc.isGm()) {
+	L1PolyMorph.doPoly(pc, poly.getPolyId(), time,
+	L1PolyMorph.MORPH_BY_ITEMMAGIC);
+	_itemturn = true;
+	}
+	}
+	if (_itemturn) {
+	pc.getInventory().removeItem(_l1item, 1);
+	}
+	return _itemturn;
+	}
+//add end
 	@Override
 	public String getType() {
 		return C_NPC_ACTION;

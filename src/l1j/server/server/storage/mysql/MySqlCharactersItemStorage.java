@@ -140,71 +140,6 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 		item.getLastStatus().updateAll();
 	}
 
-//waja add 飾品強化卷軸
-	@Override
-	public void updateFireMr(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(),
-				"UPDATE character_items SET firemr = ? WHERE id = ?", item
-						.getFireMr());
-		item.getLastStatus().updateFireMr();
-	}
-	@Override
-	public void updateWaterMr(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(),
-				"UPDATE character_items SET watermr = ? WHERE id = ?", item
-						.getWaterMr());
-		item.getLastStatus().updateWaterMr();
-	}
-	@Override
-	public void updateEarthMr(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(),
-				"UPDATE character_items SET earthmr = ? WHERE id = ?", item
-						.getEarthMr());
-		item.getLastStatus().updateEarthMr();
-	}
-	@Override
-	public void updateWindMr(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(),
-				"UPDATE character_items SET windmr = ? WHERE id = ?", item
-						.getWindMr());
-		item.getLastStatus().updateWindMr();
-	}
-	@Override
-	public void updateaddSp(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(),
-				"UPDATE character_items SET addsp = ? WHERE id = ?", item
-						.getaddSp());
-		item.getLastStatus().updateSp();
-	}
-	@Override
-	public void updateaddHp(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(),
-				"UPDATE character_items SET addhp = ? WHERE id = ?", item
-						.getaddHp());
-		item.getLastStatus().updateaddHp();
-	}
-	@Override
-	public void updateaddMp(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(),
-				"UPDATE character_items SET addmp = ? WHERE id = ?", item
-						.getaddMp());
-		item.getLastStatus().updateaddMp();
-	}
-	@Override
-	public void updateHpr(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(),
-				"UPDATE character_items SET hpr = ? WHERE id = ?", item
-						.getHpr());
-		item.getLastStatus().updateHpr();
-	}
-	@Override
-	public void updateMpr(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(),
-				"UPDATE character_items SET mpr = ? WHERE id = ?", item
-						.getMpr());
-		item.getLastStatus().updateMpr();
-	}
-//add end
 	@Override
 	public void deleteItem(L1ItemInstance item) throws Exception {
 		Connection con = null;
@@ -302,6 +237,72 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 						.getBless());
 		item.getLastStatus().updateBless();
 	}
+
+//waja add 飾品強化卷軸
+	@Override
+	public void updateFireMr(L1ItemInstance item) throws Exception {
+		executeUpdate(item.getId(),
+				"UPDATE character_items SET firemr = ? WHERE id = ?", item
+						.getFireMr());
+		item.getLastStatus().updateFireMr();
+	}
+	@Override
+	public void updateWaterMr(L1ItemInstance item) throws Exception {
+		executeUpdate(item.getId(),
+				"UPDATE character_items SET watermr = ? WHERE id = ?", item
+						.getWaterMr());
+		item.getLastStatus().updateWaterMr();
+	}
+	@Override
+	public void updateEarthMr(L1ItemInstance item) throws Exception {
+		executeUpdate(item.getId(),
+				"UPDATE character_items SET earthmr = ? WHERE id = ?", item
+						.getEarthMr());
+		item.getLastStatus().updateEarthMr();
+	}
+	@Override
+	public void updateWindMr(L1ItemInstance item) throws Exception {
+		executeUpdate(item.getId(),
+				"UPDATE character_items SET windmr = ? WHERE id = ?", item
+						.getWindMr());
+		item.getLastStatus().updateWindMr();
+	}
+	@Override
+	public void updateaddSp(L1ItemInstance item) throws Exception {
+		executeUpdate(item.getId(),
+				"UPDATE character_items SET addsp = ? WHERE id = ?", item
+						.getaddSp());
+		item.getLastStatus().updateSp();
+	}
+	@Override
+	public void updateaddHp(L1ItemInstance item) throws Exception {
+		executeUpdate(item.getId(),
+				"UPDATE character_items SET addhp = ? WHERE id = ?", item
+						.getaddHp());
+		item.getLastStatus().updateaddHp();
+	}
+	@Override
+	public void updateaddMp(L1ItemInstance item) throws Exception {
+		executeUpdate(item.getId(),
+				"UPDATE character_items SET addmp = ? WHERE id = ?", item
+						.getaddMp());
+		item.getLastStatus().updateaddMp();
+	}
+	@Override
+	public void updateHpr(L1ItemInstance item) throws Exception {
+		executeUpdate(item.getId(),
+				"UPDATE character_items SET hpr = ? WHERE id = ?", item
+						.getHpr());
+		item.getLastStatus().updateHpr();
+	}
+	@Override
+	public void updateMpr(L1ItemInstance item) throws Exception {
+		executeUpdate(item.getId(),
+				"UPDATE character_items SET mpr = ? WHERE id = ?", item
+						.getMpr());
+		item.getLastStatus().updateMpr();
+	}
+//add end
 
 	@Override
 	public int getItemCount(int objId) throws Exception {

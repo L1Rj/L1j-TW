@@ -4017,5 +4017,24 @@ public class L1PcInstance extends L1Character {
 	public void setInOrderList(boolean bool){
 		_order_list=bool;
 	}
+//waja add 判斷是否無道具施法(召戒清單、變身清單)  
+	private boolean _isSummonMonster = false;
+	private boolean _isShapeChange = false;
+
+	public void setSummonMonster(boolean SummonMonster) {
+	_isSummonMonster = SummonMonster;
+	}
+ 
+	public boolean isSummonMonster() {
+	return _isSummonMonster;
+	}
+ 
+	public void setShapeChange(boolean isShapeChange) {
+	_isShapeChange = isShapeChange;
+	}
+
+	public boolean isShapeChange() {
+	return _isShapeChange;
+	}
 //add end
 }
