@@ -189,17 +189,18 @@ public class L1GuardianInstance extends L1NpcInstance {
 					doGDropItem(3);
 					}
 					} 
-					if(_inventory.checkItem(40505)) { // 安特之樹皮
-					if (chance <= 60 && chance >= 50) {
-					itemName = item40505.getName();
-					_inventory.consumeItem(40505, 1);
-					player.getInventory().storeItem(40505, 1);
-					player.sendPackets(new S_ServerMessage(143, npcName, itemName));
-					} else {
-					itemName = item40499.getName();
-					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
-					}
-					} else if(_inventory.checkItem(40507)
+//					if(_inventory.checkItem(40505)) { // 安特之樹皮
+//					if (chance <= 60 && chance >= 50) {
+//					itemName = item40505.getName();
+//					_inventory.consumeItem(40505, 1);
+//					player.getInventory().storeItem(40505, 1);
+//					player.sendPackets(new S_ServerMessage(143, npcName, itemName));
+//					} else {
+//					itemName = item40499.getName();
+//					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
+//					}
+//					} else 
+					if(_inventory.checkItem(40507)
 					&& !_inventory.checkItem(40505)) { // 安特之樹枝
 					if (chance <= 40 && chance >= 25) {
 					itemName = item40507.getName();
@@ -232,11 +233,11 @@ public class L1GuardianInstance extends L1NpcInstance {
 					} else {
 					itemName = item40499.getName();
 					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
-					break ;
 					}
 				}
+					break ;
 			}
-					
+
 					case 70850: { // 潘
 					if(_inventory.checkItem(40519)) { // 潘的鬃毛
 					if (chance <= 25) {
@@ -253,9 +254,9 @@ public class L1GuardianInstance extends L1NpcInstance {
 					}
 					if (chance <= 80 && chance >= 40) {
 					broadcastPacket(new S_NpcChatPacket(_npc, "$824", 0));
-					break ;
 					}
 				}
+					break ;
 			}
 
 					case 70846: { // 芮克妮
@@ -271,9 +272,9 @@ public class L1GuardianInstance extends L1NpcInstance {
 					} else {
 					itemName = item40507.getName();
 					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
-					break ;
 					}
 				}
+					break ;
 			}
 		} catch (Exception e) {
 					_log.log(Level.SEVERE, "發生錯誤", e);
