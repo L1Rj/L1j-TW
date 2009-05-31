@@ -311,7 +311,8 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 		} else if (s.equalsIgnoreCase("fix")) { // 武器を修理する
-
+//waja change 旅館租借
+/*
 		} else if (s.equalsIgnoreCase("room")) { // 部屋を借りる
 
 		} else if (s.equalsIgnoreCase("hall")
@@ -320,6 +321,87 @@ public class C_NPCAction extends ClientBasePacket {
 		} else if (s.equalsIgnoreCase("return")) { // 部屋‧ホールを返す
 
 		} else if (s.equalsIgnoreCase("enter")) { // 部屋‧ホールに入る
+*/
+		  } else if (s.equalsIgnoreCase("room")) { //租房間
+			   if (pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911)
+			     || pc.hasSkillEffect(1912) || pc.hasSkillEffect(1913)
+			     || pc.hasSkillEffect(1914)){ //已租過
+			    htmlid = "inn5";
+			   } else
+			   if (pc.hasSkillEffect(1915)){ //租完旅館30分鐘內不得再租
+			    htmlid = "inn6";
+			   } else
+			    if (pc.getInventory().checkItem(40308,1000)) {
+			     materials = new int[] { 40308 };
+			     counts = new int[] { 1000 };
+			     createitem = new int[] { 40312 };
+			     createcount = new int[] { 1 };
+			     pc.setSkillEffect(1910,14100*1000); //開始計算3小時55分
+			     htmlid = "inn4";
+			    } else {
+			     htmlid = "inn3";
+			    }
+			  } else if (s.equalsIgnoreCase("hall")
+			    && obj instanceof L1MerchantInstance) {
+			  } else if (s.equalsIgnoreCase("return")) { // 退租 還20%
+			   if ( pc.getInventory().checkItem(40312,1) &&
+			     ( pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911)
+			     || pc.hasSkillEffect(1912) || pc.hasSkillEffect(1913)
+			     || pc.hasSkillEffect(1914)) ){
+			    if(pc.hasSkillEffect(1910)){
+			    pc.killSkillEffectTimer(1910);
+			    }
+			    if(pc.hasSkillEffect(1911)){
+			    pc.killSkillEffectTimer(1911);
+			    }
+			    if(pc.hasSkillEffect(1912)){
+			    pc.killSkillEffectTimer(1912);
+			    }
+			    if(pc.hasSkillEffect(1913)){
+			    pc.killSkillEffectTimer(1913);
+			    }
+			    if(pc.hasSkillEffect(1914)){
+			    pc.killSkillEffectTimer(1914);
+			    }
+			    pc.setSkillEffect(1915,60*1000);//退租1分鐘內無法再租
+			    materials = new int[] { 40312 };
+			    counts = new int[] { 1 };
+			    createitem = new int[] { 40308 };
+			    createcount = new int[] { 200 };
+			    htmlid = "inn20";
+			  }
+			  } else if (s.equalsIgnoreCase("enter")) { // 進房間
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					int npcId = npc.getNpcTemplate().get_npcId();
+			   if (pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911)
+			     || pc.hasSkillEffect(1912) || pc.hasSkillEffect(1913)
+			     || pc.hasSkillEffect(1914)){ //有租房間才能進入
+				  switch (npcId) {
+				  case 70012://說話島 瑟琳娜
+					  L1Teleport.teleport(pc, 32744, 32803, (short) 16384, 4, true);
+//						L1Teleport.teleport(pc, 32744, 32808, (short) 16896, 4, true); //會議室  
+				  break;
+				  case 70031://奇岩 瑪理
+					  L1Teleport.teleport(pc, 32744, 32803, (short) 18432, 4, true);  
+				  break;
+				  case 70070://風木 維萊莎
+					  L1Teleport.teleport(pc, 32744, 32803, (short) 20480, 4, true);  
+				  break;
+				  case 70084://海音 伊莉
+					  L1Teleport.teleport(pc, 32744, 32803, (short) 22528, 4, true);  
+				  break;
+				  case 70075://銀騎士村莊 米蘭德
+					  L1Teleport.teleport(pc, 32744, 32803, (short) 21504, 4, true);  
+				  break;
+				  case 70065://歐瑞 小安安
+					  L1Teleport.teleport(pc, 32744, 32803, (short) 19456, 4, true);  
+				  break;
+				  case 70054://亞丁 史斌 不確定房間地圖編號隨便塞一個
+					  L1Teleport.teleport(pc, 32744, 32808, (short) 16896, 4, true);  
+				  break;
+				  }
+			   }
+//change end
 
 		} else if (s.equalsIgnoreCase("openigate")) { // ゲートキーパー / 城門を開ける
 			L1NpcInstance npc = (L1NpcInstance) obj;
@@ -3365,6 +3447,109 @@ public class C_NPCAction extends ClientBasePacket {
 					// 「上限人数に達している場合は」
 					// htmlid = "tebegate4";
 				}
+			}
+		}
+		// ?
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71258) {
+			if (pc.getInventory().checkItem(40665)) {
+				htmlid = "marba17";
+				if (s.equalsIgnoreCase("B")) {
+					htmlid = "marba7";
+					if (pc.getInventory().checkItem(214)
+							&& pc.getInventory().checkItem(20389)
+							&& pc.getInventory().checkItem(20393)
+							&& pc.getInventory().checkItem(20401)
+							&& pc.getInventory().checkItem(20406)
+							&& pc.getInventory().checkItem(20409)) {
+						htmlid = "marba15";
+					}
+				}
+			} else if (s.equalsIgnoreCase("A")) {
+				if (pc.getInventory().checkItem(40637)) {
+					htmlid = "marba20";
+				} else {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					L1ItemInstance item = pc.getInventory().storeItem(40637, 1);
+					String npcName = npc.getNpcTemplate().get_name();
+					String itemName = item.getItem().getName();
+					pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
+					htmlid = "marba6";
+				}
+			}
+		}
+
+//狩獵場NPC對話
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71259) {
+			if (pc.getInventory().checkItem(40665)) {
+				htmlid = "aras8";
+			} else if (pc.getInventory().checkItem(40637)) {
+				htmlid = "aras1";
+				if (s.equalsIgnoreCase("A")) {
+					if (pc.getInventory().checkItem(40664)) {
+						htmlid = "aras6";
+						if (pc.getInventory().checkItem(40679)
+								|| pc.getInventory().checkItem(40680)
+								|| pc.getInventory().checkItem(40681)
+								|| pc.getInventory().checkItem(40682)
+								|| pc.getInventory().checkItem(40683)
+								|| pc.getInventory().checkItem(40684)
+								|| pc.getInventory().checkItem(40693)
+								|| pc.getInventory().checkItem(40694)
+								|| pc.getInventory().checkItem(40695)
+								|| pc.getInventory().checkItem(40697)
+								|| pc.getInventory().checkItem(40698)
+								|| pc.getInventory().checkItem(40699)) {
+							htmlid = "aras3";
+						} else {
+							htmlid = "aras6";
+						}
+					} else {
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory().storeItem(40664,
+								1);
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage(143, npcName,
+								itemName));
+						htmlid = "aras6";
+					}
+				} else if (s.equalsIgnoreCase("B")) {
+					if (pc.getInventory().checkItem(40664)) {
+						pc.getInventory().consumeItem(40664, 1);
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory().storeItem(40665,
+								1);
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage(143, npcName,
+								itemName));
+						htmlid = "aras13";
+					} else {
+						htmlid = "aras14";
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory().storeItem(40665,
+								1);
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage(143, npcName,
+								itemName));
+					}
+				} else {
+					if (s.equalsIgnoreCase("7")) {
+						if (pc.getInventory().checkItem(40693)
+								&& pc.getInventory().checkItem(40694)
+								&& pc.getInventory().checkItem(40695)
+								&& pc.getInventory().checkItem(40697)
+								&& pc.getInventory().checkItem(40698)
+								&& pc.getInventory().checkItem(40699)) {
+							htmlid = "aras10";
+						} else {
+							htmlid = "aras9";
+						}
+					}
+				}
+			} else {
+				htmlid = "aras7";
 			}
 		}
 

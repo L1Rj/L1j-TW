@@ -2644,49 +2644,89 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== 13) {
 					htmlid = "oreno1";
 				}
-//waja add 遠征隊遺物
-			} else if (npcid == 71258) {
-                if (player.getInventory().checkItem(40665)
-                        &&(player.getInventory().checkItem(40693)
-                        || player.getInventory().checkItem(40694)
-                        || player.getInventory().checkItem(40695)
-                        || player.getInventory().checkItem(40697)
-                        || player.getInventory().checkItem(40698)
-                        || player.getInventory().checkItem(40699))) {
-                    htmlid = "marba8";
-                } else if(player.getInventory().checkItem(40665)) {
-                    htmlid = "marba17";
-                } else if (player.getInventory().checkItem(40664)) {
-                    htmlid = "marba19";
-                } else if (player.getInventory().checkItem(40637)) {
-                    htmlid = "marba18";
-                } else {
-                    htmlid = "marba3";
-                }
-            } else if (npcid == 71259) {
-                if (player.getInventory().checkItem(40665)) {
-                    htmlid = "aras8";
-                } else if (player.getInventory().checkItem(40679)
-                        || player.getInventory().checkItem(40680)
-                        || player.getInventory().checkItem(40681)
-                        || player.getInventory().checkItem(40682)
-                        || player.getInventory().checkItem(40683)
-                        || player.getInventory().checkItem(40684)
-                        || player.getInventory().checkItem(40693)
-                        || player.getInventory().checkItem(40694)
-                        || player.getInventory().checkItem(40695)
-                        || player.getInventory().checkItem(40697)
-                        || player.getInventory().checkItem(40698)
-                        || player.getInventory().checkItem(40699)) {
-                    htmlid = "aras3";
-                } else if(player.getInventory().checkItem(40664)) {
-                    htmlid = "aras6";
-                } else if(player.getInventory().checkItem(40637)){
-                    htmlid = "aras1";
-                } else {
-                    htmlid ="aras7";
-                }
-//add end
+//遠征隊遺物
+			} else if (npcid == 71258) { //マルバ
+				if (player.getLawful() <= -501) {
+					htmlid = "marba1";
+				} else if (player.isCrown()
+						|| player.isDarkelf()
+						|| player.isKnight()
+						|| player.isWizard()
+						|| player.isDragonKnight()
+						|| player.isIllusionist()) {
+					htmlid = "marba2";
+				} else if (player.getInventory().checkItem(40665)
+						&& (player.getInventory().checkItem(40693)
+						|| player.getInventory().checkItem(40694)
+						|| player.getInventory().checkItem(40695)
+						|| player.getInventory().checkItem(40697)
+						|| player.getInventory().checkItem(40698)
+						|| player.getInventory().checkItem(40699))) {
+					htmlid = "marba8";
+				} else if(player.getInventory().checkItem(40665)) {
+					htmlid = "marba17";
+				} else if (player.getInventory().checkItem(40664)) {
+					htmlid = "marba19";
+				} else if (player.getInventory().checkItem(40637)) {
+					htmlid = "marba18";
+				} else {
+					htmlid = "marba3";
+				}
+			} else if (npcid == 71259) { //アラス
+				if (player.getLawful() <= -501) {
+					htmlid = "aras12";
+				} else if (player.isCrown()
+						|| player.isDarkelf()
+						|| player.isKnight()
+						|| player.isWizard()
+						|| player.isDragonKnight()
+						|| player.isIllusionist()) {
+					htmlid = "aras11";
+				} else if (player.getInventory().checkItem(40665)
+						&& (player.getInventory().checkItem(40679)
+						|| player.getInventory().checkItem(40680)
+						|| player.getInventory().checkItem(40681)
+						|| player.getInventory().checkItem(40682)
+						|| player.getInventory().checkItem(40683)
+						|| player.getInventory().checkItem(40684))) {
+					htmlid = "aras3";
+				} else if (player.getInventory().checkItem(40665)) {
+					htmlid = "aras8";
+				} else if (player.getInventory().checkItem(40679)
+						|| player.getInventory().checkItem(40680)
+						|| player.getInventory().checkItem(40681)
+						|| player.getInventory().checkItem(40682)
+						|| player.getInventory().checkItem(40683)
+						|| player.getInventory().checkItem(40684)
+						|| player.getInventory().checkItem(40693)
+						|| player.getInventory().checkItem(40694)
+						|| player.getInventory().checkItem(40695)
+						|| player.getInventory().checkItem(40697)
+						|| player.getInventory().checkItem(40698)
+						|| player.getInventory().checkItem(40699)) {
+					htmlid = "aras3";
+				} else if(player.getInventory().checkItem(40664)) {
+					htmlid = "aras6";
+				} else if(player.getInventory().checkItem(40637)) {
+					htmlid = "aras1";
+				} else {
+					htmlid ="aras7";
+				}
+			} else if (npcid == 70838) { //娜魯帕
+				if (player.isCrown()
+						|| player.isKnight()
+						|| player.isWizard()
+						|| player.isDragonKnight()
+						|| player.isIllusionist()) {
+					htmlid = "nerupam1";
+				} else if (player.isDarkelf()
+						&& (player.getLawful() <= -1)) {
+					htmlid = "nerupaM2";
+				} else if (player.isDarkelf()) {
+					htmlid = "nerupace1";
+				} else if (player.isElf()) {
+					htmlid = "nerupae1";
+				}
 			}
 
 			// html表示パケット送信

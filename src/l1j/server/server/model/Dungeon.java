@@ -48,7 +48,7 @@ public class Dungeon {
 
 	private enum DungeonType {
 		NONE, SHIP_FOR_FI, SHIP_FOR_HEINE, SHIP_FOR_PI, SHIP_FOR_HIDDENDOCK,
-		SHIP_FOR_GLUDIN, SHIP_FOR_TI
+		SHIP_FOR_GLUDIN, SHIP_FOR_TI, HOTEL // waja add HOTEL
 	};
 
 	public static Dungeon getInstance() {
@@ -110,6 +110,16 @@ public class Dungeon {
 						|| (srcX == 32734 || srcX == 32735 || srcX == 32736
 						|| srcX == 32737) && srcY == 32794 && srcMapId == 6) { // AdenMainlandShiptoTalkingIsland->AdenMainland
 					dungeonType = DungeonType.SHIP_FOR_TI;
+//waja add 旅館 座標未驗證
+				}   else if ((srcX == 33437 && srcY == 32789 && srcMapId == 4 //奇岩旅館 → 旅館 
+				       || srcX == 33605 && srcY == 33275 && srcMapId == 4 //海音旅館 → 旅館 
+				       || srcX == 33116 && srcY == 33379 && srcMapId == 4 //銀騎士旅館 → 旅館 
+				       || srcX == 32628 && srcY == 33167 && srcMapId == 4 //風木旅館 → 旅館 
+				       || srcX == 32632 && srcY == 32761 && srcMapId == 4 //古魯丁旅館 → 旅館 
+				       || srcX == 34067 && srcY == 32254 && srcMapId == 4 //歐瑞旅館 → 旅館 
+				       || srcX == 32600 && srcY == 32931 && srcMapId == 4)){ //說話之島旅館 → 旅館 
+				         dungeonType = DungeonType.HOTEL;   
+//add end 
 				}
 				NewDungeon newDungeon = new NewDungeon(newX, newY,
 						(short) newMapId, heading, dungeonType);
@@ -197,8 +207,18 @@ public class Dungeon {
 						teleportable = true;
 					}
 				}
+//waja add 上旅館
+			   else if (dungeonType == DungeonType.HOTEL) {
+			    
+			    if ((pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911)
+			     || pc.hasSkillEffect(1912) || pc.hasSkillEffect(1913)
+			     || pc.hasSkillEffect(1914))
+			      && pc.getInventory().checkItem(40312,1)) { //買旅館
+			     teleportable = true;
+			    }
+			   }
+//add end
 			}
-
 			if (teleportable) {
 				// 傳送後有兩秒時間無敵狀態。
 				pc.setSkillEffect(ABSOLUTE_BARRIER, 2000);

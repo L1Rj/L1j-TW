@@ -220,6 +220,33 @@ public class Account {
 	}
 
 	/**
+	 * スロット数をDBに反映する.
+	 * 
+	 * @param account
+	 *            アカウント
+	 */
+	public static void updateCharacterSlot(final Account account) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			String sqlstr = "UPDATE accounts SET character_slot=? WHERE login=?";
+			pstm = con.prepareStatement(sqlstr);
+			pstm.setInt(1, account.getCharacterSlot());
+			pstm.setString(2, account.getName());
+			pstm.execute();
+			account._characterSlot = account.getCharacterSlot();
+			_log.fine("update characterslot for " + account.getName());
+		} catch (Exception e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+	}
+
+	/**
 	 *
 	 * キャラクター所有數をカウントする.
 	 *
@@ -375,5 +402,9 @@ public class Account {
 	 */
 	public int getCharacterSlot() {
 		return _characterSlot;
+	}
+
+	public void setCharacterSlot(int i) {
+		_characterSlot = i;
 	}
 }

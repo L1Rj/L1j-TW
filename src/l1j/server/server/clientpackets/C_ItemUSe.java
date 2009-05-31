@@ -28,6 +28,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.Config;
+import l1j.server.server.Account;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.ClientThread;
 import l1j.server.server.FishingTimeController;
@@ -2902,6 +2903,29 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+					}
+				} else if (itemId == 41428) { // 太古の玉爾
+					if (pc != null && l1iteminstance != null) {
+						Account account = Account.load(pc.getAccountName());
+						if (account == null) {
+							pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+							return;
+						}
+						int characterSlot = account.getCharacterSlot();
+						if (characterSlot > 2) {
+							pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+							return;
+						}
+						if (characterSlot < 0) {
+							characterSlot = 0;
+						} else {
+							characterSlot += 1;
+						}
+						account.setCharacterSlot(characterSlot);
+						Account.updateCharacterSlot(account);
+						pc.getInventory().removeItem(l1iteminstance, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(79));
 					}
 				} else {
 					int locX = ((L1EtcItem) l1iteminstance.getItem())

@@ -1309,7 +1309,52 @@
 	<Action Name="teleport gludin-behemoth" NpcId="50024">
 		<Teleport X="32779" Y="32887" Map="1001" Heading="5" Price="1000"/>
 	</Action>
-	<!-- GUIDE AREA waja 補狩獵區座標金額-->
+	<!-- GUIDE AREA 狩獵區 -->
+	<Action Name="guidestart"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guidestart"/>
+	</Action>
+	<Action Name="teleportURLB"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_1_1"/>
+	</Action>
+	<Action Name="teleportURLC"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_1_2"/>
+	</Action>
+	<Action Name="teleportURLD"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_1_3"/>
+	</Action>
+	<Action Name="teleportURLE"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_2_1"/>
+	</Action>
+	<Action Name="teleportURLF"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_2_2"/>
+	</Action>
+	<Action Name="teleportURLG"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_2_3"/>
+	</Action>
+	<Action Name="teleportURLH"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_3_1"/>
+	</Action>
+	<Action Name="teleportURLI"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_3_2"/>
+	</Action>
+	<Action Name="teleportURLJ"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_3_3"/>
+	</Action>
+	<Action Name="teleportURLK"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_4"/>
+	</Action>
+	<Action Name="guide_1_2"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_1_2"/>
+	</Action>
+	<Action Name="guide_2_2"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_2_2"/>
+	</Action>
+	<Action Name="guide_3_2"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_3_2"/>
+	</Action>
+	<Action Name="guide_4"  NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
+		<ShowHtml HtmlId="guide_4"/>
+	</Action>
 	<Action Name="teleport guide1_1_1" NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
 		<Teleport X="32787" Y="32854" Map="4" Heading="5" Price="390"/>
 	</Action>

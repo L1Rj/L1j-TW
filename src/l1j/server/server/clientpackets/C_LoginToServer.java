@@ -562,6 +562,10 @@ public class C_LoginToServer extends ClientBasePacket {
 						|| skillid >= COOKING_3_0_N && skillid <= COOKING_3_6_N
 						|| skillid >= COOKING_3_0_S && skillid <= COOKING_3_6_S) { // 料理(デザートは除く)
 					L1Cooking.eatCooking(pc, skillid, remaining_time);
+//waja add 旅館租借 用 skilltimer ?
+			    } else if (skillid == 1910 || skillid == 1911 || skillid == 1912 || skillid == 1913 || 
+			      skillid == 1914 || skillid == 1915){ // 已租 && 1915退租 
+//end add
 				} else {
 					L1SkillUse l1skilluse = new L1SkillUse();
 					l1skilluse.handleCommands(clientthread.getActiveChar(),
