@@ -190,7 +190,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					}
 					} 
 					if(_inventory.checkItem(40507)) {// 安特之樹枝
-					if (chance <= 40) {
+					if (chance <= 25) {
 					itemName = item40507.getName();
 					itemName += " (6)";
 					_inventory.consumeItem(40507, 6);
@@ -202,7 +202,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					}
 					} else if(_inventory.checkItem(40506)
 					&& !_inventory.checkItem(40507)) { //安特的水果
-					if (chance <= 25) {
+					if (chance <= 10) {
 					itemName = item40506.getName();
 					_inventory.consumeItem(40506, 1);
 					player.getInventory().storeItem(40506, 1);
