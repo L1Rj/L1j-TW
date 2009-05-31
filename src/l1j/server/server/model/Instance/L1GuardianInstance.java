@@ -174,7 +174,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					L1Item item40519 = ItemTable.getInstance().getTemplate(40519);
 
 					switch (PT_Npc_id){
-					case 70848: { // 安特
+					case 70848: { //安特
 					if(_inventory.checkItem(40499)
 					&& !_inventory.checkItem(40505)) { // 蘑菇汁 換 安特之樹皮
 					itemName = item40505.getName();
@@ -189,20 +189,8 @@ public class L1GuardianInstance extends L1NpcInstance {
 					doGDropItem(3);
 					}
 					} 
-//					if(_inventory.checkItem(40505)) { // 安特之樹皮
-//					if (chance <= 60 && chance >= 50) {
-//					itemName = item40505.getName();
-//					_inventory.consumeItem(40505, 1);
-//					player.getInventory().storeItem(40505, 1);
-//					player.sendPackets(new S_ServerMessage(143, npcName, itemName));
-//					} else {
-//					itemName = item40499.getName();
-//					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
-//					}
-//					} else 
-					if(_inventory.checkItem(40507)
-					&& !_inventory.checkItem(40505)) { // 安特之樹枝
-					if (chance <= 40 && chance >= 25) {
+					if(_inventory.checkItem(40507)) {// 安特之樹枝
+					if (chance <= 40) {
 					itemName = item40507.getName();
 					itemName += " (6)";
 					_inventory.consumeItem(40507, 6);
@@ -213,8 +201,8 @@ public class L1GuardianInstance extends L1NpcInstance {
 					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
 					}
 					} else if(_inventory.checkItem(40506)
-					&& !_inventory.checkItem(40507)) { // 安特的水果
-					if (chance <= 90 && chance >= 85) {
+					&& !_inventory.checkItem(40507)) { //安特的水果
+					if (chance <= 25) {
 					itemName = item40506.getName();
 					_inventory.consumeItem(40506, 1);
 					player.getInventory().storeItem(40506, 1);
@@ -228,19 +216,19 @@ public class L1GuardianInstance extends L1NpcInstance {
 					setDropItems(false);
 					doGDropItem(_configtime);
 					}
-					if (chance <= 80 && chance >= 40) {
+					if (chance <= 70 && chance >= 40) {
 					broadcastPacket(new S_NpcChatPacket(_npc, "$822", 0));
 					} else {
 					itemName = item40499.getName();
 					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
 					}
 				}
-					break ;
 			}
+					break ;
 
 					case 70850: { // 潘
 					if(_inventory.checkItem(40519)) { // 潘的鬃毛
-					if (chance <= 25) {
+					if (chance <= 30) {
 					itemName = item40519.getName();
 					itemName += " (5)";
 					_inventory.consumeItem(40519, 5);
@@ -256,8 +244,8 @@ public class L1GuardianInstance extends L1NpcInstance {
 					broadcastPacket(new S_NpcChatPacket(_npc, "$824", 0));
 					}
 				}
-					break ;
 			}
+					break ;
 
 					case 70846: { // 芮克妮
 					if(_inventory.checkItem(40507)) { // 安特之樹枝 換 芮克妮的網
