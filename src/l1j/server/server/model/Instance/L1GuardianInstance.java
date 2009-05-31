@@ -118,7 +118,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 		startAI();
 	}
 
-	// 跟NPC打材料需要的變數
+// 跟NPC打材料需要的變數
 	private byte chance; // 5.19 Start
 	private int PT_Npc_id;
 	@Override
@@ -163,8 +163,6 @@ public class L1GuardianInstance extends L1NpcInstance {
 					}
 */
 				try {
-//					int chance = 0;
-//					int npcId = getNpcTemplate().get_npcId();
 					String npcName = getNpcTemplate().get_name();
 					String itemName = "";
 					int itemCount = 0;
@@ -174,7 +172,9 @@ public class L1GuardianInstance extends L1NpcInstance {
 					L1Item item40506 = ItemTable.getInstance().getTemplate(40506);
 					L1Item item40507 = ItemTable.getInstance().getTemplate(40507);
 					L1Item item40519 = ItemTable.getInstance().getTemplate(40519);
-					if (PT_Npc_id == 70848) { // 安特
+
+					switch (PT_Npc_id){
+					case 70848: { // 安特
 					if(_inventory.checkItem(40499)
 					&& !_inventory.checkItem(40505)) { // 蘑菇汁 換 安特之樹皮
 					itemName = item40505.getName();
@@ -190,7 +190,6 @@ public class L1GuardianInstance extends L1NpcInstance {
 					}
 					} 
 					if(_inventory.checkItem(40505)) { // 安特之樹皮
-//					chance = _random.nextInt(100) + 1;
 					if (chance <= 60 && chance >= 50) {
 					itemName = item40505.getName();
 					_inventory.consumeItem(40505, 1);
@@ -202,7 +201,6 @@ public class L1GuardianInstance extends L1NpcInstance {
 					}
 					} else if(_inventory.checkItem(40507)
 					&& !_inventory.checkItem(40505)) { // 安特之樹枝
-//					chance = _random.nextInt(100) + 1;
 					if (chance <= 40 && chance >= 25) {
 					itemName = item40507.getName();
 					itemName += " (6)";
@@ -215,7 +213,6 @@ public class L1GuardianInstance extends L1NpcInstance {
 					}
 					} else if(_inventory.checkItem(40506)
 					&& !_inventory.checkItem(40507)) { // 安特的水果
-//					chance = _random.nextInt(100) + 1;
 					if (chance <= 90 && chance >= 85) {
 					itemName = item40506.getName();
 					_inventory.consumeItem(40506, 1);
@@ -230,18 +227,18 @@ public class L1GuardianInstance extends L1NpcInstance {
 					setDropItems(false);
 					doGDropItem(_configtime);
 					}
-//					chance = _random.nextInt(100) + 1;
 					if (chance <= 80 && chance >= 40) {
 					broadcastPacket(new S_NpcChatPacket(_npc, "$822", 0));
 					} else {
 					itemName = item40499.getName();
-					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。 EEe$A?a;  
+					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
+					break ;
 					}
-					}
-					}
-					if (PT_Npc_id == 70850) { // 潘
+				}
+			}
+					
+					case 70850: { // 潘
 					if(_inventory.checkItem(40519)) { // 潘的鬃毛
-//					chance = _random.nextInt(100) + 1;
 					if (chance <= 25) {
 					itemName = item40519.getName();
 					itemName += " (5)";
@@ -254,13 +251,14 @@ public class L1GuardianInstance extends L1NpcInstance {
 					setDropItems(false);
 					doGDropItem(_configtime);
 					}
-//					chance = _random.nextInt(100) + 1;
 					if (chance <= 80 && chance >= 40) {
 					broadcastPacket(new S_NpcChatPacket(_npc, "$824", 0));
+					break ;
 					}
-					}
-					}
-					if (PT_Npc_id == 70846) { // 芮克妮
+				}
+			}
+
+					case 70846: { // 芮克妮
 					if(_inventory.checkItem(40507)) { // 安特之樹枝 換 芮克妮的網
 					itemName = item40503.getName();
 					itemCount = _inventory.countItems(40507);
@@ -273,11 +271,12 @@ public class L1GuardianInstance extends L1NpcInstance {
 					} else {
 					itemName = item40507.getName();
 					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
+					break ;
 					}
-					}
-					} catch (Exception e) {
+				}
+			}
+		} catch (Exception e) {
 					_log.log(Level.SEVERE, "發生錯誤", e);
-//					}
 //add end
 				} // 5.19 End
 				attack.calcDamage();
