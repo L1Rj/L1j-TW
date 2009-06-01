@@ -428,9 +428,10 @@ public class L1PcInstance extends L1Character {
 	}
 
 	public void sendVisualEffectAtLogin() {
-		for (L1Clan clan : L1World.getInstance().getAllClans()) {
-			sendPackets(new S_Emblem(clan.getClanId()));
-		}
+		// S_Emblem?C_Clan
+		// for (L1Clan clan : L1World.getInstance().getAllClans()) {
+		// sendPackets(new S_Emblem(clan.getClanId()));
+		// }
 
 		if (getClanid() != 0) { // クラン所屬
 			L1Clan clan = L1World.getInstance().getClan(getClanname());

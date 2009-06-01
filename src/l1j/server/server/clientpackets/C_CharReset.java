@@ -165,7 +165,11 @@ public class C_CharReset extends ClientBasePacket {
 			pc.setLevel(pc.getTempMaxLevel());
 			pc.setExp(ExpTable.getExpByLevel(pc.getTempMaxLevel()));
 		}
-		pc.setBonusStats(pc.getLevel() - 50);
+		if (pc.getLevel() > 50) {
+			pc.setBonusStats(pc.getLevel() - 50);
+		} else {
+			pc.setBonusStats(0);
+		}
 		pc.sendPackets(new S_OwnCharStatus(pc));
 		L1ItemInstance item = pc.getInventory().findItemId(49142); // 希望のロウソク
 		if (item != null) {

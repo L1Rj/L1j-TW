@@ -2904,7 +2904,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
-				} else if (itemId == 41428) { // 太古の玉爾
+				} else if (itemId == 41428) { //太古的玉璽
 					if (pc != null && l1iteminstance != null) {
 						Account account = Account.load(pc.getAccountName());
 						if (account == null) {
@@ -2912,7 +2912,9 @@ public class C_ItemUSe extends ClientBasePacket {
 							return;
 						}
 						int characterSlot = account.getCharacterSlot();
-						if (characterSlot > 2) {
+						int maxAmount = Config.DEFAULT_CHARACTER_SLOT
+						+ characterSlot;
+						if (maxAmount >= 8) {
 							pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 							return;
 						}

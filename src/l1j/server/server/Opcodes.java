@@ -125,6 +125,8 @@ public class Opcodes {
 
 	public static final int C_OPCODE_BANPARTY = 72;
 
+	public static final int C_OPCODE_CLAN = 73;
+
 	public static final int C_OPCODE_DOOR = 75;
 
 	public static final int C_OPCODE_PLEDGE = 76;
@@ -518,7 +520,7 @@ public class Opcodes {
 	public static final int C_OPCODE_USESKILL = 129;		//使用技能
 	public static final int C_OPCODE_CREATEPARTY = 130; 	//邀請組隊
 	public static final int C_OPCODE_CAHTPARTY = 131;  		//chatparty
-
+	
 	//XXX //////////////// 以下未完成or不確定/////////////
 	public static final int C_OPCODE_BOARDDELETE = 111161;	//台版按刪除留言無反應
 	public static final int C_OPCODE_RETURNTOLOGIN = 9999; 	//台版按取消無反應
