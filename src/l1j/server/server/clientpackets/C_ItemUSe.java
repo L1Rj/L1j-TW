@@ -5416,13 +5416,16 @@ public class C_ItemUSe extends ClientBasePacket {
 
 		int pid = RandomArrayList.getArrayshortList((short) polyArray.length);
 		int polyId = polyArray[pid];
-		boolean _checkpoly = true;//變戒檢查
 
 		if (cha instanceof L1PcInstance) {
 			L1PcInstance pc = (L1PcInstance) cha;
 			if (pc.getInventory().checkEquipped(20281)) {
-				_checkpoly = true;//變戒檢查
 				pc.sendPackets(new S_ShowPolyList(pc.getId()));
+//waja add 判斷是否施法(召戒清單、變身清單)
+				if (!pc.isShapeChange()) {
+					pc.setShapeChange(true);
+					}
+//add end
 				pc.sendPackets(new S_ServerMessage(966)); // string-j.tbl:968行目
 				// 魔法の力によって保護されます。
 				// 變身の際のメッセージは、他人が自分を變身させた時に出るメッセージと、レベルが足りない時に出るメッセージ以外はありません。
