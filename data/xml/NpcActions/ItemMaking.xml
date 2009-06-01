@@ -2709,7 +2709,7 @@
 	<!--勝利の実 / メダル管理人-->
 	<Action Name="request gold apple" NpcId="80089">
 		<MakeItem>
-			<Material Amount="3000" ItemId="41309"/>
+			<Material Amount="10000" ItemId="41309"/>
 			<Item Amount="1" ItemId="41310"/>
 		</MakeItem>
 	</Action>
