@@ -162,110 +162,112 @@ public class L1GuardianInstance extends L1NpcInstance {
 								"$769")); // \f1%0が%1をくれました。 芮克妮的網
 					}
 */
-				try {
-					String npcName = getNpcTemplate().get_name();
-					String itemName = "";
-					int itemCount = 0;
-					L1Item item40499 = ItemTable.getInstance().getTemplate(40499);
-					L1Item item40503 = ItemTable.getInstance().getTemplate(40503);
-					L1Item item40505 = ItemTable.getInstance().getTemplate(40505);
-					L1Item item40506 = ItemTable.getInstance().getTemplate(40506);
-					L1Item item40507 = ItemTable.getInstance().getTemplate(40507);
-					L1Item item40519 = ItemTable.getInstance().getTemplate(40519);
+	try {
+		String npcName = getNpcTemplate().get_name();
+		String itemName = "";
+		int itemCount = 0;
+		L1Item item40499 = ItemTable.getInstance().getTemplate(40499);
+		L1Item item40503 = ItemTable.getInstance().getTemplate(40503);
+		L1Item item40505 = ItemTable.getInstance().getTemplate(40505);
+		L1Item item40506 = ItemTable.getInstance().getTemplate(40506);
+		L1Item item40507 = ItemTable.getInstance().getTemplate(40507);
+		L1Item item40519 = ItemTable.getInstance().getTemplate(40519);
 
-					switch (PT_Npc_id){
-					case 70848: { //安特
-					if(_inventory.checkItem(40499)
-					&& !_inventory.checkItem(40505)) { // 蘑菇汁 換 安特之樹皮
+			switch (PT_Npc_id)
+			{
+			case 70848: { //安特
+				if(_inventory.checkItem(40499)
+						&& !_inventory.checkItem(40505)) { // 蘑菇汁 換 安特之樹皮
 					itemName = item40505.getName();
 					itemCount = _inventory.countItems(40499);
-					if(itemCount > 1) {
-					itemName += " (" + itemCount + ")";
-					}
+				if(itemCount > 1) {
+					itemName += " (" + itemCount + ")";}
 					_inventory.consumeItem(40499, itemCount);
 					player.getInventory().storeItem(40505, itemCount);
 					player.sendPackets(new S_ServerMessage(143, npcName, itemName));
-					if (!isDropitems()) {
-					doGDropItem(3);
-					}
-					} 
-					if(_inventory.checkItem(40507)) {// 安特之樹枝
-					if (chance <= 25) {
+				if (!isDropitems()) {doGDropItem(3);}
+			} 
+				if(_inventory.checkItem(40507)) {// 安特之樹枝
+				if (chance <= 25) {
 					itemName = item40507.getName();
 					itemName += " (6)";
 					_inventory.consumeItem(40507, 6);
 					player.getInventory().storeItem(40507, 6);
 					player.sendPackets(new S_ServerMessage(143, npcName, itemName));
-					} else {
+			} else {
 					itemName = item40499.getName();
 					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
 					}
-					} else if(_inventory.checkItem(40506)
+
+			} else if(_inventory.checkItem(40506)
 					&& !_inventory.checkItem(40507)) { //安特的水果
-					if (chance <= 10) {
+				if (chance <= 10) {
 					itemName = item40506.getName();
 					_inventory.consumeItem(40506, 1);
 					player.getInventory().storeItem(40506, 1);
 					player.sendPackets(new S_ServerMessage(143, npcName, itemName));
-					} else {
+			} else {
 					itemName = item40499.getName();
 					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
 					}
-					} else {
-					if (!forDropitems()) {
+			} else 
+			{
+				if (!forDropitems()) 
+				{
 					setDropItems(false);
 					doGDropItem(_configtime);
-					}
-					if (chance <= 70 && chance >= 40) {
+				}
+				if (chance <= 70 && chance >= 40) {
 					broadcastPacket(new S_NpcChatPacket(_npc, "$822", 0));
-					} else {
+			} else {
 					itemName = item40499.getName();
 					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
 					}
-				}
 			}
-					break ;
+		}
+			break ;
 
-					case 70850: { // 潘
-					if(_inventory.checkItem(40519)) { // 潘的鬃毛
-					if (chance <= 30) {
+			case 70850: // 潘
+			{
+				if(_inventory.checkItem(40519)) { // 潘的鬃毛
+				if (chance <= 30) {
 					itemName = item40519.getName();
 					itemName += " (5)";
 					_inventory.consumeItem(40519, 5);
 					player.getInventory().storeItem(40519, 5);
 					player.sendPackets(new S_ServerMessage(143, npcName, itemName));
-					}
-					} else {
-					if (!forDropitems()) {
+			}
+			} else {
+				if (!forDropitems()) {
 					setDropItems(false);
 					doGDropItem(_configtime);
 					}
-					if (chance <= 80 && chance >= 40) {
+				if (chance <= 80 && chance >= 40) {
 					broadcastPacket(new S_NpcChatPacket(_npc, "$824", 0));
 					}
 				}
 			}
-					break ;
+			break ;
 
-					case 70846: { // 芮克妮
-					if(_inventory.checkItem(40507)) { // 安特之樹枝 換 芮克妮的網
+			case 70846: // 芮克妮
+			{
+				if(_inventory.checkItem(40507)) { // 安特之樹枝 換 芮克妮的網
 					itemName = item40503.getName();
 					itemCount = _inventory.countItems(40507);
-					if(itemCount > 1) {
+				if(itemCount > 1) {
 					itemName += " (" + itemCount + ")";
-					}
+				}
 					_inventory.consumeItem(40507, itemCount);
 					player.getInventory().storeItem(40503, itemCount);
 					player.sendPackets(new S_ServerMessage(143, npcName, itemName));
-					} else {
+				} else {
 					itemName = item40507.getName();
 					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
 					}
-				}
-					break ;
 			}
-		} catch (Exception e) {
-					_log.log(Level.SEVERE, "發生錯誤", e);
+			break ;
+		}
+	} catch (Exception e) {_log.log(Level.SEVERE, "發生錯誤", e);
 //add end
 				} // 5.19 End
 				attack.calcDamage();

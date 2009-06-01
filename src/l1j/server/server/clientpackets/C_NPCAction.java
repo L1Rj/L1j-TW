@@ -178,8 +178,14 @@ public class C_NPCAction extends ClientBasePacket {
 					} if (target.getInventory().checkItem(140088)
 					&& usePolyScroll(target, 140088, s)) {
 					_checkpoly = true;
+					if (target.getInventory().checkItem(40008)) {//變杖
+					_checkpoly = true;
+					if (target.getInventory().checkItem(140008)) {//變杖
+					_checkpoly = true;
 					} if (!_checkpoly && !target.isShapeChange()) {
 					target.sendPackets(new S_ServerMessage(181)); // \f1無法變成你指定的怪物。
+					}
+					}
 					}
 					}
 					}
@@ -4387,6 +4393,10 @@ public class C_NPCAction extends ClientBasePacket {
 	time = 1800;
 	} else if (item_id == 140088) { // 祝福變形卷軸
 	time = 2100;
+	} else if (item_id == 40008) { //變杖
+	time = 7200;
+	} else if (item_id == 140008) { //祝福變杖
+	time = 7200;
 	} 
 	L1PolyMorph poly = PolyTable.getInstance().getTemplate(s);
 	L1ItemInstance _l1item = pc.getInventory().findItemId(item_id);

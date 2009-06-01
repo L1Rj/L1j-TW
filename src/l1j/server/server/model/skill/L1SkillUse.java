@@ -1751,7 +1751,7 @@ public class L1SkillUse {
 				} else if (_skillId == CURE_POISON) {
 					cha.curePoison();
 				} else if (_skillId == REMOVE_CURSE) {
-//waja add 特殊狀態下狀態無法使用技能補血&聖光
+//特殊狀態下狀態無法使用技能補血&聖光
 					if (cha.hasSkillEffect(STATUS_CURSE_PARALYZED) //木乃尹
 							||cha.hasSkillEffect(SHOCK_STUN) //衝擊之暈
 							||cha.hasSkillEffect(FOG_OF_SLEEPING) //沉睡之霧
@@ -1759,7 +1759,6 @@ public class L1SkillUse {
 						_player.sendPackets(new S_ServerMessage(285));//285 : \f1在此狀態下無法使用魔法。
 						return;
 					}
-//add end
 					cha.curePoison();
 					if (cha.hasSkillEffect(STATUS_CURSE_PARALYZING)
 							|| cha.hasSkillEffect(STATUS_CURSE_PARALYZED)) {
@@ -1971,7 +1970,7 @@ public class L1SkillUse {
 						|| _skillId == HEAL_ALL || _skillId == NATURES_TOUCH
 						|| _skillId == NATURES_BLESSING)
 						&& (_user instanceof L1PcInstance)) {
-//waja add 特殊狀態中則無法施展回復系法術
+//特殊狀態中則無法施展回復系法術
 					if (cha.hasSkillEffect(STATUS_CURSE_PARALYZED) //木乃伊
 							||cha.hasSkillEffect(SHOCK_STUN) //衝擊之暈
 							||cha.hasSkillEffect(FOG_OF_SLEEPING) //沉睡之霧
@@ -2037,10 +2036,10 @@ public class L1SkillUse {
 						|| _skillId == 10028 || _skillId == 10029) { // 安息攻擊
 					if (_user instanceof L1NpcInstance) {
 						_user.broadcastPacket(new S_NpcChatPacket(_npc,
-								(cha.getName())+("! ")+("$3717"), (byte) 0)); // waja change 龍的安息字串
+								(cha.getName())+("! ")+("$3717"), (byte) 0)); //龍的安息字串
 					} else {
 						_player.broadcastPacket(new S_ChatPacket(_player,
-								(cha.getName())+("! ")+("$3717"), 0, (byte) 0)); // waja change 龍的安息字串
+								(cha.getName())+("! ")+("$3717"), 0, (byte) 0)); //龍的安息字串
 					}
 				} else if (_skillId == 10057) { // 引き寄せ
 					L1Teleport.teleportToTargetFront(cha, _user, 1);

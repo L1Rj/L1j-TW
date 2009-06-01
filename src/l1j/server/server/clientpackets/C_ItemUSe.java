@@ -409,26 +409,26 @@ public class C_ItemUSe extends ClientBasePacket {
 						FailureEnchant(pc, l1iteminstance1, client);
 					}
 				}
-					} else if (itemId == 30001) { //裝備保護卷軸
-				if	(l1iteminstance1 != null){
-					if	(l1iteminstance1.getItem().get_safeenchant() <= -1){
-						pc.sendPackets(new S_ServerMessage(1309));
-						return;
+				} else if (itemId == 30001) { //裝備保護卷軸
+					if	(l1iteminstance1 != null){
+						if	(l1iteminstance1.getItem().get_safeenchant() <= -1){
+							pc.sendPackets(new S_ServerMessage(1309));
+							return;
+						}
+						if (l1iteminstance1.getproctect() == true){
+							pc.sendPackets(new S_ServerMessage(1300));
+							return;
+						}
+						if (l1iteminstance1.getItem().getType2() == 0){
+							pc.sendPackets(new S_ServerMessage(79));
+							return;
+				} else {
+					l1iteminstance1.setproctect(true);
+					pc.sendPackets(new S_ServerMessage(1308, l1iteminstance1.getLogName()));
+					pc.getInventory().removeItem(l1iteminstance, 1);
+						}
 					}
-					if (l1iteminstance1.getproctect() == true){
-						pc.sendPackets(new S_ServerMessage(1300));
-						return;
-					}
-					if (l1iteminstance1.getItem().getType2() == 0){
-						pc.sendPackets(new S_ServerMessage(79));
-						return;
-					} else {
-						l1iteminstance1.setproctect(true);
-						pc.sendPackets(new S_ServerMessage(1308, l1iteminstance1.getLogName()));
-						pc.getInventory().removeItem(l1iteminstance, 1);
-					}
-				}
-				} else if (itemId == 49148) {// 飾品強化卷軸
+				} else if (itemId == 49148) {//飾品強化卷軸
 					if (l1iteminstance1.getItem().getType2() != 2) {
 						pc.sendPackets(new S_ServerMessage(79));
 						return;
@@ -5416,10 +5416,12 @@ public class C_ItemUSe extends ClientBasePacket {
 
 		int pid = RandomArrayList.getArrayshortList((short) polyArray.length);
 		int polyId = polyArray[pid];
+		boolean _checkpoly = true;//變戒檢查
 
 		if (cha instanceof L1PcInstance) {
 			L1PcInstance pc = (L1PcInstance) cha;
 			if (pc.getInventory().checkEquipped(20281)) {
+				_checkpoly = true;//變戒檢查
 				pc.sendPackets(new S_ShowPolyList(pc.getId()));
 				pc.sendPackets(new S_ServerMessage(966)); // string-j.tbl:968行目
 				// 魔法の力によって保護されます。
