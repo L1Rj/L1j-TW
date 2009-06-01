@@ -381,7 +381,7 @@ public class L1NpcInstance extends L1Character {
 					}
 				}
 //waja add 警衛會幫打 
-				if(knownObject instanceof L1GuardInstance){
+				if(this instanceof L1GuardInstance && knownObject instanceof L1GuardInstance){
 					L1GuardInstance guard = (L1GuardInstance)knownObject;
 					if(guard.getCurrentHp()>0){
 						guard.setLink(targetPlayer);

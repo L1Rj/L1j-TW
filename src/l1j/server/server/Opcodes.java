@@ -487,7 +487,7 @@ public class Opcodes {
 	public static final int C_OPCODE_PARTY = 77; 			//查詢隊員
 	public static final int C_OPCODE_RANK = 78;				//血盟階級
 	public static final int C_OPCODE_TELEPORT = 79;			//傳送
-	public static final int C_OPCODE_CHARRESET = 80;		//腳色蟲至
+	public static final int C_OPCODE_CHARRESET = 80;		//角色重置
 	public static final int C_OPCODE_RESTART = 82;			//死掉的重新開始
 	public static final int C_OPCODE_PETMENU = 83;			//寵物選單
 	public static final int C_OPCODE_BOARDWRITE = 84;		//寫佈告欄
