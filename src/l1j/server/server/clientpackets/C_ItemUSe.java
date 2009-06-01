@@ -538,9 +538,9 @@ public class C_ItemUSe extends ClientBasePacket {
 							return;
 						}
 						SuccessEnchant(pc, l1iteminstance1, client, 1);
-						pc.sendPackets(new S_ItemStatus(l1iteminstance1));// 線上更新
+						pc.sendPackets(new S_ItemStatus(l1iteminstance1));//更新
 						CharactersItemStorage storage = CharactersItemStorage
-								.create();// 儲存道具
+								.create();//儲存
 						storage.updateFireMr(l1iteminstance1);
 						storage.updateWaterMr(l1iteminstance1);
 						storage.updateEarthMr(l1iteminstance1);

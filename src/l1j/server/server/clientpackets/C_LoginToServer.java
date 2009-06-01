@@ -131,6 +131,7 @@ public class C_LoginToServer extends ClientBasePacket {
 				+ " 角色=" + charName + " IP位址:" + client.getHostname());
 
 		pc.setOnlineStatus(1);
+		pc.clearSkillMastery();//waja add 魔法檢查清除
 		CharacterTable.updateOnlineStatus(pc);
 		L1World.getInstance().storeObject(pc);
 
