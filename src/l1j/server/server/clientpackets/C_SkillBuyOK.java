@@ -169,101 +169,78 @@ public class C_SkillBuyOK extends ClientBasePacket {
 			}
 		}
 
-		switch (pc.getType()) {
-		case 0: // 君主
-			if (pc.getLevel() < 10) {
-				level1 = 0;
-				level1_cost = 0;
-				level2 = 0;
-				level2_cost = 0;
+		if (!pc.isGm()) {
+			switch (pc.getType()) {
+			case 0: //王族
+				if (pc.getLevel() < 10) {
+					level1 = 0;
+					level1_cost = 0;
+				}
+				if (pc.getLevel() < 20) {
+					level2 = 0;
+					level2_cost = 0;
+				}
 				level3 = 0;
 				level3_cost = 0;
-			} else if (pc.getLevel() >= 10 && pc.getLevel() <= 19) {
-				level2 = 0;
-				level2_cost = 0;
-				level3 = 0;
-				level3_cost = 0;
-			} else if (pc.getLevel() >= 20) {
-				level3 = 0;
-				level3_cost = 0;
-			}
-			break;
+				break;
 
-		case 1: // ナイト
-			if (pc.getLevel() < 50) {
-				level1 = 0;
-				level1_cost = 0;
+			case 1: // ナイト
+				if (pc.getLevel() < 50) {
+					level1 = 0;
+					level1_cost = 0;
+				}
 				level2 = 0;
 				level2_cost = 0;
 				level3 = 0;
 				level3_cost = 0;
-			} else if (pc.getLevel() >= 50) {
-				level2 = 0;
-				level2_cost = 0;
-				level3 = 0;
-				level3_cost = 0;
-			}
-			break;
+				break;
 
-		case 2: // エルフ
-			if (pc.getLevel() < 8) {
-				level1 = 0;
-				level1_cost = 0;
-				level2 = 0;
-				level2_cost = 0;
-				level3 = 0;
-				level3_cost = 0;
-			} else if (pc.getLevel() >= 8 && pc.getLevel() <= 15) {
-				level2 = 0;
-				level2_cost = 0;
-				level3 = 0;
-				level3_cost = 0;
-			} else if (pc.getLevel() >= 16 && pc.getLevel() <= 23) {
-				level3 = 0;
-				level3_cost = 0;
-			}
-			break;
+			case 2: // エルフ
+				if (pc.getLevel() < 8) {
+					level1 = 0;
+					level1_cost = 0;
+				}
+				if (pc.getLevel() < 16) {
+					level2 = 0;
+					level2_cost = 0;
+				}
+				if (pc.getLevel() < 24) {
+					level3 = 0;
+					level3_cost = 0;
+				}
+				break;
 
-		case 3: // WIZ
-			if (pc.getLevel() < 4) {
-				level1 = 0;
-				level1_cost = 0;
-				level2 = 0;
-				level2_cost = 0;
-				level3 = 0;
-				level3_cost = 0;
-			} else if (pc.getLevel() >= 4 && pc.getLevel() <= 7) {
-				level2 = 0;
-				level2_cost = 0;
-				level3 = 0;
-				level3_cost = 0;
-			} else if (pc.getLevel() >= 8 && pc.getLevel() <= 11) {
-				level3 = 0;
-				level3_cost = 0;
-			}
-			break;
+			case 3: //法師
+				if (pc.getLevel() < 4) {
+					level1 = 0;
+					level1_cost = 0;
+				}
+				if (pc.getLevel() < 8) {
+					level2 = 0;
+					level2_cost = 0;
+				}
+				if (pc.getLevel() < 12) {
+					level3 = 0;
+					level3_cost = 0;
+				}
+				break;
 
-		case 4: // DE
-			if (pc.getLevel() < 12) {
-				level1 = 0;
-				level1_cost = 0;
-				level2 = 0;
-				level2_cost = 0;
+			case 4: // DE
+				if (pc.getLevel() < 12) {
+					level1 = 0;
+					level1_cost = 0;
+				}
+				if (pc.getLevel() < 24) {
+					level2 = 0;
+					level2_cost = 0;
+				}
 				level3 = 0;
 				level3_cost = 0;
-			} else if (pc.getLevel() >= 12 && pc.getLevel() <= 23) {
-				level2 = 0;
-				level2_cost = 0;
-				level3 = 0;
-				level3_cost = 0;
-			} else if (pc.getLevel() >= 24) {
-				level3 = 0;
-				level3_cost = 0;
-			}
-			break;
+				break;
 
-		default:
-			break;
+			default:
+				break;
+			}
 		}
 
 		if (level1 == 0 && level2 == 0 && level3 == 0) {

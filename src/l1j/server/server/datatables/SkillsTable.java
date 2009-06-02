@@ -29,12 +29,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.L1DatabaseFactory;
-//waja add 施法檢查
-import l1j.server.server.model.L1World;
-import l1j.server.server.model.Instance.L1PcInstance;
-//end add
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.utils.SQLUtil;
+
+import l1j.server.server.model.L1World;
+import l1j.server.server.model.Instance.L1PcInstance;
 
 public class SkillsTable {
 
@@ -121,17 +120,15 @@ public class SkillsTable {
 
 	public void spellMastery(int playerobjid, int skillid, String skillname,
 			int active, int time) {
-//waja add 施法前判斷法術
-		L1PcInstance pc = (L1PcInstance) L1World.getInstance().findObject(
-				playerobjid);
-
-		if (pc != null) {
-			pc.setSkillMastery(skillid);// 記錄新學的法術
-		}
-//add end
 		if (spellCheck(playerobjid, skillid)) {
 			return;
 		}
+		L1PcInstance pc = (L1PcInstance) L1World.getInstance()
+				.findObject(playerobjid);
+		if (pc != null) {
+			pc.setSkillMastery(skillid);
+		}
+
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
@@ -155,6 +152,12 @@ public class SkillsTable {
 	}
 
 	public void spellLost(int playerobjid, int skillid) {
+
+		L1PcInstance pc = (L1PcInstance) L1World.getInstance()
+		.findObject(playerobjid);
+if (pc != null) {
+	pc.removeSkillMastery(skillid);
+}
 
 		Connection con = null;
 		PreparedStatement pstm = null;

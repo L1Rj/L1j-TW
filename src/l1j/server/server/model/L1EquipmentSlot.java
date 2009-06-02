@@ -330,101 +330,102 @@ public class L1EquipmentSlot {
 	}
 
 	public void setMagicHelm(L1ItemInstance item) {
-//waja change 施法前判斷法術 智力敏大小風盔
-		switch(item.getItemId()){
+		switch (item.getItemId()) {
 		case 20013:
+			_owner.setSkillMastery(PHYSICAL_ENCHANT_DEX);
+			_owner.setSkillMastery(HASTE);
 			_owner.sendPackets(new S_AddSkill(0, 0, 0, 2, 0, 4, 0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-			_owner.setSkillMastery(26);//加入可施展法術列表
-			_owner.setSkillMastery(43);//加入可施展法術列表
 			break;
 		case 20014:
+			_owner.setSkillMastery(HEAL);
+			_owner.setSkillMastery(EXTRA_HEAL);
 			_owner.sendPackets(new S_AddSkill(1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-			_owner.setSkillMastery(1);
-			_owner.setSkillMastery(19);
 			break;
 		case 20015:
+			_owner.setSkillMastery(ENCHANT_WEAPON);
+			_owner.setSkillMastery(DETECTION);
+			_owner.setSkillMastery(PHYSICAL_ENCHANT_STR);
 			_owner.sendPackets(new S_AddSkill(0, 24, 0, 0, 0, 2, 0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-			_owner.setSkillMastery(12);
-			_owner.setSkillMastery(13);
-			_owner.setSkillMastery(42);
 			break;
 		case 20008:
+			_owner.setSkillMastery(HASTE);
 			_owner.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-			_owner.setSkillMastery(43);
 			break;
 		case 20023:
+			_owner.setSkillMastery(GREATER_HASTE);
 			_owner.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-			_owner.setSkillMastery(54);
 			break;
 		}
-//change end
 	}
 
 	public void removeMagicHelm(int objectId, L1ItemInstance item) {
-//waja change 施法前判斷法術 移除敏力治 大小風盔  順便改用switch
-		switch(item.getItemId()){
-		case 20013:  // 魔法頭盔：敏捷魔法頭盔
-			if (!SkillsTable.getInstance().spellCheck(objectId, 26)) { // フィジカルエンチャント：DEX
+		switch (item.getItemId()) {
+		case 20013: //敏盔
+			if (!SkillsTable.getInstance().spellCheck(objectId,
+					PHYSICAL_ENCHANT_DEX)) {
+				_owner.removeSkillMastery(PHYSICAL_ENCHANT_DEX);
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 2, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-				_owner.removeSkillMastery(26);//移除可施展法術列表
 			}
-			if (!SkillsTable.getInstance().spellCheck(objectId, 43)) { // ヘイスト
+			if (!SkillsTable.getInstance().spellCheck(objectId, HASTE)) {
+				_owner.removeSkillMastery(HASTE);
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-				_owner.removeSkillMastery(43);
 			}
-		break;
-		case 20014:  // 魔法頭盔：治癒魔法頭盔
-			if (!SkillsTable.getInstance().spellCheck(objectId, 1)) { // ヒール
+			break;
+		case 20014: //治盔
+			if (!SkillsTable.getInstance().spellCheck(objectId, HEAL)) {
+				_owner.removeSkillMastery(HEAL);
 				_owner.sendPackets(new S_DelSkill(1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-				_owner.removeSkillMastery(1);
 			}
-			if (!SkillsTable.getInstance().spellCheck(objectId, 19)) { // エキストラヒール
+			if (!SkillsTable.getInstance().spellCheck(objectId, EXTRA_HEAL)) {
+				_owner.removeSkillMastery(EXTRA_HEAL);
 				_owner.sendPackets(new S_DelSkill(0, 0, 4, 0, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-				_owner.removeSkillMastery(19);
 			}
-		break;
-		case 20015:  // 魔法頭盔：力量魔法頭盔
-			if (!SkillsTable.getInstance().spellCheck(objectId, 12)) { // エンチャントウェポン
+			break;
+		case 20015: //力盔
+			if (!SkillsTable.getInstance().spellCheck(objectId,
+					ENCHANT_WEAPON)) {
+				_owner.removeSkillMastery(ENCHANT_WEAPON);
 				_owner.sendPackets(new S_DelSkill(0, 8, 0, 0, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-				_owner.removeSkillMastery(12);
 			}
-			if (!SkillsTable.getInstance().spellCheck(objectId, 13)) { // ディテクション
+			if (!SkillsTable.getInstance().spellCheck(objectId, DETECTION)) {
+				_owner.removeSkillMastery(DETECTION);
 				_owner.sendPackets(new S_DelSkill(0, 16, 0, 0, 0, 0, 0, 0, 0,
-						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-				_owner.removeSkillMastery(13);
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0));
 			}
-			if (!SkillsTable.getInstance().spellCheck(objectId, 42)) { // フィジカルエンチャント：STR
+			if (!SkillsTable.getInstance().spellCheck(objectId,
+					PHYSICAL_ENCHANT_STR)) {
+				_owner.removeSkillMastery(PHYSICAL_ENCHANT_STR);
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-				_owner.removeSkillMastery(42);
 			}
-		break;
-		case 20008: // マイナーウィンドヘルム
-			if (!SkillsTable.getInstance().spellCheck(objectId, 43)) { // ヘイスト
+			break;
+		case 20008: //小型風之頭盔
+			if (!SkillsTable.getInstance().spellCheck(objectId, HASTE)) {
+				_owner.removeSkillMastery(HASTE);
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-				_owner.removeSkillMastery(43);
 			}
-		break;
-		case 20023:  // ウィンドヘルム
-			if (!SkillsTable.getInstance().spellCheck(objectId, 54)) { // グレーターヘイスト
+			break;
+		case 20023: //風之頭盔
+			if (!SkillsTable.getInstance().spellCheck(objectId,
+					GREATER_HASTE)) {
+				_owner.removeSkillMastery(GREATER_HASTE);
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 0, 32, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 						0));
-				_owner.removeSkillMastery(54);
 			}
+			break;
 		}
-//change end
 	}
-
 }

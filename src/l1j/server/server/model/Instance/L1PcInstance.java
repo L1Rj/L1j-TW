@@ -454,6 +454,28 @@ public class L1PcInstance extends L1Character {
 		sendVisualEffect();
 	}
 
+	private ArrayList<Integer> skillList = new ArrayList<Integer>();
+
+	public void setSkillMastery(int skillid) {
+		if (!skillList.contains(skillid)) {
+			skillList.add(skillid);
+		}
+	}
+
+	public void removeSkillMastery(int skillid) {
+		if (skillList.contains((Object)skillid)) {
+			skillList.remove((Object)skillid);
+		}
+	}
+
+	public boolean isSkillMastery(int skillid) {
+		return skillList.contains(skillid);
+	}
+
+	public void clearSkillMastery() {
+		skillList.clear();
+	}
+
 	public L1PcInstance() {
 		_accessLevel = 0;
 		_currentWeapon = 0;
@@ -3970,28 +3992,7 @@ public class L1PcInstance extends L1Character {
 	public void setAwakeSkillId(int i) {
 		_awakeSkillId = i;
 	}
-//waja add 施法前判斷法術
-	private ArrayList<Integer> skillList = new ArrayList<Integer>();
 
-	public void setSkillMastery(int skillid) {
-		if (!skillList.contains(skillid)) {
-			skillList.add(skillid);
-		}
-	}
-
-	public void removeSkillMastery(int skillid) {
-		if (skillList.contains((Object)skillid)) {
-			skillList.remove((Object)skillid);
-		}
-	}
-
-	public boolean isSkillMastery(int skillid) {
-		return skillList.contains(skillid);
-	} 
-
-	public void clearSkillMastery() {
-		skillList.clear();
-	}
 //waja add 寵物競速
 	private int _lap = 1;
 	public void setLap(int i){
