@@ -15,7 +15,7 @@
 		<Item ItemId="40779" Count="1" Chance="5" />
 		<Item ItemId="40400" Count="1" Chance="5" />
 		<Item ItemId="40317" Count="1" Chance="3" />
-		<Item ItemId="40487" Count="1" Chance="1" />
+		<Item ItemId="40489" Count="1" Chance="1" />
 		<Item ItemId="40304" Count="1" Chance="1" />
 		<Item ItemId="40428" Count="1" Chance="1" />
 	</TreasureBox>
@@ -83,7 +83,7 @@
 		<Item ItemId="40494" Count="30" Chance="9" /><!--純粹的米索莉塊-->
 		<Item ItemId="40400" Count="2" Chance="9" /><!--奇美拉之皮(蛇)-->
 		<Item ItemId="40304" Count="1" Chance="1" /><!--馬普勒之石-->
-		<Item ItemId="40487" Count="1" Chance="1.5" /><!--黃金金屬板-->
+		<Item ItemId="40489" Count="1" Chance="1.5" />
 		<Item ItemId="40428" Count="1" Chance="1" /><!--月光之淚-->
 		<Item ItemId="40396" Count="1" Chance="0.5" /><!--地龍鱗-->
 	</TreasureBox>
@@ -264,24 +264,29 @@
 	</TreasureBox>
 	<!--ピアスの贈り物-->
 	<TreasureBox Type="RANDOM" ItemId="40715">
-		<Item ItemId="152" Count="1" Chance="7" />
-		<Item ItemId="153" Count="1" Chance="6" />
-		<Item ItemId="154" Count="1" Chance="6" />
-		<Item ItemId="157" Count="1" Chance="6" />
-		<Item ItemId="158" Count="1" Chance="6" />
-		<Item ItemId="159" Count="1" Chance="6" />
-		<Item ItemId="161" Count="1" Chance="6" />
-		<Item ItemId="162" Count="1" Chance="3" />
 		<Item ItemId="69" Count="1" Chance="6" />
-		<Item ItemId="71" Count="1" Chance="6" />
-		<Item ItemId="72" Count="1" Chance="6" />
-		<Item ItemId="74" Count="1" Chance="6" />
-		<Item ItemId="75" Count="1" Chance="6" />
-		<Item ItemId="77" Count="1" Chance="6" />
-		<Item ItemId="80" Count="1" Chance="6" />
-		<Item ItemId="81" Count="1" Chance="3" />
-		<Item ItemId="168" Count="1" Chance="6" />
-		<Item ItemId="177" Count="1" Chance="3" />
+		<Item ItemId="153" Count="1" Chance="5" />
+		<Item ItemId="71" Count="1" Chance="5" />
+		<Item ItemId="154" Count="1" Chance="5" />
+		<Item ItemId="72" Count="1" Chance="5" />
+		<Item ItemId="159" Count="1" Chance="5" />
+		<Item ItemId="77" Count="1" Chance="5" />
+		<Item ItemId="161" Count="1" Chance="5" />
+		<Item ItemId="80" Count="1" Chance="5" />
+		<Item ItemId="158" Count="1" Chance="4" />
+		<Item ItemId="75" Count="1" Chance="4" />
+		<Item ItemId="168" Count="1" Chance="4" />
+		<Item ItemId="162" Count="1" Chance="1" />
+		<Item ItemId="81" Count="1" Chance="1" />
+		<Item ItemId="177" Count="1" Chance="1" />
+		<Item ItemId="40739" Count="1000" Chance="6" />
+		<Item ItemId="40738" Count="1000" Chance="6" />
+		<Item ItemId="40740" Count="500" Chance="6" />
+		<Item ItemId="20032" Count="1" Chance="3" />
+		<Item ItemId="20070" Count="1" Chance="3" />
+		<Item ItemId="20180" Count="1" Chance="3" />
+		<Item ItemId="20132" Count="1" Chance="3" />
+		<Item ItemId="20210" Count="1" Chance="3" />
 	</TreasureBox>
 	<!--ゴールドパンプキン-->
 	<TreasureBox Type="RANDOM" ItemId="40722">
