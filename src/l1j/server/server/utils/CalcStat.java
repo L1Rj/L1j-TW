@@ -112,44 +112,44 @@ public class CalcStat {
 		if (baseCon > 15) {
 			randomhp = (short) (baseCon - 15);
 		}
-		if (charType == 0) { // プリンス
-			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 5 <-> 11
+		if (charType == 0) { //王族
+			randomhp += (short) (playerbasecon + randomadd + 3 ); // 初期值分追加 5 <-> 11
 
 			if (baseMaxHp + randomhp > Config.PRINCE_MAX_HP) {
 				randomhp = (short) (Config.PRINCE_MAX_HP - baseMaxHp);
 			}
-		} else if (charType == 1) { // ナイト
-			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 6 <-> 17
+		} else if (charType == 1) { //騎士
+			randomhp += (short) (playerbasecon + randomadd + 6); // 初期值分追加 6 <-> 17
 
 			if (baseMaxHp + randomhp > Config.KNIGHT_MAX_HP) {
 				randomhp = (short) (Config.KNIGHT_MAX_HP - baseMaxHp);
 			}
-		} else if (charType == 2) { // エルフ
-			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 5 <-> 10
+		} else if (charType == 2) { //妖精
+			randomhp += (short) (playerbasecon + randomadd + 2 ); // 初期值分追加 5 <-> 10
 
 			if (baseMaxHp + randomhp > Config.ELF_MAX_HP) {
 				randomhp = (short) (Config.ELF_MAX_HP - baseMaxHp);
 			}
-		} else if (charType == 3) { // ウィザード
-			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 3 <-> 7
+		} else if (charType == 3) { //法師
+			randomhp += (short) (playerbasecon + randomadd + 1 ); // 初期值分追加 3 <-> 7
 
 			if (baseMaxHp + randomhp > Config.WIZARD_MAX_HP) {
 				randomhp = (short) (Config.WIZARD_MAX_HP - baseMaxHp);
 			}
-		} else if (charType == 4) { // ダークエルフ
-			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 5 <-> 10
+		} else if (charType == 4) { //黑暗妖精
+			randomhp += (short) (playerbasecon + randomadd + 2 ); // 初期值分追加 5 <-> 10
 
 			if (baseMaxHp + randomhp > Config.DARKELF_MAX_HP) {
 				randomhp = (short) (Config.DARKELF_MAX_HP - baseMaxHp);
 			}
-		} else if (charType == 5) { // ドラゴンナイト
-			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 6 <-> 13
+		} else if (charType == 5) { //龍騎士
+			randomhp += (short) (playerbasecon + randomadd + 5 ); // 初期值分追加 6 <-> 13
 
 			if (baseMaxHp + randomhp > Config.DRAGONKNIGHT_MAX_HP) {
 				randomhp = (short) (Config.DRAGONKNIGHT_MAX_HP - baseMaxHp);
 			}
-		} else if (charType == 6) { // イリュージョニスト
-			randomhp += (short) (playerbasecon + randomadd); // 初期值分追加 4 <-> 9
+		} else if (charType == 6) { //幻術士
+			randomhp += (short) (playerbasecon + randomadd + 1 ); // 初期值分追加 4 <-> 9
 
 			if (baseMaxHp + randomhp > Config.ILLUSIONIST_MAX_HP) {
 				randomhp = (short) (Config.ILLUSIONIST_MAX_HP - baseMaxHp);
