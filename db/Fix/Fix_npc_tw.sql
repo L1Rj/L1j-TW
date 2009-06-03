@@ -50,3 +50,13 @@ Update npc Set agro = '0' Where npcid = '45114';
 
 /* 20090524 虎男魔防修正 */
 Update npc Set mr = '15' Where npcid = '45313';
+
+/* 20090603 精靈女皇移動速度降低 */
+Update npc Set passispeed = '900000' Where npcid = '70852'; /* 精靈女皇 */
+
+/* 20090603 精靈女皇 安特 芮克妮 潘 改為同家族 */
+Update npc Set family  = 'elf' Where npcid = '70852'; /* 精靈女皇 */
+Update npc Set family  = 'elf' Where npcid = '70848'; /* 安特 */
+Update npc Set family  = 'elf' Where npcid = '70846'; /* 芮克妮 */
+Update npc Set family  = 'elf' Where npcid = '70850'; /* 潘 */
+
