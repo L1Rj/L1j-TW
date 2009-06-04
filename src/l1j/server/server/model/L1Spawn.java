@@ -30,6 +30,7 @@ import l1j.server.server.ActionCodes;
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.IdFactory;
 import l1j.server.server.datatables.NpcTable;
+import l1j.server.server.model.Instance.L1DoorInstance;
 import l1j.server.server.model.Instance.L1MonsterInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -468,6 +469,17 @@ public class L1Spawn extends L1GameTimeAdapter {
 				}
 			}
 
+			if (npcId == 46142 && mob.getMapId() == 73
+					|| npcId == 46141 && mob.getMapId() == 74) {
+				for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
+					if (pc.getMapId() >= 72 && pc.getMapId() <= 74) {
+						L1Teleport.teleport(pc, 32840, 32833, (short) 72,
+								pc.getHeading(), true);
+					}
+				}
+			}
+			doCrystalCave(npcId);
+
 			L1World.getInstance().storeObject(mob);
 			L1World.getInstance().addVisibleObject(mob);
 
@@ -543,6 +555,30 @@ public class L1Spawn extends L1GameTimeAdapter {
 				mob.deleteMe();
 			}
 			_mobs.clear();
+		}
+	}
+
+	public static void doCrystalCave(int npcId) {
+		int[] npcId2 = { 46143, 46144, 46145, 46146, 46147,
+				46148, 46149, 46150, 46151, 46152 };
+		int[] doorId = { 5001, 5002, 5003, 5004, 5005, 5006,
+				5007, 5008, 5009, 5010};
+
+		for (int i = 0; i < npcId2.length; i++) {
+			if (npcId == npcId2[i]) {
+				closeDoorInCrystalCave(doorId[i]);
+			}
+		}
+	}
+
+	private static void closeDoorInCrystalCave(int doorId) {
+		for (L1Object object : L1World.getInstance().getObject()) {
+			if (object instanceof L1DoorInstance) {
+				L1DoorInstance door = (L1DoorInstance) object;
+				if (door.getDoorId() == doorId) {
+					door.close();
+				}
+			}
 		}
 	}
 }

@@ -48,6 +48,11 @@ public class C_Door extends ClientBasePacket {
 		L1PcInstance pc = client.getActiveChar();
 		L1DoorInstance door = (L1DoorInstance)L1World.getInstance()
 				.findObject(objectId);
+
+		if ((door.getDoorId() >= 5001 && door.getDoorId() <= 5010)) { //水晶洞
+			return;
+		}
+
 		if (door != null && !isExistKeeper(pc, door.getKeeperId())) {
 			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
 				door.close();

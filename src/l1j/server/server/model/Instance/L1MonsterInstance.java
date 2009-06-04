@@ -94,7 +94,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 	public void onPerceive(L1PcInstance perceivedFrom) {
 		perceivedFrom.addKnownObject(this);
 		if (0 < getCurrentHp()) {
-			if (getHiddenStatus() == HIDDEN_STATUS_SINK) {
+			if (getHiddenStatus() == HIDDEN_STATUS_SINK
+					|| getHiddenStatus() == HIDDEN_STATUS_ICE) {
 				perceivedFrom.sendPackets(new S_DoActionGFX(getId(),
 						ActionCodes.ACTION_Hide));
 			} else if (getHiddenStatus() == HIDDEN_STATUS_FLY) {
@@ -303,7 +304,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 	@Override
 	public void receiveDamage(L1Character attacker, int damage) { // 攻擊でＨＰを減らすときはここを使用
 		if (getCurrentHp() > 0 && !isDead()) {
-			if (getHiddenStatus() != HIDDEN_STATUS_NONE) {
+			if (getHiddenStatus() == HIDDEN_STATUS_SINK
+					|| getHiddenStatus() == HIDDEN_STATUS_FLY) {
 				return;
 			}
 			if (damage >= 0) {
@@ -704,6 +706,9 @@ public class L1MonsterInstance extends L1NpcInstance {
 		} else if (npcid == 45681) { // リンドビオル
 			setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_FLY);
 			setStatus(11);
+		} else if (npcid >= 46125 && npcid <= 46128) {
+			setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_ICE);
+			setStatus(4);
 		}
 	}
 
@@ -738,6 +743,9 @@ public class L1MonsterInstance extends L1NpcInstance {
 				setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_FLY);
 				setStatus(11);
 			}
+		} else if (npcid >= 46125 && npcid <= 46128) {
+			setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_ICE);
+			setStatus(4);
 		}
 	}
 

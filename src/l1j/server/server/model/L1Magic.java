@@ -25,6 +25,7 @@ import l1j.server.server.ActionCodes;
 import l1j.server.server.WarTimeController;
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.model.Instance.L1DollInstance;
+import l1j.server.server.model.Instance.L1DoorInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1MagicInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
@@ -796,7 +797,37 @@ public class L1Magic {
 			}
 		}
 
+		if (_calcType == PC_NPC || _calcType == NPC_NPC) {
+			calcDamageInCrystalCave(_targetNpc,dmg);
+		}
+
 		return dmg;
+	}
+
+	// ●●●● CCのモンスターへのダメージ算出 ●●●●
+	private static void calcDamageInCrystalCave(L1NpcInstance npc, double dmg) {
+		int[] npcId = { 46143, 46144, 46145, 46146, 46147, 46148,
+				46149, 46150, 46151, 46152};
+		int[] doorId = { 5001, 5002, 5003, 5004, 5005, 5006,
+				5007, 5008, 5009, 5010};
+
+		for (int i = 0; i < npcId.length; i++) {
+			if (npc.getNpcTemplate().get_npcId() == npcId[i]
+					&& dmg >= npc.getCurrentHp()) {
+				openDoorInCrystalCave(doorId[i]);
+			}
+		}
+	}
+
+	private static void openDoorInCrystalCave(int doorId) {
+		for (L1Object object : L1World.getInstance().getObject()) {
+			if (object instanceof L1DoorInstance) {
+				L1DoorInstance door = (L1DoorInstance) object;
+				if (door.getDoorId() == doorId) {
+					door.open();
+				}
+			}
+		}
 	}
 
 	// ●●●● damage_dice、damage_dice_count、damage_value、SPから魔法ダメージを算出 ●●●●

@@ -78,6 +78,7 @@ public class L1NpcInstance extends L1Character {
 	public static final int HIDDEN_STATUS_NONE = 0;
 	public static final int HIDDEN_STATUS_SINK = 1;
 	public static final int HIDDEN_STATUS_FLY = 2;
+	public static final int HIDDEN_STATUS_ICE = 3;
 
 	public static final int CHAT_TIMING_APPEARANCE = 0;
 	public static final int CHAT_TIMING_DEAD = 1;
@@ -1358,7 +1359,8 @@ public class L1NpcInstance extends L1Character {
 		if (pc.hasSkillEffect(60) || pc.hasSkillEffect(97)) { // インビジビリティ、ブラインドハイディング中
 			return;
 		}
-		if (getHiddenStatus() == HIDDEN_STATUS_SINK) {
+		if (getHiddenStatus() == HIDDEN_STATUS_SINK
+				|| getHiddenStatus() == HIDDEN_STATUS_ICE) {
 			if (getCurrentHp() == getMaxHp()) {
 				if (pc.getLocation().getTileLineDistance(this.getLocation()) <= 2) {
 					appearOnGround(pc);
@@ -1378,7 +1380,8 @@ public class L1NpcInstance extends L1Character {
 	}
 
 	public void appearOnGround(L1PcInstance pc) {
-		if (getHiddenStatus() == HIDDEN_STATUS_SINK) {
+		if (getHiddenStatus() == HIDDEN_STATUS_SINK
+				|| getHiddenStatus() == HIDDEN_STATUS_ICE) {
 			setHiddenStatus(HIDDEN_STATUS_NONE);
 			broadcastPacket(new S_DoActionGFX(getId(),
 					ActionCodes.ACTION_Appear));
