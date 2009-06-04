@@ -2041,7 +2041,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79));
 					}
 				} else if (itemId == 40006 || itemId == 40412
-						|| itemId == 140006) { // パインワンド
+						|| itemId == 140006) {//祝福創杖
 					if (pc.getMap().isUsePainwand()) {
 						S_AttackStatus s_attackStatus = new S_AttackStatus(pc,
 								0, ActionCodes.ACTION_Wand);
@@ -2075,7 +2075,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						 */
 						int rnd = RandomArrayList.getArrayshortList((short) mobArray.length);
 						L1SpawnUtil.spawn(pc, mobArray[rnd], 0, 300000);
-						if (itemId == 40006 || itemId == 140006) {
+						if (itemId == 40006 || itemId == 140006) {//創杖
 							l1iteminstance.setChargeCount(l1iteminstance
 									.getChargeCount() - 1);
 							pc.getInventory().updateItem(l1iteminstance,

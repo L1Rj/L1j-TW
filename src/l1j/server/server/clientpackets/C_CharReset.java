@@ -137,6 +137,7 @@ public class C_CharReset extends ClientBasePacket {
 					return;
 				}
 				saveNewCharStatus(pc);
+				pc.setInCharReset(false);//重置完指標恢復
 			}
 		} else if (stage == 0x03) {
 			pc.addBaseStr((byte) (readC() - pc.getBaseStr()));
