@@ -452,7 +452,7 @@ public class L1Attack {
 		if (_targetPc.getAc() >= 0) {
 			defenderDice = 10 - _targetPc.getAc();
 		} else if (_targetPc.getAc() < 0) {
-			defenderDice = 10 + RandomArrayList.getArrayshortList((short)defenderValue) + 1;
+			defenderDice = 11 + RandomArrayList.getArrayshortList((short)defenderValue);//原寫法 前數字為10 另最後額外+1
 		}
 
 		int fumble = _hitRate - 9;
