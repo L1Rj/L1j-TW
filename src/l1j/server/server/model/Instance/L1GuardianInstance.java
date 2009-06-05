@@ -176,8 +176,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 			switch (PT_Npc_id)
 			{
 			case 70848: { //安特
-				if(_inventory.checkItem(40499)
-						&& !_inventory.checkItem(40505)) { // 蘑菇汁 換 安特之樹皮
+				if(_inventory.checkItem(40499)){ // 蘑菇汁 換 安特之樹皮
 					itemName = item40505.getName();
 					itemCount = _inventory.countItems(40499);
 				if(itemCount > 1) {
