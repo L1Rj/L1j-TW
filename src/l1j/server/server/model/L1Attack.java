@@ -369,18 +369,17 @@ public class L1Attack {
 	 * 最小命中率5% 最大命中率95%
 	 */
 	private boolean calcPcPcHit() {
-		final int MIN_HITRATE = 5;
 
 		_hitRate = _pc.getLevel();
 
-		if (_pc.getStr() > 39) {
-			_hitRate += strHit[39];
+		if (_pc.getStr() > 59) {
+			_hitRate += strHit[59];
 		} else {
 			_hitRate += strHit[_pc.getStr()];
 		}
 
-		if (_pc.getDex() > 39) {
-			_hitRate += dexHit[39];
+		if (_pc.getDex() > 60) {
+			_hitRate += dexHit[60];
 		} else {
 			_hitRate += dexHit[_pc.getDex()];
 		}
@@ -399,20 +398,15 @@ public class L1Attack {
 			_hitRate += _pc.getBowHitModifierByArmor();
 		}
 
-		int hitAc = (int) (_hitRate * 0.68 - 10) * -1;
-
-		if (hitAc <= _targetPc.getAc()) {
-			_hitRate = 95;
-		} else {
-			_hitRate = 95 - (hitAc - _targetPc.getAc());
-		}
-
-		if (_targetPc.hasSkillEffect(UNCANNY_DODGE)) {
-			_hitRate -= 20;
-		}
-
-		if (_targetPc.hasSkillEffect(MIRROR_IMAGE)) {
-			_hitRate -= 20;
+		if (80 < _pc.getInventory().getWeight240()
+				&& 120 >= _pc.getInventory().getWeight240()) {
+			_hitRate -= 1;
+		} else if (121 <= _pc.getInventory().getWeight240()
+				&& 160 >= _pc.getInventory().getWeight240()) {
+			_hitRate -= 3;
+		} else if (161 <= _pc.getInventory().getWeight240()
+				&& 200 >= _pc.getInventory().getWeight240()) {
+			_hitRate -= 5;
 		}
 
 		if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加命中
@@ -436,8 +430,44 @@ public class L1Attack {
 			}
 		}
 
-		if (_hitRate < MIN_HITRATE) {
-			_hitRate = MIN_HITRATE;
+		int attackerDice = RandomArrayList.getArrayshortList((short) 20) + 1 + _hitRate - 10;
+
+		if (_targetPc.hasSkillEffect(UNCANNY_DODGE)) {
+			attackerDice -= 5;
+		}
+
+		if (_targetPc.hasSkillEffect(MIRROR_IMAGE)) {
+			attackerDice -= 5;
+		}
+
+		// XXX フィアーの成功確率が不明なため未実装
+// if (_targetPc.hasSkillEffect(RESIST_FEAR)) {
+// attackerDice += 5;
+// }
+
+		int defenderDice = 0;
+
+		int defenderValue = (int) (_targetPc.getAc() * 1.5) * -1;
+
+		if (_targetPc.getAc() >= 0) {
+			defenderDice = 10 - _targetPc.getAc();
+		} else if (_targetPc.getAc() < 0) {
+			defenderDice = 10 + RandomArrayList.getArrayshortList((short)defenderValue) + 1;
+		}
+
+		int fumble = _hitRate - 9;
+		int critical = _hitRate + 10;
+
+		if (attackerDice <= fumble) {
+			_hitRate = 0;
+		} else if (attackerDice >= critical) {
+			_hitRate = 100;
+		} else {
+			if (attackerDice > defenderDice) {
+				_hitRate = 100;
+			} else if (attackerDice <= defenderDice) {
+				_hitRate = 0;
+			}
 		}
 
 		if (_weaponType2 == 17) {
@@ -465,6 +495,58 @@ public class L1Attack {
 		}
 
 		return _hitRate >= rnd;
+/*
+* final int MIN_HITRATE = 5;
+* 
+* _hitRate = _pc.getLevel();
+* 
+* if (_pc.getStr() > 39) { _hitRate += strHit[39]; } else { _hitRate +=
+* strHit[_pc.getStr()]; }
+* 
+* if (_pc.getDex() > 39) { _hitRate += dexHit[39]; } else { _hitRate +=
+* dexHit[_pc.getDex()]; }
+* 
+* if (_weaponType != 20 && _weaponType != 62) { _hitRate += _weaponAddHit +
+* _pc.getHitup() + _pc.getOriginalHitup() + (_weaponEnchant / 2); } else {
+* _hitRate += _weaponAddHit + _pc.getBowHitup() + _pc .getOriginalBowHitup() +
+* (_weaponEnchant / 2); }
+* 
+* if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中 _hitRate +=
+* _pc.getHitModifierByArmor(); } else { _hitRate +=
+* _pc.getBowHitModifierByArmor(); }
+* 
+* int hitAc = (int) (_hitRate * 0.68 - 10) * -1;
+* 
+* if (hitAc <= _targetPc.getAc()) { _hitRate = 95; } else { _hitRate = 95 -
+* (hitAc - _targetPc.getAc()); }
+* 
+* if (_targetPc.hasSkillEffect(UNCANNY_DODGE)) { _hitRate -= 20; }
+* 
+* if (_targetPc.hasSkillEffect(MIRROR_IMAGE)) { _hitRate -= 20; }
+* 
+* if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加命中 ||
+* _pc.hasSkillEffect(COOKING_2_0_S)) { if (_weaponType != 20 && _weaponType !=
+* 62) { _hitRate += 1; } } if (_pc.hasSkillEffect(COOKING_3_2_N) // 料理による追加命中 ||
+* _pc.hasSkillEffect(COOKING_3_2_S)) { if (_weaponType != 20 && _weaponType !=
+* 62) { _hitRate += 2; } } if (_pc.hasSkillEffect(COOKING_2_3_N) // 料理による追加命中 ||
+* _pc.hasSkillEffect(COOKING_2_3_S) || _pc.hasSkillEffect(COOKING_3_0_N) ||
+* _pc.hasSkillEffect(COOKING_3_0_S)) { if (_weaponType == 20 || _weaponType ==
+* 62) { _hitRate += 1; } }
+* 
+* if (_hitRate < MIN_HITRATE) { _hitRate = MIN_HITRATE; }
+* 
+* if (_weaponType2 == 17) { _hitRate = 100; // キーリンクの命中率は100% }
+* 
+* if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) { _hitRate = 0; } if
+* (_targetPc.hasSkillEffect(ICE_LANCE)) { _hitRate = 0; } if
+* (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) { _hitRate = 0; } if
+* (_targetPc.hasSkillEffect(FREEZING_BREATH)) { _hitRate = 0; } if
+* (_targetPc.hasSkillEffect(EARTH_BIND)) { _hitRate = 0; } int rnd =
+* _random.nextInt(100) + 1; if (_weaponType == 20 && _hitRate > rnd) { //
+* 弓の場合、ヒットした場合でもERでの回避を再度行う。 return calcErEvasion(); }
+* 
+* return _hitRate >= rnd;
+*/
 	}
 
 	// ●●●● プレイヤー から ＮＰＣ への命中判定 ●●●●
