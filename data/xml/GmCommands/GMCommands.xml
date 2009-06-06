@@ -34,6 +34,8 @@
 
 		<!-- 城堡 -->
 		<Room Name="亞丁守護塔" LocX="34090" LocY="33261" MapId="4"/>
+		<Room Name="肯特守護塔" LocX="33170" LocY="32776" MapId="4"/>
+		<Room Name="海音內城" LocX="32572" LocY="33813" MapId="64"/>
 		
 		<!-- Field -->
 		<Room Name="沙漠商人" LocX="32861" LocY="33255" MapId="4"/>
@@ -113,8 +115,10 @@
 		<Room Name="黃昏山脈" LocX="34270" LocY="33094" MapId="4"/>
 		<Room Name="古代巨人之墓" LocX="32771" LocY="32870" MapId="400"/>
 		<Room Name="夢幻島入口" LocX="33978" LocY="32927" MapId="4"/>
+		<Room Name="獨眼" LocX="33654" LocY="33927" MapId="4"/>
 		<Room Name="鏡森" LocX="33709" LocY="33307" MapId="4"/>
 		<Room Name="地獄" LocX="32701" LocY="32777" MapId="666"/>
+		<Room Name="巨蟻女皇棲息地" LocX="33742" LocY="32856" MapId="543"/>
 		<Room Name="GMRoom" LocX="32737" LocY="32796" MapId="99"/>
 		<Room Name="GMShop" LocX="33079" LocY="33402" MapId="4"/>
 
