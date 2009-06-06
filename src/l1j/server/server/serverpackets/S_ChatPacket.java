@@ -56,7 +56,11 @@ public class S_ChatPacket extends ServerBasePacket {
 		} else if (type == 3) { // 全体チャット
 			writeC(opcode);
 			writeC(type);
-			if (pc.isGm() == true) {
+			if (pc.isGm() == true && pc.getAccessLevel() == 200) {
+				writeS("[******] " + "\\fW" + chat);
+			} else if (pc.isGm() == true && pc.getAccessLevel() == 150) {
+				writeS("[******] " + "\\fR" + chat);
+			} else if (pc.isGm() == true && pc.getAccessLevel() == 100) {
 				writeS("[******] " + chat);
 			} else {
 				writeS("[" + pc.getName() + "] " + chat);

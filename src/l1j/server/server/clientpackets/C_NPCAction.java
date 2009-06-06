@@ -168,6 +168,18 @@ public class C_NPCAction extends ClientBasePacket {
 					L1PolyMorph.handleCommands(target, s);
 					target.setShapeChange(false); 
 					} else {
+//waja add 20090606
+		L1PolyMorph poly = PolyTable.getInstance().getTemplate(s);
+			if (poly != null || s.equals("none")) {
+			if (target.getInventory().checkItem(40088)
+					&& usePolyScroll(target, 40088, s)){
+			} if (target.getInventory().checkItem(40096)
+					&& usePolyScroll(target, 40096, s)) {
+			} if (target.getInventory().checkItem(140088)
+					&& usePolyScroll(target, 140088, s)) {
+			}
+	}
+//add end
 					boolean _checkpoly = false;
 					if (target.getInventory().checkItem(40088)
 					&& usePolyScroll(target, 40088, s)) {
@@ -256,11 +268,9 @@ public class C_NPCAction extends ClientBasePacket {
 				// 買い取りリスト表示
 				pc.sendPackets(new S_ShopBuyList(objid, pc));
 			}
-//waja add 寵物競速NPC的編號
-		} else if(((L1NpcInstance)obj).getNpcTemplate().get_npcId()==91002  
+		} else if(((L1NpcInstance)obj).getNpcTemplate().get_npcId()==91002//寵物競速NPC的編號
 			&& s.equalsIgnoreCase("ent")){
 			l1j.server.server.model.L1PolyRace.getInstance().enterGame(pc);
-//add end
 		} else if (s.equalsIgnoreCase("retrieve")) { // 「個人倉庫：アイテムを受け取る」
 			if (pc.getLevel() >= 5) {
 				pc.sendPackets(new S_RetrieveList(objid, pc));
