@@ -222,3 +222,49 @@ Update droplist Set chance = '300' Where mobId = '45449' And itemId = '40076';
 Update droplist Set chance = '300' Where mobId = '45457' And itemId = '40076';
 Update droplist Set chance = '300' Where mobId = '45531' And itemId = '40076';
 Update droplist Set chance = '300' Where mobId = '45578' And itemId = '40076';
+
+/* 20090606 降低 黑暗棲林者戒指掉落機率 */
+Update droplist Set chance = '2000' Where mobId = '45326' And itemId = '40426';
+Update droplist Set chance = '2000' Where mobId = '45347' And itemId = '40426';
+Update droplist Set chance = '5000' Where mobId = '45898' And itemId = '40426';
+Update droplist Set chance = '5000' Where mobId = '45901' And itemId = '40426';
+Update droplist Set chance = '5000' Where mobId = '45905' And itemId = '40426';
+Update droplist Set chance = '2000' Where mobId = '45967' And itemId = '40426';
+
+/* 20090606 降低 黑法師戒指掉落機率 */
+Update droplist Set chance = '2000' Where mobId = '45405' And itemId = '40446';
+Update droplist Set chance = '2000' Where mobId = '45425' And itemId = '40446';
+Update droplist Set chance = '2000' Where mobId = '45969' And itemId = '40446';
+Update droplist Set chance = '2000' Where mobId = '45970' And itemId = '40446';
+Update droplist Set chance = '2000' Where mobId = '45971' And itemId = '40446';
+Update droplist Set chance = '2000' Where mobId = '46018' And itemId = '40446';
+
+/* 20090606 降低 喚獸師戒指掉落機率 */
+Update droplist Set chance = '2000' Where mobId = '45323' And itemId = '40452';
+Update droplist Set chance = '2000' Where mobId = '45368' And itemId = '40452';
+
+/* 20090606 降低 馴獸師戒指掉落機率 */
+Update droplist Set chance = '2000' Where mobId = '45356' And itemId = '40454';
+Update droplist Set chance = '2000' Where mobId = '45414' And itemId = '40454';
+Update droplist Set chance = '5000' Where mobId = '45467' And itemId = '40454';
+Update droplist Set chance = '5000' Where mobId = '45483' And itemId = '40454';
+Update droplist Set chance = '5000' Where mobId = '45512' And itemId = '40454';
+Update droplist Set chance = '5000' Where mobId = '45836' And itemId = '40454';
+Update droplist Set chance = '5000' Where mobId = '45841' And itemId = '40454';
+Update droplist Set chance = '5000' Where mobId = '45909' And itemId = '40454';
+
+/* 20090606 修正骰子匕首掉落怪物 */
+delete from droplist where itemId = '2' ;
+Update droplist Set mobId = '5000' Where mobId = '45601' And itemId = '200002';/* 死亡騎士掉落受詛咒的骰子匕首 */
+Update droplist Set chance = '40000' Where mobId = '5000' And itemId = '200002';;/* 死亡騎士掉落受詛咒的骰子匕首 */
+/* 缺 狩獵 黑騎士& 精銳 黑騎士 */
+INSERT INTO `droplist` (`mobId`, `itemId`, `min`, `max`, `chance`) VALUES
+(45481, 2, 1, 1, 5000),/* 小惡魔 */
+(45513, 2, 1, 1, 40000),/* 潔尼斯女王 */
+(45547, 2, 1, 1, 40000),/* 幻象眼魔 */
+(5000, 2, 1, 1, 40000),/* 死亡騎士 */
+(45606, 2, 1, 1, 40000),/* 吸血鬼 */
+(45649, 2, 1, 1, 40000);/* 惡魔 */
+
+/* 20090606 刪除販賣GM商店卷 */
+delete from shop where item_id = '42027';
