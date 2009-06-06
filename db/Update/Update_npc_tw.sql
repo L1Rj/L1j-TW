@@ -2640,6 +2640,7 @@ Update npc Set nameid = '$228 $2482' Where npcid = '45942';
 Update npc Set nameid = '$5253 $3124' Where npcid = '45891';
 Update npc Set nameid = '$5253 $3144' Where npcid = '45893';
 
+/*20090605 水晶洞穴怪物名稱中文化*/
 
 Update npc Set name = '鋼鐵高崙' Where npcid = '46125';
 Update npc Set name = '萊肯' Where npcid = '46126';
