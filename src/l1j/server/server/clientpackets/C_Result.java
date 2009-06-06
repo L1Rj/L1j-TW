@@ -27,6 +27,7 @@ import l1j.server.server.model.L1Clan;
 import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1World;
+import l1j.server.server.model.Instance.L1DollInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -120,6 +121,17 @@ public class C_Result extends ClientBasePacket {
 						}
 					}
 				}
+				Object[] dolllist = pc.getDollList().values().toArray();
+				for (Object dollObject : dolllist) {
+					if (dollObject instanceof L1DollInstance) {
+						L1DollInstance doll = (L1DollInstance) dollObject;
+						if (item.getId() == doll.getItemObjId()) {
+							tradable = false;
+							pc.sendPackets(new S_ServerMessage(1181)); // ???
+							break;
+						}
+					}
+				}
 				if (pc.getDwarfInventory().checkAddItemToWarehouse(item, count,
 						L1Inventory.WAREHOUSE_TYPE_PERSONAL) == L1Inventory
 								.SIZE_OVER) {
@@ -181,6 +193,17 @@ public class C_Result extends ClientBasePacket {
 									// \f1%0は捨てたりまたは他人に讓ることができません。
 									pc.sendPackets(new S_ServerMessage(210,
 											item.getItem().getName()));
+									break;
+								}
+							}
+						}
+						Object[] dolllist = pc.getDollList().values().toArray();
+						for (Object dollObject : dolllist) {
+							if (dollObject instanceof L1DollInstance) {
+								L1DollInstance doll = (L1DollInstance) dollObject;
+								if (item.getId() == doll.getItemObjId()) {
+									tradable = false;
+									pc.sendPackets(new S_ServerMessage(1181)); // ???
 									break;
 								}
 							}
@@ -258,6 +281,17 @@ public class C_Result extends ClientBasePacket {
 							// \f1%0は捨てたりまたは他人に讓ることができません。
 							pc.sendPackets(new S_ServerMessage(210, item
 									.getItem().getName()));
+							break;
+						}
+					}
+				}
+				Object[] dolllist = pc.getDollList().values().toArray();
+				for (Object dollObject : dolllist) {
+					if (dollObject instanceof L1DollInstance) {
+						L1DollInstance doll = (L1DollInstance) dollObject;
+						if (item.getId() == doll.getItemObjId()) {
+							tradable = false;
+							pc.sendPackets(new S_ServerMessage(1181)); // ???
 							break;
 						}
 					}

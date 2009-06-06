@@ -1359,8 +1359,7 @@ public class L1NpcInstance extends L1Character {
 		if (pc.hasSkillEffect(60) || pc.hasSkillEffect(97)) { // インビジビリティ、ブラインドハイディング中
 			return;
 		}
-		if (getHiddenStatus() == HIDDEN_STATUS_SINK
-				|| getHiddenStatus() == HIDDEN_STATUS_ICE) {
+		if (getHiddenStatus() == HIDDEN_STATUS_SINK) {
 			if (getCurrentHp() == getMaxHp()) {
 				if (pc.getLocation().getTileLineDistance(this.getLocation()) <= 2) {
 					appearOnGround(pc);
@@ -1376,7 +1375,11 @@ public class L1NpcInstance extends L1Character {
 					searchItemFromAir();
 // }
 			}
- 		}
+ 		} else if (getHiddenStatus() == HIDDEN_STATUS_ICE) {
+			if (getCurrentHp() < getMaxHp()) {
+				appearOnGround(pc);
+			}
+		}
 	}
 
 	public void appearOnGround(L1PcInstance pc) {

@@ -27,6 +27,7 @@ import l1j.server.server.ActionCodes;
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.datatables.DropTable;
 import l1j.server.server.datatables.NPCTalkDataTable;
+import l1j.server.server.model.L1Object;
 import l1j.server.server.datatables.UBTable;
 import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1Character;
@@ -364,6 +365,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 					setCurrentHpDirect(0);
 					setDead(true);
 					setStatus(ActionCodes.ACTION_Die);
+					openDoorWhenNpcDied(this);
 					Death death = new Death(attacker);
 					GeneralThreadPool.getInstance().execute(death);
 					// Death(attacker);
@@ -382,6 +384,30 @@ public class L1MonsterInstance extends L1NpcInstance {
 			Death death = new Death(attacker);
 			GeneralThreadPool.getInstance().execute(death);
 			// Death(attacker);
+		}
+	}
+
+	private static void openDoorWhenNpcDied(L1NpcInstance npc) {
+		int[] npcId = { 46143, 46144, 46145, 46146, 46147, 46148,
+				46149, 46150, 46151, 46152};
+		int[] doorId = { 5001, 5002, 5003, 5004, 5005, 5006,
+				5007, 5008, 5009, 5010};
+
+		for (int i = 0; i < npcId.length; i++) {
+			if (npc.getNpcTemplate().get_npcId() == npcId[i]) {
+				openDoorInCrystalCave(doorId[i]);
+			}
+		}
+	}
+
+	private static void openDoorInCrystalCave(int doorId) {
+		for (L1Object object : L1World.getInstance().getObject()) {
+			if (object instanceof L1DoorInstance) {
+				L1DoorInstance door = (L1DoorInstance) object;
+				if (door.getDoorId() == doorId) {
+					door.open();
+				}
+			}
 		}
 	}
 

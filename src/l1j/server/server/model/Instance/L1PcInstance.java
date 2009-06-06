@@ -3998,6 +3998,7 @@ public class L1PcInstance extends L1Character {
 	public void setLap(int i){
 		_lap = i;
 	}
+
 	public int getLap(){
 		return _lap;
 	}
@@ -4006,41 +4007,46 @@ public class L1PcInstance extends L1Character {
 	public void setLapCheck(int i){
 		_lapCheck = i;
 	}
+
 	public int getLapCheck(){
 		return _lapCheck;
 	}
 	/**
 	 只是將總圈數的完程度數量化
 	 */
+
 	public int getLapScore(){
 		return _lap*29 + _lapCheck;
 	}
-	//補充
+//寵物競速 補充
 	private boolean _order_list=false;
+
 	public boolean isInOrderList(){
 		return _order_list;
 	}
+
 	public void setInOrderList(boolean bool){
 		_order_list=bool;
 	}
-//waja add 判斷是否無道具施法(召戒清單、變身清單)  
-	private boolean _isSummonMonster = false;
-	private boolean _isShapeChange = false;
- 
+
+	private boolean _isSummonMonster = false;//判斷是否無道具施法(召戒清單、變身清單)  
+
 	public void setSummonMonster(boolean SummonMonster) {
-	_isSummonMonster = SummonMonster;
+		_isSummonMonster = SummonMonster;
 	}
 
 	public boolean isSummonMonster() {
-	return _isSummonMonster;
+		return _isSummonMonster;
 	}
 
+	private boolean _isShapeChange = false;
+
 	public void setShapeChange(boolean isShapeChange) {
-	_isShapeChange = isShapeChange;
+		_isShapeChange = isShapeChange;
 	}
 
 	public boolean isShapeChange() {
-	return _isShapeChange;
+		return _isShapeChange;
 	}
-//add end
+
 }

@@ -2553,12 +2553,9 @@ public class L1SkillUse {
 						if (pc.getMap().isRecallPets() || pc.isGm()) {
 							if (pc.getInventory().checkEquipped(20284)) {
 								pc.sendPackets(new S_ShowSummonList(pc.getId()));
-//waja add 判斷是否無道具施法(召戒清單、變身清單)
-								if (!pc.isSummonMonster()) {
+								if (!pc.isSummonMonster()) {//判斷是否無道具施法(召戒清單、變身清單)
 									pc.setSummonMonster(true);
 								}
-						
-//add end
 							} else {
 /*
  * summons = new int[] { 81083, 81084, 81085, 81086, 81087, 81088, 81089 };
@@ -2861,11 +2858,9 @@ public class L1SkillUse {
 					} else if (_skillId == SHAPE_CHANGE) { // シェイプ チェンジ
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.sendPackets(new S_ShowPolyList(pc.getId()));
-//waja add 判斷是否無道具施法(召戒清單、變身清單)
-						if (!pc.isShapeChange()) {
+						if (!pc.isShapeChange()) {//判斷是否無道具施法(召戒清單、變身清單)
 							pc.setShapeChange(true);
 							}
-//add end
 					} else if (_skillId == ADVANCE_SPIRIT) { // アドバンスド スピリッツ
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.setAdvenHp(pc.getBaseMaxHp() / 5);
