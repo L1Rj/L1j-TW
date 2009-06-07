@@ -115,7 +115,7 @@ public class L1UltimateBattle {
 			spawnGroundItem(L1ItemId.POTION_OF_EXTRA_HEALING, 5, 20);
 			spawnGroundItem(L1ItemId.POTION_OF_GREATER_HEALING, 3, 20);
 			spawnGroundItem(40317, 1, 5); // 砥石
-			spawnGroundItem(42079, 1, 20); // 歸還スク
+			spawnGroundItem(40079, 1, 20); // 歸還スク
 		} else if (curRound == 2) {
 			spawnGroundItem(L1ItemId.ADENA, 5000, 50);
 			spawnGroundItem(L1ItemId.POTION_OF_CURE_POISON, 5, 20);
@@ -123,7 +123,7 @@ public class L1UltimateBattle {
 			spawnGroundItem(L1ItemId.POTION_OF_GREATER_HEALING, 5, 20);
 			spawnGroundItem(40317, 1, 7); // 砥石
 			spawnGroundItem(40093, 1, 10); // ブランクスク(Lv4)
-			spawnGroundItem(42079, 1, 5); // 歸還スク
+			spawnGroundItem(40079, 1, 5); // 歸還スク
 		} else if (curRound == 3) {
 			spawnGroundItem(L1ItemId.ADENA, 10000, 30);
 			spawnGroundItem(L1ItemId.POTION_OF_CURE_POISON, 7, 20);

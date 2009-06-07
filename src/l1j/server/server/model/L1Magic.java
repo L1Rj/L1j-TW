@@ -851,10 +851,6 @@ public class L1Magic {
 					magicDamage *= criticalCoefficient;
 				}
 			}
-		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
-			if (rnd <= 10) {
-				magicDamage *= criticalCoefficient;
-			}
 		}
 
 		if (_calcType == PC_PC || _calcType == PC_NPC) { // オリジナルINTによる魔法ダメージ
@@ -904,22 +900,20 @@ public class L1Magic {
 			} else if (mr >= 100) {
 				mrFloor = Math.floor((mr - _pc.getOriginalMagicHit()) / 10);
 			}
-		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
+			double mrCoefficient = 0;
 			if (mr <= 100) {
-				mrFloor = Math.floor(mr / 2);
+				mrCoefficient = 1 - 0.01 * mrFloor;
 			} else if (mr >= 100) {
-				mrFloor = Math.floor(mr / 10);
+				mrCoefficient = 0.6 - 0.01 * mrFloor;
+			}
+			dmg *= mrCoefficient;
+		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
+//			byte rnd = RandomArrayList.getArray100List();
+			int rnd = RandomArrayList.getArray100List() + 1; //原寫法 int rnd = random.nextInt(100) + 1;
+			if (mr >= rnd) {
+				dmg /= 2;
 			}
 		}
-
-		double mrCoefficient = 0;
-		if (mr <= 100) {
-			mrCoefficient = 1 - 0.01 * mrFloor;
-		} else if (mr >= 100) {
-			mrCoefficient = 0.6 - 0.01 * mrFloor;
-		}
-
-		dmg *= mrCoefficient;
 
 		return dmg;
 	}
