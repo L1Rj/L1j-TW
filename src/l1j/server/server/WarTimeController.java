@@ -52,6 +52,16 @@ public class WarTimeController implements Runnable {
 	private WarTimeController() {
 		for (int i = 0; i < _l1castle.length; i++) {
 			_l1castle[i] = CastleTable.getInstance().getCastleTable(i + 1);
+//waja add 修正攻城時間判斷
+            Calendar nowTime = Calendar.getInstance();
+            Calendar oldTime = _l1castle[i].getWarTime();
+            oldTime.add(Config.ALT_WAR_TIME_UNIT, Config.ALT_WAR_TIME);
+            if(nowTime.after(oldTime)){
+                nowTime.add(Config.ALT_WAR_INTERVAL_UNIT, Config.ALT_WAR_INTERVAL);
+                _l1castle[i].setWarTime(nowTime);
+                CastleTable.getInstance().updateCastle(_l1castle[i]);
+            }
+//add end
 			_war_start_time[i] = _l1castle[i].getWarTime();
 			_war_end_time[i] = (Calendar) _l1castle[i].getWarTime().clone();
 			_war_end_time[i].add(Config.ALT_WAR_TIME_UNIT, Config.ALT_WAR_TIME);

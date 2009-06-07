@@ -59,7 +59,7 @@ public class S_ChatPacket extends ServerBasePacket {
 			if (pc.isGm() == true && pc.getAccessLevel() == 200) {
 				writeS("[******] " + "\\fW" + chat);
 			} else if (pc.isGm() == true && pc.getAccessLevel() == 150) {
-				writeS("[******] " + "\\fR" + chat);
+				writeS("[******] " + "\\fT" + chat);
 			} else if (pc.isGm() == true && pc.getAccessLevel() == 100) {
 				writeS("[******] " + chat);
 			} else {
