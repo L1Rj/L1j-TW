@@ -359,6 +359,13 @@ public class L1Attack {
 		} else if (_calcType == NPC_NPC) {
 			_isHit = calcNpcNpcHit();
 		}
+//waja add 近戰武器座標異常時攻擊無效
+		else if  (_pc.getLocation().getTileLineDistance(_pc.getLocation()) > 1&&_weaponType != 20&&_weaponType != 24) {
+            _isHit = false;
+        }else if  (_pc.getLocation().getTileLineDistance(_pc.getLocation()) > 2&&_weaponType == 24) {
+            _isHit = false;
+        }
+//add end
 		return _isHit;
 	}
 
