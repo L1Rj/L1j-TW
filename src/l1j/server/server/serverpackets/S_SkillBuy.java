@@ -24,6 +24,10 @@ import java.util.logging.Logger;
 
 import l1j.server.server.Opcodes;
 import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.model.Instance.L1NpcInstance;
+import l1j.server.server.model.L1Object;
+import l1j.server.server.model.L1World;
+
 
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
@@ -34,28 +38,61 @@ public class S_SkillBuy extends ServerBasePacket {
 
 	private byte[] _byte = null;
 
-	public S_SkillBuy(int o, L1PcInstance pc) {
-		int count = Scount(pc);
-		int inCount = 0;
-		for (int k = 0; k < count; k++) {
-			if (!pc.isSkillMastery((k + 1))) {
-				inCount++;
-			}
-		}
+    public S_SkillBuy(int objid, L1PcInstance pc){
+            L1NpcInstance npc = null;
+            int npcId = 0;
+            String htmlid = "";
+            L1Object obj = L1World.getInstance().findObject(objid);
+            if (obj != null) {
+                int difflocx = Math.abs(pc.getX() - obj.getX());
+                int difflocy = Math.abs(pc.getY() - obj.getY());
+                if (difflocx > 3 || difflocy > 3) {
+                    return;
+                }
+                if (obj instanceof L1NpcInstance) {
+                    npc = (L1NpcInstance) obj;
+                    npcId = npc.getNpcTemplate().get_npcId();
+                } else {
+                    return;
+                }
+            }
+            switch(npcId) {
+            case 70009:
+            htmlid = "gerengev3";
+            break;
+            case 70003:
+            htmlid = "siriss1";
+            break;
+        }
+        if (htmlid == "") { //判斷npc 禁用清單學習法術
+            return;
+        }
+        int count = Scount(pc);
+        int in_count = 0;
+        for (int k = 0; k < count; k++) {
+            if (!pc.isSkillMastery((k+1))) {
+                in_count++;
+            }
+        }
 
-		try {
-			writeC(Opcodes.S_OPCODE_SKILLBUY);
-			writeD(100);
-			writeH(inCount);
-			for (int k = 0; k < count; k++) {
-				if (!pc.isSkillMastery((k + 1))) {
-					writeD(k);
-				}
-			}
-		} catch (Exception e) {
-			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-		}
-	}
+        try {
+            if (in_count <= 0) {
+                pc.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+            } else {
+                writeC(Opcodes.S_OPCODE_SKILLBUY);
+                writeD(100);
+                writeH(in_count);
+                for (int k = 0; k < count; k++) {
+                    if (!pc.isSkillMastery((k+1))) {
+                        writeD(k);
+                    }
+                }
+                writeD(objid);
+            }
+        } catch (Exception e) {
+            _log.log(Level.SEVERE, _S_SKILL_BUY + ": 資料錯誤", e);
+        }
+    }
 
 	public int Scount(L1PcInstance pc) {
 		int RC = 0;
