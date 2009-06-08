@@ -346,6 +346,10 @@ public class L1Attack {
 				_isHit = false; // スティングがない場合はミス
 			} else if (!_pc.glanceCheck(_targetX, _targetY)) {
 				_isHit = false; // 攻擊者がプレイヤーの場合は障害物判定
+			} else if  (_pc.getLocation().getTileLineDistance(_target.getLocation()) > 2 && _weaponType != 20 && _weaponType != 24) {
+		        _isHit = false;//waja 近戰武器攻擊時座標離目標物過遠 攻擊無效 原值 為  > 1  避免怪物體積過大揮空改為2
+		        }else if  (_pc.getLocation().getTileLineDistance(_target.getLocation()) > 3 && _weaponType == 24) {
+		        _isHit = false;//waja 近戰武器攻擊時座標離目標物過遠 攻擊無效 原值為 > 2 
 			} else if (_weaponId == 247 || _weaponId == 248
 					|| _weaponId == 249) {
 				_isHit = false; // 試練の劍B～C 攻擊無效
@@ -359,17 +363,6 @@ public class L1Attack {
 		} else if (_calcType == NPC_NPC) {
 			_isHit = calcNpcNpcHit();
 		}
-//waja add 近戰武器座標異常時攻擊無效
-		else if  (_pc.getLocation().getTileLineDistance(_targetPc.getLocation()) > 1 && _weaponType != 20 && _weaponType != 24 && _weaponType != 62 ) {
-            _isHit = false;
-        }else if  (_pc.getLocation().getTileLineDistance(_targetPc.getLocation()) > 2 && _weaponType == 24 ) {
-            _isHit = false;
-        }else if  (_pc.getLocation().getTileLineDistance(_targetNpc.getLocation()) > 1 && _weaponType != 20 && _weaponType != 24 && _weaponType != 62 ) {
-            _isHit = false;
-        }else if  (_pc.getLocation().getTileLineDistance(_targetNpc.getLocation()) > 2 && _weaponType == 24) {
-            _isHit = false;
-        }
-//add end
 		return _isHit;
 	}
 

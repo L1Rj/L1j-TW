@@ -1006,53 +1006,129 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("teleportURL")) {
 				htmlid = "amisoo2";
 			}
-//waja add 羅賓孫
-			} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71256){ 
+//羅賓孫 熾炎天使弓
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71256) {
+            if (s.equalsIgnoreCase("E")) {
+                if ((pc.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 8)
+                        && pc.getInventory().checkItem(40491,30)
+                        && pc.getInventory().checkItem(40495,40)
+                        && pc.getInventory().checkItem(100,1)
+                        && pc.getInventory().checkItem(40509,12)
+                        && pc.getInventory().checkItem(40052,1)
+                        && pc.getInventory().checkItem(40053,1)
+                        && pc.getInventory().checkItem(40054,1)
+                        && pc.getInventory().checkItem(40055,1)
+                        && pc.getInventory().checkItem(41347,1)
+                        && pc.getInventory().checkItem(41350,1)) {
+                    pc.getInventory().consumeItem(40491,30);
+                    pc.getInventory().consumeItem(40495,40);
+                    pc.getInventory().consumeItem(100,1);
+                    pc.getInventory().consumeItem(40509,12);
+                    pc.getInventory().consumeItem(40052,1);
+                    pc.getInventory().consumeItem(40053,1);
+                    pc.getInventory().consumeItem(40054,1);
+                    pc.getInventory().consumeItem(40055,1);
+                    pc.getInventory().consumeItem(41347,1);
+                    pc.getInventory().consumeItem(41350,1);
+                    htmlid = "robinhood12";
+                    pc.getInventory().storeItem(205,1);
+                    pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, L1Quest.QUEST_END);
+                }
+            } else if (s.equalsIgnoreCase("C")) {
+                if (pc.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 7) {
+                    if (pc.getInventory().checkItem(41352,4)
+                        && pc.getInventory().checkItem(40618,30)
+                        && pc.getInventory().checkItem(40643,30)
+                        && pc.getInventory().checkItem(40645,30)
+                        && pc.getInventory().checkItem(40651,30)
+                        && pc.getInventory().checkItem(40676,30)
+                        && pc.getInventory().checkItem(40514,20)
+                        && pc.getInventory().checkItem(41351,1)
+                        && pc.getInventory().checkItem(41346,1)) {
+                        pc.getInventory().consumeItem(41352,4);
+                        pc.getInventory().consumeItem(40618,30);
+                        pc.getInventory().consumeItem(40643,30);
+                        pc.getInventory().consumeItem(40645,30);
+                        pc.getInventory().consumeItem(40651,30);
+                        pc.getInventory().consumeItem(40676,30);
+                        pc.getInventory().consumeItem(40514,20);
+                        pc.getInventory().consumeItem(41351,1);
+                        pc.getInventory().consumeItem(41346,1);
+                        pc.getInventory().storeItem(41347,1);
+                        pc.getInventory().storeItem(41350,1);
+                        htmlid = "robinhood10";
+                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 8);
+                        }
+                    }
+            } else if (s.equalsIgnoreCase("B")) {
+                    if(pc.getInventory().checkItem(41348)
+                        && pc.getInventory().checkItem(41346)) {
+                        htmlid = "robinhood13";
+                    } else {
+                        pc.getInventory().storeItem(41348,1);
+                        pc.getInventory().storeItem(41346,1);
+                        htmlid = "robinhood13";
+                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 2);
+                    }
+            } else if (s.equalsIgnoreCase("A")) {
+                if (pc.getInventory().checkItem(40028)) {
+                    pc.getInventory().consumeItem(40028,1);
+                    htmlid = "robinhood4";
+                    pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 1);
+                } else {
+                    htmlid = "robinhood19";
+                }
+            }
+        } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71257) {
+                if (s.equalsIgnoreCase("D")) {
+                    if (pc.getInventory().checkItem(41349)) {
+                        htmlid ="zybril10";
+                        pc.getInventory().storeItem(41351,1);
+                        pc.getInventory().consumeItem(41349,1);
+                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 7);
+                    } else {
+                        htmlid ="zybril14";
+                    }
+                } else if (s.equalsIgnoreCase("C")) {
+                    if (pc.getInventory().checkItem(40514,10)
+                            && pc.getInventory().checkItem(41353)) {
+                        pc.getInventory().consumeItem(40514,10);
+                        pc.getInventory().consumeItem(41353,1);
+                        pc.getInventory().storeItem(41354,1);
+                        htmlid ="zybril9";
+                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 6);
+                    }
+                } else if (pc.getInventory().checkItem(41353)
+                        && pc.getInventory().checkItem(40514,10)) {
+                    htmlid = "zybril8";
+                } else if (s.equalsIgnoreCase("B")) {
+                    if (pc.getInventory().checkItem(40048,10)
+                        && pc.getInventory().checkItem(40049,10)
+                        && pc.getInventory().checkItem(40050,10)
+                        && pc.getInventory().checkItem(40051,10)) {
+                        pc.getInventory().consumeItem(40048,10);
+                        pc.getInventory().consumeItem(40049,10);
+                        pc.getInventory().consumeItem(40050,10);
+                        pc.getInventory().consumeItem(40051,10);
+                        pc.getInventory().storeItem(41353,1);
+                        htmlid = "zybril15";
+                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 5);
+                    } else {
+                        htmlid = "zybril12";
+                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 4);
+                    }
+                    
+                } else if (s.equalsIgnoreCase("A")) {
+                    if (pc.getInventory().checkItem(41348)
+                            && pc.getInventory().checkItem(41346)) {
+                        htmlid = "zybril3";
+                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 3);
+                    } else {
+                        htmlid = "zybril11";
+                    }
+                }
 
-				if (s.equalsIgnoreCase("A")&&(pc.getInventory().checkItem(40028))) {//蘋果汁
-					htmlid = "robinhood4";
-				}
-
-				else if (s.equalsIgnoreCase("B")) {//羅賓孫的推薦書
-				if (pc.getInventory().checkItem(41352)) {//神聖獨角獸之角
-                    pc.getInventory().consumeItem(41352, 1);//神聖獨角獸之角
-                    L1NpcInstance npc = (L1NpcInstance) obj;
-                    L1ItemInstance item = pc.getInventory().storeItem(41348, 1);//取得推薦書
-                    String npcName = npc.getNpcTemplate().get_name();
-                    String itemName = item.getItem().getName();
-                    pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
-				}
-
-				if (pc.getInventory().checkItem(41352)) {//月光之氣息
-					htmlid = "robinhood9";
-				}
-
-				else if (s.equalsIgnoreCase("C")) {
-				if (pc.getInventory().checkItem(41346)) {//身上有羅賓孫的便條紙1
-                    pc.getInventory().consumeItem(41346, 1);//羅賓孫的便條紙1
-                    pc.getInventory().consumeItem(41352, 4);//神聖獨角獸之角
-					pc.getInventory().consumeItem(41351, 1);//月光之氣息
-	                pc.getInventory().consumeItem(41643, 30);//水之氣息
-	                pc.getInventory().consumeItem(41645, 30);//風之氣息
-	                pc.getInventory().consumeItem(41618, 30);//土之氣息
-	                pc.getInventory().consumeItem(41676, 30);//闇之氣息
-	                pc.getInventory().consumeItem(41351, 30);//火之氣息
-                    L1NpcInstance npc = (L1NpcInstance) obj;
-                    L1ItemInstance item = pc.getInventory().storeItem(41350, 1);//取得羅賓孫的戒指
-                    String npcName = npc.getNpcTemplate().get_name();
-                    String itemName = item.getItem().getName();
-                    pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
-                    htmlid = "robinhood10";
-					}
-				}
-			else if (s.equalsIgnoreCase("D")) {//弓架材料完成
-           			{
-         				htmlid = "robinhood11";
-           			}      
-                   
-    		}
-	}
-//waja add 遠征隊遺物 by BAO
+// 遠征隊遺物 by BAO
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71258) {
             if (pc.getInventory().checkItem(40665)) {
                 htmlid = "marba17";
