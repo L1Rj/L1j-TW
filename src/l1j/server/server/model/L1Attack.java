@@ -175,7 +175,7 @@ public class L1Attack {
  * dmg++; dexDmg[dex] = dmg; } }
  */
 
-	private static final int[] strHit = { -2, -2, -2, -2, -2, -2, -2, // 0～7まで
+	private static final int[] strHit = { -2, -2, -2, -2, -2, -2, -2, // 1～7まで
 			-2, -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, // 8～26まで
 			7, 7, 7, 8, 8, 8, 9, 9, 9, 10, 10, 10, 11, 11, 11, 12, 12, 12, // 27～44まで
 			13, 13, 13, 14, 14, 14, 15, 15, 15, 16, 16, 16, 17, 17, 17}; // 45～59まで
@@ -377,13 +377,13 @@ public class L1Attack {
 		_hitRate = _pc.getLevel();
 
 		if (_pc.getStr() > 59) {
-			_hitRate += strHit[59];
+			_hitRate += strHit[58];
 		} else {
 			_hitRate += strHit[_pc.getStr()];
 		}
 
 		if (_pc.getDex() > 60) {
-			_hitRate += dexHit[60];
+			_hitRate += dexHit[59];
 		} else {
 			_hitRate += dexHit[_pc.getDex()];
 		}
@@ -560,13 +560,13 @@ public class L1Attack {
 		_hitRate = _pc.getLevel();
 
 		if (_pc.getStr() > 39) {
-			_hitRate += strHit[39];
+			_hitRate += strHit[38];
 		} else {
 			_hitRate += strHit[_pc.getStr()];
 		}
 
 		if (_pc.getDex() > 39) {
-			_hitRate += dexHit[39];
+			_hitRate += dexHit[38];
 		} else {
 			_hitRate += dexHit[_pc.getDex()];
 		}
