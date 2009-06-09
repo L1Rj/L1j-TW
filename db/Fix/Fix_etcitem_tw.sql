@@ -15,8 +15,10 @@ Update etcitem Set weight = '7000' Where item_id = '49114';
 Update etcitem Set weight = '7000' Where item_id = '49115';
 Update etcitem Set weight = '7000' Where item_id = '49116';
 
-/* 修正 指定傳送卷軸(歌唱之島) 項目 */
+/* 修正 指定傳送卷軸(歌唱之島) */
 Update etcitem Set locx = '32778', locy = '32779', mapid = '68' Where item_id = '40082';
+/* 修正 妖森指定傳送捲軸 */
+Update etcitem Set locx = '32867', locy = '32510', mapid = '4' Where item_id = '40114';
 
 /* 20090512 暫時更改失去光輝的靈魂碎片 41422 為可以刪除(任務道具不同職業打到很麻煩) */
 Update etcitem Set cant_delete = '0' Where item_id = '41422';
