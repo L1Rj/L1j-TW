@@ -156,7 +156,14 @@ public class C_NPCAction extends ClientBasePacket {
 						target.setSummonMonster(false);
 					}
 				} else {
-					if (target.isShapeChange()) {
+		int awakeSkillId = target.getAwakeSkillId();
+				if (awakeSkillId == AWAKEN_ANTHARAS
+							|| awakeSkillId == AWAKEN_FAFURION
+							|| awakeSkillId == AWAKEN_VALAKAS) {
+						target.sendPackets(new S_ServerMessage(1384)); // 
+						return;
+					}
+				if (target.isShapeChange()) {
 						L1PolyMorph.handleCommands(target, s);
 						target.setShapeChange(false);
 					} else {
@@ -3903,6 +3910,13 @@ public class C_NPCAction extends ClientBasePacket {
 
 	private void poly(ClientThread clientthread, int polyId) {
 		L1PcInstance pc = clientthread.getActiveChar();
+		int awakeSkillId = pc.getAwakeSkillId();
+		if (awakeSkillId == AWAKEN_ANTHARAS
+				|| awakeSkillId == AWAKEN_FAFURION
+				|| awakeSkillId == AWAKEN_VALAKAS) {
+			pc.sendPackets(new S_ServerMessage(1384)); // 
+			return;
+		}
 
 		if (pc.getInventory().checkItem(L1ItemId.ADENA, 100)) { // check
 			pc.getInventory().consumeItem(L1ItemId.ADENA, 100); // del
@@ -3915,6 +3929,13 @@ public class C_NPCAction extends ClientBasePacket {
 
 	private void polyByKeplisha(ClientThread clientthread, int polyId) {
 		L1PcInstance pc = clientthread.getActiveChar();
+		int awakeSkillId = pc.getAwakeSkillId();
+		if (awakeSkillId == AWAKEN_ANTHARAS
+				|| awakeSkillId == AWAKEN_FAFURION
+				|| awakeSkillId == AWAKEN_VALAKAS) {
+			pc.sendPackets(new S_ServerMessage(1384)); // 
+			return;
+		}
 
 		if (pc.getInventory().checkItem(L1ItemId.ADENA, 100)) { // check
 			pc.getInventory().consumeItem(L1ItemId.ADENA, 100); // del

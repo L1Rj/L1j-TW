@@ -7,7 +7,9 @@ import java.util.logging.Logger;
 import l1j.server.server.datatables.ArmorSetTable;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1ArmorSets;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 public abstract class L1ArmorSet {
 	public abstract void giveEffect(L1PcInstance pc);
@@ -275,6 +277,13 @@ class PolymorphEffect implements L1ArmorSetEffect {
 
 	@Override
 	public void giveEffect(L1PcInstance pc) {
+		int awakeSkillId = pc.getAwakeSkillId();
+		if (awakeSkillId == AWAKEN_ANTHARAS
+				|| awakeSkillId == AWAKEN_FAFURION
+				|| awakeSkillId == AWAKEN_VALAKAS) {
+			pc.sendPackets(new S_ServerMessage(1384)); // 
+			return;
+		}
 		if (_gfxId == 6080 || _gfxId == 6094) {
 			if (pc.get_sex() == 0) {
 				_gfxId = 6094;
@@ -290,6 +299,13 @@ class PolymorphEffect implements L1ArmorSetEffect {
 
 	@Override
 	public void cancelEffect(L1PcInstance pc) {
+		int awakeSkillId = pc.getAwakeSkillId();
+		if (awakeSkillId == AWAKEN_ANTHARAS
+				|| awakeSkillId == AWAKEN_FAFURION
+				|| awakeSkillId == AWAKEN_VALAKAS) {
+			pc.sendPackets(new S_ServerMessage(1384)); // 
+			return;
+		}
 		if (_gfxId == 6080) {
 			if (pc.get_sex() == 0) {
 				_gfxId = 6094;

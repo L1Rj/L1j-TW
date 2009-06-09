@@ -3688,6 +3688,14 @@ public class C_ItemUSe extends ClientBasePacket {
 	}
 
 	private boolean usePolyScroll(L1PcInstance pc, int item_id, String s) {
+		int awakeSkillId = pc.getAwakeSkillId();
+		if (awakeSkillId == AWAKEN_ANTHARAS
+				|| awakeSkillId == AWAKEN_FAFURION
+				|| awakeSkillId == AWAKEN_VALAKAS) {
+			pc.sendPackets(new S_ServerMessage(1384)); // 
+			return false;
+		}
+
 		int time = 0;
 		if (item_id == 40088 || item_id == 40096) { // 變身スクロール、象牙の塔の變身スクロール
 			time = 1800;
@@ -5423,6 +5431,14 @@ public class C_ItemUSe extends ClientBasePacket {
 
 		if (cha instanceof L1PcInstance) {
 			L1PcInstance pc = (L1PcInstance) cha;
+			int awakeSkillId = pc.getAwakeSkillId();
+			if (awakeSkillId == AWAKEN_ANTHARAS
+					|| awakeSkillId == AWAKEN_FAFURION
+					|| awakeSkillId == AWAKEN_VALAKAS) {
+				pc.sendPackets(new S_ServerMessage(1384)); // 
+				return;
+			}
+
 			if (pc.getInventory().checkEquipped(20281)) {
 				pc.sendPackets(new S_ShowPolyList(pc.getId()));
 				if (!pc.isShapeChange()) {//變身判斷
