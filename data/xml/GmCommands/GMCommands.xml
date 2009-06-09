@@ -11,7 +11,7 @@
 		</ItemSet>
 	</ItemSetList>
 	<RoomList>
-		<!-- Town -->
+		<!-- 城鎮 -->
 		<Room Name="古魯丁" LocX="32612" LocY="32734" MapId="4"/>
 		<Room Name="奇岩" LocX="33442" LocY="32797" MapId="4"/>
 		<Room Name="歌唱之島" LocX="32782" LocY="32756" MapId="68"/>
@@ -103,6 +103,7 @@
 		<Room Name="傲70" LocX="32720" LocY="32821" MapId="170"/>
 		<Room Name="傲80" LocX="32724" LocY="32822" MapId="180"/>
 		<Room Name="傲90" LocX="32722" LocY="32827" MapId="190"/>
+		<Room Name="傲97" LocX="32692" LocY="32907" MapId="197"/>
 		<Room Name="傲100" LocX="32731" LocY="32856" MapId="200"/>
 		
 		<!-- 四龍 -->
@@ -119,6 +120,14 @@
 		<Room Name="鏡森" LocX="33709" LocY="33307" MapId="4"/>
 		<Room Name="地獄" LocX="32701" LocY="32777" MapId="666"/>
 		<Room Name="巨蟻女皇棲息地" LocX="33742" LocY="32856" MapId="543"/>
+		<Room Name="暗影神殿外圍" LocX="32729" LocY="32959" MapId="521"/>
+		<Room Name="集會場" LocX="32780" LocY="32848" MapId="451"/>
+		<Room Name="魔獸召喚室" LocX="32773" LocY="32814" MapId="456"/>
+		<Room Name="黑暗結界" LocX="32769" LocY="32858" MapId="457"/>
+		<Room Name="黑暗精靈召喚室" LocX="32763" LocY="32831" MapId="464"/>
+		<Room Name="底比斯沙漠" LocX="32689" LocY="32768" MapId="780"/>
+		<Room Name="底比斯金字塔內部" LocX="32794" LocY="32822" MapId="781"/>
+		<Room Name="龍監入口" LocX="33407" LocY="32414" MapId="4"/>
 		<Room Name="GMRoom" LocX="32737" LocY="32796" MapId="99"/>
 		<Room Name="GMShop" LocX="33079" LocY="33402" MapId="4"/>
 
