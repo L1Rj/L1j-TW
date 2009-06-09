@@ -3555,10 +3555,10 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 3, 0));
 			pc.setSkillEffect(STATUS_ELFBRAVE, time * 1000);
 	       } else if (item_id == 49158) { // 生命之樹的果實
- 	            pc.sendPackets(new S_SystemMessage("感覺到生命之樹的氣息從腳底直衝而來。"));
+	    	   pc.sendPackets(new S_ServerMessage(1445));
 	            pc.sendPackets(new S_SkillBrave(pc.getId(), 4, time));
 	            pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
-	            pc.setSkillEffect(STATUS_RIBRAVE, time * 480);
+	            pc.setSkillEffect(STATUS_RIBRAVE, time * 1000);
 		} else {
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 1, time));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 1, 0));
