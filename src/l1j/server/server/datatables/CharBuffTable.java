@@ -44,7 +44,8 @@ public class CharBuffTable {
 			148, 155, 163, // ファイアーウェポン、ファイアーブレス、バーニングウェポン
 			149, 156, 166, // ウィンドショット、ストームアイ、ストームショット
 			1002, 1005, // ブルーポーション、チャット禁止
-			1910, 1911, 1912, 1913, 1914, 1915,  //waja add 租旅館退旅館 
+			1910, 1911, 1912, 1913, 1914, 1915,  //waja add 租旅館退旅館
+			STATUS_RIBRAVE,//waja add 生命之樹果實
 			COOKING_1_0_N, COOKING_1_0_S, COOKING_1_1_N, COOKING_1_1_S, // 料理(デザートは除く)
 			COOKING_1_2_N, COOKING_1_2_S, COOKING_1_3_N, COOKING_1_3_S,
 			COOKING_1_4_N, COOKING_1_4_S, COOKING_1_5_N, COOKING_1_5_S,

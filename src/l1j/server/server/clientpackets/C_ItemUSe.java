@@ -3490,13 +3490,6 @@ public class C_ItemUSe extends ClientBasePacket {
 			time = 300;
 		} else if (item_id == L1ItemId.B_POTION_OF_EMOTION_BRAVERY) { // 祝福されたブレイブポーション
 			time = 350;
-		} else if (item_id == 49158) { // 生命之樹果實
-			if (pc.hasSkillEffect(STATUS_BRAVE)) { // 名誉のコインとは重複しない
-				pc.killSkillEffectTimer(STATUS_BRAVE);
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.setBraveSpeed(0);
-			}
 		} else if (item_id == 41415) { // 強化ブレイブ ポーション
 			time = 1800;
 		} else if (item_id == 40068) { // エルヴン ワッフル
@@ -3561,14 +3554,24 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 3, time));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 3, 0));
 			pc.setSkillEffect(STATUS_ELFBRAVE, time * 1000);
+	       } else if (item_id == 49158) { // 生命之樹的果實
+ 	            pc.sendPackets(new S_SystemMessage("感覺到生命之樹的氣息從腳底直衝而來。"));
+	            pc.sendPackets(new S_SkillBrave(pc.getId(), 4, time));
+	            pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
+	            pc.setSkillEffect(STATUS_RIBRAVE, time * 480);
 		} else {
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 1, time));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 1, 0));
 			pc.setSkillEffect(STATUS_BRAVE, time * 1000);
+			pc.sendPackets(new S_SkillSound(pc.getId(), 751));// 勇水特效
+			pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));// 勇水特效
+			pc.setBraveSpeed(1);
+	}
+		if (item_id != 49158){//生命之樹果實
+			pc.setBraveSpeed(1);
+		} else {
+			pc.setBraveSpeed(4);
 		}
-		pc.sendPackets(new S_SkillSound(pc.getId(), 751));// 勇水特效
-		pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));// 勇水特效
-		pc.setBraveSpeed(1);
 	}
 
 	private void useBluePotion(L1PcInstance pc, int item_id) {
