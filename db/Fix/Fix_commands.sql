@@ -31,3 +31,4 @@ Update commands Set access_level = '150' Where name = 'poly'; /* 變身 */
 Update commands Set access_level = '150' Where name = 'weather'; /* 天氣控制 */
 Update commands Set access_level = '150' Where name = 'hometown'; /* 村莊日&月處理(稅率) */
 Update commands Set access_level = '150' Where name = 'gm'; /* GM開關 */
+Update commands Set access_level = '150' Where name = 'skick'; /* GM開關 */
