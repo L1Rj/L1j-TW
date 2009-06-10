@@ -231,10 +231,12 @@ public class L1EquipmentSlot {
 			_owner.addMr(addMr);
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
+/*
 		if (item.get_addsp() != 0) {
 			_owner.addSp(item.get_addsp());
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
+*/
 //waja add 飾品強化卷軸
 		if (item.get_addsp() != 0 || equipment.getaddSp() !=0) {
 			_owner.addSp(item.get_addsp() + equipment.getaddSp());
@@ -302,10 +304,12 @@ public class L1EquipmentSlot {
 			_owner.addMr(addMr);
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
+/*
 		if (item.get_addsp() != 0) {
 			_owner.addSp(-item.get_addsp());
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
+*/
 //waja add 飾品強化卷軸
 		if (item.get_addsp() != 0 || equipment.getaddSp() != 0) {
 			_owner.addSp( - (item.get_addsp() + equipment.getaddSp()));
