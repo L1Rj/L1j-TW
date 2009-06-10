@@ -2641,7 +2641,6 @@ Update npc Set nameid = '$5253 $3124' Where npcid = '45891';
 Update npc Set nameid = '$5253 $3144' Where npcid = '45893';
 
 /*20090605 水晶洞穴怪物名稱中文化*/
-
 Update npc Set name = '鋼鐵高崙' Where npcid = '46125';
 Update npc Set name = '萊肯' Where npcid = '46126';
 Update npc Set name = '歐熊' Where npcid = '46127';
@@ -2670,3 +2669,6 @@ Update npc Set name = '冰之女王禁衛兵' Where npcid = '46149';
 Update npc Set name = '冰之女王禁衛兵' Where npcid = '46150';
 Update npc Set name = '冰之女王禁衛兵' Where npcid = '46151';
 Update npc Set name = '冰之女王禁衛兵' Where npcid = '46152';
+Update npc Set name = '雪怪' Where npcid = '46153';
+Update npc Set name = '雪怪' Where npcid = '46154';
+Update npc Set name = '冰人' Where npcid = '46155';
