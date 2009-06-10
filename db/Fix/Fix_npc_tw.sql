@@ -134,3 +134,21 @@ Update npc set lawful = '-150' where npcid = '46142';
 Update npc set size = 'large' where npcid = '46142';
 Update npc set hpr = '100' where npcid = '46142';
 Update npc set mpr = '100' where npcid = '46142';
+
+/* 20090610 修正妖精招喚 四屬性精靈素質與回魔回血量 */
+Update npc set mp = '30' where npcid = '81050';/* 強力火之精靈 */
+Update npc set hp = '400' where npcid = '81050';
+Update npc set mp = '90' where npcid = '81051';/* 強力水之精靈 */
+Update npc set hp = '700' where npcid = '81051';
+Update npc set mp = '30' where npcid = '81052';/* 強力風之精靈 */
+Update npc set hp = '350' where npcid = '81052';
+Update npc set mp = '60' where npcid = '81053';/* 強力地之精靈 */
+Update npc set hp = '550' where npcid = '81053';
+Update npc set mpr = '10' where npcid = '81050';
+Update npc set hpr = '20' where npcid = '81050';
+Update npc set mpr = '15' where npcid = '81051';
+Update npc set hpr = '40' where npcid = '81051';
+Update npc set mpr = '15' where npcid = '81052';
+Update npc set hpr = '30' where npcid = '81052';
+Update npc set mpr = '20' where npcid = '81053';
+Update npc set hpr = '30' where npcid = '81053';
