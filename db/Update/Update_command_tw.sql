@@ -26,8 +26,10 @@ Insert Into `commands` (`name`, `access_level`, `class_name`) Values
 ('等級', '150', 'L1Level'),
 ('道具', '150', 'L1CreateItem'),
 ('鎖ip', '150', 'L1BanIp'),
-('進階踢人', '150', 'L1PowerKick'),
+('角色封鎖', '150', 'L1PowerKick'),
 ('變身', '150', 'L1Poly'),
 ('道具設定', '150', 'L1CreateItemSet'),
 ('帳號封鎖', '150', 'L1AccountBanKick'),
 ('召寵', '150', 'L1Summon');
+('進階踢人', '150', 'L1SKick');
+('GM開關', '150', 'L1GM');
