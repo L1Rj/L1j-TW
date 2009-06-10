@@ -30,6 +30,6 @@ Insert Into `commands` (`name`, `access_level`, `class_name`) Values
 ('變身', '150', 'L1Poly'),
 ('道具設定', '150', 'L1CreateItemSet'),
 ('帳號封鎖', '150', 'L1AccountBanKick'),
-('召寵', '150', 'L1Summon');
-('進階踢人', '150', 'L1SKick');
+('召寵', '150', 'L1Summon'),
+('進階踢人', '150', 'L1SKick'),
 ('GM開關', '150', 'L1GM');
