@@ -152,3 +152,12 @@ Update npc set mpr = '15' where npcid = '81052';
 Update npc set hpr = '30' where npcid = '81052';
 Update npc set mpr = '20' where npcid = '81053';
 Update npc set hpr = '30' where npcid = '81053';
+
+/* 20090610 修改娃娃走路速度加快 */
+Update npc set passispeed = '180' where npcid = '80106';
+Update npc set passispeed = '180' where npcid = '80107';
+Update npc set passispeed = '180' where npcid = '80108';
+Update npc set passispeed = '180' where npcid = '80129';
+Update npc set passispeed = '180' where npcid = '80130';
+Update npc set passispeed = '180' where npcid = '80131';
+Update npc set passispeed = '180' where npcid = '90001';
