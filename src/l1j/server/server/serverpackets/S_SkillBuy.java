@@ -57,11 +57,14 @@ public class S_SkillBuy extends ServerBasePacket {
                 }
             }
             switch(npcId) {
-            case 70009:
+            case 70009://吉倫
             htmlid = "gerengev3";
             break;
-            case 70003:
+            case 70003://希莉斯
             htmlid = "siriss1";
+            break;
+            case 70087://賽帝亞
+            htmlid = "sedia";
             break;
         }
         if (htmlid == "") { //判斷npc 禁用清單學習法術

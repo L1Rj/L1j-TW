@@ -219,15 +219,13 @@ public class L1DollInstance extends L1NpcInstance {
 		return isMpRegeneration;
 	}
 
-//waja add 魔法娃娃回血功能
-	public boolean isHpRegeneration() {
+	public boolean isHpRegeneration() {//魔法娃娃回血功能
 		boolean isHpRegeneration = false;
 		if (getDollType() == DOLLTYPE_SEADANCER) {
 			isHpRegeneration = true;
 		}
 		return isHpRegeneration;
 	}
-//add end
 
 	public int getWeightReductionByDoll() {
 		int weightReduction = 0;
