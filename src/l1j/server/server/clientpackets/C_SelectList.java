@@ -76,37 +76,45 @@ public class C_SelectList extends ClientBasePacket {
 			pcInventory.updateItem(item, L1PcInventory.COL_DURABILITY);
 		} else { // ペットの引き出し
 			int petCost = 0;
+			int petCount = 0;
+			int divisor = 6;
 			Object[] petList = pc.getPetList().values().toArray();
 			for (Object pet : petList) {
 				petCost += ((L1NpcInstance) pet).getPetcost();
 			}
 			int charisma = pc.getCha();
-			if (pc.isCrown()) { // 君主
+			if (pc.isCrown()) { // 王族
 				charisma += 6;
-			} else if (pc.isElf()) { // エルフ
+			} else if (pc.isElf()) { // 妖精
 				charisma += 12;
-			} else if (pc.isWizard()) { // WIZ
+			} else if (pc.isWizard()) { // 法師
 				charisma += 6;
-			} else if (pc.isDarkelf()) { // DE
+			} else if (pc.isDarkelf()) { // 黑妖
 				charisma += 6;
-			} else if (pc.isDragonKnight()) { // ドラゴンナイト
+			} else if (pc.isDragonKnight()) { // 龍騎士
 				charisma += 6;
-			} else if (pc.isIllusionist()) { // イリュージョニスト
+			} else if (pc.isIllusionist()) { // 幻術士
 				charisma += 6;
 			}//	3.0C Test↑
-			charisma -= petCost;
-			int petCount = charisma / 6;
-			if (petCount <= 0) {
-				pc.sendPackets(new S_ServerMessage(489)); // 引き取ろうとするペットが多すぎます。
-				return;
-			}
 
 			L1Pet l1pet = PetTable.getInstance().getTemplate(itemObjectId);
 			if (l1pet != null) {
-				L1Npc npcTemp = NpcTable.getInstance().getTemplate(
-						l1pet.get_npcid());
+				int npcId = l1pet.get_npcid();
+				charisma -= petCost;
+				if (npcId == 45313 || npcId == 45710 // タイガー、バトルタイガー
+						|| npcId == 45711 || npcId == 45712) { // 紀州犬の子犬、紀州犬
+					divisor = 12;
+				} else {
+					divisor = 6;
+				}
+				petCount = charisma / divisor;
+				if (petCount <= 0) {
+					pc.sendPackets(new S_ServerMessage(489));// 引き取ろうとするペットが多すぎます。
+					return;
+				}
+				L1Npc npcTemp = NpcTable.getInstance().getTemplate(npcId);
 				L1PetInstance pet = new L1PetInstance(npcTemp, pc, l1pet);
-				pet.setPetcost(6);
+				pet.setPetcost(divisor);
 			}
 		}
 	}

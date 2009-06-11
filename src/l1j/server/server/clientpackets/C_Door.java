@@ -18,6 +18,8 @@
  */
 package l1j.server.server.clientpackets;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Logger;
 
 import l1j.server.server.ActionCodes;
@@ -48,12 +50,32 @@ public class C_Door extends ClientBasePacket {
 		L1PcInstance pc = client.getActiveChar();
 		L1DoorInstance door = (L1DoorInstance)L1World.getInstance()
 				.findObject(objectId);
-
-		if ((door.getDoorId() >= 5001 && door.getDoorId() <= 5010)) { //水晶洞
+		if (door == null) {
 			return;
 		}
 
-		if (door != null && !isExistKeeper(pc, door.getKeeperId())) {
+		if ((door.getDoorId() >= 5001 && door.getDoorId() <= 5010)) { //水晶洞
+			return;
+		} else if (door.getDoorId() == 6006) { // 話島冒洞2樓
+
+			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
+				return;
+			}
+			if (pc.getInventory().consumeItem(40163,1)) { //角色擁有黃金鑰匙
+				door.open();
+				CloseTimer closetimer = new CloseTimer(door);
+				closetimer.begin();
+			}
+		} else if (door.getDoorId() == 6007) { // 話島冒洞2樓
+			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
+				return;
+			}
+			if (pc.getInventory().consumeItem(40313,1)) { //角色擁有銀鑰匙
+				door.open();
+				CloseTimer closetimer = new CloseTimer(door);
+				closetimer.begin();
+			}
+		} else if (!isExistKeeper(pc, door.getKeeperId())) {
 			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
 				door.close();
 			} else if (door.getOpenStatus() == ActionCodes.ACTION_Close) {
@@ -78,6 +100,28 @@ public class C_Door extends ClientBasePacket {
 			}
 		}
 		return true;
+	}
+
+
+	public class CloseTimer extends TimerTask {
+
+		private L1DoorInstance _door;
+
+		public CloseTimer(L1DoorInstance door) {
+			_door = door;
+		}
+
+		@Override
+		public void run() {
+			if (_door.getOpenStatus() == ActionCodes.ACTION_Open) {
+				_door.close();
+			}
+		}
+
+		public void begin() {
+			Timer timer = new Timer();
+			timer.schedule(this, 5 * 1000);
+		}
 	}
 
 	@Override
