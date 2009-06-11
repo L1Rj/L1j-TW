@@ -71,6 +71,7 @@
 		<Room Name="肯4" LocX="32742" LocY="32857" MapId="243"/>
 		<Room Name="風1" LocX="32810" LocY="32723" MapId="23"/>
 		<Room Name="風2" LocX="32809" LocY="32812" MapId="24"/>
+		<Room Name="海4" LocX="32800" LocY="32792" MapId="63"/>
 		
 		<!-- 象牙塔 -->
 		<Room Name="象牙塔" LocX="34041" LocY="32058" MapId="4"/>
@@ -111,7 +112,9 @@
 		<Room Name="水龍" LocX="32769" LocY="32833" MapId="65"/>
 		<Room Name="風龍" LocX="34035" LocY="33011" MapId="4"/>
 		<Room Name="地龍" LocX="32668" LocY="32867" MapId="37"/>
-		
+		<!-- 神殿 -->
+		<Room Name="伊娃神殿" LocX="32736" LocY="32815" MapId="62"/>
+
 		<!-- 其他 -->
 		<Room Name="黃昏山脈" LocX="34270" LocY="33094" MapId="4"/>
 		<Room Name="古代巨人之墓" LocX="32771" LocY="32870" MapId="400"/>
@@ -128,6 +131,7 @@
 		<Room Name="底比斯沙漠" LocX="32689" LocY="32768" MapId="780"/>
 		<Room Name="底比斯金字塔內部" LocX="32794" LocY="32822" MapId="781"/>
 		<Room Name="龍監入口" LocX="33407" LocY="32414" MapId="4"/>
+		<Room Name="不死魔族拋棄之地" LocX="32561" LocY="33026" MapId="777"/>
 		<Room Name="GMRoom" LocX="32737" LocY="32796" MapId="99"/>
 		<Room Name="GMShop" LocX="33079" LocY="33402" MapId="4"/>
 
