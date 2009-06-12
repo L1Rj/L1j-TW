@@ -416,6 +416,9 @@ Update droplist Set chance = '2000' Where mobId = '46112' And itemId = '49094';
 Update droplist Set chance = '2000' Where mobId = '46114' And itemId = '49094';
 Update droplist Set chance = '3000' Where mobId = '46116' And itemId = '49094';
 
+/* 20090612 提高 40408 金屬塊 掉落機率 */
+Update droplist Set chance = '150000' Where chance = '100000' And itemId = '40408';
+Update droplist Set chance = '80000' Where chance = '50000' And itemId = '40408';
 
 
 /* ---------- 刪除與修正 --------- */
@@ -429,6 +432,7 @@ Update droplist Set itemId = '40188' Where mobId = '45924' And itemId = '40189';
 delete from droplist where itemId = '2' ;
 Update droplist Set mobId = '5000' Where mobId = '45601' And itemId = '200002';/* 死亡騎士掉落受詛咒的骰子匕首 */
 Update droplist Set chance = '40000' Where mobId = '5000' And itemId = '200002';;/* 死亡騎士掉落受詛咒的骰子匕首 */
+
 /* 缺 狩獵 黑騎士& 精銳 黑騎士 */
 INSERT INTO `droplist` (`mobId`, `itemId`, `min`, `max`, `chance`) VALUES
 (45481, 2, 1, 1, 5000),/* 小惡魔 */
@@ -438,5 +442,18 @@ INSERT INTO `droplist` (`mobId`, `itemId`, `min`, `max`, `chance`) VALUES
 (45606, 2, 1, 1, 40000),/* 吸血鬼 */
 (45649, 2, 1, 1, 40000);/* 惡魔 */
 
-/* 20090606 刪除販賣GM商店卷 */
-delete from shop where item_id = '42027';
+/* 20090612 刪除與新增未使用怪物 45108 骷髏 部份掉落道具 放置冒險洞窟2F掉落銀鑰匙 */
+Delete From `droplist` Where itemId = '40029'And mobId ='45108';/* 象牙塔治癒藥水 */
+Delete From `droplist` Where itemId = '40082'And mobId ='45108';/* 指定傳送捲軸(歌唱之島) */
+Delete From `droplist` Where itemId = '40098'And mobId ='45108';/* 象牙塔鑑定捲軸 */
+INSERT INTO `droplist` (`mobId`, `itemId`, `min`, `max`, `chance`) VALUES
+(45108, 40313, 1, 1, 2000),/* 銀鑰匙 */
+(45108, 140100, 1, 1, 5000),/* 受祝福德的瞬間移動卷軸 */
+(45108, 40006, 1, 1, 5000),/* 創造怪物魔杖 */
+(45108, 40899, 1, 1, 5000),/* 鋼鐵原石 */
+(45108, 20056, 1, 1, 5000),/* 抗魔法斗篷 */
+(45108, 220056, 1, 1, 5000),/* 受詛咒的抗魔法斗篷 */
+(45108, 20043, 1, 1, 5000),/* 鋼盔 */
+(45108, 220043, 1, 1, 5000),/* 受詛咒的鋼盔 */
+(45108, 20242, 1, 1, 5000),/* 大盾牌 */
+(45108, 40171, 1, 1, 5000);/* 魔法書 (通暢氣脈術) */
