@@ -250,9 +250,10 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == 49092 // 歪みのコア
 				|| itemId == 41426 // 封印捲軸
 				|| itemId == 41427 // 解封印捲軸
+				|| itemId == 40075 // 毀滅盔甲的捲軸
 				|| itemId == 30001 // 裝備保護卷軸
 				|| itemId == 49148 // 飾品強化卷軸
-					) {
+		) {
 			l = readD();
 		} else if (itemId == 140100 || itemId == 40100 || itemId == 40099
 				|| itemId == 40086 || itemId == 40863) {
@@ -2935,6 +2936,41 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(79));
 					}
+				} else if (itemId == 40075) { // 毀滅盔甲的捲軸
+					if (l1iteminstance1.getItem().getType2() == 2) {
+						int msg = 0;
+						switch (l1iteminstance1.getItem().getType()) {
+						case 1: // helm
+							msg = 171; // \f1ヘルムが塵になり、風に飛んでいきます。
+							break;
+						case 2: // armor
+							msg = 169; // \f1アーマーが壊れ、下に落ちました。
+							break;
+						case 3: // T
+							msg = 170; // \f1シャツが細かい糸になり、破けて落ちました。
+							break;
+						case 4: // cloak
+							msg = 168; // \f1マントが破れ、塵になりました。
+							break;
+						case 5: // glove
+							msg = 172; // \f1グローブが消えました。
+							break;
+						case 6: // boots
+							msg = 173; // \f1靴がバラバラになりました。
+							break;
+						case 7: // shield
+							msg = 174; // \f1シールドが壊れました。
+							break;
+						default:
+							msg = 167; // \f1肌がムズムズします。
+							break;
+						}
+						pc.sendPackets(new S_ServerMessage(msg));
+						pc.getInventory().removeItem(l1iteminstance1, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(154)); // \f1スクロールが散らばります。
+					}
+					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else {
 					int locX = ((L1EtcItem) l1iteminstance.getItem())
 							.get_locx();
