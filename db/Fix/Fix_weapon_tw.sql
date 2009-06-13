@@ -52,3 +52,7 @@ Update weapon Set use_dragonknight = '1' Where item_id = '217';
 
 /*20090530 武器使用修正(依照天透)*/
 Update weapon Set use_illusionist = '1' Where item_id = '213';
+
+/*20090614 修正象牙塔斧頭(依照天透)*/
+Update weapon Set type = 'tohandblunt' Where item_id = '147';
+Update weapon Set dmg_large = '13' Where item_id = '147';
