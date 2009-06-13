@@ -450,7 +450,10 @@ public class L1MobSkillUse {
 	private boolean isSkillUseble(int skillIdx, boolean isTriRnd) {
 		boolean useble = false;
 
-		if (isTriRnd) {
+		int type = getMobSkillTemplate().getType(skillIdx);
+
+		if (isTriRnd || type == L1MobSkill.TYPE_SUMMON
+				|| type == L1MobSkill.TYPE_POLY) {
 			if (getMobSkillTemplate().getTriggerRandom(skillIdx) > 0) {
 				int chance = RandomArrayList.getArray100List();
 				if (chance < getMobSkillTemplate().getTriggerRandom(skillIdx)) {

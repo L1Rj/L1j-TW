@@ -438,7 +438,7 @@ public class L1NpcInstance extends L1Character {
 					attackTarget(target);
 				}
 			} else { // 攻擊不可能位置
-				if (mobSkill.skillUse(target, false)) { // スキル使用(mobskill.sqlのTriRndに從わず、發動確率は100%)
+				if (mobSkill.skillUse(target, false)) { // スキル使用(mobskill.sqlのTriRndに従わず、発動確率は100%。ただしサモン、強制変身は常にTriRndに従う。)
 					setSleepTime(calcSleepTime(mobSkill.getSleepTime(),
 							MAGIC_SPEED));
 					return;

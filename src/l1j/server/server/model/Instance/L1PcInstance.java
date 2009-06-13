@@ -1059,9 +1059,12 @@ public class L1PcInstance extends L1Character {
 
 	public void receiveDamage(L1Character attacker, int damage) { // 攻擊でＨＰを減らすときはここを使用
 		if (getCurrentHp() > 0 && !isDead()) {
-			if (attacker != this && !knownsObject(attacker)
-					&& attacker.getMapId() == this.getMapId()) {
-				attacker.onPerceive(this);
+			if (attacker != this) {
+				if (!(attacker instanceof L1EffectInstance)
+						&& !knownsObject(attacker)
+						&& attacker.getMapId() == this.getMapId()) {
+					attacker.onPerceive(this);
+				}
 			}
 
 			if (damage > 0) {
