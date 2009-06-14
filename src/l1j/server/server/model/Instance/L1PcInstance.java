@@ -2242,6 +2242,10 @@ public class L1PcInstance extends L1Character {
 				|| hasSkillEffect(STATUS_RIBRAVE));
 	}
 
+	public boolean isFastAttackable() {
+		return hasSkillEffect(BLOODLUST);
+	}
+
 	public boolean isBrave() {
 		return hasSkillEffect(STATUS_BRAVE);
 	}

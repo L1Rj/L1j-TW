@@ -1284,6 +1284,10 @@ public class L1SkillUse {
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 4,
 					_getBuffIconDuration));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
+		} else if (_skillId == BLOODLUST) { // ブラッドラスト
+			pc.sendPackets(new S_SkillBrave(pc.getId(), 6,
+					_getBuffIconDuration));
+			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 6, 0));
 		} else if (_skillId == SLOW
 				|| _skillId == MASS_SLOW || _skillId == ENTANGLE) { // スロー、エンタングル、マススロー
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 2,
@@ -1520,9 +1524,9 @@ public class L1SkillUse {
 						BURNING_WEAPON, STORM_SHOT },
 				// シールド、シャドウ アーマー、アース スキン、アースブレス、アイアン スキン
 				{ SHIELD, SHADOW_ARMOR, EARTH_SKIN, EARTH_BLESS, IRON_SKIN },
-				// ホーリー ウォーク、ムービング アクセレーション、ウィンド ウォーク、BP
+				// ホーリー ウォーク、ムービング アクセレーション、ウィンド ウォーク、BP、ワッフル、ユグドラの実、ブラッドラスト
 				{ HOLY_WALK, MOVING_ACCELERATION, WIND_WALK, STATUS_BRAVE,
-					STATUS_ELFBRAVE, STATUS_RIBRAVE },
+						STATUS_ELFBRAVE, STATUS_RIBRAVE, BLOODLUST },
 				// ヘイスト、グレーター ヘイスト、GP
 				{ HASTE, GREATER_HASTE, STATUS_HASTE },
 				// フィジカル エンチャント：DEX、ドレス デクスタリティー
@@ -2910,6 +2914,13 @@ public class L1SkillUse {
 						pc.sendPackets(new S_SkillBrave(pc.getId(), 4,
 								_getBuffIconDuration));
 						pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4,
+								0));
+					} else if (_skillId == BLOODLUST) { // ブラッドラスト
+						L1PcInstance pc = (L1PcInstance) cha;
+						pc.setBraveSpeed(6);
+						pc.sendPackets(new S_SkillBrave(pc.getId(), 6,
+								_getBuffIconDuration));
+						pc.broadcastPacket(new S_SkillBrave(pc.getId(), 6,
 								0));
 					} else if (_skillId == AWAKEN_ANTHARAS) { // 覺醒：アンタラス
 						L1PcInstance pc = (L1PcInstance) cha;

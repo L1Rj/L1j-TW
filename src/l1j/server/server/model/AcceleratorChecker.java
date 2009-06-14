@@ -177,6 +177,9 @@ public class AcceleratorChecker {
 		if (type.equals(ACT_TYPE.MOVE) && _pc.isFastMovable()) {
 			interval *= HASTE_RATE;
 		}
+		if (type.equals(ACT_TYPE.ATTACK) && _pc.isFastAttackable()) {
+			interval *= HASTE_RATE;
+		}
 		if (_pc.isBrave()) {
 			interval *= HASTE_RATE;
 		}

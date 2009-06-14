@@ -364,9 +364,8 @@ class L1SkillStop {
 				pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
 			}
-		} else if (skillId == HOLY_WALK || skillId == MOVING_ACCELERATION || skillId == STATUS_RIBRAVE //waja add skillId == STATUS_RIBRAVE 生命之樹果實
-				|| skillId == WIND_WALK) {
-			// ホーリー ウォーク、ムービング アクセレーション、ウィンド ウォーク
+		} else if (skillId == HOLY_WALK || skillId == MOVING_ACCELERATION
+				|| skillId == WIND_WALK || skillId == BLOODLUST) { // ホーリーウォーク、ムービングアクセレーション、ウィンドウォーク、ブラッドラスト
 			cha.setBraveSpeed(0);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;

@@ -3590,6 +3590,17 @@ public class C_ItemUSe extends ClientBasePacket {
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
 			}
+			if (pc.hasSkillEffect(STATUS_RIBRAVE)) { // ユグドラの実とは重複しない
+				pc.killSkillEffectTimer(STATUS_RIBRAVE);
+				// XXX ユグドラの実のアイコンを消す方法が不明
+				pc.setBraveSpeed(0);
+			}
+			if (pc.hasSkillEffect(BLOODLUST)) { // ブラッドラストとは重複しない
+				pc.killSkillEffectTimer(BLOODLUST);
+				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+				pc.setBraveSpeed(0);
+			}
 		}
 
 		if (item_id == 40068 || item_id == 140068) { // エルヴン ワッフル
