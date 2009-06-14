@@ -214,8 +214,7 @@ public class L1PcInstance extends L1Character {
 		}
 	}
 
-//add 魔法娃娃回血功能
-	public void startHpRegenerationByDoll() {
+	public void startHpRegenerationByDoll() {//魔法娃娃回血功能
 		final int INTERVAL_BY_DOLL = 60000;
 		boolean isExistHprDoll = false;
 		Object[] dollList = getDollList().values().toArray();
@@ -232,7 +231,7 @@ public class L1PcInstance extends L1Character {
 			_hpRegenActiveByDoll = true;
 		}
 	}
-//add end
+
 	public void startMpReductionByAwake() {
 		final int INTERVAL_BY_AWAKE = 4000;
 		if (!_mpReductionActiveByAwake) {
@@ -259,15 +258,13 @@ public class L1PcInstance extends L1Character {
 		}
 	}
 
-//waja add 魔法娃娃回血功能
-	public void stopHpRegenerationByDoll() {
+	public void stopHpRegenerationByDoll() {//魔法娃娃回血功能
 		if (_hpRegenActiveByDoll) {
 			_hpRegenByDoll.cancel();
 			_hpRegenByDoll = null;
 			_hpRegenActiveByDoll = false;
 		}
 	}
-//add end
 
 	public void stopMpReductionByAwake() {
 		if (_mpReductionActiveByAwake) {
@@ -1306,13 +1303,13 @@ public class L1PcInstance extends L1Character {
 				if (rnd <= lostRate) {
 					int count = 1;
 					if (getLawful() <= -30000) {
-						count = RandomArrayList.getArray4List() + 1;
+						count = RandomArrayList.getArray5List();
 					} else if (getLawful() <= -20000) {
-						count = RandomArrayList.getArray3List() + 1;
+						count = RandomArrayList.getArray4List();
 					} else if (getLawful() <= -10000) {
-						count = RandomArrayList.getArray2List() + 1;
+						count = RandomArrayList.getArray3List();
 					} else if (getLawful() < 0) {
-						count = 1;
+						count += 1;
 					}
 					caoPenaltyResult(count);
 				}
