@@ -379,13 +379,13 @@ public class L1Attack {
 		if (_pc.getStr() > 59) {
 			_hitRate += strHit[58];
 		} else {
-			_hitRate += strHit[_pc.getStr()];
+			_hitRate += strHit[_pc.getStr() - 1];
 		}
 
 		if (_pc.getDex() > 60) {
 			_hitRate += dexHit[59];
 		} else {
-			_hitRate += dexHit[_pc.getDex()];
+			_hitRate += dexHit[_pc.getDex() - 1];
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) {
@@ -562,13 +562,13 @@ public class L1Attack {
 		if (_pc.getStr() > 39) {
 			_hitRate += strHit[38];
 		} else {
-			_hitRate += strHit[_pc.getStr()];
+			_hitRate += strHit[_pc.getStr() - 1];
 		}
 
 		if (_pc.getDex() > 39) {
 			_hitRate += dexHit[38];
 		} else {
-			_hitRate += dexHit[_pc.getDex()];
+			_hitRate += dexHit[_pc.getDex() - 1];
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) {
