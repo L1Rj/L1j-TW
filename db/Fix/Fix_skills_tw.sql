@@ -15,3 +15,6 @@ Update skills Set buffDuration = '8' Where skill_id = '202'; // 混亂
 Update skills Set buffDuration = '2', castgfx = '7020' Where skill_id = '208'; // 骷髏毀壞
 Update skills Set buffDuration = '5' Where skill_id = '212'; // 幻想
 */
+
+/* 20090614 修正衝擊之暈 延遲秒數為八秒 */
+Update skills Set buffDuration = '8000' Where skill_id = '87';
