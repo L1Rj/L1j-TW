@@ -242,6 +242,7 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 						.getFireMr());
 		item.getLastStatus().updateFireMr();
 	}
+
 	@Override
 	public void updateWaterMr(L1ItemInstance item) throws Exception {
 		executeUpdate(item.getId(),
@@ -249,6 +250,7 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 						.getWaterMr());
 		item.getLastStatus().updateWaterMr();
 	}
+
 	@Override
 	public void updateEarthMr(L1ItemInstance item) throws Exception {
 		executeUpdate(item.getId(),
@@ -256,6 +258,7 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 						.getEarthMr());
 		item.getLastStatus().updateEarthMr();
 	}
+
 	@Override
 	public void updateWindMr(L1ItemInstance item) throws Exception {
 		executeUpdate(item.getId(),
@@ -263,6 +266,7 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 						.getWindMr());
 		item.getLastStatus().updateWindMr();
 	}
+
 	@Override
 	public void updateaddSp(L1ItemInstance item) throws Exception {
 		executeUpdate(item.getId(),
@@ -270,6 +274,7 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 						.getaddSp());
 		item.getLastStatus().updateSp();
 	}
+
 	@Override
 	public void updateaddHp(L1ItemInstance item) throws Exception {
 		executeUpdate(item.getId(),
@@ -277,6 +282,7 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 						.getaddHp());
 		item.getLastStatus().updateaddHp();
 	}
+
 	@Override
 	public void updateaddMp(L1ItemInstance item) throws Exception {
 		executeUpdate(item.getId(),
@@ -284,6 +290,7 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 						.getaddMp());
 		item.getLastStatus().updateaddMp();
 	}
+
 	@Override
 	public void updateHpr(L1ItemInstance item) throws Exception {
 		executeUpdate(item.getId(),
@@ -291,6 +298,7 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 						.getHpr());
 		item.getLastStatus().updateHpr();
 	}
+
 	@Override
 	public void updateMpr(L1ItemInstance item) throws Exception {
 		executeUpdate(item.getId(),

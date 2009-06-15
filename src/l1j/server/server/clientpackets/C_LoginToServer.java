@@ -101,23 +101,22 @@ public class C_LoginToServer extends ClientBasePacket {
 			client.close();
 			return;
 		}
-//waja add 限制同一角色無法同時登入
-		if (pc != null){
+
+		if (pc != null){//限制同一角色無法同時登入
 			if (pc.getOnlineStatus()==1){
 				_log.info("【禁止同一角色同時登入伺服器】 角色名稱: " + charName + " 帳號: " + login
 						+ " IP位址:" + client.getHostname());
 				client.close();
 				return;
 			}
-//waja add 被鎖定角色無法登入
-			else if(pc.isBanned()== true ){
+			else if(pc.isBanned()== true ){//被鎖定角色無法登入
 				_log.info("【被鎖定角色登入】 帳號=" + login + " 角色=" + charName
 						+ " IP位址:" + client.getHostname());
 				client.kick(); // 狀態待修改
 				return;
 			}
 		}
-//add end
+		
 		if (Config.LEVEL_DOWN_RANGE != 0) {
 			if (pc.getHighLevel() - pc.getLevel() >= Config.LEVEL_DOWN_RANGE) {
 				_log.info("【超過等級容許限制拒絕登入】 帳號=" + login + " 角色="

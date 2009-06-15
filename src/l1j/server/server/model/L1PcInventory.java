@@ -51,6 +51,8 @@ public class L1PcInventory extends L1Inventory {
 			.getLogger(L1PcInventory.class.getName());
 
 //waja add 飾品強化卷軸
+	public static final int COL_ALL = 0;//所有狀態儲存
+
 	public static final int COL_FIREMR = 137;
 	
 	public static final int COL_WATERMR = 136;
@@ -336,6 +338,38 @@ public class L1PcInventory extends L1Inventory {
 //end add
 	}
 
+//waja add
+//更新所有狀態
+	public void updateAll(L1ItemInstance item,CharactersItemStorage storage){
+        try {
+//			storage.updateItemAttribute(item); //屬性強化卷軸
+//			storage.updateItemAttributeLevel(item); //屬性強化捲軸
+			storage.updateFireMr(item);
+			storage.updateWaterMr(item);
+			storage.updateEarthMr(item);
+			storage.updateWindMr(item);
+			storage.updateaddSp(item);;
+			storage.updateaddHp(item);
+			storage.updateaddMp(item);
+			storage.updateHpr(item);
+			storage.updateMpr(item);
+//			storage.updateGetHp(item);//吸血武器
+//			storage.updateGetMp(item);//吸魔武器
+			storage.updateItemBless(item);
+			storage.updateItemRemainingTime(item);
+			storage.updateItemChargeCount(item);
+			storage.updateItemId(item);
+			storage.updateItemDelayEffect(item);
+			storage.updateItemCount(item);
+			storage.updateItemEquipped(item);
+			storage.updateItemEnchantLevel(item);
+			storage.updateItemIdentified(item);
+			storage.updateItemDurability(item);
+		} catch (Exception e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		}
+	}
+//end add
 	/**
 	 * インベントリ內のアイテムの狀態をDBに保存する。
 	 * 
@@ -465,8 +499,7 @@ public class L1PcInventory extends L1Inventory {
 		if (item.isEquipped() != equipped) { // 設定值と違う場合だけ處理
 			L1Item temp = item.getItem();
 			if (equipped) { // 裝著
-//waja add 判斷裝備穿著數量
-//TODO 判斷裝備穿著數量 by elfooxx
+//waja add 判斷裝備穿著數量 by elfooxx
                 int count = 0 ; 
                if ( temp.getType2() ==2) { 
                 for ( L1ItemInstance hasEquip : _owner.getEquipSlot().getArmors() ) { 

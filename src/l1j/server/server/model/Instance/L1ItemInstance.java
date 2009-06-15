@@ -326,7 +326,6 @@ public class L1ItemInstance extends L1Object {
 			lastUsed = getLastUsed();
 			bless = getBless();
 //waja add 飾品強化卷軸
-		    //飾品強化卷軸
 			firemr = getFireMr();
 			watermr = getWaterMr();
 			earthmr = getEarthMr();
@@ -336,39 +335,9 @@ public class L1ItemInstance extends L1Object {
 			addsp = getaddSp();
 			hpr = getHpr();
 			mpr = getMpr();
-			//飾品強化卷軸	
 //add end
 		}
 
-//waja add 飾品強化卷軸
-		public void updateFireMr(){
-			firemr = getFireMr();
-		}
-		public void updateWaterMr(){
-			watermr = getWaterMr();
-		}
-		public void updateEarthMr(){
-			earthmr = getEarthMr();
-		}
-		public void updateWindMr(){
-			windmr = getWindMr();
-		}
-		public void updateSp(){
-			addsp = getaddSp();
-		}
-		public void updateaddHp(){
-			addhp = getaddHp();
-		}
-		public void updateaddMp(){
-			addmp = getaddMp();
-		}
-		public void updateHpr(){
-			hpr = getHpr();
-		}
-		public void updateMpr(){
-			mpr = getMpr();
-		}
-//add end
 		public void updateCount() {
 			count = getCount();
 		}
@@ -408,6 +377,43 @@ public class L1ItemInstance extends L1Object {
 		public void updateBless() {
 			bless = getBless();
 		}
+//waja add 飾品強化卷軸
+		public void updateFireMr(){
+			firemr = getFireMr();
+		}
+
+		public void updateWaterMr(){
+			watermr = getWaterMr();
+		}
+
+		public void updateEarthMr(){
+			earthmr = getEarthMr();
+		}
+
+		public void updateWindMr(){
+			windmr = getWindMr();
+		}
+
+		public void updateSp(){
+			addsp = getaddSp();
+		}
+
+		public void updateaddHp(){
+			addhp = getaddHp();
+		}
+
+		public void updateaddMp(){
+			addmp = getaddMp();
+		}
+
+		public void updateHpr(){
+			hpr = getHpr();
+		}
+
+		public void updateMpr(){
+			mpr = getMpr();
+		}
+//add end
 	}
 
 	public LastStatus getLastStatus() {
