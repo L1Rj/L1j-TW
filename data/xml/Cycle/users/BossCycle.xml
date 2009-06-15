@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BossCycleList>
 	<BossCycle Name="DK">
-		<Cycle Period="7h" Start="3h30m"/>
+		<Cycle Period="6h" Start="3h30m"/>
 	</BossCycle>
 	<BossCycle Name="Oren">
 		<Cycle Period="5h" Start="2h30m"/>
@@ -23,7 +23,7 @@
 		<Cycle Period="4h" End="2h"/>
 	</BossCycle>
 	<BossCycle Name="Dragon">
-		<Cycle Period="1d"/>
+		<Cycle Period="8h" Start="1h"/>
 	</BossCycle>
 	<BossCycle Name="etc1">
 		<Cycle Period="10m" />
