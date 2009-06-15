@@ -871,7 +871,10 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == L1ItemId.POTION_OF_CURE_POISON
 						|| itemId == 40507) { // シアンポーション、エントの枝
-					if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
+//waja add 特殊狀態下不可使用
+//					if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
+						if (pc.hasSkillEffect(71) == true || pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
+//end
 						pc.sendPackets(new S_ServerMessage(698)); // 魔力によって何も飲むことができません。
 					} else {
 						cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
@@ -1689,8 +1692,13 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(79));
 					}
-				} else if (itemId == 40079 || itemId == 40095) { // 歸還スクロール
-					if (pc.getMap().isEscapable() || pc.isGm()) {
+				} else if (itemId == 40079 || itemId == 40095) { // 傳送回家的捲軸
+//waja add 特殊狀態下不可使用
+			        if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
+			        	pc.sendPackets(new S_ServerMessage(647));}
+			        else 
+//end
+			        	if (pc.getMap().isEscapable() || pc.isGm()) {
 						int[] loc = Getback.GetBack_Location(pc, true);
 						L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2],
 								5, true);
@@ -1702,6 +1710,11 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
 				} else if (itemId == 40124) { // 血盟歸還スクロール
+//waja add 特殊狀態下不可使用
+			        if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
+			        	pc.sendPackets(new S_ServerMessage(647));}
+			        else
+//end
 					if (pc.getMap().isEscapable() || pc.isGm()) {
 						int castle_id = 0;
 						int house_id = 0;
@@ -3421,7 +3434,10 @@ public class C_ItemUSe extends ClientBasePacket {
 	}
 
 	private void UseHeallingPotion(L1PcInstance pc, int healHp, int gfxid) {
-		if (pc.hasSkillEffect(71) == true) { // ディケイ ポーションの狀態
+//waja add
+//		if (pc.hasSkillEffect(71) == true) { // ディケイ ポーションの狀態
+        if (pc.hasSkillEffect(71) == true || pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //藥霜,木乃伊,衝暈,大地屏障,冰矛圍籬
+//add end
 			pc.sendPackets(new S_ServerMessage(698)); // 魔力によって何も飲むことができません。
 			return;
 		}
@@ -3440,7 +3456,11 @@ public class C_ItemUSe extends ClientBasePacket {
 	}
 
 	private void useGreenPotion(L1PcInstance pc, int itemId) {
-		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
+//waja add 特殊狀態下不可使用
+//		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
+	    if (pc.hasSkillEffect(71) == true || pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //藥霜,木乃伊,衝暈,大地屏障,冰矛圍籬
+//end
+
 			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
 			return;
 		}
@@ -3519,7 +3539,10 @@ public class C_ItemUSe extends ClientBasePacket {
 	}
 
 	private void useBravePotion(L1PcInstance pc, int item_id) {
-		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
+//waja add
+//		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
+	    if (pc.hasSkillEffect(71) == true || pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //藥霜,木乃伊,衝暈,大地屏障,冰矛圍籬
+//add end
 			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
 			return;
 		}
@@ -3655,7 +3678,10 @@ public class C_ItemUSe extends ClientBasePacket {
 	}
 
 	private void useWisdomPotion(L1PcInstance pc, int item_id) {
-		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
+//waja add
+//		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
+		if (pc.hasSkillEffect(71) == true || pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //藥霜,木乃伊,衝暈,大地屏障,冰矛圍籬
+//add end
 			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
 			return;
 		}
@@ -3683,7 +3709,10 @@ public class C_ItemUSe extends ClientBasePacket {
 	}
 
 	private void useBlessOfEva(L1PcInstance pc, int item_id) {
-		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
+//waja add
+//		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
+		if (pc.hasSkillEffect(71) == true || pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //藥霜,木乃伊,衝暈,大地屏障,冰矛圍籬
+//add end
 			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
 			return;
 		}
