@@ -252,5 +252,5 @@ insert  into polymorphs values
 (6088, 'Rabor Born knife', 6088, 1, 751, 2047, 1, 7),
 (6400, 'Halloween jack o lantern', 6400, 1, 2047, 2047, 1, 7),
 (6034, 'priest of corruption', 6034, 45, 751, 2047, 1, 7),
-(6035, 'lesser demon', 6035, 45, 751, 2047, 1, 7),
+(6035, 'quest lesser demon', 6035, 45, 751, 2047, 1, 7),
 (6894, 'awake', 6894, 1, 751, 2047, 1, 7);
