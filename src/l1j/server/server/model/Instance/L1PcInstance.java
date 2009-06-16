@@ -892,6 +892,9 @@ public class L1PcInstance extends L1Character {
 		}
 
 		if (checkNonPvP(this, attacker) == true) {
+			// 攻撃モーション送信
+			L1Attack attack_mortion = new L1Attack(attacker, this);
+			attack_mortion.action();
 			return;
 		}
 
