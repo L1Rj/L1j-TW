@@ -1540,62 +1540,48 @@ public class L1Attack {
 	// ●●●● プレイヤーの攻擊モーション送信 ●●●●
 	private void actionPc() {
 		_pc.setHeading(_pc.targetDirection(_targetX, _targetY)); // 向きのセット
-		if (_isHit) {
-			if (_weaponType == 20) {
-				if (_arrow != null) { // 矢がある場合
-					_pc.sendPackets(new S_UseArrowSkill(_pc, _targetId, 66,
-							_targetX, _targetY));
-					_pc.broadcastPacket(new S_UseArrowSkill(_pc, _targetId, 66,
-							_targetX, _targetY));
-					_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
-							_targetId, ActionCodes.ACTION_Damage), _pc);
-					_pc.getInventory().removeItem(_arrow, 1);
-				} else if (_weaponId == 190) { // 矢が無くてサイハの場合
-					_pc.sendPackets(new S_UseArrowSkill(_pc, _targetId, 2349,
-							_targetX, _targetY));
-					_pc.broadcastPacket(new S_UseArrowSkill(_pc, _targetId,
-							2349, _targetX, _targetY));
-					_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
-							_targetId, ActionCodes.ACTION_Damage), _pc);
+		if (_weaponType == 20) {
+			if (_arrow != null) { // 矢がある場合
+				_pc.sendPackets(new S_UseArrowSkill(_pc, _targetId, 66,
+						_targetX, _targetY, _isHit));
+				_pc.broadcastPacket(new S_UseArrowSkill(_pc, _targetId, 66,
+						_targetX, _targetY, _isHit));
+				if (_isHit) {
+					_target.broadcastPacketExceptTargetSight(
+							new S_DoActionGFX(_targetId,
+							ActionCodes.ACTION_Damage), _pc);
 				}
-			} else if (_weaponType == 62 && _sting != null) { // ガントレット
-				_pc.sendPackets(new S_UseArrowSkill(_pc, _targetId, 2989,
-						_targetX, _targetY));
-				_pc.broadcastPacket(new S_UseArrowSkill(_pc, _targetId, 2989,
-						_targetX, _targetY));
-				_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
-						_targetId, ActionCodes.ACTION_Damage), _pc);
-				_pc.getInventory().removeItem(_sting, 1);
-			} else {
+				_pc.getInventory().removeItem(_arrow, 1);
+			} else if (_weaponId == 190) { // 矢が無くてサイハの場合
+				_pc.sendPackets(new S_UseArrowSkill(_pc, _targetId, 2349,
+						_targetX, _targetY, _isHit));
+				_pc.broadcastPacket(new S_UseArrowSkill(_pc, _targetId,
+						2349, _targetX, _targetY, _isHit));
+				if (_isHit) {
+					_target.broadcastPacketExceptTargetSight(
+							new S_DoActionGFX(_targetId,
+							ActionCodes.ACTION_Damage), _pc);
+				}
+			}
+		} else if (_weaponType == 62 && _sting != null) { // ガントレット
+			_pc.sendPackets(new S_UseArrowSkill(_pc, _targetId, 2989,
+					_targetX, _targetY, _isHit));
+			_pc.broadcastPacket(new S_UseArrowSkill(_pc, _targetId, 2989,
+					_targetX, _targetY, _isHit));
+			if (_isHit) {
+				_target.broadcastPacketExceptTargetSight(
+						new S_DoActionGFX(_targetId,
+						ActionCodes.ACTION_Damage), _pc);
+			}
+			_pc.getInventory().removeItem(_sting, 1);
+		} else {
+			if (_isHit) {
 				_pc.sendPackets(new S_AttackStatus(_pc, _targetId,
 						ActionCodes.ACTION_Attack));
 				_pc.broadcastPacket(new S_AttackStatus(_pc, _targetId,
 						ActionCodes.ACTION_Attack));
 				_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
 						_targetId, ActionCodes.ACTION_Damage), _pc);
-			}
-		} else {
-			if (_weaponType == 20 && (_weaponId == 190 || _arrow != null)) {
-				calcOrbit(_pc.getX(), _pc.getY(), _pc.getHeading()); // 軌道を計算
-				if (_arrow != null) { // 矢がある場合
-					_pc.sendPackets(new S_UseArrowSkill(_pc, 0, 66, _targetX,
-							_targetY));
-					_pc.broadcastPacket(new S_UseArrowSkill(_pc, 0, 66,
-							_targetX, _targetY));
-					_pc.getInventory().removeItem(_arrow, 1);
-				} else if (_weaponId == 190) { // 矢が無くてサイハの場合
-					_pc.sendPackets(new S_UseArrowSkill(_pc, 0, 2349, _targetX,
-							_targetY));
-					_pc.broadcastPacket(new S_UseArrowSkill(_pc, 0, 2349,
-							_targetX, _targetY));
-				}
-			} else if (_weaponType == 62 && _sting != null) { // ガントレット
-				calcOrbit(_pc.getX(), _pc.getY(), _pc.getHeading()); // 軌道を計算
-				_pc.sendPackets(new S_UseArrowSkill(_pc, 0, 2989, _targetX,
-						_targetY));
-				_pc.broadcastPacket(new S_UseArrowSkill(_pc, 0, 2989, _targetX,
-						_targetY));
-				_pc.getInventory().removeItem(_sting, 1);
 			} else {
 				if (_targetId > 0) {
 					_pc.sendPackets(new S_AttackMissPacket(_pc, _targetId));
@@ -1618,7 +1604,7 @@ public class L1Attack {
 
 		_npc.setHeading(_npc.targetDirection(_targetX, _targetY)); // 向きのセット
 
-		// ターゲットとの距離が2以上あれば遠距離攻擊
+		// ターゲットとの距離が2以上あれば遠距離攻撃
 		boolean isLongRange = (_npc.getLocation().getTileLineDistance(
 				new Point(_targetX, _targetY)) > 1);
 		bowActId = _npc.getNpcTemplate().getBowActId();
@@ -1629,16 +1615,15 @@ public class L1Attack {
 			actId = ActionCodes.ACTION_Attack;
 		}
 
-		if (_isHit) {
-			// 距離が2以上、攻擊者の弓のアクションIDがある場合は遠攻擊
-			if (isLongRange && bowActId > 0) {
-				_npc.broadcastPacket(new S_UseArrowSkill(_npc, _targetId,
-						bowActId, _targetX, _targetY));
-			} else {
+		// 距離が2以上、攻撃者の弓のアクションIDがある場合は遠攻撃
+		if (isLongRange && bowActId > 0) {
+			_npc.broadcastPacket(new S_UseArrowSkill(_npc, _targetId,
+					bowActId, _targetX, _targetY, _isHit));
+		} else {
+			if (_isHit) {
 				if (getGfxId() > 0) {
-					_npc
-							.broadcastPacket(new S_UseAttackSkill(_target,
-									_npcObjectId, getGfxId(), _targetX,
+					_npc.broadcastPacket(new S_UseAttackSkill(_target,
+							_npcObjectId, getGfxId(), _targetX,
 									_targetY, actId));
 					_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
 							_targetId, ActionCodes.ACTION_Damage), _npc);
@@ -1648,13 +1633,6 @@ public class L1Attack {
 					_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
 							_targetId, ActionCodes.ACTION_Damage), _npc);
 				}
-			}
-		} else {
-
-			// 距離が2以上、攻擊者の弓のアクションIDがある場合は遠攻擊
-			if (isLongRange && bowActId > 0) {
-				_npc.broadcastPacket(new S_UseArrowSkill(_npc, 0, bowActId,
-						_targetX, _targetY));
 			} else {
 				if (getGfxId() > 0) {
 					_npc.broadcastPacket(new S_UseAttackSkill(_target,

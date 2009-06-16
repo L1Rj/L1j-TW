@@ -147,22 +147,22 @@ public class C_Attack extends ClientBasePacket {
 				calcOrbit(pc.getX(), pc.getY(), pc.getHeading()); // 軌道計算
 				if (arrow != null) { // 矢がある場合
 					pc.sendPackets(new S_UseArrowSkill(pc, 0, 66, _targetX,
-							_targetY));
+							_targetY, true));
 					pc.broadcastPacket(new S_UseArrowSkill(pc, 0, 66, _targetX,
-							_targetY));
+							_targetY, true));
 					pc.getInventory().removeItem(arrow, 1);
 				} else if (weaponId == 190) { // サイハの弓
 					pc.sendPackets(new S_UseArrowSkill(pc, 0, 2349, _targetX,
-							_targetY));
+							_targetY, true));
 					pc.broadcastPacket(new S_UseArrowSkill(pc, 0, 2349,
-							_targetX, _targetY));
+							_targetX, _targetY, true));
 				}
 			} else if (weaponType == 62 && sting != null) {
 				calcOrbit(pc.getX(), pc.getY(), pc.getHeading()); // 軌道計算
 				pc.sendPackets(new S_UseArrowSkill(pc, 0, 2989, _targetX,
-						_targetY));
+						_targetY, true));
 				pc.broadcastPacket(new S_UseArrowSkill(pc, 0, 2989, _targetX,
-						_targetY));
+						_targetY, true));
 				pc.getInventory().removeItem(sting, 1);
 			} else {
 				pc.sendPackets(new S_AttackStatus(pc, 0, ActionCodes

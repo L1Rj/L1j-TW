@@ -39,7 +39,7 @@ public class S_UseArrowSkill extends ServerBasePacket {
 	private byte[] _byte = null;
 
 	public S_UseArrowSkill(L1Character cha, int targetobj, int spellgfx,
-			int x, int y) {
+			int x, int y, boolean isHit) {
 
 		int aid = 1;
 		// オークアーチャーのみ變更
@@ -50,7 +50,7 @@ public class S_UseArrowSkill extends ServerBasePacket {
 		writeC(aid);
 		writeD(cha.getId());
 		writeD(targetobj);
-		writeC(6);
+		writeC(isHit ? 6 : 0);
 		writeC(cha.getHeading());
 		// writeD(0x12000000);
 		// writeD(246);
