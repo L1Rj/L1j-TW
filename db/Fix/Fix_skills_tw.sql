@@ -17,4 +17,5 @@ Update skills Set buffDuration = '5' Where skill_id = '212'; // 幻想
 */
 
 /* 20090614 修正衝擊之暈 延遲秒數為八秒 */
-Update skills Set buffDuration = '8000' Where skill_id = '87';
+Update skills Set buffDuration = '6' Where skill_id = '87';
+Update skills Set reuseDelay = '8000' Where skill_id = '87';
