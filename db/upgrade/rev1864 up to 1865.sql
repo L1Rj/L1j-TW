@@ -1,4 +1,4 @@
-/* 20090615 rev1865  mobgroup 修改部份海底NPC速度資料 */
+/* 20090615 rev1865  npc 修改部份海底NPC速度資料 */
 delete from npc where npcid = '45726' ;
 delete from npc where npcid = '45727' ;
 delete from npc where npcid = '45728' ;
