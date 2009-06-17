@@ -10,3 +10,4 @@ Update npc Set atk_magic_speed  = '1000' Where npcid  = '46061';
 Update npc Set sub_magic_speed  = '1000' Where npcid  = '46061';
 Update npc Set sub_magic_speed  = '1120' Where npcid  = '46065';
 Update npc Set sub_magic_speed  = '1360' Where npcid  = '46067';
+Update npc Set sub_magic_speed  = '1120' Where npcid  = '81236';
