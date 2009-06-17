@@ -1,5 +1,16 @@
 以下為目前仍有的錯誤訊息紀錄
 
+l1j.server.server.ClientThread run
+嚴重的: null
+java.lang.NullPointerException
+        at l1j.server.server.clientpackets.C_ItemUSe.<init>(Unknown Source)
+        at l1j.server.server.PacketHandler.handlePacket(Unknown Source)
+        at l1j.server.server.ClientThread.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+        at java.lang.Thread.run(Thread.java:619)
+
+
 l1j.server.server.clientpackets.ClientBasePacket readS
 嚴重的: OpCode=92
 java.lang.StringIndexOutOfBoundsException: String index out of range: -1
