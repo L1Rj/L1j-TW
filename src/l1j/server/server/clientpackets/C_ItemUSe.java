@@ -2234,7 +2234,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					pc.sendPackets(new S_ServerMessage(76, l1iteminstance
 							.getItem().getNameId()));
-				} else if (itemId == 40070) { // 進化の實
+				} else if (itemId == 40070) { // 進化果實
 					pc.sendPackets(new S_ServerMessage(76, l1iteminstance
 							.getLogName()));
 					pc.getInventory().removeItem(l1iteminstance, 1);

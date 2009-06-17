@@ -218,7 +218,7 @@ public class C_GiveItem extends ClientBasePacket {
 				petamu != null) {
 			L1ItemInstance highpetamu = inv.storeItem(40316, 1);
 			if (highpetamu != null) {
-				pet.evolvePet( // 進化させる
+				pet.evolvePet( // 寵物進化
 						highpetamu.getId());
 				pc.sendPackets(new S_ItemName(highpetamu));
 				inv.removeItem(petamu, 1);
