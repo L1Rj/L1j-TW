@@ -2211,8 +2211,8 @@ public class L1PcInstance extends L1Character {
 		for (Object dollObject : dollList) {
 			L1DollInstance doll = (L1DollInstance) dollObject;
 			weightReductionByDoll += doll.getWeightReductionByDoll();
-			weightReductionByDoll /= 100;
 		}
+		weightReductionByDoll /= 100;
 
 		int weightReductionByMagic = 0;
 		if (hasSkillEffect(DECREASE_WEIGHT)) { // ディクリースウェイト
