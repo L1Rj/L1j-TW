@@ -4099,7 +4099,11 @@ public class C_ItemUSe extends ClientBasePacket {
 				activeChar.sendPackets(new S_ServerMessage(127)); // \f1それは脫ぐことができません。
 				return;
 			}
-
+			if (type == 7) { // シールドの場合、ソリッドキャリッジの効果消失
+				if (activeChar.hasSkillEffect(SOLID_CARRIAGE)) {
+					activeChar.removeSkillEffect(SOLID_CARRIAGE);
+				}
+			}
 			pcInventory.setEquipped(armor, false);
 		} else {
 			activeChar.sendPackets(new S_ServerMessage(124)); // \f1すでに何かを裝備しています。

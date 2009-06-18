@@ -161,3 +161,10 @@ Update npc set passispeed = '180' where npcid = '80129';
 Update npc set passispeed = '180' where npcid = '80130';
 Update npc set passispeed = '180' where npcid = '80131';
 Update npc set passispeed = '180' where npcid = '90001';
+
+/* 20090618 修改不死鳥素質 */
+Update npc set intel = '32' where npcid = '45617';
+Update npc set wis = '28' where npcid = '45617';
+Update npc set dex = '24' where npcid = '45617';
+Update npc set con = '24' where npcid = '45617';
+Update npc set hpr = '834' where npcid = '45617';/* 每三秒 HP+500 */

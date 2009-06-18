@@ -338,25 +338,6 @@ public class L1MonsterInstance extends L1NpcInstance {
 				}
 			}
 
-			if (hasSkillEffect(JOY_OF_PAIN)
-					&& getId() != attacker.getId()) {
-				int nowDamage = getMaxHp() - getCurrentHp();
-				if (nowDamage > 0) {
-					if (attacker instanceof L1PcInstance) {
-						L1PcInstance attackPc = (L1PcInstance) attacker;
-						attackPc.sendPackets(new S_DoActionGFX(attackPc
-								.getId(), ActionCodes.ACTION_Damage));
-						attackPc.broadcastPacket(new S_DoActionGFX(attackPc
-								.getId(), ActionCodes.ACTION_Damage));
-						attackPc.receiveDamage(this, (int) (nowDamage / 5));
-					} else if (attacker instanceof L1NpcInstance) {
-						L1NpcInstance attackNpc = (L1NpcInstance) attacker;
-						attackNpc.broadcastPacket(new S_DoActionGFX(attackNpc
-								.getId(), ActionCodes.ACTION_Damage));
-						attackNpc.receiveDamage(this, (int) (nowDamage / 5));
-					}
-				}
-			}
 			int newHp = getCurrentHp() - damage;
 			if (newHp <= 0 && !isDead()) {
 				int transformId = getNpcTemplate().getTransformId();

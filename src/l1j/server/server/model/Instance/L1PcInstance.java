@@ -1105,7 +1105,7 @@ public class L1PcInstance extends L1Character {
 					}
 				}
 			}
-			if (hasSkillEffect(JOY_OF_PAIN)
+			if (attacker.hasSkillEffect(JOY_OF_PAIN)
 					&& getId() != attacker.getId()) {
 				int nowDamage = getMaxHp() - getCurrentHp();
 				if (nowDamage > 0) {
