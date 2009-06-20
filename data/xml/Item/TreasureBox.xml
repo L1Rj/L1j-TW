@@ -937,13 +937,41 @@
 	</TreasureBox>
 	<!-- 遺物袋 -->
 	<TreasureBox Type="RANDOM" ItemId="41110">
-		<Item ItemId="40058" Count="2" Chance="25" /><!-- 煙燻的麵包屑 -->
-		<Item ItemId="40071" Count="1" Chance="25" /><!-- 烤焦的麵包屑 -->
+		<Item ItemId="40058" Count="2" Chance="26" /><!-- 煙燻的麵包屑 -->
+		<Item ItemId="40071" Count="1" Chance="26" /><!-- 烤焦的麵包屑 -->
 		<Item ItemId="40039" Count="2" Chance="18" /><!-- 紅酒 -->
 		<Item ItemId="40040" Count="1" Chance="18" /><!-- 威士忌 -->
 		<Item ItemId="41113" Count="1" Chance="3" /><!-- 褪色戒指 -->
 		<Item ItemId="41116" Count="1" Chance="3" /><!-- 褪色項鍊 -->
-		<Item ItemId="41114" Count="1" Chance="4" /><!-- 染血的手帕 -->
-		<Item ItemId="41115" Count="1" Chance="4" /><!-- 染血的文件 -->
+		<Item ItemId="41114" Count="1" Chance="3" /><!-- 染血的手帕 -->
+		<Item ItemId="41115" Count="1" Chance="3" /><!-- 染血的文件 -->
+	</TreasureBox>
+	<!-- 破舊的遺物袋 -->
+	<TreasureBox Type="RANDOM" ItemId="41111">
+		<Item ItemId="40058" Count="3" Chance="25" /><!-- 煙燻的麵包屑 -->
+		<Item ItemId="40071" Count="2" Chance="25" /><!-- 烤焦的麵包屑 -->
+		<Item ItemId="40039" Count="3" Chance="19" /><!-- 紅酒 -->
+		<Item ItemId="40040" Count="2" Chance="19" /><!-- 威士忌 -->
+		<Item ItemId="41113" Count="1" Chance="3" /><!-- 褪色戒指 -->
+		<Item ItemId="41116" Count="1" Chance="3" /><!-- 褪色項鍊 -->
+		<Item ItemId="41114" Count="1" Chance="2" /><!-- 染血的手帕 -->
+		<Item ItemId="41115" Count="1" Chance="2" /><!-- 染血的文件 -->
+		<Item ItemId="41117" Count="1" Chance="1" /><!-- 破舊的錢包 -->
+		<Item ItemId="41118" Count="1" Chance="1" /><!-- 染血的匕首 -->
+	</TreasureBox>
+	<!-- 舊遺物袋 -->
+	<TreasureBox Type="RANDOM" ItemId="41112">
+		<Item ItemId="40058" Count="4" Chance="25" /><!-- 煙燻的麵包屑 -->
+		<Item ItemId="40071" Count="3" Chance="25" /><!-- 烤焦的麵包屑 -->
+		<Item ItemId="40039" Count="4" Chance="18" /><!-- 紅酒 -->
+		<Item ItemId="40040" Count="3" Chance="18" /><!-- 威士忌 -->
+		<Item ItemId="41113" Count="1" Chance="2" /><!-- 褪色戒指 -->
+		<Item ItemId="41116" Count="1" Chance="2" /><!-- 褪色項鍊 -->
+		<Item ItemId="41114" Count="1" Chance="2" /><!-- 染血的手帕 -->
+		<Item ItemId="41115" Count="1" Chance="2" /><!-- 染血的文件 -->
+		<Item ItemId="41117" Count="1" Chance="2" /><!-- 破舊的錢包 -->
+		<Item ItemId="41118" Count="1" Chance="2" /><!-- 染血的匕首 -->
+		<Item ItemId="41120" Count="1" Chance="1" /><!-- 瑪雅的魔杖 -->
+		<Item ItemId="41119" Count="1" Chance="1" /><!-- 遺失的鑰匙 -->
 	</TreasureBox>
 </TreasureBoxList>
