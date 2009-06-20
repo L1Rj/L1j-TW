@@ -1,18 +1,6 @@
-/* 20090412 waja add 新手村 正義者 邪惡者正義值*/
+﻿/* 20090412 waja add 新手村 正義者 邪惡者正義值*/
 Update npc Set lawful = '65535' Where npcid = '70503';
 Update npc Set lawful = '-65535' Where npcid = '70511';
-
-/* 守護神行走速度降低 */
-Update npc Set passispeed = '1440' Where npcid = '70848'; /* 安特 日:840 尚未實測(蒲) */
-Update npc Set passispeed = '720' Where npcid = '70850'; /* 潘 日:840 實測感覺(5/18) */
-Update npc Set passispeed = '720' Where npcid = '70846'; /* 芮克妮 日:840 實測感覺(5/18) */
-Update npc Set passispeed = '1200' Where npcid = '70851'; /* 精靈 日:840 尚未實測(蒲) */
-
-/* 20090517 藍尾蜥蜴行走速度降低 */
-Update npc Set passispeed = '500' Where npcid = '45239'; /* 藍尾蜥蜴 */
-
-Update npc Set passispeed = '720' Where npcid = '45265'; /* 20090518 修正(普通)黑暗精靈走速 (普通 攻速正常) */
-Update npc Set atkspeed = '1080' Where npcid = '45364'; /* 20090518 修正(遺忘)黑暗精靈攻速 (遺忘 走速正常)*/
 
 /* 20090510 修正弱化NPC為非主動 */
 Update npc Set agro = '0' Where npcid = '45026';
@@ -168,3 +156,44 @@ Update npc set wis = '28' where npcid = '45617';
 Update npc set dex = '24' where npcid = '45617';
 Update npc set con = '24' where npcid = '45617';
 Update npc set hpr = '834' where npcid = '45617';/* 每三秒 HP+500 */
+
+/* 20090621 安特正確素質 */
+UPDATE npc
+   SET
+      passispeed="1280",
+      atkspeed="1320",
+      atk_magic_speed="1320",
+      sub_magic_speed="1320"
+   WHERE
+      npcid="70848"
+
+/* 20090621 潘正確素質 */
+UPDATE npc
+   SET
+      passispeed="640",
+      atkspeed="1200",
+      atk_magic_speed="1200",
+      sub_magic_speed="1200"
+   WHERE
+      npcid="70850"
+
+/* 20090621 芮克妮正確素質 */
+UPDATE npc
+   SET
+      passispeed="640",
+      atkspeed="1280",
+      atk_magic_speed="1400",
+      sub_magic_speed="1200"
+   WHERE
+      npcid="70846"
+
+/* 20090621 精靈正確素質 */
+UPDATE npc
+   SET
+      passispeed="640",
+      atkspeed="1360",
+      atk_magic_speed="1360",
+      sub_magic_speed="1360"
+   WHERE
+      npcid="70851"
+
