@@ -79,7 +79,6 @@ import l1j.server.server.model.poison.L1DamagePoison;
 import l1j.server.server.model.skill.L1SkillUse;
 import l1j.server.server.serverpackets.S_AddSkill;
 import l1j.server.server.serverpackets.S_AttackPacket;
-import l1j.server.server.serverpackets.S_AttackStatus;
 import l1j.server.server.serverpackets.S_CurseBlind;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_Fishing;
@@ -2058,10 +2057,10 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 40006 || itemId == 40412
 						|| itemId == 140006) {//祝福創杖
 					if (pc.getMap().isUsePainwand()) {
-						S_AttackStatus s_attackStatus = new S_AttackStatus(pc,
+						S_AttackPacket s_attackPacket = new S_AttackPacket(pc,
 								0, ActionCodes.ACTION_Wand);
-						pc.sendPackets(s_attackStatus);
-						pc.broadcastPacket(s_attackStatus);
+						pc.sendPackets(s_attackPacket);
+						pc.broadcastPacket(s_attackPacket);
 						int chargeCount = l1iteminstance.getChargeCount();
 						if (chargeCount <= 0 && itemId != 40412) {
 							// \f1何も起きませんでした。
@@ -2137,9 +2136,9 @@ public class C_ItemUSe extends ClientBasePacket {
 							|| pc.getMapId() == 779) { // 水中では使用不可
 						pc.sendPackets(new S_ServerMessage(563)); // \f1ここでは使えません。
 					} else {
-						pc.sendPackets(new S_AttackStatus(pc, 0,
+						pc.sendPackets(new S_AttackPacket(pc, 0,
 								ActionCodes.ACTION_Wand));
-						pc.broadcastPacket(new S_AttackStatus(pc, 0,
+						pc.broadcastPacket(new S_AttackPacket(pc, 0,
 								ActionCodes.ACTION_Wand));
 						int chargeCount = l1iteminstance.getChargeCount();
 						if (chargeCount <= 0 && itemId != 40410
@@ -5479,10 +5478,6 @@ public class C_ItemUSe extends ClientBasePacket {
 
 			int newHp = pc.getCurrentHp() - dmg;
 			if (newHp > 0) {
-//				pc.sendPackets(new S_AttackStatus(pc, 0,
-//						ActionCodes.ACTION_Damage));
-//				pc.broadcastPacket(new S_AttackStatus(pc, 0,
-//						ActionCodes.ACTION_Damage));
 				pc.setCurrentHp(newHp);
 			} else if (newHp <= 0 && pc.isGm()) {
 				pc.setCurrentHp(pc.getMaxHp());
@@ -5491,12 +5486,9 @@ public class C_ItemUSe extends ClientBasePacket {
 			}
 		} else if (target instanceof L1MonsterInstance) {
 			L1MonsterInstance mob = (L1MonsterInstance) target;
-//			mob.broadcastPacket(new S_AttackPacket(user, mob.getId(), 2));
 			mob.receiveDamage(user, dmg);
 		} else if (target instanceof L1NpcInstance) {
 			L1NpcInstance npc = (L1NpcInstance) target;
-//			npc.broadcastPacket(new S_DoActionGFX(npc.getId(),
-//					ActionCodes.ACTION_Damage));
 		}
 	}
 
@@ -6590,10 +6582,10 @@ public class C_ItemUSe extends ClientBasePacket {
 
 	private void useFurnitureRemovalWand(L1PcInstance pc, int targetId,
 			L1ItemInstance item) {
-		S_AttackStatus s_attackStatus = new S_AttackStatus(pc, 0,
+		S_AttackPacket s_attackPacket = new S_AttackPacket(pc, 0,
 				ActionCodes.ACTION_Wand);
-		pc.sendPackets(s_attackStatus);
-		pc.broadcastPacket(s_attackStatus);
+		pc.sendPackets(s_attackPacket);
+		pc.broadcastPacket(s_attackPacket);
 		int chargeCount = item.getChargeCount();
 		if (chargeCount <= 0) {
 			return;

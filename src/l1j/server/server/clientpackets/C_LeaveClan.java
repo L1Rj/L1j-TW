@@ -30,6 +30,7 @@ import l1j.server.server.model.L1Clan;
 import l1j.server.server.model.L1War;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.serverpackets.S_CharTitle;
 import l1j.server.server.serverpackets.S_ServerMessage;
 
 // Referenced classes of package l1j.server.server.clientpackets:
@@ -77,6 +78,11 @@ public class C_LeaveClan extends ClientBasePacket {
 						online_pc.setClanid(0);
 						online_pc.setClanname("");
 						online_pc.setClanRank(0);
+						online_pc.setTitle("");
+						online_pc.sendPackets(new S_CharTitle(online_pc
+								.getId(), ""));
+						online_pc.broadcastPacket(new S_CharTitle(online_pc
+								.getId(), ""));
 						online_pc.save(); // DBにキャラクター情報を書き⑸む
 						online_pc.sendPackets(new S_ServerMessage(269,
 								player_name, clan_name)); // %1血盟の血盟主%0が血盟を解散させました。
@@ -88,6 +94,7 @@ public class C_LeaveClan extends ClientBasePacket {
 							offline_pc.setClanid(0);
 							offline_pc.setClanname("");
 							offline_pc.setClanRank(0);
+							offline_pc.setTitle("");
 							offline_pc.save(); // DBにキャラクター情報を書き⑸む
 						} catch (Exception e) {
 							_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -105,12 +112,15 @@ public class C_LeaveClan extends ClientBasePacket {
 							player_name, clan_name)); // \f1%0が%1血盟を脫退しました。
 				}
 				if (clan.getWarehouseUsingChar() // 自キャラがクラン倉庫使用中
-				== player.getId()) {
+						== player.getId()) {
 					clan.setWarehouseUsingChar(0); // クラン倉庫のロックを解除
 				}
 				player.setClanid(0);
 				player.setClanname("");
 				player.setClanRank(0);
+				player.setTitle("");
+				player.sendPackets(new S_CharTitle(player.getId(), ""));
+				player.broadcastPacket(new S_CharTitle(player.getId(), ""));
 				player.save(); // DBにキャラクター情報を書き⑸む
 				clan.delMemberName(player_name);
 			}
@@ -118,6 +128,9 @@ public class C_LeaveClan extends ClientBasePacket {
 			player.setClanid(0);
 			player.setClanname("");
 			player.setClanRank(0);
+			player.setTitle("");
+			player.sendPackets(new S_CharTitle(player.getId(), ""));
+			player.broadcastPacket(new S_CharTitle(player.getId(), ""));
 			player.save(); // DBにキャラクター情報を書き⑸む
 			player
 					.sendPackets(new S_ServerMessage(178, player_name,

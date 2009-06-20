@@ -27,7 +27,6 @@ import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.model.Instance.L1DollInstance;
 import l1j.server.server.model.Instance.L1DoorInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
-import l1j.server.server.model.Instance.L1MagicInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
@@ -40,8 +39,7 @@ import l1j.server.server.utils.RandomArrayList;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1Magic {
-	private static Logger _log = Logger.getLogger(L1MagicInstance.class
-			.getName());
+	private static Logger _log = Logger.getLogger(L1Magic.class.getName());
 
 	private byte _calcType;
 

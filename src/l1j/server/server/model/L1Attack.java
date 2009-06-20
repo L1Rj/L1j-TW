@@ -36,8 +36,8 @@ import l1j.server.server.model.poison.L1DamagePoison;
 import l1j.server.server.model.poison.L1ParalysisPoison;
 import l1j.server.server.model.poison.L1SilencePoison;
 import l1j.server.server.serverpackets.S_AttackMissPacket;
+import l1j.server.server.serverpackets.S_AttackPacketForNpc;
 import l1j.server.server.serverpackets.S_AttackPacket;
-import l1j.server.server.serverpackets.S_AttackStatus;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillSound;
@@ -1576,9 +1576,9 @@ public class L1Attack {
 			_pc.getInventory().removeItem(_sting, 1);
 		} else {
 			if (_isHit) {
-				_pc.sendPackets(new S_AttackStatus(_pc, _targetId,
+				_pc.sendPackets(new S_AttackPacket(_pc, _targetId,
 						ActionCodes.ACTION_Attack));
-				_pc.broadcastPacket(new S_AttackStatus(_pc, _targetId,
+				_pc.broadcastPacket(new S_AttackPacket(_pc, _targetId,
 						ActionCodes.ACTION_Attack));
 				_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
 						_targetId, ActionCodes.ACTION_Damage), _pc);
@@ -1587,9 +1587,9 @@ public class L1Attack {
 					_pc.sendPackets(new S_AttackMissPacket(_pc, _targetId));
 					_pc.broadcastPacket(new S_AttackMissPacket(_pc, _targetId));
 				} else {
-					_pc.sendPackets(new S_AttackStatus(_pc, 0,
+					_pc.sendPackets(new S_AttackPacket(_pc, 0,
 							ActionCodes.ACTION_Attack));
-					_pc.broadcastPacket(new S_AttackStatus(_pc, 0,
+					_pc.broadcastPacket(new S_AttackPacket(_pc, 0,
 							ActionCodes.ACTION_Attack));
 				}
 			}
@@ -1628,7 +1628,7 @@ public class L1Attack {
 					_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
 							_targetId, ActionCodes.ACTION_Damage), _npc);
 				} else {
-					_npc.broadcastPacket(new S_AttackPacket(_target,
+					_npc.broadcastPacket(new S_AttackPacketForNpc(_target,
 							_npcObjectId, actId));
 					_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
 							_targetId, ActionCodes.ACTION_Damage), _npc);

@@ -32,7 +32,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
-import l1j.server.server.serverpackets.S_AttackStatus;
+import l1j.server.server.serverpackets.S_AttackPacket;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_UseArrowSkill;
 import static l1j.server.server.model.Instance.L1PcInstance.REGENSTATE_ATTACK;
@@ -119,13 +119,6 @@ public class C_Attack extends ClientBasePacket {
 		if (target != null && !((L1Character) target).isDead()) {
 			target.onAction(pc);
 		} else { // 空攻擊
-			// pc.setHeading(pc.targetDirection(x, y)); // 向きのセット
-			// pc
-			// .sendPackets(new S_AttackStatus(pc, 0,
-			// ActionCodes.ACTION_Attack));
-			// pc.broadcastPacket(new S_AttackStatus(pc, 0,
-			// ActionCodes.ACTION_Attack));
-			// TODO 弓で地面に空撃ちした場合は矢が飛ばなければならない
 
 			L1ItemInstance weapon = pc.getWeapon();
 			int weaponId = 0;
@@ -165,9 +158,9 @@ public class C_Attack extends ClientBasePacket {
 						_targetY, true));
 				pc.getInventory().removeItem(sting, 1);
 			} else {
-				pc.sendPackets(new S_AttackStatus(pc, 0, ActionCodes
+				pc.sendPackets(new S_AttackPacket(pc, 0, ActionCodes
 						.ACTION_Attack));
-				pc.broadcastPacket(new S_AttackStatus(pc, 0, ActionCodes
+				pc.broadcastPacket(new S_AttackPacket(pc, 0, ActionCodes
 						.ACTION_Attack));
 			}
 		}

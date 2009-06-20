@@ -32,7 +32,7 @@ import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.item.L1ItemId;
-import l1j.server.server.serverpackets.S_AttackStatus;
+import l1j.server.server.serverpackets.S_AttackPacket;
 import l1j.server.server.serverpackets.S_ServerMessage;
 
 public class C_PickUpItem extends ClientBasePacket {
@@ -109,10 +109,10 @@ public class C_PickUpItem extends ClientBasePacket {
 							.getInventory());
 					pc.turnOnOffLight();
 
-					pc.sendPackets(new S_AttackStatus(pc, objectId,
+					pc.sendPackets(new S_AttackPacket(pc, objectId,
 							ActionCodes.ACTION_Pickup));
 					if (!pc.isGmInvis()) {
-						pc.broadcastPacket(new S_AttackStatus(pc, objectId,
+						pc.broadcastPacket(new S_AttackPacket(pc, objectId,
 								ActionCodes.ACTION_Pickup));
 					}
 				}

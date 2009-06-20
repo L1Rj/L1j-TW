@@ -47,6 +47,7 @@ import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.model.map.L1Map;
 import l1j.server.server.serverpackets.S_ChangeName;
+import l1j.server.server.serverpackets.S_CharTitle;
 import l1j.server.server.serverpackets.S_CharVisualUpdate;
 import l1j.server.server.serverpackets.S_OwnCharStatus2;
 import l1j.server.server.serverpackets.S_PacketBox;
@@ -127,6 +128,10 @@ public class C_Attr extends ClientBasePacket {
 							joinPc.setClanid(clan_id);
 							joinPc.setClanname(clanName);
 							joinPc.setClanRank(L1Clan.CLAN_RANK_PUBLIC);
+							joinPc.setTitle("");
+							joinPc.sendPackets(new S_CharTitle(joinPc.getId(), ""));
+							joinPc.broadcastPacket(new S_CharTitle(joinPc
+									.getId(), ""));
 							joinPc.save(); // DBにキャラクター情報を書き⑸む
 							clan.addMemberName(joinPc.getName());
 							joinPc.sendPackets(new S_ServerMessage(95,
