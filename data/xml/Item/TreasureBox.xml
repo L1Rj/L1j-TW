@@ -117,12 +117,12 @@
 		<Item ItemId="40408" Count="4" Chance="8" /><!--金屬塊-->
 		<Item ItemId="40496" Count="3" Chance="8" /><!--粗糙的米索莉塊-->
 		<Item ItemId="40458" Count="2" Chance="8" /><!--金屬蜈蚣的牙-->
-		<Item ItemId="40399" Count="1" Chance="8" /><!--奇美拉之皮(獅子)-->
-		<Item ItemId="40489" Count="1" Chance="1" /><!--黃金原石-->
-		<Item ItemId="40441" Count="1" Chance="1.5" /><!--白金原石-->
-		<Item ItemId="40305" Count="1" Chance="1.5" /><!--帕格里奧之石-->
-		<Item ItemId="40513" Count="1" Chance="0.5" /><!--食人巨魔的血-->
-		<Item ItemId="40393" Count="1" Chance="0.5" /><!--火龍鱗-->
+		<Item ItemId="40399" Count="1" Chance="8.3" /><!--奇美拉之皮(獅子)-->
+		<Item ItemId="40489" Count="1" Chance="1.4" /><!--黃金原石-->
+		<Item ItemId="40441" Count="1" Chance="1.2" /><!--白金原石-->
+		<Item ItemId="40305" Count="1" Chance="1.9" /><!--帕格里奧之石-->
+		<Item ItemId="40513" Count="1" Chance="0.1" /><!--食人巨魔的血-->
+		<Item ItemId="40393" Count="1" Chance="0.1" /><!--火龍鱗-->
 	</TreasureBox>
 	<!--卡立普的高級袋子-->
 	<TreasureBox Type="RANDOM" ItemId="49012">
