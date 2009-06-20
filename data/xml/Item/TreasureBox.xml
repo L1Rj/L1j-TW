@@ -401,7 +401,7 @@
 		<Item ItemId="40339" Count="1" Chance="3" />
 		<Item ItemId="40340" Count="1" Chance="3" />
 	</TreasureBox>
-	<!--遺物の袋-->
+	<!--遺物袋子-->
 	<TreasureBox Type="RANDOM" ItemId="40415">
 		<Item ItemId="40058" Count="1" Chance="40" />
 		<Item ItemId="40071" Count="1" Chance="30" />
@@ -934,5 +934,16 @@
 		<Item ItemId="40682" Count="1" Chance="16" />
 		<Item ItemId="40683" Count="1" Chance="16" />
 		<Item ItemId="40684" Count="1" Chance="16" />
+	</TreasureBox>
+	<!-- 遺物袋 -->
+	<TreasureBox Type="RANDOM" ItemId="41110">
+		<Item ItemId="40058" Count="2" Chance="25" /><!-- 煙燻的麵包屑 -->
+		<Item ItemId="40071" Count="1" Chance="25" /><!-- 烤焦的麵包屑 -->
+		<Item ItemId="40039" Count="2" Chance="18" /><!-- 紅酒 -->
+		<Item ItemId="40040" Count="1" Chance="18" /><!-- 威士忌 -->
+		<Item ItemId="41113" Count="1" Chance="3" /><!-- 褪色戒指 -->
+		<Item ItemId="41116" Count="1" Chance="3" /><!-- 褪色項鍊 -->
+		<Item ItemId="41114" Count="1" Chance="4" /><!-- 染血的手帕 -->
+		<Item ItemId="41115" Count="1" Chance="4" /><!-- 染血的文件 -->
 	</TreasureBox>
 </TreasureBoxList>
