@@ -203,6 +203,9 @@ public class L1PcInventory extends L1Inventory {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
 	}
+	public static final int COL_ATTR_ENCHANT_LEVEL = 2048;
+
+	public static final int COL_ATTR_ENCHANT_KIND = 1024;
 
 	public static final int COL_BLESS = 512;
 
@@ -242,6 +245,14 @@ public class L1PcInventory extends L1Inventory {
 	 */
 	@Override
 	public void updateItem(L1ItemInstance item, int column) {
+		if (column >= COL_ATTR_ENCHANT_LEVEL) { // 属性強化数
+			_owner.sendPackets(new S_ItemStatus(item));
+			column -= COL_ATTR_ENCHANT_LEVEL;
+		}
+		if (column >= COL_ATTR_ENCHANT_KIND) { // 属性強化の種類
+			_owner.sendPackets(new S_ItemStatus(item));
+			column -= COL_ATTR_ENCHANT_KIND;
+		}
 		if (column >= COL_BLESS) { // 祝福・封印
 			_owner.sendPackets(new S_ItemColor(item));
 			column -= COL_BLESS;
@@ -385,6 +396,14 @@ public class L1PcInventory extends L1Inventory {
 
 		try {
 			CharactersItemStorage storage = CharactersItemStorage.create();
+			if (column >= COL_ATTR_ENCHANT_LEVEL) { // 属性強化数
+				storage.updateItemAttrEnchantLevel(item);
+				column -= COL_ATTR_ENCHANT_LEVEL;
+			}
+			if (column >= COL_ATTR_ENCHANT_KIND) { // 属性強化の種類
+				storage.updateItemAttrEnchantKind(item);
+				column -= COL_ATTR_ENCHANT_KIND;
+			}
 			if (column >= COL_BLESS) { // 祝福・封印
 				storage.updateItemBless(item);
 				column -= COL_BLESS;

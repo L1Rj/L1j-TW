@@ -62,6 +62,13 @@ public abstract class CharactersItemStorage {
 
 	public abstract void updateItemBless(L1ItemInstance item)
 	throws Exception;
+	
+	public abstract void updateItemAttrEnchantKind(L1ItemInstance item)
+	throws Exception;
+
+	public abstract void updateItemAttrEnchantLevel(L1ItemInstance item)
+	throws Exception;
+
 
 //飾品強化卷軸
 	public abstract void updateFireMr(L1ItemInstance item)

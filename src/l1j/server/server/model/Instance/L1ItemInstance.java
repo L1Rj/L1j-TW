@@ -79,6 +79,10 @@ public class L1ItemInstance extends L1Object {
 
 	private int _bless;
 
+	private int _attrEnchantKind;
+
+	private int _attrEnchantLevel;
+
 	private EnchantTimer _timer;
 
 	public L1ItemInstance() {
@@ -234,6 +238,22 @@ public class L1ItemInstance extends L1Object {
 		return _bless;
 	}
 
+	public void setAttrEnchantKind(int i) {
+		_attrEnchantKind = i;
+	}
+
+	public int getAttrEnchantKind() {
+		return _attrEnchantKind;
+	}
+
+	public void setAttrEnchantLevel(int i) {
+		_attrEnchantLevel = i;
+	}
+
+	public int getAttrEnchantLevel() {
+		return _attrEnchantLevel;
+	}
+
 	public int getMr() {
 		int mr = _item.get_mdef();
 		if (getItemId() == 20011 || getItemId() == 20110
@@ -295,6 +315,10 @@ public class L1ItemInstance extends L1Object {
 
 		public int bless;
 
+		public int attrEnchantKind;
+
+		public int attrEnchantLevel;
+
 //waja add 飾品強化卷軸
 		public int firemr;
 		
@@ -325,6 +349,8 @@ public class L1ItemInstance extends L1Object {
 			remainingTime = getRemainingTime();
 			lastUsed = getLastUsed();
 			bless = getBless();
+			attrEnchantKind = getAttrEnchantKind();
+			attrEnchantLevel = getAttrEnchantLevel();
 //waja add 飾品強化卷軸
 			firemr = getFireMr();
 			watermr = getWaterMr();
@@ -376,6 +402,14 @@ public class L1ItemInstance extends L1Object {
 
 		public void updateBless() {
 			bless = getBless();
+		}
+
+		public void updateAttrEnchantKind() {
+			attrEnchantKind = getAttrEnchantKind();
+		}
+
+		public void updateAttrEnchantLevel() {
+			attrEnchantLevel = getAttrEnchantLevel();
 		}
 //waja add 飾品強化卷軸
 		public void updateFireMr(){
@@ -455,6 +489,12 @@ public class L1ItemInstance extends L1Object {
 		}
 		if (getBless() != _lastStatus.bless) {
 			column += L1PcInventory.COL_BLESS;
+		}
+		if (getAttrEnchantKind() != _lastStatus.attrEnchantKind) {
+			column += L1PcInventory.COL_ATTR_ENCHANT_KIND;
+		}
+		if (getAttrEnchantLevel() != _lastStatus.attrEnchantLevel) {
+			column += L1PcInventory.COL_ATTR_ENCHANT_LEVEL;
 		}
 //waja add 飾品強化卷軸
 		if (getFireMr() != _lastStatus.firemr ) {

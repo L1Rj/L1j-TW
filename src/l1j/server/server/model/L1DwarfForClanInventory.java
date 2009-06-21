@@ -78,6 +78,8 @@ public class L1DwarfForClanInventory extends L1Inventory {
 				item.setRemainingTime(rs.getInt("remaining_time"));
 				item.setLastUsed(rs.getTimestamp("last_used"));
 				item.setBless(rs.getInt("bless"));
+				item.setAttrEnchantKind(rs.getInt("attr_enchant_kind"));
+				item.setAttrEnchantLevel(rs.getInt("attr_enchant_level"));
 				item.setFireMr(rs.getInt("firemr"));// 飾品強化卷軸
 				item.setWaterMr(rs.getInt("watermr"));// 飾品強化卷軸
 				item.setEarthMr(rs.getInt("earthmr"));// 飾品強化卷軸
@@ -108,7 +110,7 @@ public class L1DwarfForClanInventory extends L1Inventory {
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con
-			.prepareStatement("INSERT INTO clan_warehouse SET id = ?, clan_name = ?, item_id = ?, item_name = ?, count = ?, is_equipped=0, enchantlvl = ?, is_id= ?, durability = ?, charge_count = ?, remaining_time = ?, last_used = ?, bless = ?, firemr = ?, watermr = ?, earthmr = ?, windmr = ?, addsp = ?, addhp = ?, addmp = ?, hpr = ?, mpr = ?"); //waja change
+			.prepareStatement("INSERT INTO clan_warehouse SET id = ?, clan_name = ?, item_id = ?, item_name = ?, count = ?, is_equipped=0, enchantlvl = ?, is_id= ?, durability = ?, charge_count = ?, remaining_time = ?, last_used = ?, bless = ?, attr_enchant_kind = ?, attr_enchant_level = ?, firemr = ?, watermr = ?, earthmr = ?, windmr = ?, addsp = ?, addhp = ?, addmp = ?, hpr = ?, mpr = ?"); //waja change
 			pstm.setInt(1, item.getId());
 			pstm.setString(2, _clan.getClanName());
 			pstm.setInt(3, item.getItemId());
@@ -121,15 +123,17 @@ public class L1DwarfForClanInventory extends L1Inventory {
 			pstm.setInt(10, item.getRemainingTime());
 			pstm.setTimestamp(11, item.getLastUsed());
 			pstm.setInt(12, item.getBless());
-			pstm.setInt(13, item.getFireMr());// 飾品強化卷軸
-			pstm.setInt(14, item.getWaterMr());// 飾品強化卷軸
-			pstm.setInt(15, item.getEarthMr());// 飾品強化卷軸
-			pstm.setInt(16, item.getWindMr());// 飾品強化卷軸
-			pstm.setInt(17, item.getaddSp());// 飾品強化卷軸
-			pstm.setInt(18, item.getaddHp());// 飾品強化卷軸
-			pstm.setInt(19, item.getaddMp());// 飾品強化卷軸
-			pstm.setInt(20, item.getHpr());// 飾品強化卷軸
-			pstm.setInt(21, item.getMpr());// 飾品強化卷軸
+			pstm.setInt(13, item.getAttrEnchantKind());
+			pstm.setInt(14, item.getAttrEnchantLevel());
+			pstm.setInt(15, item.getFireMr());// 飾品強化卷軸
+			pstm.setInt(16, item.getWaterMr());// 飾品強化卷軸
+			pstm.setInt(17, item.getEarthMr());// 飾品強化卷軸
+			pstm.setInt(18, item.getWindMr());// 飾品強化卷軸
+			pstm.setInt(19, item.getaddSp());// 飾品強化卷軸
+			pstm.setInt(20, item.getaddHp());// 飾品強化卷軸
+			pstm.setInt(21, item.getaddMp());// 飾品強化卷軸
+			pstm.setInt(22, item.getHpr());// 飾品強化卷軸
+			pstm.setInt(23, item.getMpr());// 飾品強化卷軸
 			pstm.execute();
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
