@@ -25,3 +25,14 @@ Update etcitem Set cant_delete = '0' Where item_id = '41422';
 
 /* 20090519 技能、魔法、、、書類 */
 Update etcitem Set delay_time = '1000' Where item_type = 'spellbook';
+
+/* 20090621 修正 遺物袋 破舊的遺物袋 舊遺物袋 為可開啟的寶箱 */
+Update etcitem Set item_type = 'treasure_box' Where item_id = '41110';
+Update etcitem Set item_type = 'treasure_box' Where item_id = '41111';
+Update etcitem Set item_type = 'treasure_box' Where item_id = '41112';
+
+/* 20090621 修正 釣到的魚類 為可開啟的寶箱 */
+Update etcitem Set item_type = 'treasure_box' Where item_id = '41301';
+Update etcitem Set item_type = 'treasure_box' Where item_id = '41302';
+Update etcitem Set item_type = 'treasure_box' Where item_id = '41303';
+Update etcitem Set item_type = 'treasure_box' Where item_id = '41304';
