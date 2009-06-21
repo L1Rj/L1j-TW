@@ -51,7 +51,7 @@ Update npc Set family = 'elf' Where npcid = '70850'; /* 潘 */
 /*20090605 水晶洞 怪物數值依照台版修改*/
 Update npc set lvl = '50', hp = '610', mp = '30', ac = '-34', exp = '2501', lawful = '-35', size = 'large', hpr = '0', mpr = '0' where npcid = '46135'; /* 冰之女王禁衛兵 */
 Update npc set lvl = '50', hp = '560', mp = '30', ac = '-30', exp = '2501', lawful = '-35', size = 'large', hpr = '0', mpr = '0' where npcid = '46136'; /* 冰之女王禁衛兵 */
-Update npc set lvl = '52', hp = '742' mp = '10', ac = '-36', exp = '2705', lawful = '-38', size = 'large', hpr = '0', mpr = '0' where npcid = '46137'; /* 冰之女王禁衛兵 */
+Update npc set lvl = '52', hp = '642', mp = '10', exp = '2705', lawful = '-38', hpr = '0', mpr = '0' where npcid = '46137'; /* 冰之女王禁衛兵 */
 Update npc set lvl = '50', hp = '560', mp = '30', ac = '-30', exp = '2501', lawful = '-35', size = 'large', hpr = '0', mpr = '0' where npcid = '46138'; /* 冰之女王禁衛兵 */
 Update npc set lvl = '52', hp = '642', mp = '10', ac = '-36', exp = '2705', lawful = '-38', size = 'large', hpr = '0', mpr = '0' where npcid = '46139'; /* 冰之女王禁衛兵 */
 Update npc set lvl = '55', hp = '1000', mp = '400', ac = '-35', exp = '3026', lawful = '-120', size = 'small', hpr = '0', mpr = '0' where npcid = '46140'; /* 冰之女王侍女 */
