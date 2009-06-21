@@ -593,6 +593,53 @@ public class L1ItemInstance extends L1Object {
 		StringBuilder name = new StringBuilder();
 
 		if (isIdentified()) {
+			if (getItem().getType2() == 1) { // 武器
+				int attrEnchantLevel = getAttrEnchantLevel();
+				if (attrEnchantLevel > 0) {
+					String attrStr = null;
+					switch (getAttrEnchantKind()) {
+					case 1: // 地
+						if (attrEnchantLevel == 1) {
+							attrStr = "$6124";
+						} else if (attrEnchantLevel == 2) {
+							attrStr = "$6125";
+						} else if (attrEnchantLevel == 3) {
+							attrStr = "$6126";
+						}
+						break;
+					case 2: // 火
+						if (attrEnchantLevel == 1) {
+							attrStr = "$6115";
+						} else if (attrEnchantLevel == 2) {
+							attrStr = "$6116";
+						} else if (attrEnchantLevel == 3) {
+							attrStr = "$6117";
+						}
+						break;
+					case 4: // 水
+						if (attrEnchantLevel == 1) {
+							attrStr = "$6118";
+						} else if (attrEnchantLevel == 2) {
+							attrStr = "$6119";
+						} else if (attrEnchantLevel == 3) {
+							attrStr = "$6120";
+						}
+						break;
+					case 8: // 風
+						if (attrEnchantLevel == 1) {
+							attrStr = "$6121";
+						} else if (attrEnchantLevel == 2) {
+							attrStr = "$6122";
+						} else if (attrEnchantLevel == 3) {
+							attrStr = "$6123";
+						}
+						break;
+					default:
+						break;
+					}
+					name.append(attrStr + " ");
+				}
+			}
 			if (getItem().getType2() == 1 || getItem().getType2() == 2) { // 武器‧防具
 				if (getEnchantLevel() >= 0) {
 					name.append("+" + getEnchantLevel() + " ");

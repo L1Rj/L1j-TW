@@ -152,6 +152,8 @@ public final class Config {
 
 	public static int ENCHANT_CHANCE_ARMOR;
 
+	public static int ATTR_ENCHANT_CHANCE;
+
 	public static double RATE_WEIGHT_LIMIT;
 
 	public static double RATE_WEIGHT_LIMIT_PET;
@@ -541,6 +543,8 @@ public final class Config {
 					"EnchantChanceWeapon", "68"));
 			ENCHANT_CHANCE_ARMOR = Integer.parseInt(rateSettings.getProperty(
 					"EnchantChanceArmor", "52"));
+			ATTR_ENCHANT_CHANCE = Integer.parseInt(rateSettings.getProperty(
+					"AttrEnchantChance", "10"));
 			RATE_WEIGHT_LIMIT = Double.parseDouble(rateSettings.getProperty(
 					"RateWeightLimit", "1"));
 			RATE_WEIGHT_LIMIT_PET = Double.parseDouble(rateSettings
@@ -899,6 +903,8 @@ public final class Config {
 			ENCHANT_CHANCE_WEAPON = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("EnchantChanceArmor")) {
 			ENCHANT_CHANCE_ARMOR = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("AttrEnchantChance")) {
+			ATTR_ENCHANT_CHANCE = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("Weightrate")) {
 			RATE_WEIGHT_LIMIT = Byte.parseByte(pValue);
 		}

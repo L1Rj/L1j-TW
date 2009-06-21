@@ -250,6 +250,10 @@ public class C_ItemUSe extends ClientBasePacket {
 				|| itemId == 41426 // 封印捲軸
 				|| itemId == 41427 // 解封印捲軸
 				|| itemId == 40075 // 毀滅盔甲的捲軸
+				|| itemId == 41429 // 風之武器強化卷軸
+				|| itemId == 41430 // 地之武器強化卷軸
+				|| itemId == 41431 // 水之武器強化卷軸
+				|| itemId == 41432 // 火之武器強化卷軸
 				|| itemId == 30001 // 裝備保護卷軸
 				|| itemId == 49148 // 飾品強化卷軸
 		) {
@@ -409,6 +413,64 @@ public class C_ItemUSe extends ClientBasePacket {
 						FailureEnchant(pc, l1iteminstance1, client);
 					}
 				}
+			} else if (itemId == 41429 || itemId == 41430
+					|| itemId == 41431 || itemId == 41432) { // 風水地火之武器強化卷軸
+				if (l1iteminstance1 == null
+						|| l1iteminstance1.getItem().getType2() != 1) {
+					pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+					return;
+				}
+
+				// 0:無属性 1:地 2:火 4:水 8:風
+				int oldAttrEnchantKind = l1iteminstance1.getAttrEnchantKind();
+				int oldAttrEnchantLevel = l1iteminstance1.getAttrEnchantLevel();
+
+				boolean isSameAttr = false; // スクロールと強化済みの属性が同一か
+				if (itemId == 41429 && oldAttrEnchantKind == 8
+						|| itemId == 41430 && oldAttrEnchantKind == 1
+						|| itemId == 41431 && oldAttrEnchantKind == 4
+						|| itemId == 41432 && oldAttrEnchantKind == 2) { // 同じ属性
+					isSameAttr = true;
+				}
+				if (isSameAttr && oldAttrEnchantLevel >= 3) {
+					pc.sendPackets(new S_ServerMessage(1453)); // これ以上は強化できません。
+					return;
+				}
+
+				int rnd = _random.nextInt(100) + 1;
+				if (Config.ATTR_ENCHANT_CHANCE >= rnd) {
+					pc.sendPackets(new S_ServerMessage(161, l1iteminstance1
+							.getLogName(), "$245", "$247")); // \f1%0が%2%1光ります。
+					int newAttrEnchantKind = 0;
+					int newAttrEnchantLevel = 0;
+					if (isSameAttr) { // 同じ属性なら+1
+						newAttrEnchantLevel = oldAttrEnchantLevel + 1;
+					} else { // 異なる属性なら1
+						newAttrEnchantLevel = 1;
+					}
+					if (itemId == 41429) { // 風の武器強化スクロール
+						newAttrEnchantKind = 8;
+					} else if (itemId == 41430) { // 地の武器強化スクロール
+						newAttrEnchantKind = 1;
+					} else if (itemId == 41431) { // 水の武器強化スクロール
+						newAttrEnchantKind = 4;
+					} else if (itemId == 41432) { // 火の武器強化スクロール
+						newAttrEnchantKind = 2;
+					}
+					l1iteminstance1.setAttrEnchantKind(newAttrEnchantKind);
+					pc.getInventory().updateItem(l1iteminstance1,
+							L1PcInventory.COL_ATTR_ENCHANT_KIND);
+					pc.getInventory().saveItem(l1iteminstance1,
+							L1PcInventory.COL_ATTR_ENCHANT_KIND);
+					l1iteminstance1.setAttrEnchantLevel(newAttrEnchantLevel);
+					pc.getInventory().updateItem(l1iteminstance1,
+							L1PcInventory.COL_ATTR_ENCHANT_LEVEL);
+					pc.getInventory().saveItem(l1iteminstance1,
+							L1PcInventory.COL_ATTR_ENCHANT_LEVEL);
+				} else {
+					pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+				}
+				pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 30001) { //裝備保護卷軸
 					if	(l1iteminstance1 != null){
 						if	(l1iteminstance1.getItem().get_safeenchant() <= -1){
