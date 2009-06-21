@@ -437,7 +437,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					return;
 				}
 
-				int rnd = _random.nextInt(100) + 1;
+				int rnd = RandomArrayList.getArray100List() + 1 ;
 				if (Config.ATTR_ENCHANT_CHANCE >= rnd) {
 					pc.sendPackets(new S_ServerMessage(161, l1iteminstance1
 							.getLogName(), "$245", "$247")); // \f1%0が%2%1光ります。
