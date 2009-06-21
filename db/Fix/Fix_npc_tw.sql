@@ -1,4 +1,4 @@
-﻿/* 20090412 waja add 新手村 正義者 邪惡者正義值*/
+/* 20090412 waja add 新手村 正義者 邪惡者正義值*/
 Update npc Set lawful = '65535' Where npcid = '70503';
 Update npc Set lawful = '-65535' Where npcid = '70511';
 
@@ -43,103 +43,26 @@ Update npc Set mr = '15' Where npcid = '45313';
 Update npc Set passispeed = '900000' Where npcid = '70852'; /* 精靈女皇 */
 
 /* 20090603 精靈女皇 安特 芮克妮 潘 改為同家族 */
-Update npc Set family  = 'elf' Where npcid = '70852'; /* 精靈女皇 */
-Update npc Set family  = 'elf' Where npcid = '70848'; /* 安特 */
-Update npc Set family  = 'elf' Where npcid = '70846'; /* 芮克妮 */
-Update npc Set family  = 'elf' Where npcid = '70850'; /* 潘 */
+Update npc Set family = 'elf' Where npcid = '70852'; /* 精靈女皇 */
+Update npc Set family = 'elf' Where npcid = '70848'; /* 安特 */
+Update npc Set family = 'elf' Where npcid = '70846'; /* 芮克妮 */
+Update npc Set family = 'elf' Where npcid = '70850'; /* 潘 */
 
 /*20090605 水晶洞 怪物數值依照台版修改*/
-
-Update npc set lvl = '50' where npcid = '46135';
-Update npc set hp = '610' where npcid = '46135';
-Update npc set mp = '30' where npcid = '46135';
-Update npc set ac = '-34' where npcid = '46135';
-Update npc set exp = '2501' where npcid = '46135';
-Update npc set lawful = '-35' where npcid = '46135';
-Update npc set size = 'large' where npcid = '46135';
-Update npc set hpr = '0' where npcid = '46135';
-Update npc set mpr = '0' where npcid = '46135';
-Update npc set lvl = '50' where npcid = '46136';
-Update npc set hp = '560' where npcid = '46136';
-Update npc set mp = '30' where npcid = '46136';
-Update npc set ac = '-30' where npcid = '46136';
-Update npc set exp = '2501' where npcid = '46136';
-Update npc set lawful = '-35' where npcid = '46136';
-Update npc set size = 'large' where npcid = '46136';
-Update npc set hpr = '0' where npcid = '46136';
-Update npc set mpr = '0' where npcid = '46136';
-Update npc set lvl = '52' where npcid = '46137';
-Update npc set hp = '742' where npcid = '46137';
-Update npc set mp = '10' where npcid = '46137';
-Update npc set ac = '-36' where npcid = '46137';
-Update npc set exp = '2705' where npcid = '46137';
-Update npc set lawful = '-38' where npcid = '46137';
-Update npc set size = 'large' where npcid = '46137';
-Update npc set hpr = '0' where npcid = '46137';
-Update npc set mpr = '0' where npcid = '46137';
-Update npc set lvl = '50' where npcid = '46138';
-Update npc set hp = '560' where npcid = '46138';
-Update npc set mp = '30' where npcid = '46138';
-Update npc set ac = '-30' where npcid = '46138';
-Update npc set exp = '2501' where npcid = '46138';
-Update npc set lawful = '-35' where npcid = '46138';
-Update npc set size = 'large' where npcid = '46138';
-Update npc set hpr = '0' where npcid = '46138';
-Update npc set mpr = '0' where npcid = '46138';
-Update npc set lvl = '52' where npcid = '46139';
-Update npc set hp = '642' where npcid = '46139';
-Update npc set mp = '10' where npcid = '46139';
-Update npc set ac = '-36' where npcid = '46139';
-Update npc set exp = '2705' where npcid = '46139';
-Update npc set lawful = '-38' where npcid = '46139';
-Update npc set size = 'large' where npcid = '46139';
-Update npc set hpr = '0' where npcid = '46139';
-Update npc set mpr = '0' where npcid = '46139';
-Update npc set lvl = '55' where npcid = '46140';
-Update npc set hp = '1000' where npcid = '46140';
-Update npc set mp = '400' where npcid = '46140';
-Update npc set ac = '-35' where npcid = '46140';
-Update npc set exp = '3026' where npcid = '46140';
-Update npc set lawful = '-120' where npcid = '46140';
-Update npc set size = 'small' where npcid = '46140';
-Update npc set hpr = '0' where npcid = '46140';
-Update npc set mpr = '0' where npcid = '46140';
-Update npc set lvl = '60' where npcid = '46141';
-Update npc set hp = '15000' where npcid = '46141';
-Update npc set mp = '1000' where npcid = '46141';
-Update npc set ac = '-65' where npcid = '46141';
-Update npc set exp = '3601' where npcid = '46141';
-Update npc set lawful = '-200' where npcid = '46141';
-Update npc set size = 'small' where npcid = '46141';
-Update npc set hpr = '150' where npcid = '46141';
-Update npc set mpr = '100' where npcid = '46141';
-Update npc set lvl = '55' where npcid = '46142';
-Update npc set hp = '10000' where npcid = '46142';
-Update npc set mp = '500' where npcid = '46142';
-Update npc set ac = '-68' where npcid = '46142';
-Update npc set exp = '3026' where npcid = '46142';
-Update npc set lawful = '-150' where npcid = '46142';
-Update npc set size = 'large' where npcid = '46142';
-Update npc set hpr = '100' where npcid = '46142';
-Update npc set mpr = '100' where npcid = '46142';
+Update npc set lvl = '50', hp = '610', mp = '30', ac = '-34', exp = '2501', lawful = '-35', size = 'large', hpr = '0', mpr = '0' where npcid = '46135'; /* 冰之女王禁衛兵 */
+Update npc set lvl = '50', hp = '560', mp = '30', ac = '-30', exp = '2501', lawful = '-35', size = 'large', hpr = '0', mpr = '0' where npcid = '46136'; /* 冰之女王禁衛兵 */
+Update npc set lvl = '52', hp = '742' mp = '10', ac = '-36', exp = '2705', lawful = '-38', size = 'large', hpr = '0', mpr = '0' where npcid = '46137'; /* 冰之女王禁衛兵 */
+Update npc set lvl = '50', hp = '560', mp = '30', ac = '-30', exp = '2501', lawful = '-35', size = 'large', hpr = '0', mpr = '0' where npcid = '46138'; /* 冰之女王禁衛兵 */
+Update npc set lvl = '52', hp = '642', mp = '10', ac = '-36', exp = '2705', lawful = '-38', size = 'large', hpr = '0', mpr = '0' where npcid = '46139'; /* 冰之女王禁衛兵 */
+Update npc set lvl = '55', hp = '1000', mp = '400', ac = '-35', exp = '3026', lawful = '-120', size = 'small', hpr = '0', mpr = '0' where npcid = '46140'; /* 冰之女王侍女 */
+Update npc set lvl = '60', hp = '15000', mp = '1000', ac = '-65', exp = '3601', lawful = '-200', size = 'small', hpr = '150', mpr = '100' where npcid = '46141'; /* 冰之女王 */
+Update npc set lvl = '55', hp = '10000', mp = '500', ac = '-68', exp = '3026', lawful = '-150', size = 'large', hpr = '100', mpr = '100' where npcid = '46142'; /* 冰魔 */
 
 /* 20090610 修正妖精招喚 四屬性精靈素質與回魔回血量 */
-Update npc set mp = '30' where npcid = '81050';/* 強力火之精靈 */
-Update npc set hp = '400' where npcid = '81050';
-Update npc set mp = '90' where npcid = '81051';/* 強力水之精靈 */
-Update npc set hp = '700' where npcid = '81051';
-Update npc set mp = '30' where npcid = '81052';/* 強力風之精靈 */
-Update npc set hp = '350' where npcid = '81052';
-Update npc set mp = '60' where npcid = '81053';/* 強力地之精靈 */
-Update npc set hp = '550' where npcid = '81053';
-Update npc set mpr = '10' where npcid = '81050';
-Update npc set hpr = '20' where npcid = '81050';
-Update npc set mpr = '15' where npcid = '81051';
-Update npc set hpr = '40' where npcid = '81051';
-Update npc set mpr = '15' where npcid = '81052';
-Update npc set hpr = '30' where npcid = '81052';
-Update npc set mpr = '20' where npcid = '81053';
-Update npc set hpr = '30' where npcid = '81053';
+Update npc set mp = '30', hp = '400', mpr = '10', hpr = '20' where npcid = '81050'; /* 強力火之精靈 */
+Update npc set mp = '90', hp = '700', mpr = '15', hpr = '40' where npcid = '81051'; /* 強力水之精靈 */
+Update npc set mp = '30', hp = '350', mpr = '15', hpr = '30' where npcid = '81052'; /* 強力風之精靈 */
+Update npc set mp = '60', hp = '550', mpr = '20', hpr = '30' where npcid = '81053'; /* 強力地之精靈 */
 
 /* 20090610 修改娃娃走路速度加快 */
 Update npc set passispeed = '180' where npcid = '80106';
@@ -151,49 +74,44 @@ Update npc set passispeed = '180' where npcid = '80131';
 Update npc set passispeed = '180' where npcid = '90001';
 
 /* 20090618 修改不死鳥素質 */
-Update npc set intel = '32' where npcid = '45617';
-Update npc set wis = '28' where npcid = '45617';
-Update npc set dex = '24' where npcid = '45617';
-Update npc set con = '24' where npcid = '45617';
-Update npc set hpr = '834' where npcid = '45617';/* 每三秒 HP+500 */
+Update npc set intel = '32', wis = '28', dex = '24', con = '24', hpr = '834' where npcid = '45617';/* 每三秒 HP+500 */
 
 /* 20090621 安特正確素質 */
 UPDATE npc
-   SET
-      passispeed="1280",
-      atkspeed="1320",
-      atk_magic_speed="1320",
-      sub_magic_speed="1320"
-   WHERE
-      npcid="70848"
+	SET
+		passispeed="1280",
+		atkspeed="1320",
+		atk_magic_speed="1320",
+		sub_magic_speed="1320"
+	WHERE
+		npcid="70848";
 
 /* 20090621 潘正確素質 */
 UPDATE npc
-   SET
-      passispeed="640",
-      atkspeed="1200",
-      atk_magic_speed="1200",
-      sub_magic_speed="1200"
-   WHERE
-      npcid="70850"
+	SET
+		passispeed="640",
+		atkspeed="1200",
+		atk_magic_speed="1200",
+		sub_magic_speed="1200"
+	WHERE
+		npcid="70850";
 
 /* 20090621 芮克妮正確素質 */
 UPDATE npc
-   SET
-      passispeed="640",
-      atkspeed="1280",
-      atk_magic_speed="1400",
-      sub_magic_speed="1200"
-   WHERE
-      npcid="70846"
+	SET
+		passispeed="640",
+		atkspeed="1280",
+		atk_magic_speed="1400",
+		sub_magic_speed="1200"
+	WHERE
+		npcid="70846";
 
 /* 20090621 精靈正確素質 */
 UPDATE npc
-   SET
-      passispeed="640",
-      atkspeed="1360",
-      atk_magic_speed="1360",
-      sub_magic_speed="1360"
-   WHERE
-      npcid="70851"
-
+	SET
+		passispeed="640",
+		atkspeed="1360",
+		atk_magic_speed="1360",
+		sub_magic_speed="1360"
+	WHERE
+		npcid="70851";
