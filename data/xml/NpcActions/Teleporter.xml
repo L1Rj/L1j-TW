@@ -949,7 +949,7 @@
 	<Action Name="teleport dwarfc-crystal" NpcId="50040">
 		<Teleport X="34174" Y="32184" Map="4" Heading="5" Price="0"/>
 	</Action>
-	<!-- ギラン城⇒ギラン、ギランダンジョン3階、ドラゴンバレー、リトルバグベアー レース場 -->
+	<!-- 奇岩城 王宮門口守門人⇒奇岩、奇岩地監3樓、龍之谷、食人妖精競技場 -->
 	<Action Name="teleport giranc-village" NpcId="50035">
 		<Teleport X="33438" Y="32796" Map="4" Heading="5" Price="0"/>
 	</Action>
@@ -972,7 +972,7 @@
 	<Action Name="teleport orc-dragonvalley" NpcId="50063">
 		<Teleport X="33432" Y="32546" Map="4" Heading="5" Price="0"/>
 	</Action>
-	<!-- ウィンダウッド城⇒ウッドベック、シルバーナイトタウンダンジョン3階、オアシス、シルバーナイトタウン -->
+	<!-- 風木城 王宮門口守門人⇒ウッドベック、シルバーナイトタウンダンジョン3階、オアシス、シルバーナイトタウン -->
 	<Action Name="teleport woodsc-village" NpcId="50052">
 		<Teleport X="32640" Y="33203" Map="4" Heading="5" Price="0"/>
 	</Action>
@@ -989,7 +989,7 @@
 	<Action Name="teleport kentcd" NpcId="50023">
 		<Teleport X="32721" Y="33087" Map="240" Heading="5" Price="10000"/>
 	</Action>
-	<!-- ケント城⇒ケント、メインランドダンジョン4階、ギランダンジョン2階 -->
+	<!-- 肯特城 王宮門口守門人⇒ケント、メインランドダンジョン4階、ギランダンジョン2階 -->
 	<Action Name="teleport kentc-village" NpcId="50021">
 		<Teleport X="33050" Y="32782" Map="4" Heading="5" Price="0"/>
 	</Action>
@@ -999,7 +999,7 @@
 	<Action Name="teleport kentc-girdun" NpcId="50021">
 		<Teleport X="32809" Y="32793" Map="54" Heading="5" Price="0"/>
 	</Action>
-	<!-- アデン城⇒アデン、傲慢の塔1階、ジプシー村 -->
+	<!-- 亞丁城 王宮門口守門人⇒アデン、傲慢の塔1階、ジプシー村 -->
 	<Action Name="teleport adenc-village" NpcId="50047">
 		<Teleport X="33965" Y="33253" Map="4" Heading="5" Price="0"/>
 	</Action>
@@ -1009,7 +1009,7 @@
 	<Action Name="teleport adenc-gypsy" NpcId="50047">
 		<Teleport X="33979" Y="32926" Map="4" Heading="5" Price="0"/>
 	</Action>
-	<!-- ディアド要塞⇒オームダンジョンの村、オームダンジョン、傲慢の塔1階 -->
+	<!-- 迪亞得要塞 要塞門口守門人⇒オームダンジョンの村、オームダンジョン、傲慢の塔1階 -->
 	<Action Name="teleport diadc-village" NpcId="50075">
 		<Teleport X="32800" Y="32801" Map="310" Heading="5" Price="0"/>
 	</Action>
