@@ -2247,71 +2247,59 @@ public class C_ItemUSe extends ClientBasePacket {
 					UseHeallingPotion(pc, 35, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41301) { // シャイニングレッドフィッシュ
-					int chance = RandomArrayList.getArray10List();
-					if (chance < 6) {
-						UseHeallingPotion(pc, 15, 189);
-					} else if (chance < 10) {
+					int chance = RandomArrayList.getArray100List();
+					if (chance < 60) { // 60%
+					//	UseHeallingPotion(pc, 15, 189);
+					} else if (chance < 90) { // 30%
 						createNewItem(pc, 40019, 1);
-					} else if (chance == 10) {
-						byte gemChance = RandomArrayList.getArray3List();
-						if (gemChance == 0) {
-							createNewItem(pc, 40045, 1);
-						} else if (gemChance == 1) {
-							createNewItem(pc, 40049, 1);
-						} else if (gemChance == 2) {
-							createNewItem(pc, 40053, 1);
-						}
+					} else if (chance < 94) { // 4%
+						createNewItem(pc, 40045, 1);
+					} else if (chance < 98) { // 4%
+						createNewItem(pc, 40049, 1);
+					} else { // 2%
+						createNewItem(pc, 40053, 1);
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41302) { // シャイニンググリーンフィッシュ
-					byte chance = RandomArrayList.getArray10List();
-					if (chance < 6) {
-						UseHeallingPotion(pc, 15, 189);
-					} else if (chance < 10) {
+					byte chance = RandomArrayList.getArray100List();
+					if (chance < 60) { // 60%
+					//	UseHeallingPotion(pc, 15, 189);
+					} else if (chance < 90) { // 30%
 						createNewItem(pc, 40018, 1);
-					} else if (chance == 10) {
-						byte gemChance = RandomArrayList.getArray3List();
-						if (gemChance == 0) {
-							createNewItem(pc, 40047, 1);
-						} else if (gemChance == 1) {
-							createNewItem(pc, 40051, 1);
-						} else if (gemChance == 2) {
-							createNewItem(pc, 40055, 1);
-						}
+					} else if (chance < 94) { // 4%
+						createNewItem(pc, 40047, 1);
+					} else if (chance < 98) { // 4%
+						createNewItem(pc, 40051, 1);
+					} else { // 2%
+						createNewItem(pc, 40055, 1);
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41303) { // シャイニングブルーフィッシュ
-					byte chance = RandomArrayList.getArray10List();
-					if (chance < 6) {
-						UseHeallingPotion(pc, 15, 189);
-					} else if (chance < 10) {
+					byte chance = RandomArrayList.getArray100List();
+					if (chance < 60) {
+					//	UseHeallingPotion(pc, 15, 189);
+					} else if (chance < 90) {
 						createNewItem(pc, 40015, 1);
-					} else if (chance == 10) {
-						byte gemChance = RandomArrayList.getArray3List();
-						if (gemChance == 0) {
-							createNewItem(pc, 40046, 1);
-						} else if (gemChance == 1) {
-							createNewItem(pc, 40050, 1);
-						} else if (gemChance == 2) {
-							createNewItem(pc, 40054, 1);
-						}
+					} else if (chance < 94) {
+						createNewItem(pc, 40046, 1);
+					} else if (chance < 98) {
+						createNewItem(pc, 40050, 1);
+					} else {
+						createNewItem(pc, 40054, 1);
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 41304) { // シャイニングホワイトフィッシュ
-					byte chance = RandomArrayList.getArray10List();
-					if (chance < 6) {
-						UseHeallingPotion(pc, 15, 189);
-					} else if (chance < 10) {
+					byte chance = RandomArrayList.getArray100List();
+					if (chance < 60) { // 60%
+					//	UseHeallingPotion(pc, 15, 189);
+					} else if (chance < 90) { // 30%
 						createNewItem(pc, 40021, 1);
-					} else if (chance == 10) {
-						byte gemChance = RandomArrayList.getArray3List();
-						if (gemChance == 0) {
-							createNewItem(pc, 40044, 1);
-						} else if (gemChance == 1) {
-							createNewItem(pc, 40048, 1);
-						} else if (gemChance == 2) {
-							createNewItem(pc, 40052, 1);
-						}
+					} else if (chance < 94) { // 4%
+						createNewItem(pc, 40044, 1);
+					} else if (chance < 98) { // 4%
+						createNewItem(pc, 40048, 1);
+					} else { // 2%
+						createNewItem(pc, 40052, 1);
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId >= 40136 && itemId <= 40161) { // 花火
