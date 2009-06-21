@@ -1803,6 +1803,10 @@ Update etcitem Set name = '對盔甲施法的卷軸' Where item_id = '240074';
 Update etcitem Set name = '對武器施法的卷軸' Where item_id = '240087';
 Update etcitem Set name = '瞬間移動卷軸' Where item_id = '240100';
 Update etcitem Set name = '太古的玉璽' Where item_id = '41428';
+Update etcitem Set name = '風之武器強化卷軸' Where item_id = '41429';
+Update etcitem Set name = '地之武器強化卷軸' Where item_id = '41430';
+Update etcitem Set name = '水之武器強化卷軸' Where item_id = '41431';
+Update etcitem Set name = '火之武器強化卷軸' Where item_id = '41432';
 
 /* name_id 針對日文部分做出修正 採現有的中文翻譯為主 */
 Update etcitem Set name_id = '$1672' Where item_id = '40073'; /*復活蛋*/
