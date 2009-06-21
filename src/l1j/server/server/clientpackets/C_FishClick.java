@@ -53,7 +53,7 @@ public class C_FishClick extends ClientBasePacket {
 		long currentTime = System.currentTimeMillis(); // 5.19 Start
 		long time = pc.getFishingTime();
 
-		short chance = RandomArrayList.getArrayshortList((short) 200);
+		short chance = RandomArrayList.getArrayshortList((short) 400);
 		if (currentTime < (time + 500) && currentTime > (time - 500)
 				&& pc.isFishingReady()) {
 			finishFishing(pc);
