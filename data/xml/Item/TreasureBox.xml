@@ -974,4 +974,28 @@
 		<Item ItemId="41120" Count="1" Chance="1" /><!-- 瑪雅的魔杖 -->
 		<Item ItemId="41119" Count="1" Chance="1" /><!-- 遺失的鑰匙 -->
 	</TreasureBox>
+	<!-- 發紅光的魚 -->
+	<TreasureBox Type="RANDOM" ItemId="41301">
+		<Item ItemId="40019" Count="1" Chance="50" /><!-- 濃縮體力恢復劑 -->
+		<Item ItemId="40045" Count="1" Chance="48" /><!-- 紅寶石 -->
+		<Item ItemId="40049" Count="1" Chance="2" /><!-- 品質 紅寶石 -->
+	</TreasureBox>
+	<!-- 發綠光的魚 -->
+	<TreasureBox Type="RANDOM" ItemId="41302">
+		<Item ItemId="40018" Count="1" Chance="49" /><!-- 強化綠色藥水 -->
+		<Item ItemId="40047" Count="1" Chance="49" /><!-- 綠寶石 -->
+		<Item ItemId="40055" Count="1" Chance="2" /><!-- 高品質 綠寶石 -->
+	</TreasureBox>
+	<!-- 發藍光的魚 -->
+	<TreasureBox Type="RANDOM" ItemId="41303">
+		<Item ItemId="40015" Count="1" Chance="52" /><!-- 加速魔力回覆藥水 -->
+		<Item ItemId="40046" Count="1" Chance="47" /><!-- 藍寶石 -->
+		<Item ItemId="40054" Count="1" Chance="1" /><!-- 高品質 藍寶石 -->
+	</TreasureBox>
+	<!-- 發白光的魚 -->
+	<TreasureBox Type="RANDOM" ItemId="41304">
+		<Item ItemId="40021" Count="1" Chance="60" /><!-- 濃縮終極體力恢復劑 -->
+		<Item ItemId="40044" Count="1" Chance="39" /><!-- 鑽石 -->
+		<Item ItemId="40052" Count="1" Chance="1" /><!-- 高品質 鑽石 -->
+	</TreasureBox>
 </TreasureBoxList>
