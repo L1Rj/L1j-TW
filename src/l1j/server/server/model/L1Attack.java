@@ -119,6 +119,10 @@ public class L1Attack {
 	private int _weaponMaterial = 0;
 
 	private int _weaponDoubleDmgChance = 0;
+	
+	private int _weaponAttrEnchantKind = 0;
+
+	private int _weaponAttrEnchantLevel = 0;
 
 	private L1ItemInstance _arrow = null;
 
@@ -313,6 +317,8 @@ public class L1Attack {
 					}
 				}
 				_weaponDoubleDmgChance = weapon.getItem().getDoubleDmgChance();
+				_weaponAttrEnchantKind = weapon.getAttrEnchantKind();
+				_weaponAttrEnchantLevel = weapon.getAttrEnchantLevel();
 			}
 			// ステータスによる追加ダメージ補正
 			if (_weaponType == 20) { // 弓の場合はＤＥＸ值參照
@@ -1054,6 +1060,7 @@ public class L1Attack {
 		}
 
 		weaponTotalDamage += calcMaterialBlessDmg(); // 銀祝福ダメージボーナス
+		weaponTotalDamage += calcAttrEnchantDmg(); // 属性強化ダメージボーナス
 		if (_weaponType == 54 && RandomArrayList.getArray100List() <=
 				_weaponDoubleDmgChance) { // ダブルヒット
 			weaponTotalDamage *= 2;
@@ -1447,6 +1454,19 @@ public class L1Attack {
 		if (_pc.getWeapon() != null && _weaponType != 20 && _weaponType != 62
 				&& weapon.getHolyDmgByMagic() != 0 && (undead == 1 || undead == 3)) {
 			damage += weapon.getHolyDmgByMagic();
+		}
+		return damage;
+	}
+
+	// ●●●● 武器の属性強化による追加ダメージ算出 ●●●●
+	private int calcAttrEnchantDmg() {
+		int damage = 0;
+		int weakAttr = _targetNpc.getNpcTemplate().get_weakAttr();
+		if ((weakAttr & 1) == 1 && _weaponAttrEnchantKind == 1 // 地
+				|| (weakAttr & 2) == 2 && _weaponAttrEnchantKind == 2 // 火
+				|| (weakAttr & 4) == 4 && _weaponAttrEnchantKind == 4 // 水
+				|| (weakAttr & 8) == 8 && _weaponAttrEnchantKind == 8) { // 風
+			damage = _weaponAttrEnchantLevel;
 		}
 		return damage;
 	}
