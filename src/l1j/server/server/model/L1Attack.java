@@ -834,10 +834,10 @@ public class L1Attack {
 		}
 
 		weaponTotalDamage += calcAttrEnchantDmg(); // 属性強化ダメージボーナス
-		
+
 		if (_pc.hasSkillEffect(DOUBLE_BRAKE)
 				&& (_weaponType == 54 || _weaponType == 58)) {
-			if ((RandomArrayList.getArray100List() + 1) <= 33) {
+			if (RandomArrayList.getArray3List() == 0) {
 				weaponTotalDamage *= 2;
 			}
 		}
@@ -1066,10 +1066,10 @@ public class L1Attack {
 		}
 
 		weaponTotalDamage += calcAttrEnchantDmg(); // 属性強化ダメージボーナス
-		
+
 		if (_pc.hasSkillEffect(DOUBLE_BRAKE)
 				&& (_weaponType == 54 || _weaponType == 58)) {
-			if ((RandomArrayList.getArray100List() + 1) <= 33) {
+			if (RandomArrayList.getArray3List() == 0) {
 				weaponTotalDamage *= 2;
 			}
 		}
@@ -1469,25 +1469,19 @@ public class L1Attack {
 		return damage;
 	}
 
+	public static final int[] Damage_weaponAttrEnchantLevel = { 0, 1, 3, 5 };
 	// ●●●● 武器の属性強化による追加ダメージ算出 ●●●●
 	private int calcAttrEnchantDmg() {
-		int damage = 0;
+		/*int damage = 0;
 		int weakAttr = _targetNpc.getNpcTemplate().get_weakAttr();
-		// int weakAttr = _targetNpc.getNpcTemplate().get_weakAttr();
-		// if ((weakAttr & 1) == 1 && _weaponAttrEnchantKind == 1 // 地
-		// || (weakAttr & 2) == 2 && _weaponAttrEnchantKind == 2 // 火
-		// || (weakAttr & 4) == 4 && _weaponAttrEnchantKind == 4 // 水
-		// || (weakAttr & 8) == 8 && _weaponAttrEnchantKind == 8) { // 風
-		// damage = _weaponAttrEnchantLevel;
-		// }
-				if (_weaponAttrEnchantLevel == 1) {
-					damage = 1;
-				} else if (_weaponAttrEnchantLevel == 2) {
-					damage = 3;
-				} else if (_weaponAttrEnchantLevel == 3) {
-					damage = 5;
-		}
-		return damage;
+		if (_weaponAttrEnchantLevel == 1) {
+			damage = 1;
+		} else if (_weaponAttrEnchantLevel == 2) {
+			damage = 3;
+		} else if (_weaponAttrEnchantLevel == 3) {
+			damage = 5;
+		}*/
+		return Damage_weaponAttrEnchantLevel[_weaponAttrEnchantLevel];
 	}
 
 	// ●●●● ＮＰＣのアンデッドの夜間攻擊力の變化 ●●●●
