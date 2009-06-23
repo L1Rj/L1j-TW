@@ -1,5 +1,14 @@
 以下為目前仍有的錯誤訊息紀錄
 
+l1j.server.server.ClientThread run
+嚴重的: null
+java.lang.NullPointerException
+        at l1j.server.server.clientpackets.C_MoveChar.<init>(Unknown Source)
+        at l1j.server.server.PacketHandler.handlePacket(Unknown Source)
+        at l1j.server.server.ClientThread.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+
 l1j.server.server.model.skill.L1SkillUse runSkill
 嚴重的: Task already scheduled or cancelled
 java.lang.IllegalStateException: Task already scheduled or cancelled
