@@ -1,0 +1,24 @@
+/* 20090624 rev1900 修正施法設定資料 */
+Update skills Set damage_value = '0' Where skill_id = '17';
+Update skills Set damage_value = '0' Where skill_id = '22';
+Update skills Set damage_dice = '4' Where skill_id = '22';
+Update skills Set damage_dice_count = '8' Where skill_id = '22';
+Update skills Set damage_value = '0' Where skill_id = '25';
+Update skills Set damage_dice = '9' Where skill_id = '25';
+Update skills Set damage_dice_count  = '5' Where skill_id = '25';
+Update skills Set damage_value = '0' Where skill_id = '30';
+Update skills Set damage_dice = '8' Where skill_id = '30';
+Update skills Set damage_dice_count = '5' Where skill_id = '30';
+Update skills Set damage_value = '40' Where skill_id = '34';
+Update skills Set damage_dice = '8' Where skill_id = '34';
+Update skills Set damage_dice_count = '5' Where skill_id = '34';
+Update skills Set damage_value = '40' Where skill_id = '38';
+Update skills Set damage_dice = '6' Where skill_id = '38';
+Update skills Set damage_dice_count = '5' Where skill_id = '38';
+Update skills Set damage_value = '50' Where skill_id = '45';
+Update skills Set damage_dice = '3' Where skill_id = '45';
+Update skills Set damage_dice_count = '5' Where skill_id = '45';
+Update skills Set damage_dice = '5' Where skill_id = '46';
+Update skills Set damage_dice_count = '16' Where skill_id = '46';
+Update skills Set damage_value = '50' Where skill_id = '50';
+Update skills Set damage_dice = '5' Where skill_id = '50';
