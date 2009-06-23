@@ -270,7 +270,7 @@ Update weapon Set name = '黑曜石奇古獸' Where item_id = '271';
 Update weapon Set name = '消滅者鎖鏈劍' Where item_id = '272';
 Update weapon Set name = '破滅者鎖鏈劍' Where item_id = '273';
 Update weapon Set name = '反王肯恩的權杖' Where item_id = '274';
-Update weapon Set name = '龍騎士的雙手劍' Where item_id = '275';
+Update weapon Set name = '龍騎士雙手劍' Where item_id = '275';
 Update weapon Set name = '匕首' Where item_id = '100004';
 Update weapon Set name = '精靈匕首' Where item_id = '100005';
 Update weapon Set name = '米索莉短劍' Where item_id = '100008';
