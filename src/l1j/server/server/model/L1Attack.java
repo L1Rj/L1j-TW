@@ -825,18 +825,21 @@ public class L1Attack {
 		}
 
 		int weaponTotalDamage = weaponDamage + _weaponAddDmg + _weaponEnchant;
-		if (_pc.hasSkillEffect(DOUBLE_BRAKE)
-				&& (_weaponType == 54 || _weaponType == 58)) {
-			if (RandomArrayList.getArray3List() == 0) {
-				weaponTotalDamage *= 2;
-			}
-		}
 
 		if (_weaponType == 54 && RandomArrayList.getArray100List() <=
 				_weaponDoubleDmgChance) { // ダブルヒット
 			weaponTotalDamage *= 2;
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3398));
 			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3398));
+		}
+
+		weaponTotalDamage += calcAttrEnchantDmg(); // 属性強化ダメージボーナス
+		
+		if (_pc.hasSkillEffect(DOUBLE_BRAKE)
+				&& (_weaponType == 54 || _weaponType == 58)) {
+			if ((RandomArrayList.getArray100List() + 1) <= 33) {
+				weaponTotalDamage *= 2;
+			}
 		}
 
 		if (_weaponId == 262 && RandomArrayList.getArray100List() <= 75) { // ディストラクション装備かつ成功確率(暫定)75%
@@ -1052,20 +1055,23 @@ public class L1Attack {
 		}
 
 		int weaponTotalDamage = weaponDamage + _weaponAddDmg + _weaponEnchant;
-		if (_pc.hasSkillEffect(DOUBLE_BRAKE)
-				&& (_weaponType == 54 || _weaponType == 58)) {
-			if (RandomArrayList.getArray3List() == 0) {
-				weaponTotalDamage *= 2;
-			}
-		}
 
 		weaponTotalDamage += calcMaterialBlessDmg(); // 銀祝福ダメージボーナス
-		weaponTotalDamage += calcAttrEnchantDmg(); // 属性強化ダメージボーナス
+
 		if (_weaponType == 54 && RandomArrayList.getArray100List() <=
 				_weaponDoubleDmgChance) { // ダブルヒット
 			weaponTotalDamage *= 2;
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3398));
 			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3398));
+		}
+
+		weaponTotalDamage += calcAttrEnchantDmg(); // 属性強化ダメージボーナス
+		
+		if (_pc.hasSkillEffect(DOUBLE_BRAKE)
+				&& (_weaponType == 54 || _weaponType == 58)) {
+			if ((RandomArrayList.getArray100List() + 1) <= 33) {
+				weaponTotalDamage *= 2;
+			}
 		}
 
 		if (_weaponId == 262 && RandomArrayList.getArray100List() <= 75) { // ディストラクション装備かつ成功確率(暫定)75%
@@ -1444,9 +1450,14 @@ public class L1Attack {
 	private int calcMaterialBlessDmg() {
 		int damage = 0;
 		int undead = _targetNpc.getNpcTemplate().get_undead();
-		if ((_weaponMaterial == 14 || _weaponMaterial == 17 || _weaponMaterial == 22)
-				&& (undead == 1 || undead == 3)) { // 銀‧ミスリル‧オリハルコン、かつ、アンデッド系‧アンデッド系ボス
+		if ((_weaponMaterial == 14 || _weaponMaterial == 17
+				|| _weaponMaterial == 22)
+				&& (undead == 1 || undead == 3 || undead == 5)) { // 銀・ミスリル・オリハルコン、かつ、アンデッド系・アンデッド系ボス・銀特効モンスター
 			damage += RandomArrayList.getArray5List() + 1;
+		}
+		if ((_weaponMaterial == 17 || _weaponMaterial == 22)
+				&& undead == 2) { // ミスリル・オリハルコン、かつ、悪魔系
+			damage += RandomArrayList.getArray3List() + 1; // damage += _random.nextInt(3) + 1;
 		}
 		if (_weaponBless == 0 && (undead == 1 || undead == 2 || undead == 3)) { // 祝福武器、かつ、アンデッド系‧惡魔系‧アンデッド系ボス
 			damage += RandomArrayList.getArray5List() + 1;
@@ -1462,11 +1473,19 @@ public class L1Attack {
 	private int calcAttrEnchantDmg() {
 		int damage = 0;
 		int weakAttr = _targetNpc.getNpcTemplate().get_weakAttr();
-		if ((weakAttr & 1) == 1 && _weaponAttrEnchantKind == 1 // 地
-				|| (weakAttr & 2) == 2 && _weaponAttrEnchantKind == 2 // 火
-				|| (weakAttr & 4) == 4 && _weaponAttrEnchantKind == 4 // 水
-				|| (weakAttr & 8) == 8 && _weaponAttrEnchantKind == 8) { // 風
-			damage = _weaponAttrEnchantLevel;
+		// int weakAttr = _targetNpc.getNpcTemplate().get_weakAttr();
+		// if ((weakAttr & 1) == 1 && _weaponAttrEnchantKind == 1 // 地
+		// || (weakAttr & 2) == 2 && _weaponAttrEnchantKind == 2 // 火
+		// || (weakAttr & 4) == 4 && _weaponAttrEnchantKind == 4 // 水
+		// || (weakAttr & 8) == 8 && _weaponAttrEnchantKind == 8) { // 風
+		// damage = _weaponAttrEnchantLevel;
+		// }
+				if (_weaponAttrEnchantLevel == 1) {
+					damage = 1;
+				} else if (_weaponAttrEnchantLevel == 2) {
+					damage = 3;
+				} else if (_weaponAttrEnchantLevel == 3) {
+					damage = 5;
 		}
 		return damage;
 	}
@@ -1476,7 +1495,7 @@ public class L1Attack {
 		boolean flag = false;
 		int undead = _npc.getNpcTemplate().get_undead();
 		boolean isNight = L1GameTimeClock.getInstance().currentTime().isNight();
-		if (isNight && (undead == 1 || undead == 3)) { // 18～6時、かつ、アンデッド系‧アンデッド系ボス
+		if (isNight && (undead == 1 || undead == 3 || undead == 4)) { // 18～6時、かつ、アンデッド系・アンデッド系ボス・弱点無効のアンデッド系
 			flag = true;
 		}
 		return flag;

@@ -420,7 +420,11 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					return;
 				}
-
+				int safeEnchant = l1iteminstance1.getItem().get_safeenchant();
+				if (safeEnchant < 0) { // 強化不可
+					pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+					return;
+				}
 				// 0:無属性 1:地 2:火 4:水 8:風
 				int oldAttrEnchantKind = l1iteminstance1.getAttrEnchantKind();
 				int oldAttrEnchantLevel = l1iteminstance1.getAttrEnchantLevel();
