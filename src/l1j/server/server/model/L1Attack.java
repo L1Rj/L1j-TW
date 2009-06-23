@@ -1780,9 +1780,9 @@ public class L1Attack {
 				_pc.setCurrentHp(newHp);
 			}
 			damagePcWeaponDurability(); // 武器を損傷させる。
-			_targetPc.receiveDamage(_pc, _damage);
+			_targetPc.receiveDamage(_pc, _damage, false);
 		} else if (_calcType == NPC_PC) {
-			_targetPc.receiveDamage(_npc, _damage);
+			_targetPc.receiveDamage(_npc, _damage, false);
 		}
 	}
 
@@ -1870,7 +1870,7 @@ public class L1Attack {
 			return;
 		}
 		if (_calcType == PC_PC) {
-			_pc.receiveDamage(_targetPc, damage);
+			_pc.receiveDamage(_targetPc, damage, false);
 		} else if (_calcType == NPC_PC) {
 			_npc.receiveDamage(_targetPc, damage);
 		}

@@ -127,7 +127,7 @@ public class L1EffectInstance extends L1NpcInstance {
 									ActionCodes.ACTION_Damage));
 							pc.broadcastPacket(new S_DoActionGFX(pc.getId(),
 									ActionCodes.ACTION_Damage));
-							pc.receiveDamage(_effect, damage);
+							pc.receiveDamage(_effect, damage, false);
 						} else if (objects instanceof L1MonsterInstance) {
 							L1MonsterInstance mob = (L1MonsterInstance) objects;
 							if (mob.isDead()) {

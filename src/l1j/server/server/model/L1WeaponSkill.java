@@ -232,7 +232,7 @@ public class L1WeaponSkill {
 							ActionCodes.ACTION_Damage));
 					targetPc.broadcastPacket(new S_DoActionGFX(targetPc.getId(),
 							ActionCodes.ACTION_Damage));
-					targetPc.receiveDamage(pc, (int) damage);
+					targetPc.receiveDamage(pc, (int) damage, false);
 				} else if (object instanceof L1SummonInstance
 						|| object instanceof L1PetInstance
 						|| object instanceof L1MonsterInstance) {
@@ -427,7 +427,7 @@ public class L1WeaponSkill {
 							ActionCodes.ACTION_Damage));
 				   targetPc.broadcastPacket(new S_DoActionGFX(targetPc.getId(),
 							ActionCodes.ACTION_Damage));
-				   targetPc.receiveDamage(pc, (int) dmg);
+				   targetPc.receiveDamage(pc, (int) dmg, false);
 				} else if (object instanceof L1SummonInstance
 						|| object instanceof L1PetInstance
 						|| object instanceof L1MonsterInstance) {

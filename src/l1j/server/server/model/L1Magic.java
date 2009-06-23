@@ -665,7 +665,7 @@ public class L1Magic {
 							4395));
 					_targetPc.broadcastPacket(new S_SkillSound(_targetPc
 							.getId(), 4395));
-					_pc.receiveDamage(_targetPc, dmg);
+					_pc.receiveDamage(_targetPc, dmg, false);
 					dmg = 0;
 					_targetPc.killSkillEffectTimer(COUNTER_MIRROR);
 				}
@@ -1012,9 +1012,9 @@ public class L1Magic {
 				_pc.setCurrentMp(newMp);
 			}
 			_targetPc.receiveManaDamage(_pc, drainMana);
-			_targetPc.receiveDamage(_pc, damage);
+			_targetPc.receiveDamage(_pc, damage, true);
 		} else if (_calcType == NPC_PC) {
-			_targetPc.receiveDamage(_npc, damage);
+			_targetPc.receiveDamage(_npc, damage, true);
 		}
 	}
 

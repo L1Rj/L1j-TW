@@ -110,7 +110,7 @@ public class L1Cube extends TimerTask {
 						ActionCodes.ACTION_Damage));
 				pc.broadcastPacket(new S_DoActionGFX(pc.getId(),
 						ActionCodes.ACTION_Damage));
-				pc.receiveDamage(_effect, 10);
+				pc.receiveDamage(_effect, 10, false);
 			} else if (_cha instanceof L1MonsterInstance) {
 				L1MonsterInstance mob = (L1MonsterInstance) _cha;
 				mob.broadcastPacket(new S_DoActionGFX(mob.getId(),
@@ -170,7 +170,7 @@ public class L1Cube extends TimerTask {
 			if (_timeCounter % 5 == 0) {
 				if (_cha instanceof L1PcInstance) {
 					L1PcInstance pc = (L1PcInstance) _cha;
-					pc.receiveDamage(_effect, 25);
+					pc.receiveDamage(_effect, 25, false);
 				} else if (_cha instanceof L1MonsterInstance) {
 					L1MonsterInstance mob = (L1MonsterInstance) _cha;
 					mob.receiveDamage(_effect, 25);
