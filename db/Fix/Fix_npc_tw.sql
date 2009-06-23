@@ -115,3 +115,12 @@ UPDATE npc
 		sub_magic_speed="1360"
 	WHERE
 		npcid="70851";
+
+/* 20090622 修改四龍素質 */
+Update npc set str = '72', con = '30',dex = '32',wis = '30',intel = '32' where npcid = '45681';/* 林德拜爾 */
+Update npc set str = '84', con = '32',dex = '30',wis = '28',intel = '28' where npcid = '45682';/* 安塔瑞斯 */
+Update npc set str = '74', con = '28',dex = '28',wis = '32',intel = '34' where npcid = '45683';/* 法利昂 */
+Update npc set str = '76', con = '30',dex = '32',wis = '30',intel = '32' where npcid = '45684';/* 巴拉卡斯 */
+
+/* 20090622 修改吉爾塔斯素質 */
+Update npc set str = '88', con = '30',dex = '32',wis = '32',intel = '34' where npcid = '81163';
