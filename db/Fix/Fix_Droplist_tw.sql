@@ -268,6 +268,11 @@ Update droplist Set chance = '10' Where mobId = '46037' And itemId = '40205';
 Update droplist Set chance = '30000' Where mobId = '81163' And itemId = '40205';
 Update droplist Set chance = '100' Where mobId = '46141' And itemId = '40205';
 
+/* ---------- 技術書 ----------*/
+/* 20090623 降低 技術書(衝擊之暈) 掉落機率 */
+Update droplist Set chance = '20000' Where chance = '50000' And itemId = '40164';
+Update droplist Set chance = '3000' Where chance = '10000' And itemId = '40164';
+Update droplist Set chance = '100' Where mobId = '45248' And itemId = '40164';
 
 /* ---------- 武器 ----------*/
 /* 20090613 降低 祝福武士刀 掉落機率 */
