@@ -147,6 +147,11 @@ public class L1DollInstance extends L1NpcInstance {
 		if (isMpRegeneration()) {
 			((L1PcInstance) _master).stopMpRegenerationByDoll();
 		}
+//add 魔法娃娃回血移除
+        if (isHpRegeneration()) {
+            ((L1PcInstance) _master).stopHpRegenerationByDoll();
+        }
+//end
 		_master.getDollList().remove(getId());
 		deleteMe();
 	}
