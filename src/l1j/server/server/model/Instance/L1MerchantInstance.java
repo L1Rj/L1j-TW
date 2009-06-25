@@ -2645,108 +2645,128 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "oreno1";
 				}
 //熾炎天使弓
-			} else if (npcid == 71256) {
-                if (!player.isElf()) {
-                    htmlid = "robinhood2";
-                } else if (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 255) {
-                    htmlid = "robinhood12";
-                } else if (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 8) {
-                    if (player.getInventory().checkItem(40491,30)
-                            && player.getInventory().checkItem(40495,40)
-                            && player.getInventory().checkItem(100,1)
-                            && player.getInventory().checkItem(40509,12)
-                            && player.getInventory().checkItem(40052,1)
-                            && player.getInventory().checkItem(40053,1)
-                            && player.getInventory().checkItem(40054,1)
-                            && player.getInventory().checkItem(40055,1)
-                            && player.getInventory().checkItem(41347,1)
-                            && player.getInventory().checkItem(41350,1)) {
-                        htmlid = "robinhood11";
-                    }
-                    else if (player.getInventory().checkItem(40491,30)
-                            && player.getInventory().checkItem(40495,40)
-                            && player.getInventory().checkItem(100,1)
-                            && player.getInventory().checkItem(40509,12)) {
-                        htmlid = "robinhood16";
-                    } else if ((!(player.getInventory().checkItem(40491,30)
-                            && player.getInventory().checkItem(40495,40)
-                            && player.getInventory().checkItem(100,1)
-                            && player.getInventory().checkItem(40509,12)))) {
-                        htmlid = "robinhood17";
-                    }
-                } else if (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 7) {
-                    if (player.getInventory().checkItem(41352,4)
-                        && player.getInventory().checkItem(40618,30)
-                        && player.getInventory().checkItem(40643,30)
-                        && player.getInventory().checkItem(40645,30)
-                        && player.getInventory().checkItem(40651,30)
-                        && player.getInventory().checkItem(40676,30)
-                        && player.getInventory().checkItem(40514,20)
-                        && player.getInventory().checkItem(41351,1)
-                        && player.getInventory().checkItem(41346,1)) {
-                        htmlid = "robinhood9";
-                    } else if (player.getInventory().checkItem(41351,1)
-                        && player.getInventory().checkItem(41352,4)) {
-                        htmlid = "robinhood14";
-                    } else if (player.getInventory().checkItem(41351,1)
-                        && (!(player.getInventory().checkItem(41352,4)))) {
-                        htmlid = "robinhood15";
-                    } else if (player.getInventory().checkItem(41351)) {
-                        htmlid = "robinhood9";
-                    } else {
-                        htmlid = "robinhood18";
-                    }
-                } else if ((player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 2)
-                        || (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 3)
-                        || (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 4)
-                        || (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 5)
-                        || (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 6)) {
-                    htmlid = "robinhood13";
-                } else if (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 1) {
-                    htmlid = "robinhood8";
-                } else {
-                    htmlid = "robinhood1";
-                }
-            } else if (npcid == 71257) {
-                if (!player.isElf()) {
-                    htmlid = "zybril16";
-                } else if ((player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) >= 7)) {
-                    htmlid = "zybril19";
-                } else if (player.getInventory().checkItem(41349)
-                        && (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 7)) {
-                    htmlid = "zybril19";
-                } else if (player.getInventory().checkItem(41349)
-                        && (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 6)) {
-                    htmlid = "zybril18";
-                } else if ((player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 6)
-                        && (!(player.getInventory().checkItem(41354)))) {
-                    htmlid = "zybril7";
-                } else if ((player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 6)
-                        && player.getInventory().checkItem(41354)) {
-                    htmlid = "zybril17";
-                } else if (player.getInventory().checkItem(41353)
-                        && player.getInventory().checkItem(40514,10)
-                        && player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 5) {
-                    htmlid = "zybril8";
-                } else if (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 5) {
-                    htmlid = "zybril13";
-                } else if (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 4
-                        && player.getInventory().checkItem(40048,10)
-                        && player.getInventory().checkItem(40049,10)
-                        && player.getInventory().checkItem(40050,10)
-                        && player.getInventory().checkItem(40051,10)) {
-                        htmlid = "zybril7";                        
-                } else if (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 4) {
-                    htmlid = "zybril12";
-                } else if (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 3) {
-                    htmlid = "zybril3";
-                }else if ((player.isElf())
-                        && ((player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 2)
-                        || (player.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 1))){
-                    htmlid = "zybril1";
-                } else {
-                    htmlid = "zybril1";
-                }
+			} else if (npcid == 71256) { // ロビンフッド
+				if (!player.isElf()) {
+					htmlid = "robinhood2";
+				} else if (player.getQuest().get_step(L1Quest
+						.QUEST_MOONOFLONGBOW) == 255) {
+					htmlid = "robinhood12";
+				} else if (player.getQuest().get_step(L1Quest
+						.QUEST_MOONOFLONGBOW) == 8) {
+					if (player.getInventory().checkItem(40491,30)
+							&& player.getInventory().checkItem(40495,40)
+							&& player.getInventory().checkItem(100,1)
+							&& player.getInventory().checkItem(40509,12)
+							&& player.getInventory().checkItem(40052,1)
+							&& player.getInventory().checkItem(40053,1)
+							&& player.getInventory().checkItem(40054,1)
+							&& player.getInventory().checkItem(40055,1)
+							&& player.getInventory().checkItem(41347,1)
+							&& player.getInventory().checkItem(41350,1)) {
+						htmlid = "robinhood11";
+					} else if (player.getInventory().checkItem(40491,30)
+							&& player.getInventory().checkItem(40495,40)
+							&& player.getInventory().checkItem(100,1)
+							&& player.getInventory().checkItem(40509,12)) {
+						htmlid = "robinhood16";
+					} else if ((!(player.getInventory().checkItem(40491,30)
+							&& player.getInventory().checkItem(40495,40)
+							&& player.getInventory().checkItem(100,1)
+							&& player.getInventory().checkItem(40509,12)))) {
+						htmlid = "robinhood17";
+					}
+				} else if (player.getQuest().get_step(L1Quest
+						.QUEST_MOONOFLONGBOW) == 7) {
+					if (player.getInventory().checkItem(41352,4)
+							&& player.getInventory().checkItem(40618,30)
+							&& player.getInventory().checkItem(40643,30)
+							&& player.getInventory().checkItem(40645,30)
+							&& player.getInventory().checkItem(40651,30)
+							&& player.getInventory().checkItem(40676,30)
+							&& player.getInventory().checkItem(40514,20)
+							&& player.getInventory().checkItem(41351,1)
+							&& player.getInventory().checkItem(41346,1)) {
+						htmlid = "robinhood9";
+					} else if (player.getInventory().checkItem(41351,1)
+							&& player.getInventory().checkItem(41352,4)) {
+						htmlid = "robinhood14";
+					} else if (player.getInventory().checkItem(41351,1)
+							&& (!(player.getInventory().checkItem(41352,4)))) {
+						htmlid = "robinhood15";
+					} else if (player.getInventory().checkItem(41351)) {
+						htmlid = "robinhood9";
+					} else {
+						htmlid = "robinhood18";
+					}
+				} else if ((player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 2)
+						|| (player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 3)
+						|| (player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 4)
+						|| (player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 5)
+						|| (player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 6)) {
+					htmlid = "robinhood13";
+				} else if (player.getQuest().get_step(L1Quest
+						.QUEST_MOONOFLONGBOW) == 1) {
+					htmlid = "robinhood8";
+				} else {
+					htmlid = "robinhood1";
+				}
+			} else if (npcid == 71257) { // ジブリル
+				if (!player.isElf()) {
+					htmlid = "zybril16";
+				} else if ((player.getQuest().get_step(L1Quest
+						.QUEST_MOONOFLONGBOW) >= 7)) {
+					htmlid = "zybril19";
+				} else if (player.getInventory().checkItem(41349)
+						&& (player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 7)) {
+					htmlid = "zybril19";
+				} else if (player.getInventory().checkItem(41349)
+						&& (player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 6)) {
+					htmlid = "zybril18";
+				} else if ((player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 6)
+						&& (!(player.getInventory().checkItem(41354)))) {
+					htmlid = "zybril7";
+				} else if ((player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 6)
+						&& player.getInventory().checkItem(41354)) {
+					htmlid = "zybril17";
+				} else if (player.getInventory().checkItem(41353)
+						&& player.getInventory().checkItem(40514,10)
+						&& player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 5) {
+					htmlid = "zybril8";
+				} else if (player.getQuest().get_step(L1Quest
+						.QUEST_MOONOFLONGBOW) == 5) {
+					htmlid = "zybril13";
+				} else if (player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 4
+						&& player.getInventory().checkItem(40048,10)
+						&& player.getInventory().checkItem(40049,10)
+						&& player.getInventory().checkItem(40050,10)
+						&& player.getInventory().checkItem(40051,10)) {
+					htmlid = "zybril7";
+				} else if (player.getQuest().get_step(L1Quest
+						.QUEST_MOONOFLONGBOW) == 4) {
+					htmlid = "zybril12";
+				} else if (player.getQuest().get_step(L1Quest
+						.QUEST_MOONOFLONGBOW) == 3) {
+					htmlid = "zybril3";
+				} else if ((player.isElf())
+						&& ((player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 2)
+						|| (player.getQuest().get_step(L1Quest
+								.QUEST_MOONOFLONGBOW) == 1))){
+					htmlid = "zybril1";
+				} else {
+					htmlid = "zybril1";
+				}
 //遠征隊遺物
 			} else if (npcid == 71258) { //マルバ
 				if (player.getLawful() <= -501) {
