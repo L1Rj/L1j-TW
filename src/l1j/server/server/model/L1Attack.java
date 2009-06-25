@@ -856,17 +856,17 @@ public class L1Attack {
 		}
 
 		if (_weaponType == 20) { // 弓
-			/*if (_arrow != null) {
+			if (_arrow != null) {
 				int add_dmg = _arrow.getItem().getDmgSmall();
 				if (add_dmg == 0) {
 					add_dmg = 1;
 				}
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
-			} else */if (_weaponId == 190) { // 沙哈之弓
+			} else if (_weaponId == 190) { // 沙哈之弓
 				dmg += RandomArrayList.getArrayshortList((short) 15) + 1;
-			} else if (_weaponId == 507) { // waja add 玄冰弓
+			} else if (_weaponId == 507) { // 玄冰弓
 				dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
-						_weaponId); // add end
+						_weaponId);
 			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg;
@@ -890,9 +890,9 @@ public class L1Attack {
 			dmg = L1WeaponSkill.getDiceDaggerDamage(_pc, _targetPc, weapon);
 		} else if (_weaponId == 204 || _weaponId == 100204) { // 真紅のクロスボウ
 			L1WeaponSkill.giveFettersEffect(_pc, _targetPc);
-		} else if (_weaponId == 264 || _weaponId == 506) { // 雷雨之劍 & waja add 天雷劍
+		} else if (_weaponId == 264 || _weaponId == 506) { // 雷雨之劍  天雷劍
 			dmg += L1WeaponSkill.getLightningEdgeDamage(_pc, _target);
-		} else if (_weaponId == 260 || _weaponId == 263) { // 狂風之斧 /酷寒之矛
+		} else if (_weaponId == 260 || _weaponId == 263) { // 狂風之斧 酷寒之矛
 			dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
 					_weaponId);
 		} else if (_weaponId == 261) { // アークメイジスタッフ
@@ -1105,9 +1105,9 @@ public class L1Attack {
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
 			} else */if (_weaponId == 190) { // 沙哈之弓
 				dmg += RandomArrayList.getArrayshortList((short) 15) + 1;
-			} else if (_weaponId == 507) { // waja add 玄冰弓
+			} else if (_weaponId == 507) { // 玄冰弓
 				dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
-						_weaponId); // add end
+						_weaponId);
 			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = 0;
@@ -1129,9 +1129,9 @@ public class L1Attack {
 			dmg += L1WeaponSkill.getBaphometStaffDamage(_pc, _target);
 		} else if (_weaponId == 204 || _weaponId == 100204) { // 真紅のクロスボウ
 			L1WeaponSkill.giveFettersEffect(_pc, _targetNpc);
-		} else if (_weaponId == 264 || _weaponId == 506) { // 雷雨之劍 & waja add 天雷劍
+		} else if (_weaponId == 264 || _weaponId == 506) { // 雷雨之劍 天雷劍
 			dmg += L1WeaponSkill.getLightningEdgeDamage(_pc, _target);
-		} else if (_weaponId == 260 || _weaponId == 263) { // 狂風之斧 /酷寒之矛
+		} else if (_weaponId == 260 || _weaponId == 263) { // 狂風之斧 酷寒之矛
 			dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
 					_weaponId);
 		} else if (_weaponId == 261) { // アークメイジスタッフ
