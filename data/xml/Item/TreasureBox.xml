@@ -82,10 +82,10 @@
 		<Item ItemId="40779" Count="2" Chance="9" /><!--鋼鐵塊-->
 		<Item ItemId="40494" Count="30" Chance="9" /><!--純粹的米索莉塊-->
 		<Item ItemId="40400" Count="2" Chance="9" /><!--奇美拉之皮(蛇)-->
-		<Item ItemId="40304" Count="1" Chance="1" /><!--馬普勒之石-->
-		<Item ItemId="40489" Count="1" Chance="1.5" />
+		<Item ItemId="40304" Count="1" Chance="1.8" /><!--馬普勒之石-->
+		<Item ItemId="40489" Count="1" Chance="1" /><!--黃金原石-->
 		<Item ItemId="40428" Count="1" Chance="1" /><!--月光之淚-->
-		<Item ItemId="40396" Count="1" Chance="0.5" /><!--地龍鱗-->
+		<Item ItemId="40396" Count="1" Chance="0.2" /><!--地龍鱗-->
 	</TreasureBox>
 	<!--卡立普的高級袋子-->
 	<TreasureBox Type="RANDOM" ItemId="49010">
@@ -101,9 +101,9 @@
 		<Item ItemId="40397" Count="1" Chance="9" /><!--奇美拉之皮(龍)-->
 		<Item ItemId="40515" Count="1" Chance="1" /><!--元素石-->
 		<Item ItemId="40468" Count="2" Chance="1" /><!--銀原石-->
-		<Item ItemId="40444" Count="1" Chance="1.5" /><!--鑽石-->
+		<Item ItemId="40444" Count="1" Chance="1.8" /><!--鑽石-->
 		<Item ItemId="40306" Count="1" Chance="1" /><!--伊娃之石-->
-		<Item ItemId="40395" Count="1" Chance="0.5" /><!--水龍鱗-->
+		<Item ItemId="40395" Count="1" Chance="0.2" /><!--水龍鱗-->
 	</TreasureBox>
 	<!--卡立普的高級袋子-->
 	<TreasureBox Type="RANDOM" ItemId="49011">
@@ -139,9 +139,9 @@
 		<Item ItemId="40398" Count="1" Chance="8" /><!--奇美拉之皮(山羊)-->
 		<Item ItemId="40444" Count="1" Chance="1" /><!--黑色米索莉原石-->
 		<Item ItemId="40489" Count="2" Chance="1" /><!--黃金原石-->
-		<Item ItemId="40441" Count="1" Chance="1" /><!--白金原石-->
+		<Item ItemId="40441" Count="1" Chance="1.3" /><!--白金原石-->
 		<Item ItemId="40307" Count="1" Chance="1.5" /><!--沙哈之石-->
-		<Item ItemId="40394" Count="1" Chance="0.5" /><!--風龍鱗-->
+		<Item ItemId="40394" Count="1" Chance="0.2" /><!--風龍鱗-->
 	</TreasureBox>
 	<!--ドルーガ家1世の家宝-->
 	<TreasureBox Type="RANDOM" ItemId="40623">
@@ -997,5 +997,17 @@
 		<Item ItemId="40021" Count="1" Chance="60" /><!-- 濃縮終極體力恢復劑 -->
 		<Item ItemId="40044" Count="1" Chance="39" /><!-- 鑽石 -->
 		<Item ItemId="40052" Count="1" Chance="1" /><!-- 高品質 鑽石 -->
+	</TreasureBox>
+		<!-- 驚喜箱 缺 魔法捲軸 (祝福魔法武器) 魔法捲軸 (神聖疾走) 魔法捲軸 (體力回覆術) 魔法捲軸 (全部治癒術) 魔法捲軸 (強力加速術) -->
+	<TreasureBox Type="RANDOM" ItemId="41416">
+		<Item ItemId="40068" Count="10" Chance="3" /><!-- 精靈餅乾 -->
+		<Item ItemId="40031" Count="10" Chance="3" /><!-- 惡魔之血 -->
+		<Item ItemId="41254" Count="1" Chance="1" /><!-- 勝利的徽章 -->
+		<Item ItemId="40890" Count="10" Chance="13" /><!-- 魔法捲軸 (冥想術) -->
+		<Item ItemId="40866" Count="10" Chance="10" /><!-- 魔法捲軸 (神聖武器) -->
+		<Item ItemId="40884" Count="10" Chance="30" /><!-- 魔法捲軸 (通暢氣脈術) -->
+		<Item ItemId="40867" Count="10" Chance="20" /><!-- 魔法捲軸 (解毒術) -->
+		<Item ItemId="40861" Count="10" Chance="10" /><!-- 魔法捲軸 (保護罩) -->
+		<Item ItemId="40014" Count="10" Chance="10" /><!-- 勇敢藥水 -->
 	</TreasureBox>
 </TreasureBoxList>
