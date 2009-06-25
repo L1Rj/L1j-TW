@@ -204,6 +204,7 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.resetBaseMr();
 		pc.setElfAttr(0);
 		pc.set_PKcount(0);
+		pc.set_PKEcount(0);//waja add 妖精殺死同族 PK值另外計算
 		pc.setExpRes(0);
 		pc.setPartnerId(0);
 		pc.setOnlineStatus(0);

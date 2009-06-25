@@ -59,9 +59,9 @@ public class L1GuardianInstance extends L1NpcInstance {
 			.getName());
 
 	//private Random _random = new Random();
-//waja add 妖森守護神道具控制
-	private int _configtime = Config.GDROPITEM_TIME;
-//add end
+
+	private int _configtime = Config.GDROPITEM_TIME;//妖森守護神道具控制
+
 	private L1GuardianInstance _npc = this;
 
 	/**
@@ -69,11 +69,10 @@ public class L1GuardianInstance extends L1NpcInstance {
 	 */
 	public L1GuardianInstance(L1Npc template) {
 		super(template);
-//waja add 妖森守護神道具控制
-		if (!isDropitems()) {
+
+		if (!isDropitems()) {//妖森守護神道具控制
 			doGDropItem(0);
 			}
-//add end
 	}
 
 	@Override
@@ -92,6 +91,13 @@ public class L1GuardianInstance extends L1NpcInstance {
 					wideBroadcastPacket(new S_NpcChatPacket(this, "$804", (byte) 2)); // エルフ以外の者よ、命が惜しければ早くここから去れ。ここは神聖な場所だ。
 					break;
 				}
+//waja add 妖精殺死同族
+                else if (pc.isElf() && pc.isEwanted()) { // PK ELF
+                    wideBroadcastPacket(new S_NpcChatPacket(this, "$815", 1));
+					targetPlayer = pc;
+					break;
+				}
+//add end
 			}
 		}
 		if (targetPlayer != null) {
