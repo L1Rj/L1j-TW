@@ -1960,7 +1960,3 @@ Update etcitem Set name_id = '底比斯沙漠 $230' Where item_id = '42088';
 Update etcitem Set name_id = '底比斯金字塔內部 $230' Where item_id = '42089';
 Update etcitem Set name_id = '底比斯歐西里斯祭壇 $230' Where item_id = '42090';
 Update etcitem Set name_id = '暴風疾走(道具欄)' Where item_id = '42501';
-Update etcitem Set name_id = '$5725' Where item_id = '41429';/* 修正昨天寫錯的nameid 明日移除 */
-Update etcitem Set name_id = '$5726' Where item_id = '41430';
-Update etcitem Set name_id = '$5727' Where item_id = '41431';
-Update etcitem Set name_id = '$5728' Where item_id = '41432';
