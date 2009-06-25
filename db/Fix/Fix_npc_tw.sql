@@ -124,3 +124,6 @@ Update npc set str = '76', con = '30',dex = '32',wis = '30',intel = '32' where n
 
 /* 20090622 修改吉爾塔斯素質 */
 Update npc set str = '88', con = '30',dex = '32',wis = '32',intel = '34' where npcid = '81163';
+
+/* 20090625 修正古代巨人為非主動 */
+Update npc Set agro = '0' Where npcid = '45610';
