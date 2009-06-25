@@ -1,5 +1,42 @@
 以下為目前仍有的錯誤訊息紀錄
 
+090609
+l1j.server.server.model.skill.L1SkillUse runSkill
+嚴重的: Task already scheduled or cancelled
+java.lang.IllegalStateException: Task already scheduled or cancelled
+        at java.util.Timer.sched(Timer.java:358)
+        at java.util.Timer.scheduleAtFixedRate(Timer.java:296)
+        at l1j.server.server.model.Instance.L1NpcInstance.startHpRegeneration(Unknown Source)
+        at l1j.server.server.model.Instance.L1PetInstance.setCurrentHp(Unknown Source)
+        at l1j.server.server.model.Instance.L1PetInstance.receiveDamage(Unknown Source)
+        at l1j.server.server.model.L1Magic.commitNpc(Unknown Source)
+        at l1j.server.server.model.L1Magic.commit(Unknown Source)
+        at l1j.server.server.model.skill.L1SkillUse.runSkill(Unknown Source)
+        at l1j.server.server.model.skill.L1SkillUse.handleCommands(Unknown Source)
+        at l1j.server.server.model.L1MobSkillUse.magicAttack(Unknown Source)
+        at l1j.server.server.model.L1MobSkillUse.useSkill(Unknown Source)
+        at l1j.server.server.model.L1MobSkillUse.skillUse(Unknown Source)
+        at l1j.server.server.model.Instance.L1NpcInstance.onTarget(Unknown Source)
+        at l1j.server.server.model.Instance.L1NpcInstance.AIProcess(Unknown Source)
+        at l1j.server.server.model.Instance.L1NpcInstance.access$400(Unknown Source)
+        at l1j.server.server.model.Instance.L1NpcInstance$NpcAIThreadImpl.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+        at java.lang.Thread.run(Thread.java:619)
+
+090608
+l1j.server.server.model.L1PetMatch$L1PetMatchTimer run
+警告: null
+java.lang.NullPointerException
+        at java.util.concurrent.ConcurrentHashMap.containsValue(ConcurrentHashMap.java:799)
+        at java.util.concurrent.ConcurrentHashMap.contains(ConcurrentHashMap.java:863)
+        at l1j.server.server.model.L1World.getPlayer(Unknown Source)
+        at l1j.server.server.model.L1PetMatch.endPetMatch(Unknown Source)
+        at l1j.server.server.model.L1PetMatch$L1PetMatchTimer.run(Unknown Source)
+        at java.util.TimerThread.mainLoop(Timer.java:512)
+        at java.util.TimerThread.run(Timer.java:462)
+
+090607
 l1j.server.server.model.Instance.L1NpcInstance$NpcAIThreadImpl run
 警告: NpcAI發生例外的錯誤。
 java.lang.NullPointerException
@@ -15,7 +52,7 @@ java.lang.NullPointerException
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-
+090606
 l1j.server.server.ClientThread run
 嚴重的: null
 java.lang.NullPointerException
@@ -25,6 +62,7 @@ java.lang.NullPointerException
         at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 
+090605
 l1j.server.server.model.skill.L1SkillUse runSkill
 嚴重的: Task already scheduled or cancelled
 java.lang.IllegalStateException: Task already scheduled or cancelled
@@ -48,7 +86,7 @@ java.lang.IllegalStateException: Task already scheduled or cancelled
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-
+090604
 l1j.server.server.model.Instance.L1NpcInstance$NpcAIThreadImpl run
 警告: NpcAI發生例外的錯誤。
 java.lang.NullPointerException
@@ -64,7 +102,7 @@ java.lang.NullPointerException
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-
+090603
 l1j.server.server.clientpackets.ClientBasePacket readS
 嚴重的: OpCode=78
 java.lang.StringIndexOutOfBoundsException: String index out of range: -1
@@ -77,7 +115,7 @@ java.lang.StringIndexOutOfBoundsException: String index out of range: -1
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-
+090602
 l1j.server.server.ClientThread run
 嚴重的: null
 java.lang.NullPointerException
@@ -88,7 +126,7 @@ java.lang.NullPointerException
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-
+090601
 l1j.server.server.clientpackets.ClientBasePacket readS
 嚴重的: OpCode=92
 java.lang.StringIndexOutOfBoundsException: String index out of range: -1
