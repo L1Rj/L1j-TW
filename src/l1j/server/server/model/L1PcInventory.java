@@ -657,9 +657,9 @@ public class L1PcInventory extends L1Inventory {
 	private void takeoffArmor(int polyid) {
 		L1ItemInstance armor = null;
 
-		// ヘルムからイヤリングまでチェックする
-		for (int type = 0; type <= 12; type++) {
-			// 裝備していて、裝備不可の場合は外す
+		// ヘルムからガーダーまでチェックする
+		for (int type = 0; type <= 13; type++) {
+			// 装備していて、装備不可の場合は外す
 			if (getTypeEquipped(2, type) != 0
 					&& !L1PolyMorph.isEquipableArmor(polyid, type)) {
 				if (type == 9) { // リングの場合は、兩手分外す

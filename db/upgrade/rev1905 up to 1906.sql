@@ -1,4 +1,4 @@
-/* 20090625 weapon 新增武器距離*/
+/* 20090626 weapon 新增武器距離*/
 
 alter table weapon add `range` int(10) NOT NULL default '0' after `dmg_large` ;
 

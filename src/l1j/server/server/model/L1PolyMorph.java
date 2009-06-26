@@ -62,6 +62,7 @@ public class L1PolyMorph {
 	private static final int KIRINGKU_EQUIP = 128;// waja change 原值為 512
 
 	private static final int CHAINSWORD_EQUIP = 16;// waja change 原值為 1024
+
 	// armor equip bit
 	private static final int HELM_EQUIP = 1;
 
@@ -84,6 +85,8 @@ public class L1PolyMorph {
 	private static final int RING_EQUIP = 512;
 
 	private static final int BOOTS_EQUIP = 1024;
+	
+	private static final int GUARDER_EQUIP = 2048;
 
 	// 變身の原因を示すbit
 	public static final int MORPH_BY_ITEMMAGIC = 1;
@@ -130,6 +133,7 @@ public class L1PolyMorph {
 		armorFlgMap.put(9, RING_EQUIP);
 		armorFlgMap.put(10, BELT_EQUIP);
 		armorFlgMap.put(12, EARRING_EQUIP);
+		armorFlgMap.put(13, GUARDER_EQUIP);
 	}
 
 	private int _id;
@@ -203,7 +207,7 @@ public class L1PolyMorph {
 				if (pc.getTempCharGfx() == 6034
 						|| pc.getTempCharGfx() == 6035) {
 					pc.sendPackets(new S_ServerMessage(181));
-					// \f1そのようなモンスターには變身できません。					
+					// \f1そのようなモンスターには変身できません。				
 				} else {
 				doPoly(pc, poly.getPolyId(), 7200, MORPH_BY_ITEMMAGIC);
 				pc.sendPackets(new S_CloseList(pc.getId()));
