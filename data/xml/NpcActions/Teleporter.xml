@@ -1523,4 +1523,8 @@
 	<Action Name="teleport guide4_7" NpcId="50020,50024,50036,50039,50044,50046,50051,50054,50056,50066,50068,50072,50073,50079">
 		<Teleport X="32745" Y="32857" Map="60" Heading="5" Price="936"/>
 	</Action>
+	<!-- 退休的侍從長－曼孟 傳送奇岩隱藏宮殿 -->
+	<Action Name="teleport grtel" NpcId="91003">
+		<Teleport X="32805" Y="32793" Map="248" Heading="5" Price="1950"/>
+	</Action>
 </NpcActionList>
