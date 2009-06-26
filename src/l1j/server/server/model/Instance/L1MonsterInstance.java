@@ -138,6 +138,14 @@ public class L1MonsterInstance extends L1NpcInstance {
 				}
 			}
 
+			if (getNpcId() == 45600){ // カーツ
+				if (pc.isCrown() || pc.isDarkelf()
+						|| pc.getTempCharGfx() != pc.getClassId()) { // 未変身の君主、DEにはアクティブ
+					targetPlayer = pc;
+					break;
+				}
+			}
+
 			// どちらかの條件を滿たす場合、友好と見なされ先制攻擊されない。
 			// ‧モンスターのカルマがマイナス值（バルログ側モンスター）でPCのカルマレベルが1以上（バルログ友好）
 			// ‧モンスターのカルマがプラス值（ヤヒ側モンスター）でPCのカルマレベルが-1以下（ヤヒ友好）
