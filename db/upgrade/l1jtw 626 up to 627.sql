@@ -7,4 +7,6 @@ alter table characters add LastPke datetime default NULL after LastPk ;
 alter table characters add LastCw datetime default NULL after LastPke ;
 
 /* 精靈公主 類型改變 */
+/* 移除 造成妖精任務無法傳送
 Update npc Set impl  = 'L1Merchant' Where npcid  = '70853';
+*/
