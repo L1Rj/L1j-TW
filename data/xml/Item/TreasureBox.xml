@@ -1010,4 +1010,64 @@
 		<Item ItemId="40861" Count="10" Chance="10" /><!-- 魔法捲軸 (保護罩) -->
 		<Item ItemId="40014" Count="10" Chance="10" /><!-- 勇敢藥水 -->
 	</TreasureBox>
+		<!-- 愛的禮物盒 -->
+	<TreasureBox Type="RANDOM" ItemId="30101">
+		<Item ItemId="40014" Count="3000" Chance="1" /><!-- 勇敢藥水 -->
+		<Item ItemId="40014" Count="2000" Chance="2.5" /><!-- 勇敢藥水 -->
+		<Item ItemId="40014" Count="1000" Chance="3" /><!-- 勇敢藥水 -->
+		<Item ItemId="40087" Count="10" Chance="0.5" /> <!--對武器施法的卷軸-->
+		<Item ItemId="40087" Count="5" Chance="1" /> <!--對武器施法的卷軸-->
+		<Item ItemId="140087" Count="3" Chance="0.3" /> <!--受祝福的 對武器施法的卷軸-->
+		<Item ItemId="140087" Count="2" Chance="0.2" /> <!--受祝福的 對武器施法的卷軸-->
+		<Item ItemId="140087" Count="1" Chance="0.5" /> <!--受祝福的 對武器施法的卷軸-->
+		<Item ItemId="40074" Count="30" Chance="0.2" /> <!--對盔甲施法的卷軸-->
+		<Item ItemId="40074" Count="20" Chance="0.3" /> <!--對盔甲施法的卷軸-->
+		<Item ItemId="140074" Count="3" Chance="0.5" /> <!--受祝福的 對盔甲施法的卷軸-->
+		<Item ItemId="140074" Count="2" Chance="0.2" /> <!--受祝福的 對盔甲施法的卷軸-->
+		<Item ItemId="140074" Count="1" Chance="0.3" /> <!--受祝福的 對盔甲施法的卷軸-->
+		<Item ItemId="40043" Count="200" Chance="0.4" /><!-- 兔子的肝 -->
+		<Item ItemId="40043" Count="150" Chance="0.6" /><!-- 兔子的肝 -->
+		<Item ItemId="40043" Count="100" Chance="0.5" /><!-- 兔子的肝 -->
+		<Item ItemId="49138" Count="200" Chance="0.5" /><!-- 巧克力蛋糕 -->
+		<Item ItemId="49138" Count="100" Chance="1.5" /><!-- 巧克力蛋糕 -->
+		<Item ItemId="40021" Count="3000" Chance="0.3" /><!-- 濃縮終極體力恢復劑 -->
+		<Item ItemId="40021" Count="2000" Chance="0.5" /><!-- 濃縮終極體力恢復劑 -->
+		<Item ItemId="40021" Count="1000" Chance="0.7" /><!-- 濃縮終極體力恢復劑 -->
+		<Item ItemId="40090" Count="500" Chance="19" /><!-- 空的魔法捲軸(等級1) -->
+		<Item ItemId="40091" Count="500" Chance="12" /><!-- 空的魔法捲軸(等級2) -->
+		<Item ItemId="40093" Count="500" Chance="8" /><!-- 空的魔法捲軸(等級4) -->
+		<Item ItemId="40094" Count="400" Chance="7" /><!-- 空的魔法捲軸(等級5) -->
+		<Item ItemId="40466" Count="1" Chance="1" /><!-- 龍之心 -->
+		<Item ItemId="41249" Count="1" Chance="1" /><!-- 魔法娃娃：小思克巴 -->
+		<Item ItemId="20280" Count="1" Chance="2" /><!-- 滅魔戒指 -->
+		<Item ItemId="20264" Count="1" Chance="1" /><!-- 力量項鍊 -->
+		<Item ItemId="20256" Count="1" Chance="2" /><!-- 敏捷項鍊 -->
+		<Item ItemId="20266" Count="1" Chance="1" /><!-- 智力項鍊 -->
+		<Item ItemId="20268" Count="1" Chance="1" /><!-- 體質項鍊 -->
+		<Item ItemId="20309" Count="1" Chance="1" /><!-- 光明身體腰帶 -->
+		<Item ItemId="20310" Count="1" Chance="2" /><!-- 光明靈魂腰帶 -->
+		<Item ItemId="20311" Count="1" Chance="2" /><!-- 光明精神腰帶 -->
+		<Item ItemId="20298" Count="1" Chance="1" /><!-- 潔尼斯戒指 -->
+		<Item ItemId="20067" Count="1" Chance="3" /><!-- 神官斗篷 -->
+		<Item ItemId="20113" Count="1" Chance="1" /><!-- 武官護鎧 -->
+		<Item ItemId="20058" Count="1" Chance="1" /><!-- 武官斗篷 -->
+		<Item ItemId="20201" Count="1" Chance="1.5" /><!-- 武官長靴 -->
+		<Item ItemId="20228" Count="1" Chance="1" /><!-- 武官之盾 -->
+		<Item ItemId="20196" Count="1" Chance="2" /><!-- 黑暗棲林者長靴 -->
+		<Item ItemId="20233" Count="1" Chance="1.5" /><!-- 神官魔法書 -->
+		<Item ItemId="20016" Count="1" Chance="1" /><!-- 曼波帽子 -->
+		<Item ItemId="20317" Count="1" Chance="1" /><!-- 歐吉皮帶 -->
+		<Item ItemId="177" Count="1" Chance="0.3" /><!-- 幽暗十字弓 -->
+		<Item ItemId="162" Count="1" Chance="0.5" /><!-- 幽暗 鋼爪 -->
+		<Item ItemId="81" Count="1" Chance="0.3" /><!-- 幽暗 雙刀 -->
+		<Item ItemId="57" Count="1" Chance="0.9" /><!-- 瑟魯基之劍 -->
+		<Item ItemId="131" Count="1" Chance="2" /><!-- 力量魔法杖 -->
+		<Item ItemId="40210" Count="1" Chance="1" /><!-- 魔法書 (雷霆風暴) -->
+		<Item ItemId="40203" Count="1" Chance="1" /><!-- 魔法書 (火牢) -->
+		<Item ItemId="40202" Count="1" Chance="2" /><!-- 魔法書 (全部治癒術) -->
+		<Item ItemId="40205" Count="1" Chance="0.7" /><!-- 魔法書 (隱身術) -->
+		<Item ItemId="40225" Count="1" Chance="0.5" /><!-- 魔法書 (冰雪颶風) -->
+		<Item ItemId="40224" Count="1" Chance="0.3" /><!-- 魔法書 (靈魂昇華) -->
+		<Item ItemId="40244" Count="1" Chance="1" /><!-- 精靈水晶(封印禁地) -->
+	</TreasureBox>
 </TreasureBoxList>
