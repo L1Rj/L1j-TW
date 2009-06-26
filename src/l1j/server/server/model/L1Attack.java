@@ -111,6 +111,8 @@ public class L1Attack {
 	private int _weaponSmall = 0;
 
 	private int _weaponLarge = 0;
+	
+	private int _weaponRange = 1;
 
 	private int _weaponBless = 1;
 
@@ -294,6 +296,7 @@ public class L1Attack {
 						+ weapon.getDmgByMagic();
 				_weaponSmall = weapon.getItem().getDmgSmall();
 				_weaponLarge = weapon.getItem().getDmgLarge();
+				_weaponRange = weapon.getItem().getRange();
 				_weaponBless = weapon.getItem().getBless();
 				if (_weaponType != 20 && _weaponType != 62) {
 					_weaponEnchant = weapon.getEnchantLevel()
@@ -346,6 +349,18 @@ public class L1Attack {
 
 	public boolean calcHit() {
 		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			if (_weaponRange != -1) {
+				if (_pc.getLocation().getTileLineDistance(
+						_target.getLocation()) > _weaponRange) {
+					_isHit = false; // 射程範囲外
+					return _isHit;
+				}
+			} else {
+				if (!_pc.getLocation().isInScreen(_target.getLocation())) {
+					_isHit = false; // 射程範囲外
+					return _isHit;
+				}
+			}
 			if (_weaponType == 20 && _weaponId != 190 && _arrow == null) {
 				_isHit = false; // 矢がない場合はミス
 			} else if (_weaponType == 62 && _sting == null) {

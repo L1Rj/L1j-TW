@@ -27,6 +27,17 @@ public class L1Weapon extends L1Item {
 	public L1Weapon() {
 	}
 
+	private int _range = 0; // ● 射程範囲
+
+	@Override
+	public int getRange() {
+		return _range;
+	}
+
+	public void setRange(int i) {
+		_range = i;
+	}
+
 	private int _hitModifier = 0; // ● 命中率補正
 
 	@Override
@@ -38,7 +49,7 @@ public class L1Weapon extends L1Item {
 		_hitModifier = i;
 	}
 
-	private int _dmgModifier = 0; // ● ダメージ補正
+	private int _dmgModifier = 0;  // ● ダメージ補正
 
 	@Override
 	public int getDmgModifier() {

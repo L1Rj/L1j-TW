@@ -132,6 +132,12 @@ Update droplist Set chance = '5000' Where mobId = '45516' And itemId = '40244';
 Update droplist Set chance = '5000' Where mobId = '45529' And itemId = '40244';
 Update droplist Set chance = '150000' Where mobId = '81163' And itemId = '40244';/* 吉爾塔斯 */
 
+/* 20090626 降低 精靈水晶(魂體轉換) 掉落機率 */
+Update droplist Set chance = '80' Where chance = '500' And itemId = '40238';
+Update droplist Set chance = '300' Where chance = '1000' And itemId = '40238';
+Update droplist Set chance = '1500' Where chance = '5000' And itemId = '40238';
+Update droplist Set chance = '150000'  Where mobId = '81163' And itemId = '40238';
+
 /* ---------- 黑暗精靈水晶 ---------- */
 
 /* 20090607 降低 黑暗精靈水晶(會心一擊) 機率 */

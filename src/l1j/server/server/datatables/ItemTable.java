@@ -320,6 +320,7 @@ public class ItemTable {
 				weapon.setItemDescId(rs.getInt("itemdesc_id"));
 				weapon.setDmgSmall(rs.getInt("dmg_small"));
 				weapon.setDmgLarge(rs.getInt("dmg_large"));
+				weapon.setRange(rs.getInt("range"));
 				weapon.set_safeenchant(rs.getInt("safenchant"));
 				weapon.setUseRoyal(rs.getInt("use_royal") == 0 ? false : true);
 				weapon.setUseKnight(rs.getInt("use_knight") == 0

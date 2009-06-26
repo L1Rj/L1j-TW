@@ -586,6 +586,10 @@ public abstract class L1Item implements Serializable {
 	}
 
 	// ■■■■■■ L1Weapon でオーバーライドする項目 ■■■■■■
+	public int getRange() {
+		return 0;
+	}
+
 	public int getHitModifier() {
 		return 0;
 	}
