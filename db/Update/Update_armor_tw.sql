@@ -140,7 +140,7 @@ Update armor Set name = '歐西斯鏈甲' Where item_id = '20136';
 Update armor Set name = '精靈鏈甲' Where item_id = '20137';
 Update armor Set name = '精靈金屬盔甲' Where item_id = '20138';
 Update armor Set name = '精靈護胸金屬板' Where item_id = '20139';
-Update armor Set name = '受封印 被遺忘的鱗甲  ' Where item_id = '20140';
+Update armor Set name = '受封印 被遺忘的皮盔甲' Where item_id = '20140';
 Update armor Set name = '受封印 被遺忘的長袍' Where item_id = '20141';
 Update armor Set name = '受封印 被遺忘的鱗甲' Where item_id = '20142';
 Update armor Set name = '受封印 被遺忘的金屬盔甲' Where item_id = '20143';
