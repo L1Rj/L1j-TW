@@ -2644,6 +2644,58 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== 13) {
 					htmlid = "oreno1";
 				}
+//哈濛任務
+			} else if (npcid == 80094) {
+                if (player.isIllusionist()) {
+                    htmlid = "altar1";
+                } else if (!player.isIllusionist()) {
+                    htmlid = "altar2";
+                }
+
+			} else if (npcid == 80099) {
+                if (player.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 1) {
+                    if (player.getInventory().checkItem(41325, 1)) {
+                        htmlid = "rarson8";
+                    } else { 
+                        htmlid = "rarson10";
+                    }
+                } else if (player.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 2) {
+                    if (player.getInventory().checkItem(41317, 1) && (player.getInventory().checkItem(41315, 1))) {
+                        htmlid = "rarson13";
+                    } else {
+                        htmlid = "rarson19";
+                    }
+                } else if (player.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 3) {
+                    htmlid = "rarson14";
+                } else if (player.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 4) {
+                    if (!(player.getInventory().checkItem(41326, 1))) {
+                        htmlid = "rarson18";
+                    } else if (player.getInventory().checkItem(41326, 1)){
+                        htmlid = "rarson11";
+                    } else {
+                        htmlid = "rarson17";
+                    }
+                } else if (player.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) >= 5 ) {
+                    htmlid = "rarson1";
+                }
+
+			} else if (npcid == 80101) {
+                if (player.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 4) {
+                    if ((player.getInventory().checkItem(41315, 1))
+                    && player.getInventory().checkItem(40494, 30)
+                    && player.getInventory().checkItem(41317, 1)) {
+                        htmlid = "kuen4";
+                    } else if (player.getInventory().checkItem(41316, 1)) {
+                        htmlid = "kuen1";
+                    } else if (!player.getInventory().checkItem(41316)) {
+                        player.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 1);
+                    }
+                } else if ((player.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 2) &&
+                        (player.getInventory().checkItem(41317, 1))) {
+                    htmlid = "kuen3";
+                } else {
+                    htmlid = "kuen1";
+                }
 //熾炎天使弓
 			} else if (npcid == 71256) { // ロビンフッド
 				if (!player.isElf()) {

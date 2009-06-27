@@ -94,6 +94,7 @@ public class L1NpcXmlParser {
 		_questIds.put("shadows", L1Quest.QUEST_SHADOWS);
 		_questIds.put("toscroll", L1Quest.QUEST_TOSCROLL);
 		_questIds.put("moonoflongbow", L1Quest.QUEST_MOONOFLONGBOW);
+		_questIds.put("Generalhamelofresentment", L1Quest.QUEST_GENERALHAMELOFRESENTMENT);//哈濛任務
 	}
 	public static int parseQuestId(String questId) {
 		if (questId.equals("")) {

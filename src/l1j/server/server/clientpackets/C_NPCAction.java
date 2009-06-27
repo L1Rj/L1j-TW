@@ -1013,6 +1013,86 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("teleportURL")) {
 				htmlid = "amisoo2";
 			}
+//哈濛任務
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80099) {
+            if (s.equalsIgnoreCase("A")) {
+                    if (pc.getInventory().checkItem(40308, 300)) {
+                        pc.getInventory().consumeItem(40308,300);
+                        pc.getInventory().storeItem(41315, 1);
+                        pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 1);
+                        htmlid = "rarson16";
+                    } else if (!pc.getInventory().checkItem(40308, 300)) {
+                        htmlid = "rarson7";
+                    }
+            } else if (s.equalsIgnoreCase("B")) {
+                    if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) ==1)
+                            && (pc.getInventory().checkItem(41325, 1))) {
+                        pc.getInventory().consumeItem(41325, 1);
+                        pc.getInventory().storeItem(40308, 2000);
+                        pc.getInventory().storeItem(41317, 1);
+                        pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 2);
+                        htmlid = "rarson9";
+                    } else {
+                        htmlid = "rarson10";
+                    }
+            } else if (s.equalsIgnoreCase("C")) {
+                    if((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) ==4)
+                            && (pc.getInventory().checkItem(41326, 1))) {
+                        pc.getInventory().storeItem(40308, 30000);
+                        pc.getInventory().consumeItem(41326, 1);
+                        htmlid = "rarson12";
+                        pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 5);
+                    } else {
+                        htmlid = "rarson17";
+                    }
+            } else if (s.equalsIgnoreCase("D")) {
+                    if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) <=1)
+                            || (pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) ==5)) {
+                        if (pc.getInventory().checkItem(40308, 300)) {
+                            pc.getInventory().consumeItem(40308,300);
+                            pc.getInventory().storeItem(41315, 1);
+                            pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 1);
+                            htmlid = "rarson16";
+                        } else if (!pc.getInventory().checkItem(40308, 300)) {
+                            htmlid = "rarson7";
+                        }
+                    } else if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) >= 2)
+                            && (pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) <= 4)) {
+                        if (pc.getInventory().checkItem(40308, 300)) {
+                            pc.getInventory().consumeItem(40308,300);
+                            pc.getInventory().storeItem(41315, 1);
+                            htmlid = "rarson16";
+                        } else if (!pc.getInventory().checkItem(40308, 300)) {
+                            htmlid = "rarson7";
+                        }
+                    }
+                }
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80101) {
+            if (s.equalsIgnoreCase("request letter of kuen")) {
+                if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 2)
+                        && (pc.getInventory().checkItem(41317, 1))) {
+                    pc.getInventory().consumeItem(41317, 1);
+                    pc.getInventory().storeItem(41318, 1);
+                    pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 3);
+                    htmlid = "";
+                } else {
+                    htmlid = "";
+                }
+            } else if(s.equalsIgnoreCase("request holy mithril dust")) {
+                if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 3)
+                        && (pc.getInventory().checkItem(41315, 1))
+                        && pc.getInventory().checkItem(40494, 30)
+                        && pc.getInventory().checkItem(41318, 1)) {
+                    pc.getInventory().consumeItem(41315, 1);
+                    pc.getInventory().consumeItem(41318, 1);
+                    pc.getInventory().consumeItem(40494, 30);
+                    pc.getInventory().storeItem(41316, 1);
+                    pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 4);
+                    htmlid = "";
+                } else {
+                    htmlid = "";
+                }
+            }
 //羅賓孫 熾炎天使弓
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71256) {
             if (s.equalsIgnoreCase("E")) {
