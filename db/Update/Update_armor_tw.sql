@@ -140,10 +140,10 @@ Update armor Set name = '歐西斯鏈甲' Where item_id = '20136';
 Update armor Set name = '精靈鏈甲' Where item_id = '20137';
 Update armor Set name = '精靈金屬盔甲' Where item_id = '20138';
 Update armor Set name = '精靈護胸金屬板' Where item_id = '20139';
-Update armor Set name = '被遺忘的皮盔甲' Where item_id = '20140';
-Update armor Set name = '被遺忘的長袍' Where item_id = '20141';
-Update armor Set name = '被遺忘的鱗甲' Where item_id = '20142';
-Update armor Set name = '被遺忘的金屬盔甲' Where item_id = '20143';
+Update armor Set name = '受封印 被遺忘的鱗甲  ' Where item_id = '20140';
+Update armor Set name = '受封印 被遺忘的長袍' Where item_id = '20141';
+Update armor Set name = '受封印 被遺忘的鱗甲' Where item_id = '20142';
+Update armor Set name = '受封印 被遺忘的金屬盔甲' Where item_id = '20143';
 Update armor Set name = '死亡盔甲' Where item_id = '20144';
 Update armor Set name = '硬皮背心' Where item_id = '20145';
 Update armor Set name = '地龍鱗盔甲' Where item_id = '20146';
@@ -662,3 +662,9 @@ Update armor Set name_id = '男性泳裝：泳褲' Where item_id = '21063';
 Update armor Set name_id = '男性泳裝：沙灘褲' Where item_id = '21064';
 Update armor Set name_id = '女性泳裝：連身泳裝' Where item_id = '21065';
 Update armor Set name_id = '女性泳裝：比基尼' Where item_id = '21066';
+
+/* 20090627 name_id名稱修正 */
+Update armor Set name_id = '$1958 $1934' Where item_id = '20140';
+Update armor Set name_id = '$1958 $1935' Where item_id = '20141';
+Update armor Set name_id = '$1958 $1936' Where item_id = '20142';
+Update armor Set name_id = '$1958 $1933' Where item_id = '20143';
