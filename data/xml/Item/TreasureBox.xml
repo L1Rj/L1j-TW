@@ -1070,4 +1070,9 @@
 		<Item ItemId="40224" Count="1" Chance="0.3" /><!-- 魔法書 (靈魂昇華) -->
 		<Item ItemId="40244" Count="1" Chance="1" /><!-- 精靈水晶(封印禁地) -->
 	</TreasureBox>
+	<!-- シルレインの袋 -->
+	<TreasureBox Type="SPECIFIC" ItemId="49179">
+		<Item ItemId="49183" Count="1" />
+		<Item ItemId="49186" Count="1" />
+	</TreasureBox>
 </TreasureBoxList>
