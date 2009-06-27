@@ -3123,5 +3123,189 @@
 				<ShowHtml HtmlId="aras5"/>
 			</Fail>
 		</MakeItem>
-	</Action> 
+	</Action>
+	<!-- 祭壇 -->
+    <Action Name="A" NpcId="80094" AmountInputable="false">
+        <MakeItem>
+            <Item Amount="1" ItemId="41325"/>
+            <Material Amount="20" ItemId="41327"/>
+            <Material Amount="1" ItemId="41319"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="B" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="41325"/>
+            <Material Amount="20" ItemId="41327"/>
+            <Material Amount="1" ItemId="41320"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="C" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="41325"/>
+            <Material Amount="20" ItemId="41327"/>
+            <Material Amount="1" ItemId="41321"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="D" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="41325"/>
+            <Material Amount="20" ItemId="41327"/>
+            <Material Amount="1" ItemId="41322"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="E" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="41325"/>
+            <Material Amount="20" ItemId="41327"/>
+            <Material Amount="1" ItemId="41323"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="F" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="41325"/>
+            <Material Amount="20" ItemId="41327"/>
+            <Material Amount="1" ItemId="41324"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="G" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="41326"/>
+            <Material Amount="1" ItemId="41328"/>
+            <Material Amount="1" ItemId="41319"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action><Action Name="H" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="41326"/>
+            <Material Amount="1" ItemId="41328"/>
+            <Material Amount="1" ItemId="41320"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="I" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="41326"/>
+            <Material Amount="1" ItemId="41328"/>
+            <Material Amount="1" ItemId="41321"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="J" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="41326"/>
+            <Material Amount="1" ItemId="41328"/>
+            <Material Amount="1" ItemId="41322"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="K" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="41326"/>
+            <Material Amount="1" ItemId="41328"/>
+            <Material Amount="1" ItemId="41323"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="L" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="41326"/>
+            <Material Amount="1" ItemId="41328"/>
+            <Material Amount="1" ItemId="41324"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="M" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="274"/>
+            <Item Amount="1" ItemId="49188"/>
+            <Material Amount="1" ItemId="49187"/>
+            <Material Amount="1" ItemId="41319"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar3"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="N" NpcId="80094">
+        <MakeItem>
+            <Item Amount="1" ItemId="49191"/>
+            <Material Amount="1" ItemId="274"/>
+            <Material Amount="1" ItemId="49190"/>
+            <Material Amount="1" ItemId="41322"/>
+            <Succeed>
+                <ShowHtml HtmlId="altar10"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
 </NpcActionList>
