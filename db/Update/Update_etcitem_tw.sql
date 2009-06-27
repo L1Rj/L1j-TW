@@ -1960,3 +1960,21 @@ Update etcitem Set name_id = '底比斯沙漠 $230' Where item_id = '42088';
 Update etcitem Set name_id = '底比斯金字塔內部 $230' Where item_id = '42089';
 Update etcitem Set name_id = '底比斯歐西里斯祭壇 $230' Where item_id = '42090';
 Update etcitem Set name_id = '暴風疾走(道具欄)' Where item_id = '42501';
+
+/*20090627中文化修正*/
+Update etcitem Set name = '指定傳送(不死魔族拋棄之地)' Where item_id = '42098';
+Update etcitem Set name_id = '指定傳送(不死魔族拋棄之地)' Where item_id = '42098';
+Update etcitem Set name = '指定傳送(原生魔族拋棄之地-水底)' Where item_id = '42097';
+Update etcitem Set name_id = '指定傳送(原生魔族拋棄之地-水底)' Where item_id = '42097';
+Update etcitem Set name = '指定傳送(原生魔族拋棄之地)' Where item_id = '42096';
+Update etcitem Set name_id = '指定傳送(原生魔族拋棄之地)' Where item_id = '42096';
+Update etcitem Set name = '指定傳送(黑暗妖精聖地)' Where item_id = '42095';
+Update etcitem Set name_id = '指定傳送(黑暗妖精聖地)' Where item_id = '42095';
+Update etcitem Set name = '指定傳送(炎魔的房間)' Where item_id = '42094';
+Update etcitem Set name_id = '指定傳送(炎魔的房間)' Where item_id = '42094';
+Update etcitem Set name = '指定傳送(慾望洞穴入口)' Where item_id = '42093';
+Update etcitem Set name_id = '指定傳送(慾望洞穴入口)' Where item_id = '42093';
+Update etcitem Set name = '貝希摩斯指定傳送卷軸' Where item_id = '42091';
+Update etcitem Set name_id = '貝希摩斯指定傳送卷軸' Where item_id = '42091';
+Update etcitem Set name = '希培利亞指定傳送卷軸' Where item_id = '42092';
+Update etcitem Set name_id = '希培利亞指定傳送卷軸' Where item_id = '42092';
