@@ -1013,7 +1013,7 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("teleportURL")) {
 				htmlid = "amisoo2";
 			}
-//哈濛任務
+//哈蒙任務
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80099) {
             if (s.equalsIgnoreCase("A")) {
                     if (pc.getInventory().checkItem(40308, 300)) {

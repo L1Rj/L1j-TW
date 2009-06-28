@@ -2644,7 +2644,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== 13) {
 					htmlid = "oreno1";
 				}
-//哈濛任務
+//哈蒙任務
 			} else if (npcid == 80094) {
                 if (player.isIllusionist()) {
                     htmlid = "altar1";
