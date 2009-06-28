@@ -597,27 +597,17 @@ public class L1PcInstance extends L1Character {
 	public void set_PKcount(int i) {
 		_PKcount = i;
 	}
-//waja add 妖精殺死同族 PK值另外計算
-	private int _PKEcount;
+//妖精殺死同族 PK值另外計算
+	private int _PkCountForElf; // ● PKカウント(エルフ用)
 
-	public int get_PKEcount() {
-		return _PKEcount;
+	public int getPkCountForElf() {
+		return _PkCountForElf;
 	}
 
-	public void set_PKEcount(int i) {
-		_PKEcount = i;
+	public void setPkCountForElf(int i) {
+		_PkCountForElf = i;
 	}
 
-    	private int _CWstatus;
-    
-    	public int get_CWstatus() {
-        	return _CWstatus;
-    	}
-
-    	public void set_CWstatus(int i) {
-        	_CWstatus = i;
-    	}
-//add end
 	private int _clanid; // ● クランＩＤ
 
 	public int getClanid() {
@@ -1368,12 +1358,12 @@ public class L1PcInstance extends L1Character {
 				}
 				setLastPk(null);
 			}
-//waja add 妖精殺死同族PK值另外計算
-    		if (lastAttacker instanceof L1GuardianInstance) {
-				if (get_PKEcount() > 0) {
-					set_PKEcount(get_PKEcount() - 1);
+//妖精殺死同族PK值另外計算
+			if (lastAttacker instanceof L1GuardianInstance) {
+				if (getPkCountForElf() > 0) {
+					setPkCountForElf(getPkCountForElf() - 1);
 				}
-				setLastPke(null);
+				setLastPkForElf(null);
 			}
 //add end
 			// 一定の確率でアイテムをDROP
@@ -1415,22 +1405,24 @@ public class L1PcInstance extends L1Character {
 			if (player != null) {
 				if (getLawful() >= 0 && isPinkName() == false) {
 					boolean isChangePkCount = false;
-//waja add 妖精殺死同族 PK值另外計算
-					boolean isChangePkeCount = false;
-//add end
+//妖精殺死同族 PK值另外計算
+					boolean isChangePkCountForElf = false;
+
 					// アライメントが30000未滿の場合はPKカウント增加
 					if (player.getLawful() < 30000) {
 						player.set_PKcount(player.get_PKcount() + 1);
 						isChangePkCount = true;
-//waja add 妖精殺死同族 PK值另外計算
-						if (player.isElf() && isElf()) {//PK ELF
-							player.set_PKEcount(player.get_PKEcount() +1);
-							isChangePkeCount = true;
-							}
-						player.setLastPke();
-//add end
+//妖精殺死同族 PK值另外計算
+						if (player.isElf() && isElf()) {
+							player.setPkCountForElf(player
+									.getPkCountForElf() +1);
+							isChangePkCountForElf = true;
+						}
 					}
 					player.setLastPk();
+					if (player.isElf() && isElf()) {
+						player.setLastPkForElf();
+					}
 
 					// アライメント處理
 					// 公式の發表および各LVでのPKからつじつまの合うように變更
@@ -2703,61 +2695,39 @@ public class L1PcInstance extends L1Character {
 	public boolean isWanted() {
 		if (_lastPk == null) {
 			return false;
-		} else if (System.currentTimeMillis() - _lastPk.getTime() > 24 * 3600 * 1000) {
+		} else if (System.currentTimeMillis() - _lastPk.getTime()
+				> 24 * 3600 * 1000) {
 			setLastPk(null);
 			return false;
 		}
 		return true;
 	}
-//waja add 妖精殺死同族 PK值另外計算
-	private Timestamp _lastPke;
-    
-	public Timestamp getLastPke() {
-		return _lastPke;
+//妖精殺死同族 PK值另外計算
+	private Timestamp _lastPkForElf;
+
+	public Timestamp getLastPkForElf() {
+		return _lastPkForElf;
 	}
 
-	public void setLastPke(Timestamp time) {
-		_lastPke = time;
+	public void setLastPkForElf(Timestamp time) {
+		_lastPkForElf = time;
 	}
 
-	public void setLastPke() {
-		_lastPke = new Timestamp(System.currentTimeMillis());
+	public void setLastPkForElf() {
+		_lastPkForElf = new Timestamp(System.currentTimeMillis());
 	}
 
-	public boolean isEwanted() {
-		if (_lastPke == null) {
+	public boolean isWantedForElf() {
+		if (_lastPkForElf == null) {
 			return false;
-		} else if (System.currentTimeMillis() - _lastPke.getTime() > 24 * 3600 * 1000) {
-			setLastPke(null);
-			return false;
-		}
-		return true;
-	}
-
-	private Timestamp _lastCw;
-    
-	public Timestamp getLastCw() {
-		return _lastCw;
-	}
-
-	public void setLastCw(Timestamp time) {
-		_lastCw = time;
-	}
-
-	public void setLastCw() {
-		_lastPke = new Timestamp(System.currentTimeMillis());
-	}	
-
-	public boolean isCWwanted() {
-		if (_lastCw == null) {
-			return false;
-		} else if (System.currentTimeMillis() - _lastCw.getTime() > 24 * 3600 * 1000) {
-			setLastCw(null);
+		} else if (System.currentTimeMillis() - _lastPkForElf.getTime()
+				> 24 * 3600 * 1000) {
+			setLastPkForElf(null);
 			return false;
 		}
 		return true;
 	}
-//add end
+
 	private Timestamp _deleteTime; // キャラクター削除までの時間
 
 	public Timestamp getDeleteTime() {

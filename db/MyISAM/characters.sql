@@ -37,6 +37,7 @@ CREATE TABLE `characters` (
   `ElixirStatus` int(10) NOT NULL default '0',
   `ElfAttr` int(10) NOT NULL default '0',
   `PKcount` int(10) NOT NULL default '0',
+  `PkCountForElf` int(10) NOT NULL default '0',
   `ExpRes` int(10) NOT NULL default '0',
   `PartnerID` int(10) NOT NULL default '0',
   `AccessLevel` int(10) unsigned NOT NULL default '0',
@@ -48,6 +49,7 @@ CREATE TABLE `characters` (
   `Banned` tinyint(1) unsigned NOT NULL default '0',
   `Karma` int(10) NOT NULL default '0',
   `LastPk` datetime default NULL,
+  `LastPkForElf` datetime default NULL,
   `DeleteTime` datetime default NULL,
   `OriginalStr` int(3) NOT NULL default '0',
   `OriginalCon` int(3) NOT NULL default '0',
@@ -61,3 +63,6 @@ CREATE TABLE `characters` (
 #----------------------------
 # No Records for table characters
 #----------------------------
+
+
+

@@ -1616,6 +1616,7 @@ public class L1Attack {
 
 		damage *= attrCoefficient;
 
+
 		return damage;
 	}
 

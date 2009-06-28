@@ -92,7 +92,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					break;
 				}
 //waja add 妖精殺死同族
-                else if (pc.isElf() && pc.isEwanted()) { // PK ELF
+                else if (pc.isElf() && pc.isWantedForElf()) { // PK ELF
                     wideBroadcastPacket(new S_NpcChatPacket(this, "$815", 1));
 					targetPlayer = pc;
 					break;
