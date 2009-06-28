@@ -2346,6 +2346,17 @@ public class L1SkillUse {
 						pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_BIND,
 								true));
 					}
+				} else if (_skillId == GUARD_BRAKE) { // ガードブレイク
+					if (cha instanceof L1PcInstance) {
+						L1PcInstance pc = (L1PcInstance) cha;
+						pc.addAc(15);
+					}
+				} else if (_skillId == HORROR_OF_DEATH) { // ホラーオブデス
+					if (cha instanceof L1PcInstance) {
+						L1PcInstance pc = (L1PcInstance) cha;
+						pc.addStr(-5);
+						pc.addInt(-5);
+					}
 				}
 
 				// ●●●● PCにしか效果のないスキル ●●●●

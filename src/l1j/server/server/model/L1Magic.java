@@ -395,6 +395,33 @@ public class L1Magic {
 			if (_calcType == PC_PC || _calcType == PC_NPC) {
 				probability += 2 * _pc.getOriginalMagicHit();
 			}
+		} else if (skillId == GUARD_BRAKE || skillId == RESIST_FEAR
+				|| skillId ==HORROR_OF_DEATH) {
+			int dice = l1skills.getProbabilityDice();
+			int value = l1skills.getProbabilityValue();
+			int diceCount = 0;
+			diceCount = getMagicBonus() + getMagicLevel();
+
+			if (diceCount < 1) {
+				diceCount = 1;
+			}
+
+			for (int i = 0; i < diceCount; i++) {
+				probability += (RandomArrayList.getArrayshortList((short)dice) + value);//原寫法 (random.nextInt(dice) + 1 + value)
+			}
+
+			probability = probability * getLeverage() / 10;
+
+			//??INT??
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				probability += 2 * _pc.getOriginalMagicHit();
+			}
+
+			if (probability >= getTargetMr()) {
+				probability = 100;
+			} else {
+				probability = 0;
+			}
 		} else {
 			int dice = l1skills.getProbabilityDice();
 			int diceCount = 0;
@@ -480,16 +507,6 @@ public class L1Magic {
 
 		damage = calcMrDefense(damage);
 
-		// ダメージ最大值は對象の現在のHPと同じにする。
-		if (_calcType == PC_PC || _calcType == NPC_PC) {
-			if (damage > _targetPc.getCurrentHp()) {
-				damage = _targetPc.getCurrentHp();
-			}
-		} else {
-			if (damage > _targetNpc.getCurrentHp()) {
-				damage = _targetNpc.getCurrentHp();
-			}
-		}
 		return damage;
 	}
 

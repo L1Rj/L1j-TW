@@ -45,6 +45,7 @@ import l1j.server.server.serverpackets.S_SystemMessage;//waja add 骰子匕首
 import l1j.server.server.serverpackets.S_UseArrowSkill;
 import l1j.server.server.serverpackets.S_UseAttackSkill;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.server.server.templates.L1Skills;
 import l1j.server.server.types.Point;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
@@ -423,7 +424,7 @@ public class L1Attack {
 			_hitRate += _pc.getBowHitModifierByArmor();
 		}
 
-		if (80 < _pc.getInventory().getWeight240()
+		if (80 < _pc.getInventory().getWeight240()// 重量による命中補正
 				&& 120 >= _pc.getInventory().getWeight240()) {
 			_hitRate -= 1;
 		} else if (121 <= _pc.getInventory().getWeight240()
@@ -463,6 +464,10 @@ public class L1Attack {
 
 		if (_targetPc.hasSkillEffect(MIRROR_IMAGE)) {
 			attackerDice -= 5;
+		}
+
+		if (_targetPc.hasSkillEffect(RESIST_FEAR)) {
+			attackerDice += 5;
 		}
 
 		// XXX フィアーの成功確率が不明なため未実装
@@ -580,14 +585,14 @@ public class L1Attack {
 		// ＝（PCのLv＋クラス補正＋STR補正＋DEX補正＋武器補正＋DAIの枚數/2＋魔法補正）×5－{NPCのAC×（-5）}
 		_hitRate = _pc.getLevel();
 
-		if (_pc.getStr() > 39) {
-			_hitRate += strHit[38];
+		if (_pc.getStr() > 59) {
+			_hitRate += strHit[58];
 		} else {
 			_hitRate += strHit[_pc.getStr() - 1];
 		}
 
-		if (_pc.getDex() > 39) {
-			_hitRate += dexHit[38];
+		if (_pc.getDex() > 60) {
+			_hitRate += dexHit[59];
 		} else {
 			_hitRate += dexHit[_pc.getDex() - 1];
 		}
@@ -608,6 +613,17 @@ public class L1Attack {
 
 		_hitRate *= 5;
 		_hitRate += _targetNpc.getAc() * 5;
+		
+		if (80 < _pc.getInventory().getWeight240() // 重量による命中補正
+				&& 120 >= _pc.getInventory().getWeight240()) {
+			_hitRate -= 1;
+		} else if (121 <= _pc.getInventory().getWeight240()
+				&& 160 >= _pc.getInventory().getWeight240()) {
+			_hitRate -= 3;
+		} else if (161 <= _pc.getInventory().getWeight240()
+				&& 200 >= _pc.getInventory().getWeight240()) {
+			_hitRate -= 5;
+		}
 
 		if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加命中
 				|| _pc.hasSkillEffect(COOKING_2_0_S)) {
@@ -630,10 +646,35 @@ public class L1Attack {
 			}
 		}
 
-		if (_hitRate > 95) {
-			_hitRate = 95;
-		} else if (_hitRate < 5) {
-			_hitRate = 5;
+		int attackerDice = RandomArrayList.getArrayshortList((short) 20) + _hitRate - 10;//原寫法_random.nextInt(20) + 1 + _hitRate - 10; 
+
+		if (_targetNpc.hasSkillEffect(UNCANNY_DODGE)) {
+			attackerDice -= 5;
+		}
+
+		if (_targetNpc.hasSkillEffect(MIRROR_IMAGE)) {
+			attackerDice -= 5;
+		}
+
+		if (_targetNpc.hasSkillEffect(RESIST_FEAR)) {
+			attackerDice += 5;
+		}
+
+		int defenderDice = 10 - _targetNpc.getAc();
+
+		int fumble = _hitRate - 9;
+		int critical = _hitRate + 10;
+
+		if (attackerDice <= fumble) {
+			_hitRate = 0;
+		} else if (attackerDice >= critical) {
+			_hitRate = 100;
+		} else {
+			if (attackerDice > defenderDice) {
+				_hitRate = 100;
+			} else if (attackerDice <= defenderDice) {
+				_hitRate = 0;
+			}
 		}
 
 		if (_weaponType2 == 17) {
@@ -697,38 +738,52 @@ public class L1Attack {
 
 	// ●●●● ＮＰＣ から プレイヤー への命中判定 ●●●●
 	private boolean calcNpcPcHit() {
-		// ＰＣへの命中率
-		// ＝（NPCのLv×2）×5－{NPCのAC×（-5）}
-		_hitRate = _npc.getLevel() * 2;
-		_hitRate *= 5;
-		_hitRate += _targetPc.getAc() * 5;
 
-		if (_npc instanceof L1PetInstance) { // ペットはLV1每に追加命中+2
-			_hitRate += _npc.getLevel() * 2;
+		_hitRate += _npc.getLevel();
+
+		if (_npc instanceof L1PetInstance) { // ペットの武器による追加命中
 			_hitRate += ((L1PetInstance) _npc).getHitByWeapon();
 		}
 
 		_hitRate += _npc.getHitup();
 
-		// 最低命中率をNPCのレベルに設定
-		if (_hitRate < _npc.getLevel()) {
-			_hitRate = _npc.getLevel();
-		}
-
-		if (_hitRate > 95) {
-			_hitRate = 95;
-		}
+		int attackerDice = RandomArrayList.getArrayshortList((short)20) + _hitRate - 1;//原寫法 _random.nextInt(20) + 1 + _hitRate - 1;
 
 		if (_targetPc.hasSkillEffect(UNCANNY_DODGE)) {
-			_hitRate -= 20;
+			attackerDice -= 5;
 		}
 
 		if (_targetPc.hasSkillEffect(MIRROR_IMAGE)) {
-			_hitRate -= 20;
+			attackerDice -= 5;
 		}
 
-		if (_hitRate < 5) {
-			_hitRate = 5;
+		if (_targetPc.hasSkillEffect(RESIST_FEAR)) {
+			attackerDice += 5;
+		}
+
+		int defenderDice = 0;
+
+		int defenderValue = (_targetPc.getAc()) * -1;
+
+		if (_targetPc.getAc() >= 0) {
+			defenderDice = 10 - _targetPc.getAc();
+		} else if (_targetPc.getAc() < 0) { //RandomArrayList.getArrayshortList((short)defenderValue)
+			defenderDice = 10 + RandomArrayList.getArrayshortList((short)defenderValue);//原寫法  _random.nextInt(defenderValue) + 1;
+		}
+
+		int fumble = _hitRate;
+		int critical = _hitRate + 19;
+
+		if (attackerDice <= fumble) {
+			_hitRate = 0;
+		} else if (attackerDice >= critical) {
+			_hitRate = 100;
+		} else {
+			if (attackerDice > defenderDice) {
+				_hitRate = 100;
+			} else if (attackerDice <= defenderDice) {
+				_hitRate = 0;
+			}
 		}
 
 		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
@@ -747,9 +802,10 @@ public class L1Attack {
 			_hitRate = 0;
 		}
 
+
 		byte rnd = RandomArrayList.getArray100List();
 
-		// NPCの攻擊レンジが10以上の場合で、2以上離れている場合弓攻擊とみなす
+		// NPCの攻撃レンジが10以上の場合で、2以上離れている場合弓攻撃とみなす
 		if (_npc.getNpcTemplate().get_ranged() >= 10
 				&& _hitRate > rnd
 				&& _npc.getLocation().getTileLineDistance(
@@ -761,29 +817,52 @@ public class L1Attack {
 
 	// ●●●● ＮＰＣ から ＮＰＣ への命中判定 ●●●●
 	private boolean calcNpcNpcHit() {
-		int target_ac = 10 - _targetNpc.getAc();
-		int attacker_lvl = _npc.getNpcTemplate().get_level();
 
-		if (target_ac != 0) {
-			_hitRate = (100 / target_ac * attacker_lvl); // 被攻擊者AC = 攻擊者Lv
-			// の時命中率１００％
-		} else {
-			_hitRate = 100 / 1 * attacker_lvl;
-		}
+		_hitRate += _npc.getLevel();
 
-		if (_npc instanceof L1PetInstance) { // ペットはLV1每に追加命中+2
-			_hitRate += _npc.getLevel() * 2;
+		if (_npc instanceof L1PetInstance) { // ペットの武器による追加命中
 			_hitRate += ((L1PetInstance) _npc).getHitByWeapon();
 		}
 
-		if (_hitRate < attacker_lvl) {
-			_hitRate = attacker_lvl; // 最低命中率＝Ｌｖ％
+		_hitRate += _npc.getHitup();
+
+		int attackerDice = RandomArrayList.getArrayshortList((short)20) + _hitRate - 1;//原寫法_random.nextInt(20) + 1 + _hitRate - 1;
+
+		if (_targetNpc.hasSkillEffect(UNCANNY_DODGE)) {
+			attackerDice -= 5;
 		}
-		if (_hitRate > 95) {
-			_hitRate = 95; // 最高命中率は９５％
+
+		if (_targetNpc.hasSkillEffect(MIRROR_IMAGE)) {
+			attackerDice -= 5;
 		}
-		if (_hitRate < 5) {
-			_hitRate = 5; // 攻擊者Lvが５未滿の時は命中率５％
+
+		if (_targetNpc.hasSkillEffect(RESIST_FEAR)) {
+			attackerDice += 5;
+		}
+
+		int defenderDice = 0;
+
+		int defenderValue = (_targetNpc.getAc()) * -1;
+
+		if (_targetNpc.getAc() >= 0) {
+			defenderDice = 10 - _targetNpc.getAc();
+		} else if (_targetNpc.getAc() < 0) {
+			defenderDice = 10 + RandomArrayList.getArrayshortList((short)defenderValue);//原寫法_random.nextInt(defenderValue) + 1
+		}
+
+		int fumble = _hitRate;
+		int critical = _hitRate + 19;
+
+		if (attackerDice <= fumble) {
+			_hitRate = 0;
+		} else if (attackerDice >= critical) {
+			_hitRate = 100;
+		} else {
+			if (attackerDice > defenderDice) {
+				_hitRate = 100;
+			} else if (attackerDice <= defenderDice) {
+				_hitRate = 0;
+			}
 		}
 
 		byte rnd = RandomArrayList.getArray100List();
@@ -1487,16 +1566,57 @@ public class L1Attack {
 	public static final int[] Damage_weaponAttrEnchantLevel = { 0, 1, 3, 5 };
 	// ●●●● 武器の属性強化による追加ダメージ算出 ●●●●
 	private int calcAttrEnchantDmg() {
-		/*int damage = 0;
-		int weakAttr = _targetNpc.getNpcTemplate().get_weakAttr();
+		int damage = 0;
+// int weakAttr = _targetNpc.getNpcTemplate().get_weakAttr();
+// if ((weakAttr & 1) == 1 && _weaponAttrEnchantKind == 1 // 地
+// || (weakAttr & 2) == 2 && _weaponAttrEnchantKind == 2 // 火
+// || (weakAttr & 4) == 4 && _weaponAttrEnchantKind == 4 // 水
+// || (weakAttr & 8) == 8 && _weaponAttrEnchantKind == 8) { // 風
+// damage = _weaponAttrEnchantLevel;
+// }
 		if (_weaponAttrEnchantLevel == 1) {
 			damage = 1;
 		} else if (_weaponAttrEnchantLevel == 2) {
 			damage = 3;
 		} else if (_weaponAttrEnchantLevel == 3) {
 			damage = 5;
-		}*/
-		return Damage_weaponAttrEnchantLevel[_weaponAttrEnchantLevel];
+		}
+
+		// XXX 耐性処理は本来、耐性合計値ではなく、各値を個別に処理して総和する。
+		int weakAttr = _targetNpc.getNpcTemplate().get_weakAttr();
+		int resist = 0;
+		if (_calcType == PC_PC) {
+			if (_weaponAttrEnchantKind == 1) { // 地
+				resist = _targetPc.getEarth();
+			} else if (_weaponAttrEnchantKind == 2) { // 火
+				resist = _targetPc.getFire();
+			} else if (_weaponAttrEnchantKind == 4) { // 水
+				resist = _targetPc.getWater();
+			} else if (_weaponAttrEnchantKind == 8) { // 風
+				resist = _targetPc.getWind();
+			}
+		} else if (_calcType == PC_NPC) {
+			if ((_weaponAttrEnchantKind == 1 && weakAttr == 1) // 地
+				|| (_weaponAttrEnchantKind == 2 && weakAttr == 2) // 火
+				|| (_weaponAttrEnchantKind == 4 && weakAttr == 4) // 水
+				|| (_weaponAttrEnchantKind == 8 && weakAttr == 8)) { // 風
+				resist = -50;
+			}
+		}
+
+		int resistFloor = (int) (0.32 * Math.abs(resist));
+		if (resist >= 0) {
+			resistFloor *= 1;
+		} else {
+			resistFloor *= -1;
+		}
+
+		double attrDeffence = resistFloor / 32.0;
+		double attrCoefficient = 1 - attrDeffence;
+
+		damage *= attrCoefficient;
+
+		return damage;
 	}
 
 	// ●●●● ＮＰＣのアンデッドの夜間攻擊力の變化 ●●●●

@@ -1137,6 +1137,10 @@ public class L1PcInstance extends L1Character {
 					damage = damage;
 				}
 
+				if (damage < 1) {
+					damage = 1;
+				}
+
 				_oldTime = nowTime; // 次回のために時間を保存
 			}
 

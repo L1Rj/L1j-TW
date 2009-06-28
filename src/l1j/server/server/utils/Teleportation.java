@@ -21,6 +21,7 @@ package l1j.server.server.utils;
 
 import java.util.HashSet;
 import java.util.logging.Logger;
+import java.util.Random;
 
 import l1j.server.server.model.L1Clan;
 import l1j.server.server.model.L1Location;
@@ -52,7 +53,7 @@ public class Teleportation {
 
 	private static Logger _log = Logger
 			.getLogger(Teleportation.class.getName());
-
+    private static Random _random = new Random();
 	private Teleportation() {
 	}
 
@@ -114,7 +115,7 @@ public class Teleportation {
 		 */
 		HashSet<L1PcInstance> subjects = new HashSet<L1PcInstance>();
 		subjects.add(pc);
-
+/*
 		if (!pc.isGhost()) {
 			if (pc.getMap().isTakePets()) {
 				// ペットとサモンも一緒に移動させる。
@@ -194,7 +195,80 @@ public class Teleportation {
 		}
 
 		pc.setTeleport(false);
+*/
+        if (!pc.isGhost()) {
+            if (pc.getMap().isTakePets()) {
+			// ペットとサモンも一緒に移動させる。
+			for (L1NpcInstance petNpc : pc.getPetList().values()) {
 
+				// テレポート先の設定
+				L1Location loc = pc.getLocation().randomLocation(3, false);
+				int nx = loc.getX();
+				int ny = loc.getY();
+				if (pc.getMapId() == 5125 || pc.getMapId() == 5131
+						|| pc.getMapId() == 5132 || pc.getMapId() == 5133
+						|| pc.getMapId() == 5134) { // ペットマッチ会場
+					nx = 32799 + _random.nextInt(5) - 3;
+					ny = 32864 + _random.nextInt(5) - 3;
+				}
+				teleport(petNpc, nx, ny, mapId, head);
+				if (petNpc instanceof L1SummonInstance) { // サモンモンスター
+					L1SummonInstance summon = (L1SummonInstance) petNpc;
+					pc.sendPackets(new S_SummonPack(summon, pc));
+				} else if (petNpc instanceof L1PetInstance) { // ペット
+					L1PetInstance pet = (L1PetInstance) petNpc;
+					pc.sendPackets(new S_PetPack(pet, pc));
+				}
+
+				for (L1PcInstance visiblePc : L1World.getInstance()
+						.getVisiblePlayer(petNpc)) {
+					// テレポート元と先に同じPCが居た場合、正しく更新されない為、一度removeする。
+					visiblePc.removeKnownObject(petNpc);
+					subjects.add(visiblePc);
+				}
+                }
+            }else {
+                for (L1DollInstance doll : pc.getDollList().values()) {
+                // テレポート先の設定
+                    L1Location loc = pc.getLocation().randomLocation(3, false);
+                    int nx = loc.getX();
+                    int ny = loc.getY();
+                    teleport(doll, nx, ny, mapId, head);
+                    pc.sendPackets(new S_DollPack(doll, pc));
+                    for (L1PcInstance visiblePc : L1World.getInstance().getVisiblePlayer(doll)) {
+                // テレポート元と先に同じPCが居た場合、正しく更新されない為、一度removeする。
+                    visiblePc.removeKnownObject(doll);
+                    subjects.add(visiblePc);
+                    }
+                }
+            }
+
+			// マジックドールも一緒に移動させる。
+			for (L1DollInstance doll : pc.getDollList().values()) {
+
+				// テレポート先の設定
+				L1Location loc = pc.getLocation().randomLocation(3, false);
+				int nx = loc.getX();
+				int ny = loc.getY();
+
+				teleport(doll, nx, ny, mapId, head);
+				pc.sendPackets(new S_DollPack(doll, pc));
+
+				for (L1PcInstance visiblePc : L1World.getInstance()
+						.getVisiblePlayer(doll)) {
+					// テレポート元と先に同じPCが居た場合、正しく更新されない為、一度removeする。
+					visiblePc.removeKnownObject(doll);
+					subjects.add(visiblePc);
+				}
+
+			}
+		}
+
+		for (L1PcInstance updatePc : subjects) {
+			updatePc.updateObject();
+		}
+
+		pc.setTeleport(false);
 		if (pc.hasSkillEffect(WIND_SHACKLE)) {
 			pc.sendPackets(new S_SkillIconWindShackle(pc.getId(),
 					pc.getSkillEffectTimeSec(WIND_SHACKLE)));

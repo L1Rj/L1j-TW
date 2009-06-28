@@ -506,6 +506,17 @@ class L1SkillStop {
 				L1NpcInstance npc = (L1NpcInstance) cha;
 				npc.setParalyzed(false);
 			}
+		} else if (skillId == GUARD_BRAKE) { // ガードブレイク
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.addAc(-15);
+			}
+		} else if (skillId == HORROR_OF_DEATH) { // ホラーオブデス
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.addStr(5);
+				pc.addInt(5);
+			}
 		} else if (skillId == STATUS_CUBE_IGNITION_TO_ALLY) { // キューブ[イグニション]：味方
 			cha.addFire(-30);
 			if (cha instanceof L1PcInstance) {

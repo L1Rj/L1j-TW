@@ -26,6 +26,6 @@ class L1DragonKnightClassFeature extends L1ClassFeature {
 
 	@Override
 	public int getMagicLevel(int playerLevel) {
-		return Math.min(6, playerLevel / 8);
+		return Math.min(4, playerLevel / 9);
 	}
 }
