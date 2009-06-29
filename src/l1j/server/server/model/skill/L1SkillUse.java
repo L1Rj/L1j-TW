@@ -3037,9 +3037,9 @@ public class L1SkillUse {
 										.getId(), 2168));
 							}
 						}
-					} else if (_skillId == RETURN_TO_NATURE) { // リターントゥネイチャー
+					} else if (_skillId == RETURN_TO_NATURE) { // 釋放元素
 						if (Config.RETURN_TO_NATURE
-								&& cha instanceof L1SummonInstance) {
+								&& cha instanceof L1SummonInstance&& _player.getZoneType() != 1 && _target.getZoneType() != 1) {//waja change
 							L1SummonInstance summon = (L1SummonInstance) cha;
 							summon.broadcastPacket(new S_SkillSound(summon
 									.getId(), 2245));
