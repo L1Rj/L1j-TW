@@ -597,8 +597,8 @@ public class L1PcInstance extends L1Character {
 	public void set_PKcount(int i) {
 		_PKcount = i;
 	}
-//妖精殺死同族 PK值另外計算
-	private int _PkCountForElf; // ● PKカウント(エルフ用)
+
+	private int _PkCountForElf; //妖精殺死同族 PK值另外計算
 
 	public int getPkCountForElf() {
 		return _PkCountForElf;
@@ -1127,9 +1127,9 @@ public class L1PcInstance extends L1Character {
 					damage = damage;
 				}
 
-				if (damage < 1) {
+/*				if (damage < 1) {
 					damage = 1;
-				}
+				}*/
 
 				_oldTime = nowTime; // 次回のために時間を保存
 			}
