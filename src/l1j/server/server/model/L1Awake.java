@@ -43,6 +43,8 @@ public class L1Awake {
 	public static void start(L1PcInstance pc, int skillId) {
 		if (skillId == pc.getAwakeSkillId()) { // 再詠唱なら解除
 			stop(pc);
+		} else if (pc.getAwakeSkillId() != 0) { // 他の覚醒スキルの場合はリターン
+			return;
 		} else {
 			if (skillId == AWAKEN_ANTHARAS) { // 覺醒：アンタラス
 				pc.addMaxHp(127);

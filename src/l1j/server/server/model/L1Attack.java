@@ -352,7 +352,7 @@ public class L1Attack {
 		if (_calcType == PC_PC || _calcType == PC_NPC) {
 			if (_weaponRange != -1) {
 				if (_pc.getLocation().getTileLineDistance(
-						_target.getLocation()) > _weaponRange) {
+						_target.getLocation()) > _weaponRange + 1) {  // BIGのモンスターに対応するため射程範囲+1
 					_isHit = false; // 射程範囲外
 					return _isHit;
 				}

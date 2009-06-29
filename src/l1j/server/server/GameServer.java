@@ -150,7 +150,7 @@ public class GameServer extends Thread {
 		}
 
 		System.out.println("=================================================");
-		System.out.println("===== Lineage 3.0C ======= L1j1913-tw665 版 =====");
+		System.out.println("===== Lineage 3.0C ======= L1j1917-tw666 版 =====");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;

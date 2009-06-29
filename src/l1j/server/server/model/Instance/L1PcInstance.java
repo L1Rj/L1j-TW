@@ -1083,6 +1083,9 @@ public class L1PcInstance extends L1Character {
 				long nowTime = System.currentTimeMillis();
 				long interval = nowTime - _oldTime;
 
+				if (damage < 0) {
+					damage = damage;
+				} else {
 				if (2000 > interval && interval >= 1900) {
 					damage = (damage * (100 - (10 / 3))) / 100;
 				} else if (1900 > interval && interval >= 1800) {
@@ -1127,11 +1130,12 @@ public class L1PcInstance extends L1Character {
 					damage = damage;
 				}
 
-/*				if (damage < 1) {
-					damage = 1;
-				}*/
+				if (damage < 1) {
+					damage = 0;
+				}
 
 				_oldTime = nowTime; // 次回のために時間を保存
+				}
 			}
 
 			if (damage > 0) {
