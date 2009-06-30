@@ -41,6 +41,42 @@ public class L1BuffUtil {
 	}
 
 	public static void brave(L1PcInstance pc, int timeMillis) {
+		if (pc.hasSkillEffect(STATUS_ELFBRAVE)) { // エルヴンワッフルとは重複しない
+			pc.killSkillEffectTimer(STATUS_ELFBRAVE);
+			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+			pc.setBraveSpeed(0);
+		}
+		if (pc.hasSkillEffect(HOLY_WALK)) { // ホーリーウォークとは重複しない
+			pc.killSkillEffectTimer(HOLY_WALK);
+			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+			pc.setBraveSpeed(0);
+		}
+		if (pc.hasSkillEffect(MOVING_ACCELERATION)) { // ムービングアクセレーションとは重複しない
+			pc.killSkillEffectTimer(MOVING_ACCELERATION);
+			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+			pc.setBraveSpeed(0);
+		}
+		if (pc.hasSkillEffect(WIND_WALK)) { // ウィンドウォークとは重複しない
+			pc.killSkillEffectTimer(WIND_WALK);
+			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+			pc.setBraveSpeed(0);
+		}
+		if (pc.hasSkillEffect(STATUS_RIBRAVE)) { // ユグドラの実とは重複しない
+			pc.killSkillEffectTimer(STATUS_RIBRAVE);
+			// XXX ユグドラの実のアイコンを消す方法が不明
+			pc.setBraveSpeed(0);
+		}
+		if (pc.hasSkillEffect(BLOODLUST)) { // ブラッドラストとは重複しない
+			pc.killSkillEffectTimer(BLOODLUST);
+			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+			pc.setBraveSpeed(0);
+		}
+
 		pc.setSkillEffect(STATUS_BRAVE, timeMillis);
 
 		int objId = pc.getId();
