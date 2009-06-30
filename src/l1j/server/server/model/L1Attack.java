@@ -45,7 +45,6 @@ import l1j.server.server.serverpackets.S_SystemMessage;//waja add 骰子匕首
 import l1j.server.server.serverpackets.S_UseArrowSkill;
 import l1j.server.server.serverpackets.S_UseAttackSkill;
 import l1j.server.server.utils.RandomArrayList;
-import l1j.server.server.templates.L1Skills;
 import l1j.server.server.types.Point;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
@@ -1583,7 +1582,6 @@ public class L1Attack {
 		}
 
 		// XXX 耐性処理は本来、耐性合計値ではなく、各値を個別に処理して総和する。
-		int weakAttr = _targetNpc.getNpcTemplate().get_weakAttr();
 		int resist = 0;
 		if (_calcType == PC_PC) {
 			if (_weaponAttrEnchantKind == 1) { // 地
@@ -1596,6 +1594,7 @@ public class L1Attack {
 				resist = _targetPc.getWind();
 			}
 		} else if (_calcType == PC_NPC) {
+			int weakAttr = _targetNpc.getNpcTemplate().get_weakAttr();
 			if ((_weaponAttrEnchantKind == 1 && weakAttr == 1) // 地
 				|| (_weaponAttrEnchantKind == 2 && weakAttr == 2) // 火
 				|| (_weaponAttrEnchantKind == 4 && weakAttr == 4) // 水
