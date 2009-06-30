@@ -397,7 +397,7 @@ Update npc Set name = '格利芬' Where npcid = '45445';
 Update npc Set name = '黑暗妖精巡守' Where npcid = '45446';
 Update npc Set name = '黑暗妖精法師' Where npcid = '45447';
 Update npc Set name = '拉斯塔巴德調教師' Where npcid = '45448';
-Update npc Set name = '巨斧牛人' Where npcid = '45449';
+Update npc Set name = '鏈鎚牛人' Where npcid = '45449';
 Update npc Set name = '炎魔的思克巴女皇' Where npcid = '45450';
 Update npc Set name = '思克巴女皇' Where npcid = '45451';
 Update npc Set name = '哈維' Where npcid = '45452';

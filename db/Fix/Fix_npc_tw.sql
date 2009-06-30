@@ -131,3 +131,6 @@ Update npc Set agro = '0' Where npcid = '45610';
 /* 20090625 修正伊弗利特素質 */
 Update npc Set intel = '28', wis = '22', dex = '24', con = '24', hp = '1500', mr = '30' Where npcid = '45516';/* 火窟 */
 Update npc Set intel = '28', wis = '22', dex = '24', con = '24' Where npcid = '45515';/* 傲慢 */
+
+/* 20090630 修正45449鏈鎚牛人nameid */
+Update npc Set nameid = '$1394' Where npcid = '45449';
