@@ -1176,13 +1176,7 @@ public class L1NpcInstance extends L1Character {
 		if (template.get_randomexp() == 0) {
 			setExp(template.get_exp());
 		} else {
-			int level = getLevel();
-			int exp = level * level;
-			if (rate != 0) {
-				exp = (int) (exp * 100 * rate);
-			}
-			exp += 1;
-			setExp(exp);
+			setExp(template.get_randomexp() + randomlevel);
 		}
 		if (template.get_randomlawful() == 0) {
 			setLawful(template.get_lawful());
