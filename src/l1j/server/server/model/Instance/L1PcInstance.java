@@ -54,6 +54,7 @@ import l1j.server.server.model.L1Karma;
 import l1j.server.server.model.L1Magic;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1Party;
+import l1j.server.server.model.L1PcDeleteTimer;
 import l1j.server.server.model.L1PcInventory;
 import l1j.server.server.model.L1PinkName;
 import l1j.server.server.model.L1Quest;
@@ -1466,13 +1467,22 @@ public class L1PcInstance extends L1Character {
 						// あなたのPK回數が%0になりました。回數が%1になると地獄行きです。
 						player.sendPackets(new S_BlueMessage(551, String
 								.valueOf(player.get_PKcount()), "10"));
-					} else if (isChangePkCount && player.get_PKcount() >= 10) {
+					} else if (isChangePkCount && player.get_PKcount() >= 100) {//PK值大於100傳送地獄
 						player.beginHell(true);
 					}
 				} else {
 					setPinkName(false);
 				}
 			}
+			_pcDeleteTimer = new L1PcDeleteTimer(L1PcInstance.this);
+			_pcDeleteTimer.begin();
+		}
+	}
+
+	public void stopPcDeleteTimer() {
+		if (_pcDeleteTimer != null) {
+			_pcDeleteTimer.cancel();
+			_pcDeleteTimer = null;
 		}
 	}
 
@@ -1773,6 +1783,7 @@ public class L1PcInstance extends L1Character {
 	private boolean _hpRegenActive;
     private boolean _hpRegenActiveByDoll;//waja add 魔法娃娃回血功能
 	private L1EquipmentSlot _equipSlot;
+	private L1PcDeleteTimer _pcDeleteTimer;
 
 	private String _accountName; // ● アカウントネーム
 
