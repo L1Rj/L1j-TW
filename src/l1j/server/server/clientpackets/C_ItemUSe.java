@@ -889,7 +889,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					UseHeallingPotion(pc, 70, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 40026 || itemId == 40027
-						|| itemId == 40028) { // ジュース
+						|| itemId == 40028|| itemId == 41450|| itemId == 41455) { // ジュース 41450&41455 愛瑪伊的畫像&伊森之畫像
 					UseHeallingPotion(pc, 25, 189);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 40058) { // 煙燻的麵包屑
