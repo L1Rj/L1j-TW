@@ -136,22 +136,21 @@ public class L1DollInstance extends L1NpcInstance {
 		if (isMpRegeneration()) {
 			master.startMpRegenerationByDoll();
 		}
-//waja add 魔法娃娃回血功能
-		if (isHpRegeneration()) {
+
+		if (isHpRegeneration()) {//魔法娃娃回血開始
 			master.startHpRegenerationByDoll();
 		}
-//end
 	}
 
 	public void deleteDoll() {
 		if (isMpRegeneration()) {
 			((L1PcInstance) _master).stopMpRegenerationByDoll();
 		}
-//add 魔法娃娃回血移除
-        if (isHpRegeneration()) {
+
+        if (isHpRegeneration()) {//魔法娃娃回血停止
             ((L1PcInstance) _master).stopHpRegenerationByDoll();
         }
-//end
+
 		_master.getDollList().remove(getId());
 		deleteMe();
 	}

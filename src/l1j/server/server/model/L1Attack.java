@@ -713,7 +713,7 @@ public class L1Attack {
 				&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
 			_hitRate = 0;
 		}
-		if (npcId == 45674 // 死
+		if (npcId == 45674 // 死亡
 				&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
 			_hitRate = 0;
 		}
@@ -879,6 +879,8 @@ public class L1Attack {
 	/* ■■■■■■■■■■■■■■■ ダメージ算出 ■■■■■■■■■■■■■■■ */
 
 	public int calcDamage() {
+// waja change to switch
+/*
 		if (_calcType == PC_PC) {
 			_damage = calcPcPcDamage();
 		} else if (_calcType == PC_NPC) {
@@ -888,6 +890,23 @@ public class L1Attack {
 		} else if (_calcType == NPC_NPC) {
 			_damage = calcNpcNpcDamage();
 		}
+*/
+		switch (_calcType)
+		{
+		case PC_PC:
+			_damage = calcPcPcDamage();
+			break;
+		case PC_NPC:
+			_damage = calcPcNpcDamage();
+			break;
+		case NPC_PC:
+			_damage = calcNpcPcDamage();
+			break;
+		case NPC_NPC:
+			_damage = calcNpcNpcDamage();
+			break;
+		}
+//change end
 		return _damage;
 	}
 
