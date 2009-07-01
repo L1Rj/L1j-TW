@@ -360,8 +360,4 @@ public class DropTable {
 		}
 		npc.turnOnOffLight();
 	}
-
-    public ArrayList<L1Drop> getDrops(int mobID) {// GM指令 .mobdrop 搜尋怪物掉落道具
-        return _droplists.get(mobID);
-    }
 }
