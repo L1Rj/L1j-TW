@@ -1363,14 +1363,14 @@ public class L1PcInstance extends L1Character {
 				}
 				setLastPk(null);
 			}
-//妖精殺死同族PK值另外計算
-			if (lastAttacker instanceof L1GuardianInstance) {
+
+			if (lastAttacker instanceof L1GuardianInstance) {//妖精殺死同族PK值另外計算
 				if (getPkCountForElf() > 0) {
 					setPkCountForElf(getPkCountForElf() - 1);
 				}
 				setLastPkForElf(null);
 			}
-//add end
+
 			// 一定の確率でアイテムをDROP
 			// アライメント32000以上で0%、以降-1000每に0.4%
 			// アライメントが0未滿の場合は-1000每に0.8%
@@ -1410,15 +1410,15 @@ public class L1PcInstance extends L1Character {
 			if (player != null) {
 				if (getLawful() >= 0 && isPinkName() == false) {
 					boolean isChangePkCount = false;
-//妖精殺死同族 PK值另外計算
-					boolean isChangePkCountForElf = false;
+
+					boolean isChangePkCountForElf = false;//妖精殺死同族 PK值另外計算
 
 					// アライメントが30000未滿の場合はPKカウント增加
 					if (player.getLawful() < 30000) {
 						player.set_PKcount(player.get_PKcount() + 1);
 						isChangePkCount = true;
-//妖精殺死同族 PK值另外計算
-						if (player.isElf() && isElf()) {
+
+						if (player.isElf() && isElf()) {//妖精殺死同族 PK值另外計算
 							player.setPkCountForElf(player
 									.getPkCountForElf() +1);
 							isChangePkCountForElf = true;
@@ -1603,7 +1603,7 @@ public class L1PcInstance extends L1Character {
 		addExp(exp);
 	}
 
-	public void deathPenalty() {
+	public void deathPenalty() {//角色死亡處罰
 		int oldLevel = getLevel();
 		int needExp = ExpTable.getNeedExpNextLevel(oldLevel);
 		int exp = 0;
@@ -1653,7 +1653,7 @@ public class L1PcInstance extends L1Character {
 		} else if (isDragonKnight()) {
 			er = getLevel() / 7; // 龍騎士
 		} else if (isIllusionist()) {
-			er = getLevel() / 9; // 幻術師
+			er = getLevel() / 9; // 幻術士
 		}
 
 		er += (getDex() - 8) / 2;
@@ -2429,10 +2429,9 @@ public class L1PcInstance extends L1Character {
 					getBaseWis(), getOriginalMpup());
 			addBaseMaxHp(randomHp);
 			addBaseMaxMp(randomMp);
-			// 升級血魔滿
-			setCurrentHp(getMaxHp());
-			setCurrentMp(getMaxMp());
-			// 升級血魔滿  end
+			setCurrentHp(getMaxHp());// 升級血滿
+			setCurrentMp(getMaxMp());// 升級魔滿
+
 		}
 		resetBaseHitup();
 		resetBaseDmgup();
@@ -2456,8 +2455,8 @@ public class L1PcInstance extends L1Character {
 			}
 		}
 		sendPackets(new S_OwnCharStatus(this));
-//waja add 13級傳出新手村
-		if (getLevel() >= 13) { 
+
+		if (getLevel() >= 13) {//超過13級傳出新手村 
 			switch(getMapId()){
 				case 69: case 86:
 					L1Teleport.teleport(this, 33080, 33392, (short)4, (byte)5, true); //<-銀騎士村の座標
@@ -2468,7 +2467,7 @@ public class L1PcInstance extends L1Character {
 				break;
 			}
 		}
-//add end
+
 		if (getLevel() >= 52) { // 指定レベル
 			if (getMapId() == 777) { // 見捨てられた者たちの地(影の神殿)
 				L1Teleport.teleport(this, 34043, 32184, (short) 4, 5, true); // 象牙の塔前
@@ -2497,7 +2496,7 @@ public class L1PcInstance extends L1Character {
 			if (getHighLevel() - getLevel() >= Config.LEVEL_DOWN_RANGE) {
 				sendPackets(new S_ServerMessage(64)); // ワールドとの接續が切斷されました。
 				sendPackets(new S_Disconnect());
-				_log.info(String.format("超過允許範圍的水平，被迫切斷 %的連線。",
+				_log.info(String.format("超過允許等級上下限差異的範圍，切斷 %的連線。",
 						getName()));
 			}
 		}
@@ -2589,7 +2588,7 @@ public class L1PcInstance extends L1Character {
 	private ScheduledFuture<?> _hellFuture;
 
 	public void beginHell(boolean isFirst) {
-		// 地獄以外に居るときは地獄へ強制移動
+		// 座標非地獄則傳送到地獄地圖
 		if (getMapId() != 666) {
 			int locx = 32701;
 			int locy = 32777;
@@ -2598,10 +2597,10 @@ public class L1PcInstance extends L1Character {
 		}
 
 		if (isFirst) {
-			if (get_PKcount() <= 10) {
+			if (get_PKcount() <= 100) {
 				setHellTime(300);
 			} else {
-				setHellTime(300 * (get_PKcount() - 10) + 300);
+				setHellTime(300 * (get_PKcount() - 100) + 300);
 			}
 			// あなたのPK回數が%0になり、地獄に落とされました。あなたはここで%1分間反省しなければなりません。
 			sendPackets(new S_BlueMessage(552, String.valueOf(get_PKcount()),
