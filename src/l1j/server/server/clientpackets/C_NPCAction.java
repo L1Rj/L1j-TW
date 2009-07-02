@@ -3677,7 +3677,7 @@ public class C_NPCAction extends ClientBasePacket {
 		}
 //古老的發光項鍊-奇岩-迪艾司
 	 else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71179) {
-        int createitemrnd = _random.nextInt(100) + 1;
+        int createitemrnd = RandomArrayList.getArray100List();
         if (s.equalsIgnoreCase("A")) {
             if (!(pc.getInventory().checkItem(49028, 1) 
                     && pc.getInventory().checkItem(49029, 1)
@@ -3710,8 +3710,8 @@ public class C_NPCAction extends ClientBasePacket {
             } else if ((createitemrnd >= 11) && (createitemrnd <= 100)){
                 materials = new int[] { 49027, 41140 };
                 counts = new int [] { 1, 1 };
-                createitem = new int[] { 20422 };
-                createcount = new int[] { 1 };
+                createitem = new int[] { 49270 };
+                createcount = new int[] { 5 };
                 htmlid = "dh7";
             }
         }

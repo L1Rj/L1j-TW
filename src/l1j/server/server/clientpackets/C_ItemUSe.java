@@ -441,7 +441,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					return;
 				}
 
-				int rnd = RandomArrayList.getArray100List() + 1 ;
+				int rnd = RandomArrayList.getArray100List();
 				if (Config.ATTR_ENCHANT_CHANCE >= rnd) {
 					pc.sendPackets(new S_ServerMessage(161, l1iteminstance1
 							.getLogName(), "$245", "$247")); // \f1%0が%2%1光ります。
@@ -503,7 +503,7 @@ public class C_ItemUSe extends ClientBasePacket {
 							|| l1iteminstance1.getItem().getType() == 9
 							|| l1iteminstance1.getItem().getType() == 10
 							|| l1iteminstance1.getItem().getType() == 12)) {
-						int chance = RandomArrayList.getArray100List() + 1 ;
+						int chance = RandomArrayList.getArray100List();
 						switch (l1iteminstance1.getEnchantLevel()) {
 						case -1:
 						case 0:
@@ -518,21 +518,21 @@ public class C_ItemUSe extends ClientBasePacket {
 							if(l1iteminstance1.getEnchantLevel()==-1){
 								l1iteminstance1.setEnchantLevel(0);
 							}
-							if (chance < 25) {
+							if (chance < 15) {
 								l1iteminstance1
 										.setaddHp(l1iteminstance1.getaddHp() + 2);
 								if (l1iteminstance1.isEquipped()) {
 									pc.addMaxHp(2);
 									pc.addAc(1);
 								}
-							} else if (chance > 25 && chance < 50) {
+							} else if (chance > 15 && chance < 30) {
 								l1iteminstance1
 										.setaddMp(l1iteminstance1.getaddMp() + 1);
 								if (l1iteminstance1.isEquipped()) {
 									pc.addMaxMp(1);
 									pc.addAc(1);
 								}
-							} else if (chance > 50 && chance < 75) {
+							} else if (chance > 30 && chance < 40) {
 								l1iteminstance1.setFireMr(l1iteminstance1
 										.getFireMr() + 1);
 								l1iteminstance1.setWaterMr(l1iteminstance1
@@ -555,7 +555,7 @@ public class C_ItemUSe extends ClientBasePacket {
 							}
 							break;
 						case 5:
-							if (chance < 25) {
+							if (chance < 15) {
 								l1iteminstance1
 										.setaddHp(l1iteminstance1.getaddHp() + 2);
 								l1iteminstance1.setMpr(l1iteminstance1.getItem()
@@ -564,7 +564,7 @@ public class C_ItemUSe extends ClientBasePacket {
 									pc.addMaxHp(2);
 									pc.addAc(1);
 								}
-							} else if (chance > 25 && chance < 50) {
+							} else if (chance > 15 && chance < 30) {
 								l1iteminstance1
 										.setaddMp(l1iteminstance1.getaddMp() + 1);
 								l1iteminstance1.setaddSp(l1iteminstance1.getItem()
@@ -573,7 +573,7 @@ public class C_ItemUSe extends ClientBasePacket {
 									pc.addMaxMp(1);
 									pc.addAc(1);
 								}
-							} else if (chance > 50 && chance < 75) {
+							} else if (chance > 30 && chance < 40) {
 								l1iteminstance1.setFireMr(l1iteminstance1
 										.getFireMr() + 1);
 								l1iteminstance1.setWaterMr(l1iteminstance1
@@ -2312,7 +2312,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 41300) { // ストロングフィッシュ
 					UseHeallingPotion(pc, 35, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId >= 40136 && itemId <= 40161) { // 花火
+				} else if (itemId >= 40136 && itemId <= 40161) { // 煙火
 					int soundid = 3198;
 					if (itemId == 40154) {
 						soundid = 3198;
@@ -2322,7 +2322,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						soundid = 2028;
 					} else if (itemId == 40160) {
 						soundid = 2030;
-					} else if (itemId == 40145) {
+					} else if (itemId == 40145 || itemId == 49270) {// 寶石粉
 						soundid = 2029;
 					} else if (itemId == 40159) {
 						soundid = 2033;
@@ -2366,8 +2366,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						soundid = 2035;
 					} else if (itemId == 40158) {
 						soundid = 2049;
-					} else if (itemId == 49270) {//寶石粉
-				        soundid = 2029;//煙火類型
 					} else {
 						soundid = 3198;
 					}
