@@ -2312,7 +2312,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 41300) { // ストロングフィッシュ
 					UseHeallingPotion(pc, 35, 197);
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId >= 40136 && itemId <= 40161) { // 煙火
+				} else if (itemId >= 40136 && itemId <= 40161 || itemId == 49270) { // 煙火 寶石粉
 					int soundid = 3198;
 					if (itemId == 40154) {
 						soundid = 3198;
