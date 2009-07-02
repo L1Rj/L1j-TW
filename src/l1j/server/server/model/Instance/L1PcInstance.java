@@ -1375,20 +1375,20 @@ public class L1PcInstance extends L1Character {
 			// アライメント32000以上で0%、以降-1000每に0.4%
 			// アライメントが0未滿の場合は-1000每に0.8%
 			// アライメント-32000以下で最高51.2%のDROP率
-			int lostRate = (int) (((getLawful() + 32768D) / 1000D - 65D) * 4D);
+			int lostRate = (int) (((getLawful() + 32768D) / 1000D - 65D) * 6D);//原值4D
 			if (lostRate < 0) {
 				lostRate *= -1;
 				if (getLawful() < 0) {
-					lostRate *= 2;
+					lostRate *= 4;//原值2
 				}
 				short rnd = RandomArrayList.getArrayshortList((short) 1000);
 				if (rnd <= lostRate) {
 					int count = 1;
-					if (getLawful() <= -30000) {
+					if (getLawful() <= -20000) {//原值30000
 						count = RandomArrayList.getArray5List();
-					} else if (getLawful() <= -20000) {
+					} else if (getLawful() <= -10000) {//原值20000
 						count = RandomArrayList.getArray4List();
-					} else if (getLawful() <= -10000) {
+					} else if (getLawful() <= -5000) {//原值10000
 						count = RandomArrayList.getArray3List();
 					} else if (getLawful() < 0) {
 						count += 1;
@@ -1463,10 +1463,10 @@ public class L1PcInstance extends L1Character {
 					player.broadcastPacket(s_lawful);
 
 					if (isChangePkCount && player.get_PKcount() >= 5
-							&& player.get_PKcount() < 10) {
+							&& player.get_PKcount() < 100) {
 						// あなたのPK回數が%0になりました。回數が%1になると地獄行きです。
 						player.sendPackets(new S_BlueMessage(551, String
-								.valueOf(player.get_PKcount()), "10"));
+								.valueOf(player.get_PKcount()), "100"));
 					} else if (isChangePkCount && player.get_PKcount() >= 100) {//PK值大於100傳送地獄
 						player.beginHell(true);
 					}
@@ -1735,11 +1735,11 @@ public class L1PcInstance extends L1Character {
 		return (getClassId() == CLASSID_DARK_ELF_MALE || getClassId() == CLASSID_DARK_ELF_FEMALE);
 	}
 
-	public boolean isDragonKnight() {//龍 騎 士
+	public boolean isDragonKnight() {//龍騎士
 		return (getClassId() == CLASSID_DRAGON_KNIGHT_MALE || getClassId() == CLASSID_DRAGON_KNIGHT_FEMALE);
 	}
 
-	public boolean isIllusionist() {// 幻 術 師
+	public boolean isIllusionist() {//幻術師
 		return (getClassId() == CLASSID_ILLUSIONIST_MALE || getClassId() == CLASSID_ILLUSIONIST_FEMALE);
 	}
 
@@ -1775,13 +1775,13 @@ public class L1PcInstance extends L1Character {
 	private MpRegenerationByDoll _mpRegenByDoll;
 	private MpReductionByAwake _mpReductionByAwake;
 	private HpRegeneration _hpRegen;
-	private HpRegenerationByDoll _hpRegenByDoll;//waja add 魔法娃娃回血功能
+	private HpRegenerationByDoll _hpRegenByDoll;//魔法娃娃回血功能
 	private static Timer _regenTimer = new Timer(true);
 	private boolean _mpRegenActive;
 	private boolean _mpRegenActiveByDoll;
 	private boolean _mpReductionActiveByAwake;
 	private boolean _hpRegenActive;
-    private boolean _hpRegenActiveByDoll;//waja add 魔法娃娃回血功能
+    private boolean _hpRegenActiveByDoll;//魔法娃娃回血功能
 	private L1EquipmentSlot _equipSlot;
 	private L1PcDeleteTimer _pcDeleteTimer;
 
@@ -2170,7 +2170,7 @@ public class L1PcInstance extends L1Character {
 		_elfAttr = i;
 	}
 
-	private int _expRes; // ● EXP復舊
+	private int _expRes; // ● 經驗值購買
 
 	public int getExpRes() {
 		return _expRes;
@@ -2180,7 +2180,7 @@ public class L1PcInstance extends L1Character {
 		_expRes = i;
 	}
 
-	private int _partnerId; // ● 結婚相手
+	private int _partnerId; // ● 結婚對象
 
 	public int getPartnerId() {
 		return _partnerId;
@@ -2190,7 +2190,7 @@ public class L1PcInstance extends L1Character {
 		_partnerId = i;
 	}
 
-	private int _onlineStatus; // ● オンライン狀態
+	private int _onlineStatus; // ● 角色上線狀態
 
 	public int getOnlineStatus() {
 		return _onlineStatus;
@@ -2220,8 +2220,7 @@ public class L1PcInstance extends L1Character {
 		_contribution = i;
 	}
 
-	// 地獄に滯在する時間（秒）
-	private int _hellTime;
+	private int _hellTime;// 地獄停留時間(秒)
 
 	public int getHellTime() {
 		return _hellTime;
@@ -2231,7 +2230,7 @@ public class L1PcInstance extends L1Character {
 		_hellTime = i;
 	}
 
-	private boolean _banned; // ● 凍結
+	private boolean _banned; // ● 角色封鎖
 
 	public boolean isBanned() {
 		return _banned;
@@ -2241,7 +2240,7 @@ public class L1PcInstance extends L1Character {
 		_banned = flag;
 	}
 
-	private int _food; // ● 滿腹度
+	private int _food; // ● 飽食度
 
 	public int get_food() {
 		return _food;
@@ -2340,9 +2339,7 @@ public class L1PcInstance extends L1Character {
 		return (hasSkillEffect(HOLY_WALK)
 				|| hasSkillEffect(MOVING_ACCELERATION)
 				|| hasSkillEffect(WIND_WALK)
-//waja add 寵物競速
-				|| hasSkillEffect(STATUS_BRAVE2)
-//add end
+				|| hasSkillEffect(STATUS_BRAVE2)//寵物競速
 				|| hasSkillEffect(STATUS_RIBRAVE));
 	}
 
@@ -2429,8 +2426,8 @@ public class L1PcInstance extends L1Character {
 					getBaseWis(), getOriginalMpup());
 			addBaseMaxHp(randomHp);
 			addBaseMaxMp(randomMp);
-			setCurrentHp(getMaxHp());// 升級血滿
-			setCurrentMp(getMaxMp());// 升級魔滿
+			setCurrentHp(getMaxHp());//升級血補滿
+			setCurrentMp(getMaxMp());//升級魔補滿
 
 		}
 		resetBaseHitup();
@@ -2485,6 +2482,10 @@ public class L1PcInstance extends L1Character {
 			// レベルダウン時はランダム值をそのままマイナスする為に、base值に0を設定
 			short randomHp = CalcStat.calcStatHp(getType(), 0, getBaseCon(), getOriginalHpup());
 			short randomMp = CalcStat.calcStatMp(getType(), 0, getBaseWis(), getOriginalMpup());
+			if (getBaseMaxHp()<= 30);//waja add 預防降級扣到HP/MP過低
+			randomHp =0;
+			if (getBaseMaxMp()<= 20);
+			randomMp =0;//add end
 			addBaseMaxHp((short) -randomHp);
 			addBaseMaxMp((short) -randomMp);
 		}

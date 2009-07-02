@@ -844,7 +844,7 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(3);
 				os.writeC(get_durability());
 			}
-			// 兩手武器
+			// 雙手武器
 			if (getItem().isTwohandedWeapon()) {
 				os.writeC(4);
 			}
