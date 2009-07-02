@@ -76,7 +76,7 @@ public class L1EquipmentSlot {
 		_owner.addDmgModifierByArmor(item.getDmgModifierByArmor());
 		_owner.addBowHitModifierByArmor(item.getBowHitModifierByArmor());
 		_owner.addBowDmgModifierByArmor(item.getBowDmgModifierByArmor());
-//waja add & change 飾品強化卷軸
+//add & change 飾品強化卷軸
 /*
 		_owner.addEarth(item.get_defense_earth());
 		_owner.addWind(item.get_defense_wind());
@@ -160,7 +160,7 @@ public class L1EquipmentSlot {
 		_owner.addDmgModifierByArmor(-item.getDmgModifierByArmor());
 		_owner.addBowHitModifierByArmor(-item.getBowHitModifierByArmor());
 		_owner.addBowDmgModifierByArmor(-item.getBowDmgModifierByArmor());
-//waja add & chang 飾品強化卷軸
+//add & chang 飾品強化卷軸
 /*
 		_owner.addEarth(-item.get_defense_earth());
 		_owner.addWind(-item.get_defense_wind());
@@ -204,7 +204,7 @@ public class L1EquipmentSlot {
 		if (item.getType2() == 0) {
 			return;
 		}
-//waja add & chnage 飾品強化卷軸
+//add & chnage 飾品強化卷軸
 /*
 		_owner.addMaxHp(item.get_addhp());
 		_owner.addMaxMp(item.get_addmp());
@@ -237,7 +237,7 @@ public class L1EquipmentSlot {
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
 */
-//waja add 飾品強化卷軸
+//add 飾品強化卷軸
 		if (item.get_addsp() != 0 || equipment.getaddSp() !=0) {
 			_owner.addSp(item.get_addsp() + equipment.getaddSp());
 			_owner.sendPackets(new S_SPMR(_owner));
@@ -253,7 +253,7 @@ public class L1EquipmentSlot {
 				_owner.broadcastPacket(new S_SkillHaste(_owner.getId(), 1, 0));
 			}
 		}
-		if (item.getItemId() == 20383) { // 騎馬用ヘルム
+		if (item.getItemId() == 20383) { // 軍馬頭盔
 			if (_owner.hasSkillEffect(STATUS_BRAVE)) {
 				_owner.killSkillEffectTimer(STATUS_BRAVE);
 				_owner.sendPackets(new S_SkillBrave(_owner.getId(), 0, 0));
@@ -277,7 +277,7 @@ public class L1EquipmentSlot {
 			return;
 		}
 
-//waja add & change 飾品強化卷軸
+//add & change 飾品強化卷軸
 /*
 		_owner.addMaxHp(-item.get_addhp());
 		_owner.addMaxMp(-item.get_addmp());
@@ -310,12 +310,12 @@ public class L1EquipmentSlot {
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
 */
-//waja add 飾品強化卷軸
+//飾品強化卷軸
 		if (item.get_addsp() != 0 || equipment.getaddSp() != 0) {
 			_owner.addSp( - (item.get_addsp() + equipment.getaddSp()));
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
-//add end
+
 		if (item.isHasteItem()) {
 			_owner.addHasteItemEquipped(-1);
 			if (_owner.getHasteItemEquipped() == 0) {

@@ -224,16 +224,18 @@ public class L1PetInstance extends L1NpcInstance {
 	}
 
 	public synchronized void death(L1Character lastAttacker) {
+		int exp=getExpPercent();//waja add 寵物死亡
 		if (!isDead()) {
 			setDead(true);
 			setStatus(ActionCodes.ACTION_Die);
 			setCurrentHp(0);
+			setExpPercent(exp-5);//waja add 寵物死亡
 
 			getMap().setPassable(getLocation(), true);
 			broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Die));
 		}
 	}
-
+	
 	public void evolvePet(int new_itemobjid) {
 
 		L1Pet l1pet = PetTable.getInstance().getTemplate(_itemObjId);
@@ -490,13 +492,13 @@ public class L1PetInstance extends L1NpcInstance {
 
 	private int actionType(String action) {
 		int status = 0;
-		if (action.equalsIgnoreCase("aggressive")) { // 攻擊態勢
+		if (action.equalsIgnoreCase("aggressive")) { // 攻擊
 			status = 1;
-		} else if (action.equalsIgnoreCase("defensive")) { // 防御態勢
+		} else if (action.equalsIgnoreCase("defensive")) { // 防禦
 			status = 2;
-		} else if (action.equalsIgnoreCase("stay")) { // 休憩
+		} else if (action.equalsIgnoreCase("stay")) { // 休息
 			status = 3;
-		} else if (action.equalsIgnoreCase("extend")) { // 配備
+		} else if (action.equalsIgnoreCase("extend")) { // 裝備
 			status = 4;
 		} else if (action.equalsIgnoreCase("alert")) { // 警戒
 			status = 5;
