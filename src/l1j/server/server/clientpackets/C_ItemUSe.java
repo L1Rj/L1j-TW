@@ -2366,6 +2366,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						soundid = 2035;
 					} else if (itemId == 40158) {
 						soundid = 2049;
+					} else if (itemId == 49270) {//寶石粉
+				        soundid = 2029;//煙火類型
 					} else {
 						soundid = 3198;
 					}

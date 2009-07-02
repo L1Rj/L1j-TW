@@ -653,7 +653,7 @@ public class L1ItemInstance extends L1Object {
 			if (getItem().getMaxChargeCount() > 0) {
 				name.append(" (" + getChargeCount() + ")");
 			}
-			if (getItem().getItemId() == 20383) { // 騎馬用ヘルム
+			if (getItem().getItemId() == 20383) { // 軍馬頭盔
 				name.append(" (" + getChargeCount() + ")");
 			}
 			if (getItem().getMaxUseTime() > 0 && getItem().getType2() != 0) { // 武器防具で使用時間制限あり

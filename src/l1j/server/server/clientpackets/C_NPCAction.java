@@ -3675,7 +3675,47 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 		}
-
+//古老的發光項鍊-奇岩-迪艾司
+	 else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71179) {
+        int createitemrnd = _random.nextInt(100) + 1;
+        if (s.equalsIgnoreCase("A")) {
+            if (!(pc.getInventory().checkItem(49028, 1) 
+                    && pc.getInventory().checkItem(49029, 1)
+                    && pc.getInventory().checkItem(49030, 1)
+                    && pc.getInventory().checkItem(41139, 1))) {
+                htmlid = "dh6";
+            }else if ((createitemrnd <= 10) && (createitemrnd >= 1)) {
+                materials = new int[] { 49028, 49029, 49030, 41139 };
+                counts = new int [] { 1, 1, 1, 1 };
+                createitem = new int[] { 41140 };
+                createcount = new int[] { 1 };
+                htmlid = "dh8";
+            } else if ((createitemrnd >= 11) && (createitemrnd <= 100)){
+                materials = new int[] { 49028, 49029, 49030, 41139 };
+                counts = new int [] { 1, 1, 1, 1 };
+                createitem = new int[] { 49270 };
+                createcount = new int[] { 1 };
+                htmlid = "dh7";
+            }
+        } else if (s.equalsIgnoreCase("B")) {
+            if (!(pc.getInventory().checkItem(49027, 1)
+                    && pc.getInventory().checkItem(41140, 1))) {
+                htmlid = "dh6";
+            }else if ((createitemrnd <= 10) && (createitemrnd >= 1)) {
+                materials = new int[] { 49027, 41140 };
+                counts = new int [] { 1, 1 };
+                createitem = new int[] { 20422 };
+                createcount = new int[] { 1 };
+                htmlid = "dh9";
+            } else if ((createitemrnd >= 11) && (createitemrnd <= 100)){
+                materials = new int[] { 49027, 41140 };
+                counts = new int [] { 1, 1 };
+                createitem = new int[] { 20422 };
+                createcount = new int[] { 1 };
+                htmlid = "dh7";
+            }
+        }
+	 }
 //狩獵場NPC對話
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71259) {
 			if (pc.getInventory().checkItem(40665)) {
@@ -4595,9 +4635,9 @@ public class C_NPCAction extends ClientBasePacket {
 //判斷是否無道具施法(召戒清單、變身清單)
 	private boolean usePolyScroll(L1PcInstance pc, int itemId, String s) {
 		int time = 0;
-	if (itemId == 40088 || itemId == 40096) { // 象牙塔變形卷軸
+	if (itemId == 40088 || itemId == 40096) { //象牙塔變形卷軸
 	time = 1800;
-	} else if (itemId == 140088) { // 祝福變形卷軸
+	} else if (itemId == 140088) { //祝福變形卷軸
 	time = 2100;
 	} else if (itemId == 40008) { //變杖
 	time = 7200;

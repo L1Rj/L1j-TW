@@ -2644,6 +2644,16 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== 13) {
 					htmlid = "oreno1";
 				}
+//示愛任務-奇岩-傑夫
+			} else if (npcid == 71180) {
+				if (player.get_sex() == 0 || player.get_sex() == 61 
+						|| player.get_sex() == 138 || player.get_sex() == 734 
+						|| player.get_sex() == 2786 || player.get_sex() == 6658 
+						|| player.get_sex() == 6671) {
+					htmlid = "jp1";
+				} else {
+					htmlid = "jp3";
+				}
 //哈蒙任務
 			} else if (npcid == 80094) {
                 if (player.isIllusionist()) {

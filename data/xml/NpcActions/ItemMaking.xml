@@ -3124,7 +3124,7 @@
 			</Fail>
 		</MakeItem>
 	</Action>
-	<!-- 祭壇 -->
+	<!-- 古魯丁祭壇 -->
     <Action Name="A" NpcId="80094" AmountInputable="false">
         <MakeItem>
             <Item Amount="1" ItemId="41325"/>
@@ -3305,6 +3305,103 @@
             </Succeed>
             <Fail>
                 <ShowHtml HtmlId="altar8"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <!-- 奇岩 示愛任務 傑夫  -->
+    <Action Name="A" NpcId="71180">
+        <MakeItem>
+            <Material Amount="1000" ItemId="49026"/>
+            <Item Amount="1" ItemId="41093"/><!-- 夢幻的熊娃娃 -->
+            <Succeed>
+                <ShowHtml HtmlId="jp6"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="jp5"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="B" NpcId="71180">
+        <MakeItem>
+            <Material Amount="5000" ItemId="49026"/>
+            <Item Amount="1" ItemId="41094"/><!-- 誘惑的香水 -->
+            <Succeed>
+                <ShowHtml HtmlId="jp6"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="jp5"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="C" NpcId="71180">
+        <MakeItem>
+            <Material Amount="10000" ItemId="49026"/>
+            <Item Amount="1" ItemId="41095"/><!-- 漂亮的洋裝 -->
+            <Succeed>
+                <ShowHtml HtmlId="jp6"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="jp5"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="D" NpcId="71180">
+        <MakeItem>
+            <Material Amount="100000" ItemId="49026"/>
+            <Item Amount="1" ItemId="41096"/><!-- 華麗的戒指 -->
+            <Succeed>
+                <ShowHtml HtmlId="jp6"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="jp5"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="E" NpcId="71180">
+        <MakeItem>
+            <Material Amount="1000" ItemId="49026"/>
+            <Item Amount="1" ItemId="41098"/><!-- 英雄傳記 -->
+            <Succeed>
+                <ShowHtml HtmlId="jp8"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="jp5"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="F" NpcId="71180">
+        <MakeItem>
+            <Material Amount="5000" ItemId="49026"/>
+            <Item Amount="1" ItemId="41099"/><!-- 時髦的帽子 -->
+            <Succeed>
+                <ShowHtml HtmlId="jp8"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="jp5"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="G" NpcId="71180">
+        <MakeItem>
+            <Material Amount="10000" ItemId="49026"/>
+            <Item Amount="1" ItemId="41100"/><!-- 高級紅酒 -->
+            <Succeed>
+                <ShowHtml HtmlId="jp8"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="jp5"/>
+            </Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="H" NpcId="71180">
+        <MakeItem>
+            <Material Amount="100000" ItemId="49026"/>
+            <Item Amount="1" ItemId="41101"/><!-- 神秘的鑰匙 -->
+            <Succeed>
+                <ShowHtml HtmlId="jp8"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="jp5"/>
             </Fail>
         </MakeItem>
     </Action>
