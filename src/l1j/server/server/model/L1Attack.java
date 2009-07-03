@@ -1022,6 +1022,7 @@ public class L1Attack {
 
 		if (_weaponType2 == 17) { // キーリンク
 			dmg = L1WeaponSkill.getKiringkuDamage(_pc, _target);
+			dmg += calcAttrEnchantDmg();
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加ダメージ
@@ -1270,6 +1271,7 @@ public class L1Attack {
 
 		if (_weaponType2 == 17) { // キーリンク
 			dmg = L1WeaponSkill.getKiringkuDamage(_pc, _target);
+			dmg += calcAttrEnchantDmg();
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加ダメージ
