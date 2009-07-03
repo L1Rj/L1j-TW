@@ -221,7 +221,7 @@ public class L1WeaponSkill {
 					}
 				}
 
-				damage = calcDamageReduction((L1Character) object, damage,
+				damage = calcDamageReduction(pc, (L1Character) object, damage,
 						weaponSkill.getAttr());
 				if (damage <= 0) {
 					continue;
@@ -244,7 +244,7 @@ public class L1WeaponSkill {
 			}
 		}
 
-		return calcDamageReduction(cha, damage, weaponSkill.getAttr());
+		return calcDamageReduction(pc, cha, damage, weaponSkill.getAttr());
 	}
 
 	public static double getBaphometStaffDamage(L1PcInstance pc,
@@ -266,7 +266,7 @@ public class L1WeaponSkill {
 			pc.sendPackets(packet);
 			pc.broadcastPacket(packet);
 		}
-		return calcDamageReduction(cha, dmg, L1Skills.ATTR_EARTH);
+		return calcDamageReduction(pc, cha, dmg, L1Skills.ATTR_EARTH);
 	}
 
 	public static double getDiceDaggerDamage(L1PcInstance pc,
@@ -286,7 +286,7 @@ public class L1WeaponSkill {
 		return dmg;
 	}
 
-	public static int getKiringkuDamage(L1PcInstance pc, L1Character cha) {
+	public static double getKiringkuDamage(L1PcInstance pc, L1Character cha) {
 		int dmg = 0;
 		int dice = 5;
 		int diceCount = 2;
@@ -294,6 +294,7 @@ public class L1WeaponSkill {
 		int kiringkuDamage = 0;
 		int charaIntelligence = 0;
 		int getTargetMr = 0;
+		// XXX ダイスと値は本来、キーリンク毎に違うが不明な為、判明しているDSKのものに固定。
 
 		for (byte i = 0; i < diceCount; i++) {
 			kiringkuDamage += (RandomArrayList.getArrayshortList((short) dice) + 1);
@@ -309,25 +310,9 @@ public class L1WeaponSkill {
 
 		kiringkuDamage *= kiringkuCoefficientA;
 
-		double mrFloor = 0;
-		if (cha.getMr() <= 100) {
-			mrFloor = Math.floor((cha.getMr() - pc.getOriginalMagicHit()) / 2);
-		} else if (cha.getMr() >= 100) {
-			mrFloor = Math.floor((cha.getMr() - pc.getOriginalMagicHit()) / 10);
-		}
-
-		double kiringkuCoefficientB = 0;
-		if (cha.getMr() <= 100) {
-			kiringkuCoefficientB = 1 - 0.01 * mrFloor;
-		} else if (cha.getMr() > 100) {
-			kiringkuCoefficientB = 0.6 - 0.01 * mrFloor;
-		}
-
 		double kiringkuFloor = Math.floor(kiringkuDamage);
 
 		dmg += kiringkuFloor + pc.getWeapon().getEnchantLevel();
-
-		dmg *= kiringkuCoefficientB;
 
 		if (pc.getWeapon().getItem().getItemId() == 270) {
 			pc.sendPackets(new S_SkillSound(pc.getId(), 6983));
@@ -337,7 +322,7 @@ public class L1WeaponSkill {
 			pc.broadcastPacket(new S_SkillSound(pc.getId(), 7049));
 		}
 
-		return dmg;
+		return calcDamageReduction(pc, cha, dmg, 0);
 	}
 	
 	public static double getAreaSkillWeaponDamage(L1PcInstance pc,
@@ -417,7 +402,7 @@ public class L1WeaponSkill {
 					}
 				}
 
-				dmg = calcDamageReduction((L1Character) object, dmg, attr);
+				dmg = calcDamageReduction(pc, (L1Character) object, dmg, attr);
 				if (dmg <= 0) {
 					continue;
 				}
@@ -438,7 +423,7 @@ public class L1WeaponSkill {
 				}
 			}
 		}
-		return calcDamageReduction(cha, dmg, attr);
+		return calcDamageReduction(pc, cha, dmg, attr);
 	}
 
 	public static double getLightningEdgeDamage(L1PcInstance pc,
@@ -457,7 +442,7 @@ public class L1WeaponSkill {
 			pc.sendPackets(new S_SkillSound(cha.getId(), 10));
 			pc.broadcastPacket(new S_SkillSound(cha.getId(), 10));
 		}
-		return calcDamageReduction(cha, dmg, L1Skills.ATTR_WIND);
+		return calcDamageReduction(pc, cha, dmg, L1Skills.ATTR_WIND);
 	}
 
 	public static void giveArkMageDiseaseEffect(L1PcInstance pc,
@@ -502,7 +487,8 @@ public class L1WeaponSkill {
 		}
 	}
 
-	private static double calcDamageReduction(L1Character cha, double dmg, int attr) {
+	private static double calcDamageReduction(L1PcInstance pc, L1Character cha,
+			double dmg, int attr) {
 		// 凍結狀態orカウンターマジック中
 		if (isFreeze(cha)) {
 			return 0;
@@ -510,10 +496,19 @@ public class L1WeaponSkill {
 
 		// MRによるダメージ輕減
 		int mr = cha.getMr();
-		byte rnd = RandomArrayList.getArray100List();
-		if (mr >= rnd) {
-			dmg /= 2;
+		double mrFloor = 0;
+		if (mr <= 100) {
+			mrFloor = Math.floor((mr - pc.getOriginalMagicHit()) / 2);
+		} else if (mr >= 100) {
+			mrFloor = Math.floor((mr - pc.getOriginalMagicHit()) / 10);
 		}
+		double mrCoefficient = 0;
+		if (mr <= 100) {
+			mrCoefficient = 1 - 0.01 * mrFloor;
+		} else if (mr >= 100) {
+			mrCoefficient = 0.6 - 0.01 * mrFloor;
+		}
+		dmg *= mrCoefficient;
 
 		// 屬性によるダメージ輕減
 		int resist = 0;
