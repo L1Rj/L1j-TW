@@ -2644,8 +2644,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== 13) {
 					htmlid = "oreno1";
 				}
-//示愛任務-奇岩-傑夫
-			} else if (npcid == 71180) {
+			} else if (npcid == 71180) {//示愛任務-奇岩-傑夫
 				if (player.get_sex() == 0 || player.get_sex() == 61 
 						|| player.get_sex() == 138 || player.get_sex() == 734 
 						|| player.get_sex() == 2786 || player.get_sex() == 6658 
@@ -2654,6 +2653,24 @@ public class L1MerchantInstance extends L1NpcInstance {
 				} else {
 					htmlid = "jp3";
 				}
+            } else if (npcid ==  71181) {//示愛任務-奇岩-愛瑪伊
+                if (!(player.get_sex() == 0 || player.get_sex() == 61
+					|| player.get_sex() == 138 || player.get_sex() == 734
+					|| player.get_sex() == 2786 || player.get_sex() == 6658
+					|| player.get_sex() == 6671)) {
+                    htmlid = "my1";
+                } else {
+                    htmlid = "my2";
+                }
+            } else if (npcid ==  71182) {//示愛任務-奇岩-伊森
+                if (player.get_sex() == 0 || player.get_sex() == 61
+					|| player.get_sex() == 138 || player.get_sex() == 734
+					|| player.get_sex() == 2786 || player.get_sex() == 6658
+					|| player.get_sex() == 6671) {
+                    htmlid = "sm1";
+                } else {
+                    htmlid = "sm2";
+                }
 //哈蒙任務
 			} else if (npcid == 80094) {
                 if (player.isIllusionist()) {
@@ -2706,8 +2723,7 @@ public class L1MerchantInstance extends L1NpcInstance {
                 } else {
                     htmlid = "kuen1";
                 }
-//熾炎天使弓
-			} else if (npcid == 71256) { // ロビンフッド
+			} else if (npcid == 71256) {//熾炎天使弓 羅賓孫
 				if (!player.isElf()) {
 					htmlid = "robinhood2";
 				} else if (player.getQuest().get_step(L1Quest

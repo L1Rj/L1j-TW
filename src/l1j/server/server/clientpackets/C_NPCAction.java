@@ -1013,6 +1013,117 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("teleportURL")) {
 				htmlid = "amisoo2";
 			}
+//示愛任務-奇岩-愛瑪伊
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71181) {
+	            if (s.equalsIgnoreCase("A")) {
+	                if(pc.getInventory().checkItem(41093, 1)) {
+	                    pc.getInventory().consumeItem(41093, 1);
+	                    pc.getInventory().storeItem(41451, 1);
+	                    htmlid = "my5";
+	                } else {
+	                    htmlid = "my4";
+	                }
+	            } else if(s.equalsIgnoreCase("B")) {
+	                if(pc.getInventory().checkItem(41094, 1)) {
+	                    pc.getInventory().consumeItem(41094, 1);
+	                    pc.getInventory().storeItem(41452, 1);
+	                    htmlid = "my6";
+	                } else {
+	                    htmlid = "my4";
+	                }
+	            } else if(s.equalsIgnoreCase("C")) {
+	                if(pc.getInventory().checkItem(41095, 1)) {
+	                    pc.getInventory().consumeItem(41095, 1);
+	                    pc.getInventory().storeItem(41453, 1);
+	                    htmlid = "my7";
+	                } else {
+	                    htmlid = "my4";
+	                }
+	            } else if(s.equalsIgnoreCase("D")) {
+	                if(pc.getInventory().checkItem(41096, 1)) {
+	                    pc.getInventory().consumeItem(41096, 1);
+	                    pc.getInventory().storeItem(41454, 1);
+	                    htmlid = "my8";
+	                } else {
+	                    htmlid = "my4";
+	                }
+	            }
+//示愛任務-奇岩-伊森
+	        } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71182) {
+	            if (s.equalsIgnoreCase("A")) {
+	                if(pc.getInventory().checkItem(41098, 1)) {
+	                    pc.getInventory().consumeItem(41098, 1);
+	                    pc.getInventory().storeItem(41456, 1);
+	                    htmlid = "sm5";
+	                } else {
+	                    htmlid = "sm4";
+	                }
+	            } else if(s.equalsIgnoreCase("B")) {
+	                if(pc.getInventory().checkItem(41099, 1)) {
+	                    pc.getInventory().consumeItem(41099, 1);
+	                    pc.getInventory().storeItem(41457, 1);
+	                    htmlid = "sm6";
+	                } else {
+	                    htmlid = "sm4";
+	                }
+	            } else if(s.equalsIgnoreCase("C")) {
+	                if(pc.getInventory().checkItem(41100, 1)) {
+	                    pc.getInventory().consumeItem(41100, 1);
+	                    pc.getInventory().storeItem(41458, 1);
+	                    htmlid = "sm7";
+	                } else {
+	                    htmlid = "sm4";
+	                }
+	            } else if(s.equalsIgnoreCase("D")) {
+	                if(pc.getInventory().checkItem(41101, 1)) {
+	                    pc.getInventory().consumeItem(41101, 1);
+	                    pc.getInventory().storeItem(41459, 1);
+	                    htmlid = "sm8";
+	                } else {
+	                    htmlid = "sm4";
+	                }
+	            }
+//古老的發光項鍊-奇岩-迪艾司
+	       	 else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71179) {
+	               int createitemrnd = RandomArrayList.getArray100List();
+	               if (s.equalsIgnoreCase("A")) {
+	                   if (!(pc.getInventory().checkItem(49028, 1) 
+	                           && pc.getInventory().checkItem(49029, 1)
+	                           && pc.getInventory().checkItem(49030, 1)
+	                           && pc.getInventory().checkItem(41139, 1))) {
+	                       htmlid = "dh6";
+	                   }else if ((createitemrnd <= 10) && (createitemrnd >= 1)) {
+	                       materials = new int[] { 49028, 49029, 49030, 41139 };
+	                       counts = new int [] { 1, 1, 1, 1 };
+	                       createitem = new int[] { 41140 };
+	                       createcount = new int[] { 1 };
+	                       htmlid = "dh8";
+	                   } else if ((createitemrnd >= 11) && (createitemrnd <= 100)){
+	                       materials = new int[] { 49028, 49029, 49030, 41139 };
+	                       counts = new int [] { 1, 1, 1, 1 };
+	                       createitem = new int[] { 49270 };
+	                       createcount = new int[] { 1 };
+	                       htmlid = "dh7";
+	                   }
+	               } else if (s.equalsIgnoreCase("B")) {
+	                   if (!(pc.getInventory().checkItem(49027, 1)
+	                           && pc.getInventory().checkItem(41140, 1))) {
+	                       htmlid = "dh6";
+	                   }else if ((createitemrnd <= 10) && (createitemrnd >= 1)) {
+	                       materials = new int[] { 49027, 41140 };
+	                       counts = new int [] { 1, 1 };
+	                       createitem = new int[] { 20422 };
+	                       createcount = new int[] { 1 };
+	                       htmlid = "dh9";
+	                   } else if ((createitemrnd >= 11) && (createitemrnd <= 100)){
+	                       materials = new int[] { 49027, 41140 };
+	                       counts = new int [] { 1, 1 };
+	                       createitem = new int[] { 49270 };
+	                       createcount = new int[] { 5 };
+	                       htmlid = "dh7";
+	                   }
+	               }
+	       	 }
 //哈蒙任務
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80099) {
             if (s.equalsIgnoreCase("A")) {
@@ -1214,7 +1325,6 @@ public class C_NPCAction extends ClientBasePacket {
                         htmlid = "zybril11";
                     }
                 }
-
 // 遠征隊遺物 by BAO
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71258) {
             if (pc.getInventory().checkItem(40665)) {
@@ -3675,47 +3785,7 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 		}
-//古老的發光項鍊-奇岩-迪艾司
-	 else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71179) {
-        int createitemrnd = RandomArrayList.getArray100List();
-        if (s.equalsIgnoreCase("A")) {
-            if (!(pc.getInventory().checkItem(49028, 1) 
-                    && pc.getInventory().checkItem(49029, 1)
-                    && pc.getInventory().checkItem(49030, 1)
-                    && pc.getInventory().checkItem(41139, 1))) {
-                htmlid = "dh6";
-            }else if ((createitemrnd <= 10) && (createitemrnd >= 1)) {
-                materials = new int[] { 49028, 49029, 49030, 41139 };
-                counts = new int [] { 1, 1, 1, 1 };
-                createitem = new int[] { 41140 };
-                createcount = new int[] { 1 };
-                htmlid = "dh8";
-            } else if ((createitemrnd >= 11) && (createitemrnd <= 100)){
-                materials = new int[] { 49028, 49029, 49030, 41139 };
-                counts = new int [] { 1, 1, 1, 1 };
-                createitem = new int[] { 49270 };
-                createcount = new int[] { 1 };
-                htmlid = "dh7";
-            }
-        } else if (s.equalsIgnoreCase("B")) {
-            if (!(pc.getInventory().checkItem(49027, 1)
-                    && pc.getInventory().checkItem(41140, 1))) {
-                htmlid = "dh6";
-            }else if ((createitemrnd <= 10) && (createitemrnd >= 1)) {
-                materials = new int[] { 49027, 41140 };
-                counts = new int [] { 1, 1 };
-                createitem = new int[] { 20422 };
-                createcount = new int[] { 1 };
-                htmlid = "dh9";
-            } else if ((createitemrnd >= 11) && (createitemrnd <= 100)){
-                materials = new int[] { 49027, 41140 };
-                counts = new int [] { 1, 1 };
-                createitem = new int[] { 49270 };
-                createcount = new int[] { 5 };
-                htmlid = "dh7";
-            }
-        }
-	 }
+
 //狩獵場NPC對話
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71259) {
 			if (pc.getInventory().checkItem(40665)) {
