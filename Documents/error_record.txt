@@ -1,5 +1,9 @@
 以下為目前仍有的錯誤訊息紀錄
 
+090701
+l1j.server.server.clientpackets.C_NPCTalk <init>
+嚴重的: 找不到對應物件 objid=285290113
+
 090612
 l1j.server.server.ClientThread run
 Exception in thread "pool-1-thread-8388" java.lang.NullPointerException
