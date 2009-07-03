@@ -19,7 +19,7 @@
 		<Item ItemId="40304" Count="1" Chance="1" />
 		<Item ItemId="40428" Count="1" Chance="1" />
 	</TreasureBox>
-	<!--カリフの福袋 ルビー-->
+	<!--卡立普的袋子-->
 	<TreasureBox Type="RANDOM" ItemId="49006">
 		<Item ItemId="40011" Count="2" Chance="17" />
 		<Item ItemId="40013" Count="1" Chance="14" />
@@ -34,9 +34,9 @@
 		<Item ItemId="40399" Count="1" Chance="5" />
 		<Item ItemId="40441" Count="1" Chance="2" />
 		<Item ItemId="40468" Count="1" Chance="1" />
-		<Item ItemId="40305" Count="1" Chance="1" />
+		<Item ItemId="40305" Count="1" Chance="1" /><!--帕格里奧之石-->
 	</TreasureBox>
-	<!--カリフの福袋 サファイア-->
+	<!--卡立普的袋子-->
 	<TreasureBox Type="RANDOM" ItemId="49007">
 		<Item ItemId="40010" Count="5" Chance="19" />
 		<Item ItemId="40013" Count="2" Chance="15" />
@@ -51,7 +51,7 @@
 		<Item ItemId="40489" Count="1" Chance="1" />
 		<Item ItemId="40441" Count="1" Chance="1" />
 		<Item ItemId="40068" Count="1" Chance="1" />
-		<Item ItemId="40307" Count="1" Chance="1" />
+		<Item ItemId="40307" Count="1" Chance="1" /><!--沙哈之石-->
 	</TreasureBox>
 	<!--卡立普的袋子-->
 	<TreasureBox Type="RANDOM" ItemId="49008">
@@ -67,8 +67,8 @@
 		<Item ItemId="40397" Count="1" Chance="5" />
 		<Item ItemId="40515" Count="1" Chance="5" />
 		<Item ItemId="40068" Count="1" Chance="2" />
-		<Item ItemId="40444" Count="1" Chance="1" />
-		<Item ItemId="40306" Count="1" Chance="1" />
+		<Item ItemId="40444" Count="1" Chance="1" /><!--黑色米索莉原石-->
+		<Item ItemId="40306" Count="1" Chance="1" /><!--伊娃之石-->
 	</TreasureBox>
 	<!--卡立普的高級袋子-->
 	<TreasureBox Type="RANDOM" ItemId="49009">
@@ -143,124 +143,124 @@
 		<Item ItemId="40307" Count="1" Chance="1.5" /><!--沙哈之石-->
 		<Item ItemId="40394" Count="1" Chance="0.2" /><!--風龍鱗-->
 	</TreasureBox>
-	<!--ドルーガ家1世の家宝-->
+	<!--多魯嘉1世傳家之寶-->
 	<TreasureBox Type="RANDOM" ItemId="40623">
-		<Item ItemId="40308" Count="1000000" Chance="9" />
-		<Item ItemId="20130" Count="1" Chance="7" />
-		<Item ItemId="20153" Count="1" Chance="7" />
-		<Item ItemId="20108" Count="1" Chance="7" />
-		<Item ItemId="20119" Count="1" Chance="7" />
-		<Item ItemId="66" Count="1" Chance="7" />
-		<Item ItemId="40666" Count="1" Chance="7" />
-		<Item ItemId="40076" Count="1" Chance="7" />
-		<Item ItemId="40033" Count="1" Chance="7" />
-		<Item ItemId="40034" Count="1" Chance="7" />
-		<Item ItemId="40035" Count="1" Chance="7" />
-		<Item ItemId="40036" Count="1" Chance="7" />
-		<Item ItemId="40037" Count="1" Chance="7" />
-		<Item ItemId="40038" Count="1" Chance="7" />
+		<Item ItemId="40308" Count="1000000" Chance="90" /><!--金幣-->
+		<Item ItemId="20130" Count="1" Chance="1" /><!--古代地龍鱗盔甲-->
+		<Item ItemId="20153" Count="1" Chance="1" /><!--古代水龍鱗盔甲-->
+		<Item ItemId="20108" Count="1" Chance="1" /><!--古代風龍鱗盔甲-->
+		<Item ItemId="20119" Count="1" Chance="1" /><!--古代火龍鱗盔甲-->
+		<Item ItemId="66" Count="1" Chance="0.2" /><!--屠龍劍-->
+		<Item ItemId="40666" Count="1" Chance="2.4" /><!--無法得知的傳家之寶-->
+		<Item ItemId="40076" Count="1" Chance="1" /><!--古代的捲軸-->
+		<Item ItemId="40033" Count="1" Chance="0.4" /><!--萬能藥(力量)-->
+		<Item ItemId="40034" Count="1" Chance="0.4" /><!--萬能藥(體質)-->
+		<Item ItemId="40035" Count="1" Chance="0.4" /><!--萬能藥(敏捷)-->
+		<Item ItemId="40036" Count="1" Chance="0.4" /><!--萬能藥(智慧)-->
+		<Item ItemId="40037" Count="1" Chance="0.4" /><!--萬能藥(精神)-->
+		<Item ItemId="40038" Count="1" Chance="0.4" /><!--萬能藥(魅力)-->
 	</TreasureBox>
-	<!--ドルーガ家2世の家宝-->
+	<!--多魯嘉2世傳家之寶-->
 	<TreasureBox Type="RANDOM" ItemId="40624">
-		<Item ItemId="40308" Count="1000000" Chance="9" />
-		<Item ItemId="20130" Count="1" Chance="7" />
-		<Item ItemId="20153" Count="1" Chance="7" />
-		<Item ItemId="20108" Count="1" Chance="7" />
-		<Item ItemId="20119" Count="1" Chance="7" />
-		<Item ItemId="66" Count="1" Chance="7" />
-		<Item ItemId="40666" Count="1" Chance="7" />
-		<Item ItemId="40076" Count="1" Chance="7" />
-		<Item ItemId="40033" Count="1" Chance="7" />
-		<Item ItemId="40034" Count="1" Chance="7" />
-		<Item ItemId="40035" Count="1" Chance="7" />
-		<Item ItemId="40036" Count="1" Chance="7" />
-		<Item ItemId="40037" Count="1" Chance="7" />
-		<Item ItemId="40038" Count="1" Chance="7" />
+		<Item ItemId="40308" Count="1000000" Chance="89" /><!--金幣-->
+		<Item ItemId="20130" Count="1" Chance="1" /><!--古代地龍鱗盔甲-->
+		<Item ItemId="20153" Count="1" Chance="1" /><!--古代水龍鱗盔甲-->
+		<Item ItemId="20108" Count="1" Chance="1" /><!--古代風龍鱗盔甲-->
+		<Item ItemId="20119" Count="1" Chance="1" /><!--古代火龍鱗盔甲-->
+		<Item ItemId="66" Count="1" Chance="0.3" /><!--屠龍劍-->
+		<Item ItemId="40666" Count="1" Chance="5.3" /><!--無法得知的傳家之寶-->
+		<Item ItemId="40076" Count="1" Chance="0.2" /><!--古代的捲軸-->
+		<Item ItemId="40033" Count="1" Chance="0.2" /><!--萬能藥(力量)-->
+		<Item ItemId="40034" Count="1" Chance="0.2" /><!--萬能藥(體質)-->
+		<Item ItemId="40035" Count="1" Chance="0.2" /><!--萬能藥(敏捷)-->
+		<Item ItemId="40036" Count="1" Chance="0.2" /><!--萬能藥(智慧)-->
+		<Item ItemId="40037" Count="1" Chance="0.2" /><!--萬能藥(精神)-->
+		<Item ItemId="40038" Count="1" Chance="0.2" /><!--萬能藥(魅力)-->
 	</TreasureBox>
-	<!--ドルーガ家3世の家宝-->
+	<!--多魯嘉3世傳家之寶-->
 	<TreasureBox Type="RANDOM" ItemId="40625">
-		<Item ItemId="40308" Count="1000000" Chance="9" />
-		<Item ItemId="20130" Count="1" Chance="7" />
-		<Item ItemId="20153" Count="1" Chance="7" />
-		<Item ItemId="20108" Count="1" Chance="7" />
-		<Item ItemId="20119" Count="1" Chance="7" />
-		<Item ItemId="66" Count="1" Chance="7" />
-		<Item ItemId="40666" Count="1" Chance="7" />
-		<Item ItemId="40076" Count="1" Chance="7" />
-		<Item ItemId="40033" Count="1" Chance="7" />
-		<Item ItemId="40034" Count="1" Chance="7" />
-		<Item ItemId="40035" Count="1" Chance="7" />
-		<Item ItemId="40036" Count="1" Chance="7" />
-		<Item ItemId="40037" Count="1" Chance="7" />
-		<Item ItemId="40038" Count="1" Chance="7" />
+		<Item ItemId="40308" Count="1000000" Chance="85" /><!--金幣-->
+		<Item ItemId="20130" Count="1" Chance="2" /><!--古代地龍鱗盔甲-->
+		<Item ItemId="20153" Count="1" Chance="2" /><!--古代水龍鱗盔甲-->
+		<Item ItemId="20108" Count="1" Chance="2" /><!--古代風龍鱗盔甲-->
+		<Item ItemId="20119" Count="1" Chance="2" /><!--古代火龍鱗盔甲-->
+		<Item ItemId="66" Count="1" Chance="0.5" /><!--屠龍劍-->
+		<Item ItemId="40666" Count="1" Chance="4.4" /><!--無法得知的傳家之寶-->
+		<Item ItemId="40076" Count="1" Chance="0.3" /><!--古代的捲軸-->
+		<Item ItemId="40033" Count="1" Chance="0.3" /><!--萬能藥(力量)-->
+		<Item ItemId="40034" Count="1" Chance="0.3" /><!--萬能藥(體質)-->
+		<Item ItemId="40035" Count="1" Chance="0.3" /><!--萬能藥(敏捷)-->
+		<Item ItemId="40036" Count="1" Chance="0.3" /><!--萬能藥(智慧)-->
+		<Item ItemId="40037" Count="1" Chance="0.3" /><!--萬能藥(精神)-->
+		<Item ItemId="40038" Count="1" Chance="0.3" /><!--萬能藥(魅力)-->
 	</TreasureBox>
-	<!--ドルーガ家4世の家宝-->
+	<!--多魯嘉4世傳家之寶-->
 	<TreasureBox Type="RANDOM" ItemId="40626">
-		<Item ItemId="40308" Count="1000000" Chance="9" />
-		<Item ItemId="20130" Count="1" Chance="7" />
-		<Item ItemId="20153" Count="1" Chance="7" />
-		<Item ItemId="20108" Count="1" Chance="7" />
-		<Item ItemId="20119" Count="1" Chance="7" />
-		<Item ItemId="66" Count="1" Chance="7" />
-		<Item ItemId="40666" Count="1" Chance="7" />
-		<Item ItemId="40076" Count="1" Chance="7" />
-		<Item ItemId="40033" Count="1" Chance="7" />
-		<Item ItemId="40034" Count="1" Chance="7" />
-		<Item ItemId="40035" Count="1" Chance="7" />
-		<Item ItemId="40036" Count="1" Chance="7" />
-		<Item ItemId="40037" Count="1" Chance="7" />
-		<Item ItemId="40038" Count="1" Chance="7" />
+		<Item ItemId="40308" Count="1000000" Chance="81" /><!--金幣-->
+		<Item ItemId="20130" Count="1" Chance="2" /><!--古代地龍鱗盔甲-->
+		<Item ItemId="20153" Count="1" Chance="2" /><!--古代水龍鱗盔甲-->
+		<Item ItemId="20108" Count="1" Chance="2" /><!--古代風龍鱗盔甲-->
+		<Item ItemId="20119" Count="1" Chance="2" /><!--古代火龍鱗盔甲-->
+		<Item ItemId="66" Count="1" Chance="0.6" /><!--屠龍劍-->
+		<Item ItemId="40666" Count="1" Chance="6" /><!--無法得知的傳家之寶-->
+		<Item ItemId="40076" Count="1" Chance="2" /><!--古代的捲軸-->
+		<Item ItemId="40033" Count="1" Chance="0.4" /><!--萬能藥(力量)-->
+		<Item ItemId="40034" Count="1" Chance="0.4" /><!--萬能藥(體質)-->
+		<Item ItemId="40035" Count="1" Chance="0.4" /><!--萬能藥(敏捷)-->
+		<Item ItemId="40036" Count="1" Chance="0.4" /><!--萬能藥(智慧)-->
+		<Item ItemId="40037" Count="1" Chance="0.4" /><!--萬能藥(精神)-->
+		<Item ItemId="40038" Count="1" Chance="0.4" /><!--萬能藥(魅力)-->
 	</TreasureBox>
-	<!--ドルーガ家5世の家宝-->
+	<!--多魯嘉5世傳家之寶-->
 	<TreasureBox Type="RANDOM" ItemId="40627">
-		<Item ItemId="40308" Count="1000000" Chance="9" />
-		<Item ItemId="20130" Count="1" Chance="7" />
-		<Item ItemId="20153" Count="1" Chance="7" />
-		<Item ItemId="20108" Count="1" Chance="7" />
-		<Item ItemId="20119" Count="1" Chance="7" />
-		<Item ItemId="66" Count="1" Chance="7" />
-		<Item ItemId="40666" Count="1" Chance="7" />
-		<Item ItemId="40076" Count="1" Chance="7" />
-		<Item ItemId="40033" Count="1" Chance="7" />
-		<Item ItemId="40034" Count="1" Chance="7" />
-		<Item ItemId="40035" Count="1" Chance="7" />
-		<Item ItemId="40036" Count="1" Chance="7" />
-		<Item ItemId="40037" Count="1" Chance="7" />
-		<Item ItemId="40038" Count="1" Chance="7" />
+		<Item ItemId="40308" Count="1000000" Chance="80" /><!--金幣-->
+		<Item ItemId="20130" Count="1" Chance="2.2" /><!--古代地龍鱗盔甲-->
+		<Item ItemId="20153" Count="1" Chance="2.2" /><!--古代水龍鱗盔甲-->
+		<Item ItemId="20108" Count="1" Chance="2.2" /><!--古代風龍鱗盔甲-->
+		<Item ItemId="20119" Count="1" Chance="2.2" /><!--古代火龍鱗盔甲-->
+		<Item ItemId="66" Count="1" Chance="1.2" /><!--屠龍劍-->
+		<Item ItemId="40666" Count="1" Chance="7.2" /><!--無法得知的傳家之寶-->
+		<Item ItemId="40076" Count="1" Chance="0.4" /><!--古代的捲軸-->
+		<Item ItemId="40033" Count="1" Chance="0.4" /><!--萬能藥(力量)-->
+		<Item ItemId="40034" Count="1" Chance="0.4" /><!--萬能藥(體質)-->
+		<Item ItemId="40035" Count="1" Chance="0.4" /><!--萬能藥(敏捷)-->
+		<Item ItemId="40036" Count="1" Chance="0.4" /><!--萬能藥(智慧)-->
+		<Item ItemId="40037" Count="1" Chance="0.4" /><!--萬能藥(精神)-->
+		<Item ItemId="40038" Count="1" Chance="0.4" /><!--萬能藥(魅力)-->
 	</TreasureBox>
-	<!--ドルーガ家6世の家宝-->
+	<!--多魯嘉6世傳家之寶-->
 	<TreasureBox Type="RANDOM" ItemId="40628">
-		<Item ItemId="40308" Count="1000000" Chance="9" />
-		<Item ItemId="20130" Count="1" Chance="7" />
-		<Item ItemId="20153" Count="1" Chance="7" />
-		<Item ItemId="20108" Count="1" Chance="7" />
-		<Item ItemId="20119" Count="1" Chance="7" />
-		<Item ItemId="66" Count="1" Chance="7" />
-		<Item ItemId="40666" Count="1" Chance="7" />
-		<Item ItemId="40076" Count="1" Chance="7" />
-		<Item ItemId="40033" Count="1" Chance="7" />
-		<Item ItemId="40034" Count="1" Chance="7" />
-		<Item ItemId="40035" Count="1" Chance="7" />
-		<Item ItemId="40036" Count="1" Chance="7" />
-		<Item ItemId="40037" Count="1" Chance="7" />
-		<Item ItemId="40038" Count="1" Chance="7" />
+		<Item ItemId="40308" Count="1000000" Chance="76" /><!--金幣-->
+		<Item ItemId="20130" Count="1" Chance="2.5" /><!--古代地龍鱗盔甲-->
+		<Item ItemId="20153" Count="1" Chance="2.5" /><!--古代水龍鱗盔甲-->
+		<Item ItemId="20108" Count="1" Chance="2.5" /><!--古代風龍鱗盔甲-->
+		<Item ItemId="20119" Count="1" Chance="2.5" />
+		<Item ItemId="66" Count="1" Chance="2" /><!--屠龍劍-->
+		<Item ItemId="40666" Count="1" Chance="7.8" /><!--無法得知的傳家之寶-->
+		<Item ItemId="40076" Count="1" Chance="0.6" /><!--古代的捲軸-->
+		<Item ItemId="40033" Count="1" Chance="0.6" /><!--萬能藥(力量)-->
+		<Item ItemId="40034" Count="1" Chance="0.6" /><!--萬能藥(體質)-->
+		<Item ItemId="40035" Count="1" Chance="0.6" /><!--萬能藥(敏捷)-->
+		<Item ItemId="40036" Count="1" Chance="0.6" /><!--萬能藥(智慧)-->
+		<Item ItemId="40037" Count="1" Chance="0.6" /><!--萬能藥(精神)-->
+		<Item ItemId="40038" Count="1" Chance="0.6" /><!--萬能藥(魅力)-->
 	</TreasureBox>
-	<!--ドルーガ家7世の家宝-->
+	<!--多魯嘉7世傳家之寶-->
 	<TreasureBox Type="RANDOM" ItemId="40629">
-		<Item ItemId="40308" Count="1000000" Chance="9" />
-		<Item ItemId="20130" Count="1" Chance="7" />
-		<Item ItemId="20153" Count="1" Chance="7" />
-		<Item ItemId="20108" Count="1" Chance="7" />
-		<Item ItemId="20119" Count="1" Chance="7" />
-		<Item ItemId="66" Count="1" Chance="7" />
-		<Item ItemId="40666" Count="1" Chance="7" />
-		<Item ItemId="40076" Count="1" Chance="7" />
-		<Item ItemId="40033" Count="1" Chance="7" />
-		<Item ItemId="40034" Count="1" Chance="7" />
-		<Item ItemId="40035" Count="1" Chance="7" />
-		<Item ItemId="40036" Count="1" Chance="7" />
-		<Item ItemId="40037" Count="1" Chance="7" />
-		<Item ItemId="40038" Count="1" Chance="7" />
+		<Item ItemId="40308" Count="1000000" Chance="68" /><!--金幣-->
+		<Item ItemId="20130" Count="1" Chance="3" /><!--古代地龍鱗盔甲-->
+		<Item ItemId="20153" Count="1" Chance="3" /><!--古代水龍鱗盔甲-->
+		<Item ItemId="20108" Count="1" Chance="3" /><!--古代風龍鱗盔甲-->
+		<Item ItemId="20119" Count="1" Chance="3" />
+		<Item ItemId="66" Count="1" Chance="3" /><!--屠龍劍-->
+		<Item ItemId="40666" Count="1" Chance="10" /><!--無法得知的傳家之寶-->
+		<Item ItemId="40076" Count="1" Chance="1" /><!--古代的捲軸-->
+		<Item ItemId="40033" Count="1" Chance="1" /><!--萬能藥(力量)-->
+		<Item ItemId="40034" Count="1" Chance="1" /><!--萬能藥(體質)-->
+		<Item ItemId="40035" Count="1" Chance="1" /><!--萬能藥(敏捷)-->
+		<Item ItemId="40036" Count="1" Chance="1" /><!--萬能藥(智慧)-->
+		<Item ItemId="40037" Count="1" Chance="1" /><!--萬能藥(精神)-->
+		<Item ItemId="40038" Count="1" Chance="1" /><!--萬能藥(魅力)-->
 	</TreasureBox>
 	<!--皮爾斯的禮物-->
 	<TreasureBox Type="RANDOM" ItemId="40715">
@@ -279,14 +279,14 @@
 		<Item ItemId="162" Count="1" Chance="0.1" /><!-- 幽暗 鋼爪-->
 		<Item ItemId="81" Count="1" Chance="0.1" /><!-- 幽暗 雙刀-->
 		<Item ItemId="177" Count="1" Chance="0.1" /><!-- 幽暗十字弓-->
-		<Item ItemId="40739" Count="1000" Chance="15.7" /><!-- 飛刀-->
+		<Item ItemId="40739" Count="1000" Chance="17.7" /><!-- 飛刀-->
 		<Item ItemId="40738" Count="1000" Chance="13" /><!-- 銀飛刀-->
 		<Item ItemId="40740" Count="500" Chance="11" /><!-- 重飛刀-->
-		<Item ItemId="20032" Count="1" Chance="1" /><!-- 黑暗頭飾-->
+		<Item ItemId="20032" Count="1" Chance="0.3" /><!-- 黑暗頭飾-->
 		<Item ItemId="20070" Count="1" Chance="1" /><!-- 黑暗鬥篷-->
-		<Item ItemId="20180" Count="1" Chance="1" /><!-- 黑暗手套-->
+		<Item ItemId="20180" Count="1" Chance="0.4" /><!-- 黑暗手套-->
 		<Item ItemId="20132" Count="1" Chance="1" /><!-- 黑暗披肩-->
-		<Item ItemId="20210" Count="1" Chance="1" /><!-- 黑暗長靴-->
+		<Item ItemId="20210" Count="1" Chance="0.3" /><!-- 黑暗長靴-->
 	</TreasureBox>
 	<!--ゴールドパンプキン-->
 	<TreasureBox Type="RANDOM" ItemId="40722">
@@ -595,25 +595,25 @@
 	<TreasureBox Type="SPECIFIC" ItemId="41312">
 		<Item ItemId="41313" Count="1" />
 	</TreasureBox>
-	<!--魔霊軍の壺-->
+	<!--冥法軍王印記盒-->
 	<TreasureBox Type="RANDOM" ItemId="40636">
 		<Item ItemId="40308" Count="300" Chance="80" />
 		<Item ItemId="40308" Count="1000" Chance="19" />
 		<Item ItemId="40308" Count="10000" Chance="1" />
 	</TreasureBox>
-	<!--魔獣軍の壺-->
+	<!--魔獸軍王印記盒-->
 	<TreasureBox Type="RANDOM" ItemId="40639">
 		<Item ItemId="40308" Count="300" Chance="80" />
 		<Item ItemId="40308" Count="1000" Chance="19" />
 		<Item ItemId="40308" Count="10000" Chance="1" />
 	</TreasureBox>
-	<!--冥法軍の壺-->
+	<!--暗殺軍王印記盒-->
 	<TreasureBox Type="RANDOM" ItemId="40640">
 		<Item ItemId="40308" Count="300" Chance="80" />
 		<Item ItemId="40308" Count="1000" Chance="19" />
 		<Item ItemId="40308" Count="10000" Chance="1" />
 	</TreasureBox>
-	<!--暗殺軍の壺-->
+	<!--暗殺軍王印記盒-->
 	<TreasureBox Type="RANDOM" ItemId="40668">
 		<Item ItemId="40308" Count="300" Chance="80" />
 		<Item ItemId="40308" Count="1000" Chance="19" />
