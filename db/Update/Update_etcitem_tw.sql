@@ -640,7 +640,7 @@ Update etcitem Set name = '法令軍王印記盒' Where item_id = '40636';
 Update etcitem Set name = '瑪勒巴的信' Where item_id = '40637';
 Update etcitem Set name = '魔獸軍團印記' Where item_id = '40638';
 Update etcitem Set name = '魔獸軍王印記盒' Where item_id = '40639';
-Update etcitem Set name = '暗殺軍王印記盒' Where item_id = '40640';
+Update etcitem Set name = '冥法軍王印記盒' Where item_id = '40640';
 Update etcitem Set name = '說話卷軸' Where item_id = '40641';
 Update etcitem Set name = '冥法軍團印記' Where item_id = '40642';
 Update etcitem Set name = '水之氣息' Where item_id = '40643';
