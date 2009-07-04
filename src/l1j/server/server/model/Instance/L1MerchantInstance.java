@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -2650,17 +2650,17 @@ public class L1MerchantInstance extends L1NpcInstance {
 				} else {
 					htmlid = "jp1";
 				}
-            		} else if (npcid ==  71181) {//示愛任務-奇岩-愛瑪伊
-               			 if (player.get_sex() == 0) {
-                		   	htmlid = "my2";
-               			 } else {
-                    			htmlid = "my1";
-               			}
-           		} else if (npcid ==  71182) {//示愛任務-奇岩-伊森
-               			 if (player.get_sex() == 0) {
-                   			htmlid = "sm2";
-                		} else {
-                  			htmlid = "sm1";
+			} else if (npcid ==  71181) {//示愛任務-奇岩-愛瑪伊
+				if (player.get_sex() == 0) {
+					htmlid = "my2";
+				} else {
+					htmlid = "my1";
+				}
+			} else if (npcid ==  71182) {//示愛任務-奇岩-伊森
+				if (player.get_sex() == 0) {
+					htmlid = "sm2";
+				} else {
+					htmlid = "sm1";
                 		}
 //哈蒙任務
 			} else if (npcid == 80094) {
