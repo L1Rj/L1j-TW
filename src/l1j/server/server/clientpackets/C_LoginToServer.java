@@ -129,6 +129,8 @@ public class C_LoginToServer extends ClientBasePacket {
 		_log.info("【玩家登入】 帳號=" + login
 				+ " 角色=" + charName + " IP位址:" + client.getHostname());
 
+		int currentHpAtLoad = pc.getCurrentHp();
+		int currentMpAtLoad = pc.getCurrentMp();
 		pc.clearSkillMastery();
 		pc.setOnlineStatus(1);
 		CharacterTable.updateOnlineStatus(pc);
@@ -293,6 +295,12 @@ public class C_LoginToServer extends ClientBasePacket {
 			}
 		}
 
+		if (currentHpAtLoad > pc.getCurrentHp()) {
+			pc.setCurrentHp(currentHpAtLoad);
+		}
+		if (currentMpAtLoad > pc.getCurrentMp()) {
+			pc.setCurrentMp(currentMpAtLoad);
+		}
 		pc.startHpRegeneration();
 		pc.startMpRegeneration();
 		pc.startObjectAutoUpdate();

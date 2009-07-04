@@ -19,6 +19,7 @@
 package l1j.server.server.model;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -36,6 +37,9 @@ import l1j.server.server.templates.L1Item;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1EquipmentSlot {
+	private static Logger _log = Logger.getLogger(L1EquipmentSlot.class
+			.getName());
+
 	private L1PcInstance _owner;
 
 	/**
@@ -206,11 +210,19 @@ public class L1EquipmentSlot {
 		}
 //add & chnage 飾品強化卷軸
 /*
-		_owner.addMaxHp(item.get_addhp());
-		_owner.addMaxMp(item.get_addmp());
+		if (item.get_addhp() != 0) {
+			_owner.addMaxHp(item.get_addhp());
+		}
+		if (item.get_addmp() != 0) {
+			_owner.addMaxMp(item.get_addmp());
+		}
 */
-		_owner.addMaxHp(item.get_addhp() + equipment.getaddHp());
-		_owner.addMaxMp(item.get_addmp() + equipment.getaddMp());
+		if (item.get_addhp() != 0 || equipment.getaddHp() != 0) {
+			_owner.addMaxHp(item.get_addhp()+ equipment.getaddHp());
+		}
+		if (item.get_addmp() != 0 || equipment.getaddMp() != 0) {
+			_owner.addMaxMp(item.get_addmp()+ equipment.getaddMp());
+		}
 //add end
 		_owner.addStr(item.get_addstr());
 		_owner.addCon(item.get_addcon());
@@ -279,11 +291,19 @@ public class L1EquipmentSlot {
 
 //add & change 飾品強化卷軸
 /*
-		_owner.addMaxHp(-item.get_addhp());
-		_owner.addMaxMp(-item.get_addmp());
+		if (item.get_addhp() != 0) {
+			_owner.addMaxHp(-item.get_addhp());
+		}
+		if (item.get_addmp() != 0) {
+			_owner.addMaxMp(-item.get_addmp());
+		}
 */
-		_owner.addMaxHp( - (item.get_addhp() + equipment.getaddHp()));
-		_owner.addMaxMp( - (item.get_addmp() + equipment.getaddMp()));
+		if (item.get_addhp() != 0 || equipment.getaddHp() != 0) {
+			_owner.addMaxHp(-(item.get_addhp() + equipment.getaddHp()));
+		}
+		if (item.get_addmp() != 0 || equipment.getaddMp() != 0) {
+			_owner.addMaxMp(-(item.get_addmp()+ equipment.getaddMp()));
+		}
 //add end
 		_owner.addStr((byte) -item.get_addstr());
 		_owner.addCon((byte) -item.get_addcon());
