@@ -2646,9 +2646,9 @@ public class L1MerchantInstance extends L1NpcInstance {
 				}
 			} else if (npcid == 71180) {//示愛任務-奇岩-傑夫
 				if (player.get_sex() == 0) {
-					htmlid = "jp3";
-				} else {
 					htmlid = "jp1";
+				} else {
+					htmlid = "jp3";
 				}
 			} else if (npcid ==  71181) {//示愛任務-奇岩-愛瑪伊
 				if (player.get_sex() == 0) {
@@ -2658,9 +2658,9 @@ public class L1MerchantInstance extends L1NpcInstance {
 				}
 			} else if (npcid ==  71182) {//示愛任務-奇岩-伊森
 				if (player.get_sex() == 0) {
-					htmlid = "sm2";
-				} else {
 					htmlid = "sm1";
+				} else {
+					htmlid = "sm2";
                 		}
 //哈蒙任務
 			} else if (npcid == 80094) {
