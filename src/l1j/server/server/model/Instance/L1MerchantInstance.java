@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -2645,28 +2645,28 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "oreno1";
 				}
 			} else if (npcid == 71180) {//示愛任務-奇岩-傑夫
-				if (player.get_sex() == 0 || player.get_sex() == 61 
-						|| player.get_sex() == 138 || player.get_sex() == 734 
-						|| player.get_sex() == 2786 || player.get_sex() == 6658 
-						|| player.get_sex() == 6671) {
+				if (player.getClassId() == 0 || (player.getClassId() == 61 
+						|| (player.getClassId() == 138 || (player.getClassId() == 734 
+						|| (player.getClassId() == 2786 || (player.getClassId() == 6658 
+						|| (player.getClassId() == 6671) {
 					htmlid = "jp1";
 				} else {
 					htmlid = "jp3";
 				}
             } else if (npcid ==  71181) {//示愛任務-奇岩-愛瑪伊
-                if (!(player.get_sex() == 0 || player.get_sex() == 61
-					|| player.get_sex() == 138 || player.get_sex() == 734
-					|| player.get_sex() == 2786 || player.get_sex() == 6658
-					|| player.get_sex() == 6671)) {
+                if (!(player.getClassId() == 0 || (player.getClassId() == 61
+					|| (player.getClassId() == 138 || (player.getClassId() == 734
+					|| (player.getClassId() == 2786 || (player.getClassId() == 6658
+					|| (player.getClassId() == 6671)) {
                     htmlid = "my1";
                 } else {
                     htmlid = "my2";
                 }
             } else if (npcid ==  71182) {//示愛任務-奇岩-伊森
-                if (player.get_sex() == 0 || player.get_sex() == 61
-					|| player.get_sex() == 138 || player.get_sex() == 734
-					|| player.get_sex() == 2786 || player.get_sex() == 6658
-					|| player.get_sex() == 6671) {
+                if (player.getClassId() == 0 || (player.getClassId() == 61
+					|| (player.getClassId() == 138 || (player.getClassId() == 734
+					|| (player.getClassId() == 2786 || (player.getClassId() == 6658
+					|| (player.getClassId() == 6671) {
                     htmlid = "sm1";
                 } else {
                     htmlid = "sm2";
