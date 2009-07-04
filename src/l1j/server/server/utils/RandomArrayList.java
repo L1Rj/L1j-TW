@@ -98,7 +98,7 @@ public class RandomArrayList {
 	}
 
 	public static short getArrayshortList(short rang) {
-		if (rang > 0) {
+		if (rang > 1) {
 			if (listint < 9999)
 				return (short) (Arrayshort[++listint] % rang);
 			else
