@@ -278,6 +278,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 				attack.calcDamage();
 				attack.calcStaffOfMana();
 				attack.addPcPoisonAttack(player, this);
+				attack.addChaserAttack();
 			}
 			attack.action();
 			attack.commit();
@@ -287,6 +288,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 				attack.calcDamage();
 				attack.calcStaffOfMana();
 				attack.addPcPoisonAttack(player, this);
+				attack.addChaserAttack();
 			}
 			attack.action();
 			attack.commit();

@@ -487,7 +487,7 @@ public class L1WeaponSkill {
 		}
 	}
 
-	private static double calcDamageReduction(L1PcInstance pc, L1Character cha,
+	public static double calcDamageReduction(L1PcInstance pc, L1Character cha,
 			double dmg, int attr) {
 		// 凍結狀態orカウンターマジック中
 		if (isFreeze(cha)) {

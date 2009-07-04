@@ -1716,6 +1716,26 @@ public class L1Attack {
 		}
 	}
 
+	// ■■■■ チェイサーによる攻撃を付加 ■■■■
+	public void addChaserAttack() {
+		int mr = 0;
+		if (_calcType == PC_PC) {
+			mr = _targetPc.getMr() - 2 * _pc.getOriginalMagicHit();
+		} else if (_calcType == PC_NPC) {
+			mr = _targetNpc.getMr() - 2 * _pc.getOriginalMagicHit();
+		}
+		double probability = 3 + _pc.getTrueSp() * 0.25;
+		probability -= (mr / 10) * 0.1;
+		if (_weaponId == 265 || _weaponId == 266
+				|| _weaponId == 267 || _weaponId == 268) {
+			if (probability > RandomArrayList.getArray100List()) {// 原本寫法  _random.nextInt(100) + 1
+				L1Chaser chaser = new L1Chaser(_pc, _target);
+				chaser.begin();
+			}
+		}
+	}
+
+
 	/* ■■■■■■■■■■■■■■ 攻擊モーション送信 ■■■■■■■■■■■■■■ */
 
 	public void action() {

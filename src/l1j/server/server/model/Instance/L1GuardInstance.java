@@ -115,6 +115,7 @@ public class L1GuardInstance extends L1NpcInstance {
 					attack.calcDamage();
 					attack.calcStaffOfMana();
 					attack.addPcPoisonAttack(pc, this);
+					attack.addChaserAttack();
 				}
 				attack.action();
 				attack.commit();

@@ -930,6 +930,7 @@ public class L1PcInstance extends L1Character {
 					attack.calcDamage();
 					attack.calcStaffOfMana();
 					attack.addPcPoisonAttack(attacker, this);
+					attack.addChaserAttack();
 				}
 			}
 			if (isCounterBarrier) {
