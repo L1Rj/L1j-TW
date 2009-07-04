@@ -224,12 +224,11 @@ public class L1PetInstance extends L1NpcInstance {
 	}
 
 	public synchronized void death(L1Character lastAttacker) {
-		int exp=getExpPercent();//waja add 寵物死亡
 		if (!isDead()) {
 			setDead(true);
 			setStatus(ActionCodes.ACTION_Die);
 			setCurrentHp(0);
-			setExpPercent(exp-5);//waja add 寵物死亡
+			setExpPercent(getExpPercent()-5);//waja add 寵物死亡
 
 			getMap().setPassable(getLocation(), true);
 			broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Die));

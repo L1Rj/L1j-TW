@@ -3405,4 +3405,65 @@
             </Fail>
         </MakeItem>
     </Action>
+	<!-- 奇岩 古老的發光項鍊 路武基 -->
+    <Action Name="A" NpcId="71178">
+        <MakeItem>
+            <Material Amount="1" ItemId="41139"/>
+            <Item Amount="500" ItemId="40308"/>
+            <Succeed>
+				<ShowHtml HtmlId="ru8"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId=""/>
+			</Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="B" NpcId="71178">
+        <MakeItem>
+            <Material Amount="1" ItemId="49028"/>
+            <Item Amount="100" ItemId="40308"/>
+            <Succeed>
+				<ShowHtml HtmlId=""/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId=""/>
+			</Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="C" NpcId="71178">
+        <MakeItem>
+            <Material Amount="1" ItemId="49030"/>
+            <Item Amount="100" ItemId="40308"/>
+            <Succeed>
+				<ShowHtml HtmlId=""/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId=""/>
+			</Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="D" NpcId="71178">
+        <MakeItem>
+            <Material Amount="1" ItemId="49029"/>
+            <Item Amount="100" ItemId="40308"/>
+            <Succeed>
+				<ShowHtml HtmlId=""/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId=""/>
+			</Fail>
+        </MakeItem>
+    </Action>
+    <Action Name="E" NpcId="71178">
+        <MakeItem>
+            <Material Amount="1" ItemId="41140"/>
+            <Item Amount="10000" ItemId="40308"/>
+            <Succeed>
+				<ShowHtml HtmlId="ru9"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId=""/>
+			</Fail>
+        </MakeItem>
+    </Action>
 </NpcActionList>

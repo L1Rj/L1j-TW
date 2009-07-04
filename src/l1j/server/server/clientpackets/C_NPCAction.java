@@ -1083,7 +1083,7 @@ public class C_NPCAction extends ClientBasePacket {
 	                    htmlid = "sm4";
 	                }
 	            }
-//古老的發光項鍊-奇岩-迪艾司
+//發光的古老項鍊-奇岩-迪艾司
 	       	 else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71179) {
 	               int createitemrnd = RandomArrayList.getArray100List();
 	               if (s.equalsIgnoreCase("A")) {
@@ -1124,6 +1124,75 @@ public class C_NPCAction extends ClientBasePacket {
 	                   }
 	               }
 	       	 }
+//奇岩-發光的古老項鍊-路武基
+	        } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71181) {
+		            if (s.equalsIgnoreCase("A")) {
+		                if(pc.getInventory().checkItem(41093, 1)) {
+		                    pc.getInventory().consumeItem(41093, 1);
+		                    pc.getInventory().storeItem(49271, 1);
+		                    htmlid = "my5";
+		                } else {
+		                    htmlid = "my4";
+		                }
+		            } else if(s.equalsIgnoreCase("B")) {
+		                if(pc.getInventory().checkItem(41094, 1)) {
+		                    pc.getInventory().consumeItem(41094, 1);
+		                    pc.getInventory().storeItem(49272, 1);
+		                    htmlid = "my6";
+		                } else {
+		                    htmlid = "my4";
+		                }
+		            } else if(s.equalsIgnoreCase("C")) {
+		                if(pc.getInventory().checkItem(41095, 1)) {
+		                    pc.getInventory().consumeItem(41095, 1);
+		                    pc.getInventory().storeItem(49273, 1);
+		                    htmlid = "my7";
+		                } else {
+		                    htmlid = "my4";
+		                }
+		            } else if(s.equalsIgnoreCase("D")) {
+		                if(pc.getInventory().checkItem(41096, 1)) {
+		                    pc.getInventory().consumeItem(41096, 1);
+		                    pc.getInventory().storeItem(41097, 1);
+		                    htmlid = "my8";
+		                } else {
+		                    htmlid = "my4";
+		                }
+		            }
+		        } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71182) {
+		            if (s.equalsIgnoreCase("A")) {
+		                if(pc.getInventory().checkItem(41098, 1)) {
+		                    pc.getInventory().consumeItem(41098, 1);
+		                    pc.getInventory().storeItem(49274, 1);
+		                    htmlid = "sm5";
+		                } else {
+		                    htmlid = "sm4";
+		                }
+		            } else if(s.equalsIgnoreCase("B")) {
+		                if(pc.getInventory().checkItem(41099, 1)) {
+		                    pc.getInventory().consumeItem(41099, 1);
+		                    pc.getInventory().storeItem(49275, 1);
+		                    htmlid = "sm6";
+		                } else {
+		                    htmlid = "sm4";
+		                }
+		            } else if(s.equalsIgnoreCase("C")) {
+		                if(pc.getInventory().checkItem(41100, 1)) {
+		                    pc.getInventory().consumeItem(41100, 1);
+		                    pc.getInventory().storeItem(49276, 1);
+		                    htmlid = "sm7";
+		                } else {
+		                    htmlid = "sm4";
+		                }
+		            } else if(s.equalsIgnoreCase("D")) {
+		                if(pc.getInventory().checkItem(41101, 1)) {
+		                    pc.getInventory().consumeItem(41101, 1);
+		                    pc.getInventory().storeItem(41102, 1);
+		                    htmlid = "sm8";
+		                } else {
+		                    htmlid = "sm4";
+		                }
+		            }
 //哈蒙任務
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80099) {
             if (s.equalsIgnoreCase("A")) {
