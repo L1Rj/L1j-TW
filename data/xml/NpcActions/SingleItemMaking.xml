@@ -353,7 +353,7 @@
 			<Material Amount="1" ItemId="41211"/>
 			<Item Amount="1" ItemId="41212"/>
 		</MakeItem>
-	</Action> 
+	</Action>
 	<!--シアンポーション / チコリー-->
 	<Action Name="1" NpcId="71009">
 		<MakeItem AmountInputable="false">
@@ -495,7 +495,7 @@
 			<ShowHtml HtmlId="jpe0147"/>
 		</Succeed>
 		</MakeItem>
-	</Action>	
+	</Action>
 	<!--骨細工師の袋 / 弟子ヴィート-->
 	<Action Name="0" NpcId="71019">
 		<MakeItem AmountInputable="false">

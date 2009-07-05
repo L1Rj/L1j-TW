@@ -154,7 +154,7 @@
 	</Action>
 	<Action Name="teleport silver-giran" NpcId="50056">
 		<Teleport X="33438" Y="32796" Map="4" Heading="5" Price="132"/>
-	</Action>	
+	</Action>
 	<Action Name="teleport silver-aden" NpcId="50056">
 		<Teleport X="33965" Y="33253" Map="4" Heading="5" Price="132"/>
 	</Action>
@@ -579,7 +579,7 @@
 	</Action>
 	<Action Name="teleport aden-ice" NpcId="50044,50046">
 		<Teleport X="34207" Y="32251" Map="4" Heading="5" Price="237"/>
-	</Action>	
+	</Action>
 	<!-- オーレン　キリウス -->
 	<Action Name="teleport oren-gludin" NpcId="50051">
 		<Teleport X="32608" Y="32734" Map="4" Heading="5" Price="240"/>
@@ -652,7 +652,7 @@
 	</Action>
 	<Action Name="teleport oren-ice" NpcId="50051">
 		<Teleport X="34207" Y="32251" Map="4" Heading="5" Price="100"/>
-	</Action>	
+	</Action>
 	<!-- ウェルダン　ヒスリー -->
 	<Action Name="teleport dwarf-gludin" NpcId="50039">
 		<Teleport X="32608" Y="32734" Map="4" Heading="5" Price="185"/>
@@ -725,7 +725,7 @@
 	</Action>
 	<Action Name="teleport dwarf-ice" NpcId="50039">
 		<Teleport X="34207" Y="32251" Map="4" Heading="5" Price="339"/>
-	</Action>	
+	</Action>
 	<!-- ギラン　ウィルマ -->
 	<Action Name="teleport giran-gludin" NpcId="50036">
 		<Teleport X="32608" Y="32734" Map="4" Heading="5" Price="126"/>
@@ -798,7 +798,7 @@
 	</Action>
 	<Action Name="teleport giran-ice" NpcId="50036">
 		<Teleport X="34207" Y="32251" Map="4" Heading="5" Price="346"/>
-	</Action>	
+	</Action>
 	<!-- 沈黙の洞窟⇒グルーディン、ケント、ギラン、アデン、ハイネ、オーレン -->
 	<Action Name="teleport scave-gludin" NpcId="50068">
 		<Teleport X="32608" Y="32734" Map="4" Heading="5" Price="1500"/>
@@ -846,7 +846,7 @@
 	<Action Name="teleport oum-chaos" NpcId="50072">
 		<Teleport X="32885" Y="32652" Map="4" Heading="5" Price="2000"/>
 	</Action>
-	<!-- ディアド要塞　ダニエル -->	
+	<!-- ディアド要塞　ダニエル -->
 	<Action Name="teleport diad-gludin" NpcId="50079">
 		<Teleport X="32608" Y="32734" Map="4" Heading="5" Price="550"/>
 	</Action>
@@ -1244,9 +1244,9 @@
 	<Action Name="teleport silveria-diad" NpcId="80146">
 		<Teleport X="32828" Y="32900" Map="320" Heading="5" Price="7480"/>
 	</Action>
-    <Action Name="teleport silveria-behemoth" NpcId="80146">
-        <Teleport X="32779" Y="32887" Map="1001" Heading="5" Price="220"/>
-    </Action>
+	<Action Name="teleport silveria-behemoth" NpcId="80146">
+		<Teleport X="32779" Y="32887" Map="1001" Heading="5" Price="220"/>
+	</Action>
 	<!-- シルベリア行き メット -->
 	<Action Name="teleport silver-silveria" NpcId="50056">
 		<Teleport X="32841" Y="32856" Map="1000" Heading="2" Price="1000"/>

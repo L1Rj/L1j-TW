@@ -998,7 +998,7 @@
 		<Item ItemId="40044" Count="1" Chance="39" /><!-- 鑽石 -->
 		<Item ItemId="40052" Count="1" Chance="1" /><!-- 高品質 鑽石 -->
 	</TreasureBox>
-		<!-- 驚喜箱 缺 魔法捲軸 (祝福魔法武器) 魔法捲軸 (神聖疾走) 魔法捲軸 (體力回覆術) 魔法捲軸 (全部治癒術) 魔法捲軸 (強力加速術) -->
+	<!--驚喜箱 缺 魔法捲軸 (祝福魔法武器) 魔法捲軸 (神聖疾走) 魔法捲軸 (體力回覆術) 魔法捲軸 (全部治癒術) 魔法捲軸 (強力加速術) -->
 	<TreasureBox Type="RANDOM" ItemId="41416">
 		<Item ItemId="40068" Count="10" Chance="3" /><!-- 精靈餅乾 -->
 		<Item ItemId="40031" Count="10" Chance="3" /><!-- 惡魔之血 -->
@@ -1010,7 +1010,7 @@
 		<Item ItemId="40861" Count="10" Chance="10" /><!-- 魔法捲軸 (保護罩) -->
 		<Item ItemId="40014" Count="10" Chance="10" /><!-- 勇敢藥水 -->
 	</TreasureBox>
-		<!-- 愛的禮物盒 -->
+	<!--愛的禮物盒 -->
 	<TreasureBox Type="RANDOM" ItemId="30101">
 		<Item ItemId="40014" Count="3000" Chance="1" /><!-- 勇敢藥水 -->
 		<Item ItemId="40014" Count="2000" Chance="2.5" /><!-- 勇敢藥水 -->
@@ -1075,92 +1075,92 @@
 		<Item ItemId="49183" Count="1" />
 		<Item ItemId="49186" Count="1" />
 	</TreasureBox>
-	    <!-- 愛瑪伊的心1 -->
-    <TreasureBox Type="RANDOM" ItemId="41451">
-        <Item ItemId="41450" Count="1" Chance="90.3" /><!-- 愛瑪伊的畫像 -->
-		<Item ItemId="41" Count="1" Chance="0.5" />    <!-- 武士刀 -->
+	<!--愛瑪伊的心1 -->
+	<TreasureBox Type="RANDOM" ItemId="41451">
+		<Item ItemId="41450" Count="1" Chance="90.3" /><!-- 愛瑪伊的畫像 -->
+		<Item ItemId="41" Count="1" Chance="0.5" />	<!-- 武士刀 -->
 		<Item ItemId="20063" Count="1" Chance="8.5" /> <!-- 保護者斗篷 -->
 		<Item ItemId="40087" Count="1" Chance="0.2" /> <!-- 對武器施法的卷軸 -->
 		<Item ItemId="40074" Count="1" Chance="0.2" /> <!-- 對盔甲施法的卷軸 -->
 		<Item ItemId="20281" Count="1" Chance="0.1" /> <!-- 變形控制戒指 -->
-        <Item ItemId="20288" Count="1" Chance="0.1" /> <!-- 傳送控制戒指 -->
+		<Item ItemId="20288" Count="1" Chance="0.1" /> <!-- 傳送控制戒指 -->
 		<Item ItemId="20284" Count="1" Chance="0.1" /> <!-- 召喚控制戒指 -->
-    </TreasureBox>
-	    <!-- 愛瑪伊的心2 -->
-    <TreasureBox Type="RANDOM" ItemId="41452">
-        <Item ItemId="41450" Count="1" Chance="83.1" /><!-- 愛瑪伊的畫像 -->
-		<Item ItemId="41" Count="1" Chance="1" />    <!-- 武士刀 -->
+	</TreasureBox>
+	<!--愛瑪伊的心2 -->
+	<TreasureBox Type="RANDOM" ItemId="41452">
+		<Item ItemId="41450" Count="1" Chance="83.1" /><!-- 愛瑪伊的畫像 -->
+		<Item ItemId="41" Count="1" Chance="1" />	<!-- 武士刀 -->
 		<Item ItemId="20063" Count="1" Chance="13" /> <!-- 保護者斗篷 -->
 		<Item ItemId="40087" Count="1" Chance="1" /> <!-- 對武器施法的卷軸 -->
 		<Item ItemId="40074" Count="1" Chance="1" /> <!-- 對盔甲施法的卷軸 -->
 		<Item ItemId="20281" Count="1" Chance="0.3" /> <!-- 變形控制戒指 -->
-        <Item ItemId="20288" Count="1" Chance="0.3" /> <!-- 傳送控制戒指 -->
+		<Item ItemId="20288" Count="1" Chance="0.3" /> <!-- 傳送控制戒指 -->
 		<Item ItemId="20284" Count="1" Chance="0.3" /> <!-- 召喚控制戒指 -->
-    </TreasureBox>
-	    <!-- 愛瑪伊的心3 -->
-    <TreasureBox Type="RANDOM" ItemId="41453">
-        <Item ItemId="41450" Count="1" Chance="77" /><!-- 愛瑪伊的畫像 -->
-		<Item ItemId="41" Count="1" Chance="3" />    <!-- 武士刀 -->
+	</TreasureBox>
+	<!--愛瑪伊的心3 -->
+	<TreasureBox Type="RANDOM" ItemId="41453">
+		<Item ItemId="41450" Count="1" Chance="77" /><!-- 愛瑪伊的畫像 -->
+		<Item ItemId="41" Count="1" Chance="3" />	<!-- 武士刀 -->
 		<Item ItemId="20063" Count="1" Chance="15.5" /> <!-- 保護者斗篷 -->
 		<Item ItemId="40087" Count="1" Chance="1.5" /> <!-- 對武器施法的卷軸 -->
 		<Item ItemId="40074" Count="1" Chance="1.5" /> <!-- 對盔甲施法的卷軸 -->
 		<Item ItemId="20281" Count="1" Chance="0.5" /> <!-- 變形控制戒指 -->
-        <Item ItemId="20288" Count="1" Chance="0.5" /> <!-- 傳送控制戒指 -->
+		<Item ItemId="20288" Count="1" Chance="0.5" /> <!-- 傳送控制戒指 -->
 		<Item ItemId="20284" Count="1" Chance="0.5" /> <!-- 召喚控制戒指 -->
-    </TreasureBox>
-	    <!-- 愛瑪伊的心4 -->
-    <TreasureBox Type="RANDOM" ItemId="41454">
-        <Item ItemId="41450" Count="1" Chance="70" /><!-- 愛瑪伊的畫像 -->
-		<Item ItemId="41" Count="1" Chance="5" />    <!-- 武士刀 -->
+	</TreasureBox>
+	<!--愛瑪伊的心4 -->
+	<TreasureBox Type="RANDOM" ItemId="41454">
+		<Item ItemId="41450" Count="1" Chance="70" /><!-- 愛瑪伊的畫像 -->
+		<Item ItemId="41" Count="1" Chance="5" />	<!-- 武士刀 -->
 		<Item ItemId="20063" Count="1" Chance="18" /> <!-- 保護者斗篷 -->
 		<Item ItemId="40087" Count="1" Chance="2.1" /> <!-- 對武器施法的卷軸 -->
 		<Item ItemId="40074" Count="1" Chance="2.5" /> <!-- 對盔甲施法的卷軸 -->
 		<Item ItemId="20281" Count="1" Chance="0.8" /> <!-- 變形控制戒指 -->
-        <Item ItemId="20288" Count="1" Chance="0.8" /> <!-- 傳送控制戒指 -->
+		<Item ItemId="20288" Count="1" Chance="0.8" /> <!-- 傳送控制戒指 -->
 		<Item ItemId="20284" Count="1" Chance="0.8" /> <!-- 召喚控制戒指 -->
-    </TreasureBox>
- 	    <!-- 伊森之心1 -->
-    <TreasureBox Type="RANDOM" ItemId="41456">
-        <Item ItemId="41455" Count="1" Chance="90.3" /><!-- 伊森之畫像 -->
-		<Item ItemId="41" Count="1" Chance="0.5" />    <!-- 武士刀 -->
+	</TreasureBox>
+ 	<!--伊森之心1 -->
+	<TreasureBox Type="RANDOM" ItemId="41456">
+		<Item ItemId="41455" Count="1" Chance="90.3" /><!-- 伊森之畫像 -->
+		<Item ItemId="41" Count="1" Chance="0.5" />	<!-- 武士刀 -->
 		<Item ItemId="20063" Count="1" Chance="8.5" /> <!-- 保護者斗篷 -->
 		<Item ItemId="40087" Count="1" Chance="0.2" /> <!-- 對武器施法的卷軸 -->
 		<Item ItemId="40074" Count="1" Chance="0.2" /> <!-- 對盔甲施法的卷軸 -->
 		<Item ItemId="20281" Count="1" Chance="0.1" /> <!-- 變形控制戒指 -->
-        <Item ItemId="20288" Count="1" Chance="0.1" /> <!-- 傳送控制戒指 -->
+		<Item ItemId="20288" Count="1" Chance="0.1" /> <!-- 傳送控制戒指 -->
 		<Item ItemId="20284" Count="1" Chance="0.1" /> <!-- 召喚控制戒指 -->
-    </TreasureBox>
-	    <!-- 伊森之心2 -->
-    <TreasureBox Type="RANDOM" ItemId="41457">
-        <Item ItemId="41455" Count="1" Chance="83.1" /><!-- 伊森之畫像 -->
-		<Item ItemId="41" Count="1" Chance="1" />    <!-- 武士刀 -->
+	</TreasureBox>
+	<!--伊森之心2 -->
+	<TreasureBox Type="RANDOM" ItemId="41457">
+		<Item ItemId="41455" Count="1" Chance="83.1" /><!-- 伊森之畫像 -->
+		<Item ItemId="41" Count="1" Chance="1" />	<!-- 武士刀 -->
 		<Item ItemId="20063" Count="1" Chance="13" /> <!-- 保護者斗篷 -->
 		<Item ItemId="40087" Count="1" Chance="1" /> <!-- 對武器施法的卷軸 -->
 		<Item ItemId="40074" Count="1" Chance="1" /> <!-- 對盔甲施法的卷軸 -->
 		<Item ItemId="20281" Count="1" Chance="0.3" /> <!-- 變形控制戒指 -->
-        <Item ItemId="20288" Count="1" Chance="0.3" /> <!-- 傳送控制戒指 -->
+		<Item ItemId="20288" Count="1" Chance="0.3" /> <!-- 傳送控制戒指 -->
 		<Item ItemId="20284" Count="1" Chance="0.3" /> <!-- 召喚控制戒指 -->
-    </TreasureBox>
-	    <!-- 伊森之心3 -->
-    <TreasureBox Type="RANDOM" ItemId="41458">
-        <Item ItemId="41455" Count="1" Chance="77" /><!-- 伊森之畫像 -->
-		<Item ItemId="41" Count="1" Chance="3" />    <!-- 武士刀 -->
+	</TreasureBox>
+	<!--伊森之心3 -->
+	<TreasureBox Type="RANDOM" ItemId="41458">
+		<Item ItemId="41455" Count="1" Chance="77" /><!-- 伊森之畫像 -->
+		<Item ItemId="41" Count="1" Chance="3" />	<!-- 武士刀 -->
 		<Item ItemId="20063" Count="1" Chance="15.5" /> <!-- 保護者斗篷 -->
 		<Item ItemId="40087" Count="1" Chance="1.5" /> <!-- 對武器施法的卷軸 -->
 		<Item ItemId="40074" Count="1" Chance="1.5" /> <!-- 對盔甲施法的卷軸 -->
 		<Item ItemId="20281" Count="1" Chance="0.5" /> <!-- 變形控制戒指 -->
-        <Item ItemId="20288" Count="1" Chance="0.5" /> <!-- 傳送控制戒指 -->
+		<Item ItemId="20288" Count="1" Chance="0.5" /> <!-- 傳送控制戒指 -->
 		<Item ItemId="20284" Count="1" Chance="0.5" /> <!-- 召喚控制戒指 -->
-    </TreasureBox>
-	    <!-- 伊森之心4 -->
-    <TreasureBox Type="RANDOM" ItemId="41459">
-        <Item ItemId="41455" Count="1" Chance="70" /><!-- 伊森之畫像 -->
-		<Item ItemId="41" Count="1" Chance="5" />    <!-- 武士刀 -->
+	</TreasureBox>
+	<!--伊森之心4 -->
+	<TreasureBox Type="RANDOM" ItemId="41459">
+		<Item ItemId="41455" Count="1" Chance="70" /><!-- 伊森之畫像 -->
+		<Item ItemId="41" Count="1" Chance="5" />	<!-- 武士刀 -->
 		<Item ItemId="20063" Count="1" Chance="18" /> <!-- 保護者斗篷 -->
 		<Item ItemId="40087" Count="1" Chance="2.1" /> <!-- 對武器施法的卷軸 -->
 		<Item ItemId="40074" Count="1" Chance="2.5" /> <!-- 對盔甲施法的卷軸 -->
 		<Item ItemId="20281" Count="1" Chance="0.8" /> <!-- 變形控制戒指 -->
-        <Item ItemId="20288" Count="1" Chance="0.8" /> <!-- 傳送控制戒指 -->
+		<Item ItemId="20288" Count="1" Chance="0.8" /> <!-- 傳送控制戒指 -->
 		<Item ItemId="20284" Count="1" Chance="0.8" /> <!-- 召喚控制戒指 -->
-    </TreasureBox>
+	</TreasureBox>
 </TreasureBoxList>

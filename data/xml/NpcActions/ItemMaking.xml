@@ -2592,13 +2592,13 @@
 			<Material Amount="1" ItemId="40999"/>
 		</MakeItem>
 	</Action>
-    <!--ダークエルフ　ジェネラルバッジ / エノ-->
-    <Action Name="request reward of aden two" NpcId="70707">
-       <MakeItem>
+	<!--ダークエルフ　ジェネラルバッジ / エノ-->
+	<Action Name="request reward of aden two" NpcId="70707">
+		<MakeItem>
 			<Item Amount="1" ItemId="41405"/>
 			<Material Amount="1" ItemId="41000"/>
-       </MakeItem>
-    </Action>
+		</MakeItem>
+	</Action>
 	<!--ブラックミスリル / フリム-->
 	<Action Name="request black mithril" NpcId="71167">
 		<MakeItem>
@@ -3125,345 +3125,345 @@
 		</MakeItem>
 	</Action>
 	<!-- 古魯丁祭壇 -->
-    <Action Name="A" NpcId="80094" AmountInputable="false">
-        <MakeItem>
-            <Item Amount="1" ItemId="41325"/>
-            <Material Amount="20" ItemId="41327"/>
-            <Material Amount="1" ItemId="41319"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="B" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="41325"/>
-            <Material Amount="20" ItemId="41327"/>
-            <Material Amount="1" ItemId="41320"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="C" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="41325"/>
-            <Material Amount="20" ItemId="41327"/>
-            <Material Amount="1" ItemId="41321"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="D" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="41325"/>
-            <Material Amount="20" ItemId="41327"/>
-            <Material Amount="1" ItemId="41322"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="E" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="41325"/>
-            <Material Amount="20" ItemId="41327"/>
-            <Material Amount="1" ItemId="41323"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="F" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="41325"/>
-            <Material Amount="20" ItemId="41327"/>
-            <Material Amount="1" ItemId="41324"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="G" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="41326"/>
-            <Material Amount="1" ItemId="41328"/>
-            <Material Amount="1" ItemId="41319"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action><Action Name="H" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="41326"/>
-            <Material Amount="1" ItemId="41328"/>
-            <Material Amount="1" ItemId="41320"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="I" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="41326"/>
-            <Material Amount="1" ItemId="41328"/>
-            <Material Amount="1" ItemId="41321"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="J" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="41326"/>
-            <Material Amount="1" ItemId="41328"/>
-            <Material Amount="1" ItemId="41322"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="K" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="41326"/>
-            <Material Amount="1" ItemId="41328"/>
-            <Material Amount="1" ItemId="41323"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="L" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="41326"/>
-            <Material Amount="1" ItemId="41328"/>
-            <Material Amount="1" ItemId="41324"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="M" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="274"/>
-            <Item Amount="1" ItemId="49188"/>
-            <Material Amount="1" ItemId="49187"/>
-            <Material Amount="1" ItemId="41319"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar3"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="N" NpcId="80094">
-        <MakeItem>
-            <Item Amount="1" ItemId="49191"/>
-            <Material Amount="1" ItemId="274"/>
-            <Material Amount="1" ItemId="49190"/>
-            <Material Amount="1" ItemId="41322"/>
-            <Succeed>
-                <ShowHtml HtmlId="altar10"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="altar8"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <!-- 奇岩 示愛任務 傑夫  -->
-    <Action Name="A" NpcId="71180">
-        <MakeItem>
-            <Material Amount="1000" ItemId="49026"/>
-            <Item Amount="1" ItemId="41093"/><!-- 夢幻的熊娃娃 -->
-            <Succeed>
-                <ShowHtml HtmlId="jp6"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="jp5"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="B" NpcId="71180">
-        <MakeItem>
-            <Material Amount="5000" ItemId="49026"/>
-            <Item Amount="1" ItemId="41094"/><!-- 誘惑的香水 -->
-            <Succeed>
-                <ShowHtml HtmlId="jp6"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="jp5"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="C" NpcId="71180">
-        <MakeItem>
-            <Material Amount="10000" ItemId="49026"/>
-            <Item Amount="1" ItemId="41095"/><!-- 漂亮的洋裝 -->
-            <Succeed>
-                <ShowHtml HtmlId="jp6"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="jp5"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="D" NpcId="71180">
-        <MakeItem>
-            <Material Amount="100000" ItemId="49026"/>
-            <Item Amount="1" ItemId="41096"/><!-- 華麗的戒指 -->
-            <Succeed>
-                <ShowHtml HtmlId="jp6"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="jp5"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="E" NpcId="71180">
-        <MakeItem>
-            <Material Amount="1000" ItemId="49026"/>
-            <Item Amount="1" ItemId="41098"/><!-- 英雄傳記 -->
-            <Succeed>
-                <ShowHtml HtmlId="jp8"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="jp5"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="F" NpcId="71180">
-        <MakeItem>
-            <Material Amount="5000" ItemId="49026"/>
-            <Item Amount="1" ItemId="41099"/><!-- 時髦的帽子 -->
-            <Succeed>
-                <ShowHtml HtmlId="jp8"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="jp5"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="G" NpcId="71180">
-        <MakeItem>
-            <Material Amount="10000" ItemId="49026"/>
-            <Item Amount="1" ItemId="41100"/><!-- 高級紅酒 -->
-            <Succeed>
-                <ShowHtml HtmlId="jp8"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="jp5"/>
-            </Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="H" NpcId="71180">
-        <MakeItem>
-            <Material Amount="100000" ItemId="49026"/>
-            <Item Amount="1" ItemId="41101"/><!-- 神秘的鑰匙 -->
-            <Succeed>
-                <ShowHtml HtmlId="jp8"/>
-            </Succeed>
-            <Fail>
-                <ShowHtml HtmlId="jp5"/>
-            </Fail>
-        </MakeItem>
-    </Action>
+	<Action Name="A" NpcId="80094" AmountInputable="false">
+		<MakeItem>
+			<Item Amount="1" ItemId="41325"/>
+			<Material Amount="20" ItemId="41327"/>
+			<Material Amount="1" ItemId="41319"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="B" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="41325"/>
+			<Material Amount="20" ItemId="41327"/>
+			<Material Amount="1" ItemId="41320"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="C" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="41325"/>
+			<Material Amount="20" ItemId="41327"/>
+			<Material Amount="1" ItemId="41321"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="D" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="41325"/>
+			<Material Amount="20" ItemId="41327"/>
+			<Material Amount="1" ItemId="41322"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="E" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="41325"/>
+			<Material Amount="20" ItemId="41327"/>
+			<Material Amount="1" ItemId="41323"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="F" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="41325"/>
+			<Material Amount="20" ItemId="41327"/>
+			<Material Amount="1" ItemId="41324"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="G" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="41326"/>
+			<Material Amount="1" ItemId="41328"/>
+			<Material Amount="1" ItemId="41319"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action><Action Name="H" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="41326"/>
+			<Material Amount="1" ItemId="41328"/>
+			<Material Amount="1" ItemId="41320"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="I" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="41326"/>
+			<Material Amount="1" ItemId="41328"/>
+			<Material Amount="1" ItemId="41321"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="J" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="41326"/>
+			<Material Amount="1" ItemId="41328"/>
+			<Material Amount="1" ItemId="41322"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="K" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="41326"/>
+			<Material Amount="1" ItemId="41328"/>
+			<Material Amount="1" ItemId="41323"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="L" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="41326"/>
+			<Material Amount="1" ItemId="41328"/>
+			<Material Amount="1" ItemId="41324"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="M" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="274"/>
+			<Item Amount="1" ItemId="49188"/>
+			<Material Amount="1" ItemId="49187"/>
+			<Material Amount="1" ItemId="41319"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar3"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="N" NpcId="80094">
+		<MakeItem>
+			<Item Amount="1" ItemId="49191"/>
+			<Material Amount="1" ItemId="274"/>
+			<Material Amount="1" ItemId="49190"/>
+			<Material Amount="1" ItemId="41322"/>
+			<Succeed>
+				<ShowHtml HtmlId="altar10"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="altar8"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<!-- 奇岩 示愛任務 傑夫  -->
+	<Action Name="A" NpcId="71180">
+		<MakeItem>
+			<Material Amount="1000" ItemId="49026"/>
+			<Item Amount="1" ItemId="41093"/><!-- 夢幻的熊娃娃 -->
+			<Succeed>
+				<ShowHtml HtmlId="jp6"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="jp5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="B" NpcId="71180">
+		<MakeItem>
+			<Material Amount="5000" ItemId="49026"/>
+			<Item Amount="1" ItemId="41094"/><!-- 誘惑的香水 -->
+			<Succeed>
+				<ShowHtml HtmlId="jp6"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="jp5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="C" NpcId="71180">
+		<MakeItem>
+			<Material Amount="10000" ItemId="49026"/>
+			<Item Amount="1" ItemId="41095"/><!-- 漂亮的洋裝 -->
+			<Succeed>
+				<ShowHtml HtmlId="jp6"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="jp5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="D" NpcId="71180">
+		<MakeItem>
+			<Material Amount="100000" ItemId="49026"/>
+			<Item Amount="1" ItemId="41096"/><!-- 華麗的戒指 -->
+			<Succeed>
+				<ShowHtml HtmlId="jp6"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="jp5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="E" NpcId="71180">
+		<MakeItem>
+			<Material Amount="1000" ItemId="49026"/>
+			<Item Amount="1" ItemId="41098"/><!-- 英雄傳記 -->
+			<Succeed>
+				<ShowHtml HtmlId="jp8"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="jp5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="F" NpcId="71180">
+		<MakeItem>
+			<Material Amount="5000" ItemId="49026"/>
+			<Item Amount="1" ItemId="41099"/><!-- 時髦的帽子 -->
+			<Succeed>
+				<ShowHtml HtmlId="jp8"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="jp5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="G" NpcId="71180">
+		<MakeItem>
+			<Material Amount="10000" ItemId="49026"/>
+			<Item Amount="1" ItemId="41100"/><!-- 高級紅酒 -->
+			<Succeed>
+				<ShowHtml HtmlId="jp8"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="jp5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="H" NpcId="71180">
+		<MakeItem>
+			<Material Amount="100000" ItemId="49026"/>
+			<Item Amount="1" ItemId="41101"/><!-- 神秘的鑰匙 -->
+			<Succeed>
+				<ShowHtml HtmlId="jp8"/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="jp5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
 	<!-- 奇岩 古老的發光項鍊 路武基 -->
-    <Action Name="A" NpcId="71178">
-        <MakeItem>
-            <Material Amount="1" ItemId="41139"/>
-            <Item Amount="500" ItemId="40308"/>
-            <Succeed>
+	<Action Name="A" NpcId="71178">
+		<MakeItem>
+			<Material Amount="1" ItemId="41139"/>
+			<Item Amount="500" ItemId="40308"/>
+			<Succeed>
 				<ShowHtml HtmlId="ru8"/>
 			</Succeed>
 			<Fail>
 				<ShowHtml HtmlId=""/>
 			</Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="B" NpcId="71178">
-        <MakeItem>
-            <Material Amount="1" ItemId="49028"/>
-            <Item Amount="100" ItemId="40308"/>
-            <Succeed>
+		</MakeItem>
+	</Action>
+	<Action Name="B" NpcId="71178">
+		<MakeItem>
+			<Material Amount="1" ItemId="49028"/>
+			<Item Amount="100" ItemId="40308"/>
+			<Succeed>
 				<ShowHtml HtmlId=""/>
 			</Succeed>
 			<Fail>
 				<ShowHtml HtmlId=""/>
 			</Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="C" NpcId="71178">
-        <MakeItem>
-            <Material Amount="1" ItemId="49030"/>
-            <Item Amount="100" ItemId="40308"/>
-            <Succeed>
+		</MakeItem>
+	</Action>
+	<Action Name="C" NpcId="71178">
+		<MakeItem>
+			<Material Amount="1" ItemId="49030"/>
+			<Item Amount="100" ItemId="40308"/>
+			<Succeed>
 				<ShowHtml HtmlId=""/>
 			</Succeed>
 			<Fail>
 				<ShowHtml HtmlId=""/>
 			</Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="D" NpcId="71178">
-        <MakeItem>
-            <Material Amount="1" ItemId="49029"/>
-            <Item Amount="100" ItemId="40308"/>
-            <Succeed>
+		</MakeItem>
+	</Action>
+	<Action Name="D" NpcId="71178">
+		<MakeItem>
+			<Material Amount="1" ItemId="49029"/>
+			<Item Amount="100" ItemId="40308"/>
+			<Succeed>
 				<ShowHtml HtmlId=""/>
 			</Succeed>
 			<Fail>
 				<ShowHtml HtmlId=""/>
 			</Fail>
-        </MakeItem>
-    </Action>
-    <Action Name="E" NpcId="71178">
-        <MakeItem>
-            <Material Amount="1" ItemId="41140"/>
-            <Item Amount="10000" ItemId="40308"/>
-            <Succeed>
+		</MakeItem>
+	</Action>
+	<Action Name="E" NpcId="71178">
+		<MakeItem>
+			<Material Amount="1" ItemId="41140"/>
+			<Item Amount="10000" ItemId="40308"/>
+			<Succeed>
 				<ShowHtml HtmlId="ru9"/>
 			</Succeed>
 			<Fail>
 				<ShowHtml HtmlId=""/>
 			</Fail>
-        </MakeItem>
-    </Action>
+		</MakeItem>
+	</Action>
 </NpcActionList>
