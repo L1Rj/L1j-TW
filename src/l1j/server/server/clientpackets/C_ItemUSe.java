@@ -1760,85 +1760,87 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40079 || itemId == 40095) { // 傳送回家的捲軸
 //waja add 特殊狀態下不可使用
-			        if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
-			        	pc.sendPackets(new S_ServerMessage(574));}//無法使用
-			        else 
-//end
-			        	if (pc.getMap().isEscapable() || pc.isGm()) {
-						int[] loc = Getback.GetBack_Location(pc, true);
-						L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2],
-								5, true);
-						pc.getInventory().removeItem(l1iteminstance, 1);
+					if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
+						pc.sendPackets(new S_ServerMessage(574)); //無法使用
 					} else {
-						pc.sendPackets(new S_ServerMessage(647));
-						// pc.sendPackets(new
-						// S_CharVisualUpdate(pc));
+//end
+						if (pc.getMap().isEscapable() || pc.isGm()) {
+							int[] loc = Getback.GetBack_Location(pc, true);
+							L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2],
+									5, true);
+							pc.getInventory().removeItem(l1iteminstance, 1);
+						} else {
+							pc.sendPackets(new S_ServerMessage(647));
+							// pc.sendPackets(new
+							// S_CharVisualUpdate(pc));
+						}
+						cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
 					}
-					cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
 				} else if (itemId == 40124) { // 血盟歸還スクロール
 //waja add 特殊狀態下不可使用
-			        if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
-			        	pc.sendPackets(new S_ServerMessage(647));}
-			        else
+					if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
+						pc.sendPackets(new S_ServerMessage(647));
+					} else {
 //end
-					if (pc.getMap().isEscapable() || pc.isGm()) {
-						int castle_id = 0;
-						int house_id = 0;
-						if (pc.getClanid() != 0) { // クラン所屬
-							L1Clan clan = L1World.getInstance().getClan(
-									pc.getClanname());
-							if (clan != null) {
-								castle_id = clan.getCastleId();
-								house_id = clan.getHouseId();
+						if (pc.getMap().isEscapable() || pc.isGm()) {
+							int castle_id = 0;
+							int house_id = 0;
+							if (pc.getClanid() != 0) { // クラン所屬
+								L1Clan clan = L1World.getInstance().getClan(
+										pc.getClanname());
+								if (clan != null) {
+									castle_id = clan.getCastleId();
+									house_id = clan.getHouseId();
+								}
 							}
-						}
-						if (castle_id != 0) { // 城主クラン員
-							if (pc.getMap().isEscapable() || pc.isGm()) {
-								int[] loc = new int[3];
-								loc = L1CastleLocation.getCastleLoc(castle_id);
-								int locx = loc[0];
-								int locy = loc[1];
-								short mapid = (short) (loc[2]);
-								L1Teleport.teleport(pc, locx, locy, mapid, 5,
-										true);
-								pc.getInventory().removeItem(l1iteminstance, 1);
+							if (castle_id != 0) { // 城主クラン員
+								if (pc.getMap().isEscapable() || pc.isGm()) {
+									int[] loc = new int[3];
+									loc = L1CastleLocation.getCastleLoc(castle_id);
+									int locx = loc[0];
+									int locy = loc[1];
+									short mapid = (short) (loc[2]);
+									L1Teleport.teleport(pc, locx, locy, mapid, 5,
+											true);
+									pc.getInventory().removeItem(l1iteminstance, 1);
+								} else {
+									pc.sendPackets(new S_ServerMessage(647));
+								}
+							} else if (house_id != 0) { // アジト所有クラン員
+								if (pc.getMap().isEscapable() || pc.isGm()) {
+									int[] loc = new int[3];
+									loc = L1HouseLocation.getHouseLoc(house_id);
+									int locx = loc[0];
+									int locy = loc[1];
+									short mapid = (short) (loc[2]);
+									L1Teleport.teleport(pc, locx, locy, mapid, 5,
+											true);
+									pc.getInventory().removeItem(l1iteminstance, 1);
+								} else {
+									pc.sendPackets(new S_ServerMessage(647));
+								}
 							} else {
-								pc.sendPackets(new S_ServerMessage(647));
-							}
-						} else if (house_id != 0) { // アジト所有クラン員
-							if (pc.getMap().isEscapable() || pc.isGm()) {
-								int[] loc = new int[3];
-								loc = L1HouseLocation.getHouseLoc(house_id);
-								int locx = loc[0];
-								int locy = loc[1];
-								short mapid = (short) (loc[2]);
-								L1Teleport.teleport(pc, locx, locy, mapid, 5,
-										true);
-								pc.getInventory().removeItem(l1iteminstance, 1);
-							} else {
-								pc.sendPackets(new S_ServerMessage(647));
+								if (pc.getHomeTownId() > 0) {
+									int[] loc = L1TownLocation.getGetBackLoc(pc
+											.getHomeTownId());
+									int locx = loc[0];
+									int locy = loc[1];
+									short mapid = (short) (loc[2]);
+									L1Teleport.teleport(pc, locx, locy, mapid, 5,
+											true);
+									pc.getInventory().removeItem(l1iteminstance, 1);
+								} else {
+									int[] loc = Getback.GetBack_Location(pc, true);
+									L1Teleport.teleport(pc, loc[0], loc[1],
+											(short) loc[2], 5, true);
+									pc.getInventory().removeItem(l1iteminstance, 1);
+								}
 							}
 						} else {
-							if (pc.getHomeTownId() > 0) {
-								int[] loc = L1TownLocation.getGetBackLoc(pc
-										.getHomeTownId());
-								int locx = loc[0];
-								int locy = loc[1];
-								short mapid = (short) (loc[2]);
-								L1Teleport.teleport(pc, locx, locy, mapid, 5,
-										true);
-								pc.getInventory().removeItem(l1iteminstance, 1);
-							} else {
-								int[] loc = Getback.GetBack_Location(pc, true);
-								L1Teleport.teleport(pc, loc[0], loc[1],
-										(short) loc[2], 5, true);
-								pc.getInventory().removeItem(l1iteminstance, 1);
-							}
+							pc.sendPackets(new S_ServerMessage(647));
 						}
-					} else {
-						pc.sendPackets(new S_ServerMessage(647));
+						cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
 					}
-					cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
 				} else if (itemId == 140100 || itemId == 40100
 						|| itemId == 40099 // 祝福されたテレポートスクロール、テレポートスクロール
 						|| itemId == 40086 || itemId == 40863) { // スペルスクロール(テレポート)
@@ -3633,11 +3635,11 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 3, time));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 3, 0));
 			pc.setSkillEffect(STATUS_ELFBRAVE, time * 1000);
-	       } else if (item_id == 49158) { // 生命之樹的果實
-	    	   pc.sendPackets(new S_ServerMessage(1445));
-	            pc.sendPackets(new S_SkillBrave(pc.getId(), 4, time));
-	            pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
-	            pc.setSkillEffect(STATUS_RIBRAVE, time * 1000);
+		} else if (item_id == 49158) { // 生命之樹的果實
+			pc.sendPackets(new S_ServerMessage(1445));
+			pc.sendPackets(new S_SkillBrave(pc.getId(), 4, time));
+			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
+			pc.setSkillEffect(STATUS_RIBRAVE, time * 1000);
 		} else {
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 1, time));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 1, 0));
@@ -3645,7 +3647,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.sendPackets(new S_SkillSound(pc.getId(), 751));// 勇水特效
 			pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));// 勇水特效
 			pc.setBraveSpeed(1);
-	}
+		}
 		if (item_id != 49158){//生命之樹果實
 			pc.setBraveSpeed(1);
 		} else {

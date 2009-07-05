@@ -102,21 +102,20 @@ public class C_LoginToServer extends ClientBasePacket {
 			return;
 		}
 
-		if (pc != null){//限制同一角色無法同時登入
-			if (pc.getOnlineStatus()==1){
+		if (pc != null) {//限制同一角色無法同時登入
+			if (pc.getOnlineStatus() == 1) {
 				_log.info("【禁止同一角色同時登入伺服器】 角色名稱: " + charName + " 帳號: " + login
 						+ " IP位址:" + client.getHostname());
 				client.close();
 				return;
-			}
-			else if(pc.isBanned()== true ){//被鎖定角色無法登入
+			} else if (pc.isBanned()== true ) {//被鎖定角色無法登入
 				_log.info("【被鎖定角色登入】 帳號=" + login + " 角色=" + charName
 						+ " IP位址:" + client.getHostname());
 				client.kick(); // 狀態待修改
 				return;
 			}
 		}
-		
+
 		if (Config.LEVEL_DOWN_RANGE != 0) {
 			if (pc.getHighLevel() - pc.getLevel() >= Config.LEVEL_DOWN_RANGE) {
 				_log.info("【超過等級容許限制拒絕登入】 帳號=" + login + " 角色="
@@ -549,12 +548,12 @@ public class C_LoginToServer extends ClientBasePacket {
 					pc.broadcastPacket(new S_SkillBrave(pc.getId(), 3, 0));
 					pc.setBraveSpeed(1);
 					pc.setSkillEffect(skillid, remaining_time * 1000);
-                } else if (skillid == STATUS_RIBRAVE) { //waja add 生命之樹果實
-                    pc.sendPackets(new S_SkillBrave(pc.getId(),4,
-                            remaining_time));
-                    pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
-                    pc.setBraveSpeed(4);
-                    pc.setSkillEffect(skillid, remaining_time * 1000);
+				} else if (skillid == STATUS_RIBRAVE) { //waja add 生命之樹果實
+					pc.sendPackets(new S_SkillBrave(pc.getId(),4,
+							remaining_time));
+					pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
+					pc.setBraveSpeed(4);
+					pc.setSkillEffect(skillid, remaining_time * 1000);
 				} else if (skillid == STATUS_HASTE) { // グリーン ポーション
 					pc.sendPackets(new S_SkillHaste(pc.getId(), 1,
 							remaining_time));
@@ -575,8 +574,8 @@ public class C_LoginToServer extends ClientBasePacket {
 						|| skillid >= COOKING_3_0_S && skillid <= COOKING_3_6_S) { // 料理(デザートは除く)
 					L1Cooking.eatCooking(pc, skillid, remaining_time);
 //waja add 旅館租借 用 skilltimer ?
-			    } else if (skillid == 1910 || skillid == 1911 || skillid == 1912 || skillid == 1913 || 
-			      skillid == 1914 || skillid == 1915){ // 已租 && 1915退租 
+				} else if (skillid == 1910 || skillid == 1911 || skillid == 1912 || skillid == 1913 ||
+						skillid == 1914 || skillid == 1915) { // 已租 && 1915退租
 //end add
 				} else {
 					L1SkillUse l1skilluse = new L1SkillUse();

@@ -248,8 +248,8 @@ public class C_NPCAction extends ClientBasePacket {
 				// 買い取りリスト表示
 				pc.sendPackets(new S_ShopBuyList(objid, pc));
 			}
-		} else if(((L1NpcInstance)obj).getNpcTemplate().get_npcId()==91002//寵物競速NPC的編號
-			&& s.equalsIgnoreCase("ent")){
+		} else if (((L1NpcInstance)obj).getNpcTemplate().get_npcId()==91002//寵物競速NPC的編號
+			&& s.equalsIgnoreCase("ent")) {
 			l1j.server.server.model.L1PolyRace.getInstance().enterGame(pc);
 		} else if (s.equalsIgnoreCase("retrieve")) { // 「個人倉庫：アイテムを受け取る」
 			if (pc.getLevel() >= 5) {
@@ -318,85 +318,87 @@ public class C_NPCAction extends ClientBasePacket {
 
 		} else if (s.equalsIgnoreCase("enter")) { // 部屋‧ホールに入る
 */
-		  } else if (s.equalsIgnoreCase("room")) { //租房間
-			   if (pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911)
-			     || pc.hasSkillEffect(1912) || pc.hasSkillEffect(1913)
-			     || pc.hasSkillEffect(1914)){ //已租過
-			    htmlid = "inn5";
-			   } else
-			   if (pc.hasSkillEffect(1915)){ //租完旅館30分鐘內不得再租
-			    htmlid = "inn6";
-			   } else
-			    if (pc.getInventory().checkItem(40308,1000)) {
-			     materials = new int[] { 40308 };
-			     counts = new int[] { 1000 };
-			     createitem = new int[] { 40312 };
-			     createcount = new int[] { 1 };
-			     pc.setSkillEffect(1910,14100*1000); //開始計算3小時55分
-			     htmlid = "inn4";
-			    } else {
-			     htmlid = "inn3";
-			    }
-			  } else if (s.equalsIgnoreCase("hall")
-			    && obj instanceof L1MerchantInstance) {
-			  } else if (s.equalsIgnoreCase("return")) { // 退租 還20%
-			   if ( pc.getInventory().checkItem(40312,1) &&
-			     ( pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911)
-			     || pc.hasSkillEffect(1912) || pc.hasSkillEffect(1913)
-			     || pc.hasSkillEffect(1914)) ){
-			    if(pc.hasSkillEffect(1910)){
-			    pc.killSkillEffectTimer(1910);
-			    }
-			    if(pc.hasSkillEffect(1911)){
-			    pc.killSkillEffectTimer(1911);
-			    }
-			    if(pc.hasSkillEffect(1912)){
-			    pc.killSkillEffectTimer(1912);
-			    }
-			    if(pc.hasSkillEffect(1913)){
-			    pc.killSkillEffectTimer(1913);
-			    }
-			    if(pc.hasSkillEffect(1914)){
-			    pc.killSkillEffectTimer(1914);
-			    }
-			    pc.setSkillEffect(1915,60*1000);//退租1分鐘內無法再租
-			    materials = new int[] { 40312 };
-			    counts = new int[] { 1 };
-			    createitem = new int[] { 40308 };
-			    createcount = new int[] { 200 };
-			    htmlid = "inn20";
-			  }
-			  } else if (s.equalsIgnoreCase("enter")) { // 進房間
-					L1NpcInstance npc = (L1NpcInstance) obj;
-					int npcId = npc.getNpcTemplate().get_npcId();
-			   if (pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911)
-			     || pc.hasSkillEffect(1912) || pc.hasSkillEffect(1913)
-			     || pc.hasSkillEffect(1914)){ //有租房間才能進入
-				  switch (npcId) {
-				  case 70012://說話島 瑟琳娜
-					  L1Teleport.teleport(pc, 32744, 32803, (short) 16384, 4, true);
-//						L1Teleport.teleport(pc, 32744, 32808, (short) 16896, 4, true); //會議室  
-				  break;
-				  case 70031://奇岩 瑪理
-					  L1Teleport.teleport(pc, 32744, 32803, (short) 18432, 4, true);  
-				  break;
-				  case 70070://風木 維萊莎
-					  L1Teleport.teleport(pc, 32744, 32803, (short) 20480, 4, true);  
-				  break;
-				  case 70084://海音 伊莉
-					  L1Teleport.teleport(pc, 32744, 32803, (short) 22528, 4, true);  
-				  break;
-				  case 70075://銀騎士村莊 米蘭德
-					  L1Teleport.teleport(pc, 32744, 32803, (short) 21504, 4, true);  
-				  break;
-				  case 70065://歐瑞 小安安
-					  L1Teleport.teleport(pc, 32744, 32803, (short) 19456, 4, true);  
-				  break;
-				  case 70054://亞丁 史斌 不確定房間地圖編號隨便塞一個
-					  L1Teleport.teleport(pc, 32744, 32808, (short) 16896, 4, true);  
-				  break;
-				  }
-			   }
+		} else if (s.equalsIgnoreCase("room")) { //租房間
+			if (pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911)
+					|| pc.hasSkillEffect(1912) || pc.hasSkillEffect(1913)
+					|| pc.hasSkillEffect(1914)) { //已租過
+				htmlid = "inn5";
+			} else {
+				if (pc.hasSkillEffect(1915)) { //租完旅館30分鐘內不得再租
+					htmlid = "inn6";
+				} else {
+					if (pc.getInventory().checkItem(40308,1000)) {
+						materials = new int[] { 40308 };
+						counts = new int[] { 1000 };
+						createitem = new int[] { 40312 };
+						createcount = new int[] { 1 };
+						pc.setSkillEffect(1910, 14100 * 1000); //開始計算3小時55分
+						htmlid = "inn4";
+					} else {
+						htmlid = "inn3";
+					}
+				}
+			}
+		} else if (s.equalsIgnoreCase("hall")
+				&& obj instanceof L1MerchantInstance) {
+		} else if (s.equalsIgnoreCase("return")) { // 退租 還20%
+			if (pc.getInventory().checkItem(40312,1) &&
+					(pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911)
+					|| pc.hasSkillEffect(1912) || pc.hasSkillEffect(1913)
+					|| pc.hasSkillEffect(1914))) {
+			if (pc.hasSkillEffect(1910)) {
+				pc.killSkillEffectTimer(1910);
+			}
+			if (pc.hasSkillEffect(1911)) {
+				pc.killSkillEffectTimer(1911);
+			}
+			if (pc.hasSkillEffect(1912)) {
+				pc.killSkillEffectTimer(1912);
+			}
+			if (pc.hasSkillEffect(1913)) {
+				pc.killSkillEffectTimer(1913);
+			}
+			if (pc.hasSkillEffect(1914)) {
+				pc.killSkillEffectTimer(1914);
+			}
+			pc.setSkillEffect(1915, 60 * 1000);//退租1分鐘內無法再租
+			materials = new int[] { 40312 };
+			counts = new int[] { 1 };
+			createitem = new int[] { 40308 };
+			createcount = new int[] { 200 };
+			htmlid = "inn20";
+			}
+		} else if (s.equalsIgnoreCase("enter")) { // 進房間
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			int npcId = npc.getNpcTemplate().get_npcId();
+			if (pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911)
+					|| pc.hasSkillEffect(1912) || pc.hasSkillEffect(1913)
+					|| pc.hasSkillEffect(1914)) { //有租房間才能進入
+				switch (npcId) {
+				case 70012://說話島 瑟琳娜
+					L1Teleport.teleport(pc, 32744, 32803, (short) 16384, 4, true);
+					//L1Teleport.teleport(pc, 32744, 32808, (short) 16896, 4, true); //會議室
+					break;
+				case 70031://奇岩 瑪理
+					L1Teleport.teleport(pc, 32744, 32803, (short) 18432, 4, true);
+					break;
+				case 70070://風木 維萊莎
+					L1Teleport.teleport(pc, 32744, 32803, (short) 20480, 4, true);
+					break;
+				case 70084://海音 伊莉
+					L1Teleport.teleport(pc, 32744, 32803, (short) 22528, 4, true);
+					break;
+				case 70075://銀騎士村莊 米蘭德
+					L1Teleport.teleport(pc, 32744, 32803, (short) 21504, 4, true);
+					break;
+				case 70065://歐瑞 小安安
+					L1Teleport.teleport(pc, 32744, 32803, (short) 19456, 4, true);
+					break;
+				case 70054://亞丁 史斌 不確定房間地圖編號隨便塞一個
+					L1Teleport.teleport(pc, 32744, 32808, (short) 16896, 4, true);
+					break;
+				}
+			}
 //change end
 
 		} else if (s.equalsIgnoreCase("openigate")) { // ゲートキーパー / 城門を開ける
@@ -1015,467 +1017,465 @@ public class C_NPCAction extends ClientBasePacket {
 			}
 //示愛任務-奇岩-愛瑪伊
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71181) {
-	            if (s.equalsIgnoreCase("A")) {
-	                if(pc.getInventory().checkItem(41093, 1)) {
-	                    pc.getInventory().consumeItem(41093, 1);
-	                    pc.getInventory().storeItem(41451, 1);
-	                    htmlid = "my5";
-	                } else {
-	                    htmlid = "my4";
-	                }
-	            } else if(s.equalsIgnoreCase("B")) {
-	                if(pc.getInventory().checkItem(41094, 1)) {
-	                    pc.getInventory().consumeItem(41094, 1);
-	                    pc.getInventory().storeItem(41452, 1);
-	                    htmlid = "my6";
-	                } else {
-	                    htmlid = "my4";
-	                }
-	            } else if(s.equalsIgnoreCase("C")) {
-	                if(pc.getInventory().checkItem(41095, 1)) {
-	                    pc.getInventory().consumeItem(41095, 1);
-	                    pc.getInventory().storeItem(41453, 1);
-	                    htmlid = "my7";
-	                } else {
-	                    htmlid = "my4";
-	                }
-	            } else if(s.equalsIgnoreCase("D")) {
-	                if(pc.getInventory().checkItem(41096, 1)) {
-	                    pc.getInventory().consumeItem(41096, 1);
-	                    pc.getInventory().storeItem(41454, 1);
-	                    htmlid = "my8";
-	                } else {
-	                    htmlid = "my4";
-	                }
-	            }
+			if (s.equalsIgnoreCase("A")) {
+				if (pc.getInventory().checkItem(41093, 1)) {
+					pc.getInventory().consumeItem(41093, 1);
+					pc.getInventory().storeItem(41451, 1);
+					htmlid = "my5";
+				} else {
+					htmlid = "my4";
+				}
+			} else if (s.equalsIgnoreCase("B")) {
+				if (pc.getInventory().checkItem(41094, 1)) {
+					pc.getInventory().consumeItem(41094, 1);
+					pc.getInventory().storeItem(41452, 1);
+					htmlid = "my6";
+				} else {
+					htmlid = "my4";
+				}
+			} else if (s.equalsIgnoreCase("C")) {
+				if (pc.getInventory().checkItem(41095, 1)) {
+					pc.getInventory().consumeItem(41095, 1);
+					pc.getInventory().storeItem(41453, 1);
+					htmlid = "my7";
+				} else {
+					htmlid = "my4";
+				}
+			} else if (s.equalsIgnoreCase("D")) {
+				if (pc.getInventory().checkItem(41096, 1)) {
+					pc.getInventory().consumeItem(41096, 1);
+					pc.getInventory().storeItem(41454, 1);
+					htmlid = "my8";
+				} else {
+					htmlid = "my4";
+				}
+			}
 //示愛任務-奇岩-伊森
-	        } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71182) {
-	            if (s.equalsIgnoreCase("A")) {
-	                if(pc.getInventory().checkItem(41098, 1)) {
-	                    pc.getInventory().consumeItem(41098, 1);
-	                    pc.getInventory().storeItem(41456, 1);
-	                    htmlid = "sm5";
-	                } else {
-	                    htmlid = "sm4";
-	                }
-	            } else if(s.equalsIgnoreCase("B")) {
-	                if(pc.getInventory().checkItem(41099, 1)) {
-	                    pc.getInventory().consumeItem(41099, 1);
-	                    pc.getInventory().storeItem(41457, 1);
-	                    htmlid = "sm6";
-	                } else {
-	                    htmlid = "sm4";
-	                }
-	            } else if(s.equalsIgnoreCase("C")) {
-	                if(pc.getInventory().checkItem(41100, 1)) {
-	                    pc.getInventory().consumeItem(41100, 1);
-	                    pc.getInventory().storeItem(41458, 1);
-	                    htmlid = "sm7";
-	                } else {
-	                    htmlid = "sm4";
-	                }
-	            } else if(s.equalsIgnoreCase("D")) {
-	                if(pc.getInventory().checkItem(41101, 1)) {
-	                    pc.getInventory().consumeItem(41101, 1);
-	                    pc.getInventory().storeItem(41459, 1);
-	                    htmlid = "sm8";
-	                } else {
-	                    htmlid = "sm4";
-	                }
-	            }
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71182) {
+			if (s.equalsIgnoreCase("A")) {
+				if (pc.getInventory().checkItem(41098, 1)) {
+					pc.getInventory().consumeItem(41098, 1);
+					pc.getInventory().storeItem(41456, 1);
+					htmlid = "sm5";
+				} else {
+					htmlid = "sm4";
+				}
+			} else if (s.equalsIgnoreCase("B")) {
+				if (pc.getInventory().checkItem(41099, 1)) {
+					pc.getInventory().consumeItem(41099, 1);
+					pc.getInventory().storeItem(41457, 1);
+					htmlid = "sm6";
+				} else {
+					htmlid = "sm4";
+				}
+			} else if (s.equalsIgnoreCase("C")) {
+				if (pc.getInventory().checkItem(41100, 1)) {
+					pc.getInventory().consumeItem(41100, 1);
+					pc.getInventory().storeItem(41458, 1);
+					htmlid = "sm7";
+				} else {
+					htmlid = "sm4";
+				}
+			} else if (s.equalsIgnoreCase("D")) {
+				if (pc.getInventory().checkItem(41101, 1)) {
+					pc.getInventory().consumeItem(41101, 1);
+					pc.getInventory().storeItem(41459, 1);
+					htmlid = "sm8";
+				} else {
+					htmlid = "sm4";
+				}
+			}
 //發光的古老項鍊-奇岩-迪艾司
-	       	 else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71179) {
-	               int createitemrnd = RandomArrayList.getArray100List();
-	               if (s.equalsIgnoreCase("A")) {
-	                   if (!(pc.getInventory().checkItem(49028, 1) 
-	                           && pc.getInventory().checkItem(49029, 1)
-	                           && pc.getInventory().checkItem(49030, 1)
-	                           && pc.getInventory().checkItem(41139, 1))) {
-	                       htmlid = "dh6";
-	                   }else if ((createitemrnd <= 10) && (createitemrnd >= 1)) {
-	                       materials = new int[] { 49028, 49029, 49030, 41139 };
-	                       counts = new int [] { 1, 1, 1, 1 };
-	                       createitem = new int[] { 41140 };
-	                       createcount = new int[] { 1 };
-	                       htmlid = "dh8";
-	                   } else if ((createitemrnd >= 11) && (createitemrnd <= 100)){
-	                       materials = new int[] { 49028, 49029, 49030, 41139 };
-	                       counts = new int [] { 1, 1, 1, 1 };
-	                       createitem = new int[] { 49270 };
-	                       createcount = new int[] { 1 };
-	                       htmlid = "dh7";
-	                   }
-	               } else if (s.equalsIgnoreCase("B")) {
-	                   if (!(pc.getInventory().checkItem(49027, 1)
-	                           && pc.getInventory().checkItem(41140, 1))) {
-	                       htmlid = "dh6";
-	                   }else if ((createitemrnd <= 10) && (createitemrnd >= 1)) {
-	                       materials = new int[] { 49027, 41140 };
-	                       counts = new int [] { 1, 1 };
-	                       createitem = new int[] { 20422 };
-	                       createcount = new int[] { 1 };
-	                       htmlid = "dh9";
-	                   } else if ((createitemrnd >= 11) && (createitemrnd <= 100)){
-	                       materials = new int[] { 49027, 41140 };
-	                       counts = new int [] { 1, 1 };
-	                       createitem = new int[] { 49270 };
-	                       createcount = new int[] { 5 };
-	                       htmlid = "dh7";
-	                   }
-	               }
-	       	 }
+			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71179) {
+				int createitemrnd = RandomArrayList.getArray100List();
+				if (s.equalsIgnoreCase("A")) {
+					if (!(pc.getInventory().checkItem(49028, 1)
+							&& pc.getInventory().checkItem(49029, 1)
+							&& pc.getInventory().checkItem(49030, 1)
+							&& pc.getInventory().checkItem(41139, 1))) {
+						htmlid = "dh6";
+					}else if ((createitemrnd <= 10) && (createitemrnd >= 1)) {
+						materials = new int[] { 49028, 49029, 49030, 41139 };
+						counts = new int [] { 1, 1, 1, 1 };
+						createitem = new int[] { 41140 };
+						createcount = new int[] { 1 };
+						htmlid = "dh8";
+					} else if ((createitemrnd >= 11) && (createitemrnd <= 100)) {
+						materials = new int[] { 49028, 49029, 49030, 41139 };
+						counts = new int [] { 1, 1, 1, 1 };
+						createitem = new int[] { 49270 };
+						createcount = new int[] { 1 };
+						htmlid = "dh7";
+					}
+				} else if (s.equalsIgnoreCase("B")) {
+					if (!(pc.getInventory().checkItem(49027, 1)
+							&& pc.getInventory().checkItem(41140, 1))) {
+						htmlid = "dh6";
+					}else if ((createitemrnd <= 10) && (createitemrnd >= 1)) {
+						materials = new int[] { 49027, 41140 };
+						counts = new int [] { 1, 1 };
+						createitem = new int[] { 20422 };
+						createcount = new int[] { 1 };
+						htmlid = "dh9";
+					} else if ((createitemrnd >= 11) && (createitemrnd <= 100)) {
+						materials = new int[] { 49027, 41140 };
+						counts = new int [] { 1, 1 };
+						createitem = new int[] { 49270 };
+						createcount = new int[] { 5 };
+						htmlid = "dh7";
+					}
+				}
+			}
 //奇岩-發光的古老項鍊-路武基
-	        } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71181) {
-		            if (s.equalsIgnoreCase("A")) {
-		                if(pc.getInventory().checkItem(41093, 1)) {
-		                    pc.getInventory().consumeItem(41093, 1);
-		                    pc.getInventory().storeItem(49271, 1);
-		                    htmlid = "my5";
-		                } else {
-		                    htmlid = "my4";
-		                }
-		            } else if(s.equalsIgnoreCase("B")) {
-		                if(pc.getInventory().checkItem(41094, 1)) {
-		                    pc.getInventory().consumeItem(41094, 1);
-		                    pc.getInventory().storeItem(49272, 1);
-		                    htmlid = "my6";
-		                } else {
-		                    htmlid = "my4";
-		                }
-		            } else if(s.equalsIgnoreCase("C")) {
-		                if(pc.getInventory().checkItem(41095, 1)) {
-		                    pc.getInventory().consumeItem(41095, 1);
-		                    pc.getInventory().storeItem(49273, 1);
-		                    htmlid = "my7";
-		                } else {
-		                    htmlid = "my4";
-		                }
-		            } else if(s.equalsIgnoreCase("D")) {
-		                if(pc.getInventory().checkItem(41096, 1)) {
-		                    pc.getInventory().consumeItem(41096, 1);
-		                    pc.getInventory().storeItem(41097, 1);
-		                    htmlid = "my8";
-		                } else {
-		                    htmlid = "my4";
-		                }
-		            }
-		        } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71182) {
-		            if (s.equalsIgnoreCase("A")) {
-		                if(pc.getInventory().checkItem(41098, 1)) {
-		                    pc.getInventory().consumeItem(41098, 1);
-		                    pc.getInventory().storeItem(49274, 1);
-		                    htmlid = "sm5";
-		                } else {
-		                    htmlid = "sm4";
-		                }
-		            } else if(s.equalsIgnoreCase("B")) {
-		                if(pc.getInventory().checkItem(41099, 1)) {
-		                    pc.getInventory().consumeItem(41099, 1);
-		                    pc.getInventory().storeItem(49275, 1);
-		                    htmlid = "sm6";
-		                } else {
-		                    htmlid = "sm4";
-		                }
-		            } else if(s.equalsIgnoreCase("C")) {
-		                if(pc.getInventory().checkItem(41100, 1)) {
-		                    pc.getInventory().consumeItem(41100, 1);
-		                    pc.getInventory().storeItem(49276, 1);
-		                    htmlid = "sm7";
-		                } else {
-		                    htmlid = "sm4";
-		                }
-		            } else if(s.equalsIgnoreCase("D")) {
-		                if(pc.getInventory().checkItem(41101, 1)) {
-		                    pc.getInventory().consumeItem(41101, 1);
-		                    pc.getInventory().storeItem(41102, 1);
-		                    htmlid = "sm8";
-		                } else {
-		                    htmlid = "sm4";
-		                }
-		            }
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71181) {
+			if (s.equalsIgnoreCase("A")) {
+				if (pc.getInventory().checkItem(41093, 1)) {
+					pc.getInventory().consumeItem(41093, 1);
+					pc.getInventory().storeItem(49271, 1);
+					htmlid = "my5";
+				} else {
+					htmlid = "my4";
+				}
+			} else if (s.equalsIgnoreCase("B")) {
+				if (pc.getInventory().checkItem(41094, 1)) {
+					pc.getInventory().consumeItem(41094, 1);
+					pc.getInventory().storeItem(49272, 1);
+					htmlid = "my6";
+				} else {
+					htmlid = "my4";
+				}
+			} else if (s.equalsIgnoreCase("C")) {
+				if (pc.getInventory().checkItem(41095, 1)) {
+					pc.getInventory().consumeItem(41095, 1);
+					pc.getInventory().storeItem(49273, 1);
+					htmlid = "my7";
+				} else {
+					htmlid = "my4";
+				}
+			} else if (s.equalsIgnoreCase("D")) {
+				if (pc.getInventory().checkItem(41096, 1)) {
+					pc.getInventory().consumeItem(41096, 1);
+					pc.getInventory().storeItem(41097, 1);
+					htmlid = "my8";
+				} else {
+					htmlid = "my4";
+				}
+			}
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71182) {
+			if (s.equalsIgnoreCase("A")) {
+				if (pc.getInventory().checkItem(41098, 1)) {
+					pc.getInventory().consumeItem(41098, 1);
+					pc.getInventory().storeItem(49274, 1);
+					htmlid = "sm5";
+				} else {
+					htmlid = "sm4";
+				}
+			} else if (s.equalsIgnoreCase("B")) {
+				if (pc.getInventory().checkItem(41099, 1)) {
+					pc.getInventory().consumeItem(41099, 1);
+					pc.getInventory().storeItem(49275, 1);
+					htmlid = "sm6";
+				} else {
+					htmlid = "sm4";
+				}
+			} else if (s.equalsIgnoreCase("C")) {
+				if (pc.getInventory().checkItem(41100, 1)) {
+					pc.getInventory().consumeItem(41100, 1);
+					pc.getInventory().storeItem(49276, 1);
+					htmlid = "sm7";
+				} else {
+					htmlid = "sm4";
+				}
+			} else if (s.equalsIgnoreCase("D")) {
+				if (pc.getInventory().checkItem(41101, 1)) {
+					pc.getInventory().consumeItem(41101, 1);
+					pc.getInventory().storeItem(41102, 1);
+					htmlid = "sm8";
+				} else {
+					htmlid = "sm4";
+				}
+			}
 //哈蒙任務
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80099) {
-            if (s.equalsIgnoreCase("A")) {
-                    if (pc.getInventory().checkItem(40308, 300)) {
-                        pc.getInventory().consumeItem(40308,300);
-                        pc.getInventory().storeItem(41315, 1);
-                        pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 1);
-                        htmlid = "rarson16";
-                    } else if (!pc.getInventory().checkItem(40308, 300)) {
-                        htmlid = "rarson7";
-                    }
-            } else if (s.equalsIgnoreCase("B")) {
-                    if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) ==1)
-                            && (pc.getInventory().checkItem(41325, 1))) {
-                        pc.getInventory().consumeItem(41325, 1);
-                        pc.getInventory().storeItem(40308, 2000);
-                        pc.getInventory().storeItem(41317, 1);
-                        pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 2);
-                        htmlid = "rarson9";
-                    } else {
-                        htmlid = "rarson10";
-                    }
-            } else if (s.equalsIgnoreCase("C")) {
-                    if((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) ==4)
-                            && (pc.getInventory().checkItem(41326, 1))) {
-                        pc.getInventory().storeItem(40308, 30000);
-                        pc.getInventory().consumeItem(41326, 1);
-                        htmlid = "rarson12";
-                        pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 5);
-                    } else {
-                        htmlid = "rarson17";
-                    }
-            } else if (s.equalsIgnoreCase("D")) {
-                    if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) <=1)
-                            || (pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) ==5)) {
-                        if (pc.getInventory().checkItem(40308, 300)) {
-                            pc.getInventory().consumeItem(40308,300);
-                            pc.getInventory().storeItem(41315, 1);
-                            pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 1);
-                            htmlid = "rarson16";
-                        } else if (!pc.getInventory().checkItem(40308, 300)) {
-                            htmlid = "rarson7";
-                        }
-                    } else if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) >= 2)
-                            && (pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) <= 4)) {
-                        if (pc.getInventory().checkItem(40308, 300)) {
-                            pc.getInventory().consumeItem(40308,300);
-                            pc.getInventory().storeItem(41315, 1);
-                            htmlid = "rarson16";
-                        } else if (!pc.getInventory().checkItem(40308, 300)) {
-                            htmlid = "rarson7";
-                        }
-                    }
-                }
+			if (s.equalsIgnoreCase("A")) {
+				if (pc.getInventory().checkItem(40308, 300)) {
+					pc.getInventory().consumeItem(40308,300);
+					pc.getInventory().storeItem(41315, 1);
+					pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 1);
+					htmlid = "rarson16";
+				} else if (!pc.getInventory().checkItem(40308, 300)) {
+					htmlid = "rarson7";
+				}
+			} else if (s.equalsIgnoreCase("B")) {
+				if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 1)
+						&& (pc.getInventory().checkItem(41325, 1))) {
+					pc.getInventory().consumeItem(41325, 1);
+					pc.getInventory().storeItem(40308, 2000);
+					pc.getInventory().storeItem(41317, 1);
+					pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 2);
+					htmlid = "rarson9";
+				} else {
+					htmlid = "rarson10";
+				}
+			} else if (s.equalsIgnoreCase("C")) {
+				if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 4)
+						&& (pc.getInventory().checkItem(41326, 1))) {
+					pc.getInventory().storeItem(40308, 30000);
+					pc.getInventory().consumeItem(41326, 1);
+					htmlid = "rarson12";
+					pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 5);
+				} else {
+					htmlid = "rarson17";
+				}
+			} else if (s.equalsIgnoreCase("D")) {
+				if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) <= 1)
+						|| (pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 5)) {
+					if (pc.getInventory().checkItem(40308, 300)) {
+						pc.getInventory().consumeItem(40308,300);
+						pc.getInventory().storeItem(41315, 1);
+						pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 1);
+						htmlid = "rarson16";
+					} else if (!pc.getInventory().checkItem(40308, 300)) {
+						htmlid = "rarson7";
+					}
+				} else if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) >= 2)
+						&& (pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) <= 4)) {
+					if (pc.getInventory().checkItem(40308, 300)) {
+						pc.getInventory().consumeItem(40308,300);
+						pc.getInventory().storeItem(41315, 1);
+						htmlid = "rarson16";
+					} else if (!pc.getInventory().checkItem(40308, 300)) {
+						htmlid = "rarson7";
+					}
+				}
+			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80101) {
-            if (s.equalsIgnoreCase("request letter of kuen")) {
-                if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 2)
-                        && (pc.getInventory().checkItem(41317, 1))) {
-                    pc.getInventory().consumeItem(41317, 1);
-                    pc.getInventory().storeItem(41318, 1);
-                    pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 3);
-                    htmlid = "";
-                } else {
-                    htmlid = "";
-                }
-            } else if(s.equalsIgnoreCase("request holy mithril dust")) {
-                if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 3)
-                        && (pc.getInventory().checkItem(41315, 1))
-                        && pc.getInventory().checkItem(40494, 30)
-                        && pc.getInventory().checkItem(41318, 1)) {
-                    pc.getInventory().consumeItem(41315, 1);
-                    pc.getInventory().consumeItem(41318, 1);
-                    pc.getInventory().consumeItem(40494, 30);
-                    pc.getInventory().storeItem(41316, 1);
-                    pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 4);
-                    htmlid = "";
-                } else {
-                    htmlid = "";
-                }
-            }
+			if (s.equalsIgnoreCase("request letter of kuen")) {
+				if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 2)
+						&& (pc.getInventory().checkItem(41317, 1))) {
+					pc.getInventory().consumeItem(41317, 1);
+					pc.getInventory().storeItem(41318, 1);
+					pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 3);
+					htmlid = "";
+				} else {
+					htmlid = "";
+				}
+			} else if (s.equalsIgnoreCase("request holy mithril dust")) {
+				if ((pc.getQuest().get_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT) == 3)
+						&& (pc.getInventory().checkItem(41315, 1))
+						&& pc.getInventory().checkItem(40494, 30)
+						&& pc.getInventory().checkItem(41318, 1)) {
+					pc.getInventory().consumeItem(41315, 1);
+					pc.getInventory().consumeItem(41318, 1);
+					pc.getInventory().consumeItem(40494, 30);
+					pc.getInventory().storeItem(41316, 1);
+					pc.getQuest().set_step(L1Quest.QUEST_GENERALHAMELOFRESENTMENT, 4);
+					htmlid = "";
+				} else {
+					htmlid = "";
+				}
+			}
 //羅賓孫 熾炎天使弓
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71256) {
-            if (s.equalsIgnoreCase("E")) {
-                if ((pc.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 8)
-                        && pc.getInventory().checkItem(40491,30)
-                        && pc.getInventory().checkItem(40495,40)
-                        && pc.getInventory().checkItem(100,1)
-                        && pc.getInventory().checkItem(40509,12)
-                        && pc.getInventory().checkItem(40052,1)
-                        && pc.getInventory().checkItem(40053,1)
-                        && pc.getInventory().checkItem(40054,1)
-                        && pc.getInventory().checkItem(40055,1)
-                        && pc.getInventory().checkItem(41347,1)
-                        && pc.getInventory().checkItem(41350,1)) {
-                    pc.getInventory().consumeItem(40491,30);
-                    pc.getInventory().consumeItem(40495,40);
-                    pc.getInventory().consumeItem(100,1);
-                    pc.getInventory().consumeItem(40509,12);
-                    pc.getInventory().consumeItem(40052,1);
-                    pc.getInventory().consumeItem(40053,1);
-                    pc.getInventory().consumeItem(40054,1);
-                    pc.getInventory().consumeItem(40055,1);
-                    pc.getInventory().consumeItem(41347,1);
-                    pc.getInventory().consumeItem(41350,1);
-                    htmlid = "robinhood12";
-                    pc.getInventory().storeItem(205,1);
-                    pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, L1Quest.QUEST_END);
-                }
-            } else if (s.equalsIgnoreCase("C")) {
-                if (pc.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 7) {
-                    if (pc.getInventory().checkItem(41352,4)
-                        && pc.getInventory().checkItem(40618,30)
-                        && pc.getInventory().checkItem(40643,30)
-                        && pc.getInventory().checkItem(40645,30)
-                        && pc.getInventory().checkItem(40651,30)
-                        && pc.getInventory().checkItem(40676,30)
-                        && pc.getInventory().checkItem(40514,20)
-                        && pc.getInventory().checkItem(41351,1)
-                        && pc.getInventory().checkItem(41346,1)) {
-                        pc.getInventory().consumeItem(41352,4);
-                        pc.getInventory().consumeItem(40618,30);
-                        pc.getInventory().consumeItem(40643,30);
-                        pc.getInventory().consumeItem(40645,30);
-                        pc.getInventory().consumeItem(40651,30);
-                        pc.getInventory().consumeItem(40676,30);
-                        pc.getInventory().consumeItem(40514,20);
-                        pc.getInventory().consumeItem(41351,1);
-                        pc.getInventory().consumeItem(41346,1);
-                        pc.getInventory().storeItem(41347,1);
-                        pc.getInventory().storeItem(41350,1);
-                        htmlid = "robinhood10";
-                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 8);
-                        }
-                    }
-            } else if (s.equalsIgnoreCase("B")) {
-                    if(pc.getInventory().checkItem(41348)
-                        && pc.getInventory().checkItem(41346)) {
-                        htmlid = "robinhood13";
-                    } else {
-                        pc.getInventory().storeItem(41348,1);
-                        pc.getInventory().storeItem(41346,1);
-                        htmlid = "robinhood13";
-                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 2);
-                    }
-            } else if (s.equalsIgnoreCase("A")) {
-                if (pc.getInventory().checkItem(40028)) {
-                    pc.getInventory().consumeItem(40028,1);
-                    htmlid = "robinhood4";
-                    pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 1);
-                } else {
-                    htmlid = "robinhood19";
-                }
-            }
-        } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71257) {
-                if (s.equalsIgnoreCase("D")) {
-                    if (pc.getInventory().checkItem(41349)) {
-                        htmlid ="zybril10";
-                        pc.getInventory().storeItem(41351,1);
-                        pc.getInventory().consumeItem(41349,1);
-                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 7);
-                    } else {
-                        htmlid ="zybril14";
-                    }
-                } else if (s.equalsIgnoreCase("C")) {
-                    if (pc.getInventory().checkItem(40514,10)
-                            && pc.getInventory().checkItem(41353)) {
-                        pc.getInventory().consumeItem(40514,10);
-                        pc.getInventory().consumeItem(41353,1);
-                        pc.getInventory().storeItem(41354,1);
-                        htmlid ="zybril9";
-                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 6);
-                    }
-                } else if (pc.getInventory().checkItem(41353)
-                        && pc.getInventory().checkItem(40514,10)) {
-                    htmlid = "zybril8";
-                } else if (s.equalsIgnoreCase("B")) {
-                    if (pc.getInventory().checkItem(40048,10)
-                        && pc.getInventory().checkItem(40049,10)
-                        && pc.getInventory().checkItem(40050,10)
-                        && pc.getInventory().checkItem(40051,10)) {
-                        pc.getInventory().consumeItem(40048,10);
-                        pc.getInventory().consumeItem(40049,10);
-                        pc.getInventory().consumeItem(40050,10);
-                        pc.getInventory().consumeItem(40051,10);
-                        pc.getInventory().storeItem(41353,1);
-                        htmlid = "zybril15";
-                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 5);
-                    } else {
-                        htmlid = "zybril12";
-                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 4);
-                    }
-                    
-                } else if (s.equalsIgnoreCase("A")) {
-                    if (pc.getInventory().checkItem(41348)
-                            && pc.getInventory().checkItem(41346)) {
-                        htmlid = "zybril3";
-                        pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 3);
-                    } else {
-                        htmlid = "zybril11";
-                    }
-                }
+			if (s.equalsIgnoreCase("E")) {
+				if ((pc.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 8)
+						&& pc.getInventory().checkItem(40491,30)
+						&& pc.getInventory().checkItem(40495,40)
+						&& pc.getInventory().checkItem(100,1)
+						&& pc.getInventory().checkItem(40509,12)
+						&& pc.getInventory().checkItem(40052,1)
+						&& pc.getInventory().checkItem(40053,1)
+						&& pc.getInventory().checkItem(40054,1)
+						&& pc.getInventory().checkItem(40055,1)
+						&& pc.getInventory().checkItem(41347,1)
+						&& pc.getInventory().checkItem(41350,1)) {
+					pc.getInventory().consumeItem(40491,30);
+					pc.getInventory().consumeItem(40495,40);
+					pc.getInventory().consumeItem(100,1);
+					pc.getInventory().consumeItem(40509,12);
+					pc.getInventory().consumeItem(40052,1);
+					pc.getInventory().consumeItem(40053,1);
+					pc.getInventory().consumeItem(40054,1);
+					pc.getInventory().consumeItem(40055,1);
+					pc.getInventory().consumeItem(41347,1);
+					pc.getInventory().consumeItem(41350,1);
+					htmlid = "robinhood12";
+					pc.getInventory().storeItem(205,1);
+					pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, L1Quest.QUEST_END);
+				}
+			} else if (s.equalsIgnoreCase("C")) {
+				if (pc.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 7) {
+					if (pc.getInventory().checkItem(41352,4)
+							&& pc.getInventory().checkItem(40618,30)
+							&& pc.getInventory().checkItem(40643,30)
+							&& pc.getInventory().checkItem(40645,30)
+							&& pc.getInventory().checkItem(40651,30)
+							&& pc.getInventory().checkItem(40676,30)
+							&& pc.getInventory().checkItem(40514,20)
+							&& pc.getInventory().checkItem(41351,1)
+							&& pc.getInventory().checkItem(41346,1)) {
+						pc.getInventory().consumeItem(41352,4);
+						pc.getInventory().consumeItem(40618,30);
+						pc.getInventory().consumeItem(40643,30);
+						pc.getInventory().consumeItem(40645,30);
+						pc.getInventory().consumeItem(40651,30);
+						pc.getInventory().consumeItem(40676,30);
+						pc.getInventory().consumeItem(40514,20);
+						pc.getInventory().consumeItem(41351,1);
+						pc.getInventory().consumeItem(41346,1);
+						pc.getInventory().storeItem(41347,1);
+						pc.getInventory().storeItem(41350,1);
+						htmlid = "robinhood10";
+						pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 8);
+					}
+				}
+			} else if (s.equalsIgnoreCase("B")) {
+				if (pc.getInventory().checkItem(41348)
+						&& pc.getInventory().checkItem(41346)) {
+					htmlid = "robinhood13";
+				} else {
+					pc.getInventory().storeItem(41348,1);
+					pc.getInventory().storeItem(41346,1);
+					htmlid = "robinhood13";
+					pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 2);
+				}
+			} else if (s.equalsIgnoreCase("A")) {
+				if (pc.getInventory().checkItem(40028)) {
+					pc.getInventory().consumeItem(40028,1);
+					htmlid = "robinhood4";
+					pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 1);
+				} else {
+					htmlid = "robinhood19";
+				}
+			}
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71257) {
+			if (s.equalsIgnoreCase("D")) {
+				if (pc.getInventory().checkItem(41349)) {
+					htmlid ="zybril10";
+					pc.getInventory().storeItem(41351,1);
+					pc.getInventory().consumeItem(41349,1);
+					pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 7);
+				} else {
+					htmlid ="zybril14";
+				}
+			} else if (s.equalsIgnoreCase("C")) {
+				if (pc.getInventory().checkItem(40514,10)
+						&& pc.getInventory().checkItem(41353)) {
+					pc.getInventory().consumeItem(40514,10);
+					pc.getInventory().consumeItem(41353,1);
+					pc.getInventory().storeItem(41354,1);
+					htmlid ="zybril9";
+					pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 6);
+				}
+			} else if (pc.getInventory().checkItem(41353)
+					&& pc.getInventory().checkItem(40514,10)) {
+				htmlid = "zybril8";
+			} else if (s.equalsIgnoreCase("B")) {
+				if (pc.getInventory().checkItem(40048,10)
+						&& pc.getInventory().checkItem(40049,10)
+						&& pc.getInventory().checkItem(40050,10)
+						&& pc.getInventory().checkItem(40051,10)) {
+					pc.getInventory().consumeItem(40048,10);
+					pc.getInventory().consumeItem(40049,10);
+					pc.getInventory().consumeItem(40050,10);
+					pc.getInventory().consumeItem(40051,10);
+					pc.getInventory().storeItem(41353,1);
+					htmlid = "zybril15";
+					pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 5);
+				} else {
+					htmlid = "zybril12";
+					pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 4);
+				}
+			} else if (s.equalsIgnoreCase("A")) {
+				if (pc.getInventory().checkItem(41348)
+						&& pc.getInventory().checkItem(41346)) {
+					htmlid = "zybril3";
+					pc.getQuest().set_step(L1Quest.QUEST_MOONOFLONGBOW, 3);
+				} else {
+					htmlid = "zybril11";
+				}
+			}
 // 遠征隊遺物 by BAO
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71258) {
-            if (pc.getInventory().checkItem(40665)) {
-                htmlid = "marba17";
-                if (s.equalsIgnoreCase("B")) {
-                    htmlid = "marba7";
-                    if (pc.getInventory().checkItem(214) && pc.getInventory().checkItem(20389)
-                           && pc.getInventory().checkItem(20393) && pc.getInventory().checkItem(20401)
-                           && pc.getInventory().checkItem(20406) && pc.getInventory().checkItem(20409)) {
-                        htmlid = "marba15";
-                    }
-                }
-            } else if (s.equalsIgnoreCase("A")) {
-                if(pc.getInventory().checkItem(40637)) {
-                    htmlid = "marba20";
-                } else {
-                    L1NpcInstance npc = (L1NpcInstance) obj;
-                    L1ItemInstance item = pc.getInventory().storeItem(40637, 1);
-                    String npcName = npc.getNpcTemplate().get_name();
-                    String itemName = item.getItem().getName();
-                    pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
-                    htmlid = "marba6";
-                }        
-            }
-        }
-        else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71259) {
-             if (pc.getInventory().checkItem(40665)) {
-                htmlid = "aras8";
-             } else if (pc.getInventory().checkItem(40637)) {
-                htmlid = "aras1";
-                if (s.equalsIgnoreCase("A")) {
-                    if (pc.getInventory().checkItem(40664)) {
-                            htmlid = "aras6";
-                            if (pc.getInventory().checkItem(40679) || pc.getInventory().checkItem(40680)
-                                || pc.getInventory().checkItem(40681) || pc.getInventory().checkItem(40682)
-                                || pc.getInventory().checkItem(40683) || pc.getInventory().checkItem(40684)
-                                || pc.getInventory().checkItem(40693) || pc.getInventory().checkItem(40694)
-                                || pc.getInventory().checkItem(40695) || pc.getInventory().checkItem(40697)
-                                || pc.getInventory().checkItem(40698) || pc.getInventory().checkItem(40699)) {
-                                    htmlid = "aras3";
-                            } else {
-                                    htmlid = "aras6";
-                            }
-                    } else {
-                        L1NpcInstance npc = (L1NpcInstance) obj;
-                        L1ItemInstance item = pc.getInventory().storeItem(40664, 1);
-                        String npcName = npc.getNpcTemplate().get_name();
-                        String itemName = item.getItem().getName();
-                        pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
-                        htmlid = "aras6";
-                    }
-                } else if (s.equalsIgnoreCase("B")) {
-                    if(pc.getInventory().checkItem(40664)) {
-                        pc.getInventory().consumeItem(40664, 1);
-                        L1NpcInstance npc = (L1NpcInstance) obj;
-                        L1ItemInstance item = pc.getInventory().storeItem(40665, 1);
-                        String npcName = npc.getNpcTemplate().get_name();
-                        String itemName = item.getItem().getName();
-                        pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
-                        htmlid = "aras13";
-                    } else {
-                        htmlid = "aras14";
-                        L1NpcInstance npc = (L1NpcInstance) obj;
-                        L1ItemInstance item = pc.getInventory().storeItem(40665, 1);
-                        String npcName = npc.getNpcTemplate().get_name();
-                        String itemName = item.getItem().getName();
-                        pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
-                    }
-                } else {
-                     if(s.equalsIgnoreCase("7")) {
-                        if(pc.getInventory().checkItem(40693) && pc.getInventory().checkItem(40694)
-                        && pc.getInventory().checkItem(40695) && pc.getInventory().checkItem(40697)
-                        && pc.getInventory().checkItem(40698) && pc.getInventory().checkItem(40699)) {
-                            htmlid = "aras10";
-                        } else {
-                            htmlid = "aras9";
-                        }
-                    }
-                }
-            } else {
-                htmlid = "aras7";
-            }
+			if (pc.getInventory().checkItem(40665)) {
+				htmlid = "marba17";
+				if (s.equalsIgnoreCase("B")) {
+					htmlid = "marba7";
+					if (pc.getInventory().checkItem(214) && pc.getInventory().checkItem(20389)
+							&& pc.getInventory().checkItem(20393) && pc.getInventory().checkItem(20401)
+							&& pc.getInventory().checkItem(20406) && pc.getInventory().checkItem(20409)) {
+						htmlid = "marba15";
+					}
+				}
+			} else if (s.equalsIgnoreCase("A")) {
+				if (pc.getInventory().checkItem(40637)) {
+					htmlid = "marba20";
+				} else {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					L1ItemInstance item = pc.getInventory().storeItem(40637, 1);
+					String npcName = npc.getNpcTemplate().get_name();
+					String itemName = item.getItem().getName();
+					pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
+					htmlid = "marba6";
+				}
+			}
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71259) {
+			if (pc.getInventory().checkItem(40665)) {
+				htmlid = "aras8";
+			} else if (pc.getInventory().checkItem(40637)) {
+				htmlid = "aras1";
+				if (s.equalsIgnoreCase("A")) {
+					if (pc.getInventory().checkItem(40664)) {
+						htmlid = "aras6";
+						if (pc.getInventory().checkItem(40679) || pc.getInventory().checkItem(40680)
+								|| pc.getInventory().checkItem(40681) || pc.getInventory().checkItem(40682)
+								|| pc.getInventory().checkItem(40683) || pc.getInventory().checkItem(40684)
+								|| pc.getInventory().checkItem(40693) || pc.getInventory().checkItem(40694)
+								|| pc.getInventory().checkItem(40695) || pc.getInventory().checkItem(40697)
+								|| pc.getInventory().checkItem(40698) || pc.getInventory().checkItem(40699)) {
+							htmlid = "aras3";
+						} else {
+							htmlid = "aras6";
+						}
+					} else {
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory().storeItem(40664, 1);
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
+						htmlid = "aras6";
+					}
+				} else if (s.equalsIgnoreCase("B")) {
+					if (pc.getInventory().checkItem(40664)) {
+						pc.getInventory().consumeItem(40664, 1);
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory().storeItem(40665, 1);
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
+						htmlid = "aras13";
+					} else {
+						htmlid = "aras14";
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory().storeItem(40665, 1);
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage(143, npcName, itemName));
+					}
+				} else {
+					if (s.equalsIgnoreCase("7")) {
+						if (pc.getInventory().checkItem(40693) && pc.getInventory().checkItem(40694)
+								&& pc.getInventory().checkItem(40695) && pc.getInventory().checkItem(40697)
+								&& pc.getInventory().checkItem(40698) && pc.getInventory().checkItem(40699)) {
+							htmlid = "aras10";
+						} else {
+							htmlid = "aras9";
+						}
+					}
+				}
+			} else {
+				htmlid = "aras7";
+			}
 //add end
 		}
 		// 空間の歪み
