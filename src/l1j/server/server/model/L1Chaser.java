@@ -109,7 +109,7 @@ public class L1Chaser extends TimerTask {
 		double dmg = 0;
 		int spByItem = pc.getSp() - pc.getTrueSp();
 		int intel = pc.getInt();
-		int charaIntelligence = pc.getInt() + spByItem - 12;
+		int charaIntelligence = pc.getInt() + spByItem - 12;// 智力 + 裝備魔攻 -12
 		double coefficientA = 1 + 3.0 / 32.0 * charaIntelligence;
 		if (coefficientA < 1) {
 			coefficientA = 1;
@@ -134,9 +134,17 @@ public class L1Chaser extends TimerTask {
 		if (pc.hasSkillEffect(BERSERKERS)) {
 			bsk = 0.1;
 		}
+/* waja change
 		dmg = (_random.nextInt(6) + 1 + 7) * (1 + bsk) * coefficientA
 				* coefficientB / 10.5 * coefficientC * 2.0;
-
+ * 原算式 角色 智 18 裝備魔攻 12 
+ * coefficientA = 18.125 coefficientB = 1.17 coefficientC = 18
+ * 算式 預估傷害值 14*1.1*18.125*1.17/10.5*18*2=1119.69
+ * 攻擊傷害過高 先改為較低數值
+ * */
+		dmg = (_random.nextInt(6) + 1 + 7) * (1 + bsk) * coefficientA
+		* coefficientB ;// 預估傷害為 326.57
+//change end
 		return L1WeaponSkill.calcDamageReduction(pc, cha, dmg, 0);
 	}
 
