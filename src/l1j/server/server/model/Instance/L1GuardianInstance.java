@@ -51,7 +51,7 @@ import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1GuardianInstance extends L1NpcInstance {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -92,8 +92,8 @@ public class L1GuardianInstance extends L1NpcInstance {
 					break;
 				}
 //waja add 妖精殺死同族
-                else if (pc.isElf() && pc.isWantedForElf()) { // PK ELF
-                    wideBroadcastPacket(new S_NpcChatPacket(this, "$815", 1));
+				else if (pc.isElf() && pc.isWantedForElf()) { // PK ELF
+					wideBroadcastPacket(new S_NpcChatPacket(this, "$815", 1));
 					targetPlayer = pc;
 					break;
 				}
@@ -191,7 +191,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					player.getInventory().storeItem(40505, itemCount);
 					player.sendPackets(new S_ServerMessage(143, npcName, itemName));
 				if (!isDropitems()) {doGDropItem(3);}
-			} 
+			}
 				if(_inventory.checkItem(40507)) {// 安特之樹枝
 				if (chance <= 25) {
 					itemName = item40507.getName();
@@ -215,9 +215,9 @@ public class L1GuardianInstance extends L1NpcInstance {
 					itemName = item40499.getName();
 					player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
 					}
-			} else 
+			} else
 			{
-				if (!forDropitems()) 
+				if (!forDropitems())
 				{
 					setDropItems(false);
 					doGDropItem(_configtime);

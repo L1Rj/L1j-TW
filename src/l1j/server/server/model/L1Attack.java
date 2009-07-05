@@ -111,7 +111,7 @@ public class L1Attack {
 	private int _weaponSmall = 0;
 
 	private int _weaponLarge = 0;
-	
+
 	private int _weaponRange = 1;
 
 	private int _weaponBless = 1;
@@ -121,7 +121,7 @@ public class L1Attack {
 	private int _weaponMaterial = 0;
 
 	private int _weaponDoubleDmgChance = 0;
-	
+
 	private int _weaponAttrEnchantKind = 0;
 
 	private int _weaponAttrEnchantLevel = 0;
@@ -368,9 +368,9 @@ public class L1Attack {
 			} else if (!_pc.glanceCheck(_targetX, _targetY)) {
 				_isHit = false; // 攻擊者がプレイヤーの場合は障害物判定
 			} else if  (_pc.getLocation().getTileLineDistance(_target.getLocation()) > 2 && _weaponType != 20 && _weaponType != 24) {
-		        _isHit = false;//waja 近戰武器攻擊時座標離目標物過遠 攻擊無效 原值 為  > 1  避免怪物體積過大揮空改為2
-		        }else if  (_pc.getLocation().getTileLineDistance(_target.getLocation()) > 3 && _weaponType == 24) {
-		        _isHit = false;//waja 近戰武器攻擊時座標離目標物過遠 攻擊無效 原值為 > 2 
+				_isHit = false;//waja 近戰武器攻擊時座標離目標物過遠 攻擊無效 原值 為  > 1  避免怪物體積過大揮空改為2
+			}else if  (_pc.getLocation().getTileLineDistance(_target.getLocation()) > 3 && _weaponType == 24) {
+				_isHit = false;//waja 近戰武器攻擊時座標離目標物過遠 攻擊無效 原值為 > 2
 			} else if (_weaponId == 247 || _weaponId == 248
 					|| _weaponId == 249) {
 				_isHit = false; // 試練の劍B～C 攻擊無效
@@ -526,33 +526,33 @@ public class L1Attack {
 		return _hitRate >= rnd;
 /*
 * final int MIN_HITRATE = 5;
-* 
+*
 * _hitRate = _pc.getLevel();
-* 
+*
 * if (_pc.getStr() > 39) { _hitRate += strHit[39]; } else { _hitRate +=
 * strHit[_pc.getStr()]; }
-* 
+*
 * if (_pc.getDex() > 39) { _hitRate += dexHit[39]; } else { _hitRate +=
 * dexHit[_pc.getDex()]; }
-* 
+*
 * if (_weaponType != 20 && _weaponType != 62) { _hitRate += _weaponAddHit +
 * _pc.getHitup() + _pc.getOriginalHitup() + (_weaponEnchant / 2); } else {
 * _hitRate += _weaponAddHit + _pc.getBowHitup() + _pc .getOriginalBowHitup() +
 * (_weaponEnchant / 2); }
-* 
+*
 * if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中 _hitRate +=
 * _pc.getHitModifierByArmor(); } else { _hitRate +=
 * _pc.getBowHitModifierByArmor(); }
-* 
+*
 * int hitAc = (int) (_hitRate * 0.68 - 10) * -1;
-* 
+*
 * if (hitAc <= _targetPc.getAc()) { _hitRate = 95; } else { _hitRate = 95 -
 * (hitAc - _targetPc.getAc()); }
-* 
+*
 * if (_targetPc.hasSkillEffect(UNCANNY_DODGE)) { _hitRate -= 20; }
-* 
+*
 * if (_targetPc.hasSkillEffect(MIRROR_IMAGE)) { _hitRate -= 20; }
-* 
+*
 * if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加命中 ||
 * _pc.hasSkillEffect(COOKING_2_0_S)) { if (_weaponType != 20 && _weaponType !=
 * 62) { _hitRate += 1; } } if (_pc.hasSkillEffect(COOKING_3_2_N) // 料理による追加命中 ||
@@ -561,11 +561,11 @@ public class L1Attack {
 * _pc.hasSkillEffect(COOKING_2_3_S) || _pc.hasSkillEffect(COOKING_3_0_N) ||
 * _pc.hasSkillEffect(COOKING_3_0_S)) { if (_weaponType == 20 || _weaponType ==
 * 62) { _hitRate += 1; } }
-* 
+*
 * if (_hitRate < MIN_HITRATE) { _hitRate = MIN_HITRATE; }
-* 
+*
 * if (_weaponType2 == 17) { _hitRate = 100; // キーリンクの命中率は100% }
-* 
+*
 * if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) { _hitRate = 0; } if
 * (_targetPc.hasSkillEffect(ICE_LANCE)) { _hitRate = 0; } if
 * (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) { _hitRate = 0; } if
@@ -573,7 +573,7 @@ public class L1Attack {
 * (_targetPc.hasSkillEffect(EARTH_BIND)) { _hitRate = 0; } int rnd =
 * _random.nextInt(100) + 1; if (_weaponType == 20 && _hitRate > rnd) { //
 * 弓の場合、ヒットした場合でもERでの回避を再度行う。 return calcErEvasion(); }
-* 
+*
 * return _hitRate >= rnd;
 */
 	}
@@ -612,7 +612,7 @@ public class L1Attack {
 
 		_hitRate *= 5;
 		_hitRate += _targetNpc.getAc() * 5;
-		
+
 		if (80 < _pc.getInventory().getWeight240() // 重量による命中補正
 				&& 120 >= _pc.getInventory().getWeight240()) {
 			_hitRate -= 1;
@@ -645,7 +645,7 @@ public class L1Attack {
 			}
 		}
 
-		int attackerDice = RandomArrayList.getArrayshortList((short) 20) + _hitRate - 10;//原寫法_random.nextInt(20) + 1 + _hitRate - 10; 
+		int attackerDice = RandomArrayList.getArrayshortList((short) 20) + _hitRate - 10;//原寫法_random.nextInt(20) + 1 + _hitRate - 10;
 
 		if (_targetNpc.hasSkillEffect(UNCANNY_DODGE)) {
 			attackerDice -= 5;

@@ -1782,7 +1782,7 @@ public class L1PcInstance extends L1Character {
 	private boolean _mpRegenActiveByDoll;
 	private boolean _mpReductionActiveByAwake;
 	private boolean _hpRegenActive;
-    private boolean _hpRegenActiveByDoll;//魔法娃娃回血功能
+	private boolean _hpRegenActiveByDoll;//魔法娃娃回血功能
 	private L1EquipmentSlot _equipSlot;
 	private L1PcDeleteTimer _pcDeleteTimer;
 

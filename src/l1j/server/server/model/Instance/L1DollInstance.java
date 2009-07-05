@@ -76,7 +76,7 @@ public class L1DollInstance extends L1NpcInstance {
 					setDirectionMove(dir);
 				} else {
 					switch (RandomArrayList.getArrayshortList((short) 200)) {
-					case 10: // 0.5%可能性觸動 正常而言 平均50秒內會觸發一次 
+					case 10: // 0.5%可能性觸動 正常而言 平均50秒內會觸發一次
 						broadcastPacket(new S_DoActionGFX(getId(), ACTION_Think));
 						setSleepTime(2500);
 						break;
@@ -147,9 +147,9 @@ public class L1DollInstance extends L1NpcInstance {
 			((L1PcInstance) _master).stopMpRegenerationByDoll();
 		}
 
-        if (isHpRegeneration()) {//魔法娃娃回血停止
-            ((L1PcInstance) _master).stopHpRegenerationByDoll();
-        }
+		if (isHpRegeneration()) {//魔法娃娃回血停止
+			((L1PcInstance) _master).stopHpRegenerationByDoll();
+		}
 
 		_master.getDollList().remove(getId());
 		deleteMe();

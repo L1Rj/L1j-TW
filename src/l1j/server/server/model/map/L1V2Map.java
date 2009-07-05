@@ -306,7 +306,7 @@ public class L1V2Map extends L1Map {
 	@Override
 	public boolean isFishingZone(int x, int y) {
 		return accessOriginalTile(x, y) == 16;
-    }
+	}
 
 	@Override
 	public boolean isExistDoor(int x, int y) {

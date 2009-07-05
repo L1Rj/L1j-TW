@@ -359,7 +359,7 @@ public abstract class L1Map {
 	 *            座標のY值
 	 * @return ドアがあればtrue
 	 */
-    public abstract boolean isExistDoor(int x, int y);
+	public abstract boolean isExistDoor(int x, int y);
 
 	public static L1Map newNull() {
 		return _nullMap;

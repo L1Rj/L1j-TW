@@ -91,47 +91,47 @@ class L1SkillStop {
 				pc.sendPackets(new S_SkillIconAura(113, 0));
 			}
 //waja add 租旅館
-		  } else if (skillId == 1910) { //3小時55分到
-		  if (cha instanceof L1PcInstance) {
-		   L1PcInstance pc = (L1PcInstance) cha;
-		   if (pc.getMapId() == 99){
-		               pc.sendPackets(new S_SystemMessage("出租時間還剩餘 5 分鐘。"));
-		   }
-		   pc.setSkillEffect(1911,120*1000);
-		  }
-		  } else if (skillId == 1911) {
-		   if (cha instanceof L1PcInstance) {
-		    L1PcInstance pc = (L1PcInstance) cha;
-		    if (pc.getMapId() == 99){
-		                pc.sendPackets(new S_SystemMessage("出租時間還剩餘 3 分鐘。"));
-		    }
-		    pc.setSkillEffect(1912,60*1000);
-		   }
-		  } else if (skillId == 1912) {
-		   if (cha instanceof L1PcInstance) {
-		    L1PcInstance pc = (L1PcInstance) cha;
-		    if (pc.getMapId() == 99){
-		                pc.sendPackets(new S_SystemMessage("出租時間還剩餘 2 分鐘。")); 
-		    }
-		    pc.setSkillEffect(1913,60*1000);
-		   }
+		} else if (skillId == 1910) { //3小時55分到
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				if (pc.getMapId() == 99){
+					pc.sendPackets(new S_SystemMessage("出租時間還剩餘 5 分鐘。"));
+				}
+				pc.setSkillEffect(1911, 120 * 1000);
+			}
+		} else if (skillId == 1911) {
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				if (pc.getMapId() == 99){
+					pc.sendPackets(new S_SystemMessage("出租時間還剩餘 3 分鐘。"));
+				}
+				pc.setSkillEffect(1912, 60 * 1000);
+			}
+		} else if (skillId == 1912) {
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				if (pc.getMapId() == 99){
+					pc.sendPackets(new S_SystemMessage("出租時間還剩餘 2 分鐘。"));
+				}
+				pc.setSkillEffect(1913, 60 * 1000);
+			}
 		} else if (skillId == 1913) {
-		   if (cha instanceof L1PcInstance) {
-		    L1PcInstance pc = (L1PcInstance) cha;
-		    if (pc.getMapId() == 99){
-		                pc.sendPackets(new S_SystemMessage("出租時間還剩餘 1 分鐘。")); 
-		    }
-		    pc.setSkillEffect(1914,60*1000);
-		   }
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				if (pc.getMapId() == 99){
+					pc.sendPackets(new S_SystemMessage("出租時間還剩餘 1 分鐘。"));
+				}
+				pc.setSkillEffect(1914, 60 * 1000);
+			}
 		} else if (skillId == 1914) {
-		   if (cha instanceof L1PcInstance) {
-		    L1PcInstance pc = (L1PcInstance) cha;
-		    if (pc.getMapId() == 99){
-		    L1Teleport.teleport(pc, 33442, 32797, (short) 4, 4, true);
-		    }
-		    pc.getInventory().consumeItem(40312,1);
-		    pc.setSkillEffect(1915,60*1000); //租完1分鐘內無法再租
-		   }
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				if (pc.getMapId() == 99){
+					L1Teleport.teleport(pc, 33442, 32797, (short) 4, 4, true);
+				}
+				pc.getInventory().consumeItem(40312,1);
+				pc.setSkillEffect(1915, 60 * 1000); //租完1分鐘內無法再租
+			}
 //add end
 		} else if (skillId == SHINING_AURA) { // シャイニング オーラ
 			cha.addAc(8);

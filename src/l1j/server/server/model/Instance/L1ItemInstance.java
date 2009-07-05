@@ -98,7 +98,7 @@ public class L1ItemInstance extends L1Object {
 
 	/**
 	 * アイテムが確認(鑑定)濟みであるかを返す。
-	 * 
+	 *
 	 * @return 確認濟みならtrue、未確認ならfalse。
 	 */
 	public boolean isIdentified() {
@@ -107,7 +107,7 @@ public class L1ItemInstance extends L1Object {
 
 	/**
 	 * アイテムが確認(鑑定)濟みであるかを設定する。
-	 * 
+	 *
 	 * @param identified
 	 *            確認濟みならtrue、未確認ならfalse。
 	 */
@@ -121,7 +121,7 @@ public class L1ItemInstance extends L1Object {
 
 	/**
 	 * アイテムの個數を返す。
-	 * 
+	 *
 	 * @return アイテムの個數
 	 */
 	public int getCount() {
@@ -130,7 +130,7 @@ public class L1ItemInstance extends L1Object {
 
 	/**
 	 * アイテムの個數を設定する。
-	 * 
+	 *
 	 * @param count
 	 *            アイテムの個數
 	 */
@@ -140,7 +140,7 @@ public class L1ItemInstance extends L1Object {
 
 	/**
 	 * アイテムが裝備されているかを返す。
-	 * 
+	 *
 	 * @return アイテムが裝備されていればtrue、裝備されていなければfalse。
 	 */
 	public boolean isEquipped() {
@@ -149,7 +149,7 @@ public class L1ItemInstance extends L1Object {
 
 	/**
 	 * アイテムが裝備されているかを設定する。
-	 * 
+	 *
 	 * @param equipped
 	 *            アイテムが裝備されていればtrue,裝備されていなければfalse。
 	 */
@@ -321,21 +321,21 @@ public class L1ItemInstance extends L1Object {
 
 //waja add 飾品強化卷軸
 		public int firemr;
-		
+
 		public int watermr;
-		
+
 		public int earthmr;
-		
+
 		public int windmr;
-		
+
 		public int addhp;
-		
+
 		public int addmp;
-		
+
 		public int hpr;
-		
+
 		public int mpr;
-		
+
 		public int addsp;
 //add end
 		public void updateAll() {
@@ -679,79 +679,79 @@ public class L1ItemInstance extends L1Object {
 	}
 //waja add 飾品強化卷軸
 	private int _FireMr = 0;
-	
+
 	public int getFireMr() {
 		return _FireMr;
 	}
 	public void setFireMr(int i) {
 		_FireMr = i;
 	}
-	
+
 	private int _WaterMr = 0;
-	
+
 	public int getWaterMr() {
 		return _WaterMr;
 	}
 	public void setWaterMr(int i) {
 		_WaterMr = i;
 	}
-	
+
 	private int _EarthMr = 0;
-	
+
 	public int getEarthMr() {
 		return _EarthMr;
 	}
 	public void setEarthMr(int i) {
 		_EarthMr = i;
 	}
-	
+
 	private int _WindMr = 0;
-	
+
 	public int getWindMr() {
 		return _WindMr;
 	}
 	public void setWindMr(int i) {
 		_WindMr = i;
 	}
-	
+
 	private int _Mpr = 0;
-	
+
 	public int getMpr() {
 		return _Mpr;
 	}
 	public void setMpr(int i) {
 		_Mpr = i;
 	}
-	
+
 	private int _Hpr = 0;
-	
+
 	public int getHpr() {
 		return _Hpr;
 	}
 	public void setHpr(int i) {
 		_Hpr = i;
 	}
-	
+
 	private int _addHp = 0;
-	
+
 	public int getaddHp() {
 		return _addHp;
 	}
 	public void setaddHp(int i) {
 		_addHp = i;
 	}
-	
+
 	private int _addMp = 0;
-	
+
 	public int getaddMp() {
 		return _addMp;
 	}
 	public void setaddMp(int i) {
 		_addMp = i;
 	}
-	
+
 	private int _addSp = 0;
-	
+
 	public int getaddSp() {
 		return _addSp;
 	}
@@ -822,22 +822,22 @@ public class L1ItemInstance extends L1Object {
 			if (getEnchantLevel() != 0) {
 				os.writeC(2);
 				os.writeC(getEnchantLevel());
-			} 
+			}
 */
-			if (getEnchantLevel() != 0) { 
-	               os.writeC(2);
-	               if (getItem().getType2() !=2){
-	               os.writeC(getEnchantLevel());
-	               } else if (getItem().getType2() == 2
-	               &&getItem().getType() == 8
-	               ||getItem().getType() == 9
-	               ||getItem().getType() == 10
-	               ||getItem().getType() == 12){
-	               os.writeC(0);
-	               } else {
-	                os.writeC(getEnchantLevel());
-	               }
-	               }	
+			if (getEnchantLevel() != 0) {
+				os.writeC(2);
+				if (getItem().getType2() !=2){
+					os.writeC(getEnchantLevel());
+				} else if (getItem().getType2() == 2
+						&&getItem().getType() == 8
+						||getItem().getType() == 9
+						||getItem().getType() == 10
+						||getItem().getType() == 12){
+					os.writeC(0);
+				} else {
+					os.writeC(getEnchantLevel());
+				}
+			}
 //add end
 			// 損傷度
 			if (get_durability() != 0) {
