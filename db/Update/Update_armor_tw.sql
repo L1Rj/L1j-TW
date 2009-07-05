@@ -532,7 +532,7 @@ Update armor Set name = '底比斯阿比努斯戒指' Where item_id = '21094';
 Update armor Set name = '底比斯歐西里斯腰帶' Where item_id = '21095';
 Update armor Set name = '命運耳環' Where item_id = '21096';
 Update armor Set name = '射擊手耳環' Where item_id = '21097';
-Update armor Set name = '鬥劍士耳環' Where item_id = '21098';
+Update armor Set name = '劍鬥士耳環' Where item_id = '21098';
 Update armor Set name = '大法師耳環' Where item_id = '21099';
 Update armor Set name = '幻術士斗篷' Where item_id = '21100';
 Update armor Set name = '幻術士法書' Where item_id = '21101';
