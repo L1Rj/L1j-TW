@@ -668,3 +668,6 @@ Update armor Set name_id = '$1958 $1934' Where item_id = '20140';
 Update armor Set name_id = '$1958 $1935' Where item_id = '20141';
 Update armor Set name_id = '$1958 $1936' Where item_id = '20142';
 Update armor Set name_id = '$1958 $1933' Where item_id = '20143';
+
+/*20090705 中文化*/
+Update armor Set name = 'ID．抗魔T恤' Where item_id = '21108';
