@@ -938,10 +938,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						|| itemId == 40507) { // シアンポーション、エントの枝
 					if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
 						pc.sendPackets(new S_ServerMessage(698)); // 魔力によって何も飲むことができません。
-//waja add 特殊狀態下不可使用
-					} else if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
-						pc.sendPackets(new S_ServerMessage(574)); //無法使用	
-//end
 					} else {
 						cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
 						pc.sendPackets(new S_SkillSound(pc.getId(), 192));
@@ -958,8 +954,13 @@ public class C_ItemUSe extends ClientBasePacket {
 						|| itemId == L1ItemId.B_POTION_OF_HASTE_SELF
 						|| itemId == 40018 // 強化グリーン ポーション
 						|| itemId == 140018 // 祝福された強化グリーン ポーション
-						|| itemId == 40039 // ワイン
-						|| itemId == 40040 // ウイスキー
+
+						// 20080122 修改玩家可使用紅酒,威士忌 use won122 code 1/3
+						/* 
+						|| itemId == 40039   // ワイン
+						|| itemId == 40040   // ウイスキー
+						 */ 
+						// end
 						|| itemId == 40030 // 象牙の塔のヘイスト ポーション
 						|| itemId == 41338 // 祝福されたワイン
 						|| itemId == 41261 // おむすび
@@ -981,6 +982,13 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
+				} else if (itemId == 49158) { // ユグドラの実
+					if (pc.isDragonKnight() || pc.isIllusionist()) {
+						useBravePotion(pc, itemId);
+					} else {
+						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+					}
+					pc.getInventory().removeItem(l1iteminstance, 1); 
 				} else if (itemId == 40068 // エルヴン ワッフル
 						|| itemId == 140068) { // 祝福されたエルヴン ワッフル
 					if (pc.isElf()) {
@@ -996,6 +1004,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
+				// 20080122 修改玩家可使用紅酒,威士忌 use won122 code 2/3
 				}else if (itemId == 40039) { // 紅酒
 					if (pc.isWizard()) {
 						useBravePotion(pc, itemId);
@@ -1010,14 +1019,15 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 49158) {//幻術&龍騎  生命之樹果實
-					if ((pc.isDragonKnight())|| (pc.isIllusionist())) {
+				// end
+				} else if (itemId == 40733) { // 名誉のコイン
+					if (!pc.isDragonKnight() && !pc.isIllusionist()) {
 						useBravePotion(pc, itemId);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
-				} else if (itemId == 40733 || itemId == 49138) { // 名譽貨幣 巧克力蛋糕
+				} else if (itemId == 49138) { // 巧克力蛋糕
 					useBravePotion(pc, itemId);
 					pc.getInventory().removeItem(l1iteminstance, 1);
 				} else if (itemId == 40066 || itemId == 41413) { // お餅、月餅
@@ -1758,89 +1768,77 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(79));
 					}
-				} else if (itemId == 40079 || itemId == 40095) { // 傳送回家的捲軸
-//waja add 特殊狀態下不可使用
-					if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
-						pc.sendPackets(new S_ServerMessage(574)); //無法使用
+				} else if (itemId == 40079 || itemId == 40095) { // 帰還スクロール
+					if (pc.getMap().isEscapable() || pc.isGm()) {
+						int[] loc = Getback.GetBack_Location(pc, true);
+						L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2],
+								5, true);
+						pc.getInventory().removeItem(l1iteminstance, 1);
 					} else {
-//end
-						if (pc.getMap().isEscapable() || pc.isGm()) {
-							int[] loc = Getback.GetBack_Location(pc, true);
-							L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2],
-									5, true);
-							pc.getInventory().removeItem(l1iteminstance, 1);
-						} else {
-							pc.sendPackets(new S_ServerMessage(647));
-							// pc.sendPackets(new
-							// S_CharVisualUpdate(pc));
-						}
-						cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
-					}
-				} else if (itemId == 40124) { // 血盟歸還スクロール
-//waja add 特殊狀態下不可使用
-					if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
 						pc.sendPackets(new S_ServerMessage(647));
-					} else {
-//end
-						if (pc.getMap().isEscapable() || pc.isGm()) {
-							int castle_id = 0;
-							int house_id = 0;
-							if (pc.getClanid() != 0) { // クラン所屬
-								L1Clan clan = L1World.getInstance().getClan(
-										pc.getClanname());
-								if (clan != null) {
-									castle_id = clan.getCastleId();
-									house_id = clan.getHouseId();
-								}
+						// pc.sendPackets(new
+						// S_CharVisualUpdate(pc));
+					}
+					cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
+				} else if (itemId == 40124) { // 血盟帰還スクロール
+					if (pc.getMap().isEscapable() || pc.isGm()) {
+						int castle_id = 0;
+						int house_id = 0;
+						if (pc.getClanid() != 0) { // クラン所属
+							L1Clan clan = L1World.getInstance().getClan(
+									pc.getClanname());
+							if (clan != null) {
+								castle_id = clan.getCastleId();
+								house_id = clan.getHouseId();
 							}
-							if (castle_id != 0) { // 城主クラン員
-								if (pc.getMap().isEscapable() || pc.isGm()) {
-									int[] loc = new int[3];
-									loc = L1CastleLocation.getCastleLoc(castle_id);
-									int locx = loc[0];
-									int locy = loc[1];
-									short mapid = (short) (loc[2]);
-									L1Teleport.teleport(pc, locx, locy, mapid, 5,
-											true);
-									pc.getInventory().removeItem(l1iteminstance, 1);
-								} else {
-									pc.sendPackets(new S_ServerMessage(647));
-								}
-							} else if (house_id != 0) { // アジト所有クラン員
-								if (pc.getMap().isEscapable() || pc.isGm()) {
-									int[] loc = new int[3];
-									loc = L1HouseLocation.getHouseLoc(house_id);
-									int locx = loc[0];
-									int locy = loc[1];
-									short mapid = (short) (loc[2]);
-									L1Teleport.teleport(pc, locx, locy, mapid, 5,
-											true);
-									pc.getInventory().removeItem(l1iteminstance, 1);
-								} else {
-									pc.sendPackets(new S_ServerMessage(647));
-								}
+						}
+						if (castle_id != 0) { // 城主クラン員
+							if (pc.getMap().isEscapable() || pc.isGm()) {
+								int[] loc = new int[3];
+								loc = L1CastleLocation.getCastleLoc(castle_id);
+								int locx = loc[0];
+								int locy = loc[1];
+								short mapid = (short) (loc[2]);
+								L1Teleport.teleport(pc, locx, locy, mapid, 5,
+										true);
+								pc.getInventory().removeItem(l1iteminstance, 1);
 							} else {
-								if (pc.getHomeTownId() > 0) {
-									int[] loc = L1TownLocation.getGetBackLoc(pc
-											.getHomeTownId());
-									int locx = loc[0];
-									int locy = loc[1];
-									short mapid = (short) (loc[2]);
-									L1Teleport.teleport(pc, locx, locy, mapid, 5,
-											true);
-									pc.getInventory().removeItem(l1iteminstance, 1);
-								} else {
-									int[] loc = Getback.GetBack_Location(pc, true);
-									L1Teleport.teleport(pc, loc[0], loc[1],
-											(short) loc[2], 5, true);
-									pc.getInventory().removeItem(l1iteminstance, 1);
-								}
+								pc.sendPackets(new S_ServerMessage(647));
+							}
+						} else if (house_id != 0) { // アジト所有クラン員
+							if (pc.getMap().isEscapable() || pc.isGm()) {
+								int[] loc = new int[3];
+								loc = L1HouseLocation.getHouseLoc(house_id);
+								int locx = loc[0];
+								int locy = loc[1];
+								short mapid = (short) (loc[2]);
+								L1Teleport.teleport(pc, locx, locy, mapid, 5,
+										true);
+								pc.getInventory().removeItem(l1iteminstance, 1);
+							} else {
+								pc.sendPackets(new S_ServerMessage(647));
 							}
 						} else {
-							pc.sendPackets(new S_ServerMessage(647));
+							if (pc.getHomeTownId() > 0) {
+								int[] loc = L1TownLocation.getGetBackLoc(pc
+										.getHomeTownId());
+								int locx = loc[0];
+								int locy = loc[1];
+								short mapid = (short) (loc[2]);
+								L1Teleport.teleport(pc, locx, locy, mapid, 5,
+										true);
+								pc.getInventory().removeItem(l1iteminstance, 1);
+							} else {
+								int[] loc = Getback.GetBack_Location(pc, true);
+								L1Teleport.teleport(pc, loc[0], loc[1],
+										(short) loc[2], 5, true);
+								pc.getInventory().removeItem(l1iteminstance, 1);
+							}
 						}
-						cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
+					} else {
+						pc.sendPackets(new S_ServerMessage(647));
 					}
+					cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
 				} else if (itemId == 140100 || itemId == 40100
 						|| itemId == 40099 // 祝福されたテレポートスクロール、テレポートスクロール
 						|| itemId == 40086 || itemId == 40863) { // スペルスクロール(テレポート)
@@ -2171,10 +2169,6 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40007) { // エボニー ワンド
 					cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
-// pc.sendPackets(new S_AttackStatus(pc, 0,
-// ActionCodes.ACTION_Wand));
-// pc.broadcastPacket(new S_AttackStatus(pc, 0,
-// ActionCodes.ACTION_Wand));
 					int chargeCount = l1iteminstance.getChargeCount();
 					if (chargeCount <= 0) {
 						// \f1何も起きませんでした。
@@ -2183,8 +2177,6 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					L1Object target = L1World.getInstance().findObject(
 							spellsc_objid);
-// pc.sendPackets(new S_SkillSound(spellsc_objid, 10));
-// pc.broadcastPacket(new S_SkillSound(spellsc_objid, 10));
 					pc.sendPackets(new S_UseAttackSkill(pc, spellsc_objid,
 							10, spellsc_x, spellsc_y, ActionCodes.ACTION_Wand));
 					pc.broadcastPacket(new S_UseAttackSkill(pc, spellsc_objid,
@@ -2498,13 +2490,12 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
 						"tscrollp"));
 					}
-				} else if (itemId == 40383) { // 地圖：歌う島
-					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "ei035"));
-				} else if (itemId == 40384) { // 地圖：隱された溪谷
-					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "ei036"));
-				} else if (itemId == 40101) { // 隱された溪谷歸還スクロール
-					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "ei037"));
-				} else if (itemId == 41209) { // ポピレアの依賴書
+				// TODO 地圖修正 歌唱之島 隱藏之谷
+				} else if (itemId == 40383 || itemId == 40384) {
+					pc.sendPackets(new S_UseMap(pc, l1iteminstance.getId(),
+							l1iteminstance.getItem().getItemId()));
+				// end
+				} else if (itemId == 41209) { // ポピレアの依頼書
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "ei002"));
 				} else if (itemId == 41210) { // 研磨材
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "ei003"));
@@ -2892,7 +2883,12 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 41427) { // 封印解除スクロール
 					L1ItemInstance lockItem = pc.getInventory().getItem(l);
 					if (lockItem != null && lockItem.getItem().getType2() == 1
-							|| lockItem.getItem().getType2() == 2) {
+							|| lockItem.getItem().getType2() == 2
+							|| lockItem.getItem().getType2() == 0
+							&& (lockItemId == 40314 || lockItemId == 40316
+							|| lockItemId == 41248 || lockItemId == 41249
+							|| lockItemId == 41250 || lockItemId == 49037
+							|| lockItemId == 49038 || lockItemId == 49039)) {
 						if (lockItem.getBless() == 128
 								|| lockItem.getBless() == 129
 								|| lockItem.getBless() == 130
@@ -2933,7 +2929,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 						int characterSlot = account.getCharacterSlot();
 						int maxAmount = Config.DEFAULT_CHARACTER_SLOT
-						+ characterSlot;
+								+ characterSlot;
 						if (maxAmount >= 8) {
 							pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 							return;
@@ -3436,11 +3432,6 @@ public class C_ItemUSe extends ClientBasePacket {
 	private void UseHeallingPotion(L1PcInstance pc, int healHp, int gfxid) {
 		if (pc.hasSkillEffect(71) == true) { // ディケイ ポーションの狀態
 			pc.sendPackets(new S_ServerMessage(698)); // 魔力によって何も飲むことができません。
-//waja add 特殊狀態下不可使用
-			return;
-		} else if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
-			pc.sendPackets(new S_ServerMessage(574)); //無法使用	
-//end
 			return;
 		}
 
@@ -3460,11 +3451,6 @@ public class C_ItemUSe extends ClientBasePacket {
 	private void useGreenPotion(L1PcInstance pc, int itemId) {
 		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
 			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
-//waja add 特殊狀態下不可使用
-			return;
-		} else if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
-			pc.sendPackets(new S_ServerMessage(574)); //無法使用	
-//end
 			return;
 		}
 
@@ -3544,11 +3530,6 @@ public class C_ItemUSe extends ClientBasePacket {
 	private void useBravePotion(L1PcInstance pc, int item_id) {
 		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
 			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
-//waja add 特殊狀態下不可使用
-			return;
-	} else if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
-		pc.sendPackets(new S_ServerMessage(574)); //無法使用	
-//end
 			return;
 		}
 
@@ -3560,6 +3541,14 @@ public class C_ItemUSe extends ClientBasePacket {
 			time = 300;
 		} else if (item_id == L1ItemId.B_POTION_OF_EMOTION_BRAVERY) { // 祝福されたブレイブポーション
 			time = 350;
+		} else if (item_id == 49158) { // ユグドラの実
+			time = 480;
+			if (pc.hasSkillEffect(STATUS_BRAVE)) { // 名誉のコインとは重複しない
+				pc.killSkillEffectTimer(STATUS_BRAVE);
+				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+				pc.setBraveSpeed(0);
+			}
 		} else if (item_id == 41415) { // 強化ブレイブ ポーション
 			time = 1800;
 		} else if (item_id == 40068) { // エルヴン ワッフル
@@ -3594,6 +3583,12 @@ public class C_ItemUSe extends ClientBasePacket {
 			time = 600;
 		} else if (item_id == 40733) { // 名譽のコイン
 			time = 600;
+			// 20080122 修改玩家可使用紅酒,威士忌 use won122 code 3/3
+		} else if (item_id == 40039) { // ワイン
+			time = 180;
+		} else if (item_id == 40040) { // ウイスキー
+			time = 180;
+			// end
 			if (pc.hasSkillEffect(STATUS_ELFBRAVE)) { // エルヴンワッフルとは重複しない
 				pc.killSkillEffectTimer(STATUS_ELFBRAVE);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
@@ -3634,25 +3629,26 @@ public class C_ItemUSe extends ClientBasePacket {
 		if (item_id == 40068 || item_id == 140068) { // エルヴン ワッフル
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 3, time));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 3, 0));
+			pc.sendPackets(new S_SkillSound(pc.getId(), 751));
+			pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
 			pc.setSkillEffect(STATUS_ELFBRAVE, time * 1000);
-		} else if (item_id == 49158) { // 生命之樹的果實
-			pc.sendPackets(new S_ServerMessage(1445));
-			pc.sendPackets(new S_SkillBrave(pc.getId(), 4, time));
-			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
+		} else if (item_id == 49158) { // ユグドラの実
+			if (pc.hasSkillEffect(STATUS_RIBRAVE)){
+				return;
+			}
+			pc.sendPackets(new S_SkillSound(pc.getId(), 7110));
+			pc.broadcastPacket(new S_SkillSound(pc.getId(), 7110));
 			pc.setSkillEffect(STATUS_RIBRAVE, time * 1000);
 		} else {
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 1, time));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 1, 0));
+			pc.sendPackets(new S_SkillSound(pc.getId(), 751));
+			pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
 			pc.setSkillEffect(STATUS_BRAVE, time * 1000);
-			pc.sendPackets(new S_SkillSound(pc.getId(), 751));// 勇水特效
-			pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));// 勇水特效
-			pc.setBraveSpeed(1);
 		}
-		if (item_id != 49158){//生命之樹果實
-			pc.setBraveSpeed(1);
-		} else {
-			pc.setBraveSpeed(4);
-		}
+// pc.sendPackets(new S_SkillSound(pc.getId(), 751));
+// pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
+		pc.setBraveSpeed(1);
 	}
 
 	private void useBluePotion(L1PcInstance pc, int item_id) {
@@ -3685,11 +3681,6 @@ public class C_ItemUSe extends ClientBasePacket {
 	private void useWisdomPotion(L1PcInstance pc, int item_id) {
 		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
 			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
-//waja add 特殊狀態下不可使用
-			return;
-		} else if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
-			pc.sendPackets(new S_ServerMessage(574)); //無法使用	
-//end
 			return;
 		}
 
@@ -3718,11 +3709,6 @@ public class C_ItemUSe extends ClientBasePacket {
 	private void useBlessOfEva(L1PcInstance pc, int item_id) {
 		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
 			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
-//waja add 特殊狀態下不可使用
-		return;
-	} else if (pc.hasSkillEffect(33) == true || pc.hasSkillEffect(87) == true || pc.hasSkillEffect(157) == true|| pc.hasSkillEffect(50) == true) { //木乃伊,衝暈,大地屏障,冰矛圍籬
-		pc.sendPackets(new S_ServerMessage(574)); //無法使用	
-//end
 			return;
 		}
 
@@ -4057,8 +4043,8 @@ public class C_ItemUSe extends ClientBasePacket {
 			}
 
 			if (type == 13 && pcInventory.getTypeEquipped(2, 7) >= 1
-					|| type == 7 && pcInventory.getTypeEquipped(2, 13) >= 1) { // ??槼
-				activeChar.sendPackets(new S_ServerMessage(124)); // \f1?
+					|| type == 7 && pcInventory.getTypeEquipped(2, 13) >= 1) { // 臂甲與盾牌不可同時裝備
+				activeChar.sendPackets(new S_ServerMessage(124)); // \f1すでに何かを装備しています。
 				return;
 			}
 			if (type == 7 && activeChar.getWeapon() != null) { // シールドの場合、武器を裝備していたら兩手武器チェック
@@ -5120,7 +5106,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		SkillsTable.getInstance().spellMastery(k6, i, s, 0, 0);
 		pc.getInventory().removeItem(l1iteminstance, 1);
 	}
-
+	
 	private void SpellBook5(L1PcInstance pc, L1ItemInstance l1iteminstance,
 			ClientThread clientthread) {
 		String s = "";
@@ -5257,7 +5243,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				case 24: // '\030'
 					i6 = i7;
 					break;
-
+					
 				case 25: // '\031'
 					j8 = i7;
 					break;

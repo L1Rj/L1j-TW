@@ -1088,58 +1088,57 @@ public class L1PcInstance extends L1Character {
 				if (damage < 0) {
 					damage = damage;
 				} else {
-				if (2000 > interval && interval >= 1900) {
-					damage = (damage * (100 - (10 / 3))) / 100;
-				} else if (1900 > interval && interval >= 1800) {
-					damage = (damage * (100 - 2 * (10 / 3))) / 100;
-				} else if (1800 > interval && interval >= 1700) {
-					damage = (damage * (100 - 3 * (10 / 3))) / 100;
-				} else if (1700 > interval && interval >= 1600) {
-					damage = (damage * (100 - 4 * (10 / 3))) / 100;
-				} else if (1600 > interval && interval >= 1500) {
-					damage = (damage * (100 - 5 * (10 / 3))) / 100;
-				} else if (1500 > interval && interval >= 1400) {
-					damage = (damage * (100 - 6 * (10 / 3))) / 100;
-				} else if (1400 > interval && interval >= 1300) {
-					damage = (damage * (100 - 7 * (10 / 3))) / 100;
-				} else if (1300 > interval && interval >= 1200) {
-					damage = (damage * (100 - 8 * (10 / 3))) / 100;
-				} else if (1200 > interval && interval >= 1100) {
-					damage = (damage * (100 - 9 * (10 / 3))) / 100;
-				} else if (1100 > interval && interval >= 1000) {
-					damage = (damage * (100 - 10 * (10 / 3))) / 100;
-				} else if (1000 > interval && interval >= 900) {
-					damage = (damage * (100 - 11 * (10 / 3))) / 100;
-				} else if (900 > interval && interval >= 800) {
-					damage = (damage * (100 - 12 * (10 / 3))) / 100;
-				} else if (800 > interval && interval >= 700) {
-					damage = (damage * (100 - 13 * (10 / 3))) / 100;
-				} else if (700 > interval && interval >= 600) {
-					damage = (damage * (100 - 14 * (10 / 3))) / 100;
-				} else if (600 > interval && interval >= 500) {
-					damage = (damage * (100 - 15 * (10 / 3))) / 100;
-				} else if (500 > interval && interval >= 400) {
-					damage = (damage * (100 - 16 * (10 / 3))) / 100;
-				} else if (400 > interval && interval >= 300) {
-					damage = (damage * (100 - 17 * (10 / 3))) / 100;
-				} else if (300 > interval && interval >= 200) {
-					damage = (damage * (100 - 18 * (10 / 3))) / 100;
-				} else if (200 > interval && interval >= 100) {
-					damage = (damage * (100 - 19 * (10 / 3))) / 100;
-				} else if (100 > interval && interval >= 0) {
-					damage = (damage * (100 - 20 * (10 / 3))) / 100;
-				} else {
-					damage = damage;
-				}
+					if (2000 > interval && interval >= 1900) {
+						damage = (damage * (100 - (10 / 3))) / 100;
+					} else if (1900 > interval && interval >= 1800) {
+						damage = (damage * (100 - 2 * (10 / 3))) / 100;
+					} else if (1800 > interval && interval >= 1700) {
+						damage = (damage * (100 - 3 * (10 / 3))) / 100;
+					} else if (1700 > interval && interval >= 1600) {
+						damage = (damage * (100 - 4 * (10 / 3))) / 100;
+					} else if (1600 > interval && interval >= 1500) {
+						damage = (damage * (100 - 5 * (10 / 3))) / 100;
+					} else if (1500 > interval && interval >= 1400) {
+						damage = (damage * (100 - 6 * (10 / 3))) / 100;
+					} else if (1400 > interval && interval >= 1300) {
+						damage = (damage * (100 - 7 * (10 / 3))) / 100;
+					} else if (1300 > interval && interval >= 1200) {
+						damage = (damage * (100 - 8 * (10 / 3))) / 100;
+					} else if (1200 > interval && interval >= 1100) {
+						damage = (damage * (100 - 9 * (10 / 3))) / 100;
+					} else if (1100 > interval && interval >= 1000) {
+						damage = (damage * (100 - 10 * (10 / 3))) / 100;
+					} else if (1000 > interval && interval >= 900) {
+						damage = (damage * (100 - 11 * (10 / 3))) / 100;
+					} else if (900 > interval && interval >= 800) {
+						damage = (damage * (100 - 12 * (10 / 3))) / 100;
+					} else if (800 > interval && interval >= 700) {
+						damage = (damage * (100 - 13 * (10 / 3))) / 100;
+					} else if (700 > interval && interval >= 600) {
+						damage = (damage * (100 - 14 * (10 / 3))) / 100;
+					} else if (600 > interval && interval >= 500) {
+						damage = (damage * (100 - 15 * (10 / 3))) / 100;
+					} else if (500 > interval && interval >= 400) {
+						damage = (damage * (100 - 16 * (10 / 3))) / 100;
+					} else if (400 > interval && interval >= 300) {
+						damage = (damage * (100 - 17 * (10 / 3))) / 100;
+					} else if (300 > interval && interval >= 200) {
+						damage = (damage * (100 - 18 * (10 / 3))) / 100;
+					} else if (200 > interval && interval >= 100) {
+						damage = (damage * (100 - 19 * (10 / 3))) / 100;
+					} else if (100 > interval && interval >= 0) {
+						damage = (damage * (100 - 20 * (10 / 3))) / 100;
+					} else {
+						damage = damage;
+					}
 
-				if (damage < 1) {
-					damage = 0;
-				}
+					if (damage < 1) {
+						damage = 0;
+					}
 
-				_oldTime = nowTime; // 次回のために時間を保存
+					_oldTime = nowTime; // 次回のために時間を保存
 				}
 			}
-
 			if (damage > 0) {
 				delInvis();
 				if (attacker instanceof L1PcInstance) {
@@ -1197,7 +1196,6 @@ public class L1PcInstance extends L1Character {
 					}
 				}
 			}
-
 			if (getInventory().checkEquipped(145) // バーサーカーアックス
 					|| getInventory().checkEquipped(149)) { // ミノタウルスアックス
 				damage *= 1.5; // 被ダメ1.5倍
@@ -1717,31 +1715,37 @@ public class L1PcInstance extends L1Character {
 	}
 
 	public boolean isCrown() {
-		return (getClassId() == CLASSID_PRINCE || getClassId() == CLASSID_PRINCESS);
+		return (getClassId() == CLASSID_PRINCE
+				|| getClassId() == CLASSID_PRINCESS);
 	}
 
 	public boolean isKnight() {
-		return (getClassId() == CLASSID_KNIGHT_MALE || getClassId() == CLASSID_KNIGHT_FEMALE);
+		return (getClassId() == CLASSID_KNIGHT_MALE
+				|| getClassId() == CLASSID_KNIGHT_FEMALE);
 	}
 
 	public boolean isElf() {
-		return (getClassId() == CLASSID_ELF_MALE || getClassId() == CLASSID_ELF_FEMALE);
+		return (getClassId() == CLASSID_ELF_MALE
+				|| getClassId() == CLASSID_ELF_FEMALE);
 	}
 
 	public boolean isWizard() {
-		return (getClassId() == CLASSID_WIZARD_MALE || getClassId() == CLASSID_WIZARD_FEMALE);
+		return (getClassId() == CLASSID_WIZARD_MALE
+				|| getClassId() == CLASSID_WIZARD_FEMALE);
 	}
 
 	public boolean isDarkelf() {
-		return (getClassId() == CLASSID_DARK_ELF_MALE || getClassId() == CLASSID_DARK_ELF_FEMALE);
+		return (getClassId() == CLASSID_DARK_ELF_MALE
+				|| getClassId() == CLASSID_DARK_ELF_FEMALE);
 	}
 
-	public boolean isDragonKnight() {//龍騎士
-		return (getClassId() == CLASSID_DRAGON_KNIGHT_MALE || getClassId() == CLASSID_DRAGON_KNIGHT_FEMALE);
+	public boolean isDragonKnight() {
+		return (getClassId() == CLASSID_DRAGON_KNIGHT_MALE
+				|| getClassId() == CLASSID_DRAGON_KNIGHT_FEMALE);
 	}
-
-	public boolean isIllusionist() {//幻術師
-		return (getClassId() == CLASSID_ILLUSIONIST_MALE || getClassId() == CLASSID_ILLUSIONIST_FEMALE);
+	public boolean isIllusionist() {
+		return (getClassId() == CLASSID_ILLUSIONIST_MALE
+				|| getClassId() == CLASSID_ILLUSIONIST_FEMALE);
 	}
 
 	private static Logger _log = Logger.getLogger(L1PcInstance.class.getName());
@@ -1839,8 +1843,10 @@ public class L1PcInstance extends L1Character {
 	private int _originalAc = 0; // ● オリジナルDEX ＡＣ補正
 
 	public int getOriginalAc() {
+
 		return _originalAc;
 	}
+
 
 	private byte _baseStr = 0; // ● ＳＴＲベース（1～127）
 
@@ -2340,8 +2346,8 @@ public class L1PcInstance extends L1Character {
 		return (hasSkillEffect(HOLY_WALK)
 				|| hasSkillEffect(MOVING_ACCELERATION)
 				|| hasSkillEffect(WIND_WALK)
-				|| hasSkillEffect(STATUS_BRAVE2)//寵物競速
-				|| hasSkillEffect(STATUS_RIBRAVE));
+				|| hasSkillEffect(STATUS_BRAVE2); // 寵物競速
+				//|| hasSkillEffect(STATUS_RIBRAVE));
 	}
 
 	public boolean isFastAttackable() {
@@ -3000,11 +3006,11 @@ public class L1PcInstance extends L1Character {
 			newMr = 15;
 		} else if (isDarkelf()) { // ダークエルフ
 			newMr = 10;
-		} else if (isDragonKnight()) { // 龍騎士//	3.0C Test↓	//懸賞
-			newMr = 20;
+		} else if (isDragonKnight()) { // 龍騎士
+			newMr = 18;
 		} else if (isIllusionist()) { // 幻術師
-			newMr = 15;
-		}//	3.0C Test↑
+			newMr = 20;
+		}
 		newMr += CalcStat.calcStatMr(getWis()); // WIS分のMRボーナス
 		newMr += getLevel() / 2; // LVの半分だけ追加
 		addMr(newMr - _baseMr);
@@ -3485,7 +3491,7 @@ public class L1PcInstance extends L1Character {
 				_originalMr = 0;
 			}
 		}
-
+		
 	addMr(_originalMr);
 	}
 
@@ -3722,7 +3728,7 @@ public class L1PcInstance extends L1Character {
 				_originalAc = 0;
 			}
 		}
-
+		
 		addAc(0 - _originalAc);
 	}
 
@@ -4128,7 +4134,7 @@ public class L1PcInstance extends L1Character {
 		_awakeSkillId = i;
 	}
 
-//waja add 寵物競速
+//waja add 寵物競速 code by srwh
 	private int _lap = 1;
 	public void setLap(int i){
 		_lap = i;
