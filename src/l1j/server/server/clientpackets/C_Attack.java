@@ -46,6 +46,7 @@ public class C_Attack extends ClientBasePacket {
 	private static Logger _log = Logger.getLogger(C_Attack.class.getName());
 
 	private int _targetX = 0;
+
 	private int _targetY = 0;
 
 	public C_Attack(byte[] decrypt, ClientThread client) {
@@ -75,6 +76,11 @@ public class C_Attack extends ClientBasePacket {
 		}
 
 		if (pc.isInvisDelay()) { // インビジビリティディレイ中
+			return;
+		}
+
+		// TODO 封鎖 LinHelp無條件喝水功能
+		if (pc.isParalyzed()) { // 麻痺・凍結状態か
 			return;
 		}
 

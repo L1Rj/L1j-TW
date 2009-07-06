@@ -60,6 +60,11 @@ public class C_UseSkill extends ClientBasePacket {
 			return;
 		}
 
+		// TODO 封鎖 LinHelp無條件喝水功能
+		if (pc.isParalyzed()) { // 麻痺・凍結状態か
+			return;
+		}
+
 		if (!pc.isSkillMastery(skillId)) {
 			return;
 		}

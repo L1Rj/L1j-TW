@@ -139,6 +139,10 @@ public class C_ItemUSe extends ClientBasePacket {
 		if (pc.isGhost()) {
 			return;
 		}
+		// TODO 封鎖 LinHelp無條件喝水功能
+		if (pc.isParalyzed()) { // 麻痺・凍結状態か
+			return;
+		}
 		L1ItemInstance l1iteminstance = pc.getInventory().getItem(itemObjid);
 
 		if (l1iteminstance.getItem().getUseType() == -1) { // none:使用できないアイテム
