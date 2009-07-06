@@ -62,10 +62,10 @@ import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1TownLocation;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1DollInstance;
-import l1j.server.server.model.Instance.L1DoorInstance;//waja add 門
+import l1j.server.server.model.Instance.L1DoorInstance;// 門
 import l1j.server.server.model.Instance.L1EffectInstance;
 import l1j.server.server.model.Instance.L1FurnitureInstance;
-import l1j.server.server.model.Instance.L1GuardInstance;//waja add 守衛
+import l1j.server.server.model.Instance.L1GuardInstance;// 守衛
 import l1j.server.server.model.Instance.L1GuardianInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1MonsterInstance;
@@ -84,7 +84,7 @@ import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_Fishing;
 import l1j.server.server.serverpackets.S_IdentifyDesc;
 import l1j.server.server.serverpackets.S_ItemName;
-import l1j.server.server.serverpackets.S_ItemStatus; // waja add 裝備保護捲軸
+import l1j.server.server.serverpackets.S_ItemStatus; // 裝備保護捲軸
 import l1j.server.server.serverpackets.S_Letter;
 import l1j.server.server.serverpackets.S_Liquor;
 import l1j.server.server.serverpackets.S_Message_YN;
@@ -1643,10 +1643,11 @@ public class C_ItemUSe extends ClientBasePacket {
 							}
 						} else if (resobject instanceof L1NpcInstance) {
 							if (!(resobject instanceof L1TowerInstance)&&
-									!(resobject instanceof L1DoorInstance) && //waja add 門不可復活
-									!(resobject instanceof L1GuardInstance)) {//waja add 守衛不可復活
+									!(resobject instanceof L1DoorInstance) && // 門不可復活
+									!(resobject instanceof L1GuardInstance)) {// 守衛不可復活
 								L1NpcInstance npc = (L1NpcInstance) resobject;
-								if (npc.getNpcTemplate().isCantResurrect()) {
+								if (npc.getNpcTemplate().isCantResurrect()
+										&& !(npc instanceof L1PetInstance)) {
 									pc.getInventory().removeItem(l1iteminstance,
 											1);
 									return;

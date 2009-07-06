@@ -598,7 +598,7 @@ public class L1Npc extends L1Object implements Cloneable {
 	public void setTransformGfxId(int i) {
 		_transformGfxId = i;
 	}
-
+	
 	private int _atkMagicSpeed;
 
 	public int getAtkMagicSpeed() {
