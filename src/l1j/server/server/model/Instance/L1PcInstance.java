@@ -2346,7 +2346,7 @@ public class L1PcInstance extends L1Character {
 		return (hasSkillEffect(HOLY_WALK)
 				|| hasSkillEffect(MOVING_ACCELERATION)
 				|| hasSkillEffect(WIND_WALK)
-				|| hasSkillEffect(STATUS_BRAVE2); // 寵物競速
+				|| hasSkillEffect(STATUS_BRAVE2)); // 寵物競速
 				//|| hasSkillEffect(STATUS_RIBRAVE));
 	}
 

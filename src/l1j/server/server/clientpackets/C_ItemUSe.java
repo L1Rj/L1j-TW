@@ -2886,6 +2886,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 41427) { // 封印解除スクロール
 					L1ItemInstance lockItem = pc.getInventory().getItem(l);
+					int lockItemId = lockItem.getItem().getItemId();
 					if (lockItem != null && lockItem.getItem().getType2() == 1
 							|| lockItem.getItem().getType2() == 2
 							|| lockItem.getItem().getType2() == 0

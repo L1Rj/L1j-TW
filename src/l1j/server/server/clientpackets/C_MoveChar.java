@@ -61,15 +61,14 @@ public class C_MoveChar extends ClientBasePacket {
 
 		L1PcInstance pc = client.getActiveChar();
 
-		// テレポート処理中
-		if (pc.isTeleport())
-			return;
-		}
-		
 		// TODO 封鎖 LinHelp無條件喝水功能
 		if (pc.isParalyzed()) { // 麻痺・凍結状態か
 			return;
 		}
+
+		// テレポート処理中
+		if (pc.isTeleport())
+			return;
 
 		// 移動要求間隔をチェックする
 		if (Config.CHECK_MOVE_INTERVAL){
