@@ -2410,22 +2410,16 @@ public class C_ItemUSe extends ClientBasePacket {
 						// \f1何も起きませんでした。
 						pc.sendPackets(new S_ServerMessage(79));
 					}
-				} else if (itemId == 40692) { // 完成された寶の地圖
-					if (pc.getInventory().checkItem(40621)) {
-						// \f1何も起きませんでした。
-						pc.sendPackets(new S_ServerMessage(79));
-					} else if ((pc.getX() >= 32856 && pc.getX() <= 32858)
-							&& (pc.getY() >= 32857 && pc.getY() <= 32858)
-							&& pc.getMapId() == 443) { // 海賊島のダンジョン３階
-						L1Teleport.teleport(pc, ((L1EtcItem) l1iteminstance
-								.getItem()).get_locx(),
-								((L1EtcItem) l1iteminstance.getItem())
-										.get_locy(),
-								((L1EtcItem) l1iteminstance.getItem())
-										.get_mapid(), 5, true);
+				} else if (itemId == 40692) { // 完成された宝の地図
+					if ((pc.getX() >= 32856 && pc.getX() <= 32858)
+						&& (pc.getY() >= 32857 && pc.getY() <= 32859)
+						&& pc.getMapId() == 443) { // 海賊島のダンジョン３階
+							L1Teleport.teleport(pc, ((L1EtcItem) l1iteminstance.getItem()).get_locx(),
+							((L1EtcItem) l1iteminstance.getItem()).get_locy(),
+				                    	((L1EtcItem) l1iteminstance.getItem()).get_mapid(), 5, true);
 					} else {
-						// \f1何も起きませんでした。
-						pc.sendPackets(new S_ServerMessage(79));
+					// \f1何も起きませんでした。
+					pc.sendPackets(new S_ServerMessage(79));
 					}
 				} else if (itemId == 41146) { // ドロモンドの招待狀
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "ei001"));

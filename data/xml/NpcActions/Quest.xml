@@ -407,7 +407,7 @@
 			<ShowHtml HtmlId="bluedikaq8"/>
 		</Succeed>
 	</MakeItem>
-
+	
 	<!--Lv50合同クエスト / ディガルディン-->
 	<!--君主-->
 	<Action Name="quest 29 dicardingp2" Class="P">
@@ -518,7 +518,7 @@
 			<ShowHtml HtmlId="resta15"/>
 			<SetQuest Id="resta" Step="End"/>
 		</Succeed>
-	</MakeItem>
+	</MakeItem>	
 	<!--海賊島「宝の地図4」クエスト / カドムス-->
 	<MakeItem Name="B" Class="PWEKDRI" NpcId="71061" AmountInputable="false">
 		<Item Amount="1" ItemId="40692"/>
@@ -887,7 +887,7 @@
 		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
 		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
 		<Item Amount="20" ItemId="40117"/><!--銀騎士村莊指定傳卷軸 -->
-		<Item Amount="1" ItemId="20282"/><!--象牙塔戒指 -->
+		<Item Amount="1" ItemId="20282"/><!--象牙塔戒指 -->		
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -1013,5 +1013,23 @@
 			<ShowHtml HtmlId=""/>
 			<SetQuest Id="toscroll" Step="End"/>
 		</Succeed>
+	</MakeItem>
+	<!--海賊島「宝の地図3」クエスト / レスタ-->
+	<MakeItem Name="C" Class="PWEKDRI" NpcId="71060" AmountInputable="false">
+		<Item Amount="1" ItemId="40647"/>
+		<Material Amount="1" ItemId="49277"/>
+		<Succeed>
+			<ShowHtml HtmlId="resta15"/>
+			<SetQuest Id="resta" Step="End"/>
+		</Succeed>
+	</MakeItem>
+    <MakeItem Name="D" Class="PWEKDRI" NpcId="71060" AmountInputable="false">
+		<Item Amount="1" ItemId="40647"/>
+		<Material Amount="1" ItemId="49277"/>
+		<Succeed>
+			<ShowHtml HtmlId="resta15"/>
+			<SetQuest Id="resta" Step="End"/>
+		</Succeed>
+
 	</MakeItem>
 </NpcActionList>

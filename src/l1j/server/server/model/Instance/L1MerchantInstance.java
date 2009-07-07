@@ -2644,6 +2644,46 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== 13) {
 					htmlid = "oreno1";
 				}
+// waja add BAO提供 德雷克的真實補遺
+			} else if (npcid == 71036) {//カミーラ（ドレイクの真実）
+                if (!player.getInventory().checkItem(40621)) {
+                    htmlid = "kamyla000";
+                } else if (player.getQuest().get_step(L1Quest.QUEST_KAMYLA) == L1Quest.QUEST_END) {
+                    htmlid = "kamyla26";
+                } else if (player.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 4 && player.getInventory().checkItem(40717)) {
+                    htmlid = "kamyla15";
+                } else if (player.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 4 ) {
+                    htmlid = "kamyla14";
+                } else if (player.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 3 && player.getInventory().checkItem(40630)) {
+                    htmlid = "kamyla12";
+                } else if (player.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 3 ) {
+                    htmlid = "kamyla11";
+                } else if (player.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 2 && player.getInventory().checkItem(40644)) {
+                    htmlid = "kamyla9";
+                } else if (player.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 1 ) {
+                    htmlid = "kamyla8";
+                } else if (player.getQuest().get_step(L1Quest.QUEST_CADMUS) == L1Quest.QUEST_END) {
+                    if (player.getInventory().checkItem(40621)) {
+                        htmlid = "kamyla1";
+                    } else {
+                        htmlid = "kamyla000";
+                    }
+                	}
+                } else if (npcid == 71056) {//シミズ（消えた息子）
+                if (player.getQuest().get_step(L1Quest.QUEST_SIMIZZ) == L1Quest.QUEST_END) {
+                    htmlid = "SIMIZZ15";
+                } else if (player.getQuest().get_step(L1Quest.QUEST_RESTA) == 4) {
+                    if (player.getInventory().checkItem(49277)) {
+                        htmlid = "SIMIZZ11";
+                    } else {
+                        htmlid = "SIMIZZ0";
+                    }
+                } else if (player.getQuest().get_step(L1Quest.QUEST_SIMIZZ) == 2) {
+                    htmlid = "SIMIZZ0";
+                } else if (player.getQuest().get_step(L1Quest.QUEST_SIMIZZ) == 1) {
+                    htmlid = "SIMIZZ6";
+                }
+//end add
 			} else if (npcid == 71180) {//示愛任務-奇岩-傑夫
 				if (player.get_sex() == 0) {
 					htmlid = "jp1";
