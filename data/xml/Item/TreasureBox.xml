@@ -935,6 +935,73 @@
 		<Item ItemId="40683" Count="1" Chance="16" />
 		<Item ItemId="40684" Count="1" Chance="16" />
 	</TreasureBox>
+	<!-- 冰魔的袋子 -->
+	<TreasureBox Type="RANDOM" ItemId="49032">
+		<Item ItemId="49034" Count="1" Chance="1" /><!-- 冰之女皇的箱子 -->
+		<Item ItemId="40308" Count="2000" Chance="15" /><!-- 金幣 -->
+		<Item ItemId="40308" Count="5000" Chance="15" /><!-- 金幣 -->
+		<Item ItemId="40308" Count="10000" Chance="15" /><!-- 金幣 -->
+		<Item ItemId="40308" Count="100000" Chance="5" /><!-- 金幣 -->
+		<Item ItemId="40015" Count="7" Chance="11" />
+		<Item ItemId="40016" Count="7" Chance="11" />
+		<Item ItemId="40018" Count="7" Chance="11" />
+		<Item ItemId="40068" Count="3" Chance="5" />
+		<Item ItemId="40088" Count="5" Chance="11" />
+	</TreasureBox>
+	<!-- 冰之女皇的袋子 -->
+	<TreasureBox Type="RANDOM" ItemId="49033">
+		<Item ItemId="49034" Count="1" Chance="2" />
+		<Item ItemId="40308" Count="2000" Chance="11" /><!-- 金幣 -->
+		<Item ItemId="40308" Count="5000" Chance="11" /><!-- 金幣 -->
+		<Item ItemId="40308" Count="10000" Chance="11" /><!-- 金幣 -->
+		<Item ItemId="40308" Count="100000" Chance="10" /><!-- 金幣 -->
+		<Item ItemId="40015" Count="7" Chance="11" />
+		<Item ItemId="40016" Count="7" Chance="11" />
+		<Item ItemId="40018" Count="7" Chance="11" />
+		<Item ItemId="40068" Count="3" Chance="11" />
+		<Item ItemId="40088" Count="5" Chance="11" />
+	</TreasureBox>
+	<!-- 冰之女皇的箱子 -->
+	<TreasureBox Type="RANDOM" ItemId="49034">
+		<Item ItemId="40" Count="1" Chance="3.88" />
+		<Item ItemId="55" Count="1" Chance="3.88" />
+		<Item ItemId="57" Count="1" Chance="3.88" />
+		<Item ItemId="81" Count="1" Chance="3.88" />
+		<Item ItemId="130" Count="1" Chance="3.88" />
+		<Item ItemId="162" Count="1" Chance="3.88" />
+		<Item ItemId="177" Count="1" Chance="3.88" />
+		<Item ItemId="189" Count="1" Chance="0.54" />
+		<Item ItemId="20010" Count="1" Chance="0.94" />
+		<Item ItemId="20042" Count="1" Chance="0.94" />
+		<Item ItemId="20100" Count="1" Chance="0.94" />
+		<Item ItemId="20151" Count="1" Chance="0.94" />
+		<Item ItemId="20185" Count="1" Chance="0.94" />
+		<Item ItemId="20166" Count="1" Chance="0.94" />
+		<Item ItemId="20198" Count="1" Chance="0.94" />
+		<Item ItemId="20215" Count="1" Chance="0.94" />
+		<Item ItemId="20254" Count="1" Chance="3.88" />
+		<Item ItemId="20256" Count="1" Chance="3.88" />
+		<Item ItemId="20264" Count="1" Chance="3.88" />
+		<Item ItemId="20266" Count="1" Chance="0.94" />
+		<Item ItemId="20267" Count="1" Chance="4.88" />
+		<Item ItemId="20268" Count="1" Chance="3.88" />
+		<Item ItemId="20280" Count="1" Chance="0.94" />
+		<Item ItemId="20281" Count="1" Chance="0.94" />
+		<Item ItemId="20284" Count="1" Chance="3.88" />
+		<Item ItemId="20285" Count="1" Chance="0.94" />
+		<Item ItemId="20288" Count="1" Chance="0.54" />
+		<Item ItemId="20302" Count="1" Chance="0.94" />
+		<Item ItemId="20303" Count="1" Chance="3.88" />
+		<Item ItemId="20309" Count="1" Chance="3.88" />
+		<Item ItemId="20310" Count="1" Chance="3.88" />
+		<Item ItemId="20311" Count="1" Chance="3.88" />
+		<Item ItemId="40074" Count="1" Chance="5.45" />
+		<Item ItemId="40087" Count="1" Chance="5.45" />
+		<Item ItemId="40219" Count="1" Chance="0.54" />
+		<Item ItemId="40223" Count="1" Chance="0.54" />
+		<Item ItemId="140074" Count="1" Chance="3.88" />
+		<Item ItemId="140087" Count="1" Chance="3.88" />
+	</TreasureBox>
 	<!-- 遺物袋 -->
 	<TreasureBox Type="RANDOM" ItemId="41110">
 		<Item ItemId="40058" Count="2" Chance="26" /><!-- 煙燻的麵包屑 -->
