@@ -31,6 +31,7 @@ import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_EffectLocation;
+import l1j.server.server.utils.RandomArrayList;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1Chaser extends TimerTask {
@@ -107,6 +108,7 @@ public class L1Chaser extends TimerTask {
 
 	public double getDamage(L1PcInstance pc, L1Character cha) {
 		double dmg = 0;
+/*
 		int spByItem = pc.getSp() - pc.getTrueSp();
 		int intel = pc.getInt();
 		int charaIntelligence = pc.getInt() + spByItem - 12;// 智力 + 裝備魔攻 -12
@@ -141,9 +143,33 @@ public class L1Chaser extends TimerTask {
  * coefficientA = 18.125 coefficientB = 1.17 coefficientC = 18
  * 算式 預估傷害值 14*1.1*18.125*1.17/10.5*18*2=1119.69
  * 攻擊傷害過高 先改為較低數值
- * */
+ * 
 		dmg = (_random.nextInt(6) + 1 + 7) * (1 + bsk) * coefficientA
-		* coefficientB ;// 預估傷害為 326.57
+				* coefficientB ;// 預估傷害為 326.57
+*/
+		int spByItem = pc.getSp() - pc.getTrueSp();
+		int Intel_Tempvalue = pc.getInt();
+		int charaIntelligence = Intel_Tempvalue + spByItem - 12;// 智力 + 裝備魔攻 -12
+		double coefficientA = 1 + 3.0 / 32.0 * charaIntelligence;
+
+		if (coefficientA < 1) {
+			coefficientA = 1;
+		}
+
+		if (Intel_Tempvalue < 13) {
+			Intel_Tempvalue = 12;
+		} else if(Intel_Tempvalue > 25) {
+			Intel_Tempvalue = 25;
+		}
+
+		double coefficientB = Intel_Tempvalue * 0.13 / 10.5; // 原本 : Intel_Tempvalue * 0.065 / 10.5 * 2.0;
+
+		double bsk = 0;
+		if (pc.hasSkillEffect(BERSERKERS)) {
+			bsk = 0.1;
+		}
+		dmg = (RandomArrayList.getArray4List() + 10) * (1 + bsk) // 將殺傷力的最大值與最小值的差距範圍縮小
+				* coefficientA * coefficientB * Intel_Tempvalue;
 //change end
 		return L1WeaponSkill.calcDamageReduction(pc, cha, dmg, 0);
 	}
