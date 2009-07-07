@@ -386,8 +386,15 @@ public class L1Magic {
 			if (_calcType == PC_PC || _calcType == PC_NPC) {
 				probability += 2 * _pc.getOriginalMagicHit();
 			}
-		} else if (skillId == SHOCK_STUN
-				|| skillId == COUNTER_BARRIER) {
+		} else if (skillId == SHOCK_STUN) {
+			// 成功確率は 基本確率 + LV差1毎に+-2%
+			probability = l1skills.getProbabilityValue() + (attackLevel - defenseLevel) * 2;
+
+			// オリジナルINTによる魔法命中
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				probability += 2 * _pc.getOriginalMagicHit();
+			}
+		} else if (skillId == COUNTER_BARRIER) {
 			// 成功確率は 基本確率 + LV差1毎に+-1%
 			probability = l1skills.getProbabilityValue() + attackLevel - defenseLevel;
 
