@@ -53,7 +53,7 @@ public class L1Present implements L1CommandExecutor {
 			}
 
 			L1DwarfInventory.present(account, itemid, enchant, count);
-			pc.sendPackets(new S_SystemMessage(temp.getNameId() + " " + count
+			pc.sendPackets(new S_SystemMessage(temp.getIdentifiedNameId() + " " + count
 					+ "個 已送出。", true));
 		} catch (Exception e) {
 			pc

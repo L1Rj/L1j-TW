@@ -48,7 +48,7 @@ public class S_IdentifyDesc extends ServerBasePacket {
 			name.append("$228 "); // 咒われた
 		}
 
-		name.append(item.getItem().getNameId());
+		name.append(item.getItem().getIdentifiedNameId());
 
 		if (item.getItem().getType2() == 1) { // weapon
 			writeH(134); // \f1%0：小さなモンスター打擊%1 大きなモンスター打擊%2

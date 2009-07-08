@@ -648,7 +648,11 @@ public class L1ItemInstance extends L1Object {
 				}
 			}
 		}
-		name.append(_item.getNameId());
+		if (isIdentified()) {
+			name.append(_item.getIdentifiedNameId());
+		} else {
+			name.append(_item.getUnidentifiedNameId());
+		}
 		if (isIdentified()) {
 			if (getItem().getMaxChargeCount() > 0) {
 				name.append(" (" + getChargeCount() + ")");

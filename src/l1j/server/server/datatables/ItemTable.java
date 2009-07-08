@@ -239,7 +239,9 @@ public class ItemTable {
 				item = new L1EtcItem();
 				item.setItemId(rs.getInt("item_id"));
 				item.setName(rs.getString("name"));
-				item.setNameId(rs.getString("name_id"));
+				item.setUnidentifiedNameId(rs
+						.getString("unidentified_name_id"));
+				item.setIdentifiedNameId(rs.getString("identified_name_id"));
 				item.setType((_etcItemTypes
 						.get(rs.getString("item_type"))).intValue());
 				item.setUseType(_useTypes
@@ -305,7 +307,9 @@ public class ItemTable {
 				weapon = new L1Weapon();
 				weapon.setItemId(rs.getInt("item_id"));
 				weapon.setName(rs.getString("name"));
-				weapon.setNameId(rs.getString("name_id"));
+				weapon.setUnidentifiedNameId(rs
+						.getString("unidentified_name_id"));
+				weapon.setIdentifiedNameId(rs.getString("identified_name_id"));
 				weapon.setType((_weaponTypes
 						.get(rs.getString("type"))).intValue());
 				weapon.setType1((_weaponId
@@ -394,7 +398,9 @@ public class ItemTable {
 				armor = new L1Armor();
 				armor.setItemId(rs.getInt("item_id"));
 				armor.setName(rs.getString("name"));
-				armor.setNameId(rs.getString("name_id"));
+				armor.setUnidentifiedNameId(rs
+						.getString("unidentified_name_id"));
+				armor.setIdentifiedNameId(rs.getString("identified_name_id"));
 				armor.setType((_armorTypes
 						.get(rs.getString("type"))).intValue());
 // armor.setType1((_armorId

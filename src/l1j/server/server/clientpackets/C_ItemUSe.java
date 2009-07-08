@@ -2297,7 +2297,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.setSkillEffect(STATUS_FLOATING_EYE, 0);
 					}
 					pc.sendPackets(new S_ServerMessage(76, l1iteminstance
-							.getItem().getNameId()));
+							.getItem().getIdentifiedNameId()));
 				} else if (itemId == 40070) { // 進化果實
 					pc.sendPackets(new S_ServerMessage(76, l1iteminstance
 							.getLogName()));

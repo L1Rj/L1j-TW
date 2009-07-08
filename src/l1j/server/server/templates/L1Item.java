@@ -62,14 +62,24 @@ public abstract class L1Item implements Serializable {
 		_name = name;
 	}
 
-	private String _nameId; // ● ネームＩＤ
+	private String _unidentifiedNameId; // ● 未鑑定アイテムのネームＩＤ
 
-	public String getNameId() {
-		return _nameId;
+	public String getUnidentifiedNameId() {
+		return _unidentifiedNameId;
 	}
 
-	public void setNameId(String nameid) {
-		_nameId = nameid;
+	public void setUnidentifiedNameId(String unidentifiedNameId) {
+		_unidentifiedNameId = unidentifiedNameId;
+	}
+
+	private String _identifiedNameId; // ● 鑑定済みアイテムのネームＩＤ
+
+	public String getIdentifiedNameId() {
+		return _identifiedNameId;
+	}
+
+	public void setIdentifiedNameId(String identifiedNameId) {
+		_identifiedNameId = identifiedNameId;
 	}
 
 	private int _type; // ● 詳細なタイプ
