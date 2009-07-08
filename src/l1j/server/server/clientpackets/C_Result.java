@@ -184,6 +184,11 @@ public class C_Result extends ClientBasePacket {
 							pc.sendPackets(new S_ServerMessage(210, item
 									.getItem().getName())); // \f1%0は捨てたりまたは他人に讓ることができません。
 						}
+						if (item.getBless() >= 128) { // 封印された装備
+							tradable = false;
+							pc.sendPackets(new S_ServerMessage(210, item
+									.getItem().getName())); // \f1%0は捨てたりまたは他人に讓ることができません。
+						}
 						Object[] petlist = pc.getPetList().values().toArray();
 						for (Object petObject : petlist) {
 							if (petObject instanceof L1PetInstance) {
