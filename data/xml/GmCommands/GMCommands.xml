@@ -24,18 +24,21 @@
 		<Room Name="肯特" LocX="33050" LocY="32780" MapId="4"/>
 		<Room Name="海音" LocX="33612" LocY="33268" MapId="4"/>
 		<Room Name="火龍窟" LocX="33705" LocY="32504" MapId="4"/>
-		<Room Name="銀騎士村莊" LocX="33080" LocY="33392" MapId="4"/>
+		<Room Name="銀騎士村" LocX="33080" LocY="33392" MapId="4"/>
 		<Room Name="沉默洞窟" LocX="32854" LocY="32907" MapId="304"/>
 		<Room Name="燃柳" LocX="32715" LocY="32448" MapId="4"/>
 		<Room Name="甘特" LocX="32669" LocY="32790" MapId="3"/>
 		<Room Name="布魯迪卡洞穴" LocX="32739" LocY="32801" MapId="305"/>
 		<Room Name="遺忘" LocX="32828" LocY="32848" MapId="70"/>
 		<Room Name="夢島" LocX="32633" LocY="32817" MapId="303"/>
+		<Room Name="海賊島" LocX="32850" LocY="32799" MapId="480"/>
 
 		<!-- 城堡 -->
 		<Room Name="亞丁守護塔" LocX="34090" LocY="33261" MapId="4"/>
 		<Room Name="肯特守護塔" LocX="33170" LocY="32776" MapId="4"/>
 		<Room Name="海音內城" LocX="32572" LocY="33813" MapId="64"/>
+		<Room Name="奇岩內城" LocX="32719" LocY="32799" MapId="52"/>
+		<Room Name="亞丁內城" LocX="32895" LocY="32526" MapId="300"/>
 		
 		<!-- Field -->
 		<Room Name="沙漠商人" LocX="32861" LocY="33255" MapId="4"/>
@@ -112,6 +115,7 @@
 		<Room Name="水龍" LocX="32769" LocY="32833" MapId="65"/>
 		<Room Name="風龍" LocX="34035" LocY="33011" MapId="4"/>
 		<Room Name="地龍" LocX="32668" LocY="32867" MapId="37"/>
+
 		<!-- 神殿 -->
 		<Room Name="伊娃神殿" LocX="32736" LocY="32815" MapId="62"/>
 
@@ -134,7 +138,6 @@
 		<Room Name="不死魔族拋棄之地" LocX="32561" LocY="33026" MapId="777"/>
 		<Room Name="GMRoom" LocX="32737" LocY="32796" MapId="99"/>
 		<Room Name="GMShop" LocX="33079" LocY="33402" MapId="4"/>
-
 
 		
 		<!-- 未整理 -->
