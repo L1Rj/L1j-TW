@@ -48,7 +48,7 @@ public class C_DeleteChar extends ClientBasePacket {
 		try {
 			L1PcInstance pc = CharacterTable.getInstance()
 					.restoreCharacter(name);
-			if (pc != null && pc.getLevel() >= 30
+			if (pc != null && pc.getLevel() >= 5 // 五級以上角色七日猶豫期
 					&& Config.DELETE_CHARACTER_AFTER_7DAYS) {
 				if (pc.getType() < 32) {
 					Timestamp deleteTime = new Timestamp(System
