@@ -1527,4 +1527,8 @@
 	<Action Name="teleport grtel" NpcId="91003">
 		<Teleport X="32805" Y="32793" Map="248" Heading="5" Price="1950"/>
 	</Action>
+	<!--幻術師村莊 傳送狩獵區 -->
+	<Action Name="teleportURLA" NpcId="80146">
+		<ShowHtml HtmlId="sharial3"/>
+	</Action>
 </NpcActionList>
