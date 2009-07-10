@@ -223,16 +223,9 @@ public class L1Character extends L1Object {
 	 *            送信するパケットを表すServerBasePacketオブジェクト。
 	 */
 	public void broadcastPacket(ServerBasePacket packet) {
-//kiusbt 提供
-// XXX 不用從 L1World 搜尋附近玩家
-/*		for (L1PcInstance pc : L1World.getInstance().getVisiblePlayer(this)) {
-*			pc.sendPackets(packet);
-*		}
-			 */
-		for (L1PcInstance pc : _knownPlayer)
+		for (L1PcInstance pc : L1World.getInstance().getVisiblePlayer(this)) {
 			pc.sendPackets(packet);
-
-		// 改由 _knownPlayer 搜尋, 保證送封包速度會比原先快
+		}
 	}
 
 	/**
