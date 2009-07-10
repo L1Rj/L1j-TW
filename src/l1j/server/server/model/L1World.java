@@ -31,151 +31,149 @@ import l1j.server.Config;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
-import l1j.server.server.model.map.L1Map;
 import l1j.server.server.serverpackets.S_SystemMessage;
 import l1j.server.server.serverpackets.ServerBasePacket;
 import l1j.server.server.types.Point;
 
-public class L1World {
+public class L1World
+{
 	private static Logger _log = Logger.getLogger(L1World.class.getName());
 
 	private final ConcurrentHashMap<String, L1PcInstance> _allPlayers;
 	private final ConcurrentHashMap<Integer, L1PetInstance> _allPets;
 	private final ConcurrentHashMap<Integer, L1SummonInstance> _allSummons;
 	private final ConcurrentHashMap<Integer, L1Object> _allObjects;
-	private final ConcurrentHashMap<Integer, L1Object>[] _visibleObjects;
+	private final World<Integer, L1Object> world;
 	private final CopyOnWriteArrayList<L1War> _allWars;
 	private final ConcurrentHashMap<String, L1Clan> _allClans;
 
-	private int _weather = 4;
+	private int _weather;
 
 	private boolean _worldChatEnabled = true;
-
 	private boolean _processingContributionTotal = false;
-
-	private static final int MAX_MAP_ID = 8105;
 
 	private static L1World _instance;
 
-	private L1World() {
+	private L1World()
+	{
 		_allPlayers = new ConcurrentHashMap<String, L1PcInstance>(); // 全てのプレイヤー
 		_allPets = new ConcurrentHashMap<Integer, L1PetInstance>(); // 全てのペット
 		_allSummons = new ConcurrentHashMap<Integer, L1SummonInstance>(); // 全てのサモンモンスター
 		_allObjects = new ConcurrentHashMap<Integer, L1Object>(); // 全てのオブジェクト(L1ItemInstance入り、L1Inventoryはなし)
-		_visibleObjects = new ConcurrentHashMap[MAX_MAP_ID + 1]; // マップ每のオブジェクト(L1Inventory入り、L1ItemInstanceはなし)
-		_allWars = new CopyOnWriteArrayList<L1War>(); // 全ての戰爭
+		world = new World<Integer, L1Object>(); // マップ每のオブジェクト(L1Inventory入り、L1ItemInstanceはなし)
+		_allWars = new CopyOnWriteArrayList<L1War>(); // 全ての战争
 		_allClans = new ConcurrentHashMap<String, L1Clan>(); // 全てのクラン(Online/Offlineどちらも)
-
-		for (int i = 0; i <= MAX_MAP_ID; i++) {
-			_visibleObjects[i] = new ConcurrentHashMap<Integer, L1Object>();
-		}
 	}
 
-	public static L1World getInstance() {
-		if (_instance == null) {
-			_instance = new L1World();
-		}
+	public static L1World getInstance()
+	{
+		_instance = _instance == null ? new L1World() : _instance;
 		return _instance;
 	}
 
 	/**
-	 * 全ての狀態をクリアする。<br>
+	 * 全ての状态をクリアする。<br>
 	 * デバッグ、テストなどの特殊な目的以外で呼び出してはならない。
 	 */
-	public void clear() {
+	public void clear()
+	{
 		_instance = new L1World();
 	}
 
-	public void storeObject(L1Object object) {
-		if (object == null) {
+	public void storeObject(L1Object object)
+	{
+		if (object == null)
 			throw new NullPointerException();
-		}
 
 		_allObjects.put(object.getId(), object);
-		if (object instanceof L1PcInstance) {
+		
+		if (object instanceof L1PcInstance)
 			_allPlayers.put(((L1PcInstance) object).getName(),
 					(L1PcInstance) object);
-		}
-		if (object instanceof L1PetInstance) {
+		
+		if (object instanceof L1PetInstance)
 			_allPets.put(object.getId(), (L1PetInstance) object);
-		}
-		if (object instanceof L1SummonInstance) {
+		
+		if (object instanceof L1SummonInstance)
 			_allSummons.put(object.getId(), (L1SummonInstance) object);
-		}
+		
 	}
 
-	public void removeObject(L1Object object) {
-		if (object == null) {
+	public void removeObject(L1Object object)
+	{
+		if (object == null)
 			throw new NullPointerException();
-		}
 
 		_allObjects.remove(object.getId());
-		if (object instanceof L1PcInstance) {
+		
+		if (object instanceof L1PcInstance)
 			_allPlayers.remove(((L1PcInstance) object).getName());
-		}
-		if (object instanceof L1PetInstance) {
+		
+		if (object instanceof L1PetInstance)
 			_allPets.remove(object.getId());
-		}
-		if (object instanceof L1SummonInstance) {
+		
+		if (object instanceof L1SummonInstance)
 			_allSummons.remove(object.getId());
-		}
 	}
 
-	public L1Object findObject(int oID) {
+	public L1Object findObject(int oID)
+	{
 		return _allObjects.get(oID);
 	}
 
 	// _allObjectsのビュー
 	private Collection<L1Object> _allValues;
 
-	public Collection<L1Object> getObject() {
+	public Collection<L1Object> getObject()
+	{
 		Collection<L1Object> vs = _allValues;
 		return (vs != null) ? vs : (_allValues = Collections
 				.unmodifiableCollection(_allObjects.values()));
 	}
 
-	public L1GroundInventory getInventory(int x, int y, short map) {
+	public L1GroundInventory getInventory(int x, int y, short map)
+	{
 		int inventoryKey = ((x - 30000) * 10000 + (y - 30000)) * -1; // xyのマイナス值をインベントリキーとして使用
 
-		Object object = _visibleObjects[map].get(inventoryKey);
-		if (object == null) {
+		Object object = world.get(inventoryKey);
+		
+		if (object == null)
 			return new L1GroundInventory(inventoryKey, x, y, map);
-		} else {
+		else
 			return (L1GroundInventory) object;
-		}
 	}
 
-	public L1GroundInventory getInventory(L1Location loc) {
-		return getInventory(loc.getX(), loc.getY(), (short) loc.getMap()
-				.getId());
-	}
-
-	public void addVisibleObject(L1Object object) {
-		if (object.getMapId() <= MAX_MAP_ID) {
-			_visibleObjects[object.getMapId()].put(object.getId(), object);
-		}
-	}
-
-	public void removeVisibleObject(L1Object object) {
-		if (object.getMapId() <= MAX_MAP_ID) {
-			_visibleObjects[object.getMapId()].remove(object.getId());
-		}
-	}
-
-	public void moveVisibleObject(L1Object object, int newMap) // set_Mapで新しいMapにするまえに呼ぶこと
+	public L1GroundInventory getInventory(L1Location loc)
 	{
-		if (object.getMapId() != newMap) {
-			if (object.getMapId() <= MAX_MAP_ID) {
-				_visibleObjects[object.getMapId()].remove(object.getId());
-			}
-			if (newMap <= MAX_MAP_ID) {
-				_visibleObjects[newMap].put(object.getId(), object);
-			}
+		return getInventory(loc.getX(), loc.getY(), (short) loc.getMap().getId());
+	}
+
+	public void addVisibleObject(L1Object obj)
+	{
+		Integer map = new Integer(obj.getMapId());
+		world.add(map, obj);
+	}
+
+	public void removeVisibleObject(L1Object obj)
+	{
+		Integer map = new Integer(obj.getMapId());
+		world.del(map, obj);
+	}
+
+	public void moveVisibleObject(L1Object obj, int newMap) // set_Mapで新しいMapにするまえに呼ぶこと
+	{
+		Integer map = new Integer(obj.getMapId());
+		
+		
+		if (obj.getMapId() != newMap)
+		{
+			world.del(map, obj);
+			world.add(newMap, obj);
 		}
 	}
 
-	private ConcurrentHashMap<Integer, Integer> createLineMap(Point src,
-			Point target) {
+	private ConcurrentHashMap<Integer, Integer> createLineMap(Point src, Point target)
+	{
 		ConcurrentHashMap<Integer, Integer> lineMap = new ConcurrentHashMap<Integer, Integer>();
 
 		/*
@@ -197,7 +195,7 @@ public class L1World {
 
 		x = x0;
 		y = y0;
-		/* 傾きが1以下の場合 */
+		/* 倾きが1以下の场合 */
 		if (dx >= dy) {
 			E = -dx;
 			for (i = 0; i <= dx; i++) {
@@ -210,7 +208,7 @@ public class L1World {
 					E -= 2 * dx;
 				}
 			}
-			/* 傾きが1より大きい場合 */
+			/* 倾きが1より大きい场合 */
 		} else {
 			E = -dy;
 			for (i = 0; i <= dy; i++) {
@@ -228,32 +226,31 @@ public class L1World {
 		return lineMap;
 	}
 
-	public ArrayList<L1Object> getVisibleLineObjects(L1Object src,
-			L1Object target) {
+	public ArrayList<L1Object> getVisibleLineObjects(L1Object src, L1Object target)
+	{
 		ConcurrentHashMap<Integer, Integer> lineMap = createLineMap(src
 				.getLocation(), target.getLocation());
 
 		int map = target.getMapId();
 		ArrayList<L1Object> result = new ArrayList<L1Object>();
 
-		if (map <= MAX_MAP_ID) {
-			for (L1Object element : _visibleObjects[map].values()) {
-				if (element.equals(src)) {
-					continue;
-				}
+		for (L1Object element : world.get(map))
+		{
+			if (element.equals(src))
+				continue;
 
-				int key = (element.getX() << 16) + element.getY();
-				if (lineMap.containsKey(key)) {
-					result.add(element);
-				}
-			}
+			int key = (element.getX() << 16) + element.getY();
+				
+			if (lineMap.containsKey(key))
+				result.add(element);
 		}
 
 		return result;
 	}
 
-	public ArrayList<L1Object> getVisibleBoxObjects(L1Object object,
-			int heading, int width, int height) {
+	public ArrayList<L1Object> getVisibleBoxObjects(L1Object object, int heading,
+			int width, int height)
+	{
 		int x = object.getX();
 		int y = object.getY();
 		int map = object.getMapId();
@@ -263,110 +260,86 @@ public class L1World {
 		double cosSita = Math.cos(headingRotate[heading] * Math.PI / 4);
 		double sinSita = Math.sin(headingRotate[heading] * Math.PI / 4);
 
-		if (map <= MAX_MAP_ID) {
-			for (L1Object element : _visibleObjects[map].values()) {
-				if (element.equals(object)) {
-					continue;
-				}
-				if (map != element.getMapId()) {
-					continue;
-				}
+		for (L1Object element : world.get(map))
+		{
+			if (element.equals(object))
+				continue;
 
-				// 同じ座標に重なっている場合は範圍內とする
-				if (location.isSamePoint(element.getLocation())) {
-					result.add(element);
-					continue;
-				}
+			// 同じ座标に重なっている场合は范围内とする
+			if (location.isSamePoint(element.getLocation()))
+			{
+				result.add(element);
+				continue;
+			}
 
-				int distance = location.getTileLineDistance(element
-						.getLocation());
-				// 直線距離が高さ、幅どちらよりも大きい場合、計算するまでもなく範圍外
-				if (distance > height && distance > width) {
-					continue;
-				}
+			int distance = location.getTileLineDistance(element.getLocation());
+			
+			// 直线距离が高さ、幅どちらよりも大きい场合、计算するまでもなく范围外
+			if (distance > height && distance > width)
+				continue;
 
-				// objectの位置を原點とするための座標補正
-				int x1 = element.getX() - x;
-				int y1 = element.getY() - y;
+			// objectの位置を原点とするための座标补正
+			int x1 = element.getX() - x;
+			int y1 = element.getY() - y;
 
-				// Z軸回轉させ角度を0度にする。
-				int rotX = (int) Math.round(x1 * cosSita + y1 * sinSita);
-				int rotY = (int) Math.round(-x1 * sinSita + y1 * cosSita);
+			// Z轴回转させ角度を0度にする。
+			int rotX = (int) Math.round(x1 * cosSita + y1 * sinSita);
+			int rotY = (int) Math.round(-x1 * sinSita + y1 * cosSita);
 
-				int xmin = 0;
-				int xmax = height;
-				int ymin = -width;
-				int ymax = width;
+			int xmin = 0;
+			int xmax = height;
+			int ymin = -width;
+			int ymax = width;
 
-				// 奧行きが射程とかみ合わないので直線距離で判定するように變更。
-				// if (rotX > xmin && rotX <= xmax && rotY >= ymin && rotY <=
-				// ymax) {
-				if (rotX > xmin && distance <= xmax && rotY >= ymin
-						&& rotY <= ymax) {
-					result.add(element);
-				}
+			// 奥行きが射程とかみ合わないので直线距离で判定するように变更。
+			// if (rotX > xmin && rotX <= xmax && rotY >= ymin && rotY <=
+			// ymax) {
+			if (rotX > xmin && distance <= xmax && rotY >= ymin && rotY <= ymax)
+			{
+				result.add(element);
 			}
 		}
 
 		return result;
 	}
 
-	public ArrayList<L1Object> getVisibleObjects(L1Object object) {
-		return getVisibleObjects(object, -1);
+	public ArrayList<L1Object> getVisibleObjects(L1Object object)
+	{
+		return getVisibleObjects(object, 16);
 	}
 
-	public ArrayList<L1Object> getVisibleObjects(L1Object object, int radius) {
-		L1Map map = object.getMap();
+	public ArrayList<L1Object> getVisibleObjects(L1Object object, int radius)
+	{
+		int mapid = object.getId();
 		Point pt = object.getLocation();
 		ArrayList<L1Object> result = new ArrayList<L1Object>();
-		if (map.getId() <= MAX_MAP_ID) {
-			for (L1Object element : _visibleObjects[map.getId()].values()) {
-				if (element.equals(object)) {
-					continue;
-				}
-				if (map != element.getMap()) {
-					continue;
-				}
+		
+		for (L1Object element : world.get(mapid))
+		{
+			if (element.equals(object))
+				continue;
 
-				if (radius == -1) {
-					if (pt.isInScreen(element.getLocation())) {
-						result.add(element);
-					}
-				} else if (radius == 0) {
-					if (pt.isSamePoint(element.getLocation())) {
-						result.add(element);
-					}
-				} else {
-					if (pt.getTileLineDistance(element.getLocation()) <= radius) {
-						result.add(element);
-					}
-				}
-			}
+			if (pt.getTileLineDistance(element.getLocation()) <= radius)
+				result.add(element);
 		}
 
 		return result;
 	}
 
-	public ArrayList<L1Object> getVisiblePoint(L1Location loc, int radius) {
+	public ArrayList<L1Object> getVisiblePoint(L1Location loc, int radius)
+	{
+		int mapId = loc.getMapId(); // ループ内で呼ぶと重いため
 		ArrayList<L1Object> result = new ArrayList<L1Object>();
-		int mapId = loc.getMapId(); // ループ內で呼ぶと重いため
 
-		if (mapId <= MAX_MAP_ID) {
-			for (L1Object element : _visibleObjects[mapId].values()) {
-				if (mapId != element.getMapId()) {
-					continue;
-				}
-
-				if (loc.getTileLineDistance(element.getLocation()) <= radius) {
-					result.add(element);
-				}
-			}
-		}
+		for (L1Object element : world.get(mapId))
+			if (loc.getTileLineDistance(element.getLocation()) <= radius)
+				result.add(element);
 
 		return result;
 	}
 
-	public ArrayList<L1PcInstance> getVisiblePlayer(L1Object object) {
+	public ArrayList<L1PcInstance> getVisiblePlayer(L1Object object)
+	{
 		return getVisiblePlayer(object, -1);
 	}
 
@@ -435,7 +408,7 @@ public class L1World {
 	}
 
 	/**
-	 * objectを認識できる範圍にいるプレイヤーを取得する
+	 * objectを认识できる范围にいるプレイヤーを取得する
 	 * 
 	 * @param object
 	 * @return
@@ -454,11 +427,11 @@ public class L1World {
 	}
 
 	/**
-	 * ワールド內にいる指定された名前のプレイヤーを取得する。
+	 * ワールド内にいる指定された名前のプレイヤーを取得する。
 	 * 
 	 * @param name -
-	 *            プレイヤー名(小文字‧大文字は無視される)
-	 * @return 指定された名前のL1PcInstance。該當プレイヤーが存在しない場合はnullを返す。
+	 *            プレイヤー名(小文字・大文字は无视される)
+	 * @return 指定された名前のL1PcInstance。该当プレイヤーが存在しない场合はnullを返す。
 	 */
 	public L1PcInstance getPlayer(String name) {
 		if (_allPlayers.contains(name)) {
@@ -484,22 +457,21 @@ public class L1World {
 	// _allSummonsのビュー
 	private Collection<L1SummonInstance> _allSummonValues;
 
-	public Collection<L1SummonInstance> getAllSummons() {
+	public Collection<L1SummonInstance> getAllSummons()
+	{
 		Collection<L1SummonInstance> vs = _allSummonValues;
 		return (vs != null) ? vs : (_allSummonValues = Collections
 				.unmodifiableCollection(_allSummons.values()));
 	}
 
-	public final Map<Integer, L1Object> getAllVisibleObjects() {
+	public final Map<Integer, L1Object> getAllVisibleObjects()
+	{
 		return _allObjects;
 	}
 
-	public final Map<Integer, L1Object>[] getVisibleObjects() {
-		return _visibleObjects;
-	}
-
-	public final Map<Integer, L1Object> getVisibleObjects(int mapId) {
-		return _visibleObjects[mapId];
+	public final ArrayList<L1Object> getVisibleObjects(int mapId)
+	{
+		return world.get(mapId);
 	}
 
 	public Object getRegion(Object object) {
