@@ -208,7 +208,8 @@ public class L1UltimateBattle {
 	 * コロシアム上のアイテムとモンスターを全て削除する。
 	 */
 	private void clearColosseum() {
-		for (L1Object obj : L1World.getInstance().getVisibleObjects(_mapId)) {//kiusbt 提供
+		for (Object obj : L1World.getInstance().getVisibleObjects(_mapId)
+				.values()) {
 			if (obj instanceof L1MonsterInstance) // モンスター削除
 			{
 				L1MonsterInstance mob = (L1MonsterInstance) obj;
