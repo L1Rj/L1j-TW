@@ -2618,6 +2618,20 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc
 							.sendPackets(new S_NPCTalkReturn(pc.getId(),
 									"robinhood"));
+//BAO提供 幻術士長老信件
+				} else if (itemId == 49172) {// 希蓮恩的第一次信件
+					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),"silrein1lt"));
+				} else if (itemId == 49173) {// 希蓮恩的第二次信件
+					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),"silrein2lt"));
+				} else if (itemId == 49174) {// 希蓮恩的第三次信件
+					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),"silrein3lt"));
+				} else if (itemId == 49175) {// 希蓮恩的第四次信件
+					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),"silrein4lt"));
+				} else if (itemId == 49176) {// 希蓮恩的第五次信件
+					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),"silrein5lt"));
+				} else if (itemId == 49177) {// 希蓮恩的第六次信件
+					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),"silrein6lt"));
+//add end
 				} else if (itemId == 41007) { // イリスの命令書：靈魂の安息
 					pc
 							.sendPackets(new S_NPCTalkReturn(pc.getId(),

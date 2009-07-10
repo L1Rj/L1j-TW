@@ -2527,7 +2527,8 @@ public class C_NPCAction extends ClientBasePacket {
 					L1Teleport.teleport(pc, 32736, 32800, (short) 483, 5, true);
 				}
 			} else if (s.equalsIgnoreCase("f")) { // カーミラ（ホセ地下牢）
-				if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 4) {
+				if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 4 
+						||(pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 255)) {
 					L1Teleport.teleport(pc, 32746, 32807, (short) 484, 5, true);
 				}
 			}
