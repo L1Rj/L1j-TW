@@ -56,3 +56,17 @@ Update weapon Set use_illusionist = '1' Where item_id = '213';
 /*20090614 修正象牙塔斧頭(依照天透)*/
 Update weapon Set type = 'tohandblunt' Where item_id = '147';
 Update weapon Set dmg_large = '13' Where item_id = '147';
+
+/*20090711 */
+Update weapon Set use_dragonknight = '1' Where item_id = '60';
+Update weapon Set use_illusionist = '1' Where item_id = '60';
+Update weapon Set use_dragonknight = '1' Where item_id = '195';
+Update weapon Set use_illusionist = '1' Where item_id = '195';
+Update weapon Set hitmodifier = '1' Where item_id = '196';
+Update weapon Set hitmodifier = '2' Where item_id = '197';
+Update weapon Set hitmodifier = '3' Where item_id = '198';
+Update weapon Set hitmodifier = '4' Where item_id = '199';
+Update weapon Set hitmodifier = '5' Where item_id = '200';
+Update weapon Set hitmodifier = '6' Where item_id = '201';
+Update weapon Set hitmodifier = '7' Where item_id = '202';
+Update weapon Set hitmodifier = '8' Where item_id = '203';
