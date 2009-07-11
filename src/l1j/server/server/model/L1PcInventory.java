@@ -54,21 +54,21 @@ public class L1PcInventory extends L1Inventory {
 	public static final int COL_ALL = 0;//所有狀態儲存
 
 	public static final int COL_FIREMR = 137;
-	
+
 	public static final int COL_WATERMR = 136;
-	
+
 	public static final int COL_WINDMR = 135;
-	
+
 	public static final int COL_EARTHMR = 134;
-	
+
 	public static final int COL_ADDSP = 133;
-	
+
 	public static final int COL_ADDHP = 132;
-	
+
 	public static final int COL_ADDMP = 131;
-	
+
 	public static final int COL_HPR = 130;
-	
+
 	public static final int COL_MPR = 129;
 //end add
 
@@ -89,7 +89,7 @@ public class L1PcInventory extends L1Inventory {
 	public L1PcInstance getOwner() {
 		return _owner;
 	}
-	
+
 	// 240段階のウェイトを返す
 	public int getWeight240() {
 		return calcWeight240(getWeight());
@@ -156,7 +156,7 @@ public class L1PcInventory extends L1Inventory {
 			}
 			return AMOUNT_OVER;
 		}
-		
+
 		return OK;
 	}
 
@@ -480,7 +480,7 @@ public class L1PcInventory extends L1Inventory {
 			if (column >= COL_MPR) {
 				storage.updateMpr(item);
 				column -= COL_MPR;
-			}	
+			}
 //add end
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -519,19 +519,19 @@ public class L1PcInventory extends L1Inventory {
 			L1Item temp = item.getItem();
 			if (equipped) { // 裝著
 //waja add 判斷裝備穿著數量 by elfooxx
-                int count = 0 ; 
-               if ( temp.getType2() ==2) { 
-                for ( L1ItemInstance hasEquip : _owner.getEquipSlot().getArmors() ) { 
-                  // 如果要穿的裝備 跟已經穿上的種類一樣 計算穿上的數量  
-                  if ( temp.getType() == hasEquip.getItem().getType() ) 
-                    count ++ ; 
-                  // 9為戒指 可以裝兩個  
-                  if ( ( temp.getType() == 9 && count >= 2 ) || ( temp.getType() != 9 && count >= 1 ) ) {   
-                    _owner.getNetConnection().sendPacket(new S_Disconnect()); // 裝備出異常　斷線 
-                    return;
-                  }
-                }
-                }
+				int count = 0;
+				if (temp.getType2() == 2) {
+					for (L1ItemInstance hasEquip : _owner.getEquipSlot().getArmors()) {
+						// 如果要穿的裝備 跟已經穿上的種類一樣 計算穿上的數量
+						if (temp.getType() == hasEquip.getItem().getType())
+							count++;
+						// 9為戒指 可以裝兩個
+						if ((temp.getType() == 9 && count >= 2) || (temp.getType() != 9 && count >= 1 )) {
+							_owner.getNetConnection().sendPacket(new S_Disconnect()); // 裝備出異常　斷線
+							return;
+						}
+					}
+				}
 //add end
 				item.setEquipped(true);
 				_owner.getEquipSlot().set(item);
