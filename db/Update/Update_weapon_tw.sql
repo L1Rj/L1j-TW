@@ -196,14 +196,14 @@ Update weapon Set name = '水精靈之弓' Where item_id = '192';
 Update weapon Set name = '鐵手甲' Where item_id = '193';
 Update weapon Set name = '真鐵手甲' Where item_id = '194';
 Update weapon Set name = '受詛咒的真．冥皇執行劍' Where item_id = '195';
-Update weapon Set name = '炎魔的雙手劍 Lv.1' Where item_id = '196';
-Update weapon Set name = '炎魔的雙手劍 Lv.2' Where item_id = '197';
-Update weapon Set name = '炎魔的雙手劍 Lv.3' Where item_id = '198';
-Update weapon Set name = '炎魔的雙手劍 Lv.4' Where item_id = '199';
-Update weapon Set name = '炎魔的雙手劍 Lv.5' Where item_id = '200';
-Update weapon Set name = '炎魔的雙手劍 Lv.6' Where item_id = '201';
-Update weapon Set name = '炎魔的雙手劍 Lv.7' Where item_id = '202';
-Update weapon Set name = '炎魔的雙手劍 Lv.8' Where item_id = '203';
+Update weapon Set name = '炎魔的雙手劍' Where item_id = '196';
+Update weapon Set name = '炎魔的雙手劍' Where item_id = '197';
+Update weapon Set name = '炎魔的雙手劍' Where item_id = '198';
+Update weapon Set name = '炎魔的雙手劍' Where item_id = '199';
+Update weapon Set name = '炎魔的雙手劍' Where item_id = '200';
+Update weapon Set name = '炎魔的雙手劍' Where item_id = '201';
+Update weapon Set name = '炎魔的雙手劍' Where item_id = '202';
+Update weapon Set name = '炎魔的雙手劍' Where item_id = '203';
 Update weapon Set name = '深紅之弩' Where item_id = '204';
 Update weapon Set name = '熾炎天使弓' Where item_id = '205';
 Update weapon Set name = '黑暗精靈之劍' Where item_id = '206';
@@ -251,8 +251,8 @@ Update weapon Set name = 'イリュージョン スピアー' Where item_id = '2
 Update weapon Set name = 'イリュージョン アックス' Where item_id = '253';
 Update weapon Set name = 'イリュージョン デュアルブレード' Where item_id = '254';
 Update weapon Set name = 'イリュージョン スタッフ' Where item_id = '255';
-Update weapon Set name = '萬聖節南瓜長劍(韓)' Where item_id = '256';
-Update weapon Set name = '萬聖節南瓜長劍(日)' Where item_id = '257';
+Update weapon Set name = '萬聖節南瓜長劍' Where item_id = '256';
+Update weapon Set name = '萬聖節南瓜長劍' Where item_id = '257';
 Update weapon Set name = '終極萬聖節南瓜長劍' Where item_id = '258';
 Update weapon Set name = '魔力短劍' Where item_id = '259';
 Update weapon Set name = '狂風之斧' Where item_id = '260';
@@ -320,8 +320,6 @@ Update weapon Set name = '雙手劍' Where item_id = '200052';
 Update weapon Set name = '歐西斯弓' Where item_id = '200171';
 
 /*20090525 修正unidentified_name_id名稱*/
-Update weapon Set unidentified_name_id = '$2454 $2450' Where item_id = '157'; /* 銀光鋼爪 */
-Update weapon Set unidentified_name_id = '$2453 $2450' Where item_id = '162'; /* 幽暗鋼爪'  */
 Update weapon Set identified_name_id = '炎魔的雙手劍 Lv.1' Where item_id = '196';
 Update weapon Set identified_name_id = '炎魔的雙手劍 Lv.2' Where item_id = '197';
 Update weapon Set identified_name_id = '炎魔的雙手劍 Lv.3' Where item_id = '198';
@@ -330,5 +328,42 @@ Update weapon Set identified_name_id = '炎魔的雙手劍 Lv.5' Where item_id =
 Update weapon Set identified_name_id = '炎魔的雙手劍 Lv.6' Where item_id = '201';
 Update weapon Set identified_name_id = '炎魔的雙手劍 Lv.7' Where item_id = '202';
 Update weapon Set identified_name_id = '炎魔的雙手劍 Lv.8' Where item_id = '203';
-Update weapon Set unidentified_name_id = '終極$5254' Where item_id = '258'; /* 終極萬聖節南瓜長劍 */
-Update weapon Set unidentified_name_id = '$2454 $2450' Where item_id = '100157'; /* 銀光鋼爪'  */
+
+
+/*20090711 中文化*/
+Update weapon Set unidentified_name_id = '歷戰之劍' Where item_id = '241';
+Update weapon Set identified_name_id = '歷戰之劍' Where item_id = '241';
+Update weapon Set unidentified_name_id = '歷戰十字弓' Where item_id = '242';
+Update weapon Set identified_name_id = '歷戰十字弓' Where item_id = '242';
+Update weapon Set unidentified_name_id = '歷戰魔杖' Where item_id = '243';
+Update weapon Set identified_name_id = '歷戰魔杖' Where item_id = '243';
+Update weapon Set unidentified_name_id = '歷戰鋼爪' Where item_id = '244';
+Update weapon Set identified_name_id = '歷戰鋼爪' Where item_id = '244';
+Update weapon Set unidentified_name_id = '萬聖節南瓜長劍' Where item_id = '256';
+Update weapon Set identified_name_id = '萬聖節南瓜長劍' Where item_id = '256';
+Update weapon Set unidentified_name_id = '萬聖節南瓜長劍' Where item_id = '257';
+Update weapon Set identified_name_id = '萬聖節南瓜長劍' Where item_id = '257';
+Update weapon Set unidentified_name_id = '終極萬聖節南瓜長劍' Where item_id = '258';
+Update weapon Set identified_name_id = '終極萬聖節南瓜長劍' Where item_id = '258';
+Update weapon Set unidentified_name_id = '青銅 鋼爪' Where item_id = '152';
+Update weapon Set identified_name_id = '青銅 鋼爪' Where item_id = '152';
+Update weapon Set unidentified_name_id = '鋼鐵 鋼爪' Where item_id = '153';
+Update weapon Set identified_name_id = '鋼鐵 鋼爪' Where item_id = '153';
+Update weapon Set unidentified_name_id = '暗影 鋼爪' Where item_id = '154';
+Update weapon Set identified_name_id = '暗影 鋼爪' Where item_id = '154';
+Update weapon Set unidentified_name_id = '銀光 鋼爪' Where item_id = '157';
+Update weapon Set identified_name_id = '銀光 鋼爪' Where item_id = '157';
+Update weapon Set unidentified_name_id = '黑暗 鋼爪' Where item_id = '158';
+Update weapon Set identified_name_id = '黑暗 鋼爪' Where item_id = '158';
+Update weapon Set unidentified_name_id = '短 鋼爪' Where item_id = '159';
+Update weapon Set identified_name_id = '短 鋼爪' Where item_id = '159';
+Update weapon Set unidentified_name_id = '大馬士革 鋼爪' Where item_id = '161';
+Update weapon Set identified_name_id = '大馬士革 鋼爪' Where item_id = '161';
+Update weapon Set unidentified_name_id = '幽暗 鋼爪' Where item_id = '162';
+Update weapon Set identified_name_id = '幽暗 鋼爪' Where item_id = '162';
+Update weapon Set unidentified_name_id = '$2452$2451' Where item_id = '168';
+Update weapon Set identified_name_id = '$2452$2451' Where item_id = '168';
+Update weapon Set unidentified_name_id = '$2453$2451' Where item_id = '177';
+Update weapon Set identified_name_id = '$2453$2451' Where item_id = '177';
+Update weapon Set unidentified_name_id = '銀光 鋼爪' Where item_id = '100157';
+Update weapon Set identified_name_id = '銀光 鋼爪' Where item_id = '100157';
