@@ -2489,11 +2489,12 @@ public class L1PcInstance extends L1Character {
 			// レベルダウン時はランダム值をそのままマイナスする為に、base值に0を設定
 			short randomHp = CalcStat.calcStatHp(getType(), 0, getBaseCon(), getOriginalHpup());
 			short randomMp = CalcStat.calcStatMp(getType(), 0, getBaseWis(), getOriginalMpup());
-/*			if (getBaseMaxHp()<= 30);//waja add 預防降級扣到HP/MP過低
-			randomHp =0;
-			if (getBaseMaxMp()<= 20);
-			randomMp =0;//add end
-*/
+			if (getBaseMaxHp() <= 30) {// waja add 預防降級扣到HP/MP過低
+				randomHp = 0;
+			}
+			if (getBaseMaxMp() <= 20) {
+				randomMp = 0;
+			} // add end
 			addBaseMaxHp((short) -randomHp);
 			addBaseMaxMp((short) -randomMp);
 		}
