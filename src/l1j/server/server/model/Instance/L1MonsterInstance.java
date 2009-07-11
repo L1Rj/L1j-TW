@@ -138,13 +138,20 @@ public class L1MonsterInstance extends L1NpcInstance {
 				}
 			}
 
-			if (getNpcId() == 45600){ // カーツ
+			if (getNpcId() == 45600){ // 克特
 				if (pc.isCrown() || pc.isDarkelf()
-						|| pc.getTempCharGfx() != pc.getClassId()) { // 未変身の君主、DEにはアクティブ
+						|| pc.getTempCharGfx() != pc.getClassId()) { // 沒變身的王族、黑暗妖精
 					targetPlayer = pc;
 					break;
 				}
 			}
+			if (getNpcId() == 45215) {// 長者  僅搜尋正義值負值玩家
+				if(pc.getLawful() <= -1) {
+					targetPlayer = pc;
+					break;
+                }
+            }
+
 
 			// どちらかの條件を滿たす場合、友好と見なされ先制攻擊されない。
 			// ‧モンスターのカルマがマイナス值（バルログ側モンスター）でPCのカルマレベルが1以上（バルログ友好）
