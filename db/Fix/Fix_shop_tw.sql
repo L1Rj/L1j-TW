@@ -876,7 +876,7 @@ Insert Into `shop` Values
 /* 20090614 修正海底NPC 巴克休 販賣銀箭價格 */
 Update shop Set selling_price = '1' Where npc_id = '70081' And item_id = '40744'; /* 銀箭 */
 
-/* 20090617 修正的亞德要塞 武器屋販賣道具 */
+/* 20090617 修正迪亞得要塞 武器屋販賣道具 */
 delete from shop where item_id = '82' And npc_id = '71196'; /* 拉斯塔巴德雙刀 */
 delete from shop where item_id = '122' And npc_id = '71196'; /* 拉斯塔巴德魔杖 */
 delete from shop where item_id = '187' And npc_id = '71196'; /* 拉斯塔巴德十字弓 */
