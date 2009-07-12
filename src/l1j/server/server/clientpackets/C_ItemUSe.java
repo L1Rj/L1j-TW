@@ -1127,6 +1127,15 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(l1iteminstance, 1);
+				} else if (itemId == 49188) {// 索夏依卡靈魂之心
+					if(l1iteminstance1.getItem().getType2() == 0
+							&& l1iteminstance1.getItem().getItemId() == 49186) {
+						pc.getInventory().consumeItem(49186, 1);
+						pc.getInventory().consumeItem(49188, 1);
+						pc.getInventory().storeItem(49189, 1);
+						} else {
+							pc.sendPackets(new S_ServerMessage(79));
+						}
 				} else if (itemId == 40097 || itemId == 40119
 						|| itemId == 140119 || itemId == 140329) { // 解咒スクロール、原住民のトーテム
 					for (L1ItemInstance eachItem : pc.getInventory().getItems()) {
