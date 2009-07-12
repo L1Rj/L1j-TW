@@ -463,6 +463,7 @@ Update droplist Set chance = '1000' Where mobId = '45731' And itemId = '100212';
 Update droplist Set chance = '8000' Where mobId = '45649' And itemId = '2';/* 惡魔 */
 Update droplist Set chance = '1000' Where mobId = '45606' And itemId = '2';/* 吸血鬼 */
 Update droplist Set chance = '2000' Where mobId = '45601' And itemId = '2';/* 死亡騎士 */
+Update droplist Set chance = '2400' Where mobId = '45601' And itemId = '200002';/* 死亡騎士 */
 Update droplist Set chance = '1200' Where mobId = '45547' And itemId = '2';/* 幻象眼魔 */
 Update droplist Set chance = '2000' Where mobId = '45513' And itemId = '2';/* 潔尼斯女王 */
 Update droplist Set chance = '1200' Where mobId = '45481' And itemId = '2';/* 小惡魔 */
@@ -1127,17 +1128,17 @@ Update droplist Set itemId = '40188' Where mobId = '45924' And itemId = '40189';
 
 /* 20090606 修正骰子匕首掉落怪物 */
 delete from droplist where itemId = '2' ;
-Update droplist Set chance = '5000' Where mobId = '45601' And itemId = '200002';/* 死亡騎士掉落受詛咒的骰子匕首 */
-Update droplist Set chance = '40000' Where mobId = '5000' And itemId = '200002';/* 死亡騎士掉落受詛咒的骰子匕首 */
+delete from droplist where itemId = '200002' ;
 
 /* 缺 狩獵 黑騎士& 精銳 黑騎士 */
 INSERT INTO `droplist` (`mobId`, `itemId`, `min`, `max`, `chance`) VALUES
-(45481, 2, 1, 1, 800),/* 小惡魔 */
-(45513, 2, 1, 1, 20000),/* 潔尼斯女王 */
-(45547, 2, 1, 1, 20000),/* 幻象眼魔 */
-(5000, 2, 1, 1, 30000),/* 死亡騎士 */
-(45606, 2, 1, 1, 20000),/* 吸血鬼 */
-(45649, 2, 1, 1, 30000);/* 惡魔 */
+(45481, 2, 1, 1, 100),/* 小惡魔 */
+(45513, 2, 1, 1, 2000),/* 潔尼斯女王 */
+(45547, 2, 1, 1, 2000),/* 幻象眼魔 */
+(45601, 2, 1, 1, 3000),/* 死亡騎士 */
+(45601, 200002, 1, 1, 3000),/* 死亡騎士 */
+(45606, 2, 1, 1, 1200),/* 吸血鬼 */
+(45649, 2, 1, 1, 1200);/* 惡魔 */
 
 /* 20090612 刪除與新增未使用怪物 45108 骷髏 部份掉落道具 放置冒險洞窟2F掉落銀鑰匙 */
 Delete From `droplist` Where itemId = '40029'And mobId ='45108';/* 象牙塔治癒藥水 */
