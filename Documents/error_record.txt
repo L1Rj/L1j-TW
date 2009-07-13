@@ -1,5 +1,11 @@
 以下為目前仍有的錯誤訊息紀錄
 
+090705 EC編譯時警告訊息
+    [javac] Note: E:\workspace\l1j\l1jtw\src\l1j\server\server\model\skill\L1SkillTimer.java uses or overrides a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+
 090704
 l1j.server.server.ClientThread run
 嚴重的: null
