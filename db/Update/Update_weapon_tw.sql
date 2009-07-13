@@ -225,7 +225,7 @@ Update weapon Set name = '神秘魔杖' Where item_id = '223';
 Update weapon Set name = '象牙塔魔杖' Where item_id = '224';
 Update weapon Set name = '王族之劍' Where item_id = '225';
 Update weapon Set name = '騎士之劍' Where item_id = '226';
-Update weapon Set name = '聖戰士匕首' Where item_id = '228';
+Update weapon Set name = '傳說的匕首' Where item_id = '228';
 Update weapon Set name = '蒼天短劍' Where item_id = '231';
 Update weapon Set name = '蒼天之劍' Where item_id = '232';
 Update weapon Set name = '蒼天巨劍' Where item_id = '233';
