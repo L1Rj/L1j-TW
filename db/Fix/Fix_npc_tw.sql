@@ -136,5 +136,11 @@ Update npc Set intel = '28', wis = '22', dex = '24', con = '24' Where npcid = '4
 Update npc Set nameid = '$1394' Where npcid = '45449';
 
 /* 20090711 修正長者為不主動 */
-Update npc Set agro  = '0' Where npcid = '45215';
-Update npc Set agrososc  = '0' Where npcid = '45215';
+Update npc Set agro = '0' Where npcid = '45215';
+Update npc Set agrososc = '0' Where npcid = '45215';
+
+/* 20090713 修正 夢幻島 精靈王 經驗值 */
+Update npc Set exp = '626' Where npcid = '45215';/* 風精靈王 夢幻 */
+Update npc Set exp = '626' Where npcid = '45642';/* 土精靈王 夢幻 */
+Update npc Set exp = '626' Where npcid = '45643';/* 水精靈王 夢幻 */
+Update npc Set exp = '626' Where npcid = '45645';/* 火精靈王 夢幻 */
