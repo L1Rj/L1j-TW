@@ -53,141 +53,39 @@ public class CalcInitHpMp {
 		return hp;
 	}
 
+												/* point: 0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 */
+	private static final byte[] Mp_Of_Crown = 			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4};
+	private static final byte[] Mp_Of_Knight = 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2};
+	private static final byte[] Mp_Of_Elf = 			{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 6, 6, 6};
+	private static final byte[] Mp_Of_Wizard = 			{ 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 8, 8, 8};
+	private static final byte[] Mp_Of_Darkelf = 		{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 6, 6, 6};
+	private static final byte[] Mp_Of_DragonKnight = 	{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 6, 6, 6};
+	private static final byte[] Mp_Of_Illusionist = 	{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 6, 6, 6};
+
 	/**
 	 * 各クラスの初期MPを返す
 	 * 
 	 * @param pc
-	 * @return mp
+	 * @return value of mp
 	 * 
 	 */
-	public static int calcInitMp(L1PcInstance pc) {
-		int mp = 1;
+	public static byte calcInitMp(L1PcInstance pc) {
 		if (pc.isCrown()) {
-			switch (pc.getWis()) {
-			case 11:
-				mp = 2;
-				break;
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				mp = 3;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				mp = 4;
-				break;
-			default:
-				mp = 2;
-				break;
-			}
+			return Mp_Of_Crown[pc.getWis()];
 		} else if (pc.isKnight()) {
-			switch (pc.getWis()) {
-			case 9:
-			case 10:
-			case 11:
-				mp = 1;
-				break;
-			case 12:
-			case 13:
-				mp = 2;
-				break;
-			default:
-				mp = 1;
-				break;
-			}
+			return Mp_Of_Knight[pc.getWis()];
 		} else if (pc.isElf()) {
-			switch (pc.getWis()) {
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				mp = 4;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				mp = 6;
-				break;
-			default:
-				mp = 4;
-				break;
-			}
+			return Mp_Of_Elf[pc.getWis()];
 		} else if (pc.isWizard()) {
-			switch (pc.getWis()) {
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				mp = 6;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				mp = 8;
-				break;
-			default:
-				mp = 6;
-				break;
-			}
+			return Mp_Of_Wizard[pc.getWis()];
 		} else if (pc.isDarkelf()) {
-			switch (pc.getWis()) {
-			case 10:
-			case 11:
-				mp = 3;
-				break;
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				mp = 4;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				mp = 6;
-				break;
-			default:
-				mp = 3;
-				break;
-			}
+			return Mp_Of_Darkelf[pc.getWis()];
 		} else if (pc.isDragonKnight()) {
-			switch (pc.getWis()) {
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				mp = 4;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				mp = 6;
-				break;
-			default:
-				mp = 4;
-				break;
-			}
+			return Mp_Of_DragonKnight[pc.getWis()];
 		} else if (pc.isIllusionist()) {
-			switch (pc.getWis()) {
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				mp = 4;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				mp = 6;
-				break;
-			default:
-				mp = 4;
-				break;
-			}
+			return Mp_Of_Illusionist[pc.getWis()];
 		}
-		return mp;
+		return 0; // 例外時
 	}
 
 }
