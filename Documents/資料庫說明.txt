@@ -1,0 +1,16 @@
+﻿資料庫目錄內容說明:
+db\MyISAM l1j日文資料庫
+db\Insert 新增各式資料庫(武防道具NPC等等)
+db\Update 繁體中文化資料庫(將日文換成中文)
+db\upgrade 各版本升級資料庫(l1j 與 l1jtw)
+db\Fix 修正日版錯誤資料庫
+db\mobskill_test 怪物技能測試資料庫
+
+資料庫匯入步驟說明:
+1.匯入l1jdb (db\MyISAM 中日文資料庫)
+2.匯入upgrade目錄中 l1jtw 開頭資料庫.
+3.匯入db\Update
+4,匯入db\Insert
+5.匯入db\Fix
+
+附註:怪物測試技能資料庫如果有匯入,必須於 db\Fix\Fix_mobskill_tw.sql 之前匯入.
