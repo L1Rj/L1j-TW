@@ -1263,5 +1263,4 @@ Delete From `droplist` Where itemId = '41150' And mobId ='45471';/* 精靈水晶
 
 /* 新增曼波兔掉落道具 缺綠寶石項鍊(幸運+1) */
 INSERT INTO `droplist` (`mobId`, `itemId`, `min`, `max`, `chance`) VALUES
-(45534, 40224, 1, 1, 200),/* 魔法書 (靈魂昇華) */
-(45535, 40224, 1, 1, 200);/* 魔法書 (靈魂昇華) */
+(45534, 40224, 1, 1, 200);/* 魔法書 (靈魂昇華) */
