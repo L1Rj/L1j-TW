@@ -249,7 +249,7 @@ Update mobskill Set mobname = '火焰之影親衛兵(単体魔法)' Where mobid 
 Update mobskill Set mobname = '火焰之影親衛兵(単体魔法)' Where mobid =45624 AND actNo = 1;
 Update mobskill Set mobname = '混沌(呼喚傳送術)' Where mobid =45625 AND actNo = 0;
 Update mobskill Set mobname = '貓' Where mobid =45039 AND actNo = 0;
-Update mobskill Set mobname = '混沌(衝擊之暈)' Where mobid =45625 AND actNo = 1;
+Update mobskill Set mobname = '混沌(魔法消除)' Where mobid =45625 AND actNo = 1;
 Update mobskill Set mobname = '混沌(地裂術)' Where mobid =45625 AND actNo = 2;
 Update mobskill Set mobname = '混沌(召喚混沌的司祭A)' Where mobid =45625 AND actNo = 3;
 Update mobskill Set mobname = '混沌(召喚混沌的司祭b)' Where mobid =45625 AND actNo = 4;

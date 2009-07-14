@@ -1,6 +1,6 @@
 /* 20090713 台版混沌無相消術 移除 增加魔法消除 */
 delete from mobskill where mobid = '45625' AND SkillId = '44' ;
-INSERT INTO `mobskill` VALUES (45625, 8, '混沌-魔法消除', 2, 20, 0, 0, 2, 0, 3, 0, 0, 0, 0, 153, 0, 0, 0, 0, 0, 0);
+INSERT INTO `mobskill` VALUES (45625, 1, '混沌(魔法消除)', 2, 20, 0, 0, 2, 0, 3, 0, 0, 0, 0, 153, 0, 0, 0, 0, 0, 0);
 
 /* 20090527 拿掉巨蟻女皇多出的技能(依照天透)*/
 delete from mobskill where mobid = '45614' AND SkillId = '10057' ;
