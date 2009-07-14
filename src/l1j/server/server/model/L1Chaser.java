@@ -110,8 +110,45 @@ public class L1Chaser extends TimerTask {
 		double dmg = 0;
 		int spByItem = pc.getSp() - pc.getTrueSp();
 		int Intel_Tempvalue = pc.getInt();
-		int charaIntelligence = Intel_Tempvalue + spByItem - 12;// 智力 + 裝備魔攻 -12
-/* l1j 1952 變更部份
+		int charaIntelligence = Intel_Tempvalue + spByItem - 12; // 智力 + 裝備魔攻 -12
+
+		double coefficientA = 1.0 + 3.0 / 32.0 * charaIntelligence; // 7.15 Start
+
+		if (coefficientA < 1) {
+			coefficientA = 1.0;
+		}
+
+		double coefficient_PT = 0;
+		if (Intel_Tempvalue < 13) {
+			coefficient_PT = 9.36;
+		} else if(Intel_Tempvalue > 18) {
+			Intel_Tempvalue = (12 + Intel_Tempvalue * 2) / 3;
+			coefficient_PT = (Intel_Tempvalue + 4);
+		} else {
+			Intel_Tempvalue = (14 + Intel_Tempvalue) / 2;
+			coefficient_PT = Intel_Tempvalue * 0.065 * Intel_Tempvalue;
+		}
+
+		double bsk = 0;
+		if (pc.hasSkillEffect(BERSERKERS)) {
+			bsk = 0.1;
+		}
+		dmg = (RandomArrayList.getArray3List() + 10) * (1 + bsk) // 將殺傷力的最大值與最小值的差距範圍縮小
+				* coefficientA * coefficient_PT;
+
+		dmg = L1WeaponSkill.calcDamageReduction(pc, cha, dmg, 0);
+
+		if (cha.hasSkillEffect(IMMUNE_TO_HARM)) {
+			dmg /= 2.0;
+		}
+
+		return dmg; // 7.15 End
+
+		/* l1j 1952 版本
+		double dmg = 0;
+		int spByItem = pc.getSp() - pc.getTrueSp();
+		int intel = pc.getInt();
+		int charaIntelligence = pc.getInt() + spByItem - 12;
 		double coefficientA = 1.0 + 3.0 / 32.0 * charaIntelligence;
 		if (coefficientA < 1) {
 			coefficientA = 1.0;
@@ -139,31 +176,7 @@ public class L1Chaser extends TimerTask {
 			dmg /= 2.0;
 		}
 
-		return dmg;
-*/
-// lifetime520 修改部份
-		double coefficientA = 1.0 + 3.0 / 32.0 * charaIntelligence;
-
-		if (coefficientA < 1) {
-			coefficientA = 1.0;
-		}
-
-		if (Intel_Tempvalue < 13) {
-			Intel_Tempvalue = 12;
-		} else if(Intel_Tempvalue > 25) {
-			Intel_Tempvalue = 25;
-		}
-
-		double coefficientB = Intel_Tempvalue * 0.13 / 10.5; // 原本 : Intel_Tempvalue * 0.065 / 10.5 * 2.0;
-
-		double bsk = 0;
-		if (pc.hasSkillEffect(BERSERKERS)) {
-			bsk = 0.1;
-		}
-		dmg = (RandomArrayList.getArray4List() + 10) * (1 + bsk) // 將殺傷力的最大值與最小值的差距範圍縮小
-				* coefficientA * coefficientB * Intel_Tempvalue;
-
-		return L1WeaponSkill.calcDamageReduction(pc, cha, dmg, 0);
+		return dmg;*/
 	}
 
 }
