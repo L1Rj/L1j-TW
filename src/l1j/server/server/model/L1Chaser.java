@@ -108,52 +108,44 @@ public class L1Chaser extends TimerTask {
 
 	public double getDamage(L1PcInstance pc, L1Character cha) {
 		double dmg = 0;
-/*
 		int spByItem = pc.getSp() - pc.getTrueSp();
-		int intel = pc.getInt();
-		int charaIntelligence = pc.getInt() + spByItem - 12;// 智力 + 裝備魔攻 -12
-		double coefficientA = 1 + 3.0 / 32.0 * charaIntelligence;
+		int Intel_Tempvalue = pc.getInt();
+		int charaIntelligence = Intel_Tempvalue + spByItem - 12;// 智力 + 裝備魔攻 -12
+/* l1j 1952 變更部份
+		double coefficientA = 1.0 + 3.0 / 32.0 * charaIntelligence;
 		if (coefficientA < 1) {
-			coefficientA = 1;
+			coefficientA = 1.0;
 		}
 		double coefficientB = 0;
-		if (intel > 25) {
-			coefficientB = 25 * 0.065;
+		if (intel > 18) {
+			coefficientB = (intel + 2.0) / intel;
 		} else if(intel <= 12) {
-			coefficientB = 12 * 0.065;
+			coefficientB = 12.0 * 0.065;
 		} else {
 			coefficientB = intel * 0.065;
 		}
 		double coefficientC = 0;
-		if (intel > 25) {
-			coefficientC = 25;
-		} else if(intel <= 12) {
+		if(intel <= 12) {
 			coefficientC = 12;
 		} else {
 			coefficientC = intel;
 		}
-		double bsk = 0;
-		if (pc.hasSkillEffect(BERSERKERS)) {
-			bsk = 0.1;
-		}
-/* waja change
-		dmg = (_random.nextInt(6) + 1 + 7) * (1 + bsk) * coefficientA
+		dmg = (_random.nextInt(6) + 1 + 7) * coefficientA
 				* coefficientB / 10.5 * coefficientC * 2.0;
- * 原算式 角色 智 18 裝備魔攻 12 
- * coefficientA = 18.125 coefficientB = 1.17 coefficientC = 18
- * 算式 預估傷害值 14*1.1*18.125*1.17/10.5*18*2=1119.69
- * 攻擊傷害過高 先改為較低數值
- * 
-		dmg = (_random.nextInt(6) + 1 + 7) * (1 + bsk) * coefficientA
-				* coefficientB ;// 預估傷害為 326.57
+
+		dmg = L1WeaponSkill.calcDamageReduction(pc, cha, dmg, 0);
+
+		if (cha.hasSkillEffect(IMMUNE_TO_HARM)) {
+			dmg /= 2.0;
+		}
+
+		return dmg;
 */
-		int spByItem = pc.getSp() - pc.getTrueSp();
-		int Intel_Tempvalue = pc.getInt();
-		int charaIntelligence = Intel_Tempvalue + spByItem - 12;// 智力 + 裝備魔攻 -12
-		double coefficientA = 1 + 3.0 / 32.0 * charaIntelligence;
+// lifetime520 修改部份
+		double coefficientA = 1.0 + 3.0 / 32.0 * charaIntelligence;
 
 		if (coefficientA < 1) {
-			coefficientA = 1;
+			coefficientA = 1.0;
 		}
 
 		if (Intel_Tempvalue < 13) {
@@ -170,7 +162,7 @@ public class L1Chaser extends TimerTask {
 		}
 		dmg = (RandomArrayList.getArray4List() + 10) * (1 + bsk) // 將殺傷力的最大值與最小值的差距範圍縮小
 				* coefficientA * coefficientB * Intel_Tempvalue;
-//change end
+
 		return L1WeaponSkill.calcDamageReduction(pc, cha, dmg, 0);
 	}
 

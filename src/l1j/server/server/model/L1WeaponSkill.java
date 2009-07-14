@@ -290,11 +290,15 @@ public class L1WeaponSkill {
 		int dmg = 0;
 		int dice = 5;
 		int diceCount = 2;
-		int value = 14;
+		int value = 0;
 		int kiringkuDamage = 0;
 		int charaIntelligence = 0;
 		int getTargetMr = 0;
-		// XXX ダイスと値は本来、キーリンク毎に違うが不明な為、判明しているDSKのものに固定。
+		if (pc.getWeapon().getItem().getItemId() == 270) {
+			value = 16;
+		} else {
+			value = 14;
+		}
 
 		for (byte i = 0; i < diceCount; i++) {
 			kiringkuDamage += (RandomArrayList.getArrayshortList((short) dice) + 1);
@@ -312,7 +316,8 @@ public class L1WeaponSkill {
 
 		double kiringkuFloor = Math.floor(kiringkuDamage);
 
-		dmg += kiringkuFloor + pc.getWeapon().getEnchantLevel();
+		dmg += kiringkuFloor + pc.getWeapon().getEnchantLevel()
+		+ pc.getOriginalMagicDamage();
 
 		if (pc.getWeapon().getItem().getItemId() == 270) {
 			pc.sendPackets(new S_SkillSound(pc.getId(), 6983));

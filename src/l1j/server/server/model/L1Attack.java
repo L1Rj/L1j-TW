@@ -1724,8 +1724,11 @@ public class L1Attack {
 		} else if (_calcType == PC_NPC) {
 			mr = _targetNpc.getMr() - 2 * _pc.getOriginalMagicHit();
 		}
-		double probability = 3 + _pc.getTrueSp() * 0.25;
+		double probability = 3.0 + _pc.getTrueSp() * 0.18;
 		probability -= (mr / 10) * 0.1;
+		if (probability < 3.0) {
+			probability = 3.0;
+		}
 		if (_weaponId == 265 || _weaponId == 266
 				|| _weaponId == 267 || _weaponId == 268) {
 			if (probability > RandomArrayList.getArray100List()) {// 原本寫法  _random.nextInt(100) + 1
