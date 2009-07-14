@@ -729,7 +729,6 @@ Update armor Set unidentified_name_id = '妖精項鍊' Where item_id = '20378';
 Update armor Set identified_name_id = '妖精項鍊' Where item_id = '20378';
 Update armor Set unidentified_name_id = '法師項鍊' Where item_id = '20379';
 Update armor Set identified_name_id = '法師項鍊' Where item_id = '20379';
-Update armor Set identified_name_id = '$1667$1670' Where item_id = '120308';
 Update armor Set unidentified_name_id = '銀光 斗篷' Where item_id = '20074'; 
 Update armor Set identified_name_id = '銀光 斗篷' Where item_id = '20074';
 Update armor Set unidentified_name_id = '銀光 斗篷' Where item_id = '120074';
