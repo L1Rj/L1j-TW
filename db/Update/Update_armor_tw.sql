@@ -32,7 +32,7 @@ Update armor Set name = '象牙塔皮頭盔' Where item_id = '20028';
 Update armor Set name = '西瑪之帽' Where item_id = '20029';
 Update armor Set name = '神官頭飾' Where item_id = '20030';
 Update armor Set name = '火焰之影頭盔' Where item_id = '20031';
-Update armor Set name = '黑暗頭飾' Where item_id = '20032';
+Update armor Set name = '黑暗 頭飾' Where item_id = '20032';
 Update armor Set name = '艾爾穆的祝福' Where item_id = '20033';
 Update armor Set name = '歐西斯頭盔' Where item_id = '20034';
 Update armor Set name = '精靈皮盔' Where item_id = '20035';
@@ -70,11 +70,11 @@ Update armor Set name = '黑虎皮斗篷' Where item_id = '20066';
 Update armor Set name = '神官斗篷' Where item_id = '20067';
 Update armor Set name = '亞丁騎士團披肩' Where item_id = '20068';
 Update armor Set name = '火焰之影斗篷' Where item_id = '20069';
-Update armor Set name = '黑暗斗篷' Where item_id = '20070';
+Update armor Set name = '黑暗 斗篷' Where item_id = '20070';
 Update armor Set name = '火屬性 斗篷' Where item_id = '20071';
 Update armor Set name = '歐西斯斗篷' Where item_id = '20072';
 Update armor Set name = '精靈斗篷' Where item_id = '20073';
-Update armor Set name = '銀光斗篷' Where item_id = '20074';
+Update armor Set name = '銀光 斗篷' Where item_id = '20074';
 Update armor Set name = '死亡斗篷' Where item_id = '20075';
 Update armor Set name = '墮落斗篷' Where item_id = '20076';
 Update armor Set name = '隱身斗篷' Where item_id = '20077';
@@ -132,7 +132,7 @@ Update armor Set name = '水晶盔甲' Where item_id = '20128';
 Update armor Set name = '神官法袍' Where item_id = '20129';
 Update armor Set name = '古代地龍鱗盔甲' Where item_id = '20130';
 Update armor Set name = '火焰之影盔甲' Where item_id = '20131';
-Update armor Set name = '黑暗披肩' Where item_id = '20132';
+Update armor Set name = '黑暗 披肩' Where item_id = '20132';
 Update armor Set name = '黑暗執行者金屬盔甲' Where item_id = '20133';
 Update armor Set name = '冰之女王魅力禮服' Where item_id = '20134';
 Update armor Set name = '歐西斯環甲' Where item_id = '20135';
@@ -180,7 +180,7 @@ Update armor Set name = '神官手套' Where item_id = '20176';
 Update armor Set name = '地靈手套' Where item_id = '20177';
 Update armor Set name = '暗殺軍王手套' Where item_id = '20178';
 Update armor Set name = '火焰之影手套' Where item_id = '20179';
-Update armor Set name = '黑暗手套' Where item_id = '20180';
+Update armor Set name = '黑暗 手套' Where item_id = '20180';
 Update armor Set name = '火靈手套' Where item_id = '20181';
 Update armor Set name = '手套' Where item_id = '20182';
 Update armor Set name = '死亡手套' Where item_id = '20183';
@@ -210,7 +210,7 @@ Update armor Set name = '象牙塔皮涼鞋' Where item_id = '20206';
 Update armor Set name = '深水長靴' Where item_id = '20207';
 Update armor Set name = '神官長靴' Where item_id = '20208';
 Update armor Set name = '火焰之影長靴' Where item_id = '20209';
-Update armor Set name = '黑暗長靴' Where item_id = '20210';
+Update armor Set name = '黑暗 長靴' Where item_id = '20210';
 Update armor Set name = '冰之女王魅力涼鞋' Where item_id = '20211';
 Update armor Set name = '銀釘皮涼鞋' Where item_id = '20212';
 Update armor Set name = '短統靴' Where item_id = '20213';
@@ -244,12 +244,12 @@ Update armor Set name = '死亡之盾' Where item_id = '20240';
 Update armor Set name = '銀釘皮盾' Where item_id = '20241';
 Update armor Set name = '大盾牌' Where item_id = '20242';
 Update armor Set name = '隱藏之谷項鍊' Where item_id = '20243';
-Update armor Set name = '小型魅力項鍊' Where item_id = '20244';
-Update armor Set name = '小型敏捷項鍊' Where item_id = '20245';
-Update armor Set name = '小型力量項鍊' Where item_id = '20246';
-Update armor Set name = '小型智力項鍊' Where item_id = '20247';
-Update armor Set name = '小型精神項鍊' Where item_id = '20248';
-Update armor Set name = '小型體質項鍊' Where item_id = '20249';
+Update armor Set name = '小型 魅力項鍊' Where item_id = '20244';
+Update armor Set name = '小型 敏捷項鍊' Where item_id = '20245';
+Update armor Set name = '小型 力量項鍊' Where item_id = '20246';
+Update armor Set name = '小型 智力項鍊' Where item_id = '20247';
+Update armor Set name = '小型 精神項鍊' Where item_id = '20248';
+Update armor Set name = '小型 體質項鍊' Where item_id = '20249';
 Update armor Set name = '變形怪首領項鍊' Where item_id = '20250';
 Update armor Set name = '都佩傑諾的項鍊' Where item_id = '20251';
 Update armor Set name = '蕾雅項鍊' Where item_id = '20252';
@@ -298,9 +298,9 @@ Update armor Set name = '風靈戒指' Where item_id = '20302';
 Update armor Set name = '抗魔戒指' Where item_id = '20303';
 Update armor Set name = '火靈戒指' Where item_id = '20304';
 Update armor Set name = '情人戒指' Where item_id = '20305';
-Update armor Set name = '小型身體腰帶' Where item_id = '20306';
-Update armor Set name = '小型靈魂腰帶' Where item_id = '20307';
-Update armor Set name = '小型精神腰帶' Where item_id = '20308';
+Update armor Set name = '小型 身體腰帶' Where item_id = '20306';
+Update armor Set name = '小型 靈魂腰帶' Where item_id = '20307';
+Update armor Set name = '小型 精神腰帶' Where item_id = '20308';
 Update armor Set name = '光明身體腰帶' Where item_id = '20309';
 Update armor Set name = '光明靈魂腰帶 ' Where item_id = '20310';
 Update armor Set name = '光明精神腰帶' Where item_id = '20311';
@@ -546,7 +546,7 @@ Update armor Set name = '抗魔法頭盔' Where item_id = '120011';
 Update armor Set name = '曼波帽子' Where item_id = '120016';
 Update armor Set name = '鋼盔' Where item_id = '120043';
 Update armor Set name = '抗魔法斗篷' Where item_id = '120056';
-Update armor Set name = '銀光斗篷' Where item_id = '120074';
+Update armor Set name = '銀光 斗篷' Where item_id = '120074';
 Update armor Set name = '隱身斗篷' Where item_id = '120077';
 Update armor Set name = 'T恤' Where item_id = '120085';
 Update armor Set name = '皮甲' Where item_id = '120101';
@@ -557,12 +557,12 @@ Update armor Set name = '青銅盔甲' Where item_id = '120149';
 Update armor Set name = '金屬盔甲' Where item_id = '120154';
 Update armor Set name = '手套' Where item_id = '120182';
 Update armor Set name = '大盾牌' Where item_id = '120242';
-Update armor Set name = '小型魅力項鍊' Where item_id = '120244';
-Update armor Set name = '小型敏捷項鍊' Where item_id = '120245';
-Update armor Set name = '小型力量項鍊' Where item_id = '120246';
-Update armor Set name = '小型智力項鍊' Where item_id = '120247';
-Update armor Set name = '小型精神項鍊' Where item_id = '120248';
-Update armor Set name = '小型體質項鍊' Where item_id = '120249';
+Update armor Set name = '小型 魅力項鍊' Where item_id = '120244';
+Update armor Set name = '小型 敏捷項鍊' Where item_id = '120245';
+Update armor Set name = '小型 力量項鍊' Where item_id = '120246';
+Update armor Set name = '小型 智力項鍊' Where item_id = '120247';
+Update armor Set name = '小型 精神項鍊' Where item_id = '120248';
+Update armor Set name = '小型 體質項鍊' Where item_id = '120249';
 Update armor Set name = '魅力項鍊' Where item_id = '120254';
 Update armor Set name = '敏捷項鍊' Where item_id = '120256';
 Update armor Set name = '力量項鍊' Where item_id = '120264';
@@ -575,9 +575,9 @@ Update armor Set name = '深淵戒指' Where item_id = '120289';
 Update armor Set name = '地靈戒指' Where item_id = '120300';
 Update armor Set name = '風靈戒指' Where item_id = '120302';
 Update armor Set name = '火靈戒指' Where item_id = '120304';
-Update armor Set name = '小型身體腰帶' Where item_id = '120306';
-Update armor Set name = '小型靈魂腰帶' Where item_id = '120307';
-Update armor Set name = '小型精神腰帶' Where item_id = '120308';
+Update armor Set name = '小型 身體腰帶' Where item_id = '120306';
+Update armor Set name = '小型 靈魂腰帶' Where item_id = '120307';
+Update armor Set name = '小型 精神腰帶' Where item_id = '120308';
 Update armor Set name = '光明身體腰帶' Where item_id = '120309';
 Update armor Set name = '光明靈魂腰帶 ' Where item_id = '120310';
 Update armor Set name = '光明精神腰帶' Where item_id = '120311';
@@ -606,7 +606,6 @@ Update armor Set name = '受詛咒的藍寶石戒指' Where item_id = '220295';
 Update armor Set name = '受詛咒的綠寶石戒指' Where item_id = '220296';
 
 /* unidentified_name_id 針對日文部分做出修正 採現有的中文翻譯為主 */
-Update armor Set unidentified_name_id = '$2452$2466' Where item_id = '20132';        /*黑暗披肩*/
 Update armor Set unidentified_name_id = '$797' Where item_id = '20251';              /*都佩傑諾的項鍊*/
 Update armor Set identified_name_id = '$797' Where item_id = '20251'; 
 Update armor Set unidentified_name_id = '情人項鍊' Where item_id = '20270';            /*情人項鍊*/
@@ -730,55 +729,10 @@ Update armor Set unidentified_name_id = '妖精項鍊' Where item_id = '20378';
 Update armor Set identified_name_id = '妖精項鍊' Where item_id = '20378';
 Update armor Set unidentified_name_id = '法師項鍊' Where item_id = '20379';
 Update armor Set identified_name_id = '法師項鍊' Where item_id = '20379';
-Update armor Set unidentified_name_id = '$2452$2468' Where item_id = '20032';  /*黑暗頭飾*/
-Update armor Set identified_name_id = '$2452$2468' Where item_id = '20032';  
-Update armor Set identified_name_id = '$2556$225' Where item_id = '20067';
-Update armor Set unidentified_name_id = '$2452$225' Where item_id = '20070';   /*黑暗斗篷*/
-Update armor Set identified_name_id = '$2452$225' Where item_id = '20070';
-Update armor Set identified_name_id = '$2452$2466' Where item_id = '20132';     /*黑暗披肩*/
-Update armor Set unidentified_name_id = '$2452$330' Where item_id = '20180';   /*黑暗手套*/
-Update armor Set identified_name_id = '$2452$330' Where item_id = '20180'; 
-Update armor Set unidentified_name_id = '$2452$207' Where item_id = '20210';  /*黑暗長靴*/
-Update armor Set identified_name_id = '$2452$207' Where item_id = '20210'; 
-Update armor Set unidentified_name_id = '$1667$1007' Where item_id = '20244';  /*小型魅力項鍊*/
-Update armor Set identified_name_id = '$1667$1007' Where item_id = '20244'; 
-Update armor Set unidentified_name_id = '$1667$1003' Where item_id = '20245';  /*小型敏捷項鍊*/
-Update armor Set identified_name_id = '$1667$1003' Where item_id = '20245'; 
-Update armor Set unidentified_name_id = '$1667$1002' Where item_id = '20246';  /*小型力量項鍊*/
-Update armor Set identified_name_id = '$1667$1002' Where item_id = '20246'; 
-Update armor Set unidentified_name_id = '$1667$1005' Where item_id = '20247';  /*小型智力項鍊*/
-Update armor Set identified_name_id = '$1667$1005' Where item_id = '20247'; 
-Update armor Set unidentified_name_id = '$1667$1006' Where item_id = '20248';  /*小型精神項鍊*/
-Update armor Set identified_name_id = '$1667$1006' Where item_id = '20248';
-Update armor Set unidentified_name_id = '$1667$1004' Where item_id = '20249';  /*小型體質項鍊*/
-Update armor Set identified_name_id = '$1667$1004' Where item_id = '20249';
-Update armor Set unidentified_name_id = '$1667$1669' Where item_id = '20306';  /*小型身體腰帶*/
-Update armor Set identified_name_id = '$1667$1669' Where item_id = '20306';
-Update armor Set unidentified_name_id = '$1667$1671' Where item_id = '20307';  /*小型靈魂腰帶*/
-Update armor Set identified_name_id = '$1667$1671' Where item_id = '20307';
-Update armor Set unidentified_name_id = '$1667$1670' Where item_id = '20308';  /*小型精神腰帶*/
-Update armor Set identified_name_id = '$1667$1670' Where item_id = '20308';
-Update armor Set unidentified_name_id = '$1667$1007' Where item_id = '120244';  /*小型魅力項鍊*/
-Update armor Set identified_name_id = '$1667$1007' Where item_id = '120244'; 
-Update armor Set unidentified_name_id = '$1667$1003' Where item_id = '120245';  /*小型敏捷項鍊*/
-Update armor Set identified_name_id = '$1667$1003' Where item_id = '120245'; 
-Update armor Set unidentified_name_id = '$1667$1002' Where item_id = '120246';  /*小型力量項鍊*/
-Update armor Set identified_name_id = '$1667$1002' Where item_id = '120246'; 
-Update armor Set unidentified_name_id = '$1667$1005' Where item_id = '120247';  /*小型智力項鍊*/
-Update armor Set identified_name_id = '$1667$1005' Where item_id = '120247'; 
-Update armor Set unidentified_name_id = '$1667$1006' Where item_id = '120248';  /*小型精神項鍊*/
-Update armor Set identified_name_id = '$1667$1006' Where item_id = '120248';
-Update armor Set unidentified_name_id = '$1667$1004' Where item_id = '120249';  /*小型體質項鍊*/
-Update armor Set identified_name_id = '$1667$1004' Where item_id = '120249';
-Update armor Set unidentified_name_id = '$1667$1669' Where item_id = '120306';  /*小型身體腰帶*/
-Update armor Set identified_name_id = '$1667$1669' Where item_id = '120306';
-Update armor Set unidentified_name_id = '$1667$1671' Where item_id = '120307';  /*小型靈魂腰帶*/
-Update armor Set identified_name_id = '$1667$1671' Where item_id = '120307';
-Update armor Set unidentified_name_id = '$1667$1670' Where item_id = '120308';  /*小型精神腰帶*/
 Update armor Set identified_name_id = '$1667$1670' Where item_id = '120308';
-Update armor Set unidentified_name_id = '銀光斗篷' Where item_id = '20074'; 
-Update armor Set identified_name_id = '銀光斗篷' Where item_id = '20074';
-Update armor Set unidentified_name_id = '銀光斗篷' Where item_id = '120074';
-Update armor Set identified_name_id = '銀光斗篷' Where item_id = '120074';
+Update armor Set unidentified_name_id = '銀光 斗篷' Where item_id = '20074'; 
+Update armor Set identified_name_id = '銀光 斗篷' Where item_id = '20074';
+Update armor Set unidentified_name_id = '銀光 斗篷' Where item_id = '120074';
+Update armor Set identified_name_id = '銀光 斗篷' Where item_id = '120074';
 Update armor Set unidentified_name_id = '神官斗篷' Where item_id = '20067';
 Update armor Set identified_name_id = '神官斗篷' Where item_id = '20067';
