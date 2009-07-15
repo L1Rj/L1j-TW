@@ -1196,6 +1196,15 @@ Update droplist Set chance = '300' Where  itemId = '100009' And mobId = '45535';
 Update droplist Set chance = '200' Where  itemId = '120016' And mobId = '45535';/* 受祝福的 曼波帽子 */
 Update droplist Set chance = '200' Where  itemId = '120112' And mobId = '45535';/* 受祝福的 曼波外套 */
 
+/* 20090714 調整 巨大守護螞蟻 45952 掉落武器/防具/道具機率 */
+Update droplist Set chance = '400' Where  itemId = '44' And mobId = '45952';/* 古代黑暗妖精之劍 */
+Update droplist Set chance = '1100' Where  itemId = '179' And mobId = '45952';/* 古代妖精弩槍 */
+Update droplist Set chance = '8000' Where  itemId = '20231' And mobId = '45952';/* 塔盾 */
+Update droplist Set chance = '3000' Where  itemId = '40248' And mobId = '45952';/* 精靈水晶(地面障礙) */
+Update droplist Set chance = '50000' Where  itemId = '40304' And mobId = '45952';/* 馬普勒之石 */
+Update droplist Set chance = '80000' Where  itemId = '40308' And mobId = '45952';/* 金幣 */
+Update droplist Set chance = '9000' Where  itemId = '41274' And mobId = '45952';/* 螞蟻腿 */
+
 /* ---------- 刪除與修正 --------- */
 /* 20090516 刪除潔尼斯女王掉落日版道具 41224 */
 Delete From `droplist` Where itemId = '41224';
