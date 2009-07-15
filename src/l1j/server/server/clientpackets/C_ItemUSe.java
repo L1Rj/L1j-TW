@@ -2742,7 +2742,13 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 41248 || itemId == 41249
 						|| itemId == 41250 || itemId == 49037
 						|| itemId == 49038 || itemId == 49039
-						|| itemId == 31001 ) { // 魔法娃娃
+						|| itemId == 31001 || itemId == 31002  // 魔法娃娃: 希爾黛絲 雪怪 
+						|| itemId == 31003 // 魔法娃娃: 蛇女
+/*						|| itemId == 31004 // 魔法娃娃: 史巴托
+						|| itemId == 31005 || itemId == 31006 // 魔法娃娃: 巫妖  亞力安
+						|| itemId == 31007 // 魔法娃娃: 木人
+*/
+				 ) {
 					useMagicDoll(pc, itemId, itemObjid);
 				} else if (itemId >= 41255 && itemId <= 41259) { // 料理の本
 					if (cookStatus == 0) {
@@ -5967,6 +5973,12 @@ public class C_ItemUSe extends ClientBasePacket {
 			} else if (itemId == 31001) {// 魔法娃娃：希爾黛絲
 				npcId = 90001;
 				dollType = L1DollInstance.DOLLTYPE_SEADANCER;
+			} else if (itemId == 31002) {// 魔法娃娃：雪怪
+				npcId = 90002;
+				dollType = L1DollInstance.DOLLTYPE_SNOWMAN;
+			} else if (itemId == 31003) {// 魔法娃娃：蛇女
+				npcId = 90003;
+				dollType = L1DollInstance.DOLLTYPE_SERPENTWOMAN;
 			}
 			L1Npc template = NpcTable.getInstance().getTemplate(npcId);
 			doll = new L1DollInstance(template, pc, dollType, itemObjectId);

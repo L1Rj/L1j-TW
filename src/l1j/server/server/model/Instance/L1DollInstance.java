@@ -20,15 +20,16 @@
 package l1j.server.server.model.Instance;
 
 import java.util.Arrays;
+import java.util.Map;// 魔法娃娃命中與弓箭
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
 
-import static l1j.server.server.ActionCodes.*; //waja add 魔法娃娃閒置動作
+import static l1j.server.server.ActionCodes.*; // 魔法娃娃閒置動作
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.IdFactory;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.serverpackets.S_DoActionGFX;//waja add 魔法娃娃閒置動作
+import l1j.server.server.serverpackets.S_DoActionGFX;// 魔法娃娃閒置動作
 import l1j.server.server.serverpackets.S_DollPack;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1Npc;
@@ -38,13 +39,19 @@ import l1j.server.server.utils.StaticFinalList;
 public class L1DollInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
-	public static final int DOLLTYPE_BUGBEAR = 0;
-	public static final int DOLLTYPE_SUCCUBUS = 1;
+	public static final int DOLLTYPE_BUGBEAR = 0; // 長老
+	public static final int DOLLTYPE_SUCCUBUS = 1; // 思克巴
 	public static final int DOLLTYPE_WAREWOLF = 2;
 	public static final int DOLLTYPE_ELDER = 3;
 	public static final int DOLLTYPE_CRUSTANCEAN = 4;
 	public static final int DOLLTYPE_GOLEM = 5;
-	public static final int DOLLTYPE_SEADANCER = 6;// waja add 希爾黛絲
+	public static final int DOLLTYPE_SEADANCER = 6;// 希爾黛絲
+    public static final int DOLLTYPE_SNOWMAN = 7;//雪怪
+    public static final int DOLLTYPE_SERPENTWOMAN = 8;//蛇女
+    public static final int DOLLTYPE_SPARTOI = 9;//史巴托
+    public static final int DOLLTYPE_LICH = 10;//巫妖
+    public static final int DOLLTYPE_COCKATRICE = 11;//亞力安
+    public static final int DOLLTYPE_SCARECROW = 12;//木人
 	public static final int DOLL_TIME = 1800000;
 
 	private static Logger _log = Logger.getLogger(L1DollInstance.class
@@ -133,21 +140,21 @@ public class L1DollInstance extends L1NpcInstance {
 		if (!isAiRunning()) {
 			startAI();
 		}
-		if (isMpRegeneration()) {
+		if (isMpRegeneration()) {// 魔法娃娃回魔開始
 			master.startMpRegenerationByDoll();
 		}
 
-		if (isHpRegeneration()) {//魔法娃娃回血開始
+		if (isHpRegeneration()) {// 魔法娃娃回血開始
 			master.startHpRegenerationByDoll();
 		}
 	}
 
 	public void deleteDoll() {
-		if (isMpRegeneration()) {
+		if (isMpRegeneration()) {// 魔法娃娃回魔停止
 			((L1PcInstance) _master).stopMpRegenerationByDoll();
 		}
 
-		if (isHpRegeneration()) {//魔法娃娃回血停止
+		if (isHpRegeneration()) {// 魔法娃娃回血停止
 			((L1PcInstance) _master).stopHpRegenerationByDoll();
 		}
 
@@ -195,10 +202,9 @@ public class L1DollInstance extends L1NpcInstance {
 		_itemObjId = i;
 	}
 
-	public int getDamageByDoll() {
+	public int getDamageByDoll() {// 魔法娃娃增加傷害
 		int damage = 0;
-		int dollType = getDollType();
-		if (dollType == DOLLTYPE_WAREWOLF || dollType == DOLLTYPE_CRUSTANCEAN) {
+		if (getDollType() == DOLLTYPE_WAREWOLF || getDollType() == DOLLTYPE_CRUSTANCEAN) {
 			byte chance = RandomArrayList.getArray100List();
 			if (chance <= 3) {
 				damage = 15;
@@ -214,36 +220,33 @@ public class L1DollInstance extends L1NpcInstance {
 		return damage;
 	}
 
-	public boolean isMpRegeneration() {
+	public boolean isMpRegeneration() {// 魔法娃娃回魔
 		boolean isMpRegeneration = false;
-		int dollType = getDollType();
-		if (dollType == DOLLTYPE_SUCCUBUS || dollType == DOLLTYPE_ELDER) {
+		if (getDollType() == DOLLTYPE_SUCCUBUS || getDollType() == DOLLTYPE_ELDER) {
 			isMpRegeneration = true;
 		}
 		return isMpRegeneration;
 	}
 
-	public boolean isHpRegeneration() {//魔法娃娃回血功能
+	public boolean isHpRegeneration() {// 魔法娃娃回血
 		boolean isHpRegeneration = false;
-		if (getDollType() == DOLLTYPE_SEADANCER) {
+		if (getDollType() == DOLLTYPE_SEADANCER  || getDollType() == DOLLTYPE_SERPENTWOMAN) {
 			isHpRegeneration = true;
 		}
 		return isHpRegeneration;
 	}
 
-	public int getWeightReductionByDoll() {
+	public int getWeightReductionByDoll() {// 魔法娃娃減重
 		int weightReduction = 0;
-		int dollType = getDollType();
-		if (dollType == DOLLTYPE_BUGBEAR) {
+		if (getDollType() == DOLLTYPE_BUGBEAR) {
 			weightReduction = 20;
 		}
 		return weightReduction;
 	}
 
-	public int getDamageReductionByDoll() {
+	public int getDamageReductionByDoll() {// 魔法娃娃減傷
 		int damageReduction = 0;
-		int dollType = getDollType();
-		if (dollType == DOLLTYPE_GOLEM) {
+		if (getDollType() == DOLLTYPE_GOLEM) {
 			byte chance = RandomArrayList.getArray100List();
 			if (chance <= 4) {
 				damageReduction = 15;
@@ -251,5 +254,4 @@ public class L1DollInstance extends L1NpcInstance {
 		}
 		return damageReduction;
 	}
-
 }
