@@ -1015,6 +1015,79 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("teleportURL")) {
 				htmlid = "amisoo2";
 			}
+//BAO提供 幻術士任務
+        } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80145) {
+            if (s.equalsIgnoreCase("a")
+                    && pc.isIllusionist()) {
+                if(pc.getInventory().checkItem(49172, 1)
+                        && pc.getInventory().checkItem(49182, 1)
+                        && (pc.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 1)) {
+                    htmlid = "silrein6";
+                } else if (pc.getInventory().checkItem(49172, 1)
+                        && (pc.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 1)) {
+                    pc.getInventory().storeItem(49182, 1);
+                    htmlid = "silrein6";
+                } else {
+                    pc.getInventory().storeItem(49172, 1);
+                    pc.getInventory().storeItem(49182, 1);
+                    pc.getQuest().set_step(L1Quest.QUEST_LEVEL15, 1);
+                    htmlid = "silrein6";
+                }
+            } else if (s.equalsIgnoreCase("b")
+                    && pc.isIllusionist()) {
+                if ((pc.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 1)
+                        && pc.getInventory().checkItem(49169,10)
+                        && pc.getInventory().checkItem(40510,1)
+                        && pc.getInventory().checkItem(40511,1)
+                        && pc.getInventory().checkItem(40512,1)
+                        && pc.getInventory().checkItem(49170,1)) {
+                    materials = new int[] { 49169, 40510, 40511, 40512, 49170 };
+                    counts = new int[] { 10, 1, 1, 1, 1 };
+                    createitem = new int[] { 269, 49121 };
+                    createcount = new int[] { 1, 1 };
+                    pc.getQuest().set_step(L1Quest.QUEST_LEVEL15, 255);
+                    htmlid = "silrein7";
+                } else {
+                    htmlid = "silrein8";
+                }
+            } else if (s.equalsIgnoreCase("c")
+                    && pc.isIllusionist()) {
+                if (pc.getInventory().checkItem(49173, 1)
+                        && (pc.getQuest().get_step(L1Quest.QUEST_LEVEL30) == 1)) {
+                    htmlid = "silrein14";
+                } else if (pc.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 255) {
+                    pc.getInventory().storeItem(49173, 1);
+                    pc.getInventory().storeItem(49179, 1);
+                    pc.getQuest().set_step(L1Quest.QUEST_LEVEL30, 1);
+                    htmlid = "silrein12";
+                } else {
+                    htmlid = "silrein3";
+                }
+            } else if (s.equalsIgnoreCase("d")
+                    && pc.isIllusionist()) {
+                if ((pc.getQuest().get_step(L1Quest.QUEST_LEVEL30) == 1)
+                        && pc.getInventory().checkItem(49191, 1)){
+                    materials = new int[] { 49191 };
+                    counts = new int[] { 1 };
+                    createitem = new int[] { 21101, 49131 };
+                    createcount = new int[] { 1, 1 };
+                    pc.getQuest().set_step(L1Quest.QUEST_LEVEL30, 255);
+                    htmlid = "silrein13";
+                } else {
+                    htmlid = "silrein12";
+                }
+            } else if (s.equalsIgnoreCase("o")
+                    && pc.isIllusionist()) {
+                if (pc.getInventory().checkItem(49179, 1)) {
+                    htmlid = "silrein17";
+                } else if((!pc.getInventory().checkItem(49186, 1))
+                        && (pc.getQuest().get_step(L1Quest.QUEST_LEVEL30) == 1)) {
+                    pc.getInventory().storeItem(49186, 1);
+                    htmlid = "silrein16";
+                } else {
+                    htmlid = "";
+                }
+            }
 //示愛任務-奇岩-愛瑪伊
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71181) {
 			if (s.equalsIgnoreCase("A")) {

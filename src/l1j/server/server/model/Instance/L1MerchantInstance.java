@@ -2644,6 +2644,26 @@ public class L1MerchantInstance extends L1NpcInstance {
 						== 13) {
 					htmlid = "oreno1";
 				}
+//waja add BAO 提供 幻術士任務部份
+			} else if (npcid == 80145) {
+                if (player.isIllusionist()) {
+                    if (player.getQuest().get_step(L1Quest.QUEST_LEVEL30) == 255) {
+                        htmlid = "silrein15";
+                    } else if (player.getInventory().checkItem(49173, 1)
+                    && (player.getQuest().get_step(L1Quest.QUEST_LEVEL30) == 1)) {
+                        htmlid = "silrein14";
+                    } else if ((player.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 255)
+                            && (player.getLevel() >= 30)) {
+                        htmlid = "silrein11";
+                    } else if (player.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 255) {
+                        htmlid = "silrein5";
+                    } else if ((player.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 1)
+                            || (player.getLevel() >= 15)) {
+                        htmlid = "silrein2";
+                    } else if (player.getLevel() <=14 && player.getLevel() >=1) {
+                        htmlid = "silrein1";
+                    }
+                }
 // waja add BAO提供 德雷克的真實補遺
 			} else if (npcid == 71036) {//カミーラ（ドレイクの真実）
                 if (!player.getInventory().checkItem(40621)) {

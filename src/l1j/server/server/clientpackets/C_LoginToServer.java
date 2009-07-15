@@ -548,7 +548,7 @@ public class C_LoginToServer extends ClientBasePacket {
 					pc.broadcastPacket(new S_SkillBrave(pc.getId(), 3, 0));
 					pc.setBraveSpeed(1);
 					pc.setSkillEffect(skillid, remaining_time * 1000);
-				} else if (skillid == STATUS_RIBRAVE) { //waja add 生命之樹果實
+				} else if (skillid == STATUS_RIBRAVE) { // 生命之樹果實
 					pc.sendPackets(new S_SkillBrave(pc.getId(),4,
 							remaining_time));
 					pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
