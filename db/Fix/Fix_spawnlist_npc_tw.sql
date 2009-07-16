@@ -12,3 +12,6 @@ Update spawnlist_npc Set count = '1' Where id = '50016';
 Update spawnlist_npc Set count = '1' Where id = '50059';
 Update spawnlist_npc Set count = '1' Where id = '50031';
 Update spawnlist_npc Set count = '1' Where id = '50066';
+
+/* 20090713 修正 疲憊的蜥蜴人戰士 重生時間 */
+Update spawnlist_npc Set respawn_delay = '600' Where id  = '90098';/* 疲憊的蜥蜴人戰士 */
