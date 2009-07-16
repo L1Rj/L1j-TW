@@ -19,6 +19,7 @@ package l1j.server.server.clientpackets;
 
 import static l1j.server.server.model.Instance.L1PcInstance.REGENSTATE_MOVE;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import l1j.server.Config;
@@ -26,6 +27,9 @@ import l1j.server.server.ClientThread;
 import l1j.server.server.model.AcceleratorChecker;
 import l1j.server.server.model.Dungeon;
 import l1j.server.server.model.DungeonRandom;
+import l1j.server.server.model.L1Object;
+import l1j.server.server.model.L1Teleport;
+import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
 // import l1j.server.server.model.map.L1Map; //waja add 判斷站立座標是否合法
 import l1j.server.server.model.skill.L1SkillId;
@@ -94,21 +98,28 @@ public class C_MoveChar extends ClientBasePacket {
 			locx = pc.getX(); // X軸座標
 			locy = pc.getY(); // Y軸座標
 		}
-//waja add 測試code 判斷所站位置是否正確
-/*		L1Map map = pc.getMap();
-		if(map.isPassable(locx,locy)){
-			pc.getLocation().set(locx, locy);
-			pc.setHeading(heading);
-			if (!pc.isGmInvis() && !pc.isGhost() && !pc.isInvisble())
-				pc.broadcastPacket(new S_MoveCharPacket(pc));
-		} else {
-			pc.sendPackets(new S_SystemMessage("角色座標異常!!"));
-//			pc.setCurrentHp(0);// 應改為移動到最後正確座標
-//			pc.death(null);//據說會亂死 先拿掉
-		} */
-//end add
+
 		locx += HEADING_TABLE_X[heading];// 4.26 Start
 		locy += HEADING_TABLE_Y[heading];// 4.26 End
+		
+//waja add 測試禁止穿過物件
+		ArrayList<L1Object> objs = L1World.getInstance().getVisibleObjects(pc, 1);
+		for (L1Object obj : objs) {
+			if (pc.isDead()
+					&& obj instanceof L1PcInstance
+					&& pc.getName().equals(((L1PcInstance) obj).getName())
+					&& ((L1PcInstance) obj).isDead()) {
+				continue;
+			}
+			if (obj.getX() == locx//pc.getX()
+					&& obj.getY() == locy//pc.getY()
+					&& ((obj instanceof L1PcInstance))) {
+				pc.getMap().setPassable(pc.getLocation(), false);
+				L1Teleport.teleport(pc, pc.getLocation(), heading, true);
+				return;
+			}
+		}
+//end add
 
 		// ダンジョンにテレポートした場合
 		if (Dungeon.getInstance().dg(locx, locy, pc.getMap().getId(), pc))
