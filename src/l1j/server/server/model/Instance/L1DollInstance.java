@@ -45,13 +45,14 @@ public class L1DollInstance extends L1NpcInstance {
 	public static final int DOLLTYPE_ELDER = 3;
 	public static final int DOLLTYPE_CRUSTANCEAN = 4;
 	public static final int DOLLTYPE_GOLEM = 5;
-	public static final int DOLLTYPE_SEADANCER = 6;// 希爾黛絲
-    public static final int DOLLTYPE_SNOWMAN = 7;//雪怪
-    public static final int DOLLTYPE_SERPENTWOMAN = 8;//蛇女
-    public static final int DOLLTYPE_SPARTOI = 9;//史巴托
-    public static final int DOLLTYPE_LICH = 10;//巫妖
-    public static final int DOLLTYPE_COCKATRICE = 11;//亞力安
-    public static final int DOLLTYPE_SCARECROW = 12;//木人
+	public static final int DOLLTYPE_SEADANCER = 6; // 希爾黛絲
+    public static final int DOLLTYPE_SNOWMAN = 7; // 雪怪
+    public static final int DOLLTYPE_SERPENTWOMAN = 8; // 蛇女
+    public static final int DOLLTYPE_COCKATRICE = 9; // 亞力安
+    public static final int DOLLTYPE_SCARECROW = 10; // 木人
+    public static final int DOLLTYPE_SPARTOI = 11; // 史巴托
+    public static final int DOLLTYPE_LICH = 12; // 巫妖
+ 	public static final int IRONGATES_DOLLTYPE_SNOWMAN = 13; // 鐵門公會 魔法娃娃：雪怪
 	public static final int DOLL_TIME = 1800000;
 
 	private static Logger _log = Logger.getLogger(L1DollInstance.class
@@ -202,7 +203,7 @@ public class L1DollInstance extends L1NpcInstance {
 		_itemObjId = i;
 	}
 
-	public int getDamageByDoll() {// 魔法娃娃增加傷害
+	public int getDamageByDoll() {// 娃娃增加傷害
 		int damage = 0;
 		if (getDollType() == DOLLTYPE_WAREWOLF || getDollType() == DOLLTYPE_CRUSTANCEAN) {
 			byte chance = RandomArrayList.getArray100List();
@@ -220,7 +221,7 @@ public class L1DollInstance extends L1NpcInstance {
 		return damage;
 	}
 
-	public boolean isMpRegeneration() {// 魔法娃娃回魔
+	public boolean isMpRegeneration() { // 娃娃回魔
 		boolean isMpRegeneration = false;
 		if (getDollType() == DOLLTYPE_SUCCUBUS || getDollType() == DOLLTYPE_ELDER) {
 			isMpRegeneration = true;
@@ -228,7 +229,7 @@ public class L1DollInstance extends L1NpcInstance {
 		return isMpRegeneration;
 	}
 
-	public boolean isHpRegeneration() {// 魔法娃娃回血
+	public boolean isHpRegeneration() { // 娃娃回血
 		boolean isHpRegeneration = false;
 		if (getDollType() == DOLLTYPE_SEADANCER  || getDollType() == DOLLTYPE_SERPENTWOMAN) {
 			isHpRegeneration = true;
@@ -236,7 +237,7 @@ public class L1DollInstance extends L1NpcInstance {
 		return isHpRegeneration;
 	}
 
-	public int getWeightReductionByDoll() {// 魔法娃娃減重
+	public int getWeightReductionByDoll() { // 娃娃減重
 		int weightReduction = 0;
 		if (getDollType() == DOLLTYPE_BUGBEAR) {
 			weightReduction = 20;
@@ -244,7 +245,7 @@ public class L1DollInstance extends L1NpcInstance {
 		return weightReduction;
 	}
 
-	public int getDamageReductionByDoll() {// 魔法娃娃減傷
+	public int getDamageReductionByDoll() { // 娃娃減傷
 		int damageReduction = 0;
 		if (getDollType() == DOLLTYPE_GOLEM) {
 			byte chance = RandomArrayList.getArray100List();
@@ -254,4 +255,29 @@ public class L1DollInstance extends L1NpcInstance {
 		}
 		return damageReduction;
 	}
+//waja add 尚未引用至角色
+	public int getBowHitAddByDoll() { // 娃娃增加弓命中
+		int BowHitAdd = 0;
+		if (getDollType() == DOLLTYPE_COCKATRICE) {
+				BowHitAdd = 1;
+		}
+		return BowHitAdd;
+	}
+
+	public int getBowDamageByDoll(){ // 娃娃增加弓傷害 
+		int BowDamage = 0;
+		if (getDollType() == DOLLTYPE_COCKATRICE) {
+			BowDamage = 1;
+		}
+		return BowDamage;
+	}
+
+	public int getAcAddByDoll(){ // 娃娃增加防禦
+		int AcAdd = 0;
+		if (getDollType() == IRONGATES_DOLLTYPE_SNOWMAN) {
+			AcAdd = 1;
+		}
+		return AcAdd;
+	}
+//add end
 }
