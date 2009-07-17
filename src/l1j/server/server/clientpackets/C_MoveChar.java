@@ -108,7 +108,9 @@ public class C_MoveChar extends ClientBasePacket {
 			if (pc.isDead()
 					&& obj instanceof L1PcInstance
 					&& pc.getName().equals(((L1PcInstance) obj).getName())
-					&& ((L1PcInstance) obj).isDead()) {
+					&& pc.isGmInvis() // GM隱形
+//					&& ((L1PcInstance) obj).isInvisble()// 隱形
+					&& ((L1PcInstance) obj).isDead()) { // 死亡
 				continue;
 			}
 			if (obj.getX() == locx//pc.getX()
