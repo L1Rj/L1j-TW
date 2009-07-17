@@ -107,6 +107,7 @@ public class L1Chaser extends TimerTask {
 	}
 
 	public double getDamage(L1PcInstance pc, L1Character cha) {
+/*
 		double dmg = 0;
 		int spByItem = pc.getSp() - pc.getTrueSp();
 		int Intel_Tempvalue = pc.getInt();
@@ -122,7 +123,7 @@ public class L1Chaser extends TimerTask {
 		if (Intel_Tempvalue < 13) {
 			coefficient_PT = 9.36;
 		} else if(Intel_Tempvalue > 18) {
-			Intel_Tempvalue = (12 + Intel_Tempvalue * 2) / 3;
+			Intel_Tempvalue = (18 + Intel_Tempvalue) / 2;// 暫時削減智力18以上的傷害力
 			coefficient_PT = (Intel_Tempvalue + 4);
 		} else {
 			Intel_Tempvalue = (14 + Intel_Tempvalue) / 2;
@@ -143,8 +144,8 @@ public class L1Chaser extends TimerTask {
 		}
 
 		return dmg; // 7.15 End
-
-		/* l1j 1952 版本
+*/
+// l1j 1952 版本
 		double dmg = 0;
 		int spByItem = pc.getSp() - pc.getTrueSp();
 		int intel = pc.getInt();
@@ -167,7 +168,7 @@ public class L1Chaser extends TimerTask {
 		} else {
 			coefficientC = intel;
 		}
-		dmg = (_random.nextInt(6) + 1 + 7) * coefficientA
+		dmg = ( RandomArrayList.getArray6List() + 8 ) * coefficientA // (_random.nextInt(6) + 1 + 7)
 				* coefficientB / 10.5 * coefficientC * 2.0;
 
 		dmg = L1WeaponSkill.calcDamageReduction(pc, cha, dmg, 0);
@@ -176,7 +177,7 @@ public class L1Chaser extends TimerTask {
 			dmg /= 2.0;
 		}
 
-		return dmg;*/
+		return dmg;
 	}
 
 }
