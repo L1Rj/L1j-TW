@@ -131,6 +131,11 @@ public class L1PcInstance extends L1Character {
 	public static final int CLASSID_ILLUSIONIST_MALE = 6671;
 	public static final int CLASSID_ILLUSIONIST_FEMALE = 6650;
 
+	public int getAc() 
+	{
+		return _ac + L1DollInstance.getAcByDoll(this);
+	}
+
 	private short _hpr = 0;
 	private short _trueHpr = 0;
 

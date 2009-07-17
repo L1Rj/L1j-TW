@@ -255,29 +255,46 @@ public class L1DollInstance extends L1NpcInstance {
 		}
 		return damageReduction;
 	}
-//waja add 尚未引用至角色
-	public int getBowHitAddByDoll() { // 娃娃增加弓命中
-		int BowHitAdd = 0;
-		if (getDollType() == DOLLTYPE_COCKATRICE) {
-				BowHitAdd = 1;
-		}
-		return BowHitAdd;
+// waja add to si 寫法
+	private static int getTypeCountByDoll(Map<Integer, L1DollInstance> dolls, int type)
+	{
+		int s = 0;
+		for(Object obj : dolls.values().toArray())
+			if(((L1DollInstance)obj).getDollType() == type)
+				s++;
+		return s;
+	}
+	private static int getTypeCountByDoll(Map<Integer, L1DollInstance> dolls
+		, int type, int type1)
+	{
+		int s = 0;
+		for(Object obj : dolls.values().toArray())
+			if(((L1DollInstance)obj).getDollType() == type
+				|| ((L1DollInstance)obj).getDollType() == type1)
+				s++;
+		return s;
 	}
 
-	public int getBowDamageByDoll(){ // 娃娃增加弓傷害 
-		int BowDamage = 0;
-		if (getDollType() == DOLLTYPE_COCKATRICE) {
-			BowDamage = 1;
-		}
-		return BowDamage;
+	// 魔法娃娃增加弓命中功能
+	public static int getBowHitAddByDoll(L1PcInstance _master)
+	{
+		int s = 0;
+		s += getTypeCountByDoll(_master.getDollList(), DOLLTYPE_COCKATRICE);
+		return s;
 	}
-
-	public int getAcAddByDoll(){ // 娃娃增加防禦
-		int AcAdd = 0;
-		if (getDollType() == IRONGATES_DOLLTYPE_SNOWMAN) {
-			AcAdd = 1;
-		}
-		return AcAdd;
+	// 魔法娃娃增加弓傷害功能
+	public static int getBowDamageByDoll(L1PcInstance _master) 
+	{
+		int s = 0;
+		s += getTypeCountByDoll(_master.getDollList(), DOLLTYPE_COCKATRICE);
+		return s;
+	}
+	// 魔法娃娃增加AC
+	public static int getAcByDoll(L1PcInstance _master) 
+	{
+		int s = 0;
+		s += getTypeCountByDoll(_master.getDollList(), IRONGATES_DOLLTYPE_SNOWMAN);
+		return s;
 	}
 //add end
 }

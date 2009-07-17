@@ -413,8 +413,9 @@ public class L1Attack {
 			_hitRate += _weaponAddHit + _pc.getHitup()
 					+ _pc.getOriginalHitup() + (_weaponEnchant / 2);
 		} else {
-			_hitRate += _weaponAddHit + _pc.getBowHitup() + _pc.
-					getOriginalBowHitup() + (_weaponEnchant / 2);
+			_hitRate += _weaponAddHit + _pc.getBowHitup() 
+			+ + L1DollInstance.getBowHitAddByDoll(_pc) // 娃娃增加弓命中
+			+ _pc.getOriginalBowHitup() + (_weaponEnchant / 2);
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中
@@ -600,8 +601,9 @@ public class L1Attack {
 			_hitRate += _weaponAddHit + _pc.getHitup() + _pc.getOriginalHitup()
 					+ (_weaponEnchant / 2);
 		} else {
-			_hitRate += _weaponAddHit + _pc.getBowHitup() + _pc
-					.getOriginalBowHitup() + (_weaponEnchant / 2);
+			_hitRate += _weaponAddHit + _pc.getBowHitup() 
+			+ L1DollInstance.getBowHitAddByDoll(_pc) // 娃娃增加弓命中
+			+ _pc.getOriginalBowHitup() + (_weaponEnchant / 2);
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中
@@ -1038,6 +1040,12 @@ public class L1Attack {
 				dmg += doll.getDamageByDoll();
 			}
 		}
+// waja add 魔法娃娃增加 弓攻擊力
+		else
+		{
+			dmg += L1DollInstance.getBowDamageByDoll(_pc);
+		}
+//add end
 
 		if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加ダメージ
 				|| _pc.hasSkillEffect(COOKING_2_0_S)
@@ -1287,6 +1295,12 @@ public class L1Attack {
 				dmg += doll.getDamageByDoll();
 			}
 		}
+//waja add 魔法娃娃增弓攻擊力
+		else
+		{
+			dmg += L1DollInstance.getBowDamageByDoll(_pc);
+		}
+//add end
 
 		if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加ダメージ
 				|| _pc.hasSkillEffect(COOKING_2_0_S)

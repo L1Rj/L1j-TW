@@ -901,7 +901,7 @@ public class L1Character extends L1Object {
 		setMaxMp(_trueMaxMp + i);
 	}
 
-	private int _ac = 0; // ● ＡＣ（-128～127）
+	protected int _ac = 0; // ● ＡＣ（-128～127） // waja 註:原寫法  private int _ac = 0;
 	private int _trueAc = 0; // ● 本當のＡＣ
 
 	public int getAc() {
