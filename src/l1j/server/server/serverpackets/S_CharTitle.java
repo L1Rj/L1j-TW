@@ -18,28 +18,23 @@
  */
 package l1j.server.server.serverpackets;
 
-import l1j.server.server.Opcodes;
+import static l1j.server.server.Opcodes.S_OPCODE_CHARTITLE;
 
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
 
-public class S_CharTitle extends ServerBasePacket {
-
-	public S_CharTitle(int objid, String title) {
-		writeC(Opcodes.S_OPCODE_CHARTITLE);
+public class S_CharTitle extends ServerBasePacket
+{
+	public S_CharTitle(int objid, String title)
+	{
+		writeC(S_OPCODE_CHARTITLE);
 		writeD(objid);
 		writeS(title);
 	}
 
 	@Override
-	public byte[] getContent() {
+	public byte[] getContent()
+	{
 		return getBytes();
 	}
-
-	@Override
-	public String getType() {
-		return "[S] S_CharTitle";
-	}
-
-	private static final String _S__0B_CHARTITLE = "[S] S_CharTitle";
 }

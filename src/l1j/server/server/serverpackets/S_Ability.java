@@ -19,45 +19,31 @@
 
 package l1j.server.server.serverpackets;
 
-import java.util.logging.Logger;
-
-import l1j.server.server.Opcodes;
+import static l1j.server.server.Opcodes.S_OPCODE_ABILITY;
 
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
 
-public class S_Ability extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_Ability.class.getName());
-	private static final String S_ABILITY = "[S] S_Ability";
-	private byte[] _byte = null;
-
-	public S_Ability(int type, boolean equipped) {
-		buildPacket(type, equipped);
-	}
-
-	private void buildPacket(int type, boolean equipped) {
-		writeC(Opcodes.S_OPCODE_ABILITY);
-		writeC(type); // 1:ROTC 5:ROSC
-		if (equipped) {
-			writeC(0x01);
-		} else {
-			writeC(0x00);
-		}
-		writeC(0x02);
-		writeH(0x0000);
+public class S_Ability extends ServerBasePacket
+{
+	/*
+	 * type 已知代號 :
+	 * 1, ROTC
+	 * 3, 全白天
+	 * 4, 夜視功能
+	 * 5, ROSC
+	 */
+	public S_Ability(int type, boolean equipped)
+	{
+		writeC(S_OPCODE_ABILITY);
+		writeC(type);
+		writeB(equipped);
+		write24(0x000002);
 	}
 
 	@Override
-	public byte[] getContent() {
-		if (_byte == null) {
-			_byte = getBytes();
-		}
-		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_ABILITY;
+	public byte[] getContent()
+	{
+		return getBytes();
 	}
 }
