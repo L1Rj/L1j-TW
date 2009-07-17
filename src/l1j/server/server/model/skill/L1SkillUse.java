@@ -2304,6 +2304,14 @@ public class L1SkillUse {
 							L1PinkName.onAction(pc, _user);
 						}
 					}
+// 20090718 BAO提供 變身套裝修正測試
+                    if (cha instanceof L1PcInstance) {
+                        L1PolyMorph.undoPoly(cha);
+						L1PcInstance pc = (L1PcInstance) cha;
+						pc.sendPackets(new S_CharVisualUpdate(pc));
+						pc.broadcastPacket(new S_CharVisualUpdate(pc));
+                    }
+//add end
 				} else if (_skillId == TURN_UNDEAD // ターン アンデッド
 						&& (undeadType == 1 || undeadType == 3)) {
 					// ダメージを對象のHPとする。
