@@ -293,7 +293,7 @@ public class L1DollInstance extends L1NpcInstance {
 	public static int getAcByDoll(L1PcInstance _master) 
 	{
 		int s = 0;
-		s += getTypeCountByDoll(_master.getDollList(), IRONGATES_DOLLTYPE_SNOWMAN);
+		s -= getTypeCountByDoll(_master.getDollList(), IRONGATES_DOLLTYPE_SNOWMAN);
 		return s;
 	}
 //add end
