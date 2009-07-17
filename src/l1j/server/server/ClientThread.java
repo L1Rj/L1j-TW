@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -65,7 +66,7 @@ public class ClientThread implements Runnable, PacketOutput {
 
 	private OutputStream _out;
 
-	private PacketHandler _handler;
+	private PacketHandler Handler;
 
 	private Account _account;
 
@@ -93,10 +94,10 @@ public class ClientThread implements Runnable, PacketOutput {
 	// (byte) 0xb1, (byte) 0x3c, (byte) 0x2c, (byte) 0x28,
 	// (byte) 0xf6, (byte) 0x65, (byte) 0x1d, (byte) 0xdd,
 	// (byte) 0x56, (byte) 0xe3, (byte) 0xef };
-	private static final byte[] FIRST_PACKET = {
-		(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,		// 3.0C
-		(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,		// 3.0C
-		(byte) 0x02, (byte) 0x08, (byte) 0x00 };				// 3.0C
+	private static final byte[] FIRST_PACKET = { // 3.0
+		(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,
+		(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,
+		(byte) 0x02, (byte) 0x08, (byte) 0x00 };
 
 	/**
 	 * for Test
@@ -114,8 +115,8 @@ public class ClientThread implements Runnable, PacketOutput {
 		_in = socket.getInputStream();
 		_out = new BufferedOutputStream(socket.getOutputStream());
 
-		// PacketHandler 初期設定
-		_handler = new PacketHandler(this);
+		// PacketHandler 初期设定
+		Handler = new PacketHandler(this);
 	}
 
 	public String getIp() {
@@ -137,13 +138,17 @@ public class ClientThread implements Runnable, PacketOutput {
 
 	private LineageKeys _clkey;
 
-	private byte[] readPacket() throws Exception {
-		try {
+	private byte[] readPacket() throws Exception
+	{
+		try
+		{
 			int hiByte = _in.read();
 			int loByte = _in.read();
+			
 			if (loByte < 0) {
 				throw new RuntimeException();
 			}
+			
 			int dataLength = (loByte * 256 + hiByte) - 2;
 
 			byte data[] = new byte[dataLength];
@@ -159,7 +164,7 @@ public class ClientThread implements Runnable, PacketOutput {
 						.warning("Incomplete Packet is sent to the server, closing connection.");
 				throw new RuntimeException();
 			}
-
+		    
 			return LineageEncryption.decrypt(data, dataLength, _clkey);
 		} catch (IOException e) {
 			throw e;
@@ -175,14 +180,14 @@ public class ClientThread implements Runnable, PacketOutput {
 			return;
 		}
 		try {
-			// キャラクター情報
+			// キャラクター情报
 			if (Config.AUTOSAVE_INTERVAL * 1000
 					< System.currentTimeMillis() - _lastSavedTime) {
 				_activeChar.save();
 				_lastSavedTime = System.currentTimeMillis();
 			}
 
-			// 所持アイテム情報
+			// 所持アイテム情报
 			if (Config.AUTOSAVE_INTERVAL_INVENTORY * 1000
 					< System.currentTimeMillis() - _lastSavedTime_inventory) {
 				_activeChar.saveInventory();
@@ -201,60 +206,53 @@ public class ClientThread implements Runnable, PacketOutput {
 		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
 		System.out.println("等待客戶端連線...");
 
-		Socket socket = _csocket;
-		/*
-		 * クライアントからのパケットをある程度制限する。 理由：不正の誤檢出が多發する恐れがあるため
-		 * ex1.サーバに過負荷が掛かっている場合、負荷が落ちたときにクライアントパケットを一氣に處理し、結果的に不正扱いとなる。
-		 * ex2.サーバ側のネットワーク（下り）にラグがある場合、クライアントパケットが一氣に流れ⑸み、結果的に不正扱いとなる。
-		 * ex3.クライアント側のネットワーク（上り）にラグがある場合、以下同樣。
-		 *
-		 * 無制限にする前に不正檢出方法を見直す必要がある。
-		 */
-		HcPacket movePacket = new HcPacket(M_CAPACITY);
-		HcPacket hcPacket = new HcPacket(H_CAPACITY);
-		GeneralThreadPool.getInstance().execute(movePacket);
+		// -- [工作] 封包處裡 --
+		HcPacket hcPacket = new HcPacket();
 		GeneralThreadPool.getInstance().execute(hcPacket);
 
 		ClientThreadObserver observer =
-				new ClientThreadObserver(Config.AUTOMATIC_KICK * 60 * 1000); // 自動切斷までの時間（單位:ms）
+				new ClientThreadObserver(Config.AUTOMATIC_KICK * 60 * 1000); // 自动切断までの时间（单位:ms）
 
-		// クライアントスレッドの監視
-		if (Config.AUTOMATIC_KICK > 0) {
+		// クライアントスレッドの监视
+		if (Config.AUTOMATIC_KICK > 0)
 			observer.start();
-		}
 
-		try {
-			// long seed = 0x5cc690ecL; // 2.70C
-			long seed = 0x7c98bdfa;			// 3.0C
+		try
+		{
+			long seed = 0x7c98bdfa; // 3.0 seed
 			byte Bogus = (byte)(FIRST_PACKET.length + 7);
-
 			_out.write(Bogus & 0xFF);
 			_out.write(Bogus >> 8 & 0xFF);
-			_out.write(0x7d);	// 3.0C 	2.70 <-> 0x20;
+			_out.write(0x7d); 		// 3.0 Init Address
 			_out.write((byte)(seed & 0xFF));
 			_out.write((byte)(seed >> 8 & 0xFF));
 			_out.write((byte)(seed >> 16 & 0xFF));
 			_out.write((byte)(seed >> 24 & 0xFF));
-			
 			_out.write(FIRST_PACKET);
 			_out.flush();
-			try {
-				// long seed = 0x0cf1821dL; // for Episode6
-				// long seed = 0x5cc690ecL; // for Episode7
-				_clkey = LineageEncryption.initKeys(socket, seed);
-			} catch (ClientIdExistsException e) {}
+			
+			try
+			{
+				_clkey = LineageEncryption.initKeys(_csocket, seed);
+			}
+			catch (ClientIdExistsException e)
+			{
+			}
 
-			while (true) {
+			while (true)
+			{
 				doAutoSave();
 
 				byte data[] = null;
-				try {
+				
+				try
+				{
 					data = readPacket();
-				} catch (Exception e) {
+				}
+				catch (Exception e)
+				{
 					break;
 				}
-				// _log.finest("[C]\n" + new
-				// ByteArrayUtil(data).dumpToString());
 
 				int opcode = data[0] & 0xFF;
 
@@ -279,36 +277,39 @@ public class ClientThread implements Runnable, PacketOutput {
 				}
 				// nullの場合はキャラクター選擇前なのでOpcodeの取捨選擇はせず全て實行
 				if (_activeChar == null) {
-					_handler.handlePacket(data, _activeChar);
+					Handler.handlePacket(data, _activeChar);
 					continue;
 				}
 
 				// 以降、PacketHandlerの處理狀況がClientThreadに影響を与えないようにする為の處理
 				// 目的はOpcodeの取捨選擇とClientThreadとPacketHandlerの切り離し
 
-				// 破棄してはいけないOpecode群
+				// 破弃してはいけないOpecode群
 				// リスタート、アイテムドロップ、アイテム削除
 				if (opcode == Opcodes.C_OPCODE_CHANGECHAR
 						|| opcode == Opcodes.C_OPCODE_DROPITEM
-						|| opcode == Opcodes.C_OPCODE_DELETEINVENTORYITEM) {
-					_handler.handlePacket(data, _activeChar);
-				} else if (opcode == Opcodes.C_OPCODE_MOVECHAR) {
-					// 移動はなるべく確實に行う為、移動專用スレッドへ受け渡し
-					movePacket.requestWork(data);
-				} else {
-					// パケット處理スレッドへ受け渡し
+						|| opcode == Opcodes.C_OPCODE_DELETEINVENTORYITEM)
+					Handler.handlePacket(data, _activeChar);
+				else
+					// パケット处理スレッドへ受け渡し
 					hcPacket.requestWork(data);
+
 				}
 			}
-		} catch (Throwable e) {
+		catch (Throwable e)
+		{
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-		} finally {
-			try {
-				if (_activeChar != null) {
+		}
+		finally
+		{
+			try
+			{
+				if (_activeChar != null)
+				{
 					quitGame(_activeChar);
 
 					synchronized (_activeChar) {
-						// キャラクターをワールド內から除去
+						// キャラクターをワールド内から除去
 						_activeChar.logout();
 						setActiveChar(null);
 					}
@@ -347,42 +348,48 @@ public class ClientThread implements Runnable, PacketOutput {
 
 	private static final int H_CAPACITY = 2;// 行動要求を一邊に受け付ける最大容量
 
-	// キャラクターの行動處理スレッド
-	class HcPacket implements Runnable {
-		private final Queue<byte[]> _queue;
-
-		private PacketHandler _handler;
-
-		public HcPacket() {
-			_queue = new ConcurrentLinkedQueue<byte[]>();
-			_handler = new PacketHandler(ClientThread.this);
+	// --* [類別] 封包處裡程序 *--
+	class HcPacket implements Runnable
+	{
+		private final LinkedList<byte[]> LinkList;
+		private final PacketHandler Handler;
+		
+		public HcPacket()
+		{
+			LinkList = new LinkedList<byte[]>();
+			Handler = ClientThread.this.Handler;
 		}
 
-		public HcPacket(int capacity) {
-			_queue = new LinkedBlockingQueue<byte[]>(capacity);
-			_handler = new PacketHandler(ClientThread.this);
+		public void requestWork(byte[] data)
+		{
+			LinkList.offer(data);
 		}
 
-		public void requestWork(byte data[]) {
-			_queue.offer(data);
-		}
-
-		//@Override
-		public void run() {
-			byte[] data;
-			while (_csocket != null) {
-				data = _queue.poll();
-				if (data != null) {
-					try {
-						_handler.handlePacket(data, _activeChar);
-					} catch (Exception e) {}
-				} else {
-					try {
-						Thread.sleep(10);
-					} catch (Exception e) {}
+		@Override
+		public void run()
+		{
+			while (_csocket != null)
+			{
+				byte[] data = LinkList.poll();
+				
+				try
+				{
+					// 如果資料封包不為空
+					if (data != null)
+						Handler.handlePacket(data, _activeChar); // 將資料處理
+					else
+						Thread.sleep(1); // 延遲 0.001 毫秒
+				}
+				catch (Exception e)
+				{
+				}
+				finally
+				{
+					data = null;
 				}
 			}
-			return;
+			
+			System.gc(); // 釋放該執行緒使用的資源
 		}
 	}
 
@@ -436,21 +443,24 @@ public class ClientThread implements Runnable, PacketOutput {
 	}
 
 	//@Override
-	public void sendPacket(ServerBasePacket packet) {
-		synchronized (this) {
-			try {
-				byte abyte0[] = packet.getContent();
-				char ac[] = new char[abyte0.length];
-				ac = UChar8.fromArray(abyte0);
-				ac = LineageEncryption.encrypt(ac, _clkey);
-				abyte0 = UByte8.fromArray(ac);
-				int j = abyte0.length + 2;
+	public void sendPacket(ServerBasePacket packet)
+	{
+		synchronized (this)
+		{
+			try
+			{
+				byte[] data = packet.getContent();
+				data = LineageEncryption.encrypt(data, _clkey);
+				int j = data.length + 2;
 
 				_out.write(j & 0xff);
 				_out.write(j >> 8 & 0xff);
-				_out.write(abyte0);
+				_out.write(data);
 				_out.flush();
-			} catch (Exception e) {}
+			}
+			catch (Exception e)
+			{
+			}
 		}
 	}
 
@@ -547,7 +557,7 @@ public class ClientThread implements Runnable, PacketOutput {
 			doll.deleteDoll();
 		}
 
-		// 從者をワールドマップ上から消し、同地點に再出現させる
+		// 从者をワールドマップ上から消し、同地点に再出现させる
 		Object[] followerList = pc.getFollowerList().values().toArray();
 		for (Object followerObject : followerList) {
 			L1FollowerInstance follower = (L1FollowerInstance) followerObject;
