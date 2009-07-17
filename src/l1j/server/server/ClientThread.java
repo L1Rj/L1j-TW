@@ -24,11 +24,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,8 +46,6 @@ import l1j.server.server.serverpackets.S_Disconnect;
 import l1j.server.server.serverpackets.S_PacketBox;
 import l1j.server.server.serverpackets.S_SummonPack;
 import l1j.server.server.serverpackets.ServerBasePacket;
-import l1j.server.server.types.UByte8;
-import l1j.server.server.types.UChar8;
 import l1j.server.server.utils.StreamUtil;
 import l1j.server.server.utils.SystemUtil;
 
@@ -95,9 +90,9 @@ public class ClientThread implements Runnable, PacketOutput {
 	// (byte) 0xf6, (byte) 0x65, (byte) 0x1d, (byte) 0xdd,
 	// (byte) 0x56, (byte) 0xe3, (byte) 0xef };
 	private static final byte[] FIRST_PACKET = { // 3.0
-		(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,
-		(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,
-		(byte) 0x02, (byte) 0x08, (byte) 0x00 };
+			(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,
+			(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,
+			(byte) 0x02, (byte) 0x08, (byte) 0x00 };
 
 	/**
 	 * for Test
@@ -127,9 +122,9 @@ public class ClientThread implements Runnable, PacketOutput {
 		return _hostname;
 	}
 
-	// ClientThreadによる一定間隔自動セーブを制限する為のフラグ（true:制限 false:制限無し）
-	// 現在はC_LoginToServerが實行された際にfalseとなり、
-	// C_NewCharSelectが實行された際にtrueとなる
+	// ClientThreadによる一定间隔自动セーブを制限する为のフラグ（true:制限 false:制限无し）
+	// 现在はC_LoginToServerが实行された际にfalseとなり、
+	// C_NewCharSelectが实行された际にtrueとなる
 	private boolean _charRestart = true;
 
 	public void CharReStart(boolean flag) {
@@ -200,12 +195,14 @@ public class ClientThread implements Runnable, PacketOutput {
 		}
 	}
 
-	//@Override
-	public void run() {
-		_log.info("(" + _hostname + ")  的客戶端開始連線");
+	@Override
+	public void run()
+	{
+		// -- [介面] 系統訊息 --
+		_log.info("(" + _hostname + ") 的客戶端開始連線.");
 		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
 		System.out.println("等待客戶端連線...");
-
+		
 		// -- [工作] 封包處裡 --
 		HcPacket hcPacket = new HcPacket();
 		GeneralThreadPool.getInstance().execute(hcPacket);
@@ -256,33 +253,29 @@ public class ClientThread implements Runnable, PacketOutput {
 
 				int opcode = data[0] & 0xFF;
 
-				// 多重ログイン對策
+				// 多重ログイン对策
 				if (opcode == Opcodes.C_OPCODE_COMMONCLICK
-						|| opcode == Opcodes.C_OPCODE_CHANGECHAR) {
+						|| opcode == Opcodes.C_OPCODE_CHANGECHAR) 
 					_loginStatus = 1;
-				}
-				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVER) {
-					if (_loginStatus != 1) {
+				
+				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVER)
+					if (_loginStatus != 1)
 						continue;
-					}
-				}
+				
 				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVEROK
-						|| opcode == Opcodes.C_OPCODE_RETURNTOLOGIN) {
+						|| opcode == Opcodes.C_OPCODE_RETURNTOLOGIN)
 					_loginStatus = 0;
-				}
 
-				if (opcode != Opcodes.C_OPCODE_KEEPALIVE) {
+				if (opcode != Opcodes.C_OPCODE_KEEPALIVE)
 					// C_OPCODE_KEEPALIVE以外の何かしらのパケットを受け取ったらObserverへ通知
 					observer.packetReceived();
-				}
-				// nullの場合はキャラクター選擇前なのでOpcodeの取捨選擇はせず全て實行
-				if (_activeChar == null) {
+				
+				// nullの场合はキャラクター选択前なのでOpcodeの取舍选択はせず全て实行
+				if (_activeChar == null)
+				{
 					Handler.handlePacket(data, _activeChar);
 					continue;
 				}
-
-				// 以降、PacketHandlerの處理狀況がClientThreadに影響を与えないようにする為の處理
-				// 目的はOpcodeの取捨選擇とClientThreadとPacketHandlerの切り離し
 
 				// 破弃してはいけないOpecode群
 				// リスタート、アイテムドロップ、アイテム削除
@@ -293,9 +286,8 @@ public class ClientThread implements Runnable, PacketOutput {
 				else
 					// パケット处理スレッドへ受け渡し
 					hcPacket.requestWork(data);
-
-				}
 			}
+		}
 		catch (Throwable e)
 		{
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -329,7 +321,7 @@ public class ClientThread implements Runnable, PacketOutput {
 		_log.fine("Server thread[C] stopped");
 		if (_kick < 1) {
 			_log.info("(" + getAccountName() + ":" + _hostname
-					+ ") 客戶端結束連線");
+					+ ")客戶端結束連線.");
 			System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
 			System.out.println("等待客戶端連線...");
 		}
@@ -338,15 +330,12 @@ public class ClientThread implements Runnable, PacketOutput {
 
 	private int _kick = 0;
 
-	public void kick() {
+	public void kick()
+	{
 		sendPacket(new S_Disconnect());
 		_kick = 1;
 		StreamUtil.close(_out, _in);
 	}
-
-	private static final int M_CAPACITY = 3; // 移動要求を一邊に受け付ける最大容量
-
-	private static final int H_CAPACITY = 2;// 行動要求を一邊に受け付ける最大容量
 
 	// --* [類別] 封包處裡程序 *--
 	class HcPacket implements Runnable
@@ -395,7 +384,7 @@ public class ClientThread implements Runnable, PacketOutput {
 
 	private static Timer _observerTimer = new Timer();
 
-	// クライアントスレッドの監視タイマー
+	// クライアントスレッドの监视タイマー
 	class ClientThreadObserver extends TimerTask {
 		private int _checkct = 1;
 
@@ -423,11 +412,11 @@ public class ClientThread implements Runnable, PacketOutput {
 					return;
 				}
 
-				if (_activeChar == null // キャラクター選擇前
-						|| _activeChar != null && !_activeChar.isPrivateShop()) { // 個人商店中
+				if (_activeChar == null // キャラクター选択前
+						|| _activeChar != null && !_activeChar.isPrivateShop()) { // 个人商店中
 					kick();
 					_log.warning("過長的等待時間導致(" + _hostname
-							+ ")的連線被強制中斷");
+							+ ")的連線被強制中斷.");
 					cancel();
 					return;
 				}
@@ -442,7 +431,7 @@ public class ClientThread implements Runnable, PacketOutput {
 		}
 	}
 
-	//@Override
+	@Override
 	public void sendPacket(ServerBasePacket packet)
 	{
 		synchronized (this)
@@ -492,7 +481,7 @@ public class ClientThread implements Runnable, PacketOutput {
 	}
 
 	public static void quitGame(L1PcInstance pc) {
-		// 死亡していたら街に戾し、空腹狀態にする
+		// 死亡していたら街に戻し、空腹状态にする
 		if (pc.isDead()) {
 			int[] loc = Getback.GetBack_Location(pc, true);
 			pc.setX(loc[0]);
@@ -501,14 +490,13 @@ public class ClientThread implements Runnable, PacketOutput {
 			pc.setCurrentHp(pc.getLevel());
 			pc.set_food(40);
 		}
-
 		// トレードを中止する
 		if (pc.getTradeID() != 0) { // トレード中
 			L1Trade trade = new L1Trade();
 			trade.TradeCancel(pc);
 		}
 
-		// 決鬥を中止する
+		// 决斗を中止する
 		if (pc.getFightId() != 0) {
 			pc.setFightId(0);
 			L1PcInstance fightPc = (L1PcInstance) L1World.getInstance()
@@ -531,7 +519,7 @@ public class ClientThread implements Runnable, PacketOutput {
 		}
 
 		// ペットをワールドマップ上から消す
-		// サモンの表示名を變更する
+		// サモンの表示名を变更する
 		Object[] petList = pc.getPetList().values().toArray();
 		for (Object petObject : petList) {
 			if (petObject instanceof L1PetInstance) {
@@ -572,12 +560,13 @@ public class ClientThread implements Runnable, PacketOutput {
 		CharBuffTable.DeleteBuff(pc);
 		CharBuffTable.SaveBuff(pc);
 		pc.clearSkillEffectTimer();
+
 //waja add 寵物競速 - 登出從名單刪除 
 		l1j.server.server.model.L1PolyRace.getInstance().checkLeaveGame(pc);
 //add end
 		// pcのモニターをstopする。
 		pc.stopEtcMonitor();
-		// オンライン狀態をOFFにし、DBにキャラクター情報を書き⑸む
+		// オンライン状态をOFFにし、DBにキャラクター情报を书き迂む
 		pc.setOnlineStatus(0);
 		try {
 			pc.save();
