@@ -880,3 +880,6 @@ Update shop Set selling_price = '1' Where npc_id = '70081' And item_id = '40744'
 delete from shop where item_id = '82' And npc_id = '71196'; /* 拉斯塔巴德雙刀 */
 delete from shop where item_id = '122' And npc_id = '71196'; /* 拉斯塔巴德魔杖 */
 delete from shop where item_id = '187' And npc_id = '71196'; /* 拉斯塔巴德十字弓 */
+
+/* 20090718 修正 70026 奇岩武器店 販賣銀箭價格 */
+Update shop Set selling_price = '1' Where npc_id = '70026' And item_id = '40744'; /* 銀箭 */
