@@ -52,7 +52,8 @@ public class L1DollInstance extends L1NpcInstance {
     public static final int DOLLTYPE_SCARECROW = 10; // 木人
     public static final int DOLLTYPE_SPARTOI = 11; // 史巴托
     public static final int DOLLTYPE_LICH = 12; // 巫妖
- 	public static final int IRONGATES_DOLLTYPE_SNOWMAN = 13; // 鐵門公會 魔法娃娃：雪怪
+ 	public static final int DOLLTYPE_IRONGATES_SNOWMAN = 13; // 鐵門公會 魔法娃娃：雪怪
+ 	public static final int DOLLTYPE_PRINCESS = 14; // 魔法娃娃：公主	
 	public static final int DOLL_TIME = 1800000;
 
 	private static Logger _log = Logger.getLogger(L1DollInstance.class
@@ -293,7 +294,7 @@ public class L1DollInstance extends L1NpcInstance {
 	public static int getAcByDoll(L1PcInstance _master) 
 	{
 		int s = 0;
-		s -= getTypeCountByDoll(_master.getDollList(), IRONGATES_DOLLTYPE_SNOWMAN);
+		s -= getTypeCountByDoll(_master.getDollList(), DOLLTYPE_IRONGATES_SNOWMAN);
 		return s;
 	}
 //add end
