@@ -74,7 +74,7 @@ public class L1GfxId implements L1CommandExecutor {
 		} catch (Exception exception) {
 			pc
 					.sendPackets(new S_SystemMessage("請輸入 " + cmdName
-							+ " id 遍身編號。"));
+							+ " id 變身編號。"));
 		}
 	}
 }
