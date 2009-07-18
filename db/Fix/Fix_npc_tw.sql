@@ -144,3 +144,6 @@ Update npc Set exp = '626' Where npcid = '45215';/* 風精靈王 夢幻 */
 Update npc Set exp = '626' Where npcid = '45642';/* 土精靈王 夢幻 */
 Update npc Set exp = '626' Where npcid = '45643';/* 水精靈王 夢幻 */
 Update npc Set exp = '626' Where npcid = '45645';/* 火精靈王 夢幻 */
+
+/* 20090718 修正 歐姆地監 黑暗棲林者魔法攻擊速度 */
+Update npc Set atk_magic_speed = '2200' Where npcid = '45347';
