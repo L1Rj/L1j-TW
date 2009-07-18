@@ -1,5 +1,18 @@
 以下為目前仍有的錯誤訊息紀錄
 
+090706
+ l1j.server.server.clientpackets.ClientBasePacket readS
+嚴重的: OpCode=66
+java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+        at java.lang.String.substring(String.java:1938)
+        at l1j.server.server.clientpackets.ClientBasePacket.readS(Unknown Source)
+        at l1j.server.server.clientpackets.C_Title.<init>(Unknown Source)
+        at l1j.server.server.PacketHandler.handlePacket(Unknown Source)
+        at l1j.server.server.ClientThread$HcPacket.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+        at java.lang.Thread.run(Thread.java:619)
+
 090705 EC編譯時警告訊息
     [javac] Note: E:\workspace\l1j\l1jtw\src\l1j\server\server\model\skill\L1SkillTimer.java uses or overrides a deprecated API.
     [javac] Note: Recompile with -Xlint:deprecation for details.
