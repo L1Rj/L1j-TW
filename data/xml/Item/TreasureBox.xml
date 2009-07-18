@@ -703,10 +703,9 @@
 		<Item ItemId="41249" Count="1" Chance="8" /> <!-- 小思克巴 -->
 		<Item ItemId="41250" Count="1" Chance="8" /> <!-- 野狼寶寶 -->
 		<Item ItemId="49037" Count="1" Chance="8" /> <!-- 長者 -->
-		<Item ItemId="49038" Count="1" Chance="19" /><!-- 奎斯坦修 -->
-		<Item ItemId="49039" Count="1" Chance="17" />
-		<Item ItemId="31002" Count="1" Chance="2" /><!-- 雪怪 -->
-		<Item ItemId="31003" Count="1" Chance="10" /><!-- 蛇女 -->
+		<Item ItemId="49038" Count="1" Chance="21" /><!-- 奎斯坦修 -->
+		<Item ItemId="49039" Count="1" Chance="19" />
+		<Item ItemId="31004" Count="1" Chance="8" /><!-- 亞力安 -->
 	</TreasureBox>
 	<!--パルームの作物袋-->
 	<TreasureBox Type="RANDOM" ItemId="41355">
