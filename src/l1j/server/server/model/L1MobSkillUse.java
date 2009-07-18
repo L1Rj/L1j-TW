@@ -186,7 +186,9 @@ public class L1MobSkillUse {
 			}
 		}
 
-		if (skillSizeCounter != 0) {
+//		if (skillSizeCounter != 0) {
+		if (skillSizeCounter > 0 && skillSizeCounter < skills.length)  
+		{
 			int num = _rnd.nextInt(skillSizeCounter);
 			if (useSkill(skills[num])) { // スキル使用
 				return true;
