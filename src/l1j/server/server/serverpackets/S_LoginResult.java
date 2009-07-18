@@ -35,6 +35,12 @@ public class S_LoginResult extends ServerBasePacket {
 
 	public static final int REASON_PASS_WRONG = 0x08;
 
+	public static final int USE_LAST_ONE_DAY = 0x111;
+
+	public static final int USE_LAST_TWO_DAY = 0x112;
+
+	public static final int USE_LAST_THREE_DAY = 0x113;
+
 	// public static int REASON_SYSTEM_ERROR = 0x01;
 
 	private byte[] _byte = null;
