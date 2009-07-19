@@ -1473,6 +1473,7 @@ public class L1Attack {
 				}
 			}
 		}
+
 		if (dmg <= 0) {
 			_isHit = false;
 		}
@@ -1522,11 +1523,7 @@ public class L1Attack {
 		if (_targetNpc.hasSkillEffect(EARTH_BIND)) {
 			dmg = 0;
 		}
-//waja add 角色隱身被怪物攻擊時現形
-		if (dmg > 0 && _pc.isInvisble()) {
-			_pc.delInvis();
-		}
-//end add
+
 		if (dmg <= 0) {
 			_isHit = false;
 		}
