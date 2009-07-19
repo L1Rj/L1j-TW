@@ -1257,7 +1257,6 @@ public class L1Attack {
 					_weaponId);
 		} else if (_weaponId == 261) { // アークメイジスタッフ
 			L1WeaponSkill.giveArkMageDiseaseEffect(_pc, _target);
-//waja add
 		} else if( _weaponId == 2 && RandomArrayList.getArray100List() <= 5) // 骰子匕首
 		{
 			dmg += (_target.getCurrentHp()/2); // 取得目標的血量再除以2
@@ -1265,7 +1264,6 @@ public class L1Attack {
 			pcInventory.setEquipped(_pc.getWeapon(), false, false, false); // (把目前已裝備武器脫掉)
 			_pc.getInventory().removeItem(_pc.getInventory().getItem(weapon.getId()), 1); // 刪除武器
 			_pc.sendPackets(new S_SystemMessage("骰子匕首 消失了"));
-//add end
 		} else {
 			dmg += L1WeaponSkill.getWeaponSkillDamage(_pc, _target, _weaponId);
 		}
@@ -1479,7 +1477,11 @@ public class L1Attack {
 		if (dmg <= 0) {
 			_isHit = false;
 		}
-
+//waja add 角色隱身被怪物攻擊時現形
+		if (dmg > 0 && _pc.isInvisble()) {
+			_pc.delInvis();
+		}
+//end add
 		addNpcPoisonAttack(_npc, _targetPc);
 
 		return (int) dmg;
