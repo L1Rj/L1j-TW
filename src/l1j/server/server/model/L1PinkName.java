@@ -44,7 +44,7 @@ public class L1PinkName {
 
 		@Override
 		public void run() {
-			for (int i = 0; i < 60; i++) {// 預設120秒太長 改為60秒
+			for (int i = 0; i < 60; i++) { // 預設120秒太長 改為60秒
 				try {
 					Thread.sleep(1000);
 				} catch (Exception exception) {
@@ -61,15 +61,14 @@ public class L1PinkName {
 				}
 			}
 			stopPinkName(_attacker);
-	           if (!_attacker.isDead()) { // waja add 加入非死亡狀態判斷
+	           if (!_attacker.isDead()) { // 非死亡狀態判斷
 	                _attacker.setPinkName(false);// 砍人後顏色變回藍色
-	            }//add end
+	            }
 		}
 
 		private void stopPinkName(L1PcInstance attacker) {
 			attacker.sendPackets(new S_PinkName(attacker.getId(), 0));
 			attacker.broadcastPacket(new S_PinkName(attacker.getId(), 0));
-//			_attacker.setPinkName(false);// waja change 砍人後顏色變回藍色
 		}
 	}
 

@@ -70,7 +70,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 	public L1GuardianInstance(L1Npc template) {
 		super(template);
 
-		if (!isDropitems()) {//妖森守護神道具控制
+		if (!isDropitems()) { // 妖森守護神道具控制
 			doGDropItem(0);
 			}
 	}
@@ -91,13 +91,12 @@ public class L1GuardianInstance extends L1NpcInstance {
 					wideBroadcastPacket(new S_NpcChatPacket(this, "$804", (byte) 2)); // エルフ以外の者よ、命が惜しければ早くここから去れ。ここは神聖な場所だ。
 					break;
 				}
-//waja add 妖精殺死同族
-				else if (pc.isElf() && pc.isWantedForElf()) { // PK ELF
+
+				else if (pc.isElf() && pc.isWantedForElf()) { // PK ELF 妖精殺死同族
 					wideBroadcastPacket(new S_NpcChatPacket(this, "$815", 1));
 					targetPlayer = pc;
 					break;
 				}
-//add end
 			}
 		}
 		if (targetPlayer != null) {
@@ -273,7 +272,6 @@ public class L1GuardianInstance extends L1NpcInstance {
 			break ;
 		}
 	} catch (Exception e) {_log.log(Level.SEVERE, "發生錯誤", e);
-//add end
 				} // 5.19 End
 				attack.calcDamage();
 				attack.calcStaffOfMana();
@@ -501,8 +499,8 @@ public class L1GuardianInstance extends L1NpcInstance {
 			setRest(false);
 		}
 	}
-//waja add 妖森守護神道具控制
-	public void doGDropItem(int timer) {
+
+	public void doGDropItem(int timer) { // 妖森守護神道具控制
 		GDropItemTask task = new GDropItemTask();
 		GeneralThreadPool.getInstance().schedule(task, timer * 60000);
 		}
@@ -542,5 +540,4 @@ public class L1GuardianInstance extends L1NpcInstance {
 		}
 		}
 		}
-//add end
 }

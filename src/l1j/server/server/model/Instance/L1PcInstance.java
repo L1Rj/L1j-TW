@@ -2731,7 +2731,7 @@ public class L1PcInstance extends L1Character {
 		}
 		return true;
 	}
-//妖精殺死同族 PK值另外計算
+// 妖精殺死同族 PK值另外計算
 	private Timestamp _lastPkForElf;
 
 	public Timestamp getLastPkForElf() {

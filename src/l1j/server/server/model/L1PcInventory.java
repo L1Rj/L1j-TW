@@ -50,7 +50,7 @@ public class L1PcInventory extends L1Inventory {
 	private static Logger _log = Logger
 			.getLogger(L1PcInventory.class.getName());
 
-//waja add 飾品強化卷軸
+// 飾品強化卷軸
 	public static final int COL_ALL = 0;//所有狀態儲存
 
 	public static final int COL_FIREMR = 137;
@@ -309,7 +309,7 @@ public class L1PcInventory extends L1Inventory {
 			_owner.sendPackets(new S_ItemStatus(item));
 			column -= COL_DURABILITY;
 		}
-//waja add 飾品強化卷軸
+// 飾品強化卷軸
 		if (column >= COL_FIREMR) {
 			_owner.sendPackets(new S_ItemStatus(item));
 			column -= COL_FIREMR;
@@ -444,7 +444,7 @@ public class L1PcInventory extends L1Inventory {
 				storage.updateItemDurability(item);
 				column -= COL_DURABILITY;
 			}
-//waja add 飾品強化卷軸
+// 飾品強化卷軸
 			if (column >= COL_FIREMR) {
 				storage.updateFireMr(item);
 				column -= COL_FIREMR;
@@ -518,7 +518,7 @@ public class L1PcInventory extends L1Inventory {
 		if (item.isEquipped() != equipped) { // 設定值と違う場合だけ處理
 			L1Item temp = item.getItem();
 			if (equipped) { // 裝著
-//waja add 判斷裝備穿著數量 by elfooxx
+// 判斷裝備穿著數量 by elfooxx
 				int count = 0;
 				if (temp.getType2() == 2) {
 					for (L1ItemInstance hasEquip : _owner.getEquipSlot().getArmors()) {
@@ -532,7 +532,7 @@ public class L1PcInventory extends L1Inventory {
 						}
 					}
 				}
-//add end
+// add end
 				item.setEquipped(true);
 				_owner.getEquipSlot().set(item);
 			} else { // 脫著
@@ -748,7 +748,7 @@ public class L1PcInventory extends L1Inventory {
 		for (Object itemObject : _items) {
 			L1ItemInstance item = (L1ItemInstance) itemObject;
 			if (item.isEquipped()) {
-//waja add & change 飾品強化卷軸
+// 飾品強化卷軸
 //				hpr += item.getItem().get_addhpr();
 				hpr += item.getItem().get_addhpr()+ item.getHpr();
 //end add
@@ -763,7 +763,7 @@ public class L1PcInventory extends L1Inventory {
 		for (Object itemObject : _items) {
 			L1ItemInstance item = (L1ItemInstance) itemObject;
 			if (item.isEquipped()) {
-//waja add & change 飾品強化卷軸
+// 飾品強化卷軸
 //				mpr += item.getItem().get_addmpr();
 				mpr += item.getItem().get_addmpr()+ item.getMpr();
 //add end
