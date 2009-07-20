@@ -78,6 +78,7 @@ import l1j.server.server.model.skill.L1SkillUse;
 import l1j.server.server.serverpackets.S_BlueMessage;
 import l1j.server.server.serverpackets.S_CastleMaster;
 import l1j.server.server.serverpackets.S_ChangeShape;
+import l1j.server.server.serverpackets.S_CharVisualUpdate;
 import l1j.server.server.serverpackets.S_Disconnect;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_DoActionShop;
@@ -1019,11 +1020,19 @@ public class L1PcInstance extends L1Character {
 			killSkillEffectTimer(INVISIBILITY);
 			sendPackets(new S_Invis(getId(), 0));
 			broadcastPacket(new S_OtherCharPacks(this));
+// 20090720 BAO提供 隱身被攻擊現形
+			sendPackets(new S_CharVisualUpdate(this));
+            broadcastPacket(new S_CharVisualUpdate(this));
+//add end
 		}
 		if (hasSkillEffect(BLIND_HIDING)) { // ブラインド ハイディング
 			killSkillEffectTimer(BLIND_HIDING);
 			sendPackets(new S_Invis(getId(), 0));
 			broadcastPacket(new S_OtherCharPacks(this));
+// 20090720 BAO提供 隱身被攻擊現形
+			sendPackets(new S_CharVisualUpdate(this));
+            broadcastPacket(new S_CharVisualUpdate(this));
+//add end
 		}
 	}
 

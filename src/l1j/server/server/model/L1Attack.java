@@ -38,10 +38,11 @@ import l1j.server.server.model.poison.L1SilencePoison;
 import l1j.server.server.serverpackets.S_AttackMissPacket;
 import l1j.server.server.serverpackets.S_AttackPacketForNpc;
 import l1j.server.server.serverpackets.S_AttackPacket;
+//import l1j.server.server.serverpackets.S_CharVisualUpdate; // BAO提供 隱身被怪物攻擊時現形
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillSound;
-import l1j.server.server.serverpackets.S_SystemMessage;//waja add 骰子匕首
+import l1j.server.server.serverpackets.S_SystemMessage; // 骰子匕首
 import l1j.server.server.serverpackets.S_UseArrowSkill;
 import l1j.server.server.serverpackets.S_UseAttackSkill;
 import l1j.server.server.utils.RandomArrayList;
@@ -384,6 +385,16 @@ public class L1Attack {
 		} else if (_calcType == NPC_NPC) {
 			_isHit = calcNpcNpcHit();
 		}
+// BAO提供 隱身被怪物攻擊時現形
+/*        if (_isHit = true) {
+            if ((_targetPc.hasSkillEffect(BLIND_HIDING)
+                    || _targetPc.hasSkillEffect(INVISIBILITY))){
+                _targetPc.delInvis();
+                _targetPc.sendPackets(new S_CharVisualUpdate(_targetPc));
+                _targetPc.broadcastPacket(new S_CharVisualUpdate(_targetPc));
+            }
+        }*/
+// add end
 		return _isHit;
 	}
 
@@ -1137,7 +1148,14 @@ public class L1Attack {
 
 		_drainHp = 0; // ダメージ無しの場合は吸収による回復はしない
 		}
-
+// 20090720 BAO提供 隱身被攻擊現形形
+		if (_isHit = true) {
+            if ((_pc.hasSkillEffect(BLIND_HIDING)
+                    || _pc.hasSkillEffect(INVISIBILITY))){
+                _pc.delInvis();
+            }
+        }
+//add end
 		return (int) dmg;
 	}
 
@@ -1354,7 +1372,14 @@ public class L1Attack {
 			_isHit = false;
 			_drainHp = 0; // ダメージ無しの場合は吸収による回復はしない
 		}
-
+// 20090720 BAO提供 隱身被攻擊現形
+		if (_isHit = true) {
+            if ((_pc.hasSkillEffect(BLIND_HIDING)
+                    || _pc.hasSkillEffect(INVISIBILITY))){
+                _pc.delInvis();
+            }
+        }
+//add end
 		return (int) dmg;
 	}
 
@@ -1479,7 +1504,14 @@ public class L1Attack {
 		}
 
 		addNpcPoisonAttack(_npc, _targetPc);
-
+// 20090720 BAO提供 隱身被攻擊現形		
+		if (_isHit = true) {
+            if ((_targetPc.hasSkillEffect(BLIND_HIDING)
+                    || _targetPc.hasSkillEffect(INVISIBILITY))){
+                _targetPc.delInvis();
+            }
+        }
+//add end
 		return (int) dmg;
 	}
 
