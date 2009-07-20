@@ -63,4 +63,5 @@ INSERT INTO `commands` VALUES
 ('spawn', 200, 'L1SpawnCmd'),
 ('insert', 200, 'L1InsertSpawn'),
 ('help', 200, 'L1CommandHelp'),
-('action', 200, 'L1Action');
+('action', 200, 'L1Action'),
+('tile', 200, 'L1Tile');
