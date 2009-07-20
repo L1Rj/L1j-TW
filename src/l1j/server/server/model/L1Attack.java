@@ -38,7 +38,6 @@ import l1j.server.server.model.poison.L1SilencePoison;
 import l1j.server.server.serverpackets.S_AttackMissPacket;
 import l1j.server.server.serverpackets.S_AttackPacketForNpc;
 import l1j.server.server.serverpackets.S_AttackPacket;
-//import l1j.server.server.serverpackets.S_CharVisualUpdate; // BAO提供 隱身被怪物攻擊時現形
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillSound;
@@ -385,16 +384,7 @@ public class L1Attack {
 		} else if (_calcType == NPC_NPC) {
 			_isHit = calcNpcNpcHit();
 		}
-// BAO提供 隱身被怪物攻擊時現形
-/*        if (_isHit = true) {
-            if ((_targetPc.hasSkillEffect(BLIND_HIDING)
-                    || _targetPc.hasSkillEffect(INVISIBILITY))){
-                _targetPc.delInvis();
-                _targetPc.sendPackets(new S_CharVisualUpdate(_targetPc));
-                _targetPc.broadcastPacket(new S_CharVisualUpdate(_targetPc));
-            }
-        }*/
-// add end
+
 		return _isHit;
 	}
 
