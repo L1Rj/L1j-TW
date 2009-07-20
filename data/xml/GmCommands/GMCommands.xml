@@ -136,6 +136,10 @@
 		<Room Name="底比斯金字塔內部" LocX="32794" LocY="32822" MapId="781"/>
 		<Room Name="龍監入口" LocX="33407" LocY="32414" MapId="4"/>
 		<Room Name="不死魔族拋棄之地" LocX="32561" LocY="33026" MapId="777"/>
+		<Room Name="精墓入口" LocX="32735" LocY="32807" MapId="444"/>
+		<Room Name="櫻花森林" LocX="32763" LocY="32814" MapId="610"/>
+		<Room Name="果子森林" LocX="32763" LocY="32825" MapId="612"/>
+		<Room Name="追憶之島" LocX="32765" LocY="32861" MapId="612"/>
 		<Room Name="GMRoom" LocX="32737" LocY="32796" MapId="99"/>
 		<Room Name="GMShop" LocX="33079" LocY="33402" MapId="4"/>
 
