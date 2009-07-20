@@ -221,15 +221,15 @@ Update droplist Set chance = '10' Where mobId = '45333' And itemId = '40219';
 Update droplist Set chance = '10' Where mobId = '45379' And itemId = '40219';
 Update droplist Set chance = '10' Where mobId = '45415' And itemId = '40219';
 Update droplist Set chance = '10' Where mobId = '45447' And itemId = '40219';
-Update droplist Set chance = '80' Where mobId = '45617' And itemId = '40219';
-Update droplist Set chance = '80' Where mobId = '45646' And itemId = '40219';
-Update droplist Set chance = '80' Where mobId = '45649' And itemId = '40219';
+Update droplist Set chance = '50' Where mobId = '45617' And itemId = '40219';
+Update droplist Set chance = '50' Where mobId = '45646' And itemId = '40219';
+Update droplist Set chance = '50' Where mobId = '45649' And itemId = '40219';
 Update droplist Set chance = '10' Where mobId = '45669' And itemId = '40219';
 Update droplist Set chance = '1000' Where mobId = '45684' And itemId = '40219';/* 巴拉卡斯 */
-Update droplist Set chance = '900' Where mobId = '45962' And itemId = '40219';
-Update droplist Set chance = '900' Where mobId = '45972' And itemId = '40219';
-Update droplist Set chance = '900' Where mobId = '45973' And itemId = '40219';
-Update droplist Set chance = '900' Where mobId = '46047' And itemId = '40219';
+Update droplist Set chance = '200' Where mobId = '45962' And itemId = '40219';
+Update droplist Set chance = '200' Where mobId = '45972' And itemId = '40219';
+Update droplist Set chance = '200' Where mobId = '45973' And itemId = '40219';
+Update droplist Set chance = '200' Where mobId = '46047' And itemId = '40219';
 Update droplist Set chance = '1200' Where mobId = '81163' And itemId = '40219';/* 吉爾塔斯 */
 
 /* 20090607 降低 魔法書 (靈魂昇華)掉落機率 */
@@ -246,7 +246,7 @@ Update droplist Set chance = '500' Where mobId = '45829' And itemId = '40224';/*
 Update droplist Set chance = '20' Where mobId = '45923' And itemId = '40224';/* 海音的惡靈 */
 Update droplist Set chance = '90' Where mobId = '45958' And itemId = '40224';/* 長老．安迪斯 */
 Update droplist Set chance = '30' Where mobId = '45988' And itemId = '40224';/* 闇精靈王 */
-Update droplist Set chance = '10000' Where mobId = '81163' And itemId = '40224';
+Update droplist Set chance = '10000' Where mobId = '81163' And itemId = '40224';/* 吉爾塔斯 */
 
 /* 20090607 降低 魔法書 (強力無所遁形術)掉落機率 */
 Update droplist Set chance = '500' Where mobId = '45333' And itemId = '40217';

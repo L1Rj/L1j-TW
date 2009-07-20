@@ -70,3 +70,25 @@ Update weapon Set hitmodifier = '5' Where item_id = '200';
 Update weapon Set hitmodifier = '6' Where item_id = '201';
 Update weapon Set hitmodifier = '7' Where item_id = '202';
 Update weapon Set hitmodifier = '8' Where item_id = '203';
+
+/* 20090719 蒼天系列武器時間設定 可交易丟棄 */
+Update weapon Set max_use_time = '21600' Where item_id = '231';
+Update weapon Set max_use_time = '21600' Where item_id = '232';
+Update weapon Set max_use_time = '21600' Where item_id = '233';
+Update weapon Set max_use_time = '21600' Where item_id = '234';
+Update weapon Set max_use_time = '21600' Where item_id = '235';
+Update weapon Set max_use_time = '21600' Where item_id = '236';
+Update weapon Set max_use_time = '21600' Where item_id = '237';
+Update weapon Set max_use_time = '21600' Where item_id = '238';
+Update weapon Set max_use_time = '21600' Where item_id = '239';
+Update weapon Set max_use_time = '21600' Where item_id = '240';
+Update weapon Set trade = '0' Where item_id = '231';
+Update weapon Set trade = '0' Where item_id = '232';
+Update weapon Set trade = '0' Where item_id = '233';
+Update weapon Set trade = '0' Where item_id = '234';
+Update weapon Set trade = '0' Where item_id = '235';
+Update weapon Set trade = '0' Where item_id = '236';
+Update weapon Set trade = '0' Where item_id = '237';
+Update weapon Set trade = '0' Where item_id = '238';
+Update weapon Set trade = '0' Where item_id = '239';
+Update weapon Set trade = '0' Where item_id = '240';
