@@ -44,7 +44,7 @@ public abstract class ServerBasePacket {
 		int Length = _bao.size() + data.length;
 		data[0] = (byte) (Length & 0xFF);
 		data[1] = (byte) (Length >> 8 & 0xFF);
-		return null;
+		return data;
 	}
 	
 	// 寫入一個布林至暫存器中
