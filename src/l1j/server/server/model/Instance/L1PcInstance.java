@@ -431,7 +431,8 @@ public class L1PcInstance extends L1Character {
 		}
 	}
 
-	public void sendVisualEffectAtLogin() {
+	public void sendVisualEffectAtLogin()
+	{
 		// S_Emblem?C_Clan
 		// for (L1Clan clan : L1World.getInstance().getAllClans()) {
 		// sendPackets(new S_Emblem(clan.getClanId()));
@@ -450,7 +451,8 @@ public class L1PcInstance extends L1Character {
 		sendVisualEffect();
 	}
 
-	public void sendVisualEffectAtTeleport() {
+	public void sendVisualEffectAtTeleport()
+	{
 		if (isDrink()) { // liquorで醉っている
 			sendPackets(new S_Liquor(getId()));
 		}

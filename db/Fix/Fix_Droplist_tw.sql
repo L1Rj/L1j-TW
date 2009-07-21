@@ -318,6 +318,40 @@ Update droplist Set chance = '900' Where mobId = '45957' And itemId = '40178';
 Update droplist Set chance = '80000' Where mobId = '81163' And itemId = '40178';
 Update droplist Set chance = '900' Where mobId = '81173' And itemId = '40178';
 
+/* 20090721 降低 魔法書 (召喚術) 掉落機率 */
+Update droplist Set chance = '20000' Where chance = '50000' And itemId = '40196';
+Update droplist Set chance = '4000' Where chance = '10000' And itemId = '40196';
+Update droplist Set chance = '800' Where chance = '5000' And itemId = '40196';
+Update droplist Set chance = '300' Where chance = '1000' And itemId = '40196';
+
+/* 20090721 降低 魔法書 (冰雪暴) 掉落機率 */
+Update droplist Set chance = '3000' Where chance = '10000' And itemId = '40204';
+Update droplist Set chance = '8000' Where chance = '20000' And itemId = '40204';
+
+/* 20090721 降低 魔法書 (集體傳送術) 掉落機率 */
+Update droplist Set chance = '8000' Where chance = '50000' And itemId = '40214';
+Update droplist Set chance = '4000' Where chance = '10000' And itemId = '40214';
+Update droplist Set chance = '600' Where chance = '2000' And itemId = '40214';
+Update droplist Set chance = '800' Where chance = '3000' And itemId = '40214';
+
+/* 20090721 降低 魔法書 (藥水霜化術) 掉落機率 */
+Update droplist Set chance = '12000' Where chance = '50000' And itemId = '40216';
+Update droplist Set chance = '3000' Where chance = '10000' And itemId = '40216';
+Update droplist Set chance = '1500' Where chance = '5000' And itemId = '40216';
+Update droplist Set chance = '800' Where chance = '2000' And itemId = '40216';
+
+/* 20090721 降低 魔法書 (終極返生術) 掉落機率 */
+Update droplist Set chance = '12000' Where chance = '50000' And itemId = '40220';
+Update droplist Set chance = '3000' Where chance = '10000' And itemId = '40220';
+
+/* 20090721 降低 魔法書 (集體緩速術) 掉落機率 */
+Update droplist Set chance = '22000' Where chance = '50000' And itemId = '40221';
+Update droplist Set chance = '8000' Where chance = '20000' And itemId = '40221';
+Update droplist Set chance = '4000' Where chance = '10000' And itemId = '40221';
+Update droplist Set chance = '1500' Where chance = '5000' And itemId = '40221';
+Update droplist Set chance = '700' Where chance = '1000' And itemId = '40221';
+Update droplist Set chance = '200' Where chance = '500' And itemId = '40221';
+
 /* ---------- 技術書 ----------*/
 /* 20090623 降低 技術書(衝擊之暈) 掉落機率 */
 Update droplist Set chance = '600' Where mobId = '45492' And itemId = '40164';/* 庫曼 */

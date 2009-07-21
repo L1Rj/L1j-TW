@@ -31,7 +31,7 @@ import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
-// import l1j.server.server.model.map.L1Map; //waja add 判斷站立座標是否合法
+import l1j.server.server.model.Instance.L1DoorInstance;// 門
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.model.trap.L1WorldTraps;
 import l1j.server.server.serverpackets.S_MoveCharPacket;
@@ -108,14 +108,16 @@ public class C_MoveChar extends ClientBasePacket {
 			if (pc.isDead()
 					&& obj instanceof L1PcInstance
 					&& pc.getName().equals(((L1PcInstance) obj).getName())
-					&& pc.isGmInvis() // GM隱形
+//					&& pc.isGmInvis() // GM隱形
 //					&& ((L1PcInstance) obj).isInvisble()// 隱形
 					&& ((L1PcInstance) obj).isDead()) { // 死亡
 				continue;
 			}
 			if (obj.getX() == locx//pc.getX()
 					&& obj.getY() == locy//pc.getY()
-					&& ((obj instanceof L1PcInstance))) {
+					&& ((obj instanceof L1PcInstance))
+					&& !pc.isGmInvis()// GM角色不回溯
+					&& !pc.isGm()) { // GM角色不回溯
 				pc.getMap().setPassable(pc.getLocation(), false);
 				L1Teleport.teleport(pc, pc.getLocation(), heading, true);
 				return;
