@@ -303,7 +303,7 @@ public class C_LoginToServer extends ClientBasePacket {
 		pc.startHpRegeneration();
 		pc.startMpRegeneration();
 		pc.startObjectAutoUpdate();
-		client.CharReStart(false);
+		client.inGame(true);
 		pc.beginExpMonitor();
 		pc.save(); // DBにキャラクター情報を書き⑸む
 

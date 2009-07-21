@@ -90,7 +90,8 @@ public class ClientThread implements Runnable, PacketOutput
 	private String _ip;
 	private String _hostname;
 	private LineageKeys _clkey;
-	private int _loginStatus = 0;
+	private int _loginStatus;
+	private boolean _inGame;
 	
 	/* 
 	 * 封包處理程序
@@ -101,11 +102,6 @@ public class ClientThread implements Runnable, PacketOutput
 	private AutoHandle aMove;
 	private AutoHandle aItemUse;
 	private AutoHandle aAction;
-	
-	// ClientThreadによる一定间隔自动セーブを制限する为のフラグ（true:制限 false:制限无し）
-	// 现在はC_LoginToServerが实行された际にfalseとなり、
-	// C_NewCharSelectが实行された际にtrueとなる
-	private boolean _charRestart = true;
 
 	/**
 	 * for Test
@@ -123,10 +119,10 @@ public class ClientThread implements Runnable, PacketOutput
 		_hostname = socket.getInetAddress().getHostName();
 		_hostname = HOSTNAME_LOOKUPS ? _hostname : _ip;
 		Handler = new PacketHandler(this); // 初始化封包處理程序
-		aAttack = new AutoHandle("Attack"); // 初始化攻擊封包自動處理程序
-		aMove = new AutoHandle("Move"); // 初始化移動封包處理程序
-		aItemUse = new AutoHandle("ItemUse"); // 初始化物品使用封包處理程序
-		aAction = new AutoHandle("Action"); // 初始化動作封包處理程序 (剩下來的封包都給它處理)
+		aAttack = new AutoHandle(); // 初始化攻擊封包自動處理程序
+		aMove = new AutoHandle(); // 初始化移動封包處理程序
+		aItemUse = new AutoHandle(); // 初始化物品使用封包處理程序
+		aAction = new AutoHandle(); // 初始化動作封包處理程序 (剩下來的封包都給它處理)
 	}
 
 	private byte[] readPacket() throws Exception
@@ -168,7 +164,7 @@ public class ClientThread implements Runnable, PacketOutput
 
 	private void doAutoSave() throws Exception
 	{
-		if (_activeChar == null || _charRestart)
+		if (_activeChar == null || !_inGame)
 			return;
 		
 		try
@@ -212,11 +208,11 @@ public class ClientThread implements Runnable, PacketOutput
 
 		try
 		{
-			long seed = 0x7c98bdfa; // 3.0 seed
+			long seed = 0x7c98bdfa; // init key
 			byte Bogus = (byte)(FIRST_PACKET.length + 7);
 			_cout.write(Bogus & 0xFF);
 			_cout.write(Bogus >> 8 & 0xFF);
-			_cout.write(0x7d); 		// 3.0 Init Address
+			_cout.write(0x7d);
 			_cout.write((byte)(seed & 0xFF));
 			_cout.write((byte)(seed >> 8 & 0xFF));
 			_cout.write((byte)(seed >> 16 & 0xFF));
@@ -304,21 +300,7 @@ public class ClientThread implements Runnable, PacketOutput
 		{
 			try
 			{
-				if (_activeChar != null)
-				{
-					quitGame(_activeChar);
-
-					synchronized (_activeChar)
-					{
-						// キャラクターをワールド内から除去
-						_activeChar.logout();
-						setActiveChar(null);
-					}
-				}
-
-				// 念のため送信
-				sendPacket(new S_Disconnect());
-
+				setActiveChar(null);
 				StreamUtil.close(_cout, _cin);
 			} catch (Exception e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -354,12 +336,11 @@ public class ClientThread implements Runnable, PacketOutput
 		private final LinkedList<byte[]> LinkList;
 		private final PacketHandler Handler;
 		
-		public AutoHandle(String GroupName)
+		public AutoHandle()
 		{
 			LinkList = new LinkedList<byte[]>(); // 初始化 鏈結清單
 			Handler = ClientThread.this.Handler; // 取得 ClientThrad的處理程序
-			// 建立新的執行緒, 並且依名稱作為群組
-			new Thread(this, GroupName).start();
+			GeneralThreadPool.getInstance().execute(this); // 運行該執行緒
 		}
 
 		public void addWork(byte[] data)
@@ -378,7 +359,7 @@ public class ClientThread implements Runnable, PacketOutput
 					
 					// 如果資料封包不為空
 					if (data != null)
-						Handler.handlePacket(data, _activeChar); // 將資料處理
+						Handler.handlePacket(data); // 將資料處理
 					
 					Thread.sleep(1); // 延遲 0.001 毫秒
 				}
@@ -471,6 +452,16 @@ public class ClientThread implements Runnable, PacketOutput
 
 	public void setActiveChar(L1PcInstance pc)
 	{
+		if (_activeChar != null)
+		{
+			quitGame(_activeChar);
+
+			synchronized (_activeChar)
+			{
+				_activeChar.logout();
+			}
+		}
+		
 		_activeChar = pc;
 	}
 
@@ -507,9 +498,9 @@ public class ClientThread implements Runnable, PacketOutput
 		return _hostname;
 	}
 
-	public void CharReStart(boolean flag)
+	public void inGame(boolean flag)
 	{
-		_charRestart = flag;
+		_inGame = flag;
 	}
 
 	public static void quitGame(L1PcInstance pc) {

@@ -21,35 +21,24 @@ package l1j.server.server.clientpackets;
 import java.util.logging.Logger;
 
 import l1j.server.server.ClientThread;
-import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_PacketBox;
 
-public class C_NewCharSelect extends ClientBasePacket {
-	private static final String C_NEW_CHAR_SELECT = "[C] C_NewCharSelect";
-	private static Logger _log = Logger.getLogger(C_NewCharSelect.class
-			.getName());
+import static l1j.server.server.serverpackets.S_PacketBox.LOGOUT;
 
-	public C_NewCharSelect(byte[] decrypt, ClientThread client) {
+public class C_NewCharSelect extends ClientBasePacket
+{
+	private static Logger _log = Logger.getLogger(C_NewCharSelect.class.getName());
+
+	public C_NewCharSelect(byte[] decrypt, ClientThread client)
+	{
 		super(decrypt);
-		client.sendPacket(new S_PacketBox(S_PacketBox.LOGOUT)); // 2.70C->3.0で追加
-		client.CharReStart(true);
-		if (client.getActiveChar() != null) {
-			L1PcInstance pc = client.getActiveChar();
-			_log.fine("Disconnect from: " + pc.getName());
-			ClientThread.quitGame(pc);
-
-			synchronized (pc) {
-				pc.logout();
-				client.setActiveChar(null);
-			}
-		} else {
-			_log.fine("Disconnect Request from Account : "
-					+ client.getAccountName());
-		}
-	}
-
-	@Override
-	public String getType() {
-		return C_NEW_CHAR_SELECT;
+		client.sendPacket(new S_PacketBox(LOGOUT)); // 2.70C->3.0で追加
+		// 追他個頭拉.. 舊版本就在用這個封包了
+		
+		client.inGame(false);
+		client.setActiveChar(null);
+		
+		if (client.getActiveChar() != null)
+			_log.fine("Disconnect from: " + client.getActiveChar().getName());
 	}
 }
