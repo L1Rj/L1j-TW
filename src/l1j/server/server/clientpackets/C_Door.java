@@ -34,34 +34,40 @@ import l1j.server.server.templates.L1House;
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket, C_Door
 
-public class C_Door extends ClientBasePacket {
-
+public class C_Door extends ClientBasePacket
+{
 	private static Logger _log = Logger.getLogger(C_Door.class
 			.getName());
 	private static final String C_DOOR = "[C] C_Door";
 
-	public C_Door(byte abyte0[], ClientThread client)
-			throws Exception {
+	public C_Door(byte abyte0[], ClientThread client) throws Exception
+	{
 		super(abyte0);
+		
 		int locX = readH();
 		int locY = readH();
 		int objectId = readD();
 
 		L1PcInstance pc = client.getActiveChar();
-		L1DoorInstance door = (L1DoorInstance)L1World.getInstance()
-				.findObject(objectId);
-		if (door == null) {
+		L1DoorInstance door = (L1DoorInstance)L1World.getInstance().findObject(objectId);
+		
+		if (door == null)
 			return;
-		}
-
-		if ((door.getDoorId() >= 5001 && door.getDoorId() <= 5010)) { //水晶洞
+		
+		// 判斷地圖是否不相等 或 範圍是否超過 1
+		if (pc.getMapId() != door.getMapId() || pc.getTileLineDistance(door) > 1)
 			return;
-		} else if (door.getDoorId() == 6006) { // 話島冒洞2樓
 
-			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
+		if ((door.getDoorId() >= 5001 && door.getDoorId() <= 5010)) //水晶洞
+			return;
+		
+		else if (door.getDoorId() == 6006) // 話島冒洞2樓
+		{ 
+			if (door.getOpenStatus() == ActionCodes.ACTION_Open)
 				return;
-			}
-			if (pc.getInventory().consumeItem(40163,1)) { //角色擁有黃金鑰匙
+			
+			if (pc.getInventory().consumeItem(40163,1)) //角色擁有黃金鑰匙
+			{ 
 				door.open();
 				CloseTimer closetimer = new CloseTimer(door);
 				closetimer.begin();
