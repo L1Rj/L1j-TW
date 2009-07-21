@@ -444,6 +444,37 @@ public class ClientThread implements Runnable, PacketOutput
 			}
 		}
 	}
+	
+	@Override
+	public void sendPacket(ServerBasePacket[] packets)
+	{
+		// 判斷封包是否為空
+		if (packets == null)
+			return; // 中斷程序
+		
+		synchronized (this)
+		{
+			try
+			{
+				for (ServerBasePacket packet : packets)
+				{
+					byte[] data = packet.getBytes(); // 取得資料封包
+					data = LineageEncryption.encrypt(data, _clkey); // 將資料封包加密
+					
+					_cout.write(packet.getLength()); // 輸出長度
+					_cout.write(data); // 輸出資料
+					data = null; // 釋放資源
+				}
+				
+				_cout.flush(); // 將暫存器資料清除 寫入緩衝器內
+			}
+			catch (IOException e)
+			{
+			}
+		}
+		
+		packets = null; // 釋放資源
+	}
 
 	public void close() throws IOException
 	{
@@ -503,7 +534,8 @@ public class ClientThread implements Runnable, PacketOutput
 		_inGame = flag;
 	}
 
-	public static void quitGame(L1PcInstance pc) {
+	public static void quitGame(L1PcInstance pc)
+	{
 		// 死亡していたら街に戻し、空腹状态にする
 		if (pc.isDead()) {
 			int[] loc = Getback.GetBack_Location(pc, true);

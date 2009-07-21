@@ -17,57 +17,53 @@
 
 package l1j.server.server.serverpackets;
 
-import java.util.List;
-import java.util.logging.Logger;
+import static l1j.server.server.Opcodes.S_OPCODE_INVLIST;
 
-import l1j.server.server.Opcodes;
+import java.util.List;
+
 import l1j.server.server.model.Instance.L1ItemInstance;
 
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
 
-public class S_InvList extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_InvList.class.getName());
-
-	private static final String S_INV_LIST = "[S] S_InvList";
-
-	/**
-	 * インベントリにアイテムを複數個まとめて追加する。
+public class S_InvList extends ServerBasePacket
+{
+	/*
+	 * 載入物品清單 (請勿拿來更新物品)
 	 */
-	public S_InvList(List<L1ItemInstance> items) {
-		writeC(Opcodes.S_OPCODE_INVLIST);
-		writeC(items.size()); // アイテム數
+	public S_InvList(List<L1ItemInstance> items)
+	{
+		writeC(S_OPCODE_INVLIST);
+		writeC(items.size()); // 道具數量
 
-		for (L1ItemInstance item : items) {
+		for (L1ItemInstance item : items)
+		{
 			writeD(item.getId());
-			writeC(item.getItem().getUseType());
-			writeC(0);
+			writeH(item.getItem().getUseType());
 			writeH(item.get_gfxid());
 			writeC(item.getBless());
 			writeD(item.getCount());
 			writeC((item.isIdentified()) ? 1 : 0);
-			writeS(item.getViewName());
-			if (!item.isIdentified()) {
-				// 未鑑定の場合ステータスを送る必要はない
-				writeC(0);
-			} else {
+			
+			if (item.getItem().getType2() == 0)
+				writeS(item.getViewName());
+			else
+				writeS(item.getNumberedName(item.getCount()));
+			
+			if (!item.isIdentified())
+				writeC(0);// 未鑑定の場合ステータスを送る必要はない
+			else
+			{
 				byte[] status = item.getStatusBytes();
 				writeC(status.length);
-				for (byte b : status) {
-					writeC(b);
-				}
+				writeByte(status);
 			}
 		}
 	}
 
 	@Override
-	public byte[] getContent() {
-		return _bao.toByteArray();
-	}
-
-	@Override
-	public String getType() {
-		return S_INV_LIST;
+	public byte[] getContent()
+	{
+		return getBytes();
 	}
 }

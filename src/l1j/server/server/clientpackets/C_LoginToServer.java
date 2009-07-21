@@ -18,11 +18,32 @@
 
 package l1j.server.server.clientpackets;
 
+import static l1j.server.server.model.skill.L1SkillId.COOKING_1_0_N;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_1_0_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_1_6_N;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_1_6_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_0_N;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_0_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_6_N;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_6_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_0_N;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_0_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_6_N;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_6_S;
+import static l1j.server.server.model.skill.L1SkillId.SHAPE_CHANGE;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_BLUE_POTION;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_BRAVE;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_CHAT_PROHIBITED;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_ELFBRAVE;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_HASTE;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_RIBRAVE;
+
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,15 +62,16 @@ import l1j.server.server.model.L1Cooking;
 import l1j.server.server.model.L1PolyMorph;
 import l1j.server.server.model.L1War;
 import l1j.server.server.model.L1World;
+import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
 import l1j.server.server.model.skill.L1SkillUse;
-import l1j.server.server.serverpackets.S_ActiveSpells;
 import l1j.server.server.serverpackets.S_AddSkill;
 import l1j.server.server.serverpackets.S_Bookmarks;
 import l1j.server.server.serverpackets.S_CharacterConfig;
-import l1j.server.server.serverpackets.S_CharTitle;
 import l1j.server.server.serverpackets.S_InvList;
+import l1j.server.server.serverpackets.S_ItemName;
+import l1j.server.server.serverpackets.S_LoginGame;
 import l1j.server.server.serverpackets.S_MapID;
 import l1j.server.server.serverpackets.S_OwnCharPack;
 import l1j.server.server.serverpackets.S_OwnCharStatus;
@@ -59,8 +81,6 @@ import l1j.server.server.serverpackets.S_SkillBrave;
 import l1j.server.server.serverpackets.S_SkillHaste;
 import l1j.server.server.serverpackets.S_SkillIconGFX;
 import l1j.server.server.serverpackets.S_SummonPack;
-import l1j.server.server.serverpackets.S_Unknown1;
-import l1j.server.server.serverpackets.S_Unknown2;
 import l1j.server.server.serverpackets.S_War;
 import l1j.server.server.serverpackets.S_Weather;
 import l1j.server.server.serverpackets.S_bonusstats;
@@ -68,7 +88,6 @@ import l1j.server.server.templates.L1BookMark;
 import l1j.server.server.templates.L1GetBackRestart;
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.utils.SQLUtil;
-import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
@@ -139,11 +158,9 @@ public class C_LoginToServer extends ClientBasePacket {
 		pc.setPacketOutput(client);
 		client.setActiveChar(pc);
 
-		S_Unknown1 s_unknown1 = new S_Unknown1();
+		S_LoginGame s_unknown1 = new S_LoginGame();
 		pc.sendPackets(s_unknown1);
-		S_Unknown2 s_unknown2 = new S_Unknown2();
-		pc.sendPackets(s_unknown2);
-
+		items(pc);
 		bookmarks(pc);
 
 		// リスタート先がgetback_restartテーブルで指定されていたら移動させる
@@ -192,9 +209,12 @@ public class C_LoginToServer extends ClientBasePacket {
 		}
 
 		L1World.getInstance().addVisibleObject(pc);
+		
+		/*
 		S_ActiveSpells s_activespells = new S_ActiveSpells(pc);
 		pc.sendPackets(s_activespells);
-
+		*/
+		
 		pc.beginGameTimeCarrier();
 
 		S_OwnCharStatus s_owncharstatus = new S_OwnCharStatus(pc);
@@ -208,16 +228,11 @@ public class C_LoginToServer extends ClientBasePacket {
 
 		pc.sendPackets(new S_SPMR(pc));
 
-		// XXX タイトル情報はS_OwnCharPackに含まれるので多分不要
-		S_CharTitle s_charTitle = new S_CharTitle(pc.getId(), pc.getTitle());
-		pc.sendPackets(s_charTitle);
-		pc.broadcastPacket(s_charTitle);
-
 		pc.sendVisualEffectAtLogin(); // クラウン、毒、水中等の視覺效果を表示
 
 		pc.sendPackets(new S_Weather(L1World.getInstance().getWeather()));
 
-		items(pc);
+		
 		skills(pc);
 		buff(client, pc);
 		pc.turnOnOffLight();
@@ -314,11 +329,21 @@ public class C_LoginToServer extends ClientBasePacket {
 		}
 	}
 
-	private void items(L1PcInstance pc) {
-		// DBからキャラクターと倉庫のアイテムを讀み⑸む
-		CharacterTable.getInstance().restoreInventory(pc);
-
-		pc.sendPackets(new S_InvList(pc.getInventory().getItems()));
+	private void items(L1PcInstance pc)
+	{
+		CharacterTable.getInstance().restoreInventory(pc); // 讀取倉庫、角色物品資料
+		List<L1ItemInstance> itemList = pc.getInventory().getItems(); // 取得背包物品清單
+		pc.sendPackets(new S_InvList(itemList)); // 送出角色物品清單
+		
+		// 更新正在使用的武器、防具名稱 (如果有使用武器則會產生音效)
+		for (L1ItemInstance item : itemList)
+		{
+			if (item.getItem().getType2() == 0)
+				continue;
+			
+			if (item.isEquipped())
+				pc.sendPackets(new S_ItemName(item));
+		}
 	}
 
 	private void bookmarks(L1PcInstance pc) {

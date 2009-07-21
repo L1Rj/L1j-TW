@@ -18,19 +18,21 @@
  */
 package l1j.server.server.serverpackets;
 
-import l1j.server.server.Opcodes;
+import static l1j.server.server.Opcodes.S_OPCODE_DOACTIONGFX;
 
-public class S_DoActionShop extends ServerBasePacket {
-
-	public S_DoActionShop(int object, int gfxid, byte[] message) {
-		writeC(Opcodes.S_OPCODE_DOACTIONGFX);
+public class S_DoActionShop extends ServerBasePacket
+{
+	public S_DoActionShop(int object, int gfxid, byte[] message)
+	{
+		writeC(S_OPCODE_DOACTIONGFX);
 		writeD(object);
 		writeC(gfxid);
 		writeByte(message);
 	}
 
 	@Override
-	public byte[] getContent() {
+	public byte[] getContent()
+	{
 		return getBytes();
 	}
 }

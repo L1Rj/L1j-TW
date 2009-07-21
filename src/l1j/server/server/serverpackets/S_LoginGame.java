@@ -18,11 +18,13 @@
  */
 package l1j.server.server.serverpackets;
 
-import l1j.server.server.Opcodes;
+import static l1j.server.server.Opcodes.S_OPCODE_UNKNOWN1;
 
-public class S_Unknown1 extends ServerBasePacket {
-	public S_Unknown1() {
-		writeC(Opcodes.S_OPCODE_UNKNOWN1);
+public class S_LoginGame extends ServerBasePacket
+{
+	public S_LoginGame()
+	{
+		writeC(S_OPCODE_UNKNOWN1);
 		writeC(0x03);
 		writeC(0x00);
 		writeC(0xF7);
@@ -33,7 +35,8 @@ public class S_Unknown1 extends ServerBasePacket {
 	}
 
 	@Override
-	public byte[] getContent() {
+	public byte[] getContent()
+	{
 		return getBytes();
 	}
 }

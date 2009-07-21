@@ -640,20 +640,21 @@ public class L1ItemInstance extends L1Object {
 					name.append(attrStr + " ");
 				}
 			}
-			if (getItem().getType2() == 1 || getItem().getType2() == 2) { // 武器‧防具
-				if (getEnchantLevel() >= 0) {
+			
+			if (getItem().getType2() != 0) { // 武器‧防具
+				if (getEnchantLevel() >= 0)
 					name.append("+" + getEnchantLevel() + " ");
-				} else if (getEnchantLevel() < 0) {
+				else
 					name.append(String.valueOf(getEnchantLevel()) + " ");
-				}
 			}
 		}
-		if (isIdentified()) {
+		if (isIdentified())
 			name.append(_item.getIdentifiedNameId());
-		} else {
+		else
 			name.append(_item.getUnidentifiedNameId());
-		}
-		if (isIdentified()) {
+		
+		if (isIdentified())
+		{
 			if (getItem().getMaxChargeCount() > 0) {
 				name.append(" (" + getChargeCount() + ")");
 			}

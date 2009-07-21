@@ -18,42 +18,24 @@
  */
 package l1j.server.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import l1j.server.server.Opcodes;
 import l1j.server.server.model.Instance.L1ItemInstance;
 
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket, S_SendInvOnLogin
 
-public class S_ItemName extends ServerBasePacket {
-
-	private static final String S_ITEM_NAME = "[S] S_ItemName";
-
-	private static Logger _log = Logger.getLogger(S_ItemName.class
-			.getName());
-
-	/**
-	 * アイテムの名前を變更する。裝備や強化狀態が變わったときに送る。
-	 */
-	public S_ItemName(L1ItemInstance item) {
-		if (item == null) {
-			return;
-		}
-		// jumpを見る限り、このOpcodeはアイテム名を更新させる目的だけに使用される模樣（裝備後やOE後專用？）
-		// 後に何かデータを續けて送っても全て無視されてしまう
+public class S_ItemName extends ServerBasePacket
+{
+	public S_ItemName(L1ItemInstance item)
+	{
 		writeC(Opcodes.S_OPCODE_ITEMNAME);
 		writeD(item.getId());
 		writeS(item.getViewName());
 	}
 
 	@Override
-	public byte[] getContent() {
+	public byte[] getContent()
+	{
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_ITEM_NAME;
 	}
 }

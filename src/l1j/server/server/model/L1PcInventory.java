@@ -166,21 +166,26 @@ public class L1PcInventory extends L1Inventory {
 
 	// ＤＢのcharacter_itemsの讀⑸
 	@Override
-	public void loadItems() {
-		try {
+	public void loadItems()
+	{
+		try
+		{
 			CharactersItemStorage storage = CharactersItemStorage.create();
 
-			for (L1ItemInstance item : storage.loadItems(_owner.getId())) {
+			for (L1ItemInstance item : storage.loadItems(_owner.getId()))
+			{
 				_items.add(item);
 
-				if (item.isEquipped()) {
+				if (item.isEquipped())
+				{
 					item.setEquipped(false);
 					setEquipped(item, true, true, false);
 				}
-				if (item.getItem().getType2() == 0 && item.getItem()
-						.getType() == 2) { // light系アイテム
+				
+				if (item.getItem().getType2() == 0 && item.getItem().getType() == 2) 
+					// light系アイテム
 					item.setRemainingTime(item.getItem().getLightFuel());
-				}
+				
 				L1World.getInstance().storeObject(item);
 			}
 		} catch (Exception e) {

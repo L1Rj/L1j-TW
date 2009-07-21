@@ -19,9 +19,10 @@
 
 package l1j.server.server.serverpackets;
 
+import static l1j.server.server.Opcodes.S_OPCODE_CHARPACK;
+
 import java.util.logging.Logger;
 
-import l1j.server.server.Opcodes;
 import l1j.server.server.datatables.NPCTalkDataTable;
 import l1j.server.server.model.L1NpcTalkData;
 import l1j.server.server.model.Instance.L1FieldObjectInstance;
@@ -30,9 +31,8 @@ import l1j.server.server.model.Instance.L1NpcInstance;
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
 
-public class S_NPCPack extends ServerBasePacket {
-
-	private static final String S_NPC_PACK = "[S] S_NPCPack";
+public class S_NPCPack extends ServerBasePacket
+{
 	private static Logger _log = Logger.getLogger(S_NPCPack.class.getName());
 
 	private static final short STATUS_POISON = 1;
@@ -44,83 +44,71 @@ public class S_NPCPack extends ServerBasePacket {
 	private static final short STATUS_FASTMOVABLE = 64;
 	private static final short STATUS_GHOST = 128;
 
-	private byte[] _byte = null;
-
-	public S_NPCPack(L1NpcInstance npc) {
-		writeC(Opcodes.S_OPCODE_CHARPACK);
+	public S_NPCPack(L1NpcInstance npc)
+	{
+		writeC(S_OPCODE_CHARPACK);
 		writeH(npc.getX());
 		writeH(npc.getY());
 		writeD(npc.getId());
-		if (npc.getTempCharGfx() == 0) {
+		
+		if (npc.getTempCharGfx() == 0) 
 			writeH(npc.getGfxId());
-		} else {
+		else
 			writeH(npc.getTempCharGfx());
-		}
-		if (npc.getNpcTemplate().is_doppel() && npc.getGfxId() != 31) { // スライムの姿をしていなければドッペル
+		
+		// スライムの姿をしていなければドッペル
+		if (npc.getNpcTemplate().is_doppel() && npc.getGfxId() != 31)
 			writeC(4); // 長劍
-		} else {
+		else
 			writeC(npc.getStatus());
-		}
+		
 		writeC(npc.getHeading());
 		writeC(npc.getChaLightSize());
 		writeC(npc.getMoveSpeed());
-		writeD(npc.getExp());
+		writeD(0x00000001);
 		writeH(npc.getTempLawful());
 		writeS(npc.getNameId());
-		if (npc instanceof L1FieldObjectInstance) { // SICの壁字、看板など
+		
+		// 判斷 物件 是否為 一般告示牌
+		if (npc instanceof L1FieldObjectInstance)
+		{ 
 			L1NpcTalkData talkdata = NPCTalkDataTable.getInstance()
 					.getTemplate(npc.getNpcTemplate().get_npcId());
-			if (talkdata != null) {
+			
+			if (talkdata != null)
 				writeS(talkdata.getNormalAction()); // タイトルがHTML名として解釋される
-			} else {
+			else
 				writeS(null);
-			}
-		} else {
+		}
+		else
 			writeS(npc.getTitle());
-		}
 
-		/**
-		 * シシニテ - 0:mob,item(atk pointer), 1:poisoned(), 2:invisable(), 4:pc,
-		 * 8:cursed(), 16:brave(), 32:??, 64:??(??), 128:invisable but name
-		 */
 		int status = 0;
-		if (npc.getPoison() != null) { // 毒狀態
-			if (npc.getPoison().getEffectId() == 1) {
+		
+		if (npc.getPoison() != null) // 毒狀態
+			if (npc.getPoison().getEffectId() == 1)
 				status |= STATUS_POISON;
-			}
-		}
-		if (npc.getNpcTemplate().is_doppel()) {
-			// PC屬性だとエヴァの祝福を渡せないためWIZクエストのドッペルは例外
-			if (npc.getNpcTemplate().get_npcId() != 81069) {
+		
+		// PC屬性だとエヴァの祝福を渡せないためWIZクエストのドッペルは例外
+		if (npc.getNpcTemplate().is_doppel())
+			if (npc.getNpcTemplate().get_npcId() != 81069)
 				status |= STATUS_PC;
-			}
-		}
+		
 		writeC(status);
-
 		writeD(0); // 0以外にするとC_27が飛ぶ
 		writeS(null);
 		writeS(null); // マスター名？
 		writeC(0);
-		writeC(0xFF); // HP
+		writeC(0xFF); // 血條
 		writeC(0);
 		writeC(npc.getLevel());
-		writeC(0);
-		writeC(0xFF);
-		writeC(0xFF);
+		writeS(null);
+		writeH(0xFFFF);
 	}
 
 	@Override
-	public byte[] getContent() {
-		if (_byte == null) {
-			_byte = _bao.toByteArray();
-		}
-
-		return _byte;
+	public byte[] getContent()
+	{
+		return getBytes();
 	}
-
-	@Override
-	public String getType() {
-		return S_NPC_PACK;
-	}
-
 }

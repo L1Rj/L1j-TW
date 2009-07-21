@@ -22,6 +22,8 @@ import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.xml.crypto.Data;
+
 import l1j.server.Config; // 5.06
 import l1j.server.server.ClientThread;
 
@@ -81,15 +83,39 @@ public abstract class ClientBasePacket {
 		return Double.longBitsToDouble(l);
 	}
 
-	public String readS() {
+	public String readS()
+	{
 		String s = null;
-		try {
+		
+		try
+		{
 			s = new String(_decrypt, _off, _decrypt.length - _off, CLIENT_LANGUAGE_CODE);
 			s = s.substring(0, s.indexOf('\0'));
 			_off += s.getBytes(CLIENT_LANGUAGE_CODE).length + 1;
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			_log.log(Level.SEVERE, "OpCode=" + (_decrypt[0] & 0xff), e);
 		}
+		
+		return s;
+	}
+	
+	public String readChars()
+	{
+		String s = "";
+		
+		while (_off < _decrypt.length)
+		{
+			char c = (char) readH(); // 讀取 16 位元的數值 並轉換成 字元
+			
+			// 判斷值是否等於 0 (0 代表結束的意思)
+			if (c == 0)
+				return s;
+			else
+				s += c;
+		}
+		
 		return s;
 	}
 
