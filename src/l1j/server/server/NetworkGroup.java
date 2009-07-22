@@ -17,10 +17,10 @@ public class NetworkGroup
 	}
 	
 	// -- 常數 --
-	private static final TimeUnit tUnit = TimeUnit.MILLISECONDS; // 處理的時間單位 (預設 毫秒)
-	private static int cpSize = 500; // 核心池大小
-	private static int mpSize = Config.MAX_ONLINE_USERS + 500 ; // 極限池大小
-	private static int kaTime = 1; // 存活時間
+	private static int cpSize = 6; // Thread要保存的數量
+	private static int mpSize = Config.MAX_ONLINE_USERS * 2 ; // Thread可容納的數量
+	private static int kaTime = 5; // 存活時間
+	private static final TimeUnit tUnit = TimeUnit.SECONDS; // 存活時間單位 (預設 秒)
 	
 	private final ThreadPoolExecutor TPExec; // 線程池
 	
