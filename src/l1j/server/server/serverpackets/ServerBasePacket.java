@@ -20,16 +20,18 @@ package l1j.server.server.serverpackets;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.Config; // 5.06
 
-public abstract class ServerBasePacket {
-	private static Logger _log = Logger.getLogger(ServerBasePacket.class
-			.getName());
+public abstract class ServerBasePacket
+{
+	private static Logger _log = Logger.getLogger(ServerBasePacket.class.getName());
 
 	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
+	static final Random random = new Random(); // 填充物要用到的亂術
 
 	ByteArrayOutputStream _bao = new ByteArrayOutputStream();
 
@@ -110,13 +112,30 @@ public abstract class ServerBasePacket {
 
 		_bao.write(0);
 	}
+	
+	// 將字串轉為 16位元的字元
+	protected void writeChar(String s)
+	{
+		if (s != null)
+		{
+			char[] cs = s.toCharArray();
+			
+			for (char c : cs)
+				writeH(c);
+		}
+		
+		writeH(0x0000); // 結束語句
+	}
 
-	protected void writeByte(byte[] text) {
-		try {
-			if (text != null) {
+	protected void writeByte(byte[] text)
+	{
+		try
+		{
+			if (text != null)
 				_bao.write(text);
-			}
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
 	}

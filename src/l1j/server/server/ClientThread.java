@@ -18,29 +18,29 @@
  */
 package l1j.server.server;
 
-import static l1j.server.Config.HOSTNAME_LOOKUPS;
+import static l1j.server.Config.AUTOMATIC_KICK;
 import static l1j.server.Config.AUTOSAVE_INTERVAL;
 import static l1j.server.Config.AUTOSAVE_INTERVAL_INVENTORY;
-import static l1j.server.Config.AUTOMATIC_KICK;
-
-import static l1j.server.server.Opcodes.C_OPCODE_USESKILL;
-import static l1j.server.server.Opcodes.C_OPCODE_COMMONCLICK;
-import static l1j.server.server.Opcodes.C_OPCODE_CHANGECHAR;
-import static l1j.server.server.Opcodes.C_OPCODE_MOVECHAR;
-import static l1j.server.server.Opcodes.C_OPCODE_ATTACK;
+import static l1j.server.Config.HOSTNAME_LOOKUPS;
 import static l1j.server.server.Opcodes.C_OPCODE_ARROWATTACK;
+import static l1j.server.server.Opcodes.C_OPCODE_ATTACK;
+import static l1j.server.server.Opcodes.C_OPCODE_CHANGECHAR;
+import static l1j.server.server.Opcodes.C_OPCODE_COMMONCLICK;
+import static l1j.server.server.Opcodes.C_OPCODE_KEEPALIVE;
 import static l1j.server.server.Opcodes.C_OPCODE_LOGINTOSERVER;
+import static l1j.server.server.Opcodes.C_OPCODE_LOGINTOSERVEROK;
+import static l1j.server.server.Opcodes.C_OPCODE_MOVECHAR;
+import static l1j.server.server.Opcodes.C_OPCODE_RETURNTOLOGIN;
 import static l1j.server.server.Opcodes.C_OPCODE_USEITEM;
 import static l1j.server.server.Opcodes.C_OPCODE_USEPETITEM;
-import static l1j.server.server.Opcodes.C_OPCODE_LOGINTOSERVEROK;
-import static l1j.server.server.Opcodes.C_OPCODE_RETURNTOLOGIN;
-import static l1j.server.server.Opcodes.C_OPCODE_KEEPALIVE;
+import static l1j.server.server.Opcodes.C_OPCODE_USESKILL;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -59,10 +59,11 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
 import l1j.server.server.serverpackets.S_Disconnect;
+import l1j.server.server.serverpackets.S_InitPacket;
 import l1j.server.server.serverpackets.S_PacketBox;
 import l1j.server.server.serverpackets.S_SummonPack;
 import l1j.server.server.serverpackets.ServerBasePacket;
-import l1j.server.server.utils.StreamUtil;
+import l1j.server.server.utils.ByteArrayUtil;
 import l1j.server.server.utils.SystemUtil;
 
 // Referenced classes of package l1j.server.server:
@@ -73,14 +74,6 @@ public class ClientThread implements Runnable, PacketOutput
 {
 	private static Logger _log = Logger.getLogger(ClientThread.class.getName());
 	
-	// 3.0 填充物 [即將移除該常數]
-	private static final byte[] FIRST_PACKET =
-	{ 
-		(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,
-		(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,
-		(byte) 0x02, (byte) 0x08, (byte) 0x00
-	};
-	
 	private Socket _cs;
 	private InputStream _cin;
 	private OutputStream _cout;
@@ -89,9 +82,12 @@ public class ClientThread implements Runnable, PacketOutput
 	private L1PcInstance _activeChar;
 	private String _ip;
 	private String _hostname;
-	private LineageKeys _clkey;
+	private LineageKeys _keyBox;
 	private int _loginStatus;
 	private boolean _inGame;
+	
+	private long _lastSavedTime = System.currentTimeMillis();
+	private long _lastSavedTime_inventory = System.currentTimeMillis();
 	
 	/* 
 	 * 封包處理程序
@@ -151,16 +147,13 @@ public class ClientThread implements Runnable, PacketOutput
 				throw new RuntimeException();
 			}
 		    
-			return LineageEncryption.decrypt(data, _clkey);
+			return LineageEncryption.decrypt(data, _keyBox);
 		}
 		catch (IOException e)
 		{
 			throw e;
 		}
 	}
-
-	private long _lastSavedTime = System.currentTimeMillis();
-	private long _lastSavedTime_inventory = System.currentTimeMillis();
 
 	private void doAutoSave() throws Exception
 	{
@@ -184,7 +177,9 @@ public class ClientThread implements Runnable, PacketOutput
 				_activeChar.saveInventory();
 				_lastSavedTime_inventory = System.currentTimeMillis();
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			_log.warning("Client autosave failure.");
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw e;
@@ -208,21 +203,11 @@ public class ClientThread implements Runnable, PacketOutput
 
 		try
 		{
-			long seed = 0x7c98bdfa; // init key
-			byte Bogus = (byte)(FIRST_PACKET.length + 7);
-			_cout.write(Bogus & 0xFF);
-			_cout.write(Bogus >> 8 & 0xFF);
-			_cout.write(0x7d);
-			_cout.write((byte)(seed & 0xFF));
-			_cout.write((byte)(seed >> 8 & 0xFF));
-			_cout.write((byte)(seed >> 16 & 0xFF));
-			_cout.write((byte)(seed >> 24 & 0xFF));
-			_cout.write(FIRST_PACKET);
-			_cout.flush();
-			
-			_clkey = LineageEncryption.initKeys(seed);
+			S_InitPacket init = new S_InitPacket(); // 建立初始化封包
+			sendPacket(init); // 送出初始化封包
+			_keyBox = LineageEncryption.initKeys(init.getKey()); // 將鑰匙初始化
 
-			while (true)
+			while (!_cs.isClosed())
 			{
 				doAutoSave();
 
@@ -236,7 +221,10 @@ public class ClientThread implements Runnable, PacketOutput
 				{
 					break;
 				}
-
+				
+				// System.out.println("C -> S");
+				// System.out.println(new ByteArrayUtil(data).dumpToString());
+				
 				int opcode = data[0] & 0xFF;
 				
 				// C_OPCODE_KEEPALIVE以外の何かしらのパケットを受け取ったらObserverへ通知
@@ -298,16 +286,9 @@ public class ClientThread implements Runnable, PacketOutput
 		}
 		finally
 		{
-			try
-			{
-				setActiveChar(null);
-				StreamUtil.close(_cout, _cin);
-			} catch (Exception e) {
-				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			} finally {
-				LoginController.getInstance().logout(this);
-			}
+			Close();
 		}
+		
 		_cs = null;
 		_log.fine("Server thread[C] stopped");
 		
@@ -325,9 +306,9 @@ public class ClientThread implements Runnable, PacketOutput
 
 	public void kick()
 	{
-		sendPacket(new S_Disconnect());
 		_kick = 1;
-		StreamUtil.close(_cout, _cin);
+		sendPacket(new S_Disconnect());
+		Close();
 	}
 
 	// --* [類別] 封包處裡程序 *--
@@ -340,7 +321,7 @@ public class ClientThread implements Runnable, PacketOutput
 		{
 			LinkList = new LinkedList<byte[]>(); // 初始化 鏈結清單
 			Handler = ClientThread.this.Handler; // 取得 ClientThrad的處理程序
-			GeneralThreadPool.getInstance().execute(this); // 運行該執行緒
+			NetworkGroup.getGroup().run(this); // 運行該執行緒
 		}
 
 		public void addWork(byte[] data)
@@ -373,29 +354,35 @@ public class ClientThread implements Runnable, PacketOutput
 	private static Timer _observerTimer = new Timer();
 
 	// クライアントスレッドの监视タイマー
-	class Observer extends TimerTask {
+	class Observer extends TimerTask
+	{
 		private int _checkct = 1;
-
 		private final int _disconnectTimeMillis;
 
-		public Observer(int disconnectTimeMillis) {
+		public Observer(int disconnectTimeMillis)
+		{
 			_disconnectTimeMillis = disconnectTimeMillis;
 		}
 
-		public void start() {
+		public void start()
+		{
 			_observerTimer.scheduleAtFixedRate(Observer.this, 0,
 					_disconnectTimeMillis);
 		}
 
 		@Override
-		public void run() {
-			try {
-				if (_cs == null) {
+		public void run()
+		{
+			try
+			{
+				if (_cs == null)
+				{
 					cancel();
 					return;
 				}
 
-				if (_checkct > 0) {
+				if (_checkct > 0)
+				{
 					_checkct = 0;
 					return;
 				}
@@ -431,7 +418,10 @@ public class ClientThread implements Runnable, PacketOutput
 			try
 			{
 				byte[] data = packet.getBytes(); // 取得資料封包
-				data = LineageEncryption.encrypt(data, _clkey); // 將資料封包加密
+				
+				// 判斷鑰匙容器是否為空
+				if (_keyBox != null)
+					data = LineageEncryption.encrypt(data, _keyBox); // 將資料封包加密
 				
 				_cout.write(packet.getLength()); // 輸出長度
 				_cout.write(data); // 輸出資料
@@ -446,7 +436,7 @@ public class ClientThread implements Runnable, PacketOutput
 	}
 	
 	@Override
-	public void sendPacket(ServerBasePacket[] packets)
+	public void sendPacket(ArrayList<ServerBasePacket> packets)
 	{
 		// 判斷封包是否為空
 		if (packets == null)
@@ -459,7 +449,7 @@ public class ClientThread implements Runnable, PacketOutput
 				for (ServerBasePacket packet : packets)
 				{
 					byte[] data = packet.getBytes(); // 取得資料封包
-					data = LineageEncryption.encrypt(data, _clkey); // 將資料封包加密
+					data = LineageEncryption.encrypt(data, _keyBox); // 將資料封包加密
 					
 					_cout.write(packet.getLength()); // 輸出長度
 					_cout.write(data); // 輸出資料
@@ -476,9 +466,26 @@ public class ClientThread implements Runnable, PacketOutput
 		packets = null; // 釋放資源
 	}
 
-	public void close() throws IOException
+	public void Close()
 	{
-		_cs.close();
+		if (_cs.isClosed())
+			return;
+		
+		try
+		{
+			_cin.close();
+			_cout.close();
+			_cs.close();
+			
+			_cin = null; // 釋放輸入匯流排
+			_cout = null; // 釋放輸出匯流排
+		}
+		catch (IOException e)
+		{
+		}
+		
+		setActiveChar(null); // 清除目前正在使用的角色
+		LoginController.getInstance().logout(this); // 將用戶的登記
 	}
 
 	public void setActiveChar(L1PcInstance pc)

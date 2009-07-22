@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 import l1j.server.server.command.L1Commands;
 import l1j.server.server.command.executor.L1CommandExecutor;
 import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.serverpackets.S_ActiveSpells;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SystemMessage;
 import l1j.server.server.templates.L1Command;
@@ -105,6 +106,14 @@ public class GMCommands {
 			if (!cmd.equalsIgnoreCase("r"))
 				_lastCommands.put(gm.getId(), cmdLine);
 			
+			return;
+		}
+		
+		if (cmdLine.startsWith("test "))
+		{
+			cmdLine = cmdLine.substring(5);
+			int offset = Integer.parseInt(cmdLine);
+			gm.sendPackets(new S_ActiveSpells(gm, offset));
 			return;
 		}
 		

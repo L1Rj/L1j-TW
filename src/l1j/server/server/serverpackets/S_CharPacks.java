@@ -19,18 +19,13 @@
 
 package l1j.server.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import l1j.server.server.Opcodes;
 
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
 
-public class S_CharPacks extends ServerBasePacket {
-	private static final String S_CHAR_PACKS = "[S] S_CharPacks";
-
-	private static Logger _log = Logger.getLogger(S_CharPacks.class.getName());
-
+public class S_CharPacks extends ServerBasePacket
+{
 	public S_CharPacks(String name, String clanName, int type, int sex,
 			int lawful, int hp, int mp, int ac, int lv, int str, int dex,
 			int con, int wis, int cha, int intel, int accessLevel) {
@@ -50,26 +45,12 @@ public class S_CharPacks extends ServerBasePacket {
 		writeC(wis);
 		writeC(cha);
 		writeC(intel);
-
-		// is Administrator
-		// 0 = false
-		// 1 = true , can't attack
-		// > 1 true , can't attack
-		// can use Public GameMaster Command
-// if (accessLevel == 200) {
-// writeC(1);
-// } else {
-			writeC(0);
-// }
+		writeC(0);
 	}
 
 	@Override
-	public byte[] getContent() {
+	public byte[] getContent()
+	{
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_CHAR_PACKS;
 	}
 }

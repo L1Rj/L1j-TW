@@ -18,10 +18,15 @@
  */
 package l1j.server.server.serverpackets;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import l1j.server.Config;
 import l1j.server.server.Opcodes;
 
-public class S_ServerVersion extends ServerBasePacket {
+public class S_ServerVersion extends ServerBasePacket
+{
+	private static final long lastTime = System.currentTimeMillis();
 	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.06 Start
 	private static final String S_SERVER_VERSION = "[S] ServerVersion";
 
@@ -59,7 +64,7 @@ public class S_ServerVersion extends ServerBasePacket {
 		writeD(0x0001606a); // cache verion
 		writeD(0x0000ee01); // auth verion
 		writeD(0x00013cdb); // npc verion
-
+		
 		// ↓ unknown
 		// ↓ Old 270Lin.bin
 		// ↓ New 270Lin.bin

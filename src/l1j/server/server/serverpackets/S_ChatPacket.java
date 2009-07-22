@@ -18,29 +18,19 @@
  */
 package l1j.server.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import l1j.server.server.model.Instance.L1PcInstance;
 
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
 
-public class S_ChatPacket extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_ChatPacket.class.getName());
-	private static final String _S__1F_NORMALCHATPACK = "[S] S_ChatPacket";
-	private byte[] _byte = null;
-
-	public S_ChatPacket(L1PcInstance pc, String chat, int opcode, int type) {
-
+public class S_ChatPacket extends ServerBasePacket
+{
+	public S_ChatPacket(L1PcInstance pc, String chat, int opcode, int type)
+	{
 		if (type == 0) { // 通常チャット
 			writeC(opcode);
 			writeC(type);
-			if (pc.isInvisble()) {
-				writeD(0);
-			} else {
-				writeD(pc.getId());
-			}
+			writeD(pc.getId());
 			writeS(pc.getName() + ": " + chat);
 		} else if (type == 2) { // 叫び
 			writeC(opcode);
@@ -102,16 +92,8 @@ public class S_ChatPacket extends ServerBasePacket {
 	}
 
 	@Override
-	public byte[] getContent() {
-		if (null == _byte) {
-			_byte = _bao.toByteArray();
-		}
-		return _byte;
+	public byte[] getContent()
+	{
+		return getBytes();
 	}
-
-	@Override
-	public String getType() {
-		return _S__1F_NORMALCHATPACK;
-	}
-
 }

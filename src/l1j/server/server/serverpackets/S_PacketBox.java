@@ -344,8 +344,7 @@ public class S_PacketBox extends ServerBasePacket {
 			if (acc == null) {
 				writeD(0);
 			} else {
-				Calendar cal = Calendar
-						.getInstance(TimeZone.getTimeZone(Config.TIME_ZONE));
+				Calendar cal = Calendar.getInstance(TimeZone.getTimeZone(Config.TIME_ZONE));
 				long lastactive = acc.getLastActive().getTime();
 				cal.setTimeInMillis(lastactive);
 				cal.set(Calendar.YEAR, 1970);
