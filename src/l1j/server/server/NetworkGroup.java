@@ -32,7 +32,11 @@ public class NetworkGroup
 	
 	public void run(Runnable r)
 	{
-		
 		TPExec.execute(r);
+	}
+	
+	public void del(Runnable r)
+	{
+		TPExec.remove(r);
 	}
 }

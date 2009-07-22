@@ -289,7 +289,6 @@ public class ClientThread implements Runnable, PacketOutput
 			Close();
 		}
 		
-		_cs = null;
 		_log.fine("Server thread[C] stopped");
 		
 		if (_kick < 1)
@@ -324,6 +323,7 @@ public class ClientThread implements Runnable, PacketOutput
 			NetworkGroup.getGroup().run(this); // 運行該執行緒
 		}
 
+		// 加入新的工作
 		public void addWork(byte[] data)
 		{
 			LinkList.offer(data);
@@ -332,7 +332,7 @@ public class ClientThread implements Runnable, PacketOutput
 		@Override
 		public void run()
 		{
-			while (_cs != null)
+			while (!_cs.isClosed())
 			{
 				try
 				{
@@ -348,6 +348,8 @@ public class ClientThread implements Runnable, PacketOutput
 				{
 				}
 			}
+			
+			NetworkGroup.getGroup().del(this); // 移除該執行緒
 		}
 	}
 
