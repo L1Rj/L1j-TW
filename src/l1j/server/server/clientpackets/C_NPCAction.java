@@ -509,7 +509,6 @@ public class C_NPCAction extends ClientBasePacket {
 					L1PetInstance pet = (L1PetInstance) petObject;
 					pet.collect();
 					pc.getPetList().remove(pet.getId());
-					pet.setDead(true);
 					pet.deleteMe();
 				}
 			}
