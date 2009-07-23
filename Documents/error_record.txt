@@ -1,5 +1,37 @@
 以下為目前仍有的錯誤訊息紀錄
 
+20090710
+l1j.server.server.model.skill.L1SkillUse runSkill
+嚴重的: null
+java.lang.NullPointerException
+        at l1j.server.server.model.skill.L1SkillUse.stopSkillList(Unknown Source)
+        at l1j.server.server.model.skill.L1SkillUse.deleteRepeatedSkills(Unknown Source)
+        at l1j.server.server.model.skill.L1SkillUse.runSkill(Unknown Source)
+        at l1j.server.server.model.skill.L1SkillUse.handleCommands(Unknown Source)
+        at l1j.server.server.model.skill.L1SkillUse.handleCommands(Unknown Source)
+        at l1j.server.server.clientpackets.C_LoginToServer.buff(Unknown Source)
+        at l1j.server.server.clientpackets.C_LoginToServer.<init>(Unknown Source)
+        at l1j.server.server.PacketHandler.handlePacket(Unknown Source)
+        at l1j.server.server.ClientThread$AutoHandle.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+        at java.lang.Thread.run(Thread.java:619)
+
+20090709
+l1j.server.server.model.skill.L1SkillUse handleCommands
+嚴重的:
+java.lang.NullPointerException
+        at l1j.server.server.model.skill.L1SkillUse.checkUseSkill(Unknown Source)
+        at l1j.server.server.model.skill.L1SkillUse.handleCommands(Unknown Source)
+        at l1j.server.server.model.skill.L1SkillUse.handleCommands(Unknown Source)
+        at l1j.server.server.clientpackets.C_LoginToServer.buff(Unknown Source)
+        at l1j.server.server.clientpackets.C_LoginToServer.<init>(Unknown Source)
+        at l1j.server.server.PacketHandler.handlePacket(Unknown Source)
+        at l1j.server.server.ClientThread$AutoHandle.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+        at java.lang.Thread.run(Thread.java:619)
+
 090708 目前版本 關機指令錯誤 線上角色無法剔除 無法正常關閉
 Exception in thread "Thread-37" java.lang.NullPointerException
         at l1j.server.server.GameServer.disconnectAllCharacters(Unknown Source)
