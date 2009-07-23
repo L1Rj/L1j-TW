@@ -342,7 +342,7 @@ public class ClientThread implements Runnable, PacketOutput
 					if (data != null)
 						Handler.handlePacket(data); // 將資料處理
 					
-					Thread.sleep(1); // 延遲 0.001 毫秒
+					Thread.sleep(1000); // 延遲 0.001 毫秒  改為1ms測試
 				}
 				catch (Exception e)
 				{

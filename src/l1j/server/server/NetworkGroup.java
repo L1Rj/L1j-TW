@@ -17,9 +17,9 @@ public class NetworkGroup
 	}
 	
 	// -- 常數 --
-	private static int cpSize = 6; // Thread要保存的數量
-	private static int mpSize = Config.MAX_ONLINE_USERS * 2 ; // Thread可容納的數量
-	private static int kaTime = 5; // 存活時間
+	private static int cpSize = 5; // Thread要保存的數量
+	private static int mpSize = Config.MAX_ONLINE_USERS * 5 ; // Thread可容納的數量
+	private static int kaTime = 10; // 存活時間
 	private static final TimeUnit tUnit = TimeUnit.SECONDS; // 存活時間單位 (預設 秒)
 	
 	private final ThreadPoolExecutor TPExec; // 線程池
