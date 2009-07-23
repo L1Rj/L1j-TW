@@ -343,12 +343,12 @@ public class L1V1Map extends L1Map {
 		if (isExistDoor(newX, newY)) {
 			return false;
 		}
-		if (Config.ARROW_PASS_FLOWER_BED) {
-			// if (tile2 == 0x00 || (tile2 & 0x10) == 0x10) { // 花壇
-						if (tile2 == 0x00) { // 花壇
-							return true;
-						}
-					}
+//		if (Config.ARROW_PASS_FLOWER_BED) {
+// if (tile2 == 0x00 || (tile2 & 0x10) == 0x10) { // 花壇
+//						if (tile2 == 0x00) { // 花壇
+//						return true;
+//							}
+//					}
 
 		if (heading == 0) {
 			return (tile1 & 0x08) == 0x08;
