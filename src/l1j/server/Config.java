@@ -266,6 +266,8 @@ public final class Config {
 	public static int NPC_DELETION_TIME;
 
 	public static int DEFAULT_CHARACTER_SLOT;
+	
+	public static boolean ARROW_PASS_FLOWER_BED;
 
 	public static boolean Skillcheck;// 施法前判斷法術
 	
@@ -683,12 +685,13 @@ public final class Config {
 					"NpcDeletionTime", "10"));
 			DEFAULT_CHARACTER_SLOT = Integer.parseInt(altSettings.getProperty(
 					"DefaultCharacterSlot", "6"));
-
+			ARROW_PASS_FLOWER_BED = Boolean.parseBoolean(altSettings
+					.getProperty("ArrowPassFlowerBed", "True"));
 			Skillcheck = Boolean.parseBoolean(altSettings.getProperty(
-					"Skillcheck", "false"));// 施法前判斷法術
+					"Skillcheck", "false")); // 施法前判斷法術
 
 			SHOW_HP_BAR = Boolean.parseBoolean(altSettings.getProperty(
-					"ShowHPBar", "false"));// 怪物血條
+					"ShowHPBar", "false")); // 怪物血條
 
 			GDROPITEM_TIME = Integer.parseInt(altSettings.getProperty("GDropItemTime", "15"));// 妖森守護神道具時間控制
 
@@ -969,7 +972,9 @@ public final class Config {
 			NPC_DELETION_TIME = Integer.valueOf(pValue);
 		} else if (pName.equalsIgnoreCase("DefaultCharacterSlot")) {
 			DEFAULT_CHARACTER_SLOT = Integer.valueOf(pValue);
-		} else if (pName.equalsIgnoreCase("GDropItemTime")) {//妖森守護神道具控制
+		} else if (pName.equalsIgnoreCase("ArrowPassFlowerBed")) {
+			ARROW_PASS_FLOWER_BED = Boolean.valueOf(pValue);
+		} else if (pName.equalsIgnoreCase("GDropItemTime")) { // 妖森守護神道具控制
 		GDROPITEM_TIME = Integer.parseInt(pValue);
 		}
 		// charsettings.properties

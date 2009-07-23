@@ -18,6 +18,9 @@
  */
 package l1j.server.server.model.map;
 
+import java.util.logging.Logger;
+
+import l1j.server.Config;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.datatables.DoorSpawnTable;
 import l1j.server.server.model.Instance.L1DoorInstance;
@@ -340,6 +343,13 @@ public class L1V1Map extends L1Map {
 		if (isExistDoor(newX, newY)) {
 			return false;
 		}
+		if (Config.ARROW_PASS_FLOWER_BED) {
+			// if (tile2 == 0x00 || (tile2 & 0x10) == 0x10) { // 花壇
+						if (tile2 == 0x00) { // 花壇
+							return true;
+						}
+					}
+
 		if (heading == 0) {
 			return (tile1 & 0x08) == 0x08;
 		} else if (heading == 1) {
