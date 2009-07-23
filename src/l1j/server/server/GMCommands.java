@@ -38,7 +38,8 @@ import l1j.server.server.templates.L1Command;
 // PolyTable, IdFactory
 //
 
-public class GMCommands {
+public class GMCommands
+{
 	private static Logger _log = Logger.getLogger(GMCommands.class.getName());
 
 	private static GMCommands _instance;

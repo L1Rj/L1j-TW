@@ -93,6 +93,7 @@ public class Server {
 		L1DatabaseFactory.getInstance();
 
 		GameServer.getInstance().initialize();
+		
 		if (Config.TELNET_SERVER) {
 			TelnetServer.getInstance().start();
 		}
