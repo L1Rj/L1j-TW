@@ -329,7 +329,7 @@ public class ClientThread implements Runnable, PacketOutput
 						data = null; // 將資料清空
 					}
 					
-					Thread.sleep(1);
+					Thread.sleep(20);
 				}
 				catch (Exception e)
 				{
@@ -462,7 +462,7 @@ public class ClientThread implements Runnable, PacketOutput
 
 	public void Close()
 	{
-		if (isShutdown)
+		if (!isShutdown)
 			return;
 		else
 			isShutdown = true;
@@ -480,7 +480,6 @@ public class ClientThread implements Runnable, PacketOutput
 		catch (IOException e)
 		{
 		}
-		
 		setActiveChar(null); // 清除目前正在使用的角色
 		LoginController.getInstance().logout(this); // 將用戶的登記
 	}
