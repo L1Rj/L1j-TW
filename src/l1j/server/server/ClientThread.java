@@ -329,7 +329,7 @@ public class ClientThread implements Runnable, PacketOutput
 						data = null; // 將資料清空
 					}
 					
-					Thread.sleep(20);
+					Thread.sleep(50); // 延遲調整測試
 				}
 				catch (Exception e)
 				{
