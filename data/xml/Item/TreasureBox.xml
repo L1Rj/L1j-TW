@@ -1231,4 +1231,53 @@
 		<Item ItemId="20288" Count="1" Chance="0.8" /> <!-- 傳送控制戒指 -->
 		<Item ItemId="20284" Count="1" Chance="0.8" /> <!-- 召喚控制戒指 -->
 	</TreasureBox>
+	<!--勇者のパンプキン袋(金)-->
+	<TreasureBox Type="RANDOM" ItemId="49278">
+		<Item ItemId="40010" Count="45" Chance="10" />	<!--RP-->
+		<Item ItemId="40011" Count="25" Chance="11" />	<!--OP-->
+		<Item ItemId="40012" Count="12" Chance="5" />	<!--CP-->
+		<Item ItemId="40013" Count="15" Chance="15" />	<!--GP-->
+		<Item ItemId="40018" Count="8" Chance="5" />	<!--GGP-->
+		<Item ItemId="40074" Count="1" Chance="7" />	<!--ZEL-->
+		<Item ItemId="40087" Count="1" Chance="4" />	<!--DAI-->
+		<Item ItemId="40088" Count="8" Chance="5" />	<!--SOSC-->
+		<Item ItemId="40318" Count="15" Chance="10" />	<!--魔石-->
+		<Item ItemId="40319" Count="30" Chance="12" />	<!--精霊玉-->
+		<Item ItemId="49143" Count="1" Chance="4" />	<!--結晶1-->
+		<Item ItemId="49143" Count="2" Chance="5" />	<!--結晶2-->
+		<Item ItemId="49143" Count="3" Chance="6" />	<!--結晶3-->
+		<Item ItemId="41251" Count="1" Chance="1" />	<!--聖杯-->
+	</TreasureBox>
+	<!--勇者のパンプキン袋(銀)-->
+	<TreasureBox Type="RANDOM" ItemId="49279">
+		<Item ItemId="40010" Count="30" Chance="12.5" />	<!--RP-->
+		<Item ItemId="40011" Count="15" Chance="15" />	<!--OP-->
+		<Item ItemId="40012" Count="8" Chance="5.4" />	<!--CP-->
+		<Item ItemId="40013" Count="10" Chance="15" />	<!--GP-->
+		<Item ItemId="40018" Count="4" Chance="5" />	<!--GGP-->
+		<Item ItemId="40074" Count="1" Chance="5" />	<!--ZEL-->
+		<Item ItemId="40087" Count="1" Chance="2.5" />	<!--DAI-->
+		<Item ItemId="40088" Count="4" Chance="5" />	<!--SOSC-->
+		<Item ItemId="40318" Count="10" Chance="10" />	<!--魔石-->
+		<Item ItemId="40319" Count="20" Chance="15" />	<!--精霊玉-->
+		<Item ItemId="49143" Count="1" Chance="4" />	<!--結晶1-->
+		<Item ItemId="49143" Count="2" Chance="5" />	<!--結晶2-->
+		<Item ItemId="49143" Count="3" Chance="0" />	<!--結晶3-->
+		<Item ItemId="41251" Count="1" Chance="0.6" />	<!--聖杯-->
+	</TreasureBox>
+	<!--勇者のパンプキン袋(銅)-->
+	<TreasureBox Type="RANDOM" ItemId="49280">
+		<Item ItemId="40010" Count="15" Chance="17.3" />	<!--RP-->
+		<Item ItemId="40011" Count="8" Chance="16.3" />	<!--OP-->
+		<Item ItemId="40012" Count="4" Chance="5" />	<!--CP-->
+		<Item ItemId="40013" Count="5" Chance="15.2" />	<!--GP-->
+		<Item ItemId="40018" Count="2" Chance="5" />	<!--GGP-->
+		<Item ItemId="40074" Count="1" Chance="2" />	<!--ZEL-->
+		<Item ItemId="40088" Count="2" Chance="5.3" />	<!--SOSC-->
+		<Item ItemId="40318" Count="5" Chance="8" />	<!--魔石-->
+		<Item ItemId="40319" Count="10" Chance="16.3" />	<!--精霊玉-->
+		<Item ItemId="49143" Count="1" Chance="6" />	<!--結晶1-->
+		<Item ItemId="49143" Count="2" Chance="3.3" />	<!--結晶2-->
+		<Item ItemId="41251" Count="1" Chance="0.3" />	<!--聖杯-->
+	</TreasureBox>
 </TreasureBoxList>
