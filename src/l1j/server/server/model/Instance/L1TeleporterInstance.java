@@ -150,6 +150,27 @@ public class L1TeleporterInstance extends L1NpcInstance {
 					htmlid = "barnia1";
 				}
 			}
+			// 扭曲的空間
+            else if (npcid == 80048) {
+                if (player.getLevel() >= 52) {
+                    htmlid = "entgate";
+                } else if ((player.getLevel() >= 45) && (player.getLevel() <= 51)) {
+                    htmlid = "entgate2";
+                } else {
+                    htmlid = "entgate3";
+                }
+            }
+
+			// 次元之門
+            else if (npcid == 80058) {
+                if (player.getLevel() >= 52) {
+                    htmlid = "cpass01";
+                } else if ((player.getLevel() >= 45) && (player.getLevel() <= 51)) {
+                    htmlid = "cpass02";
+                } else {
+                    htmlid = "cpass03";
+                }
+            }
 
 			// html表示
 			if (htmlid != null) { // htmlidが指定されている場合
