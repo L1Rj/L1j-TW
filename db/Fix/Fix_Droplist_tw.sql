@@ -1,8 +1,8 @@
 /* 精靈水晶 */
-/* 20090607 降低 精靈水晶(烈焰之魂) 機率 */
-Update droplist Set chance = '200' Where mobid = '45676' And itemid = '41149';
-Update droplist Set chance = '300' Where mobid = '45962' And itemid = '41149';
-Update droplist Set chance = '30000' Where mobid = '81163' And itemid = '41149';
+/* 20090721 調整 精靈水晶(烈焰之魂) 機率 */
+Update droplist Set chance = '2000' Where mobid = '45676' And itemid = '41149';/* 冥法軍王．海露拜 */
+Update droplist Set chance = '1500' Where mobid = '45962' And itemid = '41149';/* 長老．巴陸德 */
+Update droplist Set chance = '20000' Where mobid = '81163' And itemid = '41149';/* 吉爾塔斯 */
 
 /* 20090613 降低 精靈水晶(三重矢) 掉落機率 */
 Update droplist Set chance = '30' Where mobid = '45118' And itemid = '40240';
@@ -79,8 +79,14 @@ Update droplist Set chance = '200' Where mobId = '45594' And itemId = '40259';/*
 Update droplist Set chance = '200' Where mobId = '45610' And itemId = '40259';/* 古代巨人 */
 Update droplist Set chance = '90' Where mobId = '45617' And itemId = '40259';/* 不死鳥 */
 
-/* 20090607 降低 精靈水晶(能量激發) 掉落機率 */
-Update droplist Set chance = '2000' Where chance = '10000' And itemId = '41150';
+/* 20090721 調整 精靈水晶(能量激發) 掉落機率 */
+Update droplist Set chance = '5000' Where mobId = '45957' And itemId = '41150';/* 長老．巴塔斯 */
+Update droplist Set chance = '5000' Where mobId = '45958' And itemId = '41150';/* 長老．安迪斯 */
+Update droplist Set chance = '5000' Where mobId = '45960' And itemId = '41150';/* 長老．泰瑪斯 */
+Update droplist Set chance = '5000' Where mobId = '45961' And itemId = '41150';/* 長老．拉曼斯 */
+Update droplist Set chance = '5000' Where mobId = '45962' And itemId = '41150';/* 長老．巴陸德 */
+Update droplist Set chance = '5000' Where mobId = '45963' And itemId = '41150';/* 副神官‧卡山德拉 */
+Update droplist Set chance = '40000' Where mobId = '81163' And itemId = '41150';/* 吉爾塔斯 */
 
 /* 20090620 降低 精靈水晶(鏡反射) 掉落機率 */
 Update droplist Set chance = '3000' Where mobId = '45217' And itemId = '40246';
@@ -125,18 +131,34 @@ Update droplist Set chance = '1500' Where mobId = '46141' And itemId = '40254';
 Update droplist Set chance = '1000' Where mobId = '46065' And itemId = '41153';
 Update droplist Set chance = '1000' Where mobId = '46067' And itemId = '41153';
 
-/* 20090625 降低 精靈水晶(封印禁地) 掉落機率 */
-Update droplist Set chance = '20' Where mobId = '45257' And itemId = '40244';/* 龍蠅 */
-Update droplist Set chance = '1100' Where mobId = '45515' And itemId = '40244';
-Update droplist Set chance = '2000' Where mobId = '45516' And itemId = '40244';
-Update droplist Set chance = '2000' Where mobId = '45529' And itemId = '40244';
+/* 20090721 調整 精靈水晶(封印禁地) 掉落機率 */
+Update droplist Set chance = '10' Where mobId = '45257' And itemId = '40244';/* 龍蠅 */
+Update droplist Set chance = '1100' Where mobId = '45515' And itemId = '40244';/* 伊弗利特 */
+Update droplist Set chance = '800' Where mobId = '45516' And itemId = '40244';/* 伊弗利特 火窟*/
+Update droplist Set chance = '500' Where mobId = '45529' And itemId = '40244';/* 飛龍 */
 Update droplist Set chance = '80000' Where mobId = '81163' And itemId = '40244';/* 吉爾塔斯 */
 
 /* 20090626 降低 精靈水晶(魂體轉換) 掉落機率 */
-Update droplist Set chance = '80' Where chance = '500' And itemId = '40238';
-Update droplist Set chance = '300' Where chance = '1000' And itemId = '40238';
-Update droplist Set chance = '1500' Where chance = '5000' And itemId = '40238';
-Update droplist Set chance = '150000'  Where mobId = '81163' And itemId = '40238';
+Update droplist Set chance = '20' Where mobId = '45164' And itemId = '40238';/* 蟹人  */
+Update droplist Set chance = '20' Where mobId = '45322' And itemId = '40238';/* 活鎧甲 */
+Update droplist Set chance = '30' Where mobId = '45345' And itemId = '40238';/* 奇岩 鋼鐵高崙 */
+Update droplist Set chance = '80' Where mobId = '45372' And itemId = '40238';/* 鋼鐵高崙 */
+Update droplist Set chance = '500' Where mobId = '45497' And itemId = '40238';/* 馬庫爾 */
+Update droplist Set chance = '600' Where mobId = '45854' And itemId = '40238';/* 地元素守護者 */
+Update droplist Set chance = '600' Where mobId = '45855' And itemId = '40238';/* 水元素守護者 */
+Update droplist Set chance = '600' Where mobId = '45856' And itemId = '40238';/* 風元素守護者 */
+Update droplist Set chance = '600' Where mobId = '45857' And itemId = '40238';/* 火元素守護者 */
+Update droplist Set chance = '600' Where mobId = '45858' And itemId = '40238';/* 闇元素守護者 */
+Update droplist Set chance = '30' Where mobId = '45927' And itemId = '40238';/* 伊娃 蟹人 */
+Update droplist Set chance = '5000' Where mobId = '45956' And itemId = '40238';/* 長老．巴塔斯 */
+Update droplist Set chance = '800' Where mobId = '45983' And itemId = '40238';/* 地元素守護者 ラスタバド城 4F */
+Update droplist Set chance = '800' Where mobId = '45857' And itemId = '40238';/* 火元素守護者 ラスタバド城 4F */
+Update droplist Set chance = '800' Where mobId = '45984' And itemId = '40238';/* 水元素守護者 ラスタバド城 4F */
+Update droplist Set chance = '800' Where mobId = '45985' And itemId = '40238';/* 火元素守護者 ラスタバド城 4F */
+Update droplist Set chance = '800' Where mobId = '45986' And itemId = '40238';/* 風元素守護者 ラスタバド城 4F */
+Update droplist Set chance = '800' Where mobId = '45987' And itemId = '40238';/* 闇元素守護者 ラスタバド城 4F */
+Update droplist Set chance = '700' Where mobId = '81081' And itemId = '40238';/* 法利昂的信奉者 */
+Update droplist Set chance = '120000'  Where mobId = '81163' And itemId = '40238';
 
 /* 20090704 降低 精靈水晶(大地的祝福) 掉落機率 */
 Update droplist Set chance = '3000' Where chance = '50000' And itemId = '40250';
@@ -507,6 +529,15 @@ Update droplist Set chance = '2400' Where mobId = '45601' And itemId = '200002';
 Update droplist Set chance = '1200' Where mobId = '45547' And itemId = '2';/* 幻象眼魔 */
 Update droplist Set chance = '2000' Where mobId = '45513' And itemId = '2';/* 潔尼斯女王 */
 Update droplist Set chance = '1200' Where mobId = '45481' And itemId = '2';/* 小惡魔 */
+
+/* 20090721 降低 黑暗之劍 掉落機率 */
+Update droplist Set chance = '100' Where mobId = '45486' And itemId = '55';
+Update droplist Set chance = '100' Where mobId = '45868' And itemId = '55';
+Update droplist Set chance = '2000' Where mobId = '45958' And itemId = '55';
+Update droplist Set chance = '2000' Where mobId = '45961' And itemId = '55';
+Update droplist Set chance = '2000' Where mobId = '46001' And itemId = '55';
+Update droplist Set chance = '2000' Where mobId = '46010' And itemId = '55';
+Update droplist Set chance = '2000' Where mobId = '46061' And itemId = '55';
 
 /* ----------- 防具 -----------*/
 /* 20090603 降低 召喚控制戒指 機率 */

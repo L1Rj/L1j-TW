@@ -147,3 +147,7 @@ Update npc Set exp = '626' Where npcid = '45645';/* 火精靈王 夢幻 */
 
 /* 20090718 修正 歐姆地監 黑暗棲林者魔法攻擊速度 */
 Update npc Set atk_magic_speed = '2200' Where npcid = '45347';
+
+/* 20090722 修正 扭曲的空間 次元之門 NPC型態為傳送師 */
+Update npc Set impl = 'L1Teleporter' Where npcid = '80048';
+Update npc Set impl = 'L1Teleporter' Where npcid = '80058';
