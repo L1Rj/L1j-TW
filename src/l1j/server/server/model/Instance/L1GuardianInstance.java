@@ -327,7 +327,25 @@ public class L1GuardianInstance extends L1NpcInstance {
 				setHeading(7);
 			}
 			broadcastPacket(new S_ChangeHeading(this));
+// 20090725 BAO提供 妖森 安特與潘對話(未完成)
+			switch (PT_Npc_id){
+            case 70848: // Elven forest ENT
+                if (player.isElf()) {
+                    htmlid = "ente1";
+                } else {
+                    htmlid = "entm1";
+                }
+                break;
 
+            case 70850://Elven forest PAN
+                if (player.isElf()) {
+                    htmlid = "pane1";
+                } else {
+                    htmlid = "panm1";
+                }
+                break;
+        }
+// add end
 			// html表示パケット送信
 			if (htmlid != null) { // htmlidが指定されている場合
 				if (htmldata != null) { // html指定がある場合は表示
