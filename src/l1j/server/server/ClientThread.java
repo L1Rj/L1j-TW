@@ -63,6 +63,7 @@ import l1j.server.server.serverpackets.S_InitPacket;
 import l1j.server.server.serverpackets.S_PacketBox;
 import l1j.server.server.serverpackets.S_SummonPack;
 import l1j.server.server.serverpackets.ServerBasePacket;
+import l1j.server.server.utils.ByteArrayUtil;
 import l1j.server.server.utils.SystemUtil;
 
 // Referenced classes of package l1j.server.server:
@@ -84,10 +85,19 @@ public class ClientThread implements Runnable, PacketOutput
 	private LineageKeys _keyBox;
 	private int _loginStatus;
 	private boolean _inGame;
-	private boolean isShutdown;
 	
 	private long _lastSavedTime = System.currentTimeMillis();
 	private long _lastSavedTime_inventory = System.currentTimeMillis();
+	
+	/* 
+	 * 封包處理程序
+	 * 改善過多角色 無法執行任何動作的BUG
+	 * By KIUSBT
+	 */
+	private AutoHandle aAttack;
+	private AutoHandle aMove;
+	private AutoHandle aItemUse;
+	private AutoHandle aAction;
 
 	/**
 	 * for Test
@@ -105,6 +115,10 @@ public class ClientThread implements Runnable, PacketOutput
 		_hostname = socket.getInetAddress().getHostName();
 		_hostname = HOSTNAME_LOOKUPS ? _hostname : _ip;
 		Handler = new PacketHandler(this); // 初始化封包處理程序
+		aAttack = new AutoHandle(); // 初始化攻擊封包自動處理程序
+		aMove = new AutoHandle(); // 初始化移動封包處理程序
+		aItemUse = new AutoHandle(); // 初始化物品使用封包處理程序
+		aAction = new AutoHandle(); // 初始化動作封包處理程序 (剩下來的封包都給它處理)
 	}
 
 	private byte[] readPacket() throws Exception
@@ -118,7 +132,7 @@ public class ClientThread implements Runnable, PacketOutput
 			byte[] data = null;
 			
 			if (loByte < 0)
-				return null;
+				throw new RuntimeException();
 			
 			dataLength = (loByte * 256 + hiByte) - 2;
 			data = new byte[dataLength];
@@ -130,7 +144,7 @@ public class ClientThread implements Runnable, PacketOutput
 			{
 				_log
 						.warning("Incomplete Packet is sent to the server, closing connection.");
-				return null;
+				throw new RuntimeException();
 			}
 		    
 			return LineageEncryption.decrypt(data, _keyBox);
@@ -176,14 +190,9 @@ public class ClientThread implements Runnable, PacketOutput
 	public void run()
 	{
 		// -- [介面] 系統訊息 --
-		_log.info("\r\n(" + _hostname + ") 的客戶端開始連線.");
+		_log.info("(" + _hostname + ") 的客戶端開始連線.");
 		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
-		
-		// -- [線程] 處理程序 --
-		AutoHandle aAttack = new AutoHandle("Attack"); // 初始化攻擊封包自動處理程序
-		AutoHandle aMove = new AutoHandle("Move"); // 初始化移動封包處理程序
-		AutoHandle aItem = new AutoHandle("Item"); // 初始化物品使用封包處理程序
-		AutoHandle aAction = new AutoHandle("Action"); // 初始化動作封包處理程序 (剩下來的封包都給它處理)
+		System.out.println("等待客戶端連線...");
 		
 		// -- [系統] 自動偵測用戶狀態 --
 		Observer observer = new Observer(AUTOMATIC_KICK * 60 * 1000);
@@ -198,7 +207,7 @@ public class ClientThread implements Runnable, PacketOutput
 			sendPacket(init); // 送出初始化封包
 			_keyBox = LineageEncryption.initKeys(init.getKey()); // 將鑰匙初始化
 
-			while (!isShutdown)
+			while (!_cs.isClosed())
 			{
 				doAutoSave();
 
@@ -210,12 +219,6 @@ public class ClientThread implements Runnable, PacketOutput
 				}
 				catch (Exception e)
 				{
-					break;
-				}
-				
-				if (data == null)
-				{
-					isShutdown = true;
 					break;
 				}
 				
@@ -255,7 +258,7 @@ public class ClientThread implements Runnable, PacketOutput
 					// 使用物品與使用寵物物品封包
 					case C_OPCODE_USEITEM:
 					case C_OPCODE_USEPETITEM:
-					aItem.addWork(data);
+					aItemUse.addWork(data);
 					break;
 					
 					// 攻擊與施法封包
@@ -281,17 +284,30 @@ public class ClientThread implements Runnable, PacketOutput
 		{
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
+		finally
+		{
+			Close();
+		}
 		
-		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB ");
-		_log.info("(" + _hostname + ") 的客戶端結束連線.\r\n");
+		_log.fine("Server thread[C] stopped");
 		
-		Close(); // 連線關閉
+		if (_kick < 1)
+		{
+			_log.info("(" + getAccountName() + ":" + _hostname + ")客戶端結束連線.");
+			System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
+			System.out.println("等待客戶端連線...");
+		}
+		
+		System.gc(); // 釋放該執行緒使用的資源
 	}
+
+	private int _kick = 0;
 
 	public void kick()
 	{
+		_kick = 1;
 		sendPacket(new S_Disconnect());
-		isShutdown = true;
+		Close();
 	}
 
 	// --* [類別] 封包處裡程序 *--
@@ -300,11 +316,11 @@ public class ClientThread implements Runnable, PacketOutput
 		private final LinkedList<byte[]> LinkList;
 		private final PacketHandler Handler;
 		
-		public AutoHandle(String s)
+		public AutoHandle()
 		{
 			LinkList = new LinkedList<byte[]>(); // 初始化 鏈結清單
 			Handler = ClientThread.this.Handler; // 取得 ClientThrad的處理程序
-			GeneralThreadPool.getInstance().execute(this);
+			NetworkGroup.getGroup().run(this); // 運行該執行緒
 		}
 
 		// 加入新的工作
@@ -316,27 +332,24 @@ public class ClientThread implements Runnable, PacketOutput
 		@Override
 		public void run()
 		{
-			while (!isShutdown)
+			while (!_cs.isClosed())
 			{
 				try
 				{
-					byte[] data = LinkList.poll(); // 從  鏈結清單中 取得資料封包
+					byte[] data = LinkList.poll(); // 從 鏈結清單中 取得資料封包
 					
 					// 如果資料封包不為空
 					if (data != null)
-					{
 						Handler.handlePacket(data); // 將資料處理
-						data = null; // 將資料清空
-					}
 					
-					Thread.sleep(50); // 延遲調整測試
+					Thread.sleep(100); // 延遲 0.001 毫秒  改為0.1ms測試
 				}
 				catch (Exception e)
 				{
 				}
 			}
 			
-			System.gc(); // 釋放該執行緒使用的資源
+			NetworkGroup.getGroup().del(this); // 移除該執行緒
 		}
 	}
 
@@ -364,7 +377,7 @@ public class ClientThread implements Runnable, PacketOutput
 		{
 			try
 			{
-				if (isShutdown)
+				if (_cs == null)
 				{
 					cancel();
 					return;
@@ -384,18 +397,13 @@ public class ClientThread implements Runnable, PacketOutput
 					cancel();
 					return;
 				}
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 				cancel();
 			}
-			
-			System.gc(); // 釋放該執行緒使用的資源
 		}
 
-		public void packetReceived()
-		{
+		public void packetReceived() {
 			_checkct++;
 		}
 	}
@@ -462,10 +470,8 @@ public class ClientThread implements Runnable, PacketOutput
 
 	public void Close()
 	{
-		if (!isShutdown)
+		if (_cs.isClosed())
 			return;
-		else
-			isShutdown = true;
 		
 		try
 		{
@@ -473,13 +479,13 @@ public class ClientThread implements Runnable, PacketOutput
 			_cout.close();
 			_cs.close();
 			
-			_cs = null;
 			_cin = null; // 釋放輸入匯流排
 			_cout = null; // 釋放輸出匯流排
 		}
 		catch (IOException e)
 		{
 		}
+		
 		setActiveChar(null); // 清除目前正在使用的角色
 		LoginController.getInstance().logout(this); // 將用戶的登記
 	}
@@ -619,9 +625,9 @@ public class ClientThread implements Runnable, PacketOutput
 		CharBuffTable.SaveBuff(pc);
 		pc.clearSkillEffectTimer();
 
-//waja add 寵物競速 - 登出從名單刪除 
+// 寵物競速 - 登出從名單刪除 
 		l1j.server.server.model.L1PolyRace.getInstance().checkLeaveGame(pc);
-//add end
+
 		// pcのモニターをstopする。
 		pc.stopEtcMonitor();
 		// オンライン状态をOFFにし、DBにキャラクター情报を书き迂む

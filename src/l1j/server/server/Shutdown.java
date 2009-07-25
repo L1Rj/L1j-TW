@@ -254,8 +254,8 @@ public class Shutdown extends Thread {
 
 				secondsShut--;
 
-				int delay = 1000; // milliseconds
-				Thread.sleep(delay);
+//				int delay = 1000; // milliseconds
+				Thread.sleep(1000);
 
 				if (shutdownMode == ABORT) {
 					break;
@@ -274,7 +274,7 @@ public class Shutdown extends Thread {
 		Announcements _an = Announcements.getInstance();
 		switch (shutdownMode) {
 		case SIGTERM:
-			System.err.println("【 動作：經由『黑盒子』 執行關閉 】");
+			System.err.println("【 動作：經由主程式 執行關閉 】");
 			break;
 		case GM_SHUTDOWN:
 			System.err.println("【 動作：『遊戲管理員』 執行關閉!!! 】");
@@ -293,8 +293,8 @@ public class Shutdown extends Thread {
 		System.err
 				.println("【資料儲存完畢，強制玩家全部離線】");
 		try {
-			int delay = 500;
-			Thread.sleep(delay);
+//			int delay = 500;
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			// never happens :p
 		}
