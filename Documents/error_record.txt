@@ -1,5 +1,17 @@
 以下為目前仍有的錯誤訊息紀錄
 
+20090711
+l1j.server.server.model.L1PetMatch$L1PetMatchTimer run
+警告: null
+java.lang.NullPointerException
+        at java.util.concurrent.ConcurrentHashMap.containsValue(ConcurrentHashMap.java:799)
+        at java.util.concurrent.ConcurrentHashMap.contains(ConcurrentHashMap.java:863)
+        at l1j.server.server.model.L1World.getPlayer(Unknown Source)
+        at l1j.server.server.model.L1PetMatch.endPetMatch(Unknown Source)
+        at l1j.server.server.model.L1PetMatch$L1PetMatchTimer.run(Unknown Source)
+        at java.util.TimerThread.mainLoop(Timer.java:512)
+        at java.util.TimerThread.run(Timer.java:462)
+
 20090710
 l1j.server.server.model.skill.L1SkillUse runSkill
 嚴重的: null
