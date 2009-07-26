@@ -148,11 +148,11 @@ UPDATE getback_restart SET note = "拉斯塔巴德帝國:地下控制室B1樓" W
 UPDATE getback_restart SET note = "拉斯塔巴德帝國:地下處刑場B1樓" WHERE (area = "494" AND locx = "32744" AND locy = "32818");
 UPDATE getback_restart SET note = "拉斯塔巴德帝國:地下競技場B1樓" WHERE (area = "495" AND locx = "32744" AND locy = "32818");
 UPDATE getback_restart SET note = "拉斯塔巴德帝國:地下監獄B1樓" WHERE (area = "496" AND locx = "32744" AND locy = "32818");
-UPDATE getback_restart SET note = "拉斯塔巴德帝國:格蘭肯神殿/長老‧琪娜之室" WHERE (area = "530" AND locx = "32744" AND locy = "32792");
-UPDATE getback_restart SET note = "拉斯塔巴德帝國:長老‧巴塔斯/長老‧巴洛斯/長老‧安迪斯之室" WHERE (area = "531" AND locx = "32744" AND locy = "32792");
-UPDATE getback_restart SET note = "拉斯塔巴德帝國:庭園廣場/長老‧艾迪爾之室" WHERE (area = "532" AND locx = "32744" AND locy = "32792");
-UPDATE getback_restart SET note = "拉斯塔巴德帝國:長老‧泰瑪斯/長老‧拉曼斯/長老‧巴陸德之室" WHERE (area = "533" AND locx = "32744" AND locy = "32792");
-UPDATE getback_restart SET note = "拉斯塔巴德帝國:副神官‧卡山德拉/真‧冥皇丹特斯之室" WHERE (area = "534" AND locx = "32744" AND locy = "32792");
+UPDATE getback_restart SET note = "拉斯塔巴德帝國:格蘭肯神殿/長老．琪娜之室" WHERE (area = "530" AND locx = "32744" AND locy = "32792");
+UPDATE getback_restart SET note = "拉斯塔巴德帝國:長老．巴塔斯/長老．巴洛斯/長老．安迪斯之室" WHERE (area = "531" AND locx = "32744" AND locy = "32792");
+UPDATE getback_restart SET note = "拉斯塔巴德帝國:庭園廣場/長老．艾迪爾之室" WHERE (area = "532" AND locx = "32744" AND locy = "32792");
+UPDATE getback_restart SET note = "拉斯塔巴德帝國:長老．泰瑪斯/長老．拉曼斯/長老．巴陸德之室" WHERE (area = "533" AND locx = "32744" AND locy = "32792");
+UPDATE getback_restart SET note = "拉斯塔巴德帝國:副神官．卡山德拉/真．冥皇丹特斯之室" WHERE (area = "534" AND locx = "32744" AND locy = "32792");
 UPDATE getback_restart SET note = "黑暗妖精聖地" WHERE (area = "535" AND locx = "32744" AND locy = "32792");
 UPDATE getback_restart SET note = "船舶之墓:海面" WHERE (area = "550" AND locx = "32844" AND locy = "32694");
 UPDATE getback_restart SET note = "船舶之墓:大型船艙1樓" WHERE (area = "551" AND locx = "32844" AND locy = "32694");
@@ -165,8 +165,8 @@ UPDATE getback_restart SET note = "慾望洞穴入口" WHERE (area = "600" AND l
 UPDATE getback_restart SET note = "慾望洞穴大廳" WHERE (area = "601" AND locx = "32608" AND locy = "33178");
 UPDATE getback_restart SET note = "火焰之影實驗室" WHERE (area = "608" AND locx = "34053" AND locy = "32284");
 UPDATE getback_restart SET note = "不死魔族拋棄之地(扭曲的空間)" WHERE (area = "777" AND locx = "34043" AND locy = "32184");
-UPDATE getback_restart SET note = "原生魔族拋棄之地(次元之門・地上)" WHERE (area = "778" AND locx = "32608" AND locy = "33178");
-UPDATE getback_restart SET note = "原生魔族拋棄之地(次元之門・海底)" WHERE (area = "779" AND locx = "32608" AND locy = "33178");
+UPDATE getback_restart SET note = "原生魔族拋棄之地(次元之門．地上)" WHERE (area = "778" AND locx = "32608" AND locy = "33178");
+UPDATE getback_restart SET note = "原生魔族拋棄之地(次元之門．海底)" WHERE (area = "779" AND locx = "32608" AND locy = "33178");
 UPDATE getback_restart SET note = "底比斯 沙漠" WHERE (area = "780" AND locx = "33966" AND locy = "33253");
 UPDATE getback_restart SET note = "底比斯 金字塔內部" WHERE (area = "781" AND locx = "33966" AND locy = "33253");
 UPDATE getback_restart SET note = "底比斯 歐西里斯祭壇" WHERE (area = "782" AND locx = "33966" AND locy = "33253");

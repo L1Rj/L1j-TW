@@ -41,7 +41,7 @@ UPDATE etcitem SET name = "威士忌", unidentified_name_id = "$3406", identifie
 UPDATE etcitem SET name = "人魚之鱗", unidentified_name_id = "$1508", identified_name_id = "$1508" WHERE item_id = "40041";
 UPDATE etcitem SET name = "精神藥水", unidentified_name_id = "$3370", identified_name_id = "$3370" WHERE item_id = "40042";
 UPDATE etcitem SET name = "兔子的肝", unidentified_name_id = "$1943", identified_name_id = "$1943" WHERE item_id = "40043";
-UPDATE etcitem SET name = "鑽�勇者的南��", unidentified_name_id = "$512", identified_name_id = "$512" WHERE item_id = "40044";
+UPDATE etcitem SET name = "鑽石", unidentified_name_id = "$512", identified_name_id = "$512" WHERE item_id = "40044";
 UPDATE etcitem SET name = "紅寶石", unidentified_name_id = "$513", identified_name_id = "$513" WHERE item_id = "40045";
 UPDATE etcitem SET name = "藍寶石", unidentified_name_id = "$514", identified_name_id = "$514" WHERE item_id = "40046";
 UPDATE etcitem SET name = "綠寶石", unidentified_name_id = "$515", identified_name_id = "$515" WHERE item_id = "40047";
@@ -80,7 +80,7 @@ UPDATE etcitem SET name = "傳送回家的卷軸", unidentified_name_id = "$505"
 UPDATE etcitem SET name = "古魯丁村莊指定傳送卷軸", unidentified_name_id = "$3304", identified_name_id = "$3304" WHERE item_id = "40080";
 UPDATE etcitem SET name = "指定傳送卷軸(奇岩)", unidentified_name_id = "$1410", identified_name_id = "$1410" WHERE item_id = "40081";
 UPDATE etcitem SET name = "指定傳送卷軸(歌唱之島)", unidentified_name_id = "$1411", identified_name_id = "$1411" WHERE item_id = "40082";
-UPDATE etcitem SET name = "大空洞", unidentified_name_id = "大空洞傳送卷軸", identified_name_id = "大空洞傳送卷軸" WHERE item_id = "40083";
+UPDATE etcitem SET name = "大空洞傳送卷軸", unidentified_name_id = "大空洞傳送卷軸", identified_name_id = "大空洞傳送卷軸" WHERE item_id = "40083";
 UPDATE etcitem SET name = "狄亞得移動卷軸", unidentified_name_id = "$3554", identified_name_id = "$3554" WHERE item_id = "40084";
 UPDATE etcitem SET name = "說話之島指定傳送卷軸", unidentified_name_id = "$3303", identified_name_id = "$3303" WHERE item_id = "40085";
 UPDATE etcitem SET name = "全體傳送術的卷軸", unidentified_name_id = "$618", identified_name_id = "$618" WHERE item_id = "40086";
@@ -932,7 +932,7 @@ UPDATE etcitem SET name = "魔獸軍王徽印", unidentified_name_id = "$4058", 
 UPDATE etcitem SET name = "暗殺軍王徽印", unidentified_name_id = "$4060", identified_name_id = "$4060" WHERE item_id = "40962";
 UPDATE etcitem SET name = "黑魔法粉", unidentified_name_id = "$4009", identified_name_id = "$4009" WHERE item_id = "40964";
 UPDATE etcitem SET name = "拉斯塔巴德製作武器秘笈", unidentified_name_id = "$4613", identified_name_id = "$4613" WHERE item_id = "40965";
-UPDATE etcitem SET name = "真‧冥皇製作防具秘笈", unidentified_name_id = "$4627", identified_name_id = "$4627" WHERE item_id = "40966";
+UPDATE etcitem SET name = "真．冥皇製作防具秘笈", unidentified_name_id = "$4627", identified_name_id = "$4627" WHERE item_id = "40966";
 UPDATE etcitem SET name = "聖地遺物", unidentified_name_id = "$4643", identified_name_id = "$4643" WHERE item_id = "40967";
 UPDATE etcitem SET name = "修行者經典", unidentified_name_id = "$4644", identified_name_id = "$4644" WHERE item_id = "40968";
 UPDATE etcitem SET name = "黑暗妖精的靈魂水晶", unidentified_name_id = "$4344", identified_name_id = "$4344" WHERE item_id = "40969";
@@ -1486,14 +1486,14 @@ UPDATE etcitem SET name = "慾望洞穴 地之領域傳送卷軸", unidentified_
 UPDATE etcitem SET name = "底比斯沙漠傳送卷軸", unidentified_name_id = "底比斯沙漠傳送卷軸", identified_name_id = "底比斯沙漠傳送卷軸" WHERE item_id = "42088";
 UPDATE etcitem SET name = "底比斯金字塔內部傳送卷軸", unidentified_name_id = "底比斯金字塔內部傳送卷軸", identified_name_id = "底比斯金字塔內部傳送卷軸" WHERE item_id = "42089";
 UPDATE etcitem SET name = "底比斯歐西里斯祭壇傳送卷軸", unidentified_name_id = "底比斯歐西里斯祭壇傳送卷軸", identified_name_id = "底比斯歐西里斯祭壇傳送卷軸" WHERE item_id = "42090";
-UPDATE etcitem SET name = "ベヒモス 帰還スクロール", unidentified_name_id = "ベヒモス $505", identified_name_id = "ベヒモス $505" WHERE item_id = "42091";
-UPDATE etcitem SET name = "シルベリア 帰還スクロール", unidentified_name_id = "シルベリア $505", identified_name_id = "シルベリア $505" WHERE item_id = "42092";
-UPDATE etcitem SET name = "欲望の洞窟 テレポート スクロール", unidentified_name_id = "欲望の洞窟傳送卷軸", identified_name_id = "欲望の洞窟傳送卷軸" WHERE item_id = "42093";
-UPDATE etcitem SET name = "バルログの部屋 テレポート スクロール", unidentified_name_id = "バルログの部屋傳送卷軸", identified_name_id = "バルログの部屋傳送卷軸" WHERE item_id = "42094";
-UPDATE etcitem SET name = "ダークエルフの聖地 テレポート スクロール", unidentified_name_id = "ダークエルフの聖地傳送卷軸", identified_name_id = "ダークエルフの聖地傳送卷軸" WHERE item_id = "42095";
-UPDATE etcitem SET name = "見棄者地地上層傳送卷軸", unidentified_name_id = "見棄てられた者たちの地地上層傳送卷軸", identified_name_id = "見棄てられた者たちの地地上層傳送卷軸" WHERE item_id = "42096";
-UPDATE etcitem SET name = "見棄者地海底層傳送卷軸", unidentified_name_id = "見棄てられた者たちの地海底層傳送卷軸", identified_name_id = "見棄てられた者たちの地海底層傳送卷軸" WHERE item_id = "42097";
-UPDATE etcitem SET name = "見棄者地空間歪傳送卷軸", unidentified_name_id = "見棄てられた者たちの地空間の歪み傳送卷軸", identified_name_id = "見棄てられた者たちの地空間の歪み傳送卷軸" WHERE item_id = "42098";
+UPDATE etcitem SET name = "貝希摩斯傳送卷軸", unidentified_name_id = "貝希摩斯傳送卷軸", identified_name_id = "貝希摩斯傳送卷軸" WHERE item_id = "42091";
+UPDATE etcitem SET name = "希培利亞傳送卷軸", unidentified_name_id = "希培利亞傳送卷軸", identified_name_id = "希培利亞傳送卷軸" WHERE item_id = "42092";
+UPDATE etcitem SET name = "慾望洞穴傳送卷軸", unidentified_name_id = "慾望洞穴傳送卷軸", identified_name_id = "慾望洞穴傳送卷軸" WHERE item_id = "42093";
+UPDATE etcitem SET name = "炎魔房間傳送卷軸", unidentified_name_id = "炎魔房間傳送卷軸", identified_name_id = "炎魔房間傳送卷軸" WHERE item_id = "42094";
+UPDATE etcitem SET name = "黑暗妖精聖地傳送卷軸", unidentified_name_id = "黑暗妖精聖地傳送卷軸", identified_name_id = "黑暗妖精聖地傳送卷軸" WHERE item_id = "42095";
+UPDATE etcitem SET name = "原生魔族拋棄之地地上層傳送卷軸", unidentified_name_id = "原生魔族拋棄之地地上層傳送卷軸", identified_name_id = "原生魔族拋棄之地地上層傳送卷軸" WHERE item_id = "42096";
+UPDATE etcitem SET name = "原生魔族拋棄之地海底層傳送卷軸", unidentified_name_id = "原生魔族拋棄之地海底層傳送卷軸", identified_name_id = "原生魔族拋棄之地海底層傳送卷軸" WHERE item_id = "42097";
+UPDATE etcitem SET name = "不死魔族拋棄之地傳送卷軸", unidentified_name_id = "不死魔族拋棄之地傳送卷軸", identified_name_id = "不死魔族拋棄之地傳送卷軸" WHERE item_id = "42098";
 UPDATE etcitem SET name = "暴風疾走 (10/0)", unidentified_name_id = "暴風疾走 (10/0)", identified_name_id = "暴風疾走 (10/0)" WHERE item_id = "42501";
 UPDATE etcitem SET name = "返生藥水", unidentified_name_id = "$2025", identified_name_id = "$2025" WHERE item_id = "43000";
 UPDATE etcitem SET name = "魔法書 (初級治癒術)", unidentified_name_id = "$517", identified_name_id = "$517" WHERE item_id = "45000";
@@ -1637,7 +1637,7 @@ UPDATE etcitem SET name = "記憶水晶(暴擊)", unidentified_name_id = "$5683"
 UPDATE etcitem SET name = "記憶水晶(幻覺：歐吉)", unidentified_name_id = "$5684", identified_name_id = "$5684" WHERE item_id = "49120";
 UPDATE etcitem SET name = "記憶水晶(立方：燃燒)", unidentified_name_id = "$5685", identified_name_id = "$5685" WHERE item_id = "49121";
 UPDATE etcitem SET name = "記憶水晶(專注)", unidentified_name_id = "$5686", identified_name_id = "$5686" WHERE item_id = "49122";
-UPDATE etcitem SET name = "索連7", unidentified_name_id = "$5687", identified_name_id = "$5687" WHERE item_id = "49123";
+UPDATE etcitem SET name = "記憶水晶(心靈破壞)", unidentified_name_id = "$5687", identified_name_id = "$5687" WHERE item_id = "49123";
 UPDATE etcitem SET name = "記憶水晶(骷髏毀壞)", unidentified_name_id = "$5688", identified_name_id = "$5688" WHERE item_id = "49124";
 UPDATE etcitem SET name = "記憶水晶(幻覺：巫妖)", unidentified_name_id = "$5689", identified_name_id = "$5689" WHERE item_id = "49125";
 UPDATE etcitem SET name = "記憶水晶(立方：地裂)", unidentified_name_id = "$5690", identified_name_id = "$5690" WHERE item_id = "49126";

@@ -24,3 +24,15 @@ UPDATE npcchat SET note = "魔獸師長．辛克萊(死亡時)" WHERE npc_id = "
 UPDATE npcchat SET note = "魔法團長．卡勒米爾(死亡時)" WHERE npc_id = "45602";
 UPDATE npcchat SET note = "傭兵隊長．麥帕斯托(死亡時)" WHERE npc_id = "45608";
 UPDATE npcchat SET note = "神官長．邦妮(死亡時)" WHERE npc_id = "45612";
+UPDATE npcchat SET note = "魔獸軍王．巴蘭卡(死亡時)" WHERE npc_id = "45608";
+UPDATE npcchat SET note = "冥法團長．可利波斯(死亡時)" WHERE npc_id = "45608";
+UPDATE npcchat SET note = "暗殺團長．布雷哲(死亡時)" WHERE npc_id = "45608";
+UPDATE npcchat SET note = "親衛隊長．凱特(死亡時)" WHERE npc_id = "45608";
+UPDATE npcchat SET note = "庫曼(死亡時)" WHERE npc_id = "45608";
+UPDATE npcchat SET note = "豪勢(死亡時)" WHERE npc_id = "45608";
+UPDATE npcchat SET note = "長老．琪娜(死亡時)" WHERE npc_id = "45608";
+UPDATE npcchat SET note = "長老．艾迪爾(死亡時)" WHERE npc_id = "45608";
+UPDATE npcchat SET note = "副神官．卡山德拉(死亡時)" WHERE npc_id = "45608";
+UPDATE npcchat SET note = "通緝犯庫傑(出現時)" WHERE npc_id = "45608";
+UPDATE npcchat SET note = "通緝犯庫傑(死亡時)" WHERE npc_id = "45608";
+UPDATE npcchat SET note = "飛龍(死亡時)" WHERE npc_id = "45608";
