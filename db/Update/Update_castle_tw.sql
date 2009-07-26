@@ -1,11 +1,8 @@
-/*
- *
- */
-Update castle Set name = '肯特城' Where castle_id = '1';
-Update castle Set name = '妖魔城' Where castle_id = '2';
-Update castle Set name = '風木城' Where castle_id = '3';
-Update castle Set name = '奇岩城' Where castle_id = '4';
-Update castle Set name = '海音城' Where castle_id = '5';
-Update castle Set name = '侏儒城' Where castle_id = '6';
-Update castle Set name = '亞丁城' Where castle_id = '7';
-Update castle Set name = '狄亞得要塞' Where castle_id = '8';
+﻿UPDATE castle SET name ="肯特城堡" WHERE castle_id = "1";
+UPDATE castle SET name ="妖魔城堡" WHERE castle_id = "2";
+UPDATE castle SET name ="風木之城" WHERE castle_id = "3";
+UPDATE castle SET name ="奇岩城堡" WHERE castle_id = "4";
+UPDATE castle SET name ="海音城堡" WHERE castle_id = "5";
+UPDATE castle SET name ="鐵門公會" WHERE castle_id = "6";
+UPDATE castle SET name ="亞丁城堡" WHERE castle_id = "7";
+UPDATE castle SET name ="狄亞得要塞" WHERE castle_id = "8";
