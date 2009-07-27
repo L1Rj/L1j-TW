@@ -225,9 +225,9 @@ public class ClientThread implements Runnable, PacketOutput
 	@Override
 	public void run()
 	{
-		_log.info("(" + _hostname + ")客户端连线开始...");
-		System.out.println("记忆体使用: " + SystemUtil.getUsedMemoryMB() + "MB");
-		System.out.println("现等候玩家联线中...");
+		_log.info("(" + _hostname + ")客戶端開始連線...");
+		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
+		System.out.println("等候客戶端連線中...");
 		/*
 		 * クライアントからのパケットをある程度制限する。 理由：不正の误检出が多発する恐れがあるため
 		 * ex1.サーバに过负荷が挂かっている场合、负荷が落ちたときにクライアントパケットを一气に处理し、结果的に不正扱いとなる。
@@ -375,9 +375,9 @@ public class ClientThread implements Runnable, PacketOutput
 		_log.fine("Server thread[C] stopped");
 		if (_kick < 1) {
 			_log.info("(" + getAccountName() + ":" + _hostname
-					+ ")客户端连线结束...");
-			System.out.println("记忆体使用: " + SystemUtil.getUsedMemoryMB() + "MB");
-			System.out.println("现等候玩家联线中...");
+					+ ")客戶端連線結束....");
+			System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
+			System.out.println("等候客戶端連線中.....");
 		}
 		return;
 	}
@@ -464,8 +464,8 @@ public class ClientThread implements Runnable, PacketOutput
 				if (_activeChar == null // キャラクター选択前
 						|| _activeChar != null && !_activeChar.isPrivateShop()) { // 个人商店中
 					kick();
-					_log.warning("因为不能在一定间内回应(" + _hostname
-							+ ")强制中断连线。");
+					_log.warning("過長的等待時間導致(" + _hostname
+							+ ")的連線被強制中斷。");
 					cancel();
 					return;
 				}
