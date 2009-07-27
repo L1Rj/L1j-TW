@@ -295,7 +295,7 @@ public class C_LoginToServer extends ClientBasePacket
 		if (client.getActiveChar() != null) {
 			_log.info("相同帳號 (" + client.getHostname()
 					+ ")因重覆連線而遭伺服器強制切斷連線。");
-			client.Close();
+			client.close();
 			return;
 		}
 
@@ -303,20 +303,20 @@ public class C_LoginToServer extends ClientBasePacket
 		if (pc == null || !login.equals(pc.getAccountName())) {
 			_log.info("【無效請求】 帳號=" + login + " 角色=" + charName
 					+ " IP位址:" + client.getHostname());
-			client.Close();
+			client.close();
 			return;
 		}
 
-		if (pc != null) { // 限制同一角色無法同時登入
+		if (pc != null) {//限制同一角色無法同時登入
 			if (pc.getOnlineStatus() == 1) {
 				_log.info("【禁止同一角色同時登入伺服器】 角色名稱: " + charName + " 帳號: " + login
 						+ " IP位址:" + client.getHostname());
-				client.Close();
+				client.close();
 				return;
-			} else if (pc.isBanned()== true ) { // 被鎖定角色無法登入
+			} else if (pc.isBanned()== true ) {//被鎖定角色無法登入
 				_log.info("【被鎖定角色登入】 帳號=" + login + " 角色=" + charName
 						+ " IP位址:" + client.getHostname());
-				client.Close();
+				client.kick(); // 狀態待修改
 				return;
 			}
 		}
@@ -502,7 +502,7 @@ public class C_LoginToServer extends ClientBasePacket
 		pc.startHpRegeneration();
 		pc.startMpRegeneration();
 		pc.startObjectAutoUpdate();
-		client.inGame(true);
+		client.CharReStart(false);
 		pc.beginExpMonitor();
 		pc.save(); // DBにキャラクター情報を書き⑸む
 

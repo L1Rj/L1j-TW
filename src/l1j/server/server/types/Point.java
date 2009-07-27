@@ -134,7 +134,8 @@ public class Point {
 	 *            座標を保持するPointオブジェクト
 	 * @return 指定された座標が畫面內に見える場合はtrue。そうでない場合はfalse。
 	 */
-	public boolean isInScreen(Point pt) {
+	public boolean isInScreen(Point pt)
+	{
 		int dist = this.getTileDistance(pt);
 
 		if (dist > 17) {

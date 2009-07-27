@@ -98,8 +98,9 @@ public class GameServer extends Thread {
 				if (IpTable.getInstance().isBannedIp(host)) {
 					_log.info("banned IP(" + host + ")");
 				} else {
-					ClientThread client = new ClientThread(socket);
-					GeneralThreadPool.getInstance().execute(client);
+					new ClientThread(socket);
+					//ClientThread client = new ClientThread(socket);
+					//GeneralThreadPool.getInstance().execute(client);
 				}
 			} catch (IOException ioexception) {
 			}
@@ -150,7 +151,7 @@ public class GameServer extends Thread {
 		}
 
 		System.out.println("=================================================");
-		System.out.println("===== Lineage 3.0C ======= L1j1964-tw877 版 =====");
+		System.out.println("===== Lineage 3.0C ======= L1j1958-tw865 版 =====");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
@@ -270,11 +271,6 @@ public class GameServer extends Thread {
 				.getAllPlayers();
 		for (L1PcInstance pc : players) {
 			pc.getNetConnection().setActiveChar(null);
-			pc.getNetConnection().kick();
-		}
-		// 全員Kickした後に保存處理をする
-		for (L1PcInstance pc : players) {
-			ClientThread.quitGame(pc);
 			L1World.getInstance().removeObject(pc);
 		}
 	}

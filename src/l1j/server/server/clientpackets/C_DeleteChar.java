@@ -74,7 +74,7 @@ public class C_DeleteChar extends ClientBasePacket {
 					client.getAccountName(), name);
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			client.Close();
+			client.close();
 			return;
 		}
 		client.sendPacket(new S_DeleteCharOK(S_DeleteCharOK.DELETE_CHAR_NOW));

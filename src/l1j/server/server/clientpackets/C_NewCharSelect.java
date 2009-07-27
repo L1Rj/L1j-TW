@@ -35,7 +35,7 @@ public class C_NewCharSelect extends ClientBasePacket
 		client.sendPacket(new S_PacketBox(LOGOUT)); // 2.70C->3.0で追加
 		// 追他個頭拉.. 舊版本就在用這個封包了
 		
-		client.inGame(false);
+		client.CharReStart(true);
 		client.setActiveChar(null);
 		
 		if (client.getActiveChar() != null)
