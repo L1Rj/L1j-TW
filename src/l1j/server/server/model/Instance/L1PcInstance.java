@@ -27,8 +27,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import Threading.T_UpdateObject;
-
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.ClientThread;
@@ -283,22 +281,22 @@ public class L1PcInstance extends L1Character {
 		}
 	}
 
-	public void startObjectAutoUpdate()
-	{
-		_autoUpdateObject = new T_UpdateObject(getNetConnection());
+	public void startObjectAutoUpdate() {
+		removeAllKnownObjects();
+		_autoUpdateFuture = GeneralThreadPool.getInstance()
+				.pcScheduleAtFixedRate(new L1PcAutoUpdate(getId()), 0L,
+						INTERVAL_AUTO_UPDATE);
 	}
 
 	/**
 	 * 各種モニタータスクを停止する。
 	 */
-	public void stopEtcMonitor()
+	public void stopEtcMonitor() 
 	{
-		if (_autoUpdateObject != null)
-		{
-			_autoUpdateObject.Shutdown();
-			_autoUpdateObject = null;
+		if (_autoUpdateFuture != null) {
+			_autoUpdateFuture.cancel(true);
+			_autoUpdateFuture = null;
 		}
-		
 		if (_expMonitorFuture != null) {
 			_expMonitorFuture.cancel(true);
 			_expMonitorFuture = null;
@@ -308,14 +306,15 @@ public class L1PcInstance extends L1Character {
 			_ghostFuture = null;
 		}
 
-		if (_hellFuture != null)
-		{
+		if (_hellFuture != null) {
 			_hellFuture.cancel(true);
 			_hellFuture = null;
 		}
+
 	}
 
-	private T_UpdateObject _autoUpdateObject;
+	private static final long INTERVAL_AUTO_UPDATE = 300;
+	private ScheduledFuture<?> _autoUpdateFuture;
 
 	private static final long INTERVAL_EXP_MONITOR = 500;
 	private ScheduledFuture<?> _expMonitorFuture;
