@@ -1,4 +1,8 @@
-﻿UPDATE getback_restart SET note = "往古魯丁的船" WHERE (area = "5" AND locx = "32631" AND locy = "32983");
+/*
+ * 中文化 getback_restart 資料表
+ * By Impreza8837
+ */
+UPDATE getback_restart SET note = "往古魯丁的船" WHERE (area = "5" AND locx = "32631" AND locy = "32983");
 UPDATE getback_restart SET note = "往說話之島的船" WHERE (area = "6" AND locx = "32543" AND locy = "32728");
 UPDATE getback_restart SET note = "遺忘之島" WHERE (area = "70" AND locx = "32828" AND locy = "32848");
 UPDATE getback_restart SET note = "象牙塔:1樓" WHERE (area = "75" AND locx = "34047" AND locy = "32283");

@@ -1,4 +1,8 @@
-﻿UPDATE armor_set SET note = "惡魔套裝" WHERE id = "1";
+/*
+ * 中文化 armor_set 資料表
+ * By Impreza8837
+ */
+UPDATE armor_set SET note = "惡魔套裝" WHERE id = "1";
 UPDATE armor_set SET note = "死亡騎士套裝" WHERE id = "2";
 UPDATE armor_set SET note = "反王套裝" WHERE id = "3";
 UPDATE armor_set SET note = "克特套裝" WHERE id = "4";

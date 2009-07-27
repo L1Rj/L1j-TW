@@ -1,4 +1,8 @@
-﻿UPDATE board_auction SET house_name = "奇岩血盟小屋1", location = "奇岩1號血盟小屋" WHERE house_id = "262145";
+/*
+ * 中文化 board_auction 資料表
+ * By Impreza8837
+ */
+UPDATE board_auction SET house_name = "奇岩血盟小屋1", location = "奇岩1號血盟小屋" WHERE house_id = "262145";
 UPDATE board_auction SET house_name = "奇岩血盟小屋2", location = "奇岩2號血盟小屋" WHERE house_id = "262146";
 UPDATE board_auction SET house_name = "奇岩血盟小屋3", location = "奇岩3號血盟小屋" WHERE house_id = "262147";
 UPDATE board_auction SET house_name = "奇岩血盟小屋4", location = "奇岩4號血盟小屋" WHERE house_id = "262148";

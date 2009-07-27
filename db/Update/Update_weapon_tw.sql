@@ -1,4 +1,8 @@
-﻿UPDATE weapon SET name = "歐西斯匕首", unidentified_name_id = "$13", identified_name_id = "$13" WHERE item_id = "1";
+/*
+ * 中文化 weapon 資料表
+ * By Impreza8837
+ */
+UPDATE weapon SET name = "歐西斯匕首", unidentified_name_id = "$13", identified_name_id = "$13" WHERE item_id = "1";
 UPDATE weapon SET name = "骰子匕首", unidentified_name_id = "$416", identified_name_id = "$416" WHERE item_id = "2";
 UPDATE weapon SET name = "短劍的劍身", unidentified_name_id = "$785", identified_name_id = "$785" WHERE item_id = "3";
 UPDATE weapon SET name = "匕首", unidentified_name_id = "$70", identified_name_id = "$70" WHERE item_id = "4";

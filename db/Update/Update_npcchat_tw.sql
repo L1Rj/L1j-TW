@@ -1,4 +1,8 @@
-﻿UPDATE npcchat SET note = "巴土瑟(出現時)" WHERE npc_id = "45473";
+/*
+ * 中文化 npcchat 資料表
+ * By Impreza8837
+ */
+UPDATE npcchat SET note = "巴土瑟(出現時)" WHERE npc_id = "45473";
 UPDATE npcchat SET note = "卡士伯(出現時)" WHERE npc_id = "45488";
 UPDATE npcchat SET note = "馬庫爾(出現時)" WHERE npc_id = "45497";
 UPDATE npcchat SET note = "西瑪(出現時)" WHERE npc_id = "45464";

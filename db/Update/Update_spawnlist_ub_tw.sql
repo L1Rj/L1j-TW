@@ -1,4 +1,8 @@
-﻿UPDATE spawnlist_ub SET location  = "雪人" WHERE  id  = "1";
+/*
+ * 中文化 spawnlist_ub 資料表
+ * By Impreza8837
+ */
+UPDATE spawnlist_ub SET location  = "雪人" WHERE  id  = "1";
 UPDATE spawnlist_ub SET location  = "妖魔法師" WHERE  id  = "2";
 UPDATE spawnlist_ub SET location  = "蟑螂人" WHERE  id  = "3";
 UPDATE spawnlist_ub SET location  = "石頭高崙" WHERE  id  = "4";

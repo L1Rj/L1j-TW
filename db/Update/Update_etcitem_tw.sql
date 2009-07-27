@@ -1,4 +1,8 @@
-﻿UPDATE etcitem SET name = "燈", unidentified_name_id = "$2", identified_name_id = "$2" WHERE item_id = "40001";
+/*
+ * 中文化 etcitem 資料表
+ * By Impreza8837
+ */
+UPDATE etcitem SET name = "燈", unidentified_name_id = "$2", identified_name_id = "$2" WHERE item_id = "40001";
 UPDATE etcitem SET name = "燈籠", unidentified_name_id = "$326", identified_name_id = "$326" WHERE item_id = "40002";
 UPDATE etcitem SET name = "燈油", unidentified_name_id = "$327", identified_name_id = "$327" WHERE item_id = "40003";
 UPDATE etcitem SET name = "魔法燈籠", unidentified_name_id = "$3426", identified_name_id = "$3426" WHERE item_id = "40004";

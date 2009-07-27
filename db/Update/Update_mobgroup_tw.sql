@@ -1,4 +1,8 @@
-﻿UPDATE mobgroup SET note = "黑騎士搜索隊(8)" WHERE id = "1";
+/*
+ * 中文化 mobgroup 資料表
+ * By Impreza8837
+ */
+UPDATE mobgroup SET note = "黑騎士搜索隊(8)" WHERE id = "1";
 UPDATE mobgroup SET note = "艾爾摩將軍+艾爾摩士兵(2)+艾爾摩法師(2)" WHERE id = "2";
 UPDATE mobgroup SET note = "艾爾摩將軍+艾爾摩士兵+艾爾摩法師(2)" WHERE id = "3";
 UPDATE mobgroup SET note = "艾爾摩將軍+艾爾摩士兵(2)+艾爾摩法師" WHERE id = "4";

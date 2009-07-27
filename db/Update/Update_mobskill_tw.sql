@@ -1,5 +1,6 @@
 /*
- * 20090517 怪物技能中文說明
+ * 中文化 mobskill 資料表
+ * By Impreza8837
  */
 Update mobskill Set mobname = '暴走兔(冰錐)' Where mobid = '45049';
 Update mobskill Set mobname = '歐吉(範圍)' Where mobid = '45278';

@@ -1,4 +1,8 @@
-﻿UPDATE trap SET note  = "捕獸夾" WHERE  id  = "1";
+/*
+ * 中文化 trap 資料表
+ * By Impreza8837
+ */
+UPDATE trap SET note  = "捕獸夾" WHERE  id  = "1";
 UPDATE trap SET note  = "治癒術" WHERE  id  = "2";
 UPDATE trap SET note  = "攻擊毒" WHERE  id  = "3";
 UPDATE trap SET note  = "沉默毒" WHERE  id  = "4";

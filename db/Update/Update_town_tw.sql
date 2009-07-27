@@ -1,4 +1,8 @@
-﻿UPDATE town SET name = "說話之島村莊" WHERE town_id = "1";
+/*
+ * 中文化 town 資料表
+ * By Impreza8837
+ */
+UPDATE town SET name = "說話之島村莊" WHERE town_id = "1";
 UPDATE town SET name = "銀騎士村莊" WHERE town_id = "2";
 UPDATE town SET name = "古魯丁村莊" WHERE town_id = "3";
 UPDATE town SET name = "燃柳村莊" WHERE town_id = "4";

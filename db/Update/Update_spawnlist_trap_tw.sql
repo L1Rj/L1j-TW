@@ -1,4 +1,8 @@
-﻿UPDATE spawnlist_trap SET note = "" WHERE id = "1";
+/*
+ * 中文化 spawnlist_trap 資料表
+ * By Impreza8837
+ */
+UPDATE spawnlist_trap SET note = "" WHERE id = "1";
 UPDATE spawnlist_trap SET note = "" WHERE id = "2";
 UPDATE spawnlist_trap SET note = "" WHERE id = "3";
 UPDATE spawnlist_trap SET note = "" WHERE id = "4";

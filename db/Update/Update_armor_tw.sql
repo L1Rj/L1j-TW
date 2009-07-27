@@ -1,4 +1,8 @@
-﻿UPDATE armor SET name = "皮帽子", unidentified_name_id = "$1021", identified_name_id = "$1021" WHERE item_id = "20001";
+/*
+ * 中文化 armor 資料表
+ * By Impreza8837
+ */
+UPDATE armor SET name = "皮帽子", unidentified_name_id = "$1021", identified_name_id = "$1021" WHERE item_id = "20001";
 UPDATE armor SET name = "皮頭盔", unidentified_name_id = "$1023", identified_name_id = "$1023" WHERE item_id = "20002";
 UPDATE armor SET name = "鋼鐵頭盔", unidentified_name_id = "$1209", identified_name_id = "$1209" WHERE item_id = "20003";
 UPDATE armor SET name = "影子面具", unidentified_name_id = "$2410", identified_name_id = "$2410" WHERE item_id = "20004";

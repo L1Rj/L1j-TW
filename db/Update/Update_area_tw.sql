@@ -1,4 +1,8 @@
-﻿UPDATE area SET	areaname = "說話之島" WHERE areaid = "1";
+/*
+ * 中文化 area 資料表
+ * By Impreza8837
+ */
+UPDATE area SET	areaname = "說話之島" WHERE areaid = "1";
 UPDATE area SET	areaname = "冒險洞窟 1樓" WHERE areaid = "2";
 UPDATE area SET	areaname = "冒險洞窟 2樓" WHERE areaid = "3";
 UPDATE area SET	areaname = "甘特之屋" WHERE areaid = "4";

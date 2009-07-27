@@ -1,4 +1,8 @@
-﻿UPDATE mapids SET locationname = "說話之島" WHERE mapid = "0";
+/*
+ * 中文化 mapids 資料表
+ * By Impreza8837
+ */
+UPDATE mapids SET locationname = "說話之島" WHERE mapid = "0";
 UPDATE mapids SET locationname = "冒險洞窟:1樓" WHERE mapid = "1";
 UPDATE mapids SET locationname = "冒險洞窟:2樓" WHERE mapid = "2";
 UPDATE mapids SET locationname = "甘特之家" WHERE mapid = "3";

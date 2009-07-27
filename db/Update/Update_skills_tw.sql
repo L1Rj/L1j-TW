@@ -1,4 +1,8 @@
-﻿UPDATE skills SET name = "初級治癒術" WHERE skill_id = "1";
+/*
+ * 中文化 skills 資料表
+ * By Impreza8837
+ */
+UPDATE skills SET name = "初級治癒術" WHERE skill_id = "1";
 UPDATE skills SET name = "日光術" WHERE skill_id = "2";
 UPDATE skills SET name = "保護罩" WHERE skill_id = "3";
 UPDATE skills SET name = "光箭" WHERE skill_id = "4";

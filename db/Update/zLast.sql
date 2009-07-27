@@ -1,4 +1,9 @@
-﻿UPDATE beginner SET item_name = ( SELECT name FROM armor WHERE armor.item_id = beginner.item_id ) WHERE beginner.item_id IN ( SELECT item_id FROM armor );
+/*
+ * 中文化 beginner , character_elf_warehouse , character_items , character_skills , 
+ * character_warehouse , clan_warehouse , drop_item , petitem , pettypes , resolvent 資料表
+ * By Impreza8837
+ */
+UPDATE beginner SET item_name = ( SELECT name FROM armor WHERE armor.item_id = beginner.item_id ) WHERE beginner.item_id IN ( SELECT item_id FROM armor );
 UPDATE beginner SET item_name = ( SELECT name FROM etcitem WHERE etcitem.item_id = beginner.item_id ) WHERE beginner.item_id IN ( SELECT item_id FROM etcitem );
 UPDATE beginner SET item_name = ( SELECT name FROM weapon WHERE weapon.item_id = beginner.item_id ) WHERE beginner.item_id IN ( SELECT item_id FROM weapon );
 

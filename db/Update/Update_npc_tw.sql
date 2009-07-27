@@ -1,5 +1,6 @@
 /*
- *
+ * 中文化 npc 資料表
+ * 
  */
 Update npc Set name = 'scarecrow' Where npcid = '45001';
 Update npc Set name = 'scarecrow' Where npcid = '45002';

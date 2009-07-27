@@ -1,4 +1,8 @@
-﻿UPDATE dungeon_random SET note = "幽靈之家:開始區->中間區" WHERE (src_x = "32770" AND src_y = "32788");
+/*
+ * 中文化 dungeon_random 資料表
+ * By Impreza8837
+ */
+UPDATE dungeon_random SET note = "幽靈之家:開始區->中間區" WHERE (src_x = "32770" AND src_y = "32788");
 UPDATE dungeon_random SET note = "幽靈之家:開始區->中間區" WHERE (src_x = "32770" AND src_y = "32807");
 UPDATE dungeon_random SET note = "幽靈之家:開始區->中間區" WHERE (src_x = "32774" AND src_y = "32830");
 UPDATE dungeon_random SET note = "幽靈之家:開始區->中間區" WHERE (src_x = "32772" AND src_y = "32846");

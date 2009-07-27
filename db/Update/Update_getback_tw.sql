@@ -1,4 +1,8 @@
-﻿UPDATE getback SET note = "說話之島" WHERE (area_mapid = "0" AND getback_x1 = "32574" AND getback_y1 = "32941");
+/*
+ * 中文化 getback 資料表
+ * By Impreza8837
+ */
+UPDATE getback SET note = "說話之島" WHERE (area_mapid = "0" AND getback_x1 = "32574" AND getback_y1 = "32941");
 UPDATE getback SET note = "冒險洞窟1樓" WHERE (area_mapid = "1" AND getback_x1 = "32574" AND getback_y1 = "32941");
 UPDATE getback SET note = "冒險洞窟2樓" WHERE (area_mapid = "2" AND getback_x1 = "32574" AND getback_y1 = "32941");
 UPDATE getback SET note = "甘特之家" WHERE (area_mapid = "3" AND getback_x1 = "32574" AND getback_y1 = "32941");
