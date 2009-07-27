@@ -117,13 +117,13 @@ UPDATE npc
 		npcid="70851";
 
 /* 20090622 修改四龍素質 */
-Update npc set str = '62', con = '62',dex = '65',wis = '65',intel = '63' ,hp = '21000' ,ac = '-66' where npcid = '45681';/* 林德拜爾 */
-Update npc set str = '76', con = '70',dex = '40',wis = '55',intel = '55' ,hp = '22000' ,ac = '-69' where npcid = '45682';/* 安塔瑞斯 */
-Update npc set str = '64', con = '60',dex = '45',wis = '70',intel = '72' ,hp = '21000' ,ac = '-80' where npcid = '45683';/* 法利昂 */
-Update npc set str = '66', con = '65',dex = '55',wis = '60',intel = '68' ,hp = '20000' ,ac = '-83' where npcid = '45684';/* 巴拉卡斯 */
+Update npc set str = '62', con = '52',dex = '55',wis = '55',intel = '53' ,hp = '21000' ,ac = '-66' where npcid = '45681';/* 林德拜爾 */
+Update npc set str = '76', con = '60',dex = '30',wis = '45',intel = '45' ,hp = '22000' ,ac = '-69' where npcid = '45682';/* 安塔瑞斯 */
+Update npc set str = '64', con = '50',dex = '35',wis = '60',intel = '62' ,hp = '21000' ,ac = '-80' where npcid = '45683';/* 法利昂 */
+Update npc set str = '66', con = '55',dex = '45',wis = '50',intel = '58' ,hp = '20000' ,ac = '-83' where npcid = '45684';/* 巴拉卡斯 */
 
 /* 20090622 修改吉爾塔斯素質 */
-Update npc set str = '88', con = '70',dex = '72',wis = '82',intel = '61' where npcid = '81163';
+Update npc set str = '88', con = '70',dex = '72',wis = '82',intel = '86' where npcid = '81163';
 
 /* 20090625 修正古代巨人為非主動 */
 Update npc Set agro = '0' Where npcid = '45610';
@@ -132,7 +132,7 @@ Update npc Set agro = '0' Where npcid = '45610';
 Update npc Set intel = '28', wis = '22', dex = '24', con = '24', hp = '1500', mr = '30' Where npcid = '45516';/* 火窟 */
 Update npc Set intel = '28', wis = '22', dex = '24', con = '24' Where npcid = '45515';/* 傲慢 */
 
-/* 20090630 修正45449鏈鎚牛人nameid */
+/* 20090630 修正 45449 鏈鎚牛人 nameid */
 Update npc Set nameid = '$1394' Where npcid = '45449';
 
 /* 20090711 修正長者為不主動 */
