@@ -27,6 +27,8 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Threading.R_FrameUpdate;
+
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.ClientThread;
@@ -283,20 +285,25 @@ public class L1PcInstance extends L1Character {
 
 	public void startObjectAutoUpdate() {
 		removeAllKnownObjects();
-		_autoUpdateFuture = GeneralThreadPool.getInstance()
+		/*
+		_FrameUpdate = GeneralThreadPool.getInstance()
 				.pcScheduleAtFixedRate(new L1PcAutoUpdate(getId()), 0L,
 						INTERVAL_AUTO_UPDATE);
+		*/
+		_FrameUpdate = new R_FrameUpdate(this);
 	}
 
 	/**
 	 * 各種モニタータスクを停止する。
 	 */
-	public void stopEtcMonitor() 
+	public void stopEtcMonitor()
 	{
-		if (_autoUpdateFuture != null) {
-			_autoUpdateFuture.cancel(true);
-			_autoUpdateFuture = null;
+		if (_FrameUpdate != null)
+		{
+			_FrameUpdate.setShutdown(true);
+			_FrameUpdate = null;
 		}
+		
 		if (_expMonitorFuture != null) {
 			_expMonitorFuture.cancel(true);
 			_expMonitorFuture = null;
@@ -314,7 +321,8 @@ public class L1PcInstance extends L1Character {
 	}
 
 	private static final long INTERVAL_AUTO_UPDATE = 300;
-	private ScheduledFuture<?> _autoUpdateFuture;
+	// private ScheduledFuture<?> _autoUpdateFuture;
+	private R_FrameUpdate _FrameUpdate;
 
 	private static final long INTERVAL_EXP_MONITOR = 500;
 	private ScheduledFuture<?> _expMonitorFuture;

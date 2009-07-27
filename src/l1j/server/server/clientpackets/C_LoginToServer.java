@@ -360,14 +360,6 @@ public class C_LoginToServer extends ClientBasePacket
 			}
 		}
 
-		// altsettings.propertiesでGetBackがtrueなら街に移動させる
-		if (Config.GET_BACK) {
-			int[] loc = Getback.GetBack_Location(pc, true);
-			pc.setX(loc[0]);
-			pc.setY(loc[1]);
-			pc.setMap((short) loc[2]);
-		}
-
 		// 戰爭中の旗內に居た場合、城主血盟でない場合は歸還させる。
 		int castle_id = L1CastleLocation.getCastleIdByArea(pc);
 		if (0 < castle_id) {
