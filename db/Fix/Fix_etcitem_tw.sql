@@ -36,3 +36,6 @@ Update etcitem Set item_type = 'treasure_box' Where item_id = '41301';
 Update etcitem Set item_type = 'treasure_box' Where item_id = '41302';
 Update etcitem Set item_type = 'treasure_box' Where item_id = '41303';
 Update etcitem Set item_type = 'treasure_box' Where item_id = '41304';
+
+/* 20090726 修正 遺物袋 為可堆疊 */
+Update etcitem Set stackable = '1' Where item_id = '41110';
