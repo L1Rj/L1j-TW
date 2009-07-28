@@ -223,7 +223,7 @@ public class L1DoorInstance extends L1NpcInstance {
 		if (getOpenStatus() == ActionCodes.ACTION_Close) {
 			setOpenStatus(ActionCodes.ACTION_Open);
 			setPassable(L1DoorInstance.PASS);
-			broadcastPacket(new S_DoorPack(this));
+			broadcastPacket(new S_DoActionGFX(getId(), getOpenStatus()));
 			sendDoorPacket(null);
 		}
 	}
@@ -235,7 +235,7 @@ public class L1DoorInstance extends L1NpcInstance {
 		if (getOpenStatus() == ActionCodes.ACTION_Open) {
 			setOpenStatus(ActionCodes.ACTION_Close);
 			setPassable(L1DoorInstance.NOT_PASS);
-			broadcastPacket(new S_DoorPack(this));
+			broadcastPacket(new S_DoActionGFX(getId(), getOpenStatus()));
 			sendDoorPacket(null);
 		}
 	}
