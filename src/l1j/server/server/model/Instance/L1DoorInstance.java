@@ -220,10 +220,12 @@ public class L1DoorInstance extends L1NpcInstance {
 		if (isDead()) {
 			return;
 		}
-		if (getOpenStatus() == ActionCodes.ACTION_Close) {
+		if (getOpenStatus() == ActionCodes.ACTION_Close)
+		{
 			setOpenStatus(ActionCodes.ACTION_Open);
-			setPassable(L1DoorInstance.PASS);
+			setPassable(PASS);
 			broadcastPacket(new S_DoActionGFX(getId(), getOpenStatus()));
+			// broadcastPacket(new S_DoorPack(this)); 錯誤封包, 造成無音效
 			sendDoorPacket(null);
 		}
 	}
@@ -232,10 +234,12 @@ public class L1DoorInstance extends L1NpcInstance {
 		if (isDead()) {
 			return;
 		}
-		if (getOpenStatus() == ActionCodes.ACTION_Open) {
+		if (getOpenStatus() == ActionCodes.ACTION_Open)
+		{
 			setOpenStatus(ActionCodes.ACTION_Close);
-			setPassable(L1DoorInstance.NOT_PASS);
+			setPassable(NOT_PASS);
 			broadcastPacket(new S_DoActionGFX(getId(), getOpenStatus()));
+			// broadcastPacket(new S_DoorPack(this)); 錯誤封包, 造成無音效
 			sendDoorPacket(null);
 		}
 	}
