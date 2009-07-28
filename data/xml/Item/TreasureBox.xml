@@ -1066,18 +1066,6 @@
 		<Item ItemId="40044" Count="1" Chance="39" /><!-- 鑽石 -->
 		<Item ItemId="40052" Count="1" Chance="1" /><!-- 高品質 鑽石 -->
 	</TreasureBox>
-	<!--驚喜箱 缺 魔法捲軸 (祝福魔法武器) 魔法捲軸 (神聖疾走) 魔法捲軸 (體力回覆術) 魔法捲軸 (全部治癒術) 魔法捲軸 (強力加速術) -->
-	<TreasureBox Type="RANDOM" ItemId="41416">
-		<Item ItemId="40068" Count="10" Chance="3" /><!-- 精靈餅乾 -->
-		<Item ItemId="40031" Count="10" Chance="3" /><!-- 惡魔之血 -->
-		<Item ItemId="41254" Count="1" Chance="1" /><!-- 勝利的徽章 -->
-		<Item ItemId="40890" Count="10" Chance="13" /><!-- 魔法捲軸 (冥想術) -->
-		<Item ItemId="40866" Count="10" Chance="10" /><!-- 魔法捲軸 (神聖武器) -->
-		<Item ItemId="40884" Count="10" Chance="30" /><!-- 魔法捲軸 (通暢氣脈術) -->
-		<Item ItemId="40867" Count="10" Chance="20" /><!-- 魔法捲軸 (解毒術) -->
-		<Item ItemId="40861" Count="10" Chance="10" /><!-- 魔法捲軸 (保護罩) -->
-		<Item ItemId="40014" Count="10" Chance="10" /><!-- 勇敢藥水 -->
-	</TreasureBox>
 	<!--愛的禮物盒 -->
 	<TreasureBox Type="RANDOM" ItemId="30101">
 		<Item ItemId="40014" Count="3000" Chance="1" /><!-- 勇敢藥水 -->
@@ -1279,5 +1267,28 @@
 		<Item ItemId="49143" Count="1" Chance="6" />	<!--結晶1-->
 		<Item ItemId="49143" Count="2" Chance="3.3" />	<!--結晶2-->
 		<Item ItemId="41251" Count="1" Chance="0.3" />	<!--聖杯-->
+	</TreasureBox>
+	<!--驚喜箱 -->
+	<TreasureBox Type="RANDOM" ItemId="41416">
+		<Item ItemId="40014" Count="10" Chance="8" /><!-- 勇敢藥水 -->
+		<Item ItemId="40031" Count="10" Chance="3" /><!-- 惡魔之血 -->
+		<Item ItemId="40068" Count="10" Chance="3" /><!-- 精靈餅乾 -->
+		<Item ItemId="40861" Count="10" Chance="8" /><!-- 魔法捲軸 (保護罩) -->
+		<Item ItemId="40866" Count="10" Chance="7" /><!-- 魔法捲軸 (神聖武器) -->
+		<Item ItemId="40867" Count="10" Chance="7" /><!-- 魔法捲軸 (解毒術) -->
+		<Item ItemId="40872" Count="10" Chance="7" /><!-- 魔法捲軸 (負重強化) -->
+		<Item ItemId="40879" Count="10" Chance="7" /><!-- 魔法捲軸 (鎧甲護持) -->
+		<Item ItemId="40884" Count="10" Chance="7" /><!-- 魔法捲軸 (通暢氣脈術) -->
+		<Item ItemId="40890" Count="10" Chance="7" /><!-- 魔法捲軸 (冥想術) -->
+		<Item ItemId="90001" Count="10" Chance="6" /><!--スペル スクロール (フィジカル エンチャント：STR)-->
+		<Item ItemId="90007" Count="10" Chance="6" /><!--スペル スクロール (ブレス ウェポン)-->
+		<Item ItemId="90008" Count="10" Chance="5" /><!--スペル スクロール (ヒール オール)-->
+		<Item ItemId="90011" Count="10" Chance="5" /><!--スペル スクロール (ホーリー ウォーク)-->
+		<Item ItemId="90013" Count="10" Chance="5" /><!--スペル スクロール (グレーター ヘイスト)-->
+		<Item ItemId="90016" Count="10" Chance="5" /><!--スペル スクロール (フル ヒール)-->
+		<Item ItemId="41251" Count="1" Chance="1" /><!-- 骷髏聖盃 -->
+		<Item ItemId="41252" Count="1" Chance="1" /><!-- 珍奇的烏龜 -->
+		<Item ItemId="41253" Count="1" Chance="1" /><!-- 王宮料理師的調味料 -->
+		<Item ItemId="41254" Count="1" Chance="1" /><!-- 勝利的徽章 -->
 	</TreasureBox>
 </TreasureBoxList>
