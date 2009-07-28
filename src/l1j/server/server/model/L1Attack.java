@@ -1857,7 +1857,7 @@ public class L1Attack {
 		int actId = act.getDefaultAttack(); // 取得攻擊動作
 		int sActId = act.getSpecialAttack(); // 取得特別動作
 		int newRange = _npc.getTileLineDistance(_target); // 取得距離
-		int chance = RandomArrayList.getArray10List() + 1; // 亂數數值 7/28 lifetime520 降低機率+原本似乎會很頓
+		int chance = RandomArrayList.getArray9List(); // 亂數數值 7/28 lifetime520 降低機率+原本似乎會很頓
 		int[] data = null; // 封包參數
 		
 		bowActId = bowActId <= 0 ? -1 : bowActId;
@@ -1867,8 +1867,8 @@ public class L1Attack {
 		{
 			if (newRange <= 1 && sActId != -1)
 			{
-				actId = chance <= 3 ? sActId : actId;
-				bowActId = chance <= 3 ? -1 : bowActId;
+				actId = chance < 3 ? sActId : actId;
+				bowActId = chance < 3 ? -1 : bowActId;
 			}
 			
 			data = new int[] { actId, _damage, bowActId, 0x00 };
@@ -1878,8 +1878,8 @@ public class L1Attack {
 		{
 			if (newRange <= 1 && sActId != -1)
 			{
-				actId = chance <= 3 ? sActId : actId;
-				bowActId = chance <= 3 ? -1 : bowActId;
+				actId = chance < 3 ? sActId : actId;
+				bowActId = chance < 3 ? -1 : bowActId;
 			}
 			
 			data = new int[] { actId, _damage, bowActId, 0x00 };;
@@ -1888,8 +1888,8 @@ public class L1Attack {
 		{
 			if (newRange <= 1 && sActId != -1)
 			{
-				actId = chance <= 3 ? sActId : actId;
-				bowActId = chance <= 3 ? -1 : bowActId;
+				actId = chance < 3 ? sActId : actId;
+				bowActId = chance < 3 ? -1 : bowActId;
 			}
 			
 			data = new int[] { actId, _damage, bowActId, 0x00 };
