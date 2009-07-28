@@ -2363,8 +2363,8 @@
 	<!--勝利の印章 / 印章販売人-->
 	<Action Name="request new surprise bag" NpcId="80128">
 		<MakeItem>
-			<Item Amount="1" ItemId="41254"/>
-			<Material Amount="500" ItemId="41402"/>
+			<Item Amount="1" ItemId="41311"/>
+			<Material Amount="50" ItemId="41402"/>
 		</MakeItem>
 	</Action>
 	<!--アルカの魔法の袋 / アルカ-->
