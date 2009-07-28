@@ -18,6 +18,8 @@
  */
 package l1j.server.server.model.Instance;
 
+import static l1j.server.server.model.skill.L1SkillId.FOG_OF_SLEEPING;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,27 +29,24 @@ import l1j.server.server.ActionCodes;
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.datatables.DropTable;
 import l1j.server.server.datatables.NPCTalkDataTable;
-import l1j.server.server.model.L1Object;
 import l1j.server.server.datatables.UBTable;
 import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1Location;
 import l1j.server.server.model.L1NpcTalkData;
+import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1UltimateBattle;
 import l1j.server.server.model.L1World;
-import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.serverpackets.S_DoActionGFX;
-import l1j.server.server.serverpackets.S_RemoveObject;
-import l1j.server.server.serverpackets.S_NPCTalkReturn;
 import l1j.server.server.serverpackets.S_NPCPack;
 import l1j.server.server.serverpackets.S_NPCTalkReturn;
+import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillBrave;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.CalcExp;
 import l1j.server.server.utils.RandomArrayList;
-import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1MonsterInstance extends L1NpcInstance {
 
@@ -63,7 +62,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 
 	// アイテム使用處理
 	@Override
-	public void onItemUse() {
+	public void onItemUse()
+	{
 		if (!isActived() && _target != null) {
 			useItem(USEITEM_HASTE, 40); // ４０％の確率でヘイストポーション使用
 
@@ -78,6 +78,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				setGfxId(targetPc.getClassId());
 				setPassispeed(640);
 				setAtkspeed(900); // 正確な值がわからん
+				
 				for (L1PcInstance pc : L1World.getInstance()
 						.getRecognizePlayer(this)) {
 					pc.sendPackets(new S_RemoveObject(this));
@@ -236,7 +237,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 		}
 	}
 
-	public L1MonsterInstance(L1Npc template) {
+	public L1MonsterInstance(L1Npc template)
+	{
 		super(template);
 		_storeDroped = false;
 	}
@@ -455,15 +457,18 @@ public class L1MonsterInstance extends L1NpcInstance {
 		}
 	}
 
-	class Death implements Runnable {
+	class Death implements Runnable
+	{
 		L1Character _lastAttacker;
 
-		public Death(L1Character lastAttacker) {
+		public Death(L1Character lastAttacker)
+		{
 			_lastAttacker = lastAttacker;
 		}
 
 		@Override
-		public void run() {
+		public void run()
+		{
 			setDeathProcessing(true);
 			setCurrentHpDirect(0);
 			setDead(true);
@@ -650,24 +655,29 @@ public class L1MonsterInstance extends L1NpcInstance {
 					broadcastPacket(new S_NPCPack(this));
 				}
 			}
-		} else if (npcid == 45067 // バレーハーピー
-				|| npcid == 45264 // ハーピー
-				|| npcid == 45452 // ハーピー
-				|| npcid == 45090 // バレーグリフォン
-				|| npcid == 45321 // グリフォン
-				|| npcid == 45445) { // グリフォン
-			if (getMaxHp() / 3 > getCurrentHp()) {
+		} else if (npcid == 45067 // 弱化哈維 (新手村莊)
+				|| npcid == 45264 // 哈維 (一般)
+				|| npcid == 45452 // 哈維 (遺忘之島)
+				|| npcid == 45090 // 弱化格利芬 (新手村莊
+				|| npcid == 45321 // 格利芬 (一般)
+				|| npcid == 45445)// 格利芬 (遺忘之島)
+		{
+			if (getMaxHp() / 3 > getCurrentHp())
+			{
 				byte rnd = RandomArrayList.getArray10List();
 				if (2 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_FLY);
 					broadcastPacket(new S_DoActionGFX(getId(),
 							ActionCodes.ACTION_Moveup));
-					setStatus(4);
-					broadcastPacket(new S_NPCPack(this));
+					setStatus(0);
+					setState(2); // 空中類型的怪物 在天上設2, 在地上設1
+					// broadcastPacket(new S_NPCPack(this));
 				}
 			}
-		} else if (npcid == 45681) { // リンドビオル
+		}
+		else if (npcid == 45681) // 風龍 - 林德拜爾
+		{
 			if (getMaxHp() / 3 > getCurrentHp()) {
 				byte rnd = RandomArrayList.getArray100List();
 				if (3 > rnd) {
@@ -676,6 +686,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 					broadcastPacket(new S_DoActionGFX(getId(),
 							ActionCodes.ACTION_Moveup));
 					setStatus(11);
+					setState(2);
 					broadcastPacket(new S_NPCPack(this));
 				}
 			}
@@ -695,7 +706,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 		}
 	}
 
-	public void initHide() {
+	public void initHide()
+	{
 		// 出現直後の隱れる動作
 		// 潛るMOBは一定の確率で地中に潛った狀態に、
 		// 飛ぶMOBは飛んだ狀態にしておく
@@ -706,7 +718,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				|| npcid == 45455) { // デッドリースパルトイ
 			byte rnd = RandomArrayList.getArray3List();
 			if (1 > rnd) {
-				setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_SINK);
+				setHiddenStatus(HIDDEN_STATUS_SINK);
 				setStatus(13);
 			}
 		} else if (npcid == 45045 // クレイゴーレム
@@ -715,59 +727,75 @@ public class L1MonsterInstance extends L1NpcInstance {
 				|| npcid == 45281) { // ギランストーンゴーレム
 			byte rnd = RandomArrayList.getArray3List();
 			if (1 > rnd) {
-				setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_SINK);
+				setHiddenStatus(HIDDEN_STATUS_SINK);
 				setStatus(4);
 			}
-		} else if (npcid == 45067 // バレーハーピー
-				|| npcid == 45264 // ハーピー
-				|| npcid == 45452 // ハーピー
-				|| npcid == 45090 // バレーグリフォン
-				|| npcid == 45321 // グリフォン
-				|| npcid == 45445) { // グリフォン
-			setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_FLY);
-			setStatus(4);
-		} else if (npcid == 45681) { // リンドビオル
-			setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_FLY);
+		} else if (npcid == 45067 // 弱化哈維 (新手村莊)
+				|| npcid == 45264 // 哈維 (一般)
+				|| npcid == 45452 // 哈維 (遺忘之島)
+				|| npcid == 45090 // 弱化格利芬 (新手村莊
+				|| npcid == 45321 // 格利芬 (一般)
+				|| npcid == 45445)// 格利芬 (遺忘之島)
+		{
+			setHiddenStatus(HIDDEN_STATUS_FLY);
+			setStatus(0);
+			setState(1); // 空中類型的怪物 在天上設2, 在地上設1
+		}
+		else if (npcid == 45681) { // リンドビオル
+			setHiddenStatus(HIDDEN_STATUS_FLY);
 			setStatus(11);
-		} else if (npcid >= 46125 && npcid <= 46128) {
-			setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_ICE);
+			setState(1); // 空中類型的怪物 在天上設2, 在地上設1
+		}
+		else if (npcid >= 46125 && npcid <= 46128)
+		{
+			setHiddenStatus(HIDDEN_STATUS_ICE);
 			setStatus(4);
 		}
 	}
 
-	public void initHideForMinion(L1NpcInstance leader) {
+	public void initHideForMinion(L1NpcInstance leader)
+	{
 		// グループに屬するモンスターの出現直後の隱れる動作（リーダーと同じ動作にする）
 		int npcid = getNpcTemplate().get_npcId();
-		if (leader.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_SINK) {
+		if (leader.getHiddenStatus() == HIDDEN_STATUS_SINK)
+		{
 			if (npcid == 45061 // カーズドスパルトイ
 					|| npcid == 45161 // スパルトイ
 					|| npcid == 45181 // スパルトイ
 					|| npcid == 45455) { // デッドリースパルトイ
-				setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_SINK);
+				setHiddenStatus(HIDDEN_STATUS_SINK);
 				setStatus(13);
 			} else if (npcid == 45045 // クレイゴーレム
 					|| npcid == 45126 // ストーンゴーレム
 					|| npcid == 45134 // ストーンゴーレム
 					|| npcid == 45281) { // ギランストーンゴーレム
-				setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_SINK);
+				setHiddenStatus(HIDDEN_STATUS_SINK);
 				setStatus(4);
 			}
-		} else if (leader.getHiddenStatus() == L1NpcInstance
-				.HIDDEN_STATUS_FLY) {
-			if (npcid == 45067 // バレーハーピー
-					|| npcid == 45264 // ハーピー
-					|| npcid == 45452 // ハーピー
-					|| npcid == 45090 // バレーグリフォン
-					|| npcid == 45321 // グリフォン
-					|| npcid == 45445) { // グリフォン
-				setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_FLY);
-				setStatus(4);
-			} else if (npcid == 45681) { // リンドビオル
-				setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_FLY);
+		}
+		else if (leader.getHiddenStatus() == HIDDEN_STATUS_FLY)
+		{
+			if (npcid == 45067 		  // 弱化哈維 (新手村莊)
+					|| npcid == 45264 // 哈維 (一般)
+					|| npcid == 45452 // 哈維 (遺忘之島)
+					|| npcid == 45090 // 弱化格利芬 (新手村莊
+					|| npcid == 45321 // 格利芬 (一般)
+					|| npcid == 45445)// 格利芬 (遺忘之島)
+			{
+				setHiddenStatus(HIDDEN_STATUS_FLY);
+				setStatus(0);
+				setState(1); // 空中類型的怪物 在天上設2, 在地上設1
+			}
+			else if (npcid == 45681) // 風龍 - 林德拜爾
+			{
+				setHiddenStatus(HIDDEN_STATUS_FLY);
 				setStatus(11);
+				setState(1); // 空中類型的怪物 在天上設2, 在地上設1
 			}
-		} else if (npcid >= 46125 && npcid <= 46128) {
-			setHiddenStatus(L1NpcInstance.HIDDEN_STATUS_ICE);
+		}
+		else if (npcid >= 46125 && npcid <= 46128)
+		{
+			setHiddenStatus(HIDDEN_STATUS_ICE);
 			setStatus(4);
 		}
 	}

@@ -204,9 +204,9 @@ public class ClientThread implements Runnable, PacketOutput
 
 	@Override
 	public void run() {
-		_log.info("(" + _hostname + ")客戶端開始連線...");
+		_log.info("(" + _hostname + ")開始連線...");
 		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
-		System.out.println("等待客戶端連線中...");
+		System.out.println("等候連線中...");
 
 		Socket socket = _csocket;
 		/*
@@ -245,9 +245,9 @@ public class ClientThread implements Runnable, PacketOutput
 			_out.write((byte)(seed >> 8 & 0xFF));
 			_out.write((byte)(seed >> 16 & 0xFF));
 			_out.write((byte)(seed >> 24 & 0xFF));
-
 			_out.write(FIRST_PACKET);
 			_out.flush();
+			
 			try {
 				// long seed = 0x2e70db3aL; // for Episode5
 				// long seed = 0x0cf1821dL; // for Episode6
@@ -348,9 +348,9 @@ public class ClientThread implements Runnable, PacketOutput
 		_log.fine("Server thread[C] stopped");
 		if (_kick < 1) {
 			_log.info("(" + getAccountName() + ":" + _hostname
-					+ ")客戶端結束連線...");
+					+ ")連線結束...");
 			System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
-			System.out.println("等待客戶端連線中...");
+			System.out.println("等候連線中...");
 		}
 		return;
 	}
@@ -438,7 +438,7 @@ public class ClientThread implements Runnable, PacketOutput
 				if (_activeChar == null // キャラクター选択前
 						|| _activeChar != null && !_activeChar.isPrivateShop()) { // 个人商店中
 					kick();
-					_log.warning("過長的等候時間導致(" + _hostname
+					_log.warning("等待回應時間過長導致(" + _hostname
 							+ ")連線中斷。");
 					cancel();
 					return;
@@ -582,7 +582,7 @@ public class ClientThread implements Runnable, PacketOutput
 		CharBuffTable.SaveBuff(pc);
 		pc.clearSkillEffectTimer();
 
-//waja add 寵物競速 - 登出從名單刪除 
+// 寵物競速 - 登出從名單刪除 
 		l1j.server.server.model.L1PolyRace.getInstance().checkLeaveGame(pc);
 //add end
 		// pcのモニターをstopする。

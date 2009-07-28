@@ -48,6 +48,7 @@ import l1j.server.server.model.L1NpcChatTimer;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1Spawn;
 import l1j.server.server.model.L1World;
+import l1j.server.server.model.Action.NpcAction;
 import l1j.server.server.model.map.L1Map;
 import l1j.server.server.model.map.L1WorldMap;
 import l1j.server.server.model.skill.L1SkillId;
@@ -1097,9 +1098,11 @@ public class L1NpcInstance extends L1Character {
 		setStatus(0);
 		setreSpawn(false);
 
-		if (template != null) {
+		if (template != null)
 			setting_template(template);
-		}
+		
+		setNpcAction(NpcAction.getAction(getGfxId())); // 取得NPC修正動作
+		getNpcAction().Load(this); // 更新目前動作
 	}
 
 	// 指定のテンプレートで各種值を初期化
@@ -1206,13 +1209,34 @@ public class L1NpcInstance extends L1Character {
 		mobSkill = new L1MobSkillUse(this);
 	}
 
-	private int _passispeed;
-
-	public int getPassispeed() {
-		return _passispeed;
+	// KIUSBT 新增NPC動作
+	private NpcAction npcAction; // NPC 之動作
+	
+	/**
+	 * @param npcAction the npcAction to set
+	 */
+	public void setNpcAction(NpcAction npcAction)
+	{
+		this.npcAction = npcAction;
 	}
 
-	public void setPassispeed(int i) {
+	/**
+	 * @return the npcAction
+	 */
+	public NpcAction getNpcAction()
+	{
+		return npcAction;
+	}
+	
+	private int _passispeed;
+
+	public int getPassispeed()
+	{
+		return _passispeed;
+	}
+	
+	public void setPassispeed(int i)
+	{
 		_passispeed = i;
 	}
 

@@ -344,8 +344,7 @@ public class C_LoginToServer extends ClientBasePacket
 		pc.setPacketOutput(client);
 		client.setActiveChar(pc);
 
-		S_LoginGame loginGame = new S_LoginGame();
-		pc.sendPackets(loginGame);
+		pc.sendPackets(new S_LoginGame());
 		items(pc);
 
 		// リスタート先がgetback_restartテーブルで指定されていたら移動させる
@@ -387,14 +386,12 @@ public class C_LoginToServer extends ClientBasePacket
 
 		L1World.getInstance().addVisibleObject(pc);
 		
-		S_ActiveSpells s_activespells = new S_ActiveSpells(pc);
-		pc.sendPackets(s_activespells);
+		pc.sendPackets(new S_ActiveSpells(pc));
 		bookmarks(pc);
 		
 		pc.beginGameTimeCarrier();
-
-		S_OwnCharStatus s_owncharstatus = new S_OwnCharStatus(pc);
-		pc.sendPackets(s_owncharstatus);
+		
+		pc.sendPackets(new S_OwnCharStatus(pc));
 
 		S_MapID s_mapid = new S_MapID(pc.getMapId(), pc.getMap().isUnderwater());
 		pc.sendPackets(s_mapid);
@@ -497,8 +494,6 @@ public class C_LoginToServer extends ClientBasePacket
 		client.CharReStart(false);
 		pc.beginExpMonitor();
 		pc.save(); // DBにキャラクター情報を書き⑸む
-
-		pc.sendPackets(new S_OwnCharStatus(pc));
 
 		if (pc.getHellTime() > 0) {
 			pc.beginHell(false);

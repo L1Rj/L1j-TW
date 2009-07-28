@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.WarTimeController;
+import l1j.server.server.model.Action.NpcAction;
 import l1j.server.server.model.Instance.L1DollInstance;
 import l1j.server.server.model.Instance.L1DoorInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -35,6 +36,7 @@ import l1j.server.server.model.gametime.L1GameTimeClock;
 import l1j.server.server.model.poison.L1DamagePoison;
 import l1j.server.server.model.poison.L1ParalysisPoison;
 import l1j.server.server.model.poison.L1SilencePoison;
+import l1j.server.server.serverpackets.S_Attack;
 import l1j.server.server.serverpackets.S_AttackMissPacket;
 import l1j.server.server.serverpackets.S_AttackPacketForNpc;
 import l1j.server.server.serverpackets.S_AttackPacket;
@@ -1843,53 +1845,57 @@ public class L1Attack {
 	}
 
 	// ●●●● ＮＰＣの攻擊モーション送信 ●●●●
-	private void actionNpc() {
-		int _npcObjectId = _npc.getId();
-		int bowActId = 0;
-		int actId = 0;
-
-		_npc.setHeading(_npc.targetDirection(_targetX, _targetY)); // 向きのセット
-
-		// ターゲットとの距離が2以上あれば遠距離攻撃
-		boolean isLongRange = (_npc.getLocation().getTileLineDistance(
-				new Point(_targetX, _targetY)) > 1);
-		bowActId = _npc.getNpcTemplate().getBowActId();
-
-		if (getActId() > 0) {
-			actId = getActId();
-		} else {
-			actId = ActionCodes.ACTION_Attack;
-		}
-
-		// 距離が2以上、攻撃者の弓のアクションIDがある場合は遠攻撃
-		if (isLongRange && bowActId > 0) {
-			_npc.broadcastPacket(new S_UseArrowSkill(_npc, _targetId,
-					bowActId, _targetX, _targetY, _isHit));
-		} else {
-			if (_isHit) {
-				if (getGfxId() > 0) {
-					_npc.broadcastPacket(new S_UseAttackSkill(_target,
-							_npcObjectId, getGfxId(), _targetX,
-									_targetY, actId));
-					_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
-							_targetId, ActionCodes.ACTION_Damage), _npc);
-				} else {
-					_npc.broadcastPacket(new S_AttackPacketForNpc(_target,
-							_npcObjectId, actId));
-					_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
-							_targetId, ActionCodes.ACTION_Damage), _npc);
-				}
-			} else {
-				if (getGfxId() > 0) {
-					_npc.broadcastPacket(new S_UseAttackSkill(_target,
-							_npcObjectId, getGfxId(), _targetX, _targetY,
-							actId, 0));
-				} else {
-					_npc.broadcastPacket(new S_AttackMissPacket(_npc,
-							_targetId, actId));
-				}
+	private void actionNpc()
+	{
+		_npc.setHeading(_npc.targetDirection(_targetX, _targetY)); // 改變方向
+		
+		if (!_isHit)
+			_damage = 0;
+		
+		NpcAction act = _npc.getNpcAction(); // 取得NPC動作
+		int bowActId = _npc.getNpcTemplate().getBowActId(); // 取得箭矢之動畫代碼
+		int actId = act.getDefaultAttack(); // 取得攻擊動作
+		int sActId = act.getSpecialAttack(); // 取得特別動作
+		int newRange = _npc.getTileLineDistance(_target); // 取得距離
+		int chance = new Random().nextInt(5) + 1; // 亂數數值
+		int[] data = null; // 封包參數
+		
+		bowActId = bowActId <= 0 ? -1 : bowActId;
+		
+		// 弓箭手類型
+		if (act.getARange() > 2)
+		{
+			if (newRange <= 1 && sActId != -1)
+			{
+				actId = chance <= 3 ? sActId : actId;
+				bowActId = chance <= 3 ? -1 : bowActId;
 			}
+			
+			data = new int[] { actId, _damage, bowActId, 0x00 };
 		}
+		// 長矛手類型
+		else if (act.getARange() == 2)
+		{
+			if (newRange <= 1 && sActId != -1)
+			{
+				actId = chance <= 3 ? sActId : actId;
+				bowActId = chance <= 3 ? -1 : bowActId;
+			}
+			
+			data = new int[] { actId, _damage, bowActId, 0x00 };;
+		}
+		else
+		{
+			if (newRange <= 1 && sActId != -1)
+			{
+				actId = chance <= 3 ? sActId : actId;
+				bowActId = chance <= 3 ? -1 : bowActId;
+			}
+			
+			data = new int[] { actId, _damage, bowActId, 0x00 };
+		}
+		
+		_npc.broadcastPacket(new S_Attack(_npc, _target, data));
 	}
 
 	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■

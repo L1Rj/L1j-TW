@@ -1542,5 +1542,23 @@ public class L1Character extends L1Object {
 	public void setOwnLightSize(int i) {
 		_ownLightSize = i;
 	}
+	
+	/* 物件特別狀態 [2009/07/28] */
+	private int State; 
+	
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(int state)
+	{
+		State = state;
+	}
 
+	/**
+	 * @return the state
+	 */
+	public int getState()
+	{
+		return State;
+	}
 }

@@ -94,11 +94,11 @@ public class S_NPCPack extends ServerBasePacket
 			if (npc.getNpcTemplate().get_npcId() != 81069)
 				status |= STATUS_PC;
 		
-		writeC(status);
+		writeC(status); // 狀態
 		writeD(0); // 0以外にするとC_27が飛ぶ
 		writeS(null);
 		writeS(null); // マスター名？
-		writeC(0);
+		writeC(npc.getState()); // 特殊狀態
 		writeC(0xFF); // 血條
 		writeC(0);
 		writeC(npc.getLevel());

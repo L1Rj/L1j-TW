@@ -23,6 +23,15 @@ import l1j.server.server.model.Instance.L1PcInstance;
 
 public class S_ActiveSpells extends ServerBasePacket
 {
+	// [Length:72] S -> C
+	// 0000    77 14 00 00 00 00 00 00 00 00 00 00 00 00 00 00    w...............
+	// 0010    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+	// 0020    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+	// 0030    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 78    ...............x
+	// 0040    00 00 00 00 00 00 03 7F                            .......
+	
+	// [Length:8] S -> C
+	// 0000    7A DD F2 50 00 C6 1B 6A                            z..P...j
 	public S_ActiveSpells(L1PcInstance pc)
 	{
 		writeC(Opcodes.S_OPCODE_ACTIVESPELLS);
@@ -68,6 +77,7 @@ public class S_ActiveSpells extends ServerBasePacket
 	}
 	
 	/*
+	 * S_PacketBox.java
 	 * 24, 血盟成員清單
 	 * 44, 風之枷鎖
 	 * 56, 魔法娃娃圖示
@@ -84,30 +94,19 @@ public class S_ActiveSpells extends ServerBasePacket
 	 */
 	public S_ActiveSpells(L1PcInstance pc, int offset)
 	{
-		int[] int16 = new int[68];
+		int[] UByte8 = new int[68];
+		byte[] randBox = new byte[2];
+		random.nextBytes(randBox);
 		
 		writeC(Opcodes.S_OPCODE_ACTIVESPELLS);
-		
-		/*
 		writeC(0x14);
 		
-		int16[offset & 67] = 0xFF;
+		UByte8[offset] = 0x64; // 時間 * 4 [最大時間 1020]
 		
-		for (int i : int16)
+		for (int i : UByte8)
 			writeC(i);
-		*/
 		
-		writeC(offset);
-		// writeC(0);
-		writeH(1);
-		writeS("00000");
-		writeH(1);
-		writeS("00000");
-		writeH(1);
-		writeS("00000");
-		// writeC(offset);
-		// writeS(null);
-		// writeS(null);
+		writeByte(randBox);
 	}
 
 	@Override
