@@ -585,12 +585,12 @@ Update droplist Set chance = '50' Where itemid = '20288' And mobId = '81081';
 Update droplist Set chance = '10000' Where itemid = '20288' And mobId = '81163';
 
 /* 20090512 降低 變形控制戒指 機率 */
-Update droplist Set chance = '100' Where itemid = '20281' And mobId = '45393';/* 思克巴 */
-Update droplist Set chance = '100' Where itemid = '20281' And mobId = '45394';/* 思克巴 傲慢 */
-Update droplist Set chance = '200' Where itemid = '20281' And mobId = '45450';/* 炎魔的思克巴女皇 */
-Update droplist Set chance = '200' Where itemid = '20281' And mobId = '45456';/* 魔法師 */
-Update droplist Set chance = '300' Where itemid = '20281' And mobId = '45480';/* 火燄之魔法師 */
-Update droplist Set chance = '80' Where itemid = '20281' And mobId = '45488';/* 卡士伯 */
+Update droplist Set chance = '50' Where itemid = '20281' And mobId = '45393';/* 思克巴 */
+Update droplist Set chance = '80' Where itemid = '20281' And mobId = '45394';/* 思克巴 傲慢 */
+Update droplist Set chance = '100' Where itemid = '20281' And mobId = '45450';/* 炎魔的思克巴女皇 */
+Update droplist Set chance = '100' Where itemid = '20281' And mobId = '45456';/* 魔法師 */
+Update droplist Set chance = '200' Where itemid = '20281' And mobId = '45480';/* 火燄之魔法師 */
+Update droplist Set chance = '50' Where itemid = '20281' And mobId = '45488';/* 卡士伯 */
 Update droplist Set chance = '300' Where itemid = '20281' And mobId = '45601';/* 死亡騎士 */
 Update droplist Set chance = '100' Where itemid = '20281' And mobId = '45606';/* 吸血鬼 */
 Update droplist Set chance = '200' Where itemid = '20281' And mobId = '45617';/* 不死鳥 */
@@ -1013,7 +1013,7 @@ Update droplist Set max = '18' Where mobId = '46026' And itemId = '49026';
 Update droplist Set chance = '30000' Where itemId = '40605';
 
 /* 20090702 提高 黃金鑰匙 掉落機率 */
-Update droplist Set chance = '900000' Where  itemId = '40163' And mobId = '45573';
+Update droplist Set chance = '1500000' Where  itemId = '40163' And mobId = '45573';
 
 /* 20090713 降低 底比斯祭壇鑰匙 掉落機率 */
 Update droplist Set chance = '2000' Where  itemId = '49242';
@@ -1039,6 +1039,22 @@ Update droplist Set chance = '110000' Where chance = '300000' And itemId = '4001
 Update droplist Set chance = '14000' Where chance = '100000' And itemId = '40014';
 Update droplist Set chance = '40000' Where chance = '50000' And itemId = '40014';
 Update droplist Set chance = '2000' Where chance = '10000' And itemId = '40014';
+
+/* 20090729 降低 拉斯塔巴德補給箱 掉落機率 */
+Update droplist Set chance = '5500' Where chance = '10000' And itemId = '41244';
+Update droplist Set chance = '2500' Where chance = '5000' And itemId = '41244';
+
+/* 20090729 降低 魔獸軍王印記盒 掉落機率 */
+Update droplist Set chance = '4000' Where chance = '10000' And itemId = '40639';
+
+/* 20090729 降低 法令軍王印記盒 掉落機率 */
+Update droplist Set chance = '4000' Where chance = '10000' And itemId = '40636';
+
+/* 20090729 降低 冥法軍王印記盒 掉落機率 */
+Update droplist Set chance = '4000' Where chance = '10000' And itemId = '40640';
+
+/* 20090729 降低 暗殺軍王印記盒 掉落機率 */
+Update droplist Set chance = '4000' Where chance = '10000' And itemId = '40668';
 
 /* ----------- 怪物 ----------- */
 /* 20090712 調整 林德拜爾 45681 掉落武器/防具/道具機率 */

@@ -651,27 +651,27 @@
 	</TreasureBox>
 	<!--拉斯塔巴德補給箱-->
 	<TreasureBox Type="RANDOM" ItemId="41244">
-		<Item ItemId="6" Count="1" Chance="1" />		<!--ラスタバドダガー-->
-		<Item ItemId="10" Count="1" Chance="1" />		<!--ラスタバドブレード-->
-		<Item ItemId="38" Count="1" Chance="1" />		<!--ラスタバド長剣-->
-		<Item ItemId="82" Count="1" Chance="1" />		<!--ラスタバド双剣-->
-		<Item ItemId="101" Count="1" Chance="1" />		<!--ラスタバド槍-->
-		<Item ItemId="122" Count="1" Chance="1" />		<!--ラスタバドスタッフ-->
-		<Item ItemId="176" Count="1" Chance="1" />		<!--ラスタバドボウ-->
-		<Item ItemId="187" Count="1" Chance="1" />		<!--ラスタバドクロスボウ-->
-		<Item ItemId="188" Count="1" Chance="1" />		<!--ラスタバド重クロス-->
-		<Item ItemId="20032" Count="1" Chance="1" />	<!--ダークヘッドバンド-->
-		<Item ItemId="20102" Count="1" Chance="1" />	<!--ラスタバドレザー鎧-->
-		<Item ItemId="20103" Count="1" Chance="1" />	<!--ラスタバドローブ-->
-		<Item ItemId="20104" Count="1" Chance="1" />	<!--ラスタバドスタデッド-->
-		<Item ItemId="20105" Count="1" Chance="1" />	<!--ラスタバドチェーン鎧-->
-		<Item ItemId="20132" Count="1" Chance="1" />	<!--ダーク ローブ-->
-		<Item ItemId="20199" Count="1" Chance="1" />	<!--ラスタバドブーツ-->
-		<Item ItemId="20224" Count="1" Chance="1" />	<!--ラスタバドラウンド盾-->
-		<Item ItemId="40675" Count="1" Chance="20" />	<!--闇の鉱石-->
-		<Item ItemId="40675" Count="2" Chance="20" />	<!--闇の鉱石-->
-		<Item ItemId="40675" Count="3" Chance="20" />	<!--闇の鉱石-->
-		<Item ItemId="40746" Count="10" Chance="4" />	<!--ミスリルの矢-->
+		<Item ItemId="6" Count="1" Chance="1" />		<!--拉斯塔巴德短劍-->
+		<Item ItemId="10" Count="1" Chance="1" />		<!--小武士刀-->
+		<Item ItemId="38" Count="1" Chance="1" />		<!--拉斯塔巴德長劍-->
+		<Item ItemId="82" Count="1" Chance="1" />		<!--拉斯塔巴德雙刀-->
+		<Item ItemId="101" Count="1" Chance="1" />		<!--拉斯塔巴德矛-->
+		<Item ItemId="122" Count="1" Chance="1" />		<!--拉斯塔巴德魔杖-->
+		<Item ItemId="176" Count="1" Chance="1" />		<!--拉斯塔巴德弓-->
+		<Item ItemId="187" Count="1" Chance="1" />		<!--拉斯塔巴德十字弓-->
+		<Item ItemId="188" Count="1" Chance="1" />		<!--拉斯塔巴德重十字弓-->
+		<Item ItemId="20032" Count="1" Chance="0.4" />	<!--黑暗頭飾-->
+		<Item ItemId="20102" Count="1" Chance="1" />	<!--拉斯塔巴德皮盔甲-->
+		<Item ItemId="20103" Count="1" Chance="1" />	<!--拉斯塔巴德長袍-->
+		<Item ItemId="20104" Count="1" Chance="1" />	<!--拉斯塔巴德銀釘皮盔甲-->
+		<Item ItemId="20105" Count="1" Chance="1" />	<!--拉斯塔巴德鏈甲-->
+		<Item ItemId="20132" Count="1" Chance="0.4" />	<!--黑暗披肩-->
+		<Item ItemId="20199" Count="1" Chance="1" />	<!--拉斯塔巴德長靴-->
+		<Item ItemId="20224" Count="1" Chance="1" />	<!--拉斯塔巴德圓盾-->
+		<Item ItemId="40675" Count="1" Chance="20" />	<!--黑暗礦石-->
+		<Item ItemId="40675" Count="2" Chance="20" />	<!--黑暗礦石-->
+		<Item ItemId="40675" Count="3" Chance="20" />	<!--黑暗礦石-->
+		<Item ItemId="40746" Count="10" Chance="5.2" />	<!--ミスリルの矢-->
 		<Item ItemId="40746" Count="15" Chance="4" />	<!--ミスリルの矢-->
 		<Item ItemId="40746" Count="20" Chance="4" />	<!--ミスリルの矢-->
 		<Item ItemId="40746" Count="25" Chance="3" />	<!--ミスリルの矢-->
@@ -830,53 +830,53 @@
 		<Item ItemId="40088" Count="1" Chance="20" />
 		<Item ItemId="40308" Count="10000" Chance="20" />
 	</TreasureBox>
-	<!--魔霊軍の壺-->
+	<!--法令軍王印記盒-->
 	<TreasureBox Type="RANDOM" ItemId="40636">
 		<Item ItemId="40635" Count="3" Chance="80" />
-		<Item ItemId="40675" Count="1" Chance="8" />
+		<Item ItemId="40675" Count="1" Chance="11.2" />
 		<Item ItemId="40703" Count="1" Chance="2" />
-		<Item ItemId="20030" Count="1" Chance="2" />
-		<Item ItemId="20067" Count="1" Chance="2" />
-		<Item ItemId="20176" Count="1" Chance="2" />
-		<Item ItemId="20208" Count="1" Chance="2" />
-		<Item ItemId="20109" Count="1" Chance="1" />
-		<Item ItemId="20253" Count="1" Chance="1" />
+		<Item ItemId="20030" Count="1" Chance="2" /><!--神官頭飾-->
+		<Item ItemId="20067" Count="1" Chance="2" /><!--神官斗篷-->
+		<Item ItemId="20176" Count="1" Chance="1" /><!--神官手套-->
+		<Item ItemId="20208" Count="1" Chance="1" /><!--神官長靴-->
+		<Item ItemId="20109" Count="1" Chance="0.5" /><!--法令軍王長袍-->
+		<Item ItemId="20253" Count="1" Chance="0.3" /><!--法令軍王之鍊-->
 	</TreasureBox>
-	<!--魔獣軍の壺-->
+	<!--魔獸軍王印記盒-->
 	<TreasureBox Type="RANDOM" ItemId="40639">
 		<Item ItemId="40638" Count="1" Chance="80" />
-		<Item ItemId="40675" Count="1" Chance="8" />
-		<Item ItemId="40703" Count="1" Chance="2" />
-		<Item ItemId="20020" Count="1" Chance="2" />
-		<Item ItemId="20058" Count="1" Chance="2" />
-		<Item ItemId="20168" Count="1" Chance="2" />
-		<Item ItemId="20201" Count="1" Chance="2" />
-		<Item ItemId="20200" Count="1" Chance="1" />
-		<Item ItemId="155" Count="1" Chance="1" />
+		<Item ItemId="40675" Count="1" Chance="8.3" />
+		<Item ItemId="40703" Count="1" Chance="4.5" />
+		<Item ItemId="20020" Count="1" Chance="2" /><!--武官頭盔-->
+		<Item ItemId="20058" Count="1" Chance="2" /><!--武官斗篷-->
+		<Item ItemId="20168" Count="1" Chance="2" /><!--武官手套-->
+		<Item ItemId="20201" Count="1" Chance="0.5" /><!--武官長靴-->
+		<Item ItemId="20200" Count="1" Chance="0.5" /><!--武官之盾-->
+		<Item ItemId="155" Count="1" Chance="0.2" /><!--魔獸軍王之爪-->
 	</TreasureBox>
-	<!--冥法軍の壺-->
+	<!--冥法軍王印記盒-->
 	<TreasureBox Type="RANDOM" ItemId="40640">
 		<Item ItemId="40642" Count="1" Chance="80" />
-		<Item ItemId="40675" Count="1" Chance="8" />
+		<Item ItemId="40675" Count="1" Chance="10.1" />
 		<Item ItemId="40703" Count="1" Chance="2" />
-		<Item ItemId="20030" Count="1" Chance="2" />
-		<Item ItemId="20067" Count="1" Chance="2" />
-		<Item ItemId="20176" Count="1" Chance="2" />
-		<Item ItemId="20208" Count="1" Chance="2" />
-		<Item ItemId="20057" Count="1" Chance="1" />
-		<Item ItemId="20255" Count="1" Chance="1" />
+		<Item ItemId="20030" Count="1" Chance="2" /><!--神官頭飾-->
+		<Item ItemId="20067" Count="1" Chance="2" /><!--神官斗篷-->
+		<Item ItemId="20176" Count="1" Chance="2" /><!--神官手套-->
+		<Item ItemId="20208" Count="1" Chance="1" /><!--神官長靴-->
+		<Item ItemId="20057" Count="1" Chance="0.5" /><!--冥法軍王斗篷-->
+		<Item ItemId="20255" Count="1" Chance="0.4" /><!--冥法軍王之戒-->
 	</TreasureBox>
-	<!--暗殺軍の壺-->
+	<!--暗殺軍王印記盒-->
 	<TreasureBox Type="RANDOM" ItemId="40668">
 		<Item ItemId="40667" Count="1" Chance="80" />
-		<Item ItemId="40675" Count="1" Chance="8" />
+		<Item ItemId="40675" Count="1" Chance="11.3" />
 		<Item ItemId="40703" Count="1" Chance="2" />
-		<Item ItemId="20030" Count="1" Chance="2" />
-		<Item ItemId="20067" Count="1" Chance="2" />
-		<Item ItemId="20176" Count="1" Chance="2" />
-		<Item ItemId="20208" Count="1" Chance="2" />
-		<Item ItemId="78" Count="1" Chance="1" />
-		<Item ItemId="20178" Count="1" Chance="1" />
+		<Item ItemId="20030" Count="1" Chance="2" /><!--神官頭飾-->
+		<Item ItemId="20067" Count="1" Chance="2" /><!--神官斗篷-->
+		<Item ItemId="20176" Count="1" Chance="1" /><!--神官手套-->
+		<Item ItemId="20208" Count="1" Chance="1" /><!--神官長靴-->
+		<Item ItemId="78" Count="1" Chance="0.3" /><!--暗殺軍王之痕-->
+		<Item ItemId="20178" Count="1" Chance="0.4" /><!--暗殺軍王手套-->
 	</TreasureBox>
 	<!--エブロールの袋-->
 	<TreasureBox Type="RANDOM" ItemId="41336">
