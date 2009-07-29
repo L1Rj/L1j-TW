@@ -1,5 +1,24 @@
 以下為目前仍有的錯誤訊息紀錄
 
+20090712
+l1j.server.server.model.L1Chaser run
+警告: null
+java.lang.NullPointerException
+        at l1j.server.server.model.Instance.L1NpcInstance.checkTarget(Unknown Source)
+        at l1j.server.server.model.Instance.L1NpcInstance.setHate(Unknown Source)
+        at l1j.server.server.model.Instance.L1MonsterInstance.receiveDamage(Unknown Source)
+        at l1j.server.server.model.L1Chaser.attack(Unknown Source)
+        at l1j.server.server.model.L1Chaser.run(Unknown Source)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:441)
+        at java.util.concurrent.FutureTask$Sync.innerRunAndReset(FutureTask.java:317)
+        at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:150)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$101(ScheduledThreadPoolExecutor.java:98)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.runPeriodic(ScheduledThreadPoolExecutor.java:181)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:205)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+        at java.lang.Thread.run(Thread.java:619)
+
 20090711
 l1j.server.server.model.L1PetMatch$L1PetMatchTimer run
 警告: null
@@ -44,13 +63,7 @@ java.lang.NullPointerException
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-090708 目前版本 關機指令錯誤 線上角色無法剔除 無法正常關閉
-Exception in thread "Thread-37" java.lang.NullPointerException
-        at l1j.server.server.GameServer.disconnectAllCharacters(Unknown Source)
-        at l1j.server.server.GameServer.shutdown(Unknown Source)
-        at l1j.server.server.GameServer$ServerShutdownThread.run(Unknown Source)
-
-090707 linux下才有的錯誤 也許mysql設定?
+090707 mysql設定?
 l1j.server.server.datatables.CharBuffTable StoreBuff
 嚴重的: The last packet successfully received from the server was47781 milliseconds ago.The last packet sent successfully to the server was 47781 milliseconds ago, which  is longer than the server configured value of 'wait_timeout'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts, or using the Connector/J connection property 'autoReconnect=true' to avoid this problem.
 com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: The last packet successfully received from the server was47781 milliseconds ago.The last packet sent successfully to the server was 47781 milliseconds ago, which  is longer than the server configured value of 'wait_timeout'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts, or using the Connector/J connection property 'autoReconnect=true' to avoid this problem.
