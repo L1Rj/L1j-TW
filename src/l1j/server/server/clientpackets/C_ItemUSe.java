@@ -1493,7 +1493,8 @@ public class C_ItemUSe extends ClientBasePacket {
 
 					// スペルスクロール
 				} else if ((itemId >= 40859 && itemId <= 40898)
-						&& itemId != 40863) { // 40863はテレポートスクロールとして處理される
+						&& itemId != 40863
+						|| itemId >= 49281 && itemId <= 49286) { // 40863はテレポートスクロールとして処理される
 					if (spellsc_objid == pc.getId()
 							&& l1iteminstance.getItem().getUseType() != 30) { // spell_buff
 						pc.sendPackets(new S_ServerMessage(281)); // \f1魔法が無效になりました。
@@ -1510,6 +1511,20 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
 					int skillid = itemId - 40858;
+					if (itemId == 49281) { // フィジカルエンチャント：STR
+						skillid = 42;
+					} else if (itemId == 49282) { // ブレスウェポン
+						skillid = 48;
+					} else if (itemId == 49283) { // ヒールオール
+						skillid = 49;
+					} else if (itemId == 49284) { // ホーリーウォーク(未実装)
+						skillid = 52;
+						return;
+					} else if (itemId == 49285) { // グレーターヘイスト
+						skillid = 54;
+					} else if (itemId == 49286) { // フルヒール
+						skillid = 57;
+					}
 					L1SkillUse l1skilluse = new L1SkillUse();
 					l1skilluse.handleCommands(client.getActiveChar(), skillid,
 							spellsc_objid, spellsc_x, spellsc_y, null, 0,

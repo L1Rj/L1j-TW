@@ -140,9 +140,9 @@
 		<Room Name="櫻花森林" LocX="32763" LocY="32814" MapId="610"/>
 		<Room Name="果子森林" LocX="32763" LocY="32825" MapId="612"/>
 		<Room Name="天空之城" LocX="32641" LocY="32850" MapId="5801"/>
+		<Room Name="提卡爾神廟" LocX="33237" LocY="32771" MapId="783"/>
 		<Room Name="GMRoom" LocX="32737" LocY="32796" MapId="99"/>
 		<Room Name="GMShop" LocX="33079" LocY="33402" MapId="4"/>
-
 		
 		<!-- 未整理 -->
 <!--
