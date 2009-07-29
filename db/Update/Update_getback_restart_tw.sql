@@ -160,9 +160,9 @@ UPDATE getback_restart SET note = "拉斯塔巴德帝國:副神官．卡山德�
 UPDATE getback_restart SET note = "黑暗妖精聖地" WHERE (area = "535" AND locx = "32744" AND locy = "32792");
 UPDATE getback_restart SET note = "船舶之墓:海面" WHERE (area = "550" AND locx = "32844" AND locy = "32694");
 UPDATE getback_restart SET note = "船舶之墓:大型船艙1樓" WHERE (area = "551" AND locx = "32844" AND locy = "32694");
-UPDATE getback_restart SET note = "船舶之墓:大型船艙1F(水中)" WHERE (area = "552" AND locx = "32844" AND locy = "32694");
+UPDATE getback_restart SET note = "船舶之墓:大型船艙1樓(水中)" WHERE (area = "552" AND locx = "32844" AND locy = "32694");
 UPDATE getback_restart SET note = "船舶之墓:大型船艙2樓" WHERE (area = "554" AND locx = "32844" AND locy = "32694");
-UPDATE getback_restart SET note = "船舶之墓:大型船艙2F(水中)" WHERE (area = "555" AND locx = "32844" AND locy = "32694");
+UPDATE getback_restart SET note = "船舶之墓:大型船艙2樓(水中)" WHERE (area = "555" AND locx = "32844" AND locy = "32694");
 UPDATE getback_restart SET note = "船舶之墓:船艙" WHERE (area = "557" AND locx = "32844" AND locy = "32694");
 UPDATE getback_restart SET note = "船舶之墓:深海" WHERE (area = "558" AND locx = "32844" AND locy = "32694");
 UPDATE getback_restart SET note = "慾望洞穴入口" WHERE (area = "600" AND locx = "32608" AND locy = "33178");

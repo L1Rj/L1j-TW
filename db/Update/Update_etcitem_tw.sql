@@ -1795,6 +1795,12 @@ UPDATE etcitem SET name = "萊斯塔的戒指", unidentified_name_id = "$3598", 
 UPDATE etcitem SET name = "勇者的南瓜袋子", unidentified_name_id = "$5287", identified_name_id = "$5287" WHERE item_id = "49278";
 UPDATE etcitem SET name = "勇者的南瓜袋子", unidentified_name_id = "$5287", identified_name_id = "$5287" WHERE item_id = "49279";
 UPDATE etcitem SET name = "勇者的南瓜袋子", unidentified_name_id = "$5287", identified_name_id = "$5287" WHERE item_id = "49280";
+UPDATE etcitem SET name = "魔法卷軸 (體魄強健術)", unidentified_name_id = "$1487 $1462", identified_name_id = "$1487 $1462" WHERE item_id = "49281";
+UPDATE etcitem SET name = "魔法卷軸 (祝福魔法武器)", unidentified_name_id = "$1487 $1985", identified_name_id = "$1487 $1985" WHERE item_id = "49282";
+UPDATE etcitem SET name = "魔法卷軸 (體力回復術)", unidentified_name_id = "$1487 $1466", identified_name_id = "$1487 $1466" WHERE item_id = "49283";
+UPDATE etcitem SET name = "魔法卷軸 (神聖疾走)", unidentified_name_id = "$1487 $1469", identified_name_id = "$1487 $1469" WHERE item_id = "49284";
+UPDATE etcitem SET name = "魔法卷軸 (強力加速術)", unidentified_name_id = "$1487 $1976", identified_name_id = "$1487 $1976" WHERE item_id = "49285";
+UPDATE etcitem SET name = "魔法卷軸 (全部治癒術)", unidentified_name_id = "$1487 $1471", identified_name_id = "$1487 $1471" WHERE item_id = "49286";
 UPDATE etcitem SET name = "創造怪物魔杖", unidentified_name_id = "$28", identified_name_id = "$258" WHERE item_id = "140006";
 UPDATE etcitem SET name = "變形魔杖", unidentified_name_id = "$27", identified_name_id = "$260" WHERE item_id = "140008";
 UPDATE etcitem SET name = "治癒藥水", unidentified_name_id = "$26", identified_name_id = "$26" WHERE item_id = "140010";
