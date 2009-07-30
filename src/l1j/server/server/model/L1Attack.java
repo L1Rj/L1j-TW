@@ -18,6 +18,64 @@
  */
 package l1j.server.server.model;
 
+import static l1j.server.server.model.skill.L1SkillId.ABSOLUTE_BARRIER;
+import static l1j.server.server.model.skill.L1SkillId.BERSERKERS;
+import static l1j.server.server.model.skill.L1SkillId.BLIND_HIDING;
+import static l1j.server.server.model.skill.L1SkillId.BOUNCE_ATTACK;
+import static l1j.server.server.model.skill.L1SkillId.BURNING_SPIRIT;
+import static l1j.server.server.model.skill.L1SkillId.BURNING_WEAPON;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_1_0_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_1_1_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_1_2_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_1_3_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_1_4_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_1_5_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_1_6_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_1_7_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_0_N;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_0_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_1_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_2_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_3_N;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_3_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_4_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_5_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_6_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_2_7_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_0_N;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_0_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_1_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_2_N;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_2_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_3_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_4_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_5_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_6_S;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_3_7_S;
+import static l1j.server.server.model.skill.L1SkillId.DOUBLE_BRAKE;
+import static l1j.server.server.model.skill.L1SkillId.DRAGON_SKIN;
+import static l1j.server.server.model.skill.L1SkillId.EARTH_BIND;
+import static l1j.server.server.model.skill.L1SkillId.ELEMENTAL_FIRE;
+import static l1j.server.server.model.skill.L1SkillId.ENCHANT_VENOM;
+import static l1j.server.server.model.skill.L1SkillId.FIRE_BLESS;
+import static l1j.server.server.model.skill.L1SkillId.FIRE_WEAPON;
+import static l1j.server.server.model.skill.L1SkillId.FREEZING_BLIZZARD;
+import static l1j.server.server.model.skill.L1SkillId.FREEZING_BREATH;
+import static l1j.server.server.model.skill.L1SkillId.ICE_LANCE;
+import static l1j.server.server.model.skill.L1SkillId.IMMUNE_TO_HARM;
+import static l1j.server.server.model.skill.L1SkillId.INVISIBILITY;
+import static l1j.server.server.model.skill.L1SkillId.MIRROR_IMAGE;
+import static l1j.server.server.model.skill.L1SkillId.PATIENCE;
+import static l1j.server.server.model.skill.L1SkillId.REDUCTION_ARMOR;
+import static l1j.server.server.model.skill.L1SkillId.RESIST_FEAR;
+import static l1j.server.server.model.skill.L1SkillId.SOUL_OF_FLAME;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_CURSE_BARLOG;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_CURSE_YAHEE;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_MITHRIL_POWDER;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_WATER;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_WATER_OF_EVA;
+import static l1j.server.server.model.skill.L1SkillId.UNCANNY_DODGE;
+
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -26,7 +84,6 @@ import l1j.server.server.ActionCodes;
 import l1j.server.server.WarTimeController;
 import l1j.server.server.model.Action.NpcAction;
 import l1j.server.server.model.Instance.L1DollInstance;
-import l1j.server.server.model.Instance.L1DoorInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -38,150 +95,82 @@ import l1j.server.server.model.poison.L1ParalysisPoison;
 import l1j.server.server.model.poison.L1SilencePoison;
 import l1j.server.server.serverpackets.S_Attack;
 import l1j.server.server.serverpackets.S_AttackMissPacket;
-import l1j.server.server.serverpackets.S_AttackPacketForNpc;
 import l1j.server.server.serverpackets.S_AttackPacket;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillSound;
-import l1j.server.server.serverpackets.S_SystemMessage; // 骰子匕首
+import l1j.server.server.serverpackets.S_SystemMessage;
 import l1j.server.server.serverpackets.S_UseArrowSkill;
 import l1j.server.server.serverpackets.S_UseAttackSkill;
-import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.types.Point;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import l1j.server.server.utils.RandomArrayList;
 
-public class L1Attack {
+public class L1Attack
+{
 	private static Logger _log = Logger.getLogger(L1Attack.class.getName());
 
-	private L1PcInstance _pc = null;
-
-	private L1Character _target = null;
-
-	private L1PcInstance _targetPc = null;
-
-	private L1NpcInstance _npc = null;
-
-	private L1NpcInstance _targetNpc = null;
-
+	// KIUSBT 更改型態、並廢除 _calcType 該變數
+	private boolean PC_PC;
+	private boolean PC_NPC;
+	private boolean NPC_PC;
+	private boolean NPC_NPC;
+	// -----------   over change   -----------
+	
+	private int _SpecialEffect; // 特殊效果 KIUSBT insert
+	// 備註 : 像是黑妖爪痕、雙擊都是靠這個數值去產生
+	
+	private L1PcInstance _pc;
+	private L1Character _target;
+	private L1PcInstance _targetPc;
+	private L1NpcInstance _npc;
+	private L1NpcInstance _targetNpc;
+	
 	private final int _targetId;
-
 	private int _targetX;
-
 	private int _targetY;
-
 	private int _statusDamage = 0;
-
-	//private static final Random _random = new Random();
-
 	private int _hitRate = 0;
-
-	private int _calcType;
-
-	private static final int PC_PC = 1;
-
-	private static final int PC_NPC = 2;
-
-	private static final int NPC_PC = 3;
-
-	private static final int NPC_NPC = 4;
-
-	private boolean _isHit = false;
-
+	
+	private boolean _isHit;
+	
 	private int _damage = 0;
-
 	private int _drainMana = 0;
-
 	private int _drainHp = 0;
-
 	private int _attckGrfxId = 0;
-
 	private int _attckActId = 0;
 
 	// 攻擊者がプレイヤーの場合の武器情報
-	private L1ItemInstance weapon = null;
+	private L1ItemInstance weapon;
 
 	private int _weaponId = 0;
-
 	private int _weaponType = 0;
-
 	private int _weaponType2 = 0;
-
 	private int _weaponAddHit = 0;
-
 	private int _weaponAddDmg = 0;
-
 	private int _weaponSmall = 0;
-
 	private int _weaponLarge = 0;
-
 	private int _weaponRange = 1;
-
 	private int _weaponBless = 1;
-
 	private int _weaponEnchant = 0;
-
 	private int _weaponMaterial = 0;
-
 	private int _weaponDoubleDmgChance = 0;
-
 	private int _weaponAttrEnchantKind = 0;
-
 	private int _weaponAttrEnchantLevel = 0;
 
 	private L1ItemInstance _arrow = null;
-
 	private L1ItemInstance _sting = null;
 
 	private int _leverage = 10; // 1/10倍で表現する。
 
-	public void setLeverage(int i) {
+	public void setLeverage(int i)
+	{
 		_leverage = i;
 	}
 
-	private int getLeverage() {
+	private int getLeverage()
+	{
 		return _leverage;
 	}
-
-	// 攻擊者がプレイヤーの場合のステータスによる補正
-// private static final int[] strHit = { -2, -2, -2, -2, -2, -2, -2, -2, -2,
-// -2, -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9,
-// 9, 10, 10, 11, 11, 12, 12, 13, 13, 14 };
-
-// private static final int[] dexHit = { -2, -2, -2, -2, -2, -2, -2, -2, -2,
-// -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,
-// 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14 };
-
-/*
- * private static final int[] strHit = { -2, -2, -2, -2, -2, -2, -2, // 0～7まで
- * -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, // 8～26まで 7, 7, 7,
- * 8, 8, 8, 9, 9, 9, 10, 10, 10, 11, 11, 11, 12, 12, 12, // 27～44まで 13, 13, 13,
- * 14, 14, 14, 15, 15, 15, 16, 16, 16, 17, 17, 17}; // 45～59まで
- *
- * private static final int[] dexHit = { -2, -2, -2, -2, -2, -2, -1, -1, 0, 0, //
- * 1～10まで 1, 1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, //
- * 11～30まで 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, //
- * 31～45まで 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 }; //
- * 46～60まで
- *
- * private static final int[] strDmg = new int[128];
- *
- * static { // ＳＴＲダメージ補正 int dmg = -6; for (int str = 0; str <= 22; str++) { //
- * ０～２２は２每に＋１ if (str % 2 == 1) { dmg++; } strDmg[str] = dmg; } for (int str =
- * 23; str <= 28; str++) { // ２３～２８は３每に＋１ if (str % 3 == 2) { dmg++; }
- * strDmg[str] = dmg; } for (int str = 29; str <= 32; str++) { // ２９～３２は２每に＋１ if
- * (str % 2 == 1) { dmg++; } strDmg[str] = dmg; } for (int str = 33; str <= 39;
- * str++) { // ３３～３９は１每に＋１ dmg++; strDmg[str] = dmg; } for (int str = 40; str <=
- * 46; str++) { // ４０～４６は１每に＋２ dmg += 2; strDmg[str] = dmg; } for (int str = 47;
- * str <= 127; str++) { // ４７～１２７は１每に＋１ dmg++; strDmg[str] = dmg; } }
- *
- * private static final int[] dexDmg = new int[128];
- *
- * static { // ＤＥＸダメージ補正 for (int dex = 0; dex <= 14; dex++) { // ０～１４は０
- * dexDmg[dex] = 0; } dexDmg[15] = 1; dexDmg[16] = 2; dexDmg[17] = 3; dexDmg[18] =
- * 4; dexDmg[19] = 4; dexDmg[20] = 4; dexDmg[21] = 5; dexDmg[22] = 5; dexDmg[23] =
- * 5; int dmg = 5; for (int dex = 24; dex <= 127; dex++) { // ２４～１２７は１每に＋１
- * dmg++; dexDmg[dex] = dmg; } }
- */
 
 	private static final int[] strHit = { -2, -2, -2, -2, -2, -2, -2, // 1～7まで
 			-2, -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, // 8～26まで
@@ -195,7 +184,8 @@ public class L1Attack {
 
 	private static final int[] strDmg = new int[128];
 
-	static {
+	static
+	{
 		// STRダメージ補正
 		int dmg = -6;
 		for (int str = 0; str <= 22; str++) { // 0～22は2每に+1
@@ -276,19 +266,27 @@ public class L1Attack {
 		return _attckGrfxId;
 	}
 
-	public L1Attack(L1Character attacker, L1Character target) {
-		if (attacker instanceof L1PcInstance) {
+	public L1Attack(L1Character attacker, L1Character target)
+	{
+		if (attacker instanceof L1PcInstance)
+		{
 			_pc = (L1PcInstance) attacker;
-			if (target instanceof L1PcInstance) {
+			
+			if (target instanceof L1PcInstance)
+			{
 				_targetPc = (L1PcInstance) target;
-				_calcType = PC_PC;
-			} else if (target instanceof L1NpcInstance) {
+				PC_PC = true;
+			}
+			else if (target instanceof L1NpcInstance)
+			{
 				_targetNpc = (L1NpcInstance) target;
-				_calcType = PC_NPC;
+				PC_NPC = true;
 			}
 			// 武器情報の取得
 			weapon = _pc.getWeapon();
-			if (weapon != null) {
+			
+			if (weapon != null)
+			{
 				_weaponId = weapon.getItem().getItemId();
 				_weaponType = weapon.getItem().getType1();
 				_weaponType2 = weapon.getItem().getType();
@@ -331,14 +329,20 @@ public class L1Attack {
 			} else { // それ以外はＳＴＲ值參照
 				_statusDamage = strDmg[_pc.getStr()];
 			}
-		} else if (attacker instanceof L1NpcInstance) {
+		}
+		else if (attacker instanceof L1NpcInstance)
+		{
 			_npc = (L1NpcInstance) attacker;
-			if (target instanceof L1PcInstance) {
+			
+			if (target instanceof L1PcInstance)
+			{
 				_targetPc = (L1PcInstance) target;
-				_calcType = NPC_PC;
-			} else if (target instanceof L1NpcInstance) {
+				NPC_PC = true;
+			}
+			else if (target instanceof L1NpcInstance)
+			{
 				_targetNpc = (L1NpcInstance) target;
-				_calcType = NPC_NPC;
+				NPC_NPC = true;
 			}
 		}
 		_target = target;
@@ -349,41 +353,64 @@ public class L1Attack {
 
 	/* ■■■■■■■■■■■■■■■■ 命中判定 ■■■■■■■■■■■■■■■■ */
 
-	public boolean calcHit() {
-		if (_calcType == PC_PC || _calcType == PC_NPC) {
-			if (_weaponRange != -1) {
-				if (_pc.getLocation().getTileLineDistance(
-						_target.getLocation()) > _weaponRange + 1) {  // BIGのモンスターに対応するため射程範囲+1
-					_isHit = false; // 射程範囲外
-					return _isHit;
-				}
-			} else {
-				if (!_pc.getLocation().isInScreen(_target.getLocation())) {
+	public boolean calcHit()
+	{
+		if (PC_PC || PC_NPC)
+		{
+			// BIGのモンスターに対応するため射程範囲+1
+			if (_weaponRange != -1)
+			{
+				if (_pc.getTileLineDistance(_target) > _weaponRange + 1)
+				{  
 					_isHit = false; // 射程範囲外
 					return _isHit;
 				}
 			}
-			if (_weaponType == 20 && _weaponId != 190 && _arrow == null) {
+			else if (!_pc.getLocation().isInScreen(_target.getLocation()))
+			{
+				_isHit = false; // 射程範囲外
+				return _isHit;
+			}
+			
+			if (_weaponType == 20 && _weaponId != 190 && _arrow == null)
+			{
 				_isHit = false; // 矢がない場合はミス
-			} else if (_weaponType == 62 && _sting == null) {
+			}
+			else if (_weaponType == 62 && _sting == null)
+			{
 				_isHit = false; // スティングがない場合はミス
-			} else if (!_pc.glanceCheck(_targetX, _targetY)) {
+			}
+			else if (!_pc.glanceCheck(_targetX, _targetY))
+			{
 				_isHit = false; // 攻擊者がプレイヤーの場合は障害物判定
-			} else if  (_pc.getLocation().getTileLineDistance(_target.getLocation()) > 2 && _weaponType != 20 && _weaponType != 24) {
+			}
+			else if  (_pc.getTileLineDistance(_target) > 2 && _weaponType != 20 && _weaponType != 24)
+			{
 				_isHit = false;//waja 近戰武器攻擊時座標離目標物過遠 攻擊無效 原值 為  > 1  避免怪物體積過大揮空改為2
-			}else if  (_pc.getLocation().getTileLineDistance(_target.getLocation()) > 3 && _weaponType == 24) {
+			}
+			else if  (_pc.getTileLineDistance(_target) > 3 && _weaponType == 24)
+			{
 				_isHit = false;//waja 近戰武器攻擊時座標離目標物過遠 攻擊無效 原值為 > 2
-			} else if (_weaponId == 247 || _weaponId == 248
-					|| _weaponId == 249) {
+			}
+			else if (_weaponId == 247 || _weaponId == 248 || _weaponId == 249)
+			{
 				_isHit = false; // 試練の劍B～C 攻擊無效
-			} else if (_calcType == PC_PC) {
+			}
+			else if (PC_PC)
+			{
 				_isHit = calcPcPcHit();
-			} else if (_calcType == PC_NPC) {
+			}
+			else if (PC_NPC)
+			{
 				_isHit = calcPcNpcHit();
 			}
-		} else if (_calcType == NPC_PC) {
+		}
+		else if (NPC_PC)
+		{
 			_isHit = calcNpcPcHit();
-		} else if (_calcType == NPC_NPC) {
+		}
+		else if (NPC_NPC)
+		{
 			_isHit = calcNpcNpcHit();
 		}
 
@@ -528,58 +555,6 @@ public class L1Attack {
 		}
 
 		return _hitRate >= rnd;
-/*
-* final int MIN_HITRATE = 5;
-*
-* _hitRate = _pc.getLevel();
-*
-* if (_pc.getStr() > 39) { _hitRate += strHit[39]; } else { _hitRate +=
-* strHit[_pc.getStr()]; }
-*
-* if (_pc.getDex() > 39) { _hitRate += dexHit[39]; } else { _hitRate +=
-* dexHit[_pc.getDex()]; }
-*
-* if (_weaponType != 20 && _weaponType != 62) { _hitRate += _weaponAddHit +
-* _pc.getHitup() + _pc.getOriginalHitup() + (_weaponEnchant / 2); } else {
-* _hitRate += _weaponAddHit + _pc.getBowHitup() + _pc .getOriginalBowHitup() +
-* (_weaponEnchant / 2); }
-*
-* if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中 _hitRate +=
-* _pc.getHitModifierByArmor(); } else { _hitRate +=
-* _pc.getBowHitModifierByArmor(); }
-*
-* int hitAc = (int) (_hitRate * 0.68 - 10) * -1;
-*
-* if (hitAc <= _targetPc.getAc()) { _hitRate = 95; } else { _hitRate = 95 -
-* (hitAc - _targetPc.getAc()); }
-*
-* if (_targetPc.hasSkillEffect(UNCANNY_DODGE)) { _hitRate -= 20; }
-*
-* if (_targetPc.hasSkillEffect(MIRROR_IMAGE)) { _hitRate -= 20; }
-*
-* if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加命中 ||
-* _pc.hasSkillEffect(COOKING_2_0_S)) { if (_weaponType != 20 && _weaponType !=
-* 62) { _hitRate += 1; } } if (_pc.hasSkillEffect(COOKING_3_2_N) // 料理による追加命中 ||
-* _pc.hasSkillEffect(COOKING_3_2_S)) { if (_weaponType != 20 && _weaponType !=
-* 62) { _hitRate += 2; } } if (_pc.hasSkillEffect(COOKING_2_3_N) // 料理による追加命中 ||
-* _pc.hasSkillEffect(COOKING_2_3_S) || _pc.hasSkillEffect(COOKING_3_0_N) ||
-* _pc.hasSkillEffect(COOKING_3_0_S)) { if (_weaponType == 20 || _weaponType ==
-* 62) { _hitRate += 1; } }
-*
-* if (_hitRate < MIN_HITRATE) { _hitRate = MIN_HITRATE; }
-*
-* if (_weaponType2 == 17) { _hitRate = 100; // キーリンクの命中率は100% }
-*
-* if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) { _hitRate = 0; } if
-* (_targetPc.hasSkillEffect(ICE_LANCE)) { _hitRate = 0; } if
-* (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) { _hitRate = 0; } if
-* (_targetPc.hasSkillEffect(FREEZING_BREATH)) { _hitRate = 0; } if
-* (_targetPc.hasSkillEffect(EARTH_BIND)) { _hitRate = 0; } int rnd =
-* _random.nextInt(100) + 1; if (_weaponType == 20 && _hitRate > rnd) { //
-* 弓の場合、ヒットした場合でもERでの回避を再度行う。 return calcErEvasion(); }
-*
-* return _hitRate >= rnd;
-*/
 	}
 
 	// ●●●● プレイヤー から ＮＰＣ への命中判定 ●●●●
@@ -650,7 +625,7 @@ public class L1Attack {
 			}
 		}
 
-		int attackerDice = RandomArrayList.getArrayshortList((short) 20) + _hitRate - 10;//原寫法_random.nextInt(20) + 1 + _hitRate - 10;
+		int attackerDice = RandomArrayList.getArrayshortList((short) 20) + _hitRate - 10;
 
 		if (_targetNpc.hasSkillEffect(UNCANNY_DODGE)) {
 			attackerDice -= 5;
@@ -883,48 +858,41 @@ public class L1Attack {
 
 	/* ■■■■■■■■■■■■■■■ ダメージ算出 ■■■■■■■■■■■■■■■ */
 
-	public int calcDamage() {
-// waja change to switch
-/*
-		if (_calcType == PC_PC) {
-			_damage = calcPcPcDamage();
-		} else if (_calcType == PC_NPC) {
-			_damage = calcPcNpcDamage();
-		} else if (_calcType == NPC_PC) {
-			_damage = calcNpcPcDamage();
-		} else if (_calcType == NPC_NPC) {
-			_damage = calcNpcNpcDamage();
-		}
-*/
-		switch (_calcType)
+	public int calcDamage()
+	{
+		if (PC_PC)
 		{
-		case PC_PC:
 			_damage = calcPcPcDamage();
-			break;
-		case PC_NPC:
-			_damage = calcPcNpcDamage();
-			break;
-		case NPC_PC:
-			_damage = calcNpcPcDamage();
-			break;
-		case NPC_NPC:
-			_damage = calcNpcNpcDamage();
-			break;
 		}
-//change end
+		else if (PC_NPC)
+		{
+			_damage = calcPcNpcDamage();
+		}
+		else if (NPC_PC)
+		{
+			_damage = calcNpcPcDamage();
+		}
+		else if (NPC_NPC)
+		{
+			_damage = calcNpcNpcDamage();
+		}
+		
 		return _damage;
 	}
 
 	// ●●●● プレイヤー から プレイヤー へのダメージ算出 ●●●●
-	public int calcPcPcDamage() {
+	public int calcPcPcDamage()
+	{
 		int weaponMaxDamage = _weaponSmall;
-
 		int weaponDamage = 0;
-		if (_weaponType == 58 && RandomArrayList.getArray100List() <=
-				_weaponDoubleDmgChance) { // クリティカルヒット
-			weaponDamage = weaponMaxDamage;
-			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3671));
-			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3671));
+		
+		// 使用鋼爪之類的武器、並且有一定的機率會發揮攻擊最大化
+		if (_weaponType == 58 && RandomArrayList.getArray100List() <= _weaponDoubleDmgChance)
+		{
+			weaponDamage = weaponMaxDamage; // 攻擊最大化
+			_SpecialEffect = 0x02; // 產生重擊動畫
+			// _pc.sendPackets(new S_SkillSound(_pc.getId(), 3671)); 廢除
+			// _pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3671)); 廢除
 		} else if (_weaponType == 20 || _weaponType == 62) { // 弓、ガントトレット
 			weaponDamage = 0;
 		} else if (_weaponType == 0) { // 素手
@@ -943,11 +911,14 @@ public class L1Attack {
 
 		int weaponTotalDamage = weaponDamage + _weaponAddDmg + _weaponEnchant;
 
+		// 使用雙刀之類的武器、並且有一定的機率會發揮2倍攻擊
 		if (_weaponType == 54 && RandomArrayList.getArray100List() <=
-				_weaponDoubleDmgChance) { // ダブルヒット
-			weaponTotalDamage *= 2;
-			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3398));
-			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3398));
+				_weaponDoubleDmgChance)
+		{
+			weaponTotalDamage *= 0x02; // 攻擊*2倍
+			_SpecialEffect = 0x04; // 產生雙擊動畫
+			// _pc.sendPackets(new S_SkillSound(_pc.getId(), 3398)); 廢除
+			// _pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3398)); 廢除
 		}
 
 		weaponTotalDamage += calcAttrEnchantDmg(); // 属性強化ダメージボーナス
@@ -1640,7 +1611,9 @@ public class L1Attack {
 
 		// XXX 耐性処理は本来、耐性合計値ではなく、各値を個別に処理して総和する。
 		int resist = 0;
-		if (_calcType == PC_PC) {
+		
+		if (PC_PC)
+		{
 			if (_weaponAttrEnchantKind == 1) { // 地
 				resist = _targetPc.getEarth();
 			} else if (_weaponAttrEnchantKind == 2) { // 火
@@ -1650,8 +1623,11 @@ public class L1Attack {
 			} else if (_weaponAttrEnchantKind == 8) { // 風
 				resist = _targetPc.getWind();
 			}
-		} else if (_calcType == PC_NPC) {
+		}
+		else if (PC_NPC)
+		{
 			int weakAttr = _targetNpc.getNpcTemplate().get_weakAttr();
+			
 			if ((_weaponAttrEnchantKind == 1 && weakAttr == 1) // 地
 				|| (_weaponAttrEnchantKind == 2 && weakAttr == 2) // 火
 				|| (_weaponAttrEnchantKind == 4 && weakAttr == 4) // 水
@@ -1718,12 +1694,16 @@ public class L1Attack {
 			if (_drainMana > Config.MANA_DRAIN_LIMIT_PER_SOM_ATTACK) {
 				_drainMana = Config.MANA_DRAIN_LIMIT_PER_SOM_ATTACK;
 			}
-		} else if (_weaponId == 259) { // マナバーラード
-			if (_calcType == PC_PC) {
+		}
+		else if (_weaponId == 259) { // マナバーラード
+			if (PC_PC)
+			{
 				if (_targetPc.getMr() <= RandomArrayList.getArray100List()) { // 確率はターゲットのMRに依存
 					_drainMana = 1; // 吸収量は1固定
 				}
-			} else if (_calcType == PC_NPC) {
+			}
+			else if (PC_NPC)
+			{
 				if (_targetNpc.getMr() <= RandomArrayList.getArray100List()) { // 確率はターゲットのMRに依存
 					_drainMana = 1; // 吸収量は1固定
 				}
@@ -1755,11 +1735,16 @@ public class L1Attack {
 	// ■■■■ チェイサーによる攻撃を付加 ■■■■
 	public void addChaserAttack() {
 		int mr = 0;
-		if (_calcType == PC_PC) {
+		
+		if (PC_PC)
+		{
 			mr = _targetPc.getMr() - 2 * _pc.getOriginalMagicHit();
-		} else if (_calcType == PC_NPC) {
+		}
+		else if (PC_NPC)
+		{
 			mr = _targetNpc.getMr() - 2 * _pc.getOriginalMagicHit();
 		}
+		
 		double probability = 3.0 + _pc.getTrueSp() * 0.18;
 		probability -= (mr / 10) * 0.1;
 		if (probability < 3.0) {
@@ -1777,71 +1762,54 @@ public class L1Attack {
 
 	/* ■■■■■■■■■■■■■■ 攻擊モーション送信 ■■■■■■■■■■■■■■ */
 
-	public void action() {
-		if (_calcType == PC_PC || _calcType == PC_NPC) {
+	public void action()
+	{
+		if (PC_PC || PC_NPC)
 			actionPc();
-		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
+		else
 			actionNpc();
-		}
 	}
 
 	// ●●●● プレイヤーの攻擊モーション送信 ●●●●
-	private void actionPc() {
-		_pc.setHeading(_pc.targetDirection(_targetX, _targetY)); // 向きのセット
-		if (_weaponType == 20) {
-			if (_arrow != null) { // 矢がある場合
-				_pc.sendPackets(new S_UseArrowSkill(_pc, _targetId, 66,
-						_targetX, _targetY, _isHit));
-				_pc.broadcastPacket(new S_UseArrowSkill(_pc, _targetId, 66,
-						_targetX, _targetY, _isHit));
-				if (_isHit) {
-					_target.broadcastPacketExceptTargetSight(
-							new S_DoActionGFX(_targetId,
-							ActionCodes.ACTION_Damage), _pc);
-				}
-				_pc.getInventory().removeItem(_arrow, 1);
-			} else if (_weaponId == 190) { // 矢が無くてサイハの場合
-				_pc.sendPackets(new S_UseArrowSkill(_pc, _targetId, 2349,
-						_targetX, _targetY, _isHit));
-				_pc.broadcastPacket(new S_UseArrowSkill(_pc, _targetId,
-						2349, _targetX, _targetY, _isHit));
-				if (_isHit) {
-					_target.broadcastPacketExceptTargetSight(
-							new S_DoActionGFX(_targetId,
-							ActionCodes.ACTION_Damage), _pc);
-				}
+	private void actionPc()
+	{
+		// 判斷玩家是否發送miss包
+		if (!_isHit)
+		{
+			_damage = 0; // 傷害設0, 無受傷動作出現
+			_SpecialEffect = 0; // 設為無特殊效果
+		}
+		
+		// 攻擊封包的參數
+		int[] data = null;
+		int OutGfxId = -1; // 輸出的圖示代碼
+		
+		// 改變目前方向
+		_pc.setHeading(_pc.targetDirection(_targetX, _targetY));
+		
+		// 判斷玩家是否使用弓類型的武器 與 箭矢是否存在
+		if (_weaponType == 20)
+		{
+			if (_arrow != null)
+			{
+				_pc.getInventory().removeItem(_arrow, 1); // 移除一支箭矢
+				OutGfxId = 66; // 輸出的圖示代碼
 			}
-		} else if (_weaponType == 62 && _sting != null) { // ガントレット
-			_pc.sendPackets(new S_UseArrowSkill(_pc, _targetId, 2989,
-					_targetX, _targetY, _isHit));
-			_pc.broadcastPacket(new S_UseArrowSkill(_pc, _targetId, 2989,
-					_targetX, _targetY, _isHit));
-			if (_isHit) {
-				_target.broadcastPacketExceptTargetSight(
-						new S_DoActionGFX(_targetId,
-						ActionCodes.ACTION_Damage), _pc);
-			}
-			_pc.getInventory().removeItem(_sting, 1);
-		} else {
-			if (_isHit) {
-				_pc.sendPackets(new S_AttackPacket(_pc, _targetId,
-						ActionCodes.ACTION_Attack));
-				_pc.broadcastPacket(new S_AttackPacket(_pc, _targetId,
-						ActionCodes.ACTION_Attack));
-				_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
-						_targetId, ActionCodes.ACTION_Damage), _pc);
-			} else {
-				if (_targetId > 0) {
-					_pc.sendPackets(new S_AttackMissPacket(_pc, _targetId));
-					_pc.broadcastPacket(new S_AttackMissPacket(_pc, _targetId));
-				} else {
-					_pc.sendPackets(new S_AttackPacket(_pc, 0,
-							ActionCodes.ACTION_Attack));
-					_pc.broadcastPacket(new S_AttackPacket(_pc, 0,
-							ActionCodes.ACTION_Attack));
-				}
+			else if (_weaponId == 190)
+			{
+				OutGfxId = 2349; // 輸出的圖示代碼
 			}
 		}
+		// 判斷玩家是否使用鐵手甲類型的武器 與 飛刀是否存在
+		else if (_weaponType == 62 && _sting != null)
+		{
+			_pc.getInventory().removeItem(_sting, 1); // 移除一個飛刀
+			OutGfxId = 2989;// 輸出的圖示代碼
+		}
+		
+		data = new int[] { 0x01, _damage, OutGfxId, _SpecialEffect }; // 參數
+		_pc.sendPackets(new S_Attack(_pc, _target, data)); // 對自身送出
+		_pc.broadcastPacket(new S_Attack(_pc, _target, data)); // 對非自身送出
 	}
 
 	// ●●●● ＮＰＣの攻擊モーション送信 ●●●●
@@ -1857,7 +1825,7 @@ public class L1Attack {
 		int actId = act.getDefaultAttack(); // 取得攻擊動作
 		int sActId = act.getSpecialAttack(); // 取得特別動作
 		int newRange = _npc.getTileLineDistance(_target); // 取得距離
-		int chance = RandomArrayList.getArray9List(); // 亂數數值 7/28 lifetime520 降低機率+原本似乎會很頓
+		int chance = new Random().nextInt(9) + 1; // 亂數數值
 		int[] data = null; // 封包參數
 		
 		bowActId = bowActId <= 0 ? -1 : bowActId;
@@ -1867,35 +1835,30 @@ public class L1Attack {
 		{
 			if (newRange <= 1 && sActId != -1)
 			{
-				actId = chance < 3 ? sActId : actId;
-				bowActId = chance < 3 ? -1 : bowActId;
+				actId = chance <= 2 ?  actId : sActId;
+				bowActId = chance <= 2 ? bowActId : -1;
 			}
-			
-			data = new int[] { actId, _damage, bowActId, 0x00 };
 		}
 		// 長矛手類型
 		else if (act.getARange() == 2)
 		{
 			if (newRange <= 1 && sActId != -1)
 			{
-				actId = chance < 3 ? sActId : actId;
-				bowActId = chance < 3 ? -1 : bowActId;
+				actId = chance <= 2 ? sActId : actId;
+				bowActId = chance <= 2 ? -1 : bowActId;
 			}
-			
-			data = new int[] { actId, _damage, bowActId, 0x00 };;
 		}
 		else
 		{
 			if (newRange <= 1 && sActId != -1)
 			{
-				actId = chance < 3 ? sActId : actId;
-				bowActId = chance < 3 ? -1 : bowActId;
+				actId = chance <= 2 ? sActId : actId;
+				bowActId = chance <= 2 ? -1 : bowActId;
 			}
-			
-			data = new int[] { actId, _damage, bowActId, 0x00 };
 		}
 		
-		_npc.broadcastPacket(new S_Attack(_npc, _target, data));
+		data = new int[] { actId, _damage, bowActId, _SpecialEffect }; // 參數
+		_npc.broadcastPacket(new S_Attack(_npc, _target, data)); // 對非自身送出
 	}
 
 	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
@@ -1930,85 +1893,108 @@ public class L1Attack {
 
 	/* ■■■■■■■■■■■■■■■ 計算結果反映 ■■■■■■■■■■■■■■■ */
 
-	public void commit() {
-		if (_isHit) {
-			if (_calcType == PC_PC || _calcType == NPC_PC) {
+	public void commit()
+	{
+		if (_isHit)
+		{
+			if (PC_PC || NPC_PC)
 				commitPc();
-			} else if (_calcType == PC_NPC || _calcType == NPC_NPC) {
+			else
 				commitNpc();
-			}
 		}
 
 		// ダメージ值及び命中率確認用メッセージ
-		if (!Config.ALT_ATKMSG) {
+		if (!Config.ALT_ATKMSG)
 			return;
-		}
-		if (Config.ALT_ATKMSG) {
-			if ((_calcType == PC_PC || _calcType == PC_NPC) && !_pc.isGm()) {
-				return;
-			}
-			if ((_calcType == PC_PC || _calcType == NPC_PC)
-					&& !_targetPc.isGm()) {
-				return;
-			}
-		}
+		
+		if (PC_PC || PC_NPC && !_pc.isGm())
+			return;
+			
+		if (PC_PC || NPC_PC && !_targetPc.isGm())
+			return;
+		
 		String msg0 = "";
 		String msg1 = "受到";
 		String msg2 = "";
 		String msg3 = "";
 		String msg4 = "";
-		if (_calcType == PC_PC || _calcType == PC_NPC) { // アタッカーがＰＣの場合
+		
+		// アタッカーがＰＣの場合
+		if (PC_PC || PC_NPC)
+		{ 
 			msg0 = _pc.getName();
-		} else if (_calcType == NPC_PC) { // アタッカーがＮＰＣの場合
+		}
+		// アタッカーがＮＰＣの場合
+		else if (NPC_PC)
+		{ 
 			msg0 = _npc.getName();
 		}
-
-		if (_calcType == NPC_PC || _calcType == PC_PC) { // ターゲットがＰＣの場合
+		
+		// ターゲットがＰＣの場合
+		if (NPC_PC || PC_PC)
+		{ 
 			msg4 = _targetPc.getName();
 			msg2 = "HitR" + _hitRate + "% THP" + _targetPc.getCurrentHp();
-		} else if (_calcType == PC_NPC) { // ターゲットがＮＰＣの場合
+		}
+		// ターゲットがＮＰＣの場合
+		else if (PC_NPC)
+		{ 
 			msg4 = _targetNpc.getName();
 			msg2 = "Hit" + _hitRate + "% Hp" + _targetNpc.getCurrentHp();
 		}
 		msg3 = _isHit ? _damage + "傷害值" : "攻擊失敗";
 
-		if (_calcType == PC_PC || _calcType == PC_NPC) { // アタッカーがＰＣの場合
+		// アタッカーがＰＣの場合
+		if (PC_PC || PC_NPC)
+		{
 			_pc.sendPackets(new S_ServerMessage(166, msg0, msg1, msg2, msg3,
 					msg4)); // \f1%0が%4%1%3 %2
 		}
-		if (_calcType == NPC_PC || _calcType == PC_PC) { // ターゲットがＰＣの場合
+		// ターゲットがＰＣの場合
+		if (NPC_PC || PC_PC)
+		{ 
 			_targetPc.sendPackets(new S_ServerMessage(166, msg0, msg1, msg2,
 					msg3, msg4)); // \f1%0が%4%1%3 %2
 		}
 	}
 
 	// ●●●● プレイヤーに計算結果を反映 ●●●●
-	private void commitPc() {
-		if (_calcType == PC_PC) {
-			if (_drainMana > 0 && _targetPc.getCurrentMp() > 0) {
-				if (_drainMana > _targetPc.getCurrentMp()) {
+	private void commitPc()
+	{
+		if (PC_PC)
+		{
+			if (_drainMana > 0 && _targetPc.getCurrentMp() > 0)
+			{
+				if (_drainMana > _targetPc.getCurrentMp())
 					_drainMana = _targetPc.getCurrentMp();
-				}
+				
 				short newMp = (short) (_targetPc.getCurrentMp() - _drainMana);
 				_targetPc.setCurrentMp(newMp);
 				newMp = (short) (_pc.getCurrentMp() + _drainMana);
 				_pc.setCurrentMp(newMp);
 			}
-			if (_drainHp > 0) { // HP吸収による回復
+			
+			// HP吸収による回復
+			if (_drainHp > 0)
+			{ 
 				short newHp = (short) (_pc.getCurrentHp() + _drainHp);
 				_pc.setCurrentHp(newHp);
 			}
+			
 			damagePcWeaponDurability(); // 武器を損傷させる。
 			_targetPc.receiveDamage(_pc, _damage, false);
-		} else if (_calcType == NPC_PC) {
-			_targetPc.receiveDamage(_npc, _damage, false);
 		}
+		else if (NPC_PC)
+			_targetPc.receiveDamage(_npc, _damage, false);
 	}
 
 	// ●●●● ＮＰＣに計算結果を反映 ●●●●
-	private void commitNpc() {
-		if (_calcType == PC_NPC) {
-			if (_drainMana > 0) {
+	private void commitNpc()
+	{
+		if (PC_NPC)
+		{
+			if (_drainMana > 0)
+			{
 				int drainValue = _targetNpc.drainMana(_drainMana);
 				int newMp = _pc.getCurrentMp() + drainValue;
 				_pc.setCurrentMp(newMp);
@@ -2018,85 +2004,77 @@ public class L1Attack {
 					_targetNpc.setCurrentMpDirect(newMp2);
 				}
 			}
-			if (_drainHp > 0) { // HP吸収による回復
+			
+			// HP吸収による回復
+			if (_drainHp > 0)
+			{
 				short newHp = (short) (_pc.getCurrentHp() + _drainHp);
 				_pc.setCurrentHp(newHp);
 			}
+			
 			damageNpcWeaponDurability(); // 武器を損傷させる。
 			_targetNpc.receiveDamage(_pc, _damage);
-		} else if (_calcType == NPC_NPC) {
-			_targetNpc.receiveDamage(_npc, _damage);
 		}
+		else if (NPC_NPC)
+			_targetNpc.receiveDamage(_npc, _damage);
 	}
 
 	/* ■■■■■■■■■■■■■■■ カウンターバリア ■■■■■■■■■■■■■■■ */
 
 	// ■■■■ カウンターバリア時の攻擊モーション送信 ■■■■
-	public void actionCounterBarrier() {
-		if (_calcType == PC_PC) {
-			_pc.setHeading(_pc.targetDirection(_targetX, _targetY)); // 向きのセット
-			_pc.sendPackets(new S_AttackMissPacket(_pc, _targetId));
-			_pc.broadcastPacket(new S_AttackMissPacket(_pc, _targetId));
-			_pc.sendPackets(new S_DoActionGFX(_pc.getId(),
-					ActionCodes.ACTION_Damage));
-			_pc.broadcastPacket(new S_DoActionGFX(_pc.getId(),
-					ActionCodes.ACTION_Damage));
-		} else if (_calcType == NPC_PC) {
-			int actId = 0;
-			_npc.setHeading(_npc.targetDirection(_targetX, _targetY)); // 向きのセット
-			if (getActId() > 0) {
-				actId = getActId();
-			} else {
-				actId = ActionCodes.ACTION_Attack;
-			}
-			if (getGfxId() > 0) {
-				_npc
-						.broadcastPacket(new S_UseAttackSkill(_target, _npc
-								.getId(), getGfxId(), _targetX, _targetY,
-								actId, 0));
-			} else {
-				_npc.broadcastPacket(new S_AttackMissPacket(_npc, _targetId,
-						actId));
-			}
-			_npc.broadcastPacket(new S_DoActionGFX(_npc.getId(),
-					ActionCodes.ACTION_Damage));
+	public void actionCounterBarrier()
+	{
+		if (PC_PC)
+		{
+			actionPc();
+		}
+		else if (NPC_PC)
+		{
+			actionNpc();
 		}
 	}
 
 	// ■■■■ 相手の攻擊に對してカウンターバリアが有效かを判別 ■■■■
-	public boolean isShortDistance() {
+	public boolean isShortDistance()
+	{
 		boolean isShortDistance = true;
-		if (_calcType == PC_PC) {
+		
+		if (PC_PC)
+		{
 			if (_weaponType == 20 || _weaponType == 62) { // 弓かガントレット
 				isShortDistance = false;
 			}
-		} else if (_calcType == NPC_PC) {
-			boolean isLongRange = (_npc.getLocation().getTileLineDistance(
-					new Point(_targetX, _targetY)) > 1);
-			int bowActId = _npc.getNpcTemplate().getBowActId();
-			// 距離が2以上、攻擊者の弓のアクションIDがある場合は遠攻擊
-			if (isLongRange && bowActId > 0) {
-				isShortDistance = false;
-			}
 		}
+		else if (NPC_PC)
+		{
+			boolean isLongRange = _npc.getTileLineDistance(_target) > 1;
+			int bowActId = _npc.getNpcTemplate().getBowActId();
+			
+			// 距離が2以上、攻擊者の弓のアクションIDがある場合は遠攻擊
+			if (isLongRange && bowActId > 0)
+				isShortDistance = false;
+		}
+		
 		return isShortDistance;
 	}
 
 	// ■■■■ カウンターバリアのダメージを反映 ■■■■
-	public void commitCounterBarrier() {
+	public void commitCounterBarrier()
+	{
 		int damage = calcCounterBarrierDamage();
-		if (damage == 0) {
+		
+		if (damage == 0)
 			return;
-		}
-		if (_calcType == PC_PC) {
+		
+		if (PC_PC)
 			_pc.receiveDamage(_targetPc, damage, false);
-		} else if (_calcType == NPC_PC) {
+		else if (NPC_PC)
 			_npc.receiveDamage(_targetPc, damage);
-		}
 	}
 
 	// ●●●● カウンターバリアのダメージを算出 ●●●●
-	private int calcCounterBarrierDamage() {
+	private int calcCounterBarrierDamage()
+	{
 		int damage = 0;
 		L1ItemInstance weapon = null;
 		weapon = _targetPc.getWeapon();
@@ -2114,14 +2092,15 @@ public class L1Attack {
 	/*
 	 * 武器を損傷させる。 對NPCの場合、損傷確率は10%とする。祝福武器は3%とする。
 	 */
-	private void damageNpcWeaponDurability() {
+	private void damageNpcWeaponDurability()
+	{
 		byte chance = 10;
 		byte bchance = 3;
 
 		/*
 		 * 損傷しないNPC、素手、損傷しない武器使用、SOF中の場合何もしない。
 		 */
-		if (_calcType != PC_NPC
+		if (!PC_NPC
 				|| _targetNpc.getNpcTemplate().is_hard() == false
 				|| _weaponType == 0 || weapon.getItem().get_canbedmg() == 0
 				|| _pc.hasSkillEffect(SOUL_OF_FLAME)) {
@@ -2145,16 +2124,18 @@ public class L1Attack {
 	/*
 	 * バウンスアタックにより武器を損傷させる。 バウンスアタックの損傷確率は10%
 	 */
-	private void damagePcWeaponDurability() {
+	private void damagePcWeaponDurability()
+	{
 		// PvP以外、素手、弓、ガントトレット、相手がバウンスアタック未使用、SOF中の場合何もしない
-		if (_calcType != PC_PC || _weaponType == 0 || _weaponType == 20
+		if (!PC_PC || _weaponType == 0 || _weaponType == 20
 				|| _weaponType == 62
-				|| _targetPc.hasSkillEffect(BOUNCE_ATTACK) == false
+				|| !_targetPc.hasSkillEffect(BOUNCE_ATTACK)
 				|| _pc.hasSkillEffect(SOUL_OF_FLAME)) {
 			return;
 		}
 
-		if (RandomArrayList.getArray100List() <= 10) {
+		if (RandomArrayList.getArray100List() <= 10)
+		{
 			// \f1あなたの%0が損傷しました。
 			_pc.sendPackets(new S_ServerMessage(268, weapon.getLogName()));
 			_pc.getInventory().receiveDamage(weapon);
