@@ -2269,11 +2269,14 @@ public class L1SkillUse {
 					cha.cureParalaysis();
 					for (int skillNum = STATUS_BEGIN; skillNum <= STATUS_END; skillNum++) {
 						if (skillNum == STATUS_CHAT_PROHIBITED // チャット禁止は解除しない
-								|| skillNum == STATUS_CURSE_BARLOG // バルログの咒いは解除しない
-								|| skillNum == STATUS_CURSE_YAHEE) { // ヤヒの咒いは解除しない
+								|| skillNum == STATUS_CURSE_BARLOG // バルログの呪いは解除しない
+								|| skillNum == STATUS_CURSE_YAHEE) { // ヤヒの呪いは解除しない
 							continue;
 						}
 						cha.removeSkillEffect(skillNum);
+					}
+
+					if (cha instanceof L1PcInstance) {
 					}
 
 					// 料理の解除
@@ -2284,9 +2287,15 @@ public class L1SkillUse {
 						cha.removeSkillEffect(skillNum);
 					}
 
-					// ヘイストアイテム裝備時はヘイスト關連のスキルが何も掛かっていないはずなのでここで解除
 					if (cha instanceof L1PcInstance) {
 						L1PcInstance pc = (L1PcInstance) cha;
+
+						// アイテム装備による変身の解除
+						L1PolyMorph.undoPoly(pc);
+						pc.sendPackets(new S_CharVisualUpdate(pc));
+						pc.broadcastPacket(new S_CharVisualUpdate(pc));
+
+						// ヘイストアイテム装備時はヘイスト関連のスキルが何も掛かっていないはずなのでここで解除
 						if (pc.getHasteItemEquipped() > 0) {
 							pc.setMoveSpeed(0);
 							pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));

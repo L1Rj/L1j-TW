@@ -294,10 +294,7 @@ class PolymorphEffect implements L1ArmorSetEffect {
 				return;
 			}
 		}
-// 20090726 BAO提供 變身套裝修正
-//		L1PolyMorph.doPoly(pc, _gfxId, 0, L1PolyMorph.MORPH_BY_ITEMMAGIC);
-		L1PolyMorph.doPoly(pc, _gfxId, -1, L1PolyMorph.MORPH_BY_ITEMMAGIC);
-//add end
+		L1PolyMorph.doPoly(pc, _gfxId, 0, L1PolyMorph.MORPH_BY_ITEMMAGIC);
 	}
 
 	@Override
