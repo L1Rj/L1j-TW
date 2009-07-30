@@ -1825,7 +1825,7 @@ public class L1Attack
 		int actId = act.getDefaultAttack(); // 取得攻擊動作
 		int sActId = act.getSpecialAttack(); // 取得特別動作
 		int newRange = _npc.getTileLineDistance(_target); // 取得距離
-		int chance = new Random().nextInt(9) + 1; // 亂數數值
+		int chance = RandomArrayList.getArray9List(); // 亂數數值
 		int[] data = null; // 封包參數
 		
 		bowActId = bowActId <= 0 ? -1 : bowActId;
@@ -1835,7 +1835,7 @@ public class L1Attack
 		{
 			if (newRange <= 1 && sActId != -1)
 			{
-				actId = chance <= 2 ?  actId : sActId;
+				actId = chance <= 2 ?  actId : sActId; // 當 chance = 2、1、0 時，機率效果:三分之一
 				bowActId = chance <= 2 ? bowActId : -1;
 			}
 		}
