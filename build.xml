@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="L1J" default="all" basedir=".">
+<project name="L1J-TW" default="all" basedir=".">
     <description>
         This script will build the L1J server.
 
@@ -32,8 +32,8 @@
     <path id="classpath">
         <fileset dir="${lib.dir}">
             <include name="c3p0-0.9.1.2.jar" />
-            <include name="javolution.jar" />
-        	<include name="mysql-connector-java-5.1.7-bin.jar" />
+            <include name="javolution-5.3.1.jar" />
+        	<include name="mysql-connector-java-5.1.8-bin.jar" />
         </fileset>
     </path>
 
