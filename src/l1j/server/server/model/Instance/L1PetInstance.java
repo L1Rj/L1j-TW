@@ -143,7 +143,7 @@ public class L1PetInstance extends L1NpcInstance {
 		setX(master.getX() + StaticFinalList.getRang2()); // 5.14
 		setY(master.getY() + StaticFinalList.getRang2()); // 5.14
 		setMap(master.getMapId());
-		setHeading(5);
+		setHeading(RandomArrayList.getArray8List());
 		setLightSize(template.getLightSize());
 
 		_currentPetStatus = 3;

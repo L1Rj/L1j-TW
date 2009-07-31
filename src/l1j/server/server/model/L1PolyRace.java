@@ -31,6 +31,8 @@ import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.Instance.L1DoorInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.model.skill.L1SkillUse;
 import l1j.server.server.serverpackets.S_Race;
 import l1j.server.server.serverpackets.S_EffectLocation;
 import l1j.server.server.serverpackets.S_Message_YN;
@@ -38,8 +40,7 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillBrave;
 import l1j.server.server.serverpackets.S_SkillHaste;
 import l1j.server.server.serverpackets.S_SystemMessage;
-import l1j.server.server.model.skill.L1SkillId;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.utils.RandomArrayList;
 
 
 public class L1PolyRace {
@@ -358,7 +359,7 @@ public class L1PolyRace {
 		}
 		pc.setSkillEffect(POLY_EFFECT, 4*1000);
 		
-		int i = new Random().nextInt(polyList.length);		
+		int i = RandomArrayList.getArrayshortList((short) polyList.length); // 原式 int i = new Random().nextInt(polyList.length);
 		L1PolyMorph.doPoly(pc,polyList[i],3600,L1PolyMorph.MORPH_BY_NPC);
 	
 		for(L1PcInstance player : playerList){

@@ -31,6 +31,7 @@ import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_Trap;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.server.server.utils.StaticFinalList;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1TrapInstance extends L1Object {
@@ -68,7 +69,7 @@ public class L1TrapInstance extends L1Object {
 		_nameForView = "trap base";
 	}
 
-	private final byte[] WorR_Way = { -1, 1 }; // 用來決定方向權的矩陣 // 4.30 Start
+	//private final byte[] WorR_Way = { -1, 1 }; // 用來決定方向權的矩陣 // 4.30 Start
 
 	public void resetLocation() {
 		if (_rndPt.getX() == 0 && _rndPt.getY() == 0) {
@@ -76,10 +77,10 @@ public class L1TrapInstance extends L1Object {
 		}
 
 		for (byte i = 0; i < 50; i++) {
-			int rndX = RandomArrayList.getArrayshortList((short) (_rndPt.getX()/* + 1*/)) // 5.14
-					* WorR_Way[RandomArrayList.getArray2List()]; // 1/2の確率でマイナスにする
-			int rndY = RandomArrayList.getArrayshortList((short) (_rndPt.getY()/* + 1*/)) // 5.14
-					* WorR_Way[RandomArrayList.getArray2List()];
+			int rndX = RandomArrayList.getArrayshortList((short) _rndPt.getX()) // 5.14
+					* StaticFinalList.getRang1(); // 1/2の確率でマイナスにする
+			int rndY = RandomArrayList.getArrayshortList((short) _rndPt.getY()) // 5.14
+					* StaticFinalList.getRang1();
 
 			rndX += _baseLoc.getX();
 			rndY += _baseLoc.getY();

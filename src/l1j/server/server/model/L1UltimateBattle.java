@@ -80,6 +80,7 @@ public class L1UltimateBattle {
 	private int _mpr;
 
 	private static int BEFORE_MINUTE = 5; // 5分前から入場開始
+	private static Random random = new Random();
 
 	private Set<Integer> _managers = new HashSet<Integer>();
 	private SortedSet<Integer> _ubTimes = new TreeSet<Integer>();
@@ -353,7 +354,6 @@ public class L1UltimateBattle {
 	 */
 	public void start() {
 		int patternsMax = UBSpawnTable.getInstance().getMaxPattern(_ubId);
-		Random random = new Random();
 		_pattern = random.nextInt(patternsMax) + 1; // 出現パターンを決める
 
 		UbThread ub = new UbThread();

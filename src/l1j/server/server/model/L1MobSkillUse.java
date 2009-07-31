@@ -656,7 +656,7 @@ public class L1MobSkillUse {
 				target = _target;
 			} else {
 				int randomSize = targetList.size() * 100;
-				int targetIndex = _rnd.nextInt(randomSize) / 100;
+				int targetIndex = RandomArrayList.getArrayshortList((short) randomSize) / 100;
 				target = targetList.get(targetIndex);
 			}
 			break;

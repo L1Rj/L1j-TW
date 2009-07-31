@@ -576,7 +576,7 @@ public class L1NpcInstance extends L1Character {
 		}
 
 		// 拾うアイテム(のインベントリ)をランダムで選定
-		int pickupIndex = (int) (Math.random() * gInventorys.size());
+		int pickupIndex = RandomArrayList.getArrayshortList((short) gInventorys.size());
 		L1GroundInventory inventory = gInventorys.get(pickupIndex);
 		for (L1ItemInstance item : inventory.getItems()) {
 			if (getInventory().checkAddItem(item, item.getCount())
@@ -1116,9 +1116,8 @@ public class L1NpcInstance extends L1Character {
 		if (template.get_randomlevel() == 0) { // ランダムLv指定なし
 			setLevel(template.get_level());
 		} else { // ランダムLv指定あり（最小值:get_level(),最大值:get_randomlevel()）
-			randomlevel = _random.nextInt(
-					template.get_randomlevel() - template.get_level() + 1);
 			diff = template.get_randomlevel() - template.get_level();
+			randomlevel = RandomArrayList.getArrayshortList((short) (diff + 1)); // _random.nextInt(diff + 1);
 			rate = randomlevel / diff;
 			randomlevel += template.get_level();
 			setLevel(randomlevel);

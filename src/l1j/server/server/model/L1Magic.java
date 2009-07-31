@@ -931,7 +931,7 @@ public class L1Magic {
 			dmg *= mrCoefficient;
 		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
 //			byte rnd = RandomArrayList.getArray100List();
-			int rnd = RandomArrayList.getArray100List() + 1; //原寫法 int rnd = random.nextInt(100) + 1;
+			int rnd = RandomArrayList.getArray100List(); //原寫法 int rnd = random.nextInt(100) + 1;
 			if (mr >= rnd) {
 				dmg /= 2;
 			}

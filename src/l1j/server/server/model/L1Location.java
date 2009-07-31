@@ -24,10 +24,12 @@ import java.util.logging.Logger;
 import l1j.server.server.model.map.L1Map;
 import l1j.server.server.model.map.L1WorldMap;
 import l1j.server.server.types.Point;
+import l1j.server.server.utils.RandomArrayList;
 
 public class L1Location extends Point {
 	private static Logger _log = Logger.getLogger(L1Location.class.getName());
-	private static Random _random = new Random();
+	//private static Random _random = new Random();
+	private static RandomArrayList RandomArrayList = new RandomArrayList();
 	protected L1Map _map = L1Map.newNull();
 
 	public L1Location() {
@@ -227,8 +229,8 @@ public class L1Location extends Point {
 			}
 			trial++;
 
-			newX = locX1 + L1Location._random.nextInt(diffX + 1);
-			newY = locY1 + L1Location._random.nextInt(diffY + 1);
+			newX = locX1 + L1Location.RandomArrayList.getArrayshortList((short) (diffX + 1)); // locX1 + L1Location._random.nextInt(diffX + 1);
+			newY = locY1 + L1Location.RandomArrayList.getArrayshortList((short) (diffY + 1)); // locY1 + L1Location._random.nextInt(diffY + 1);
 
 			newLocation.set(newX, newY);
 
