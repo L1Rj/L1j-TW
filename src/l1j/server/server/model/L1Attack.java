@@ -77,10 +77,8 @@ import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_WATER_OF_EVA;
 import static l1j.server.server.model.skill.L1SkillId.UNCANNY_DODGE;
 
 import java.util.Random;
-import java.util.logging.Logger;
 
 import l1j.server.Config;
-import l1j.server.server.ActionCodes;
 import l1j.server.server.WarTimeController;
 import l1j.server.server.model.Action.NpcAction;
 import l1j.server.server.model.Instance.L1DollInstance;
@@ -94,20 +92,14 @@ import l1j.server.server.model.poison.L1DamagePoison;
 import l1j.server.server.model.poison.L1ParalysisPoison;
 import l1j.server.server.model.poison.L1SilencePoison;
 import l1j.server.server.serverpackets.S_Attack;
-import l1j.server.server.serverpackets.S_AttackMissPacket;
-import l1j.server.server.serverpackets.S_AttackPacket;
-import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_ServerMessage;
-import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_SystemMessage;
-import l1j.server.server.serverpackets.S_UseArrowSkill;
-import l1j.server.server.serverpackets.S_UseAttackSkill;
-import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
 
 public class L1Attack
 {
-	private static Logger _log = Logger.getLogger(L1Attack.class.getName());
+	// Unused?
+	// private static Logger _log = Logger.getLogger(L1Attack.class.getName());
 
 	// KIUSBT 更改型態、並廢除 _calcType 該變數
 	private boolean PC_PC;
@@ -125,9 +117,6 @@ public class L1Attack
 	private L1NpcInstance _npc;
 	private L1NpcInstance _targetNpc;
 	
-	private final int _targetId;
-	private int _targetX;
-	private int _targetY;
 	private int _statusDamage = 0;
 	private int _hitRate = 0;
 	
@@ -298,6 +287,7 @@ public class L1Attack
 				_weaponLarge = weapon.getItem().getDmgLarge();
 				_weaponRange = weapon.getItem().getRange();
 				_weaponBless = weapon.getItem().getBless();
+				
 				if (_weaponType != 20 && _weaponType != 62) {
 					_weaponEnchant = weapon.getEnchantLevel()
 							- weapon.get_durability(); // 損傷分マイナス
@@ -345,10 +335,8 @@ public class L1Attack
 				NPC_NPC = true;
 			}
 		}
+		
 		_target = target;
-		_targetId = target.getId();
-		_targetX = target.getX();
-		_targetY = target.getY();
 	}
 
 	/* ■■■■■■■■■■■■■■■■ 命中判定 ■■■■■■■■■■■■■■■■ */
@@ -380,7 +368,7 @@ public class L1Attack
 			{
 				_isHit = false; // スティングがない場合はミス
 			}
-			else if (!_pc.glanceCheck(_targetX, _targetY))
+			else if (!_pc.glanceCheck(_target.getX(), _target.getY()))
 			{
 				_isHit = false; // 攻擊者がプレイヤーの場合は障害物判定
 			}
@@ -787,8 +775,7 @@ public class L1Attack
 		// NPCの攻撃レンジが10以上の場合で、2以上離れている場合弓攻撃とみなす
 		if (_npc.getNpcTemplate().get_ranged() >= 10
 				&& _hitRate > rnd
-				&& _npc.getLocation().getTileLineDistance(
-						new Point(_targetX, _targetY)) >= 2) {
+				&& _npc.getTileLineDistance(_target) >= 2) {
 			return calcErEvasion();
 		}
 		return _hitRate >= rnd;
@@ -891,9 +878,8 @@ public class L1Attack
 		{
 			weaponDamage = weaponMaxDamage; // 攻擊最大化
 			_SpecialEffect = 0x02; // 產生重擊動畫
-			// _pc.sendPackets(new S_SkillSound(_pc.getId(), 3671)); 廢除
-			// _pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3671)); 廢除
-		} else if (_weaponType == 20 || _weaponType == 62) { // 弓、ガントトレット
+		}
+		else if (_weaponType == 20 || _weaponType == 62) { // 弓、ガントトレット
 			weaponDamage = 0;
 		} else if (_weaponType == 0) { // 素手
 			weaponDamage = 0;
@@ -917,8 +903,6 @@ public class L1Attack
 		{
 			weaponTotalDamage *= 0x02; // 攻擊*2倍
 			_SpecialEffect = 0x04; // 產生雙擊動畫
-			// _pc.sendPackets(new S_SkillSound(_pc.getId(), 3398)); 廢除
-			// _pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3398)); 廢除
 		}
 
 		weaponTotalDamage += calcAttrEnchantDmg(); // 属性強化ダメージボーナス
@@ -1135,12 +1119,14 @@ public class L1Attack
 		}
 
 		int weaponDamage = 0;
+		
+		// 使用鋼爪之類的武器、並且有一定的機率會發揮攻擊最大化
 		if (_weaponType == 58 && RandomArrayList.getArray100List() <=
 				_weaponDoubleDmgChance) { // クリティカルヒット
-			weaponDamage = weaponMaxDamage;
-			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3671));
-			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3671));
-		} else if (_weaponType == 20 || _weaponType == 62) { // 弓、ガントトレット
+			weaponDamage = weaponMaxDamage; // 攻擊最大化
+			_SpecialEffect = 0x02; // 產生重擊動畫
+		}
+		else if (_weaponType == 20 || _weaponType == 62) { // 弓、ガントトレット
 			weaponDamage = 0;
 		} else if (_weaponType == 0) { // 素手
 			weaponDamage = 0;
@@ -1160,18 +1146,20 @@ public class L1Attack
 
 		weaponTotalDamage += calcMaterialBlessDmg(); // 銀祝福ダメージボーナス
 
+		// 使用雙刀之類的武器、並且有一定的機率會發揮2倍攻擊
 		if (_weaponType == 54 && RandomArrayList.getArray100List() <=
-				_weaponDoubleDmgChance) { // ダブルヒット
-			weaponTotalDamage *= 2;
-			_pc.sendPackets(new S_SkillSound(_pc.getId(), 3398));
-			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 3398));
+				_weaponDoubleDmgChance)
+		{
+			weaponTotalDamage *= 0x02; // 攻擊*2倍
+			_SpecialEffect = 0x04; // 產生雙擊動畫
 		}
 
 		weaponTotalDamage += calcAttrEnchantDmg(); // 属性強化ダメージボーナス
 
-		if (_pc.hasSkillEffect(DOUBLE_BRAKE)
-				&& (_weaponType == 54 || _weaponType == 58)) {
-			if (RandomArrayList.getArray3List() == 0) {
+		if (_pc.hasSkillEffect(DOUBLE_BRAKE) && _weaponType == 54 || _weaponType == 58)
+		{
+			if (RandomArrayList.getArray3List() == 0) 
+			{
 				weaponTotalDamage *= 2;
 			}
 		}
@@ -1347,14 +1335,21 @@ public class L1Attack
 	}
 
 	// ●●●● ＮＰＣ から プレイヤー へのダメージ算出 ●●●●
-	private int calcNpcPcDamage() {
+	private int calcNpcPcDamage()
+	{
 		int lvl = _npc.getLevel();
 		double dmg = 0D;
-		if (lvl < 10) {
-			dmg = RandomArrayList.getArrayshortList((short) lvl) + 10D + _npc.getStr() / 2 + 1;
-		} else {
-			dmg = RandomArrayList.getArrayshortList((short) lvl) + _npc.getStr() / 2 + 1;
-		}
+		
+		/*
+		 * 傷害太強了
+		 * if (lvl < 10) {
+		 * dmg = RandomArrayList.getArrayshortList((short) lvl) + 10D + _npc.getStr() / 2 + 1;
+		 * } else {
+		 * dmg = RandomArrayList.getArrayshortList((short) lvl) + _npc.getStr() / 2 + 1;
+		 * }
+		 * 
+		 */
+		dmg = RandomArrayList.getArrayshortList((short) lvl) + _npc.getStr() / 2 + 1;
 
 		if (_npc instanceof L1PetInstance) {
 			dmg += (lvl / 16); // ペットはLV16每に追加打擊
@@ -1363,17 +1358,15 @@ public class L1Attack
 
 		dmg += _npc.getDmgup();
 
-		if (isUndeadDamage()) {
+		if (isUndeadDamage())
 			dmg *= 1.1;
-		}
 
 		dmg *= getLeverage() / 10;
-
 		dmg -= calcPcDefense();
 
-		if (_npc.isWeaponBreaked()) { // ＮＰＣがウェポンブレイク中。
+		// ＮＰＣがウェポンブレイク中。
+		if (_npc.isWeaponBreaked())
 			dmg /= 2;
-		}
 
 		dmg -= _targetPc.getDamageReductionByArmor(); // 防具によるダメージ輕減
 
@@ -1462,9 +1455,8 @@ public class L1Attack
 			}
 		}
 
-		if (dmg <= 0) {
+		if (dmg <= 0)
 			_isHit = false;
-		}
 
 		addNpcPoisonAttack(_npc, _targetPc);
 // 20090720 BAO提供 隱身被攻擊現形		
@@ -1492,9 +1484,8 @@ public class L1Attack
 			dmg = RandomArrayList.getArrayshortList((short) lvl) + _npc.getStr() / 2 + 1;
 		}
 
-		if (isUndeadDamage()) {
+		if (isUndeadDamage())
 			dmg *= 1.1;
-		}
 
 		dmg = dmg * getLeverage() / 10;
 
@@ -1591,6 +1582,7 @@ public class L1Attack
 	}
 
 	public static final int[] Damage_weaponAttrEnchantLevel = { 0, 1, 3, 5 };
+	
 	// ●●●● 武器の属性強化による追加ダメージ算出 ●●●●
 	private int calcAttrEnchantDmg() {
 		int damage = 0;
@@ -1712,17 +1704,21 @@ public class L1Attack
 	}
 
 	// ■■■■ ディストラクションのHP吸収量算出 ■■■■
-	private int calcDestruction(int dmg) {
+	private int calcDestruction(int dmg)
+	{
 		_drainHp = (dmg / 8) + 1;
-		if (_drainHp <= 0) {
+		
+		if (_drainHp <= 0)
 			_drainHp = 1;
-		}
+		
 		return _drainHp;
 	}
 
 	// ■■■■ ＰＣの毒攻擊を付加 ■■■■
-	public void addPcPoisonAttack(L1Character attacker, L1Character target) {
+	public void addPcPoisonAttack(L1Character attacker, L1Character target)
+	{
 		byte chance = RandomArrayList.getArray100List();
+		
 		if ((_weaponId == 13 || _weaponId == 44 // FOD、古代のダークエルフソード
 				|| (_weaponId != 0 && _pc.hasSkillEffect(ENCHANT_VENOM))) // エンチャント
 																			// ベノム中
@@ -1771,7 +1767,7 @@ public class L1Attack
 	}
 
 	// ●●●● プレイヤーの攻擊モーション送信 ●●●●
-	private void actionPc()
+	public void actionPc()
 	{
 		// 判斷玩家是否發送miss包
 		if (!_isHit)
@@ -1780,12 +1776,11 @@ public class L1Attack
 			_SpecialEffect = 0; // 設為無特殊效果
 		}
 		
-		// 攻擊封包的參數
-		int[] data = null;
+		int[] data = null; // 攻擊封包的參數
 		int OutGfxId = -1; // 輸出的圖示代碼
 		
 		// 改變目前方向
-		_pc.setHeading(_pc.targetDirection(_targetX, _targetY));
+		_pc.setHeading(_pc.targetDirection(_target.getX(), _target.getY()));
 		
 		// 判斷玩家是否使用弓類型的武器 與 箭矢是否存在
 		if (_weaponType == 20)
@@ -1813,9 +1808,10 @@ public class L1Attack
 	}
 
 	// ●●●● ＮＰＣの攻擊モーション送信 ●●●●
-	private void actionNpc()
+	public void actionNpc()
 	{
-		_npc.setHeading(_npc.targetDirection(_targetX, _targetY)); // 改變方向
+		// 改變目前方向
+		_npc.setHeading(_npc.targetDirection(_target.getX(), _target.getY()));
 		
 		if (!_isHit)
 			_damage = 0;
@@ -1825,7 +1821,7 @@ public class L1Attack
 		int actId = act.getDefaultAttack(); // 取得攻擊動作
 		int sActId = act.getSpecialAttack(); // 取得特別動作
 		int newRange = _npc.getTileLineDistance(_target); // 取得距離
-		int chance = RandomArrayList.getArray9List(); // 亂數數值
+		int chance = new Random().nextInt(9) + 1; // 亂數數值
 		int[] data = null; // 封包參數
 		
 		bowActId = bowActId <= 0 ? -1 : bowActId;
@@ -1835,7 +1831,7 @@ public class L1Attack
 		{
 			if (newRange <= 1 && sActId != -1)
 			{
-				actId = chance <= 2 ?  actId : sActId; // 當 chance = 2、1、0 時，機率效果:三分之一
+				actId = chance <= 2 ?  actId : sActId;
 				bowActId = chance <= 2 ? bowActId : -1;
 			}
 		}
@@ -1866,29 +1862,36 @@ public class L1Attack
 	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 5.05 End
 
 	// 飛び道具（矢、スティング）がミスだったときの軌道を計算 // 5.12 Start 標記 城上NPC問題
-	public void calcOrbit(int cx, int cy, int heading) { // 起點Ｘ 起點Ｙ 今向いてる方向
-		float dis_x = Math.abs(cx - _targetX); // Ｘ方向のターゲットまでの距離
-		float dis_y = Math.abs(cy - _targetY); // Ｙ方向のターゲットまでの距離
+	public void calcOrbit(int cx, int cy, int heading) // 起點Ｘ 起點Ｙ 今向いてる方向
+	{
+		int targetX = _target.getX();
+		int targetY = _target.getY();
+		
+		float dis_x = Math.abs(cx - targetX); // Ｘ方向のターゲットまでの距離
+		float dis_y = Math.abs(cy - targetY); // Ｙ方向のターゲットまでの距離
 		float dis = Math.max(dis_x, dis_y); // ターゲットまでの距離
 		float avg_x = HEADING_TABLE_X[heading];
 		float avg_y = HEADING_TABLE_Y[heading];
-		if (dis != 0) { // 目標と同じ位置なら向いてる方向へ真っ直ぐ
+		
+		// 目標と同じ位置なら向いてる方向へ真っ直ぐ
+		if (dis != 0)
+		{ 
 			avg_x = dis_x / dis;
 			avg_y = dis_y / dis;
-		} // 5.23 End
+		}
+		// 5.23 End
 
 		int add_x = (int) Math.floor((avg_x * 15) + 0.59f); // 上下左右がちょっと優先な丸め
 		int add_y = (int) Math.floor((avg_y * 15) + 0.59f); // 上下左右がちょっと優先な丸め
 
-		if (cx > _targetX) {
+		if (cx > targetX) 
 			add_x *= -1;
-		}
-		if (cy > _targetY) {
+		
+		if (cy > targetY)
 			add_y *= -1;
-		}
 
-		_targetX = _targetX + add_x;
-		_targetY = _targetY + add_y;
+		_target.setX(targetX + add_x);
+		_target.setY(targetY + add_y);
 	}
 
 	/* ■■■■■■■■■■■■■■■ 計算結果反映 ■■■■■■■■■■■■■■■ */
