@@ -1013,7 +1013,7 @@ Update droplist Set max = '18' Where mobId = '46026' And itemId = '49026';
 Update droplist Set chance = '30000' Where itemId = '40605';
 
 /* 20090702 提高 黃金鑰匙 掉落機率 */
-Update droplist Set chance = '1500000' Where  itemId = '40163' And mobId = '45573';
+Update droplist Set chance = '3000000' Where  itemId = '40163' And mobId = '45573';
 
 /* 20090713 降低 底比斯祭壇鑰匙 掉落機率 */
 Update droplist Set chance = '2000' Where  itemId = '49242';
@@ -1055,6 +1055,18 @@ Update droplist Set chance = '4000' Where chance = '10000' And itemId = '40640';
 
 /* 20090729 降低 暗殺軍王印記盒 掉落機率 */
 Update droplist Set chance = '4000' Where chance = '10000' And itemId = '40668';
+
+/* 20090803 降低 封印的傲慢之塔傳送符 掉落機率 */
+Update droplist Set chance = '6000' Where itemId = '40280';/* 11F */
+Update droplist Set chance = '5500' Where itemId = '40281';/* 21F */
+Update droplist Set chance = '5000' Where itemId = '40282';/* 31F */
+Update droplist Set chance = '4500' Where itemId = '40283';/* 41F */
+Update droplist Set chance = '4000' Where itemId = '40284';/* 51F */
+Update droplist Set chance = '3800' Where itemId = '40285';/* 61F */
+Update droplist Set chance = '3500' Where itemId = '40286';/* 71F */
+Update droplist Set chance = '3200' Where itemId = '40287';/* 81F */
+Update droplist Set chance = '2500' Where itemId = '40288';/* 91F */
+
 
 /* ----------- 怪物 ----------- */
 /* 20090712 調整 林德拜爾 45681 掉落武器/防具/道具機率 */
