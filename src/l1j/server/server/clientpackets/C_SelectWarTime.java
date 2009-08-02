@@ -51,7 +51,8 @@ public class C_SelectWarTime extends ClientBasePacket {
 			if (castle_id != 0) { // 城主クラン
 				L1Castle l1castle = CastleTable.getInstance().getCastleTable(
 						castle_id);
-				player.sendPackets(new S_WarTime(l1castle));
+				Calendar cal = l1castle.getWarTime();
+				player.sendPackets(new S_WarTime(cal));
 			}
 		}
 	}
