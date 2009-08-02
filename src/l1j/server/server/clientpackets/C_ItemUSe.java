@@ -345,6 +345,11 @@ public class C_ItemUSe extends ClientBasePacket {
 					return;
 				}
 
+				if (l1iteminstance1.getBless() >= 128) { // 封印された装備強化不可
+					pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+					return;
+				}
+
 				int quest_weapon = l1iteminstance1.getItem().getItemId();
 				if (quest_weapon >= 246 && quest_weapon <= 249) { // 強化不可
 					if (itemId == L1ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
@@ -429,6 +434,12 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					return;
 				}
+				
+				if (l1iteminstance1.getBless() >= 128) { // 封印された装備強化不可
+					pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+					return;
+				}
+
 				// 0:無属性 1:地 2:火 4:水 8:風
 				int oldAttrEnchantKind = l1iteminstance1.getAttrEnchantKind();
 				int oldAttrEnchantLevel = l1iteminstance1.getAttrEnchantLevel();
@@ -637,6 +648,11 @@ public class C_ItemUSe extends ClientBasePacket {
 				int safe_enchant = ((L1Armor) l1iteminstance1.getItem())
 						.get_safeenchant();
 				if (safe_enchant < 0) { // 強化不可
+					pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+					return;
+				}
+
+				if (l1iteminstance1.getBless() >= 128) { // 封印された装備強化不可
 					pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					return;
 				}

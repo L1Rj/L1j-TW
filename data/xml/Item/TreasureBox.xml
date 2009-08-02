@@ -595,30 +595,6 @@
 	<TreasureBox Type="SPECIFIC" ItemId="41312">
 		<Item ItemId="41313" Count="1" />
 	</TreasureBox>
-	<!--冥法軍王印記盒-->
-	<TreasureBox Type="RANDOM" ItemId="40636">
-		<Item ItemId="40308" Count="300" Chance="80" />
-		<Item ItemId="40308" Count="1000" Chance="19" />
-		<Item ItemId="40308" Count="10000" Chance="1" />
-	</TreasureBox>
-	<!--魔獸軍王印記盒-->
-	<TreasureBox Type="RANDOM" ItemId="40639">
-		<Item ItemId="40308" Count="300" Chance="80" />
-		<Item ItemId="40308" Count="1000" Chance="19" />
-		<Item ItemId="40308" Count="10000" Chance="1" />
-	</TreasureBox>
-	<!--暗殺軍王印記盒-->
-	<TreasureBox Type="RANDOM" ItemId="40640">
-		<Item ItemId="40308" Count="300" Chance="80" />
-		<Item ItemId="40308" Count="1000" Chance="19" />
-		<Item ItemId="40308" Count="10000" Chance="1" />
-	</TreasureBox>
-	<!--暗殺軍王印記盒-->
-	<TreasureBox Type="RANDOM" ItemId="40668">
-		<Item ItemId="40308" Count="300" Chance="80" />
-		<Item ItemId="40308" Count="1000" Chance="19" />
-		<Item ItemId="40308" Count="10000" Chance="1" />
-	</TreasureBox>
 	<!--ラスタバド補給品の袋-->
 	<TreasureBox Type="RANDOM" ItemId="41243">
 		<Item ItemId="40308" Count="300" Chance="30" />
