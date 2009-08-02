@@ -1,5 +1,27 @@
 以下為目前仍有的錯誤訊息紀錄
 
+20090713 怪物無法迷魅寵物無法抓(項圈名稱為空白)
+2009/8/2 下午 04:58:29 l1j.server.server.model.skill.L1SkillUse runSkill
+嚴重的: null
+java.lang.NullPointerException
+        at l1j.server.server.model.Action.NpcAction.Load(Unknown Source)
+        at l1j.server.server.model.Instance.L1NpcInstance.<init>(Unknown Source)
+
+        at l1j.server.server.model.Instance.L1SummonInstance.<init>(Unknown Sour
+ce)
+        at l1j.server.server.model.skill.L1SkillUse.runSkill(Unknown Source)
+        at l1j.server.server.model.skill.L1SkillUse.handleCommands(Unknown Sourc
+e)
+        at l1j.server.server.model.skill.L1SkillUse.handleCommands(Unknown Sourc
+e)
+        at l1j.server.server.clientpackets.C_UseSkill.<init>(Unknown Source)
+        at l1j.server.server.PacketHandler.handlePacket(Unknown Source)
+        at l1j.server.server.ClientThread$HcPacket.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source
+)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
 20090712
 l1j.server.server.model.L1Chaser run
 警告: null
