@@ -33,13 +33,13 @@ import l1j.server.server.templates.L1Castle;
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
 
-public class C_ChangeWarTime extends ClientBasePacket {
+public class C_SelectWarTime extends ClientBasePacket {
 
-	private static final String C_CHANGE_WAR_TIME = "[C] C_ChangeWarTime";
+	private static final String C_OPCODE_SELECTWARTIME = "[C] C_SelectWarTime";
 	private static Logger _log = Logger.getLogger(C_ChangeWarTime.class
 			.getName());
 
-	public C_ChangeWarTime(byte abyte0[], ClientThread clientthread)
+	public C_SelectWarTime(byte abyte0[], ClientThread clientthread)
 			throws Exception {
 		super(abyte0);
 
@@ -51,15 +51,14 @@ public class C_ChangeWarTime extends ClientBasePacket {
 			if (castle_id != 0) { // 城主クラン
 				L1Castle l1castle = CastleTable.getInstance().getCastleTable(
 						castle_id);
-				Calendar cal = l1castle.getWarTime();
-				player.sendPackets(new S_WarTime(cal));
+				player.sendPackets(new S_WarTime(l1castle));
 			}
 		}
 	}
 
 	@Override
 	public String getType() {
-		return C_CHANGE_WAR_TIME;
+		return C_OPCODE_SELECTWARTIME;
 	}
 
 }
