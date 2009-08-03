@@ -1816,42 +1816,18 @@ public class L1Attack
 		if (!_isHit)
 			_damage = 0;
 		
-		NpcAction act = _npc.getNpcAction(); // 取得NPC動作
 		int bowActId = _npc.getNpcTemplate().getBowActId(); // 取得箭矢之動畫代碼
-		int actId = act.getDefaultAttack(); // 取得攻擊動作
-		int sActId = act.getSpecialAttack(); // 取得特別動作
-		int newRange = _npc.getTileLineDistance(_target); // 取得距離
-		int chance = new Random().nextInt(9) + 1; // 亂數數值
+		int actId = 1; // 取得攻擊動作
+		int Range = _npc.getNpcTemplate().get_ranged(); // 取得怪物攻擊範圍
 		int[] data = null; // 封包參數
 		
 		bowActId = bowActId <= 0 ? -1 : bowActId;
 		
 		// 弓箭手類型
-		if (act.getARange() > 2)
-		{
-			if (newRange <= 1 && sActId != -1)
-			{
-				actId = chance <= 2 ?  actId : sActId;
-				bowActId = chance <= 2 ? bowActId : -1;
-			}
-		}
-		// 長矛手類型
-		else if (act.getARange() == 2)
-		{
-			if (newRange <= 1 && sActId != -1)
-			{
-				actId = chance <= 2 ? sActId : actId;
-				bowActId = chance <= 2 ? -1 : bowActId;
-			}
-		}
+		if (Range > 2 && bowActId > 0)
+			actId = 21;
 		else
-		{
-			if (newRange <= 1 && sActId != -1)
-			{
-				actId = chance <= 2 ? sActId : actId;
-				bowActId = chance <= 2 ? -1 : bowActId;
-			}
-		}
+			bowActId = -1;
 		
 		data = new int[] { actId, _damage, bowActId, _SpecialEffect }; // 參數
 		_npc.broadcastPacket(new S_Attack(_npc, _target, data)); // 對非自身送出

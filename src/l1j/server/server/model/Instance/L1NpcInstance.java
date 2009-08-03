@@ -576,7 +576,7 @@ public class L1NpcInstance extends L1Character {
 		}
 
 		// 拾うアイテム(のインベントリ)をランダムで選定
-		int pickupIndex = RandomArrayList.getArrayshortList((short) gInventorys.size());
+		int pickupIndex = (int) (Math.random() * gInventorys.size());
 		L1GroundInventory inventory = gInventorys.get(pickupIndex);
 		for (L1ItemInstance item : inventory.getItems()) {
 			if (getInventory().checkAddItem(item, item.getCount())
@@ -1100,9 +1100,6 @@ public class L1NpcInstance extends L1Character {
 
 		if (template != null)
 			setting_template(template);
-		
-		setNpcAction(NpcAction.getAction(getGfxId())); // 取得NPC修正動作
-		getNpcAction().Load(this); // 更新目前動作
 	}
 
 	// 指定のテンプレートで各種值を初期化
@@ -1116,8 +1113,9 @@ public class L1NpcInstance extends L1Character {
 		if (template.get_randomlevel() == 0) { // ランダムLv指定なし
 			setLevel(template.get_level());
 		} else { // ランダムLv指定あり（最小值:get_level(),最大值:get_randomlevel()）
+			randomlevel = _random.nextInt(
+					template.get_randomlevel() - template.get_level() + 1);
 			diff = template.get_randomlevel() - template.get_level();
-			randomlevel = RandomArrayList.getArrayshortList((short) (diff + 1)); // _random.nextInt(diff + 1);
 			rate = randomlevel / diff;
 			randomlevel += template.get_level();
 			setLevel(randomlevel);
@@ -1206,25 +1204,6 @@ public class L1NpcInstance extends L1Character {
 		setLightSize(template.getLightSize());
 
 		mobSkill = new L1MobSkillUse(this);
-	}
-
-	// KIUSBT 新增NPC動作
-	private NpcAction npcAction; // NPC 之動作
-	
-	/**
-	 * @param npcAction the npcAction to set
-	 */
-	public void setNpcAction(NpcAction npcAction)
-	{
-		this.npcAction = npcAction;
-	}
-
-	/**
-	 * @return the npcAction
-	 */
-	public NpcAction getNpcAction()
-	{
-		return npcAction;
 	}
 	
 	private int _passispeed;
