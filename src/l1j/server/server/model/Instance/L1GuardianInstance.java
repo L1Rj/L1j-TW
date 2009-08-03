@@ -378,7 +378,8 @@ public class L1GuardianInstance extends L1NpcInstance {
 		if (attacker instanceof L1PcInstance && damage > 0) {
 			L1PcInstance pc = (L1PcInstance) attacker;
 			if (pc.getType() == 2 && // 素手ならダメージなし
-					pc.getCurrentWeapon() == 0) {
+                    pc.getCurrentWeapon() == 0
+                    && ((pc.hasSkillEffect(SHAPE_CHANGE)) == false)) { // BAO提供 變身攻擊守護神會被反擊 
 			} else {
 				if (getCurrentHp() > 0 && !isDead()) {
 					if (damage >= 0) {
