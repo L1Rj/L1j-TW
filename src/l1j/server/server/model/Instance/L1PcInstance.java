@@ -347,12 +347,16 @@ public class L1PcInstance extends L1Character {
 
 	@Override
 	public void onPerceive(L1PcInstance perceivedFrom) {
-		if (isGmInvis() || isGhost() || isInvisble()) {
+		if (isGmInvis() || isGhost()) {
+			return;
+		}
+		if (isInvisble() && !perceivedFrom.hasSkillEffect(GMSTATUS_FINDINVIS)) {
 			return;
 		}
 
 		perceivedFrom.addKnownObject(this);
-		perceivedFrom.sendPackets(new S_OtherCharPacks(this)); // 自分の情報を送る
+		perceivedFrom.sendPackets(new S_OtherCharPacks(this,
+				perceivedFrom.hasSkillEffect(GMSTATUS_FINDINVIS))); // 自分の情報を送る
 		if (isInParty() && getParty().isMember(perceivedFrom)) { // PTメンバーならHPメーターも送る
 			perceivedFrom.sendPackets(new S_HPMeter(this));
 		}
@@ -2672,6 +2676,13 @@ public class L1PcInstance extends L1Character {
 		sendPackets(new S_Poison(getId(), effectId));
 
 		if (!isGmInvis() && !isGhost() && !isInvisble()) {
+			broadcastPacket(new S_Poison(getId(), effectId));
+		}
+		if (isGmInvis() || isGhost()) {
+		} else if (isInvisble()) {
+			broadcastPacketForFindInvis(new S_Poison(getId(), effectId),
+				true);
+		} else {
 			broadcastPacket(new S_Poison(getId(), effectId));
 		}
 	}

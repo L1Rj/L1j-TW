@@ -64,4 +64,5 @@ INSERT INTO `commands` VALUES
 ('insert', 200, 'L1InsertSpawn'),
 ('help', 200, 'L1CommandHelp'),
 ('action', 200, 'L1Action'),
-('tile', 200, 'L1Tile');
+('tile', 200, 'L1Tile'),
+('findinvis', 200, 'L1FindInvis');

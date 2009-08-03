@@ -135,8 +135,12 @@ public class C_MoveChar extends ClientBasePacket {
 
 		pc.getLocation().set(locx, locy);
 		pc.setHeading(heading);
-		if (!pc.isGmInvis() && !pc.isGhost() && !pc.isInvisble())
+		if (pc.isGmInvis() || pc.isGhost()) {
+		} else if (pc.isInvisble()) {
+			pc.broadcastPacketForFindInvis(new S_MoveCharPacket(pc), true);
+		} else {
 			pc.broadcastPacket(new S_MoveCharPacket(pc));
+		}
 
 		// sendMapTileLog(pc); // 移動先タイルの情報を送る(マップ調查用)
 		l1j.server.server.model.L1PolyRace.getInstance().checkLapFinish(pc);//waja add 寵物競速-判斷圈數

@@ -2825,7 +2825,9 @@ public class L1SkillUse {
 							|| _skillId == BLIND_HIDING) { // インビジビリティ、ブラインドハイディング
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.sendPackets(new S_Invis(pc.getId(), 1));
-						pc.broadcastPacket(new S_RemoveObject(pc));
+						pc.broadcastPacketForFindInvis(new S_RemoveObject(pc),
+								false);
+// pc.broadcastPacket(new S_RemoveObject(pc));
 					} else if (_skillId == IRON_SKIN) { // アイアン スキン
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.addAc(-10);

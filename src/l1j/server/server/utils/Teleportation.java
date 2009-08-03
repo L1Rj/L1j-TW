@@ -93,7 +93,11 @@ public class Teleportation {
 		if (pc.isReserveGhost()) { // ゴースト狀態解除
 			pc.endGhost();
 		}
-		if (!pc.isGhost() && !pc.isGmInvis() && !pc.isInvisble()) {
+		if (pc.isGhost() || pc.isGmInvis()) {
+		} else if (pc.isInvisble()) {
+			pc.broadcastPacketForFindInvis(new S_OtherCharPacks(pc, true),
+					true);
+		} else {
 			pc.broadcastPacket(new S_OtherCharPacks(pc));
 		}
 		pc.sendPackets(new S_OwnCharPack(pc));

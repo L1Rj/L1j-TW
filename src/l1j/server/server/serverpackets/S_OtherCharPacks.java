@@ -43,8 +43,17 @@ public class S_OtherCharPacks extends ServerBasePacket {
 	private static final short STATUS_GHOST = 128;
 
 	private byte[] _byte = null;
+	
+	public S_OtherCharPacks(L1PcInstance pc, boolean isFindInvis) {
+		buildPacket(pc, isFindInvis);
+	}
 
 	public S_OtherCharPacks(L1PcInstance pc) {
+		
+		buildPacket(pc, false);
+	}
+
+	private void buildPacket(L1PcInstance pc, boolean isFindInvis) {
 		short status = STATUS_PC;
 
 		if (pc.getPoison() != null) { // 毒狀態

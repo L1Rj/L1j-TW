@@ -243,6 +243,29 @@ public class L1Character extends L1Object {
 	}
 
 	/**
+	 * キャラクターの可視範囲でインビジを見破れるor見破れないプレイヤーを区別して、パケットを送信する。
+	 * 
+	 * @param packet
+	 *            送信するパケットを表すServerBasePacketオブジェクト。
+	 * @param isFindInvis
+	 *            true : 見破れるプレイヤーにだけパケットを送信する。 false : 見破れないプレイヤーにだけパケットを送信する。
+	 */
+	public void broadcastPacketForFindInvis(ServerBasePacket packet,
+			boolean isFindInvis) {
+		for (L1PcInstance pc : L1World.getInstance().getVisiblePlayer(this)) {
+			if (isFindInvis) {
+				if (pc.hasSkillEffect(GMSTATUS_FINDINVIS)) {
+					pc.sendPackets(packet);
+				}
+			} else {
+				if (!pc.hasSkillEffect(GMSTATUS_FINDINVIS)) {
+					pc.sendPackets(packet);
+				}
+			}
+		}
+	}
+
+	/**
 	 * キャラクターの50マス以內に居るプレイヤーへ、パケットを送信する。
 	 *
 	 * @param packet

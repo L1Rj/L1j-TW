@@ -121,7 +121,9 @@ public class L1EquipmentSlot {
 				_owner.killSkillEffectTimer(BLIND_HIDING);
 				_owner.setSkillEffect(INVISIBILITY, 0);
 				_owner.sendPackets(new S_Invis(_owner.getId(), 1));
-				_owner.broadcastPacket(new S_RemoveObject(_owner));
+				_owner.broadcastPacketForFindInvis(new S_RemoveObject(_owner),
+						false);
+// _owner.broadcastPacket(new S_RemoveObject(_owner));
 			}
 		}
 		if (itemId == 20288) { // 傳送控制戒指

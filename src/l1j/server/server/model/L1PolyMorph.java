@@ -252,6 +252,13 @@ public class L1PolyMorph {
 				if (!pc.isGmInvis() && !pc.isInvisble()) {
 					pc.broadcastPacket(new S_ChangeShape(pc.getId(), polyId));
 				}
+				if (pc.isGmInvis()) {
+				} else if (pc.isInvisble()) {
+					pc.broadcastPacketForFindInvis(new S_ChangeShape(pc
+							.getId(), polyId), true);
+				} else {
+					pc.broadcastPacket(new S_ChangeShape(pc.getId(), polyId));
+				}
 				pc.getInventory().takeoffEquip(polyId);
 				weapon = pc.getWeapon();
 				if (weapon != null) {
