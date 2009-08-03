@@ -2906,10 +2906,7 @@ public class C_ItemUSe extends ClientBasePacket
 					if (lockItem != null && lockItem.getItem().getType2() == 1
 							|| lockItem.getItem().getType2() == 2
 							|| lockItem.getItem().getType2() == 0
-							&& (lockItemId == 40314 || lockItemId == 40316
-							|| lockItemId == 41248 || lockItemId == 41249
-							|| lockItemId == 41250 || lockItemId == 49037
-							|| lockItemId == 49038 || lockItemId == 49039)) {
+							&& lockItem.getItem().isCanSeal()) {
 						if (lockItem.getBless() == 0
 								|| lockItem.getBless() == 1
 								|| lockItem.getBless() == 2

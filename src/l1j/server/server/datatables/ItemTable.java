@@ -260,6 +260,8 @@ public class ItemTable {
 				item.setTradable(rs.getInt("trade") == 0 ? true : false);
 				item.setCantDelete(rs.getInt("cant_delete") == 1 ?
 						true : false);
+				item.setCanSeal(rs.getInt("can_seal") == 1 ?
+						true : false);
 				item.setDmgSmall(rs.getInt("dmg_small"));
 				item.setDmgLarge(rs.getInt("dmg_large"));
 				item.set_stackable(rs.getInt("stackable") == 1 ? true : false);
