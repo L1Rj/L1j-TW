@@ -1,28 +1,6 @@
 以下為目前仍有的錯誤訊息紀錄
 
-20090713 怪物無法迷魅寵物無法抓(項圈名稱為空白)
-2009/8/2 下午 04:58:29 l1j.server.server.model.skill.L1SkillUse runSkill
-嚴重的: null
-java.lang.NullPointerException
-        at l1j.server.server.model.Action.NpcAction.Load(Unknown Source)
-        at l1j.server.server.model.Instance.L1NpcInstance.<init>(Unknown Source)
-
-        at l1j.server.server.model.Instance.L1SummonInstance.<init>(Unknown Sour
-ce)
-        at l1j.server.server.model.skill.L1SkillUse.runSkill(Unknown Source)
-        at l1j.server.server.model.skill.L1SkillUse.handleCommands(Unknown Sourc
-e)
-        at l1j.server.server.model.skill.L1SkillUse.handleCommands(Unknown Sourc
-e)
-        at l1j.server.server.clientpackets.C_UseSkill.<init>(Unknown Source)
-        at l1j.server.server.PacketHandler.handlePacket(Unknown Source)
-        at l1j.server.server.ClientThread$HcPacket.run(Unknown Source)
-        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source
-)
-        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-        at java.lang.Thread.run(Unknown Source)
-
-20090712
+20090801
 l1j.server.server.model.L1Chaser run
 警告: null
 java.lang.NullPointerException
@@ -41,7 +19,7 @@ java.lang.NullPointerException
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-20090711
+20090709
 l1j.server.server.model.L1PetMatch$L1PetMatchTimer run
 警告: null
 java.lang.NullPointerException
@@ -53,7 +31,7 @@ java.lang.NullPointerException
         at java.util.TimerThread.mainLoop(Timer.java:512)
         at java.util.TimerThread.run(Timer.java:462)
 
-20090710
+20090708
 l1j.server.server.model.skill.L1SkillUse runSkill
 嚴重的: null
 java.lang.NullPointerException
@@ -70,7 +48,7 @@ java.lang.NullPointerException
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-20090709
+20090707
 l1j.server.server.model.skill.L1SkillUse handleCommands
 嚴重的:
 java.lang.NullPointerException
@@ -85,7 +63,7 @@ java.lang.NullPointerException
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-090707 mysql設定?
+090706 mysql設定?
 l1j.server.server.datatables.CharBuffTable StoreBuff
 嚴重的: The last packet successfully received from the server was47781 milliseconds ago.The last packet sent successfully to the server was 47781 milliseconds ago, which  is longer than the server configured value of 'wait_timeout'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts, or using the Connector/J connection property 'autoReconnect=true' to avoid this problem.
 com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: The last packet successfully received from the server was47781 milliseconds ago.The last packet sent successfully to the server was 47781 milliseconds ago, which  is longer than the server configured value of 'wait_timeout'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts, or using the Connector/J connection property 'autoReconnect=true' to avoid this problem.
@@ -117,8 +95,7 @@ Caused by: java.net.SocketException: Broken pipe
         at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:123)
         at com.mysql.jdbc.MysqlIO.send(MysqlIO.java:3251)
 
-
-090706
+090705
  l1j.server.server.clientpackets.ClientBasePacket readS
 嚴重的: OpCode=66
 java.lang.StringIndexOutOfBoundsException: String index out of range: -1
@@ -131,13 +108,13 @@ java.lang.StringIndexOutOfBoundsException: String index out of range: -1
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-090705 EC編譯時警告訊息
+090704 EC編譯時警告訊息
     [javac] Note: E:\workspace\l1j\l1jtw\src\l1j\server\server\model\skill\L1SkillTimer.java uses or overrides a deprecated API.
     [javac] Note: Recompile with -Xlint:deprecation for details.
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
 
-090704
+090703
 l1j.server.server.ClientThread run
 嚴重的: null
 java.lang.NullPointerException
@@ -149,7 +126,7 @@ java.lang.NullPointerException
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-090703
+090702
 l1j.server.server.model.Instance.L1NpcInstance$NpcAIThreadImpl run
 警告: NpcAI發生例外的錯誤。
 java.lang.NullPointerException
@@ -165,7 +142,7 @@ java.lang.NullPointerException
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-090702
+090701
 l1j.server.server.ClientThread run
 嚴重的: null
 java.lang.NullPointerException
@@ -176,9 +153,6 @@ java.lang.NullPointerException
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
 
-090701
-l1j.server.server.clientpackets.C_NPCTalk <init>
-嚴重的: 找不到對應物件 objid=285290113
 
 090612
 l1j.server.server.ClientThread run
