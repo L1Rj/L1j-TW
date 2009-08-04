@@ -42,6 +42,8 @@ public class L1EtcItem extends L1Item {
 	private int _delay_effect;
 
 	private int _maxChargeCount;
+	
+	private boolean _isCanSeal; // ● 封印スクロールで封印可能
 
 	@Override
 	public boolean isStackable() {
@@ -112,6 +114,14 @@ public class L1EtcItem extends L1Item {
 	@Override
 	public int getMaxChargeCount() {
 		return _maxChargeCount;
+	}
+	@Override
+	public boolean isCanSeal() {
+		return _isCanSeal;
+	}
+
+	public void setCanSeal(boolean flag) {
+		_isCanSeal = flag;
 	}
 
 }

@@ -245,16 +245,6 @@ public abstract class L1Item implements Serializable {
 		_cantDelete = flag;
 	}
 
-	private boolean _isCanSeal; // ● 封印スクロールで封印可能
-
-	public boolean isCanSeal() {
-		return _isCanSeal;
-	}
-
-	public void setCanSeal(boolean flag) {
-		_isCanSeal = flag;
-	}
-
 	private boolean _save_at_once;
 
 	/**
@@ -603,6 +593,10 @@ public abstract class L1Item implements Serializable {
 
 	public int getMaxChargeCount() {
 		return 0;
+	}
+
+	public boolean isCanSeal() {
+		return false;
 	}
 
 	// ■■■■■■ L1Weapon でオーバーライドする項目 ■■■■■■
