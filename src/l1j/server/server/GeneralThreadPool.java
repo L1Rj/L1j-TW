@@ -37,13 +37,13 @@ public class GeneralThreadPool {
 
 	private static GeneralThreadPool _instance;
 
-	private static final int SCHEDULED_CORE_POOL_SIZE = 50;// 原值10
+	private static final int SCHEDULED_CORE_POOL_SIZE = 100;// 原值10
 
 	private Executor _executor; // 汎用ExecutorService
 	private ScheduledExecutorService _scheduler; // 汎用ScheduledExecutorService
 	private ScheduledExecutorService _pcScheduler; // プレイヤーのモニター用ScheduledExecutorService
 	// 一應L1Jデフォルトの狀態で、map:4にいる何もしていないPCが1秒間に占有する實行時間は約6ms(AutoUpdate:約6ms,ExpMonitor:極小)
-	private final int _pcSchedulerPoolSize = 1 + Config.MAX_ONLINE_USERS / 3; // 適當(20Userに1つくらいの割り當て)
+	private final int _pcSchedulerPoolSize = 1 + Config.MAX_ONLINE_USERS / 2; // 適當(20Userに1つくらいの割り當て)
 
 	public static GeneralThreadPool getInstance() {
 		if (_instance == null) {
