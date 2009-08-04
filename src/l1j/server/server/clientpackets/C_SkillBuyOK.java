@@ -69,8 +69,6 @@ public class C_SkillBuyOK extends ClientBasePacket
 			return; // 中斷程序
 		
 		L1Skills[] Skills = SkillList.toArray(new L1Skills[Count]); // 將 ArrayList 轉換成 L1Skills 陣列
-		SkillList.clear(); // 清除魔法清單
-		SkillList = null; // 將魔法清單設為空
 		
 		// 判斷金幣是否足夠學習魔法
 		if (pc.getInventory().checkItem(L1ItemId.ADENA, Price))
@@ -89,6 +87,10 @@ public class C_SkillBuyOK extends ClientBasePacket
 		{
 			pc.sendPackets(new S_ServerMessage(189)); // \f1アデナが不足しています。
 		}
+		
+		SkillList.clear(); // 清除魔法清單
+		SkillList = null; // 將魔法清單設為空
+		Skills = null;
 	}
 	
 	public static boolean SpellCheck(L1PcInstance Pc, int Skillid)
@@ -119,8 +121,6 @@ public class C_SkillBuyOK extends ClientBasePacket
 				 Type == 4 && Skillid >= 0 || Skillid <= 16 && Level >= 24)
 			canTeach = true;
 		
-		canTeach = !canTeach && Pc.isSkillMastery(Skillid);
-		
-		return canTeach;
+		return !canTeach || Pc.isSkillMastery(Skillid);
 	}
 }

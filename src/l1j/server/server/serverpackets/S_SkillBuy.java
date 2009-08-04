@@ -19,146 +19,40 @@
 
 package l1j.server.server.serverpackets;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static l1j.server.server.Opcodes.S_OPCODE_SKILLBUY;
 
-import l1j.server.server.Opcodes;
+import l1j.server.server.clientpackets.C_SkillBuyOK;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.Instance.L1NpcInstance;
-import l1j.server.server.model.L1Object;
-import l1j.server.server.model.L1World;
 
 
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
 
-public class S_SkillBuy extends ServerBasePacket {
-	private static Logger _log = Logger.getLogger(S_SkillBuy.class.getName());
-	private static final String _S_SKILL_BUY = "[S] S_SkillBuy";
-
-	private byte[] _byte = null;
-
-    public S_SkillBuy(int objid, L1PcInstance pc){
-            L1NpcInstance npc = null;
-            int npcId = 0;
-            String htmlid = "";
-            L1Object obj = L1World.getInstance().findObject(objid);
-            if (obj != null) {
-                int difflocx = Math.abs(pc.getX() - obj.getX());
-                int difflocy = Math.abs(pc.getY() - obj.getY());
-                if (difflocx > 3 || difflocy > 3) {
-                    return;
-                }
-                if (obj instanceof L1NpcInstance) {
-                    npc = (L1NpcInstance) obj;
-                    npcId = npc.getNpcTemplate().get_npcId();
-                } else {
-                    return;
-                }
-            }
-            switch(npcId) {
-            case 70009://吉倫
-            htmlid = "gerengev3";
-            break;
-            case 70003://希莉斯
-            htmlid = "siriss1";
-            break;
-            case 70087://賽帝亞
-            htmlid = "sedia";
-            break;
-        }
-        if (htmlid == "") { //判斷npc 禁用清單學習法術
-            return;
-        }
-        int count = Scount(pc);
-        int in_count = 0;
-        for (int k = 0; k < count; k++) {
-            if (!pc.isSkillMastery((k+1))) {
-                in_count++;
-            }
-        }
-
-        try {
-            if (in_count <= 0) {
-                pc.sendPackets(new S_NPCTalkReturn(objid, htmlid));
-            } else {
-                writeC(Opcodes.S_OPCODE_SKILLBUY);
-                writeD(100);
-                writeH(in_count);
-                for (int k = 0; k < count; k++) {
-                    if (!pc.isSkillMastery((k+1))) {
-                        writeD(k);
-                    }
-                }
-                writeD(objid);
-            }
-        } catch (Exception e) {
-            _log.log(Level.SEVERE, _S_SKILL_BUY + ": 資料錯誤", e);
-        }
-    }
-
-	public int Scount(L1PcInstance pc) {
-		int RC = 0;
-		switch (pc.getType()) {
-		case 0: // 君主
-			if (pc.getLevel() > 20 || pc.isGm()) {
-				RC = 16;
-			} else if (pc.getLevel() > 10) {
-				RC = 8;
-			}
-			break;
-
-		case 1: // ナイト
-			if (pc.getLevel() >= 50 || pc.isGm()) {
-				RC = 8;
-			}
-			break;
-
-		case 2: // エルフ
-			if (pc.getLevel() >= 24 || pc.isGm()) {
-				RC = 23;
-			} else if (pc.getLevel() >= 16) {
-				RC = 16;
-			} else if (pc.getLevel() >= 8) {
-				RC = 8;
-			}
-			break;
-
-		case 3: // WIZ
-			if (pc.getLevel() >= 12 || pc.isGm()) {
-				RC = 23;
-			} else if (pc.getLevel() >= 8) {
-				RC = 16;
-			} else if (pc.getLevel() >= 4) {
-				RC = 8;
-			}
-			break;
-
-		case 4: // DE
-			if (pc.getLevel() >= 24 || pc.isGm()) {
-				RC = 16;
-			} else if (pc.getLevel() >= 12) {
-				RC = 8;
-			}
-			break;
-
-		default:
-			break;
-		}
-		return RC;
+public class S_SkillBuy extends ServerBasePacket
+{
+	public S_SkillBuy(int objid, L1PcInstance Pc)
+	{
+		int SkillAmount = 0;
+		
+		for (int i = 1; i <= 24; i++)
+			if (!C_SkillBuyOK.SpellCheck(Pc, i))
+				SkillAmount++;
+		
+		writeC(S_OPCODE_SKILLBUY);
+		writeD(0x00000064);
+		writeH(SkillAmount);
+		
+		for (int i = 1; i <= 24; i++)
+			if (!C_SkillBuyOK.SpellCheck(Pc, i))
+				writeD(i - 1);
+		
+		if (SkillAmount == 0)
+			writeD(objid);
 	}
 
 	@Override
-	public byte[] getContent() {
-		if (_byte == null) {
-			_byte = _bao.toByteArray();
-		}
-		return _byte;
+	public byte[] getContent()
+	{
+		return getBytes();
 	}
-
-	@Override
-	public String getType() {
-		return _S_SKILL_BUY;
-	}
-
 }
