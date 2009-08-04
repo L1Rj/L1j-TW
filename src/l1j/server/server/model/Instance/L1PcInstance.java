@@ -116,7 +116,8 @@ import static l1j.server.server.model.skill.L1SkillId.*;
 // L1World
 //
 
-public class L1PcInstance extends L1Character {
+public class L1PcInstance extends L1Character 
+	{
 	private static final long serialVersionUID = 1L;
 
 	public static final int CLASSID_KNIGHT_MALE = 61;
@@ -223,7 +224,7 @@ public class L1PcInstance extends L1Character {
 		}
 	}
 
-	public void startHpRegenerationByDoll() {//魔法娃娃回血功能
+	public void startHpRegenerationByDoll() { // 魔法娃娃回血功能
 		final int INTERVAL_BY_DOLL = 60000;
 		boolean isExistHprDoll = false;
 		Object[] dollList = getDollList().values().toArray();
@@ -267,7 +268,7 @@ public class L1PcInstance extends L1Character {
 		}
 	}
 
-	public void stopHpRegenerationByDoll() {//魔法娃娃回血功能
+	public void stopHpRegenerationByDoll() { // 魔法娃娃回血功能
 		if (_hpRegenActiveByDoll) {
 			_hpRegenByDoll.cancel();
 			_hpRegenByDoll = null;
@@ -508,30 +509,37 @@ public class L1PcInstance extends L1Character {
 	}
 
 	@Override
-	public void setCurrentHp(int i) {
-		if (getCurrentHp() == i) {
+	public void setCurrentHp(int i)
+	{
+		if (getCurrentHp() == i)
 			return;
-		}
+		
 		int currentHp = i;
-		if (currentHp >= getMaxHp()) {
+		
+		if (currentHp >= getMaxHp() || isGm())
 			currentHp = getMaxHp();
-		}
+		else if (currentHp < 0)
+			currentHp = 0;
+		
 		setCurrentHpDirect(currentHp);
 		sendPackets(new S_HPUpdate(currentHp, getMaxHp()));
-		if (isInParty()) { // パーティー中
+		
+		if (isInParty()) // パーティー中
 			getParty().updateMiniHP(this);
-		}
 	}
 
 	@Override
-	public void setCurrentMp(int i) {
-		if (getCurrentMp() == i) {
+	public void setCurrentMp(int i) 
+	{
+		if (getCurrentMp() == i || isGm())
 			return;
-		}
+		
 		int currentMp = i;
-		if (currentMp >= getMaxMp() || isGm()) {
+		
+		if (currentMp >= getMaxMp())
 			currentMp = getMaxMp();
-		}
+		else if (currentMp < 0)
+			currentMp = 0;
 		setCurrentMpDirect(currentMp);
 		sendPackets(new S_MPUpdate(currentMp, getMaxMp()));
 	}
@@ -906,15 +914,12 @@ public class L1PcInstance extends L1Character {
 	}
 
 	@Override
-	public void onAction(L1PcInstance attacker) {
+	public void onAction(L1PcInstance attacker) 
+	{
 		// XXX:NullPointerException回避。onActionの引數の型はL1Characterのほうが良い？
-		if (attacker == null) {
+		if (attacker == null && isTeleport())
 			return;
-		}
-		// テレポート處理中
-		if (isTeleport()) {
-			return;
-		}
+
 		// 攻擊される側または攻擊する側がセーフティーゾーン
 		if (getZoneType() == 1 || attacker.getZoneType() == 1) {
 			// 攻擊モーション送信
@@ -923,7 +928,7 @@ public class L1PcInstance extends L1Character {
 			return;
 		}
 
-		if (checkNonPvP(this, attacker) == true) {
+		if (checkNonPvP(this, attacker)) {
 			// 攻撃モーション送信
 			L1Attack attack_mortion = new L1Attack(attacker, this);
 			attack_mortion.action();
@@ -1809,13 +1814,13 @@ public class L1PcInstance extends L1Character {
 	private MpRegenerationByDoll _mpRegenByDoll;
 	private MpReductionByAwake _mpReductionByAwake;
 	private HpRegeneration _hpRegen;
-	private HpRegenerationByDoll _hpRegenByDoll;//魔法娃娃回血功能
+	private HpRegenerationByDoll _hpRegenByDoll; // 魔法娃娃回血功能
 	private static Timer _regenTimer = new Timer(true);
 	private boolean _mpRegenActive;
 	private boolean _mpRegenActiveByDoll;
 	private boolean _mpReductionActiveByAwake;
 	private boolean _hpRegenActive;
-	private boolean _hpRegenActiveByDoll;//魔法娃娃回血功能
+	private boolean _hpRegenActiveByDoll; // 魔法娃娃回血功能
 	private L1EquipmentSlot _equipSlot;
 	private L1PcDeleteTimer _pcDeleteTimer;
 
@@ -2455,16 +2460,19 @@ public class L1PcInstance extends L1Character {
 			}
 		}
 
-		for (int i = 0; i < gap; i++) {
+		double dh = (getCurrentHp() * 1.00) / (getMaxHp() * 1.00); // 取得升級前的體力 (百分比)
+		double dm = (getCurrentMp() * 1.00) / (getMaxMp() * 1.00); // 取得升級前的魔力 (百分比)
+		
+		for (int i = 0; i < gap; i++)
+		{
 			short randomHp = CalcStat.calcStatHp(getType(), getBaseMaxHp(),
 					getBaseCon(), getOriginalHpup());
 			short randomMp = CalcStat.calcStatMp(getType(), getBaseMaxMp(),
 					getBaseWis(), getOriginalMpup());
 			addBaseMaxHp(randomHp);
 			addBaseMaxMp(randomMp);
-			setCurrentHp(getMaxHp());//升級血補滿
-			setCurrentMp(getMaxMp());//升級魔補滿
-
+			setCurrentHp((int) (getMaxHp() * dh)); // 設定升級後的目前體力
+			setCurrentMp((int) (getMaxMp() * dm)); // 設定升級後的目前魔力
 		}
 		resetBaseHitup();
 		resetBaseDmgup();
