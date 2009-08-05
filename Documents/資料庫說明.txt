@@ -5,6 +5,7 @@ db\Update 繁體中文化資料庫(將日文換成中文)
 db\upgrade 各版本升級資料庫(l1j 與 l1jtw)
 db\Fix 修正日版錯誤資料庫
 db\mobskill_test 怪物技能測試資料庫
+db\l1j1977-l1jtw943.rar l1j1977 + l1jtw update + l1jtw insert + l1jtw fix
 
 資料庫匯入步驟說明:
 1.匯入l1jdb (db\MyISAM 中日文資料庫)

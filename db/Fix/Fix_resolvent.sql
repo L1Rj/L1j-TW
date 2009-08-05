@@ -1,6 +1,5 @@
 /*丟除日系resolvent*/
 DROP TABLE IF EXISTS `resolvent`;
-use l1jdb;
 
 /*匯入台系resolvent*/
 #----------------------------
