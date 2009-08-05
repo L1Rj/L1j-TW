@@ -768,7 +768,8 @@ public class L1ItemInstance extends L1Object {
 	/**
 	 * アイテムの狀態からサーバーパケットで利用する形式のバイト列を生成し、返す。
 	 */
-	public byte[] getStatusBytes() {
+	public byte[] getStatusBytes()
+	{
 		int itemType2 = getItem().getType2();
 		int itemId = getItemId();
 		BinaryOutputStream os = new BinaryOutputStream();
@@ -879,14 +880,14 @@ public class L1ItemInstance extends L1Object {
 			}
 			// 使用可能
 			int bit = 0;
-			bit |= getItem().isUseRoyal()        ? 1 : 0;
-			bit |= getItem().isUseKnight()       ? 2 : 0;
-			bit |= getItem().isUseElf()          ? 4 : 0;
-			bit |= getItem().isUseMage()         ? 8 : 0;
+			bit |= getItem().isUseRoyal()        ?  1 : 0;
+			bit |= getItem().isUseKnight()       ?  2 : 0;
+			bit |= getItem().isUseElf()          ?  4 : 0;
+			bit |= getItem().isUseMage()         ?  8 : 0;
 			bit |= getItem().isUseDarkelf()      ? 16 : 0;
 			bit |= getItem().isUseDragonknight() ? 32 : 0;
 			bit |= getItem().isUseIllusionist()  ? 64 : 0;
-			// bit |= getItem().isUseHiPet() ? 64 : 0; // ハイペット
+			// bit |= getItem().isUseHiPet() ? 127 : 0;
 			os.writeC(7);
 			os.writeC(bit);
 			// 弓の命中率補正
@@ -899,10 +900,12 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(35);
 				os.writeC(getItem().getBowDmgModifierByArmor());
 			}
+			
 			// MP吸収
 			if (itemId == 126 || itemId == 127) { // マナスタッフ、鋼鉄のマナスタッフ
 				os.writeC(16);
 			}
+			
 			// HP吸収
 			if (itemId == 262) { // ディストラクション
 				os.writeC(34);
@@ -932,31 +935,14 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(13);
 				os.writeC(getItem().get_addcha());
 			}
-			// HP, MP
-			if (getItem().get_addhp() != 0) {
-				os.writeC(14);
-				os.writeH(getItem().get_addhp());
-			}
-			if (getItem().get_addmp() != 0) {
-				os.writeC(32);
-				os.writeC(getItem().get_addmp());
-			}
-			// MR
-			if (getMr() != 0) {
-				os.writeC(15);
-				os.writeH(getMr());
-			}
-			// SP(魔力)
-			if (getItem().get_addsp() != 0) {
-				os.writeC(17);
-				os.writeC(getItem().get_addsp());
-			}
+			
 			// ヘイスト
 			if (getItem().isHasteItem()) {
 				os.writeC(18);
 			}
-//waja add & change 飾品強化卷軸
-/* 原本寫法
+			
+			//waja add & change 飾品強化卷軸
+			/* 原本寫法
 			// 火の屬性
 			if (getItem().get_defense_fire() != 0) {
 				os.writeC(27);
@@ -977,19 +963,31 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(30);
 				os.writeC(getItem().get_defense_earth());
 			}
-*/
-			if (getItem().get_addhp() != 0 || getaddHp() != 0) {
+			*
+			*/
+			
+			if (getItem().get_addhp() != 0 || getaddHp() != 0)
+			{
 				os.writeC(14);
 				os.writeH(getItem().get_addhp() + getaddHp());
 			}
+			
 			if (getItem().get_addmp() != 0 || getaddMp() != 0) {
 				os.writeC(32);
 				os.writeC(getItem().get_addmp() + getaddMp());
 			}
 
-			if (getItem().get_addsp() != 0 || getaddSp() != 0) {
+			if (getItem().get_addsp() != 0 || getaddSp() != 0)
+			{
 				os.writeC(17);
 				os.writeC(getItem().get_addsp() + getaddSp());
+			}
+			
+			// MR
+			if (getMr() != 0)
+			{
+				os.writeC(15);
+				os.writeH(getMr());
 			}
 
 			if (getItem().get_defense_fire() != 0 || getFireMr() != 0) {
@@ -1008,7 +1006,8 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(30);
 				os.writeC(getItem().get_defense_earth() + getEarthMr());
 			}
-//add end
+			//add end
+			
 			// 凍結耐性
 			if (getItem().get_regist_freeze() != 0) {
 				os.writeC(15);
@@ -1052,25 +1051,27 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(6);
 			}
 			// srwh補
-			if (getItem().getBowDmgModifierByArmor() != 0){
+			if (getItem().getBowDmgModifierByArmor() != 0)
+			{
 				os.writeC(35);
-				os.writeC(getItem().getBowDmgModifierByArmor() );
+				os.writeC(getItem().getBowDmgModifierByArmor());
 			}
+			
 			// 幸運
-// if (getItem.getLuck() != 0) {
-// os.writeC(20);
-// os.writeC(val);
-// }
+			// if (getItem.getLuck() != 0) {
+			// os.writeC(20);
+			// os.writeC(val);
+			// }
 			// 種類
-// if (getItem.getDesc() != 0) {
-// os.writeC(25);
-// os.writeH(val); // desc.tbl ID
-// }
+			// if (getItem.getDesc() != 0) {
+			// os.writeC(25);
+			// os.writeH(val); // desc.tbl ID
+			// }
 			// レベル
-// if (getItem.getLevel() != 0) {
-// os.writeC(26);
-// os.writeH(val);
-// }
+			// if (getItem.getLevel() != 0) {
+			// os.writeC(26);
+			// os.writeH(val);
+			// }
 		}
 		return os.getBytes();
 	}
