@@ -442,12 +442,12 @@ public class ClientThread implements Runnable, PacketOutput
 						
 						// 判斷延遲時間是否大於 0
 						if (DelayTime > 0)
-							Thread.sleep(DelayTime); // 執行緒延遲指定毫秒數 在繼續工作
+							Thread.sleep(DelayTime); // 執行緒延遲指定毫秒數 再繼續工作
 						
 						isWorking = false; // 設為沒工作
 					}
 					
-					Thread.sleep(1);
+					Thread.sleep(100);
 				}
 				catch (Exception io)
 				{
