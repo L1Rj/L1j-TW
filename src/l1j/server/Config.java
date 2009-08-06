@@ -419,6 +419,31 @@ public final class Config {
 	// 一回の攻擊で吸えるMP限界(SOM、鋼鐵SOM）
 	public static final int MANA_DRAIN_LIMIT_PER_SOM_ATTACK = 9;
 
+	private static int REVISION;
+	private static String EDIT_DATE;
+	private static String[] _systemInfo;
+	private static void loadInfo(){
+		try {
+			Properties logSettings = new Properties();
+			InputStream is = new FileInputStream(new File("revisionlog.ini"));
+			logSettings.load(is);
+			is.close();
+			REVISION = Integer.parseInt(logSettings.getProperty(
+					"Revision", "1982"));
+			EDIT_DATE = logSettings.getProperty("Date", "2009/08/07");
+			
+			_systemInfo = new String []{
+					  "==========================================================="
+					, " Lineage 3.0C Revision r" + REVISION + " 編 輯 日 期 " + EDIT_DATE + "."
+					, "==========================================================="
+				};
+			for(int i = 0; i < _systemInfo.length; i++){
+				System.out.println(_systemInfo[i]);
+			}
+		} catch (Exception e) {
+		}
+	}
+
 	public static void load() {
 		_log.info("Loading『GameServer Config』");
 		// server.properties
