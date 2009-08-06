@@ -3,8 +3,10 @@ package Threading;
 import java.util.ArrayList;
 
 import l1j.server.server.GeneralThreadPool;
+import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1GambleInstance;
+import l1j.server.server.model.Instance.L1NpcInstance;
 
 public class R_Gamble implements Runnable
 {
@@ -22,6 +24,7 @@ public class R_Gamble implements Runnable
 	}
 	
 	private L1GambleInstance[] Babys = new L1GambleInstance[20]; // 肥肥要使用的物件
+	private ArrayList<L1NpcInstance> Npcs; // 賭場 NPC 清單
 	private ArrayList<L1GambleInstance> BabyOrder; // 比賽後前三名的肥肥
 	private ArrayList<L1GambleInstance> CurrentBaby; // 比賽前的肥肥
 	
@@ -66,6 +69,8 @@ public class R_Gamble implements Runnable
 		BabyOrder = new ArrayList<L1GambleInstance>();
 		// 比賽前的肥肥名單
 		CurrentBaby = new ArrayList<L1GambleInstance>();
+		// 賭場管理員
+		Npcs = new ArrayList<L1NpcInstance>();
 		
 		int Gfxid1 = 3478; // #1、#6、#11、#16 肥肥的外觀
 		int Gfxid2 = 3497; // 其他肥肥的外觀
@@ -90,6 +95,20 @@ public class R_Gamble implements Runnable
 			// 5號肥肥
 			Babys[index + 4] = new L1GambleInstance();	// 設定肥肥初始外型
 			Babys[index + 4].setGfxId(Gfxid2++);		// 設定肥肥外型
+		}
+		
+		// 搜尋賭場 NPC
+		for (L1Object object : L1World.getInstance().getObject())
+		{
+			// 判斷 物件 是否非為 NPC
+			if (!(object instanceof L1NpcInstance))
+				continue; // 回上頭繼續搜尋
+			
+			int NpcId = ((L1NpcInstance) object).getNpcId(); // 取得 NPC 代號
+			
+			// 判斷 NPC 是否為賭場管理員
+			if (NpcId == 70035 || NpcId == 70041 || NpcId == 70042)
+				Npcs.add((L1NpcInstance) object);
 		}
 		
 		GeneralThreadPool.getInstance().execute(this);
