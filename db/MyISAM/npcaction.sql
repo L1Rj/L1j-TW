@@ -875,6 +875,8 @@ INSERT INTO `npcaction` VALUES
 (71257, 'zybril1', 'zybril1', '', ''),
 (71258, 'marba3', 'marba1', '', ''),
 (71259, 'aras1', 'aras11', '', ''),
+(71264, 'sciairen1', 'sciairen2', '', ''),
+(71265, 'sinwarrior', 'sinwarrior', '', ''),
 (80010, 'aprincess1', 'aprincess1', 'aprincess2', ''),
 (80019, 'cold1', 'cold1', '', ''),
 (80020, 'cold1', 'cold1', '', ''),
