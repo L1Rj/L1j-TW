@@ -70,6 +70,7 @@ public class R_Gamble implements Runnable
 		int Gfxid1 = 3478; // #1、#6、#11、#16 肥肥的外觀
 		int Gfxid2 = 3497; // 其他肥肥的外觀
 		
+		// 初始化肥肥資料、外觀
 		for (int i = 0; i < Babys.length / 5; i++)
 		{
 			int index = i * 5; // 肥肥場次代號
@@ -107,7 +108,7 @@ public class R_Gamble implements Runnable
 			for (L1GambleInstance baby : CurrentBaby)
 			{
 				L1World.getInstance().removeObject(baby);
-				L1World.getInstance().storeObject(baby);
+				L1World.getInstance().removeVisibleObject(baby);
 			}
 			
 			CurrentBaby.clear(); // 清除已知的肥肥
@@ -138,12 +139,13 @@ public class R_Gamble implements Runnable
 		{
 			L1GambleInstance baby = CurrentBaby.get(i);
 			baby.setX(locX - (i * 2));
-			baby.setX(locY + (i * 2));
+			baby.setY(locY + (i * 2));
 		}
 	}
 
 	@Override
 	public void run()
 	{
+		
 	}
 }
