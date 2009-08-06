@@ -1444,14 +1444,14 @@ public class L1PcInstance extends L1Character
 				if (getLawful() >= 0 && isPinkName() == false) {
 					boolean isChangePkCount = false;
 
-					boolean isChangePkCountForElf = false;//妖精殺死同族 PK值另外計算
+					boolean isChangePkCountForElf = false;// 妖精殺死同族 PK值另外計算
 
 					// アライメントが30000未滿の場合はPKカウント增加
 					if (player.getLawful() < 30000) {
 						player.set_PKcount(player.get_PKcount() + 1);
 						isChangePkCount = true;
 
-						if (player.isElf() && isElf()) {//妖精殺死同族 PK值另外計算
+						if (player.isElf() && isElf()) {// 妖精殺死同族 PK值另外計算
 							player.setPkCountForElf(player
 									.getPkCountForElf() +1);
 							isChangePkCountForElf = true;
@@ -1461,7 +1461,11 @@ public class L1PcInstance extends L1Character
 					if (player.isElf() && isElf()) {
 						player.setLastPkForElf();
 					}
-
+// 20090806 BAO提供紅人殺人正義值多五百
+                    if (player.getLawful() <= -1 && (isChangePkCount == true)) {
+                        player.setLawful(player.getLawful() + 500);
+                    }
+// add end
 					// アライメント處理
 					// 公式の發表および各LVでのPKからつじつまの合うように變更
 					// （PK側のLVに依存し、高LVほどリスクも高い）
@@ -1636,7 +1640,7 @@ public class L1PcInstance extends L1Character
 		addExp(exp);
 	}
 
-	public void deathPenalty() {//角色死亡處罰
+	public void deathPenalty() {// 角色死亡處罰
 		int oldLevel = getLevel();
 		int needExp = ExpTable.getNeedExpNextLevel(oldLevel);
 		int exp = 0;

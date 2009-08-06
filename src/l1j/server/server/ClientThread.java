@@ -447,7 +447,7 @@ public class ClientThread implements Runnable, PacketOutput
 						isWorking = false; // 設為沒工作
 					}
 					
-					Thread.sleep(100);
+					Thread.sleep(10);
 				}
 				catch (Exception io)
 				{
