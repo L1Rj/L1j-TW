@@ -1,11 +1,12 @@
 package Threading;
 
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
 
-import l1j.server.server.IdFactory;
-import l1j.server.server.model.L1Character;
+import l1j.server.server.GeneralThreadPool;
+import l1j.server.server.model.L1World;
+import l1j.server.server.model.Instance.L1GambleInstance;
 
-public class R_Gamble
+public class R_Gamble implements Runnable
 {
 	private static R_Gamble gamble;
 	
@@ -20,68 +21,129 @@ public class R_Gamble
 		return gamble;
 	}
 	
-	// 肥肥要使用的物件
-	private L1Character[] cha = new L1Character[20];
-	// 正在比賽的肥肥
-	private final ConcurrentHashMap<L1Character, Integer> CurrentBaby;
-	// 正在比賽的肥肥順序
-	private final ConcurrentHashMap<Integer, L1Character> OrderBaby;
+	private L1GambleInstance[] Babys = new L1GambleInstance[20]; // 肥肥要使用的物件
+	private ArrayList<L1GambleInstance> BabyOrder; // 比賽後前三名的肥肥
+	private ArrayList<L1GambleInstance> CurrentBaby; // 比賽前的肥肥
+	
+	private final int locX = 33522; // 肥肥初始X座標
+	private final int locY = 32661; // 肥肥初始Y座標
+	
+	// 肥肥1_路徑
+	private static int[] Baby1_Path =
+	{
+		
+	};
+	
+	// 肥肥2_路徑
+	private static int[] Baby2_Path = 
+	{
+			
+	};
+	
+	// 肥肥3_路徑
+	private static int[] Baby3_Path = 
+	{
+			
+	};
+	
+	// 肥肥4_路徑
+	private static int[] Baby4_Path = 
+	{
+		
+	};
+	
+	// 肥肥5_路徑
+	private static int[] Baby5_Path = 
+	{
+		
+	};
 	
 	private R_Gamble()
 	{
 		// (肥肥, 場次)
 		// 比賽前先紀錄5隻肥肥的物件
 		// 比賽後移除非在前三名的肥肥
-		CurrentBaby = new ConcurrentHashMap<L1Character, Integer>();
-		// (順序, 肥肥)
-		OrderBaby = new ConcurrentHashMap<Integer, L1Character>();
+		BabyOrder = new ArrayList<L1GambleInstance>();
+		// 比賽前的肥肥名單
+		CurrentBaby = new ArrayList<L1GambleInstance>();
 		
-		int Nameid = 1213; // 肥肥名稱
 		int Gfxid1 = 3478; // #1、#6、#11、#16 肥肥的外觀
 		int Gfxid2 = 3497; // 其他肥肥的外觀
 		
-		for (int i = 0; i < cha.length / 5; i++)
+		for (int i = 0; i < Babys.length / 5; i++)
 		{
-			int locX = 33522; // 肥肥初始X座標
-			int locY = 32661; // 肥肥初始Y座標
 			int index = i * 5; // 肥肥場次代號
 			
 			// 1號肥肥
-			cha[index + 0] = CreateObject(Gfxid1++); // 設定肥肥初始外型
-			cha[index + 0].setName("#" + (index + 1) + " $" + Nameid++); // 設定肥肥名稱
-			cha[index + 0].setX(locX - 0); // 設定肥肥初始X座標
-			cha[index + 0].setY(locY + 0); // 設定肥肥初始Y座標
+			Babys[index + 0] = new L1GambleInstance();	// 設定肥肥初始外型
+			Babys[index + 0].setGfxId(Gfxid1++); 		// 設定肥肥外型
 			// 2號肥肥
-			cha[index + 1] = CreateObject(Gfxid2++); // 設定肥肥初始外型
-			cha[index + 1].setName("#" + (index + 2) + " $" + Nameid++); // 設定肥肥名稱
-			cha[index + 1].setX(locX - 2); // 設定肥肥初始X座標
-			cha[index + 1].setY(locY + 2); // 設定肥肥初始Y座標
+			Babys[index + 1] = new L1GambleInstance(); 	// 設定肥肥初始外型
+			Babys[index + 0].setGfxId(Gfxid2++);		// 設定肥肥外型
 			// 3號肥肥
-			cha[index + 2] = CreateObject(Gfxid2++); // 設定肥肥初始外型
-			cha[index + 2].setName("#" + (index + 3) + " $" + Nameid++); // 設定肥肥名稱
-			cha[index + 2].setX(locX - 4); // 設定肥肥初始X座標
-			cha[index + 2].setY(locY + 4); // 設定肥肥初始Y座標
+			Babys[index + 2] = new L1GambleInstance();	// 設定肥肥初始外型
+			Babys[index + 2].setGfxId(Gfxid2++);		// 設定肥肥外型
 			// 4號肥肥
-			cha[index + 3] = CreateObject(Gfxid2++); // 設定肥肥初始外型
-			cha[index + 3].setName("#" + (index + 4) + " $" + Nameid++); // 設定肥肥名稱
-			cha[index + 3].setX(locX - 6); // 設定肥肥初始X座標
-			cha[index + 3].setY(locY + 6); // 設定肥肥初始Y座標
+			Babys[index + 3] = new L1GambleInstance();	// 設定肥肥初始外型
+			Babys[index + 3].setGfxId(Gfxid2++);		// 設定肥肥外型
 			// 5號肥肥
-			cha[index + 4] = CreateObject(Gfxid2++); // 設定肥肥初始外型
-			cha[index + 4].setName("#" + (index + 5) + " $" + Nameid++); // 設定肥肥名稱
-			cha[index + 4].setX(locX - 8); // 設定肥肥初始X座標
-			cha[index + 4].setY(locY + 8); // 設定肥肥初始Y座標
+			Babys[index + 4] = new L1GambleInstance();	// 設定肥肥初始外型
+			Babys[index + 4].setGfxId(Gfxid2++);		// 設定肥肥外型
 		}
+		
+		GeneralThreadPool.getInstance().execute(this);
 	}
 	
-	private L1Character CreateObject(int Gfxid)
+	private int CurrentIndex;
+	
+	public void Spawn()
 	{
-		L1Character aBaby = new L1Character(); // 建立新的物件
-		aBaby.setId(IdFactory.getInstance().nextId()); // 設定肥肥編號
-		aBaby.setGfxId(Gfxid); // 設定肥肥外型
-		aBaby.setLevel(1); // 設定肥肥等級
-		aBaby.setLawful(-5); // 設定肥肥正義值
-		aBaby.setMap((short) 0x0004); // 設定肥肥出現的地圖 (大陸-奇岩)
-		return aBaby;
+		int SpawnCount = BabyOrder.size() % 5;
+		
+		// 判斷 有正在比賽的肥肥 或 有前三名的肥肥
+		if (CurrentBaby.size() > 0 || BabyOrder.size() > 0)
+		{
+			// 移除前一場的肥肥
+			for (L1GambleInstance baby : CurrentBaby)
+			{
+				L1World.getInstance().removeObject(baby);
+				L1World.getInstance().storeObject(baby);
+			}
+			
+			CurrentBaby.clear(); // 清除已知的肥肥
+			
+			// 加入前三名的肥肥
+			for (L1GambleInstance baby : BabyOrder)
+				CurrentBaby.add(baby);
+			
+			BabyOrder.clear(); // 清除已知的肥肥
+		}
+		
+		// 加入下一場的肥肥
+		for (int i = SpawnCount; i < 5; i++)
+		{
+			// 如果超過範圍 就從0開始讀取
+			if (CurrentIndex >= Babys.length)
+				CurrentIndex = 0;
+			
+			L1GambleInstance baby = Babys[CurrentIndex];
+			L1World.getInstance().storeObject(baby);
+			L1World.getInstance().addVisibleObject(baby);
+			CurrentBaby.add(baby);
+			CurrentIndex++; // 引數遞增
+		}
+		
+		// 更新座標
+		for (int i = 0; i < 5; i++)
+		{
+			L1GambleInstance baby = CurrentBaby.get(i);
+			baby.setX(locX - (i * 2));
+			baby.setX(locY + (i * 2));
+		}
+	}
+
+	@Override
+	public void run()
+	{
 	}
 }
