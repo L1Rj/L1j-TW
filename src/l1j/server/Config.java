@@ -445,6 +445,7 @@ public final class Config {
 	}
 
 	public static void load() {
+		loadInfo();
 		_log.info("Loading『GameServer Config』");
 		// server.properties
 		try {
