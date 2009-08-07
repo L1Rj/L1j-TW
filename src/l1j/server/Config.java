@@ -425,7 +425,7 @@ public final class Config {
 	private static void loadInfo(){
 		try {
 			Properties logSettings = new Properties();
-			InputStream is = new FileInputStream(new File("revisionlog.ini"));
+			InputStream is = new FileInputStream(new File("Revisionlog.ini"));
 			logSettings.load(is);
 			is.close();
 			REVISION = Integer.parseInt(logSettings.getProperty(

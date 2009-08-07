@@ -51,11 +51,45 @@ public class C_DeleteChar extends ClientBasePacket {
 			if (pc != null && pc.getLevel() >= 5 // 五級以上角色七日猶豫期
 					&& Config.DELETE_CHARACTER_AFTER_7DAYS) {
 				if (pc.getType() < 32) {
+// 角色刪除轉身
+					if (pc.isCrown()) {
+						pc.setType(32);
+					} else if (pc.isKnight()) {
+						pc.setType(33);
+					} else if (pc.isElf()) {
+						pc.setType(34);
+					} else if (pc.isWizard()) {
+						pc.setType(35);
+					} else if (pc.isDarkelf()) {
+						pc.setType(36);
+					} else if (pc.isDragonKnight()) {
+						pc.setType(37);
+					} else if (pc.isIllusionist()) {
+						pc.setType(38);
+					}
+// add end
 					Timestamp deleteTime = new Timestamp(System
 							.currentTimeMillis() + 604800000); // 7日後
 					pc.setDeleteTime(deleteTime);
 					pc.save(); // DBにキャラクター情報を書き⑸む
 				} else {
+// 角色刪除轉身
+					if (pc.isCrown()) {
+						pc.setType(0);
+					} else if (pc.isKnight()) {
+						pc.setType(1);
+					} else if (pc.isElf()) {
+						pc.setType(2);
+					} else if (pc.isWizard()) {
+						pc.setType(3);
+					} else if (pc.isDarkelf()) {
+						pc.setType(4);
+					} else if (pc.isDragonKnight()) {
+						pc.setType(5);
+					} else if (pc.isIllusionist()) {
+						pc.setType(6);
+					}				
+// add end
 					pc.setDeleteTime(null);
 					pc.save(); // DBにキャラクター情報を書き⑸む
 				}
