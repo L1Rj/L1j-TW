@@ -1457,15 +1457,16 @@ public class L1PcInstance extends L1Character
 							isChangePkCountForElf = true;
 						}
 					}
+// 20090807 missu0524 提供 正義值滿不會被警衛追殺
 					player.setLastPk();
+					if (player.getLawful() == 32767){
+						 player.setLastPk(null);
+						 }
+// add end
 					if (player.isElf() && isElf()) {
 						player.setLastPkForElf();
 					}
-// 20090806 BAO提供紅人殺人正義值多五百
-                    if (player.getLawful() <= -1 && (isChangePkCount == true)) {
-                        player.setLawful(player.getLawful() - 500);
-                    }
-// add end
+
 					// アライメント處理
 					// 公式の發表および各LVでのPKからつじつまの合うように變更
 					// （PK側のLVに依存し、高LVほどリスクも高い）
@@ -1485,9 +1486,16 @@ public class L1PcInstance extends L1Character
 					// （連續でPKしたときにほとんど值が變わらなかった記憶より）
 					// これは上の式よりも自信度が低いうろ覺えですので
 					// 明らかにこうならない！という場合は修正お願いします
+// 20090807 BAO提供 紅人殺人扣500正義值
+/*
 					if ((player.getLawful() - 1000) < lawful) {
 						lawful = player.getLawful() - 1000;
 					}
+*/
+					if ((player.getLawful() - 1000) < lawful) {
+						lawful = player.getLawful() - 500;
+					}
+// change end
 
 					if (lawful <= -32768) {
 						lawful = -32768;

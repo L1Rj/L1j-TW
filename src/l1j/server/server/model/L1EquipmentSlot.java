@@ -72,8 +72,19 @@ public class L1EquipmentSlot {
 		L1Item item = armor.getItem();
 		int itemId = armor.getItem().getItemId();
 
-		_owner.addAc(item.get_ac() - armor.getEnchantLevel() - armor
-				.getAcByMagic());
+// 20090807 missu0524 提供 飾品ac移除
+//		_owner.addAc(item.get_ac() - armor.getEnchantLevel() - armor
+//				.getAcByMagic());
+
+		if(armor.getItem().getType() == 8 
+			     ||armor.getItem().getType() == 9
+			     ||armor.getItem().getType() == 10
+			     ||armor.getItem().getType() == 12){
+			     _owner.addAc(item.get_ac() - armor.getAcByMagic());}
+			  else {
+			    _owner.addAc(item.get_ac() - armor.getEnchantLevel() - armor.getAcByMagic());
+			 }
+// add end
 		_owner.addDamageReductionByArmor(item.getDamageReduction());
 		_owner.addWeightReduction(item.getWeightReduction());
 		_owner.addHitModifierByArmor(item.getHitModifierByArmor());
@@ -158,8 +169,20 @@ public class L1EquipmentSlot {
 		L1Item item = armor.getItem();
 		int itemId = armor.getItem().getItemId();
 
-		_owner.addAc(-(item.get_ac() - armor.getEnchantLevel() - armor
-				.getAcByMagic()));
+// 20090807 missu0524 提供 飾品ac移除
+//		_owner.addAc(-(item.get_ac() - armor.getEnchantLevel() - armor
+//				.getAcByMagic()));
+
+		if(armor.getItem().getType() == 8 
+			     ||armor.getItem().getType() == 9
+			     ||armor.getItem().getType() == 10
+			     ||armor.getItem().getType() == 12){
+			     _owner.addAc(item.get_ac() - armor.getAcByMagic());}
+			  else {
+			    _owner.addAc(item.get_ac() - armor.getEnchantLevel() - armor.getAcByMagic());
+			 }
+// add end
+
 		_owner.addDamageReductionByArmor(-item.getDamageReduction());
 		_owner.addWeightReduction(-item.getWeightReduction());
 		_owner.addHitModifierByArmor(-item.getHitModifierByArmor());
