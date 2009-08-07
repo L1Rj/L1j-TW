@@ -19,8 +19,10 @@
 
 package l1j.server.server.clientpackets;
 
+import java.io.File;
 import java.util.List;
 import java.util.logging.Logger;
+
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.WarTimeController;
@@ -54,6 +56,14 @@ public class C_War extends ClientBasePacket {
 			player.sendPackets(new S_ServerMessage(478)); // \f1プリンスとプリンセスのみ戰爭を布告できます。
 			return;
 		}
+// 20090807 missu0524 提供 宣戰血盟需要有盟輝
+		 String emblem_file = String.valueOf(player.getClanid());
+	        File file = new File( "emblem/" + emblem_file);
+	        if (!file.exists()) {
+	            player.sendPackets(new S_ServerMessage(812));
+	            return;
+	        }
+// add end
 		if (clanId == 0) { // クラン未所屬
 			player.sendPackets(new S_ServerMessage(272)); // \f1戰爭するためにはまず血盟を創設しなければなりません。
 			return;
