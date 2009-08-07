@@ -1463,7 +1463,7 @@ public class L1PcInstance extends L1Character
 					}
 // 20090806 BAO提供紅人殺人正義值多五百
                     if (player.getLawful() <= -1 && (isChangePkCount == true)) {
-                        player.setLawful(player.getLawful() + 500);
+                        player.setLawful(player.getLawful() - 500);
                     }
 // add end
 					// アライメント處理
