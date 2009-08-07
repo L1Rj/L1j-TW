@@ -177,9 +177,9 @@ public class L1EquipmentSlot {
 			     ||armor.getItem().getType() == 9
 			     ||armor.getItem().getType() == 10
 			     ||armor.getItem().getType() == 12){
-			     _owner.addAc(item.get_ac() - armor.getAcByMagic());}
+			     _owner.addAc(-(item.get_ac() - armor.getAcByMagic()));}
 			  else {
-			    _owner.addAc(item.get_ac() - armor.getEnchantLevel() - armor.getAcByMagic());
+			    _owner.addAc(-(item.get_ac() - armor.getEnchantLevel() - armor.getAcByMagic()));
 			 }
 // add end
 
