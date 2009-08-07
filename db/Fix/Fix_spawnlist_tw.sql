@@ -391,3 +391,6 @@ INSERT INTO `spawnlist` (`id`, `location`, `count`, `npc_templateid`, `group_id`
 /* 20090621 移除  20090524 海賊島後半部 新增虎男 高麗幼犬 */
 Delete From `spawnlist` Where location = '虎男';
 Delete From `spawnlist` Where location = '高麗幼犬';
+
+/* 20090807 遺忘之島怪物數量*2 */
+Update spawnlist Set count = '2' Where mapid = '70' AND count = '1';

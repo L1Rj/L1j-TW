@@ -37,7 +37,7 @@ public class GeneralThreadPool {
 
 	private static GeneralThreadPool _instance;
 
-	private static final int SCHEDULED_CORE_POOL_SIZE = 120;// 原值10
+	private static final int SCHEDULED_CORE_POOL_SIZE = 100;// 原值10
 
 	private Executor _executor; // 汎用ExecutorService
 	private ScheduledExecutorService _scheduler; // 汎用ScheduledExecutorService

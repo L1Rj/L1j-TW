@@ -885,7 +885,7 @@ Update droplist Set chance = '20000' Where itemid = '40471' And chance = '10000'
 Update droplist Set chance = '200000' Where itemid = '40471' And chance = '100000';
 
 /* 20090611 降低 龍之心 掉落機率 */
-Update droplist Set chance = '400' Where itemid = '40466';
+Update droplist Set chance = '200' Where itemid = '40466';
 
 /* 20090523 提高 靈魂石碎片 掉落機率 */
 Update droplist Set chance = '30000' Where itemid = '40678' And chance = '10000';

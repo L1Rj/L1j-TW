@@ -18,34 +18,35 @@
  */
 package Threading;
 
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.Instance.L1PcInstance;
 
-// L1JTW
 public class R_FrameUpdate implements Runnable
 {
+	private final static ThreadGroup tGroup = new ThreadGroup("FrameUpdate");
 	private final L1PcInstance pc;
+	
 	private boolean isShutdown;
 	
 	public R_FrameUpdate(L1PcInstance pc)
 	{
 		this.pc = pc;
 		
-		GeneralThreadPool.getInstance().execute(this);
+		new Thread(tGroup, this, this.getClass().getSimpleName()).start();
 	}
 	
 	@Override
 	public void run()
 	{
-		while (!isShutdown())
-		{
+		while (!isShutdown)
+		{	
 			try
 			{
 				pc.updateObject(); // 更新一次畫面
-				Thread.sleep(200); // 延遲 0.200ms
+				Thread.sleep(250); // 延遲 0.200ms
 			}
 			catch (Exception e)
 			{
+				e.fillInStackTrace(); // 顯示錯誤訊息
 				break;
 			}
 		}
