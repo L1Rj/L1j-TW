@@ -35,6 +35,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Threading.R_AutoResponse;
+
 import l1j.server.server.datatables.CharBuffTable;
 import l1j.server.server.encryptions.ClientIdExistsException;
 import l1j.server.server.encryptions.LineageEncryption;
@@ -81,6 +83,8 @@ public class ClientThread implements Runnable, PacketOutput
 	private Socket _csocket;
 
 	private int _loginStatus = 0;
+	
+	private R_AutoResponse _Response;
 
 	// private static final byte[] FIRST_PACKET = { 10, 0, 38, 58, -37, 112, 46,
 	// 90, 120, 0 }; // for Episode5
@@ -113,16 +117,16 @@ public class ClientThread implements Runnable, PacketOutput
 	public ClientThread(Socket socket) throws IOException {
 		_csocket = socket;
 		_ip = socket.getInetAddress().getHostAddress();
+		
 		if (HOSTNAME_LOOKUPS) {
 			_hostname = socket.getInetAddress().getHostName();
 		} else {
 			_hostname = _ip;
 		}
+		
 		_in = socket.getInputStream();
 		_out = new BufferedOutputStream(socket.getOutputStream());
-
-		// PacketHandler 初期设定
-		_handler = new PacketHandler(this);
+		_Response = new R_AutoResponse(this);
 	}
 
 	public String getIp() {
@@ -211,7 +215,7 @@ public class ClientThread implements Runnable, PacketOutput
 	{
 		_log.info("(" + _hostname + ")開始連線...");
 		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
-		System.out.println("等候連線中...");
+		System.out.println("等待連線中...");
 
 		Socket socket = _csocket;
 		/*
@@ -222,17 +226,12 @@ public class ClientThread implements Runnable, PacketOutput
 		 * 
 		 * 无制限にする前に不正检出方法を见直す必要がある。
 		 */
-		HcPacket movePacket = new HcPacket();
-		HcPacket hcPacket = new HcPacket();
-		HcPacket attackPacket = new HcPacket();
-		HcPacket itemPacket = new HcPacket();
-		HcPacket npcPacket = new HcPacket(1000);
 		
-		GeneralThreadPool.getInstance().execute(movePacket);
-		GeneralThreadPool.getInstance().execute(hcPacket);
-		GeneralThreadPool.getInstance().execute(attackPacket);
-		GeneralThreadPool.getInstance().execute(itemPacket);
-		GeneralThreadPool.getInstance().execute(npcPacket);
+		// GeneralThreadPool.getInstance().execute(movePacket);
+		// GeneralThreadPool.getInstance().execute(hcPacket);
+		// GeneralThreadPool.getInstance().execute(attackPacket);
+		// GeneralThreadPool.getInstance().execute(itemPacket);
+		// GeneralThreadPool.getInstance().execute(npcPacket);
 
 		ClientThreadObserver observer =
 				new ClientThreadObserver(AUTOMATIC_KICK * 60 * 1000); // 自动切断までの时间（单位:ms）
@@ -303,48 +302,22 @@ public class ClientThread implements Runnable, PacketOutput
 					observer.packetReceived();
 				}
 				
-				// 破弃してはいけないOpecode群
-				// リスタート、アイテムドロップ、アイテム削除
-				if (opcode == Opcodes.C_OPCODE_CHANGECHAR
-						|| opcode == Opcodes.C_OPCODE_DROPITEM
-						|| opcode == Opcodes.C_OPCODE_DELETEINVENTORYITEM) {
-					_handler.handlePacket(data);
-				} else if (opcode == Opcodes.C_OPCODE_MOVECHAR || 
-						opcode == Opcodes.C_OPCODE_TELEPORT) // Insert
+				// 延遲比較久的封包
+				if (opcode == Opcodes.C_OPCODE_WHO ||
+					opcode == Opcodes.C_OPCODE_NPCTALK ||
+					opcode == Opcodes.C_OPCODE_NPCACTION ||
+					opcode == Opcodes.C_OPCODE_BOARD || 
+					opcode == Opcodes.C_OPCODE_BOARDBACK ||
+					opcode == Opcodes.C_OPCODE_BOARDDELETE ||
+					opcode == Opcodes.C_OPCODE_BOARDREAD ||
+					opcode == Opcodes.C_OPCODE_BOARDWRITE)
 				{
-					// 移动はなるべく确实に行う为、移动专用スレッドへ受け渡し
-					movePacket.requestWork(data);
+					_Response.AddWork(data, 1000);
 				}
-				// 攻擊封包處理 Insert
-				else if (opcode == Opcodes.C_OPCODE_ATTACK ||
-						opcode == Opcodes.C_OPCODE_ARROWATTACK ||
-						opcode == Opcodes.C_OPCODE_SELECTTARGET ||
-						opcode == Opcodes.C_OPCODE_USESKILL) {
-					attackPacket.requestWork(data);
-				}
-				// 物品封包處理 Insert
-				else if (opcode == Opcodes.C_OPCODE_USEITEM ||
-						opcode == Opcodes.C_OPCODE_USEPETITEM ||
-						opcode == Opcodes.C_OPCODE_DROPITEM ||
-						opcode == Opcodes.C_OPCODE_DELETEINVENTORYITEM ||
-						opcode == Opcodes.C_OPCODE_TRADEADDITEM)
+				// 一般封包處理
+				else
 				{
-					itemPacket.requestWork(data);
-				}
-				// 雜項封包處理 Insert (有延遲時間)
-				else if (opcode == Opcodes.C_OPCODE_WHO ||
-						 opcode == Opcodes.C_OPCODE_NPCTALK ||
-						 opcode == Opcodes.C_OPCODE_NPCACTION ||
-						 opcode == Opcodes.C_OPCODE_BOARD || 
-						 opcode == Opcodes.C_OPCODE_BOARDBACK ||
-						 opcode == Opcodes.C_OPCODE_BOARDDELETE ||
-						 opcode == Opcodes.C_OPCODE_BOARDREAD ||
-						 opcode == Opcodes.C_OPCODE_BOARDWRITE)
-				{
-					npcPacket.requestWork(data);
-				} else {
-					// パケット处理スレッドへ受け渡し
-					hcPacket.requestWork(data);
+					_Response.AddWork(data, 10);
 				}
 			}
 		}
@@ -381,7 +354,7 @@ public class ClientThread implements Runnable, PacketOutput
 			_log.info("(" + getAccountName() + ":" + _hostname
 					+ ")連線結束...");
 			System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
-			System.out.println("等候連線中...");
+			System.out.println("等待連線中...");
 		}
 		return;
 	}
@@ -394,6 +367,7 @@ public class ClientThread implements Runnable, PacketOutput
 		StreamUtil.close(_out, _in);
 	}
 
+	/*
 	// キャラクターの行动处理スレッド
 	class HcPacket implements Runnable
 	{
@@ -406,6 +380,8 @@ public class ClientThread implements Runnable, PacketOutput
 		{
 			_queue = new ConcurrentLinkedQueue<byte[]>();
 			_handler = ClientThread.this._handler;
+			
+			new Thread(tGroup, this, "Network").start();
 		}
 
 		public HcPacket(int DelayTime)
@@ -414,9 +390,11 @@ public class ClientThread implements Runnable, PacketOutput
 			
 			_queue = new ConcurrentLinkedQueue<byte[]>();
 			_handler = ClientThread.this._handler;
+			
+			new Thread(tGroup, this, "Network").start();
 		}
 
-		public void requestWork(byte data[])
+		public void requestWork(byte[] data)
 		{
 			if (DelayTime > 0 && isWorking)
 				return;
@@ -442,12 +420,14 @@ public class ClientThread implements Runnable, PacketOutput
 						
 						// 判斷延遲時間是否大於 0
 						if (DelayTime > 0)
-							Thread.sleep(DelayTime); // 執行緒延遲指定毫秒數 再繼續工作
+							Thread.sleep(DelayTime); // 執行緒延遲指定毫秒數 在繼續工作
 						
 						isWorking = false; // 設為沒工作
 					}
-					
-					Thread.sleep(10);
+					else
+					{
+						Thread.sleep(10);
+					}
 				}
 				catch (Exception io)
 				{
@@ -455,6 +435,7 @@ public class ClientThread implements Runnable, PacketOutput
 			}
 		}
 	}
+	*/
 
 	private static Timer _observerTimer = new Timer();
 
@@ -489,7 +470,7 @@ public class ClientThread implements Runnable, PacketOutput
 				if (_activeChar == null // キャラクター选択前
 						|| _activeChar != null && !_activeChar.isPrivateShop()) { // 个人商店中
 					kick();
-					_log.warning("等待回應時間過長導致(" + _hostname
+					_log.warning("因為等待時間過長(" + _hostname
 							+ ")連線中斷。");
 					cancel();
 					return;
