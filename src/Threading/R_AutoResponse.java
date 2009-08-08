@@ -2,8 +2,8 @@ package Threading;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import l1j.server.server.Opcodes;
 import l1j.server.server.ClientThread;
+import l1j.server.server.Opcodes;
 import l1j.server.server.PacketHandler;
 
 /**
@@ -24,7 +24,7 @@ public class R_AutoResponse
 	{
 		this.Network = Network; // 暫存封包處理程序之物件
 		this.Hanlder = new PacketHandler(Network); // 建立新的封包處理程序
-		this.PacketBox = new ConcurrentHashMap<Byte, Integer>(); // 建立新的封包戰存器
+		this.PacketBox = new ConcurrentHashMap<Byte, Integer>(); // 建立新的封包暫存器
 		// 左邊為位元組, 右邊為整數
 	}
 	
@@ -94,13 +94,15 @@ public class R_AutoResponse
 	{
 		private byte[] aWork; // 目前的工作
 		private int ActiveTime; // 存活的時間
+		private Thread thread; // 目前的執行緒
 		
 		private Response(byte[] aWork, int ActiveTime)
 		{
 			this.aWork = aWork; // 目前的工作
 			this.ActiveTime = ActiveTime; // 存活的時間
 			// 建立新的執行緒, 並且加入到 tGroup 執行緒群組裡
-			new Thread(tGroup, this, "Response").start();
+			this.thread = new Thread(tGroup, this, "Response");
+			this.thread.start();
 		}
 		
 		@Override
@@ -118,7 +120,9 @@ public class R_AutoResponse
 			}
 			
 			PacketBox.remove(aWork[0], ActiveTime); // 移除出封包暫存器
-			aWork = null; // 將目前工作設為空
+			aWork = null;
+			Thread.interrupted(); // 中斷
+			Thread.getAllStackTraces().remove(thread); // 從堆疊中清除ME
 		}
 	}
 }
