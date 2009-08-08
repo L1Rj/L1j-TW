@@ -2,8 +2,8 @@ package Threading;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import l1j.server.server.ClientThread;
 import l1j.server.server.Opcodes;
+import l1j.server.server.ClientThread;
 import l1j.server.server.PacketHandler;
 
 /**
@@ -94,15 +94,13 @@ public class R_AutoResponse
 	{
 		private byte[] aWork; // 目前的工作
 		private int ActiveTime; // 存活的時間
-		private Thread thread; // 目前的執行緒
 		
 		private Response(byte[] aWork, int ActiveTime)
 		{
 			this.aWork = aWork; // 目前的工作
 			this.ActiveTime = ActiveTime; // 存活的時間
 			// 建立新的執行緒, 並且加入到 tGroup 執行緒群組裡
-			this.thread = new Thread(tGroup, this, "Response");
-			this.thread.start();
+			new Thread(tGroup, this, "Response").start();
 		}
 		
 		@Override
@@ -120,9 +118,7 @@ public class R_AutoResponse
 			}
 			
 			PacketBox.remove(aWork[0], ActiveTime); // 移除出封包暫存器
-			aWork = null;
-			Thread.interrupted(); // 中斷
-			Thread.getAllStackTraces().remove(thread); // 從堆疊中清除ME
+			aWork = null; // 將目前工作設為空
 		}
 	}
 }
