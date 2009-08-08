@@ -1,5 +1,40 @@
 以下為目前仍有的錯誤訊息紀錄
 
+20090805
+2009/8/8 下午 10:59:15 l1j.server.server.ClientThread run
+嚴重的: null
+java.lang.NullPointerException
+        at l1j.server.server.ClientThread.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+        at java.lang.Thread.run(Thread.java:619)
+
+20090804
+2009/8/8 下午 11:05:26 l1j.server.server.clientpackets.C_NPCTalk <init>
+嚴重的: 找不到對應物件 objid=297436220
+2009/8/8 下午 11:05:27 l1j.server.server.clientpackets.C_NPCTalk <init>
+嚴重的: 找不到對應物件 objid=297436220
+2009/8/8 下午 11:05:30 l1j.server.server.clientpackets.C_NPCTalk <init>
+嚴重的: 找不到對應物件 objid=297436220
+
+20090803
+2009/8/8 下午 11:02:08 l1j.server.server.model.skill.L1SkillUse runSkill
+嚴重的: null
+java.lang.NullPointerException
+        at l1j.server.server.model.Instance.L1NpcInstance.checkTarget(Unknown Source)
+        at l1j.server.server.model.Instance.L1MonsterInstance.setLink(Unknown Source)
+        at l1j.server.server.model.Instance.L1NpcInstance.serchLink(Unknown Source)
+        at l1j.server.server.model.Instance.L1MonsterInstance.receiveDamage(Unknown Source)
+        at l1j.server.server.model.L1Magic.commitNpc(Unknown Source)
+        at l1j.server.server.model.L1Magic.commit(Unknown Source)
+        at l1j.server.server.model.skill.L1SkillUse.runSkill(Unknown Source)
+        at l1j.server.server.model.skill.L1SkillUse.handleCommands(Unknown Source)
+        at l1j.server.server.model.skill.L1SkillUse.handleCommands(Unknown Source)
+        at l1j.server.server.clientpackets.C_UseSkill.<init>(Unknown Source)
+        at l1j.server.server.PacketHandler.handlePacket(Unknown Source)
+        at Threading.R_AutoResponse$Response.run(Unknown Source)
+        at java.lang.Thread.run(Thread.java:619)
+
 20090802
 2009/8/7 下午 09:16:39 l1j.server.server.ClientThread run
 嚴重的: 19456
