@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogDropItem {
 	private static Logger _log = Logger.getLogger(LogDropItem.class.getName());
-/*
+
 	public void storeLogDropItem(L1PcInstance pc, L1ItemInstance item, int before_inven, int after_inven, int before_ground, int after_ground, int dropcount) {
 		File file = new File("log/DropItem.txt");
 		boolean fileex = file.exists();
@@ -138,5 +138,4 @@ public class LogDropItem {
 		}
 		return result;
 	}
-*/
 }

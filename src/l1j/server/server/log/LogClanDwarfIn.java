@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogClanDwarfIn {
 	private static Logger _log = Logger.getLogger(LogClanDwarfIn.class.getName());
-/*
+
 	public void storeLogClanDwarfIn(L1PcInstance pc, L1ItemInstance item, int item_count_before, int item_count_after, int item_in_count) {
 		File file = new File("log/ClanWareHouseIn.txt");
 		boolean fileex = file.exists();
@@ -160,5 +160,4 @@ public class LogClanDwarfIn {
 		}
 		return result;
 	}
-*/
 }

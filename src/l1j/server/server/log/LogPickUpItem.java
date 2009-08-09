@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogPickUpItem {
 	private static Logger _log = Logger.getLogger(LogPickUpItem.class.getName());
-/*
+
 	public void storeLogPinkUpItem(L1PcInstance pc, L1ItemInstance item, int before_inven, int after_inven, int before_ground, int after_ground, int pickupCount) {
 		File file = new File("log/PickUpItem.txt");
 		boolean fileex = file.exists();
@@ -138,5 +138,4 @@ public class LogPickUpItem {
 		}
 		return result;
 	}
-*/
 }

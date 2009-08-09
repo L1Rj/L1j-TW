@@ -105,5 +105,4 @@ public class LogDeleteChar {
 		}
 		return result;
 	}
-
 }

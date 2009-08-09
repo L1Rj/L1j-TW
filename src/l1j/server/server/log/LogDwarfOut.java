@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogDwarfOut {
 	private static Logger _log = Logger.getLogger(LogDwarfOut.class.getName());
-/*
+
 	public void storeLogDwarfOut(L1PcInstance pc, L1ItemInstance item, int item_count_before, int item_count_after, int item_in_count) {
 		File file = new File("log/WareHouseOut.txt");
 		boolean fileex = file.exists();
@@ -152,5 +152,4 @@ public class LogDwarfOut {
 		}
 		return result;
 	}
-*/
 }

@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogSpeedHack {
 	private static Logger _log = Logger.getLogger(LogSpeedHack.class.getName());
-/*
+
 	public void storeLogSpeedHack(L1PcInstance pc) {
 		File file = new File("log/SpeedHack.txt");
 		boolean fileex = file.exists();
@@ -106,5 +106,4 @@ public class LogSpeedHack {
 		}
 		return result;
 	}
-*/
 }

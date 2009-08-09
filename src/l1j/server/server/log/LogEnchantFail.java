@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogEnchantFail {
 	private static Logger _log = Logger.getLogger(LogEnchantFail.class.getName());
-/*
+
 	public void storeLogEnchantFail(L1PcInstance pc, L1ItemInstance item) {
 		File file = new File("log/EnchantFail.txt");
 		boolean fileex = file.exists();
@@ -122,5 +122,4 @@ public class LogEnchantFail {
 		}
 		return result;
 	}
-*/
 }
