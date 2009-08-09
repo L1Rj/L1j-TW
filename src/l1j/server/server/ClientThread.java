@@ -30,10 +30,9 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.SynchronousQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import l1j.server.server.datatables.CharBuffTable;
 import l1j.server.server.encryptions.ClientIdExistsException;
@@ -73,12 +72,12 @@ public class ClientThread implements Runnable, PacketOutput
 	private String _hostname;
 	private Socket _csocket;
 	private int _loginStatus;
-	private ReentrantReadWriteLock _RWLock;
 	
 	private static final byte[] FIRST_PACKET = { // 3.0
 			(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,
 			(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,
 			(byte) 0x02, (byte) 0x08, (byte) 0x00 };
+	
 	//private static final byte[] FIRST_PACKET = { // 3.1
 	//	(byte) 0x77, (byte) 0x10, (byte) 0xd9, (byte) 0x7d,
 	//	(byte) 0xd2, (byte) 0xda, (byte) 0x4c, (byte) 0x78,
@@ -103,7 +102,6 @@ public class ClientThread implements Runnable, PacketOutput
 		_in = socket.getInputStream();
 		_out = new BufferedOutputStream(socket.getOutputStream());
 		_handler = new PacketHandler(this);
-		_RWLock = new ReentrantReadWriteLock(true);
 	}
 
 	public String getIp() {
@@ -196,8 +194,8 @@ public class ClientThread implements Runnable, PacketOutput
 
 		Socket socket = _csocket;
 		
-		// AutoResponse movePacket = new AutoResponse();
-		AutoResponse hcPacket = new AutoResponse();
+		AutoResponse response = new AutoResponse();
+		GeneralThreadPool.getInstance().execute(response);
 
 		ClientThreadObserver observer =
 				new ClientThreadObserver(AUTOMATIC_KICK * 60 * 1000); // 自动切断までの时间（单位:ms）
@@ -208,15 +206,11 @@ public class ClientThread implements Runnable, PacketOutput
 
 		try
 		{
-			// long seed = 0x5cc690ecL; // 2.70C
-			long seed = 0x7c98bdfa; // 3.0
-			//long seed = 0x76fd4b36; // 3.1
+			long seed = 0x7c98bdfa; // 不一定要更換這個Seed [無版本限制]
 			byte Bogus = (byte)(FIRST_PACKET.length + 7);
 			_out.write(Bogus & 0xFF);
 			_out.write(Bogus >> 8 & 0xFF);
-			// _out.write(0x20); // 2.70C
-			_out.write(0x7d); // 3.0
-			//_out.write(0x0a); // 3.1
+			_out.write(Opcodes.S_OPCODE_INITPACKET); // 主要是更改的地方在這
 			_out.write((byte)(seed & 0xFF));
 			_out.write((byte)(seed >> 8 & 0xFF));
 			_out.write((byte)(seed >> 16 & 0xFF));
@@ -265,16 +259,8 @@ public class ClientThread implements Runnable, PacketOutput
 				if (opcode != Opcodes.C_OPCODE_KEEPALIVE)
 					observer.packetReceived();
 				
-				/*
-				// 移動封包處理
-				if (opcode == Opcodes.C_OPCODE_MOVECHAR)
-				{
-					movePacket.AddWork(data);
-				}
-				*/
-				
 				// 一般封包處理
-				hcPacket.AddWork(data);
+				response.AddWork(data);
 			}
 		}
 		catch (Throwable e)
@@ -283,6 +269,8 @@ public class ClientThread implements Runnable, PacketOutput
 		}
 		finally
 		{
+			_csocket = null;
+			
 			try
 			{
 				if (_activeChar != null)
@@ -309,17 +297,17 @@ public class ClientThread implements Runnable, PacketOutput
 			}
 		}
 		
-		_csocket = null;
-		
 		_log.fine("Server thread[C] stopped");
 		
-		if (_kick < 1) {
+		if (_kick < 1)
+		{
 			_log.info("(" + getAccountName() + ":" + _hostname
 					+ ")連線結束...");
 			System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
 			System.out.println("等待連線中...");
 		}
-		return;
+		
+		Thread.interrupted(); // 執行緒中止
 	}
 
 	private int _kick = 0;
@@ -340,8 +328,6 @@ public class ClientThread implements Runnable, PacketOutput
 		{
 			_SyncQueue = new SynchronousQueue<byte[]>();
 			_handler = ClientThread.this._handler;
-			
-			new Thread(this).start();
 		}
 
 		public void AddWork(byte[] data) throws InterruptedException
@@ -428,8 +414,6 @@ public class ClientThread implements Runnable, PacketOutput
 		if (packet == null)
 			return;
 		
-		// _RWLock.writeLock();
-		
 		synchronized (this)
 		{
 			try
@@ -450,8 +434,6 @@ public class ClientThread implements Runnable, PacketOutput
 			{
 			}
 		}
-		
-		// _RWLock.readLock();
 	}
 
 	public void close() throws IOException {
