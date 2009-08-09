@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry path="src" kind="src"/>
-	<classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"/>
-	<classpathentry path="lib/javolution-5.3.1.jar" exported="true" kind="lib"/>
-	<classpathentry path="lib/mysql-connector-java-5.1.8-bin.jar" exported="true" kind="lib"/>
-	<classpathentry path="lib/c3p0-0.9.1.2.jar" exported="true" kind="lib"/>
-	<classpathentry path="bin" kind="output"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="lib/javolution-5.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.8-bin.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/log4j-1.2.15.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>
