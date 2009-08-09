@@ -28,14 +28,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import Threading.R_AutoResponse;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import l1j.server.server.datatables.CharBuffTable;
 import l1j.server.server.encryptions.ClientIdExistsException;
@@ -67,39 +65,16 @@ public class ClientThread implements Runnable, PacketOutput
 	private static Logger _log = Logger.getLogger(ClientThread.class.getName());
 
 	private InputStream _in;
-
 	private OutputStream _out;
-
 	private PacketHandler _handler;
-
 	private Account _account;
-
 	private L1PcInstance _activeChar;
-
 	private String _ip;
-
 	private String _hostname;
-
 	private Socket _csocket;
-
-	private int _loginStatus = 0;
+	private int _loginStatus;
+	private ReentrantReadWriteLock _RWLock;
 	
-	private R_AutoResponse _Response;
-
-	// private static final byte[] FIRST_PACKET = { 10, 0, 38, 58, -37, 112, 46,
-	// 90, 120, 0 }; // for Episode5
-	// private static final byte[] FIRST_PACKET =
-	// { (byte) 0x12, (byte) 0x00, (byte) 0x14, (byte) 0x1D,
-	// (byte) 0x82,
-	// (byte) 0xF1,
-	// (byte) 0x0C, // = 0x0cf1821d
-	// (byte) 0x87, (byte) 0x7D, (byte) 0x75, (byte) 0x7D,
-	// (byte) 0xA1, (byte) 0x3B, (byte) 0x62, (byte) 0x2C,
-	// (byte) 0x5E, (byte) 0x3E, (byte) 0x9F }; // for Episode 6
-	// private static final byte[] FIRST_PACKET = { 2.70C
-	// (byte) 0xb1, (byte) 0x3c, (byte) 0x2c, (byte) 0x28,
-	// (byte) 0xf6, (byte) 0x65, (byte) 0x1d, (byte) 0xdd,
-	// (byte) 0x56, (byte) 0xe3, (byte) 0xef };
 	private static final byte[] FIRST_PACKET = { // 3.0
 			(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,
 			(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,
@@ -114,7 +89,8 @@ public class ClientThread implements Runnable, PacketOutput
 	 */
 	protected ClientThread() {}
 
-	public ClientThread(Socket socket) throws IOException {
+	public ClientThread(Socket socket) throws IOException
+	{
 		_csocket = socket;
 		_ip = socket.getInetAddress().getHostAddress();
 		
@@ -126,7 +102,8 @@ public class ClientThread implements Runnable, PacketOutput
 		
 		_in = socket.getInputStream();
 		_out = new BufferedOutputStream(socket.getOutputStream());
-		_Response = new R_AutoResponse(this);
+		_handler = new PacketHandler(this);
+		_RWLock = new ReentrantReadWriteLock(true);
 	}
 
 	public String getIp() {
@@ -218,20 +195,9 @@ public class ClientThread implements Runnable, PacketOutput
 		System.out.println("等待連線中...");
 
 		Socket socket = _csocket;
-		/*
-		 * クライアントからのパケットをある程度制限する。 理由：不正の误检出が多発する恐れがあるため
-		 * ex1.サーバに过负荷が挂かっている场合、负荷が落ちたときにクライアントパケットを一气に处理し、结果的に不正扱いとなる。
-		 * ex2.サーバ侧のネットワーク（下り）にラグがある场合、クライアントパケットが一气に流れ迂み、结果的に不正扱いとなる。
-		 * ex3.クライアント侧のネットワーク（上り）にラグがある场合、以下同样。
-		 * 
-		 * 无制限にする前に不正检出方法を见直す必要がある。
-		 */
 		
-		// GeneralThreadPool.getInstance().execute(movePacket);
-		// GeneralThreadPool.getInstance().execute(hcPacket);
-		// GeneralThreadPool.getInstance().execute(attackPacket);
-		// GeneralThreadPool.getInstance().execute(itemPacket);
-		// GeneralThreadPool.getInstance().execute(npcPacket);
+		// AutoResponse movePacket = new AutoResponse();
+		AutoResponse hcPacket = new AutoResponse();
 
 		ClientThreadObserver observer =
 				new ClientThreadObserver(AUTOMATIC_KICK * 60 * 1000); // 自动切断までの时间（单位:ms）
@@ -284,41 +250,31 @@ public class ClientThread implements Runnable, PacketOutput
 
 				// 多重ログイン对策
 				if (opcode == Opcodes.C_OPCODE_COMMONCLICK
-						|| opcode == Opcodes.C_OPCODE_CHANGECHAR) {
+						|| opcode == Opcodes.C_OPCODE_CHANGECHAR)
 					_loginStatus = 1;
-				}
-				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVER) {
-					if (_loginStatus != 1) {
-						continue;
-					}
-				}
-				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVEROK
-						|| opcode == Opcodes.C_OPCODE_RETURNTOLOGIN) {
-					_loginStatus = 0;
-				}
-
-				if (opcode != Opcodes.C_OPCODE_KEEPALIVE) {
-					// C_OPCODE_KEEPALIVE以外の何かしらのパケットを受け取ったらObserverへ通知
-					observer.packetReceived();
-				}
 				
-				// 延遲比較久的封包
-				if (opcode == Opcodes.C_OPCODE_WHO ||
-					opcode == Opcodes.C_OPCODE_NPCTALK ||
-					opcode == Opcodes.C_OPCODE_NPCACTION ||
-					opcode == Opcodes.C_OPCODE_BOARD || 
-					opcode == Opcodes.C_OPCODE_BOARDBACK ||
-					opcode == Opcodes.C_OPCODE_BOARDDELETE ||
-					opcode == Opcodes.C_OPCODE_BOARDREAD ||
-					opcode == Opcodes.C_OPCODE_BOARDWRITE)
+				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVER)
+					if (_loginStatus != 1)
+						continue;
+				
+				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVEROK
+						|| opcode == Opcodes.C_OPCODE_RETURNTOLOGIN)
+					_loginStatus = 0;
+
+				// C_OPCODE_KEEPALIVE以外の何かしらのパケットを受け取ったらObserverへ通知
+				if (opcode != Opcodes.C_OPCODE_KEEPALIVE)
+					observer.packetReceived();
+				
+				/*
+				// 移動封包處理
+				if (opcode == Opcodes.C_OPCODE_MOVECHAR)
 				{
-					_Response.AddWork(data, 1000);
+					movePacket.AddWork(data);
 				}
+				*/
+				
 				// 一般封包處理
-				else
-				{
-					_Response.AddWork(data, 10);
-				}
+				hcPacket.AddWork(data);
 			}
 		}
 		catch (Throwable e)
@@ -327,11 +283,14 @@ public class ClientThread implements Runnable, PacketOutput
 		}
 		finally
 		{
-			try {
-				if (_activeChar != null) {
+			try
+			{
+				if (_activeChar != null)
+				{
 					quitGame(_activeChar);
 
-					synchronized (_activeChar) {
+					synchronized (_activeChar)
+					{
 						// キャラクターをワールド内から除去
 						_activeChar.logout();
 						setActiveChar(null);
@@ -339,9 +298,13 @@ public class ClientThread implements Runnable, PacketOutput
 				}
 
 				StreamUtil.close(_out, _in);
-			} catch (Exception e) {
+			}
+			catch (Exception e)
+			{
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			} finally {
+			}
+			finally
+			{
 				LoginController.getInstance().logout(this);
 			}
 		}
@@ -367,75 +330,47 @@ public class ClientThread implements Runnable, PacketOutput
 		StreamUtil.close(_out, _in);
 	}
 
-	/*
-	// キャラクターの行动处理スレッド
-	class HcPacket implements Runnable
+	// 自動回應程序
+	class AutoResponse implements Runnable
 	{
-		private boolean isWorking;
-		private int DelayTime;
-		private final Queue<byte[]> _queue;
+		private final SynchronousQueue<byte[]> _SyncQueue;
 		private PacketHandler _handler;
 
-		public HcPacket()
+		public AutoResponse()
 		{
-			_queue = new ConcurrentLinkedQueue<byte[]>();
+			_SyncQueue = new SynchronousQueue<byte[]>();
 			_handler = ClientThread.this._handler;
 			
-			new Thread(tGroup, this, "Network").start();
+			new Thread(this).start();
 		}
 
-		public HcPacket(int DelayTime)
+		public void AddWork(byte[] data) throws InterruptedException
 		{
-			this.DelayTime = DelayTime;
-			
-			_queue = new ConcurrentLinkedQueue<byte[]>();
-			_handler = ClientThread.this._handler;
-			
-			new Thread(tGroup, this, "Network").start();
-		}
-
-		public void requestWork(byte[] data)
-		{
-			if (DelayTime > 0 && isWorking)
-				return;
-			
-			_queue.offer(data);
+			_SyncQueue.put(data);
 		}
 
 		@Override
 		public void run()
 		{
-			byte[] data = null;
-			
 			while (_csocket != null)
 			{
-				data = _queue.poll();
-				
 				try
 				{
+					byte[] data = _SyncQueue.take();
+					
+					// 判斷封包是否非為空
 					if (data != null)
-					{
-						isWorking = true; // 設為工作中
 						_handler.handlePacket(data); // 處理當前的工作
-						
-						// 判斷延遲時間是否大於 0
-						if (DelayTime > 0)
-							Thread.sleep(DelayTime); // 執行緒延遲指定毫秒數 在繼續工作
-						
-						isWorking = false; // 設為沒工作
-					}
-					else
-					{
-						Thread.sleep(10);
-					}
 				}
 				catch (Exception io)
 				{
 				}
 			}
+			
+			_SyncQueue.clear(); // 將資料清空
+			Thread.interrupted(); // 執行緒中止
 		}
 	}
-	*/
 
 	private static Timer _observerTimer = new Timer();
 
@@ -487,22 +422,36 @@ public class ClientThread implements Runnable, PacketOutput
 	}
 
 	@Override
-	public void sendPacket(ServerBasePacket packet) {
-		synchronized (this) {
-			try {
-				byte abyte0[] = packet.getContent();
+	public void sendPacket(ServerBasePacket packet)
+	{
+		// 判斷資料封包是否為空
+		if (packet == null)
+			return;
+		
+		// _RWLock.writeLock();
+		
+		synchronized (this)
+		{
+			try
+			{
+				byte[] abyte0 = packet.getContent();
 				char ac[] = new char[abyte0.length];
 				ac = UChar8.fromArray(abyte0);
 				ac = LineageEncryption.encrypt(ac, _clkey);
 				abyte0 = UByte8.fromArray(ac);
 				int j = abyte0.length + 2;
-
+	
 				_out.write(j & 0xff);
 				_out.write(j >> 8 & 0xff);
 				_out.write(abyte0);
 				_out.flush();
-			} catch (Exception e) {}
+			}
+			catch (Exception e)
+			{
+			}
 		}
+		
+		// _RWLock.readLock();
 	}
 
 	public void close() throws IOException {
