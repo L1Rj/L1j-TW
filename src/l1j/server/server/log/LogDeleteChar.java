@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogDeleteChar {
 	private static Logger _log = Logger.getLogger(LogDeleteChar.class.getName());
-/*
+
 	public void storeLogDeleteChar(L1PcInstance pc, String hostip) {
 		File file = new File("log/DeleteCharacter.txt");
 		boolean fileex = file.exists();
@@ -40,17 +40,16 @@ public class LogDeleteChar {
 			String fm = formatter.format(time1.getTime());
 			try {
 				out = new DataOutputStream(new FileOutputStream("log/DeleteCharacter.txt"));
-				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
+				out.write("#-------------------------------------------------#\r\n".getBytes());
 				out.write("#                                     Delete Character.                                  #\r\n".getBytes());
-				out.write("#                                                                                        #\r\n".getBytes());
-				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				ditem = fm + "	";
+				out.write("#-------------------------------------------------#\r\n".getBytes());
+				ditem = fm + "　ＩＰ位址=";
 				out.write(ditem.getBytes());
-				ditem = hostip + "	";
+				ditem = hostip + "　帳號名稱=";
 				out.write(ditem.getBytes());
-				ditem = pc.getAccountName() + "	";
+				ditem = pc.getAccountName() + "　角色編號=";
 				out.write(ditem.getBytes());
-				ditem = pc.getId() + "	";
+				ditem = pc.getId() + "　玩家名稱=";
 				out.write(ditem.getBytes());
 				ditem = pc.getName() + "\r\n";
 				out.write(ditem.getBytes());
@@ -106,5 +105,5 @@ public class LogDeleteChar {
 		}
 		return result;
 	}
-*/
+
 }

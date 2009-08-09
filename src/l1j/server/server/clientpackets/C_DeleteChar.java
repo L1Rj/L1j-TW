@@ -1,19 +1,13 @@
 /*
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2, or (at your option) any later version. This
+ * program is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ * Place - Suite 330, Boston, MA 02111-1307, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
 
@@ -25,6 +19,7 @@ import java.util.logging.Logger;
 
 import l1j.server.Config;
 import l1j.server.server.ClientThread;
+import l1j.server.server.log.LogDeleteChar;
 import l1j.server.server.datatables.CharacterTable;
 import l1j.server.server.model.L1Clan;
 import l1j.server.server.model.L1World;
@@ -40,18 +35,19 @@ public class C_DeleteChar extends ClientBasePacket {
 
 	private static Logger _log = Logger.getLogger(C_DeleteChar.class.getName());
 
-	public C_DeleteChar(byte decrypt[], ClientThread client)
-			throws Exception {
+	public C_DeleteChar(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
 		String name = readS();
+		// 新增記錄系統 By Impreza8837┐
+		String hostip = client.getHostname();
+		// 新增記錄系統 By Impreza8837┘
 
 		try {
-			L1PcInstance pc = CharacterTable.getInstance()
-					.restoreCharacter(name);
+			L1PcInstance pc = CharacterTable.getInstance().restoreCharacter(name);
 			if (pc != null && pc.getLevel() >= 5 // 五級以上角色七日猶豫期
 					&& Config.DELETE_CHARACTER_AFTER_7DAYS) {
 				if (pc.getType() < 32) {
-// 角色刪除轉身
+					// 角色刪除轉身
 					if (pc.isCrown()) {
 						pc.setType(32);
 					} else if (pc.isKnight()) {
@@ -67,13 +63,12 @@ public class C_DeleteChar extends ClientBasePacket {
 					} else if (pc.isIllusionist()) {
 						pc.setType(38);
 					}
-// add end
-					Timestamp deleteTime = new Timestamp(System
-							.currentTimeMillis() + 604800000); // 7日後
+					// add end
+					Timestamp deleteTime = new Timestamp(System.currentTimeMillis() + 604800000); // 7日後
 					pc.setDeleteTime(deleteTime);
 					pc.save(); // DBにキャラクター情報を書き⑸む
 				} else {
-// 角色刪除轉身
+					// 角色刪除轉身
 					if (pc.isCrown()) {
 						pc.setType(0);
 					} else if (pc.isKnight()) {
@@ -88,13 +83,12 @@ public class C_DeleteChar extends ClientBasePacket {
 						pc.setType(5);
 					} else if (pc.isIllusionist()) {
 						pc.setType(6);
-					}				
-// add end
+					}
+					// add end
 					pc.setDeleteTime(null);
 					pc.save(); // DBにキャラクター情報を書き⑸む
 				}
-				client.sendPacket(new S_DeleteCharOK(S_DeleteCharOK
-						.DELETE_CHAR_AFTER_7DAYS));
+				client.sendPacket(new S_DeleteCharOK(S_DeleteCharOK.DELETE_CHAR_AFTER_7DAYS));
 				return;
 			}
 
@@ -104,8 +98,11 @@ public class C_DeleteChar extends ClientBasePacket {
 					clan.delMemberName(name);
 				}
 			}
-			CharacterTable.getInstance().deleteCharacter(
-					client.getAccountName(), name);
+			CharacterTable.getInstance().deleteCharacter(client.getAccountName(), name);
+			// 新增記錄系統 By Impreza8837┐
+			LogDeleteChar ldc = new LogDeleteChar();
+			ldc.storeLogDeleteChar(pc, hostip);
+			// 新增記錄系統 By Impreza8837┘
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			client.close();
