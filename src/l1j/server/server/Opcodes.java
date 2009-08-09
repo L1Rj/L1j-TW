@@ -479,7 +479,7 @@ public class Opcodes {
 
 	public static final int S_OPCODE_DETELECHAROK = 84;
 
-	public static final int S_OPCODE_TELEPORTLOCK = 85;
+	public static final int S_OPCODE_TELEPORTLOCK = 117;
 
 	public static final int S_OPCODE_ABILITY = 86;
 
@@ -543,7 +543,7 @@ public class Opcodes {
 
 	public static final int S_OPCODE_UNKNOWN1 = 116;
 
-	public static final int S_OPCODE_CHARLOCK = 117;
+	public static final int S_OPCODE_CHARLOCK = 85;
 
 	//public static final int ?? = 118;
 
@@ -559,8 +559,8 @@ public class Opcodes {
 
 	public static final int S_OPCODE_LIGHT = 124;
 
-	// 初始化
-	public static final int S_OPCODE_INITPACKET = 125;
+	
+	public static final int S_OPCODE_INITPACKET = 125; // 初始化
 
 	public static final int S_OPCODE_MOVEOBJECT = 126;
 
