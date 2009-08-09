@@ -206,7 +206,7 @@ UPDATE armor SET name = "武官長靴", unidentified_name_id = "$3845", identifi
 UPDATE armor SET name = "巴蘭卡長靴", unidentified_name_id = "$3077", identified_name_id = "$3077" WHERE item_id = "20202";
 UPDATE armor SET name = "反王長靴", unidentified_name_id = "$2190", identified_name_id = "$2190" WHERE item_id = "20203";
 UPDATE armor SET name = "巴列斯長靴", unidentified_name_id = "$2767", identified_name_id = "$2767" WHERE item_id = "20204";
-UPDATE armor SET name = "步行鞋", unidentified_name_id = "$207", identified_name_id = "$207" WHERE item_id = "20205";
+UPDATE armor SET name = "長靴", unidentified_name_id = "$210", identified_name_id = "$210" WHERE item_id = "20205";
 UPDATE armor SET name = "象牙塔皮涼鞋", unidentified_name_id = "$3291", identified_name_id = "$3291" WHERE item_id = "20206";
 UPDATE armor SET name = "深水長靴", unidentified_name_id = "$1804", identified_name_id = "$1804" WHERE item_id = "20207";
 UPDATE armor SET name = "神官長靴", unidentified_name_id = "$3852", identified_name_id = "$3852" WHERE item_id = "20208";
