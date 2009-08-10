@@ -17,4 +17,4 @@ Update spawnlist_npc Set count = '1' Where id = '50066';
 Update spawnlist_npc Set respawn_delay = '6000' Where id  = '90098';/* 疲憊的蜥蜴人戰士 */
 
 /* 20090808 修正 伊娃神殿 伊芙洛爾 70872 位置錯誤 */
-Update spawnlist_npc Set locx = '32741' ,locx = '32814' Where npc_templateid = '70872';
+Update spawnlist_npc Set locx = '32741' ,locy = '32814' Where npc_templateid = '70872';
