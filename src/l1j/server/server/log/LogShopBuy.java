@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogShopBuy {
 	private static Logger _log = Logger.getLogger(LogShopBuy.class.getName());
-
+/*
 	public void storeLogShopBuy(L1PcInstance pc, L1ItemInstance item, int cnt, int adenabefore, int adenaafter, int itemprice) {
 		File file = new File("log/ShopBuy.txt");
 		boolean fileex = file.exists();
@@ -141,9 +141,10 @@ public class LogShopBuy {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("KSC5601"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;
 	}
+*/
 }

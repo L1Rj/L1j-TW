@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogStatusUp {
 	private static Logger _log = Logger.getLogger(LogStatusUp.class.getName());
-
+/*
 	public void storeLogStatusUp(L1PcInstance pc, int str, int dex, int con, int Int, int wis, int cha) {
 		File file = new File("log/StatusUp.txt");
 		boolean fileex = file.exists();
@@ -187,9 +187,10 @@ public class LogStatusUp {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("KSC5601"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;
 	}
+*/
 }

@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogEnchantFail {
 	private static Logger _log = Logger.getLogger(LogEnchantFail.class.getName());
-
+/*
 	public void storeLogEnchantFail(L1PcInstance pc, L1ItemInstance item) {
 		File file = new File("log/EnchantFail.txt");
 		boolean fileex = file.exists();
@@ -117,9 +117,10 @@ public class LogEnchantFail {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("KSC5601"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;
 	}
+*/
 }

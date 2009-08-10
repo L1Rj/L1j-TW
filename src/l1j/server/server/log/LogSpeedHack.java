@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogSpeedHack {
 	private static Logger _log = Logger.getLogger(LogSpeedHack.class.getName());
-
+/*
 	public void storeLogSpeedHack(L1PcInstance pc) {
 		File file = new File("log/SpeedHack.txt");
 		boolean fileex = file.exists();
@@ -101,9 +101,10 @@ public class LogSpeedHack {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("KSC5601"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;
 	}
+*/
 }

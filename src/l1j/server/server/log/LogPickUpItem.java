@@ -16,9 +16,9 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
-import org.apache.log4j.Logger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.apache.log4j.Logger;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -26,7 +26,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 public class LogPickUpItem {
 	private static Logger _log = Logger.getLogger(LogPickUpItem.class.getName());
 
-	public void storeLogPinkUpItem(L1PcInstance pc, L1ItemInstance item, int before_inven, int after_inven, int before_ground, int after_ground, int pickupCount) {
+	public void storeLogPickUpItem(L1PcInstance pc, L1ItemInstance item, int before_inven, int after_inven, int before_ground, int after_ground, int pickupCount) {
 		File file = new File("log/PickUpItem.txt");
 		boolean fileex = file.exists();
 		if (!fileex) {
@@ -41,32 +41,31 @@ public class LogPickUpItem {
 			try {
 				out = new DataOutputStream(new FileOutputStream("log/PickUpItem.txt"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				out.write("#                                           PickUpItem.                                  #\r\n".getBytes());
-				out.write("#                                                                                        #\r\n".getBytes());
+				out.write("#\t\t\t\t\tPickUpItem\t\t\t\t\t#\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				ditem = fm + "	";
+				ditem = fm + "　ＩＰ位址=";
 				out.write(ditem.getBytes());
-				ditem = pc.getNetConnection().getIp() + "	";
+				ditem = pc.getNetConnection().getIp() + "　帳號名稱=";
 				out.write(ditem.getBytes());
-				ditem = pc.getAccountName() + "	";
+				ditem = pc.getAccountName() + "　角色編號=";
 				out.write(ditem.getBytes());
-				ditem = pc.getId() + "	";
+				ditem = pc.getId() + "　玩家名稱=";
 				out.write(ditem.getBytes());
-				ditem = pc.getName() + "	";
+				ditem = pc.getName() + "　物件編號=";
 				out.write(ditem.getBytes());
-				ditem = item.getId() + "	";
+				ditem = item.getId() + "　物品名稱=";
 				out.write(ditem.getBytes());
-				ditem = item.getItem().getName() + "	";
+				ditem = item.getItem().getName() + "　增強等級=";
 				out.write(ditem.getBytes());
-				ditem = item.getEnchantLevel() + "	";
+				ditem = item.getEnchantLevel() + "　背包數量(前)=";
 				out.write(ditem.getBytes());
-				ditem = before_inven + "	";
+				ditem = before_inven + "　背包數量(後)=";
 				out.write(ditem.getBytes());
-				ditem = after_inven + "	";
+				ditem = after_inven + "　地面數量(前)=";
 				out.write(ditem.getBytes());
-				ditem = before_ground + "	";
+				ditem = before_ground + "　地面數量(後)=";
 				out.write(ditem.getBytes());
-				ditem = after_ground + "	";
+				ditem = after_ground + "　玩家拾取數量=";
 				out.write(ditem.getBytes());
 				ditem = pickupCount + "\r\n";
 				out.write(ditem.getBytes());
@@ -90,29 +89,29 @@ public class LogPickUpItem {
 				rfile = new RandomAccessFile("log/PickUpItem.txt", "rw");
 				rfile.seek(rfile.length());
 
-				ditem = fm + "	";
+				ditem = fm + "　ＩＰ位址=";
 				rfile.writeBytes(ditem);
-				ditem = pc.getNetConnection().getIp() + "	";
+				ditem = pc.getNetConnection().getIp() + "　帳號名稱=";
 				rfile.writeBytes(ditem);
-				ditem = pc.getAccountName() + "	";
+				ditem = pc.getAccountName() + "　角色編號=";
 				rfile.writeBytes(ditem);
-				ditem = pc.getId() + "	";
+				ditem = pc.getId() + "　玩家名稱=";
 				rfile.writeBytes(ditem);
-				ditem = pc.getName() + "	";
+				ditem = pc.getName() + "　物件編號=";
 				rfile.writeBytes(encode(ditem));
-				ditem = item.getId() + "	";
+				ditem = item.getId() + "　物品名稱=";
 				rfile.writeBytes(ditem);
-				ditem = item.getItem().getName() + "	";
+				ditem = item.getItem().getName() + "　增強等級=";
 				rfile.writeBytes(encode(ditem));
-				ditem = item.getEnchantLevel() + "	";
+				ditem = item.getEnchantLevel() + "　背包數量(前)=";
 				rfile.writeBytes(ditem);
-				ditem = before_inven + "	";
+				ditem = before_inven + "　背包數量(後)=";
 				rfile.writeBytes(ditem);
-				ditem = after_inven + "	";
+				ditem = after_inven + "　地面數量(前)=";
 				rfile.writeBytes(ditem);
-				ditem = before_ground + "	";
+				ditem = before_ground + "　地面數量(後)=";
 				rfile.writeBytes(ditem);
-				ditem = after_ground + "	";
+				ditem = after_ground + "　玩家拾取數量=";
 				rfile.writeBytes(ditem);
 				ditem = pickupCount + "\r\n";
 				rfile.writeBytes(ditem);
@@ -133,7 +132,7 @@ public class LogPickUpItem {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("KSC5601"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

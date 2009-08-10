@@ -2,6 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-dbcp-1.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-io-1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-pool-1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/l1jtw_commons.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/javolution-5.3.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.8-bin.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/log4j-1.2.15.jar"/>

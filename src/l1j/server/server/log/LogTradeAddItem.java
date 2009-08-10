@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogTradeAddItem {
 	private static Logger _log = Logger.getLogger(LogTradeAddItem.class.getName());
-
+/*
 	public void storeLogTradeAddItem(L1PcInstance pc, L1PcInstance target, L1ItemInstance item, int itembefore, int itemafter, int tradecount) {
 		File file = new File("log/TradeAddItem.txt");
 		boolean fileex = file.exists();
@@ -157,9 +157,10 @@ public class LogTradeAddItem {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("KSC5601"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;
 	}
+*/
 }

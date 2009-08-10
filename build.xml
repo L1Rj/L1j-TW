@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="L1J-TW" default="all" basedir=".">
     <description>
-        This script will build the L1J server.
+        This script will build the L1J-TW server.
 
         This program is free software; you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -35,6 +35,10 @@
             <include name="javolution-5.3.1.jar" />
         	<include name="mysql-connector-java-5.1.8-bin.jar" />
         	<include name="log4j-1.2.15.jar" />
+        	<include name="commons-dbcp-1.2.2.jar" />
+        	<include name="commons-io-1.4.jar" />
+        	<include name="commons-pool-1.4.jar" />
+        	<include name="l1jtw_commons.jar" />
         </fileset>
     </path>
 

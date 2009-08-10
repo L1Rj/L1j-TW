@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogElfDwarfOut {
 	private static Logger _log = Logger.getLogger(LogElfDwarfOut.class.getName());
-
+/*
 	public void storeLogElfDwarfOut(L1PcInstance pc, L1ItemInstance item, int item_count_before, int item_count_after, int item_in_count) {
 		File file = new File("log/ElfWareHouseOut.txt");
 		boolean fileex = file.exists();
@@ -147,9 +147,10 @@ public class LogElfDwarfOut {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("KSC5601"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;
 	}
+*/
 }

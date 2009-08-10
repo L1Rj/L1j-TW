@@ -29,7 +29,7 @@
     </appender>
 
     <!-- This appender prints all that is shown in console to file -->
-    <appender name="CONSOLE_TO_FILE" class="com.l1jeu.commons.log4j.appenders.TruncateToZipFileAppender">
+    <appender name="CONSOLE_TO_FILE" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
         <param name="file" value="log/console.log"/>
         <param name="append" value="false"/>
         <param name="backupDir" value="log/backup"/>
@@ -41,7 +41,7 @@
     </appender>
 
     <!-- This appender accepts only messages with exceptions and logs them to separate file -->
-    <appender name="ERROR_APPENDER" class="com.l1jeu.commons.log4j.appenders.TruncateToZipFileAppender">
+    <appender name="ERROR_APPENDER" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
         <param name="file" value="log/errors.log"/>
         <param name="append" value="false"/>
         <param name="backupDir" value="log/backup"/>
@@ -50,7 +50,7 @@
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="[%p %d{yyyy-MM-dd HH:mm:ss}] %c:%L - %m%n"/>
         </layout>
-        <filter class="com.l1jeu.commons.log4j.filters.ThrowablePresentFilter"/>
+        <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
     </appender>
 
     <!-- Root Logger -->
@@ -80,22 +80,22 @@
         More examples:
 
         This example will use LoggerFactory from log4j.loggerfactory
-        getLoger("com.l1jeu.commons.log4j.test.Logger")
+        getLoger("com.l1jtw.commons.log4j.test.Logger")
 
 
         This example will use LoggerFactory from categoryFactory element
         getLoger("l1j.server.log4j.test.Logger")
-        <category name="com.l1jeu.commons.log4j.test.Logger"/>
+        <category name="com.l1jtw.commons.log4j.test.Logger"/>
 
 
         This example will use LoggerFactory from log4j.loggerfactory
         getLoger("l1j.server.log4j.test.Logger")
-        <category name="com.l1jeu.commons.log4j.test"/>
+        <category name="com.l1jtw.commons.log4j.test"/>
 
 
 
         Also, categories can use their own loggers by specifiing logger class.
-        <category name="some name" class="com.l1jeu.commons.log4j.MyLoggerInstance"/>
+        <category name="some name" class="com.l1jtw.commons.log4j.MyLoggerInstance"/>
 
         In such case specified logger class must contain public static method called getLogger(String name)
 
@@ -108,7 +108,7 @@
         }
 
     -->
-    <categoryFactory class="com.l1jeu.commons.log4j.ThrowableAsMessageAwareFactory"/>
+    <categoryFactory class="com.l1jtw.commons.log4j.ThrowableAsMessageAwareFactory"/>
 
 
 </log4j:configuration>

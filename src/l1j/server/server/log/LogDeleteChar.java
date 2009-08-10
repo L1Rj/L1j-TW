@@ -16,12 +16,11 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
-import org.apache.log4j.Logger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.apache.log4j.Logger;
 
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogDeleteChar {
 	private static Logger _log = Logger.getLogger(LogDeleteChar.class.getName());
@@ -41,7 +40,7 @@ public class LogDeleteChar {
 			try {
 				out = new DataOutputStream(new FileOutputStream("log/DeleteCharacter.txt"));
 				out.write("#-------------------------------------------------#\r\n".getBytes());
-				out.write("#                                     Delete Character.                                  #\r\n".getBytes());
+				out.write("#\t\t\t\t\tDelete Character\t\t\t\t\t#\r\n".getBytes());
 				out.write("#-------------------------------------------------#\r\n".getBytes());
 				ditem = fm + "　ＩＰ位址=";
 				out.write(ditem.getBytes());
