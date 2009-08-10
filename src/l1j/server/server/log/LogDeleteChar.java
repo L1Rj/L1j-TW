@@ -73,13 +73,13 @@ public class LogDeleteChar {
 				rfile.seek(rfile.length());
 
 				ditem = fm + "　ＩＰ位址=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = hostip + "　帳號名稱=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = pc.getAccountName() + "　角色編號=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = pc.getId() + "　玩家名稱=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = pc.getName() + "\r\n";
 				rfile.writeBytes(encode(ditem));
 			} catch (Exception e) {
@@ -99,7 +99,7 @@ public class LogDeleteChar {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("UTF-8"), "8859_1");
+			result = new String(str.getBytes("BIG5"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

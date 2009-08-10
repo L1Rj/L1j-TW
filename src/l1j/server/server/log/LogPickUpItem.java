@@ -90,31 +90,31 @@ public class LogPickUpItem {
 				rfile.seek(rfile.length());
 
 				ditem = fm + "　ＩＰ位址=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = pc.getNetConnection().getIp() + "　帳號名稱=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = pc.getAccountName() + "　角色編號=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = pc.getId() + "　玩家名稱=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = pc.getName() + "　物件編號=";
 				rfile.writeBytes(encode(ditem));
 				ditem = item.getId() + "　物品名稱=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = item.getItem().getName() + "　增強等級=";
 				rfile.writeBytes(encode(ditem));
 				ditem = item.getEnchantLevel() + "　背包數量(前)=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = before_inven + "　背包數量(後)=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = after_inven + "　地面數量(前)=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = before_ground + "　地面數量(後)=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = after_ground + "　玩家拾取數量=";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 				ditem = pickupCount + "\r\n";
-				rfile.writeBytes(ditem);
+				rfile.writeBytes(encode(ditem));
 			} catch (Exception e) {
 				_log.warn("PickUpItem log randomacess error:" + e);
 				e.printStackTrace();
@@ -132,7 +132,7 @@ public class LogPickUpItem {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("UTF-8"), "8859_1");
+			result = new String(str.getBytes("BIG5"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;
