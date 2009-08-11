@@ -44,13 +44,13 @@ public class LogSpeedHack {
 				out.write("#                                    Speed Hack Detector.                                #\r\n".getBytes());
 				out.write("#                                                                                        #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				ditem = fm + "	";
+				ditem = fm + "  ";
 				out.write(ditem.getBytes());
-				ditem = pc.getNetConnection().getIp() + "	";
+				ditem = pc.getNetConnection().getIp() + "  ";
 				out.write(ditem.getBytes());
-				ditem = pc.getAccountName() + "	";
+				ditem = pc.getAccountName() + "  ";
 				out.write(ditem.getBytes());
-				ditem = pc.getId() + "	";
+				ditem = pc.getId() + "  ";
 				out.write(ditem.getBytes());
 				ditem = pc.getName() + "\r\n";
 				out.write(ditem.getBytes());
@@ -74,13 +74,13 @@ public class LogSpeedHack {
 				rfile = new RandomAccessFile("log/SpeedHack.txt", "rw");
 				rfile.seek(rfile.length());
 
-				ditem = fm + "	";
+				ditem = fm + "  ";
 				rfile.writeBytes(ditem);
-				ditem = pc.getNetConnection().getIp() + "	";
+				ditem = pc.getNetConnection().getIp() + "  ";
 				rfile.writeBytes(ditem);
-				ditem = pc.getAccountName() + "	";
+				ditem = pc.getAccountName() + "  ";
 				rfile.writeBytes(ditem);
-				ditem = pc.getId() + "	";
+				ditem = pc.getId() + "  ";
 				rfile.writeBytes(ditem);
 				ditem = pc.getName() + "\r\n";
 				rfile.writeBytes(encode(ditem));

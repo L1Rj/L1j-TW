@@ -38,9 +38,7 @@ public class C_DeleteChar extends ClientBasePacket {
 	public C_DeleteChar(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
 		String name = readS();
-		// 新增記錄系統 By Impreza8837┐
 		String hostip = client.getHostname();
-		// 新增記錄系統 By Impreza8837┘
 
 		try {
 			L1PcInstance pc = CharacterTable.getInstance().restoreCharacter(name);
@@ -99,10 +97,8 @@ public class C_DeleteChar extends ClientBasePacket {
 				}
 			}
 			CharacterTable.getInstance().deleteCharacter(client.getAccountName(), name);
-			// 新增記錄系統 By Impreza8837┐
 			LogDeleteChar ldc = new LogDeleteChar();
 			ldc.storeLogDeleteChar(pc, hostip);
-			// 新增記錄系統 By Impreza8837┘
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			client.close();

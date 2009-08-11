@@ -31,6 +31,7 @@ import l1j.server.server.datatables.ClanTable;
 import l1j.server.server.datatables.HouseTable;
 import l1j.server.server.datatables.NpcTable;
 import l1j.server.server.datatables.PetTable;
+import l1j.server.server.log.LogStatusUp;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1CastleLocation;
 import l1j.server.server.model.L1ChatParty;
@@ -520,6 +521,14 @@ public class C_Attr extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(481)); // 一つの能力值の最大值は25です。他の能力值を選擇してください
 					}
 				}
+				int str = pc.getBaseStr();
+				int dex = pc.getBaseDex();
+				int con = pc.getBaseCon();
+				int Int = pc.getBaseInt();
+				int wis = pc.getBaseWis();
+				int cha = pc.getBaseCha();
+				LogStatusUp lsu = new LogStatusUp();
+				lsu.storeLogStatusUp(pc, str, dex, con, Int, wis, cha);
 			}
 			break;
 //waja add 寵物競速 預約名單回應

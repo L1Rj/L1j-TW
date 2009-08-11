@@ -39,16 +39,16 @@ public class LogDeleteChar {
 			String fm = formatter.format(time1.getTime());
 			try {
 				out = new DataOutputStream(new FileOutputStream("log/DeleteCharacter.txt"));
-				out.write("#-------------------------------------------------#\r\n".getBytes());
-				out.write("#\t\t\t\t\tDelete Character\t\t\t\t\t#\r\n".getBytes());
-				out.write("#-------------------------------------------------#\r\n".getBytes());
-				ditem = fm + "　ＩＰ位址=";
+				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
+				out.write("#                                     Delete Character.                                  #\r\n".getBytes());
+				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
+				ditem = fm + "  IP=";
 				out.write(ditem.getBytes());
-				ditem = hostip + "　帳號名稱=";
+				ditem = hostip + "  Account=";
 				out.write(ditem.getBytes());
-				ditem = pc.getAccountName() + "　角色編號=";
+				ditem = pc.getAccountName() + "  CharId=";
 				out.write(ditem.getBytes());
-				ditem = pc.getId() + "　玩家名稱=";
+				ditem = pc.getId() + "  CharName=";
 				out.write(ditem.getBytes());
 				ditem = pc.getName() + "\r\n";
 				out.write(ditem.getBytes());
@@ -72,14 +72,14 @@ public class LogDeleteChar {
 				rfile = new RandomAccessFile("log/DeleteCharacter.txt", "rw");
 				rfile.seek(rfile.length());
 
-				ditem = fm + "　ＩＰ位址=";
-				rfile.writeBytes(encode(ditem));
-				ditem = hostip + "　帳號名稱=";
-				rfile.writeBytes(encode(ditem));
-				ditem = pc.getAccountName() + "　角色編號=";
-				rfile.writeBytes(encode(ditem));
-				ditem = pc.getId() + "　玩家名稱=";
-				rfile.writeBytes(encode(ditem));
+				ditem = fm + "  IP=";
+				rfile.writeBytes(ditem);
+				ditem = hostip + "  Account=";
+				rfile.writeBytes(ditem);
+				ditem = pc.getAccountName() + "  CharId=";
+				rfile.writeBytes(ditem);
+				ditem = pc.getId() + "  CharName=";
+				rfile.writeBytes(ditem);
 				ditem = pc.getName() + "\r\n";
 				rfile.writeBytes(encode(ditem));
 			} catch (Exception e) {

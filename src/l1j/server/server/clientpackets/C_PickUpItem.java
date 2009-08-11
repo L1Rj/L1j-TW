@@ -79,7 +79,6 @@ public class C_PickUpItem extends ClientBasePacket {
 			if (pc.getInventory().checkAddItem( // 容量重量確認及びメッセージ送信
 					item, pickupCount) == L1Inventory.OK) {
 				if (item.getX() != 0 && item.getY() != 0) { // ワールドマップ上のアイテム
-					// 新增記錄系統 By Impreza8837┐
 					L1ItemInstance pcitem = pc.getInventory().getItem(objectId);
 					int before_inven = 0;
 					if (item.isStackable()) {
@@ -90,11 +89,9 @@ public class C_PickUpItem extends ClientBasePacket {
 						}
 					}
 					int brfore_ground = groundInventory.getItem(objectId).getCount();
-					// 新增記錄系統 By Impreza8837┘
 					groundInventory.tradeItem(item, pickupCount, pc.getInventory());
 					pc.turnOnOffLight();
 
-					// 新增記錄系統 By Impreza8837┐
 					int after_inven = 0;
 					if (item.isStackable()) {
 						after_inven = pc.getInventory().countItems(item.getItem().getItemId());
@@ -108,7 +105,6 @@ public class C_PickUpItem extends ClientBasePacket {
 					}
 					LogPickUpItem lpui = new LogPickUpItem();
 					lpui.storeLogPickUpItem(pc, item, before_inven, after_inven, brfore_ground, after_ground, pickupCount);
-					// 新增記錄系統 By Impreza8837┘
 					pc.sendPackets(new S_AttackPacket(pc, objectId, ActionCodes.ACTION_Pickup));
 					if (!pc.isGmInvis()) {
 						pc.broadcastPacket(new S_AttackPacket(pc, objectId, ActionCodes.ACTION_Pickup));

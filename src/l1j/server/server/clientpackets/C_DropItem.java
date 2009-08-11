@@ -69,7 +69,6 @@ public class C_DropItem extends ClientBasePacket {
 				pc.sendPackets(new S_ServerMessage(210, item.getItem().getName()));
 				return;
 			}
-			// 新增記錄系統 By Impreza8837┐
 			L1Inventory groundInventory = L1World.getInstance().getInventory(x, y, pc.getMapId());
 			L1ItemInstance gditem = groundInventory.getItem(objectId);
 			int before_inven = pc.getInventory().getItem(objectId).getCount();
@@ -81,10 +80,8 @@ public class C_DropItem extends ClientBasePacket {
 					brfore_ground = gditem.getCount();
 				}
 			}
-			// 新增記錄系統 By Impreza8837┘
 			pc.getInventory().tradeItem(item, count, L1World.getInstance().getInventory(x, y, pc.getMapId()));
 			pc.turnOnOffLight();
-			// 新增記錄系統 By Impreza8837┐
 			L1ItemInstance pcitem = pc.getInventory().getItem(objectId);
 			int after_inven = 0;
 			if (pcitem != null) {
@@ -98,7 +95,6 @@ public class C_DropItem extends ClientBasePacket {
 			}
 			LogDropItem ldi = new LogDropItem();
 			ldi.storeLogDropItem(pc, item, before_inven, after_inven, brfore_ground, after_ground, count);
-			// 新增記錄系統 By Impreza8837┘
 		}
 	}
 
