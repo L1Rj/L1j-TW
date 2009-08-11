@@ -42,43 +42,42 @@ public class LogPrivateShopSell {
 				out = new DataOutputStream(new FileOutputStream("log/PrivateShopSell.txt"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                      PrivateShopSell.                                  #\r\n".getBytes());
-				out.write("#                                                                                        #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				slog = fm + "  ";
+				slog = fm + "  IP=";
 				out.write(slog.getBytes());
-				slog = pc.getNetConnection().getIp() + "  ";
+				slog = pc.getNetConnection().getIp() + "  Account=";
 				out.write(slog.getBytes());
-				slog = pc.getAccountName() + "  ";
+				slog = pc.getAccountName() + "  CharId=";
 				out.write(slog.getBytes());
-				slog = pc.getId() + "  ";
+				slog = pc.getId() + "  CharName=";
 				out.write(slog.getBytes());
-				slog = pc.getName() + "  ";
+				slog = pc.getName() + "  TargetIP=";
 				out.write(slog.getBytes());
-				slog = target.getNetConnection().getIp() + "  ";
+				slog = target.getNetConnection().getIp() + "  TargetAccount=";
 				out.write(slog.getBytes());
-				slog = target.getAccountName() + "  ";
+				slog = target.getAccountName() + "  TargetCharId=";
 				out.write(slog.getBytes());
-				slog = target.getId() + "  ";
+				slog = target.getId() + "  TargetCharName=";
 				out.write(slog.getBytes());
-				slog = target.getName() + "  ";
+				slog = target.getName() + "  ObjectId=";
 				out.write(slog.getBytes());
-				slog = item.getId() + "  ";
+				slog = item.getId() + "  ItemName=";
 				out.write(slog.getBytes());
-				slog = item.getItem().getName() + "  ";
+				slog = item.getItem().getName() + "  EnchantLevel=";
 				out.write(slog.getBytes());
-				slog = item.getEnchantLevel() + "  ";
+				slog = item.getEnchantLevel() + "  Count=";
 				out.write(slog.getBytes());
-				slog = item.getCount() + "  ";
+				slog = item.getCount() + "  ItemBefore=";
 				out.write(slog.getBytes());
-				slog = itembefore + "  ";
+				slog = itembefore + "  ItemAfter=";
 				out.write(slog.getBytes());
-				slog = itemafter + "  ";
+				slog = itemafter + "  ItemDiff=";
 				out.write(slog.getBytes());
 				int itemdiff = itembefore - itemafter;
 				if (itemdiff < 0) {
 					itemdiff = -itemdiff;
 				}
-				slog = itemdiff + "  ";
+				slog = itemdiff + "  BuyCount=";
 				out.write(slog.getBytes());
 				slog = sellcount + "\r\n";
 				out.write(slog.getBytes());
@@ -102,41 +101,41 @@ public class LogPrivateShopSell {
 				rfile = new RandomAccessFile("log/PrivateShopSell.txt", "rw");
 				rfile.seek(rfile.length());
 
-				slog = fm + "  ";
+				slog = fm + "  IP=";
 				rfile.writeBytes(slog);
-				slog = pc.getNetConnection().getIp() + "  ";
+				slog = pc.getNetConnection().getIp() + "  Account=";
 				rfile.writeBytes(slog);
-				slog = pc.getAccountName() + "  ";
+				slog = pc.getAccountName() + "  CharId=";
 				rfile.writeBytes(slog);
-				slog = pc.getId() + "  ";
+				slog = pc.getId() + "  CharName=";
 				rfile.writeBytes(slog);
-				slog = pc.getName() + "  ";
+				slog = pc.getName() + "  TargetIP=";
 				rfile.writeBytes(encode(slog));
-				slog = target.getNetConnection().getIp() + "  ";
+				slog = target.getNetConnection().getIp() + "  TargetAccount=";
 				rfile.writeBytes(slog);
-				slog = target.getAccountName() + "  ";
+				slog = target.getAccountName() + "  TargetCharId=";
 				rfile.writeBytes(slog);
-				slog = target.getId() + "  ";
+				slog = target.getId() + "  TargetCharName=";
 				rfile.writeBytes(slog);
-				slog = target.getName() + "  ";
+				slog = target.getName() + "  ObjectId=";
 				rfile.writeBytes(encode(slog));
-				slog = item.getId() + "  ";
+				slog = item.getId() + "  ItemName=";
 				rfile.writeBytes(slog);
-				slog = item.getItem().getName() + "  ";
+				slog = item.getItem().getName() + "  EnchantLevel=";
 				rfile.writeBytes(encode(slog));
-				slog = item.getEnchantLevel() + "  ";
+				slog = item.getEnchantLevel() + "  Count=";
 				rfile.writeBytes(slog);
-				slog = item.getCount() + "  ";
+				slog = item.getCount() + "  ItemBefore=";
 				rfile.writeBytes(slog);
-				slog = itembefore + "  ";
+				slog = itembefore + "  ItemAfter=";
 				rfile.writeBytes(slog);
-				slog = itemafter + "  ";
+				slog = itemafter + "  ItemDiff=";
 				rfile.writeBytes(slog);
 				int itemdiff = itembefore - itemafter;
 				if (itemdiff < 0) {
 					itemdiff = -itemdiff;
 				}
-				slog = itemdiff + "  ";
+				slog = itemdiff + "  BuyCount=";
 				rfile.writeBytes(slog);
 				slog = sellcount + "\r\n";
 				rfile.writeBytes(slog);
@@ -157,7 +156,7 @@ public class LogPrivateShopSell {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("UTF-8"), "8859_1");
+			result = new String(str.getBytes("BIG5"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

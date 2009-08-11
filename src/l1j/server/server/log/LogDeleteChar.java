@@ -99,7 +99,7 @@ public class LogDeleteChar {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("UTF-8"), "8859_1");
+			result = new String(str.getBytes("BIG5"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

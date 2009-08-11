@@ -42,37 +42,36 @@ public class LogElfDwarfOut {
 				out = new DataOutputStream(new FileOutputStream("log/ElfWareHouseOut.txt"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                     ElfWareHouse Out.                                  #\r\n".getBytes());
-				out.write("#                                                                                        #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				slog = fm + "  ";
+				slog = fm + "  IP=";
 				out.write(slog.getBytes());
-				slog = pc.getNetConnection().getIp() + "  ";
+				slog = pc.getNetConnection().getIp() + "  Account=";
 				out.write(slog.getBytes());
-				slog = pc.getAccountName() + "  ";
+				slog = pc.getAccountName() + "  CharId=";
 				out.write(slog.getBytes());
-				slog = pc.getId() + "  ";
+				slog = pc.getId() + "  CharName=";
 				out.write(slog.getBytes());
-				slog = pc.getName() + "  ";
+				slog = pc.getName() + "  ObjectId=";
 				out.write(slog.getBytes());
-				slog = item.getId() + "  ";
+				slog = item.getId() + "  ItemName=";
 				out.write(slog.getBytes());
-				slog = item.getItem().getName() + "  ";
+				slog = item.getItem().getName() + "  EnchantLevel=";
 				out.write(slog.getBytes());
-				slog = item.getEnchantLevel() + "  ";
+				slog = item.getEnchantLevel() + "  ItemCountBefore=";
 				out.write(slog.getBytes());
-				slog = item_count_before + "  ";
+				slog = item_count_before + "  ItemCountAfter=";
 				out.write(slog.getBytes());
-				slog = item_count_after + "  ";
+				slog = item_count_after + "  ItemCountDiff=";
 				out.write(slog.getBytes());
 				int item_count_diff = item_count_before - item_count_after;
 				if (item_count_diff < 0) {
 					item_count_diff = -item_count_diff;
 				}
-				slog = item_count_diff + "  ";
+				slog = item_count_diff + "  Count=";
 				out.write(slog.getBytes());
-				slog = item.getCount() + "  ";
+				slog = item.getCount() + "  InCount=";
 				out.write(slog.getBytes());
-				slog = item_in_count + "  ";
+				slog = item_in_count + "  CountDiff=";
 				out.write(slog.getBytes());
 				int count_diff = item_in_count - item_count_diff;
 				slog = count_diff + "\r\n";
@@ -97,35 +96,35 @@ public class LogElfDwarfOut {
 				rfile = new RandomAccessFile("log/ElfWareHouseOut.txt", "rw");
 				rfile.seek(rfile.length());
 
-				slog = fm + "  ";
+				slog = fm + "  IP=";
 				rfile.writeBytes(slog);
-				slog = pc.getNetConnection().getIp() + "  ";
+				slog = pc.getNetConnection().getIp() + "  Account=";
 				rfile.writeBytes(slog);
-				slog = pc.getAccountName() + "  ";
+				slog = pc.getAccountName() + "  CharId=";
 				rfile.writeBytes(slog);
-				slog = pc.getId() + "  ";
+				slog = pc.getId() + "  CharName=";
 				rfile.writeBytes(slog);
-				slog = pc.getName() + "  ";
+				slog = pc.getName() + "  ObjectId=";
 				rfile.writeBytes(encode(slog));
-				slog = item.getId() + "  ";
+				slog = item.getId() + "  ItemName=";
 				rfile.writeBytes(slog);
-				slog = item.getItem().getName() + "  ";
+				slog = item.getItem().getName() + "  EnchantLevel=";
 				rfile.writeBytes(encode(slog));
-				slog = item.getEnchantLevel() + "  ";
+				slog = item.getEnchantLevel() + "  ItemCountBefore=";
 				rfile.writeBytes(slog);
-				slog = item_count_before + "  ";
+				slog = item_count_before + "  ItemCountAfter=";
 				rfile.writeBytes(slog);
-				slog = item_count_after + "  ";
+				slog = item_count_after + "  ItemCountDiff=";
 				rfile.writeBytes(slog);
 				int item_count_diff = item_count_before - item_count_after;
 				if (item_count_diff < 0) {
 					item_count_diff = -item_count_diff;
 				}
-				slog = item_count_diff + "  ";
+				slog = item_count_diff + "  Count=";
 				rfile.writeBytes(slog);
-				slog = item.getCount() + "  ";
+				slog = item.getCount() + "  InCount=";
 				rfile.writeBytes(slog);
-				slog = item_in_count + "  ";
+				slog = item_in_count + "  CountDiff=";
 				rfile.writeBytes(slog);
 				int count_diff = item_in_count - item_count_diff;
 				slog = count_diff + "\r\n";
@@ -147,7 +146,7 @@ public class LogElfDwarfOut {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("UTF-8"), "8859_1");
+			result = new String(str.getBytes("BIG5"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;
