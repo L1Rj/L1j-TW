@@ -92,3 +92,6 @@ Update weapon Set trade = '0' Where item_id = '237';
 Update weapon Set trade = '0' Where item_id = '238';
 Update weapon Set trade = '0' Where item_id = '239';
 Update weapon Set trade = '0' Where item_id = '240';
+
+/* 20090812 修正宙斯巨劍 */
+Update weapon Set use_dragonknight = '1' Where item_id = '522';
