@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogDeleteItem {
 	private static Logger _log = Logger.getLogger(LogDeleteItem.class.getName());
-/*
+
 	public void storeLogDeleteItem(L1PcInstance pc, L1ItemInstance item) {
 		File file = new File("log/DeleteItem.txt");
 		boolean fileex = file.exists();
@@ -122,5 +122,4 @@ public class LogDeleteItem {
 		}
 		return result;
 	}
-*/
 }

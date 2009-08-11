@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogShopBuy {
 	private static Logger _log = Logger.getLogger(LogShopBuy.class.getName());
-/*
+
 	public void storeLogShopBuy(L1PcInstance pc, L1ItemInstance item, int cnt, int adenabefore, int adenaafter, int itemprice) {
 		File file = new File("log/ShopBuy.txt");
 		boolean fileex = file.exists();
@@ -146,5 +146,4 @@ public class LogShopBuy {
 		}
 		return result;
 	}
-*/
 }

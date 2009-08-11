@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogEnchantSuccess {
 	private static Logger _log = Logger.getLogger(LogEnchantSuccess.class.getName());
-/*
+
 	public void storeLogEnchantSuccess(L1PcInstance pc, L1ItemInstance item, int enchantbefore, int enchantafter, int enchantnum) {
 		File file = new File("log/EnchantSuccess.txt");
 		boolean fileex = file.exists();
@@ -136,5 +136,4 @@ public class LogEnchantSuccess {
 		}
 		return result;
 	}
-*/
 }

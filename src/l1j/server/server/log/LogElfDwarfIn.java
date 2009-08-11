@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogElfDwarfIn {
 	private static Logger _log = Logger.getLogger(LogElfDwarfIn.class.getName());
-/*
+
 	public void storeLogElfDwarfIn(L1PcInstance pc, L1ItemInstance item, int item_count_before, int item_count_after, int item_in_count) {
 		File file = new File("log/ElfWareHouseIn.txt");
 		boolean fileex = file.exists();
@@ -152,5 +152,4 @@ public class LogElfDwarfIn {
 		}
 		return result;
 	}
-*/
 }

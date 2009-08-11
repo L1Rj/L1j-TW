@@ -25,7 +25,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class LogTradeComplete {
 	private static Logger _log = Logger.getLogger(LogTradeComplete.class.getName());
-/*
+
 	public void storeLogTradeComplete(L1PcInstance pc, L1PcInstance target, L1ItemInstance item, int itembeforetrade, int itembeforeinven, int itemafter,
 			int tradecount) {
 		File file = new File("log/TradeComplete.txt");
@@ -167,5 +167,4 @@ public class LogTradeComplete {
 		}
 		return result;
 	}
-*/
 }
