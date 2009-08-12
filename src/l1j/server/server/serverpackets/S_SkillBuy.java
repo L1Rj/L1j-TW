@@ -20,7 +20,6 @@
 package l1j.server.server.serverpackets;
 
 import static l1j.server.server.Opcodes.S_OPCODE_SKILLBUY;
-
 import l1j.server.server.clientpackets.C_SkillBuyOK;
 import l1j.server.server.model.Instance.L1PcInstance;
 
@@ -34,22 +33,22 @@ public class S_SkillBuy extends ServerBasePacket
 	{
 		int SkillAmount = 0;
 		
-		for (int i = 1; i <= 24; i++)
-			if (!C_SkillBuyOK.SpellCheck(Pc, i))
+		for (int i = 0; i < 24; i++)
+			if (!C_SkillBuyOK.SpellCheck(Pc, i + 1))
 				SkillAmount++;
 		
 		writeC(S_OPCODE_SKILLBUY);
 		writeD(0x00000064);
 		writeH(SkillAmount);
 		
-		for (int i = 1; i <= 24; i++)
-			if (!C_SkillBuyOK.SpellCheck(Pc, i))
-				writeD(i - 1);
+		for (int i = 0; i < 24; i++)
+			if (!C_SkillBuyOK.SpellCheck(Pc, i + 1))
+				writeD(i);
 		
 		if (SkillAmount == 0)
 			writeD(objid);
 	}
-
+	
 	@Override
 	public byte[] getContent()
 	{
