@@ -95,32 +95,36 @@ public class C_SkillBuyOK extends ClientBasePacket
 	
 	public static boolean SpellCheck(L1PcInstance Pc, int Skillid)
 	{
-		boolean canTeach = false;
 		int Type = Pc.getType();
 		int Level = Pc.getLevel();
+		L1Skills skill = SkillsTable.getInstance().getTemplate(Skillid);
+		int SkillLv = skill.getSkillLevel(); // 取得魔法等級
+		
+		if (Pc.isSkillMastery(Skillid))
+			return true;
 		
 		// 王族
-		if (Type == 0 && Skillid >= 0 || Skillid <= 8 && Level >= 10 ||
-			Type == 0 && Skillid >= 0 || Skillid <= 16 && Level >= 20)
-			canTeach = true;
+		if ((Type == 0 && SkillLv == 1 && Level >= 10) ||
+			(Type == 0 && SkillLv == 2 && Level >= 20))
+			return false;
 		// 騎士
-		else if (Type == 1 && Skillid >= 0 || Skillid <= 8 && Level >= 50)
-			canTeach = true;
+		else if (Type == 1 && SkillLv == 1 && Level >= 50)
+			return false;
 		// 妖精
-		else if (Type == 2 && Skillid >= 0 || Skillid <=  8 && Level >=  8 ||
-				 Type == 2 && Skillid >= 0 || Skillid <= 16 && Level >= 16 ||
-				 Type == 2 && Skillid >= 0 || Skillid <= 24 && Level >= 24)
-			canTeach = true;
+		else if ((Type == 2 && SkillLv == 1 && Level >=  8) ||
+				 (Type == 2 && SkillLv == 2 && Level >= 16) ||
+				 (Type == 2 && SkillLv == 3 && Level >= 24))
+			return false;
 		// 法師
-		else if (Type == 3 && Skillid >= 0 || Skillid <=  8 && Level >=  4 ||
-				 Type == 3 && Skillid >= 0 || Skillid <= 16 && Level >=  8 ||
-				 Type == 3 && Skillid >= 0 || Skillid <= 24 && Level >= 12)
-			canTeach = true;
+		else if ((Type == 3 && SkillLv == 1 && Level >=  4) ||
+				 (Type == 3 && SkillLv == 2 && Level >=  8) ||
+				 (Type == 3 && SkillLv == 3 && Level >= 12))
+			return false;
 		// 黑暗妖精
-		else if (Type == 4 && Skillid >= 0 || Skillid <=  8 && Level >= 12 ||
-				 Type == 4 && Skillid >= 0 || Skillid <= 16 && Level >= 24)
-			canTeach = true;
+		else if ((Type == 4 && SkillLv == 1 && Level >= 12) ||
+				 (Type == 4 && SkillLv == 2 && Level >= 24))
+			return false;
 		
-		return !canTeach || Pc.isSkillMastery(Skillid);
+		return true;
 	}
 }
