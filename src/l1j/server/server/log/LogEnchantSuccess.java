@@ -27,7 +27,7 @@ public class LogEnchantSuccess {
 	private static Logger _log = Logger.getLogger(LogEnchantSuccess.class.getName());
 
 	public void storeLogEnchantSuccess(L1PcInstance pc, L1ItemInstance item, int enchantbefore, int enchantafter, int enchantnum) {
-		File file = new File("log/EnchantSuccess.txt");
+		File file = new File("log/EnchantSuccess.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogEnchantSuccess {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/EnchantSuccess.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/EnchantSuccess.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                     EnchantSuccess.                                    #\r\n".getBytes());
 				out.write("#                                                                                        #\r\n".getBytes());
@@ -86,7 +86,7 @@ public class LogEnchantSuccess {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/EnchantSuccess.txt", "rw");
+				rfile = new RandomAccessFile("log/EnchantSuccess.log", "rw");
 				rfile.seek(rfile.length());
 
 				ditem = fm + "  ";
@@ -131,7 +131,7 @@ public class LogEnchantSuccess {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

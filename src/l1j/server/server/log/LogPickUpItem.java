@@ -27,7 +27,7 @@ public class LogPickUpItem {
 	private static Logger _log = Logger.getLogger(LogPickUpItem.class.getName());
 
 	public void storeLogPickUpItem(L1PcInstance pc, L1ItemInstance item, int before_inven, int after_inven, int before_ground, int after_ground, int pickupCount) {
-		File file = new File("log/PickUpItem.txt");
+		File file = new File("log/PickUpItem.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogPickUpItem {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/PickUpItem.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/PickUpItem.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                           PickUpItem.                                  #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
@@ -86,7 +86,7 @@ public class LogPickUpItem {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/PickUpItem.txt", "rw");
+				rfile = new RandomAccessFile("log/PickUpItem.log", "rw");
 				rfile.seek(rfile.length());
 
 				ditem = fm + "  IP=";
@@ -132,7 +132,7 @@ public class LogPickUpItem {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

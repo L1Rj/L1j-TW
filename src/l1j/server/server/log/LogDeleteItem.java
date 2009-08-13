@@ -27,7 +27,7 @@ public class LogDeleteItem {
 	private static Logger _log = Logger.getLogger(LogDeleteItem.class.getName());
 
 	public void storeLogDeleteItem(L1PcInstance pc, L1ItemInstance item) {
-		File file = new File("log/DeleteItem.txt");
+		File file = new File("log/DeleteItem.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogDeleteItem {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/DeleteItem.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/DeleteItem.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                      Delete Item.                                      #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
@@ -78,7 +78,7 @@ public class LogDeleteItem {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/DeleteItem.txt", "rw");
+				rfile = new RandomAccessFile("log/DeleteItem.log", "rw");
 				rfile.seek(rfile.length());
 
 				ditem = fm + "  IP=";
@@ -116,7 +116,7 @@ public class LogDeleteItem {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

@@ -27,7 +27,7 @@ public class LogElfDwarfIn {
 	private static Logger _log = Logger.getLogger(LogElfDwarfIn.class.getName());
 
 	public void storeLogElfDwarfIn(L1PcInstance pc, L1ItemInstance item, int item_count_before, int item_count_after, int item_in_count) {
-		File file = new File("log/ElfWareHouseIn.txt");
+		File file = new File("log/ElfWareHouseIn.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogElfDwarfIn {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/ElfWareHouseIn.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/ElfWareHouseIn.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                     ElfWareHouseIn.                                  #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
@@ -93,7 +93,7 @@ public class LogElfDwarfIn {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/ElfWareHouseIn.txt", "rw");
+				rfile = new RandomAccessFile("log/ElfWareHouseIn.log", "rw");
 				rfile.seek(rfile.length());
 
 				slog = fm + "  IP=";

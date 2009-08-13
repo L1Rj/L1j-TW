@@ -27,7 +27,7 @@ public class LogDwarfOut {
 	private static Logger _log = Logger.getLogger(LogDwarfOut.class.getName());
 
 	public void storeLogDwarfOut(L1PcInstance pc, L1ItemInstance item, int item_count_before, int item_count_after, int item_in_count) {
-		File file = new File("log/WareHouseOut.txt");
+		File file = new File("log/WareHouseOut.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogDwarfOut {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/WareHouseOut.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/WareHouseOut.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                     WareHouse Out.                                   #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
@@ -93,7 +93,7 @@ public class LogDwarfOut {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/WareHouseOut.txt", "rw");
+				rfile = new RandomAccessFile("log/WareHouseOut.log", "rw");
 				rfile.seek(rfile.length());
 
 				slog = fm + "  IP=";
@@ -146,7 +146,7 @@ public class LogDwarfOut {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

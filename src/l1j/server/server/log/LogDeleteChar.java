@@ -26,7 +26,7 @@ public class LogDeleteChar {
 	private static Logger _log = Logger.getLogger(LogDeleteChar.class.getName());
 
 	public void storeLogDeleteChar(L1PcInstance pc, String hostip) {
-		File file = new File("log/DeleteCharacter.txt");
+		File file = new File("log/DeleteCharacter.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -38,7 +38,7 @@ public class LogDeleteChar {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/DeleteCharacter.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/DeleteCharacter.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                     Delete Character.                                  #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
@@ -69,7 +69,7 @@ public class LogDeleteChar {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/DeleteCharacter.txt", "rw");
+				rfile = new RandomAccessFile("log/DeleteCharacter.log", "rw");
 				rfile.seek(rfile.length());
 
 				ditem = fm + "  IP=";
@@ -99,7 +99,7 @@ public class LogDeleteChar {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

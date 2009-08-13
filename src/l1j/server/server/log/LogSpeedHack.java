@@ -27,7 +27,7 @@ public class LogSpeedHack {
 	private static Logger _log = Logger.getLogger(LogSpeedHack.class.getName());
 
 	public void storeLogSpeedHack(L1PcInstance pc) {
-		File file = new File("log/SpeedHack.txt");
+		File file = new File("log/SpeedHack.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogSpeedHack {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/SpeedHack.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/SpeedHack.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                    Speed Hack Detector.                                #\r\n".getBytes());
 				out.write("#                                                                                        #\r\n".getBytes());
@@ -71,7 +71,7 @@ public class LogSpeedHack {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/SpeedHack.txt", "rw");
+				rfile = new RandomAccessFile("log/SpeedHack.log", "rw");
 				rfile.seek(rfile.length());
 
 				ditem = fm + "  ";
@@ -101,7 +101,7 @@ public class LogSpeedHack {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

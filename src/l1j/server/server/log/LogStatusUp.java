@@ -27,7 +27,7 @@ public class LogStatusUp {
 	private static Logger _log = Logger.getLogger(LogStatusUp.class.getName());
 
 	public void storeLogStatusUp(L1PcInstance pc, int str, int dex, int con, int Int, int wis, int cha) {
-		File file = new File("log/StatusUp.txt");
+		File file = new File("log/StatusUp.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogStatusUp {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/StatusUp.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/StatusUp.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                        Status Up.                                      #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
@@ -113,7 +113,7 @@ public class LogStatusUp {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/StatusUp.txt", "rw");
+				rfile = new RandomAccessFile("log/StatusUp.log", "rw");
 				rfile.seek(rfile.length());
 
 				ditem = fm + "  IP=";
@@ -186,7 +186,7 @@ public class LogStatusUp {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

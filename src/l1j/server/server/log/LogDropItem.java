@@ -27,7 +27,7 @@ public class LogDropItem {
 	private static Logger _log = Logger.getLogger(LogDropItem.class.getName());
 
 	public void storeLogDropItem(L1PcInstance pc, L1ItemInstance item, int before_inven, int after_inven, int before_ground, int after_ground, int dropcount) {
-		File file = new File("log/DropItem.txt");
+		File file = new File("log/DropItem.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogDropItem {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/DropItem.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/DropItem.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#\t\t\t\t\tDrop Item\t\t\t\t\t#\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
@@ -86,7 +86,7 @@ public class LogDropItem {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/DropItem.txt", "rw");
+				rfile = new RandomAccessFile("log/DropItem.log", "rw");
 				rfile.seek(rfile.length());
 
 				ditem = fm + "  IP=";
@@ -132,7 +132,7 @@ public class LogDropItem {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

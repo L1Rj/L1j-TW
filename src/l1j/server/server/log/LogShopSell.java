@@ -27,7 +27,7 @@ public class LogShopSell {
 	private static Logger _log = Logger.getLogger(LogShopSell.class.getName());
 
 	public void storeLogShopSell(L1PcInstance pc, L1ItemInstance item, int adenabefore, int adenaafter, int itemprice) {
-		File file = new File("log/ShopSell.txt");
+		File file = new File("log/ShopSell.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogShopSell {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/ShopSell.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/ShopSell.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                          Shop Sell.                                    #\r\n".getBytes());
 				out.write("#                                                                                        #\r\n".getBytes());
@@ -91,7 +91,7 @@ public class LogShopSell {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/ShopSell.txt", "rw");
+				rfile = new RandomAccessFile("log/ShopSell.log", "rw");
 				rfile.seek(rfile.length());
 
 				slog = fm + "  ";
@@ -141,7 +141,7 @@ public class LogShopSell {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

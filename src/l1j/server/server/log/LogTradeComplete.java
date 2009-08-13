@@ -28,7 +28,7 @@ public class LogTradeComplete {
 
 	public void storeLogTradeComplete(L1PcInstance pc, L1PcInstance target, L1ItemInstance item, int itembeforetrade, int itembeforeinven, int itemafter,
 			int tradecount) {
-		File file = new File("log/TradeComplete.txt");
+		File file = new File("log/TradeComplete.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -40,7 +40,7 @@ public class LogTradeComplete {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/TradeComplete.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/TradeComplete.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                    Log Trade Complete.                                 #\r\n".getBytes());
 				out.write("#                                                                                        #\r\n".getBytes());
@@ -102,7 +102,7 @@ public class LogTradeComplete {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/TradeComplete.txt", "rw");
+				rfile = new RandomAccessFile("log/TradeComplete.log", "rw");
 				rfile.seek(rfile.length());
 
 				slog = fm + "  ";
@@ -162,7 +162,7 @@ public class LogTradeComplete {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

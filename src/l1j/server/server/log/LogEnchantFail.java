@@ -27,7 +27,7 @@ public class LogEnchantFail {
 	private static Logger _log = Logger.getLogger(LogEnchantFail.class.getName());
 
 	public void storeLogEnchantFail(L1PcInstance pc, L1ItemInstance item) {
-		File file = new File("log/EnchantFail.txt");
+		File file = new File("log/EnchantFail.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogEnchantFail {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/EnchantFail.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/EnchantFail.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                         EnchantFail.                                   #\r\n".getBytes());
 				out.write("#                                                                                        #\r\n".getBytes());
@@ -79,7 +79,7 @@ public class LogEnchantFail {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/EnchantFail.txt", "rw");
+				rfile = new RandomAccessFile("log/EnchantFail.log", "rw");
 				rfile.seek(rfile.length());
 
 				ditem = fm + "  ";
@@ -117,7 +117,7 @@ public class LogEnchantFail {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

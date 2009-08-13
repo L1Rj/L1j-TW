@@ -27,7 +27,7 @@ public class LogDwarfIn {
 	private static Logger _log = Logger.getLogger(LogDwarfIn.class.getName());
 
 	public void storeLogDwarfIn(L1PcInstance pc, L1ItemInstance item, int item_count_before, int item_count_after, int item_in_count) {
-		File file = new File("log/WareHouseIn.txt");
+		File file = new File("log/WareHouseIn.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogDwarfIn {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/WareHouseIn.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/WareHouseIn.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                     WareHouse In.                                      #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
@@ -93,7 +93,7 @@ public class LogDwarfIn {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/WareHouseIn.txt", "rw");
+				rfile = new RandomAccessFile("log/WareHouseIn.log", "rw");
 				rfile.seek(rfile.length());
 
 				slog = fm + "  IP=";
@@ -146,7 +146,7 @@ public class LogDwarfIn {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

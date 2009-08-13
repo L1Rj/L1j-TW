@@ -27,7 +27,7 @@ public class LogTradeAddItem {
 	private static Logger _log = Logger.getLogger(LogTradeAddItem.class.getName());
 
 	public void storeLogTradeAddItem(L1PcInstance pc, L1PcInstance target, L1ItemInstance item, int itembefore, int itemafter, int tradecount) {
-		File file = new File("log/TradeAddItem.txt");
+		File file = new File("log/TradeAddItem.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogTradeAddItem {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/TradeAddItem.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/TradeAddItem.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                     LogTrade AddItem.                                  #\r\n".getBytes());
 				out.write("#                                                                                        #\r\n".getBytes());
@@ -99,7 +99,7 @@ public class LogTradeAddItem {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/TradeAddItem.txt", "rw");
+				rfile = new RandomAccessFile("log/TradeAddItem.log", "rw");
 				rfile.seek(rfile.length());
 
 				slog = fm + "  ";
@@ -157,7 +157,7 @@ public class LogTradeAddItem {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;

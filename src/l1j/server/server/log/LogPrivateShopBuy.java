@@ -27,7 +27,7 @@ public class LogPrivateShopBuy {
 	private static Logger _log = Logger.getLogger(LogPrivateShopBuy.class.getName());
 
 	public void storeLogPrivateShopBuy(L1PcInstance pc, L1PcInstance target, L1ItemInstance item, int itembefore, int itemafter, int buycount) {
-		File file = new File("log/PrivateShopBuy.txt");
+		File file = new File("log/PrivateShopBuy.log");
 		boolean fileex = file.exists();
 		if (!fileex) {
 			File file2 = new File("log/");
@@ -39,7 +39,7 @@ public class LogPrivateShopBuy {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				out = new DataOutputStream(new FileOutputStream("log/PrivateShopBuy.txt"));
+				out = new DataOutputStream(new FileOutputStream("log/PrivateShopBuy.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                     Private Shop Buy.                                  #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
@@ -98,7 +98,7 @@ public class LogPrivateShopBuy {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
-				rfile = new RandomAccessFile("log/PrivateShopBuy.txt", "rw");
+				rfile = new RandomAccessFile("log/PrivateShopBuy.log", "rw");
 				rfile.seek(rfile.length());
 
 				slog = fm + "  IP=";
@@ -156,7 +156,7 @@ public class LogPrivateShopBuy {
 		try {
 			if (str == null)
 				return result;
-			result = new String(str.getBytes("BIG5"), "8859_1");
+			result = new String(str.getBytes("UTF-8"), "8859_1");
 		} catch (java.io.UnsupportedEncodingException e) {
 		}
 		return result;
