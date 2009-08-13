@@ -1376,9 +1376,9 @@ public class L1NpcInstance extends L1Character {
 					appearOnGround(pc);
 				}
 			} else {
-// if (getNpcTemplate().get_npcId() != 45681) { // リンドビオル以外
+			if (getNpcTemplate().get_npcId() != 45681) { // リンドビオル以外
 					searchItemFromAir();
-// }
+	}
 			}
  		} else if (getHiddenStatus() == HIDDEN_STATUS_ICE) {
 			if (getCurrentHp() < getMaxHp()) {
