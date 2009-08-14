@@ -50,6 +50,7 @@ import com.l1jtw.commons.log4j.LoggingService;
 
 import l1j.server.Config;
 import l1j.server.server.GameServer;
+import l1j.server.server.utils.DeadLockDetector;
 import l1j.server.telnet.TelnetServer;
 
 /**
@@ -90,6 +91,7 @@ public class Server {
 			System.exit(0);
 		}
 
+		new DeadLockDetector(60, DeadLockDetector.RESTART).start();
 		// L1DatabaseFactory初期設定
 		L1DatabaseFactory.setDatabaseSettings(Config.DB_DRIVER, Config.DB_URL,
 				Config.DB_LOGIN, Config.DB_PASSWORD);
