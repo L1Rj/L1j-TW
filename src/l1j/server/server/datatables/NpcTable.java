@@ -115,6 +115,7 @@ public class NpcTable {
 				npc.setTamable(rs.getBoolean("tamable"));
 				npc.set_passispeed(rs.getInt("passispeed"));
 				npc.set_atkspeed(rs.getInt("atkspeed"));
+				npc.setAltAtkSpeed(rs.getInt("alt_atk_speed"));
 				npc.setAtkMagicSpeed(rs.getInt("atk_magic_speed"));
 				npc.setSubMagicSpeed(rs.getInt("sub_magic_speed"));
 				npc.set_undead(rs.getInt("undead"));
