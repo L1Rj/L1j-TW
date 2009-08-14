@@ -3792,7 +3792,7 @@ public class C_NPCAction extends ClientBasePacket {
 			int newWeapon = 0;
 			if (s.equalsIgnoreCase("A")) {
 				weapon1 = 5; // +7エルヴンダガー
-				weapon2 = 10; // +7ラスタバドダガー
+				weapon2 = 6; // +7ラスタバドダガー
 				newWeapon = 259; // マナバーラード
 				htmlid = "joegolem9";
 			} else if (s.equalsIgnoreCase("B")) {

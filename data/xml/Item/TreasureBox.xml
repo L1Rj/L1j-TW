@@ -762,7 +762,7 @@
 		<Item ItemId="40562" Count="1" />
 		<Item ItemId="40563" Count="1" />
 	</TreasureBox>
-	<!--イリスのカバン-->
+	<!--伊莉絲的袋子-->
 	<TreasureBox Type="RANDOM" ItemId="41008">
 		<Item ItemId="40308" Count="200" Chance="38" />
 		<Item ItemId="40100" Count="1" Chance="20" />

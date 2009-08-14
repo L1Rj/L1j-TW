@@ -2774,6 +2774,69 @@ public class L1MerchantInstance extends L1NpcInstance {
 				} else {
 					htmlid = "kuen1";
 				}
+			} else if (npcid == 80134) { // タリオン
+				if(player.isDragonKnight()) { // ドラゴンナイト
+					int lv30_step = quest.get_step(L1Quest.QUEST_LEVEL30);
+					if(player.getLevel() >= 30
+							&& lv30_step == 2) {
+						htmlid = "talrion1";
+					}
+				}
+			} else if (npcid == 80135) { // エルラス
+				if(player.isDragonKnight()) { // ドラゴンナイト
+					int lv30_step = quest.get_step(L1Quest.QUEST_LEVEL30);
+					if (lv30_step == L1Quest.QUEST_END) {
+						htmlid = "elas6";
+					} else  if(player.getLevel() >= 30
+							&& lv30_step >= 1) {
+						htmlid = "elas1";
+					}
+				}
+			} else if (npcid == 80136) { // 長老 プロケル
+				int lv15_step = quest.get_step(L1Quest.QUEST_LEVEL15);
+				int lv30_step = quest.get_step(L1Quest.QUEST_LEVEL30);
+				int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
+				int lv50_step = quest.get_step(L1Quest.QUEST_LEVEL50);
+				if (player.isDragonKnight()) { // ドラゴンナイト
+					if(player.getLevel() >= 50
+							&& lv45_step == L1Quest.QUEST_END) {
+						if(lv50_step == 0) {
+							htmlid = "prokel21";
+						} else if(lv50_step == L1Quest.QUEST_END) { // クリア済み
+							htmlid = "prokel32";
+						} else {
+							htmlid = "prokel24";
+						}
+					} else if(player.getLevel() >= 45
+							&& lv30_step == L1Quest.QUEST_END) {
+						if(lv45_step == 0) {
+							htmlid = "prokel15";
+						} else if(lv45_step == L1Quest.QUEST_END) { // クリア済み
+							htmlid = "prokel20";
+						} else {
+							htmlid = "prokel17";
+						}
+					} else if (player.getLevel() >= 30
+							&& lv15_step == L1Quest.QUEST_END) {
+						if(lv30_step == 0) {
+							htmlid = "prokel8";
+						} else if(lv30_step >= 2) { // クリア済み
+							htmlid = "prokel14";
+						} else {
+							htmlid = "prokel10";
+						}
+					} else if (player.getLevel() >= 15) {
+						if (lv15_step == 0 ) {
+							htmlid = "prokel2";
+						} else if (	lv15_step == L1Quest.QUEST_END) { // クリア済み)
+							htmlid = "prokel7";
+						} else {
+							htmlid = "prokel4";
+						}
+					} else { // Lv15未満
+						htmlid = "prokel1";
+					}
+				}
 			} else if (npcid == 71256) {//熾炎天使弓 羅賓孫
 				if (!player.isElf()) {
 					htmlid = "robinhood2";

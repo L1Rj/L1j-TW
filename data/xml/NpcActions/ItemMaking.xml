@@ -2934,6 +2934,13 @@
 			<Item Amount="1" ItemId="21106"/>
 		</MakeItem>
 	</Action>
+	<!--オーク密使のバッジ / 鍛冶屋ピューアルス-->
+	<Action Name="request halpas symbol" NpcId="80133">
+		<MakeItem>
+			<Material Amount="1" ItemId="49215"/>
+			<Item Amount="1" ItemId="49223"/>
+		</MakeItem>
+	</Action>
 	<!--ダークストーンキーリンク / 鍛冶屋バトール-->
 	<Action Name="request obsidian kiringku" NpcId="80142">
 		<MakeItem>

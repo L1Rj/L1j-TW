@@ -1014,6 +1014,45 @@
 			<SetQuest Id="toscroll" Step="End"/>
 		</Succeed>
 	</MakeItem>
+	<!--DRKLv30クエスト / タリオン-->
+	<MakeItem Name="a" Class="R" NpcId="80134" AmountInputable="false" QuestId="Level30" QuestStep="2">
+		<Item Amount="1" ItemId="21103"/>
+		<Material Amount="1" ItemId="49213"/>
+		<Succeed>
+			<SetQuest Id="Level30" Step="End"/>
+			<ShowHtml HtmlId="talrion2"/>
+		</Succeed>
+		<Fail>
+			<ShowHtml HtmlId="talrion3"/>
+		</Fail>
+	</MakeItem>
+	<!--DRKLv15クエスト / 長老 プロケル-->
+	<MakeItem Name="b" Class="R" NpcId="80136" AmountInputable="false" QuestId="Level15" QuestStep="1">
+		<Item Amount="1" ItemId="275"/>
+		<Item Amount="1" ItemId="49102"/>
+		<Material Amount="1" ItemId="49217"/>
+		<Material Amount="1" ItemId="49218"/>
+		<Material Amount="1" ItemId="49219"/>
+		<Succeed>
+			<SetQuest Id="Level15" Step="End"/>
+			<ShowHtml HtmlId="prokel5"/>
+		</Succeed>
+		<Fail>
+			<ShowHtml HtmlId="prokel6"/>
+		</Fail>
+	</MakeItem>
+	<MakeItem Name="d" Class="R" NpcId="80136" AmountInputable="false" QuestId="Level30" QuestStep="1">
+		<Item Amount="1" ItemId="49107"/>
+		<Item Amount="1" ItemId="49213"/>
+		<Material Amount="1" ItemId="49221"/>
+		<Succeed>
+			<SetQuest Id="Level30" Step="2"/>
+			<ShowHtml HtmlId="prokel11"/>
+		</Succeed>
+		<Fail>
+			<ShowHtml HtmlId="prokel12"/>
+		</Fail>
+	</MakeItem>
 	<!--海賊島「宝の地図3」クエスト / レスタ-->
 	<MakeItem Name="C" Class="PWEKDRI" NpcId="71060" AmountInputable="false">
 		<Item Amount="1" ItemId="40647"/>

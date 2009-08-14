@@ -1,5 +1,27 @@
 以下為目前仍有的錯誤訊息紀錄
 
+20090806
+java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+        at java.lang.String.substring(String.java:1938)
+        at l1j.server.server.clientpackets.ClientBasePacket.readS(Unknown Source)
+        at l1j.server.server.clientpackets.C_Rank.<init>(Unknown Source)
+        at l1j.server.server.PacketHandler.handlePacket(Unknown Source)
+        at l1j.server.server.ClientThread$AutoResponse.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+        at java.lang.Thread.run(Thread.java:619)
+2009/8/13 上午 08:53:37 l1j.server.server.clientpackets.ClientBasePacket readS
+嚴重的: OpCode=78
+java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+        at java.lang.String.substring(String.java:1938)
+        at l1j.server.server.clientpackets.ClientBasePacket.readS(Unknown Source)
+        at l1j.server.server.clientpackets.C_Rank.<init>(Unknown Source)
+        at l1j.server.server.PacketHandler.handlePacket(Unknown Source)
+        at l1j.server.server.ClientThread$AutoResponse.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+        at java.lang.Thread.run(Thread.java:619)
+
 20090805
 2009/8/8 下午 10:59:15 l1j.server.server.ClientThread run
 嚴重的: null
