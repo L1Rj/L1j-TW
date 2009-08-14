@@ -1348,6 +1348,118 @@ public class C_NPCAction extends ClientBasePacket {
 					htmlid = "";
 				}
 			}
+			// 長老 プロケル
+			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80136) {
+				int lv15_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL15);
+				int lv30_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL30);
+				int lv45_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL45);
+				int lv50_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL50);
+				if (pc.isDragonKnight()) {
+					// 「プロケルの課題を遂行する」
+					if (s.equalsIgnoreCase("a") && lv15_step == 0) {
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory().storeItem(49210, 1); // プロケルの1番目の指令書
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage(143, npcName, itemName)); // \f1%0が%1をくれました。
+						pc.getQuest().set_step(L1Quest.QUEST_LEVEL15, 1);
+						htmlid = "prokel3";
+					// 「プロケルの2番目の課題を遂行する」
+					} else if (s.equalsIgnoreCase("c") && lv30_step == 0) {
+						final int[] item_ids = { 49211, 49215, }; // プロケルの2番目の指令書,プロケルの鉱物の袋
+						final int[] item_amounts = { 1, 1,};
+						for (int i = 0; i < item_ids.length; i++) {
+							L1ItemInstance item = pc.getInventory().storeItem(
+									item_ids[i], item_amounts[i]);
+							pc.sendPackets(new S_ServerMessage(143,
+									((L1NpcInstance) obj).getNpcTemplate()
+											.get_name(), item.getItem().getName()));
+						}
+						pc.getQuest().set_step(L1Quest.QUEST_LEVEL30, 1);
+						htmlid = "prokel9";
+					// 「鉱物の袋が必要だ」
+					} else if (s.equalsIgnoreCase("e")) {
+						if (pc.getInventory().checkItem(49215, 1)) {
+							htmlid = "prokel35";
+						} else {
+							L1NpcInstance npc = (L1NpcInstance) obj;
+							L1ItemInstance item = pc.getInventory().storeItem(49215, 1); // プロケルの鉱物の袋
+							String npcName = npc.getNpcTemplate().get_name();
+							String itemName = item.getItem().getName();
+							pc.sendPackets(new S_ServerMessage(143, npcName, itemName)); // \f1%0が%1をくれました。
+							htmlid = "prokel13";
+						}
+					// 「プロケルの3番目の課題を遂行する」
+					} else if (s.equalsIgnoreCase("f") && lv45_step == 0) {
+						final int[] item_ids = { 49209, 49212, 49226, }; // プロケルの手紙,プロケルの3番目の指令書,タワー ポータル テレポート スクロール
+						final int[] item_amounts = { 1, 1, 1,};
+						for (int i = 0; i < item_ids.length; i++) {
+							L1ItemInstance item = pc.getInventory().storeItem(
+									item_ids[i], item_amounts[i]);
+							pc.sendPackets(new S_ServerMessage(143,
+									((L1NpcInstance) obj).getNpcTemplate()
+											.get_name(), item.getItem().getName()));
+						}
+						pc.getQuest().set_step(L1Quest.QUEST_LEVEL45, 1);
+						htmlid = "prokel16";
+					}
+				}
+			}
+
+			// 長老 シルレイン
+			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80145) {
+				if (pc.isDragonKnight()) {
+					int lv45_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL45);
+					// 「プロケルの手紙を渡す」
+					if (s.equalsIgnoreCase("l") && lv45_step == 1) {
+						if (pc.getInventory().checkItem(49209, 1)) { // check
+							pc.getInventory().consumeItem(49209, 1); // del
+							pc.getQuest().set_step(L1Quest.QUEST_LEVEL45, 2);
+							htmlid = "silrein38";
+						}
+					} else if (s.equalsIgnoreCase("m") && lv45_step == 2) {
+						pc.getQuest().set_step(L1Quest.QUEST_LEVEL45, 3);
+						htmlid = "silrein39";
+					}
+				}
+			}
+
+			// エルラス
+			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80135) {
+				if (pc.isDragonKnight()) {
+					// 「オーク密使変身スクロールを受け取る」
+					if (s.equalsIgnoreCase("a")) {
+						if (pc.getInventory().checkItem(49220, 1)) {
+							htmlid = "elas5";
+						} else {
+							L1NpcInstance npc = (L1NpcInstance) obj;
+							L1ItemInstance item = pc.getInventory().storeItem(49220, 1); // オーク密使変身スクロール
+							String npcName = npc.getNpcTemplate().get_name();
+							String itemName = item.getItem().getName();
+							pc.sendPackets(new S_ServerMessage(143, npcName, itemName)); // \f1%0が%1をくれました。
+							htmlid = "elas4";
+						}
+					}
+				}
+			}
+
+			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81245) { // オーク密使(HC3)
+				if (pc.isDragonKnight()) {
+					if(s.equalsIgnoreCase("request flute of spy")) {
+						if (pc.getInventory().checkItem(49223, 1)) { // check
+							pc.getInventory().consumeItem(49223, 1); // del
+							L1NpcInstance npc = (L1NpcInstance) obj;
+							L1ItemInstance item = pc.getInventory().storeItem(49222, 1); // オーク密使の笛
+							String npcName = npc.getNpcTemplate().get_name();
+							String itemName = item.getItem().getName();
+							pc.sendPackets(new S_ServerMessage(143, npcName, itemName)); // \f1%0が%1をくれました。
+							htmlid = "";
+						} else {
+							htmlid = "";
+						}
+					}
+				}
+			}
 //羅賓孫 熾炎天使弓
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71256) {
 			if (s.equalsIgnoreCase("E")) {

@@ -2777,9 +2777,11 @@ public class L1MerchantInstance extends L1NpcInstance {
 			} else if (npcid == 80134) { // タリオン
 				if(player.isDragonKnight()) { // ドラゴンナイト
 					int lv30_step = quest.get_step(L1Quest.QUEST_LEVEL30);
-					if(player.getLevel() >= 30
-							&& lv30_step == 2) {
+					int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
+					if(player.getLevel() >= 30 && lv30_step == 2) {
 						htmlid = "talrion1";
+					} else if(player.getLevel() >= 45 && lv45_step == 5) {
+						htmlid = "talrion9";
 					}
 				}
 			} else if (npcid == 80135) { // エルラス
@@ -2811,7 +2813,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 							&& lv30_step == L1Quest.QUEST_END) {
 						if(lv45_step == 0) {
 							htmlid = "prokel15";
-						} else if(lv45_step == L1Quest.QUEST_END) { // クリア済み
+						} else if(lv45_step >= 5) { // クリア済み
 							htmlid = "prokel20";
 						} else {
 							htmlid = "prokel17";
@@ -2835,6 +2837,31 @@ public class L1MerchantInstance extends L1NpcInstance {
 						}
 					} else { // Lv15未満
 						htmlid = "prokel1";
+					}
+				}
+			} else if (npcid == 80145) { // 長老 シルレイン
+				int lv15_step = quest.get_step(L1Quest.QUEST_LEVEL15);
+				int lv30_step = quest.get_step(L1Quest.QUEST_LEVEL30);
+				int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
+				int lv50_step = quest.get_step(L1Quest.QUEST_LEVEL50);
+				if (player.isDragonKnight()) { // ドラゴンナイト
+					if(player.getLevel() >= 45 && lv45_step == 1) {
+						htmlid = "silrein37";
+					} else if (player.getLevel() >= 45 && lv45_step == 2) {
+						htmlid = "silrein38";
+					} else if (player.getLevel() >= 45 && lv45_step == 3) {
+						htmlid = "silrein40";
+					} else if (player.getLevel() >= 45 && lv45_step == 4) {
+						htmlid = "silrein43";
+					}
+				}
+			} else if (npcid == 81245) { // オーク密使(HC3)
+				if (player.isDragonKnight()) {
+					if (player.getTempCharGfx() == 6984) { // オーク密使変身
+						int lv30_step = player.getQuest().get_step(L1Quest.QUEST_LEVEL30);
+						if (lv30_step == 1) {
+							htmlid = "spy_orc1";
+						}
 					}
 				}
 			} else if (npcid == 71256) {//熾炎天使弓 羅賓孫

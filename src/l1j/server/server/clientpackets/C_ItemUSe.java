@@ -1128,7 +1128,8 @@ public class C_ItemUSe extends ClientBasePacket
 				} else if (itemId == 41154 // 闇の鱗
 						|| itemId == 41155 // 烈火の鱗
 						|| itemId == 41156 // 背德者の鱗
-						|| itemId == 41157) { // 憎惡の鱗
+						|| itemId == 41157 // 憎惡の鱗
+						|| itemId == 49220) { // オーク密使変身スクロール
 					usePolyScale(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 41143 // ラバーボーンヘッド変身ポーション
@@ -3035,6 +3036,44 @@ public class C_ItemUSe extends ClientBasePacket
 						}
 						pc.sendPackets(new S_ServerMessage(msg));
 						pc.getInventory().removeItem(l1iteminstance1, 1);
+					} else if (itemId == 49210) { // プロケルの1番目の指令書
+						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
+								"first_p"));
+					} else if (itemId == 49211) { // プロケルの2番目の指令書
+						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
+								"second_p"));
+					} else if (itemId == 49212) { // プロケルの3番目の指令書
+						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
+								"third_p"));
+					} else if (itemId == 49287) { // プロケルの4番目の指令書
+						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
+								"fourth_p"));
+					} else if (itemId == 49288) { // プロケルの5番目の指令書
+						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
+								"fifth_p"));
+					} else if (itemId == 49222) { // オーク密使の笛
+						if (pc.isDragonKnight()
+								&& pc.getMapId() == 61) { // HC3F
+							boolean found = false;
+							for (L1Object obj : L1World.getInstance().getObject()) {
+								if (obj instanceof L1MonsterInstance) {
+									L1MonsterInstance mob = (L1MonsterInstance) obj;
+									if (mob != null) {
+										if (mob.getNpcTemplate().get_npcId() == 46161) {
+											found = true;
+											break;
+										}
+									}
+								}
+							}
+							if (found) {
+								pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+							} else {
+								L1SpawnUtil.spawn(pc, 46161, 0, 0); // オーク 密使リーダー
+							}
+							pc.getInventory().consumeItem(49222, 1);
+						}
+
 					} else {
 						pc.sendPackets(new S_ServerMessage(154)); // \f1スクロールが散らばります。
 					}
@@ -3871,6 +3910,8 @@ public class C_ItemUSe extends ClientBasePacket
 			polyId = 3888;
 		} else if (itemId == 41157) { // 憎惡の鱗
 			polyId = 3784;
+		} else if (itemId == 49220) { // オーク密使変身スクロール
+			polyId = 6984;
 		}
 		L1PolyMorph.doPoly(pc, polyId, 600, L1PolyMorph.MORPH_BY_ITEMMAGIC);
 	}

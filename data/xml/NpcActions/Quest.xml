@@ -1026,6 +1026,18 @@
 			<ShowHtml HtmlId="talrion3"/>
 		</Fail>
 	</MakeItem>
+	<!--DRKLv45クエスト / タリオン-->
+	<MakeItem Name="b" Class="R" NpcId="80134" AmountInputable="false" QuestId="Level45" QuestStep="5">
+		<Item Amount="1" ItemId="21102"/>
+		<Material Amount="1" ItemId="49214"/>
+		<Succeed>
+			<SetQuest Id="Level45" Step="End"/>
+			<ShowHtml HtmlId="talrion7"/>
+		</Succeed>
+		<Fail>
+			<ShowHtml HtmlId="talrion8"/>
+		</Fail>
+	</MakeItem>
 	<!--DRKLv15クエスト / 長老 プロケル-->
 	<MakeItem Name="b" Class="R" NpcId="80136" AmountInputable="false" QuestId="Level15" QuestStep="1">
 		<Item Amount="1" ItemId="275"/>
@@ -1041,6 +1053,7 @@
 			<ShowHtml HtmlId="prokel6"/>
 		</Fail>
 	</MakeItem>
+	<!--DRKLv30クエスト / 長老 プロケル-->
 	<MakeItem Name="d" Class="R" NpcId="80136" AmountInputable="false" QuestId="Level30" QuestStep="1">
 		<Item Amount="1" ItemId="49107"/>
 		<Item Amount="1" ItemId="49213"/>
@@ -1051,6 +1064,30 @@
 		</Succeed>
 		<Fail>
 			<ShowHtml HtmlId="prokel12"/>
+		</Fail>
+	</MakeItem>
+	<!--DRKLv45クエスト / 長老 プロケル-->
+	<MakeItem Name="g" Class="R" NpcId="80136" AmountInputable="false" QuestId="Level45" QuestStep="4">
+		<Item Amount="1" ItemId="49214"/>
+		<Material Amount="1" ItemId="49224"/>
+		<Succeed>
+			<SetQuest Id="Level45" Step="5"/>
+			<ShowHtml HtmlId="prokel18"/>
+		</Succeed>
+		<Fail>
+			<ShowHtml HtmlId="prokel19"/>
+		</Fail>
+	</MakeItem>
+	<!--DRKLv45クエスト / 長老 シルレイン-->
+	<MakeItem Name="n" Class="R" NpcId="80145" AmountInputable="false" QuestId="Level45" QuestStep="3">
+		<Item Amount="1" ItemId="49224"/>
+		<Material Amount="10" ItemId="49225"/>
+		<Succeed>
+			<SetQuest Id="Level45" Step="4"/>
+			<ShowHtml HtmlId="silrein41"/>
+		</Succeed>
+		<Fail>
+			<ShowHtml HtmlId="silrein42"/>
 		</Fail>
 	</MakeItem>
 	<!--海賊島「宝の地図3」クエスト / レスタ-->
