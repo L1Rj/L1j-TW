@@ -930,25 +930,8 @@ public class L1Attack
 		if (_weaponType == 20) { // 弓
 			if (_arrow != null) {
 				int add_dmg = 0;
-				if (_targetNpc.getNpcTemplate().get_size().
-						equalsIgnoreCase("large")) {
-					add_dmg = _arrow.getItem().getDmgLarge();
-				} else {
-					add_dmg = _arrow.getItem().getDmgSmall();
-				}
 				if (add_dmg == 0) {
 					add_dmg = 1;
-				}
-				if (_targetNpc.getNpcTemplate().is_hard()) {
-					add_dmg /= 2;
-				}
-				if ((_arrow.getItem().getItemId() == 40741
-						|| _arrow.getItem().getItemId() == 40744
-						|| _arrow.getItem().getItemId() == 40746
-						|| _arrow.getItem().getItemId() == 40747
-						|| _arrow.getItem().getItemId() == 40748)
-						&& _targetNpc.getNpcTemplate().get_undead() != 0) {
-					dmg = RandomArrayList.getArrayshortList((short) 20) + add_dmg;
 				}
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
 			} else if (_weaponId == 190) { // 沙哈之弓
@@ -1195,7 +1178,7 @@ public class L1Attack
 		}
 
 		if (_weaponType == 20) { // 弓
-			/*if (_arrow != null) {
+			if (_arrow != null) {
 				int add_dmg = 0;
 				if (_targetNpc.getNpcTemplate().get_size().
 						equalsIgnoreCase("large")) {
@@ -1209,8 +1192,16 @@ public class L1Attack
 				if (_targetNpc.getNpcTemplate().is_hard()) {
 					add_dmg /= 2;
 				}
+				if ((_arrow.getItem().getItemId() == 40741
+						|| _arrow.getItem().getItemId() == 40744
+						|| _arrow.getItem().getItemId() == 40746
+						|| _arrow.getItem().getItemId() == 40747
+						|| _arrow.getItem().getItemId() == 40748)
+						&& _targetNpc.getNpcTemplate().get_undead() != 0) {
+					dmg = RandomArrayList.getArrayshortList((short) 20) + add_dmg;
+				}
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
-			} else */if (_weaponId == 190) { // 沙哈之弓
+			} else if (_weaponId == 190) { // 沙哈之弓
 				dmg += RandomArrayList.getArrayshortList((short) 15) + 1;
 			} else if (_weaponId == 507) { // 玄冰弓
 				dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
