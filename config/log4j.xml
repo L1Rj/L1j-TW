@@ -53,12 +53,166 @@
         <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
     </appender>
 
+    <!-- ClanWareHouseIn 血盟倉庫存放紀錄 -->
+    <appender name="ClanWareHouseIn" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
+        <param name="file" value="log/ClanWareHouseIn.log"/>
+        <param name="append" value="false"/>
+        <param name="backupDir" value="log/backup"/>
+        <!-- Windows systems doesn't support : char in file names -->
+        <param name="backupDateFormat" value="yyyy-MM-dd HH-mm-ss"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p %d{yyyy-MM-dd HH:mm:ss}] %c:%L - %m%n"/>
+        </layout>
+        <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
+    </appender>
+
+    <!-- ClanWareHouseOut 血盟倉庫取出紀錄 -->
+    <appender name="ClanWareHouseOut" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
+        <param name="file" value="log/ClanWareHouseOut.log"/>
+        <param name="append" value="false"/>
+        <param name="backupDir" value="log/backup"/>
+        <!-- Windows systems doesn't support : char in file names -->
+        <param name="backupDateFormat" value="yyyy-MM-dd HH-mm-ss"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p %d{yyyy-MM-dd HH:mm:ss}] %c:%L - %m%n"/>
+        </layout>
+        <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
+    </appender>
+
+    <!-- DeleteCharacter 角色刪除紀錄 -->
+    <appender name="DeleteCharacter" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
+        <param name="file" value="log/DeleteCharacter.log"/>
+        <param name="append" value="false"/>
+        <param name="backupDir" value="log/backup"/>
+        <!-- Windows systems doesn't support : char in file names -->
+        <param name="backupDateFormat" value="yyyy-MM-dd HH-mm-ss"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p %d{yyyy-MM-dd HH:mm:ss}] %c:%L - %m%n"/>
+        </layout>
+        <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
+    </appender>
+
+    <!-- DropItem 道具丟棄紀錄 -->
+    <appender name="DropItem" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
+        <param name="file" value="log/DropItem.log"/>
+        <param name="append" value="false"/>
+        <param name="backupDir" value="log/backup"/>
+        <!-- Windows systems doesn't support : char in file names -->
+        <param name="backupDateFormat" value="yyyy-MM-dd HH-mm-ss"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p %d{yyyy-MM-dd HH:mm:ss}] %c:%L - %m%n"/>
+        </layout>
+        <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
+    </appender>
+
+    <!-- ElfWareHouseIn 妖精倉庫存放紀錄 -->
+    <appender name="ElfWareHouseIn" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
+        <param name="file" value="log/ElfWareHouseIn.log"/>
+        <param name="append" value="false"/>
+        <param name="backupDir" value="log/backup"/>
+        <!-- Windows systems doesn't support : char in file names -->
+        <param name="backupDateFormat" value="yyyy-MM-dd HH-mm-ss"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p %d{yyyy-MM-dd HH:mm:ss}] %c:%L - %m%n"/>
+        </layout>
+        <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
+    </appender>
+
+    <!-- ElfWareHouseOut 妖精倉庫取出紀錄 -->
+    <appender name="ElfWareHouseOut" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
+        <param name="file" value="log/ElfWareHouseOut.log"/>
+        <param name="append" value="false"/>
+        <param name="backupDir" value="log/backup"/>
+        <!-- Windows systems doesn't support : char in file names -->
+        <param name="backupDateFormat" value="yyyy-MM-dd HH-mm-ss"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p %d{yyyy-MM-dd HH:mm:ss}] %c:%L - %m%n"/>
+        </layout>
+        <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
+    </appender>
+
+    <!-- PickUpItem 道具撿取紀錄 -->
+    <appender name="PickUpItem" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
+        <param name="file" value="log/PickUpItem.log"/>
+        <param name="append" value="false"/>
+        <param name="backupDir" value="log/backup"/>
+        <!-- Windows systems doesn't support : char in file names -->
+        <param name="backupDateFormat" value="yyyy-MM-dd HH-mm-ss"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p %d{yyyy-MM-dd HH:mm:ss}] %c:%L - %m%n"/>
+        </layout>
+        <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
+    </appender>
+
+    <!-- PrivateShopBuy 個人商店購買紀錄 -->
+    <appender name="PrivateShopBuy" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
+        <param name="file" value="log/PrivateShopBuy.log"/>
+        <param name="append" value="false"/>
+        <param name="backupDir" value="log/backup"/>
+        <!-- Windows systems doesn't support : char in file names -->
+        <param name="backupDateFormat" value="yyyy-MM-dd HH-mm-ss"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p %d{yyyy-MM-dd HH:mm:ss}] %c:%L - %m%n"/>
+        </layout>
+        <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
+    </appender>
+
+    <!-- PrivateShopSell 個人商店販賣紀錄 -->
+    <appender name="PrivateShopSell" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
+        <param name="file" value="log/PrivateShopSell.log"/>
+        <param name="append" value="false"/>
+        <param name="backupDir" value="log/backup"/>
+        <!-- Windows systems doesn't support : char in file names -->
+        <param name="backupDateFormat" value="yyyy-MM-dd HH-mm-ss"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p %d{yyyy-MM-dd HH:mm:ss}] %c:%L - %m%n"/>
+        </layout>
+        <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
+    </appender>
+
+    <!-- WareHouseIn 個人倉庫存放紀錄 -->
+    <appender name="WareHouseIn" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
+        <param name="file" value="log/WareHouseIn.log"/>
+        <param name="append" value="false"/>
+        <param name="backupDir" value="log/backup"/>
+        <!-- Windows systems doesn't support : char in file names -->
+        <param name="backupDateFormat" value="yyyy-MM-dd HH-mm-ss"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p %d{yyyy-MM-dd HH:mm:ss}] %c:%L - %m%n"/>
+        </layout>
+        <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
+    </appender>
+
+    <!-- WareHouseOut 個人倉庫取出紀錄 -->
+    <appender name="WareHouseOut" class="com.l1jtw.commons.log4j.appenders.TruncateToZipFileAppender">
+        <param name="file" value="log/WareHouseOut.log"/>
+        <param name="append" value="false"/>
+        <param name="backupDir" value="log/backup"/>
+        <!-- Windows systems doesn't support : char in file names -->
+        <param name="backupDateFormat" value="yyyy-MM-dd HH-mm-ss"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p %d{yyyy-MM-dd HH:mm:ss}] %c:%L - %m%n"/>
+        </layout>
+        <filter class="com.l1jtw.commons.log4j.filters.ThrowablePresentFilter"/>
+    </appender>
+
     <!-- Root Logger -->
     <root>
         <priority value="info"/>
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="CONSOLE_TO_FILE"/>
         <appender-ref ref="ERROR_APPENDER"/>
+        <appender-ref ref="ClanWareHouseIn"/>
+        <appender-ref ref="ClanWareHouseOut"/>
+        <appender-ref ref="DeleteCharacter"/>
+        <appender-ref ref="DropItem"/>
+        <appender-ref ref="ElfWareHouseIn"/>
+        <appender-ref ref="ElfWareHouseOut"/>
+        <appender-ref ref="PickUpItem"/>
+        <appender-ref ref="PrivateShopBuy"/>
+        <appender-ref ref="PrivateShopSell"/>
+        <appender-ref ref="WareHouseIn"/>
+        <appender-ref ref="WareHouseOut"/>
     </root>
 
     <!--
