@@ -1,4 +1,5 @@
 /* 20090522 l1j-tw 欄位內容變更 l1j-tw用 與l1j更新無關 */
+/* lijtw 必須匯入使用 */
 
 /* character_items 欄位新增 */
 alter table character_items add `firemr` int(11) default '0' ;
@@ -43,3 +44,8 @@ alter table clan_warehouse add `addhp` int(11) default '0' ;
 alter table clan_warehouse add `addmp` int(11) default '0' ;
 alter table clan_warehouse add `hpr` int(11) default '0' ;
 alter table clan_warehouse add `mpr` int(11) default '0' ;
+
+/* 20090712 l1j-tw l1j-tw用 與l1j更新無關 */
+/* 修正幻術士試煉相關道具索夏依卡靈魂之心 */
+Update etcitem Set use_type = 'choice' Where item_id = '49188';
+
