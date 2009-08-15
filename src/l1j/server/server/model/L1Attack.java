@@ -63,6 +63,7 @@ import static l1j.server.server.model.skill.L1SkillId.FREEZING_BLIZZARD;
 import static l1j.server.server.model.skill.L1SkillId.FREEZING_BREATH;
 import static l1j.server.server.model.skill.L1SkillId.ICE_LANCE;
 import static l1j.server.server.model.skill.L1SkillId.IMMUNE_TO_HARM;
+import static l1j.server.server.model.skill.L1SkillId.ILLUSION_AVATAR;
 import static l1j.server.server.model.skill.L1SkillId.INVISIBILITY;
 import static l1j.server.server.model.skill.L1SkillId.MIRROR_IMAGE;
 import static l1j.server.server.model.skill.L1SkillId.PATIENCE;
@@ -1075,6 +1076,9 @@ public class L1Attack
 		if (_targetPc.hasSkillEffect(IMMUNE_TO_HARM)) {
 			dmg /= 2;
 		}
+		if (_targetPc.hasSkillEffect(ILLUSION_AVATAR)) {
+			dmg *= 3 / 2;
+		}
 		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
 			dmg = 0;
 		}
@@ -1428,6 +1432,9 @@ public class L1Attack
 		}
 		if (_targetPc.hasSkillEffect(IMMUNE_TO_HARM)) {
 			dmg /= 2;
+		}
+		if (_targetPc.hasSkillEffect(ILLUSION_AVATAR)) {
+			dmg *= 3 / 2;
 		}
 		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
 			dmg = 0;

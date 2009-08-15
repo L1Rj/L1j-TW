@@ -319,6 +319,10 @@ public class L1WeaponSkill {
 		dmg += kiringkuFloor + pc.getWeapon().getEnchantLevel()
 		+ pc.getOriginalMagicDamage();
 
+		if (pc.hasSkillEffect(ILLUSION_AVATAR)) {
+			dmg += 10;
+		}
+
 		if (pc.getWeapon().getItem().getItemId() == 270) {
 			pc.sendPackets(new S_SkillSound(pc.getId(), 6983));
 			pc.broadcastPacket(new S_SkillSound(pc.getId(), 6983));

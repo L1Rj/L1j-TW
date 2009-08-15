@@ -662,6 +662,9 @@ public class L1Magic {
 		if (_targetPc.hasSkillEffect(IMMUNE_TO_HARM)) {
 			dmg /= 2;
 		}
+		if (_targetPc.hasSkillEffect(ILLUSION_AVATAR)) {
+			dmg *= 3 / 2;
+		}
 		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
 			dmg = 0;
 		}
@@ -877,6 +880,11 @@ public class L1Magic {
 
 		if (_calcType == PC_PC || _calcType == PC_NPC) { // オリジナルINTによる魔法ダメージ
 			magicDamage += _pc.getOriginalMagicDamage();
+		}
+		if (_calcType == PC_PC || _calcType == PC_NPC) { // アバターによる追加ダメージ
+			if (_pc.hasSkillEffect(ILLUSION_AVATAR)) {
+				magicDamage += 10;
+			}
 		}
 
 		return magicDamage;

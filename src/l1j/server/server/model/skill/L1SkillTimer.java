@@ -377,6 +377,8 @@ class L1SkillStop {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addDmgup(-4);
 				pc.addHitup(-4);
+				pc.addBowDmgup(-4);
+				pc.addBowHitup(-4);
 			}
 		} else if (skillId == ILLUSION_LICH) { // イリュージョン：リッチ
 			if (cha instanceof L1PcInstance) {
@@ -393,6 +395,7 @@ class L1SkillStop {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addDmgup(-10);
+				pc.addBowDmgup(-10);
 			}
 		} else if (skillId == INSIGHT) { // インサイト
 			if (cha instanceof L1PcInstance) {

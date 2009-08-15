@@ -2964,6 +2964,8 @@ public class L1SkillUse {
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.addDmgup(4);
 						pc.addHitup(4);
+						pc.addBowDmgup(4);
+						pc.addBowHitup(4);
 					} else if (_skillId == ILLUSION_LICH) { // イリュージョン：リッチ
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.addSp(2);
@@ -2974,6 +2976,7 @@ public class L1SkillUse {
 					} else if (_skillId == ILLUSION_AVATAR) { // イリュージョン：アバター
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.addDmgup(10);
+						pc.addBowDmgup(10);
 					} else if (_skillId == INSIGHT) { // インサイト
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.addStr((byte) 1);
