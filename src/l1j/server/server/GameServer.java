@@ -261,14 +261,20 @@ public class GameServer extends Thread {
 	/**
 	 * オンライン中のプレイヤー全てに對してkick、キャラクター情報の保存をする。
 	 */
-	public void disconnectAllCharacters() {
-		Collection<L1PcInstance> players = L1World.getInstance()
-				.getAllPlayers();
-		for (L1PcInstance pc : players) {
-			pc.getNetConnection().setActiveChar(null);
-			L1World.getInstance().removeObject(pc);
-		}
-	}
+    public void disconnectAllCharacters() {
+        Collection<L1PcInstance> players = L1World.getInstance()
+                .getAllPlayers();
+        for (L1PcInstance pc : players) {
+            pc.getNetConnection().setActiveChar(null);
+//            L1World.getInstance().removeObject(pc);
+            pc.getNetConnection().kick();
+        }
+        // 全员Kickした后に保存处理をする
+        for (L1PcInstance pc : players) {
+            ClientThread.quitGame(pc);
+            L1World.getInstance().removeObject(pc);
+        }
+    }
 
 	private class ServerShutdownThread extends Thread {
 		private final int _secondsCount;
