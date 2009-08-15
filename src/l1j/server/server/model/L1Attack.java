@@ -1581,7 +1581,7 @@ public class L1Attack
 		if ((_weaponMaterial == 14 || _weaponMaterial == 17
 				|| _weaponMaterial == 22)
 				&& (undead == 1 || undead == 3 || undead == 5)) { // 銀・ミスリル・オリハルコン、かつ、アンデッド系・アンデッド系ボス・銀特効モンスター
-			damage += RandomArrayList.getArray20List() + 1; // +1 ~ +20
+			damage += RandomArrayList.getArrayshortList((short) 20) + 1; // +1 ~ +20
 		}
 		if ((_weaponMaterial == 17 || _weaponMaterial == 22)
 				&& undead == 2) { // ミスリル・オリハルコン、かつ、悪魔系
