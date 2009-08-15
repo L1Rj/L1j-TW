@@ -943,12 +943,13 @@ public class L1Attack
 			}
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg;
-			if (_targetNpc.getNpcTemplate().get_size().
+			/*if (_targetNpc.getNpcTemplate().get_size().
 					equalsIgnoreCase("large")) {
 				add_dmg = _sting.getItem().getDmgLarge();
 			} else {
 				add_dmg = _sting.getItem().getDmgSmall();
-			}
+			}*/ //PC - PC 有分大怪小怪???
+			add_dmg = _sting.getItem().getDmgSmall(); // 我記得都是小怪
 			if (add_dmg == 0) {
 				add_dmg = 1;
 			}
@@ -1196,14 +1197,14 @@ public class L1Attack
 				if (_targetNpc.getNpcTemplate().is_hard()) {
 					add_dmg /= 2;
 				}
-				if ((_arrow.getItem().getItemId() == 40741
+				/*if ((_arrow.getItem().getItemId() == 40741
 						|| _arrow.getItem().getItemId() == 40744
 						|| _arrow.getItem().getItemId() == 40746
 						|| _arrow.getItem().getItemId() == 40747
 						|| _arrow.getItem().getItemId() == 40748)
 						&& _targetNpc.getNpcTemplate().get_undead() != 0) {
 					dmg = RandomArrayList.getArrayshortList((short) 20) + add_dmg;
-				}
+				}*/ //原有的+成系統應該還有作用吧
 				dmg += RandomArrayList.getArrayshortList((short) add_dmg) + 1;
 			} else if (_weaponId == 190) { // 沙哈之弓
 				dmg += RandomArrayList.getArrayshortList((short) 15) + 1;
@@ -1580,7 +1581,7 @@ public class L1Attack
 		if ((_weaponMaterial == 14 || _weaponMaterial == 17
 				|| _weaponMaterial == 22)
 				&& (undead == 1 || undead == 3 || undead == 5)) { // 銀・ミスリル・オリハルコン、かつ、アンデッド系・アンデッド系ボス・銀特効モンスター
-			damage += RandomArrayList.getArray5List() + 1;
+			damage += RandomArrayList.getArray20List() + 1; // +1 ~ +20
 		}
 		if ((_weaponMaterial == 17 || _weaponMaterial == 22)
 				&& undead == 2) { // ミスリル・オリハルコン、かつ、悪魔系
@@ -1597,7 +1598,7 @@ public class L1Attack
 	}
 
 	public static final int[] Damage_weaponAttrEnchantLevel = { 0, 1, 3, 5 };
-	
+
 	// ●●●● 武器の属性強化による追加ダメージ算出 ●●●●
 	private int calcAttrEnchantDmg() {
 		int damage = 0;
@@ -1608,13 +1609,9 @@ public class L1Attack
 // || (weakAttr & 8) == 8 && _weaponAttrEnchantKind == 8) { // 風
 // damage = _weaponAttrEnchantLevel;
 // }
-		if (_weaponAttrEnchantLevel == 1) {
-			damage = 1;
-		} else if (_weaponAttrEnchantLevel == 2) {
-			damage = 3;
-		} else if (_weaponAttrEnchantLevel == 3) {
-			damage = 5;
-		}
+		/*if (_weaponAttrEnchantLevel == 1) {damage = 1;} else if (_weaponAttrEnchantLevel == 2) {damage = 3;
+		} else if (_weaponAttrEnchantLevel == 3) {damage = 5;}*/
+		damage = Damage_weaponAttrEnchantLevel[_weaponAttrEnchantLevel];
 
 		// XXX 耐性処理は本来、耐性合計値ではなく、各値を個別に処理して総和する。
 		int resist = 0;
