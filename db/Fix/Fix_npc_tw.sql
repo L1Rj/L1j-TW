@@ -151,3 +151,8 @@ Update npc Set atk_magic_speed = '2200' Where npcid = '45347';
 /* 20090722 修正 扭曲的空間 次元之門 NPC型態為傳送師 */
 Update npc Set impl = 'L1Teleporter' Where npcid = '80048';
 Update npc Set impl = 'L1Teleporter' Where npcid = '80058';
+
+/* 20090816 修正 虎男 暴走兔 浣熊 不可復活 */
+Update npc Set cant_resurrect  = '1' Where npcid = '45313';
+Update npc Set cant_resurrect  = '1' Where npcid = '45313';
+Update npc Set cant_resurrect  = '1' Where npcid = '45049';
