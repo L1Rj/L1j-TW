@@ -1113,9 +1113,8 @@ public class L1NpcInstance extends L1Character {
 		if (template.get_randomlevel() == 0) { // ランダムLv指定なし
 			setLevel(template.get_level());
 		} else { // ランダムLv指定あり（最小值:get_level(),最大值:get_randomlevel()）
-			randomlevel = _random.nextInt(
-					template.get_randomlevel() - template.get_level() + 1);
 			diff = template.get_randomlevel() - template.get_level();
+			randomlevel = RandomArrayList.getArrayshortList((short) (diff + 1));
 			rate = randomlevel / diff;
 			randomlevel += template.get_level();
 			setLevel(randomlevel);

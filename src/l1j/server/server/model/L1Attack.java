@@ -350,7 +350,7 @@ public class L1Attack
 			if (_weaponRange != -1)
 			{
 				if (_pc.getTileLineDistance(_target) > _weaponRange + 1)
-				{  
+				{
 					_isHit = false; // 射程範囲外
 					return _isHit;
 				}
@@ -432,9 +432,9 @@ public class L1Attack
 			_hitRate += _weaponAddHit + _pc.getHitup()
 					+ _pc.getOriginalHitup() + (_weaponEnchant / 2);
 		} else {
-			_hitRate += _weaponAddHit + _pc.getBowHitup() 
-			+ + L1DollInstance.getBowHitAddByDoll(_pc) // 娃娃增加弓命中
-			+ _pc.getOriginalBowHitup() + (_weaponEnchant / 2);
+			_hitRate += _weaponAddHit + _pc.getBowHitup()
+					+ L1DollInstance.getBowHitAddByDoll(_pc) // 娃娃增加弓命中
+					+ _pc.getOriginalBowHitup() + (_weaponEnchant / 2);
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中
@@ -568,9 +568,9 @@ public class L1Attack
 			_hitRate += _weaponAddHit + _pc.getHitup() + _pc.getOriginalHitup()
 					+ (_weaponEnchant / 2);
 		} else {
-			_hitRate += _weaponAddHit + _pc.getBowHitup() 
-			+ L1DollInstance.getBowHitAddByDoll(_pc) // 娃娃增加弓命中
-			+ _pc.getOriginalBowHitup() + (_weaponEnchant / 2);
+			_hitRate += _weaponAddHit + _pc.getBowHitup()
+					+ L1DollInstance.getBowHitAddByDoll(_pc) // 娃娃增加弓命中
+					+ _pc.getOriginalBowHitup() + (_weaponEnchant / 2);
 		}
 
 		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中
@@ -884,9 +884,6 @@ public class L1Attack
 			weaponDamage = 0;
 		} else if (_weaponType == 0) { // 素手
 			weaponDamage = 0;
-			// int PT_Value = (int) ((_statusDamage + RandomArrayList.getArray10List()) / (RandomArrayList.getArray3List() + 1));
-			// System.out.println("空手給與打擊值 : " + PT_Value);
-			// return PT_Value;
 		} else {
 			weaponDamage = RandomArrayList.getArrayshortList((short) weaponMaxDamage) + 1;
 		}
@@ -976,10 +973,7 @@ public class L1Attack
 		}
 
 		if (_weaponType == 0) { // 素手
-			dmg -= RandomArrayList.getArray10List(); // 5.10 修正空手無法攻擊&力量因素補入 - 額外1~10打擊
-			// int PT_Value = (int) ((_statusDamage + RandomArrayList.getArray10List()) / (RandomArrayList.getArray3List() + 1));
-			// System.out.println("空手給與打擊值 : " + dmg + " ; 基準數據值 : " + _statusDamage);
-			// return PT_Value;
+			dmg -= RandomArrayList.getArray10List();
 		}
 
 		if (_weaponType2 == 17) { // キーリンク
@@ -1102,11 +1096,11 @@ public class L1Attack
 		}
 // 20090720 BAO提供 隱身被攻擊現形形
 		if (_isHit = true) {
-            if ((_pc.hasSkillEffect(BLIND_HIDING)
-                    || _pc.hasSkillEffect(INVISIBILITY))){
-                _pc.delInvis();
-            }
-        }
+			if ((_pc.hasSkillEffect(BLIND_HIDING)
+					|| _pc.hasSkillEffect(INVISIBILITY))){
+				_pc.delInvis();
+			}
+		}
 //add end
 		return (int) dmg;
 	}
@@ -1135,9 +1129,6 @@ public class L1Attack
 			weaponDamage = 0;
 		} else if (_weaponType == 0) { // 素手
 			weaponDamage = 0;
-			// int PT_Value = (int) ((_statusDamage + RandomArrayList.getArray10List()) / (RandomArrayList.getArray3List() + 1));
-			// System.out.println("空手給與打擊值 : " + PT_Value);
-			// return PT_Value;
 		} else {
 			weaponDamage = RandomArrayList.getArrayshortList((short) weaponMaxDamage) + 1;
 		}
@@ -1163,7 +1154,7 @@ public class L1Attack
 
 		if (_pc.hasSkillEffect(DOUBLE_BRAKE) && _weaponType == 54 || _weaponType == 58)
 		{
-			if (RandomArrayList.getArray3List() == 0) 
+			if (RandomArrayList.getArray3List() == 0)
 			{
 				weaponTotalDamage *= 2;
 			}
@@ -1251,10 +1242,7 @@ public class L1Attack
 		}
 
 		if (_weaponType == 0) { // 素手
-			dmg -= RandomArrayList.getArray10List(); // 5.10 修正空手無法攻擊&力量因素補入 - 額外1~10打擊
-			// int PT_Value = (int) ((_statusDamage + RandomArrayList.getArray10List()) / (RandomArrayList.getArray3List() + 1));
-			// System.out.println("空手給與打擊值 : " + dmg + " ; 基準數據值 : " + _statusDamage);
-			// return PT_Value;
+			dmg -= RandomArrayList.getArray10List();
 		}
 
 		if (_weaponType2 == 17) { // キーリンク
@@ -1338,11 +1326,11 @@ public class L1Attack
 		}
 // 20090720 BAO提供 隱身被攻擊現形
 		if (_isHit = true) {
-            if ((_pc.hasSkillEffect(BLIND_HIDING)
-                    || _pc.hasSkillEffect(INVISIBILITY))){
-                _pc.delInvis();
-            }
-        }
+			if ((_pc.hasSkillEffect(BLIND_HIDING)
+					|| _pc.hasSkillEffect(INVISIBILITY))){
+				_pc.delInvis();
+			}
+		}
 //add end
 		return (int) dmg;
 	}
@@ -1360,7 +1348,6 @@ public class L1Attack
 		 * } else {
 		 * dmg = RandomArrayList.getArrayshortList((short) lvl) + _npc.getStr() / 2 + 1;
 		 * }
-		 * 
 		 */
 		dmg = RandomArrayList.getArrayshortList((short) lvl) + _npc.getStr() / 2 + 1;
 
@@ -1475,13 +1462,13 @@ public class L1Attack
 			_isHit = false;
 
 		addNpcPoisonAttack(_npc, _targetPc);
-// 20090720 BAO提供 隱身被攻擊現形		
+// 20090720 BAO提供 隱身被攻擊現形
 		if (_isHit = true) {
-            if ((_targetPc.hasSkillEffect(BLIND_HIDING)
-                    || _targetPc.hasSkillEffect(INVISIBILITY))){
-                _targetPc.delInvis();
-            }
-        }
+			if ((_targetPc.hasSkillEffect(BLIND_HIDING)
+					|| _targetPc.hasSkillEffect(INVISIBILITY))){
+				_targetPc.delInvis();
+			}
+		}
 //add end
 		return (int) dmg;
 	}
@@ -1722,7 +1709,7 @@ public class L1Attack
 		
 		if (_drainHp <= 0)
 			_drainHp = 1;
-		
+			
 		return _drainHp;
 	}
 
@@ -1863,7 +1850,7 @@ public class L1Attack
 		
 		// 目標と同じ位置なら向いてる方向へ真っ直ぐ
 		if (dis != 0)
-		{ 
+		{
 			avg_x = dis_x / dis;
 			avg_y = dis_y / dis;
 		}
@@ -1872,7 +1859,7 @@ public class L1Attack
 		int add_x = (int) Math.floor((avg_x * 15) + 0.59f); // 上下左右がちょっと優先な丸め
 		int add_y = (int) Math.floor((avg_y * 15) + 0.59f); // 上下左右がちょっと優先な丸め
 
-		if (cx > targetX) 
+		if (cx > targetX)
 			add_x *= -1;
 		
 		if (cy > targetY)
@@ -1912,24 +1899,24 @@ public class L1Attack
 		
 		// アタッカーがＰＣの場合
 		if (PC_PC || PC_NPC)
-		{ 
+		{
 			msg0 = _pc.getName();
 		}
 		// アタッカーがＮＰＣの場合
 		else if (NPC_PC)
-		{ 
+		{
 			msg0 = _npc.getName();
 		}
 		
 		// ターゲットがＰＣの場合
 		if (NPC_PC || PC_PC)
-		{ 
+		{
 			msg4 = _targetPc.getName();
 			msg2 = "HitR" + _hitRate + "% THP" + _targetPc.getCurrentHp();
 		}
 		// ターゲットがＮＰＣの場合
 		else if (PC_NPC)
-		{ 
+		{
 			msg4 = _targetNpc.getName();
 			msg2 = "Hit" + _hitRate + "% Hp" + _targetNpc.getCurrentHp();
 		}
@@ -1943,7 +1930,7 @@ public class L1Attack
 		}
 		// ターゲットがＰＣの場合
 		if (NPC_PC || PC_PC)
-		{ 
+		{
 			_targetPc.sendPackets(new S_ServerMessage(166, msg0, msg1, msg2,
 					msg3, msg4)); // \f1%0が%4%1%3 %2
 		}
@@ -1967,7 +1954,7 @@ public class L1Attack
 			
 			// HP吸収による回復
 			if (_drainHp > 0)
-			{ 
+			{
 				short newHp = (short) (_pc.getCurrentHp() + _drainHp);
 				_pc.setCurrentHp(newHp);
 			}
