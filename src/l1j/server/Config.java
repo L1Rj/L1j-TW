@@ -419,6 +419,7 @@ public final class Config {
 	// 一回の攻擊で吸えるMP限界(SOM、鋼鐵SOM）
 	public static final int MANA_DRAIN_LIMIT_PER_SOM_ATTACK = 9;
 
+/*
 	private static int REVISION;
 	private static String EDIT_DATE;
 	private static String[] _systemInfo;
@@ -443,9 +444,9 @@ public final class Config {
 		} catch (Exception e) {
 		}
 	}
-
+*/
 	public static void load() {
-		loadInfo();
+//		loadInfo();
 		_log.info("Loading『GameServer Config』");
 		// server.properties
 		try {

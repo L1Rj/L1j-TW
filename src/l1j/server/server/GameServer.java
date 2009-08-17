@@ -148,6 +148,10 @@ public class GameServer extends Thread {
 		} else {
 			System.out.println("Non-PvP設定: 有效（不可PVP）");
 		}
+		
+		System.out.println("=================================================");
+		System.out.println("===== Lineage 3.0C ======= L1j1999-tw1021 版 =====");
+		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
 		System.out.println("伺服器最高連線人數： " + (maxOnlineUsers) + "人");
