@@ -4113,175 +4113,174 @@ public class C_NPCAction extends ClientBasePacket {
 			} else {
 				htmlid = "aras7";
 			}
-// BAO提供  カミーラ(海賊島)
 		}
-			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71036) {
-				if (s.equalsIgnoreCase("a")) {
-					htmlid = "kamyla7";
-					pc.getQuest().set_step(L1Quest.QUEST_KAMYLA, 1);
-				} else if (s.equalsIgnoreCase("c")) {
-					htmlid = "kamyla10";
-					pc.getInventory().consumeItem(40644, 1);
-					pc.getQuest().set_step(L1Quest.QUEST_KAMYLA, 3);
-				} else if (s.equalsIgnoreCase("e")) {
-					htmlid = "kamyla13";
-					pc.getInventory().consumeItem(40630, 1);
-					pc.getQuest().set_step(L1Quest.QUEST_KAMYLA, 4);
-				} else if (s.equalsIgnoreCase("i")) {
-					htmlid = "kamyla25";
-				} else if (s.equalsIgnoreCase("b")) { // カーミラ（フランコの迷宮）
-					if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 1) {
-						L1Teleport.teleport(pc, 32679, 32742, (short) 482, 5, true);
-					}
-				} else if (s.equalsIgnoreCase("d")) { // カーミラ（ディエゴの閉ざされた牢）
-					if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 3) {
-						L1Teleport.teleport(pc, 32736, 32800, (short) 483, 5, true);
-					}
-				} else if (s.equalsIgnoreCase("f")) { // カーミラ（ホセ地下牢）
-					if ((pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 4)
-	                        || (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 255)) {
-						L1Teleport.teleport(pc, 32746, 32807, (short) 484, 5, true);
-					}
+		// BAO提供  カミーラ(海賊島)
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71036) {
+			if (s.equalsIgnoreCase("a")) {
+				htmlid = "kamyla7";
+				pc.getQuest().set_step(L1Quest.QUEST_KAMYLA, 1);
+			} else if (s.equalsIgnoreCase("c")) {
+				htmlid = "kamyla10";
+				pc.getInventory().consumeItem(40644, 1);
+				pc.getQuest().set_step(L1Quest.QUEST_KAMYLA, 3);
+			} else if (s.equalsIgnoreCase("e")) {
+				htmlid = "kamyla13";
+				pc.getInventory().consumeItem(40630, 1);
+				pc.getQuest().set_step(L1Quest.QUEST_KAMYLA, 4);
+			} else if (s.equalsIgnoreCase("i")) {
+				htmlid = "kamyla25";
+			} else if (s.equalsIgnoreCase("b")) { // カーミラ（フランコの迷宮）
+				if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 1) {
+					L1Teleport.teleport(pc, 32679, 32742, (short) 482, 5, true);
 				}
-			// ルケイン(海賊島)
-			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71055) {
-				// アイテムを受け取る
-				if (s.equalsIgnoreCase("0")) {
-					final int[] item_ids = { 40701, };
-					final int[] item_amounts = { 1, };
-					for (int i = 0; i < item_ids.length; i++) {
-						L1ItemInstance item = pc.getInventory().storeItem(
-								item_ids[i], item_amounts[i]);
-						pc.sendPackets(new S_ServerMessage(143,
-								((L1NpcInstance) obj).getNpcTemplate().get_name(),
-								item.getItem().getName()));
-					}
-					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 1);
-					htmlid = "lukein8";
-				} else if (s.equalsIgnoreCase("2")) {
-	                if (pc.getInventory().checkItem(40631)) {
-	                    pc.getInventory().consumeItem(40631, 1);
-	                    pc.getInventory().storeItem(49277, 1);
-	                    htmlid = "lukein12";
-	                    pc.getQuest().set_step(L1Quest.QUEST_RESTA, 3);
-	                }
+			} else if (s.equalsIgnoreCase("d")) { // カーミラ（ディエゴの閉ざされた牢）
+				if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 3) {
+					L1Teleport.teleport(pc, 32736, 32800, (short) 483, 5, true);
+				}
+			} else if (s.equalsIgnoreCase("f")) { // カーミラ（ホセ地下牢）
+				if ((pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 4)
+						|| (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 255)) {
+					L1Teleport.teleport(pc, 32746, 32807, (short) 484, 5, true);
 				}
 			}
+		}
+		// ルケイン(海賊島)
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71055) {
+			// アイテムを受け取る
+			if (s.equalsIgnoreCase("0")) {
+				final int[] item_ids = { 40701, };
+				final int[] item_amounts = { 1, };
+				for (int i = 0; i < item_ids.length; i++) {
+					L1ItemInstance item = pc.getInventory().storeItem(
+							item_ids[i], item_amounts[i]);
+					pc.sendPackets(new S_ServerMessage(143,
+							((L1NpcInstance) obj).getNpcTemplate().get_name(),
+							item.getItem().getName()));
+				}
+				pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 1);
+				htmlid = "lukein8";
+			} else if (s.equalsIgnoreCase("2")) {
+				if (pc.getInventory().checkItem(40631)) {
+					pc.getInventory().consumeItem(40631, 1);
+					pc.getInventory().storeItem(49277, 1);
+					htmlid = "lukein12";
+					pc.getQuest().set_step(L1Quest.QUEST_RESTA, 3);
+				}
+			}
+		}
 
-			// シミズ(海賊島)
-			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71056) {
-				// 息子を捜す
-				if (s.equalsIgnoreCase("a")) {
-					pc.getQuest().set_step(L1Quest.QUEST_SIMIZZ, 1);
-					htmlid = "simizz7";
-				} else if (s.equalsIgnoreCase("b")) {
-					if (pc.getInventory().checkItem(40661)
-							&& pc.getInventory().checkItem(40662)
-							&& pc.getInventory().checkItem(40663)) {
-						htmlid = "simizz8";
-						pc.getQuest().set_step(L1Quest.QUEST_SIMIZZ, 2);
-						materials = new int[] { 40661, 40662, 40663 };
-						counts = new int[] { 1, 1, 1 };
-						createitem = new int[] { 20044 };
-						createcount = new int[] { 1 };
-					} else {
-						htmlid = "simizz9";
-					}
-	            } else if (s.equalsIgnoreCase("c")) {
-	                htmlid = "simizz10";
-				} else if (s.equalsIgnoreCase("d")) {
-	                if (pc.getInventory().checkItem(49277)) {
+		// シミズ(海賊島)
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71056) {
+			// 息子を捜す
+			if (s.equalsIgnoreCase("a")) {
+				pc.getQuest().set_step(L1Quest.QUEST_SIMIZZ, 1);
+				htmlid = "simizz7";
+			} else if (s.equalsIgnoreCase("b")) {
+				if (pc.getInventory().checkItem(40661)
+						&& pc.getInventory().checkItem(40662)
+						&& pc.getInventory().checkItem(40663)) {
+					htmlid = "simizz8";
+					pc.getQuest().set_step(L1Quest.QUEST_SIMIZZ, 2);
+					materials = new int[] { 40661, 40662, 40663 };
+					counts = new int[] { 1, 1, 1 };
+					createitem = new int[] { 20044 };
+					createcount = new int[] { 1 };
+				} else {
+					htmlid = "simizz9";
+				}
+			} else if (s.equalsIgnoreCase("c")) {
+				htmlid = "simizz10";
+			} else if (s.equalsIgnoreCase("d")) {
+				if (pc.getInventory().checkItem(49277)) {
 					htmlid = "simizz12";
 					pc.getQuest().set_step(L1Quest.QUEST_SIMIZZ, L1Quest.QUEST_END);
-	                } else {
-	                    htmlid = "simizz14";
-	                }
-	            }
+				} else {
+					htmlid = "simizz14";
+				}
+			}
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81246) { // シャルナ
+			if(s.equalsIgnoreCase("0")) {
+				if (pc.getInventory().checkItem(40308, 2500)) { // check
+					if (pc.getLevel() >= 70) {
+						pc.getInventory().consumeItem(40308, 2500); // del
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory()
+						.storeItem(49155, 1); // シャルナの変身スクロール（レベル70）
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage
+								(143, npcName, itemName)); // \f1%0が%1をくれました。
+						htmlid = "sharna3";
+					} else if (pc.getLevel() >= 65) {
+						pc.getInventory().consumeItem(40308, 2500); // del
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory()
+						.storeItem(49154, 1); // シャルナの変身スクロール（レベル65）
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage
+								(143, npcName, itemName)); // \f1%0が%1をくれました。
+						htmlid = "sharna3";
+					} else if (pc.getLevel() >= 60) {
+						pc.getInventory().consumeItem(40308, 2500); // del
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory()
+						.storeItem(49153, 1); // シャルナの変身スクロール（レベル60）
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage
+								(143, npcName, itemName)); // \f1%0が%1をくれました。
+						htmlid = "sharna3";
+					} else if (pc.getLevel() >= 55) {
+						pc.getInventory().consumeItem(40308, 2500); // del
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory()
+						.storeItem(49152, 1); // シャルナの変身スクロール（レベル55）
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage
+								(143, npcName, itemName)); // \f1%0が%1をくれました。
+						htmlid = "sharna3";
+					} else if (pc.getLevel() >= 52) {
+						pc.getInventory().consumeItem(40308, 2500); // del
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory()
+						.storeItem(49151, 1); // シャルナの変身スクロール（レベル52）
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage
+								(143, npcName, itemName)); // \f1%0が%1をくれました。
+						htmlid = "sharna3";
+					} else if (pc.getLevel() >= 40) {
+						pc.getInventory().consumeItem(40308, 2500); // del
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory()
+						.storeItem(49150, 1); // シャルナの変身スクロール（レベル40）
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage
+								(143, npcName, itemName)); // \f1%0が%1をくれました。
+						htmlid = "sharna3";
+					} else if (pc.getLevel() >= 30) {
+						pc.getInventory().consumeItem(40308, 2500); // del
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory()
+						.storeItem(49149, 1); // シャルナの変身スクロール（レベル30）
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage
+								(143, npcName, itemName)); // \f1%0が%1をくれました。
+						htmlid = "sharna3";
+					} else {
+						htmlid = "sharna4";
+					}
+				} else {
+					htmlid = "sharna5";
+				}
 			}
 //add end
 		}
 
-			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81246) { // シャルナ
-				if(s.equalsIgnoreCase("0")) {
-					if (pc.getInventory().checkItem(40308, 2500)) { // check
-						if (pc.getLevel() >= 70) {
-							pc.getInventory().consumeItem(40308, 2500); // del
-							L1NpcInstance npc = (L1NpcInstance) obj;
-							L1ItemInstance item = pc.getInventory()
-							.storeItem(49155, 1); // シャルナの変身スクロール（レベル70）
-							String npcName = npc.getNpcTemplate().get_name();
-							String itemName = item.getItem().getName();
-							pc.sendPackets(new S_ServerMessage
-									(143, npcName, itemName)); // \f1%0が%1をくれました。
-							htmlid = "sharna3";
-						} else if (pc.getLevel() >= 65) {
-							pc.getInventory().consumeItem(40308, 2500); // del
-							L1NpcInstance npc = (L1NpcInstance) obj;
-							L1ItemInstance item = pc.getInventory()
-							.storeItem(49154, 1); // シャルナの変身スクロール（レベル65）
-							String npcName = npc.getNpcTemplate().get_name();
-							String itemName = item.getItem().getName();
-							pc.sendPackets(new S_ServerMessage
-									(143, npcName, itemName)); // \f1%0が%1をくれました。
-							htmlid = "sharna3";
-						} else if (pc.getLevel() >= 60) {
-							pc.getInventory().consumeItem(40308, 2500); // del
-							L1NpcInstance npc = (L1NpcInstance) obj;
-							L1ItemInstance item = pc.getInventory()
-							.storeItem(49153, 1); // シャルナの変身スクロール（レベル60）
-							String npcName = npc.getNpcTemplate().get_name();
-							String itemName = item.getItem().getName();
-							pc.sendPackets(new S_ServerMessage
-									(143, npcName, itemName)); // \f1%0が%1をくれました。
-							htmlid = "sharna3";
-						} else if (pc.getLevel() >= 55) {
-							pc.getInventory().consumeItem(40308, 2500); // del
-							L1NpcInstance npc = (L1NpcInstance) obj;
-							L1ItemInstance item = pc.getInventory()
-							.storeItem(49152, 1); // シャルナの変身スクロール（レベル55）
-							String npcName = npc.getNpcTemplate().get_name();
-							String itemName = item.getItem().getName();
-							pc.sendPackets(new S_ServerMessage
-									(143, npcName, itemName)); // \f1%0が%1をくれました。
-							htmlid = "sharna3";
-						} else if (pc.getLevel() >= 52) {
-							pc.getInventory().consumeItem(40308, 2500); // del
-							L1NpcInstance npc = (L1NpcInstance) obj;
-							L1ItemInstance item = pc.getInventory()
-							.storeItem(49151, 1); // シャルナの変身スクロール（レベル52）
-							String npcName = npc.getNpcTemplate().get_name();
-							String itemName = item.getItem().getName();
-							pc.sendPackets(new S_ServerMessage
-									(143, npcName, itemName)); // \f1%0が%1をくれました。
-							htmlid = "sharna3";
-						} else if (pc.getLevel() >= 40) {
-							pc.getInventory().consumeItem(40308, 2500); // del
-							L1NpcInstance npc = (L1NpcInstance) obj;
-							L1ItemInstance item = pc.getInventory()
-							.storeItem(49150, 1); // シャルナの変身スクロール（レベル40）
-							String npcName = npc.getNpcTemplate().get_name();
-							String itemName = item.getItem().getName();
-							pc.sendPackets(new S_ServerMessage
-									(143, npcName, itemName)); // \f1%0が%1をくれました。
-							htmlid = "sharna3";
-						} else if (pc.getLevel() >= 30) {
-							pc.getInventory().consumeItem(40308, 2500); // del
-							L1NpcInstance npc = (L1NpcInstance) obj;
-							L1ItemInstance item = pc.getInventory()
-							.storeItem(49149, 1); // シャルナの変身スクロール（レベル30）
-							String npcName = npc.getNpcTemplate().get_name();
-							String itemName = item.getItem().getName();
-							pc.sendPackets(new S_ServerMessage
-									(143, npcName, itemName)); // \f1%0が%1をくれました。
-							htmlid = "sharna3";
-						} else {
-							htmlid = "sharna4";
-						}
-					} else {
-						htmlid = "sharna5";
-					}
-				}
-			}
 
 		// else System.out.println("C_NpcAction: " + s);
 		if (htmlid != null && htmlid.equalsIgnoreCase("colos2")) {
