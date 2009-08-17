@@ -1414,9 +1414,9 @@ Update droplist Set chance = '200000' Where  itemId = '40308' And mobId = '45297
 /* 20090804 調整 45289 莫妮亞道具掉落機率  */
 Update droplist Set chance = '10000' Where  itemId = '20063' And mobId = '45289'; /* 保護者斗篷 */
 Update droplist Set chance = '12000' Where  itemId = '40015' And mobId = '45289'; /* 加速魔力回覆藥水 */
-Update droplist Set chance = '8000' Where  itemId = '40074' And mobId = '45289'; /* 對盔甲施法的捲軸 */
+Update droplist Set chance = '5000' Where  itemId = '40074' And mobId = '45289'; /* 對盔甲施法的捲軸 */
 Update droplist Set chance = '200000' Where  itemId = '40079' And mobId = '45289'; /* 傳送回家的捲軸 */
-Update droplist Set chance = '6000' Where  itemId = '40087' And mobId = '45289'; /* 對武器施法的捲軸 */
+Update droplist Set chance = '3000' Where  itemId = '40087' And mobId = '45289'; /* 對武器施法的捲軸 */
 Update droplist Set chance = '80000' Where  itemId = '40088' And mobId = '45289'; /* 變形捲軸 */
 Update droplist Set chance = '200000' Where  itemId = '40119' And mobId = '45289'; /* 解除咀咒的捲軸 */
 Update droplist Set chance = '8000' Where  itemId = '40174' And mobId = '45289'; /* 魔法書 (緩速術) */
@@ -1496,3 +1496,18 @@ Delete From `droplist` Where itemId = '41150' And mobId ='45471';/* 精靈水晶
 /* 新增曼波兔掉落道具 缺綠寶石項鍊(幸運+1) */
 INSERT INTO `droplist` (`mobId`, `itemId`, `min`, `max`, `chance`) VALUES
 (45534, 40224, 1, 1, 200);/* 魔法書 (靈魂昇華) */
+
+/* 20090812 修正 45893 狂暴的 歐姆裝甲兵 掉落道具 http://lineage.gametsg.com/index.php?view=npc&k1=level&npc=90114 */
+Delete From `droplist` Where itemId = '40021' And mobId ='45893';/* 濃縮終極體力恢復劑 */
+INSERT INTO `droplist` (`mobId`, `itemId`, `min`, `max`, `chance`) VALUES
+(45893, 40020, 1, 1, 2000);/* 濃縮強力體力恢復劑 */
+Delete From `droplist` Where itemId = '187' And mobId ='45893';/* 拉斯塔巴德十字弓 */
+INSERT INTO `droplist` (`mobId`, `itemId`, `min`, `max`, `chance`) VALUES
+(45893, 188, 1, 1, 100);/* 拉斯塔巴德重十字弓 */
+Update droplist Set chance = '1000' Where  itemId = '40074' And mobId = '45893'; /* 對盔甲施法的捲軸 */
+Update droplist Set chance = '800' Where  itemId = '40087' And mobId = '45893'; /* 對武器施法的捲軸 */
+
+/* 20090812 修正 45892 歐姆裝甲兵 掉落道具 http://lineage.gametsg.com/index.php?view=npc&k1=level&npc=90113 */
+Delete From `droplist` Where itemId = '187' And mobId ='45892';/* 拉斯塔巴德十字弓 */
+INSERT INTO `droplist` (`mobId`, `itemId`, `min`, `max`, `chance`) VALUES
+(45892, 188, 1, 1, 60);/* 拉斯塔巴德重十字弓 */

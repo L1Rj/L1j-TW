@@ -152,7 +152,7 @@ Update npc Set atk_magic_speed = '2200' Where npcid = '45347';
 Update npc Set impl = 'L1Teleporter' Where npcid = '80048';
 Update npc Set impl = 'L1Teleporter' Where npcid = '80058';
 
-/* 20090816 修正 虎男 暴走兔 浣熊 不可復活 */
+/* 20090816 修正 虎男 高麗幼犬 浣熊 不可復活 */
 Update npc Set cant_resurrect  = '1' Where npcid = '45313';
-Update npc Set cant_resurrect  = '1' Where npcid = '45313';
-Update npc Set cant_resurrect  = '1' Where npcid = '45049';
+Update npc Set cant_resurrect  = '1' Where npcid = '45711';
+Update npc Set cant_resurrect  = '1' Where npcid = '45044';
