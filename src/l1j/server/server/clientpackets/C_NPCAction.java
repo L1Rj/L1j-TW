@@ -4113,7 +4113,7 @@ public class C_NPCAction extends ClientBasePacket {
 			} else {
 				htmlid = "aras7";
 			}
-//waja add BAO提供  カミーラ(海賊島)
+// BAO提供  カミーラ(海賊島)
 		}
 			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71036) {
 				if (s.equalsIgnoreCase("a")) {
@@ -4200,6 +4200,88 @@ public class C_NPCAction extends ClientBasePacket {
 			}
 //add end
 		}
+
+			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81246) { // シャルナ
+				if(s.equalsIgnoreCase("0")) {
+					if (pc.getInventory().checkItem(40308, 2500)) { // check
+						if (pc.getLevel() >= 70) {
+							pc.getInventory().consumeItem(40308, 2500); // del
+							L1NpcInstance npc = (L1NpcInstance) obj;
+							L1ItemInstance item = pc.getInventory()
+							.storeItem(49155, 1); // シャルナの変身スクロール（レベル70）
+							String npcName = npc.getNpcTemplate().get_name();
+							String itemName = item.getItem().getName();
+							pc.sendPackets(new S_ServerMessage
+									(143, npcName, itemName)); // \f1%0が%1をくれました。
+							htmlid = "sharna3";
+						} else if (pc.getLevel() >= 65) {
+							pc.getInventory().consumeItem(40308, 2500); // del
+							L1NpcInstance npc = (L1NpcInstance) obj;
+							L1ItemInstance item = pc.getInventory()
+							.storeItem(49154, 1); // シャルナの変身スクロール（レベル65）
+							String npcName = npc.getNpcTemplate().get_name();
+							String itemName = item.getItem().getName();
+							pc.sendPackets(new S_ServerMessage
+									(143, npcName, itemName)); // \f1%0が%1をくれました。
+							htmlid = "sharna3";
+						} else if (pc.getLevel() >= 60) {
+							pc.getInventory().consumeItem(40308, 2500); // del
+							L1NpcInstance npc = (L1NpcInstance) obj;
+							L1ItemInstance item = pc.getInventory()
+							.storeItem(49153, 1); // シャルナの変身スクロール（レベル60）
+							String npcName = npc.getNpcTemplate().get_name();
+							String itemName = item.getItem().getName();
+							pc.sendPackets(new S_ServerMessage
+									(143, npcName, itemName)); // \f1%0が%1をくれました。
+							htmlid = "sharna3";
+						} else if (pc.getLevel() >= 55) {
+							pc.getInventory().consumeItem(40308, 2500); // del
+							L1NpcInstance npc = (L1NpcInstance) obj;
+							L1ItemInstance item = pc.getInventory()
+							.storeItem(49152, 1); // シャルナの変身スクロール（レベル55）
+							String npcName = npc.getNpcTemplate().get_name();
+							String itemName = item.getItem().getName();
+							pc.sendPackets(new S_ServerMessage
+									(143, npcName, itemName)); // \f1%0が%1をくれました。
+							htmlid = "sharna3";
+						} else if (pc.getLevel() >= 52) {
+							pc.getInventory().consumeItem(40308, 2500); // del
+							L1NpcInstance npc = (L1NpcInstance) obj;
+							L1ItemInstance item = pc.getInventory()
+							.storeItem(49151, 1); // シャルナの変身スクロール（レベル52）
+							String npcName = npc.getNpcTemplate().get_name();
+							String itemName = item.getItem().getName();
+							pc.sendPackets(new S_ServerMessage
+									(143, npcName, itemName)); // \f1%0が%1をくれました。
+							htmlid = "sharna3";
+						} else if (pc.getLevel() >= 40) {
+							pc.getInventory().consumeItem(40308, 2500); // del
+							L1NpcInstance npc = (L1NpcInstance) obj;
+							L1ItemInstance item = pc.getInventory()
+							.storeItem(49150, 1); // シャルナの変身スクロール（レベル40）
+							String npcName = npc.getNpcTemplate().get_name();
+							String itemName = item.getItem().getName();
+							pc.sendPackets(new S_ServerMessage
+									(143, npcName, itemName)); // \f1%0が%1をくれました。
+							htmlid = "sharna3";
+						} else if (pc.getLevel() >= 30) {
+							pc.getInventory().consumeItem(40308, 2500); // del
+							L1NpcInstance npc = (L1NpcInstance) obj;
+							L1ItemInstance item = pc.getInventory()
+							.storeItem(49149, 1); // シャルナの変身スクロール（レベル30）
+							String npcName = npc.getNpcTemplate().get_name();
+							String itemName = item.getItem().getName();
+							pc.sendPackets(new S_ServerMessage
+									(143, npcName, itemName)); // \f1%0が%1をくれました。
+							htmlid = "sharna3";
+						} else {
+							htmlid = "sharna4";
+						}
+					} else {
+						htmlid = "sharna5";
+					}
+				}
+			}
 
 		// else System.out.println("C_NpcAction: " + s);
 		if (htmlid != null && htmlid.equalsIgnoreCase("colos2")) {

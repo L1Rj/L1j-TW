@@ -1032,4 +1032,6 @@ INSERT INTO `npcaction` VALUES
 (81241, 'cold1', 'cold1', '', ''),
 (81242, 'cold1', 'cold1', '', ''),
 (81243, 'cold1', 'cold1', '', ''),
-(81244, 'cold1', 'cold1', '', '');
+(81244, 'cold1', 'cold1', '', ''),
+(81245, '', '', '', ''),
+(81246, 'sharna1', 'sharna2', '', '');
