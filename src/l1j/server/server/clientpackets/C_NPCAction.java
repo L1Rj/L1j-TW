@@ -1391,7 +1391,10 @@ public class C_NPCAction extends ClientBasePacket {
 						}
 					// 「プロケルの3番目の課題を遂行する」
 					} else if (s.equalsIgnoreCase("f") && lv45_step == 0) {
-						final int[] item_ids = { 49209, 49212, 49226, }; // プロケルの手紙,プロケルの3番目の指令書,タワー ポータル テレポート スクロール
+						final int[] item_ids = { 49209, 49212, 49226, };	// プロケルの手紙,プロケルの3番目の指令書,タワー
+																			// ポータル
+																			// テレポート
+																			// スクロール
 						final int[] item_amounts = { 1, 1, 1,};
 						for (int i = 0; i < item_ids.length; i++) {
 							L1ItemInstance item = pc.getInventory().storeItem(
@@ -4199,88 +4202,37 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81246) { // シャルナ
-			if(s.equalsIgnoreCase("0")) {
-				if (pc.getInventory().checkItem(40308, 2500)) { // check
-					if (pc.getLevel() >= 70) {
-						pc.getInventory().consumeItem(40308, 2500); // del
-						L1NpcInstance npc = (L1NpcInstance) obj;
-						L1ItemInstance item = pc.getInventory()
-						.storeItem(49155, 1); // シャルナの変身スクロール（レベル70）
-						String npcName = npc.getNpcTemplate().get_name();
-						String itemName = item.getItem().getName();
-						pc.sendPackets(new S_ServerMessage
-								(143, npcName, itemName)); // \f1%0が%1をくれました。
-						htmlid = "sharna3";
-					} else if (pc.getLevel() >= 65) {
-						pc.getInventory().consumeItem(40308, 2500); // del
-						L1NpcInstance npc = (L1NpcInstance) obj;
-						L1ItemInstance item = pc.getInventory()
-						.storeItem(49154, 1); // シャルナの変身スクロール（レベル65）
-						String npcName = npc.getNpcTemplate().get_name();
-						String itemName = item.getItem().getName();
-						pc.sendPackets(new S_ServerMessage
-								(143, npcName, itemName)); // \f1%0が%1をくれました。
-						htmlid = "sharna3";
-					} else if (pc.getLevel() >= 60) {
-						pc.getInventory().consumeItem(40308, 2500); // del
-						L1NpcInstance npc = (L1NpcInstance) obj;
-						L1ItemInstance item = pc.getInventory()
-						.storeItem(49153, 1); // シャルナの変身スクロール（レベル60）
-						String npcName = npc.getNpcTemplate().get_name();
-						String itemName = item.getItem().getName();
-						pc.sendPackets(new S_ServerMessage
-								(143, npcName, itemName)); // \f1%0が%1をくれました。
-						htmlid = "sharna3";
-					} else if (pc.getLevel() >= 55) {
-						pc.getInventory().consumeItem(40308, 2500); // del
-						L1NpcInstance npc = (L1NpcInstance) obj;
-						L1ItemInstance item = pc.getInventory()
-						.storeItem(49152, 1); // シャルナの変身スクロール（レベル55）
-						String npcName = npc.getNpcTemplate().get_name();
-						String itemName = item.getItem().getName();
-						pc.sendPackets(new S_ServerMessage
-								(143, npcName, itemName)); // \f1%0が%1をくれました。
-						htmlid = "sharna3";
-					} else if (pc.getLevel() >= 52) {
-						pc.getInventory().consumeItem(40308, 2500); // del
-						L1NpcInstance npc = (L1NpcInstance) obj;
-						L1ItemInstance item = pc.getInventory()
-						.storeItem(49151, 1); // シャルナの変身スクロール（レベル52）
-						String npcName = npc.getNpcTemplate().get_name();
-						String itemName = item.getItem().getName();
-						pc.sendPackets(new S_ServerMessage
-								(143, npcName, itemName)); // \f1%0が%1をくれました。
-						htmlid = "sharna3";
-					} else if (pc.getLevel() >= 40) {
-						pc.getInventory().consumeItem(40308, 2500); // del
-						L1NpcInstance npc = (L1NpcInstance) obj;
-						L1ItemInstance item = pc.getInventory()
-						.storeItem(49150, 1); // シャルナの変身スクロール（レベル40）
-						String npcName = npc.getNpcTemplate().get_name();
-						String itemName = item.getItem().getName();
-						pc.sendPackets(new S_ServerMessage
-								(143, npcName, itemName)); // \f1%0が%1をくれました。
-						htmlid = "sharna3";
-					} else if (pc.getLevel() >= 30) {
-						pc.getInventory().consumeItem(40308, 2500); // del
-						L1NpcInstance npc = (L1NpcInstance) obj;
-						L1ItemInstance item = pc.getInventory()
-						.storeItem(49149, 1); // シャルナの変身スクロール（レベル30）
-						String npcName = npc.getNpcTemplate().get_name();
-						String itemName = item.getItem().getName();
-						pc.sendPackets(new S_ServerMessage
-								(143, npcName, itemName)); // \f1%0が%1をくれました。
-						htmlid = "sharna3";
-					} else {
-						htmlid = "sharna4";
-					}
-				} else {
-					htmlid = "sharna5";
+			if (s.equalsIgnoreCase("0")) {
+				materials = new int[] { 40308 };
+				counts = new int[] { 2500 };
+				if (pc.getLevel() < 30) {
+					htmlid = "sharna4";
+				} else if (pc.getLevel() >= 30 && pc.getLevel() <= 39) {
+					createitem = new int[] { 49149 }; // シャルナの変身スクロール（レベル30）
+					createcount = new int[] { 1 };
+				} else if (pc.getLevel() >= 40 && pc.getLevel() <= 51) {
+					createitem = new int[] { 49150 }; // シャルナの変身スクロール（レベル40）
+					createcount = new int[] { 1 };
+				} else if (pc.getLevel() >= 52 && pc.getLevel() <= 54) {
+					createitem = new int[] { 49151 }; // シャルナの変身スクロール（レベル52）
+					createcount = new int[] { 1 };
+				} else if (pc.getLevel() >= 55 && pc.getLevel() <= 59) {
+					createitem = new int[] { 49152 }; // シャルナの変身スクロール（レベル55）
+					createcount = new int[] { 1 };
+				} else if (pc.getLevel() >= 60 && pc.getLevel() <= 64) {
+					createitem = new int[] { 49153 }; // シャルナの変身スクロール（レベル60）
+					createcount = new int[] { 1 };
+				} else if (pc.getLevel() >= 65 && pc.getLevel() <= 69) {
+					createitem = new int[] { 49154 }; // シャルナの変身スクロール（レベル65）
+					createcount = new int[] { 1 };
+				} else if (pc.getLevel() >= 70) {
+					createitem = new int[] { 49155 }; // シャルナの変身スクロール（レベル70）
+					createcount = new int[] { 1 };
 				}
+				success_htmlid = "sharna3";
+				failure_htmlid = "sharna5";
 			}
-//add end
 		}
-
 
 		// else System.out.println("C_NpcAction: " + s);
 		if (htmlid != null && htmlid.equalsIgnoreCase("colos2")) {
