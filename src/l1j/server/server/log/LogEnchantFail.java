@@ -24,7 +24,6 @@ import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.apache.log4j.Logger;
 
 import l1j.server.server.model.Instance.L1PcInstance;

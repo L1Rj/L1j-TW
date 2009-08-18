@@ -75,6 +75,8 @@ import l1j.server.server.datatables.PetTable;
 import l1j.server.server.datatables.PolyTable;
 import l1j.server.server.datatables.ResolventTable;
 import l1j.server.server.datatables.SkillsTable;
+import l1j.server.server.log.LogEnchantFail;
+import l1j.server.server.log.LogEnchantSuccess;
 import l1j.server.server.model.Getback;
 import l1j.server.server.model.L1CastleLocation;
 import l1j.server.server.model.L1Character;
@@ -3340,9 +3342,13 @@ public class C_ItemUSe extends ClientBasePacket
 		int oldEnchantLvl = item.getEnchantLevel();
 		int newEnchantLvl = item.getEnchantLevel() + i;
 		int safe_enchant = item.getItem().get_safeenchant();
+		int enchantbefore = item.getEnchantLevel();
+		int enchantafter = item.getEnchantLevel() + i;
+		int enchantnum = enchantafter - enchantbefore;
 		item.setEnchantLevel(newEnchantLvl);
 		client.getActiveChar().getInventory().updateItem(item,
 				L1PcInventory.COL_ENCHANTLVL);
+		LogEnchantSuccess les = new LogEnchantSuccess();
 		if (newEnchantLvl > safe_enchant) {
 			client.getActiveChar().getInventory().saveItem(item,
 					L1PcInventory.COL_ENCHANTLVL);
@@ -3381,11 +3387,13 @@ public class C_ItemUSe extends ClientBasePacket
 			}
 			pc.sendPackets(new S_OwnCharStatus(pc));
 		}
+		les.storeLogEnchantSuccess(pc, item, enchantbefore, enchantafter,
+				enchantnum);
 	}
 
 	private void FailureEnchant(L1PcInstance pc, L1ItemInstance item,
 			ClientThread client) {
-// 裝備保護卷軸
+		// 裝備保護卷軸
 		if (item.getproctect() == true){
 			if(item.getItem().getType2()==2 && item.isEquipped()) {
 				pc.addAc(+item.getEnchantLevel());
@@ -3403,6 +3411,7 @@ public class C_ItemUSe extends ClientBasePacket
 		int itemType = item.getItem().getType2();
 		String nameId = item.getName();
 		String pm = "";
+		LogEnchantFail lef = new LogEnchantFail();
 		if (itemType == 1) { // 武器
 			if (!item.isIdentified() || item.getEnchantLevel() == 0) {
 				s = nameId; // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
@@ -3428,6 +3437,7 @@ public class C_ItemUSe extends ClientBasePacket
 				sa = " $252";
 			}
 		}
+		lef.storeLogEnchantFail(pc, item);
 		pc.sendPackets(new S_ServerMessage(164, s, sa));
 		pc.getInventory().removeItem(item, item.getCount());
 	}
