@@ -1,13 +1,19 @@
 /*
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2, or (at your option) any later version. This
- * program is distributed in the hope that it will be useful, but WITHOUT ANY
- * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
- * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- * Place - Suite 330, Boston, MA 02111-1307, USA.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
  * http://www.gnu.org/copyleft/gpl.html
  */
 package l1j.server.server.log;
@@ -18,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import org.apache.log4j.Logger;
 
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -41,7 +48,7 @@ public class LogDropItem {
 			try {
 				out = new DataOutputStream(new FileOutputStream("log/DropItem.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				out.write("#\t\t\t\t\tDrop Item\t\t\t\t\t#\r\n".getBytes());
+				out.write("#                                    Drop Item.                                          #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				ditem = fm + "  IP=";
 				out.write(ditem.getBytes());
@@ -52,11 +59,11 @@ public class LogDropItem {
 				ditem = pc.getId() + "  CharName=";
 				out.write(ditem.getBytes());
 				ditem = pc.getName() + "  ObjectId=";
-				out.write(ditem.getBytes());
+				out.writeBytes(encode(ditem));
 				ditem = item.getId() + "  ItemName=";
 				out.write(ditem.getBytes());
 				ditem = item.getItem().getName() + "  EnchantLevel=";
-				out.write(ditem.getBytes());
+				out.writeBytes(encode(ditem));
 				ditem = item.getEnchantLevel() + "  BeforeInven=";
 				out.write(ditem.getBytes());
 				ditem = before_inven + "  AfterInven=";

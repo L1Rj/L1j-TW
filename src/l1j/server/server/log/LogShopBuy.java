@@ -1,13 +1,19 @@
 /*
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2, or (at your option) any later version. This
- * program is distributed in the hope that it will be useful, but WITHOUT ANY
- * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
- * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- * Place - Suite 330, Boston, MA 02111-1307, USA.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
  * http://www.gnu.org/copyleft/gpl.html
  */
 package l1j.server.server.log;
@@ -16,9 +22,10 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
-import org.apache.log4j.Logger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.apache.log4j.Logger;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -42,35 +49,34 @@ public class LogShopBuy {
 				out = new DataOutputStream(new FileOutputStream("log/ShopBuy.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                           Shop Buy.                                    #\r\n".getBytes());
-				out.write("#                                                                                        #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				slog = fm + "  ";
+				slog = fm + "  IP=";
 				out.write(slog.getBytes());
-				slog = pc.getNetConnection().getIp() + "  ";
+				slog = pc.getNetConnection().getIp() + "  Account=";
 				out.write(slog.getBytes());
-				slog = pc.getAccountName() + "  ";
+				slog = pc.getAccountName() + "  CharId=";
 				out.write(slog.getBytes());
-				slog = pc.getId() + "  ";
+				slog = pc.getId() + "  CharName=";
 				out.write(slog.getBytes());
-				slog = pc.getName() + "  ";
+				slog = pc.getName() + "  ObjectId=";
 				out.write(slog.getBytes());
-				slog = item.getId() + "  ";
+				slog = item.getId() + "  ItemName=";
 				out.write(slog.getBytes());
-				slog = item.getItem().getName() + "  ";
+				slog = item.getItem().getName() + "  EnchantLevel=";
 				out.write(slog.getBytes());
-				slog = item.getEnchantLevel() + "  ";
+				slog = item.getEnchantLevel() + "  Count=";
 				out.write(slog.getBytes());
-				slog = cnt + "  ";
+				slog = cnt + "  AdenaBefore=";
 				out.write(slog.getBytes());
-				slog = adenabefore + "  ";
+				slog = adenabefore + "  AdenaAfter=";
 				out.write(slog.getBytes());
-				slog = adenaafter + "  ";
+				slog = adenaafter + "  AdenaDiff=";
 				out.write(slog.getBytes());
 				int adenadiff = adenabefore - adenaafter;
 				if (adenadiff < 0) {
 					adenadiff = -adenadiff;
 				}
-				slog = adenadiff + "  ";
+				slog = adenadiff + "  ItemPrice=";
 				out.write(slog.getBytes());
 				slog = itemprice + "\r\n";
 				out.write(slog.getBytes());
@@ -94,33 +100,33 @@ public class LogShopBuy {
 				rfile = new RandomAccessFile("log/ShopBuy.log", "rw");
 				rfile.seek(rfile.length());
 
-				slog = fm + "  ";
+				slog = fm + "  IP=";
 				rfile.writeBytes(slog);
-				slog = pc.getNetConnection().getIp() + "  ";
+				slog = pc.getNetConnection().getIp() + "  Account=";
 				rfile.writeBytes(slog);
-				slog = pc.getAccountName() + "  ";
+				slog = pc.getAccountName() + "  CharId=";
 				rfile.writeBytes(slog);
-				slog = pc.getId() + "  ";
+				slog = pc.getId() + "  CharName=";
 				rfile.writeBytes(slog);
-				slog = pc.getName() + "  ";
+				slog = pc.getName() + "  ObjectId=";
 				rfile.writeBytes(encode(slog));
-				slog = item.getId() + "  ";
+				slog = item.getId() + "  ItemName=";
 				rfile.writeBytes(slog);
-				slog = item.getItem().getName() + "  ";
+				slog = item.getItem().getName() + "  EnchantLevel=";
 				rfile.writeBytes(encode(slog));
-				slog = item.getEnchantLevel() + "  ";
+				slog = item.getEnchantLevel() + "  Count=";
 				rfile.writeBytes(slog);
-				slog = cnt + "  ";
+				slog = cnt + "  AdenaBefore=";
 				rfile.writeBytes(slog);
-				slog = adenabefore + "  ";
+				slog = adenabefore + "  AdenaAfter=";
 				rfile.writeBytes(slog);
-				slog = adenaafter + "  ";
+				slog = adenaafter + "  AdenaDiff=";
 				rfile.writeBytes(slog);
 				int adenadiff = adenabefore - adenaafter;
 				if (adenadiff < 0) {
 					adenadiff = -adenadiff;
 				}
-				slog = adenadiff + "  ";
+				slog = adenadiff + "  ItemPrice=";
 				rfile.writeBytes(slog);
 				slog = itemprice + "\r\n";
 				rfile.writeBytes(slog);

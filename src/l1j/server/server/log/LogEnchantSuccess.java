@@ -1,13 +1,19 @@
 /*
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2, or (at your option) any later version. This
- * program is distributed in the hope that it will be useful, but WITHOUT ANY
- * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
- * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- * Place - Suite 330, Boston, MA 02111-1307, USA.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
  * http://www.gnu.org/copyleft/gpl.html
  */
 package l1j.server.server.log;
@@ -16,9 +22,10 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
-import org.apache.log4j.Logger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.apache.log4j.Logger;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -42,30 +49,29 @@ public class LogEnchantSuccess {
 				out = new DataOutputStream(new FileOutputStream("log/EnchantSuccess.log"));
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
 				out.write("#                                     EnchantSuccess.                                    #\r\n".getBytes());
-				out.write("#                                                                                        #\r\n".getBytes());
 				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				ditem = fm + "  ";
+				ditem = fm + "  IP=";
 				out.write(ditem.getBytes());
-				ditem = pc.getNetConnection().getIp() + "  ";
+				ditem = pc.getNetConnection().getIp() + "  Account=";
 				out.write(ditem.getBytes());
-				ditem = pc.getAccountName() + "  ";
+				ditem = pc.getAccountName() + "  CharId=";
 				out.write(ditem.getBytes());
-				ditem = pc.getId() + "  ";
+				ditem = pc.getId() + "  CharName=";
 				out.write(ditem.getBytes());
-				ditem = pc.getName() + "  ";
+				ditem = pc.getName() + "  ObjectId=";
+				out.writeBytes(encode(ditem));
+				ditem = item.getId() + "  ItemName=";
 				out.write(ditem.getBytes());
-				ditem = item.getId() + "  ";
+				ditem = item.getItem().getName() + "  Count=";
+				out.writeBytes(encode(ditem));
+				ditem = item.getCount() + "  EnchantBefore=";
 				out.write(ditem.getBytes());
-				ditem = item.getItem().getName() + "  ";
+				ditem = enchantbefore + "  EnchantAfter=";
 				out.write(ditem.getBytes());
-				ditem = item.getCount() + "  ";
-				out.write(ditem.getBytes());
-				ditem = enchantbefore + "  ";
-				out.write(ditem.getBytes());
-				ditem = enchantafter + "  ";
+				ditem = enchantafter + "  EnchantDiff=";
 				out.write(ditem.getBytes());
 				int enchantdiff = enchantafter > enchantbefore ? enchantafter - enchantbefore : enchantbefore - enchantafter;
-				ditem = enchantdiff + "  ";
+				ditem = enchantdiff + "  EnchantNum=";
 				out.write(ditem.getBytes());
 				ditem = enchantnum + "\r\n";
 				out.write(ditem.getBytes());
@@ -89,28 +95,28 @@ public class LogEnchantSuccess {
 				rfile = new RandomAccessFile("log/EnchantSuccess.log", "rw");
 				rfile.seek(rfile.length());
 
-				ditem = fm + "  ";
+				ditem = fm + "  IP=";
 				rfile.writeBytes(ditem);
-				ditem = pc.getNetConnection().getIp() + "  ";
+				ditem = pc.getNetConnection().getIp() + "  Account=";
 				rfile.writeBytes(ditem);
-				ditem = pc.getAccountName() + "  ";
+				ditem = pc.getAccountName() + "  CharId=";
 				rfile.writeBytes(ditem);
-				ditem = pc.getId() + "  ";
+				ditem = pc.getId() + "  CharName=";
 				rfile.writeBytes(ditem);
-				ditem = pc.getName() + "  ";
+				ditem = pc.getName() + "  ObjectId=";
 				rfile.writeBytes(encode(ditem));
-				ditem = item.getId() + "  ";
+				ditem = item.getId() + "  ItemName=";
 				rfile.writeBytes(ditem);
-				ditem = item.getItem().getName() + "  ";
+				ditem = item.getItem().getName() + "  Count=";
 				rfile.writeBytes(encode(ditem));
-				ditem = item.getCount() + "  ";
+				ditem = item.getCount() + "  EnchantBefore=";
 				rfile.writeBytes(ditem);
-				ditem = enchantbefore + "  ";
+				ditem = enchantbefore + "  EnchantAfter=";
 				rfile.writeBytes(ditem);
-				ditem = enchantafter + "  ";
+				ditem = enchantafter + "  EnchantDiff=";
 				rfile.writeBytes(ditem);
 				int enchantdiff = enchantafter > enchantbefore ? enchantafter - enchantbefore : enchantbefore - enchantafter;
-				ditem = enchantdiff + "  ";
+				ditem = enchantdiff + "  EnchantNum=";
 				rfile.writeBytes(ditem);
 				ditem = enchantnum + "\r\n";
 				rfile.writeBytes(ditem);
