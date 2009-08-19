@@ -25,6 +25,7 @@ import l1j.server.Config;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.SkillsTable;
+import l1j.server.server.log.LogSpeedHack;
 import l1j.server.server.model.AcceleratorChecker;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -82,6 +83,8 @@ public class C_UseSkill extends ClientBasePacket {
 						AcceleratorChecker.ACT_TYPE.SPELL_NODIR);
 			}
 			if (result == AcceleratorChecker.R_DISCONNECTED) {
+				LogSpeedHack lsh = new LogSpeedHack();
+				lsh.storeLogSpeedHack(pc);
 				return;
 			}
 		}

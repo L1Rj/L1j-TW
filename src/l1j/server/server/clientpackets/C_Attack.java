@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 
 import l1j.server.Config;
 import l1j.server.server.ClientThread;
+import l1j.server.server.log.LogSpeedHack;
 import l1j.server.server.model.AcceleratorChecker;
 import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1Character;
@@ -97,6 +98,8 @@ public class C_Attack extends ClientBasePacket
 			result = pc.getAcceleratorChecker()
 					.checkInterval(AcceleratorChecker.ACT_TYPE.ATTACK);
 			if (result == AcceleratorChecker.R_DISCONNECTED) {
+				LogSpeedHack lsh = new LogSpeedHack();
+				lsh.storeLogSpeedHack(pc);
 				return;
 			}
 		}

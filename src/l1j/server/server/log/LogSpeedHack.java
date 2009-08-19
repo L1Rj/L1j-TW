@@ -74,7 +74,8 @@ public class LogSpeedHack {
 			String ditem = null;
 
 			Date time1 = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat formatter = new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time1.getTime());
 			try {
 				rfile = new RandomAccessFile("log/SpeedHack.log", "rw");

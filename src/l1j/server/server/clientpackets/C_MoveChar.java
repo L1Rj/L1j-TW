@@ -24,10 +24,12 @@ import java.util.logging.Logger;
 
 import l1j.server.Config;
 import l1j.server.server.ClientThread;
+import l1j.server.server.log.LogSpeedHack;
 import l1j.server.server.model.AcceleratorChecker;
 import l1j.server.server.model.Dungeon;
 import l1j.server.server.model.DungeonRandom;
 import l1j.server.server.model.L1Object;
+import l1j.server.server.model.L1PolyRace;
 import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -45,8 +47,10 @@ public class C_MoveChar extends ClientBasePacket {
 
 	private static Logger _log = Logger.getLogger(C_MoveChar.class.getName());
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 4.26 Start
-	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 4.26 End
+	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 4.26
+																				// Start
+	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 4.26
+																				// End
 	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.10
 
 	// マップタイル調查用
@@ -56,7 +60,7 @@ public class C_MoveChar extends ClientBasePacket {
 	}
 
 	// 移動
-	public C_MoveChar(byte[] decrypt, ClientThread client) throws Exception{
+	public C_MoveChar(byte[] decrypt, ClientThread client) throws Exception {
 		super(decrypt);
 
 		int locx = readH();
@@ -75,11 +79,15 @@ public class C_MoveChar extends ClientBasePacket {
 			return;
 
 		// 移動要求間隔をチェックする
-		if (Config.CHECK_MOVE_INTERVAL){
-			int result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.MOVE);
+		if (Config.CHECK_MOVE_INTERVAL) {
+			int result = pc.getAcceleratorChecker().checkInterval(
+					AcceleratorChecker.ACT_TYPE.MOVE);
 
-			if (result == AcceleratorChecker.R_DISCONNECTED)
+			if (result == AcceleratorChecker.R_DISCONNECTED) {
+				LogSpeedHack lsh = new LogSpeedHack();
+				lsh.storeLogSpeedHack(pc);
 				return;
+			}
 		}
 
 		pc.killSkillEffectTimer(MEDITATION);
@@ -92,7 +100,7 @@ public class C_MoveChar extends ClientBasePacket {
 		pc.getMap().setPassable(pc.getLocation(), true);
 
 		// 判斷伺服器國家代碼是否為3 (Taiwan Only)
-		if (CLIENT_LANGUAGE == 3){
+		if (CLIENT_LANGUAGE == 3) {
 			heading ^= 0x49;// 取得真實面向
 			// 取得真實座標
 			locx = pc.getX(); // X軸座標
@@ -101,29 +109,28 @@ public class C_MoveChar extends ClientBasePacket {
 
 		locx += HEADING_TABLE_X[heading];// 4.26 Start
 		locy += HEADING_TABLE_Y[heading];// 4.26 End
-		
-//waja add 測試禁止穿過物件
-		ArrayList<L1Object> objs = L1World.getInstance().getVisibleObjects(pc, 1);
+
+		// waja add 測試禁止穿過物件
+		ArrayList<L1Object> objs = L1World.getInstance().getVisibleObjects(pc,
+				1);
 		for (L1Object obj : objs) {
-			if (pc.isDead()
-					&& obj instanceof L1PcInstance
+			if (pc.isDead() && obj instanceof L1PcInstance
 					&& pc.getName().equals(((L1PcInstance) obj).getName())
-//					&& pc.isGmInvis() // GM隱形
-//					&& ((L1PcInstance) obj).isInvisble()// 隱形
+					// && pc.isGmInvis() // GM隱形
+					// && ((L1PcInstance) obj).isInvisble()// 隱形
 					&& ((L1PcInstance) obj).isDead()) { // 死亡
 				continue;
 			}
-			if (obj.getX() == locx//pc.getX()
-					&& obj.getY() == locy//pc.getY()
-					&& ((obj instanceof L1PcInstance))
-					&& !pc.isGmInvis()// GM角色不回溯
+			if (obj.getX() == locx// pc.getX()
+					&& obj.getY() == locy// pc.getY()
+					&& ((obj instanceof L1PcInstance)) && !pc.isGmInvis()// GM角色不回溯
 					&& !pc.isGm()) { // GM角色不回溯
 				pc.getMap().setPassable(pc.getLocation(), false);
 				L1Teleport.teleport(pc, pc.getLocation(), heading, true);
 				return;
 			}
 		}
-//end add
+		// end add
 
 		// ダンジョンにテレポートした場合
 		if (Dungeon.getInstance().dg(locx, locy, pc.getMap().getId(), pc))
@@ -143,8 +150,7 @@ public class C_MoveChar extends ClientBasePacket {
 		}
 
 		// sendMapTileLog(pc); // 移動先タイルの情報を送る(マップ調查用)
-		l1j.server.server.model.L1PolyRace.getInstance().checkLapFinish(pc);//waja add 寵物競速-判斷圈數
-
+		L1PolyRace.getInstance().checkLapFinish(pc); // waja add 寵物競速-判斷圈數
 		L1WorldTraps.getInstance().onPlayerMoved(pc);
 
 		pc.getMap().setPassable(pc.getLocation(), false);
