@@ -11,34 +11,31 @@ public class RandomArrayList {
 	private static byte[] Array6 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 5 */
 	private static byte[] Array7 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 6 */
 	private static byte[] Array8 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 7 */
-	private static byte[] Array9 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 9 */
+	private static byte[] Array9 = new byte[1000];	 /** 預定存放範圍 : 0 ~ 8 */
 	private static byte[] Array10 = new byte[1000];	 /** 預定存放範圍 : 1 ~ 10 */
 	private static byte[] Array100 = new byte[1000]; /** 預定存放範圍 : 1 ~ 100 */
-	private static short[] Arrayshort = new short[10000]; /** 預定存放範圍 : 1 ~ 32767 (泛用型)*/
+	private static short[] Arrayshort = new short[32767];	 /** 預定存放範圍 : 1 ~ 32767 (泛用型)*/
+	private static double[] ArrayDouble = new double[32767]; /** 新型泛用型，適用Int的正數範圍 */
 	private static short listshort = 0;				 /** 特殊型隨機矩陣，所使用的指標 */
 	private static int listint = 0;					 /** 泛用型隨機矩陣，所使用的指標 */
 	private static Random _random = new Random();	 /** 亂數產生物件 */
 
 	public static void setArrayList() {
-		setArrayshortList();
-		setArraybyteList();
-	}
-
-	/**
-	 * getArrayshortList((short) Num)隨機值 輸入至Array後 減少隨機函數的讀取次數
-	 */
-	private static void setArraybyteList() {
+		for (listint = 0; listint < 32767; listint++) {
+			ArrayDouble[listint] = Math.random();
+			Arrayshort[listint] = (short) (ArrayDouble[listint] * 32767);
+		}
 		for (listshort = 0; listshort < 1000; listshort++) {
-			Array100[listshort] = (byte) (_random.nextInt(100) + 1);
-			Array10[listshort] = (byte) (_random.nextInt(10) + 1);
-			Array9[listshort] = (byte) _random.nextInt(9);
-			Array8[listshort] = (byte) _random.nextInt(8);
-			Array7[listshort] = (byte) _random.nextInt(7);
-			Array6[listshort] = (byte) _random.nextInt(6);
-			Array5[listshort] = (byte) _random.nextInt(5);
-			Array4[listshort] = (byte) _random.nextInt(4);
-			Array3[listshort] = (byte) _random.nextInt(3);
-			Array2[listshort] = (byte) _random.nextInt(2);
+			Array100[listshort] = (byte) (getArraydoubleList(100) + 1); // (_random.nextInt(100) + 1);
+			Array10[listshort] = (byte) (getArraydoubleList(10) + 1); // (_random.nextInt(10) + 1);
+			Array9[listshort] = (byte) getArraydoubleList(9); // _random.nextInt(9);
+			Array8[listshort] = (byte) getArraydoubleList(8); // _random.nextInt(8);
+			Array7[listshort] = (byte) getArraydoubleList(7); // _random.nextInt(7);
+			Array6[listshort] = (byte) getArraydoubleList(6); // _random.nextInt(6);
+			Array5[listshort] = (byte) getArraydoubleList(5); // _random.nextInt(5);
+			Array4[listshort] = (byte) getArraydoubleList(4); // _random.nextInt(4);
+			Array3[listshort] = (byte) getArraydoubleList(3); // _random.nextInt(3);
+			Array2[listshort] = (byte) getArraydoubleList(2); // _random.nextInt(2);
 		}
 	}
 
@@ -50,6 +47,13 @@ public class RandomArrayList {
 			return ++listshort;
 		else
 			return listshort = 0;
+	}
+
+	public static int getlistint() {
+		if (listint < 32766)
+			return ++listint;
+		else
+			return listint = 0;
 	}
 
 	/**
@@ -97,18 +101,18 @@ public class RandomArrayList {
 		return Array100[getlistshort()];
 	}
 
-	private static void setArrayshortList() {
-		for (listint = 0; listint < 10000; listint++)
-			Arrayshort[listint] = (short) (_random.nextInt(30000) + 1);
+	/**
+	 * getArrayshortList((short) Num)隨機值 輸入至Array後 減少隨機函數的讀取次數
+	 */
+	public static short getArrayshortList(short rang) {
+		/*if (rang > 1) {
+			return (short) (Arrayshort[getlistint()] % rang);
+		} else
+			return 0;*/
+		return (short) (ArrayDouble[getlistint()] * rang);
 	}
 
-	public static short getArrayshortList(short rang) {
-		if (rang > 1) {
-			if (listint < 9999)
-				return (short) (Arrayshort[++listint] % rang);
-			else
-				return (short) (Arrayshort[listint = 0] % rang);
-		} else
-			return 0;
+	public static int getArraydoubleList(int rang) {
+		return (int) (ArrayDouble[getlistint()] * rang);
 	}
 }
