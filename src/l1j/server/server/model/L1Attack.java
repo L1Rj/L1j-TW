@@ -1071,9 +1071,6 @@ public class L1Attack
 		if (_targetPc.hasSkillEffect(IMMUNE_TO_HARM)) {
 			dmg /= 2;
 		}
-		if (_targetPc.hasSkillEffect(ILLUSION_AVATAR)) {
-			dmg *= 3 / 2;
-		}
 		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
 			dmg = 0;
 		}
@@ -1420,9 +1417,6 @@ public class L1Attack
 		}
 		if (_targetPc.hasSkillEffect(IMMUNE_TO_HARM)) {
 			dmg /= 2;
-		}
-		if (_targetPc.hasSkillEffect(ILLUSION_AVATAR)) {
-			dmg *= 3 / 2;
 		}
 		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
 			dmg = 0;

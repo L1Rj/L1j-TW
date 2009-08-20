@@ -95,3 +95,8 @@ Update weapon Set trade = '0' Where item_id = '240';
 
 /* 20090812 修正宙斯巨劍 */
 Update weapon Set use_dragonknight = '1' Where item_id = '522';
+
+/* 20090819 修正酷寒之矛為單手 法師不可裝備 */
+/* http://lineage.gametsg.com/index.php?view=item&list=no&k1=normal&item=9079 */
+Update weapon Set use_mage = '0' Where item_id = '263';
+Update weapon Set type = 'singlespear' Where item_id = '263';
