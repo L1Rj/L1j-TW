@@ -18,14 +18,14 @@
  */
 package l1j.server.server.model;
 
-import java.io.BufferedWriter;//waja add 交易紀錄文件版
-import java.io.FileWriter;//waja add 交易紀錄文件版
-import java.io.IOException;//waja add 交易紀錄文件版
-import java.sql.Timestamp;//waja add 交易紀錄文件版
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
-
-
+import l1j.server.server.log.LogTradeAddItem;
+import l1j.server.server.log.LogTradeComplete;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_TradeAddItem;
@@ -53,6 +53,7 @@ public class L1Trade {
 		L1ItemInstance l1iteminstance = player.getInventory().getItem(itemid);
 		if (l1iteminstance != null && trading_partner != null) {
 			if (!l1iteminstance.isEquipped()) {
+				int itembefore = player.getInventory().countItems(l1iteminstance.getItem().getItemId());
 				if (l1iteminstance.getCount() < itemcount || 0 > itemcount) {
 					player.sendPackets(new S_TradeStatus(1));
 					trading_partner.sendPackets(new S_TradeStatus(1));
@@ -68,6 +69,9 @@ public class L1Trade {
 						itemcount, 0));
 				trading_partner.sendPackets(new S_TradeAddItem(l1iteminstance,
 						itemcount, 1));
+				int itemafter = player.getInventory().countItems(l1iteminstance.getItem().getItemId());
+				LogTradeAddItem ltai = new LogTradeAddItem();
+				ltai.storeLogTradeAddItem(player, trading_partner, l1iteminstance, itembefore, itemafter, itemcount);
 			}
 		}
 	}
@@ -88,42 +92,24 @@ public class L1Trade {
 			for (cnt = 0; cnt < player_tradecount; cnt++) {
 				L1ItemInstance l1iteminstance1 = (L1ItemInstance) player_tradelist
 						.get(0);
+				int itembeforeinven = player.getInventory().countItems(l1iteminstance1.getItem().getItemId());
 				player.getTradeWindowInventory().tradeItem(l1iteminstance1,
 						l1iteminstance1.getCount(),
 						trading_partner.getInventory());
-//waja add 交易記錄文件版 (主動找交易的玩家)
-				trade("IP"
-					  + "(" + player.getNetConnection().getIp() + ")"
-					  +"玩家"
-					  + ":【" + player.getName() + "】 "
-					  + "的"
-					  + "【+" + l1iteminstance1.getEnchantLevel()
-					  + " " + l1iteminstance1.getName() +
-					  "(" + l1iteminstance1.getCount() + ")" + "】"
-					  + " 轉移給玩家"
-					  + ":【" + trading_partner.getName() + "】，"
-					  + "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。");
-//add end
+				int itemafter = player.getInventory().countItems(l1iteminstance1.getItem().getItemId());
+				LogTradeComplete ltc = new LogTradeComplete();
+				ltc.storeLogTradeComplete(player, trading_partner, l1iteminstance1, player_tradecount, itembeforeinven, itemafter, player_tradecount);
 			}
 			for (cnt = 0; cnt < trading_partner_tradecount; cnt++) {
 				L1ItemInstance l1iteminstance2 = (L1ItemInstance) trading_partner_tradelist
 						.get(0);
+				int itembeforeinven = player.getInventory().countItems(l1iteminstance2.getItem().getItemId());
 				trading_partner.getTradeWindowInventory().tradeItem(
 						l1iteminstance2, l1iteminstance2.getCount(),
 						player.getInventory());
-//waja add 交易記錄  文件版 (被邀請交易的玩家)
-				trade("IP"
-						+ "(" + trading_partner.getNetConnection().getIp() + ")"
-						+"玩家"
-						+ ":【" + trading_partner.getName() + "】 "
-						+ "的"
-						+ "【+" + l1iteminstance2.getEnchantLevel()
-						+ " " + l1iteminstance2.getName() +
-						"(" + l1iteminstance2.getCount() + ")" + "】"
-						+ " 轉移給玩家"
-						+ ":【" + player.getName() + "】，"
-						+ "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。");
-//add end
+				int itemafter = player.getInventory().countItems(l1iteminstance2.getItem().getItemId());
+				LogTradeComplete ltc = new LogTradeComplete();
+				ltc.storeLogTradeComplete(trading_partner, player, l1iteminstance2, trading_partner_tradecount, itembeforeinven, itemafter, trading_partner_tradecount);
 			}
 
 			player.sendPackets(new S_TradeStatus(0));
@@ -137,17 +123,19 @@ public class L1Trade {
 		}
 	}
 
-//waja add 交易紀錄 文件版 寫入檔案
+	// waja add 交易紀錄 文件版 寫入檔案
 	public static void trade(String info) {
 		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter("log/trade.log", true));
+			BufferedWriter out = new BufferedWriter(new FileWriter(
+					"log/trade.log", true));
 			out.write(info + "\r\n");
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-//add end
+
+	// add end
 	public void TradeCancel(L1PcInstance player) {
 		int cnt;
 		L1PcInstance trading_partner = (L1PcInstance) L1World.getInstance()
