@@ -260,8 +260,8 @@ public class L1ItemInstance extends L1Object {
 				|| getItemId() == 120011) {
 			mr += getEnchantLevel();
 		}
-		if (getItemId() == 20056 || getItemId() == 120056
-				|| getItemId() == 220056) {
+		if (getItemId() == 20056 || getItemId() == 120056 // 抗魔法斗篷 受祝福的抗魔法斗篷
+				|| getItemId() == 220056 || getItemId() == 21535 ) { // 受詛咒的抗魔法斗篷 強化抗魔斗篷
 			mr += getEnchantLevel() * 2;
 		}
 		return mr;
