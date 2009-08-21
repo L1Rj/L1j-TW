@@ -51,7 +51,7 @@ public class C_Mail extends ClientBasePacket {
 		int type = readC();
 		L1PcInstance pc = client.getActiveChar();
 
-		if (type == 0x00 || type == 0x01 || type == 0x02) { // 開く
+		if (type == 0x00 || type == 0x01 || type == 0x02) { // 開啟信件
 			pc.sendPackets(new S_Mail(pc.getName(), type));
 		} else if (type == 0x10 || type == 0x11 || type == 0x12) { // 讀む
 			int mailId = readD();
@@ -60,16 +60,18 @@ public class C_Mail extends ClientBasePacket {
 				MailTable.getInstance().setReadStatus(mailId);
 			}
 			pc.sendPackets(new S_Mail(mailId, type));
-		} else if (type == 0x20) { // 一般メールを書く
+		} else if (type == 0x20) { // 一般信件
 			int unknow = readH();
 			String receiverName = readS();
 			byte[] text = readByte();
 			L1PcInstance receiver = L1World.getInstance().
 					getPlayer(receiverName);
-			if (receiver != null) { // オンライン中
+			if (receiver != null) {
 				if (getMailSizeByReceiver(receiverName,
 						TYPE_NORMAL_MAIL) >= 20) {
 					pc.sendPackets(new S_Mail(type));
+					pc.sendPackets(new S_ServerMessage(1240)); // 無法傳送信件。
+					receiver.sendPackets(new S_ServerMessage(1261)); // 信箱已滿，無法再收信件。
 					return;
 				}
 				MailTable.getInstance().writeMail(TYPE_NORMAL_MAIL,
@@ -77,8 +79,10 @@ public class C_Mail extends ClientBasePacket {
 				if (receiver.getOnlineStatus() == 1) {
 					receiver.sendPackets(new S_Mail(receiverName,
 							TYPE_NORMAL_MAIL));
+					pc.sendPackets(new S_ServerMessage(1239)); // 已將信件送出了。
+					receiver.sendPackets(new S_ServerMessage(428)); // 您收到鴿子信差給你的信件。
 				}
-			} else { // オフライン中
+			} else {
 				try {
 					L1PcInstance restorePc = CharacterTable.getInstance()
 							.restoreCharacter(receiverName);
@@ -86,18 +90,19 @@ public class C_Mail extends ClientBasePacket {
 						if (getMailSizeByReceiver(receiverName,
 								TYPE_NORMAL_MAIL) >= 20) {
 							pc.sendPackets(new S_Mail(type));
+							pc.sendPackets(new S_ServerMessage(1242)); // 信箱已滿，無法再收信件。
 							return;
 						}
 						MailTable.getInstance().writeMail(TYPE_NORMAL_MAIL,
 								receiverName, pc, text);
 					} else {
-						pc.sendPackets(new S_ServerMessage(109, receiverName)); // %0という名前の人はいません。
+						pc.sendPackets(new S_ServerMessage(109, receiverName)); // 沒有叫%0的人。
 					}
 				} catch (Exception e) {
 					_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 				}
 			}
-		} else if (type == 0x21) { // 血盟メールを書く
+		} else if (type == 0x21) { // 血盟信件
 			int unknow = readH();
 			String clanName = readS();
 			byte[] text = readByte();
@@ -106,23 +111,26 @@ public class C_Mail extends ClientBasePacket {
 				for (String name : clan.getAllMembers()) {
 					int size = getMailSizeByReceiver(name, TYPE_CLAN_MAIL);
 					if (size >= 50) {
+						pc.sendPackets(new S_ServerMessage(1240)); // 無法傳送信件。
 						continue;
 					}
 					MailTable.getInstance().writeMail(TYPE_CLAN_MAIL, name,
 							pc, text);
 					L1PcInstance clanPc = L1World.getInstance().
 							getPlayer(name);
-					if (clanPc != null) { // オンライン中
+					if (clanPc != null) {
 						clanPc.sendPackets(new S_Mail(name,
 								TYPE_CLAN_MAIL));
+						pc.sendPackets(new S_ServerMessage(1239)); // 已將信件送出了。
+						clanPc.sendPackets(new S_ServerMessage(428)); // 您收到鴿子信差給你的信件。
 					}
 				}
 			}
-		} else if (type == 0x30 || type == 0x31 || type == 0x32) { // 削除
+		} else if (type == 0x30 || type == 0x31 || type == 0x32) { // 刪除信件
 			int mailId = readD();
 			MailTable.getInstance().deleteMail(mailId);
 			pc.sendPackets(new S_Mail(mailId, type));
-		} else if(type == 0x40) { // 保管箱に保存
+		} else if(type == 0x40) { // 保管信件
 			int mailId = readD();
 			MailTable.getInstance().setMailType(mailId, TYPE_MAIL_BOX);
 			pc.sendPackets(new S_Mail(mailId, type));
