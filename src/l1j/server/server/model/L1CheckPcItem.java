@@ -43,18 +43,22 @@ public class L1CheckPcItem {
 		if ((findWeapon() || findArmor()) && itemCount != 1) {
 			isCheat = true;
 		} else if (findEtcitem()) {
-			if (!isStackable && itemCount != 1) { //不可堆疊的道具同一格不等於1時 設定為作弊
+			// 不可堆疊的道具同一格不等於1時設定為作弊
+			if (!isStackable && itemCount != 1) {
 				isCheat = true;
+			// 金幣大於20億以及金幣負值設定為作弊
 			} else if (itemId == 40308
-					&& (itemCount > 2000000000 || itemCount < 0)) { // 金幣 大於20億 以及金幣負值 設定為作弊
+					&& (itemCount > 2000000000 || itemCount < 0)) {
 				isCheat = true;
-			} else if (isStackable && itemId != 40308 // 可堆疊道具(金幣除外) 堆疊超過十萬個 以及堆疊負值 設定為作弊
+			// 可堆疊道具(金幣除外)堆疊超過十萬個以及堆疊負值設定為作弊
+			} else if (isStackable && itemId != 40308
 					&& (itemCount > 100000 || itemCount < 0)) {
 				isCheat = true;
 			}
 		}
 		if (isCheat) {
-			pc.getInventory().removeItem(item, itemCount); // 作弊成立則刪除道具
+			// 作弊成立則刪除道具
+			pc.getInventory().removeItem(item, itemCount);
 		}
 		return isCheat;
 	}
