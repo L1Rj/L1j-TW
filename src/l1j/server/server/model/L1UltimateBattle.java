@@ -328,11 +328,8 @@ public class L1UltimateBattle {
 
 				for (L1PcInstance pc : getMembersArray()) // コロシアム內に居るPCを外へ出す
 				{
-					//Random random = new Random();
-					//int rndx = random.nextInt(4);
-					//int rndy = random.nextInt(4);
-					int locx = 33503 + RandomArrayList.getArray4List();
-					int locy = 32764 + RandomArrayList.getArray4List();
+					int locx = RandomArrayList.getInc(4, 33503);
+					int locy = RandomArrayList.getInc(4, 32764);
 					short mapid = 4;
 					L1Teleport.teleport(pc, locx, locy, mapid, 5, true);
 					removeMember(pc);

@@ -128,7 +128,7 @@ public class DungeonRandom {
 		String key = new StringBuilder().append(mapId).append(locX)
 				.append(locY).toString();
 		if (_dungeonMap.containsKey(key)) {
-			byte rnd = RandomArrayList.getArray5List();
+			int rnd = RandomArrayList.getInt(5);
 			NewDungeonRandom newDungeonRandom = _dungeonMap.get(key);
 			short newMap = newDungeonRandom._newMapId[rnd];
 			int newX = newDungeonRandom._newX[rnd];

@@ -186,92 +186,92 @@ public class L1TownLocation {
 		int[] loc = new int[3];
 
 		if (town_id == TOWNID_TALKING_ISLAND) { // TI
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_TALKING_ISLAND.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_TALKING_ISLAND.length);
 			loc[0] = GETBACK_LOC_TALKING_ISLAND[rnd].getX();
 			loc[1] = GETBACK_LOC_TALKING_ISLAND[rnd].getY();
 			loc[2] = GETBACK_MAP_TALKING_ISLAND;
 		} else if (town_id == TOWNID_SILVER_KNIGHT_TOWN) { // SKT
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_SILVER_KNIGHT_TOWN.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_SILVER_KNIGHT_TOWN.length);
 			loc[0] = GETBACK_LOC_SILVER_KNIGHT_TOWN[rnd].getX();
 			loc[1] = GETBACK_LOC_SILVER_KNIGHT_TOWN[rnd].getY();
 			loc[2] = GETBACK_MAP_SILVER_KNIGHT_TOWN;
 		} else if (town_id == TOWNID_KENT) { // ケント
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_KENT.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_KENT.length);
 			loc[0] = GETBACK_LOC_KENT[rnd].getX();
 			loc[1] = GETBACK_LOC_KENT[rnd].getY();
 			loc[2] = GETBACK_MAP_KENT;
 		} else if (town_id == TOWNID_GLUDIO) { // グル
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_GLUDIO.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_GLUDIO.length);
 			loc[0] = GETBACK_LOC_GLUDIO[rnd].getX();
 			loc[1] = GETBACK_LOC_GLUDIO[rnd].getY();
 			loc[2] = GETBACK_MAP_GLUDIO;
 		} else if (town_id == TOWNID_ORCISH_FOREST) { // 火田村
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_ORCISH_FOREST.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_ORCISH_FOREST.length);
 			loc[0] = GETBACK_LOC_ORCISH_FOREST[rnd].getX();
 			loc[1] = GETBACK_LOC_ORCISH_FOREST[rnd].getY();
 			loc[2] = GETBACK_MAP_ORCISH_FOREST;
 		} else if (town_id == TOWNID_WINDAWOOD) { // ウッドベック
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_WINDAWOOD.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_WINDAWOOD.length);
 			loc[0] = GETBACK_LOC_WINDAWOOD[rnd].getX();
 			loc[1] = GETBACK_LOC_WINDAWOOD[rnd].getY();
 			loc[2] = GETBACK_MAP_WINDAWOOD;
 		} else if (town_id == TOWNID_GIRAN) { // ギラン
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_GIRAN.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_GIRAN.length);
 			loc[0] = GETBACK_LOC_GIRAN[rnd].getX();
 			loc[1] = GETBACK_LOC_GIRAN[rnd].getY();
 			loc[2] = GETBACK_MAP_GIRAN;
 		} else if (town_id == TOWNID_HEINE) { // ハイネ
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_HEINE.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_HEINE.length);
 			loc[0] = GETBACK_LOC_HEINE[rnd].getX();
 			loc[1] = GETBACK_LOC_HEINE[rnd].getY();
 			loc[2] = GETBACK_MAP_HEINE;
 		} else if (town_id == TOWNID_WERLDAN) { // ウェルダン
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_WERLDAN.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_WERLDAN.length);
 			loc[0] = GETBACK_LOC_WERLDAN[rnd].getX();
 			loc[1] = GETBACK_LOC_WERLDAN[rnd].getY();
 			loc[2] = GETBACK_MAP_WERLDAN;
 		} else if (town_id == TOWNID_OREN) { // オーレン
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_OREN.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_OREN.length);
 			loc[0] = GETBACK_LOC_OREN[rnd].getX();
 			loc[1] = GETBACK_LOC_OREN[rnd].getY();
 			loc[2] = GETBACK_MAP_OREN;
 		} else if (town_id == TOWNID_ELVEN_FOREST) { // エルフの森
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_ELVEN_FOREST.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_ELVEN_FOREST.length);
 			loc[0] = GETBACK_LOC_ELVEN_FOREST[rnd].getX();
 			loc[1] = GETBACK_LOC_ELVEN_FOREST[rnd].getY();
 			loc[2] = GETBACK_MAP_ELVEN_FOREST;
 		} else if (town_id == TOWNID_ADEN) { // アデン
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_ADEN.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_ADEN.length);
 			loc[0] = GETBACK_LOC_ADEN[rnd].getX();
 			loc[1] = GETBACK_LOC_ADEN[rnd].getY();
 			loc[2] = GETBACK_MAP_ADEN;
 		} else if (town_id == TOWNID_SILENT_CAVERN) { // 沈默の洞窟
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_SILENT_CAVERN.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_SILENT_CAVERN.length);
 			loc[0] = GETBACK_LOC_SILENT_CAVERN[rnd].getX();
 			loc[1] = GETBACK_LOC_SILENT_CAVERN[rnd].getY();
 			loc[2] = GETBACK_MAP_SILENT_CAVERN;
 		} else if (town_id == TOWNID_OUM_DUNGEON) { // オームダンジョン
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_OUM_DUNGEON.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_OUM_DUNGEON.length);
 			loc[0] = GETBACK_LOC_OUM_DUNGEON[rnd].getX();
 			loc[1] = GETBACK_LOC_OUM_DUNGEON[rnd].getY();
 			loc[2] = GETBACK_MAP_OUM_DUNGEON;
 		} else if (town_id == TOWNID_RESISTANCE) { // レシスタンス村
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_RESISTANCE.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_RESISTANCE.length);
 			loc[0] = GETBACK_LOC_RESISTANCE[rnd].getX();
 			loc[1] = GETBACK_LOC_RESISTANCE[rnd].getY();
 			loc[2] = GETBACK_MAP_RESISTANCE;
 		} else if (town_id == TOWNID_PIRATE_ISLAND) { // 海賊島
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_PIRATE_ISLAND.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_PIRATE_ISLAND.length);
 			loc[0] = GETBACK_LOC_PIRATE_ISLAND[rnd].getX();
 			loc[1] = GETBACK_LOC_PIRATE_ISLAND[rnd].getY();
 			loc[2] = GETBACK_MAP_PIRATE_ISLAND;
 		} else if (town_id == TOWNID_RECLUSE_VILLAGE) { // 隱れ里
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_RECLUSE_VILLAGE.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_RECLUSE_VILLAGE.length);
 			loc[0] = GETBACK_LOC_RECLUSE_VILLAGE[rnd].getX();
 			loc[1] = GETBACK_LOC_RECLUSE_VILLAGE[rnd].getY();
 			loc[2] = GETBACK_MAP_RECLUSE_VILLAGE;
 		} else { // その他はSKT
-			short rnd = RandomArrayList.getArrayshortList((short) GETBACK_LOC_SILVER_KNIGHT_TOWN.length);
+			int rnd = RandomArrayList.getInt(GETBACK_LOC_SILVER_KNIGHT_TOWN.length);
 			loc[0] = GETBACK_LOC_SILVER_KNIGHT_TOWN[rnd].getX();
 			loc[1] = GETBACK_LOC_SILVER_KNIGHT_TOWN[rnd].getY();
 			loc[2] = GETBACK_MAP_SILVER_KNIGHT_TOWN;

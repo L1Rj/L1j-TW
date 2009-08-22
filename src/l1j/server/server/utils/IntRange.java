@@ -87,7 +87,7 @@ public class IntRange {
 	 * @return 範圍內のランダムな值
 	 */
 	public int randomValue() {
-		return RandomArrayList.getArrayshortList((short) getWidth()) + 1 + _low;
+		return RandomArrayList.getInc(getWidth(), 1 + _low);
 	}
 
 	public int getLow() {

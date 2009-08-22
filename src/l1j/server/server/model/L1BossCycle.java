@@ -245,7 +245,7 @@ public class L1BossCycle {
 		base.add(Calendar.MINUTE, _startTime);
 		// 出現時間の決定 start～end迄の間でランダムの秒
 		int diff = (_endTime - _startTime) * 60;
-		int random = diff > 0 ? RandomArrayList.getArrayshortList((short) diff) : 0;
+		int random = diff > 0 ? RandomArrayList.getInc(diff, 1) : 0;
 		base.add(Calendar.SECOND, random);
 		return base;
 	}

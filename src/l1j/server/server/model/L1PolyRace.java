@@ -359,7 +359,7 @@ public class L1PolyRace {
 		}
 		pc.setSkillEffect(POLY_EFFECT, 4*1000);
 		
-		int i = RandomArrayList.getArrayshortList((short) polyList.length); // 原式 int i = new Random().nextInt(polyList.length);
+		int i = RandomArrayList.getInt(polyList.length);
 		L1PolyMorph.doPoly(pc,polyList[i],3600,L1PolyMorph.MORPH_BY_NPC);
 	
 		for(L1PcInstance player : playerList){

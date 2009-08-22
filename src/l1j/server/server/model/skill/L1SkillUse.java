@@ -2167,7 +2167,7 @@ public class L1SkillUse {
 					}
 				} else if (_skillId == SHOCK_STUN) {
 					int[] stunTimeArray = { 1000, 2000, 3000, 4000, 5000, 6000 }; //waja chang 衝擊之暈時間為1-6秒
-					byte rnd = RandomArrayList.getArray6List(); // 依存 stunTimeArray[] 大小
+					int rnd = RandomArrayList.getInt(6); // 依存 stunTimeArray[] 大小
 					_shockStunDuration = stunTimeArray[rnd];
 					if (cha instanceof L1PcInstance
 							&& cha.hasSkillEffect(SHOCK_STUN)) {
@@ -2324,7 +2324,7 @@ public class L1SkillUse {
 					// ダメージを對象のHPとする。
 					dmg = cha.getCurrentHp();
 				} else if (_skillId == MANA_DRAIN) { // マナ ドレイン
-					int chance = RandomArrayList.getArray10List() + 4;
+					int chance = RandomArrayList.getInc(10, 5);
 					drainMana = chance + (_user.getInt() / 2);
 					if (cha.getCurrentMp() < drainMana) {
 						drainMana = cha.getCurrentMp();
@@ -2339,7 +2339,7 @@ public class L1SkillUse {
 							L1PcInstance pc = (L1PcInstance) cha;
 							L1ItemInstance weapon = pc.getWeapon();
 							if (weapon != null) {
-								int weaponDamage = RandomArrayList.getArrayshortList((short)(_user.getInt() / 3)) + 1;
+								int weaponDamage = RandomArrayList.getInc(_user.getInt() / 3, 1);
 								// \f1あなたの%0が損傷しました。
 								pc.sendPackets(new S_ServerMessage(268, weapon
 										.getLogName()));
@@ -2539,7 +2539,7 @@ public class L1SkillUse {
 							int brave = (int) (dark / 2.1);
 							int wise = (int) (brave / 2.0);
 							int kayser = (int) (wise / 1.9);
-							byte chance = RandomArrayList.getArray100List();
+							int chance = RandomArrayList.getInc(100, 1);
 							if (item.getItem().getItemId() == 40320) {
 								pc.getInventory().removeItem(item, 1);
 								if (dark >= chance) {
@@ -2664,7 +2664,7 @@ public class L1SkillUse {
 									}
 									// 特殊設定の場合ランダムで出現
 									if (summonid == 0) {
-										byte k3 = RandomArrayList.getArray4List();
+										int k3 = RandomArrayList.getInt(4);
 										summonid = summons[k3];
 									}
 

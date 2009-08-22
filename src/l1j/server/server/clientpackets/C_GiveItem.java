@@ -231,7 +231,7 @@ public class C_GiveItem extends ClientBasePacket {
 		int npcId = npc.getNpcTemplate().get_npcId();
 		if (npcId == 45313) { // タイガー
 			if (npc.getMaxHp() / 3 > npc.getCurrentHp() // HPが1/3未滿で1/16の確率
-					&& RandomArrayList.getArrayshortList((short) 16) == 15) { // 5.14
+					&& RandomArrayList.getInt(16) == 15) { // 5.14
 				isSuccess = true;
 			}
 		} else {

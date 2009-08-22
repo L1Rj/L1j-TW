@@ -195,7 +195,7 @@ public class L1Inventory extends L1Object {
 		int chargeCount = item.getItem().getMaxChargeCount();
 		if (itemId == 40006 || itemId == 40007 || itemId == 40008
 				|| itemId == 140006 || itemId == 140008 || itemId == 41401) {
-			chargeCount -= RandomArrayList.getArray5List();
+			chargeCount -= RandomArrayList.getInt(5);
 		}
 		if (itemId == 20383) {
 			chargeCount = 50;

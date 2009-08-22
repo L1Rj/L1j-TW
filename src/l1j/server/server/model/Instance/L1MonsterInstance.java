@@ -633,7 +633,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				|| npcid == 45181 // スパルトイ
 				|| npcid == 45455) { // デッドリースパルトイ
 			if (getMaxHp() / 3 > getCurrentHp()) {
-				byte rnd = RandomArrayList.getArray10List();
+				int rnd = RandomArrayList.getInc(10, 1);
 				if (2 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_SINK);
@@ -645,7 +645,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 			}
 		} else if (npcid == 45682) { // アンタラス
 			if (getMaxHp() / 3 > getCurrentHp()) {
-				byte rnd = RandomArrayList.getArray100List();
+				int rnd = RandomArrayList.getInc(100, 1);
 				if (3 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_SINK);
@@ -664,7 +664,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 		{
 			if (getMaxHp() / 3 > getCurrentHp())
 			{
-				byte rnd = RandomArrayList.getArray10List();
+				int rnd = RandomArrayList.getInc(10, 1);
 				if (2 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_FLY);
@@ -679,7 +679,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 		else if (npcid == 45681) // 風龍 - 林德拜爾
 		{
 			if (getMaxHp() / 3 > getCurrentHp()) {
-				byte rnd = RandomArrayList.getArray100List();
+				int rnd = RandomArrayList.getInc(100, 1);
 				if (3 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_FLY);
@@ -693,7 +693,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 		} else if (npcid == 46107 // テーベ マンドラゴラ(白)
 				 || npcid == 46108) { // テーベ マンドラゴラ(黒)
 			if (getMaxHp() / 4> getCurrentHp()) {
-				int rnd = RandomArrayList.getArray10List();
+				int rnd = RandomArrayList.getInc(10, 1);
 				if (2 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_SINK);
@@ -716,7 +716,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				|| npcid == 45161 // スパルトイ
 				|| npcid == 45181 // スパルトイ
 				|| npcid == 45455) { // デッドリースパルトイ
-			byte rnd = RandomArrayList.getArray3List();
+			int rnd = RandomArrayList.getInt(3);
 			if (1 > rnd) {
 				setHiddenStatus(HIDDEN_STATUS_SINK);
 				setStatus(13);
@@ -725,7 +725,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				|| npcid == 45126 // ストーンゴーレム
 				|| npcid == 45134 // ストーンゴーレム
 				|| npcid == 45281) { // ギランストーンゴーレム
-			byte rnd = RandomArrayList.getArray3List();
+			int rnd = RandomArrayList.getInt(3);
 			if (1 > rnd) {
 				setHiddenStatus(HIDDEN_STATUS_SINK);
 				setStatus(4);

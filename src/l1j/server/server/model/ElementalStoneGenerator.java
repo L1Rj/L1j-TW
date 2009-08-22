@@ -65,8 +65,8 @@ public class ElementalStoneGenerator implements Runnable {
 	 * 次の設置ポイントを決める。
 	 */
 	private Point nextPoint() {
-		int newX = RandomArrayList.getArrayshortList((short) (LAST_X - FIRST_X)) + FIRST_X;
-		int newY = RandomArrayList.getArrayshortList((short) (LAST_Y - FIRST_Y)) + FIRST_Y;
+		int newX = RandomArrayList.getInc((LAST_X - FIRST_X), FIRST_X);
+		int newY = RandomArrayList.getInc((LAST_Y - FIRST_Y), FIRST_Y);
 
 		return new Point(newX, newY);
 	}

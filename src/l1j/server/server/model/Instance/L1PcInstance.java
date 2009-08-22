@@ -1066,7 +1066,7 @@ public class L1PcInstance extends L1Character
 	// 魔法のダメージの場合はここを使用 (ここで魔法ダメージ軽減処理) attr:0.無属性魔法,1.地魔法,2.火魔法,3.水魔法,4.風魔法
 	public void receiveDamage(L1Character attacker, int damage, int attr) {
 		int player_mr = getMr();
-		int rnd = RandomArrayList.getArray100List();
+		int rnd = RandomArrayList.getInc(100, 1);
 		if (player_mr >= rnd) {
 			damage /= 2;
 		}
@@ -1194,7 +1194,7 @@ public class L1PcInstance extends L1Character
 
 			if (hasSkillEffect(MORTAL_BODY)
 					&& getId() != attacker.getId()) {
-				int rnd = RandomArrayList.getArray100List();
+				int rnd = RandomArrayList.getInc(100, 1);
 				if (damage > 0 && rnd <= 10) {
 					if (attacker instanceof L1PcInstance) {
 						L1PcInstance attackPc = (L1PcInstance) attacker;
@@ -1414,15 +1414,15 @@ public class L1PcInstance extends L1Character
 				if (getLawful() < 0) {
 					lostRate *= 4;//原值2
 				}
-				short rnd = RandomArrayList.getArrayshortList((short) 1000);
+				int rnd = RandomArrayList.getInt(1000);
 				if (rnd <= lostRate) {
 					int count = 1;
 					if (getLawful() <= -20000) {//原值30000
-						count = RandomArrayList.getArray5List();
+						count += RandomArrayList.getInt(5);
 					} else if (getLawful() <= -10000) {//原值20000
-						count = RandomArrayList.getArray4List();
+						count += RandomArrayList.getInt(4);
 					} else if (getLawful() <= -5000) {//原值10000
-						count = RandomArrayList.getArray3List();
+						count += RandomArrayList.getInt(3);
 					} else if (getLawful() < 0) {
 						count += 1;
 					}

@@ -93,7 +93,7 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				if (player.isElf()) { // エルフ
 					if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1) {
 						if (!player.getInventory().checkItem(40592)) { // 咒われた精靈書
-							if (RandomArrayList.getArray100List() < 50) { // 50%でダークマールダンジョン
+							if (RandomArrayList.getInc(100, 1) < 50) { // 50%でダークマールダンジョン
 								htmlid = "fairyp2";
 							} else { // ダークエルフダンジョン
 								htmlid = "fairyp1";

@@ -107,7 +107,7 @@ public class CalcStat {
 	 */
 	public static short calcStatHp(int charType, int baseMaxHp, byte baseCon, int originalHpup) {
 		short randomhp = 0;
-		byte randomadd = StaticFinalList.getRang2();
+		int randomadd = RandomArrayList.getInc(5, -2);
 		byte playerbasecon = (byte) (baseCon / 2);
 		if (baseCon > 15) {
 			randomhp = (short) (baseCon - 15);
@@ -175,21 +175,21 @@ public class CalcStat {
 	 */
 	public static short calcStatMp(int charType, int baseMaxMp, byte baseWis, int originalMpup) {
 		int randommp = 0;
-		byte seedY = 0;
-		byte seedZ = 0;
+		int seedY = 0;
+		int seedZ = 0;
 		if (baseWis < 9 || baseWis > 9 && baseWis < 12) {
-			seedY = RandomArrayList.getArray2List();
+			seedY = RandomArrayList.getInt(2);
 		} else if (baseWis == 9 || baseWis >= 12 && baseWis <= 17) {
-			seedY = RandomArrayList.getArray3List();
+			seedY = RandomArrayList.getInt(3);
 		} else if (baseWis >= 18 && baseWis <= 23 || baseWis == 25
 					|| baseWis == 26 || baseWis == 29
 					|| baseWis == 30 || baseWis == 33
 					|| baseWis == 34) {
-			seedY = RandomArrayList.getArray4List();
+			seedY = RandomArrayList.getInt(4);
 		} else if (baseWis == 24 ||baseWis == 27
 				 ||baseWis == 28 ||baseWis == 31
 				 ||baseWis == 32 ||baseWis >= 35) {
-			seedY = RandomArrayList.getArray5List();
+			seedY = RandomArrayList.getInt(5);
 		}
 
 		if (baseWis >= 7 && baseWis <= 9) {

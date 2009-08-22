@@ -457,7 +457,7 @@ public class L1MobSkillUse {
 		if (isTriRnd || type == L1MobSkill.TYPE_SUMMON
 				|| type == L1MobSkill.TYPE_POLY) {
 			if (getMobSkillTemplate().getTriggerRandom(skillIdx) > 0) {
-				int chance = RandomArrayList.getArray100List();
+				int chance = RandomArrayList.getInc(100, 1);
 				if (chance < getMobSkillTemplate().getTriggerRandom(skillIdx)) {
 					useble = true;
 				} else {
@@ -565,7 +565,7 @@ public class L1MobSkillUse {
 					mob.setId(IdFactory.getInstance().nextId());
 					L1Location loc = _attacker.getLocation().randomLocation(8,
 							false);
-					int heading = RandomArrayList.getArray8List();
+					int heading = RandomArrayList.getInt(8);
 					mob.setX(loc.getX());
 					mob.setY(loc.getY());
 					mob.setHomeX(loc.getX());
@@ -656,7 +656,7 @@ public class L1MobSkillUse {
 				target = _target;
 			} else {
 				int randomSize = targetList.size() * 100;
-				int targetIndex = RandomArrayList.getArrayshortList((short) randomSize) / 100;
+				int targetIndex = RandomArrayList.getInt(randomSize) / 100;
 				target = targetList.get(targetIndex);
 			}
 			break;

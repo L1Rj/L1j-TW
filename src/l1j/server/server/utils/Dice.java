@@ -35,7 +35,7 @@ public class Dice {
 	}
 
 	public int roll() {
-		return RandomArrayList.getArrayshortList((short) _faces) + 1;
+		return RandomArrayList.getInc(_faces, 1);
 	}
 
 	public int roll(int count) {

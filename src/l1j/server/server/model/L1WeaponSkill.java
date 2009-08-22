@@ -142,7 +142,7 @@ public class L1WeaponSkill {
 			return 0;
 		}
 
-		byte chance = RandomArrayList.getArray100List();
+		int chance = RandomArrayList.getInc(100, 1);
 		if (weaponSkill.getProbability() < chance) {
 			return 0;
 		}
@@ -182,7 +182,7 @@ public class L1WeaponSkill {
 		double damage = 0;
 		int randomDamage = weaponSkill.getRandomDamage();
 		if (randomDamage != 0) {
-			damage = RandomArrayList.getArrayshortList((short) randomDamage);
+			damage = RandomArrayList.getInt(randomDamage);
 		}
 		damage += weaponSkill.getFixDamage();
 
@@ -250,7 +250,7 @@ public class L1WeaponSkill {
 	public static double getBaphometStaffDamage(L1PcInstance pc,
 			L1Character cha) {
 		double dmg = 0;
-		byte chance = RandomArrayList.getArray100List();
+		int chance = RandomArrayList.getInc(100, 1);
 		if (14 >= chance) {
 			int locx = cha.getX();
 			int locy = cha.getY();
@@ -260,7 +260,7 @@ public class L1WeaponSkill {
 			if (pc.hasSkillEffect(BERSERKERS)) {
 				bsk = 0.2;
 			}
-			dmg = (intel + sp) * (1.8 + bsk) + RandomArrayList.getArrayshortList((short)(intel + sp))
+			dmg = (intel + sp) * (1.8 + bsk) + RandomArrayList.getInt(intel + sp)
 					* 1.8;
 			S_EffectLocation packet = new S_EffectLocation(locx, locy, 129);
 			pc.sendPackets(packet);
@@ -272,7 +272,7 @@ public class L1WeaponSkill {
 	public static double getDiceDaggerDamage(L1PcInstance pc,
 			L1PcInstance targetPc, L1ItemInstance weapon) {
 		double dmg = 0;
-		byte chance = RandomArrayList.getArray100List();
+		int chance = RandomArrayList.getInc(100, 1);
 		if (3 >= chance) {
 			dmg = targetPc.getCurrentHp() * 2 / 3;
 			if (targetPc.getCurrentHp() - dmg < 0) {
@@ -301,7 +301,7 @@ public class L1WeaponSkill {
 		}
 
 		for (byte i = 0; i < diceCount; i++) {
-			kiringkuDamage += (RandomArrayList.getArrayshortList((short) dice) + 1);
+			kiringkuDamage += RandomArrayList.getInc(dice, 1);
 		}
 		kiringkuDamage += value;
 
@@ -339,7 +339,7 @@ public class L1WeaponSkill {
 		double dmg = 0;
 		int probability = 0;
 		int attr = 0;
-		int chance = RandomArrayList.getArray100List();
+		int chance = RandomArrayList.getInc(100, 1);
 		if (weaponId == 263) { // フリージングランサー
 			probability = 5;
 			attr = L1Skills.ATTR_WATER;
@@ -373,8 +373,7 @@ public class L1WeaponSkill {
 			if (pc.hasSkillEffect(BERSERKERS)) {
 				bsk = 0.2;
 			}
-			dmg = (intel + sp) * (damageRate + bsk) + RandomArrayList.getArrayshortList((short) (intel
-				+ sp)) * damageRate;
+			dmg = (intel + sp) * (damageRate + bsk) + RandomArrayList.getInt(intel + sp) * damageRate;
 			pc.sendPackets(new S_SkillSound(effectTargetId, effectId));
 			pc.broadcastPacket(new S_SkillSound(effectTargetId, effectId));
 
@@ -438,7 +437,7 @@ public class L1WeaponSkill {
 	public static double getLightningEdgeDamage(L1PcInstance pc,
 			L1Character cha) {
 		double dmg = 0;
-		int chance = RandomArrayList.getArray100List();
+		int chance = RandomArrayList.getInc(100, 1);
 		if (4 >= chance) {
 			int sp = pc.getSp();
 			int intel = pc.getInt();
@@ -446,7 +445,7 @@ public class L1WeaponSkill {
 			if (pc.hasSkillEffect(BERSERKERS)) {
 				bsk = 0.2;
 			}
-			dmg = (intel + sp) * (2 + bsk) + RandomArrayList.getArrayshortList((short) (intel + sp))* 2;
+			dmg = (intel + sp) * (2 + bsk) + RandomArrayList.getInt(intel + sp)* 2;
 
 			pc.sendPackets(new S_SkillSound(cha.getId(), 10));
 			pc.broadcastPacket(new S_SkillSound(cha.getId(), 10));
@@ -456,7 +455,7 @@ public class L1WeaponSkill {
 
 	public static void giveArkMageDiseaseEffect(L1PcInstance pc,
 			L1Character cha) {
-		int chance = RandomArrayList.getArrayshortList((short) 1000) + 1;
+		int chance = RandomArrayList.getInc(1000, 1);
 		int probability = (5 - ((cha.getMr() / 10) * 5)) * 10;
 		if (probability == 0) {
 			probability = 10;
@@ -474,7 +473,7 @@ public class L1WeaponSkill {
 		if (isFreeze(cha)) { // 凍結狀態orカウンターマジック中
 			return;
 		}
-		if (RandomArrayList.getArray100List() <= 2) {
+		if (RandomArrayList.getInc(100, 1) <= 2) {
 			L1EffectSpawn.getInstance().spawnEffect(81182, fettersTime,
 					cha.getX(), cha.getY(), cha.getMapId());
 			if (cha instanceof L1PcInstance) {

@@ -112,7 +112,7 @@ public class HpRegeneration extends TimerTask {
 
 		int equipHpr = _pc.getInventory().hpRegenPerTick();
 		equipHpr += _pc.getHpr();
-		int bonus = RandomArrayList.getArrayshortList((short) maxBonus) + 1;
+		int bonus = RandomArrayList.getInc(maxBonus, 1);
 
 		if (_pc.hasSkillEffect(NATURES_TOUCH)) {
 			bonus += 15;

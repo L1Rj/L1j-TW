@@ -84,7 +84,7 @@ public class L1DollInstance extends L1NpcInstance {
 				if (getLocation().getTileLineDistance(_master.getLocation()) > 3) {
 					setDirectionMove(dir);
 				} else {
-					switch (RandomArrayList.getArrayshortList((short) 200)) {
+					switch (RandomArrayList.getInt(200)) {
 					case 10: // 0.5%可能性觸動 正常而言 平均50秒內會觸發一次
 						broadcastPacket(new S_DoActionGFX(getId(), ACTION_Think));
 						setSleepTime(2500);
@@ -127,10 +127,10 @@ public class L1DollInstance extends L1NpcInstance {
 				new DollTimer(), DOLL_TIME);
 
 		setMaster(master);
-		setX(master.getX() + StaticFinalList.getRang2()); // 5.14
-		setY(master.getY() + StaticFinalList.getRang2()); // 5.14
+		setX(RandomArrayList.getInc(3, master.getX() - 1)); // master.getX() + RandomArrayList.getInt(2));
+		setY(RandomArrayList.getInc(3, master.getY() - 1)); // master.getY() + RandomArrayList.getInt(2));
 		setMap(master.getMapId());
-		setHeading(RandomArrayList.getArray8List());
+		setHeading(RandomArrayList.getInt(8));
 		setLightSize(template.getLightSize());
 
 		L1World.getInstance().storeObject(this);
@@ -207,7 +207,7 @@ public class L1DollInstance extends L1NpcInstance {
 	public int getDamageByDoll() {// 娃娃增加傷害
 		int damage = 0;
 		if (getDollType() == DOLLTYPE_WAREWOLF || getDollType() == DOLLTYPE_CRUSTANCEAN) {
-			byte chance = RandomArrayList.getArray100List();
+			int chance = RandomArrayList.getInc(100, 1);
 			if (chance <= 3) {
 				damage = 15;
 				if (_master instanceof L1PcInstance) {
@@ -249,7 +249,7 @@ public class L1DollInstance extends L1NpcInstance {
 	public int getDamageReductionByDoll() { // 娃娃減傷
 		int damageReduction = 0;
 		if (getDollType() == DOLLTYPE_GOLEM) {
-			byte chance = RandomArrayList.getArray100List();
+			int chance = RandomArrayList.getInc(100, 1);
 			if (chance <= 4) {
 				damageReduction = 15;
 			}

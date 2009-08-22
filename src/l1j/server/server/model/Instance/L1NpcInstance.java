@@ -420,7 +420,7 @@ public class L1NpcInstance extends L1Character {
 			if (isAttackPosition(target.getX(), target.getY(), getNpcTemplate()
 					.get_ranged())) { // 攻擊可能位置
 				if (mobSkill.isSkillTrigger(target)) { // トリガの條件に合うスキルがある
-					if (RandomArrayList.getArray2List() == 1) { // 一定の確率で物理攻擊
+					if (RandomArrayList.getInt(2) == 1) { // 一定の確率で物理攻擊
 						setHeading(targetDirection(target.getX(), target
 								.getY()));
 						attackTarget(target);
@@ -458,7 +458,7 @@ public class L1NpcInstance extends L1Character {
 					}
 
 					if (getNpcTemplate().is_teleport()
-							&& 20 > RandomArrayList.getArray100List()
+							&& 20 > RandomArrayList.getInc(100, 1)
 							&& getCurrentMp() >= 10 && distance > 6
 							&& distance < 20) { // テレポート移動
 						if (nearTeleport(target.getX(), target.getY()) == true) {
@@ -602,7 +602,7 @@ public class L1NpcInstance extends L1Character {
 		}
 
 		// 拾うアイテム(のインベントリ)をランダムで選定
-		int pickupIndex = RandomArrayList.getArrayshortList((short) gInventorys.size()); // 5.14
+		int pickupIndex = RandomArrayList.getInt(gInventorys.size()); // 5.14
 		L1GroundInventory inventory = gInventorys.get(pickupIndex);
 		for (L1ItemInstance item : inventory.getItems()) {
 			if (item.getItem().getType() == 6 // potion
@@ -627,7 +627,7 @@ public class L1NpcInstance extends L1Character {
 
 	public static void shuffle(L1Object[] arr) {
 		for (int i = arr.length - 1; i > 0; i--) {
-			int t = RandomArrayList.getArrayshortList((short) i); // 5.14
+			int t = RandomArrayList.getInt(i); // 5.14
 
 			// 選ばれた值と交換する
 			L1Object tmp = arr[i];
@@ -708,11 +708,11 @@ public class L1NpcInstance extends L1Character {
 					// 移動する予定の距離を移動し終えたら、新たに距離と方向を決める
 					// そうでないなら、移動する予定の距離をデクリメント
 					if (_randomMoveDistance == 0) { // 5.16 Start
-						_randomMoveDistance = RandomArrayList.getArray7List() + 2;
-						_randomMoveDirection = RandomArrayList.getArray8List();
+						_randomMoveDistance = RandomArrayList.getInc(7, 2);
+						_randomMoveDirection = RandomArrayList.getInt(8);
 						try {
 							if (sleeptime_PT != -1) { // 第一次看見人的怪物，不需要休息
-								sleeptime_PT = SleepTimeArray[RandomArrayList.getArray9List()]; // 需要常先得自己解除 註解 缺點被打時可能會不正常
+								sleeptime_PT = SleepTimeArray[RandomArrayList.getInt(9)];
 								Thread.sleep(sleeptime_PT); // 讓怪懂得忙裡偷閒
 							} else {
 								++sleeptime_PT;
@@ -721,7 +721,7 @@ public class L1NpcInstance extends L1Character {
 						}
 						// ホームポイントから離れすぎないように、一定の確率でホームポイントの方向に補正
 						if (getHomeX() != 0 && getHomeY() != 0
-								&& RandomArrayList.getArray5List() == 0) {
+								&& RandomArrayList.getInt(5) == 0) {
 							_randomMoveDirection = moveDirection(getHomeX(),
 									getHomeY());
 						} // 5.16 End
@@ -1114,7 +1114,7 @@ public class L1NpcInstance extends L1Character {
 			setLevel(template.get_level());
 		} else { // ランダムLv指定あり（最小值:get_level(),最大值:get_randomlevel()）
 			diff = template.get_randomlevel() - template.get_level();
-			randomlevel = RandomArrayList.getArrayshortList((short) (diff + 1));
+			randomlevel = RandomArrayList.getInt(diff + 1);
 			rate = randomlevel / diff;
 			randomlevel += template.get_level();
 			setLevel(randomlevel);
@@ -1590,7 +1590,7 @@ public class L1NpcInstance extends L1Character {
 		}
 
 		// 初期方向の設置
-		int _rndHeading = RandomArrayList.getArray8List();
+		int _rndHeading = RandomArrayList.getInt(8);
 		for (i = 0; i < 5; i++) {
 			System.arraycopy(locBace, 0, locNext, 0, 4);
 			_rndHeading = targetFace(_rndHeading + FIND_HEADING_TABLE[i]);
@@ -1692,7 +1692,7 @@ public class L1NpcInstance extends L1Character {
 			return; // ディケイ ポーション狀態かチェック
 		}
 
-		if (RandomArrayList.getArray100List() >= chance) {
+		if (RandomArrayList.getInc(100, 1) >= chance) {
 			return; // 使用する可能性
 		}
 
@@ -1731,10 +1731,10 @@ public class L1NpcInstance extends L1Character {
 		int tempx = 0;
 		int tempy = 0;
 		for (byte i = 1; i < 5; i++){
-			tempx = nx + StaticFinalList.getRang3();
-			tempy = ny + StaticFinalList.getRang3();
+			tempx = nx + RandomArrayList.getInc(7, -3);
+			tempy = ny + RandomArrayList.getInc(7, -3);
 			if (getMap().isPassable(tempx, tempy)) {
-				teleport(tempx, tempy, RandomArrayList.getArray8List());
+				teleport(tempx, tempy, RandomArrayList.getInt(8));
 				setCurrentMp(getCurrentMp() - 10);
 				return true;
 			}

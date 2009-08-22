@@ -480,7 +480,7 @@ public class L1CastleLocation {
 			loc = L1TownLocation.getGetBackLoc(L1TownLocation.TOWNID_ADEN);
 		} else if (castle_id == DIAD_CASTLE_ID) { // ディアド要塞
 			// ディアド要塞の歸還先は未調查
-			byte rnd = RandomArrayList.getArray3List();
+			int rnd = RandomArrayList.getInt(3);
 			loc = new int[3];
 			if (rnd == 0) {
 				loc[0] = 32792;

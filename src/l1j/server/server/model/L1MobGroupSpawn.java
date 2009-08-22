@@ -98,8 +98,8 @@ public class L1MobGroupSpawn {
 			mob.setMovementDistance(leader.getMovementDistance());
 			mob.setRest(leader.isRest());
 
-			mob.setX(leader.getX() + RandomArrayList.getArray5List() - 2);
-			mob.setY(leader.getY() + RandomArrayList.getArray5List() - 2);
+			mob.setX(leader.getX() + RandomArrayList.getInc(5, -2));
+			mob.setY(leader.getY() + RandomArrayList.getInc(5, -2));
 			// マップ外、障害物上、畫面內沸き不可で畫面內にPCがいる場合、リーダーと同じ座標
 			if (!canSpawn(mob)) {
 				mob.setX(leader.getX());

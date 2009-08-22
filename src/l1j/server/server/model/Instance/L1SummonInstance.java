@@ -114,10 +114,10 @@ public class L1SummonInstance extends L1NpcInstance {
 				new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);
-		setX(master.getX() + StaticFinalList.getRang2()); // 5.14
-		setY(master.getY() + StaticFinalList.getRang2()); // 5.14
+		setX(RandomArrayList.getInc(5, master.getX() - 2)); // master.getX() + StaticFinalList.getRang2()); // 5.14
+		setY(RandomArrayList.getInc(5, master.getY() - 2)); // master.getY() + StaticFinalList.getRang2()); // 5.14
 		setMap(master.getMapId());
-		setHeading(RandomArrayList.getArray8List());
+		setHeading(RandomArrayList.getInt(8));
 		setLightSize(template.getLightSize());
 
 		_currentPetStatus = 3;

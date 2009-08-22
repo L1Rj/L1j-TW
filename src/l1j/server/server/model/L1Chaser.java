@@ -107,44 +107,6 @@ public class L1Chaser extends TimerTask {
 	}
 
 	public double getDamage(L1PcInstance pc, L1Character cha) {
-/*
-		double dmg = 0;
-		int spByItem = pc.getSp() - pc.getTrueSp();
-		int Intel_Tempvalue = pc.getInt();
-		int charaIntelligence = Intel_Tempvalue + spByItem - 12; // 智力 + 裝備魔攻 -12
-
-		double coefficientA = 1.0 + 3.0 / 32.0 * charaIntelligence; // 7.15 Start
-
-		if (coefficientA < 1) {
-			coefficientA = 1.0;
-		}
-
-		double coefficient_PT = 0;
-		if (Intel_Tempvalue < 13) {
-			coefficient_PT = 9.36;
-		} else if(Intel_Tempvalue > 18) {
-			Intel_Tempvalue = (18 + Intel_Tempvalue) / 2;// 暫時削減智力18以上的傷害力
-			coefficient_PT = (Intel_Tempvalue + 4);
-		} else {
-			Intel_Tempvalue = (14 + Intel_Tempvalue) / 2;
-			coefficient_PT = Intel_Tempvalue * 0.065 * Intel_Tempvalue;
-		}
-
-		double bsk = 0;
-		if (pc.hasSkillEffect(BERSERKERS)) {
-			bsk = 0.1;
-		}
-		dmg = (RandomArrayList.getArray3List() + 10) * (1 + bsk) // 將殺傷力的最大值與最小值的差距範圍縮小
-				* coefficientA * coefficient_PT;
-
-		dmg = L1WeaponSkill.calcDamageReduction(pc, cha, dmg, 0);
-
-		if (cha.hasSkillEffect(IMMUNE_TO_HARM)) {
-			dmg /= 2.0;
-		}
-
-		return dmg; // 7.15 End
-*/
 // l1j 1952 版本
 		double dmg = 0;
 		int spByItem = pc.getSp() - pc.getTrueSp();
@@ -168,7 +130,7 @@ public class L1Chaser extends TimerTask {
 		} else {
 			coefficientC = intel;
 		}
-		dmg = ( RandomArrayList.getArray6List() + 8 ) * coefficientA // (_random.nextInt(6) + 1 + 7)
+		dmg = RandomArrayList.getInc(6, 8) * coefficientA
 				* coefficientB / 10.5 * coefficientC * 2.0;
 
 		dmg = L1WeaponSkill.calcDamageReduction(pc, cha, dmg, 0);

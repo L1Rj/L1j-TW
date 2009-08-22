@@ -258,7 +258,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 	private int calcRespawnDelay() {
 		int respawnDelay = _minRespawnDelay * 1000;
 		if (_delayInterval > 0) {
-			respawnDelay += RandomArrayList.getArrayshortList((short) _delayInterval) * 1000;
+			respawnDelay += RandomArrayList.getInt(_delayInterval) * 1000;
 		}
 		L1GameTime currentTime = L1GameTimeClock.getInstance().currentTime();
 		if (_time != null && !_time.getTimePeriod().includes(currentTime)) { // 指定時間外なら指定時間までの時間を足す
@@ -354,9 +354,9 @@ public class L1Spawn extends L1GameTimeAdapter {
 
 			int npcId = mob.getNpcTemplate().get_npcId();
 			if (npcId == 45488 && getMapId() == 9) { // カスパー
-				mob.setMap((short) (getMapId() + RandomArrayList.getArray2List()));
+				mob.setMap((short) (getMapId() + RandomArrayList.getInt(2)));
 			} else if (npcId == 45601 && getMapId() == 11) { // デスナイト
-				mob.setMap((short) (getMapId() + RandomArrayList.getArray3List()));
+				mob.setMap((short) (getMapId() + RandomArrayList.getInt(3)));
 			} else {
 				mob.setMap(getMapId());
 			}
@@ -375,7 +375,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 						}
 						if (players.size() > 0) {
 							L1PcInstance pc = players.get(RandomArrayList
-									.getArrayshortList((short) players.size()));
+									.getInt(players.size()));
 							L1Location loc = pc.getLocation().randomLocation(
 									PC_AROUND_DISTANCE, false);
 							newlocx = loc.getX();
@@ -398,18 +398,18 @@ public class L1Spawn extends L1GameTimeAdapter {
 						} else {
 							int rangeX = getLocX2() - getLocX1();
 							int rangeY = getLocY2() - getLocY1();
-							newlocx = RandomArrayList.getArrayshortList((short) rangeX) + getLocX1();
-							newlocy = RandomArrayList.getArrayshortList((short) rangeY) + getLocY1();
+							newlocx = RandomArrayList.getInc(rangeX, getLocX1());
+							newlocy = RandomArrayList.getInc(rangeY, getLocY1());
 						}
 						if (tryCount > 49) { // 出現位置が決まらない時はlocx,locyの值
 							newlocx = getLocX();
 							newlocy = getLocY();
 						}
 					} else if (isRandomSpawn()) { // 座標のランダム值が指定されている場合
-						newlocx = getLocX() + RandomArrayList.getArrayshortList((short) (getRandomx()/* + 1*/))
-								* WorR_Way[RandomArrayList.getArray2List()]; // 5.14 Start
-						newlocy = getLocY() + RandomArrayList.getArrayshortList((short) (getRandomy()/* + 1*/))
-								* WorR_Way[RandomArrayList.getArray2List()]; // 5.14 End
+						newlocx = getLocX() + RandomArrayList.getInt(getRandomx())
+								* WorR_Way[RandomArrayList.getInt(2)]; // 5.14 Start
+						newlocy = getLocY() + RandomArrayList.getInt(getRandomy())
+								* WorR_Way[RandomArrayList.getInt(2)]; // 5.14 End
 						// newlocx = getLocX() + RandomArrayList.getArrayshortList((short) 2 * getRandomx() + 1) - getRandomx(); // 5.14 Start 測試哪個好
 						// newlocy = getLocY() + RandomArrayList.getArrayshortList((short) 2 * getRandomy() + 1) - getRandomy(); // 5.14 End 測試哪個好
 						// newlocx = (getLocX() + ((int) (Math.random() * getRandomx()) - (int) (Math.random() * getRandomx())));

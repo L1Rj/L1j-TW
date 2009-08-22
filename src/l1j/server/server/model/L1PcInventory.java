@@ -779,7 +779,7 @@ public class L1PcInventory extends L1Inventory {
 
 	public L1ItemInstance CaoPenalty() {
 		//Random random = new Random();
-		short rnd = RandomArrayList.getArrayshortList((short) _items.size());
+		int rnd = RandomArrayList.getInt(_items.size());
 		L1ItemInstance penaltyItem = _items.get(rnd);
 		if (penaltyItem.getItem().getItemId() == L1ItemId.ADENA // アデナ、トレード不可のアイテムは落とさない
 				|| !penaltyItem.getItem().isTradable()) {

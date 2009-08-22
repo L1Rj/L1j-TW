@@ -1160,7 +1160,7 @@ public class C_NPCAction extends ClientBasePacket {
 			}
 //發光的古老項鍊-奇岩-迪艾司
 			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71179) {
-				int createitemrnd = RandomArrayList.getArray100List();
+				int createitemrnd = RandomArrayList.getInc(100, 1);
 				if (s.equalsIgnoreCase("A")) {
 					if (!(pc.getInventory().checkItem(49028, 1)
 							&& pc.getInventory().checkItem(49029, 1)
@@ -2445,7 +2445,7 @@ public class C_NPCAction extends ClientBasePacket {
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 70512) {
 			// 治療を受ける("fullheal"でリクエストが來ることはあるのか？)
 			if (s.equalsIgnoreCase("0") || s.equalsIgnoreCase("fullheal")) {
-				int hp = RandomArrayList.getArrayshortList((short) 21) + 70;
+				int hp = RandomArrayList.getInc(21, 70); // getArrayshortList((short) 21) + 70;
 				pc.setCurrentHp(pc.getCurrentHp() + hp);
 				pc.sendPackets(new S_ServerMessage(77));
 				pc.sendPackets(new S_SkillSound(pc.getId(), 830));
@@ -2548,16 +2548,13 @@ public class C_NPCAction extends ClientBasePacket {
 				createcount = new int[] { 1 };
 				htmlid = "maptbox1";
 				pc.getQuest().set_end(L1Quest.QUEST_TBOX1);
-				int[] nextbox = { 1, 2, 3 };
-				int pid = RandomArrayList.getArrayshortList((short) nextbox.length);
-				int nb = nextbox[pid];
-				if (nb == 1) { // b地點
-					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 2);
-				} else if (nb == 2) { // c地點
-					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 3);
-				} else if (nb == 3) { // d地點
-					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 4);
-				}
+				/* // Lifetime520 8/22 封印 並置換新版
+				int[] nextbox = { 1, 2, 3 }; int pid = RandomArrayList.getInt(nextbox.length);
+				int nb = nextbox[pid]; if (nb == 1) { // b地點
+					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 2); } else if (nb == 2) { // c地點
+					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 3); } else if (nb == 3) { // d地點
+					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 4); }*/
+				pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, RandomArrayList.getInc(3, 1));
 			}
 		}
 		// 小さな箱-2番目
@@ -2571,22 +2568,17 @@ public class C_NPCAction extends ClientBasePacket {
 				createcount = new int[] { 1 };
 				htmlid = "maptbox1";
 				pc.getQuest().set_end(L1Quest.QUEST_TBOX2);
+				/* // Lifetime520 8/22 封印 並置換新版
 				int[] nextbox2 = { 1, 2, 3, 4, 5, 6 };
-				int pid = RandomArrayList.getArrayshortList((short) nextbox2.length);
-				int nb2 = nextbox2[pid];
-				if (nb2 == 1) { // e地點
-					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 5);
-				} else if (nb2 == 2) { // f地點
-					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 6);
-				} else if (nb2 == 3) { // g地點
-					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 7);
-				} else if (nb2 == 4) { // h地點
-					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 8);
-				} else if (nb2 == 5) { // i地點
-					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 9);
-				} else if (nb2 == 6) { // j地點
-					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 10);
-				}
+				int pid = RandomArrayList.getInt(nextbox2.length);
+				int nb2 = nextbox2[pid]; if (nb2 == 1) { // e地點
+					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 5); } else if (nb2 == 2) { // f地點
+					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 6); } else if (nb2 == 3) { // g地點
+					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 7); } else if (nb2 == 4) { // h地點
+					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 8); } else if (nb2 == 5) { // i地點
+					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 9); } else if (nb2 == 6) { // j地點
+					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 10); }*/
+				pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, RandomArrayList.getInc(6, 5));
 			}
 		}
 		// シミズ(海賊島)
@@ -3019,8 +3011,8 @@ public class C_NPCAction extends ClientBasePacket {
 						counts = new int[] { 1000, 1 };
 						createitem = new int[] { 41314 }; // 占星術師のお守り
 						createcount = new int[] { 1 };
-						byte htmlA = (byte) (RandomArrayList.getArray3List() + 1);
-						byte htmlB = RandomArrayList.getArray100List();
+						int htmlA = RandomArrayList.getInc(3, 1);
+						int htmlB = RandomArrayList.getInc(100, 1);
 						switch (htmlA) {
 							case 1:
 								htmlid = "horosa" + htmlB; // horosa1 ~
@@ -3049,8 +3041,8 @@ public class C_NPCAction extends ClientBasePacket {
 				} else {
 					if (pc.getInventory().checkItem(41314)) { // 占星術師のお守り
 						pc.getInventory().consumeItem(41314, 1); // 占星術師のお守り
-						byte html = (byte) (RandomArrayList.getArray9List() + 1);
-						int PolyId = 6180 + RandomArrayList.getArrayshortList((short) 64);
+						int html = RandomArrayList.getInc(9, 1); // (byte) (RandomArrayList.getArray9List() + 1);
+						int PolyId = RandomArrayList.getInc(64, 6180); // 6180 + RandomArrayList.getArrayshortList((short) 64);
 						polyByKeplisha(client, PolyId);
 						switch (html) {
 							case 1:
@@ -3298,7 +3290,7 @@ public class C_NPCAction extends ClientBasePacket {
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80076) {
 			if (s.equalsIgnoreCase("A")) {
 				int[] diaryno = { 49082, 49083 };
-				int pid = RandomArrayList.getArrayshortList((short) diaryno.length);
+				int pid = RandomArrayList.getInt(diaryno.length);
 				int di = diaryno[pid];
 				if (di == 49082) { // 奇數ページ拔け
 					htmlid = "voyager6a";

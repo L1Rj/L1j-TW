@@ -297,7 +297,7 @@ public class L1Shop {
 			if (_npcId == 70068 || _npcId == 70020) {
 				item.setIdentified(false);
 				//Random random = new Random();
-				byte chance = RandomArrayList.getArray100List();
+				int chance = RandomArrayList.getInc(100, 1);
 				if (chance <= 15) {
 					item.setEnchantLevel(-2);
 				} else if (chance <= 30) {
@@ -305,9 +305,9 @@ public class L1Shop {
 				} else if (chance <= 70) {
 					item.setEnchantLevel(0);
 				} else if (chance <= 87) {
-					item.setEnchantLevel(RandomArrayList.getArray2List()+1);
+					item.setEnchantLevel(RandomArrayList.getInc(2, 1));
 				} else if (chance <= 97) {
-					item.setEnchantLevel(RandomArrayList.getArray3List()+3);
+					item.setEnchantLevel(RandomArrayList.getInc(3, 3));
 				} else if (chance <= 99) {
 					item.setEnchantLevel(6);
 				} else if (chance == 100) {

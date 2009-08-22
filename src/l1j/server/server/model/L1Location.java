@@ -229,8 +229,8 @@ public class L1Location extends Point {
 			}
 			trial++;
 
-			newX = locX1 + L1Location.RandomArrayList.getArrayshortList((short) (diffX + 1)); // locX1 + L1Location._random.nextInt(diffX + 1);
-			newY = locY1 + L1Location.RandomArrayList.getArrayshortList((short) (diffY + 1)); // locY1 + L1Location._random.nextInt(diffY + 1);
+			newX = L1Location.RandomArrayList.getInc(diffX + 1, locX1); // locX1 + L1Location._random.nextInt(diffX + 1);
+			newY = L1Location.RandomArrayList.getInc(diffY + 1, locY1); // locY1 + L1Location._random.nextInt(diffY + 1);
 
 			newLocation.set(newX, newY);
 

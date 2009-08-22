@@ -117,7 +117,7 @@ public class L1BossSpawn extends L1Spawn {
 		Calendar now = Calendar.getInstance();
 		// 出現時間
 		Calendar spawnTime;
-		if (Config.INIT_BOSS_SPAWN && _percentage > RandomArrayList.getArray100List()) {
+		if (Config.INIT_BOSS_SPAWN && _percentage > RandomArrayList.getInc(100, 1)) {
 			spawnTime = _cycle.calcSpawnTime(now);
 
 		} else {
@@ -130,7 +130,7 @@ public class L1BossSpawn extends L1Spawn {
 	private Calendar calcNextSpawnTime(Calendar cal) {
 		do {
 			cal = _cycle.nextSpawnTime(cal);
-		} while (!(_percentage > RandomArrayList.getArray100List()));
+		} while (!(_percentage > RandomArrayList.getInc(100, 1)));
 		return cal;
 	}
 

@@ -122,7 +122,7 @@ public class Getback {
 
 		int[] loc = new int[3];
 
-		byte nPosition = RandomArrayList.getArray3List();
+		int nPosition = RandomArrayList.getInt(3);
 
 		int pcLocX = pc.getX();
 		int pcLocY = pc.getY();
