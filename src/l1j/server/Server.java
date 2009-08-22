@@ -91,7 +91,6 @@ public class Server {
 			System.exit(0);
 		}
 
-		new DeadLockDetector(60, DeadLockDetector.RESTART).start();
 		// L1DatabaseFactory初期設定
 		L1DatabaseFactory.setDatabaseSettings(Config.DB_DRIVER, Config.DB_URL,
 				Config.DB_LOGIN, Config.DB_PASSWORD);

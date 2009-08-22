@@ -10,20 +10,4 @@ REM
 REM 如果你是大台的伺服器和許多的記憶體，可以嘗試下列範例
 REM java -server -Xmx1536m -Xms1024m -Xmn512m -XX:PermSize=256m -XX:SurvivorRatio=8 -Xnoclassgc -XX:+AggressiveOpts -cp l1jserver.jar;lib\l1jtw_commons.jar;lib\c3p0-0.9.1.2.jar;lib\commons-dbcp-1.3-SNAPSHOT-r796150-jdbc4.jar;lib\commons-pool-1.5.2.jar;lib\log4j-1.2.15.jar;lib\commons-io-1.4.jar;lib\mysql-connector-java-5.1.8-bin.jar;lib\javolution-5.3.1.jar l1j.server.Server
 REM -------------------------------------
-if ERRORLEVEL 2 goto restart
-if ERRORLEVEL 1 goto error
-goto end
-:restart
-echo.
-echo Admin Restart ...
-echo.
-goto start
-:error
-echo.
-echo Server terminated abnormaly
-echo.
-:end
-echo.
-echo server terminated
-echo.
 pause
