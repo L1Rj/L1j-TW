@@ -65,13 +65,13 @@ public class ClientThread implements Runnable, PacketOutput
 
 	private InputStream _in;
 	private OutputStream _out;
-	private PacketHandler _handler;
 	private Account _account;
 	private L1PcInstance _activeChar;
 	private String _ip;
 	private String _hostname;
 	private Socket _csocket;
 	private int _loginStatus;
+	private AutoSend _autoSend;
 	
 	private static final byte[] FIRST_PACKET = { // 3.0
 			(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,
@@ -83,25 +83,14 @@ public class ClientThread implements Runnable, PacketOutput
 	//	(byte) 0xd2, (byte) 0xda, (byte) 0x4c, (byte) 0x78,
 	//	(byte) 0xa0, (byte) 0x00, (byte) 0x01 };
 
-	/**
-	 * for Test
-	 */
-	protected ClientThread() {}
-
 	public ClientThread(Socket socket) throws IOException
 	{
 		_csocket = socket;
-		_ip = socket.getInetAddress().getHostAddress();
-		
-		if (HOSTNAME_LOOKUPS) {
-			_hostname = socket.getInetAddress().getHostName();
-		} else {
-			_hostname = _ip;
-		}
-		
 		_in = socket.getInputStream();
 		_out = new BufferedOutputStream(socket.getOutputStream());
-		_handler = new PacketHandler(this);
+		_ip = socket.getInetAddress().getHostAddress();
+		_hostname = socket.getInetAddress().getHostName();
+		_hostname = HOSTNAME_LOOKUPS ? _hostname : _ip;
 	}
 
 	public String getIp() {
@@ -194,8 +183,10 @@ public class ClientThread implements Runnable, PacketOutput
 
 		Socket socket = _csocket;
 		
-		AutoResponse response = new AutoResponse();
-		GeneralThreadPool.getInstance().execute(response);
+		_autoSend = new AutoSend(); // 建立新的自動送出程序
+		GeneralThreadPool.getInstance().execute(_autoSend); // 啟動自動送出程序
+		AutoResponse response = new AutoResponse(); // 建立新的自動處理程序
+		GeneralThreadPool.getInstance().execute(response); // 啟動自動處理程序
 
 		ClientThreadObserver observer =
 				new ClientThreadObserver(AUTOMATIC_KICK * 60 * 1000); // 自动切断までの时间（单位:ms）
@@ -269,8 +260,6 @@ public class ClientThread implements Runnable, PacketOutput
 		}
 		finally
 		{
-			_csocket = null;
-			
 			try
 			{
 				if (_activeChar != null)
@@ -297,6 +286,7 @@ public class ClientThread implements Runnable, PacketOutput
 			}
 		}
 		
+		_csocket = null;
 		_log.fine("Server thread[C] stopped");
 		
 		if (_kick < 1)
@@ -307,7 +297,7 @@ public class ClientThread implements Runnable, PacketOutput
 			System.out.println("等待連線中...");
 		}
 		
-		Thread.interrupted(); // 執行緒中止
+		System.gc(); // 通知 GC 回收資源
 	}
 
 	private int _kick = 0;
@@ -327,7 +317,7 @@ public class ClientThread implements Runnable, PacketOutput
 		public AutoResponse()
 		{
 			_SyncQueue = new SynchronousQueue<byte[]>();
-			_handler = ClientThread.this._handler;
+			_handler = new PacketHandler(ClientThread.this);
 		}
 
 		public void AddWork(byte[] data) throws InterruptedException
@@ -354,7 +344,51 @@ public class ClientThread implements Runnable, PacketOutput
 			}
 			
 			_SyncQueue.clear(); // 將資料清空
-			Thread.interrupted(); // 執行緒中止
+			System.gc(); // 通知 GC 回收資源
+		}
+	}
+	
+	// 自動送出程序
+	class AutoSend implements Runnable
+	{
+		private final SynchronousQueue<byte[]> _SyncQueue;
+
+		public AutoSend()
+		{
+			_SyncQueue = new SynchronousQueue<byte[]>();
+		}
+
+		public void AddWork(byte[] data) throws InterruptedException
+		{
+			_SyncQueue.put(data);
+		}
+
+		@Override
+		public void run()
+		{
+			while (_csocket != null)
+			{
+				try
+				{
+					byte[] data = _SyncQueue.take();
+					char[] ac = new char[data.length];
+					ac = UChar8.fromArray(data);
+					ac = LineageEncryption.encrypt(ac, _clkey);
+					data = UByte8.fromArray(ac);
+					int j = data.length + 2;
+			
+					_out.write(j & 0xff);
+					_out.write(j >> 8 & 0xff);
+					_out.write(data);
+					_out.flush();
+				}
+				catch (Exception e)
+				{
+				}
+			}
+			
+			_SyncQueue.clear(); // 將資料清空
+			System.gc(); // 通知 GC 回收資源
 		}
 	}
 
@@ -410,29 +444,12 @@ public class ClientThread implements Runnable, PacketOutput
 	@Override
 	public void sendPacket(ServerBasePacket packet)
 	{
-		// 判斷資料封包是否為空
-		if (packet == null)
-			return;
-		
-		synchronized (this)
+		try
 		{
-			try
-			{
-				byte[] abyte0 = packet.getContent();
-				char ac[] = new char[abyte0.length];
-				ac = UChar8.fromArray(abyte0);
-				ac = LineageEncryption.encrypt(ac, _clkey);
-				abyte0 = UByte8.fromArray(ac);
-				int j = abyte0.length + 2;
-	
-				_out.write(j & 0xff);
-				_out.write(j >> 8 & 0xff);
-				_out.write(abyte0);
-				_out.flush();
-			}
-			catch (Exception e)
-			{
-			}
+			_autoSend.AddWork(packet.getContent());
+		}
+		catch (Exception e)
+		{
 		}
 	}
 

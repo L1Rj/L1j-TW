@@ -776,7 +776,7 @@ public class C_ItemUSe extends ClientBasePacket
 							item.getItem().getItemId());
 					pc.sendPackets(new S_ServerMessage(452, item
 							.getLogName())); // %0が選擇されました。
-				} else if (item.getItem().getType() == 15) { // スティング
+				} else if (item.getItem().getType() == 20) { // スティング
 					pc.getInventory().setSting(
 							item.getItem().getItemId());
 					pc.sendPackets(new S_ServerMessage(452, // %0が選擇されました。

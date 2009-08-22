@@ -150,7 +150,7 @@ public class GameServer extends Thread {
 		}
 		
 		System.out.println("=================================================");
-		System.out.println("===== Lineage 3.0C ======= L1j2004-tw1032 版 ====");
+		System.out.println("===== Lineage 3.0C ======= L1j2006-tw1041 版 ====");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
@@ -270,7 +270,6 @@ public class GameServer extends Thread {
                 .getAllPlayers();
         for (L1PcInstance pc : players) {
             pc.getNetConnection().setActiveChar(null);
-//            L1World.getInstance().removeObject(pc);
             pc.getNetConnection().kick();
         }
         // 全员Kickした后に保存处理をする

@@ -693,7 +693,7 @@ public class L1PcInventory extends L1Inventory {
 
 	// 使用するスティングの取得
 	public L1ItemInstance getSting() {
-		return getBullet(15);
+		return getBullet(20);
 	}
 
 	private L1ItemInstance getBullet(int type) {
@@ -702,7 +702,7 @@ public class L1PcInventory extends L1Inventory {
 		if (type == 0) {
 			priorityId = _arrowId; // アロー
 		}
-		if (type == 15) {
+		if (type == 20) {
 			priorityId = _stingId; // スティング
 		}
 		if (priorityId > 0) // 優先する彈があるか
@@ -715,7 +715,7 @@ public class L1PcInventory extends L1Inventory {
 				if (type == 0) {
 					_arrowId = 0;
 				}
-				if (type == 15) {
+				if (type == 20) {
 					_stingId = 0;
 				}
 			}
@@ -728,7 +728,7 @@ public class L1PcInventory extends L1Inventory {
 				if (type == 0) {
 					_arrowId = bullet.getItem().getItemId(); // 優先にしておく
 				}
-				if (type == 15) {
+				if (type == 20) {
 					_stingId = bullet.getItem().getItemId(); // 優先にしておく
 				}
 				return bullet;
