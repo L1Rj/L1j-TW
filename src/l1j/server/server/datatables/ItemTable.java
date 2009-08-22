@@ -83,7 +83,7 @@ public class ItemTable {
 		_etcItemTypes.put("other", new Integer(12));
 		_etcItemTypes.put("material", new Integer(13));
 		_etcItemTypes.put("event", new Integer(14));
-		_etcItemTypes.put("sting", new Integer(15));
+		_etcItemTypes.put("sting", new Integer(20));
 		_etcItemTypes.put("treasure_box", new Integer(16));
 
 		_useTypes.put("none", new Integer(-1)); // 使用不可能
