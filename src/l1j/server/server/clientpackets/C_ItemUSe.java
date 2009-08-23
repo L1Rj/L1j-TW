@@ -5385,14 +5385,14 @@ public class C_ItemUSe extends ClientBasePacket
 					&& pc.getInventory().checkItem(49048, 1)) {
 				pc.getInventory().consumeItem(49046, 1);
 				pc.getInventory().consumeItem(49048, 1);
-				if (chance >= 1 && chance <= 30) {
+				if (chance >= 1 && chance <= 90) {
 					createNewItem(pc, 49055, 1);
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6392));
-				} else if (chance >= 31 && chance <= 65) {
+				} else if (chance >= 91 && chance <= 95) {
 					createNewItem(pc, 49063, 1);
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6390));
-				} else if (chance >= 66 && chance <= 100) {
+				} else if (chance >= 96 && chance <= 100) {
 					pc.sendPackets(new S_ServerMessage(1101)); // 料理が失敗しました。
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 6394));
 				}
