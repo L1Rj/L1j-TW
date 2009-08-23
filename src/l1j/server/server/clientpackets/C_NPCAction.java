@@ -1759,108 +1759,61 @@ public class C_NPCAction extends ClientBasePacket {
 		}
 		// ヤヒの鍛冶屋
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80053) {
-			int karmaLevel = pc.getKarmaLevel();
 			// 「材料すべてを用意できました」
 			if (s.equalsIgnoreCase("a")) {
 				// バルログのツーハンド ソード / ヤヒの鍛冶屋
 				int aliceMaterialId = 0;
+				int karmaLevel = 0;
+				int[] material = null;
+				int[] count = null;
+				int createItem = 0;
+				String successHtmlId = null;
+				String htmlId = null;
+
 				int[] aliceMaterialIdList = { 40991, 196, 197, 198, 199, 200,
-						201, 202, 203 };
-				for (int id : aliceMaterialIdList) {
-					if (pc.getInventory().checkItem(id)) {
-						aliceMaterialId = id;
+						201, 202 };
+				int[] karmaLevelList = { -1, -2, -3, -4, -5, -6, -7, -8 };
+				int[][] materialsList = { {40995, 40718, 40991},
+						{40997, 40718, 196}, {40990, 40718, 197},
+						{40994, 40718, 198}, {40993, 40718, 199},
+						{40998, 40718, 200}, {40996, 40718, 201},
+						{40992, 40718, 202} };
+				int[][] countList = { {100, 100, 1}, {100, 100, 1},
+						{100, 100, 1}, {50, 100, 1},
+						{50, 100, 1}, {50, 100, 1},
+						{10, 100, 1}, {10, 100, 1} };
+				int[] createItemList = { 196, 197, 198, 199, 200, 201, 202,
+						203 };
+				String[] successHtmlIdList = { "alice_1", "alice_2", "alice_3",
+						"alice_4", "alice_5", "alice_6", "alice_7", "alice_8" };
+				String[] htmlIdList = { "aliceyet", "alice_1", "alice_2",
+						"alice_3", "alice_4", "alice_5", "alice_5" , "alice_7"};
+
+				for (int i = 0; i < aliceMaterialIdList.length; i++) {
+					if (pc.getInventory().checkItem(aliceMaterialIdList[i])) {
+						aliceMaterialId = aliceMaterialIdList[i];
+						karmaLevel = karmaLevelList[i];
+						material = materialsList[i];
+						count = countList[i];
+						createItem = createItemList[i];
+						successHtmlId = successHtmlIdList[i];
+						htmlId = htmlIdList[i];
 						break;
 					}
 				}
+
 				if (aliceMaterialId == 0) {
 					htmlid = "alice_no";
-				} else if (aliceMaterialId == 40991) {
-					if (karmaLevel <= -1) {
-						materials = new int[] { 40995, 40718, 40991 };
-						counts = new int[] { 100, 100, 1 };
-						createitem = new int[] { 196 };
+				} else if (aliceMaterialId == aliceMaterialId) {
+					if (pc.getKarmaLevel() <= karmaLevel) {
+						materials = material;
+						counts = count;
+						createitem = new int[] { createItem };
 						createcount = new int[] { 1 };
-						success_htmlid = "alice_1";
+						success_htmlid = successHtmlId;
 						failure_htmlid = "alice_no";
 					} else {
-						htmlid = "aliceyet";
-					}
-				} else if (aliceMaterialId == 196) {
-					if (karmaLevel <= -2) {
-						materials = new int[] { 40997, 40718, 196 };
-						counts = new int[] { 100, 100, 1 };
-						createitem = new int[] { 197 };
-						createcount = new int[] { 1 };
-						success_htmlid = "alice_2";
-						failure_htmlid = "alice_no";
-					} else {
-						htmlid = "alice_1";
-					}
-				} else if (aliceMaterialId == 197) {
-					if (karmaLevel <= -3) {
-						materials = new int[] { 40990, 40718, 197 };
-						counts = new int[] { 100, 100, 1 };
-						createitem = new int[] { 198 };
-						createcount = new int[] { 1 };
-						success_htmlid = "alice_3";
-						failure_htmlid = "alice_no";
-					} else {
-						htmlid = "alice_2";
-					}
-				} else if (aliceMaterialId == 198) {
-					if (karmaLevel <= -4) {
-						materials = new int[] { 40994, 40718, 198 };
-						counts = new int[] { 50, 100, 1 };
-						createitem = new int[] { 199 };
-						createcount = new int[] { 1 };
-						success_htmlid = "alice_4";
-						failure_htmlid = "alice_no";
-					} else {
-						htmlid = "alice_3";
-					}
-				} else if (aliceMaterialId == 199) {
-					if (karmaLevel <= -5) {
-						materials = new int[] { 40993, 40718, 199 };
-						counts = new int[] { 50, 100, 1 };
-						createitem = new int[] { 200 };
-						createcount = new int[] { 1 };
-						success_htmlid = "alice_5";
-						failure_htmlid = "alice_no";
-					} else {
-						htmlid = "alice_4";
-					}
-				} else if (aliceMaterialId == 200) {
-					if (karmaLevel <= -6) {
-						materials = new int[] { 40998, 40718, 200 };
-						counts = new int[] { 50, 100, 1 };
-						createitem = new int[] { 201 };
-						createcount = new int[] { 1 };
-						success_htmlid = "alice_6";
-						failure_htmlid = "alice_no";
-					} else {
-						htmlid = "alice_5";
-					}
-				} else if (aliceMaterialId == 201) {
-					if (karmaLevel <= -7) {
-						materials = new int[] { 40996, 40718, 201 };
-						counts = new int[] { 10, 100, 1 };
-						createitem = new int[] { 202 };
-						createcount = new int[] { 1 };
-						success_htmlid = "alice_7";
-						failure_htmlid = "alice_no";
-					} else {
-						htmlid = "alice_6";
-					}
-				} else if (aliceMaterialId == 202) {
-					if (karmaLevel <= -8) {
-						materials = new int[] { 40992, 40718, 202 };
-						counts = new int[] { 10, 100, 1 };
-						createitem = new int[] { 203 };
-						createcount = new int[] { 1 };
-						success_htmlid = "alice_8";
-						failure_htmlid = "alice_no";
-					} else {
-						htmlid = "alice_7";
+						htmlid = htmlId;
 					}
 				} else if (aliceMaterialId == 203) {
 					htmlid = "alice_8";
@@ -1993,97 +1946,59 @@ public class C_NPCAction extends ClientBasePacket {
 		}
 		// バルログの鍛冶屋
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80072) {
-			int karmaLevel = pc.getKarmaLevel();
-			if (s.equalsIgnoreCase("0")) {
-				htmlid = "lsmitha";
-			} else if (s.equalsIgnoreCase("1")) {
-				htmlid = "lsmithb";
-			} else if (s.equalsIgnoreCase("2")) {
-				htmlid = "lsmithc";
-			} else if (s.equalsIgnoreCase("3")) {
-				htmlid = "lsmithd";
-			} else if (s.equalsIgnoreCase("4")) {
-				htmlid = "lsmithe";
-			} else if (s.equalsIgnoreCase("5")) {
-				htmlid = "lsmithf";
-			} else if (s.equalsIgnoreCase("6")) {
-				htmlid = "";
-			} else if (s.equalsIgnoreCase("7")) {
-				htmlid = "lsmithg";
-			} else if (s.equalsIgnoreCase("8")) {
-				htmlid = "lsmithh";
+			String sEquals = null;
+			int karmaLevel = 0;
+			int[] material = null;
+			int[] count = null;
+			int createItem = 0;
+			String failureHtmlId = null;
+			String htmlId = null;
+
+			String[] sEqualsList = { "0", "1", "2", "3", "4", "5", "6", "7",
+					"8", "a", "b", "c", "d", "e", "f", "g", "h" };
+			String[] htmlIdList = { "lsmitha", "lsmithb", "lsmithc", "lsmithd",
+					"lsmithe", "", "lsmithf", "lsmithg", "lsmithh" };
+			int[] karmaLevelList = { 1, 2, 3, 4, 5, 6, 7, 8 };
+			int[][] materialsList = { {20158, 40669, 40678},
+					{20144, 40672, 40678}, {20075, 40671, 40678},
+					{20183, 40674, 40678}, {20190, 40674, 40678},
+					{20078, 40674, 40678}, {20078, 40670, 40678},
+					{40719, 40673, 40678} };
+			int[][] countList = { {1, 50, 100}, {1, 50, 100}, {1, 50, 100},
+					{1, 20, 100}, {1, 40, 100}, {1, 5, 100}, {1, 1, 100},
+					{1, 1, 100} };
+			int[] createItemList = { 20083, 20131, 20069, 20179 , 20209, 20290,
+					20261, 20031 };
+			String[] failureHtmlIdList = { "lsmithaa", "lsmithbb", "lsmithcc",
+					"lsmithdd", "lsmithee", "lsmithff", "lsmithgg",
+					"lsmithhh" };
+
+			for (int i = 0; i < sEqualsList.length; i++) {
+				if (s.equalsIgnoreCase(sEqualsList[i])) {
+					sEquals = sEqualsList[i];
+					if (i <= 8) {
+						htmlId = htmlIdList[i];
+					} else if (i > 8) {
+						karmaLevel = karmaLevelList[i - 9];
+						material = materialsList[i - 9];
+						count = countList[i - 9];
+						createItem = createItemList[i - 9];
+						failureHtmlId = failureHtmlIdList[i - 9];
+					}
+					break;
+				}
 			}
-			// ヤヒのシャツ / バルログの鍛冶屋
-			else if (s.equalsIgnoreCase("a") && karmaLevel >= 1) {
-				materials = new int[] { 20158, 40669, 40678 };
-				counts = new int[] { 1, 50, 100 };
-				createitem = new int[] { 20083 };
-				createcount = new int[] { 1 };
-				success_htmlid = "";
-				failure_htmlid = "lsmithaa";
-			}
-			// ヤヒのアーマー / バルログの鍛冶屋
-			else if (s.equalsIgnoreCase("b") && karmaLevel >= 2) {
-				materials = new int[] { 20144, 40672, 40678 };
-				counts = new int[] { 1, 50, 100 };
-				createitem = new int[] { 20131 };
-				createcount = new int[] { 1 };
-				success_htmlid = "";
-				failure_htmlid = "lsmithbb";
-			}
-			// ヤヒのアーマー / バルログの鍛冶屋
-			else if (s.equalsIgnoreCase("c") && karmaLevel >= 3) {
-				materials = new int[] { 20075, 40671, 40678 };
-				counts = new int[] { 1, 50, 100 };
-				createitem = new int[] { 20069 };
-				createcount = new int[] { 1 };
-				success_htmlid = "";
-				failure_htmlid = "lsmithcc";
-			}
-			// ヤヒのグローブ / バルログの鍛冶屋
-			else if (s.equalsIgnoreCase("d") && karmaLevel >= 4) {
-				materials = new int[] { 20183, 40674, 40678 };
-				counts = new int[] { 1, 20, 100 };
-				createitem = new int[] { 20179 };
-				createcount = new int[] { 1 };
-				success_htmlid = "";
-				failure_htmlid = "lsmithdd";
-			}
-			// ヤヒのブーツ / バルログの鍛冶屋
-			else if (s.equalsIgnoreCase("e") && karmaLevel >= 5) {
-				materials = new int[] { 20190, 40674, 40678 };
-				counts = new int[] { 1, 40, 100 };
-				createitem = new int[] { 20209 };
-				createcount = new int[] { 1 };
-				success_htmlid = "";
-				failure_htmlid = "lsmithee";
-			}
-			// ヤヒのリング / バルログの鍛冶屋
-			else if (s.equalsIgnoreCase("f") && karmaLevel >= 6) {
-				materials = new int[] { 20078, 40674, 40678 };
-				counts = new int[] { 1, 5, 100 };
-				createitem = new int[] { 20290 };
-				createcount = new int[] { 1 };
-				success_htmlid = "";
-				failure_htmlid = "lsmithff";
-			}
-			// ヤヒのアミュレット / バルログの鍛冶屋
-			else if (s.equalsIgnoreCase("g") && karmaLevel >= 7) {
-				materials = new int[] { 20078, 40670, 40678 };
-				counts = new int[] { 1, 1, 100 };
-				createitem = new int[] { 20261 };
-				createcount = new int[] { 1 };
-				success_htmlid = "";
-				failure_htmlid = "lsmithgg";
-			}
-			// ヤヒのヘルム / バルログの鍛冶屋
-			else if (s.equalsIgnoreCase("h") && karmaLevel >= 8) {
-				materials = new int[] { 40719, 40673, 40678 };
-				counts = new int[] { 1, 1, 100 };
-				createitem = new int[] { 20031 };
-				createcount = new int[] { 1 };
-				success_htmlid = "";
-				failure_htmlid = "lsmithhh";
+			if (s.equalsIgnoreCase(sEquals)) {
+				if (karmaLevel != 0 && (pc.getKarmaLevel() >= karmaLevel)) {
+					materials = material;
+					counts = count;
+					createitem = new int[] { createItem };
+					createcount = new int[] { 1 };
+					success_htmlid = "";
+					failure_htmlid = failureHtmlId;
+				} else {
+					htmlid = htmlId;
+				}
 			}
 		}
 		// 業の管理者
@@ -2371,16 +2286,12 @@ public class C_NPCAction extends ClientBasePacket {
 					htmlid = "";
 				}
 			} else if (s.equalsIgnoreCase("2")) {
-				final int[] item_ids = { 41227 }; // アレックスの紹介狀
-				final int[] item_amounts = { 1 };
-				for (int i = 0; i < item_ids.length; i++) {
-					L1ItemInstance item = pc.getInventory().storeItem(
-							item_ids[i], item_amounts[i]);
-					pc.sendPackets(new S_ServerMessage(143,
-							((L1NpcInstance) obj).getNpcTemplate().get_name(),
-							item.getLogName()));
-				}
-				pc.getQuest().set_step(L1Quest.QUEST_AREX, L1Quest.QUEST_END);
+				L1ItemInstance item = pc.getInventory().storeItem(41227, 1); // アレックスの紹介状
+				pc.sendPackets(new S_ServerMessage(143,
+						((L1NpcInstance) obj).getNpcTemplate().get_name(),
+						item.getLogName()));
+						pc.getQuest().set_step(L1Quest.QUEST_AREX,
+						L1Quest.QUEST_END);
 				htmlid = "";
 			}
 		}
@@ -2389,31 +2300,22 @@ public class C_NPCAction extends ClientBasePacket {
 			// アイテムを受け取る
 			if (s.equalsIgnoreCase("0")) {
 				if (!pc.getInventory().checkItem(41209)) {
-					final int[] item_ids = { 41209, };
-					final int[] item_amounts = { 1, };
-					for (int i = 0; i < item_ids.length; i++) {
-						L1ItemInstance item = pc.getInventory().storeItem(
-								item_ids[i], item_amounts[i]);
-						pc.sendPackets(new S_ServerMessage(143,
-								((L1NpcInstance) obj).getNpcTemplate()
-										.get_name(), item.getItem().getName()));
-					}
+					L1ItemInstance item = pc.getInventory().storeItem(41209, 1);
+					pc.sendPackets(new S_ServerMessage(143,
+							((L1NpcInstance) obj).getNpcTemplate()
+							.get_name(), item.getItem().getName()));
+					htmlid = ""; // ウィンドウを消す
 				}
-				htmlid = ""; // ウィンドウを消す
 			}
 			// アイテムを受け取る
 			else if (s.equalsIgnoreCase("1")) {
 				if (pc.getInventory().consumeItem(41213, 1)) {
-					final int[] item_ids = { 40029, };
-					final int[] item_amounts = { 20, };
-					for (int i = 0; i < item_ids.length; i++) {
-						L1ItemInstance item = pc.getInventory().storeItem(
-								item_ids[i], item_amounts[i]);
-						pc.sendPackets(new S_ServerMessage(143,
-								((L1NpcInstance) obj).getNpcTemplate()
-										.get_name(), item.getItem().getName()
-										+ " (" + item_amounts[i] + ")"));
-					}
+					L1ItemInstance item = pc.getInventory().storeItem(40029,
+							20);
+					pc.sendPackets(new S_ServerMessage(143,
+							((L1NpcInstance) obj).getNpcTemplate()
+							.get_name(), item.getItem().getName()
+							+ " (" + 20 + ")"));
 					htmlid = ""; // ウィンドウを消す
 				}
 			}
@@ -2507,15 +2409,10 @@ public class C_NPCAction extends ClientBasePacket {
 		// ケスキン(歌う島)
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71025) {
 			if (s.equalsIgnoreCase("0")) {
-				final int[] item_ids = { 41225, };
-				final int[] item_amounts = { 1, };
-				for (int i = 0; i < item_ids.length; i++) {
-					L1ItemInstance item = pc.getInventory().storeItem(
-							item_ids[i], item_amounts[i]);
-					pc.sendPackets(new S_ServerMessage(143,
-							((L1NpcInstance) obj).getNpcTemplate().get_name(),
-							item.getItem().getName()));
-				}
+				L1ItemInstance item = pc.getInventory().storeItem(41225, 1); // ケスキンの発注書
+				pc.sendPackets(new S_ServerMessage(143,
+						((L1NpcInstance) obj).getNpcTemplate().get_name(),
+						item.getItem().getName()));
 				htmlid = "jpe0083";
 			}
 		}
@@ -2523,16 +2420,11 @@ public class C_NPCAction extends ClientBasePacket {
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71055) {
 			// アイテムを受け取る
 			if (s.equalsIgnoreCase("0")) {
-				final int[] item_ids = { 40701, };
-				final int[] item_amounts = { 1, };
-				for (int i = 0; i < item_ids.length; i++) {
-					L1ItemInstance item = pc.getInventory().storeItem(
-							item_ids[i], item_amounts[i]);
-					pc.sendPackets(new S_ServerMessage(143,
-							((L1NpcInstance) obj).getNpcTemplate().get_name(),
-							item.getItem().getName()));
-				}
-				pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 1);
+				L1ItemInstance item = pc.getInventory().storeItem(40701, 1); // 小さな宝の地図
+				pc.sendPackets(new S_ServerMessage(143,
+						((L1NpcInstance) obj).getNpcTemplate().get_name(),
+						item.getItem().getName()));
+						pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 1);
 				htmlid = "lukein8";
 			} else if (s.equalsIgnoreCase("2")) {
 				htmlid = "lukein12";
@@ -2628,18 +2520,13 @@ public class C_NPCAction extends ClientBasePacket {
 		}
 		// ルディアン(海賊島)
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71059) {
-			// ルディアンの賴みを受け入れる
+			// ルディアンの頼みを受け入れる
 			if (s.equalsIgnoreCase("A")) {
 				htmlid = "rudian6";
-				final int[] item_ids = { 40700 };
-				final int[] item_amounts = { 1 };
-				for (int i = 0; i < item_ids.length; i++) {
-					L1ItemInstance item = pc.getInventory().storeItem(
-							item_ids[i], item_amounts[i]);
-					pc.sendPackets(new S_ServerMessage(143,
-							((L1NpcInstance) obj).getNpcTemplate().get_name(),
-							item.getItem().getName()));
-				}
+				L1ItemInstance item = pc.getInventory().storeItem(40700 , 1);
+				pc.sendPackets(new S_ServerMessage(143,
+						((L1NpcInstance) obj).getNpcTemplate().get_name(),
+						item.getItem().getName()));
 				pc.getQuest().set_step(L1Quest.QUEST_RUDIAN, 1);
 			} else if (s.equalsIgnoreCase("B")) {
 				if (pc.getInventory().checkItem(40710)) {
@@ -2718,16 +2605,11 @@ public class C_NPCAction extends ClientBasePacket {
 			// カミーラにあなたの潔白を証明しましょう
 			if (s.equalsIgnoreCase("a")) {
 				htmlid = "francu10";
-				final int[] item_ids = { 40644 };
-				final int[] item_amounts = { 1 };
-				for (int i = 0; i < item_ids.length; i++) {
-					L1ItemInstance item = pc.getInventory().storeItem(
-							item_ids[i], item_amounts[i]);
-					pc.sendPackets(new S_ServerMessage(143,
-							((L1NpcInstance) obj).getNpcTemplate().get_name(),
-							item.getItem().getName()));
-					pc.getQuest().set_step(L1Quest.QUEST_KAMYLA, 2);
-				}
+				L1ItemInstance item = pc.getInventory().storeItem(40644, 1);
+				pc.sendPackets(new S_ServerMessage(143,
+						((L1NpcInstance) obj).getNpcTemplate().get_name(),
+						item.getItem().getName()));
+				pc.getQuest().set_step(L1Quest.QUEST_KAMYLA, 2);
 			}
 		}
 		// 試練のクリスタル2(海賊島)
@@ -3817,15 +3699,10 @@ public class C_NPCAction extends ClientBasePacket {
 				// プレゼントをもらう
 			} else if (s.equalsIgnoreCase("g")) {
 				htmlid = "";
-				final int[] item_ids = { 41130 }; // 血痕の契約書
-				final int[] item_amounts = { 1 };
-				for (int i = 0; i < item_ids.length; i++) {
-					L1ItemInstance item = pc.getInventory().storeItem(
-							item_ids[i], item_amounts[i]);
-					pc.sendPackets(new S_ServerMessage(143,
-							((L1NpcInstance) obj).getNpcTemplate().get_name(),
-							item.getItem().getName()));
-				}
+				L1ItemInstance item = pc.getInventory().storeItem(41130 , 1); // 血痕の契約書
+				pc.sendPackets(new S_ServerMessage(143,
+						((L1NpcInstance) obj).getNpcTemplate().get_name(),
+						item.getItem().getName())); 
 			}
 		}
 		// 諜報員(影の神殿側)
@@ -3881,15 +3758,10 @@ public class C_NPCAction extends ClientBasePacket {
 				// 素早く受取る
 			} else if (s.equalsIgnoreCase("g")) {
 				htmlid = "";
-				final int[] item_ids = { 41121 }; // カヘルの契約書
-				final int[] item_amounts = { 1 };
-				for (int i = 0; i < item_ids.length; i++) {
-					L1ItemInstance item = pc.getInventory().storeItem(
-							item_ids[i], item_amounts[i]);
-					pc.sendPackets(new S_ServerMessage(143,
-							((L1NpcInstance) obj).getNpcTemplate().get_name(),
-							item.getItem().getName()));
-				}
+				L1ItemInstance item = pc.getInventory().storeItem(41121 , 1); // カヘルの契約書
+				pc.sendPackets(new S_ServerMessage(143,
+						((L1NpcInstance) obj).getNpcTemplate().get_name(),
+						item.getItem().getName()));
 			}
 		}
 		// ゾウのストーンゴーレム
