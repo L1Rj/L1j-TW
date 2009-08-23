@@ -23,4 +23,4 @@ Update spawnlist_npc Set locx = '33499' ,locy = '33401' Where id = '88167';
 Update spawnlist_npc Set locx = '33499' ,locy = '33400' Where id = '88168';
 Update spawnlist_npc Set locx = '33499' ,locy = '33399' Where id = '88169';
 Update spawnlist_npc Set locx = '33499' ,locy = '33398' Where id = '88170';
-Update spawnlist_npc Set locy = '332309' ,heading = '5' Where id = '90192';
+Update spawnlist_npc Set locy = '33230' ,heading = '5' Where id = '90192';
