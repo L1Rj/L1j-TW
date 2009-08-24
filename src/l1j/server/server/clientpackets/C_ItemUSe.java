@@ -3380,7 +3380,7 @@ public class C_ItemUSe extends ClientBasePacket
 					pc.addMr(i);
 					pc.sendPackets(new S_SPMR(pc));
 				}
-				if (i2 == 20056 || i2 == 120056 || i2 == 220056) { // マジック クローク
+				if (i2 == 20056 || i2 == 120056 || i2 == 220056 || i2 == 21535 ) { // 抗魔法斗篷 強化抗魔斗篷
 					pc.addMr(i * 2);
 					pc.sendPackets(new S_SPMR(pc));
 				}
