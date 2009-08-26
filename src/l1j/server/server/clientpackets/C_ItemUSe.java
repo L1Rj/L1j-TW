@@ -1735,7 +1735,7 @@ public class C_ItemUSe extends ClientBasePacket
 						if (itemId == 40226 && pc.getLevel() >= 15 ||
 							itemId == 40228 && pc.getLevel() >= 30 ||
 							itemId == 40227 && pc.getLevel() >= 40 ||
-							itemId == 40231 || itemId == 40232 && pc.getLevel() >= 45 ||
+							(itemId == 40231 || itemId == 40232) && pc.getLevel() >= 45 ||
 							itemId == 40230 && pc.getLevel() >= 50 ||
 							itemId == 40229 && pc.getLevel() >= 55)
 							SpellBook4();

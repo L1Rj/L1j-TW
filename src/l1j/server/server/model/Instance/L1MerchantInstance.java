@@ -798,61 +798,17 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "olle7";
 				}
 			} else if (npcid == 80057) { // アルフォンス
-				switch (player.getKarmaLevel()) {
-				case 0:
+				int karmaLevel = player.getKarmaLevel();
+				String[] html1 = { "alfons1", "cbk1", "cbk2", "cbk3", "cbk4",
+						"cbk5", "cbk6", "cbk7", "cbk8" }; // 0 ~ 8
+				String[] html2 = { "cyk1", "cyk2", "cyk3", "cyk4", "cyk5",
+						"cyk6", "cyk7", "cyk8" }; // -1 ~ -8
+				if (karmaLevel < 0) {
+					htmlid = html2[Math.abs(karmaLevel) - 1];
+				} else if (karmaLevel >= 0) {
+					htmlid = html1[karmaLevel];
+				} else {
 					htmlid = "alfons1";
-					break;
-				case -1:
-					htmlid = "cyk1";
-					break;
-				case -2:
-					htmlid = "cyk2";
-					break;
-				case -3:
-					htmlid = "cyk3";
-					break;
-				case -4:
-					htmlid = "cyk4";
-					break;
-				case -5:
-					htmlid = "cyk5";
-					break;
-				case -6:
-					htmlid = "cyk6";
-					break;
-				case -7:
-					htmlid = "cyk7";
-					break;
-				case -8:
-					htmlid = "cyk8";
-					break;
-				case 1:
-					htmlid = "cbk1";
-					break;
-				case 2:
-					htmlid = "cbk2";
-					break;
-				case 3:
-					htmlid = "cbk3";
-					break;
-				case 4:
-					htmlid = "cbk4";
-					break;
-				case 5:
-					htmlid = "cbk5";
-					break;
-				case 6:
-					htmlid = "cbk6";
-					break;
-				case 7:
-					htmlid = "cbk7";
-					break;
-				case 8:
-					htmlid = "cbk8";
-					break;
-				default:
-					htmlid = "alfons1";
-					break;
 				}
 			} else if (npcid == 80058) { // 次元の扉(砂漠)
 				int level = player.getLevel();
@@ -1213,22 +1169,10 @@ public class L1MerchantInstance extends L1NpcInstance {
 				}
 			} else if (npcid == 80072) { // バルログの鍛冶屋
 				int karmaLevel = player.getKarmaLevel();
-				if (karmaLevel == 1) {
-					htmlid = "lsmith0";
-				} else if (karmaLevel == 2) {
-					htmlid = "lsmith1";
-				} else if (karmaLevel == 3) {
-					htmlid = "lsmith2";
-				} else if (karmaLevel == 4) {
-					htmlid = "lsmith3";
-				} else if (karmaLevel == 5) {
-					htmlid = "lsmith4";
-				} else if (karmaLevel == 6) {
-					htmlid = "lsmith5";
-				} else if (karmaLevel == 7) {
-					htmlid = "lsmith7";
-				} else if (karmaLevel == 8) {
-					htmlid = "lsmith8";
+				String[] html = { "lsmith0", "lsmith1", "lsmith2", "lsmith3",
+						"lsmith4", "lsmith5", "lsmith7", "lsmith8" };
+				if (karmaLevel <= 8) {
+					htmlid = html[karmaLevel - 1];
 				} else {
 					htmlid = "";
 				}

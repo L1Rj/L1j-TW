@@ -1824,7 +1824,7 @@ public class L1Attack
 	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 5.05 End
 
 	// 飛び道具（矢、スティング）がミスだったときの軌道を計算 // 5.12 Start 標記 城上NPC問題
-	public void calcOrbit(int cx, int cy, int heading) // 起點Ｘ 起點Ｙ 今向いてる方向
+/*	public void calcOrbit(int cx, int cy, int heading) // 起點Ｘ 起點Ｙ 今向いてる方向
 	{
 		int targetX = _target.getX();
 		int targetY = _target.getY();
@@ -1855,7 +1855,7 @@ public class L1Attack
 		_target.setX(targetX + add_x);
 		_target.setY(targetY + add_y);
 	}
-
+*/
 	/* ■■■■■■■■■■■■■■■ 計算結果反映 ■■■■■■■■■■■■■■■ */
 
 	public void commit()
