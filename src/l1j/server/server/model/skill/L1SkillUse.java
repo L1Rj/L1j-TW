@@ -2595,7 +2595,8 @@ public class L1SkillUse {
 								summons = new int[] { 81210, 81213, 81216,
 										81219, 81222, 81225, 81228 };
 								int summonid = 0;
-								int summoncost = 6;
+//								int summoncost = 6;
+								int summoncost = 8;
 								int levelRange = 32;
 								for (byte i = 0; i < summons.length; i++) { // 該當ＬＶ範圍檢索
 									if (level < levelRange
@@ -2614,7 +2615,12 @@ public class L1SkillUse {
 									petcost += ((L1NpcInstance) pet)
 											.getPetcost();
 								}
-								int charisma = pc.getCha() + 6 - petcost;
+								int pcCha = pc.getCha();
+								if (pcCha > 34) { // max count = 5
+									pcCha = 34;
+								}
+								int charisma = pcCha + 6 - petcost; 
+// int charisma = pc.getCha() + 6 - petcost;
 								int summoncount = charisma / summoncost;
 								L1Npc npcTemp = NpcTable.getInstance()
 										.getTemplate(summonid);
@@ -3003,8 +3009,14 @@ public class L1SkillUse {
 						}
 						int charisma = _user.getCha();
 						if (_player.isElf()) { // エルフ
+							if (charisma > 30) { // max count = 7
+								charisma = 30;
+							}
 							charisma += 12;
 						} else if (_player.isWizard()) { // ウィザード
+							if (charisma > 36) { // max count = 7
+								charisma = 36;
+							}
 							charisma += 6;
 						}
 						charisma -= petcost;
@@ -3025,8 +3037,14 @@ public class L1SkillUse {
 						}
 						int charisma = _user.getCha();
 						if (_player.isElf()) { // エルフ
+							if (charisma > 30) { // max count = 7
+								charisma = 30;
+							}
 							charisma += 12;
 						} else if (_player.isWizard()) { // ウィザード
+							if (charisma > 36) { // max count = 7
+								charisma = 36;
+							}
 							charisma += 6;
 						}
 						charisma -= petcost;

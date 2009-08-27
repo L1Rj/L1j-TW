@@ -4291,8 +4291,12 @@ public class C_NPCAction extends ClientBasePacket {
 				40, 40, 44, 44, 44, 48, 48, 48, 52, 52, 52, 56, 56, 56, 60, 60,
 				60, 64, 68, 72, 72 };
 		// ドッペルゲンガーボス、クーガーにはペットボーナスが付かないので+6しておく
-		summoncha_list = new int[] { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-				8, 8, 8, 8, 8, 8, 8, 10, 10, 10, 12, 12, 12, 20, 42, 42, 50 };
+		// summoncha_list = new int[] { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
+		// 8, 8, 8, 8, 8, 8, 8, 10, 10, 10, 12, 12, 12, 20, 42, 42, 50 };
+				summoncha_list = new int[] { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, // 28 ~
+																							// 44
+						8, 8, 8, 8, 8, 8, 10, 10, 10, 12, 12, 12, // 48 ~ 60
+						20, 36, 36, 44 }; // 64,68,72,72
 
 		// サモンの種類、必要Lv、ペットコストを得る
 		for (int loop = 0; loop < summonstr_list.length; loop++) {
@@ -4316,13 +4320,32 @@ public class C_NPCAction extends ClientBasePacket {
 			// 現在のペットコスト
 			petcost += ((L1NpcInstance) pet).getPetcost();
 		}
-		// 既にペットがいる場合は、ドッペルゲンガーボス、クーガーは呼び出せない
-		if ((summonid == 81103 || summonid == 81104) && petcost != 0) {
-			pc.sendPackets(new S_CloseList(pc.getId()));
-			return;
-		}
-		int charisma = pc.getCha() + 6 - petcost;
-		int summoncount = charisma / summoncost;
+		/*
+		 * // 既にペットがいる場合は、ドッペルゲンガーボス、クーガーは呼び出せない if ((summonid == 81103 || summonid ==
+		 * 81104) && petcost != 0) { pc.sendPackets(new S_CloseList(pc.getId()));
+		 * return; } int charisma = pc.getCha() + 6 - petcost; int summoncount =
+		 * charisma / summoncost;
+		 */
+				int pcCha = pc.getCha();
+				int charisma = 0;
+				int summoncount = 0;
+				if (levelrange <= 56 // max count = 5
+						|| levelrange == 64) { // max count = 2
+					if (pcCha > 34) {
+						pcCha = 34;
+					}
+				} else if (levelrange == 60) {
+					if (pcCha > 30) { // max count = 3
+						pcCha = 30;
+					}
+				} else if (levelrange > 64) {
+					if (pcCha > 44) { // max count = 1
+						pcCha = 44;
+					}
+				}
+				charisma = pcCha + 6 - petcost;
+				summoncount = charisma / summoncost; 
+
 		L1Npc npcTemp = NpcTable.getInstance().getTemplate(summonid);
 		for (int cnt = 0; cnt < summoncount; cnt++) {
 			L1SummonInstance summon = new L1SummonInstance(npcTemp, pc);
