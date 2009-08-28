@@ -4349,11 +4349,11 @@ public class C_NPCAction extends ClientBasePacket {
 		L1Npc npcTemp = NpcTable.getInstance().getTemplate(summonid);
 		for (int cnt = 0; cnt < summoncount; cnt++) {
 			L1SummonInstance summon = new L1SummonInstance(npcTemp, pc);
-			if (summonid == 81103 || summonid == 81104) {
-				summon.setPetcost(pc.getCha() + 7);
-			} else {
+//			if (summonid == 81103 || summonid == 81104) {
+//				summon.setPetcost(pc.getCha() + 7);
+//			} else {
 				summon.setPetcost(summoncost);
-			}
+//			}
 		}
 		pc.sendPackets(new S_CloseList(pc.getId()));
 	}
