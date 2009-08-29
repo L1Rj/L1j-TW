@@ -15,3 +15,53 @@ db\mobskill_test 怪物技能測試資料庫
 5.匯入db\Fix
 
 附註:怪物測試技能資料庫如果有匯入,必須於 db\Fix\Fix_mobskill_tw.sql 之前匯入.
+
+
+mobskill 欄位說明
+
+物理攻擊使用以下的欄位 Range～Levarage、Gfxid、ActId
+魔法攻擊使用以下的欄位 Levarage、SkillId 
+召喚使用以下的欄位 SummonId、SummonMin、SummonMax 
+
+　1.mobid NPC的ID。
+
+　2.actNo 使用技能順序執行的號碼,由0開始每次增加1，不得重複。
+
+　3.mobname 使用技能的NPC名字。
+
+　4.Type 技能的類型 1.物理攻擊，2.魔法攻擊，3.召喚，4.強制變身玩家。
+
+　5.TriRnd 技能發動條件： 隨機機率（1 ～100 ）。
+
+　6.TriHp 技能發動條件： HP% 以下發動（1 ～100 ）。
+
+　7.TriCompanionHp 技能發動條件： 同族的 HP% 以下發動（1 ～100 ）。
+
+　8.TriRange 技能發動條件： triRange 0的情況，和對象的距離 triRange 以上的時候發動。
+
+　9.TriCount 技能發動條件： 技能的發動次數 triCount 以下的時候發動。
+
+　10.Range（物理攻擊使用） 如果到 range 的距離可能做攻擊、物理攻擊的話，即使接近也攻擊的情況設定 1 以上。
+
+　11.AreaWidth（物理攻擊使用）
+　　範圍攻擊的寬度：單體攻擊的話設定 0 ，範圍攻擊的話設定 0 以上
+　　Width和Height的設定從攻擊者為中心，Width是寬度，Height是高度
+　　Width 是指定 1 的話，，目標作為中心到左右 1 成為對象。
+
+　12.AreaHeight（物理攻擊使用） 範圍攻擊的高度：單體攻擊的話設定 0 ，範圍攻擊的話設定 1 以上。
+
+　13.Leverage（魔法攻撃、物理攻撃で使用） 損傷的倍率，1/10表示。物理攻擊，魔法攻擊都有效。
+
+　14.SkillId（魔法攻擊使用） 如果使用魔法，指定skills 資料表的skillId。
+
+　15.Gfxid（物理攻擊使用） 指定物理攻擊的圖片。
+　　例：龍的火焰、搖頭擺尾等
+
+　16.ActId（物理攻擊使用） 物理攻擊的圖片ID。
+　　例：オーガの薙ぎ払い、スコーピオンの挾み込み攻撃
+
+　17.SummonId（召喚使用） 要召喚的 NPCID。
+
+　18.SummonMin（召喚使用） 召喚 NPC 最少數量。
+
+　19.SummonMax（召喚使用） 召喚 NPC 最大數量。

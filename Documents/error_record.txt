@@ -1,5 +1,8 @@
 以下為目前仍有的錯誤訊息紀錄
 
+20080808
+HpRegenerationByDoll.java 『娃娃回血效果』異常 。 _pc.get_food() : 225isOverWeight(_pc) : false_pc.getCurrentHp() : 1741
+
 20080807
  l1j.server.server.model.Instance.L1MonsterInstance distributeDrop
 嚴重的: 0
