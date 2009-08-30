@@ -111,7 +111,7 @@ public class L1NpcInstance extends L1Character {
 	private boolean _rest = false;
 
 	// ランダム移動時の距離と方向
-	private short sleeptime_PT = -1;
+	private int sleeptime_PT = 0;
 
 	private int _randomMoveDistance = 0;
 
@@ -680,8 +680,6 @@ public class L1NpcInstance extends L1Character {
 		setSleepTime(1000);
 	}
 
-	private static short[] SleepTimeArray = { 750, 1500, 2500, 3000, 3500, 5000, 5500, 6000, 8000};
-
 	// ターゲットがいない場合の處理 (返り值はＡＩ處理を終了するかどうか)
 	public boolean noTarget() {
 		if (_master != null && _master.getMapId() == getMapId()
@@ -707,33 +705,27 @@ public class L1NpcInstance extends L1Character {
 								.isLeader(this)) {
 					// 移動する予定の距離を移動し終えたら、新たに距離と方向を決める
 					// そうでないなら、移動する予定の距離をデクリメント
-					if (_randomMoveDistance == 0) { // 5.16 Start
-						_randomMoveDistance = RandomArrayList.getInc(7, 2);
-						_randomMoveDirection = RandomArrayList.getInt(8);
+					if (_randomMoveDistance == 0) { // 8.31 Start
 						try {
-							if (sleeptime_PT != -1) { // 第一次看見人的怪物，不需要休息
-								sleeptime_PT = SleepTimeArray[RandomArrayList.getInt(9)];
-								Thread.sleep(sleeptime_PT); // 讓怪懂得忙裡偷閒
+							if (sleeptime_PT == 0 || sleeptime_PT == -1) {
+								sleeptime_PT = RandomArrayList.getInc(15 , 5);
+								_randomMoveDistance = RandomArrayList.getInc(7, 2);
+								_randomMoveDirection = RandomArrayList.getInt(8); // 8.31 End
 							} else {
-								++sleeptime_PT;
+								--sleeptime_PT;
+								Thread.sleep(200); // 讓怪懂得忙裡偷閒
 							}
 						} catch (Exception exception) {
 						}
-						// ホームポイントから離れすぎないように、一定の確率でホームポイントの方向に補正
-						if (getHomeX() != 0 && getHomeY() != 0
-								&& RandomArrayList.getInt(5) == 0) {
-							_randomMoveDirection = moveDirection(getHomeX(),
-									getHomeY());
-						} // 5.16 End
 					} else {
 						_randomMoveDistance--;
-					}
-					int dir = checkObject(getX(), getY(), getMapId(),
-							_randomMoveDirection);
-					if (dir != -1) {
-						setDirectionMove(dir);
-						setSleepTime(calcSleepTime(getPassispeed(),
-								MOVE_SPEED));
+						int dir = checkObject(getX(), getY(), getMapId(),
+								_randomMoveDirection);
+						if (dir != -1) {
+							setDirectionMove(dir);
+							setSleepTime(calcSleepTime(getPassispeed(),
+									MOVE_SPEED));
+						}
 					}
 				} else { // リーダーを追尾
 					L1NpcInstance leader = mobGroupInfo.getLeader();
