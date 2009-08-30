@@ -61,6 +61,8 @@ public class L1DollInstance extends L1NpcInstance {
 	private ScheduledFuture<?> _dollFuture;
 	private int _dollType;
 	private int _itemObjId;
+	private static final int[] DollAction = {ACTION_Think, ACTION_Aggress};
+	private int sleeptime_PT = 10;
 
 	// ターゲットがいない場合の處理
 	@Override
@@ -76,28 +78,24 @@ public class L1DollInstance extends L1NpcInstance {
 			 * } else { setDirectionMove(dir);
 			 * setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED)); }}
 			 */
-			int dir = moveDirection(_master.getX(), _master.getY()); // 5.25 Start 寵物修正
+			int dir = moveDirection(_master.getX(), _master.getY());
 			if (dir == -1) {
 				deleteDoll(); // 跟隨主人不在線上自動刪除
 				return true;
 			} else {
 				if (getLocation().getTileLineDistance(_master.getLocation()) > 3) {
 					setDirectionMove(dir);
-				} else {
-					switch (RandomArrayList.getInt(200)) {
-					case 10: // 0.5%可能性觸動 正常而言 平均50秒內會觸發一次
-						broadcastPacket(new S_DoActionGFX(getId(), ACTION_Think));
-						setSleepTime(2500);
-						break;
-					case 50: // 0.5%可能性觸動
-						broadcastPacket(new S_DoActionGFX(getId(), ACTION_Aggress));
-						setSleepTime(2700);
-						break;
+					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
+				} else { // 8.31 Start 魔法娃娃修正
+					if (sleeptime_PT == 0) {
+						broadcastPacket(new S_DoActionGFX(getId(), DollAction[RandomArrayList.getInt(2)]));
+						sleeptime_PT = RandomArrayList.getInc(20, 10);
+					} else {
+						--sleeptime_PT;
+						setSleepTime(500); // 讓怪懂得忙裡偷閒
 					}
-					setHeading(dir);
-				}
-				setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
-			} // 5.25 End 寵物修正
+				} // 8.31 End 魔法娃娃修正
+			}
 		} else {
 			deleteDoll();
 			return true;

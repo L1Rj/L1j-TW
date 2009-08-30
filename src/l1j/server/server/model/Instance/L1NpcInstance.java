@@ -707,7 +707,7 @@ public class L1NpcInstance extends L1Character {
 					// そうでないなら、移動する予定の距離をデクリメント
 					if (_randomMoveDistance == 0) { // 8.31 Start
 						try {
-							if (sleeptime_PT == 0 || sleeptime_PT == -1) {
+							if (sleeptime_PT == 0) {
 								sleeptime_PT = RandomArrayList.getInc(15 , 5);
 								_randomMoveDistance = RandomArrayList.getInc(7, 2);
 								_randomMoveDirection = RandomArrayList.getInt(8); // 8.31 End

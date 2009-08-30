@@ -3,8 +3,6 @@ package l1j.server.server.utils;
 import java.util.Random;
 
 public class RandomArrayList {
-	/** 亂數產生物件 */
-	private static Random _random = new Random();
 	/** 泛用型隨機矩陣，所使用的指標 */
 	private static int listint = 0;
 	/** 新型泛用型，適用Int的正數範圍 */
