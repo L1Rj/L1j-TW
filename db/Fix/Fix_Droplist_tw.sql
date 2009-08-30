@@ -426,8 +426,10 @@ Update droplist Set chance = '100' Where mobId = '45753' And itemId = '41148';/*
 
 /* ---------- 龍騎士書板 ----------*/
 /* 20090713 降低 龍騎士書板(奪命之雷) 掉落機率 */
-Update droplist Set chance = '500' Where mobId = '46121' And itemId = '49113';/* 底比斯 巴斯 黃 */
-Update droplist Set chance = '400' Where mobId = '46122' And itemId = '49113';/* 底比斯 巴斯 紫 */
+Update droplist Set chance = '200' Where mobId = '46121' And itemId = '49113';/* 底比斯 巴斯 黃 */
+Update droplist Set chance = '300' Where mobId = '46122' And itemId = '49113';/* 底比斯 巴斯 紫 */
+Update droplist Set chance = '600' Where mobId = '45510' And itemId = '49113';/* 風靈之主 */
+Update droplist Set chance = '400' Where mobId = '45593' And itemId = '49113';/* 深淵風靈 */
 Update droplist Set chance = '1100' Where mobId = '45916' And itemId = '49113';/* 哈蒙將軍的怨靈 */
 
 /* ---------- 武器 ----------*/
@@ -869,6 +871,7 @@ Update droplist Set chance = '12000' Where itemid = '140087' And chance = '10000
 Update droplist Set chance = '21000' Where itemid = '140087' And chance = '50000'; /* 祝福武卷 */
 Update droplist Set chance = '2100' Where itemid = '140087' And chance = '10000'; /* 祝福武卷 */
 Update droplist Set chance = '1100' Where itemid = '140087' And chance = '5000'; /* 祝福武卷 */
+Update droplist Set chance = '800' Where itemid = '140087' And mobId = '45420'; /* 獨眼巨人 祝福武卷 */
 Update droplist Set chance = '180000' Where itemid = '140074' And chance = '500000'; /* 祝福防卷 */
 Update droplist Set chance = '120000' Where itemid = '140074' And chance = '300000'; /* 祝福防卷 */
 Update droplist Set chance = '12000' Where itemid = '140074' And chance = '100000'; /* 祝福防卷 */
@@ -877,11 +880,15 @@ Update droplist Set chance = '5000' Where itemid = '140074' And chance = '20000'
 Update droplist Set chance = '6000' Where itemid = '140074' And chance = '21000'; /* 祝福武卷 */
 Update droplist Set chance = '2100' Where itemid = '140074' And chance = '10000'; /* 祝福防卷 */
 Update droplist Set chance = '1100' Where itemid = '140074' And chance = '5000'; /* 祝福防卷 */
+Update droplist Set chance = '1200' Where itemid = '140074' And mobId = '45420'; /* 獨眼巨人 祝福防卷 */
 Update droplist Set chance = '6000' Where itemid = '240074' And chance = '10000'; /* 詛咒防卷 */
 Update droplist Set chance = '2500' Where itemid = '240074' And chance = '5000'; /* 詛咒防卷 */
 Update droplist Set chance = '1000' Where itemid = '240074' And chance = '2000'; /* 詛咒防卷 */
 Update droplist Set chance = '12000' Where itemid = '240074' And chance = '50000'; /* 詛咒防卷 */
 Update droplist Set chance = '40000' Where itemid = '240074' And chance = '100000'; /* 詛咒防卷 */
+Update droplist Set chance = '2000' Where itemid = '140130' And mobId = '45537'; /* 金侃的捲軸 */
+Update droplist Set chance = '2000' Where itemid = '140130' And mobId = '45603'; /* 金侃的捲軸 */
+Update droplist Set chance = '500' Where itemid = '140130' And mobId = '45685'; /* 金侃的捲軸 */
 
 /* 20090512 提高 粗糙的米索莉塊 機率 */
 Update droplist Set chance = '70000' Where itemid = '40496' And chance = '50000';
@@ -1427,6 +1434,9 @@ Update droplist Set chance = '50000' Where  itemId = '49046' And mobId = '45289'
 Update droplist Set chance = '500' Where  itemId = '49126' And mobId = '45289'; /* 記憶水晶(立方：地裂) */
 Update droplist Set chance = '900' Where  itemId = '140074' And mobId = '45289'; /* 對盔甲施法的捲軸 */
 Update droplist Set chance = '600' Where  itemId = '140087' And mobId = '45289'; /* 對武器施法的捲軸 */
+
+/* 20090823 調整 46054 深海蟹人 金幣掉落數量 */
+Update droplist Set min = '50' ,max = '500' Where  itemId = '40308' And mobId = '46054'; /* 金幣 */
 
 /* ---------- 刪除與修正 --------- */
 /* 20090516 刪除潔尼斯女王掉落日版道具 41224 */

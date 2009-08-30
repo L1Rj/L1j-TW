@@ -1171,6 +1171,31 @@ public class C_ItemUSe extends ClientBasePacket
 						} else {
 							pc.sendPackets(new S_ServerMessage(79));
 						}
+                                } else if (itemId == 49189) {//索夏依卡靈魂之笛
+                                    boolean found = false;
+                                    for (L1Object obj : L1World.getInstance().getObject()) {
+                                        if (obj instanceof L1MonsterInstance) {
+                                            L1MonsterInstance mob = (L1MonsterInstance) obj;
+                                            if (mob != null) {
+                                                if (mob.getNpcTemplate().get_npcId() == 46163) {
+                                                    found = true;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (found) {
+                                        pc.sendPackets(new S_ServerMessage(79));
+                                    } else {
+                                        if (pc.getInventory().checkItem(274)
+                                                && (pc.getX() >= 32612 && pc.getX() <= 32619)
+                                                && (pc.getY() >= 32666 && pc.getY() <= 32673)
+                                                && (pc.getMapId() == 4)) {
+                                            L1SpawnUtil.spawn(pc, 46163, 0, 0);
+                                        } else {
+                                            pc.sendPackets(new S_ServerMessage(79));
+                                        }
+                                    }
 				} else if (itemId == 40097 || itemId == 40119
 						|| itemId == 140119 || itemId == 140329) { // 解咒スクロール、原住民のトーテム
 					for (L1ItemInstance eachItem : pc.getInventory().getItems()) {

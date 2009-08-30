@@ -698,7 +698,11 @@ public class L1Attack
 				&& _pc.getTempCharGfx() == 6034) {
 			_hitRate = 0;
 		}
-
+// BAO提供 艾爾摩索夏依卡將軍的冤魂
+		if (npcId == 46163 && _weaponId != 274) {
+            _hitRate = 0;
+        }
+// add end
 		int rnd = RandomArrayList.getInc(100, 1);
 
 		return _hitRate >= rnd;

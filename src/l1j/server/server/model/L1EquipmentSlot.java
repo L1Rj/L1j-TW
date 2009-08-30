@@ -27,6 +27,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.serverpackets.S_Ability;
 import l1j.server.server.serverpackets.S_AddSkill;
+import l1j.server.server.serverpackets.S_CharVisualUpdate;
 import l1j.server.server.serverpackets.S_DelSkill;
 import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_Invis;
@@ -62,6 +63,9 @@ public class L1EquipmentSlot {
 		_owner.setCurrentWeapon(weapon.getItem().getType1());
 		weapon.startEquipmentTimer(_owner);
 		_weapon = weapon;
+        if (weapon.getItem().getItemId() == 274){
+            L1PolyMorph.doPoly(_owner, 3903, 0,L1PolyMorph.MORPH_BY_ITEMMAGIC);
+        }
 	}
 
 	public L1ItemInstance getWeapon() {
@@ -160,6 +164,11 @@ public class L1EquipmentSlot {
 		_owner.setCurrentWeapon(0);
 		weapon.stopEquipmentTimer(_owner);
 		_weapon = null;
+        if (weapon.getItem().getItemId() == 274){
+            L1PolyMorph.undoPoly(_owner);
+            _owner.sendPackets(new S_CharVisualUpdate(_owner));
+            _owner.broadcastPacket(new S_CharVisualUpdate(_owner));
+        }
 		if (_owner.hasSkillEffect(COUNTER_BARRIER)) {
 			_owner.removeSkillEffect(COUNTER_BARRIER);
 		}

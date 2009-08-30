@@ -38,7 +38,6 @@ public class HpRegenerationByDoll extends TimerTask {
 			newHp += 40;
 			_pc.sendPackets(new S_SkillSound(_pc.getId(), 6321));
 			_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 6321));
-			// end
 			_pc.setCurrentHp(newHp);
 		} else {
 			System.out.println("HpRegenerationByDoll.java 『娃娃回血效果』異常 。 _pc.get_food() : " + _pc.get_food() + "isOverWeight(_pc) : " + isOverWeight(_pc) + "_pc.getCurrentHp() : " + _pc.getCurrentHp());

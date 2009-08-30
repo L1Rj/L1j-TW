@@ -65,3 +65,17 @@ Update mobskill Set TriHp = '80' Where mobid = '45685' AND SummonId = '45605';
 
 /* 20090612 修正騎士范德HP低於70%時才招喚怪物 */
 Update mobskill Set TriHp = '70' Where mobid = '45618' AND SummonId = '45503';
+
+/* 20090829 降低四龍安息攻擊機率 & HP 80%以下才施展 */
+Update mobskill Set TriRnd = '30' ,TriHp ='80' Where mobid = '45681' AND SkillId ='10026';
+Update mobskill Set TriRnd = '30' ,TriHp ='80' Where mobid = '45682' AND SkillId ='10027';
+Update mobskill Set TriRnd = '30' ,TriHp ='80' Where mobid = '45683' AND SkillId ='10029';
+Update mobskill Set TriRnd = '30' ,TriHp ='80' Where mobid = '45684' AND SkillId ='10028';
+
+/* 20090829 提高吉爾塔斯技能攻擊機率 */
+Update mobskill Set TriRnd = '30' Where mobid = '81163' AND actNo ='1';
+Update mobskill Set TriRnd = '40' Where mobid = '81163' AND actNo ='2';
+Update mobskill Set TriRnd = '50' Where mobid = '81163' AND actNo ='3';
+Update mobskill Set TriRnd = '60' Where mobid = '81163' AND actNo ='6';
+/* 20090829 吉爾塔斯技能 反擊屏障 */
+INSERT INTO `mobskill` VALUES (81163, 7, '吉爾塔斯(反擊屏障)', 2, 100, 56, 0, 2, 0, 0, 0, 0, 0, 0, 91, 0, 0, 0, 0, 0, 0);

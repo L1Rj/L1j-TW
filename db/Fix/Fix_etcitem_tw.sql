@@ -39,3 +39,6 @@ Update etcitem Set item_type = 'treasure_box' Where item_id = '41304';
 
 /* 20090726 修正 遺物袋 為可堆疊 */
 Update etcitem Set stackable = '1' Where item_id = '41110';
+
+/* 20090830 修正 49189 索夏依卡靈魂之笛 use_type */
+Update etcitem Set use_type = 'normal' Where item_id = '49189';
