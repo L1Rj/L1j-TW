@@ -783,7 +783,7 @@ public class L1SkillUse {
 				L1NpcInstance npc = (L1NpcInstance) cha;
                 int npcId = npc.getNpcTemplate().get_npcId();		
 //add end
-				if (npcId !=45682 && _skillId == DETECTION || _skillId == COUNTER_DETECTION) { // ディテク、Cディテク
+                if (npcId !=45682 && (_skillId == DETECTION || _skillId == COUNTER_DETECTION)) { // ディテク、Cディテク
 //change end
 					return true;
 				} else {
