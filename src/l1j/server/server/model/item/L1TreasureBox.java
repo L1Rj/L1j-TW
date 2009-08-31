@@ -55,7 +55,7 @@ public class L1TreasureBox {
 
 		@XmlAttribute(name = "Chance")
 		private void setChance(double chance) {
-			_chance = (int) (chance * 1000);
+			_chance = (int) (chance * 10000);
 		}
 
 		public int getItemId() {
@@ -126,7 +126,7 @@ public class L1TreasureBox {
 						+ " 無法找到對應的Template。");
 			}
 		}
-		if (getTotalChance() != 0 && getTotalChance() != 100000) {
+		if (getTotalChance() != 0 && getTotalChance() != 1000000) {
 			_log.warning("ID ：" + getBoxId() + " 的機率總合不等於100%。");
 		}
 	}

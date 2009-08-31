@@ -1042,7 +1042,7 @@ public class L1PcInstance extends L1Character
 			broadcastPacket(new S_OtherCharPacks(this));
 // 20090720 BAO提供 隱身被攻擊現形
 			sendPackets(new S_CharVisualUpdate(this));
-            broadcastPacket(new S_CharVisualUpdate(this));
+			broadcastPacket(new S_CharVisualUpdate(this));
 //add end
 		}
 		if (hasSkillEffect(BLIND_HIDING)) { // ブラインド ハイディング
@@ -1051,7 +1051,7 @@ public class L1PcInstance extends L1Character
 			broadcastPacket(new S_OtherCharPacks(this));
 // 20090720 BAO提供 隱身被攻擊現形
 			sendPackets(new S_CharVisualUpdate(this));
-            broadcastPacket(new S_CharVisualUpdate(this));
+			broadcastPacket(new S_CharVisualUpdate(this));
 //add end
 		}
 	}

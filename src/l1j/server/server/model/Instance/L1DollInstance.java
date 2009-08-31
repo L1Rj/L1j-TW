@@ -34,7 +34,6 @@ import l1j.server.server.serverpackets.S_DollPack;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.RandomArrayList;
-import l1j.server.server.utils.StaticFinalList;
 
 public class L1DollInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
@@ -46,14 +45,14 @@ public class L1DollInstance extends L1NpcInstance {
 	public static final int DOLLTYPE_CRUSTANCEAN = 4;
 	public static final int DOLLTYPE_GOLEM = 5;
 	public static final int DOLLTYPE_SEADANCER = 6; // 希爾黛絲
-    public static final int DOLLTYPE_SNOWMAN = 7; // 雪怪
-    public static final int DOLLTYPE_SERPENTWOMAN = 8; // 蛇女
-    public static final int DOLLTYPE_COCKATRICE = 9; // 亞力安
-    public static final int DOLLTYPE_SCARECROW = 10; // 木人
-    public static final int DOLLTYPE_SPARTOI = 11; // 史巴托
-    public static final int DOLLTYPE_LICH = 12; // 巫妖
- 	public static final int DOLLTYPE_IRONGATES_SNOWMAN = 13; // 鐵門公會 魔法娃娃：雪怪
- 	public static final int DOLLTYPE_PRINCESS = 14; // 魔法娃娃：公主
+	public static final int DOLLTYPE_SNOWMAN = 7; // 雪怪
+	public static final int DOLLTYPE_SERPENTWOMAN = 8; // 蛇女
+	public static final int DOLLTYPE_COCKATRICE = 9; // 亞力安
+	public static final int DOLLTYPE_SCARECROW = 10; // 木人
+	public static final int DOLLTYPE_SPARTOI = 11; // 史巴托
+	public static final int DOLLTYPE_LICH = 12; // 巫妖
+	public static final int DOLLTYPE_IRONGATES_SNOWMAN = 13; // 鐵門公會 魔法娃娃：雪怪
+	public static final int DOLLTYPE_PRINCESS = 14; // 魔法娃娃：公主
 	public static final int DOLL_TIME = 1800000;
 
 	private static Logger _log = Logger.getLogger(L1DollInstance.class
@@ -71,30 +70,23 @@ public class L1DollInstance extends L1NpcInstance {
 			deleteDoll();
 			return true;
 		} else if (_master != null && _master.getMapId() == getMapId()) {
-			/** 日版
-			 * if (getLocation().getTileLineDistance(_master.getLocation()) > 2) {
-			 * int dir = moveDirection(_master.getX(), _master.getY());
-			 * if (dir == -1) { if (!isAiRunning()) startAI(); return true;
-			 * } else { setDirectionMove(dir);
-			 * setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED)); }}
-			 */
 			int dir = moveDirection(_master.getX(), _master.getY());
 			if (dir == -1) {
-				deleteDoll(); // 跟隨主人不在線上自動刪除
+				deleteDoll();
 				return true;
 			} else {
 				if (getLocation().getTileLineDistance(_master.getLocation()) > 3) {
 					setDirectionMove(dir);
 					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
-				} else { // 8.31 Start 魔法娃娃修正
-					if (sleeptime_PT == 0) {
+				} else {
+					if (sleeptime_PT == 0) { // 8.31 Start 魔法娃娃修正
 						broadcastPacket(new S_DoActionGFX(getId(), DollAction[RandomArrayList.getInt(2)]));
 						sleeptime_PT = RandomArrayList.getInc(20, 10);
 					} else {
 						--sleeptime_PT;
 						setSleepTime(500); // 讓怪懂得忙裡偷閒
-					}
-				} // 8.31 End 魔法娃娃修正
+					} // 8.31 End 魔法娃娃修正
+				}
 			}
 		} else {
 			deleteDoll();
@@ -125,8 +117,8 @@ public class L1DollInstance extends L1NpcInstance {
 				new DollTimer(), DOLL_TIME);
 
 		setMaster(master);
-		setX(RandomArrayList.getInc(3, master.getX() - 1)); // master.getX() + RandomArrayList.getInt(2));
-		setY(RandomArrayList.getInc(3, master.getY() - 1)); // master.getY() + RandomArrayList.getInt(2));
+		setX(RandomArrayList.getInc(5, master.getX() - 2)); // master.getX() + RandomArrayList.getInt(2));
+		setY(RandomArrayList.getInc(5, master.getY() - 2)); // master.getY() + RandomArrayList.getInt(2));
 		setMap(master.getMapId());
 		setHeading(RandomArrayList.getInt(8));
 		setLightSize(template.getLightSize());

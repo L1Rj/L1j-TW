@@ -64,7 +64,6 @@ import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1NpcChat;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
-import l1j.server.server.utils.StaticFinalList;
 import l1j.server.server.utils.TimerPool;
 import static l1j.server.server.model.item.L1ItemId.*;
 import static l1j.server.server.model.skill.L1SkillId.*;
@@ -110,9 +109,9 @@ public class L1NpcInstance extends L1Character {
 	// 休憩
 	private boolean _rest = false;
 
-	// ランダム移動時の距離と方向
+	// 設定休息次數，預設0才能讓第一次看到玩家的怪是走動的而非休息的。
 	private int sleeptime_PT = 0;
-
+	// ランダム移動時の距離と方向
 	private int _randomMoveDistance = 0;
 
 	private int _randomMoveDirection = 0;
@@ -709,11 +708,11 @@ public class L1NpcInstance extends L1Character {
 						try {
 							if (sleeptime_PT == 0) {
 								sleeptime_PT = RandomArrayList.getInc(15 , 5);
-								_randomMoveDistance = RandomArrayList.getInc(7, 2);
-								_randomMoveDirection = RandomArrayList.getInt(8); // 8.31 End
+								_randomMoveDistance = RandomArrayList.getInc(5, 1);
+								_randomMoveDirection = RandomArrayList.getInt(8);
 							} else {
 								--sleeptime_PT;
-								Thread.sleep(200); // 讓怪懂得忙裡偷閒
+								Thread.sleep(200);
 							}
 						} catch (Exception exception) {
 						}
@@ -726,7 +725,7 @@ public class L1NpcInstance extends L1Character {
 							setSleepTime(calcSleepTime(getPassispeed(),
 									MOVE_SPEED));
 						}
-					}
+					} // 8.31 End
 				} else { // リーダーを追尾
 					L1NpcInstance leader = mobGroupInfo.getLeader();
 					if (getLocation().getTileLineDistance(leader

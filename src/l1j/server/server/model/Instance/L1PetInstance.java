@@ -43,7 +43,6 @@ import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Pet;
 import l1j.server.server.templates.L1PetType;
 import l1j.server.server.utils.RandomArrayList;
-import l1j.server.server.utils.StaticFinalList;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1PetInstance extends L1NpcInstance {

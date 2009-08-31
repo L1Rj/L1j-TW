@@ -1,7 +1,5 @@
 package l1j.server.server.utils;
 
-import java.util.Random;
-
 public class RandomArrayList {
 	/** 泛用型隨機矩陣，所使用的指標 */
 	private static int listint = 0;
@@ -21,7 +19,7 @@ public class RandomArrayList {
 			return listint = 0;
 	}
 
-	/* 
+	/**
 	 * getInt(int 數值) 隨機值的僞靜態，速度是nextInt(int 數值) 的數倍
 	 * 根據呼叫的數值傳回 靜態表內加工後的數值,並採共同指標來決定傳回的依據.
 	 * EX:getInt(92988) => 0~92987
@@ -36,7 +34,7 @@ public class RandomArrayList {
 		return (int) (ArrayDouble[getlistint()] * rang);
 	}
 
-	/* 
+	/**
 	 * getInc(int 數值, int 輸出偏移值) 隨機值的僞靜態，速度是nextInt(int 數值) 的數倍
 	 * 根據呼叫的數值傳回 靜態表內加工後的數值,並採共同指標來決定傳回的依據.
 	 * EX:getInc(92988, 10) => (0~92987) + 10 => 10~92997

@@ -150,8 +150,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 				if(pc.getLawful() <= -1) {
 					targetPlayer = pc;
 					break;
-                }
-            }
+				}
+			}
 
 
 			// どちらかの條件を滿たす場合、友好と見なされ先制攻擊されない。
