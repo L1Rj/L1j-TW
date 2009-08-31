@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.log.LogDeleteItem;
+import l1j.server.server.model.Instance.L1DollInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
@@ -44,13 +45,13 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 		L1PcInstance pc = client.getActiveChar();
 		L1ItemInstance item = pc.getInventory().getItem(itemObjectId);
 
-		// 削除しようとしたアイテムがサーバー上に無い場合
+		// 在伺服器上打算刪除物品的時候
 		if (item == null) {
 			return;
 		}
 
 		if (item.getItem().isCantDelete()) {
-			// \f1削除できないアイテムや裝備しているアイテムは捨てられません。
+			// \f1你不能夠放棄此樣物品。
 			pc.sendPackets(new S_ServerMessage(125));
 			return;
 		}
@@ -60,7 +61,7 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 			if (petObject instanceof L1PetInstance) {
 				L1PetInstance pet = (L1PetInstance) petObject;
 				if (item.getId() == pet.getItemObjId()) {
-					// \f1%0は捨てたりまたは他人に讓ることができません。
+					// \f1%0%d是不可轉移的…
 					pc.sendPackets(new S_ServerMessage(210, item.getItem()
 							.getName()));
 					return;
@@ -68,13 +69,25 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 			}
 		}
 
+		Object[] dollList = pc.getDollList().values().toArray();
+		for (Object dollObject : dollList) {
+			if (dollObject instanceof L1DollInstance) {
+				L1DollInstance doll = (L1DollInstance) dollObject;
+				if (item.getId() == doll.getItemObjId()) {
+					// \f1這個魔法娃娃目前正在使用中。
+					pc.sendPackets(new S_ServerMessage(1181));
+					return;
+				}
+			}
+		}
+
 		if (item.isEquipped()) {
-			// \f1削除できないアイテムや裝備しているアイテムは捨てられません。
+			// \f1你不能夠放棄此樣物品。
 			pc.sendPackets(new S_ServerMessage(125));
 			return;
 		}
-		if (item.getBless() >= 128) { // 封印された装備
-			// \f1%0は捨てたりまたは他人に讓ることができません。
+		if (item.getBless() >= 128) { // 封印的裝備
+			// \f1%0%d是不可轉移的…
 			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName()));
 			return;
 		}

@@ -137,7 +137,8 @@ public class C_Result extends ClientBasePacket {
 						L1DollInstance doll = (L1DollInstance) dollObject;
 						if (item.getId() == doll.getItemObjId()) {
 							tradable = false;
-							pc.sendPackets(new S_ServerMessage(1181)); // ???
+							// \f1這個魔法娃娃目前正在使用中。
+							pc.sendPackets(new S_ServerMessage(1181));
 							break;
 						}
 					}
@@ -234,7 +235,8 @@ public class C_Result extends ClientBasePacket {
 								L1DollInstance doll = (L1DollInstance) dollObject;
 								if (item.getId() == doll.getItemObjId()) {
 									tradable = false;
-									pc.sendPackets(new S_ServerMessage(1181)); // ???
+									// \f1這個魔法娃娃目前正在使用中。
+									pc.sendPackets(new S_ServerMessage(1181));
 									break;
 								}
 							}
@@ -338,7 +340,8 @@ public class C_Result extends ClientBasePacket {
 						L1DollInstance doll = (L1DollInstance) dollObject;
 						if (item.getId() == doll.getItemObjId()) {
 							tradable = false;
-							pc.sendPackets(new S_ServerMessage(1181)); // ???
+							// \f1這個魔法娃娃目前正在使用中。
+							pc.sendPackets(new S_ServerMessage(1181));
 							break;
 						}
 					}

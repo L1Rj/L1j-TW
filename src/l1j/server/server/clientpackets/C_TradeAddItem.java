@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package l1j.server.server.clientpackets;
 
 import java.util.logging.Logger;
@@ -26,6 +25,7 @@ import l1j.server.server.log.LogTradeBugItem;
 import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1Trade;
 import l1j.server.server.model.L1World;
+import l1j.server.server.model.Instance.L1DollInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
@@ -59,11 +59,11 @@ public class C_TradeAddItem extends ClientBasePacket {
 			return;
 		}
 		if (!item.getItem().isTradable()) {
-			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0は捨てたりまたは他人に讓ることができません。
+			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0%d是不可轉移的…
 			return;
 		}
-		if (item.getBless() >= 128) { // 封印された装備
-			// \f1%0は捨てたりまたは他人に讓ることができません。
+		if (item.getBless() >= 128) { // 封印的裝備
+			// \f1%0%d是不可轉移的…
 			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName()));
 			return;
 		}
@@ -72,9 +72,20 @@ public class C_TradeAddItem extends ClientBasePacket {
 			if (petObject instanceof L1PetInstance) {
 				L1PetInstance pet = (L1PetInstance) petObject;
 				if (item.getId() == pet.getItemObjId()) {
-					// \f1%0は捨てたりまたは他人に讓ることができません。
+					// \f1%0%d是不可轉移的…
 					pc.sendPackets(new S_ServerMessage(210, item.getItem()
 							.getName()));
+					return;
+				}
+			}
+		}
+		Object[] dollList = pc.getDollList().values().toArray();
+		for (Object dollObject : dollList) {
+			if (dollObject instanceof L1DollInstance) {
+				L1DollInstance doll = (L1DollInstance) dollObject;
+				if (item.getId() == doll.getItemObjId()) {
+					// \f1這個魔法娃娃目前正在使用中。
+					pc.sendPackets(new S_ServerMessage(1181));
 					return;
 				}
 			}
@@ -89,9 +100,9 @@ public class C_TradeAddItem extends ClientBasePacket {
 			return;
 		}
 		if (tradingPartner.getInventory().checkAddItem(item, itemcount)
-				!= L1Inventory.OK) { // 容量重量確認及びメッセージ送信
-			tradingPartner.sendPackets(new S_ServerMessage(270)); // \f1持っているものが重くて取引できません。
-			pc.sendPackets(new S_ServerMessage(271)); // \f1相手が物を持ちすぎていて取引できません。
+				!= L1Inventory.OK) { // 容量重量確認以及訊息發送
+			tradingPartner.sendPackets(new S_ServerMessage(270)); // \f1當你負擔過重時不能交易。
+			pc.sendPackets(new S_ServerMessage(271)); // \f1對方攜帶的物品過重，無法交易。
 			return;
 		}
 		if (isCheat) {
