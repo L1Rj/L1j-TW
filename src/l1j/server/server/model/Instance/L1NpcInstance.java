@@ -79,6 +79,7 @@ public class L1NpcInstance extends L1Character {
 	public static final int HIDDEN_STATUS_SINK = 1;
 	public static final int HIDDEN_STATUS_FLY = 2;
 	public static final int HIDDEN_STATUS_ICE = 3;
+	public static final int HIDDEN_STATUS_COUNTER_BARRIER = 4; // 吉爾塔斯反擊屏障
 
 	public static final int CHAT_TIMING_APPEARANCE = 0;
 	public static final int CHAT_TIMING_DEAD = 1;
@@ -381,14 +382,14 @@ public class L1NpcInstance extends L1Character {
 						npc.setLink(targetPlayer);
 					}
 				}
-//waja add 警衛幫打動作
+// 警衛幫打動作
 				if(this instanceof L1GuardInstance && knownObject instanceof L1GuardInstance){
 					L1GuardInstance guard = (L1GuardInstance)knownObject;
 					if(guard.getCurrentHp()>0){
 						guard.setLink(targetPlayer);
 					}
 				}
-//add end
+
 			}
 		}
 	}
@@ -1368,13 +1369,22 @@ public class L1NpcInstance extends L1Character {
 			} else {
 			if (getNpcTemplate().get_npcId() != 45681) { // リンドビオル以外
 					searchItemFromAir();
-	}
+				}
 			}
  		} else if (getHiddenStatus() == HIDDEN_STATUS_ICE) {
 			if (getCurrentHp() < getMaxHp()) {
 				appearOnGround(pc);
 			}
 		}
+//TODO 吉爾塔斯反擊屏障
+ 		else if (getHiddenStatus() == HIDDEN_STATUS_COUNTER_BARRIER) { // 吉爾塔斯反擊屏障回血判斷
+ 			if (getCurrentHp() == getMaxHp()) {
+ 			if (pc.getLocation().getTileLineDistance(this.getLocation()) <= 2) {
+ 			appearOnGround(pc);
+ 				}
+ 			}
+ 		}
+// add end
 	}
 
 	public void appearOnGround(L1PcInstance pc) {
@@ -1405,6 +1415,21 @@ public class L1NpcInstance extends L1Character {
 			onNpcAI(); // モンスターのＡＩを開始
 			startChat(CHAT_TIMING_HIDE);
 		}
+//TODO 吉爾塔斯反擊屏障
+		else if (getHiddenStatus() == HIDDEN_STATUS_COUNTER_BARRIER) { // 吉爾塔斯解除反擊屏障
+			setHiddenStatus(HIDDEN_STATUS_NONE);
+			broadcastPacket(new S_DoActionGFX(getId(),
+			ActionCodes.ACTION_AxeWalk));
+			setStatus(0);
+			broadcastPacket(new S_NPCPack(this));
+			if (!pc.hasSkillEffect(60) && !pc.hasSkillEffect(97) // インビジビリティ、ブラインドハイディング中以外、GM以外
+			&& !pc.isGm()) {
+			_hateList.add(pc, 0);
+			_target = pc;
+			onNpcAI(); // モンスターのＡＩを開始
+			}
+		}
+// add end
 	}
 
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■

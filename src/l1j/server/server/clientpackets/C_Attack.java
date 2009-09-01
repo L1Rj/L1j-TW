@@ -87,7 +87,7 @@ public class C_Attack extends ClientBasePacket
 		if (target instanceof L1NpcInstance) {
 			int hiddenStatus = ((L1NpcInstance) target).getHiddenStatus();
 			if (hiddenStatus == L1NpcInstance.HIDDEN_STATUS_SINK
-					|| hiddenStatus == L1NpcInstance.HIDDEN_STATUS_FLY) { // ?
+					|| hiddenStatus == L1NpcInstance.HIDDEN_STATUS_FLY) { // 地中に潜っているか、飛んでいる
 				return;
 			}
 		}

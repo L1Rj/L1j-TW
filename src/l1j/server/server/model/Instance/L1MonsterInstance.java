@@ -104,6 +104,12 @@ public class L1MonsterInstance extends L1NpcInstance {
 				perceivedFrom.sendPackets(new S_DoActionGFX(getId(),
 						ActionCodes.ACTION_Moveup));
 			}
+// waja add 吉爾塔斯反擊屏障
+			else if (getHiddenStatus() == HIDDEN_STATUS_COUNTER_BARRIER) { // 吉爾塔斯反擊屏障 
+				perceivedFrom.sendPackets(new S_DoActionGFX(getId(),
+				ActionCodes.ACTION_SwordWalk));
+				}
+// add end
 			perceivedFrom.sendPackets(new S_NPCPack(this));
 			onNpcAI(); // モンスターのＡＩを開始
 			if (getBraveSpeed() == 1) { // ちゃんとした方法がわからない
@@ -645,7 +651,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 			}
 		} else if (npcid == 45682) { // アンタラス
 			if (getMaxHp() / 3 > getCurrentHp()) {
-				int rnd = RandomArrayList.getInc(100, 1);
+				int rnd = RandomArrayList.getInc(10, 1);
 				if (3 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_SINK);
@@ -679,7 +685,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 		else if (npcid == 45681) // 風龍 - 林德拜爾
 		{
 			if (getMaxHp() / 3 > getCurrentHp()) {
-				int rnd = RandomArrayList.getInc(100, 1);
+				int rnd = RandomArrayList.getInc(10, 1);
 				if (3 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_FLY);
@@ -704,6 +710,24 @@ public class L1MonsterInstance extends L1NpcInstance {
 				}
 			}
 		}
+//TODO 吉爾塔斯反擊屏障
+		else if (npcid == 81163)
+		{
+		if (getMaxHp() / 6 > getCurrentHp())
+		{
+			int rnd = RandomArrayList.getInc(10, 1);
+			if (9 > rnd)
+			{
+		allTargetClear();
+		setHiddenStatus(HIDDEN_STATUS_COUNTER_BARRIER);
+		broadcastPacket(new S_DoActionGFX(getId(),
+		ActionCodes.ACTION_SwordWalk));
+		setStatus(4);
+		broadcastPacket(new S_NPCPack(this));
+			}
+		}
+		}
+//add end
 	}
 
 	public void initHide()

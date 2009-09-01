@@ -80,8 +80,9 @@ import static l1j.server.server.model.skill.L1SkillId.UNCANNY_DODGE;
 import java.util.Random;
 
 import l1j.server.Config;
+import l1j.server.server.ActionCodes;// 吉爾塔斯反擊屏障
 import l1j.server.server.WarTimeController;
-import l1j.server.server.model.Action.NpcAction;
+import l1j.server.server.model.Action.NpcAction;// 吉爾塔斯反擊屏障
 import l1j.server.server.model.Instance.L1DollInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
@@ -93,6 +94,8 @@ import l1j.server.server.model.poison.L1DamagePoison;
 import l1j.server.server.model.poison.L1ParalysisPoison;
 import l1j.server.server.model.poison.L1SilencePoison;
 import l1j.server.server.serverpackets.S_Attack;
+import l1j.server.server.serverpackets.S_AttackMissPacket;// 吉爾塔斯反擊屏障
+import l1j.server.server.serverpackets.S_DoActionGFX;// 吉爾塔斯反擊屏障
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SystemMessage;
 import l1j.server.server.utils.RandomArrayList;
@@ -1326,6 +1329,19 @@ public class L1Attack
 				_pc.delInvis();
 			}
 		}
+//TODO 吉爾塔斯反擊屏障判斷
+		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER && _weaponType != 20
+				&& _weaponType != 62){
+			_pc.setHeading((byte)_pc.targetDirection(_target.getX(), _target.getY())); // 向きのセット
+			_pc.sendPackets(new S_AttackMissPacket(_pc, _pc.getId()));
+			_pc.broadcastPacket(new S_AttackMissPacket(_pc, _pc.getId()));
+			_pc.sendPackets(new S_DoActionGFX(_pc.getId(),
+					ActionCodes.ACTION_Damage));
+			_pc.broadcastPacket(new S_DoActionGFX(_pc.getId(),
+					ActionCodes.ACTION_Damage));
+			_pc.receiveManaDamage(_targetNpc, (int)(dmg * 2));
+			dmg = 0;
+	}
 //add end
 		return (int) dmg;
 	}
