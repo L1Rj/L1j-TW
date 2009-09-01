@@ -1,0 +1,43 @@
+; png sound
+
+;Dark elf female
+25 1603
+
+;Dark elf male
+90 1604
+
+;Elf female
+166 1595
+
+;Elf male
+245 1596
+
+;Knight female
+315 1601
+
+;Knight male
+378 1602
+
+;Magicion female
+452 1599
+
+;Magicion male
+531 1600
+
+;Princess 
+629 1597
+
+;Prince
+714 1598
+
+;Dragon knight male
+841 4764
+
+;Dragon knight female
+908 4765
+
+;Illusionist male
+968 4766
+
+;Illusionist female
+1039 4767
