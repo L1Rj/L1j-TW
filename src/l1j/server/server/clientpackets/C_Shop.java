@@ -97,8 +97,9 @@ public class C_Shop extends ClientBasePacket {
 						L1DollInstance doll = (L1DollInstance) dollObject;
 						if (checkItem.getId() == doll.getItemObjId()) {
 							tradable = false;
-							// \f1這個魔法娃娃目前正在使用中。
-							pc.sendPackets(new S_ServerMessage(1181));
+							pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
+									checkItem.getItem().getName(),
+									"不可交易。"));
 							break;
 						}
 					}
@@ -136,6 +137,19 @@ public class C_Shop extends ClientBasePacket {
 					if (petObject instanceof L1PetInstance) {
 						L1PetInstance pet = (L1PetInstance) petObject;
 						if (checkItem.getId() == pet.getItemObjId()) {
+							tradable = false;
+							pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
+									checkItem.getItem().getName(),
+									"不可交易。"));
+							break;
+						}
+					}
+				}
+				Object[] dolllist = pc.getDollList().values().toArray();
+				for (Object dollObject : dolllist) {
+					if (dollObject instanceof L1DollInstance) {
+						L1DollInstance doll = (L1DollInstance) dollObject;
+						if (checkItem.getId() == doll.getItemObjId()) {
 							tradable = false;
 							pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
 									checkItem.getItem().getName(),
