@@ -47,18 +47,25 @@ public class C_AddBookmark extends ClientBasePacket {
 		}
 
 		if (pc.getMap().isMarkable() || pc.isGm()) {
-			if ((L1CastleLocation.checkInAllWarArea(pc.getX(), pc.getY(), pc
-					.getMapId()) || L1HouseLocation.isInHouse(pc.getX(), pc
-					.getY(), pc.getMapId()))
-					&& !pc.isGm()) {
-				// \f1ここを記憶することができません。
-				pc.sendPackets(new S_ServerMessage(214));
-			} else {
-				L1BookMark.addBookmark(pc, s);
-			}
-		} else {
-			// \f1ここを記憶することができません。
-			pc.sendPackets(new S_ServerMessage(214));
+                    if ((pc.getX() >= 33535 && pc.getY() <= 33835)
+                            && (pc.getY() >= 32200 && pc.getY() <= 32500)
+                            && pc.getMapId() == 4) {
+                        pc.sendPackets(new S_ServerMessage(214));
+                    } else if ((pc.getX() >= 34200 && pc.getY() <= 34260)
+                            && (pc.getY() >= 33095 && pc.getY() <= 33500)
+                            && pc.getMapId() == 4) {
+                        pc.sendPackets(new S_ServerMessage(214));
+                    } else if ((L1CastleLocation.checkInAllWarArea(pc.getX(), pc.getY(), pc.getMapId())
+                            || L1HouseLocation.isInHouse(pc.getX(), pc.getY(), pc.getMapId()))
+                            && !pc.isGm()) {
+                        // \f1ここを記憶することができません。
+                        pc.sendPackets(new S_ServerMessage(214));
+                    } else {
+                        L1BookMark.addBookmark(pc, s);
+                    }
+                } else {
+                    // \f1ここを記憶することができません。
+                    pc.sendPackets(new S_ServerMessage(214));
 		}
 	}
 
