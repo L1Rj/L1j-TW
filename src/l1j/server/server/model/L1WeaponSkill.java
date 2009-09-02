@@ -455,9 +455,12 @@ public class L1WeaponSkill {
 
 	public static void giveArkMageDiseaseEffect(L1PcInstance pc,
 			L1Character cha) {
-		int chance = RandomArrayList.getInc(1000, 1);
-		int probability = (5 - ((cha.getMr() / 10) * 5)) * 10;
-		if (probability == 0) {
+		int chance = RandomArrayList.getInc(100, 1);
+		int probability = pc.getSp() - (cha.getMr() / 30) ;
+		if (probability <= 0) {
+			probability = 1;
+		}
+		if (probability > 10) { // 最高只有一成機率
 			probability = 10;
 		}
 		if (probability >= chance) {

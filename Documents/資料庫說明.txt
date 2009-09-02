@@ -50,7 +50,7 @@ mobskill 欄位說明
 
 　12.AreaHeight（物理攻擊使用） 範圍攻擊的高度：單體攻擊的話設定 0 ，範圍攻擊的話設定 1 以上。
 
-　13.Leverage（魔法攻撃、物理攻撃で使用） 損傷的倍率，1/10表示。物理攻擊，魔法攻擊都有效。
+　13.Leverage（魔法攻撃、物理攻撃） 損傷的倍率，1/10表示。物理攻擊，魔法攻擊都有效。
 
 　14.SkillId（魔法攻擊使用） 如果使用魔法，指定skills 資料表的skillId。
 
@@ -65,3 +65,17 @@ mobskill 欄位說明
 　18.SummonMin（召喚使用） 召喚 NPC 最少數量。
 
 　19.SummonMax（召喚使用） 召喚 NPC 最大數量。
+
+
+mobskill 欄位說明
+
+weapon_id	武器編號。
+note		註解。
+probability	魔法發動機率。
+fix_damage	魔法固定傷害。
+random_damage	魔法隨機傷害。
+skill_id	魔法編號。
+skill_time	如果前面skill_id對應的那個魔法的type是1的話,這裡就要設置一個效果持續時間就像衝暈的持續時間。
+effect_id	魔法效果所用圖檔。
+effect_target	魔法效果所用圖檔 顯示的目標,0=對方身上,1=自己身上。
+attr		角色施法動作。

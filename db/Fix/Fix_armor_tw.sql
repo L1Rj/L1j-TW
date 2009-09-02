@@ -17,3 +17,8 @@ Update armor Set dmg_modifier = '1' Where item_id = '21098';
 /* 20090705 修正大法師耳環 */
 Update armor Set add_sp = '2' Where item_id = '21099';
 Update armor Set add_mpr = '1' Where item_id = '21099';
+
+/* 20090902 修正變形怪首領項鍊 王 騎 黑妖 龍騎 可裝備 */
+Update armor Set use_dragonknight = '1' Where item_id = '20250';
+/* 20090902 修正變形怪首領之戒(右) 妖精 法師 可裝備 */
+Update armor Set use_royal = '0' ,use_knight = '0' ,use_darkelf = '0' ,use_mage = '1' ,use_elf = '1' Where item_id = '20277';

@@ -1226,7 +1226,7 @@ public class L1Attack
 		} else if (_weaponId == 260 || _weaponId == 263) { // 狂風之斧 酷寒之矛
 			dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target,
 					_weaponId);
-		} else if (_weaponId == 261) { // アークメイジスタッフ
+		} else if (_weaponId == 261) { // 大法師魔杖
 			L1WeaponSkill.giveArkMageDiseaseEffect(_pc, _target);
 		} else if( _weaponId == 2 && RandomArrayList.getInc(100, 1) <= 5) // 骰子匕首
 		{

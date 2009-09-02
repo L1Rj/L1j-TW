@@ -100,3 +100,7 @@ Update weapon Set use_dragonknight = '1' Where item_id = '522';
 /* http://lineage.gametsg.com/index.php?view=item&list=no&k1=normal&item=9079 */
 Update weapon Set use_mage = '0' Where item_id = '263';
 Update weapon Set type = 'singlespear' Where item_id = '263';
+
+/* 20090902 修正大法師魔杖 不損壞 */
+/* http://lineage.gametsg.com/index.php?view=item&list=no&k1=normal&item=9078 */
+Update weapon Set canbedmg = '0' Where item_id = '261';

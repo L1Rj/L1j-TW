@@ -77,5 +77,3 @@ Update mobskill Set TriRnd = '30' Where mobid = '81163' AND actNo ='1';
 Update mobskill Set TriRnd = '40' Where mobid = '81163' AND actNo ='2';
 Update mobskill Set TriRnd = '50' Where mobid = '81163' AND actNo ='3';
 Update mobskill Set TriRnd = '60' Where mobid = '81163' AND actNo ='6';
-/* 20090829 吉爾塔斯技能 反擊屏障 */
-INSERT INTO `mobskill` VALUES (81163, 7, '吉爾塔斯(反擊屏障)', 2, 100, 56, 0, 2, 0, 0, 0, 0, 0, 0, 91, 0, 0, 0, 0, 0, 0);
