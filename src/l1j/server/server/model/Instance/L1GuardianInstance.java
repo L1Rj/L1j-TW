@@ -23,9 +23,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import l1j.server.server.datatables.ItemTable;//waja add 妖森守護神道具控制
-import l1j.server.server.model.L1Inventory;//waja add 妖森守護神道具控制
-import l1j.server.server.templates.L1Item;//waja add 妖森守護神道具控制
+import l1j.server.server.datatables.ItemTable;// 妖森守護神道具控制
+import l1j.server.server.model.L1Inventory;// 妖森守護神道具控制
+import l1j.server.server.templates.L1Item;// 妖森守護神道具控制
 // import java.util.Random;
 
 import l1j.server.Config;
@@ -60,7 +60,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 
 	//private Random _random = new Random();
 
-	private int _configtime = Config.GDROPITEM_TIME;//妖森守護神道具控制
+	private int _configtime = Config.GDROPITEM_TIME;// 妖森守護神道具控制
 
 	private L1GuardianInstance _npc = this;
 
@@ -377,12 +377,10 @@ public class L1GuardianInstance extends L1NpcInstance {
 
 	@Override
 	public void receiveDamage(L1Character attacker, int damage) { // 攻擊でＨＰを減らすときはここを使用
-		if (attacker instanceof L1PcInstance && damage > 0) {
-			L1PcInstance pc = (L1PcInstance) attacker;
-			if (pc.getType() == 2 && // 素手ならダメージなし
-					pc.getCurrentWeapon() == 0
-					&& ((pc.hasSkillEffect(SHAPE_CHANGE)) == false)) { // BAO提供 變身攻擊守護神會被反擊
-				/* 無任何動作?? */
+            if (attacker instanceof L1PcInstance && damage > 0) {
+                L1PcInstance pc = (L1PcInstance) attacker;
+                if (pc.getType() == 2 && pc.getCurrentWeapon() == 0 //空手未裝備武器狀態
+                        && ((pc.hasSkillEffect(67)) == false)) { // BAO提供 變身攻擊守護神會被反擊
 			} else {
 				if (getCurrentHp() > 0 && !isDead()) {
 					if (damage >= 0) {
@@ -541,14 +539,14 @@ public class L1GuardianInstance extends L1NpcInstance {
 						if(!_inventory.checkItem(40505)
 								&& !_inventory.checkItem(40506)
 								&& !_inventory.checkItem(40507)){
-							_inventory.storeItem(40506, 1);//水果
-							_inventory.storeItem(40507, 66);//樹枝
-							_inventory.storeItem(40505, 8);//樹皮
+							_inventory.storeItem(40506, 1);// 水果
+							_inventory.storeItem(40507, 66);// 樹枝
+							_inventory.storeItem(40505, 8);// 樹皮
 						}
 					}
 					if (npcId == 70850) { // 潘
 						if(!_inventory.checkItem(40519)) {
-							_inventory.storeItem(40519, 30);//潘毛
+							_inventory.storeItem(40519, 30);// 潘毛
 						}
 					}
 					setDropItems(true);

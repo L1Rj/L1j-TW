@@ -1,0 +1,92 @@
+﻿DATA目錄內容說明:
+\data\badnames.txt			設定遊戲內不可命名的角色名稱
+\data\announcements.txt			伺服器登入公告.
+\data\mapcache\				伺服器地圖快取暫存目錄.
+\data\xml\Cycle\BossCycle.xml		spawnlist_boss.sql內的Boss重生時間示範檔,無任何效果.
+\data\xml\Cycle\users\BossCycle.xml	控制spawnlist_boss.sql內的Boss重生時間.
+\data\xml\GmCommands\GMCommands.xml	配合GM指令用的文件檔、可自定義ItemSet(套裝)以及GmRoom指令.
+\data\xml\Item\TreasureBox.xml		控制寶箱/盒子/袋子類可開到道具種類與機率.
+\data\xml\NpcActions\ItemMaking.xml	控制NPC兌換物品.
+\data\xml\NpcActions\Quest.xml		定義任務流程.
+\data\xml\NpcActions\SingleItemMaking.xml 同ItemMaking.xml，但可以指定NPC的HtmlId.
+\data\xml\NpcActions\Teleporter.xml	控制傳送NPC傳送點與費用.
+
+XML設定解說
+--------------------------------------------------------------------------------------------------------------------------------
+BossCycle：
+<BossCycle Name="DK">
+<Cycle Period="7h"/>
+代表spawnlist_boss.sql內cycle_type欄位為」DK」的Boss怪重生時間為7小時
+D=天 H=小時 M=分鐘 S=秒
+--------------------------------------------------------------------------------------------------------------------------------
+GMCommands：
+<ItemSet Name="DKSet">
+<Item Id="58" Amount="1" Enchant="10"/>
+<Item Id="20010" Amount="1" Enchant="10"/>
+<Item Id="20100" Amount="1" Enchant="10"/>
+<Item Id="20166" Amount="1" Enchant="10"/>
+<Item Id="20198" Amount="1" Enchant="10"/>
+定義一個套裝，名稱為DKSet，給予item ID為x的物品一個並且給予加值10。
+
+<Room Name="Gludio" LocX="32612" LocY="32734" MapId="4"/>
+設定GmRoom指令，若在遊戲中打上gmroom gludio，則傳送到X-32612  Y-32734  MAP為4的地圖
+--------------------------------------------------------------------------------------------------------------------------------
+TreasureBox：
+<TreasureBox Type="RANDOM" ItemId="49005">
+<Item ItemId="40010" Count="2" Chance="45" />
+<Item ItemId="40408" Count="2" Chance="45" />
+<Item ItemId="40013" Count="1" Chance="10" />
+物品編號為49005的道具，45%的機率開到2個編號40010的物品，機率總合必須為100。
+
+<TreasureBox Type="SPECIFIC" ItemId="910020">
+<Item ItemId="40276" Count="1" />
+<Item ItemId="40277" Count="1" />
+編號910020的道具，可以開到編號為40276、40277的物品1個，無機率問題。
+--------------------------------------------------------------------------------------------------------------------------------
+ItemMaking：
+<Action Name="request for a5" NpcId="29959">
+<MakeItem>
+<Item Amount="1" ItemId="20167"/>
+<Material Amount="1" ItemId="40634"/>
+</MakeItem>
+</Action>
+控制Npc編號為29959的request for a5選項(action)
+可用編號40634的物品1個兌換編號20167的物品1個。
+--------------------------------------------------------------------------------------------------------------------------------
+Quest： (需搭配原始碼使用)
+<MakeItem Name="request mask of true" Class="D" NpcId="70906" AmountInputable="false">
+<Item Amount="1" ItemId="20037"/>
+<Material Amount="1" ItemId="40583"/>
+<Succeed>
+<SetQuest Id="Level50" Step="2" QuestId="Level50" QuestStep="1"/>
+<ShowHtml HtmlId="kimaq3"/>
+</Succeed>
+</MakeItem>
+控制 request mask of true選項
+指定Npc：70906，可用編號40583的物品兌換20037的物品，並進入對話檔kimaq3，限定職業為D，偵測任務編號Level50(x)是否為1，
+並且紀錄任務編號為Level50(x)的任務Step為2，X可自定義編號，只要不重複即可
+Step為流程，1~255；Class英文表示：P=王族、K=騎士、E=妖精、W=法師、D=黑妖
+AmountInputable="false"
+玩家是否可以設定數量，false就是關閉設定數量，true就可以設定一次要製造幾個
+--------------------------------------------------------------------------------------------------------------------------------
+SingleItemMaking：
+<Action Name="A" NpcId="80091">
+<MakeItem AmountInputable="false">
+<Material Amount="10000" ItemId="40308"/>
+<Item Amount="1" ItemId="41255"/>
+<Succeed>
+<ShowHtml HtmlId="rrafons1"/>
+</Succeed>
+<Fail>
+<ShowHtml HtmlId="rrafons2"/>
+</Fail>
+</MakeItem>
+</Action>
+控制NPC編號為80091的對話檔rrafons1選項(action)A，以金幣(40308)一萬個兌換編號41255的物品一個，若條件不足則顯示rrafons2對話檔
+--------------------------------------------------------------------------------------------------------------------------------
+Teleporter：
+<Action Name="teleport hidden-velley-for-newbie" NpcId="50004">
+<Teleport X="33083" Y="33387" Map="4" Heading="5" Price="0"/>
+</Action>
+控制NPC編號為50004的teleport hidden-velley-for-newbie選項
+傳送到X座標33083 Y座標33387 地圖編號4 方向5 金額0
