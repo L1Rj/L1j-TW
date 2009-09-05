@@ -23,15 +23,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;	//修正城戰報錯格式
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import l1j.server.Config;
 import l1j.server.L1DatabaseFactory;
+import l1j.server.server.WarTimeController;
 import l1j.server.server.templates.L1Castle;
 import l1j.server.server.utils.SQLUtil;
 
@@ -79,6 +80,7 @@ public class CastleTable {
 						.getObject(3)));
 				castle.setTaxRate(rs.getInt(4));
 				castle.setPublicMoney(rs.getInt(5));
+				castle.setRegTimeOver(rs.getBoolean(6));
 
 				_castles.put(castle.getId(), castle);
 			}
@@ -107,10 +109,12 @@ public class CastleTable {
 			pstm = con
 					.prepareStatement("UPDATE castle SET name=?, war_time=?, tax_rate=?, public_money=? WHERE castle_id=?");
 			pstm.setString(1, castle.getName());
-/*			String fm = DateFormat.getDateTimeInstance().format(
-					castle.getWarTime().getTime()); // 原有格式未定亦會出錯問題 */
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); // TODO 盟屋買賣系統時間自動更新 by pigermin
-			String fm = sdf.format(castle.getWarTime().getTime());//end
+			// 盟屋買賣系統時間自動更新 by pigermin
+			// String fm = DateFormat.getDateTimeInstance().format(
+			//		castle.getWarTime().getTime());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			String fm = sdf.format(castle.getWarTime().getTime());
+			// 盟屋買賣系統時間自動更新 by pigermin
 			pstm.setString(2, fm);
 			pstm.setInt(3, castle.getTaxRate());
 			pstm.setInt(4, castle.getPublicMoney());
@@ -123,6 +127,29 @@ public class CastleTable {
 		} finally {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
+		}
+	}
+
+	public void updateWarTime(int castleid, Calendar cal) {
+		WarTimeController.getInstance().setWarStartTime(castleid, cal);
+		Calendar endTime = Calendar.getInstance();
+		endTime.setTime(cal.getTime());
+		endTime.add(Config.ALT_WAR_TIME_UNIT, Config.ALT_WAR_TIME);
+		WarTimeController.getInstance().setWarEndTime(castleid, endTime);
+		try {
+			Connection con = null;
+			con = L1DatabaseFactory.getInstance().getConnection();
+			PreparedStatement statement = con
+					.prepareStatement("UPDATE castle SET war_time=?, regTimeOver=? WHERE castle_id=?");
+			String fm = cal.get(1) + "-" + (cal.get(2) + 1) + "-" + cal.get(5)
+					+ " " + cal.get(11) + ":" + cal.get(12) + ":" + "00";
+			statement.setString(1, fm);
+			statement.setBoolean(2, true);
+			statement.setInt(3, castleid);
+			statement.execute();
+			statement.close();
+			con.close();
+		} catch (Exception e) {
 		}
 	}
 

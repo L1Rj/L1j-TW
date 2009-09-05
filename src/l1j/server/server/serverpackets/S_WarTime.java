@@ -33,37 +33,40 @@ public class S_WarTime extends ServerBasePacket {
 	private static final String S_WAR_TIME = "[S] S_WarTime";	
 
 	public S_WarTime(Calendar cal) {
-		// 1997/01/01 17:00を基點としている
+		// 設定 1997/01/01 17:00 為時間基準點
 		Calendar base_cal = Calendar.getInstance();
 		base_cal.set(1997, 0, 1, 17, 0);
+		Calendar nextWarTime = Calendar.getInstance();
+		nextWarTime.setTime(cal.getTime());
+		nextWarTime.add(Config.ALT_WAR_INTERVAL_UNIT, Config.ALT_WAR_INTERVAL);
 		long base_millis = base_cal.getTimeInMillis();
-		long millis = cal.getTimeInMillis();
+		long millis = nextWarTime.getTimeInMillis();
 		long diff = millis - base_millis;
 		diff -= 1200 * 60 * 1000; // 誤差修正
-		diff = diff / 60000; // 分以下切捨て
-		// timeは1加算すると3:02（182分）進む
+		diff = diff / 60000; // 分鐘以下捨去
+		// 如果 time 加上 1 ，就是 3:02 (182 分鐘) 前進
 		int time = (int) (diff / 182);
 
-		// writeDの直前のwriteCで時間の調節ができる
-		// 0.7倍した時間だけ縮まるが
-		// 1つ調整するとその次の時間が廣がる？
+		// 能用 writeD 最後時刻的 writeC 調整時間
+		// 只能縮短 0.7 倍的時間，但是
+		// 如果調整一個，那下一時間就擴大？
 		writeC(Opcodes.S_OPCODE_WARTIME);
-		writeH(6); // リストの數（6以上は無效）
-		writeS(Config.TIME_ZONE); // 時間の後ろの（）內に表示される文字列
+		writeH(6); // 清單數量 (6 以上無效)
+		writeS(Config.TIME_ZONE); // 時間後面 () 裡的顯示字串
 		writeC(0); // ?
 		writeC(0); // ?
 		writeC(0);
 		writeD(time);
 		writeC(0);
-		writeD(time - 1);
+		writeD(time + 1);
 		writeC(0);
-		writeD(time - 2);
+		writeD(time + 2);
 		writeC(0);
-		writeD(time - 3);
+		writeD(time + 3);
 		writeC(0);
-		writeD(time - 4);
+		writeD(time + 4);
 		writeC(0);
-		writeD(time - 5);
+		writeD(time + 5);
 		writeC(0);
 	}
 

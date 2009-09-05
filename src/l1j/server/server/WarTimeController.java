@@ -52,15 +52,6 @@ public class WarTimeController implements Runnable {
 	private WarTimeController() {
 		for (int i = 0; i < _l1castle.length; i++) {
 			_l1castle[i] = CastleTable.getInstance().getCastleTable(i + 1);
-/*
-            Calendar nowTime = Calendar.getInstance();//waja add 修正攻城時間判斷
-            Calendar oldTime = _l1castle[i].getWarTime();
-            oldTime.add(Config.ALT_WAR_TIME_UNIT, Config.ALT_WAR_TIME);
-            if(nowTime.after(oldTime)){
-                nowTime.add(Config.ALT_WAR_INTERVAL_UNIT, Config.ALT_WAR_INTERVAL);
-                _l1castle[i].setWarTime(nowTime);
-                CastleTable.getInstance().updateCastle(_l1castle[i]);
-            }*/
 			_war_start_time[i] = _l1castle[i].getWarTime();
 			_war_end_time[i] = (Calendar) _l1castle[i].getWarTime().clone();
 			_war_end_time[i].add(Config.ALT_WAR_TIME_UNIT, Config.ALT_WAR_TIME);
@@ -83,6 +74,30 @@ public class WarTimeController implements Runnable {
 			}
 		} catch (Exception e1) {
 		}
+	}
+
+	public L1Castle getCastle(int id) {
+		return _l1castle[id];
+	}
+
+	public void setCastle(int id, L1Castle castle) {
+		_l1castle[id] = castle;
+	}
+
+	public Calendar getWarStartTime(int id) {
+		return _war_start_time[id];
+	}
+
+	public void setWarStartTime(int id, Calendar cal) {
+		_war_start_time[id] = cal;
+	}
+
+	public Calendar getWarEndTime(int id) {
+		return _war_end_time[id];
+	}
+
+	public void setWarEndTime(int id, Calendar cal) {
+		_war_end_time[id] = cal;
 	}
 
 	public Calendar getRealTime() {

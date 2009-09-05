@@ -69,4 +69,14 @@ public class L1Castle {
 		_publicMoney = i;
 	}
 
+	private boolean _regTimeOver;
+
+	public boolean getRegTimeOver() {
+		return _regTimeOver;
+	}
+
+	public void setRegTimeOver(boolean bool) {
+		_regTimeOver = bool;
+	}
+
 }

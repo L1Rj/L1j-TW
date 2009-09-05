@@ -1,19 +1,19 @@
 /*
- * 本程式是一個自由軟體(Free Software)，你可以自由的散佈以及、或者修改它，但是必須
- * 基於 GNU GPL(GNU General Public License) 的授權條款之下，並且隨時適用於任何
- * 自由軟體基金會(FSF, Free Software Foundation)所制定的最新條款。
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
  *
- * 這支程式的發表目的是希望將能夠有用、強大，但是不附加任何的保證及擔保任何責任；甚至
- * 暗示保證任何用途、方面的適銷性或適用性。如果你想要了解進一步的授權內容，請詳見於最
- * 新版本的 GPL 版權聲明。
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * 你應該會在本程式的根資料夾底下，見到適用於目前版本的 licenses.txt，這是一個複製
- * 版本的 GPL 授權，如果沒有，也許你可以聯繫自由軟體基金會取得最新的授權。
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  *
- * 你可以寫信到 :
- * Free Software Foundation, Inc.,
- * 59 Temple Place - Suite 330, Boston, MA, 02111-1307, USA.
- * 或者參觀 GNU 的官方網站，以取得 GPL 的進一步資料。
  * http://www.gnu.org/copyleft/gpl.html
  */
 
@@ -27,6 +27,7 @@ import l1j.server.server.datatables.CastleTable;
 import l1j.server.server.model.L1Clan;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_WarTime;
 import l1j.server.server.templates.L1Castle;
 
@@ -35,8 +36,8 @@ import l1j.server.server.templates.L1Castle;
 
 public class C_SelectWarTime extends ClientBasePacket {
 
-	private static final String C_OPCODE_SELECTWARTIME = "[C] C_SelectWarTime";
-	private static Logger _log = Logger.getLogger(C_ChangeWarTime.class
+	private static final String C_SELECT_WAR_TIME = "[C] C_SelectWarTime";
+	private static Logger _log = Logger.getLogger(C_SelectWarTime.class
 			.getName());
 
 	public C_SelectWarTime(byte abyte0[], ClientThread clientthread)
@@ -48,18 +49,21 @@ public class C_SelectWarTime extends ClientBasePacket {
 		L1Clan clan = L1World.getInstance().getClan(player.getClanname());
 		if (clan != null) {
 			int castle_id = clan.getCastleId();
-			if (castle_id != 0) { // 城主クラン
+			if (castle_id != 0 && clan.getLeaderName().equals(player.getName())) { // 城主クラン
 				L1Castle l1castle = CastleTable.getInstance().getCastleTable(
 						castle_id);
 				Calendar cal = l1castle.getWarTime();
-				player.sendPackets(new S_WarTime(cal));
+				if (!l1castle.getRegTimeOver()) {
+					player.sendPackets(new S_WarTime(cal));
+					player.sendPackets(new S_ServerMessage(300));
+				}
 			}
 		}
 	}
 
 	@Override
 	public String getType() {
-		return C_OPCODE_SELECTWARTIME;
+		return C_SELECT_WAR_TIME;
 	}
 
 }
