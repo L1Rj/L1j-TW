@@ -193,8 +193,8 @@ public class C_CharReset extends ClientBasePacket {
 		pc.addBaseCon((byte)(con - pc.getBaseCon()));
 		pc.addBaseCha((byte)(cha - pc.getBaseCha()));
 		pc.addMr(0 - pc.getMr());
-    	pc.addDmgup(0 - pc.getDmgup());
-    	pc.addHitup(0 - pc.getHitup());
+		pc.addDmgup(0 - pc.getDmgup());
+		pc.addHitup(0 - pc.getHitup());
 	}
 
 	private void setLevelUp(L1PcInstance pc ,int addLv) {

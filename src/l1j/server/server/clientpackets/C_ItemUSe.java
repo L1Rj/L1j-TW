@@ -159,30 +159,29 @@ public class C_ItemUSe extends ClientBasePacket
 {
 	private static Logger _log = Logger.getLogger(C_ItemUSe.class.getName());
 	private static Random _random = new Random();
-	
+
 	private L1PcInstance pc;
 	private L1ItemInstance item;
 
 	public C_ItemUSe(byte abyte0[], ClientThread client) throws Exception
 	{
 		super(abyte0);
-		
+
 		pc = client.getActiveChar();
 		int itemObjid = readD();
-		
+
 		if (pc.isGhost())
 			return;
-		
+
 		// 封鎖 LinHelp無條件喝水功能
 		if (pc.isParalyzed())
 			return;
-		
+
 		item = pc.getInventory().getItem(itemObjid);
 
 		if (item.getItem().getUseType() == -1) { // none:使用できないアイテム
-			pc
-					.sendPackets(new S_ServerMessage(74, item
-							.getLogName())); // \f1%0は使用できません。
+			pc.sendPackets(new S_ServerMessage(74, item
+					.getLogName())); // \f1%0は使用できません。
 			return;
 		}
 		int pcObjid = pc.getId();
@@ -994,10 +993,10 @@ public class C_ItemUSe extends ClientBasePacket
 						|| itemId == 140018 // 祝福された強化グリーン ポーション
 
 						// 20080122 修改玩家可使用紅酒,威士忌 use won122 code 1/3
-						/* 
-						|| itemId == 40039   // ワイン
-						|| itemId == 40040   // ウイスキー
-						 */ 
+						/*
+						|| itemId == 40039 // ワイン
+						|| itemId == 40040 // ウイスキー
+						 */
 						// end
 						|| itemId == 40030 // 象牙の塔のヘイスト ポーション
 						|| itemId == 41338 // 祝福されたワイン
@@ -1026,7 +1025,7 @@ public class C_ItemUSe extends ClientBasePacket
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
-					pc.getInventory().removeItem(item, 1); 
+					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40068 // エルヴン ワッフル
 						|| itemId == 140068) { // 祝福されたエルヴン ワッフル
 					if (pc.isElf()) {
@@ -1168,34 +1167,34 @@ public class C_ItemUSe extends ClientBasePacket
 						pc.getInventory().consumeItem(49186, 1);
 						pc.getInventory().consumeItem(49188, 1);
 						pc.getInventory().storeItem(49189, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(79));
+					}
+				} else if (itemId == 49189) {//索夏依卡靈魂之笛
+					boolean found = false;
+					for (L1Object obj : L1World.getInstance().getObject()) {
+						if (obj instanceof L1MonsterInstance) {
+							L1MonsterInstance mob = (L1MonsterInstance) obj;
+							if (mob != null) {
+								if (mob.getNpcTemplate().get_npcId() == 46163) {
+									found = true;
+									break;
+								}
+							}
+						}
+					}
+					if (found) {
+						pc.sendPackets(new S_ServerMessage(79));
+					} else {
+						if (pc.getInventory().checkItem(274)
+								&& (pc.getX() >= 32612 && pc.getX() <= 32619)
+								&& (pc.getY() >= 32666 && pc.getY() <= 32673)
+								&& (pc.getMapId() == 4)) {
+							L1SpawnUtil.spawn(pc, 46163, 0, 0);
 						} else {
 							pc.sendPackets(new S_ServerMessage(79));
 						}
-                                } else if (itemId == 49189) {//索夏依卡靈魂之笛
-                                    boolean found = false;
-                                    for (L1Object obj : L1World.getInstance().getObject()) {
-                                        if (obj instanceof L1MonsterInstance) {
-                                            L1MonsterInstance mob = (L1MonsterInstance) obj;
-                                            if (mob != null) {
-                                                if (mob.getNpcTemplate().get_npcId() == 46163) {
-                                                    found = true;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    if (found) {
-                                        pc.sendPackets(new S_ServerMessage(79));
-                                    } else {
-                                        if (pc.getInventory().checkItem(274)
-                                                && (pc.getX() >= 32612 && pc.getX() <= 32619)
-                                                && (pc.getY() >= 32666 && pc.getY() <= 32673)
-                                                && (pc.getMapId() == 4)) {
-                                            L1SpawnUtil.spawn(pc, 46163, 0, 0);
-                                        } else {
-                                            pc.sendPackets(new S_ServerMessage(79));
-                                        }
-                                    }
+					}
 				} else if (itemId == 40097 || itemId == 40119
 						|| itemId == 140119 || itemId == 140329) { // 解咒スクロール、原住民のトーテム
 					for (L1ItemInstance eachItem : pc.getInventory().getItems()) {
@@ -1773,8 +1772,8 @@ public class C_ItemUSe extends ClientBasePacket
 					}
 				}
 				// 精靈水晶
-				else if (itemId >= 40232 && itemId <= 40264 
-					  || itemId >= 41149 && itemId <= 41153)
+				else if (itemId >= 40232 && itemId <= 40264 ||
+						itemId >= 41149 && itemId <= 41153)
 					useElfSpellBook(itemId);
 				// 黑暗精靈水晶
 				else if (itemId > 40264 && itemId < 40280)
@@ -1796,8 +1795,8 @@ public class C_ItemUSe extends ClientBasePacket
 						pc.sendPackets(new S_ServerMessage(79)); // (原文:闇精靈の水晶はダークエルフのみが習得できます。)
 				}
 				// 技術書
-				else if (itemId >= 40164 && itemId <= 40166 ||
-						 itemId >= 41147 && itemId <= 41148)
+				else if (itemId >= 40164 && itemId <= 40166
+						|| itemId >= 41147 && itemId <= 41148)
 				{
 					// 判斷玩家是否為騎士 或 管理員
 					if (pc.isKnight() || pc.isGm())
@@ -1816,9 +1815,9 @@ public class C_ItemUSe extends ClientBasePacket
 				}
 				// 龍騎士書板
 				else if (itemId >= 49102 && itemId <= 49116)
-				{ 
+				{
 					if (pc.isDragonKnight() || pc.isGm()) {
-						if (itemId >= 49102 && itemId <= 49106 && pc.getLevel() >= 15 || 
+						if (itemId >= 49102 && itemId <= 49106 && pc.getLevel() >= 15 ||
 							itemId >= 49107 && itemId <= 49111 && pc.getLevel() >= 30 ||
 							itemId >= 49112 && itemId <= 49116 && pc.getLevel() >= 45)
 							SpellBook5();
@@ -1827,7 +1826,7 @@ public class C_ItemUSe extends ClientBasePacket
 					} else {
 						pc.sendPackets(new S_ServerMessage(79));
 					}
-				
+
 				}
 				// 記憶水晶
 				else if (itemId >= 49117 && itemId <= 49136)
@@ -2484,14 +2483,14 @@ public class C_ItemUSe extends ClientBasePacket
 					}
 				} else if (itemId == 40692) { // 完成された宝の地図
 					if ((pc.getX() >= 32856 && pc.getX() <= 32858)
-						&& (pc.getY() >= 32857 && pc.getY() <= 32859)
-						&& pc.getMapId() == 443) { // 海賊島のダンジョン３階
-							L1Teleport.teleport(pc, ((L1EtcItem) item.getItem()).get_locx(),
-							((L1EtcItem) item.getItem()).get_locy(),
-				                    	((L1EtcItem) item.getItem()).get_mapid(), 5, true);
+							&& (pc.getY() >= 32857 && pc.getY() <= 32859)
+							&& pc.getMapId() == 443) { // 海賊島のダンジョン３階
+						L1Teleport.teleport(pc, ((L1EtcItem) item.getItem()).get_locx(),
+								((L1EtcItem) item.getItem()).get_locy(),
+								((L1EtcItem) item.getItem()).get_mapid(), 5, true);
 					} else {
-					// \f1何も起きませんでした。
-					pc.sendPackets(new S_ServerMessage(79));
+						// \f1何も起きませんでした。
+						pc.sendPackets(new S_ServerMessage(79));
 					}
 				} else if (itemId == 41146) { // ドロモンドの招待狀
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "ei001"));
@@ -2499,67 +2498,67 @@ public class C_ItemUSe extends ClientBasePacket
 					if (Config.ALT_TALKINGSCROLLQUEST == true) {
 						if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL) == 0) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrolla"));
+									"tscrolla"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 1) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrollb"));
+									"tscrollb"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 2) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrollc"));
+									"tscrollc"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 3) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrolld"));
+									"tscrolld"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 4) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrolle"));
+									"tscrolle"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 5) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrollf"));
+									"tscrollf"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 6) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrollg"));
+									"tscrollg"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 7) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrollh"));
+									"tscrollh"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 8) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrolli"));
+									"tscrolli"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 9) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrollj"));
+									"tscrollj"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 10) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrollk"));
+									"tscrollk"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 11) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrolll"));
+									"tscrolll"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 12) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrollm"));
+									"tscrollm"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 13) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrolln"));
+									"tscrolln"));
 						} else if (pc.getQuest().get_step(L1Quest.QUEST_TOSCROLL)
 								== 255) {
 							pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-							"tscrollo"));
+									"tscrollo"));
 						}
 					} else {
 						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-						"tscrollp"));
+								"tscrollp"));
 					}
 				// TODO 地圖修正 歌唱之島 隱藏之谷
 				} else if (itemId == 40383 || itemId == 40384) {
@@ -2663,13 +2662,11 @@ public class C_ItemUSe extends ClientBasePacket
 								"thirdtmapi"));
 					}
 				} else if (itemId == 40663) { // 息子の手紙
-					pc
-							.sendPackets(new S_NPCTalkReturn(pc.getId(),
-									"sonsletter"));
+					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
+							"sonsletter"));
 				} else if (itemId == 40630) { // ディエゴの古い日記
-					pc
-							.sendPackets(new S_NPCTalkReturn(pc.getId(),
-									"diegodiary"));
+					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
+							"diegodiary"));
 				} else if (itemId == 41340) { // 傭兵團長 ティオンの紹介狀
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "tion"));
 				} else if (itemId == 41317) { // ラルソンの推薦狀
@@ -2677,9 +2674,8 @@ public class C_ItemUSe extends ClientBasePacket
 				} else if (itemId == 41318) { // クエンのメモ
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "kuen"));
 				} else if (itemId == 41329) { // 剝製の製作依賴書
-					pc
-							.sendPackets(new S_NPCTalkReturn(pc.getId(),
-									"anirequest"));
+					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
+							"anirequest"));
 				} else if (itemId == 41346) { // ロビンフッドのメモ1
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
 							"robinscroll"));
@@ -2687,9 +2683,8 @@ public class C_ItemUSe extends ClientBasePacket
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
 							"robinscroll2"));
 				} else if (itemId == 41348) { // ロビンフッドの紹介狀
-					pc
-							.sendPackets(new S_NPCTalkReturn(pc.getId(),
-									"robinhood"));
+					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
+							"robinhood"));
 //BAO提供 幻術士長老信件
 				} else if (itemId == 49172) {// 希蓮恩的第一次信件
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),"silrein1lt"));
@@ -2705,9 +2700,8 @@ public class C_ItemUSe extends ClientBasePacket
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),"silrein6lt"));
 //add end
 				} else if (itemId == 41007) { // イリスの命令書：靈魂の安息
-					pc
-							.sendPackets(new S_NPCTalkReturn(pc.getId(),
-									"erisscroll"));
+					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
+							"erisscroll"));
 				} else if (itemId == 41009) { // イリスの命令書：同盟の意志
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
 							"erisscroll2"));
@@ -2805,10 +2799,10 @@ public class C_ItemUSe extends ClientBasePacket
 				} else if (itemId == 41248 || itemId == 41249
 						|| itemId == 41250 || itemId == 49037
 						|| itemId == 49038 || itemId == 49039
-						|| itemId == 31001 || itemId == 31002   // 魔法娃娃: 希爾黛絲 雪怪 
-						|| itemId == 31003 || itemId == 31004   // 魔法娃娃: 蛇女 亞力安
-						|| itemId == 31005 || itemId == 31006   // 魔法娃娃: 木人  史巴托
-						|| itemId == 31007 || itemId == 31008	// 魔法娃娃: 巫妖 鐵門公會 魔法娃娃：雪怪 
+						|| itemId == 31001 || itemId == 31002	// 魔法娃娃: 希爾黛絲 雪怪
+						|| itemId == 31003 || itemId == 31004	// 魔法娃娃: 蛇女 亞力安
+						|| itemId == 31005 || itemId == 31006	// 魔法娃娃: 木人  史巴托
+						|| itemId == 31007 || itemId == 31008	// 魔法娃娃: 巫妖 鐵門公會 魔法娃娃：雪怪
 						|| itemId == 31009) {					// 魔法娃娃: 公主
 					useMagicDoll(pc, itemId, itemObjid);
 				} else if (itemId >= 41255 && itemId <= 41259) { // 料理の本
@@ -4316,7 +4310,7 @@ public class C_ItemUSe extends ClientBasePacket
 		int pcY = pc.getY();
 		int mapId = pc.getMapId();
 		int level = pc.getLevel();
-		
+
 		if (itemId == 45000 || itemId == 45008 || itemId == 45018
 				|| itemId == 45021 || itemId == 40171
 				|| itemId == 40179 || itemId == 40180
@@ -4354,7 +4348,7 @@ public class C_ItemUSe extends ClientBasePacket
 			locAttr = 2;
 			isLawful = false;
 		}
-		
+
 		if (pc.isGm())
 		{
 			SpellBook(isLawful);
@@ -4399,7 +4393,7 @@ public class C_ItemUSe extends ClientBasePacket
 					itemId >= 40170 && itemId <= 40177 && level >= 32 ||
 					itemId >= 40178 && itemId <= 40185 && level >= 40 ||
 					itemId >= 40186 && itemId <= 40193 && level >= 48)
-					SpellBook(isLawful);  // 將魔法資料登記到資料庫
+					SpellBook(isLawful); // 將魔法資料登記到資料庫
 				// 判斷等級是否未達到要求
 				else if (itemId >= 45000 && itemId <= 40193)
 					pc.sendPackets(new S_ServerMessage(312)); // 你還不能學習法術。
@@ -4432,7 +4426,7 @@ public class C_ItemUSe extends ClientBasePacket
 				// 判斷等級是否已達到要求
 				if (itemId >= 45000 && itemId <= 45007 && level >= 12 ||
 					itemId >= 45008 && itemId <= 45015 && level >= 24)
-					SpellBook(isLawful);  // 將魔法資料登記到資料庫
+					SpellBook(isLawful); // 將魔法資料登記到資料庫
 				// 判斷等級是否未達到要求
 				else if (itemId >= 45000 && itemId <= 45015)
 					pc.sendPackets(new S_ServerMessage(312)); // 你還不能學習法術。
@@ -4462,7 +4456,7 @@ public class C_ItemUSe extends ClientBasePacket
 	private void useElfSpellBook(int itemId)
 	{
 		int level = pc.getLevel();
-		
+
 		if ((pc.isElf() || pc.isGm()) && isLearnElfMagic(pc))
 		{
 			if (itemId >= 40232 && itemId <= 40234 && level >= 10 ||
@@ -4547,7 +4541,7 @@ public class C_ItemUSe extends ClientBasePacket
 		ItemAction.getAct().SpellBook(pc, item);
 		pc.getInventory().removeItem(item, 1);
 	}
-	
+
 	private void SpellBook5()
 	{
 		S_SkillSound s_skillSound = new S_SkillSound(pc.getId(), 224);
@@ -5079,22 +5073,22 @@ public class C_ItemUSe extends ClientBasePacket
 			} else if (itemId == 31003) {// 魔法娃娃：蛇女
 				npcId = 90003;
 				dollType = L1DollInstance.DOLLTYPE_SERPENTWOMAN;
-			}else if (itemId == 31004)	{// 魔法娃娃：亞力安
+			} else if (itemId == 31004)	{// 魔法娃娃：亞力安
 				npcId = 90004;
 				dollType = L1DollInstance.DOLLTYPE_COCKATRICE;
-			}else if (itemId == 31005)	{// 魔法娃娃：木人
+			} else if (itemId == 31005)	{ // 魔法娃娃：木人
 				npcId = 90005;
 				dollType = L1DollInstance.DOLLTYPE_SCARECROW;
-			}else if (itemId == 31006)	{// 魔法娃娃：史巴托
+			} else if (itemId == 31006) { // 魔法娃娃：史巴托
 				npcId = 90006;
 				dollType = L1DollInstance.DOLLTYPE_SPARTOI;
-			}else if (itemId == 31007)	{// 魔法娃娃：巫妖
+			} else if (itemId == 31007) { // 魔法娃娃：巫妖
 				npcId = 90007;
 				dollType = L1DollInstance.DOLLTYPE_LICH;
-			}else if (itemId == 31008)	{// 鐵門公會 魔法娃娃：雪怪  
+			} else if (itemId == 31008) { // 鐵門公會 魔法娃娃：雪怪
 				npcId = 90008;
 				dollType = L1DollInstance.DOLLTYPE_IRONGATES_SNOWMAN;
-			}else if (itemId == 31009)	{// 魔法娃娃：公主  
+			} else if (itemId == 31009) { // 魔法娃娃：公主
 				npcId = 90009;
 				dollType = L1DollInstance.DOLLTYPE_PRINCESS;
 			}

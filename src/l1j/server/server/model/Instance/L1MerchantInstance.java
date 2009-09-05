@@ -2654,13 +2654,13 @@ public class L1MerchantInstance extends L1NpcInstance {
 				} else {
 					htmlid = "jp3";
 				}
-			} else if (npcid ==  71181) {//示愛任務-奇岩-愛瑪伊
+			} else if (npcid == 71181) {//示愛任務-奇岩-愛瑪伊
 				if (player.get_sex() == 0) {
 					htmlid = "my2";
 				} else {
 					htmlid = "my1";
 				}
-			} else if (npcid ==  71182) {//示愛任務-奇岩-伊森
+			} else if (npcid == 71182) {//示愛任務-奇岩-伊森
 				if (player.get_sex() == 0) {
 					htmlid = "sm1";
 				} else {
@@ -2733,7 +2733,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					int lv30_step = quest.get_step(L1Quest.QUEST_LEVEL30);
 					if (lv30_step == L1Quest.QUEST_END) {
 						htmlid = "elas6";
-					} else  if(player.getLevel() >= 30
+					} else if(player.getLevel() >= 30
 							&& lv30_step >= 1) {
 						htmlid = "elas1";
 					}

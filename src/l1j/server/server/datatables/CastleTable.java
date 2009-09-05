@@ -108,7 +108,7 @@ public class CastleTable {
 					.prepareStatement("UPDATE castle SET name=?, war_time=?, tax_rate=?, public_money=? WHERE castle_id=?");
 			pstm.setString(1, castle.getName());
 /*			String fm = DateFormat.getDateTimeInstance().format(
-					castle.getWarTime().getTime()); // 原有格式未定亦會出錯問題  */
+					castle.getWarTime().getTime()); // 原有格式未定亦會出錯問題 */
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); // TODO 盟屋買賣系統時間自動更新 by pigermin
 			String fm = sdf.format(castle.getWarTime().getTime());//end
 			pstm.setString(2, fm);

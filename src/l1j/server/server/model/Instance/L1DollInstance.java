@@ -222,7 +222,7 @@ public class L1DollInstance extends L1NpcInstance {
 
 	public boolean isHpRegeneration() { // 娃娃回血
 		boolean isHpRegeneration = false;
-		if (getDollType() == DOLLTYPE_SEADANCER  || getDollType() == DOLLTYPE_SERPENTWOMAN) {
+		if (getDollType() == DOLLTYPE_SEADANCER || getDollType() == DOLLTYPE_SERPENTWOMAN) {
 			isHpRegeneration = true;
 		}
 		return isHpRegeneration;

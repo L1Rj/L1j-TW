@@ -377,10 +377,10 @@ public class L1GuardianInstance extends L1NpcInstance {
 
 	@Override
 	public void receiveDamage(L1Character attacker, int damage) { // 攻擊でＨＰを減らすときはここを使用
-            if (attacker instanceof L1PcInstance && damage > 0) {
-                L1PcInstance pc = (L1PcInstance) attacker;
-                if (pc.getType() == 2 && pc.getCurrentWeapon() == 0 //空手未裝備武器狀態
-                        && ((pc.hasSkillEffect(67)) == false)) { // BAO提供 變身攻擊守護神會被反擊
+		if (attacker instanceof L1PcInstance && damage > 0) {
+			L1PcInstance pc = (L1PcInstance) attacker;
+			if (pc.getType() == 2 && pc.getCurrentWeapon() == 0 //空手未裝備武器狀態
+					&& ((pc.hasSkillEffect(67)) == false)) { // BAO提供 變身攻擊守護神會被反擊
 			} else {
 				if (getCurrentHp() > 0 && !isDead()) {
 					if (damage >= 0) {

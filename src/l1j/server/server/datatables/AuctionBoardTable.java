@@ -113,7 +113,7 @@ public class AuctionBoardTable {
 			pstm.setString(2, board.getHouseName());
 			pstm.setInt(3, board.getHouseArea());
 /*			String fm = DateFormat.getDateTimeInstance().format(
-					board.getDeadline().getTime()); // 原有格式未定亦會出錯問題  */
+					board.getDeadline().getTime()); // 原有格式未定亦會出錯問題 */
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); // TODO 盟屋買賣系統時間自動更新 by pigermin
 			String fm = sdf.format(board.getDeadline().getTime());//end
 			pstm.setString(4, fm);

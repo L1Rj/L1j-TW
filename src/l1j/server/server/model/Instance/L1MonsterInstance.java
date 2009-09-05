@@ -152,7 +152,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 					break;
 				}
 			}
-			if (getNpcId() == 45215) {// 長者  僅搜尋正義值負值玩家
+			if (getNpcId() == 45215) {// 長者 僅搜尋正義值負值玩家
 				if(pc.getLawful() <= -1) {
 					targetPlayer = pc;
 					break;
