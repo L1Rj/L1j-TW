@@ -4709,33 +4709,44 @@ public class C_NPCAction extends ClientBasePacket {
 	}
 
 	private String getYaheeAmulet(L1PcInstance pc, L1NpcInstance npc, String s) {
+		int[] karmaLevel = { -1, -2, -3, -4, -5, -6, -7, -8 };
 		int[] amuletIdList = { 20358, 20359, 20360, 20361, 20362, 20363, 20364,
 				20365 };
+		int karmaLv = 0;
 		int amuletId = 0;
 		L1ItemInstance item = null;
 		String htmlid = null;
 		if (s.equalsIgnoreCase("1")) {
 			amuletId = amuletIdList[0];
+			karmaLv = karmaLevel[0];
 		} else if (s.equalsIgnoreCase("2")) {
 			amuletId = amuletIdList[1];
+			karmaLv = karmaLevel[1];
 		} else if (s.equalsIgnoreCase("3")) {
 			amuletId = amuletIdList[2];
+			karmaLv = karmaLevel[2];
 		} else if (s.equalsIgnoreCase("4")) {
 			amuletId = amuletIdList[3];
+			karmaLv = karmaLevel[3];
 		} else if (s.equalsIgnoreCase("5")) {
 			amuletId = amuletIdList[4];
+			karmaLv = karmaLevel[4];
 		} else if (s.equalsIgnoreCase("6")) {
 			amuletId = amuletIdList[5];
+			karmaLv = karmaLevel[5];
 		} else if (s.equalsIgnoreCase("7")) {
 			amuletId = amuletIdList[6];
+			karmaLv = karmaLevel[6];
 		} else if (s.equalsIgnoreCase("8")) {
 			amuletId = amuletIdList[7];
+			karmaLv = karmaLevel[7];
 		}
-		if (amuletId != 0) {
+		if (amuletId != 0
+				&& pc.getKarmaLevel() == karmaLv) {
 			item = pc.getInventory().storeItem(amuletId, 1);
 			if (item != null) {
 				pc.sendPackets(new S_ServerMessage(143, npc.getNpcTemplate()
-						.get_name(), item.getLogName())); // \f1%0が%1をくれました。
+						.get_name(), item.getLogName()));
 			}
 			for (int id : amuletIdList) {
 				if (id == amuletId) {
@@ -4745,39 +4756,50 @@ public class C_NPCAction extends ClientBasePacket {
 					pc.getInventory().consumeItem(id, 1);
 				}
 			}
-			htmlid = "";
+		htmlid = "";
 		}
 		return htmlid;
 	}
 
 	private String getBarlogEarring(L1PcInstance pc, L1NpcInstance npc, String s) {
+		int[] karmaLevel = { 1, 2, 3, 4, 5, 6, 7, 8 };
 		int[] earringIdList = { 21020, 21021, 21022, 21023, 21024, 21025,
-				21026, 21027 };
+						21026, 21027 };
+		int karmaLv = 0;
 		int earringId = 0;
 		L1ItemInstance item = null;
 		String htmlid = null;
 		if (s.equalsIgnoreCase("1")) {
 			earringId = earringIdList[0];
+			karmaLv = karmaLevel[0];
 		} else if (s.equalsIgnoreCase("2")) {
 			earringId = earringIdList[1];
+			karmaLv = karmaLevel[1];
 		} else if (s.equalsIgnoreCase("3")) {
 			earringId = earringIdList[2];
+			karmaLv = karmaLevel[2];
 		} else if (s.equalsIgnoreCase("4")) {
 			earringId = earringIdList[3];
+			karmaLv = karmaLevel[3];
 		} else if (s.equalsIgnoreCase("5")) {
 			earringId = earringIdList[4];
+			karmaLv = karmaLevel[4];
 		} else if (s.equalsIgnoreCase("6")) {
 			earringId = earringIdList[5];
+			karmaLv = karmaLevel[5];
 		} else if (s.equalsIgnoreCase("7")) {
 			earringId = earringIdList[6];
+			karmaLv = karmaLevel[6];
 		} else if (s.equalsIgnoreCase("8")) {
 			earringId = earringIdList[7];
+			karmaLv = karmaLevel[7];
 		}
-		if (earringId != 0) {
+		if (earringId != 0
+				&& pc.getKarmaLevel() == karmaLv) {
 			item = pc.getInventory().storeItem(earringId, 1);
 			if (item != null) {
 				pc.sendPackets(new S_ServerMessage(143, npc.getNpcTemplate()
-						.get_name(), item.getLogName())); // \f1%0が%1をくれました。
+						.get_name(), item.getLogName()));
 			}
 			for (int id : earringIdList) {
 				if (id == earringId) {
