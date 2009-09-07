@@ -98,6 +98,7 @@ import l1j.server.server.serverpackets.S_AttackMissPacket;// 吉爾塔斯反擊�
 import l1j.server.server.serverpackets.S_DoActionGFX;// 吉爾塔斯反擊屏障
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SystemMessage;
+// import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
 
 public class L1Attack
@@ -1261,7 +1262,7 @@ public class L1Attack
 				dmg += doll.getDamageByDoll();
 			}
 		}
-//waja add 魔法娃娃增弓攻擊力
+// 魔法娃娃增弓攻擊力
 		else
 		{
 			dmg += L1DollInstance.getBowDamageByDoll(_pc);
@@ -1330,19 +1331,20 @@ public class L1Attack
 			}
 		}
 //TODO 吉爾塔斯反擊屏障判斷
-		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER && _weaponType != 20
-				&& _weaponType != 62){
-			_pc.setHeading((byte)_pc.targetDirection(_target.getX(), _target.getY())); // 向きのセット
-			_pc.sendPackets(new S_AttackMissPacket(_pc, _pc.getId()));
-			_pc.broadcastPacket(new S_AttackMissPacket(_pc, _pc.getId()));
-			_pc.sendPackets(new S_DoActionGFX(_pc.getId(),
-					ActionCodes.ACTION_Damage));
-			_pc.broadcastPacket(new S_DoActionGFX(_pc.getId(),
-					ActionCodes.ACTION_Damage));
-			_pc.receiveManaDamage(_targetNpc, (int)(dmg * 2));
+		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER ){
+//			actionCounterBarrier();
+//			commitCounterBarrier();
+//			_pc.setHeading((byte)_pc.targetDirection(_targetX, _targetY)); // 向きのセット
+//			_pc.sendPackets(new S_AttackMissPacket(_pc, _targetNpc));
+//			_pc.broadcastPacket(new S_AttackMissPacket(_pc, _targetNpc));
+//			_pc.sendPackets(new S_DoActionGFX(_pc.getId(),
+//					ActionCodes.ACTION_Damage));
+//			_pc.broadcastPacket(new S_DoActionGFX(_pc.getId(),
+//					ActionCodes.ACTION_Damage));
+			_pc.receiveDamage(_targetNpc, (int)(dmg * 2), true);
 			dmg = 0;
-	}
-//add end
+		}
+// add end
 		return (int) dmg;
 	}
 
@@ -1477,7 +1479,7 @@ public class L1Attack
 				_targetPc.delInvis();
 			}
 		}
-//add end
+// add end
 		return (int) dmg;
 	}
 
@@ -1524,6 +1526,13 @@ public class L1Attack
 			_isHit = false;
 		}
 
+//TODO 吉爾塔斯反擊屏障判斷
+		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER ){
+			_npc.broadcastPacket(new S_DoActionGFX(_npc.getId(),ActionCodes.ACTION_Damage));
+			_npc.receiveDamage(_targetNpc, (int)(dmg * 2));
+			dmg = 0;
+	}
+// add end
 		return (int) dmg;
 	}
 

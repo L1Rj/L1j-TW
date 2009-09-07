@@ -421,7 +421,7 @@ public class L1PcInstance extends L1Character
 			if (hasSkillEffect(GMSTATUS_HPBAR)
 					&& L1HpBar.isHpBarTarget(visible)) {
 				sendPackets(new S_HPMeter((L1Character) visible));
-//waja add 怪物血條	
+// 怪物血條	
 			} else if(Config.SHOW_HP_BAR && L1HpBar.isHpBarTarget(visible)
 					&& visible instanceof L1MonsterInstance ){
 				sendPackets(new S_HPMeter((L1Character) visible));
@@ -628,7 +628,7 @@ public class L1PcInstance extends L1Character
 		_PKcount = i;
 	}
 
-	private int _PkCountForElf; //妖精殺死同族 PK值另外計算
+	private int _PkCountForElf; // 妖精殺死同族 PK值另外計算
 
 	public int getPkCountForElf() {
 		return _PkCountForElf;
