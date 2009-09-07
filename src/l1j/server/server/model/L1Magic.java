@@ -766,6 +766,19 @@ public class L1Magic {
 		if (_targetNpc.hasSkillEffect(EARTH_BIND)) {
 			dmg = 0;
 		}
+		// TODO 吉爾塔斯反擊屏障判斷
+		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER) {
+			// _pc.setHeading((byte)_pc.targetDirection(_targetX, _targetY)); // 向きのセット
+			// _pc.sendPackets(new S_AttackMissPacket(_pc, _targetNpc));
+			// _pc.broadcastPacket(new S_AttackMissPacket(_pc, _targetNpc));
+			// _pc.sendPackets(new S_DoActionGFX(_pc.getId(),
+			// ActionCodes.ACTION_Damage));
+			// _pc.broadcastPacket(new S_DoActionGFX(_pc.getId(),
+			// ActionCodes.ACTION_Damage));
+			_pc.receiveDamage(_targetNpc, (int) (dmg * 2), true);
+			dmg = 0;
+		}
+		// add end
 
 		if (_calcType == PC_NPC && _targetNpc != null) {
 			int npcId = _targetNpc.getNpcTemplate().get_npcId();
@@ -819,20 +832,6 @@ public class L1Magic {
 			}
 		}
 
-//TODO 吉爾塔斯反擊屏障判斷
-		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER )
-		{
-//			_pc.setHeading((byte)_pc.targetDirection(_targetX, _targetY)); // 向きのセット
-//			_pc.sendPackets(new S_AttackMissPacket(_pc, _targetNpc));
-//			_pc.broadcastPacket(new S_AttackMissPacket(_pc, _targetNpc));
-//			_pc.sendPackets(new S_DoActionGFX(_pc.getId(),
-//					ActionCodes.ACTION_Damage));
-//			_pc.broadcastPacket(new S_DoActionGFX(_pc.getId(),
-//					ActionCodes.ACTION_Damage));
-			_pc.receiveDamage(_targetNpc, (int)(dmg * 2), true );
-			dmg = 0;
-		}
-//add end
 		return dmg;
 	}
 

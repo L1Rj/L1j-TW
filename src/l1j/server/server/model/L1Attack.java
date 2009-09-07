@@ -1318,6 +1318,21 @@ public class L1Attack
 		if (_targetNpc.hasSkillEffect(EARTH_BIND)) {
 			dmg = 0;
 		}
+		//TODO 吉爾塔斯反擊屏障判斷
+		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER) {
+			// actionCounterBarrier();
+			// commitCounterBarrier();
+			// _pc.setHeading((byte)_pc.targetDirection(_targetX, _targetY)); // 向きのセット
+			// _pc.sendPackets(new S_AttackMissPacket(_pc, _targetNpc));
+			// _pc.broadcastPacket(new S_AttackMissPacket(_pc, _targetNpc));
+			// _pc.sendPackets(new S_DoActionGFX(_pc.getId(),
+			// ActionCodes.ACTION_Damage));
+			// _pc.broadcastPacket(new S_DoActionGFX(_pc.getId(),
+			// ActionCodes.ACTION_Damage));
+			_pc.receiveDamage(_targetNpc, (int) (dmg * 2), true);
+			dmg = 0;
+		}
+		// add end
 
 		if (dmg <= 0) {
 			_isHit = false;
@@ -1330,21 +1345,6 @@ public class L1Attack
 				_pc.delInvis();
 			}
 		}
-//TODO 吉爾塔斯反擊屏障判斷
-		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER ){
-//			actionCounterBarrier();
-//			commitCounterBarrier();
-//			_pc.setHeading((byte)_pc.targetDirection(_targetX, _targetY)); // 向きのセット
-//			_pc.sendPackets(new S_AttackMissPacket(_pc, _targetNpc));
-//			_pc.broadcastPacket(new S_AttackMissPacket(_pc, _targetNpc));
-//			_pc.sendPackets(new S_DoActionGFX(_pc.getId(),
-//					ActionCodes.ACTION_Damage));
-//			_pc.broadcastPacket(new S_DoActionGFX(_pc.getId(),
-//					ActionCodes.ACTION_Damage));
-			_pc.receiveDamage(_targetNpc, (int)(dmg * 2), true);
-			dmg = 0;
-		}
-// add end
 		return (int) dmg;
 	}
 
@@ -1521,18 +1521,19 @@ public class L1Attack
 		if (_targetNpc.hasSkillEffect(EARTH_BIND)) {
 			dmg = 0;
 		}
+		// TODO 吉爾塔斯反擊屏障判斷
+		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER) {
+			_npc.broadcastPacket(new S_DoActionGFX(_npc.getId(),
+					ActionCodes.ACTION_Damage));
+			_npc.receiveDamage(_targetNpc, (int) (dmg * 2));
+			dmg = 0;
+		}
+		// add end
 
 		if (dmg <= 0) {
 			_isHit = false;
 		}
 
-//TODO 吉爾塔斯反擊屏障判斷
-		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER ){
-			_npc.broadcastPacket(new S_DoActionGFX(_npc.getId(),ActionCodes.ACTION_Damage));
-			_npc.receiveDamage(_targetNpc, (int)(dmg * 2));
-			dmg = 0;
-	}
-// add end
 		return (int) dmg;
 	}
 
