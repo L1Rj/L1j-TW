@@ -60,7 +60,7 @@ public class L1DollInstance extends L1NpcInstance {
 	private ScheduledFuture<?> _dollFuture;
 	private int _dollType;
 	private int _itemObjId;
-	private static final int[] DollAction = {ACTION_Think, ACTION_Aggress};
+	private static final int[] DollAction = {ACTION_Think, ACTION_Aggress, ACTION_Salute, ACTION_Cheer};
 	private int sleeptime_PT = 10;
 
 	// ターゲットがいない場合の處理
@@ -80,7 +80,7 @@ public class L1DollInstance extends L1NpcInstance {
 					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 				} else {
 					if (sleeptime_PT == 0) { // 8.31 Start 魔法娃娃修正
-						broadcastPacket(new S_DoActionGFX(getId(), DollAction[RandomArrayList.getInt(2)]));
+						broadcastPacket(new S_DoActionGFX(getId(), DollAction[RandomArrayList.getInt(4)]));
 						sleeptime_PT = RandomArrayList.getInc(20, 10);
 					} else {
 						--sleeptime_PT;
