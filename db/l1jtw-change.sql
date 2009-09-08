@@ -49,3 +49,8 @@ alter table clan_warehouse add `mpr` int(11) default '0' ;
 /* 修正幻術士試煉相關道具索夏依卡靈魂之心 */
 Update etcitem Set use_type = 'choice' Where item_id = '49188';
 
+/* 20090905 l1jtw 修改角色欄位資料
+ * 新增 castle 資料表的欄位
+ * By Impreza8837
+ */
+alter table castle add regTimeOver enum('true','false') NOT NULL DEFAULT 'false' after public_money;
