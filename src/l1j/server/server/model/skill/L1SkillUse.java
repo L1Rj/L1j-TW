@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.lang.String;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
@@ -2482,7 +2483,8 @@ public class L1SkillUse {
 											5, true);
 								} else {
 									// \f1あなたのパートナーは今あなたが行けない所でプレイ中です。
-									pc.sendPackets(new S_ServerMessage(547));
+									//pc.sendPackets(new S_ServerMessage(547));
+                                                                    pc.sendPackets(new S_ServerMessage(166, "你的盟友在你無法傳送前往的地區"));
 								}
 							} else {
 								// 周邊のエネルギーがテレポートを妨害しています。そのため、ここでテレポートは使用できません。

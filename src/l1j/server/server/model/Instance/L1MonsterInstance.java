@@ -714,9 +714,9 @@ public class L1MonsterInstance extends L1NpcInstance {
 		else if (npcid == 81163)
 		{
 		if (getMaxHp() / 6 > getCurrentHp())
-		{
-			int rnd = RandomArrayList.getInc(10, 1);
-			if (9 > rnd)
+//		{
+//			int rnd = RandomArrayList.getInc(10, 1);
+//			if (9 > rnd)
 			{
 		allTargetClear();
 		setHiddenStatus(HIDDEN_STATUS_COUNTER_BARRIER);
@@ -724,7 +724,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 		ActionCodes.ACTION_SwordWalk));
 		setStatus(4);
 		broadcastPacket(new S_NPCPack(this));
-			}
+//			}
 		}
 		}
 //add end

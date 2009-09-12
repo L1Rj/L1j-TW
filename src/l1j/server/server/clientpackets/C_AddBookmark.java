@@ -47,27 +47,34 @@ public class C_AddBookmark extends ClientBasePacket {
 		}
 
 		if (pc.getMap().isMarkable() || pc.isGm()) {
-			if ((pc.getX() >= 33535 && pc.getY() <= 33835)
-					&& (pc.getY() >= 32200 && pc.getY() <= 32500)
-					&& pc.getMapId() == 4) {
-				pc.sendPackets(new S_ServerMessage(214));
-			} else if ((pc.getX() >= 34200 && pc.getY() <= 34260)
-					&& (pc.getY() >= 33095 && pc.getY() <= 33500)
-					&& pc.getMapId() == 4) {
-				pc.sendPackets(new S_ServerMessage(214));
-			} else if ((L1CastleLocation.checkInAllWarArea(pc.getX(), pc.getY(), pc.getMapId())
-					|| L1HouseLocation.isInHouse(pc.getX(), pc.getY(), pc.getMapId()))
-					&& !pc.isGm()) {
-				// \f1ここを記憶することができません。
-				pc.sendPackets(new S_ServerMessage(214));
-			} else {
-				L1BookMark.addBookmark(pc, s);
-			}
-		} else {
-			// \f1ここを記憶することができません。
-			pc.sendPackets(new S_ServerMessage(214));
-		}
-	}
+                    //火龍谷
+                    if ((pc.getX() >= 33472 && pc.getX() <= 33855)
+                            && (pc.getY() >= 32191 && pc.getY() <= 32460)
+                            && pc.getMapId() == 4) {
+                        pc.sendPackets(new S_ServerMessage(214));
+                    //黃昏山脈
+                    } else if ((pc.getX() >= 34225 && pc.getX() <= 34300)
+                            && (pc.getY() >= 33095 && pc.getY() <= 33280)
+                            && pc.getMapId() == 4) {
+                        pc.sendPackets(new S_ServerMessage(214));
+                    //黃昏山脈
+                    } else if ((pc.getX() >= 34200 && pc.getX() <= 34300)
+                            && (pc.getY() >= 33280 && pc.getY() <= 33515)
+                            && pc.getMapId() == 4) {
+                        pc.sendPackets(new S_ServerMessage(214));
+                    } else if ((L1CastleLocation.checkInAllWarArea(pc.getX(), pc.getY(), pc.getMapId())
+                            || L1HouseLocation.isInHouse(pc.getX(), pc.getY(), pc.getMapId()))
+                            && !pc.isGm()) {
+                        // \f1ここを記憶することができません。
+                        pc.sendPackets(new S_ServerMessage(214));
+                    } else {
+                        L1BookMark.addBookmark(pc, s);
+                    }
+                } else {
+                    // \f1ここを記憶することができません。
+                    pc.sendPackets(new S_ServerMessage(214));
+                }
+        }
 
 	@Override
 	public String getType() {
