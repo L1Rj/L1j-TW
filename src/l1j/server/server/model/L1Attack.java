@@ -377,13 +377,13 @@ public class L1Attack
 			{
 				_isHit = false; // 攻擊者がプレイヤーの場合は障害物判定
 			}
-			else if  (_pc.getTileLineDistance(_target) > 2 && _weaponType != 20 && _weaponType != 24)
-			{
-				_isHit = false;//waja 近戰武器攻擊時座標離目標物過遠 攻擊無效 原值 為  > 1  避免怪物體積過大揮空改為2
-			}
 			else if  (_pc.getTileLineDistance(_target) > 3 && _weaponType == 24)
 			{
-				_isHit = false;//waja 近戰武器攻擊時座標離目標物過遠 攻擊無效 原值為 > 2
+				_isHit = false;// 近戰武器攻擊時座標離目標物過遠 攻擊無效 原值為 > 2
+			}
+			else if  (_pc.getTileLineDistance(_target) > 2 && _weaponType != 20 && _weaponType != 62)
+			{
+				_isHit = false;// 近戰武器攻擊時座標離目標物過遠 攻擊無效 原值 為  > 1  避免怪物體積過大揮空改為2
 			}
 			else if (_weaponId == 247 || _weaponId == 248 || _weaponId == 249)
 			{
