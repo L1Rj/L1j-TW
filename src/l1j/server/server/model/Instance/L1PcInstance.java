@@ -1265,6 +1265,13 @@ public class L1PcInstance extends L1Character
 			}
 			setDead(true);
 			setStatus(ActionCodes.ACTION_Die);
+		//XXX 死亡登出未紀錄修正
+			try {
+				save();
+				saveInventory();
+			} catch (Exception e) {
+				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			}	
 		}
 		GeneralThreadPool.getInstance().execute(new Death(lastAttacker));
 
