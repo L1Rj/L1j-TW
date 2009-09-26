@@ -19,36 +19,34 @@
 
 package l1j.server.server.model.Instance;
 
-import static l1j.server.server.model.skill.L1SkillId.BLESS_WEAPON;
-import static l1j.server.server.model.skill.L1SkillId.ENCHANT_WEAPON;
-import static l1j.server.server.model.skill.L1SkillId.HOLY_WEAPON;
-import static l1j.server.server.model.skill.L1SkillId.SHADOW_FANG;
-
 import java.sql.Timestamp;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Logger;
 
 import l1j.server.server.datatables.NpcTable;
-import l1j.server.server.datatables.PetItemTable;
 import l1j.server.server.datatables.PetTable;
 import l1j.server.server.model.L1EquipmentTimer;
 import l1j.server.server.model.L1ItemOwnerTimer;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1PcInventory;
+import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.serverpackets.S_OwnCharStatus;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Armor;
 import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Pet;
-import l1j.server.server.templates.L1PetItem;
 import l1j.server.server.utils.BinaryOutputStream;
+import static l1j.server.server.model.skill.L1SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
 // L1Object, L1PcInstance
 
-public class L1ItemInstance extends L1Object
-{
+public class L1ItemInstance extends L1Object {
+	private static Logger _log = Logger.getLogger(L1ItemInstance.class
+			.getName());
+
 	private static final long serialVersionUID = 1L;
 
 	private int _count;
@@ -262,8 +260,8 @@ public class L1ItemInstance extends L1Object
 				|| getItemId() == 120011) {
 			mr += getEnchantLevel();
 		}
-		if (getItemId() == 20056 || getItemId() == 120056
-				|| getItemId() == 220056) {
+		if (getItemId() == 20056 || getItemId() == 120056 // 抗魔法斗篷 受祝福的抗魔法斗篷
+				|| getItemId() == 220056 || getItemId() == 21535 ) { // 受詛咒的抗魔法斗篷 強化抗魔斗篷
 			mr += getEnchantLevel() * 2;
 		}
 		return mr;
@@ -775,60 +773,37 @@ public class L1ItemInstance extends L1Object
 		int itemType2 = getItem().getType2();
 		int itemId = getItemId();
 		BinaryOutputStream os = new BinaryOutputStream();
-		
-		// etcitem
-		if (itemType2 == 0)
-		{ 
-			switch (getItem().getType())
-			{
-				case 2: 			// 照明物品
-				os.writeC(0x16);	// 照明程度 (1/2)
-				os.writeH(getItem().getLightRange()); // 照明程度 (2/2)
-				os.writeC(getItem().getMaterial()); // 材質
-				os.writeD(getWeight()); // 重量
+
+		if (itemType2 == 0) { // etcitem
+			switch (getItem().getType()) {
+			case 2: // light
+				os.writeC(22); // 明るさ
+				os.writeH(getItem().getLightRange());
 				break;
-				
-				case 7: 			// 食品類
-				os.writeC(0x15);	// 營養度 (1/2)
-				os.writeH(getItem().getFoodVolume()); // 營養度 (2/2)
-				os.writeC(getItem().getMaterial()); // 材質
-				os.writeD(getWeight()); // 重量
+			case 7: // food
+				os.writeC(21);
+				// 榮養
+				os.writeH(getItem().getFoodVolume());
 				break;
-				
-				case 0:				// 箭矢類
-				case 15: 			// 飛刀類
-				os.writeC(0x01);	// 傷害程度 (1/3)
-				os.writeC(getItem().getDmgSmall()); // 傷害程度 (2/3)
-				os.writeC(getItem().getDmgLarge()); // 傷害程度 (3/3)
-				os.writeC(getItem().getMaterial()); // 材質
-				os.writeD(getWeight()); // 重量
+			case 0: // arrow
+			case 20: // sting
+				os.writeC(1); // 打擊值
+				os.writeC(getItem().getDmgSmall());
+				os.writeC(getItem().getDmgLarge());
 				break;
-				
-				// 修正寵物物品資訊顯示
-				case 11:			// 寵物物品
-				L1PetItem PetItem = PetItemTable.getInstance().getTemplate(itemId); // 取得寵物道具
-				int ItemAc = PetItem.getAddAc();
-				
-				if (ItemAc < 0)
-					ItemAc = ItemAc - ItemAc - ItemAc;
-				
-				os.writeC(0x13); 	// 防禦程度 (1/2)
-				os.writeC(ItemAc);	// 防禦程度 (2/2)
-				os.writeC(getItem().getMaterial()); // 材質
-				os.writeC(0xFF);
-				os.writeD(getWeight()); // 重量
-				break;
-				
-				default:
-				os.writeC(0x17); 	// 一般物品
-				os.writeC(getItem().getMaterial()); // 材質
-				os.writeD(getWeight()); // 重量
+//waja add 修正高等寵物裝備顯示 可否裝備
+			case 11:
+				os.writeC(7);
+				os.writeC(128);
+//add end
+			default:
+				os.writeC(23); // 材質
 				break;
 			}
-		}
-		// weapon | armor
-		else if (itemType2 == 1 || itemType2 == 2)
-		{ 
+			os.writeC(getItem().getMaterial());
+			os.writeD(getWeight());
+
+		} else if (itemType2 == 1 || itemType2 == 2) { // weapon | armor
 			if (itemType2 == 1) { // weapon
 				// 打擊值
 				os.writeC(1);
@@ -845,12 +820,16 @@ public class L1ItemInstance extends L1Object
 				}
 				os.writeC(ac);
 				os.writeC(getItem().getMaterial());
-				os.writeC(0xFF);
 				os.writeD(getWeight());
 			}
-			
 			// 強化數
-			//waja add & change 飾品強化卷軸
+//waja add & change 飾品強化卷軸
+/* 原本寫法
+			if (getEnchantLevel() != 0) {
+				os.writeC(2);
+				os.writeC(getEnchantLevel());
+			}
+*/
 			if (getEnchantLevel() != 0) {
 				os.writeC(2);
 				if (getItem().getType2() !=2){
@@ -899,20 +878,18 @@ public class L1ItemInstance extends L1Object
 					os.writeC(getItem().getDmgModifierByArmor());
 				}
 			}
-			
 			// 使用可能
 			int bit = 0;
-			bit |= getItem().isUseRoyal()   		? 0x01 : 0x00;
-			bit |= getItem().isUseKnight()  		? 0x02 : 0x00;
-			bit |= getItem().isUseElf()     		? 0x04 : 0x00;
-			bit |= getItem().isUseMage()    		? 0x08 : 0x00;
-			bit |= getItem().isUseDarkelf() 		? 0x10 : 0x00;
-			bit |= getItem().isUseDragonknight() 	? 0x20 : 0x00;
-			bit |= getItem().isUseIllusionist() 	? 0x40 : 0x00;
-			bit |= getItem().getType() == 0x07 		? 0x80 : 0x00;
-			os.writeC(0x07);
+			bit |= getItem().isUseRoyal()        ?  1 : 0;
+			bit |= getItem().isUseKnight()       ?  2 : 0;
+			bit |= getItem().isUseElf()          ?  4 : 0;
+			bit |= getItem().isUseMage()         ?  8 : 0;
+			bit |= getItem().isUseDarkelf()      ? 16 : 0;
+			bit |= getItem().isUseDragonknight() ? 32 : 0;
+			bit |= getItem().isUseIllusionist()  ? 64 : 0;
+			// bit |= getItem().isUseHiPet() ? 127 : 0;
+			os.writeC(7);
 			os.writeC(bit);
-			
 			// 弓の命中率補正
 			if (getItem().getBowHitModifierByArmor() != 0) {
 				os.writeC(24);

@@ -4457,30 +4457,48 @@ public class C_ItemUSe extends ClientBasePacket
 	{
 		int level = pc.getLevel();
 
-		if ((pc.isElf() || pc.isGm()) && isLearnElfMagic(pc))
+		if ((pc.isElf() || pc.isGm())&& isLearnElfMagic(pc))
 		{
-			if (itemId >= 40232 && itemId <= 40234 && level >= 10 ||
+			if (
+//				無屬性魔法
+				itemId >= 40232 && itemId <= 40234 && level >= 10 ||
 				itemId >= 40235 && itemId <= 40236 && level >= 20 ||
 				itemId >= 40237 && itemId <= 40240 && level >= 30 ||
 				itemId >= 40241 && itemId <= 40243 && level >= 40 ||
 				itemId >= 40244 && itemId <= 40246 && level >= 50 ||
-				itemId == 40253 && level >= 30 ||
-				itemId == 40254 && level >= 40 ||
-				itemId == 40255 && level >= 50 ||
-				itemId == 40256 && level >= 30 ||
-				itemId == 40257 && level >= 40 ||
-				itemId >= 40258 && itemId <= 40259 && level >= 50 ||
-				itemId >= 40260 && itemId <= 40261 && level >= 30 ||
-				itemId == 40262 && level >= 40 ||
-				itemId >= 40263 && itemId <= 40264 && level >= 50 ||
-				itemId >= 41149 && itemId <= 41150 && level >= 50 ||
-				itemId == 41151 && level >= 40 ||
-				itemId >= 41152 && itemId <= 41153 && level >= 50)
+//				地屬性魔法
+				itemId == 40247 && level >= 30  &&pc.getElfAttr() == 1||
+				itemId == 40248 && level >= 40  &&pc.getElfAttr() == 1||
+				itemId == 40249 && level >= 50  &&pc.getElfAttr() == 1||
+				itemId == 40250 && level >= 50  &&pc.getElfAttr() == 1||
+				itemId == 40251 && level >= 50  &&pc.getElfAttr() == 1||
+				itemId == 40252 && level >= 50  &&pc.getElfAttr() == 1||
+//				水屬性魔法
+				itemId == 40253 && level >= 30  &&pc.getElfAttr() == 4||
+				itemId == 40254 && level >= 40  &&pc.getElfAttr() == 4||
+				itemId == 40255 && level >= 50  &&pc.getElfAttr() == 4||
+				itemId == 41151 && level >= 50  &&pc.getElfAttr() == 4||
+				itemId == 41152 && level >= 50  &&pc.getElfAttr() == 4||
+//				風屬性魔法
+				itemId == 40260 && level >= 30  &&pc.getElfAttr() == 8||
+				itemId == 40261 && level >= 30  &&pc.getElfAttr() == 8||
+				itemId == 40262 && level >= 40  &&pc.getElfAttr() == 8||
+				itemId == 40263 && level >= 50  &&pc.getElfAttr() == 8||
+				itemId == 40264 && level >= 50  &&pc.getElfAttr() == 8||
+				itemId == 41153 && level >= 50  &&pc.getElfAttr() == 8||
+//				火屬性魔法
+				itemId == 40256 && level >= 30  &&pc.getElfAttr() == 2||
+				itemId == 40257 && level >= 40  &&pc.getElfAttr() == 2||
+				itemId == 40258 && level >= 50  &&pc.getElfAttr() == 2||
+				itemId == 40259 && level >= 50  &&pc.getElfAttr() == 2||
+				itemId == 41149 && level >= 50  &&pc.getElfAttr() == 2||
+				itemId == 41150 && level >= 50  &&pc.getElfAttr() == 2)
+				
 				SpellBook2();
 		}
 		else
 		{
-			pc.sendPackets(new S_ServerMessage(79)); // (原文:精靈の水晶はエルフのみが習得できます。)
+			pc.sendPackets(new S_ServerMessage(79)); // (原文:精灵の水晶はエルフのみが习得できます。)
 		}
 	}
 
