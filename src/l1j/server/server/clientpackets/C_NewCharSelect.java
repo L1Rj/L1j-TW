@@ -39,7 +39,10 @@ public class C_NewCharSelect extends ClientBasePacket
 		{
 			L1PcInstance pc = client.getActiveChar();
 			_log.fine("Disconnect from: " + pc.getName());
-			
+			//XXX 修正死亡洗血bug
+			if (pc.isDead()) {
+				return;
+			}
 			ClientThread.quitGame(pc);
 			
 			synchronized (pc)
