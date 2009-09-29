@@ -29,7 +29,7 @@ import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_CharReset;
-import l1j.server.server.serverpackets.S_Disconnect;//waja add 檢查角色素質狀態
+import l1j.server.server.serverpackets.S_Disconnect;
 import l1j.server.server.serverpackets.S_OwnCharStatus;
 import l1j.server.server.utils.CalcInitHpMp;
 import l1j.server.server.utils.CalcStat;
@@ -51,7 +51,7 @@ public class C_CharReset extends ClientBasePacket {
  * //提升完等級 127.0.0.1 Request Work ID : 120 0000: 78 02 08 00 x...
  * 
  * //萬能藥 127.0.0.1 Request Work ID : 120 0000: 78 03 23 0a 0b 17 12 0d
- */
+ */	
 
 	public C_CharReset(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -87,7 +87,7 @@ public class C_CharReset extends ClientBasePacket {
 		} else if (stage == 0x02) { // 0x02:ステータス再分配
 			int type2 = readC();
 			if (type2 == 0x00) { // 0x00:Lv1UP
-				setLevelUp(pc, 1);
+				setLevelUp(pc, 1); 
 			} else if (type2 == 0x07) { // 0x07:Lv10UP
 				if (pc.getTempMaxLevel() - pc.getTempLevel() < 10) {
 					return;
@@ -137,7 +137,6 @@ public class C_CharReset extends ClientBasePacket {
 					return;
 				}
 				saveNewCharStatus(pc);
-				pc.setInCharReset(false);//重置完指標恢復
 			}
 		} else if (stage == 0x03) {
 			pc.addBaseStr((byte) (readC() - pc.getBaseStr()));
@@ -175,7 +174,7 @@ public class C_CharReset extends ClientBasePacket {
 		if (item != null) {
 			try {
 				pc.getInventory().removeItem(item, 1);
-				pc.save(); // DBにキャラクター情報を書き⑸む
+				pc.save(); // DBにキャラクター情報を書き込む
 			} catch (Exception e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			}
@@ -194,17 +193,17 @@ public class C_CharReset extends ClientBasePacket {
 		pc.addBaseCon((byte)(con - pc.getBaseCon()));
 		pc.addBaseCha((byte)(cha - pc.getBaseCha()));
 		pc.addMr(0 - pc.getMr());
-		pc.addDmgup(0 - pc.getDmgup());
-		pc.addHitup(0 - pc.getHitup());
+    	pc.addDmgup(0 - pc.getDmgup());
+    	pc.addHitup(0 - pc.getHitup());
 	}
 
 	private void setLevelUp(L1PcInstance pc ,int addLv) {
 		pc.setTempLevel(pc.getTempLevel()+ addLv);
 		for (int i = 0; i < addLv; i++) {
 			short randomHp = CalcStat.calcStatHp(pc.getType(),
-					pc.getBaseMaxHp(), pc.getBaseCon(),pc.getOriginalHpup());
+					pc.getBaseMaxHp(), pc.getBaseCon(), pc.getOriginalHpup());
 			short randomMp = CalcStat.calcStatMp(pc.getType(),
-					pc.getBaseMaxMp(), pc.getBaseWis(),pc.getOriginalMpup());
+					pc.getBaseMaxMp(), pc.getBaseWis(), pc.getOriginalMpup());
 			pc.addBaseMaxHp(randomHp);
 			pc.addBaseMaxMp(randomMp);
 		}
