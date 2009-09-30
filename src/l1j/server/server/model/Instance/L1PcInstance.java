@@ -2421,6 +2421,10 @@ public class L1PcInstance extends L1Character
 				|| hasSkillEffect(GREATER_HASTE) || getMoveSpeed() == 1);
 	}
 
+	public boolean isCrazy() {
+		return hasSkillEffect(GMSTATUS_CRAZY);
+	}
+
 	private int invisDelayCounter = 0;
 
 	public boolean isInvisDelay() {

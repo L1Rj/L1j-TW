@@ -41,36 +41,36 @@ public class L1BuffUtil {
 	}
 
 	public static void brave(L1PcInstance pc, int timeMillis) {
-		if (pc.hasSkillEffect(STATUS_ELFBRAVE)) { // エルヴンワッフルとは重複しない
+		if (pc.hasSkillEffect(STATUS_ELFBRAVE)) { // 如果已經有(精靈餅乾)狀態就不重複
 			pc.killSkillEffectTimer(STATUS_ELFBRAVE);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(HOLY_WALK)) { // ホーリーウォークとは重複しない
+		if (pc.hasSkillEffect(HOLY_WALK)) { // 如果已經有(神聖疾走就)狀態就不重複
 			pc.killSkillEffectTimer(HOLY_WALK);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(MOVING_ACCELERATION)) { // ムービングアクセレーションとは重複しない
+		if (pc.hasSkillEffect(MOVING_ACCELERATION)) { // 如果已經有(行走加速)狀態就不重複
 			pc.killSkillEffectTimer(MOVING_ACCELERATION);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(WIND_WALK)) { // ウィンドウォークとは重複しない
+		if (pc.hasSkillEffect(WIND_WALK)) { // 如果已經有(風之疾走)狀態就不重複
 			pc.killSkillEffectTimer(WIND_WALK);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(STATUS_RIBRAVE)) { // ユグドラの実とは重複しない
+		if (pc.hasSkillEffect(STATUS_RIBRAVE)) { // 如果已經有(生命之樹果實)狀態就不重複
 			pc.killSkillEffectTimer(STATUS_RIBRAVE);
-			// XXX ユグドラの実のアイコンを消す方法が不明
+			// XXX 關閉(生命之樹果實)狀態圖示的方法不明
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(BLOODLUST)) { // ブラッドラストとは重複しない
+		if (pc.hasSkillEffect(BLOODLUST)) { // 如果已經有(血之渴望)狀態就不重複
 			pc.killSkillEffectTimer(BLOODLUST);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
@@ -85,5 +85,16 @@ public class L1BuffUtil {
 		pc.sendPackets(new S_SkillSound(objId, 751));
 		pc.broadcastPacket(new S_SkillSound(objId, 751));
 		pc.setBraveSpeed(1);
+	}
+
+	public static void crazy(L1PcInstance pc, int timeMillis) {
+		pc.setSkillEffect(GMSTATUS_CRAZY, timeMillis);
+
+		int objId = pc.getId();
+		pc.sendPackets(new S_SkillBrave(objId, 5, timeMillis / 1000));
+		pc.broadcastPacket(new S_SkillBrave(objId, 5, 0));
+		pc.sendPackets(new S_SkillSound(objId, 751));
+		pc.broadcastPacket(new S_SkillSound(objId, 751));
+		pc.setCrazySpeed(1);
 	}
 }

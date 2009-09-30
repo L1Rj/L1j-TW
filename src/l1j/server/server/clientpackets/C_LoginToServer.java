@@ -37,6 +37,7 @@ import static l1j.server.server.model.skill.L1SkillId.STATUS_CHAT_PROHIBITED;
 import static l1j.server.server.model.skill.L1SkillId.STATUS_ELFBRAVE;
 import static l1j.server.server.model.skill.L1SkillId.STATUS_HASTE;
 import static l1j.server.server.model.skill.L1SkillId.STATUS_RIBRAVE;
+import static l1j.server.server.model.skill.L1SkillId.GMSTATUS_CRAZY;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -769,10 +770,17 @@ public class C_LoginToServer extends ClientBasePacket
 						|| skillid >= COOKING_3_0_N && skillid <= COOKING_3_6_N
 						|| skillid >= COOKING_3_0_S && skillid <= COOKING_3_6_S) { // 料理(デザートは除く)
 					L1Cooking.eatCooking(pc, skillid, remaining_time);
-//waja add 旅館租借 用 skilltimer ?
-				} else if (skillid == 1910 || skillid == 1911 || skillid == 1912 || skillid == 1913 ||
-						skillid == 1914 || skillid == 1915) { // 已租 && 1915退租
-//end add
+				// waja add 旅館租借 用 skilltimer ?
+				} else if (skillid == 1910 || skillid == 1911
+						|| skillid == 1912 || skillid == 1913
+						|| skillid == 1914 || skillid == 1915) { // 已租 && 1915退租
+				// end add
+				} else if (skillid == GMSTATUS_CRAZY) {
+					pc.sendPackets(new S_SkillBrave(pc.getId(), 5,
+							remaining_time));
+					pc.broadcastPacket(new S_SkillBrave(pc.getId(), 5, 0));
+					pc.setCrazySpeed(1);
+					pc.setSkillEffect(skillid, remaining_time * 1000);
 				} else {
 					L1SkillUse l1skilluse = new L1SkillUse();
 					l1skilluse.handleCommands(clientthread.getActiveChar(),

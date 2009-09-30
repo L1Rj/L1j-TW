@@ -55,6 +55,8 @@ public class AcceleratorChecker {
 
 	private static final double WAFFLE_RATE = 0.874;
 
+	private static final double CRAZY_RATE = 0.1;
+
 	private final EnumMap<ACT_TYPE, Long> _actTimers =
 			new EnumMap<ACT_TYPE, Long>(ACT_TYPE.class);
 
@@ -185,6 +187,9 @@ public class AcceleratorChecker {
 		}
 		if (_pc.isElfBrave()) {
 			interval *= WAFFLE_RATE;
+		}
+		if (_pc.isCrazy()) {
+			interval *= CRAZY_RATE;
 		}
 		if(_pc.getMapId() == 5143){ //寵物競速地圖
 			interval *= 0.1;

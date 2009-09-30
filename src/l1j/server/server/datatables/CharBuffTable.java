@@ -56,7 +56,7 @@ public class CharBuffTable {
 			COOKING_3_0_N, COOKING_3_0_S, COOKING_3_1_N, COOKING_3_1_S,
 			COOKING_3_2_N, COOKING_3_2_S, COOKING_3_3_N, COOKING_3_3_S,
 			COOKING_3_4_N, COOKING_3_4_S, COOKING_3_5_N, COOKING_3_5_S,
-			COOKING_3_6_N, COOKING_3_6_S };
+			COOKING_3_6_N, COOKING_3_6_S, GMSTATUS_CRAZY };
 
 	private static void StoreBuff(int objId, int skillId, int time, int polyId) {
 		java.sql.Connection con = null;
