@@ -55,6 +55,8 @@ public class AcceleratorChecker {
 
 	private static final double WAFFLE_RATE = 0.874;
 
+	private static final double FRUIT_RATE = 0.874;
+
 	private static final double CRAZY_RATE = 0.1;
 
 	private final EnumMap<ACT_TYPE, Long> _actTimers =
@@ -187,6 +189,9 @@ public class AcceleratorChecker {
 		}
 		if (_pc.isElfBrave()) {
 			interval *= WAFFLE_RATE;
+		}
+		if (type.equals(ACT_TYPE.MOVE) && _pc.isRiBrave()) {
+			interval *= FRUIT_RATE;
 		}
 		if (_pc.isCrazy()) {
 			interval *= CRAZY_RATE;

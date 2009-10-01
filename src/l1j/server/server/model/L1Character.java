@@ -1421,16 +1421,6 @@ public class L1Character extends L1Object {
 		_braveSpeed = i;
 	}
 
-	private int _crazySpeed;
-
-	public int getCrazySpeed() {
-		return _crazySpeed;
-	}
-
-	public void setCrazySpeed(int i) {
-		_crazySpeed = i;
-	}
-
 	private int _tempCharGfx; // ● ベースグラフィックＩＤ
 
 	public int getTempCharGfx() {

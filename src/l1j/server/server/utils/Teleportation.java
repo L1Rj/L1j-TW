@@ -42,6 +42,7 @@ import l1j.server.server.serverpackets.S_MapID;
 import l1j.server.server.serverpackets.S_OtherCharPacks;
 import l1j.server.server.serverpackets.S_OwnCharPack;
 import l1j.server.server.serverpackets.S_PetPack;
+import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_SummonPack;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.StaticFinalList;
@@ -275,9 +276,21 @@ public class Teleportation {
 
 		pc.setTeleport(false);
 
+		if (pc.hasSkillEffect(STATUS_ELFBRAVE)) {
+			pc.sendPackets(new S_SkillBrave(pc.getId(), 3, pc
+					.getSkillEffectTimeSec(STATUS_ELFBRAVE)));
+		}
+		if (pc.hasSkillEffect(STATUS_RIBRAVE)) {
+			pc.setSkillEffect(STATUS_RIBRAVE, pc
+					.getSkillEffectTimeSec(STATUS_RIBRAVE) * 1000);
+		}
 		if (pc.hasSkillEffect(WIND_SHACKLE)) {
 			pc.sendPackets(new S_SkillIconWindShackle(pc.getId(),
 					pc.getSkillEffectTimeSec(WIND_SHACKLE)));
+		}
+		if (pc.hasSkillEffect(BLOODLUST)) {
+			pc.sendPackets(new S_SkillBrave(pc.getId(), 6, pc
+					.getSkillEffectTimeSec(BLOODLUST)));
 		}
 		if (pc.hasSkillEffect(GMSTATUS_CRAZY)) {
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 5, pc

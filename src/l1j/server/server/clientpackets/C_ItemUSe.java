@@ -3742,7 +3742,8 @@ public class C_ItemUSe extends ClientBasePacket
 			}
 			if (pc.hasSkillEffect(STATUS_RIBRAVE)) { // ユグドラの実とは重複しない
 				pc.killSkillEffectTimer(STATUS_RIBRAVE);
-				// XXX ユグドラの実のアイコンを消す方法が不明
+				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
 			}
 			if (pc.hasSkillEffect(BLOODLUST)) { // ブラッドラストとは重複しない
@@ -3760,9 +3761,6 @@ public class C_ItemUSe extends ClientBasePacket
 			pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
 			pc.setSkillEffect(STATUS_ELFBRAVE, time * 1000);
 		} else if (item_id == 49158) { // ユグドラの実
-			if (pc.hasSkillEffect(STATUS_RIBRAVE)){
-				return;
-			}
 			pc.sendPackets(new S_SkillSound(pc.getId(), 7110));
 			pc.broadcastPacket(new S_SkillSound(pc.getId(), 7110));
 			pc.setSkillEffect(STATUS_RIBRAVE, time * 1000);
@@ -3773,8 +3771,6 @@ public class C_ItemUSe extends ClientBasePacket
 			pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
 			pc.setSkillEffect(STATUS_BRAVE, time * 1000);
 		}
-// pc.sendPackets(new S_SkillSound(pc.getId(), 751));
-// pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
 		pc.setBraveSpeed(1);
 	}
 

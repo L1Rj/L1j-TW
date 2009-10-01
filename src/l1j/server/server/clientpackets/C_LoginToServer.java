@@ -81,6 +81,7 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillBrave;
 import l1j.server.server.serverpackets.S_SkillHaste;
 import l1j.server.server.serverpackets.S_SkillIconGFX;
+import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_SummonPack;
 import l1j.server.server.serverpackets.S_War;
 import l1j.server.server.serverpackets.S_Weather;
@@ -746,11 +747,9 @@ public class C_LoginToServer extends ClientBasePacket
 					pc.setBraveSpeed(1);
 					pc.setSkillEffect(skillid, remaining_time * 1000);
 				} else if (skillid == STATUS_RIBRAVE) { // 生命之樹果實
-					pc.sendPackets(new S_SkillBrave(pc.getId(),4,
-							remaining_time));
-					pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
-					pc.setBraveSpeed(4);
-					pc.setSkillEffect(skillid, remaining_time * 1000);
+					pc.sendPackets(new S_SkillSound(pc.getId(), 7110));
+					pc.broadcastPacket(new S_SkillSound(pc.getId(), 7110));
+					pc.setSkillEffect(STATUS_RIBRAVE, remaining_time * 1000);
 				} else if (skillid == STATUS_HASTE) { // グリーン ポーション
 					pc.sendPackets(new S_SkillHaste(pc.getId(), 1,
 							remaining_time));
@@ -779,7 +778,7 @@ public class C_LoginToServer extends ClientBasePacket
 					pc.sendPackets(new S_SkillBrave(pc.getId(), 5,
 							remaining_time));
 					pc.broadcastPacket(new S_SkillBrave(pc.getId(), 5, 0));
-					pc.setCrazySpeed(1);
+					pc.setBraveSpeed(5);
 					pc.setSkillEffect(skillid, remaining_time * 1000);
 				} else {
 					L1SkillUse l1skilluse = new L1SkillUse();

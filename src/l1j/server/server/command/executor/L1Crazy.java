@@ -40,7 +40,7 @@ public class L1Crazy implements L1CommandExecutor {
 			L1BuffUtil.haste(pc, 32767 * 1000);
 			L1BuffUtil.crazy(pc, 32767 * 1000);
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage("請輸入 ."+ cmdName + " [時間]。"));
+			pc.sendPackets(new S_SystemMessage("." + cmdName + " 指令錯誤"));
 		}
 	}
 }

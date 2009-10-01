@@ -2400,7 +2400,6 @@ public class L1PcInstance extends L1Character
 				|| hasSkillEffect(MOVING_ACCELERATION)
 				|| hasSkillEffect(WIND_WALK)
 				|| hasSkillEffect(STATUS_BRAVE2)); // 寵物競速
-				//|| hasSkillEffect(STATUS_RIBRAVE));
 	}
 
 	public boolean isFastAttackable() {
@@ -2413,6 +2412,10 @@ public class L1PcInstance extends L1Character
 
 	public boolean isElfBrave() {
 		return hasSkillEffect(STATUS_ELFBRAVE);
+	}
+
+	public boolean isRiBrave() {
+		return hasSkillEffect(STATUS_RIBRAVE);
 	}
 
 	public boolean isHaste() {
