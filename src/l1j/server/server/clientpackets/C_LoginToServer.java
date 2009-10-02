@@ -505,8 +505,9 @@ public class C_LoginToServer extends ClientBasePacket
 	private void items(L1PcInstance pc)
 	{
 		CharacterTable.getInstance().restoreInventory(pc); // 讀取倉庫、角色物品資料
-		List<L1ItemInstance> itemList = pc.getInventory().getItems(); // 取得背包物品清單
-		pc.sendPackets(new S_InvList(itemList)); // 送出角色物品清單
+		pc.sendPackets(new S_InvList(pc.getInventory().getItems()));
+/*		//List<L1ItemInstance> itemList = pc.getInventory().getItems(); // 取得背包物品清單
+		//pc.sendPackets(new S_InvList(itemList)); // 送出角色物品清單
 		
 		// 更新正在使用的武器、防具名稱 (如果有使用武器則會產生音效)
 		for (L1ItemInstance item : itemList)
@@ -516,7 +517,7 @@ public class C_LoginToServer extends ClientBasePacket
 			
 			if (item.isEquipped())
 				pc.sendPackets(new S_ItemName(item));
-		}
+		}*/
 	}
 
 	private void bookmarks(L1PcInstance pc) {
