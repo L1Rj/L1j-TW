@@ -383,13 +383,13 @@ public class C_LoginToServer extends ClientBasePacket
 					pc.setY(loc[1]);
 					pc.setMap((short) loc[2]);
 				}
+			} else {
+				int[] loc = new int[3];
+				loc = L1CastleLocation.getGetBackLoc(castle_id);
+				pc.setX(loc[0]);
+				pc.setY(loc[1]);
+				pc.setMap((short) loc[2]);
 			}
-		} else {
-			int[] loc = new int[3];
-			loc = L1CastleLocation.getGetBackLoc(castle_id);
-			pc.setX(loc[0]);
-			pc.setY(loc[1]);
-			pc.setMap((short) loc[2]);
 		}
 
 		L1World.getInstance().addVisibleObject(pc);
