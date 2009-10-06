@@ -363,7 +363,7 @@ public class C_LoginToServer extends ClientBasePacket
 
 		// 戰爭中の旗內に居た場合、城主血盟でない場合は歸還させる。
 		int castle_id = L1CastleLocation.getCastleIdByArea(pc);
-		if (0 < castle_id) {
+		if (0 <= castle_id) {
 			if (WarTimeController.getInstance().isNowWar(castle_id)) {
 				L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 				if (clan != null) {
@@ -384,6 +384,12 @@ public class C_LoginToServer extends ClientBasePacket
 					pc.setMap((short) loc[2]);
 				}
 			}
+		} else {
+			int[] loc = new int[3];
+			loc = L1CastleLocation.getGetBackLoc(castle_id);
+			pc.setX(loc[0]);
+			pc.setY(loc[1]);
+			pc.setMap((short) loc[2]);
 		}
 
 		L1World.getInstance().addVisibleObject(pc);
