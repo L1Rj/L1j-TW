@@ -477,16 +477,6 @@ public class L1GuardianInstance extends L1NpcInstance {
 				int exp = getExp();
 				CalcExp.calcExp(player, targetobjid, targetList, hateList, exp);
 
-				ArrayList<L1Character> dropTargetList = _dropHateList
-						.toTargetArrayList();
-				ArrayList<Integer> dropHateList = _dropHateList
-						.toHateArrayList();
-				try {
-					DropTable.getInstance().dropShare(_npc,
-							dropTargetList, dropHateList);
-				} catch (Exception e) {
-					_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-				}
 				// カルマは止めを刺したプレイヤーに設定。ペットorサモンで倒した場合も入る。
 				player.addKarma((int) (getKarma() * Config.RATE_KARMA));
 			}
