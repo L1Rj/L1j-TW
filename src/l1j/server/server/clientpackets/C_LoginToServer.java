@@ -51,6 +51,7 @@ import l1j.server.Config;
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.ClientThread;
+import l1j.server.server.SkillCheck;
 import l1j.server.server.WarTimeController;
 import l1j.server.server.datatables.CharacterTable;
 import l1j.server.server.datatables.GetBackRestartTable;
@@ -603,6 +604,7 @@ public class C_LoginToServer extends ClientBasePacket
 			int lv27 = 0;
 			int lv28 = 0;
 			while (rs.next()) {
+				int objid = pc.getId();
 				int skillId = rs.getInt("skill_id");
 				L1Skills l1skills = SkillsTable.getInstance().getTemplate(
 						skillId);
@@ -694,6 +696,7 @@ public class C_LoginToServer extends ClientBasePacket
 						+ lv11 + lv12 + lv13 + lv14 + lv15 + lv16 + lv17 + lv18
 						+ lv19 + lv20 + lv21 + lv22 + lv23 + lv24 + lv25 + lv26 + lv27 + lv28;
 				pc.setSkillMastery(skillId);//登入時紀錄學過的技能
+				SkillCheck.getInstance().AddSkill(objid, skillId);
 			}
 			if (i > 0) {
 				pc.sendPackets(new S_AddSkill(lv1, lv2, lv3, lv4, lv5, lv6,

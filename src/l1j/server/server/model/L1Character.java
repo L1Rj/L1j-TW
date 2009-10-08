@@ -1566,6 +1566,36 @@ public class L1Character extends L1Object {
 		_ownLightSize = i;
 	}
 
+	private long _skillDelay2;
+
+	public long getSkillDelay2() {
+		return _skillDelay2;
+	}
+
+	public void setSkillDelay2(long i) {
+		_skillDelay2 = i;
+	}
+
+	private int _buffNoch;
+
+	public int getBuffNoch() {
+		return _buffNoch;
+	}
+
+	public void setBuffNoch(int i) {
+		_buffNoch = i;
+	}
+
+	private int _skillCheck;
+
+	public int getSkillCheck() {
+		return _skillCheck;
+	}
+
+	public void setSkillCheck(int i) {
+		_skillCheck = i;
+	}
+
 	/* 物件特別狀態 [2009/07/28] */
 	private int State; 
 

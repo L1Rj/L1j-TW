@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.SynchronousQueue;
@@ -39,10 +40,12 @@ import l1j.server.server.encryptions.ClientIdExistsException;
 import l1j.server.server.encryptions.LineageEncryption;
 import l1j.server.server.encryptions.LineageKeys;
 import l1j.server.server.model.Getback;
+import l1j.server.server.model.L1PolyRace;
 import l1j.server.server.model.L1Trade;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1DollInstance;
 import l1j.server.server.model.Instance.L1FollowerInstance;
+import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
@@ -544,8 +547,17 @@ public class ClientThread implements Runnable, PacketOutput
 		CharBuffTable.DeleteBuff(pc);
 		CharBuffTable.SaveBuff(pc);
 		pc.clearSkillEffectTimer();
+		SkillCheck.getInstance().QuitDelSkill(pc);
 
-		l1j.server.server.model.L1PolyRace.getInstance().checkLeaveGame(pc); // 寵物競速 - 登出從名單刪除 
+		List<L1ItemInstance> itemlist = pc.getInventory().getItems();
+		for (L1ItemInstance item : itemlist) {
+			if (item.getCount() <= 0) {
+				pc.getInventory().deleteItem(item);
+				continue; 
+			}
+		}
+
+		L1PolyRace.getInstance().checkLeaveGame(pc); // 寵物競速 - 登出從名單刪除 
 
 		// pcのモニターをstopする。
 		pc.stopEtcMonitor();
