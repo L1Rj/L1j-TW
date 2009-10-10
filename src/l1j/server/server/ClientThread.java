@@ -505,6 +505,14 @@ public class ClientThread implements Runnable, PacketOutput
 			pc.getChatParty().leaveMember(pc);
 		}
 
+		List<L1ItemInstance> itemlist = pc.getInventory().getItems();
+		for (L1ItemInstance item : itemlist) {
+			if (item.getCount() <= 0) {
+				pc.getInventory().deleteItem(item);
+				continue;
+			}
+		}
+
 		// ペットをワールドマップ上から消す
 		// サモンの表示名を变更する
 		Object[] petList = pc.getPetList().values().toArray();
@@ -547,15 +555,6 @@ public class ClientThread implements Runnable, PacketOutput
 		CharBuffTable.DeleteBuff(pc);
 		CharBuffTable.SaveBuff(pc);
 		pc.clearSkillEffectTimer();
-		SkillCheck.getInstance().QuitDelSkill(pc);
-
-		List<L1ItemInstance> itemlist = pc.getInventory().getItems();
-		for (L1ItemInstance item : itemlist) {
-			if (item.getCount() <= 0) {
-				pc.getInventory().deleteItem(item);
-				continue; 
-			}
-		}
 
 		L1PolyRace.getInstance().checkLeaveGame(pc); // 寵物競速 - 登出從名單刪除 
 

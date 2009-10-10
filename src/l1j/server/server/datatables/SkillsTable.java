@@ -29,7 +29,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.L1DatabaseFactory;
-import l1j.server.server.SkillCheck;
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.utils.SQLUtil;
 
@@ -150,7 +149,6 @@ public class SkillsTable {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
-		SkillCheck.getInstance().AddSkill(playerobjid, skillid);
 	}
 
 	public void spellLost(int playerobjid, int skillid) {
@@ -178,7 +176,6 @@ if (pc != null) {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
-		SkillCheck.getInstance().DelSkill(playerobjid, skillid);
 	}
 
 	public boolean spellCheck(int playerobjid, int skillid) {

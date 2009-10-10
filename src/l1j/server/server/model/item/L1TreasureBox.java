@@ -133,7 +133,7 @@ public class L1TreasureBox {
 
 	public static void load() {
 		PerformanceTimer timer = new PerformanceTimer();
-		System.out.print("╚》Loading『Treasure Box』設定 ...");
+		System.out.print("╚》正在讀取 TreasureBox...");
 		try {
 			JAXBContext context =
 					JAXBContext
@@ -152,7 +152,7 @@ public class L1TreasureBox {
 			_log.log(Level.SEVERE, PATH + "的載入失敗。", e);
 			System.exit(0);
 		}
-		System.out.println("完成！\t花費：" + timer.get() + "ms");
+		System.out.println("完成!\t耗時: " + timer.get() + "ms");
 	}
 
 	/**

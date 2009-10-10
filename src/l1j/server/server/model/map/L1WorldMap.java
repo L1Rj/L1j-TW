@@ -40,7 +40,7 @@ public class L1WorldMap {
 
 	private L1WorldMap() {
 		PerformanceTimer timer = new PerformanceTimer();
-		System.out.print("╠》Loading『Map』設定 ...");
+		System.out.print("╔》正在讀取 Map...");
 
 		MapReader in = MapReader.getDefaultReader();
 
@@ -56,7 +56,7 @@ public class L1WorldMap {
 			System.exit(0);
 		}
 
-		System.out.println("完成！\t\t花費：" + timer.get() + "ms");
+		System.out.println("完成!\t\t耗時: " + timer.get() + "ms");
 	}
 
 	/**

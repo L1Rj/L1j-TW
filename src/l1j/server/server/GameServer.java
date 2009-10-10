@@ -133,28 +133,30 @@ public class GameServer extends Thread {
 			InetAddress inetaddress = InetAddress.getByName(s);
 			inetaddress.getHostAddress();
 			_serverSocket = new ServerSocket(_port, 50, inetaddress);
-			System.out.println("伺服器狀態: 建立中");
+			System.out.println("伺服器設置: 產生伺服器連接埠");
 		} else {
 			_serverSocket = new ServerSocket(_port);
-			System.out.println("伺服器狀態: 建立中");
+			System.out.println("伺服器設置: 產生伺服器連接埠");
 		}
 
-		System.out.println("經驗值: x" + (rateXp) + "倍 \t正義值: x" + (LA) + "倍 \t\t友好度: x"
-				+ (rateKarma) + "倍 \r\n道具掉落: x" + (rateDropItems) + "倍 \t金幣掉落: x"
-				+ (rateDropAdena) + "倍");
-		System.out.println("公共頻道使用等級限制: " + (chatlvl));
+		System.out.println("經驗值: " + (rateXp) + "倍"
+				+ "\n\r正義值: " + (LA) + "倍"
+				+ "\n\r友好度: " + (rateKarma) + "倍"
+				+ "\n\r物品掉落: " + (rateDropItems) + "倍"
+				+ "\n\r金幣掉落: " + (rateDropAdena) + "倍");
+		System.out.println("廣播頻道可用等級: " + (chatlvl) + "級");
 		if (Config.ALT_NONPVP) { // Non-PvP設定
-			System.out.println("Non-PvP設定: 無效（可PVP）");
+			System.out.println("Non-PvP設定: 無效 (PvP可能)");
 		} else {
-			System.out.println("Non-PvP設定: 有效（不可PVP）");
+			System.out.println("Non-PvP設定: 有效 (PvP不可)");
 		}
-		
+
 		System.out.println("=================================================");
 		System.out.println("===== Lineage 3.0C ======= L1j2021-tw1094 版 ====");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
-		System.out.println("伺服器最高連線人數： " + (maxOnlineUsers) + "人");
+		System.out.println("連線人數上限: " + (maxOnlineUsers) + "人");
 		IdFactory.getInstance();
 		L1WorldMap.getInstance();
 		_loginController = LoginController.getInstance();
@@ -256,7 +258,7 @@ public class GameServer extends Thread {
 		NpcChatTable.getInstance();
 		MailTable.getInstance();
 
-		System.out.println("伺服器狀態: 啟動完成");
+		System.out.println("伺服器啟動完成");
 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
 
 		this.start();

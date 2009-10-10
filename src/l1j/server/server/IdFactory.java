@@ -73,7 +73,7 @@ public class IdFactory {
 				id = FIRST_ID;
 			}
 			_curId = id;
-			_log.info("目前ID: " + _curId);
+			_log.info("目前物件編號: " + _curId);
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
