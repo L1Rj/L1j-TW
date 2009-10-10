@@ -156,3 +156,7 @@ Update npc Set impl = 'L1Teleporter' Where npcid = '80058';
 Update npc Set cant_resurrect  = '1' Where npcid = '45313';
 Update npc Set cant_resurrect  = '1' Where npcid = '45711';
 Update npc Set cant_resurrect  = '1' Where npcid = '45044';
+
+/* 20091010 修正 狼 柯利 攻擊範圍 2格 */
+Update npc Set ranged = '2' Where npcid = '45043';
+Update npc Set ranged = '2' Where npcid = '45054';
