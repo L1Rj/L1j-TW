@@ -4895,8 +4895,9 @@ public class C_ItemUSe extends ClientBasePacket
 			pc.sendPackets(new S_ServerMessage(563)); // \f1ここでは使えません。
 			return false;
 		}
-
 		int petCost = 0;
+                int petCount = 0;
+                int divisor = 6;
 		Object[] petList = pc.getPetList().values().toArray();
 		for (Object pet : petList) {
 			if (pet instanceof L1PetInstance) {
@@ -4920,8 +4921,9 @@ public class C_ItemUSe extends ClientBasePacket
 		} else if (pc.isIllusionist()) { // イリュージョニスト
 			charisma += 6;
 		}
-		charisma -= petCost;
-		int petCount = charisma / 6;
+		//charisma -= petCost;
+		/* 原始設定魅 / 6
+                int petCount = charisma / 6;
 		if (petCount <= 0) {
 			pc.sendPackets(new S_ServerMessage(489)); // 引き取ろうとするペットが多すぎます。
 			return false;
@@ -4934,7 +4936,28 @@ public class C_ItemUSe extends ClientBasePacket
 			L1PetInstance pet = new L1PetInstance(npcTemp, pc, l1pet);
 			pet.setPetcost(6);
 		}
-		return true;
+                */
+                L1Pet l1pet = PetTable.getInstance().getTemplate(itemObjectId);
+                if (l1pet != null) {
+                    int npcId = l1pet.get_npcid();
+                    charisma -= petCost;
+                    if (npcId == 45313 || npcId == 45710 // タイガー、バトルタイガー
+                            || npcId == 45711 || npcId == 45712) { // 紀州犬の子犬、紀州犬
+                        divisor = 12;
+                    } else {
+                        divisor = 6;
+                    }
+                    petCount = charisma / divisor;
+                    if (petCount <= 0) {
+                        pc.sendPackets(new S_ServerMessage(489)); // 引き取ろうとするペットが多すぎます。
+                        return false;
+                    }
+                    L1Npc npcTemp = NpcTable.getInstance().getTemplate(npcId);
+                    L1PetInstance pet = new L1PetInstance(npcTemp, pc, l1pet);
+                    pet.setPetcost(divisor);
+                }
+                
+                return true;
 	}
 
 	private void startFishing(L1PcInstance pc, int itemId, int fishX, int fishY) {
