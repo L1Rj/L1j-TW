@@ -1056,10 +1056,10 @@
 	<!--DRKLv30クエスト / 長老 プロケル-->
 	<MakeItem Name="d" Class="R" NpcId="80136" AmountInputable="false" QuestId="Level30" QuestStep="1">
 		<Item Amount="1" ItemId="49107"/>
-		<Item Amount="1" ItemId="49213"/>
+		<Item Amount="1" ItemId="21103"/>
 		<Material Amount="1" ItemId="49221"/>
 		<Succeed>
-			<SetQuest Id="Level30" Step="2"/>
+			<SetQuest Id="Level30" Step="255"/>
 			<ShowHtml HtmlId="prokel11"/>
 		</Succeed>
 		<Fail>

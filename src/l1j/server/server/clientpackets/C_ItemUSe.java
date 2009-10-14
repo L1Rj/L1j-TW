@@ -3057,21 +3057,20 @@ public class C_ItemUSe extends ClientBasePacket
 						}
 						pc.sendPackets(new S_ServerMessage(msg));
 						pc.getInventory().removeItem(l1iteminstance1, 1);
+                                        } else {
+						pc.sendPackets(new S_ServerMessage(154)); // \f1スクロールが散らばります。
+					}
+					pc.getInventory().removeItem(item, 1);
 					} else if (itemId == 49210) { // プロケルの1番目の指令書
-						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-								"first_p"));
+						pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "first_p"));
 					} else if (itemId == 49211) { // プロケルの2番目の指令書
-						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-								"second_p"));
+						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),"second_p"));
 					} else if (itemId == 49212) { // プロケルの3番目の指令書
-						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-								"third_p"));
+						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),"third_p"));
 					} else if (itemId == 49287) { // プロケルの4番目の指令書
-						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-								"fourth_p"));
+						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),"fourth_p"));
 					} else if (itemId == 49288) { // プロケルの5番目の指令書
-						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),
-								"fifth_p"));
+						pc.sendPackets(new S_NPCTalkReturn(pc.getId(),"fifth_p"));
 					} else if (itemId == 49222) { // オーク密使の笛
 						if (pc.isDragonKnight()
 								&& pc.getMapId() == 61) { // HC3F
@@ -3094,11 +3093,6 @@ public class C_ItemUSe extends ClientBasePacket
 							}
 							pc.getInventory().consumeItem(49222, 1);
 						}
-
-					} else {
-						pc.sendPackets(new S_ServerMessage(154)); // \f1スクロールが散らばります。
-					}
-					pc.getInventory().removeItem(item, 1);
 				} else {
 					int locX = ((L1EtcItem) item.getItem())
 							.get_locx();
