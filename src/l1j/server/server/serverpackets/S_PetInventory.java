@@ -23,51 +23,62 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import l1j.server.server.Opcodes;
+import l1j.server.server.datatables.PetItemTable;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
 
-public class S_PetInventory extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_PetInventory.class
-			.getName());
-	private static final String S_PET_INVENTORY = "[S] S_PetInventory";
-	private byte[] _byte = null;
-
-	public S_PetInventory(L1PetInstance pet) {
+public class S_PetInventory extends ServerBasePacket
+{
+	public S_PetInventory(L1PetInstance pet)
+	{
 		List<L1ItemInstance> itemList = pet.getInventory().getItems();
 
 		writeC(Opcodes.S_OPCODE_SHOWRETRIEVELIST);
 		writeD(pet.getId());
 		writeH(itemList.size());
 		writeC(0x0b);
-		for (Object itemObject : itemList) {
+		
+		int DefaultAc = 0x0A; // 寵物初始防禦
+		
+		for (Object itemObject : itemList)
+		{
 			L1ItemInstance item = (L1ItemInstance) itemObject;
-			if (item != null) {
-				writeD(item.getId());
-				writeC(0x13);
-				writeH(item.get_gfxid());
-				writeC(item.getBless());
-				writeD(item.getCount());
+			
+			if (item == null)
+				continue;
+			
+			writeD(item.getId());
+			writeC(item.getItem().getUseType()); // 0x02:寵物裝備 (盔甲類), 0x16:寵物裝備(牙類)
+			writeH(item.get_gfxid());
+			writeC(item.getBless());
+			writeD(item.getCount());
+			
+			if (item.getItem().getType2() == 0
+			 && item.getItem().getType() == 11
+			 && item.isEquipped())
+				writeC(item.isIdentified() ? 3 : 2);
+			else
 				writeC(item.isIdentified() ? 1 : 0);
-				writeS(item.getViewName());
-			}
+			
+			writeS(item.getViewName().replace(" ($117)", ""));
+			
+			if (item.getItem().getType2() == 0
+			 && item.getItem().getType() == 11
+			 && item.isEquipped())
+				DefaultAc += PetItemTable.
+					getInstance().getTemplate(
+							item.getItemId()).getAddAc(); // 計算防禦總合
 		}
-		writeC(0x0a);
+		
+		writeC(DefaultAc);
 	}
 
 	@Override
-	public byte[] getContent() {
-		if (_byte == null) {
-			_byte = getBytes();
-		}
-		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_PET_INVENTORY;
+	public byte[] getContent()
+	{
+		return getBytes();
 	}
 }
