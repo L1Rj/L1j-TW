@@ -29,6 +29,8 @@ import java.util.Random;
 
 
 import l1j.server.server.ClientThread;
+import l1j.server.server.IdFactory;
+import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.datatables.PetTypeTable;
 import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1Object;
@@ -50,6 +52,7 @@ public class C_GiveItem extends ClientBasePacket {
 	private static final String C_GIVE_ITEM = "[C] C_GiveItem";
 
 	//private static Random _random = new Random();
+	private static ItemTable IT = ItemTable.getInstance();
 
 	public C_GiveItem(byte decrypt[], ClientThread client) {
 		super(decrypt);
@@ -193,14 +196,27 @@ public class C_GiveItem extends ClientBasePacket {
 		charisma -= petcost;
 
 		L1PcInventory inv = pc.getInventory();
-		if (charisma >= 6 && inv.getSize() < 180) {
-			if (isTamePet(target)) {
-				L1ItemInstance petamu = inv.storeItem(40314, 1); // ペットのアミュレット
-				if (petamu != null) {
+		if (charisma >= 6 && inv.getSize() < 180)
+		{
+			if (isTamePet(target))
+			{
+				// 贈送鑑定過的項圈 Start
+				// ペットのアミュレット
+				L1ItemInstance petamu = new L1ItemInstance();
+				petamu.setId(IdFactory.getInstance().nextId());
+				petamu.setItem(IT.getTemplate(40314));
+				petamu.setIdentified(true);
+				petamu = inv.storeItem(petamu);
+				// 贈送鑑定過的項圈 End
+				
+				if (petamu != null)
+				{
 					new L1PetInstance(target, pc, petamu.getId());
 					pc.sendPackets(new S_ItemName(petamu));
 				}
-			} else {
+			}
+			else
+			{
 				pc.sendPackets(new S_ServerMessage(324)); // てなずけるのに失敗しました。
 			}
 		}
@@ -215,8 +231,16 @@ public class C_GiveItem extends ClientBasePacket {
 		L1ItemInstance petamu = inv.getItem(pet.getItemObjId());
 		if (pet.getLevel() >= 30 && // Lv30以上
 				pc == pet.getMaster() && // 自分のペット
-				petamu != null) {
-			L1ItemInstance highpetamu = inv.storeItem(40316, 1);
+				petamu != null)
+		{
+			// 贈送鑑定過的項圈 Start
+			L1ItemInstance highpetamu = new L1ItemInstance();
+			highpetamu.setId(IdFactory.getInstance().nextId());
+			highpetamu.setItem(IT.getTemplate(40316));
+			highpetamu.setIdentified(true);
+			highpetamu = inv.storeItem(highpetamu);
+			// 贈送鑑定過的項圈 End
+			
 			if (highpetamu != null) {
 				pet.evolvePet( // 寵物進化
 						highpetamu.getId());
