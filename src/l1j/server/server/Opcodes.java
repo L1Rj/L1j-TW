@@ -95,7 +95,8 @@ public class Opcodes {
 
 	public static final int C_OPCODE_CLIENTVERSION = 34;
 
-	//public static final int ?? = 35;
+	/** 用戶端自動請求在線公告 By a0917009769(NEW) */
+	public static final int C_OPCODE_CLIENTREPORT = 35;
 
 	//public static final int ?? = 36;
 
@@ -219,7 +220,8 @@ public class Opcodes {
 
 	public static final int C_OPCODE_RETURNTOLOGIN = 95;
 
-	//public static final int ?? = 96;
+	/** 申訴掛機功能 By a0917009769(NEW) */
+	public static final int C_OPCODE_REPORTPLAYER = 96;
 
 	//public static final int ?? = 97;
 
