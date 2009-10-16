@@ -18,42 +18,132 @@
  */
 package l1j.server.server.model.classes;
 
-import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.model.id.L1ClassId;
 
 public abstract class L1ClassFeature {
-	public static L1ClassFeature newClassFeature(int classId) {
-		if (classId == L1PcInstance.CLASSID_PRINCE
-				|| classId == L1PcInstance.CLASSID_PRINCESS) {
+	public static L1ClassFeature newClassFeature(int Type) {
+		
+		switch(Type){
+		case L1ClassId.ROYAL: // 王族
 			return new L1RoyalClassFeature();
-		}
-		if (classId == L1PcInstance.CLASSID_ELF_MALE
-				|| classId == L1PcInstance.CLASSID_ELF_FEMALE) {
-			return new L1ElfClassFeature();
-		}
-		if (classId == L1PcInstance.CLASSID_KNIGHT_MALE
-				|| classId == L1PcInstance.CLASSID_KNIGHT_FEMALE) {
+		case L1ClassId.KNIGHT: // 騎士
 			return new L1KnightClassFeature();
-		}
-		if (classId == L1PcInstance.CLASSID_WIZARD_MALE
-				|| classId == L1PcInstance.CLASSID_WIZARD_FEMALE) {
+		case L1ClassId.ELF: // 精靈
+			return new L1ElfClassFeature();
+		case L1ClassId.WIZARD: // 法師
 			return new L1WizardClassFeature();
-		}
-		if (classId == L1PcInstance.CLASSID_DARK_ELF_MALE
-				|| classId == L1PcInstance.CLASSID_DARK_ELF_FEMALE) {
+		case L1ClassId.DARK_ELF: // 黑暗精靈
 			return new L1DarkElfClassFeature();
-		}
-		if (classId == L1PcInstance.CLASSID_DRAGON_KNIGHT_MALE
-				|| classId == L1PcInstance.CLASSID_DRAGON_KNIGHT_FEMALE) {
+		case L1ClassId.DRAGON_KNIGHT: // 龍騎士
 			return new L1DragonKnightClassFeature();
-		}
-		if (classId == L1PcInstance.CLASSID_ILLUSIONIST_MALE
-				|| classId == L1PcInstance.CLASSID_ILLUSIONIST_FEMALE) {
+		case L1ClassId.ILLUSIONIST: // 幻術師
 			return new L1IllusionistClassFeature();
 		}
 		throw new IllegalArgumentException();
 	}
-
-	public abstract int getAcDefenseMax(int ac);
-
-	public abstract int getMagicLevel(int playerLevel);
+	
+	/** 角色圖象 */
+	public abstract int InitSex(int sex);
+	/** 角色初始血量 */
+	public abstract int InitHp();
+	/** 角色初始魔量 */
+	public abstract int InitMp(int BaseWis);
+	/** 角色初始能力點數 */
+	public abstract int[] InitPoints();
+	/** 初始點數獎勵(力量) */
+	public abstract int bounsStr(int BaseStr);
+	/** 初始點數獎勵(智力) */
+	public abstract int bounsInt(int BaseInt);
+	/** 初始點數獎勵(體質) */
+	public abstract int bounsCon(int BaseCon);
+	/** 初始點數獎勵(精神) */
+	public abstract int bounsWis(int BaseWis);
+	/** 初始點數獎勵(敏捷) */
+	public abstract int bounsDex(int BaseDex);
+	/** 角色初始魔法防御點數 */
+	public abstract int InitMr();
+	/** 計算角色防御傷害減免 */
+	public abstract int calcAcDefense(int ac);
+	/** 計算角色迴避率 */
+	public abstract int calcLvUpEr(int lv);
+	/** 計算角色命中加成 */
+	public abstract int calcLvHit(int lv);
+	/** 計算角色傷害加成 */
+	public abstract int calcLvDmg(int lv,int weaponType);
+	/** 計算角色魔法等級 */
+	public abstract int calcMagicLevel(int lv);
+	/** 計算角色魅力加成 */
+	public abstract int bounsCha();
+	/** 計算角色升級血量 */
+	public abstract int calclvUpHp(int baseCon);
+	/** 計算角色升級魔量 */
+	public abstract int calclvUpMp(int BaseWis);
+	/** 敏捷對防禦的加成 */
+	public int calcLvDex2AC(int level, int dex) {
+		int b_ac = 10;
+		switch (dex)
+		{
+		case 1: case 2: case 3: case 4:
+		case 5: case 6: case 7: case 8:
+		case 9:
+			b_ac -= (level / 8);
+			break;
+		case 10: case 11: case 12:
+			b_ac -= (level / 7);
+			break;
+		case 13: case 14: case 15:
+			b_ac -= (level / 6);
+			break;
+		case 16: case 17:
+			b_ac -= (level / 5);
+			break;
+		default:
+			b_ac -= (level / 4);
+		break;
+		}
+		return b_ac;
+	}
+	/** 精神對魔防的加成 */
+	public byte calcStatMr(int wis) {
+		byte b_mr = 0;
+		switch (wis)
+		{
+		case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+		case 8: case 9: case 10: case 11: case 12: case 13: case 14:
+			b_mr = 0;
+			break;
+		case 15: case 16:
+			b_mr = 3;
+			break;
+		case 17:
+			b_mr = 6;
+			break;
+		case 18:
+			b_mr = 10;
+			break;
+		case 19:
+			b_mr = 15;
+			break;
+		case 20:
+			b_mr = 21;
+			break;
+		case 21:
+			b_mr = 28;
+			break;
+		case 22:
+			b_mr = 37;
+			break;
+		case 23:
+			b_mr = 47;
+			break;
+		case 24:
+			b_mr = 50;
+			break;
+		default:
+			b_mr = 50;
+		break;
+		}
+		return b_mr;
+	}
+	
 }

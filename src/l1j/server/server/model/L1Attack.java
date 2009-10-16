@@ -1569,7 +1569,7 @@ public class L1Attack
 	// ●●●● プレイヤーのＡＣによるダメージ輕減 ●●●●
 	private int calcPcDefense() {
 		int ac = Math.max(0, 10 - _targetPc.getAc());
-		int acDefMax = _targetPc.getClassFeature().getAcDefenseMax(ac);
+		int acDefMax = _targetPc.getClassFeature().calcAcDefense(ac);
 		return RandomArrayList.getInt(acDefMax + 1);
 	}
 

@@ -2834,7 +2834,7 @@ public class L1PcInstance extends L1Character
 
 	@Override
 	public int getMagicLevel() {
-		return getClassFeature().getMagicLevel(getLevel());
+		return getClassFeature().calcMagicLevel(getLevel());
 	}
 
 	private int _weightReduction = 0;
