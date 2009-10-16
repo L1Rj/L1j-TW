@@ -115,3 +115,5 @@ INSERT INTO `commands` VALUES ('進階踢人', '150', 'L1SKick');
 INSERT INTO `commands` VALUES ('GM開關', '150', 'L1GM');
 INSERT INTO `commands` VALUES ('crazy', '200', 'L1Crazy');
 INSERT INTO `commands` VALUES ('狂暴', '200', 'L1Crazy');
+INSERT INTO `commands` VALUES ('save', '200', 'L1Save');
+INSERT INTO `commands` VALUES ('儲存', '200', 'L1Save');

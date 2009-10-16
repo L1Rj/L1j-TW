@@ -227,8 +227,8 @@ public class L1PetInstance extends L1NpcInstance {
 			setDead(true);
 			setStatus(ActionCodes.ACTION_Die);
 			setCurrentHp(0);
-			setExpPercent(getExpPercent()-5);//waja add 寵物死亡
-
+			setExpPercent(getExpPercent()-5);// 寵物死亡扣除經驗
+			_currentPetStatus = 3; // 寵物狀態改為停留
 			getMap().setPassable(getLocation(), true);
 			broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Die));
 		}
@@ -447,6 +447,9 @@ public class L1PetInstance extends L1NpcInstance {
 					if (_petMaster != null && _petMaster.getLevel() >= pet
 							.getLevel()) {
 						pet.setCurrentPetStatus(status);
+					      if (!pet.isDead()){ // 修正寵物啟始狀態
+					          pet.setCurrentPetStatus(status);
+					         } // 修正寵物啟始狀態
 					} else {
 						L1PetType type = PetTypeTable.getInstance().get(
 								pet.getNpcTemplate().get_npcId());

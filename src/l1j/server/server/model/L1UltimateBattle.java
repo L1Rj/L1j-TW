@@ -31,6 +31,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.Config;
+import l1j.server.gameserver.L1WorldMap;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.datatables.ItemTable;
@@ -208,10 +209,12 @@ public class L1UltimateBattle {
 	/**
 	 * コロシアム上のアイテムとモンスターを全て削除する。
 	 */
-	private void clearColosseum() {
-		for (Object obj : L1World.getInstance().getVisibleObjects(_mapId)
-				.values()) {
-			if (obj instanceof L1MonsterInstance) // モンスター削除
+	private void clearColosseum()
+	{
+		for (Object obj : L1WorldMap.getMap(_mapId).getObjects())
+		{
+			// モンスター削除
+			if (obj instanceof L1MonsterInstance) 
 			{
 				L1MonsterInstance mob = (L1MonsterInstance) obj;
 				if (!mob.isDead()) {
@@ -221,7 +224,9 @@ public class L1UltimateBattle {
 					mob.deleteMe();
 
 				}
-			} else if (obj instanceof L1Inventory) // アイテム削除
+			}
+			// アイテム削除
+			else if (obj instanceof L1Inventory)
 			{
 				L1Inventory inventory = (L1Inventory) obj;
 				inventory.clearItems();
@@ -328,6 +333,9 @@ public class L1UltimateBattle {
 
 				for (L1PcInstance pc : getMembersArray()) // コロシアム內に居るPCを外へ出す
 				{
+					//Random random = new Random();
+					//int rndx = random.nextInt(4);
+					//int rndy = random.nextInt(4);
 					int locx = RandomArrayList.getInc(4, 33503);
 					int locy = RandomArrayList.getInc(4, 32764);
 					short mapid = 4;
