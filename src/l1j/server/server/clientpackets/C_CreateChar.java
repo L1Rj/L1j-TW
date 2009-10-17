@@ -33,6 +33,7 @@ import l1j.server.server.datatables.CharacterTable;
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.model.Beginner;
 import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.model.classes.L1ClassFeature;
 import l1j.server.server.serverpackets.S_AddSkill;
 import l1j.server.server.serverpackets.S_CharCreateStatus;
 import l1j.server.server.serverpackets.S_NewCharPacket;
@@ -46,17 +47,12 @@ public class C_CreateChar extends ClientBasePacket {
 
 	private static Logger _log = Logger.getLogger(C_CreateChar.class.getName());
 	private static final String C_CREATE_CHAR = "[C] C_CreateChar";
-	private static final int[] ORIGINAL_STR = new int[] { 13, 16, 11, 8, 12, 13, 11 };
-	private static final int[] ORIGINAL_DEX = new int[] { 10, 12, 12, 7, 15, 11, 10 };
-	private static final int[] ORIGINAL_CON = new int[] { 10, 14, 12, 12, 8, 14, 12 };
-	private static final int[] ORIGINAL_WIS = new int[] { 11, 9, 12, 12, 10, 12, 12 };
-	private static final int[] ORIGINAL_CHA = new int[] { 13, 12, 9, 8, 9, 8, 8 };
-	private static final int[] ORIGINAL_INT = new int[] { 10, 8, 12, 12, 11, 11, 12 }; 
-	private static final int[] ORIGINAL_AMOUNT = new int[] { 8, 4, 7, 16, 10, 6, 10 }; 
 
 	private static final String CLIENT_LANGUAGE_CODE = Config
 	.CLIENT_LANGUAGE_CODE;
 
+	private L1ClassFeature classFeature = null;
+	
 	public C_CreateChar(byte[] abyte0, ClientThread client)
 			throws Exception {
 		super(abyte0);
@@ -111,26 +107,23 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.addBaseCha((byte) readC());
 		pc.addBaseInt((byte) readC());
 		boolean statusError = false;
-		int original_str = ORIGINAL_STR[pc.getType()];
-		int original_dex = ORIGINAL_DEX[pc.getType()];
-		int original_con = ORIGINAL_CON[pc.getType()];
-		int original_wis = ORIGINAL_WIS[pc.getType()];
-		int original_cha = ORIGINAL_CHA[pc.getType()];
-		int original_int = ORIGINAL_INT[pc.getType()];
-		int originalAmount = ORIGINAL_AMOUNT[pc.getType()];
-		if ((pc.getBaseStr() < original_str
-		|| pc.getBaseDex() < original_dex
-		|| pc.getBaseCon() < original_con
-		|| pc.getBaseWis() < original_wis
-		|| pc.getBaseCha() < original_cha
-		|| pc.getBaseInt() < original_int)
-		|| (pc.getBaseStr() > original_str + originalAmount
-		|| pc.getBaseDex() > original_dex + originalAmount
-		|| pc.getBaseCon() > original_con + originalAmount
-		|| pc.getBaseWis() > original_wis + originalAmount
-		|| pc.getBaseCha() > original_cha + originalAmount
-		|| pc.getBaseInt() > original_int + originalAmount)) {
-		statusError = true;
+		
+		classFeature = L1ClassFeature.newClassFeature(pc.getType());
+		int originalpoint[] = classFeature.InitPoints();
+		
+		if ((pc.getBaseStr() < originalpoint[0]
+		     || pc.getBaseDex() < originalpoint[1]
+		     || pc.getBaseCon() < originalpoint[2]
+		     || pc.getBaseWis() < originalpoint[3]
+		     || pc.getBaseCha() < originalpoint[4]
+		     || pc.getBaseInt() < originalpoint[5])
+		     || (pc.getBaseStr() > originalpoint[0] + originalpoint[6]
+		     || pc.getBaseDex() > originalpoint[1] + originalpoint[6]
+		     || pc.getBaseCon() > originalpoint[2] + originalpoint[6]
+		     || pc.getBaseWis() > originalpoint[3] + originalpoint[6]
+		     || pc.getBaseCha() > originalpoint[4] + originalpoint[6]
+		     || pc.getBaseInt() > originalpoint[5] + originalpoint[6])) {
+		   statusError = true;
 		}
 
 		int statusAmount = pc.getDex() + pc.getCha() + pc.getCon()
@@ -152,8 +145,6 @@ public class C_CreateChar extends ClientBasePacket {
 		initNewChar(client, pc);
 	}
 
-	private static final int[] MALE_LIST = new int[] { 0, 61, 138, 734, 2786 ,6658,6671};
-	private static final int[] FEMALE_LIST = new int[] { 1, 48, 37, 1186, 2796 ,6661,6650};
 	private static final int[] LOCX_LIST = new int[] { 32780, 32714, 32714, 32780, 32714, 32714, 32714};
 	private static final int[] LOCY_LIST = new int[] { 32781, 32877, 32877, 32781, 32877, 32877, 32877};
 	private static final short[] MAPID_LIST = new short[] { 68, 69, 69, 68, 69 ,69,69};
@@ -167,11 +158,13 @@ public class C_CreateChar extends ClientBasePacket {
 	private static void initNewChar(ClientThread client, L1PcInstance pc)
 			throws IOException, Exception {
 
+		L1ClassFeature classFeature = L1ClassFeature.newClassFeature(pc.getType());
+		
 		pc.setId(IdFactory.getInstance().nextId());
 		if (pc.get_sex() == 0) {
-			pc.setClassId(MALE_LIST[pc.getType()]);
+			pc.setClassId(classFeature.InitSex(0));
 		} else {
-			pc.setClassId(FEMALE_LIST[pc.getType()]);
+			pc.setClassId(classFeature.InitSex(1));
 		}
 		pc.setX(LOCX_LIST[pc.getType()]);
 		pc.setY(LOCY_LIST[pc.getType()]);
@@ -179,8 +172,8 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.setHeading(0);
 		pc.setLawful(0);
 
-		int initHp = CalcInitHpMp.calcInitHp(pc);
-		int initMp = CalcInitHpMp.calcInitMp(pc);
+		short initHp = (short)classFeature.InitHp();
+		short initMp = (short)classFeature.InitMp(pc.getWis());
 		pc.addBaseMaxHp((short) initHp);
 		pc.setCurrentHp((short) initHp);
 		pc.addBaseMaxMp((short) initMp);

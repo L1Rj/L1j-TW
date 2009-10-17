@@ -19,12 +19,13 @@
 
 package l1j.server.server.utils;
 
-import l1j.server.server.model.Instance.L1PcInstance;
+//import l1j.server.server.model.Instance.L1PcInstance;
 
+/** 如沒問題將廢棄 */
 public class CalcInitHpMp {
 
-	private CalcInitHpMp() {
-	}
+	//private CalcInitHpMp() {
+	//}
 
 	/**
 	 * 各クラスの初期HPを返す
@@ -33,7 +34,7 @@ public class CalcInitHpMp {
 	 * @return hp
 	 * 
 	 */
-	public static int calcInitHp(L1PcInstance pc) {
+/*	public static int calcInitHp1(L1PcInstance pc) {
 		int hp = 1;
 		if (pc.isCrown()) {
 			hp = 14;
@@ -52,16 +53,16 @@ public class CalcInitHpMp {
 		}
 		return hp;
 	}
-
+*/
 												/* point: 0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 */
-	private static final byte[] Mp_Of_Crown = 			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4};
+/*	private static final byte[] Mp_Of_Crown = 			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4};
 	private static final byte[] Mp_Of_Knight = 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2};
 	private static final byte[] Mp_Of_Elf = 			{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 6, 6, 6};
 	private static final byte[] Mp_Of_Wizard = 			{ 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 8, 8, 8};
 	private static final byte[] Mp_Of_Darkelf = 		{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 6, 6, 6};
 	private static final byte[] Mp_Of_DragonKnight = 	{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 6, 6, 6};
 	private static final byte[] Mp_Of_Illusionist = 	{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 6, 6, 6};
-
+*/
 	/**
 	 * 各クラスの初期MPを返す
 	 * 
@@ -69,7 +70,7 @@ public class CalcInitHpMp {
 	 * @return value of mp
 	 * 
 	 */
-	public static byte calcInitMp(L1PcInstance pc) {
+/*	public static byte calcInitMp1(L1PcInstance pc) {
 		if (pc.isCrown()) {
 			return Mp_Of_Crown[pc.getWis()];
 		} else if (pc.isKnight()) {
@@ -87,5 +88,5 @@ public class CalcInitHpMp {
 		}
 		return 0; // 例外時
 	}
-
+*/
 }

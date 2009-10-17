@@ -583,6 +583,7 @@ public class L1PcInstance extends L1Character
 
 	public void setType(int i) {
 		_type = i;
+		_classFeature = L1ClassFeature.newClassFeature(i);
 	}
 
 	public short getAccessLevel() {
@@ -2491,10 +2492,14 @@ public class L1PcInstance extends L1Character
 		
 		for (int i = 0; i < gap; i++)
 		{
+			/*
 			short randomHp = CalcStat.calcStatHp(getType(), getBaseMaxHp(),
 					getBaseCon(), getOriginalHpup());
 			short randomMp = CalcStat.calcStatMp(getType(), getBaseMaxMp(),
 					getBaseWis(), getOriginalMpup());
+			*/
+			short randomHp = (short)_classFeature.calclvUpHp(getCon());
+			short randomMp = (short)_classFeature.calclvUpMp(getWis());
 			addBaseMaxHp(randomHp);
 			addBaseMaxMp(randomMp);
 			setCurrentHp((int) (getMaxHp() * dh)); // 設定升級後的目前體力
@@ -2550,8 +2555,12 @@ public class L1PcInstance extends L1Character
 
 		for (int i = 0; i > gap; i--) {
 			// レベルダウン時はランダム值をそのままマイナスする為に、base值に0を設定
+			/*
 			short randomHp = CalcStat.calcStatHp(getType(), 0, getBaseCon(), getOriginalHpup());
 			short randomMp = CalcStat.calcStatMp(getType(), 0, getBaseWis(), getOriginalMpup());
+			*/
+			short randomHp = (short)_classFeature.calclvUpHp(getCon());
+			short randomMp = (short)_classFeature.calclvUpMp(getWis());
 			if (getBaseMaxHp() <= 30) {// waja add 預防降級扣到HP/MP過低
 				randomHp = 0;
 			}
@@ -3010,13 +3019,7 @@ public class L1PcInstance extends L1Character
 	public void resetBaseDmgup() {
 		int newBaseDmgup = 0;
 		int newBaseBowDmgup = 0;
-		if (isKnight() || isDarkelf() || isDragonKnight()) { // ナイト、ダークエルフ
-			newBaseDmgup = getLevel() / 10;
-			newBaseBowDmgup = 0;
-		} else if (isElf()) { // エルフ
-			newBaseDmgup = 0;
-			newBaseBowDmgup = getLevel() / 10;
-		}
+		_classFeature.calcLvDmg(getLevel(), getWeapon().getItem().getType1());
 		addDmgup(newBaseDmgup - _baseDmgup);
 		addBowDmgup(newBaseBowDmgup - _baseBowDmgup);
 		_baseDmgup = newBaseDmgup;
@@ -3029,27 +3032,8 @@ public class L1PcInstance extends L1Character
 	 * @return
 	 */
 	public void resetBaseHitup() {
-		int newBaseHitup = 0;
-		int newBaseBowHitup = 0;
-		if (isCrown()) { // プリ
-			newBaseHitup = getLevel() / 5;
-			newBaseBowHitup = getLevel() / 5;
-		} else if (isKnight()) { // ナイト
-			newBaseHitup = getLevel() / 3;
-			newBaseBowHitup = getLevel() / 3;
-		} else if (isElf()) { // エルフ
-			newBaseHitup = getLevel() / 5;
-			newBaseBowHitup = getLevel() / 5;
-		} else if (isDarkelf()) { // ダークエルフ
-			newBaseHitup = getLevel() / 3;
-			newBaseBowHitup = getLevel() / 3;
-		} else if (isDragonKnight()) { // ドラゴンナイト
-			newBaseHitup = getLevel() / 3;
-			newBaseBowHitup = getLevel() / 3;
-		} else if (isIllusionist()) { // イリュージョニスト
-			newBaseHitup = getLevel() / 5;
-			newBaseBowHitup = getLevel() / 5;
-		}
+		int newBaseHitup = _classFeature.calcLvHit(getLevel());
+		int newBaseBowHitup = _classFeature.calcLvHit(getLevel());
 		addHitup(newBaseHitup - _baseHitup);
 		addBowHitup(newBaseBowHitup - _baseBowHitup);
 		_baseHitup = newBaseHitup;
@@ -3060,7 +3044,7 @@ public class L1PcInstance extends L1Character
 	 * キャラクターステータスからACを再計算して設定する 初期設定時、LVUP,LVDown時などに呼び出す
 	 */
 	public void resetBaseAc() {
-		int newAc = CalcStat.calcAc(getLevel(), getBaseDex());
+		int newAc = _classFeature.calcLvDex2AC(getLevel(), getBaseDex());
 		addAc(newAc - _baseAc);
 		_baseAc = newAc;
 	}
@@ -3069,21 +3053,8 @@ public class L1PcInstance extends L1Character
 	 * キャラクターステータスから素のMRを再計算して設定する 初期設定時、スキル使用時やLVUP,LVDown時に呼び出す
 	 */
 	public void resetBaseMr() {
-		int newMr = 0;
-		if (isCrown()) { // プリ
-			newMr = 10;
-		} else if (isElf()) { // エルフ
-			newMr = 25;
-		} else if (isWizard()) { // ウィザード
-			newMr = 15;
-		} else if (isDarkelf()) { // ダークエルフ
-			newMr = 10;
-		} else if (isDragonKnight()) { // 龍騎士
-			newMr = 18;
-		} else if (isIllusionist()) { // 幻術師
-			newMr = 20;
-		}
-		newMr += CalcStat.calcStatMr(getWis()); // WIS分のMRボーナス
+		int newMr = _classFeature.InitMr();
+		newMr += _classFeature.calcStatMr(getWis()); // 精神對魔防的加成
 		newMr += getLevel() / 2; // LVの半分だけ追加
 		addMr(newMr - _baseMr);
 		_baseMr = newMr;

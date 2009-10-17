@@ -43,7 +43,8 @@ public class Opcodes {
 
 	public static final int C_OPCODE_SHOP = 8;
 
-	//public static final int ?? = 9;
+	/** 寄送簡訊 By a0917009769(NEW) */
+	public static final int C_OPCODE_SMS = 9;
 
 	public static final int C_OPCODE_DELBUDDY = 10;
 

@@ -26,6 +26,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.StaticFinalList;
 
+/** 如沒問題將廢棄 */
 public class CalcStat {
 
 	private static Random rnd = new Random();
@@ -42,7 +43,7 @@ public class CalcStat {
 	 * @return acBonus
 	 * 
 	 */
-	public static int calcAc(int level, int dex) {
+/*	public static int calcAc(int level, int dex) {
 		int acBonus = 10;
 		if (dex <= 9) {
 			acBonus -= level / 8;
@@ -57,14 +58,14 @@ public class CalcStat {
 		}
 		return acBonus;
 	}
-
+*/
 	/**
 	 * 引數のWISに對應するMRボーナスを返す
 	 * 
 	 * @param wis
 	 * @return mrBonus
 	 */
-	public static int calcStatMr(int wis) {
+/*	public static int calcStatMr(int wis) {
 		int mrBonus = 0;
 		if (wis <= 14) {
 			mrBonus = 0;
@@ -94,7 +95,7 @@ public class CalcStat {
 
 	public static int calcDiffMr(int wis, int diff) {
 		return calcStatMr(wis + diff) - calcStatMr(wis);
-	}
+	}*/
 
 	/**
 	 * 各クラスのLVUP時のHP上昇值を返す
@@ -105,7 +106,7 @@ public class CalcStat {
 	 * @param originalHpup
 	 * @return HP上昇值
 	 */
-	public static short calcStatHp(int charType, int baseMaxHp, byte baseCon, int originalHpup) {
+/*	public static short calcStatHp(int charType, int baseMaxHp, byte baseCon, int originalHpup) {
 		short randomhp = 0;
 		int randomadd = RandomArrayList.getInc(5, -2);
 		byte playerbasecon = (byte) (baseCon / 2);
@@ -163,7 +164,7 @@ public class CalcStat {
 		}
 		return randomhp;
 	}
-
+*/
 	/**
 	 * 各クラスのLVUP時のMP上昇值を返す
 	 * 
@@ -173,7 +174,7 @@ public class CalcStat {
 	 * @param originalMpup
 	 * @return MP上昇值
 	 */
-	public static short calcStatMp(int charType, int baseMaxMp, byte baseWis, int originalMpup) {
+/*	public static short calcStatMp(int charType, int baseMaxMp, byte baseWis, int originalMpup) {
 		int randommp = 0;
 		int seedY = 0;
 		int seedZ = 0;
@@ -258,4 +259,5 @@ public class CalcStat {
 		}
 		return (short) randommp;
 	}
+	*/
 }
