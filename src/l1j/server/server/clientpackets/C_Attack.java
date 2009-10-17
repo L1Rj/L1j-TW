@@ -66,8 +66,10 @@ public class C_Attack extends ClientBasePacket
 		}
 
 		// 封鎖 LinHelp無條件喝水功能
-		if (pc.isParalyzed()) // 麻痺・凍結状態か
+		if (pc.isParalyzed() || pc.isSleeped()
+				 || pc.isFreeze() || pc.isStun()) {
 			return;
+		}
 
 		L1Object target = L1World.getInstance().findObject(targetId);
 

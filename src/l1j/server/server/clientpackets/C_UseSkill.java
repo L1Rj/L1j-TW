@@ -62,7 +62,8 @@ public class C_UseSkill extends ClientBasePacket {
 		}
 
 		// TODO 封鎖 LinHelp無條件喝水功能
-		if (pc.isParalyzed()) { // 麻痺・凍結状態か
+		if (pc.isParalyzed() || pc.isSleeped()
+				 || pc.isFreeze() || pc.isStun()) {
 			return;
 		}
 

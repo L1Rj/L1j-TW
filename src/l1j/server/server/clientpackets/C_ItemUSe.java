@@ -174,8 +174,10 @@ public class C_ItemUSe extends ClientBasePacket
 			return;
 
 		// 封鎖 LinHelp無條件喝水功能
-		if (pc.isParalyzed())
+		if (pc.isParalyzed() || pc.isSleeped()
+				 || pc.isFreeze() || pc.isStun()) {
 			return;
+		}
 
 		item = pc.getInventory().getItem(itemObjid);
 

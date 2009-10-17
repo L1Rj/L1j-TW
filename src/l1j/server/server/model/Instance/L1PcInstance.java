@@ -41,7 +41,6 @@ import l1j.server.server.datatables.CharacterTable;
 import l1j.server.server.datatables.ExpTable;
 import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.model.AcceleratorChecker;
-import l1j.server.server.model.HpRegeneration;
 import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1CastleLocation;
 import l1j.server.server.model.L1Character;
@@ -1266,13 +1265,6 @@ public class L1PcInstance extends L1Character
 			}
 			setDead(true);
 			setStatus(ActionCodes.ACTION_Die);
-		//XXX 死亡登出未紀錄修正
-			try {
-				save();
-				saveInventory();
-			} catch (Exception e) {
-				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			}	
 		}
 		GeneralThreadPool.getInstance().execute(new Death(lastAttacker));
 
@@ -3997,6 +3989,37 @@ public class L1PcInstance extends L1Character
 		return _acceleratorChecker;
 	}
 
+	public boolean isStun() {
+		if (hasSkillEffect(SHOCK_STUN)) {
+			return true;
+		}
+		if (hasSkillEffect(SHOCK_SKIN)) {
+			return true;
+		}
+		if (hasSkillEffect(BONE_BREAK)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isFreeze() {
+		if (hasSkillEffect(STATUS_FREEZE)) {
+			return true;
+		}
+		if (hasSkillEffect(ICE_LANCE)) {
+			return true;
+		}
+		if (hasSkillEffect(FREEZING_BLIZZARD)) {
+			return true;
+		}
+		if (hasSkillEffect(FREEZING_BREATH)) {
+			return true;
+		}
+		if (hasSkillEffect(EARTH_BIND)) {
+			return true;
+		}
+		return false;
+	}
 	/**
 	 * テレポート先の座標
 	 */
@@ -4200,7 +4223,7 @@ public class L1PcInstance extends L1Character
 	 */
 
 	public int getLapScore(){
-		return _lap*29 + _lapCheck;
+		return _lap * 29 + _lapCheck;
 	}
 //寵物競速 補充
 	private boolean _order_list=false;
