@@ -401,6 +401,9 @@ public class PacketHandler {
 			//new C_Clan(abyte0, _client);
 			break;
 		// 修正城堡總管全部功能 By Impreza8837
+		case C_OPCODE_CLIENTREPORT: // 用戶端請求在線公告 By a0917009769
+			new C_ClientReport(abyte0, _client);
+			break;
 		}
 	}
 }
