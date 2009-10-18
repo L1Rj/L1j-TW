@@ -68,8 +68,10 @@ public abstract class L1ClassFeature {
 	public abstract int calcLvUpEr(int lv);
 	/** 計算角色命中加成 */
 	public abstract int calcLvHit(int lv);
-	/** 計算角色傷害加成 */
-	public abstract int calcLvDmg(int lv,int weaponType);
+	/** 計算角色近戰傷害加成 */
+	public abstract int calcLvFightDmg(int lv);
+	/** 計算角色遠攻傷害加成 */
+	public abstract int calcLvShotDmg(int lv);
 	/** 計算角色魔法等級 */
 	public abstract int calcMagicLevel(int lv);
 	/** 計算角色魅力加成 */

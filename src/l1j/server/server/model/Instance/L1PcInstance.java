@@ -40,7 +40,9 @@ import l1j.server.server.command.executor.L1HpBar;
 import l1j.server.server.datatables.CharacterTable;
 import l1j.server.server.datatables.ExpTable;
 import l1j.server.server.datatables.ItemTable;
+import l1j.server.server.model.id.L1ClassId;
 import l1j.server.server.model.AcceleratorChecker;
+import l1j.server.server.model.HpRegeneration;
 import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1CastleLocation;
 import l1j.server.server.model.L1Character;
@@ -118,21 +120,6 @@ import static l1j.server.server.model.skill.L1SkillId.*;
 public class L1PcInstance extends L1Character 
 	{
 	private static final long serialVersionUID = 1L;
-
-	public static final int CLASSID_KNIGHT_MALE = 61;
-	public static final int CLASSID_KNIGHT_FEMALE = 48;
-	public static final int CLASSID_ELF_MALE = 138;
-	public static final int CLASSID_ELF_FEMALE = 37;
-	public static final int CLASSID_WIZARD_MALE = 734;
-	public static final int CLASSID_WIZARD_FEMALE = 1186;
-	public static final int CLASSID_DARK_ELF_MALE = 2786;
-	public static final int CLASSID_DARK_ELF_FEMALE = 2796;
-	public static final int CLASSID_PRINCE = 0;
-	public static final int CLASSID_PRINCESS = 1;
-	public static final int CLASSID_DRAGON_KNIGHT_MALE = 6658;
-	public static final int CLASSID_DRAGON_KNIGHT_FEMALE = 6661;
-	public static final int CLASSID_ILLUSIONIST_MALE = 6671;
-	public static final int CLASSID_ILLUSIONIST_FEMALE = 6650;
 
 	public int getAc() 
 	{
@@ -1686,20 +1673,7 @@ public class L1PcInstance extends L1Character
 			return 0;
 		}
 
-		int er = 0;
-		if (isKnight()) {
-			er = getLevel() / 4; // 騎士
-		} else if (isCrown() || isElf()) {
-			er = getLevel() / 8; // 王族 妖精
-		} else if (isDarkelf()) {
-			er = getLevel() / 6; // 黑暗妖精
-		} else if (isWizard()) {
-			er = getLevel() / 10; // 法師
-		} else if (isDragonKnight()) {
-			er = getLevel() / 7; // 龍騎士
-		} else if (isIllusionist()) {
-			er = getLevel() / 9; // 幻術士
-		}
+		int er = _classFeature.calcLvUpEr(getLevel());
 
 		er += (getDex() - 8) / 2;
 
@@ -1761,37 +1735,37 @@ public class L1PcInstance extends L1Character
 	}
 
 	public boolean isCrown() {
-		return (getClassId() == CLASSID_PRINCE
-				|| getClassId() == CLASSID_PRINCESS);
+		return (getClassId() == L1ClassId.PRINCE
+				|| getClassId() == L1ClassId.PRINCESS);
 	}
 
 	public boolean isKnight() {
-		return (getClassId() == CLASSID_KNIGHT_MALE
-				|| getClassId() == CLASSID_KNIGHT_FEMALE);
+		return (getClassId() == L1ClassId.KNIGHT_MALE
+				|| getClassId() == L1ClassId.KNIGHT_FEMALE);
 	}
 
 	public boolean isElf() {
-		return (getClassId() == CLASSID_ELF_MALE
-				|| getClassId() == CLASSID_ELF_FEMALE);
+		return (getClassId() == L1ClassId.ELF_MALE
+				|| getClassId() == L1ClassId.ELF_FEMALE);
 	}
 
 	public boolean isWizard() {
-		return (getClassId() == CLASSID_WIZARD_MALE
-				|| getClassId() == CLASSID_WIZARD_FEMALE);
+		return (getClassId() == L1ClassId.WIZARD_MALE
+				|| getClassId() == L1ClassId.WIZARD_FEMALE);
 	}
 
 	public boolean isDarkelf() {
-		return (getClassId() == CLASSID_DARK_ELF_MALE
-				|| getClassId() == CLASSID_DARK_ELF_FEMALE);
+		return (getClassId() == L1ClassId.DARK_ELF_MALE
+				|| getClassId() == L1ClassId.DARK_ELF_FEMALE);
 	}
 
 	public boolean isDragonKnight() {
-		return (getClassId() == CLASSID_DRAGON_KNIGHT_MALE
-				|| getClassId() == CLASSID_DRAGON_KNIGHT_FEMALE);
+		return (getClassId() == L1ClassId.DRAGON_KNIGHT_MALE
+				|| getClassId() == L1ClassId.DRAGON_KNIGHT_FEMALE);
 	}
 	public boolean isIllusionist() {
-		return (getClassId() == CLASSID_ILLUSIONIST_MALE
-				|| getClassId() == CLASSID_ILLUSIONIST_FEMALE);
+		return (getClassId() == L1ClassId.ILLUSIONIST_MALE
+				|| getClassId() == L1ClassId.ILLUSIONIST_FEMALE);
 	}
 
 	private static Logger _log = Logger.getLogger(L1PcInstance.class.getName());
@@ -3009,9 +2983,8 @@ public class L1PcInstance extends L1Character
 	 * @return
 	 */
 	public void resetBaseDmgup() {
-		int newBaseDmgup = 0;
-		int newBaseBowDmgup = 0;
-		_classFeature.calcLvDmg(getLevel(), getWeapon().getItem().getType1());
+		int newBaseDmgup = _classFeature.calcLvFightDmg(getLevel());
+		int newBaseBowDmgup = _classFeature.calcLvShotDmg(getLevel());
 		addDmgup(newBaseDmgup - _baseDmgup);
 		addBowDmgup(newBaseBowDmgup - _baseBowDmgup);
 		_baseDmgup = newBaseDmgup;

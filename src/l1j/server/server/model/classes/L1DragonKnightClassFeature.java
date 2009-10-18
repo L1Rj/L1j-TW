@@ -101,11 +101,13 @@ class L1DragonKnightClassFeature extends L1ClassFeature {
 	}
 
 	@Override
-	public int calcLvDmg(int lv,int weaponType) {
-		if (weaponType == 20 || weaponType == 62) { // 弓類、鐵手甲不加額外攻擊點數
-			return 0;
-		}
-		return (lv / 10); // 每10級加一點額外攻擊
+	public int calcLvFightDmg(int lv) {
+		return (lv/10); // 每10級加一點近戰額外傷害
+	}
+
+	@Override
+	public int calcLvShotDmg(int lv) {
+		return 0; // 不具有遠程攻擊加成
 	}
 
 	@Override

@@ -101,11 +101,13 @@ class L1ElfClassFeature extends L1ClassFeature {
 	}
 
 	@Override
-	public int calcLvDmg(int lv,int weaponType) {
-		if (weaponType != 20 && weaponType != 0) {
-			return 0; // 如非弓類不加額外攻擊點數
-		}
-		return (lv / 10); // 每10級加一點額外攻擊
+	public int calcLvFightDmg(int lv) {
+		return (lv/10); // 不具有近戰額外加成
+	}
+
+	@Override
+	public int calcLvShotDmg(int lv) {
+		return (lv / 10); // 每10級加一點遠攻額外加成
 	}
 
 	@Override

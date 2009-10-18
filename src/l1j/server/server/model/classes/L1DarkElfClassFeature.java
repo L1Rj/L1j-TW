@@ -102,13 +102,15 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 	}
 
 	@Override
-	public int calcLvDmg(int lv,int weaponType) {
-		if (weaponType == 20 || weaponType == 62) { // 弓類、鐵手甲不加額外攻擊點數
-			return 0;
-		}
-		return (lv / 10); // 每10級加一點額外攻擊
+	public int calcLvFightDmg(int lv) {
+		return (lv/10); // 每10級加一點近戰額外加成
 	}
 
+	@Override
+	public int calcLvShotDmg(int lv) {
+		return 0; // 不具有遠攻加成
+	}
+	
 	@Override
 	public int calcLvHit(int lv) {
 		return (lv / 3); // 黑妖每3級額外命中+1

@@ -101,8 +101,13 @@ class L1RoyalClassFeature extends L1ClassFeature {
 	}
 
 	@Override
-	public int calcLvDmg(int lv,int weaponType) {
-		return 0;
+	public int calcLvFightDmg(int lv) {
+		return 0; // 不具有近戰加成
+	}
+
+	@Override
+	public int calcLvShotDmg(int lv) {
+		return 0; // 不具有遠攻加成
 	}
 
 	@Override
