@@ -586,7 +586,6 @@ public class L1PcInstance extends L1Character
 
 	public void setClassId(int i) {
 		_classId = i;
-		_classFeature = L1ClassFeature.newClassFeature(i);
 	}
 
 	private L1ClassFeature _classFeature = null;
