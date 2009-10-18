@@ -146,51 +146,26 @@ public class C_CreateChar extends ClientBasePacket {
 		initNewChar(client, pc);
 	}
 
-	private static final int[] LOCX_LIST = new int[] { 32780, 32714, 32714, 32780, 32714, 32714, 32714};
-	private static final int[] LOCY_LIST = new int[] { 32781, 32877, 32877, 32781, 32877, 32877, 32877};
-	private static final short[] MAPID_LIST = new short[] { 68, 69, 69, 68, 69 ,69,69};
-// private static final int[] LOCX_LIST = new int[] { 32780, 32714, 32714,
-// 32780, 32714, 32714, 32714 };
-// private static final int[] LOCY_LIST = new int[] { 32781, 32877, 32877,
-// 32781, 32877, 32877, 32877 };
-// private static final short[] MAPID_LIST = new short[] { 68, 69, 69, 68, 69,
-// 69, 69 };
-
 	private static void initNewChar(ClientThread client, L1PcInstance pc)
 			throws IOException, Exception {
 		
 		L1ClassFeature classFeature = L1ClassFeature.newClassFeature(pc.getType());	
-		pc.setId(IdFactory.getInstance().nextId());
-		
-		pc.setClassId(classFeature.InitSex(pc.get_sex()));
-		
-		System.out.println("sex");
-		
-		pc.setX(LOCX_LIST[pc.getType()]);
-		System.out.println("setX");
-		pc.setY(LOCY_LIST[pc.getType()]);
-		System.out.println("setY");
-		pc.setMap(MAPID_LIST[pc.getType()]);
-		System.out.println("setMap");
-		pc.setHeading(0);
-		System.out.println("heading");
-		pc.setLawful(0);
-		System.out.println("lawful");
-
 		short initHp = (short)classFeature.InitHp();
 		short initMp = (short)classFeature.InitMp(pc.getWis());
+		int [] spawn = classFeature.InitSpawn(pc.getType());
+		pc.setId(IdFactory.getInstance().nextId());
+		pc.setClassId(classFeature.InitSex(pc.get_sex()));
+		pc.setX(spawn[0]);
+		pc.setY(spawn[1]);
+		pc.setMap((short)spawn[2]);
+		pc.setHeading(5);
+		pc.setLawful(0);
 		pc.addBaseMaxHp(initHp);
-		System.out.println("basehp");
 		pc.setCurrentHp(initHp);
-		System.out.println("hp");
 		pc.addBaseMaxMp(initMp);
-		System.out.println("basemp");
 		pc.setCurrentMp(initMp);
-		System.out.println("mp");
 		pc.resetBaseAc();
-		System.out.println("ac");
 		pc.setTitle("");
-		System.out.println("title");
 		pc.setClanid(0);
 		pc.setClanRank(0);
 		pc.set_food(40);

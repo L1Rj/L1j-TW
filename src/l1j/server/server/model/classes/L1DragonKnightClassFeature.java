@@ -23,6 +23,12 @@ import l1j.server.server.model.id.L1ClassId;
 class L1DragonKnightClassFeature extends L1ClassFeature {
 
 	@Override
+	public int[] InitSpawn(int type){
+		int spawn[] = {32714,32877,69};
+		return spawn;
+	}
+	
+	@Override
 	public int InitSex(int sex) {
 		switch(sex){
 		case 0:

@@ -42,6 +42,8 @@ public abstract class L1ClassFeature {
 		throw new IllegalArgumentException();
 	}
 	
+	/** 角色出生地 */
+	public abstract int[] InitSpawn(int type);
 	/** 角色圖象 */
 	public abstract int InitSex(int sex);
 	/** 角色初始血量 */
