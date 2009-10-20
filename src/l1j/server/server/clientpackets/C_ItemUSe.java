@@ -476,7 +476,7 @@ public class C_ItemUSe extends ClientBasePacket
 					isSameAttr = true;
 				}
 				if (isSameAttr && oldAttrEnchantLevel >= 3) {
-					pc.sendPackets(new S_ServerMessage(1453)); // これ以上は強化できません。
+					pc.sendPackets(new S_ServerMessage(79));// \f1沒有任何事情發生。
 					return;
 				}
 
