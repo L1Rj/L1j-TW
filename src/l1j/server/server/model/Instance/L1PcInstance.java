@@ -649,7 +649,7 @@ public class L1PcInstance extends L1Character
 		return L1World.getInstance().getClan(getClanname());
 	}
 
-	private int _clanRank; // ● クラン內のランク(血盟君主、ガーディアン、一般、見習い)
+	private int _clanRank; // ● 血盟內的階級(聯盟君主、守護騎士、一般、見習)
 
 	public int getClanRank() {
 		return _clanRank;

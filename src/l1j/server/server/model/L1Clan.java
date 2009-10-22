@@ -182,7 +182,7 @@ public class L1Clan {
 			} else if (pc.getClanRank() == CLAN_RANK_GUARDIAN) {
 				rank = "[守護騎士]";
 			} else if (pc.getClanRank() == CLAN_RANK_PRINCE) {
-				rank = "[血盟君主]";
+				rank = "[聯盟君主]";
 			} else {
 				rank = "";
 			}
