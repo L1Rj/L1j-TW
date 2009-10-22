@@ -37,7 +37,6 @@ public class C_ClientReport extends ClientBasePacket {
 			}
 			
 			pc.sendPackets(new S_SystemMessage(message));
-			System.out.println("report");
 		}
 		private void loadAnnouncements() {
 			_ToAll.clear();

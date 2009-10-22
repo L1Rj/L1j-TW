@@ -24,6 +24,20 @@ public class L1ClassId {
 	    public static final int DRAGON_KNIGHT = 5;
 	    /** 幻術師 */
 	    public static final int ILLUSIONIST = 6;
+		/** 王族(刪除角色) */
+		public static final int Del_ROYAL = 32;
+		/** 騎士(刪除角色) */
+	    public static final int Del_KNIGHT = 33;
+	    /** 精靈(刪除角色) */
+		public static final int Del_ELF = 34;
+		/** 法師(刪除角色) */
+	    public static final int Del_WIZARD = 35;
+	    /** 黑暗精靈(刪除角色) */
+	    public static final int Del_DARK_ELF = 36;
+	    /** 龍騎士(刪除角色) */
+	    public static final int Del_DRAGON_KNIGHT = 37;
+	    /** 幻術師(刪除角色) */
+	    public static final int Del_ILLUSIONIST = 38;
 	    
 	    /*
 	     * 角色圖像

@@ -40,7 +40,7 @@ class L1DragonKnightClassFeature extends L1ClassFeature {
 
 	@Override
 	public int InitHp() {
-		return 14; // 初始體力14
+		return 16; // 初始體力14
 	}
 
 	@Override

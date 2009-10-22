@@ -25,21 +25,30 @@ public abstract class L1ClassFeature {
 		
 		switch(Type){
 		case L1ClassId.ROYAL: // 王族
+		case L1ClassId.Del_ROYAL:
 			return new L1RoyalClassFeature();
 		case L1ClassId.KNIGHT: // 騎士
+		case L1ClassId.Del_KNIGHT:
 			return new L1KnightClassFeature();
 		case L1ClassId.ELF: // 精靈
+		case L1ClassId.Del_ELF: // 精靈
 			return new L1ElfClassFeature();
 		case L1ClassId.WIZARD: // 法師
+		case L1ClassId.Del_WIZARD:
 			return new L1WizardClassFeature();
 		case L1ClassId.DARK_ELF: // 黑暗精靈
+		case L1ClassId.Del_DARK_ELF:
 			return new L1DarkElfClassFeature();
 		case L1ClassId.DRAGON_KNIGHT: // 龍騎士
+		case L1ClassId.Del_DRAGON_KNIGHT:
 			return new L1DragonKnightClassFeature();
 		case L1ClassId.ILLUSIONIST: // 幻術師
+		case L1ClassId.Del_ILLUSIONIST:
 			return new L1IllusionistClassFeature();
+		default:
+			return new L1RoyalClassFeature();
 		}
-		throw new IllegalArgumentException();
+		//throw new IllegalArgumentException();
 	}
 	
 	/** 角色出生地 */
