@@ -2,7 +2,7 @@
 title L1J-TW Server Console
 REM -------------------------------------
 REM 基本伺服器預設參數
-java -Xmx1024m -Xincgc -cp l1jserver.jar;lib\l1jtw_commons.jar;lib\c3p0-0.9.1.2.jar;lib\commons-dbcp-1.3-SNAPSHOT-r796150-jdbc4.jar;lib\commons-pool-1.5.2.jar;lib\log4j-1.2.15.jar;lib\commons-io-1.4.jar;lib\mysql-connector-java-5.1.10-bin.jar;lib\javolution-5.3.1.jar l1j.server.Server
+java -Xmx1024m -Xincgc -cp l1jserver.jar;lib\l1jtw_commons.jar;lib\c3p0-0.9.1.2.jar;lib\commons-dbcp-1.3-SNAPSHOT-r796150-jdbc4.jar;lib\commons-pool-1.5.2.jar;lib\log4j-1.2.15.jar;lib\commons-io-1.4.jar;lib\sqlitejdbc-v056.jar;lib\mysql-connector-java-5.1.10-bin.jar;lib\javolution-5.3.1.jar l1j.server.Server
 REM
 REM 據說會比較好的參數
 REM java -Xmx512m -Xss1024K -XX:+UseConcMarkSweepGC -cp l1jserver.jar;lib\l1jtw_commons.jar;lib\c3p0-0.9.1.2.jar;lib\commons-dbcp-1.3-SNAPSHOT-r796150-jdbc4.jar;lib\commons-pool-1.5.2.jar;lib\log4j-1.2.15.jar;lib\commons-io-1.4.jar;lib\mysql-connector-java-5.1.10-bin.jar;lib\javolution-5.3.1.jar l1j.server.Server
