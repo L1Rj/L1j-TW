@@ -150,6 +150,20 @@ public class L1TeleporterInstance extends L1NpcInstance {
 					htmlid = "barnia1";
 				}
 			}
+            //卡連-隱谷
+			else if (npcid == 50005) {
+				if (player.isDarkelf()) {
+					if (player.getLevel() <= 3) {
+						htmlid = "karen1";
+					} else if (player.getLevel() > 3 && player.getLevel() < 50) {
+						htmlid = "karen3";
+					} else if (player.getLevel() >= 50) {
+						htmlid = "karen4";
+					}
+				} else {
+					htmlid = "karen2";
+				}
+			}
 			// 扭曲的空間
 			else if (npcid == 80048) {
 				if (player.getLevel() >= 52) {
@@ -160,7 +174,6 @@ public class L1TeleporterInstance extends L1NpcInstance {
 					htmlid = "entgate3";
 				}
 			}
-
 			// 次元之門
 			else if (npcid == 80058) {
 				if (player.getLevel() >= 52) {
@@ -171,7 +184,6 @@ public class L1TeleporterInstance extends L1NpcInstance {
 					htmlid = "cpass03";
 				}
 			}
-
 			// html表示
 			if (htmlid != null) { // htmlidが指定されている場合
 				player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
