@@ -41,7 +41,7 @@ public class LogDeleteItem {
 		try {
 			con = L1LogDataFactory.getInstance().getConnection();
 			pstm = con
-					.prepareStatement("INSERT INTO LogWareHouseIn VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+					.prepareStatement("INSERT INTO LogDeleteItem VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
 			Date time = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat(
 					"yyyy-MM-dd HH:mm:ss");

@@ -42,7 +42,7 @@ public class LogPrivateShopSell {
 		try {
 			con = L1LogDataFactory.getInstance().getConnection();
 			pstm = con
-					.prepareStatement("INSERT INTO LogPrivateShopBuy VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+					.prepareStatement("INSERT INTO LogPrivateShopSell VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 			Date time = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat(
 					"yyyy-MM-dd HH:mm:ss");
