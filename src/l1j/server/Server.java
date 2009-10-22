@@ -46,8 +46,6 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import com.l1jtw.commons.log4j.LoggingService;
-
 import l1j.server.Config;
 import l1j.server.server.GameServer;
 import l1j.server.telnet.TelnetServer;
@@ -70,7 +68,6 @@ public class Server {
 	 * @throws Exception
 	 */
 	public static void main(final String[] args) throws Exception {
-		LoggingService.init();
 		File logFolder = new File("log");
 		logFolder.mkdir();
 
@@ -94,6 +91,7 @@ public class Server {
 		L1DatabaseFactory.setDatabaseSettings(Config.DB_DRIVER, Config.DB_URL,
 				Config.DB_LOGIN, Config.DB_PASSWORD);
 		L1DatabaseFactory.getInstance();
+		L1LogDataFactory.getInstance();
 
 		GameServer.getInstance().initialize();
 		

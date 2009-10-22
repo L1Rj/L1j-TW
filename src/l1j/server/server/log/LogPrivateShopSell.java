@@ -18,154 +18,62 @@
  */
 package l1j.server.server.log;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.RandomAccessFile;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
-
+import l1j.server.L1LogDataFactory;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
+import l1j.server.server.utils.SQLUtil;
 
 public class LogPrivateShopSell {
-	private static Logger _log = Logger.getLogger(LogPrivateShopSell.class.getName());
+	private static Logger _log = Logger.getLogger(LogPrivateShopSell.class
+			.getName());
 
-	public void storeLogPrivateShopSell(L1PcInstance pc, L1PcInstance target, L1ItemInstance item, int itembefore, int itemafter, int sellcount) {
-		File file = new File("log/PrivateShopSell.log");
-		boolean fileex = file.exists();
-		if (!fileex) {
-			File file2 = new File("log/");
-			file2.mkdirs();
-			DataOutputStream out = null;
-			String slog = null;
-
-			Date time1 = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String fm = formatter.format(time1.getTime());
-			try {
-				out = new DataOutputStream(new FileOutputStream("log/PrivateShopSell.log"));
-				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				out.write("#                                      PrivateShopSell.                                  #\r\n".getBytes());
-				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				slog = fm + "  IP=";
-				out.write(slog.getBytes());
-				slog = pc.getNetConnection().getIp() + "  Account=";
-				out.write(slog.getBytes());
-				slog = pc.getAccountName() + "  CharId=";
-				out.write(slog.getBytes());
-				slog = pc.getId() + "  CharName=";
-				out.write(slog.getBytes());
-				slog = pc.getName() + "  TargetIP=";
-				out.writeBytes(encode(slog));
-				slog = target.getNetConnection().getIp() + "  TargetAccount=";
-				out.write(slog.getBytes());
-				slog = target.getAccountName() + "  TargetCharId=";
-				out.write(slog.getBytes());
-				slog = target.getId() + "  TargetCharName=";
-				out.write(slog.getBytes());
-				slog = target.getName() + "  ObjectId=";
-				out.writeBytes(encode(slog));
-				slog = item.getId() + "  ItemName=";
-				out.write(slog.getBytes());
-				slog = item.getItem().getName() + "  EnchantLevel=";
-				out.writeBytes(encode(slog));
-				slog = item.getEnchantLevel() + "  Count=";
-				out.write(slog.getBytes());
-				slog = item.getCount() + "  ItemBefore=";
-				out.write(slog.getBytes());
-				slog = itembefore + "  ItemAfter=";
-				out.write(slog.getBytes());
-				slog = itemafter + "  ItemDiff=";
-				out.write(slog.getBytes());
-				int itemdiff = itembefore - itemafter;
-				if (itemdiff < 0) {
-					itemdiff = -itemdiff;
-				}
-				slog = itemdiff + "  BuyCount=";
-				out.write(slog.getBytes());
-				slog = sellcount + "\r\n";
-				out.write(slog.getBytes());
-			} catch (Exception e) {
-				_log.warn("PrivateShopSell log outofstream error:" + e);
-				e.printStackTrace();
-			} finally {
-				try {
-					out.close();
-				} catch (Exception e1) {
-				}
-			}
-		} else {
-			RandomAccessFile rfile = null;
-			String slog = null;
-
-			Date time1 = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String fm = formatter.format(time1.getTime());
-			try {
-				rfile = new RandomAccessFile("log/PrivateShopSell.log", "rw");
-				rfile.seek(rfile.length());
-
-				slog = fm + "  IP=";
-				rfile.writeBytes(slog);
-				slog = pc.getNetConnection().getIp() + "  Account=";
-				rfile.writeBytes(slog);
-				slog = pc.getAccountName() + "  CharId=";
-				rfile.writeBytes(slog);
-				slog = pc.getId() + "  CharName=";
-				rfile.writeBytes(slog);
-				slog = pc.getName() + "  TargetIP=";
-				rfile.writeBytes(encode(slog));
-				slog = target.getNetConnection().getIp() + "  TargetAccount=";
-				rfile.writeBytes(slog);
-				slog = target.getAccountName() + "  TargetCharId=";
-				rfile.writeBytes(slog);
-				slog = target.getId() + "  TargetCharName=";
-				rfile.writeBytes(slog);
-				slog = target.getName() + "  ObjectId=";
-				rfile.writeBytes(encode(slog));
-				slog = item.getId() + "  ItemName=";
-				rfile.writeBytes(slog);
-				slog = item.getItem().getName() + "  EnchantLevel=";
-				rfile.writeBytes(encode(slog));
-				slog = item.getEnchantLevel() + "  Count=";
-				rfile.writeBytes(slog);
-				slog = item.getCount() + "  ItemBefore=";
-				rfile.writeBytes(slog);
-				slog = itembefore + "  ItemAfter=";
-				rfile.writeBytes(slog);
-				slog = itemafter + "  ItemDiff=";
-				rfile.writeBytes(slog);
-				int itemdiff = itembefore - itemafter;
-				if (itemdiff < 0) {
-					itemdiff = -itemdiff;
-				}
-				slog = itemdiff + "  BuyCount=";
-				rfile.writeBytes(slog);
-				slog = sellcount + "\r\n";
-				rfile.writeBytes(slog);
-			} catch (Exception e) {
-				_log.warn("PrivateShopSell log randomacess error:" + e);
-				e.printStackTrace();
-			} finally {
-				try {
-					rfile.close();
-				} catch (Exception e1) {
-				}
-			}
-		}
-	}
-
-	public static String encode(String str) {
-		String result = "";
+	public static void storeLogPrivateShopSell(L1PcInstance pc, L1PcInstance target,
+			L1ItemInstance item, int itembefore, int itemafter, int sellcount) {
+		Connection con = null;
+		PreparedStatement pstm = null;
 		try {
-			if (str == null)
-				return result;
-			result = new String(str.getBytes("UTF-8"), "8859_1");
-		} catch (java.io.UnsupportedEncodingException e) {
+			con = L1LogDataFactory.getInstance().getConnection();
+			pstm = con
+					.prepareStatement("INSERT INTO LogPrivateShopBuy VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			Date time = new Date();
+			SimpleDateFormat formatter = new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss");
+			String fm = formatter.format(time.getTime());
+			pstm.setString(1, fm);
+			pstm.setString(2, pc.getNetConnection().getIp());
+			pstm.setString(3, pc.getAccountName());
+			pstm.setInt(4, pc.getId());
+			pstm.setString(5, pc.getName());
+			pstm.setString(6, target.getNetConnection().getIp());
+			pstm.setString(7, target.getAccountName());
+			pstm.setInt(8, target.getId());
+			pstm.setString(9, target.getName());
+			pstm.setInt(10, item.getId());
+			pstm.setString(11, item.getItem().getName());
+			pstm.setInt(12, item.getEnchantLevel());
+			pstm.setInt(13, item.getCount());
+			pstm.setInt(14, itembefore);
+			pstm.setInt(15, itemafter);
+			int itemdiff = itembefore - itemafter;
+			if (itemdiff < 0) {
+				itemdiff = -itemdiff;
+			}
+			pstm.setInt(16, itemdiff);
+			pstm.setInt(17, sellcount);
+			pstm.execute();
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
 		}
-		return result;
 	}
 }

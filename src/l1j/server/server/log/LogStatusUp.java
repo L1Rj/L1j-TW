@@ -18,184 +18,71 @@
  */
 package l1j.server.server.log;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.RandomAccessFile;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
-
+import l1j.server.L1LogDataFactory;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.Instance.L1ItemInstance;
+import l1j.server.server.utils.SQLUtil;
 
 public class LogStatusUp {
 	private static Logger _log = Logger.getLogger(LogStatusUp.class.getName());
 
-	public void storeLogStatusUp(L1PcInstance pc, int str, int dex, int con, int Int, int wis, int cha) {
-		File file = new File("log/StatusUp.log");
-		boolean fileex = file.exists();
-		if (!fileex) {
-			File file2 = new File("log/");
-			file2.mkdirs();
-			DataOutputStream out = null;
-			String ditem = null;
-
-			Date time1 = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String fm = formatter.format(time1.getTime());
-			try {
-				out = new DataOutputStream(new FileOutputStream("log/StatusUp.log"));
-				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				out.write("#                                        Status Up.                                      #\r\n".getBytes());
-				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				ditem = fm + "  IP=";
-				out.write(ditem.getBytes());
-				ditem = pc.getNetConnection().getIp() + "  Account=";
-				out.write(ditem.getBytes());
-				ditem = pc.getAccountName() + "  CharId=";
-				out.write(ditem.getBytes());
-				ditem = pc.getId() + "  CharName=";
-				out.write(ditem.getBytes());
-				ditem = pc.getName() + "  Level=";
-				out.writeBytes(encode(ditem));
-				ditem = pc.getLevel() + "  Str=";
-				out.write(ditem.getBytes());
-				ditem = str + "  BaseStr=";
-				out.write(ditem.getBytes());
-				ditem = pc.getBaseStr() + "  Dex=";
-				out.write(ditem.getBytes());
-				ditem = dex + "  BaseDex=";
-				out.write(ditem.getBytes());
-				ditem = pc.getBaseDex() + "  Con=";
-				out.write(ditem.getBytes());
-				ditem = con + "  BaseCon=";
-				out.write(ditem.getBytes());
-				ditem = pc.getBaseCon() + "  Int=";
-				out.write(ditem.getBytes());
-				ditem = Int + "  BaseInt=";
-				out.write(ditem.getBytes());
-				ditem = pc.getBaseInt() + "  Wis=";
-				out.write(ditem.getBytes());
-				ditem = wis + "  BaseWis=";
-				out.write(ditem.getBytes());
-				ditem = pc.getBaseWis() + "  Cha=";
-				out.write(ditem.getBytes());
-				ditem = cha + "  BaseCha=";
-				out.write(ditem.getBytes());
-				ditem = pc.getBaseCha() + "  SorceStat=";
-				out.write(ditem.getBytes());
-				int sorcestat = 0;
-				if (pc.getLevel() >= 51) {
-					sorcestat += pc.getLevel() - 50;
-				}
-				ditem = sorcestat + "  BonusStats=";
-				out.write(ditem.getBytes());
-				ditem = pc.getBonusStats() + "  AllStat=";
-				out.write(ditem.getBytes());
-				int allstat = (pc.getBaseStr() + pc.getBaseDex() + pc.getBaseCon() + pc.getBaseInt() + pc.getBaseWis() + pc.getBaseCha()) - 75;
-				ditem = allstat + "  DiffSc=";
-				out.write(ditem.getBytes());
-				int diffsc = sorcestat - pc.getBonusStats();
-				ditem = diffsc + "  DiffSr=";
-				out.write(ditem.getBytes());
-				int diffsr = sorcestat - allstat;
-				ditem = diffsr + "\r\n";
-				out.write(ditem.getBytes());
-			} catch (Exception e) {
-				_log.warn("StatusUp log outofstream error:" + e);
-				e.printStackTrace();
-			} finally {
-				try {
-					out.close();
-				} catch (Exception e1) {
-				}
-			}
-		} else {
-			RandomAccessFile rfile = null;
-			String ditem = null;
-
-			Date time1 = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String fm = formatter.format(time1.getTime());
-			try {
-				rfile = new RandomAccessFile("log/StatusUp.log", "rw");
-				rfile.seek(rfile.length());
-
-				ditem = fm + "  IP=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getNetConnection().getIp() + "  Account=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getAccountName() + "  CharId=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getId() + "  CharName=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getName() + "  Level=";
-				rfile.writeBytes(encode(ditem));
-				ditem = pc.getLevel() + "  Str=";
-				rfile.writeBytes(ditem);
-				ditem = str + "  BaseStr=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getBaseStr() + "  Dex=";
-				rfile.writeBytes(ditem);
-				ditem = dex + "  BaseDex=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getBaseDex() + "  Con=";
-				rfile.writeBytes(ditem);
-				ditem = con + "  BaseCon=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getBaseCon() + "  Int=";
-				rfile.writeBytes(ditem);
-				ditem = Int + "  BaseInt=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getBaseInt() + "  Wis=";
-				rfile.writeBytes(ditem);
-				ditem = wis + "  BaseWis=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getBaseWis() + "  Cha=";
-				rfile.writeBytes(ditem);
-				ditem = cha + "  BaseCha=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getBaseCha() + "  SorceStat=";
-				rfile.writeBytes(ditem);
-				int sorcestat = 0;
-				if (pc.getLevel() >= 51) {
-					sorcestat += pc.getLevel() - 50;
-				}
-				ditem = sorcestat + "  BonusStats=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getBonusStats() + "  AllStat=";
-				rfile.writeBytes(ditem);
-				int allstat = (pc.getBaseStr() + pc.getBaseDex() + pc.getBaseCon() + pc.getBaseInt() + pc.getBaseWis() + pc.getBaseCha()) - 75;
-				ditem = allstat + "  DiffSc=";
-				rfile.writeBytes(ditem);
-				int diffsc = sorcestat - pc.getBonusStats();
-				ditem = diffsc + "  DiffSr=";
-				rfile.writeBytes(ditem);
-				int diffsr = sorcestat - allstat;
-				ditem = diffsr + "\r\n";
-				rfile.writeBytes(ditem);
-			} catch (Exception e) {
-				_log.warn("StatusUp log randomacess error:" + e);
-				e.printStackTrace();
-			} finally {
-				try {
-					rfile.close();
-				} catch (Exception e1) {
-				}
-			}
-		}
-	}
-
-	public static String encode(String str) {
-		String result = "";
+	public static void storeLogStatusUp(L1PcInstance pc, int str, int dex, int Con,
+			int Int, int wis, int cha) {
+		Connection con = null;
+		PreparedStatement pstm = null;
 		try {
-			if (str == null)
-				return result;
-			result = new String(str.getBytes("UTF-8"), "8859_1");
-		} catch (java.io.UnsupportedEncodingException e) {
+			con = L1LogDataFactory.getInstance().getConnection();
+			pstm = con
+					.prepareStatement("INSERT INTO LogStatusUp VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			Date time = new Date();
+			SimpleDateFormat formatter = new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss");
+			String fm = formatter.format(time.getTime());
+			pstm.setString(1, fm);
+			pstm.setString(2, pc.getNetConnection().getIp());
+			pstm.setString(3, pc.getAccountName());
+			pstm.setInt(4, pc.getId());
+			pstm.setString(5, pc.getName());
+			pstm.setInt(6, pc.getLevel());
+			pstm.setInt(7, str);
+			pstm.setInt(8, pc.getBaseStr());
+			pstm.setInt(9, dex);
+			pstm.setInt(10, pc.getBaseDex());
+			pstm.setInt(11, Con);
+			pstm.setInt(12, pc.getBaseCon());
+			pstm.setInt(13, Int);
+			pstm.setInt(14, pc.getBaseInt());
+			pstm.setInt(15, wis);
+			pstm.setInt(16, pc.getBaseWis());
+			pstm.setInt(17, cha);
+			pstm.setInt(18, pc.getBaseCha());
+			int sorcestat = 0;
+			if (pc.getLevel() >= 51) {
+				sorcestat += pc.getLevel() - 50;
+			}
+			pstm.setInt(19, sorcestat);
+			pstm.setInt(20, pc.getBonusStats());
+			int allstat = (pc.getBaseStr() + pc.getBaseDex()
+					+ pc.getBaseCon() + pc.getBaseInt() + pc.getBaseWis() + pc
+					.getBaseCha()) - 75;
+			pstm.setInt(21, allstat);
+			int diffsc = sorcestat - pc.getBonusStats();
+			pstm.setInt(22, diffsc);
+			int diffsr = sorcestat - allstat;
+			pstm.setInt(23, diffsr);
+			pstm.execute();
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
 		}
-		return result;
 	}
 }

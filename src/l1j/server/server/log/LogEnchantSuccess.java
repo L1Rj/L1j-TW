@@ -18,127 +18,55 @@
  */
 package l1j.server.server.log;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.RandomAccessFile;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import org.apache.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import l1j.server.L1LogDataFactory;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
+import l1j.server.server.utils.SQLUtil;
 
 public class LogEnchantSuccess {
-	private static Logger _log = Logger.getLogger(LogEnchantSuccess.class.getName());
+	private static Logger _log = Logger.getLogger(LogEnchantSuccess.class
+			.getName());
 
-	public void storeLogEnchantSuccess(L1PcInstance pc, L1ItemInstance item, int enchantbefore, int enchantafter, int enchantnum) {
-		File file = new File("log/EnchantSuccess.log");
-		boolean fileex = file.exists();
-		if (!fileex) {
-			File file2 = new File("log/");
-			file2.mkdirs();
-			DataOutputStream out = null;
-			String ditem = null;
-
-			Date time1 = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String fm = formatter.format(time1.getTime());
-			try {
-				out = new DataOutputStream(new FileOutputStream("log/EnchantSuccess.log"));
-				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				out.write("#                                     EnchantSuccess.                                    #\r\n".getBytes());
-				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				ditem = fm + "  IP=";
-				out.write(ditem.getBytes());
-				ditem = pc.getNetConnection().getIp() + "  Account=";
-				out.write(ditem.getBytes());
-				ditem = pc.getAccountName() + "  CharId=";
-				out.write(ditem.getBytes());
-				ditem = pc.getId() + "  CharName=";
-				out.write(ditem.getBytes());
-				ditem = pc.getName() + "  ObjectId=";
-				out.writeBytes(encode(ditem));
-				ditem = item.getId() + "  ItemName=";
-				out.write(ditem.getBytes());
-				ditem = item.getItem().getName() + "  Count=";
-				out.writeBytes(encode(ditem));
-				ditem = item.getCount() + "  EnchantBefore=";
-				out.write(ditem.getBytes());
-				ditem = enchantbefore + "  EnchantAfter=";
-				out.write(ditem.getBytes());
-				ditem = enchantafter + "  EnchantDiff=";
-				out.write(ditem.getBytes());
-				int enchantdiff = enchantafter > enchantbefore ? enchantafter - enchantbefore : enchantbefore - enchantafter;
-				ditem = enchantdiff + "  EnchantNum=";
-				out.write(ditem.getBytes());
-				ditem = enchantnum + "\r\n";
-				out.write(ditem.getBytes());
-			} catch (Exception e) {
-				_log.warn("enchantsuccess log outofstream error:" + e);
-				e.printStackTrace();
-			} finally {
-				try {
-					out.close();
-				} catch (Exception e1) {
-				}
-			}
-		} else {
-			RandomAccessFile rfile = null;
-			String ditem = null;
-
-			Date time1 = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String fm = formatter.format(time1.getTime());
-			try {
-				rfile = new RandomAccessFile("log/EnchantSuccess.log", "rw");
-				rfile.seek(rfile.length());
-
-				ditem = fm + "  IP=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getNetConnection().getIp() + "  Account=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getAccountName() + "  CharId=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getId() + "  CharName=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getName() + "  ObjectId=";
-				rfile.writeBytes(encode(ditem));
-				ditem = item.getId() + "  ItemName=";
-				rfile.writeBytes(ditem);
-				ditem = item.getItem().getName() + "  Count=";
-				rfile.writeBytes(encode(ditem));
-				ditem = item.getCount() + "  EnchantBefore=";
-				rfile.writeBytes(ditem);
-				ditem = enchantbefore + "  EnchantAfter=";
-				rfile.writeBytes(ditem);
-				ditem = enchantafter + "  EnchantDiff=";
-				rfile.writeBytes(ditem);
-				int enchantdiff = enchantafter > enchantbefore ? enchantafter - enchantbefore : enchantbefore - enchantafter;
-				ditem = enchantdiff + "  EnchantNum=";
-				rfile.writeBytes(ditem);
-				ditem = enchantnum + "\r\n";
-				rfile.writeBytes(ditem);
-			} catch (Exception e) {
-				_log.warn("enchantsuccess log randomacess error:" + e);
-				e.printStackTrace();
-			} finally {
-				try {
-					rfile.close();
-				} catch (Exception e1) {
-				}
-			}
-		}
-	}
-
-	public static String encode(String str) {
-		String result = "";
+	public static void storeLogEnchantSuccess(L1PcInstance pc, L1ItemInstance item,
+			int enchantbefore, int enchantafter, int enchantnum) {
+		Connection con = null;
+		PreparedStatement pstm = null;
 		try {
-			if (str == null)
-				return result;
-			result = new String(str.getBytes("UTF-8"), "8859_1");
-		} catch (java.io.UnsupportedEncodingException e) {
+			con = L1LogDataFactory.getInstance().getConnection();
+			pstm = con
+					.prepareStatement("INSERT INTO LogEnchantSuccess VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			Date time = new Date();
+			SimpleDateFormat formatter = new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss");
+			String fm = formatter.format(time.getTime());
+			pstm.setString(1, fm);
+			pstm.setString(2, pc.getNetConnection().getIp());
+			pstm.setString(3, pc.getAccountName());
+			pstm.setInt(4, pc.getId());
+			pstm.setString(5, pc.getName());
+			pstm.setInt(6, item.getId());
+			pstm.setString(7, item.getItem().getName());
+			pstm.setInt(8, item.getCount());
+			pstm.setInt(9, enchantbefore);
+			pstm.setInt(10, enchantafter);
+			int enchantdiff = enchantafter > enchantbefore ? enchantafter
+					- enchantbefore : enchantbefore - enchantafter;
+			pstm.setInt(11, enchantdiff);
+			pstm.setInt(12, enchantnum);
+			pstm.execute();
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
 		}
-		return result;
 	}
 }

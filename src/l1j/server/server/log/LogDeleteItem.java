@@ -18,114 +18,49 @@
  */
 package l1j.server.server.log;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.RandomAccessFile;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
-
+import l1j.server.L1LogDataFactory;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
+import l1j.server.server.utils.SQLUtil;
 
 public class LogDeleteItem {
-	private static Logger _log = Logger.getLogger(LogDeleteItem.class.getName());
+	private static Logger _log = Logger
+			.getLogger(LogDeleteItem.class.getName());
 
-	public void storeLogDeleteItem(L1PcInstance pc, L1ItemInstance item) {
-		File file = new File("log/DeleteItem.log");
-		boolean fileex = file.exists();
-		if (!fileex) {
-			File file2 = new File("log/");
-			file2.mkdirs();
-			DataOutputStream out = null;
-			String ditem = null;
-
-			Date time1 = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String fm = formatter.format(time1.getTime());
-			try {
-				out = new DataOutputStream(new FileOutputStream("log/DeleteItem.log"));
-				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				out.write("#                                      Delete Item.                                      #\r\n".getBytes());
-				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				ditem = fm + "  IP=";
-				out.write(ditem.getBytes());
-				ditem = pc.getNetConnection().getIp() + "  Account=";
-				out.write(ditem.getBytes());
-				ditem = pc.getAccountName() + "  CharId=";
-				out.write(ditem.getBytes());
-				ditem = pc.getId() + "  CharName=";
-				out.write(ditem.getBytes());
-				ditem = pc.getName() + "  ObjectId=";
-				out.writeBytes(encode(ditem));
-				ditem = item.getId() + "  ItemName=";
-				out.write(ditem.getBytes());
-				ditem = item.getItem().getName() + "  EnchantLevel=";
-				out.write(ditem.getBytes());
-				ditem = item.getEnchantLevel() + "  Count=";
-				out.write(ditem.getBytes());
-				ditem = item.getCount() + "\r\n";
-				out.write(ditem.getBytes());
-			} catch (Exception e) {
-				_log.warn("DeleteItem log outofstream error:" + e);
-				e.printStackTrace();
-			} finally {
-				try {
-					out.close();
-				} catch (Exception e1) {
-				}
-			}
-		} else {
-			RandomAccessFile rfile = null;
-			String ditem = null;
-
-			Date time1 = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String fm = formatter.format(time1.getTime());
-			try {
-				rfile = new RandomAccessFile("log/DeleteItem.log", "rw");
-				rfile.seek(rfile.length());
-
-				ditem = fm + "  IP=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getNetConnection().getIp() + "  Account=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getAccountName() + "  CharId=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getId() + "  CharName=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getName() + "  ObjectId=";
-				rfile.writeBytes(encode(ditem));
-				ditem = item.getId() + "  ItemName=";
-				rfile.writeBytes(ditem);
-				ditem = item.getItem().getName() + "  EnchantLevel=";
-				rfile.writeBytes(encode(ditem));
-				ditem = item.getEnchantLevel() + "  Count=";
-				rfile.writeBytes(ditem);
-				ditem = item.getCount() + "\r\n";
-				rfile.writeBytes(ditem);
-			} catch (Exception e) {
-				_log.warn("DeleteItem log randomacess error:" + e);
-				e.printStackTrace();
-			} finally {
-				try {
-					rfile.close();
-				} catch (Exception e1) {
-				}
-			}
-		}
-	}
-
-	public static String encode(String str) {
-		String result = "";
+	public static void storeLogDeleteItem(L1PcInstance pc, L1ItemInstance item) {
+		Connection con = null;
+		PreparedStatement pstm = null;
 		try {
-			if (str == null)
-				return result;
-			result = new String(str.getBytes("UTF-8"), "8859_1");
-		} catch (java.io.UnsupportedEncodingException e) {
+			con = L1LogDataFactory.getInstance().getConnection();
+			pstm = con
+					.prepareStatement("INSERT INTO LogWareHouseIn VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			Date time = new Date();
+			SimpleDateFormat formatter = new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss");
+			String fm = formatter.format(time.getTime());
+			pstm.setString(1, fm);
+			pstm.setString(2, pc.getNetConnection().getIp());
+			pstm.setString(3, pc.getAccountName());
+			pstm.setInt(4, pc.getId());
+			pstm.setString(5, pc.getName());
+			pstm.setInt(6, item.getId());
+			pstm.setString(7, item.getItem().getName());
+			pstm.setInt(8, item.getEnchantLevel());
+			pstm.setInt(9, item.getCount());
+			pstm.execute();
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
 		}
-		return result;
 	}
 }

@@ -18,130 +18,54 @@
  */
 package l1j.server.server.log;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.RandomAccessFile;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
-
+import l1j.server.L1LogDataFactory;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
+import l1j.server.server.utils.SQLUtil;
 
 public class LogDropItem {
 	private static Logger _log = Logger.getLogger(LogDropItem.class.getName());
 
-	public void storeLogDropItem(L1PcInstance pc, L1ItemInstance item, int before_inven, int after_inven, int before_ground, int after_ground, int dropcount) {
-		File file = new File("log/DropItem.log");
-		boolean fileex = file.exists();
-		if (!fileex) {
-			File file2 = new File("log/");
-			file2.mkdirs();
-			DataOutputStream out = null;
-			String ditem = null;
-
-			Date time1 = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String fm = formatter.format(time1.getTime());
-			try {
-				out = new DataOutputStream(new FileOutputStream("log/DropItem.log"));
-				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				out.write("#                                    Drop Item.                                          #\r\n".getBytes());
-				out.write("#----------------------------------------------------------------------------------------#\r\n".getBytes());
-				ditem = fm + "  IP=";
-				out.write(ditem.getBytes());
-				ditem = pc.getNetConnection().getIp() + "  Account=";
-				out.write(ditem.getBytes());
-				ditem = pc.getAccountName() + "  CharId=";
-				out.write(ditem.getBytes());
-				ditem = pc.getId() + "  CharName=";
-				out.write(ditem.getBytes());
-				ditem = pc.getName() + "  ObjectId=";
-				out.writeBytes(encode(ditem));
-				ditem = item.getId() + "  ItemName=";
-				out.write(ditem.getBytes());
-				ditem = item.getItem().getName() + "  EnchantLevel=";
-				out.writeBytes(encode(ditem));
-				ditem = item.getEnchantLevel() + "  BeforeInven=";
-				out.write(ditem.getBytes());
-				ditem = before_inven + "  AfterInven=";
-				out.write(ditem.getBytes());
-				ditem = after_inven + "  BeforeGround=";
-				out.write(ditem.getBytes());
-				ditem = before_ground + "  AfterGround=";
-				out.write(ditem.getBytes());
-				ditem = after_ground + "  DropCount=";
-				out.write(ditem.getBytes());
-				ditem = dropcount + "\r\n";
-				out.write(ditem.getBytes());
-			} catch (Exception e) {
-				_log.warn("DropItem log outofstream error:" + e);
-				e.printStackTrace();
-			} finally {
-				try {
-					out.close();
-				} catch (Exception e1) {
-				}
-			}
-		} else {
-			RandomAccessFile rfile = null;
-			String ditem = null;
-
-			Date time1 = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String fm = formatter.format(time1.getTime());
-			try {
-				rfile = new RandomAccessFile("log/DropItem.log", "rw");
-				rfile.seek(rfile.length());
-
-				ditem = fm + "  IP=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getNetConnection().getIp() + "  Account=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getAccountName() + "  CharId=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getId() + "  CharName=";
-				rfile.writeBytes(ditem);
-				ditem = pc.getName() + "  ObjectId=";
-				rfile.writeBytes(encode(ditem));
-				ditem = item.getId() + "  ItemName=";
-				rfile.writeBytes(ditem);
-				ditem = item.getItem().getName() + "  EnchantLevel=";
-				rfile.writeBytes(encode(ditem));
-				ditem = item.getEnchantLevel() + "  BeforeInven=";
-				rfile.writeBytes(ditem);
-				ditem = before_inven + "  AfterInven=";
-				rfile.writeBytes(ditem);
-				ditem = after_inven + "  BeforeGround=";
-				rfile.writeBytes(ditem);
-				ditem = before_ground + "  AfterGround=";
-				rfile.writeBytes(ditem);
-				ditem = after_ground + "  DropCount=";
-				rfile.writeBytes(ditem);
-				ditem = dropcount + "\r\n";
-				rfile.writeBytes(ditem);
-			} catch (Exception e) {
-				_log.warn("DropItem log randomacess error:" + e);
-				e.printStackTrace();
-			} finally {
-				try {
-					rfile.close();
-				} catch (Exception e1) {
-				}
-			}
-		}
-	}
-
-	public static String encode(String str) {
-		String result = "";
+	public static void storeLogDropItem(L1PcInstance pc, L1ItemInstance item,
+			int before_inven, int after_inven, int before_ground,
+			int after_ground, int dropcount) {
+		Connection con = null;
+		PreparedStatement pstm = null;
 		try {
-			if (str == null)
-				return result;
-			result = new String(str.getBytes("UTF-8"), "8859_1");
-		} catch (java.io.UnsupportedEncodingException e) {
+			con = L1LogDataFactory.getInstance().getConnection();
+			pstm = con
+					.prepareStatement("INSERT INTO LogDropItem VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			Date time = new Date();
+			SimpleDateFormat formatter = new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss");
+			String fm = formatter.format(time.getTime());
+			pstm.setString(1, fm);
+			pstm.setString(2, pc.getNetConnection().getIp());
+			pstm.setString(3, pc.getAccountName());
+			pstm.setInt(4, pc.getId());
+			pstm.setString(5, pc.getName());
+			pstm.setInt(6, item.getId());
+			pstm.setString(7, item.getItem().getName());
+			pstm.setInt(8, item.getEnchantLevel());
+			pstm.setInt(9, before_inven);
+			pstm.setInt(10, after_inven);
+			pstm.setInt(11, before_ground);
+			pstm.setInt(12, after_ground);
+			pstm.setInt(13, dropcount);
+			pstm.execute();
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
 		}
-		return result;
 	}
 }
