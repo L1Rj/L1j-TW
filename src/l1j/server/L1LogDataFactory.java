@@ -38,7 +38,7 @@ public class L1LogDataFactory {
 		try {
 			_source = new ComboPooledDataSource();
 			_source.setDriverClass("org.sqlite.JDBC");
-			_source.setJdbcUrl("jdbc:sqlite:log/Server.log");
+			_source.setJdbcUrl("jdbc:sqlite:log/Server.db");
 
 			/* Test the connection */
 			_source.getConnection().close();
