@@ -1,0 +1,311 @@
+<!ENTITY window.title     "SQLite Manager">
+
+<!ENTITY menu.tools			"工具(O)">
+<!ENTITY menu.tools.ak "O">
+<!ENTITY sqliteVersion			"SQLite Version">
+<!ENTITY sqliteVersion.ak "S">
+<!ENTITY mi.options			"選項(O)">
+<!ENTITY mi.options.ak "O">
+<!ENTITY mi.sharedPagerCache "Shared Pager Cache">
+<!ENTITY mi.sharedPagerCache.ak "S">
+<!ENTITY mi.extensionTable "Use Table for Extension Data">
+<!ENTITY mi.extensionTable.ak "E">
+
+<!ENTITY mi.console			"錯誤主控台(C)">
+<!ENTITY mi.console.ak "C">
+<!ENTITY mi.aboutconfig			"about:config">
+<!ENTITY mi.aboutconfig.ak "b">
+
+<!ENTITY menu.db			"資料庫(D)">
+<!ENTITY menu.db.ak "D">
+<!ENTITY menu.db.new			"新增資料庫(N)">
+<!ENTITY menu.db.new.ak "N">
+<!ENTITY menu.db.newMemory			"New In-Memory 資料庫">
+<!ENTITY menu.db.newMemory.ak "M">
+<!ENTITY menu.db.connect			"連接資料庫(O)">
+<!ENTITY menu.db.connect.ak "O">
+<!ENTITY menu.db.connectADS			"連接到 ADS 資料庫">
+<!ENTITY menu.db.attach			"Attach 資料庫">
+<!ENTITY menu.db.attach.ak "h">
+<!ENTITY menu.db.detach			"Detach 資料庫">
+<!ENTITY menu.db.detach.ak "">
+<!ENTITY menu.db.close			"關閉資料庫(C)">
+<!ENTITY menu.db.close.ak "C">
+<!ENTITY menu.db.mru			"最近使用(U)">
+<!ENTITY menu.db.mru.ak "U">
+
+<!ENTITY menu.db.copy			"複製資料庫(P)">
+<!ENTITY menu.db.copy.ak "P">
+<!ENTITY menu.db.compact			"Compact 資料庫">
+<!ENTITY menu.db.compact.ak "m">
+<!ENTITY menu.db.analyze			"分析資料庫(A)">
+<!ENTITY menu.db.analyze.ak "A">
+<!ENTITY menu.db.check			"Check Integrity">
+<!ENTITY menu.db.check.ak "k">
+
+<!ENTITY exportAll			"匯出所有資料表(X)">
+<!ENTITY exportAll.ak "X">
+<!ENTITY exportDb			"匯出資料庫(B)">
+<!ENTITY exportDb.ak "B">
+<!ENTITY exportDbStr			"匯出資料庫結構(U)">
+<!ENTITY exportDbStr.ak "U">
+<!ENTITY import			"匯入(I)">
+<!ENTITY import.ak "I">
+
+<!ENTITY refresh     "重新整理(R)">
+<!ENTITY refresh.ak "R">
+<!ENTITY reconnect     "重新連接(E)">
+<!ENTITY reconnect.ak "E">
+<!ENTITY refreshDirection "Press Shift+F5 to refresh">
+<!ENTITY exit			"離開(X)">
+<!ENTITY exit.ak "X">
+
+<!ENTITY createTable             "新增資料表">
+<!ENTITY dropTable               "刪除資料表">
+<!ENTITY modifyTable             "修改資料表">
+<!ENTITY emptyTable              "清空資料表">
+<!ENTITY reindexTable            "Reindex 資料表">
+<!ENTITY renameTable             "重新命名資料表">
+<!ENTITY copyTable               "複製資料表">
+<!ENTITY exportTable             "匯出資料表">
+
+<!ENTITY createIndex             "新增索引">
+<!ENTITY dropIndex               "刪除索引">
+<!ENTITY reindexIndex            "Reindex 索引">
+
+<!ENTITY createView              "新增檢視">
+<!ENTITY dropView                "刪除檢視">
+<!ENTITY renameView             "重新命名檢視">
+<!ENTITY modifyView             "修改檢視">
+<!ENTITY exportView              "匯出檢視">
+
+<!ENTITY createTrigger           "新增觸發器">
+<!ENTITY dropTrigger             "刪除觸發器">
+<!ENTITY renameTrigger             "重新命名觸發器">
+ 
+<!ENTITY menu.table			"資料表">
+<!ENTITY menu.table.ak "T">
+<!ENTITY menu.index			"索引">
+<!ENTITY menu.index.ak "I">
+<!ENTITY menu.view			"檢視">
+<!ENTITY menu.view.ak "V">
+<!ENTITY menu.trigger			"觸發器">
+<!ENTITY menu.trigger.ak "">
+
+<!ENTITY create			"新增(C)">
+<!ENTITY create.ak "C">
+<!ENTITY drop			"刪除(D)">
+<!ENTITY drop.ak "D">
+<!ENTITY export			"匯出(X)">
+<!ENTITY export.ak "X">
+<!ENTITY empty			"清空(Y)">
+<!ENTITY empty.ak "Y">
+<!ENTITY rename			"重新命名(R)">
+<!ENTITY rename.ak "R">
+<!ENTITY modify			"修改(M)">
+<!ENTITY modify.ak "M">
+<!ENTITY copy			"複製(P)">
+<!ENTITY copy.ak "P">
+<!ENTITY reindex			"Reindex">
+<!ENTITY reindex.ak "i">
+<!ENTITY analyze			"分析(A)">
+<!ENTITY analyze.ak "A">
+
+<!ENTITY menu.help			"說明(H)">
+<!ENTITY menu.help.ak "H">
+<!ENTITY menu.help.reportProblem			"Report a Problem">
+<!ENTITY menu.help.reportProblem.ak "R">
+<!ENTITY menu.help.faq			"Frequently Asked Questions">
+<!ENTITY menu.help.faq.ak "F">
+<!ENTITY menu.help.sqlitehome			"SQLite Homepage">
+<!ENTITY menu.help.sqlitehome.ak "Q">
+<!ENTITY menu.help.sqlitesyntax			"SQLite Syntax Help">
+<!ENTITY menu.help.sqlitesyntax.ak "S">
+<!ENTITY menu.help.extensionhome			"Extension Homepage">
+<!ENTITY menu.help.extensionhome.ak "E">
+<!ENTITY menu.help.aboutextension			"關於 SQLite Manager(A)">
+<!ENTITY menu.help.aboutextension.ak "A">
+
+<!ENTITY profile.dblist.select			"(選擇 Profile 資料庫)">
+<!ENTITY profile.dblist.buttonlabel			"Go">
+
+<!ENTITY	string.enterSql "Enter SQL">
+<!ENTITY	string.enterSql.ak "S">
+
+<!ENTITY	tab.structure "結構">
+<!ENTITY	tab.browse "瀏覽 &amp; 搜尋">
+<!ENTITY	tab.execute "執行 SQL">
+<!ENTITY	tab.dbinfo "DB 設定">
+<!ENTITY	tab.udf "User-defined Functions">
+
+<!ENTITY	btn.search "搜尋(H)">
+<!ENTITY	btn.search.ak "H">
+<!ENTITY	btn.showAll "顯示全部">
+<!ENTITY	btn.showAll.ak "">
+<!ENTITY	btn.exporttable "匯出">
+<!ENTITY	btn.exporttable.ak "">
+<!ENTITY	btn.addcol "新增欄位">
+<!ENTITY	btn.addrecord "新增記錄(A)">
+<!ENTITY	btn.addrecord.ak "A">
+
+<!ENTITY	menu.editSelected "編輯(E)">
+<!ENTITY	menu.editSelected.ak "E">
+<!ENTITY	menu.deleteSelected "刪除(I)">
+<!ENTITY	menu.deleteSelected.ak "l">
+<!ENTITY	menu.duplicateRecord "複製(P)">
+<!ENTITY	menu.duplicateRecord.ak "P">
+
+<!ENTITY	menu.copyCell "複製 Cell">
+<!ENTITY	menu.copyCell.ak "C">
+<!ENTITY	menu.copyRows "複製 Row(s) as CSV">
+<!ENTITY	menu.copyRows.ak "R">
+<!ENTITY	menu.copyRowsForExcel "複製 Row(s) as CSV (MSExcel compatible)">
+<!ENTITY	menu.copyRowsAsSql "複製 Row(s) as SQL">
+<!ENTITY	menu.copyRowsAsSql.ak "q">
+
+<!ENTITY	menu.editColumn "編輯欄位(E)">
+<!ENTITY	menu.editColumn.ak "E">
+<!ENTITY	menu.dropColumn "刪除欄位(D)">
+<!ENTITY	menu.dropColumn.ak "D">
+
+<!ENTITY	btn.runsql        "執行 SQL(R)">
+<!ENTITY	btn.runsql.ak 	  "R">
+<!ENTITY	buttonRun 	      "Run SQL Statement (with results)">
+<!ENTITY	buttonRun.ak 	  "R">
+<!ENTITY	buttonExecute 	  "Execute Statement (no results)">
+<!ENTITY	buttonExecute.ak  "E">
+<!ENTITY	label.sqlLastError "Last Error">
+<!ENTITY	label.resultOfQuery "Result of the Query">
+<!ENTITY	label.resultOfQuery.ak "Q">
+<!ENTITY	btn.prevSql 	"Previous Sql from History">
+<!ENTITY	btn.nextSql 	"Next Sql from History">
+<!ENTITY  btn.saveQuery "Save Query by Name">
+<!ENTITY	btn.clearHistory 	"Clear Query History">
+
+<!ENTITY	sbp.db		"DB">
+
+<!ENTITY	masterinfo.tbl_name		"Associated with table">
+<!ENTITY	masterinfo.rootpage		"Rootpage">
+<!ENTITY	masterinfo.sql				"Create statement">
+
+<!ENTITY table "資料表">
+<!ENTITY index "索引">
+<!ENTITY view "檢視">
+<!ENTITY trigger "觸發器">
+
+<!ENTITY first "第一頁">
+<!ENTITY previous "上一頁">
+<!ENTITY next "下一頁">
+<!ENTITY last "最後頁">
+<!ENTITY to "to">
+<!ENTITY of "of">
+
+<!ENTITY about "關於">
+<!ENTITY version "版本">
+<!ENTITY author "作者">
+<!ENTITY license "License">
+<!ENTITY license.mpl "Mozilla Public License Version 1.1">
+
+<!ENTITY dir "目錄">
+<!ENTITY profileDir "Profile Directory">
+<!ENTITY userDir "使用者預設目錄">
+<!ENTITY selectUserDir "選擇預設目錄">
+
+<!ENTITY infoFromMaster "Information from Master table">
+<!ENTITY moreInfo "更多資訊">
+<!ENTITY numColumns "No. of Columns">
+<!ENTITY numIndexes "No. of Indexes">
+<!ENTITY numTriggers "No. of Triggers">
+<!ENTITY numRecords "No. of Records">
+<!ENTITY Columns "欄位">
+<!ENTITY name "名稱">
+<!ENTITY type "類型">
+<!ENTITY pKey "P. Key">
+<!ENTITY notNull "Not Null">
+<!ENTITY default "預設數值">
+
+<!ENTITY indexProp "Index Properties">
+<!ENTITY indexedTable "Indexed Table">
+<!ENTITY indexedFields "Indexed Fields">
+<!ENTITY indexDuplicate "Duplicate Values">
+
+<!ENTITY selectAllRecords "Select All Records">
+<!ENTITY selectAllRecords.ak "">
+
+<!-- copyTable.xul -->
+<!ENTITY From "From">
+<!ENTITY To "To">
+<!ENTITY Database "資料庫(D)">
+<!ENTITY Database.ak "D">
+<!ENTITY Table "Table">
+<!ENTITY onlyStructure "Only Structure (data will not be copied)">
+<!ENTITY enterNewTable "Enter name of the new table">
+<!ENTITY enterNewTable.ak "t">
+
+<!-- create dialogs -->
+<!ENTITY Name.ak "N">
+<!ENTITY ViewName "View Name">
+<!ENTITY Temporary "Temporary">
+<!ENTITY Temporary.ak "T">
+<!ENTITY ifNotExists "If Not Exists">
+<!ENTITY ifNotExists.ak "I">
+<!ENTITY SelectStatement "Select Statement">
+<!ENTITY SelectStatement.ak "S">
+<!ENTITY createIndex.dbName           "資料庫:">
+<!ENTITY createIndex.indexname        "Index Name:">
+<!ENTITY createIndex.indexproperties  "Define Index Properties">
+<!ENTITY createIndex.tabletoindex     "Table to Index:">
+<!ENTITY createIndex.loading          "(讀取中)">
+<!ENTITY createIndex.duplicatevalues  "Duplicate Values:">
+<!ENTITY createIndex.allowed          "Allowed">
+<!ENTITY createIndex.notallowed       "Not Allowed">
+<!ENTITY createIndex.indexcolumns     "Define Index Columns">
+<!ENTITY createTable.dbName           "資料庫:">
+<!ENTITY createTable.tablename        "Table Name:">
+<!ENTITY createTable.temptable        "Temporary table">
+<!ENTITY createTable.temptable.ak     "T">
+<!ENTITY createTable.ifnotexists      "If Not Exists">
+<!ENTITY createTable.ifnotexists.ak   "I">
+<!ENTITY createTable.tablecolumns     "Define Columns">
+<!ENTITY createTable.colname          "Column Name">
+<!ENTITY createTable.datatype         "Data Type">
+<!ENTITY createTable.primarykey       "Primary Key?">
+<!ENTITY createTable.autoincrement    "Autoinc?">
+<!ENTITY createTable.allownull        "Allow Null?">
+<!ENTITY createTable.default          "Default Value">
+<!ENTITY createTable.unique           "Unique?">
+<!ENTITY createTable.primarykey.yes   "是">
+<!ENTITY createTable.autoincrement.yes      "是">
+<!ENTITY createTable.autoincrement.tooltip  "AUTOINCREMENT is only allowed on an INTEGER PRIMARY KEY">
+<!ENTITY createTable.allownull.yes          "是">
+<!ENTITY createTable.unique.column          "Unique Column">
+<!ENTITY createTable.unique.columnlist      "Unique Column-list">
+<!ENTITY createTrigger.dbName               "資料庫:">
+<!ENTITY createTrigger.triggername          "Trigger Name:">
+<!ENTITY createTrigger.tabletoindex         "on Table:">
+<!ENTITY createTrigger.loading              "(讀取中)">
+<!ENTITY createTrigger.tempObject           "Temporary">
+<!ENTITY createTrigger.tempObject.ak        "T">
+<!ENTITY createTrigger.ifnotexists          "If Not Exists">
+<!ENTITY createTrigger.ifnotexists.ak       "I">
+<!ENTITY createTrigger.databaseevent        "Database Event">
+<!ENTITY createTrigger.triggerTime          "Before/After:">
+<!ENTITY createTrigger.triggerTime.ak       "B">
+<!ENTITY createTrigger.dbEvent              "Event:">
+<!ENTITY createTrigger.dbEvent.ak           "v">
+<!ENTITY createTrigger.triggeraction        "Trigger Action">
+<!ENTITY createTrigger.foreachrow           "For Each Row">
+<!ENTITY createTrigger.foreachrow.ak        "F">
+<!ENTITY createTrigger.txtWhenExpression    "WHEN expression (type expression without 'WHEN'):">
+<!ENTITY createTrigger.txtWhenExpression.ak "W">
+<!ENTITY createTrigger.txtTriggerSteps      "Trigger Steps (semicolon terminated):">
+<!ENTITY createTrigger.txtTriggerSteps.ak   "S">
+
+<!-- confirm dialog -->
+<!ENTITY confirm.button.accept  "是">
+<!ENTITY confirm.button.cancel  "否">
+
+<!-- RowOperations.xul -->
+<!ENTITY rowOperations.tablenames     "資料表名稱(N):">
+<!ENTITY rowOperations.tablenames.ak  "N">
+<!ENTITY rowOperations.loading        "(讀取中)">

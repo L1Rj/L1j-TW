@@ -36,7 +36,7 @@ if %options% == 0 goto options0
 if %options% == 1 goto options1
 if %options% == 2 goto options2
 if %options% == 3 goto options3
-if %options% == 7 goto exit
+if %options% == 4 goto exit
 goto options0
 
 :exit
