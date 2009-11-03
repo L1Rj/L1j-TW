@@ -495,34 +495,32 @@ public class L1PcInstance extends L1Character
 	}
 
 	@Override
-	public void setCurrentHp(int i)
-	{
+	public void setCurrentHp(int i) {
 		if (getCurrentHp() == i)
 			return;
-		
+
 		int currentHp = i;
-		
+
 		if (currentHp >= getMaxHp() || isGm())
 			currentHp = getMaxHp();
 		else if (currentHp < 0)
 			currentHp = 0;
-		
+
 		setCurrentHpDirect(currentHp);
 		sendPackets(new S_HPUpdate(currentHp, getMaxHp()));
-		
+
 		if (isInParty()) // パーティー中
 			getParty().updateMiniHP(this);
 	}
 
 	@Override
-	public void setCurrentMp(int i) 
-	{
-		if (getCurrentMp() == i || isGm())
+	public void setCurrentMp(int i) {
+		if (getCurrentMp() == i)
 			return;
-		
+
 		int currentMp = i;
-		
-		if (currentMp >= getMaxMp())
+
+		if (currentMp >= getMaxMp() || isGm())
 			currentMp = getMaxMp();
 		else if (currentMp < 0)
 			currentMp = 0;
