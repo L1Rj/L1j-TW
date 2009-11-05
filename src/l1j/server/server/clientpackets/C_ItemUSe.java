@@ -1043,28 +1043,54 @@ public class C_ItemUSe extends ClientBasePacket
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(item, 1);
-				// 20080122 修改玩家可使用紅酒,威士忌 use won122 code 2/3
 				}else if (itemId == 40039) { // 紅酒
 					if (pc.isWizard()) {
 						useBravePotion(pc, itemId);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+						return;
 					}
+					if (pc.hasSkillEffect(MOVING_ACCELERATION)) { 
+						pc.removeSkillEffect(MOVING_ACCELERATION);
+					}
+					if (pc.hasSkillEffect(WIND_WALK)) { 
+						pc.removeSkillEffect(WIND_WALK);
+					}
+					if (pc.hasSkillEffect(HOLY_WALK)) { 
+						pc.removeSkillEffect(HOLY_WALK);
+					}
+					useBravePotion(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				}else if (itemId == 40040) { // 強化ブレイブポーション
+				}else if (itemId == 40040) { // 威士忌
 					if (pc.isDarkelf()) {
 						useBravePotion(pc, itemId);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+						return;
 					}
+					if (pc.hasSkillEffect(MOVING_ACCELERATION)) { 
+						pc.removeSkillEffect(MOVING_ACCELERATION);
+					}
+					if (pc.hasSkillEffect(WIND_WALK)) { 
+						pc.removeSkillEffect(WIND_WALK);
+					}
+					if (pc.hasSkillEffect(HOLY_WALK)) { 
+						pc.removeSkillEffect(HOLY_WALK);
+					}
+					useBravePotion(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				// end
-				} else if (itemId == 40733) { // 名誉のコイン
-					if (!pc.isDragonKnight() && !pc.isIllusionist()) {
-						useBravePotion(pc, itemId);
-					} else {
-						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+				} else if (itemId == 40733) { // 名譽貨幣
+					// if (!pc.isDragonKnight() && !pc.isIllusionist()) {
+					if (pc.hasSkillEffect(MOVING_ACCELERATION)) { 
+						pc.removeSkillEffect(MOVING_ACCELERATION);
 					}
+					if (pc.hasSkillEffect(WIND_WALK)) { 
+						pc.removeSkillEffect(WIND_WALK);
+					}
+					if (pc.hasSkillEffect(HOLY_WALK)) { 
+						pc.removeSkillEffect(HOLY_WALK);
+					}
+					useBravePotion(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 49138) { // 巧克力蛋糕
 					useBravePotion(pc, itemId);
