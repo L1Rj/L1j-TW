@@ -841,7 +841,6 @@ pref("network.proxy.no_proxies_on",         "localhost, 127.0.0.1");
 pref("network.proxy.failover_timeout",      1800); // 30 minutes
 pref("network.online",                      true); //online/offline
 pref("network.cookie.cookieBehavior",       0); // 0-Accept, 1-dontAcceptForeign, 2-dontUse
-pref("network.cookie.disableCookieForMailNews", true); // disable all cookies for mail
 pref("network.cookie.lifetimePolicy",       0); // accept normally, 1-askBeforeAccepting, 2-acceptForSession,3-acceptForNDays
 pref("network.cookie.alwaysAcceptSessionCookies", false);
 pref("network.cookie.prefsMigrated",        false);
@@ -1186,7 +1185,7 @@ pref("font.minimum-size.x-western", 0);
 pref("font.minimum-size.x-unicode", 0);
 pref("font.minimum-size.x-user-def", 0);
 
-//@line 1204 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 1203 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 pref("font.name.serif.ar", "Times New Roman");
 pref("font.name.sans-serif.ar", "Arial");
 pref("font.name.monospace.ar", "Courier New");
@@ -1294,7 +1293,7 @@ pref("font.name.monospace.x-tamil", "Latha");
 pref("font.name-list.serif.x-tamil", "Latha, Code2000");
 pref("font.name-list.monospace.x-tamil", "Latha, Code2000");
 
-//@line 1312 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 1311 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 
 pref("font.name.serif.x-armn", "Sylfaen");
 pref("font.name.sans-serif.x-armn", "Arial AMU");
@@ -1563,23 +1562,23 @@ pref("intl.keyboard.per_window_layout", false);
 // See bug 448927, on topmost panel, some IMEs are not usable on Windows.
 pref("ui.panel.default_level_parent", false);
 
-//@line 1582 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 1581 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 
-//@line 1999 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 1998 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 
-//@line 2200 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 2199 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 
-//@line 2294 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 2293 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 
-//@line 2567 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 2566 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 
-//@line 2635 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 2634 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 
-//@line 2661 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 2660 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 
-//@line 2681 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 2680 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 
-//@line 2689 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 2688 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 
 // Login Manager prefs
 pref("signon.rememberSignons",              true);
@@ -1603,10 +1602,10 @@ pref("image.cache.size", 5242880);
 // Size is given a weight of 1000 - timeweight.
 pref("image.cache.timeweight", 500);
 
-//@line 2714 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 2713 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 // The default TCP send window on Windows is too small, and autotuning only occurs on receive
 pref("network.tcp.sendbuffer", 131072);
-//@line 2718 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
+//@line 2717 "e:\builds\moz2_slave\mozilla-1.9.1-win32-xulrunner\build\modules\libpref\src\init\all.js"
 
 // Enable/Disable the geolocation API for content
 pref("geo.enabled", true);

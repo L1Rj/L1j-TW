@@ -1,0 +1,19 @@
+override chrome://global/locale/netError.dtd chrome://browser/locale/netError.dtd
+locale passwordmgr zh-TW jar:zh-TW.jar!/locale/zh-TW/passwordmgr/
+locale cookie zh-TW jar:zh-TW.jar!/locale/zh-TW/cookie/
+locale global zh-TW jar:zh-TW.jar!/locale/zh-TW/global/
+override chrome://mozapps/locale/downloads/settingsChange.dtd chrome://browser/locale/downloads/settingsChange.dtd
+override chrome://global/locale/appstrings.properties chrome://browser/locale/appstrings.properties
+locale browser-region zh-TW jar:zh-TW.jar!/locale/browser-region/
+locale autoconfig zh-TW jar:zh-TW.jar!/locale/zh-TW/autoconfig/
+locale global-platform zh-TW jar:zh-TW.jar!/locale/zh-TW/global-platform/
+locale alerts zh-TW jar:zh-TW.jar!/locale/zh-TW/alerts/
+locale pipnss zh-TW jar:zh-TW.jar!/locale/zh-TW/pipnss/
+locale global-region zh-TW jar:zh-TW.jar!/locale/zh-TW/global-region/
+locale reporter zh-TW jar:zh-TW.jar!/locale/zh-TW/reporter/
+locale places zh-TW jar:zh-TW.jar!/locale/zh-TW/places/
+locale branding zh-TW jar:zh-TW.jar!/locale/branding/
+locale mozapps zh-TW jar:zh-TW.jar!/locale/zh-TW/mozapps/
+locale browser zh-TW jar:zh-TW.jar!/locale/browser/
+locale pippki zh-TW jar:zh-TW.jar!/locale/zh-TW/pippki/
+locale necko zh-TW jar:zh-TW.jar!/locale/zh-TW/necko/

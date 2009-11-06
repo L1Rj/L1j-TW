@@ -1,44 +1,44 @@
-<!ENTITY tablename     "Name of the Table:">
+<!ENTITY tablename     "資料表名稱:">
 <!ENTITY tablename.ak     "N">
 
 <!ENTITY CSV     "CSV">
 <!ENTITY SQL     "SQL">
 <!ENTITY XML     "XML">
 
-<!ENTITY csv.tableName     "Enter the name of the table in which data will be imported:">
-<!ENTITY Comma     "Comma">
-<!ENTITY Comma.ak     "C">
-<!ENTITY Semicolon     "Semicolon">
+<!ENTITY csv.tableName     "輸入將要匯入的資料表名稱:">
+<!ENTITY Comma     "逗號">
+<!ENTITY Comma.ak     "">
+<!ENTITY Semicolon     "分號">
 <!ENTITY Pipe     "Pipe">
-<!ENTITY Tab     "Tab">
+<!ENTITY Tab     "Tab 鍵">
 
 <!ENTITY csv.firstrow     "First row contains column names">
 <!ENTITY csv.separate     "Fields separated by">
 <!ENTITY csv.enclose     "Fields enclosed by">
 
-<!ENTITY sql.settings     "SQL Settings">
-<!ENTITY sql.create     "Include CREATE TABLE statement">
+<!ENTITY sql.settings     "SQL 設定">
+<!ENTITY sql.create     "包括 CREATE TABLE 指令">
 <!ENTITY sql.transaction     "BEGIN TRANSACTION/COMMIT statements should be used">
 <!ENTITY sql.transaction.desc     "If this option is checked, it is assumed that, in the selected file, the first and last statements are BEGIN TRANSACTION and COMMIT respectively. The extension will exclude these and execute all the remaining statements in a single transaction. If there are transaction related statements in between too these should be manually removed from the file before importing.">
 
 <!ENTITY xml.type     "Include/Use Type as an attribute">
 <!ENTITY xml.type.desc     "Uncheck this option if you are importing data which does not contain this attribute. It is recommended to use this feature if you intend to export data using SQLite Manager. The extra information can then be used during import to distinguish strings, nulls, integers, etc. from each other.">
 
-<!ENTITY importWizard             "Import Wizard">
-<!ENTITY eximDbName               "Database:">
+<!ENTITY importWizard             "匯入精靈">
+<!ENTITY eximDbName               "資料庫:">
 <!ENTITY eximDbName.ak            "D">
-<!ENTITY loading                  "(loading)">
-<!ENTITY eximFilename             "Select File">
+<!ENTITY loading                  "(讀取中)">
+<!ENTITY eximFilename             "選擇檔案">
 <!ENTITY eximFilename.ak          "S">
-<!ENTITY eximFileCharSet  "Character Encoding">
-<!ENTITY eximFileCharSet.ak  "h">
-<!ENTITY eximCsv_encloser.doublequotes.standard     "Double quotes (&quot;), if necessary (Standard)">
+<!ENTITY eximFileCharSet  "字元編碼">
+<!ENTITY eximFileCharSet.ak  "H">
+<!ENTITY eximCsv_encloser.doublequotes.standard     "Double quotes (&quot;), if necessary (標準)">
 <!ENTITY eximCsv_encloser.doublequotes.standard.ak  "q">
 <!ENTITY eximCsv_encloser.doublequotes.always       "Double quotes (&quot;), always">
 <!ENTITY eximCsv_encloser.singlequotes              "Single quotes (')">
-<!ENTITY eximCsv_encloser.other        "Other">
+<!ENTITY eximCsv_encloser.other        "其他">
 <!ENTITY eximXml_root-element          "Name of Root Element:">
 <!ENTITY eximXml_prefix-table-element  "Prefix this to Table Element:">
 <!ENTITY exim-exp-ok                   "確定">
 <!ENTITY exim-imp-ok                   "確定">
-<!ENTITY exim-cancel                   "Close Wizard">
+<!ENTITY exim-cancel                   "關閉精靈">

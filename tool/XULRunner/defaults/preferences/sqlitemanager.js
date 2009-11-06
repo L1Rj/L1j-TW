@@ -13,7 +13,7 @@ pref("extensions.sqlitemanager.openMode", 1);
 
 //false = do not open any db on start, true = open last used db on start
 pref("extensions.sqlitemanager.openWithLastDb", true);
-pref("extensions.sqlitemanager.promptForLastDb", true);
+pref("extensions.sqlitemanager.promptForLastDb", false);
 
 //how many records to display when browsing and searching; -1 means all
 pref("extensions.sqlitemanager.displayNumRecords", 500);

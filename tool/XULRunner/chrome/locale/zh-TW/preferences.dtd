@@ -2,46 +2,45 @@
 
 <!ENTITY  paneMain.title	"主要">
 
-<!ENTITY  pref-openMode.label	"Start SQLite Manager">
-<!ENTITY  pref-openMode-win	"in a new window">
-<!ENTITY  pref-openMode-win.ak	"w">
-<!ENTITY  pref-openMode-tab	"in a new tab">
+<!ENTITY  pref-openMode.label	"啟動 SQLite Manager">
+<!ENTITY  pref-openMode-win	"在新視窗">
+<!ENTITY  pref-openMode-win.ak	"W">
+<!ENTITY  pref-openMode-tab	"在新分頁">
 
-<!ENTITY  pref-openADS.label	"Open ADS (Windows/NTFS only)">
+<!ENTITY  pref-openADS.label	"開啟 ADS (限 Windows/NTFS)">
 <!ENTITY  disable	"停用">
 <!ENTITY  enable	"啟用">
 
-<!ENTITY  whenSMStarts	"When SQLite Manager starts">
-<!ENTITY  pref-openWithLastDb.label	"Open the last used database">
+<!ENTITY  whenSMStarts	"當 SQLite Manager 啟動時">
+<!ENTITY  pref-openWithLastDb.label	"開啟最近使用的資料庫">
 <!ENTITY  pref-openWithLastDb.ak	"O">
-<!ENTITY  pref-promptForLastDb.label	"Always confirm when opening the last used database">
+<!ENTITY  pref-promptForLastDb.label	"總是確認是否開啟最近使用的資料庫">
 <!ENTITY  pref-promptForLastDb.ak	"A">
 
-<!ENTITY  pref-autoBackup.label	"Create a timestamped Backup before opening a database">
+<!ENTITY  pref-autoBackup.label	"開啟資料庫之前建立時間標籤的備份">
 <!ENTITY  pref-autoBackup.ak		"B">
-<!ENTITY  pref-autoBackup.on		"on">
-<!ENTITY  pref-autoBackup.off		"off">
-<!ENTITY  pref-sqliteFileExtensions.label	"Default file extension for SQLite files">
+<!ENTITY  pref-autoBackup.on		"開">
+<!ENTITY  pref-autoBackup.off		"關">
+<!ENTITY  pref-sqliteFileExtensions.label	"預設 SQLite 檔案的副檔名">
 <!ENTITY  pref-sqliteFileExtensions.ak		"S">
-<!ENTITY  pref-tableForExtensionManagement.label	"Name of the table to store extension management data">
-<!ENTITY  pref-tableForExtensionManagement.ak	"m">
+<!ENTITY  pref-tableForExtensionManagement.label	"儲存額外管理資料的資料表名稱">
+<!ENTITY  pref-tableForExtensionManagement.ak	"M">
 
-<!ENTITY  panePrompts.title	"Prompts">
+<!ENTITY  panePrompts.title	"提示">
 
-<!ENTITY  confirmBeforeExecute		"Confirm before executing the following">
-<!ENTITY  pref-confirm.records.label	"Before adding/editing a record">
-<!ENTITY  pref-confirm.records.label	"Before adding/editing a record">
-<!ENTITY  pref-confirm.create.label		"Before creating a table/index/view/trigger">
-<!ENTITY  pref-confirm.otherSql.label	"Any other operations on the table">
+<!ENTITY  confirmBeforeExecute		"確認下列各項動作">
+<!ENTITY  pref-confirm.records.label	"新增/編輯記錄">
+<!ENTITY  pref-confirm.create.label		"建立資料表/索引/檢視/觸發器">
+<!ENTITY  pref-confirm.otherSql.label	"其他任何資料表操作">
 
-<!ENTITY  paneInterface.title	"User Interface">
+<!ENTITY  paneInterface.title	"使用者介面">
 
-<!ENTITY  toolbar.caption	"Toolbar Settings">
-<!ENTITY  pref-hideMainToolbar.label	"Hide all the toolbars">
-<!ENTITY  pref-showMainToolbarDatabase.label	"Show the Database toolbar">
-<!ENTITY  pref-showMainToolbarIndex.label	"Show the Index toolbar">
-<!ENTITY  pref-showMainToolbarTable.label	"Show the Table toolbar">
-<!ENTITY  pref-showMainToolbarDebug.label	"Show the Debug toolbar">
+<!ENTITY  toolbar.caption	"工具欄設定">
+<!ENTITY  pref-hideMainToolbar.label	"隱藏所有工具欄">
+<!ENTITY  pref-showMainToolbarDatabase.label	"顯示資料庫工具欄">
+<!ENTITY  pref-showMainToolbarIndex.label	"顯示索引工具欄">
+<!ENTITY  pref-showMainToolbarTable.label	"顯示資料表工具欄">
+<!ENTITY  pref-showMainToolbarDebug.label	"顯示除錯工具欄">
 
 <!ENTITY  pref-displayNumRecords.label	"Number of records to display (Browse &amp; Search tab)">
 <!ENTITY  pref-displayNumRecords.ak		"N">
@@ -50,8 +49,8 @@
 <!ENTITY  pref-maxColumnsInTable.label	"Max number of columns in Create Table dialog">
 <!ENTITY  pref-maxColumnsInTable.ak	"M">
 
-<!ENTITY  blobDisplay.caption	"How to display BLOB data?">
-<!ENTITY  pref-textForBlob.label	"Text to display for BLOB value">
+<!ENTITY  blobDisplay.caption	"如何顯示 BLOB 資料?">
+<!ENTITY  pref-textForBlob.label	"文字顯示 BLOB 數值">
 <!ENTITY  pref-textForBlob.ak	"B">
 <!ENTITY  pref-showBlobSize.label	"Display size of blob data">
 <!ENTITY  pref-maxSizeToShowBlobData.label	"Size (in bytes) below which blob should be displayed as string">

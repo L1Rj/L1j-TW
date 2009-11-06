@@ -1,52 +1,52 @@
-<!ENTITY change     "Change">
+<!ENTITY change     "改變">
 <!ENTITY useWithCaution     "use with caution">
 <!ENTITY dbSettingsDesc "These settings modify the operation of the SQLite library.">
 
-<!ENTITY versions "Versions">
-<!ENTITY schema_version "Schema Version">
-<!ENTITY user_version "User Version">
+<!ENTITY versions "版本">
+<!ENTITY schema_version "Schema 版本">
+<!ENTITY user_version "使用者版本">
 
-<!ENTITY cache_size "Cache Size (no. of pages)">
-<!ENTITY default_cache_size "Default Cache Size (no. of pages)">
+<!ENTITY cache_size "快取大小 (no. of pages)">
+<!ENTITY default_cache_size "預設快取大小 (no. of pages)">
 
 <!ENTITY pages "Pages">
-<!ENTITY page_size "Page Size (bytes)">
+<!ENTITY page_size "Page Size (位元組)">
 <!ENTITY max_page_count "Max Page Count">
 <!ENTITY page_count "Page Count">
 <!ENTITY freelist_count "Freelist Count">
 
-<!ENTITY journals "Journals">
-<!ENTITY journal_mode "Journal Mode">
-<!ENTITY journal_size_limit "Journal Size Limit">
+<!ENTITY journals "日誌">
+<!ENTITY journal_mode "日誌模式">
+<!ENTITY journal_size_limit "日誌大小限制">
 
-<!ENTITY others "Others">
-<!ENTITY auto_vacuum "Auto Vacuum">
+<!ENTITY others "其他">
+<!ENTITY auto_vacuum "自動 Vacuum">
 <!ENTITY case_sensitive_like "Case-sensitive Like">
 <!ENTITY count_changes "Count Changes">
 <!ENTITY empty_result_callbacks "Empty Result Callbacks">
-<!ENTITY encoding "Encoding">
+<!ENTITY encoding "編碼">
 <!ENTITY UTF8 "UTF-8">
 <!ENTITY UTF16 "UTF-16">
 <!ENTITY UTF16le "UTF-16le">
 <!ENTITY UTF16be "UTF-16be">
-<!ENTITY full_column_names "Full Column Names">
+<!ENTITY full_column_names "完整欄位名稱">
 <!ENTITY fullfsync "Fullfsync flag">
-<!ENTITY legacy_file_format "Legacy File Format">
-<!ENTITY locking_mode "Locking Mode">
+<!ENTITY legacy_file_format "Legacy 檔案格式">
+<!ENTITY locking_mode "鎖定模式">
 <!ENTITY read_uncommitted "Read Uncommitted">
 <!ENTITY short_column_names "Short Column Names">
-<!ENTITY synchronous "Synchronous">
+<!ENTITY synchronous "同步處理">
 
 <!ENTITY temp_store "Temporary Store">
-<!ENTITY temp_store_directory "Temporary Store Directory">
+<!ENTITY temp_store_directory "Temporary Store 目錄">
 
 <!ENTITY On "開">
 <!ENTITY Off "關">
-<!ENTITY Default "Default">
-<!ENTITY File "File">
-<!ENTITY Memory "Memory">
+<!ENTITY Default "預設">
+<!ENTITY File "檔案">
+<!ENTITY Memory "記憶體">
 <!ENTITY Normal "Normal">
 <!ENTITY Exclusive "Exclusive">
 <!ENTITY Full "Full">
-<!ENTITY None "None">
+<!ENTITY None "無">
 <!ENTITY Incremental "Incremental">

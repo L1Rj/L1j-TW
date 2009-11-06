@@ -4,7 +4,7 @@ prefix=/usr/local
 
 major_version=4
 minor_version=8
-patch_version=0
+patch_version=2
 
 usage()
 {
@@ -132,7 +132,7 @@ if test "$echo_libs" = "yes"; then
       if test -n "$lib_nspr"; then
 	libdirs="$libdirs -lnspr${major_version}"
       fi
-      os_ldflags=""
+      os_ldflags=" -DEBUG -OPT:REF"
       for i in $os_ldflags ; do
 	if echo $i | grep \^-L >/dev/null; then
 	  libdirs="$libdirs $i"
