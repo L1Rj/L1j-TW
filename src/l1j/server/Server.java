@@ -48,6 +48,7 @@ import java.util.logging.Logger;
 
 import l1j.server.Config;
 import l1j.server.server.GameServer;
+import l1j.server.server.log.LogBackUp;
 import l1j.server.telnet.TelnetServer;
 
 /**
@@ -72,8 +73,7 @@ public class Server {
 		logFolder.mkdir();
 
 		try {
-			InputStream is = new BufferedInputStream(new FileInputStream(
-					LOG_PROP));
+			InputStream is = new BufferedInputStream(new FileInputStream(LOG_PROP));
 			LogManager.getLogManager().readConfiguration(is);
 			is.close();
 		} catch (IOException e) {
@@ -82,19 +82,20 @@ public class Server {
 		}
 		try {
 			Config.load();
+			LogBackUp.backup();
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			System.exit(0);
 		}
 
 		// L1DatabaseFactory初期設定
-		L1DatabaseFactory.setDatabaseSettings(Config.DB_DRIVER, Config.DB_URL,
-				Config.DB_LOGIN, Config.DB_PASSWORD);
+		L1DatabaseFactory.setDatabaseSettings(Config.DB_DRIVER, Config.DB_URL, Config.DB_LOGIN,
+				Config.DB_PASSWORD);
 		L1DatabaseFactory.getInstance();
 		L1LogDataFactory.getInstance();
 
 		GameServer.getInstance().initialize();
-		
+
 		if (Config.TELNET_SERVER) {
 			TelnetServer.getInstance().start();
 		}

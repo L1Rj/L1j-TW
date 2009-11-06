@@ -18,8 +18,14 @@
  */
 package l1j.server;
 
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,6 +41,54 @@ public class L1LogDataFactory {
 	private static Logger _log = Logger.getLogger(L1LogDataFactory.class.getName());
 
 	public L1LogDataFactory() throws SQLException {
+		File file = new File("log/Server.db");
+		boolean fileex = file.exists();
+		if (!fileex) {
+			File filedir = new File("log/");
+			filedir.mkdirs();
+			DataOutputStream out = null;
+			Connection con = null;
+			Statement stmt = null;
+
+			try {
+				out = new DataOutputStream(new FileOutputStream("log/Server.db"));
+				out.close();
+
+				Class.forName("org.sqlite.JDBC");
+			    con = DriverManager.getConnection("jdbc:sqlite:log/Server.db");
+				stmt = con.createStatement();
+				stmt.executeUpdate("CREATE TABLE LogClanWareHouseIn (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ClanId Int, ClanName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCountBefore Int, ItemCountAfter Int, ItemCountDiff Int, ItemCount Int, InCount Int, CountDiff Int);");
+				stmt.executeUpdate("CREATE TABLE LogClanWareHouseOut (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ClanId Int, ClanName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCountBefore Int, ItemCountAfter Int, ItemCountDiff Int, ItemCount Int, OutCount Int, CountDiff Int);");
+				stmt.executeUpdate("CREATE TABLE LogDeleteChar (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar);");
+				stmt.executeUpdate("CREATE TABLE LogDeleteItem (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCount Int);");
+				stmt.executeUpdate("CREATE TABLE LogDropItem (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, BeforeInven Int, AfterInven Int, BeforeGround Int, AfterGround Int, DropCount Int);");
+				stmt.executeUpdate("CREATE TABLE LogElfWareHouseIn (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCountBefore Int, ItemCountAfter Int, ItemCountDiff Int, ItemCount Int, InCount Int, CountDiff Int);");
+				stmt.executeUpdate("CREATE TABLE LogElfWareHouseOut (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCountBefore Int, ItemCountAfter Int, ItemCountDiff Int, ItemCount Int, OutCount Int, CountDiff Int);");
+				stmt.executeUpdate("CREATE TABLE LogEnchantFail (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCount Int);");
+				stmt.executeUpdate("CREATE TABLE LogEnchantSuccess (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ObjectId Int, ItemName Varchar, ItemCount Int, EnchantBefore Int, EnchantAfter Int, EnchantDiff Int, EnchantNum Int);");
+				stmt.executeUpdate("CREATE TABLE LogPickUpItem (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, BeforeInven Int, AfterInven Int, BeforeGround Int, AfterGround Int, PickupCount Int);");
+				stmt.executeUpdate("CREATE TABLE LogPrivateShopBuy (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, TargetIp Varchar, TargetAccount Varchar, TargetCharId Int, TargetCharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCount Int, ItemBefore Int, ItemAfter Int, ItemDiff Int, BuyCount Int);");
+				stmt.executeUpdate("CREATE TABLE LogPrivateShopSell (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, TargetIp Varchar, TargetAccount Varchar, TargetCharId Int, TargetCharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCount Int, ItemBefore Int, ItemAfter Int, ItemDiff Int, SellCount Int);");
+				stmt.executeUpdate("CREATE TABLE LogShopBuy (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCount Int, AdenaBefore Int, AdenaAfter Int, AdenaDiff Int, BuyPrice Int);");
+				stmt.executeUpdate("CREATE TABLE LogShopSell (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCount Int, AdenaBefore Int, AdenaAfter Int, AdenaDiff Int, SellPrice Int);");
+				stmt.executeUpdate("CREATE TABLE LogSpeedHack (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar);");
+				stmt.executeUpdate("CREATE TABLE LogStatusUp (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, Level Int, Str Int, BaseStr Int, Dex Int, BaseDex Int, Con Int, BaseCon Int, Int Int, BaseInt Int, Wis Int, BaseWis Int, Cha Int, BaseCha Int, SorceStat Int, BonusStats Int, AllStat Int, DiffSc Int, DiffSr Int);");
+				stmt.executeUpdate("CREATE TABLE LogTradeAddItem (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, TargetIp Varchar, TargetAccount Varchar, TargetCharId Int, TargetCharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCount Int, ItemBefore Int, ItemAfter Int, ItemDiff Int, TradeCount Int);");
+				stmt.executeUpdate("CREATE TABLE LogTradeBugItem (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, TargetIp Varchar, TargetAccount Varchar, TargetCharId Int, TargetCharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCount Int);");
+				stmt.executeUpdate("CREATE TABLE LogTradeComplete (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, TargetIp Varchar, TargetAccount Varchar, TargetCharId Int, TargetCharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCount Int, ItemBeforeTrade Int, ItemBeforeInven Int, ItemAfter Int, ItemDiff Int, TradeCount Int);");
+				stmt.executeUpdate("CREATE TABLE LogWareHouseIn (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCountBefore Int, ItemCountAfter Int, ItemCountDiff Int, ItemCount Int, InCount Int, CountDiff Int);");
+				stmt.executeUpdate("CREATE TABLE LogWareHouseOut (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCountBefore Int, ItemCountAfter Int, ItemCountDiff Int, ItemCount Int, OutCount Int, CountDiff Int);");
+
+				stmt.close();
+				con.close();
+			} catch (FileNotFoundException e) {
+				_log.warning("Server Log outofstream error:" + e);
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 		try {
 			_source = new ComboPooledDataSource();
 			_source.setDriverClass("org.sqlite.JDBC");
@@ -48,7 +102,7 @@ public class L1LogDataFactory {
 			throw x;
 		} catch (Exception e) {
 			_log.fine("LogData Connection FAILED");
-			throw new SQLException("could not init LogData connection:" + e);
+			throw new SQLException("could not init Server Log connection:" + e);
 		}
 	}
 
