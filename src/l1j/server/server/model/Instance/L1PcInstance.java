@@ -65,6 +65,7 @@ import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1TownLocation;
 import l1j.server.server.model.L1War;
 import l1j.server.server.model.L1World;
+import l1j.server.server.model.map.L1Map;
 import l1j.server.server.model.MpReductionByAwake;
 import l1j.server.server.model.MpRegeneration;
 import l1j.server.server.model.MpRegenerationByDoll;
@@ -1024,20 +1025,18 @@ public class L1PcInstance extends L1Character
 			killSkillEffectTimer(INVISIBILITY);
 			sendPackets(new S_Invis(getId(), 0));
 			broadcastPacket(new S_OtherCharPacks(this));
-// 20090720 BAO提供 隱身被攻擊現形
 			sendPackets(new S_CharVisualUpdate(this));
 			broadcastPacket(new S_CharVisualUpdate(this));
-//add end
 		}
+                // 20090720 BAO提供 隱身被攻擊現形
 		if (hasSkillEffect(BLIND_HIDING)) { // ブラインド ハイディング
 			killSkillEffectTimer(BLIND_HIDING);
 			sendPackets(new S_Invis(getId(), 0));
 			broadcastPacket(new S_OtherCharPacks(this));
-// 20090720 BAO提供 隱身被攻擊現形
 			sendPackets(new S_CharVisualUpdate(this));
 			broadcastPacket(new S_CharVisualUpdate(this));
-//add end
 		}
+                //add end
 	}
 
 	public void delBlindHiding() {
@@ -1046,8 +1045,8 @@ public class L1PcInstance extends L1Character
 		sendPackets(new S_Invis(getId(), 0));
 		broadcastPacket(new S_OtherCharPacks(this));
 	}
-
-	// 魔法のダメージの場合はここを使用 (ここで魔法ダメージ軽減処理) attr:0.無属性魔法,1.地魔法,2.火魔法,3.水魔法,4.風魔法
+        
+        // 魔法のダメージの場合はここを使用 (ここで魔法ダメージ軽減処理) attr:0.無属性魔法,1.地魔法,2.火魔法,3.水魔法,4.風魔法
 	public void receiveDamage(L1Character attacker, int damage, int attr) {
 		int player_mr = getMr();
 		int rnd = RandomArrayList.getInc(100, 1);
@@ -1431,13 +1430,14 @@ public class L1PcInstance extends L1Character
 					boolean isChangePkCountForElf = false;// 妖精殺死同族 PK值另外計算
 
 					// アライメントが30000未滿の場合はPKカウント增加
-					if (player.getLawful() < 30000) {
+					if (player.getLawful() < 30000
+                                                && player.getZoneType() == 0) {
 						player.set_PKcount(player.get_PKcount() + 1);
 						isChangePkCount = true;
 
-						if (player.isElf() && isElf()) {// 妖精殺死同族 PK值另外計算
-							player.setPkCountForElf(player
-									.getPkCountForElf() +1);
+						if (player.isElf() && isElf()
+                                                        && player.getZoneType() == 0) {// 妖精殺死同族 PK值另外計算
+							player.setPkCountForElf(player.getPkCountForElf() +1);
 							isChangePkCountForElf = true;
 						}
 					}
@@ -1732,37 +1732,44 @@ public class L1PcInstance extends L1Character
 	}
 
 	public boolean isCrown() {
-		return (getClassId() == L1ClassId.PRINCE
-				|| getClassId() == L1ClassId.PRINCESS);
+		return (getType() == L1ClassId.ROYAL
+                        || getClassId() == L1ClassId.PRINCE
+                        || getClassId() == L1ClassId.PRINCESS);
 	}
 
 	public boolean isKnight() {
-		return (getClassId() == L1ClassId.KNIGHT_MALE
-				|| getClassId() == L1ClassId.KNIGHT_FEMALE);
+		return (getType() == L1ClassId.KNIGHT
+                        || getClassId() == L1ClassId.KNIGHT_MALE
+                        || getClassId() == L1ClassId.KNIGHT_FEMALE);
 	}
 
 	public boolean isElf() {
-		return (getClassId() == L1ClassId.ELF_MALE
-				|| getClassId() == L1ClassId.ELF_FEMALE);
+		return (getType() == L1ClassId.ELF
+                        || getClassId() == L1ClassId.ELF_MALE
+                        || getClassId() == L1ClassId.ELF_FEMALE);
 	}
 
 	public boolean isWizard() {
-		return (getClassId() == L1ClassId.WIZARD_MALE
-				|| getClassId() == L1ClassId.WIZARD_FEMALE);
+		return (getType() == L1ClassId.WIZARD
+                        || getClassId() == L1ClassId.WIZARD_MALE
+                        || getClassId() == L1ClassId.WIZARD_FEMALE);
 	}
 
 	public boolean isDarkelf() {
-		return (getClassId() == L1ClassId.DARK_ELF_MALE
-				|| getClassId() == L1ClassId.DARK_ELF_FEMALE);
+		return (getType() == L1ClassId.DARK_ELF
+                        || getClassId() == L1ClassId.DARK_ELF_MALE
+                        || getClassId() == L1ClassId.DARK_ELF_FEMALE);
 	}
 
 	public boolean isDragonKnight() {
-		return (getClassId() == L1ClassId.DRAGON_KNIGHT_MALE
-				|| getClassId() == L1ClassId.DRAGON_KNIGHT_FEMALE);
+		return (getType() == L1ClassId.DRAGON_KNIGHT
+                        || getClassId() == L1ClassId.DRAGON_KNIGHT_MALE
+                        || getClassId() == L1ClassId.DRAGON_KNIGHT_FEMALE);
 	}
 	public boolean isIllusionist() {
-		return (getClassId() == L1ClassId.ILLUSIONIST_MALE
-				|| getClassId() == L1ClassId.ILLUSIONIST_FEMALE);
+		return (getType() == L1ClassId.ILLUSIONIST
+                        || getClassId() == L1ClassId.ILLUSIONIST_MALE
+                        || getClassId() == L1ClassId.ILLUSIONIST_FEMALE);
 	}
 
 	private static Logger _log = Logger.getLogger(L1PcInstance.class.getName());
