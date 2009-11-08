@@ -86,7 +86,7 @@ public abstract class ClientBasePacket {
 	public String readS()
 	{
 		String s = null;
-		
+
 		try
 		{
 			s = new String(_decrypt, _off, _decrypt.length - _off, CLIENT_LANGUAGE_CODE);
@@ -97,25 +97,25 @@ public abstract class ClientBasePacket {
 		{
 			_log.log(Level.SEVERE, "OpCode=" + (_decrypt[0] & 0xff), e);
 		}
-		
+
 		return s;
 	}
-	
+
 	public String readChars()
 	{
 		String s = "";
-		
+
 		while (_off < _decrypt.length)
 		{
 			char c = (char) readH(); // 讀取 16 位元的數值 並轉換成 字元
-			
+
 			// 判斷值是否等於 0 (0 代表結束的意思)
 			if (c == 0)
 				return s;
 			else
 				s += c;
 		}
-		
+
 		return s;
 	}
 

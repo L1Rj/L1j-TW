@@ -8,12 +8,12 @@ import l1j.server.server.templates.L1Npc;
 public class NpcAction
 {
 	private final static ConcurrentHashMap<Integer, NpcAction> Npcs;
-	
+
 	static
 	{
 		Npcs = new ConcurrentHashMap<Integer, NpcAction>();
 	}
-	
+
 	public static NpcAction getAction(int Gfxid)
 	{
 		if (Npcs.containsKey(Gfxid))
@@ -21,12 +21,12 @@ public class NpcAction
 		else
 			return new NpcAction();
 	}
-	
+
 	private int defaultAttack = -1; // 一般攻擊
 	private int SpecialAttack = -1; // 特殊攻擊
 	private int ARange = -1; // 攻擊之範圍
 	private int SARange = -1; // 特殊攻擊之範圍
-	
+
 	public void Load(L1NpcInstance npc)
 	{
 		L1Npc temp = npc.getNpcTemplate();
@@ -36,7 +36,7 @@ public class NpcAction
 		setDefaultAttack(temp.get_ranged() == 2 ? 25 : 1); // 矛類
 		npc.setStatus(getDefaultAttack() == 21 ? 20 : npc.getStatus()); // 移動改為拿著弓移動
 		npc.setStatus(getDefaultAttack() == 25 ? 24 : npc.getStatus()); // 移動改為拿著矛移動
-		
+
 		switch (temp.get_npcId())
 		{
 			// 飛行系列的怪物修正
@@ -46,19 +46,19 @@ public class NpcAction
 			case 45090: 	// 弱化格利芬 (新手村莊
 			case 45321: 	// 格利芬 (一般)
 			case 45445: 	// 格利芬 (遺忘之島)
-			npc.setStatus(0); 	// 空手休息
-			npc.setState(1); 	// 空中類型的怪物 在天上設2, 在地上設1
-			break;
-			
+				npc.setStatus(0); 	// 空手休息
+				npc.setState(1); 	// 空中類型的怪物 在天上設2, 在地上設1
+				break;
+
 			// 妖魔鬥士系列
 			case 45082: case 45120: case 45759:
-			npc.setStatus(0x04); // 設定NPC初始狀態
-			setDefaultAttack(0x05); // 預設值為 0x05
-			setSpecialAttack(0x1E); // 預設值為 0x1E
-			setARange(temp.get_ranged());
-			setSARange(temp.get_ranged());
-			break;
-			
+				npc.setStatus(0x04); // 設定NPC初始狀態
+				setDefaultAttack(0x05); // 預設值為 0x05
+				setSpecialAttack(0x1E); // 預設值為 0x1E
+				setARange(temp.get_ranged());
+				setSARange(temp.get_ranged());
+				break;
+
 			// 弓箭手系列
 			case 45191: case 45220: case 45272: case 45475: case 45898:
 			case 45905: // 黑暗妖精盜賊
@@ -69,19 +69,19 @@ public class NpcAction
 			case 45124: case 45129: case 45291: case 45532: case 45758:
 			case 45765: case 45790: case 46023: case 46029: case 81070:
 			case 81227:
-			setSpecialAttack(0x1E); // 預設值為 0x1E
-			setARange(temp.get_ranged());
-			setSARange(0x01);
-			break;
-			
+				setSpecialAttack(0x1E); // 預設值為 0x1E
+				setARange(temp.get_ranged());
+				setSARange(0x01);
+				break;
+
 			// 深淵弓箭手
 			case 45502:
-			setDefaultAttack(0x1E); // 預設值攻擊為 0x1E
-			setSpecialAttack(0x01); // 預設值特殊攻擊為 0x01
-			setARange(temp.get_ranged());
-			setSARange(0x01);
-			break;
-			
+				setDefaultAttack(0x1E); // 預設值攻擊為 0x1E
+				setSpecialAttack(0x01); // 預設值特殊攻擊為 0x01
+				setARange(temp.get_ranged());
+				setSARange(0x01);
+				break;
+
 			// 黑暗妖精警衛 (矛)
 			case 45253: case 45287: case 45412: case 45896: case 45903:
 			case 45977:
@@ -99,13 +99,13 @@ public class NpcAction
 			// 黑騎士系列 (不包含 弱化黑騎士)
 			case 45165: case 45503: case 60555: case 81066: case 81067:
 			case 70791: case 81115: // 變身專用?、黑騎士副隊長?
-			setSpecialAttack(0x1E); // 預設值特殊攻擊為 0x1E
-			setARange(temp.get_ranged());
-			setSARange(temp.get_ranged());
-			break;
+				setSpecialAttack(0x1E); // 預設值特殊攻擊為 0x1E
+				setARange(temp.get_ranged());
+				setSARange(temp.get_ranged());
+				break;
 		}
 	}
-	
+
 	/**
 	 * @param defaultAttack the defaultAttack to set
 	 */

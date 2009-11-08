@@ -45,7 +45,7 @@ public class C_BoardWrite extends ClientBasePacket {
 		String date = currentTime();
 		String title = readS();
 		String content = readS();
-		
+
 		L1Object tg = L1World.getInstance().findObject(id);
 
 		if (tg != null) {

@@ -57,12 +57,12 @@ public class C_War extends ClientBasePacket {
 			return;
 		}
 // 20090807 missu0524 提供 宣戰血盟需要有盟輝
-		 String emblem_file = String.valueOf(player.getClanid());
-	        File file = new File( "emblem/" + emblem_file);
-	        if (!file.exists()) {
-	            player.sendPackets(new S_ServerMessage(812));
-	            return;
-	        }
+		String emblem_file = String.valueOf(player.getClanid());
+		File file = new File( "emblem/" + emblem_file);
+		if (!file.exists()) {
+			player.sendPackets(new S_ServerMessage(812));
+			return;
+		}
 // add end
 		if (clanId == 0) { // クラン未所屬
 			player.sendPackets(new S_ServerMessage(272)); // \f1戰爭するためにはまず血盟を創設しなければなりません。

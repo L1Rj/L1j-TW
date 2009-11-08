@@ -22,7 +22,7 @@ import l1j.server.server.model.id.L1ClassId;
 
 public abstract class L1ClassFeature {
 	public static L1ClassFeature newClassFeature(int Type) {
-		
+
 		switch(Type){
 		case L1ClassId.ROYAL: // 王族
 		case L1ClassId.Del_ROYAL:
@@ -50,7 +50,7 @@ public abstract class L1ClassFeature {
 		}
 		//throw new IllegalArgumentException();
 	}
-	
+
 	/** 角色出生地 */
 	public abstract int[] InitSpawn(int type);
 	/** 角色圖象 */
@@ -158,5 +158,5 @@ public abstract class L1ClassFeature {
 		}
 		return b_mr;
 	}
-	
+
 }

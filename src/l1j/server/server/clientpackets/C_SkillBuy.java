@@ -40,17 +40,17 @@ public class C_SkillBuy extends ClientBasePacket
 		L1PcInstance pc = client.getActiveChar();
 		L1Object obj = L1World.getInstance().findObject(NpcId);
 		L1NpcInstance npc = null;
-		
+
 		if (pc.isGhost() || obj == null)
 			return;
-		
+
 		if (obj.getMapId() != pc.getMapId() || pc.getTileLineDistance(obj) > 3)
 			return;
-		
+
 		if (obj instanceof L1NpcInstance)
 		{
 			npc = (L1NpcInstance) obj;
-			
+
 			if (npc.getNpcId() == 70003 ||	// 希莉斯
 				npc.getNpcId() == 70009 ||	// 吉倫
 				npc.getNpcId() == 70080 ||	// 何侖 (待修正)

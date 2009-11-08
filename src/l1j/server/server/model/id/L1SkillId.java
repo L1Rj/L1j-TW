@@ -4,35 +4,35 @@ package l1j.server.server.model.id;
  * TODO 未完成
  */
 public class L1SkillId {
-	
+
 	// 技能初始
 	public static final int SKILLS_BEGIN = 1;
 
-	/*
+	/**
 	 * 法師、妖精、王族、黑妖、騎士共用技能
 	 */
-	
+
 	/** 初級治癒術 */
 	public static final int HEAL = 1;
-    /** 日光術 */
+	/** 日光術 */
 	public static final int LIGHT = 2;
-    /** 防護罩 */
+	/** 防護罩 */
 	public static final int SHIELD = 3;
-    /** 光箭 */
+	/** 光箭 */
 	public static final int ENERGY_BOLT = 4;
 	/** 指定傳送 */
 	public static final int TELEPORT = 5;
 	/** 冰箭 */
 	public static final int ICE_DAGGER = 6;
 	/** 風刃 */
-	public static final int WIND_CUTTER = 7; 
+	public static final int WIND_CUTTER = 7;
 	/** 神聖武器 */
 	public static final int HOLY_WEAPON = 8;
 
-	/*
+	/**
 	 * 法師、妖精、王族、黑妖共用技能
 	 */
-	
+
 	/** 解毒術 */
 	public static final int CURE_POISON = 9;
 	/** 寒冷戰慄 */
@@ -50,10 +50,10 @@ public class L1SkillId {
 	/** 火箭 */
 	public static final int FIRE_ARROW = 16;
 
-	/*
+	/**
 	 * 法師、妖精共用技能
 	 */
-	
+
 	/** 極光雷電 */
 	public static final int LIGHTNING = 17;
 	/** 起死回生術 */
@@ -116,11 +116,11 @@ public class L1SkillId {
 	public static final int WEAKNESS = 47;
 	/** 祝福魔法武器 */
 	public static final int BLESS_WEAPON = 48;
-	
-	/*
+
+	/**
 	 * 法師專屬技能
 	 */
-	
+
 	/** 體力回復術 */
 	public static final int HEAL_ALL = 49;
 	/** 冰矛圍籬 */
@@ -186,10 +186,10 @@ public class L1SkillId {
 	/** 冰雪颶風 */
 	public static final int FREEZING_BLIZZARD = 80;
 
-	/*
+	/**
 	 * 騎士專屬技能
 	 */
-	
+
 	/** 衝擊之暈 */
 	public static final int SHOCK_STUN = 87;
 	/** 增幅防禦 */
@@ -201,10 +201,10 @@ public class L1SkillId {
 	/** 反擊屏障 */
 	public static final int COUNTER_BARRIER = 91;
 
-	/*
+	/**
 	 * 黑暗妖精專屬技能
 	 */
-	
+
 	/** 暗隱術 */
 	public static final int BLIND_HIDING = 97;
 	/** 附加劇毒 */
@@ -236,10 +236,10 @@ public class L1SkillId {
 	/** 閃避提升 */
 	public static final int DRESS_EVASION = 111;
 
-	/*
+	/**
 	 * 王族專屬技能
 	 */
-	
+
 	/** 精準目標 */
 	public static final int TRUE_TARGET = 113;
 	/** 激勵士氣 */
@@ -253,10 +253,10 @@ public class L1SkillId {
 	/** 援護盟友 */
 	public static final int RUN_CLAN = 118;
 
-	/*
+	/**
 	 * 妖精專屬技能
 	 */
-	
+
 	/** 魔法防禦 */
 	public static final int RESIST_MAGIC = 129;
 	/** 心靈轉換 */
@@ -338,10 +338,10 @@ public class L1SkillId {
 	/** 能量激發 */
 	public static final int ADDITIONAL_FIRE = 176;
 
-	/*
+	/**
 	 * 龍騎士專屬技能
 	 */
-	
+
 	/** 龍之護鎧 */
 	public static final int DRAGON_SKIN = 181;
 	/** 燃燒擊砍 */
@@ -373,10 +373,10 @@ public class L1SkillId {
 	/** 覺醒：巴拉卡斯 */
 	public static final int AWAKEN_VALAKAS = 195;
 
-	/*
+	/**
 	 * 幻術師專屬技能
 	 */
-	
+
 	/** 鏡像 */
 	public static final int MIRROR_IMAGE = 201;
 	/** 混亂 */
@@ -417,13 +417,13 @@ public class L1SkillId {
 	public static final int ILLUSION_AVATAR = 219;
 	/** 立方：和諧 */
 	public static final int CUBE_BALANCE = 220;
-	// 技能結尾
+	/** 技能結尾 */
 	public static final int SKILLS_END = 220;
 
-	/*
+	/**
 	 * 狀態
 	 */
-	
+
 	// 狀態初始
 	public static final int STATUS_BEGIN = 1000;
 
@@ -458,7 +458,7 @@ public class L1SkillId {
 	public static final int STATUS_HOLY_MITHRIL_POWDER = 1014;
 	/** 伊娃聖水狀態 */
 	public static final int STATUS_HOLY_WATER_OF_EVA = 1015;
-	
+
 	public static final int STATUS_ELFBRAVE = 1016;
 
 	public static final int STATUS_RIBRAVE = 1017;
@@ -478,7 +478,7 @@ public class L1SkillId {
 	public static final int STATUS_MR_REDUCTION_BY_CUBE_SHOCK = 1024;
 
 	public static final int STATUS_CUBE_BALANCE = 1025;
-	
+
 	public static final int STATUS_FREEZE = 10071;
 
 	public static final int CURSE_PARALYZE2 = 10101;
@@ -488,14 +488,14 @@ public class L1SkillId {
 	public static final int STATUS_CURSE_YAHEE = 1014;
 	/** 修正施法過快造成玩家座標錯誤 */
 	public static final int STATUS_YOUAREACCLERATOR = 1026;
-	// 狀態結尾
+	/** 狀態結尾 */
 	public static final int STATUS_END = 1025;
-	
-	/*
+
+	/**
 	 * 遊戲管理者狀態
 	 */
-	
-	// 遊戲管理者GM狀態初始
+
+	/** 遊戲管理者GM狀態初始 */
 	public static final int GMSTATUS_BEGIN = 2000;
 
 	public static final int GMSTATUS_INVISIBLE = 2000;
@@ -505,16 +505,16 @@ public class L1SkillId {
 	public static final int GMSTATUS_SHOWTRAPS = 2002;
 
 	public static final int GMSTATUS_FINDINVIS = 2003;
-	// 遊戲管理者狀態結尾
+	/** 遊戲管理者狀態結尾 */
 	public static final int GMSTATUS_END = 2003;
-	
-	/*
+
+	/**
 	 * 料理狀態
 	 */
-	
+
 	/** 制作料理中 */
 	public static final int COOKING_NOW = 2999;
-	// 食用料理狀態初始
+	/** 食用料理狀態初始 */
 	public static final int COOKING_BEGIN = 3000;
 
 	public static final int COOKING_1_0_N = 3000;
@@ -612,7 +612,7 @@ public class L1SkillId {
 	public static final int COOKING_3_6_S = 3046;
 
 	public static final int COOKING_3_7_S = 3047;
-	// 食用料理狀態結尾
+	/** 食用料理狀態結尾 */
 	public static final int COOKING_END = 3047;
 
 }

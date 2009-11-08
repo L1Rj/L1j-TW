@@ -3085,7 +3085,7 @@ public class C_ItemUSe extends ClientBasePacket
 						}
 						pc.sendPackets(new S_ServerMessage(msg));
 						pc.getInventory().removeItem(l1iteminstance1, 1);
-                                        } else {
+					} else {
 						pc.sendPackets(new S_ServerMessage(154)); // \f1スクロールが散らばります。
 					}
 					pc.getInventory().removeItem(item, 1);
@@ -4511,7 +4511,7 @@ public class C_ItemUSe extends ClientBasePacket
 				itemId == 40259 && level >= 50  &&pc.getElfAttr() == 2||
 				itemId == 41149 && level >= 50  &&pc.getElfAttr() == 2||
 				itemId == 41150 && level >= 50  &&pc.getElfAttr() == 2)
-				
+
 				SpellBook2();
 		}
 		else
@@ -4918,8 +4918,8 @@ public class C_ItemUSe extends ClientBasePacket
 			return false;
 		}
 		int petCost = 0;
-                int petCount = 0;
-                int divisor = 6;
+		int petCount = 0;
+		int divisor = 6;
 		Object[] petList = pc.getPetList().values().toArray();
 		for (Object pet : petList) {
 			if (pet instanceof L1PetInstance) {
@@ -4945,7 +4945,7 @@ public class C_ItemUSe extends ClientBasePacket
 		}
 		//charisma -= petCost;
 		/* 原始設定魅 / 6
-                int petCount = charisma / 6;
+		int petCount = charisma / 6;
 		if (petCount <= 0) {
 			pc.sendPackets(new S_ServerMessage(489)); // 引き取ろうとするペットが多すぎます。
 			return false;
@@ -4958,28 +4958,28 @@ public class C_ItemUSe extends ClientBasePacket
 			L1PetInstance pet = new L1PetInstance(npcTemp, pc, l1pet);
 			pet.setPetcost(6);
 		}
-                */
-                L1Pet l1pet = PetTable.getInstance().getTemplate(itemObjectId);
-                if (l1pet != null) {
-                    int npcId = l1pet.get_npcid();
-                    charisma -= petCost;
-                    if (npcId == 45313 || npcId == 45710 // タイガー、バトルタイガー
-                            || npcId == 45711 || npcId == 45712) { // 紀州犬の子犬、紀州犬
-                        divisor = 12;
-                    } else {
-                        divisor = 6;
-                    }
-                    petCount = charisma / divisor;
-                    if (petCount <= 0) {
-                        pc.sendPackets(new S_ServerMessage(489)); // 引き取ろうとするペットが多すぎます。
-                        return false;
-                    }
-                    L1Npc npcTemp = NpcTable.getInstance().getTemplate(npcId);
-                    L1PetInstance pet = new L1PetInstance(npcTemp, pc, l1pet);
-                    pet.setPetcost(divisor);
-                }
-                
-                return true;
+		*/
+		L1Pet l1pet = PetTable.getInstance().getTemplate(itemObjectId);
+		if (l1pet != null) {
+			int npcId = l1pet.get_npcid();
+			charisma -= petCost;
+			if (npcId == 45313 || npcId == 45710 // タイガー、バトルタイガー
+					|| npcId == 45711 || npcId == 45712) { // 紀州犬の子犬、紀州犬
+				divisor = 12;
+			} else {
+				divisor = 6;
+			}
+			petCount = charisma / divisor;
+			if (petCount <= 0) {
+				pc.sendPackets(new S_ServerMessage(489)); // 引き取ろうとするペットが多すぎます。
+				return false;
+			}
+			L1Npc npcTemp = NpcTable.getInstance().getTemplate(npcId);
+			L1PetInstance pet = new L1PetInstance(npcTemp, pc, l1pet);
+			pet.setPetcost(divisor);
+		}
+
+		return true;
 	}
 
 	private void startFishing(L1PcInstance pc, int itemId, int fishX, int fishY) {

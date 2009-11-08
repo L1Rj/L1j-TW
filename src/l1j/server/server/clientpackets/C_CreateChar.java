@@ -52,7 +52,7 @@ public class C_CreateChar extends ClientBasePacket {
 	.CLIENT_LANGUAGE_CODE;
 
 	private L1ClassFeature classFeature = null;
-	
+
 	public C_CreateChar(byte[] abyte0, ClientThread client)
 			throws Exception {
 		super(abyte0);
@@ -96,7 +96,7 @@ public class C_CreateChar extends ClientBasePacket {
 			client.sendPacket(s_charcreatestatus1);
 			return;
 		}
-		
+
 		pc.setName(name);
 		pc.setType(readC());
 		pc.set_sex(readC());
@@ -107,23 +107,23 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.addBaseCha((byte) readC());
 		pc.addBaseInt((byte) readC());
 		boolean statusError = false;
-		
+
 		classFeature = L1ClassFeature.newClassFeature(pc.getType());
 		int originalpoint[] = classFeature.InitPoints();
-		
+
 		if ((pc.getBaseStr() < originalpoint[0]
-		     || pc.getBaseDex() < originalpoint[1]
-		     || pc.getBaseCon() < originalpoint[2]
-		     || pc.getBaseWis() < originalpoint[3]
-		     || pc.getBaseCha() < originalpoint[4]
-		     || pc.getBaseInt() < originalpoint[5])
-		     || (pc.getBaseStr() > originalpoint[0] + originalpoint[6]
-		     || pc.getBaseDex() > originalpoint[1] + originalpoint[6]
-		     || pc.getBaseCon() > originalpoint[2] + originalpoint[6]
-		     || pc.getBaseWis() > originalpoint[3] + originalpoint[6]
-		     || pc.getBaseCha() > originalpoint[4] + originalpoint[6]
-		     || pc.getBaseInt() > originalpoint[5] + originalpoint[6])) {
-		   statusError = true;
+				|| pc.getBaseDex() < originalpoint[1]
+				|| pc.getBaseCon() < originalpoint[2]
+				|| pc.getBaseWis() < originalpoint[3]
+				|| pc.getBaseCha() < originalpoint[4]
+				|| pc.getBaseInt() < originalpoint[5])
+				|| (pc.getBaseStr() > originalpoint[0] + originalpoint[6]
+				|| pc.getBaseDex() > originalpoint[1] + originalpoint[6]
+				|| pc.getBaseCon() > originalpoint[2] + originalpoint[6]
+				|| pc.getBaseWis() > originalpoint[3] + originalpoint[6]
+				|| pc.getBaseCha() > originalpoint[4] + originalpoint[6]
+				|| pc.getBaseInt() > originalpoint[5] + originalpoint[6])) {
+			statusError = true;
 		}
 
 		int statusAmount = pc.getDex() + pc.getCha() + pc.getCon()
@@ -148,8 +148,8 @@ public class C_CreateChar extends ClientBasePacket {
 
 	private static void initNewChar(ClientThread client, L1PcInstance pc)
 			throws IOException, Exception {
-		
-		L1ClassFeature classFeature = L1ClassFeature.newClassFeature(pc.getType());	
+
+		L1ClassFeature classFeature = L1ClassFeature.newClassFeature(pc.getType());
 		short initHp = (short)classFeature.InitHp();
 		short initMp = (short)classFeature.InitMp(pc.getWis());
 		int [] spawn = classFeature.InitSpawn(pc.getType());

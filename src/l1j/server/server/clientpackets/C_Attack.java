@@ -47,16 +47,16 @@ public class C_Attack extends ClientBasePacket
 	public C_Attack(byte[] decrypt, ClientThread client)
 	{
 		super(decrypt);
-		
+
 		int targetId = readD();
 		int x = readH();
 		int y = readH();
-		
+
 		L1PcInstance pc = client.getActiveChar();
 
 		if (pc.isGhost() || pc.isDead() || pc.isTeleport())
 			return;
-		
+
 		if (pc.isInvisble()) { // インビジビリティ、ブラインドハイディング中
 			return;
 		}

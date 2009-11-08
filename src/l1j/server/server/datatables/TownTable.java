@@ -59,7 +59,7 @@ public class TownTable {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		
+
 		_towns.clear();
 
 		try {
@@ -117,7 +117,7 @@ public class TownTable {
 
 		int townTax = salesMoney / 100 * townTaxRate;
 		int townFixTax = salesMoney / 100 * 2;
-		
+
 		if (townTax <= 0 && townTaxRate > 0) {
 			townTax = 1;
 		}
@@ -134,7 +134,7 @@ public class TownTable {
 			pstm.setInt(3, townFixTax);
 			pstm.setInt(4, town_id);
 			pstm.execute();
-			
+
 			town.set_sales_money(town.get_sales_money() + salesMoney);
 			town.set_town_tax(town.get_town_tax() + townTax);
 			town.set_town_fix_tax(town.get_town_fix_tax() + townFixTax);

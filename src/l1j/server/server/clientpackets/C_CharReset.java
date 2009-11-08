@@ -53,17 +53,17 @@ public class C_CharReset extends ClientBasePacket {
  * //提升完等級 127.0.0.1 Request Work ID : 120 0000: 78 02 08 00 x...
  * 
  * //萬能藥 127.0.0.1 Request Work ID : 120 0000: 78 03 23 0a 0b 17 12 0d
- */	
+ */
 
 	public C_CharReset(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
 		L1PcInstance pc = clientthread.getActiveChar();
 		classFeature = L1ClassFeature.newClassFeature(pc.getType());
-//waja add 檢查角色素質狀態
+		// waja add 檢查角色素質狀態
 		if(!pc.isInCharReset()){ //如果不是重置狀態
 			return;
 		}
-//add end
+		// add end
 		int stage = readC();
 
 		if (stage == 0x01) { // 0x01:キャラクター初期化
@@ -73,14 +73,14 @@ public class C_CharReset extends ClientBasePacket {
 			int dex = readC();
 			int con = readC();
 			int cha = readC();
-//waja add 檢查角色素質狀態 加入初始化判斷
+			// waja add 檢查角色素質狀態 加入初始化判斷
 			int statusAmount = str + intel + wis
 				+ dex + con + cha;
 			if (statusAmount != 75) {
 				pc.sendPackets(new S_Disconnect());
 				return;
 			}
-//add end
+			// add end
 			int hp = classFeature.InitHp();
 			int mp = classFeature.InitMp(pc.getBaseWis());
 			pc.sendPackets(new S_CharReset(pc, 1, hp, mp, 10, str, intel, wis,
@@ -90,7 +90,7 @@ public class C_CharReset extends ClientBasePacket {
 		} else if (stage == 0x02) { // 0x02:ステータス再分配
 			int type2 = readC();
 			if (type2 == 0x00) { // 0x00:Lv1UP
-				setLevelUp(pc, 1); 
+				setLevelUp(pc, 1);
 			} else if (type2 == 0x07) { // 0x07:Lv10UP
 				if (pc.getTempMaxLevel() - pc.getTempLevel() < 10) {
 					return;

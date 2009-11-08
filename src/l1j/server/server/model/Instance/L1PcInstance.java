@@ -118,11 +118,11 @@ import static l1j.server.server.model.skill.L1SkillId.*;
 // L1World
 //
 
-public class L1PcInstance extends L1Character 
+public class L1PcInstance extends L1Character
 	{
 	private static final long serialVersionUID = 1L;
 
-	public int getAc() 
+	public int getAc()
 	{
 		return _ac + L1DollInstance.getAcByDoll(this);
 	}
@@ -291,7 +291,7 @@ public class L1PcInstance extends L1Character
 			_FrameUpdate.setShutdown(true);
 			_FrameUpdate = null;
 		}
-		
+
 		if (_expMonitorFuture != null) {
 			_expMonitorFuture.cancel(true);
 			_expMonitorFuture = null;
@@ -408,11 +408,11 @@ public class L1PcInstance extends L1Character
 			if (hasSkillEffect(GMSTATUS_HPBAR)
 					&& L1HpBar.isHpBarTarget(visible)) {
 				sendPackets(new S_HPMeter((L1Character) visible));
-// 怪物血條	
+			// 怪物血條
 			} else if(Config.SHOW_HP_BAR && L1HpBar.isHpBarTarget(visible)
 					&& visible instanceof L1MonsterInstance ){
 				sendPackets(new S_HPMeter((L1Character) visible));
-//add end
+			// add end
 			}
 		}
 	}
@@ -899,7 +899,7 @@ public class L1PcInstance extends L1Character
 	}
 
 	@Override
-	public void onAction(L1PcInstance attacker) 
+	public void onAction(L1PcInstance attacker)
 	{
 		// XXX:NullPointerException回避。onActionの引數の型はL1Characterのほうが良い？
 		if (attacker == null && isTeleport())
@@ -1028,7 +1028,7 @@ public class L1PcInstance extends L1Character
 			sendPackets(new S_CharVisualUpdate(this));
 			broadcastPacket(new S_CharVisualUpdate(this));
 		}
-                // 20090720 BAO提供 隱身被攻擊現形
+		// 20090720 BAO提供 隱身被攻擊現形
 		if (hasSkillEffect(BLIND_HIDING)) { // ブラインド ハイディング
 			killSkillEffectTimer(BLIND_HIDING);
 			sendPackets(new S_Invis(getId(), 0));
@@ -1036,7 +1036,7 @@ public class L1PcInstance extends L1Character
 			sendPackets(new S_CharVisualUpdate(this));
 			broadcastPacket(new S_CharVisualUpdate(this));
 		}
-                //add end
+		// add end
 	}
 
 	public void delBlindHiding() {
@@ -1045,8 +1045,8 @@ public class L1PcInstance extends L1Character
 		sendPackets(new S_Invis(getId(), 0));
 		broadcastPacket(new S_OtherCharPacks(this));
 	}
-        
-        // 魔法のダメージの場合はここを使用 (ここで魔法ダメージ軽減処理) attr:0.無属性魔法,1.地魔法,2.火魔法,3.水魔法,4.風魔法
+
+	// 魔法のダメージの場合はここを使用 (ここで魔法ダメージ軽減処理) attr:0.無属性魔法,1.地魔法,2.火魔法,3.水魔法,4.風魔法
 	public void receiveDamage(L1Character attacker, int damage, int attr) {
 		int player_mr = getMr();
 		int rnd = RandomArrayList.getInc(100, 1);
@@ -1431,12 +1431,12 @@ public class L1PcInstance extends L1Character
 
 					// アライメントが30000未滿の場合はPKカウント增加
 					if (player.getLawful() < 30000
-                                                && player.getZoneType() == 0) {
+							&& player.getZoneType() == 0) {
 						player.set_PKcount(player.get_PKcount() + 1);
 						isChangePkCount = true;
 
 						if (player.isElf() && isElf()
-                                                        && player.getZoneType() == 0) {// 妖精殺死同族 PK值另外計算
+								&& player.getZoneType() == 0) {// 妖精殺死同族 PK值另外計算
 							player.setPkCountForElf(player.getPkCountForElf() +1);
 							isChangePkCountForElf = true;
 						}
@@ -1733,43 +1733,43 @@ public class L1PcInstance extends L1Character
 
 	public boolean isCrown() {
 		return (getType() == L1ClassId.ROYAL
-                        || getClassId() == L1ClassId.PRINCE
-                        || getClassId() == L1ClassId.PRINCESS);
+				|| getClassId() == L1ClassId.PRINCE
+				|| getClassId() == L1ClassId.PRINCESS);
 	}
 
 	public boolean isKnight() {
 		return (getType() == L1ClassId.KNIGHT
-                        || getClassId() == L1ClassId.KNIGHT_MALE
-                        || getClassId() == L1ClassId.KNIGHT_FEMALE);
+				|| getClassId() == L1ClassId.KNIGHT_MALE
+				|| getClassId() == L1ClassId.KNIGHT_FEMALE);
 	}
 
 	public boolean isElf() {
 		return (getType() == L1ClassId.ELF
-                        || getClassId() == L1ClassId.ELF_MALE
-                        || getClassId() == L1ClassId.ELF_FEMALE);
+				|| getClassId() == L1ClassId.ELF_MALE
+				|| getClassId() == L1ClassId.ELF_FEMALE);
 	}
 
 	public boolean isWizard() {
 		return (getType() == L1ClassId.WIZARD
-                        || getClassId() == L1ClassId.WIZARD_MALE
-                        || getClassId() == L1ClassId.WIZARD_FEMALE);
+				|| getClassId() == L1ClassId.WIZARD_MALE
+				|| getClassId() == L1ClassId.WIZARD_FEMALE);
 	}
 
 	public boolean isDarkelf() {
 		return (getType() == L1ClassId.DARK_ELF
-                        || getClassId() == L1ClassId.DARK_ELF_MALE
-                        || getClassId() == L1ClassId.DARK_ELF_FEMALE);
+				|| getClassId() == L1ClassId.DARK_ELF_MALE
+				|| getClassId() == L1ClassId.DARK_ELF_FEMALE);
 	}
 
 	public boolean isDragonKnight() {
 		return (getType() == L1ClassId.DRAGON_KNIGHT
-                        || getClassId() == L1ClassId.DRAGON_KNIGHT_MALE
-                        || getClassId() == L1ClassId.DRAGON_KNIGHT_FEMALE);
+				|| getClassId() == L1ClassId.DRAGON_KNIGHT_MALE
+				|| getClassId() == L1ClassId.DRAGON_KNIGHT_FEMALE);
 	}
 	public boolean isIllusionist() {
 		return (getType() == L1ClassId.ILLUSIONIST
-                        || getClassId() == L1ClassId.ILLUSIONIST_MALE
-                        || getClassId() == L1ClassId.ILLUSIONIST_FEMALE);
+				|| getClassId() == L1ClassId.ILLUSIONIST_MALE
+				|| getClassId() == L1ClassId.ILLUSIONIST_FEMALE);
 	}
 
 	private static Logger _log = Logger.getLogger(L1PcInstance.class.getName());
@@ -2459,7 +2459,7 @@ public class L1PcInstance extends L1Character
 
 		double dh = (getCurrentHp() * 1.00) / (getMaxHp() * 1.00); // 取得升級前的體力 (百分比)
 		double dm = (getCurrentMp() * 1.00) / (getMaxMp() * 1.00); // 取得升級前的魔力 (百分比)
-		
+
 		for (int i = 0; i < gap; i++)
 		{
 			/*
@@ -2498,12 +2498,12 @@ public class L1PcInstance extends L1Character
 		}
 		sendPackets(new S_OwnCharStatus(this));
 
-		if (getLevel() >= 13) {//超過13級傳出新手村 
+		if (getLevel() >= 13) {//超過13級傳出新手村
 			switch(getMapId()){
 				case 69: case 86:
 					L1Teleport.teleport(this, 33080, 33392, (short)4, (byte)5, true); //<-銀騎士村の座標
-				break; 
-				
+				break;
+
 				case 68: case 85:
 					L1Teleport.teleport(this, 32580, 32931, (short)0, (byte)5, true); //<-說話之島の座標
 				break;
@@ -3503,7 +3503,7 @@ public class L1PcInstance extends L1Character
 				_originalMr = 0;
 			}
 		}
-		
+
 	addMr(_originalMr);
 	}
 
@@ -3740,7 +3740,7 @@ public class L1PcInstance extends L1Character
 				_originalAc = 0;
 			}
 		}
-		
+
 		addAc(0 - _originalAc);
 	}
 
@@ -3978,7 +3978,7 @@ public class L1PcInstance extends L1Character
 		}
 		return false;
 	}
-	
+
 	public boolean isFreeze() {
 		if (hasSkillEffect(STATUS_FREEZE)) {
 			return true;
@@ -4186,7 +4186,7 @@ public class L1PcInstance extends L1Character
 	public int getLap(){
 		return _lap;
 	}
-	
+
 	private int _lapCheck = 0;
 	public void setLapCheck(int i){
 		_lapCheck = i;
@@ -4213,7 +4213,7 @@ public class L1PcInstance extends L1Character
 		_order_list=bool;
 	}
 
-	private boolean _isSummonMonster = false;//判斷是否無道具施法(召戒清單、變身清單)  
+	private boolean _isSummonMonster = false;//判斷是否無道具施法(召戒清單、變身清單)
 
 	public void setSummonMonster(boolean SummonMonster) {
 		_isSummonMonster = SummonMonster;

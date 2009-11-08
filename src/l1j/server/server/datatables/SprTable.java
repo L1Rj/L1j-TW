@@ -127,7 +127,7 @@ public class SprTable {
 		}
 		_log.config("SPR數據 " + _dataMap.size() + "件");
 	}
-	
+
 	/**
 	 * フレーム數とフレームレートからアクションの合計時間(ms)を計算して返す。
 	 */

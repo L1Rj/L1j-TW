@@ -4,9 +4,9 @@ package l1j.server.server.model.id;
  * TODO 未完成
  */
 public class L1ActId {
-	
+
 	/** 空手走路動作 */
-	public static final int ACT_0 = 0;	
+	public static final int ACT_0 = 0;
 	/** 1.空手攻擊動作 2.NPC攻擊動作 */
 	public static final int ACT_1 = 1;
 	/** 空手被打動作 */
@@ -43,7 +43,7 @@ public class L1ActId {
 	public static final int ACT_19 = 19;
 	/** 安塔瑞斯躲藏 */
 	public static final int ACTION_AntharasHide = 20;
-	
+
 	public static final int ACTION_BowWalk = 20;
 
 	public static final int ACTION_BowAttack = 21;

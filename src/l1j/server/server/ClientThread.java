@@ -75,12 +75,12 @@ public class ClientThread implements Runnable, PacketOutput
 	private String _hostname;
 	private Socket _csocket;
 	private int _loginStatus;
-	
+
 	private static final byte[] FIRST_PACKET = { // 3.0
 			(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,
 			(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,
 			(byte) 0x02, (byte) 0x08, (byte) 0x00 };
-	
+
 	//private static final byte[] FIRST_PACKET = { // 3.1
 	//	(byte) 0x77, (byte) 0x10, (byte) 0xd9, (byte) 0x7d,
 	//	(byte) 0xd2, (byte) 0xda, (byte) 0x4c, (byte) 0x78,
@@ -95,13 +95,13 @@ public class ClientThread implements Runnable, PacketOutput
 	{
 		_csocket = socket;
 		_ip = socket.getInetAddress().getHostAddress();
-		
+
 		if (HOSTNAME_LOOKUPS) {
 			_hostname = socket.getInetAddress().getHostName();
 		} else {
 			_hostname = _ip;
 		}
-		
+
 		_in = socket.getInputStream();
 		_out = new BufferedOutputStream(socket.getOutputStream());
 		_handler = new PacketHandler(this);
@@ -131,12 +131,12 @@ public class ClientThread implements Runnable, PacketOutput
 		{
 			int hiByte = _in.read();
 			int loByte = _in.read();
-			
+
 			if (loByte < 0)
 			{
 				throw new RuntimeException();
 			}
-			
+
 			int dataLength = (loByte * 256 + hiByte) - 2;
 
 			byte data[] = new byte[dataLength];
@@ -152,7 +152,7 @@ public class ClientThread implements Runnable, PacketOutput
 						.warning("Incomplete Packet is sent to the server, closing connection.");
 				throw new RuntimeException();
 			}
-			
+
 			return LineageEncryption.decrypt(data, dataLength, _clkey);
 		} catch (IOException e) {
 			throw e;
@@ -196,7 +196,7 @@ public class ClientThread implements Runnable, PacketOutput
 		System.out.println("等待連線中...");
 
 		Socket socket = _csocket;
-		
+
 		AutoResponse response = new AutoResponse();
 		GeneralThreadPool.getInstance().execute(response);
 
@@ -220,7 +220,7 @@ public class ClientThread implements Runnable, PacketOutput
 			_out.write((byte)(seed >> 24 & 0xFF));
 			_out.write(FIRST_PACKET);
 			_out.flush();
-			
+
 			try
 			{
 				_clkey = LineageEncryption.initKeys(socket, seed);
@@ -234,7 +234,7 @@ public class ClientThread implements Runnable, PacketOutput
 				doAutoSave();
 
 				byte data[] = null;
-				
+
 				try {
 					data = readPacket();
 				} catch (Exception e) {
@@ -249,11 +249,11 @@ public class ClientThread implements Runnable, PacketOutput
 				if (opcode == Opcodes.C_OPCODE_COMMONCLICK
 						|| opcode == Opcodes.C_OPCODE_CHANGECHAR)
 					_loginStatus = 1;
-				
+
 				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVER)
 					if (_loginStatus != 1)
 						continue;
-				
+
 				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVEROK
 						|| opcode == Opcodes.C_OPCODE_RETURNTOLOGIN)
 					_loginStatus = 0;
@@ -261,7 +261,7 @@ public class ClientThread implements Runnable, PacketOutput
 				// C_OPCODE_KEEPALIVE以外の何かしらのパケットを受け取ったらObserverへ通知
 				if (opcode != Opcodes.C_OPCODE_KEEPALIVE)
 					observer.packetReceived();
-				
+
 				// 一般封包處理
 				response.AddWork(data);
 			}
@@ -273,7 +273,7 @@ public class ClientThread implements Runnable, PacketOutput
 		finally
 		{
 			_csocket = null;
-			
+
 			try
 			{
 				if (_activeChar != null)
@@ -299,9 +299,9 @@ public class ClientThread implements Runnable, PacketOutput
 				LoginController.getInstance().logout(this);
 			}
 		}
-		
+
 		_log.fine("Server thread[C] stopped");
-		
+
 		if (_kick < 1)
 		{
 			_log.info("(" + getAccountName() + ":" + _hostname
@@ -309,7 +309,7 @@ public class ClientThread implements Runnable, PacketOutput
 			System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
 			System.out.println("等待連線中...");
 		}
-		
+
 		Thread.interrupted(); // 執行緒中止
 	}
 
@@ -346,7 +346,7 @@ public class ClientThread implements Runnable, PacketOutput
 				try
 				{
 					byte[] data = _SyncQueue.take();
-					
+
 					// 判斷封包是否非為空
 					if (data != null)
 						_handler.handlePacket(data); // 處理當前的工作
@@ -355,7 +355,7 @@ public class ClientThread implements Runnable, PacketOutput
 				{
 				}
 			}
-			
+
 			_SyncQueue.clear(); // 將資料清空
 			Thread.interrupted(); // 執行緒中止
 		}
@@ -416,7 +416,7 @@ public class ClientThread implements Runnable, PacketOutput
 		// 判斷資料封包是否為空
 		if (packet == null)
 			return;
-		
+
 		synchronized (this)
 		{
 			try
@@ -427,7 +427,7 @@ public class ClientThread implements Runnable, PacketOutput
 				ac = LineageEncryption.encrypt(ac, _clkey);
 				abyte0 = UByte8.fromArray(ac);
 				int j = abyte0.length + 2;
-	
+
 				_out.write(j & 0xff);
 				_out.write(j >> 8 & 0xff);
 				_out.write(abyte0);
@@ -556,7 +556,7 @@ public class ClientThread implements Runnable, PacketOutput
 		CharBuffTable.SaveBuff(pc);
 		pc.clearSkillEffectTimer();
 
-		L1PolyRace.getInstance().checkLeaveGame(pc); // 寵物競速 - 登出從名單刪除 
+		L1PolyRace.getInstance().checkLeaveGame(pc); // 寵物競速 - 登出從名單刪除
 
 		// pcのモニターをstopする。
 		pc.stopEtcMonitor();

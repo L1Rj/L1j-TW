@@ -17,17 +17,17 @@ import l1j.server.server.serverpackets.S_SystemMessage;
  * @author a0917009769
  */
 public class C_ClientReport extends ClientBasePacket {
-		
+
 		private static final String C_CLIENT_REPORT = "[C] C_ClientReport";
 		private static Logger _log = Logger.getLogger(C_ClientReport.class.getName());
 		private ArrayList _ToAll;
 		public C_ClientReport(byte abyte0[], ClientThread clientthread)
 		throws Exception {
-			
+
 			super(abyte0);
-			
+
 			L1PcInstance pc = clientthread.getActiveChar();
-			
+
 			_ToAll = new ArrayList();
 			loadAnnouncements();
 			String message = "";
@@ -35,7 +35,7 @@ public class C_ClientReport extends ClientBasePacket {
 				message = (new StringBuilder()).append(message).append(
 						_ToAll.get(i).toString()).append("\n").toString();
 			}
-			
+
 			pc.sendPackets(new S_SystemMessage(message));
 		}
 		private void loadAnnouncements() {
@@ -65,7 +65,7 @@ public class C_ClientReport extends ClientBasePacket {
 			} catch (Exception e) {
 			}
 		}
-		
+
 		@Override
 		public String getType() {
 			return C_CLIENT_REPORT;

@@ -43,31 +43,31 @@ public class C_Door extends ClientBasePacket
 	public C_Door(byte abyte0[], ClientThread client) throws Exception
 	{
 		super(abyte0);
-		
+
 		int locX = readH();
 		int locY = readH();
 		int objectId = readD();
 
 		L1PcInstance pc = client.getActiveChar();
 		L1DoorInstance door = (L1DoorInstance)L1World.getInstance().findObject(objectId);
-		
+
 		if (door == null)
 			return;
-		
+
 		// 判斷地圖是否不相等 或 範圍是否超過 1
 		if (pc.getMapId() != door.getMapId() || pc.getTileLineDistance(door) > 1)
 			return;
 
 		if ((door.getDoorId() >= 5001 && door.getDoorId() <= 5010)) //水晶洞
 			return;
-		
+
 		else if (door.getDoorId() == 6006) // 話島冒洞2樓
-		{ 
+		{
 			if (door.getOpenStatus() == ActionCodes.ACTION_Open)
 				return;
-			
+
 			if (pc.getInventory().consumeItem(40163,1)) //角色擁有黃金鑰匙
-			{ 
+			{
 				door.open();
 				CloseTimer closetimer = new CloseTimer(door);
 				closetimer.begin();

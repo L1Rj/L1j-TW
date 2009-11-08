@@ -127,13 +127,13 @@ public class C_LoginToServer extends ClientBasePacket
 	 * 0130	00 00 00 01 2B 30 20 24 33 32 39 31 00 09 13 03    ....+0 $3291....
 	 * 0140	07 32 00 00 00 07 7F 94 B1 AB 01 19 00 C2 01 01    .2.............
 	 * 0150	01 00 00 00 00 24 33 32 39 33 00 00 95 B1 AB 01    .....$3293......
-	 * 0160	09 00 DA 01 01 03 00 00 00 00 24 33 32 39 37 20    ..........$3297 
+	 * 0160	09 00 DA 01 01 03 00 00 00 00 24 33 32 39 37 20    ..........$3297
 	 * 0170	28 33 29 00 00 96 B1 AB 01 07 00 DB 01 01 04 00    (3).............
 	 * 0180	00 00 00 24 33 32 39 38 20 28 34 29 00 00 97 B1    ...$3298 (4)....
 	 * 0190	AB 01 00 00 50 00 01 01 00 00 00 00 24 33 33 30    ....P.......$330
 	 * 01A0	31 00 00 98 B1 AB 01 00 00 4D 00 01 03 00 00 00    1........M......
 	 * 01B0	00 24 33 33 30 32 20 28 33 29 00 00 99 B1 AB 01    .$3302 (3)......
-	 * 01C0	09 00 DA 01 01 04 00 00 00 00 24 33 33 30 33 20    ..........$3303 
+	 * 01C0	09 00 DA 01 01 04 00 00 00 00 24 33 33 30 33 20    ..........$3303
 	 * 01D0	28 34 29 00 00 9A B1 AB 01 00 00 FD 09 01 01 00    (4).............
 	 * 01E0	00 00 00 24 35 38 39 33 00 00 C0 1C CF F1 C5 9F    ...$5893........
 	 * 
@@ -260,7 +260,7 @@ public class C_LoginToServer extends ClientBasePacket
 	 * 0000	36 08 12 12 07 10 08 2B                            6......+
 	 * 
 	 * [Length:8] S -> C
-	 * 0000	39 04 60 06 04 00 BB 20                            9.`.... 
+	 * 0000	39 04 60 06 04 00 BB 20                            9.`....
 	 * 
 	 * [Length:216] S -> C
 	 * 0000	77 29 CC 00 00 00 35 59 44 8B 00 00 01 00 01 00    w)....5YD.......
@@ -278,7 +278,7 @@ public class C_LoginToServer extends ClientBasePacket
 	 * 00C0	E8 29 64 70 CD 05 E9 7C 8B 06 07 83 A0 2F 00 00    .)dp...|...../..
 	 * 00D0	00 00 00 00 11 00 3C AE                            ......<.
 	 */
-	
+
 	/**
 	 * [客戶端] 登入遊戲封包
 	 * 
@@ -393,12 +393,12 @@ public class C_LoginToServer extends ClientBasePacket
 		}
 
 		L1World.getInstance().addVisibleObject(pc);
-		
+
 		pc.sendPackets(new S_ActiveSpells(pc));
 		bookmarks(pc);
-		
+
 		pc.beginGameTimeCarrier();
-		
+
 		pc.sendPackets(new S_OwnCharStatus(pc));
 
 		S_MapID s_mapid = new S_MapID(pc.getMapId(), pc.getMap().isUnderwater());
@@ -413,7 +413,7 @@ public class C_LoginToServer extends ClientBasePacket
 
 		pc.sendPackets(new S_Weather(L1World.getInstance().getWeather()));
 
-		
+
 		skills(pc);
 		buff(client, pc);
 		pc.turnOnOffLight();
@@ -514,13 +514,13 @@ public class C_LoginToServer extends ClientBasePacket
 		pc.sendPackets(new S_InvList(pc.getInventory().getItems()));
 /*		//List<L1ItemInstance> itemList = pc.getInventory().getItems(); // 取得背包物品清單
 		//pc.sendPackets(new S_InvList(itemList)); // 送出角色物品清單
-		
+
 		// 更新正在使用的武器、防具名稱 (如果有使用武器則會產生音效)
 		for (L1ItemInstance item : itemList)
 		{
 			if (item.getItem().getType2() == 0)
 				continue;
-			
+
 			if (item.isEquipped())
 				pc.sendPackets(new S_ItemName(item));
 		}*/

@@ -161,7 +161,7 @@ public class GameServer extends Thread {
 		L1WorldMap.getInstance();
 		_loginController = LoginController.getInstance();
 		_loginController.setMaxAllowedOnlinePlayers(maxOnlineUsers);
-		
+
 		// 隨機列表生成
 		RandomArrayList.setArrayList();
 

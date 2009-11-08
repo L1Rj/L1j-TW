@@ -1015,79 +1015,79 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("teleportURL")) {
 				htmlid = "amisoo2";
 			}
-//BAO提供 幻術士任務
-        } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80145) {
-            if (s.equalsIgnoreCase("a")
-                    && pc.isIllusionist()) {
-                if(pc.getInventory().checkItem(49172, 1)
-                        && pc.getInventory().checkItem(49182, 1)
-                        && (pc.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 1)) {
-                    htmlid = "silrein6";
-                } else if (pc.getInventory().checkItem(49172, 1)
-                        && (pc.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 1)) {
-                    pc.getInventory().storeItem(49182, 1);
-                    htmlid = "silrein6";
-                } else {
-                    pc.getInventory().storeItem(49172, 1);
-                    pc.getInventory().storeItem(49182, 1);
-                    pc.getQuest().set_step(L1Quest.QUEST_LEVEL15, 1);
-                    htmlid = "silrein6";
-                }
-            } else if (s.equalsIgnoreCase("b")
-                    && pc.isIllusionist()) {
-                if ((pc.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 1)
-                        && pc.getInventory().checkItem(49169,10)
-                        && pc.getInventory().checkItem(40510,1)
-                        && pc.getInventory().checkItem(40511,1)
-                        && pc.getInventory().checkItem(40512,1)
-                        && pc.getInventory().checkItem(49170,1)) {
-                    materials = new int[] { 49169, 40510, 40511, 40512, 49170 };
-                    counts = new int[] { 10, 1, 1, 1, 1 };
-                    createitem = new int[] { 269, 49121 };
-                    createcount = new int[] { 1, 1 };
-                    pc.getQuest().set_step(L1Quest.QUEST_LEVEL15, 255);
-                    htmlid = "silrein7";
-                } else {
-                    htmlid = "silrein8";
-                }
-            } else if (s.equalsIgnoreCase("c")
-                    && pc.isIllusionist()) {
-                if (pc.getInventory().checkItem(49173, 1)
-                        && (pc.getQuest().get_step(L1Quest.QUEST_LEVEL30) == 1)) {
-                    htmlid = "silrein14";
-                } else if (pc.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 255) {
-                    pc.getInventory().storeItem(49173, 1);
-                    pc.getInventory().storeItem(49179, 1);
-                    pc.getQuest().set_step(L1Quest.QUEST_LEVEL30, 1);
-                    htmlid = "silrein12";
-                } else {
-                    htmlid = "silrein3";
-                }
-            } else if (s.equalsIgnoreCase("d")
-                    && pc.isIllusionist()) {
-                if ((pc.getQuest().get_step(L1Quest.QUEST_LEVEL30) == 1)
-                        && pc.getInventory().checkItem(49191, 1)){
-                    materials = new int[] { 49191 };
-                    counts = new int[] { 1 };
-                    createitem = new int[] { 21101, 49131 };
-                    createcount = new int[] { 1, 1 };
-                    pc.getQuest().set_step(L1Quest.QUEST_LEVEL30, 255);
-                    htmlid = "silrein13";
-                } else {
-                    htmlid = "silrein12";
-                }
-            } else if (s.equalsIgnoreCase("o")
-                    && pc.isIllusionist()) {
-                if (pc.getInventory().checkItem(49179, 1)) {
-                    htmlid = "silrein17";
-                } else if((!pc.getInventory().checkItem(49186, 1))
-                        && (pc.getQuest().get_step(L1Quest.QUEST_LEVEL30) == 1)) {
-                    pc.getInventory().storeItem(49186, 1);
-                    htmlid = "silrein16";
-                } else {
-                    htmlid = "";
-                }
-            }
+		//BAO提供 幻術士任務
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80145) {
+			if (s.equalsIgnoreCase("a")
+					&& pc.isIllusionist()) {
+				if(pc.getInventory().checkItem(49172, 1)
+						&& pc.getInventory().checkItem(49182, 1)
+						&& (pc.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 1)) {
+					htmlid = "silrein6";
+				} else if (pc.getInventory().checkItem(49172, 1)
+						&& (pc.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 1)) {
+					pc.getInventory().storeItem(49182, 1);
+					htmlid = "silrein6";
+				} else {
+					pc.getInventory().storeItem(49172, 1);
+					pc.getInventory().storeItem(49182, 1);
+					pc.getQuest().set_step(L1Quest.QUEST_LEVEL15, 1);
+					htmlid = "silrein6";
+				}
+			} else if (s.equalsIgnoreCase("b")
+					&& pc.isIllusionist()) {
+				if ((pc.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 1)
+						&& pc.getInventory().checkItem(49169,10)
+						&& pc.getInventory().checkItem(40510,1)
+						&& pc.getInventory().checkItem(40511,1)
+						&& pc.getInventory().checkItem(40512,1)
+						&& pc.getInventory().checkItem(49170,1)) {
+					materials = new int[] { 49169, 40510, 40511, 40512, 49170 };
+					counts = new int[] { 10, 1, 1, 1, 1 };
+					createitem = new int[] { 269, 49121 };
+					createcount = new int[] { 1, 1 };
+					pc.getQuest().set_step(L1Quest.QUEST_LEVEL15, 255);
+					htmlid = "silrein7";
+				} else {
+					htmlid = "silrein8";
+				}
+			} else if (s.equalsIgnoreCase("c")
+					&& pc.isIllusionist()) {
+				if (pc.getInventory().checkItem(49173, 1)
+						&& (pc.getQuest().get_step(L1Quest.QUEST_LEVEL30) == 1)) {
+					htmlid = "silrein14";
+				} else if (pc.getQuest().get_step(L1Quest.QUEST_LEVEL15) == 255) {
+					pc.getInventory().storeItem(49173, 1);
+					pc.getInventory().storeItem(49179, 1);
+					pc.getQuest().set_step(L1Quest.QUEST_LEVEL30, 1);
+					htmlid = "silrein12";
+				} else {
+					htmlid = "silrein3";
+				}
+			} else if (s.equalsIgnoreCase("d")
+					&& pc.isIllusionist()) {
+				if ((pc.getQuest().get_step(L1Quest.QUEST_LEVEL30) == 1)
+						&& pc.getInventory().checkItem(49191, 1)){
+					materials = new int[] { 49191 };
+					counts = new int[] { 1 };
+					createitem = new int[] { 21101, 49131 };
+					createcount = new int[] { 1, 1 };
+					pc.getQuest().set_step(L1Quest.QUEST_LEVEL30, 255);
+					htmlid = "silrein13";
+				} else {
+					htmlid = "silrein12";
+				}
+			} else if (s.equalsIgnoreCase("o")
+					&& pc.isIllusionist()) {
+				if (pc.getInventory().checkItem(49179, 1)) {
+					htmlid = "silrein17";
+				} else if((!pc.getInventory().checkItem(49186, 1))
+						&& (pc.getQuest().get_step(L1Quest.QUEST_LEVEL30) == 1)) {
+					pc.getInventory().storeItem(49186, 1);
+					htmlid = "silrein16";
+				} else {
+					htmlid = "";
+				}
+			}
 //示愛任務-奇岩-愛瑪伊
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71181) {
 			if (s.equalsIgnoreCase("A")) {
@@ -1348,100 +1348,100 @@ public class C_NPCAction extends ClientBasePacket {
 					htmlid = "";
 				}
 			}
-                }
-                // 長老 プロケル
-                else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80136) {
-                    int lv15_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL15);
-                    int lv30_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL30);
-                    int lv45_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL45);
-                    int lv50_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL50);
-                    if (pc.isDragonKnight()) {
-                        // 「プロケルの課題を遂行する」
-                        if (s.equalsIgnoreCase("a") && lv15_step == 0) {
-                            L1NpcInstance npc = (L1NpcInstance) obj;
-                            L1ItemInstance item = pc.getInventory().storeItem(49210, 1); // プロケルの1番目の指令書
-                            String npcName = npc.getNpcTemplate().get_name();
-                            String itemName = item.getItem().getName();
-                            pc.sendPackets(new S_ServerMessage(143, npcName, itemName)); // \f1%0が%1をくれました。
-                            pc.getQuest().set_step(L1Quest.QUEST_LEVEL15, 1);
-                            htmlid = "prokel3";
-                            // 「プロケルの2番目の課題を遂行する」
-                        } else if (s.equalsIgnoreCase("c") && lv30_step == 0) {
-                            final int[] item_ids = { 49211, 49215, }; // プロケルの2番目の指令書,プロケルの鉱物の袋
-                            final int[] item_amounts = { 1, 1,};
-                            for (int i = 0; i < item_ids.length; i++) {
-                                L1ItemInstance item = pc.getInventory().storeItem(item_ids[i], item_amounts[i]);
-                                pc.sendPackets(new S_ServerMessage(143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
-                            }
-                            pc.getQuest().set_step(L1Quest.QUEST_LEVEL30, 1);
-                            htmlid = "prokel9";
-                            // 「鉱物の袋が必要だ」
-                        } else if (s.equalsIgnoreCase("e")) {
-                            if (pc.getInventory().checkItem(49215, 1)) {
-                                htmlid = "prokel35";
-                            } else {
-                                L1NpcInstance npc = (L1NpcInstance) obj;
-                                L1ItemInstance item = pc.getInventory().storeItem(49215, 1); // プロケルの鉱物の袋
-                                String npcName = npc.getNpcTemplate().get_name();
-                                String itemName = item.getItem().getName();
-                                pc.sendPackets(new S_ServerMessage(143, npcName, itemName)); // \f1%0が%1をくれました。
-                                htmlid = "prokel13";
-                            }
-                            // 「プロケルの3番目の課題を遂行する」
-                        } else if (s.equalsIgnoreCase("f") && lv45_step == 0) {
-                            final int[] item_ids = { 49209, 49212, 49226, };	// プロケルの手紙,プロケルの3番目の指令書,タワー
-                            // ポータル
-                            // テレポート
-                            // スクロール
-                            final int[] item_amounts = { 1, 1, 1,};
-                            for (int i = 0; i < item_ids.length; i++) {
-                                L1ItemInstance item = pc.getInventory().storeItem(item_ids[i], item_amounts[i]);
-                                pc.sendPackets(new S_ServerMessage(143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
-                            }
-                            pc.getQuest().set_step(L1Quest.QUEST_LEVEL45, 1);
-                            htmlid = "prokel16";
-                        }
-                    }
-                }
-                // 長老 シルレイン
-                else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80145) {
-                    if (pc.isDragonKnight()) {
-                        int lv45_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL45);
-                        // 「プロケルの手紙を渡す」
-                        if (s.equalsIgnoreCase("l") && lv45_step == 1) {
-                            if (pc.getInventory().checkItem(49209, 1)) { // check
-                                pc.getInventory().consumeItem(49209, 1); // del
-                                pc.getQuest().set_step(L1Quest.QUEST_LEVEL45, 2);
-                                htmlid = "silrein38";
-                            }
-                        } else if (s.equalsIgnoreCase("m") && lv45_step == 2) {
-                            pc.getQuest().set_step(L1Quest.QUEST_LEVEL45, 3);
-                            htmlid = "silrein39";
-                        }
-                    }
-                }
-                // エルラス
-                else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80135) {
-                    if (pc.isDragonKnight()) {
-                        // 「オーク密使変身スクロールを受け取る」
-                        if (s.equalsIgnoreCase("a")) {
-                            if (pc.getInventory().checkItem(49220, 1)) {
-                                htmlid = "elas5";
-                            } else {
-                                L1NpcInstance npc = (L1NpcInstance) obj;
-                                L1ItemInstance item = pc.getInventory().storeItem(49220, 1); // オーク密使変身スクロール
-                                String npcName = npc.getNpcTemplate().get_name();
-                                String itemName = item.getItem().getName();
-                                pc.sendPackets(new S_ServerMessage(143, npcName, itemName)); // \f1%0が%1をくれました。
-                                htmlid = "elas4";
-                            }
-                        }
-                    }
-                }
-                // オーク密使(HC3)
-                else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81245) {
-                    if (pc.isDragonKnight()) {
-                        if(s.equalsIgnoreCase("request flute of spy")) {
+		}
+		// 長老 プロケル
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80136) {
+			int lv15_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL15);
+			int lv30_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL30);
+			int lv45_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL45);
+			int lv50_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL50);
+			if (pc.isDragonKnight()) {
+				// 「プロケルの課題を遂行する」
+				if (s.equalsIgnoreCase("a") && lv15_step == 0) {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					L1ItemInstance item = pc.getInventory().storeItem(49210, 1); // プロケルの1番目の指令書
+					String npcName = npc.getNpcTemplate().get_name();
+					String itemName = item.getItem().getName();
+					pc.sendPackets(new S_ServerMessage(143, npcName, itemName)); // \f1%0が%1をくれました。
+					pc.getQuest().set_step(L1Quest.QUEST_LEVEL15, 1);
+					htmlid = "prokel3";
+					// 「プロケルの2番目の課題を遂行する」
+				} else if (s.equalsIgnoreCase("c") && lv30_step == 0) {
+					final int[] item_ids = { 49211, 49215, }; // プロケルの2番目の指令書,プロケルの鉱物の袋
+					final int[] item_amounts = { 1, 1,};
+					for (int i = 0; i < item_ids.length; i++) {
+						L1ItemInstance item = pc.getInventory().storeItem(item_ids[i], item_amounts[i]);
+						pc.sendPackets(new S_ServerMessage(143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
+					}
+					pc.getQuest().set_step(L1Quest.QUEST_LEVEL30, 1);
+					htmlid = "prokel9";
+					// 「鉱物の袋が必要だ」
+				} else if (s.equalsIgnoreCase("e")) {
+					if (pc.getInventory().checkItem(49215, 1)) {
+						htmlid = "prokel35";
+					} else {
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory().storeItem(49215, 1); // プロケルの鉱物の袋
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage(143, npcName, itemName)); // \f1%0が%1をくれました。
+						htmlid = "prokel13";
+					}
+					// 「プロケルの3番目の課題を遂行する」
+				} else if (s.equalsIgnoreCase("f") && lv45_step == 0) {
+					final int[] item_ids = { 49209, 49212, 49226, };	// プロケルの手紙,プロケルの3番目の指令書,タワー
+					// ポータル
+					// テレポート
+					// スクロール
+					final int[] item_amounts = { 1, 1, 1,};
+					for (int i = 0; i < item_ids.length; i++) {
+						L1ItemInstance item = pc.getInventory().storeItem(item_ids[i], item_amounts[i]);
+						pc.sendPackets(new S_ServerMessage(143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
+					}
+					pc.getQuest().set_step(L1Quest.QUEST_LEVEL45, 1);
+					htmlid = "prokel16";
+				}
+			}
+		}
+		// 長老 シルレイン
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80145) {
+			if (pc.isDragonKnight()) {
+				int lv45_step = pc.getQuest().get_step(L1Quest.QUEST_LEVEL45);
+				// 「プロケルの手紙を渡す」
+				if (s.equalsIgnoreCase("l") && lv45_step == 1) {
+					if (pc.getInventory().checkItem(49209, 1)) { // check
+						pc.getInventory().consumeItem(49209, 1); // del
+						pc.getQuest().set_step(L1Quest.QUEST_LEVEL45, 2);
+						htmlid = "silrein38";
+					}
+				} else if (s.equalsIgnoreCase("m") && lv45_step == 2) {
+					pc.getQuest().set_step(L1Quest.QUEST_LEVEL45, 3);
+					htmlid = "silrein39";
+				}
+			}
+		}
+		// エルラス
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80135) {
+			if (pc.isDragonKnight()) {
+				// 「オーク密使変身スクロールを受け取る」
+				if (s.equalsIgnoreCase("a")) {
+					if (pc.getInventory().checkItem(49220, 1)) {
+						htmlid = "elas5";
+					} else {
+						L1NpcInstance npc = (L1NpcInstance) obj;
+						L1ItemInstance item = pc.getInventory().storeItem(49220, 1); // オーク密使変身スクロール
+						String npcName = npc.getNpcTemplate().get_name();
+						String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage(143, npcName, itemName)); // \f1%0が%1をくれました。
+						htmlid = "elas4";
+					}
+				}
+			}
+		}
+		// オーク密使(HC3)
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81245) {
+			if (pc.isDragonKnight()) {
+				if(s.equalsIgnoreCase("request flute of spy")) {
 						if (pc.getInventory().checkItem(49223, 1)) { // check
 							pc.getInventory().consumeItem(49223, 1); // del
 							L1NpcInstance npc = (L1NpcInstance) obj;
@@ -1456,8 +1456,8 @@ public class C_NPCAction extends ClientBasePacket {
 					}
 				}
 		}
-                //羅賓孫 熾炎天使弓
-                else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71256) {
+		//羅賓孫 熾炎天使弓
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71256) {
 			if (s.equalsIgnoreCase("E")) {
 				if ((pc.getQuest().get_step(L1Quest.QUEST_MOONOFLONGBOW) == 8)
 						&& pc.getInventory().checkItem(40491,30)
@@ -2587,7 +2587,7 @@ public class C_NPCAction extends ClientBasePacket {
 					L1Teleport.teleport(pc, 32736, 32800, (short) 483, 5, true);
 				}
 			} else if (s.equalsIgnoreCase("f")) { // カーミラ（ホセ地下牢）
-				if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 4 
+				if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 4
 						||(pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 255)) {
 					L1Teleport.teleport(pc, 32746, 32807, (short) 484, 5, true);
 				}
@@ -3695,7 +3695,7 @@ public class C_NPCAction extends ClientBasePacket {
 				L1ItemInstance item = pc.getInventory().storeItem(41130 , 1); // 血痕の契約書
 				pc.sendPackets(new S_ServerMessage(143,
 						((L1NpcInstance) obj).getNpcTemplate().get_name(),
-						item.getItem().getName())); 
+						item.getItem().getName()));
 			}
 		}
 		// 諜報員(影の神殿側)
@@ -4337,7 +4337,7 @@ public class C_NPCAction extends ClientBasePacket {
 					}
 				}
 				charisma = pcCha + 6 - petcost;
-				summoncount = charisma / summoncost; 
+				summoncount = charisma / summoncost;
 
 		L1Npc npcTemp = NpcTable.getInstance().getTemplate(summonid);
 		for (int cnt = 0; cnt < summoncount; cnt++) {

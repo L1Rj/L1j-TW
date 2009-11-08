@@ -32,9 +32,9 @@ public class C_NewCharSelect extends ClientBasePacket
 	public C_NewCharSelect(byte[] decrypt, ClientThread client)
 	{
 		super(decrypt);
-		
+
 		client.CharReStart(true);
-		
+
 		if (client.getActiveChar() != null)
 		{
 			L1PcInstance pc = client.getActiveChar();
@@ -44,16 +44,16 @@ public class C_NewCharSelect extends ClientBasePacket
 				return;
 			}
 			ClientThread.quitGame(pc);
-			
+
 			synchronized (pc)
 			{
 				pc.logout();
 				client.setActiveChar(null);
 			}
-			
+
 			client.sendPacket(new S_PacketBox(S_PacketBox.LOGOUT));
 		}
 		else
 			_log.fine("Disconnect Request from Account : " + client.getAccountName());
-	    }
-   }
+	}
+}

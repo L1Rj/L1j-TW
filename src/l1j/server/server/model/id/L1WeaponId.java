@@ -2,11 +2,11 @@ package l1j.server.server.model.id;
 
 public class L1WeaponId {
 
-	/*
+	/**
 	 * 武器型態
 	 * Type
 	 */
-	
+
 	/** 單手劍 */
 	public static final int sword = 4;
 	/** 匕首 */

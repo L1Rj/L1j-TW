@@ -44,16 +44,16 @@ public class C_SkillBuyOK extends ClientBasePacket
 		int SkillId = 0;
 
 		L1PcInstance pc = client.getActiveChar();
-		
+
 		if (pc.isGhost())
 			return;
-		
+
 		for (int i = 0; i < Count; i++)
 		{
 			L1Skills skill = SkillsTable.getInstance().getTemplate(readD() + 1);
 			int Skillid = skill.getSkillId(); // 取得魔法代號
 			int SkillLv = skill.getSkillLevel(); // 取得魔法等級
-			
+
 			// 確認魔法魔法是否可學習
 			if (!SpellCheck(pc, Skillid))
 			{
@@ -63,19 +63,19 @@ public class C_SkillBuyOK extends ClientBasePacket
 			else
 				return; // 中斷程序
 		}
-		
+
 		// 判斷魔法清單大小是否小於等於 0
 		if (SkillList.size() <= 0 || SkillList.size() != Count)
 			return; // 中斷程序
-		
+
 		L1Skills[] Skills = SkillList.toArray(new L1Skills[Count]); // 將 ArrayList 轉換成 L1Skills 陣列
-		
+
 		// 判斷金幣是否足夠學習魔法
 		if (pc.getInventory().checkItem(L1ItemId.ADENA, Price))
 		{
 			pc.getInventory().consumeItem(L1ItemId.ADENA, Price); // 消耗金幣數量
 			pc.sendPackets(new S_SkillList(true, Skills)); // 將魔法插入角色魔法欄內
-			
+
 			for (L1Skills Skill : Skills)
 			{
 				SkillName = Skill.getName(); // 魔法名稱
@@ -87,22 +87,22 @@ public class C_SkillBuyOK extends ClientBasePacket
 		{
 			pc.sendPackets(new S_ServerMessage(189)); // \f1アデナが不足しています。
 		}
-		
+
 		SkillList.clear(); // 清除魔法清單
 		SkillList = null; // 將魔法清單設為空
 		Skills = null;
 	}
-	
+
 	public static boolean SpellCheck(L1PcInstance Pc, int Skillid)
 	{
 		int Type = Pc.getType();
 		int Level = Pc.getLevel();
 		L1Skills skill = SkillsTable.getInstance().getTemplate(Skillid);
 		int SkillLv = skill.getSkillLevel(); // 取得魔法等級
-		
+
 		if (Pc.isSkillMastery(Skillid))
 			return true;
-		
+
 		// 王族
 		if ((Type == 0 && SkillLv == 1 && Level >= 10) ||
 			(Type == 0 && SkillLv == 2 && Level >= 20))
@@ -124,7 +124,7 @@ public class C_SkillBuyOK extends ClientBasePacket
 		else if ((Type == 4 && SkillLv == 1 && Level >= 12) ||
 				 (Type == 4 && SkillLv == 2 && Level >= 24))
 			return false;
-		
+
 		return true;
 	}
 }

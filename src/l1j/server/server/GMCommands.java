@@ -88,17 +88,17 @@ public class GMCommands
 		}
 		return false;
 	}
-	
+
 	public void handleCommands(L1PcInstance gm, String cmdLine)
 	{
 		StringTokenizer token = new StringTokenizer(cmdLine);
 		// 最初の空白までがコマンド、それ以降は空白を區切りとしたパラメータとして扱う
 		String cmd = token.nextToken();
 		String param = "";
-		
+
 		while (token.hasMoreTokens())
 			param = param + token.nextToken() + ' ';
-		
+
 		param = param.trim();
 
 		// データベース化されたコマンド
@@ -106,10 +106,10 @@ public class GMCommands
 		{
 			if (!cmd.equalsIgnoreCase("r"))
 				_lastCommands.put(gm.getId(), cmdLine);
-			
+
 			return;
 		}
-		
+
 		if (cmdLine.startsWith("test "))
 		{
 			cmdLine = cmdLine.substring(5);
@@ -117,7 +117,7 @@ public class GMCommands
 			gm.sendPackets(new S_ActiveSpells(gm, offset));
 			return;
 		}
-		
+
 		if (cmd.equalsIgnoreCase("r")) {
 			if (!_lastCommands.containsKey(gm.getId())) {
 				gm.sendPackets(new S_ServerMessage(74, "指令 ." + cmd)); // \f1%0は使用できません。

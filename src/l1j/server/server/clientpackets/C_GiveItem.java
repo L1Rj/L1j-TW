@@ -208,7 +208,7 @@ public class C_GiveItem extends ClientBasePacket {
 				petamu.setIdentified(true);
 				petamu = inv.storeItem(petamu);
 				// 贈送鑑定過的項圈 End
-				
+
 				if (petamu != null)
 				{
 					new L1PetInstance(target, pc, petamu.getId());
@@ -240,7 +240,7 @@ public class C_GiveItem extends ClientBasePacket {
 			highpetamu.setIdentified(true);
 			highpetamu = inv.storeItem(highpetamu);
 			// 贈送鑑定過的項圈 End
-			
+
 			if (highpetamu != null) {
 				pet.evolvePet( // 寵物進化
 						highpetamu.getId());

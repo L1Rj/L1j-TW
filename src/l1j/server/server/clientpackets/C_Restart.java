@@ -43,9 +43,9 @@ public class C_Restart extends ClientBasePacket
 	public C_Restart(byte[] data, ClientThread client) throws Exception
 	{
 		super(data);
-		
+
 		L1PcInstance pc = client.getActiveChar();
-		
+
 		// 判斷玩家是否未死亡
 		if (!pc.isDead())
 			return; // 中斷程序
@@ -69,7 +69,7 @@ public class C_Restart extends ClientBasePacket
 		pc.setY(loc[1]);
 		pc.setMap((short) loc[2]);
 		L1World.getInstance().moveVisibleObject(pc, loc[2]);
-		
+
 		// 判斷角色目前是否在 隱藏之谷 或 歌唱之島
 		if (pc.getMapId() == 68 || pc.getMapId() == 69)
 		{
@@ -81,7 +81,7 @@ public class C_Restart extends ClientBasePacket
 		{
 			pc.setCurrentHp(pc.getLevel());
 		}
-		
+
 		pc.set_food(40);
 		pc.setStatus(0);
 		pc.sendPackets(new S_MapID(pc.getMapId(), pc.getMap().isUnderwater()));
@@ -91,7 +91,7 @@ public class C_Restart extends ClientBasePacket
 		pc.startHpRegeneration();
 		pc.startMpRegeneration();
 		// pc.sendPackets(new S_Weather(L1World.getInstance().getWeather())); 不需要使用
-		
+
 		if (pc.getHellTime() > 0)
 			pc.beginHell(false);
 	}

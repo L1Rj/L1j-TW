@@ -11,19 +11,19 @@ import l1j.server.server.templates.L1Skills;
 public class ItemAction
 {
 	private static ItemAction itemAct;
-	
+
 	public static ItemAction getAct()
 	{
 		if (itemAct == null)
 		{
 			itemAct = new ItemAction();
 		}
-		
+
 		return itemAct;
 	}
-	
+
 	private static ConcurrentHashMap<Integer, Byte> SpellBook;
-	
+
 	static
 	{
 		SpellBook = new ConcurrentHashMap<Integer, Byte>();
@@ -207,23 +207,23 @@ public class ItemAction
 		SpellBook.put(49135, (byte) 219);/* 記憶水晶(幻覺：化身),	幻覺：化身 */
 		SpellBook.put(49136, (byte) 220);/* 記憶水晶(立方：和諧),	立方：和諧 */
 	}
-	
+
 	public void SpellBook(L1PcInstance src, L1ItemInstance item)
 	{
 		Byte b = SpellBook.get(item.getItemId());
-		
+
 		// 判斷數值是否為空
 		if (b == null || item == null)
 			return; // 中斷程序
-		
+
 		int Skillid = b.intValue() & 0xFF;
 		SkillsTable st = SkillsTable.getInstance();
 		L1Skills skill = st.getTemplate(Skillid);
-		
+
 		// 判斷魔法是否存在
 		if (st.spellCheck(src.getId(), Skillid))
 			return; // 中斷程序
-		
+
 		st.spellMastery(src.getId(), Skillid, skill.getName(), 0, 0); // 將魔法存入資料庫
 		src.sendPackets(new S_SkillList(true, skill)); // 將魔法插入魔法清單內
 	}
