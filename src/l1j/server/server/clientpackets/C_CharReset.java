@@ -204,12 +204,14 @@ public class C_CharReset extends ClientBasePacket {
 		classFeature = L1ClassFeature.newClassFeature(pc.getType());
 		pc.setTempLevel(pc.getTempLevel()+ addLv);
 		for (int i = 0; i < addLv; i++) {
-			/*short randomHp = CalcStat.calcStatHp(pc.getType(),
-					pc.getBaseMaxHp(), pc.getBaseCon(), pc.getOriginalHpup());
-			short randomMp = CalcStat.calcStatMp(pc.getType(),
-					pc.getBaseMaxMp(), pc.getBaseWis(), pc.getOriginalMpup());*/
 			short randomHp = (short)classFeature.calclvUpHp(pc.getCon());
 			short randomMp = (short)classFeature.calclvUpMp(pc.getWis());
+			if (pc.getMaxHp() + randomHp > classFeature.MaxHp()) {
+				randomHp = 0;
+			}
+			if (pc.getMaxMp() + randomMp > classFeature.MaxMp()) {
+				randomMp = 0;
+			}
 			pc.addBaseMaxHp(randomHp);
 			pc.addBaseMaxMp(randomMp);
 		}
@@ -218,156 +220,6 @@ public class C_CharReset extends ClientBasePacket {
 				pc.getBaseMaxHp(), pc.getBaseMaxMp(), newAc,
 				pc.getBaseStr(), pc.getBaseInt(), pc.getBaseWis(),
 				pc.getBaseDex(), pc.getBaseCon(), pc.getBaseCha()));
-	}
-/*
-	private int getInitialHp (L1PcInstance pc) {
-		int hp = 1;
-		if (pc.isCrown()) {
-			hp = 14;
-		} else if (pc.isKnight()) {
-			hp = 16;
-		} else if (pc.isElf()) {
-			hp = 15;
-		} else if (pc.isWizard()) {
-			hp = 12;
-		} else if (pc.isDarkelf()) {
-			hp = 12;
-		} else if (pc.isDragonKnight()) {
-			hp = 15;
-		} else if (pc.isIllusionist()) {
-			hp = 15;
-		}
-		return hp;
-	}
-*/
-	private int getInitialMp (L1PcInstance pc) {
-		int mp = 1;
-		if (pc.isCrown()) {
-			switch (pc.getWis()) {
-			case 11:
-				mp = 2;
-				break;
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				mp = 3;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				mp = 4;
-				break;
-			default:
-				mp = 2;
-				break;
-			}
-		} else if (pc.isKnight()) {
-			switch (pc.getWis()) {
-			case 9:
-			case 10:
-			case 11:
-				mp = 1;
-				break;
-			case 12:
-			case 13:
-				mp = 2;
-				break;
-			default:
-				mp = 1;
-				break;
-			}
-		} else if (pc.isElf()) {
-			switch (pc.getWis()) {
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				mp = 4;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				mp = 6;
-				break;
-			default:
-				mp = 4;
-				break;
-			}
-		} else if (pc.isWizard()) {
-			switch (pc.getWis()) {
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				mp = 6;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				mp = 8;
-				break;
-			default:
-				mp = 6;
-				break;
-			}
-		} else if (pc.isDarkelf()) {
-			switch (pc.getWis()) {
-			case 10:
-			case 11:
-				mp = 3;
-				break;
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				mp = 4;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				mp = 6;
-				break;
-			default:
-				mp = 3;
-				break;
-			}
-		} else if (pc.isDragonKnight()) {
-			switch (pc.getWis()) {
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				mp = 4;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				mp = 6;
-				break;
-			default:
-				mp = 4;
-				break;
-			}
-		} else if (pc.isIllusionist()) {
-			switch (pc.getWis()) {
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				mp = 4;
-				break;
-			case 16:
-			case 17:
-			case 18:
-				mp = 6;
-				break;
-			default:
-				mp = 4;
-				break;
-			}
-		}
-		return mp;
 	}
 
 	@Override

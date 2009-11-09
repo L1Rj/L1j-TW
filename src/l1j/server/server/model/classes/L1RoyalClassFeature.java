@@ -18,7 +18,9 @@
  */
 package l1j.server.server.model.classes;
 
+import l1j.server.Config;
 import l1j.server.server.model.id.L1ClassId;
+import l1j.server.server.utils.RandomArrayList;
 
 class L1RoyalClassFeature extends L1ClassFeature {
 
@@ -133,393 +135,60 @@ class L1RoyalClassFeature extends L1ClassFeature {
 
 	@Override
 	public int calclvUpHp(int baseCon) {
-		byte chance = (byte)((Math.random() * 33) +1);
 		short randomhp = 0;
-		
-        switch (baseCon){
-        case 1: case 2: case 3: case 4: case 5:
-        case 6: case 7: case 8: case 9: case 10:
-        case 11: case 12: case 13: case 14: case 15: // 體質15以下
-            switch (chance){
-            case 1:
-            	randomhp = 5;
-            break;
-            case 2: case 3: case 4: case 5: case 6:
-            	randomhp = 6;
-            	break;
-            case 7: case 8: case 9: case 10: case 11:
-            case 12: case 13: case 14: case 15: case 16:
-            	randomhp = 7;
-            	break;
-            case 17: case 18: case 19: case 20: case 21:
-            case 22: case 23: case 24: case 25: case 26:
-            	randomhp = 8;
-            	break;
-            case 27: case 28: case 29: case 30: case 31:
-            	randomhp = 9;
-            default:
-            	randomhp = 10;
-            	break;
-            }
-        	break;
-        case 16: // 體質16
-        	switch (chance){
-            case 1:
-            	randomhp = 6;
-            break;
-            case 2: case 3: case 4: case 5: case 6:
-            	randomhp = 7;
-            	break;
-            case 7: case 8: case 9: case 10: case 11:
-            case 12: case 13: case 14: case 15: case 16:
-            	randomhp = 8;
-            	break;
-            case 17: case 18: case 19: case 20: case 21:
-            case 22: case 23: case 24: case 25: case 26:
-            	randomhp = 9;
-            	break;
-            case 27: case 28: case 29: case 30: case 31:
-            	randomhp = 10;
-            default:
-            	randomhp = 11;
-            	break;
-            }
-        	break;
-        case 17: // 體質17
-        	switch (chance){
-            case 1:
-            	randomhp = 7;
-            break;
-            case 2: case 3: case 4: case 5: case 6:
-            	randomhp = 8;
-            	break;
-            case 7: case 8: case 9: case 10: case 11:
-            case 12: case 13: case 14: case 15: case 16:
-            	randomhp = 9;
-            	break;
-            case 17: case 18: case 19: case 20: case 21:
-            case 22: case 23: case 24: case 25: case 26:
-            	randomhp = 10;
-            	break;
-            case 27: case 28: case 29: case 30: case 31:
-            	randomhp = 11;
-            default:
-            	randomhp = 12;
-            	break;
-            }
-        	break;
-        case 18: // 體質18
-        	switch (chance){
-            case 1:
-            	randomhp = 8;
-            break;
-            case 2: case 3: case 4: case 5: case 6:
-            	randomhp = 9;
-            	break;
-            case 7: case 8: case 9: case 10: case 11:
-            case 12: case 13: case 14: case 15: case 16:
-            	randomhp = 10;
-            	break;
-            case 17: case 18: case 19: case 20: case 21:
-            case 22: case 23: case 24: case 25: case 26:
-            	randomhp = 11;
-            	break;
-            case 27: case 28: case 29: case 30: case 31:
-            	randomhp = 12;
-            default:
-            	randomhp = 13;
-            	break;
-            }
-        	break;
-        case 19: // 體質19
-        	switch (chance){
-            case 1:
-            	randomhp = 9;
-            break;
-            case 2: case 3: case 4: case 5: case 6:
-            	randomhp = 10;
-            	break;
-            case 7: case 8: case 9: case 10: case 11:
-            case 12: case 13: case 14: case 15: case 16:
-            	randomhp = 11;
-            	break;
-            case 17: case 18: case 19: case 20: case 21:
-            case 22: case 23: case 24: case 25: case 26:
-            	randomhp = 12;
-            	break;
-            case 27: case 28: case 29: case 30: case 31:
-            	randomhp = 13;
-            default:
-            	randomhp = 14;
-            	break;
-            }
-        	break;
-        case 20: // 體質20
-        	switch (chance){
-            case 1:
-            	randomhp = 10;
-            break;
-            case 2: case 3: case 4: case 5: case 6:
-            	randomhp = 11;
-            	break;
-            case 7: case 8: case 9: case 10: case 11:
-            case 12: case 13: case 14: case 15: case 16:
-            	randomhp = 12;
-            	break;
-            case 17: case 18: case 19: case 20: case 21:
-            case 22: case 23: case 24: case 25: case 26:
-            	randomhp = 13;
-            	break;
-            case 27: case 28: case 29: case 30: case 31:
-            	randomhp = 14;
-            default:
-            	randomhp = 15;
-            	break;
-            }
-        	break;
-        case 21: // 體質21
-        	switch (chance){
-            case 1:
-            	randomhp = 11;
-            break;
-            case 2: case 3: case 4: case 5: case 6:
-            	randomhp = 12;
-            	break;
-            case 7: case 8: case 9: case 10: case 11:
-            case 12: case 13: case 14: case 15: case 16:
-            	randomhp = 13;
-            	break;
-            case 17: case 18: case 19: case 20: case 21:
-            case 22: case 23: case 24: case 25: case 26:
-            	randomhp = 14;
-            	break;
-            case 27: case 28: case 29: case 30: case 31:
-            	randomhp = 15;
-            default:
-            	randomhp = 16;
-            	break;
-            }
-        	break;
-        case 22: // 體質22
-        	switch (chance){
-            case 1:
-            	randomhp = 12;
-            break;
-            case 2: case 3: case 4: case 5: case 6:
-            	randomhp = 13;
-            	break;
-            case 7: case 8: case 9: case 10: case 11:
-            case 12: case 13: case 14: case 15: case 16:
-            	randomhp = 14;
-            	break;
-            case 17: case 18: case 19: case 20: case 21:
-            case 22: case 23: case 24: case 25: case 26:
-            	randomhp = 15;
-            	break;
-            case 27: case 28: case 29: case 30: case 31:
-            	randomhp = 16;
-            default:
-            	randomhp = 17;
-            	break;
-            }
-        	break;
-        case 23: // 體質23
-        	switch (chance){
-            case 1:
-            	randomhp = 13;
-            break;
-            case 2: case 3: case 4: case 5: case 6:
-            	randomhp = 14;
-            	break;
-            case 7: case 8: case 9: case 10: case 11:
-            case 12: case 13: case 14: case 15: case 16:
-            	randomhp = 15;
-            	break;
-            case 17: case 18: case 19: case 20: case 21:
-            case 22: case 23: case 24: case 25: case 26:
-            	randomhp = 16;
-            	break;
-            case 27: case 28: case 29: case 30: case 31:
-            	randomhp = 17;
-            default:
-            	randomhp = 18;
-            	break;
-            }
-        	break;
-        case 24: // 體質24
-        	switch (chance){
-            case 1:
-            	randomhp = 14;
-            break;
-            case 2: case 3: case 4: case 5: case 6:
-            	randomhp = 15;
-            	break;
-            case 7: case 8: case 9: case 10: case 11:
-            case 12: case 13: case 14: case 15: case 16:
-            	randomhp = 16;
-            	break;
-            case 17: case 18: case 19: case 20: case 21:
-            case 22: case 23: case 24: case 25: case 26:
-            	randomhp = 17;
-            	break;
-            case 27: case 28: case 29: case 30: case 31:
-            	randomhp = 18;
-            default:
-            	randomhp = 19;
-            	break;
-            }
-        	break;
-        default: // 體質25以上
-        	switch (chance){
-            case 1:
-            	randomhp = 15;
-            break;
-            case 2: case 3: case 4: case 5: case 6:
-            	randomhp = 16;
-            	break;
-            case 7: case 8: case 9: case 10: case 11:
-            case 12: case 13: case 14: case 15: case 16:
-            	randomhp = 17;
-            	break;
-            case 17: case 18: case 19: case 20: case 21:
-            case 22: case 23: case 24: case 25: case 26:
-            	randomhp = 18;
-            	break;
-            case 27: case 28: case 29: case 30: case 31:
-            	randomhp = 19;
-            default:
-            	randomhp = 20;
-            	break;
-            }
-        	break;
-        }
+		int randomadd = RandomArrayList.getInc(5, -2);
+		byte playerbasecon = (byte) (baseCon / 2);
+		randomhp += (short) (playerbasecon + randomadd + 3 ); // 初期值分追加 5 <-> 11
+
 		return randomhp;
 	}
 
 	@Override
-	public int calclvUpMp(int BaseWis) {
-		byte chance;
-		short randommp = 0;
-		
-		switch (BaseWis){
-		case 11: // 精神11
-			chance = (byte)(Math.random() * 2);
-			
-			switch (chance){
-			case 1:
-				randommp = 3;
-				break;
-			default:
-				randommp = 2;
-				break;
-			}
-			break;
-		case 12: case 13: case 14: // 精神12~14
-			chance = (byte)(Math.random() * 3);
-			
-			switch (chance){
-			case 1:
-				randommp = 4;
-				break;
-			case 2:
-				randommp = 3;
-				break;
-			default:
-				randommp = 2;
-				break;
-			}
-			break;
-		case 15: case 16: case 17: // 精神15~17
-			chance = (byte)(Math.random() * 3);
-			
-			switch (chance){
-			case 1:
-				randommp = 5;
-				break;
-			case 2:
-				randommp = 4;
-				break;
-			default:
-				randommp = 3;
-				break;
-			}
-			break;
-		case 18: case 19: case 20: // 精神18~20
-			chance = (byte)(Math.random() * 4);
-			
-			switch (chance){
-			case 1:
-				randommp = 6;
-				break;
-			case 2:
-				randommp = 5;
-				break;
-			case 3:
-				randommp = 4;
-				break;
-			default:
-				randommp = 3;
-				break;
-			}
-			break;
-		case 21: case 22: case 23: // 精神21~23
-			chance = (byte)(Math.random() * 4);
-			
-			switch (chance){
-			case 1:
-				randommp = 7;
-				break;
-			case 2:
-				randommp = 6;
-				break;
-			case 3:
-				randommp = 5;
-				break;
-			default:
-				randommp = 4;
-				break;
-			}
-			break;
-		case 24: // 精神24
-			chance = (byte)(Math.random() * 5);
-			
-			switch (chance){
-			case 1:
-				randommp = 8;
-				break;
-			case 2:
-				randommp = 7;
-				break;
-			case 3:
-				randommp = 6;
-				break;
-			case 4:
-				randommp = 5;
-				break;
-			default:
-				randommp = 4;
-				break;
-			}
-			break;
-		default: // 精神25以上
-			chance = (byte)(Math.random() * 4);
-			
-			switch (chance){
-			case 1:
-				randommp = 8;
-				break;
-			case 2:
-				randommp = 7;
-				break;
-			case 3:
-				randommp = 6;
-				break;
-			default:
-				randommp = 5;
-				break;
-			}
-			break;
+	public int calclvUpMp(int baseWis) {
+		int randommp = 0;
+		int seedY = 0;
+		int seedZ = 0;
+		if (baseWis < 9 || baseWis > 9 && baseWis < 12) {
+			seedY = RandomArrayList.getInt(2);
+		} else if (baseWis == 9 || baseWis >= 12 && baseWis <= 17) {
+			seedY = RandomArrayList.getInt(3);
+		} else if (baseWis >= 18 && baseWis <= 23 || baseWis == 25
+					|| baseWis == 26 || baseWis == 29
+					|| baseWis == 30 || baseWis == 33
+					|| baseWis == 34) {
+			seedY = RandomArrayList.getInt(4);
+		} else if (baseWis == 24 ||baseWis == 27
+				 ||baseWis == 28 ||baseWis == 31
+				 ||baseWis == 32 ||baseWis >= 35) {
+			seedY = RandomArrayList.getInt(5);
 		}
+
+		if (baseWis >= 7 && baseWis <= 9) {
+			seedZ = 1; // seedZ = 0;
+		} else if (baseWis >= 10 && baseWis <= 14) {
+			seedZ = 2; // seedZ = 1;
+		} else if (baseWis >= 15 && baseWis <= 20) {
+			seedZ = 3; // seedZ = 2;
+		} else if (baseWis >= 21 && baseWis <= 24) {
+			seedZ = 4; // seedZ = 3;
+		} else if (baseWis >= 25 && baseWis <= 28) {
+			seedZ = 5; // seedZ = 4;
+		} else if (baseWis >= 29 && baseWis <= 32) {
+			seedZ = 6; // seedZ = 5;
+		} else if (baseWis >= 33) {
+			seedZ = 7; // seedZ = 5;
+		}
+		
 		return randommp;
+	}
+	
+	@Override
+	public int MaxHp(){
+		return Config.PRINCE_MAX_HP;
+	}
+	
+	@Override
+	public int MaxMp(){
+		return Config.PRINCE_MAX_MP;
 	}
 }

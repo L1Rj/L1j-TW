@@ -46,9 +46,8 @@ public abstract class L1ClassFeature {
 		case L1ClassId.Del_ILLUSIONIST:
 			return new L1IllusionistClassFeature();
 		default:
-			return new L1RoyalClassFeature();
+			throw new IllegalArgumentException();
 		}
-		//throw new IllegalArgumentException();
 	}
 
 	/** 角色出生地 */
@@ -91,6 +90,10 @@ public abstract class L1ClassFeature {
 	public abstract int calclvUpHp(int baseCon);
 	/** 計算角色升級魔量 */
 	public abstract int calclvUpMp(int BaseWis);
+	/** 血量上限 */
+	public abstract int MaxHp();
+	/** 魔量上限 */
+	public abstract int MaxMp();
 	/** 敏捷對防禦的加成 */
 	public int calcLvDex2AC(int level, int dex) {
 		int b_ac = 10;

@@ -2470,6 +2470,12 @@ public class L1PcInstance extends L1Character
 			*/
 			short randomHp = (short)_classFeature.calclvUpHp(getCon());
 			short randomMp = (short)_classFeature.calclvUpMp(getWis());
+			if (getMaxHp() + randomHp > _classFeature.MaxHp()) {
+				randomHp = 0;
+			}
+			if (getMaxMp() + randomMp > _classFeature.MaxMp()) {
+				randomMp = 0;
+			}
 			addBaseMaxHp(randomHp);
 			addBaseMaxMp(randomMp);
 			setCurrentHp((int) (getMaxHp() * dh)); // 設定升級後的目前體力
