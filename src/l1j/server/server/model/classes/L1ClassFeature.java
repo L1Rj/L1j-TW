@@ -60,16 +60,6 @@ public abstract class L1ClassFeature {
 	public abstract int InitMp(int BaseWis);
 	/** 角色初始能力點數 */
 	public abstract int[] InitPoints();
-	/** 初始點數獎勵(力量) */
-	public abstract int bounsStr(int BaseStr);
-	/** 初始點數獎勵(智力) */
-	public abstract int bounsInt(int BaseInt);
-	/** 初始點數獎勵(體質) */
-	public abstract int bounsCon(int BaseCon);
-	/** 初始點數獎勵(精神) */
-	public abstract int bounsWis(int BaseWis);
-	/** 初始點數獎勵(敏捷) */
-	public abstract int bounsDex(int BaseDex);
 	/** 角色初始魔法防御點數 */
 	public abstract int InitMr();
 	/** 計算角色防御傷害減免 */

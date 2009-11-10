@@ -67,36 +67,6 @@ class L1ElfClassFeature extends L1ClassFeature {
 		int points[] = {11,12,12,12,9,12,7}; // 力、敏、體、精、魅、智、自由點數
 		return points;
 	}
-
-	@Override
-	public int bounsCon(int BaseCon) {
-		// TODO 自動產生方法 Stub
-		return 0;
-	}
-
-	@Override
-	public int bounsDex(int BaseDex) {
-		// TODO 自動產生方法 Stub
-		return 0;
-	}
-
-	@Override
-	public int bounsInt(int BaseInt) {
-		// TODO 自動產生方法 Stub
-		return 0;
-	}
-
-	@Override
-	public int bounsStr(int BaseStr) {
-		// TODO 自動產生方法 Stub
-		return 0;
-	}
-
-	@Override
-	public int bounsWis(int BaseWis) {
-		// TODO 自動產生方法 Stub
-		return 0;
-	}
 	
 	@Override
 	public int bounsCha() {
@@ -178,6 +148,8 @@ class L1ElfClassFeature extends L1ClassFeature {
 		} else if (baseWis >= 33) {
 			seedZ = 7; // seedZ = 5;
 		}
+		
+		randommp = seedY + seedZ; // seedY + 1 + seedZ;
 		
 		return (int) (randommp * 1.5);
 	}

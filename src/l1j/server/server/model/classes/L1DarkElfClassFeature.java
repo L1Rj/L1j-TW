@@ -59,6 +59,11 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 	}
 
 	@Override
+	public int bounsCha() {
+		return 0;
+	}
+	
+	@Override
 	public int InitMr() {
 		return 10;
 	}
@@ -67,41 +72,6 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 	public int[] InitPoints() {
 		int points[] = {12,15,8,10,9,11,10}; // 力、敏、體、精、魅、智、自由點數
 		return points;
-	}
-
-	@Override
-	public int bounsCon(int BaseCon) {
-		// TODO 自動產生方法 Stub
-		return 0;
-	}
-
-	@Override
-	public int bounsDex(int BaseDex) {
-		// TODO 自動產生方法 Stub
-		return 0;
-	}
-
-	@Override
-	public int bounsInt(int BaseInt) {
-		// TODO 自動產生方法 Stub
-		return 0;
-	}
-
-	@Override
-	public int bounsStr(int BaseStr) {
-		// TODO 自動產生方法 Stub
-		return 0;
-	}
-
-	@Override
-	public int bounsWis(int BaseWis) {
-		// TODO 自動產生方法 Stub
-		return 0;
-	}
-	
-	@Override
-	public int bounsCha() {
-		return 0;
 	}
 
 	@Override
@@ -179,6 +149,8 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 		} else if (baseWis >= 33) {
 			seedZ = 7; // seedZ = 5;
 		}
+		
+		randommp = seedY + seedZ; // seedY + 1 + seedZ;
 		
 		return (int)(randommp * 1.5);
 	}
