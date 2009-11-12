@@ -2,9 +2,21 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="lib/javolution-5.3.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.10-bin.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/c3p0-0.9.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/javolution-5.4.0.jar" sourcepath="lib/src/javolution-5.4.0-src.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="http://javolution.org/target/site/apidocs/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.10-bin.jar" sourcepath="lib/src/mysql-connector-java-5.1.10-src.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="http://dev.mysql.com/doc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="lib/c3p0-0.9.1.2.jar" sourcepath="lib/src/c3p0-0.9.1.2-src.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="http://www.mchange.com/projects/c3p0/apidocs/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="lib/sqlitejdbc-v056.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
