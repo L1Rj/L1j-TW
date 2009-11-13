@@ -23,11 +23,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.shop.L1Shop;
@@ -42,7 +44,7 @@ public class ShopTable {
 
 	private static ShopTable _instance;
 
-	private final Map<Integer, L1Shop> _allShops = new HashMap<Integer, L1Shop>();
+	private final Map<Integer, L1Shop> _allShops = new FastMap<Integer, L1Shop>();
 
 	public static ShopTable getInstance() {
 		if (_instance == null) {

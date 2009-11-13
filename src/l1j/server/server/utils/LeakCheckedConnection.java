@@ -26,18 +26,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 public class LeakCheckedConnection {
 	private static final Logger _log = Logger
 			.getLogger(LeakCheckedConnection.class.getName());
 	private Connection _con;
 	private Throwable _stackTrace;
-	private Map<Statement, Throwable> _openedStatements = new HashMap<Statement, Throwable>();
-	private Map<ResultSet, Throwable> _openedResultSets = new HashMap<ResultSet, Throwable>();
+	private Map<Statement, Throwable> _openedStatements = new FastMap<Statement, Throwable>();
+	private Map<ResultSet, Throwable> _openedResultSets = new FastMap<ResultSet, Throwable>();
 	private Object _proxy;
 
 	private LeakCheckedConnection(Connection con) {

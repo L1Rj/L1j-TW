@@ -22,10 +22,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.utils.SQLUtil;
@@ -58,7 +60,7 @@ public final class MapsTable {
 	/**
 	 * KeyにマップID、Valueにテレポート可否フラグが格納されるHashMap
 	 */
-	private final Map<Integer, MapData> _maps = new HashMap<Integer, MapData>();
+	private final Map<Integer, MapData> _maps = new FastMap<Integer, MapData>();
 
 	/**
 	 * 新しくMapsTableオブジェクトを生成し、マップのテレポート可否フラグを讀み⑸む。

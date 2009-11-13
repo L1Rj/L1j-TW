@@ -1,7 +1,7 @@
 
 package l1j.server.server.model.item;
 import java.io.File;
-import java.util.HashMap;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -16,6 +16,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import javolution.util.FastMap;
 
 import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.model.L1Inventory;
@@ -77,8 +79,8 @@ public class L1TreasureBox {
 
 	private static final String PATH = "./data/xml/Item/TreasureBox.xml";
 
-	private static final HashMap<Integer, L1TreasureBox> _dataMap =
-			new HashMap<Integer, L1TreasureBox>();
+	private static final FastMap<Integer, L1TreasureBox> _dataMap =
+			new FastMap<Integer, L1TreasureBox>();
 
 	/**
 	 * 指定されたIDのTreasureBoxを返す。

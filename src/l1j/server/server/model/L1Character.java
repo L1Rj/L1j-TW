@@ -19,11 +19,13 @@
 
 package l1j.server.server.model;
 
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.server.model.Instance.L1DollInstance;
 import l1j.server.server.model.Instance.L1FollowerInstance;
@@ -58,11 +60,11 @@ public class L1Character extends L1Object {
 	private boolean _paralyzed;
 	private boolean _sleeped;
 
-	private final Map<Integer, L1NpcInstance> _petlist = new HashMap<Integer, L1NpcInstance>();
-	private final Map<Integer, L1DollInstance> _dolllist = new HashMap<Integer, L1DollInstance>();
-	private final Map<Integer, L1SkillTimer> _skillEffect = new HashMap<Integer, L1SkillTimer>();
-	private final Map<Integer, L1ItemDelay.ItemDelayTimer> _itemdelay = new HashMap<Integer, L1ItemDelay.ItemDelayTimer>();
-	private final Map<Integer, L1FollowerInstance> _followerlist = new HashMap<Integer, L1FollowerInstance>();
+	private final Map<Integer, L1NpcInstance> _petlist = new FastMap<Integer, L1NpcInstance>();
+	private final Map<Integer, L1DollInstance> _dolllist = new FastMap<Integer, L1DollInstance>();
+	private final Map<Integer, L1SkillTimer> _skillEffect = new FastMap<Integer, L1SkillTimer>();
+	private final Map<Integer, L1ItemDelay.ItemDelayTimer> _itemdelay = new FastMap<Integer, L1ItemDelay.ItemDelayTimer>();
+	private final Map<Integer, L1FollowerInstance> _followerlist = new FastMap<Integer, L1FollowerInstance>();
 
 	public L1Character() {
 		_level = 1;

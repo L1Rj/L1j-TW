@@ -19,17 +19,19 @@
 package l1j.server.server.model.npc.action;
 
 import java.lang.reflect.Constructor;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import org.w3c.dom.Element;
 
 public class L1NpcActionFactory {
 	private static Logger _log = Logger.getLogger(L1NpcActionFactory.class
 			.getName());
-	private static Map<String, Constructor<L1NpcAction>> _actions = new HashMap<String, Constructor<L1NpcAction>>();
+	private static Map<String, Constructor<L1NpcAction>> _actions = new FastMap<String, Constructor<L1NpcAction>>();
 
 	private static Constructor<L1NpcAction> loadConstructor(Class c)
 			throws NoSuchMethodException {

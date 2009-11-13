@@ -22,10 +22,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -43,7 +45,7 @@ public class Dungeon {
 
 	private static Dungeon _instance = null;
 
-	private static Map<String, NewDungeon> _dungeonMap = new HashMap<String,
+	private static Map<String, NewDungeon> _dungeonMap = new FastMap<String,
 			NewDungeon>();
 
 	private enum DungeonType {

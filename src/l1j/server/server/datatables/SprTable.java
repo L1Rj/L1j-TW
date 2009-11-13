@@ -22,9 +22,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import static l1j.server.server.ActionCodes.*;
@@ -35,16 +37,16 @@ public class SprTable {
 	private static Logger _log = Logger.getLogger(SprTable.class.getName());
 
 	private static class Spr {
-		private final HashMap<Integer, Integer> moveSpeed = new HashMap<Integer, Integer>();
+		private final FastMap<Integer, Integer> moveSpeed = new FastMap<Integer, Integer>();
 
-		private final HashMap<Integer, Integer> attackSpeed = new HashMap<Integer, Integer>();
+		private final FastMap<Integer, Integer> attackSpeed = new FastMap<Integer, Integer>();
 
 		private int nodirSpellSpeed = 1200;
 
 		private int dirSpellSpeed = 1200;
 	}
 
-	private static final HashMap<Integer, Spr> _dataMap = new HashMap<Integer, Spr>();
+	private static final FastMap<Integer, Spr> _dataMap = new FastMap<Integer, Spr>();
 
 	private static final SprTable _instance = new SprTable();
 

@@ -18,9 +18,11 @@
  */
 package l1j.server.server.model;
 
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.server.datatables.PolyTable;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -99,7 +101,7 @@ public class L1PolyMorph {
 
 	public static final int MORPH_BY_LOGIN = 0;
 
-	private static final Map<Integer, Integer> weaponFlgMap = new HashMap<Integer, Integer>();
+	private static final Map<Integer, Integer> weaponFlgMap = new FastMap<Integer, Integer>();
 	static {
 		weaponFlgMap.put(1, SWORD_EQUIP);
 		weaponFlgMap.put(2, DAGGER_EQUIP);
@@ -120,7 +122,7 @@ public class L1PolyMorph {
 		weaponFlgMap.put(17, KIRINGKU_EQUIP);
 		weaponFlgMap.put(18, CHAINSWORD_EQUIP);
 	}
-	private static final Map<Integer, Integer> armorFlgMap = new HashMap<Integer, Integer>();
+	private static final Map<Integer, Integer> armorFlgMap = new FastMap<Integer, Integer>();
 	static {
 		armorFlgMap.put(1, HELM_EQUIP);
 		armorFlgMap.put(2, ARMOR_EQUIP);

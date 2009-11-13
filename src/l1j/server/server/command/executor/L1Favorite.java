@@ -19,10 +19,12 @@
 package l1j.server.server.command.executor;
 
 import java.util.Map;
-import java.util.HashMap;
+
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.server.GMCommands;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -30,7 +32,7 @@ import l1j.server.server.serverpackets.S_SystemMessage;
 
 public class L1Favorite implements L1CommandExecutor {
 	private static Logger _log = Logger.getLogger(L1Favorite.class.getName());
-	private static final Map<Integer, String> _faviCom = new HashMap<Integer, String>();
+	private static final Map<Integer, String> _faviCom = new FastMap<Integer, String>();
 
 	private L1Favorite() {
 	}

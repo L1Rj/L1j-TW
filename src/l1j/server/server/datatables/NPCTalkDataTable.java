@@ -19,8 +19,10 @@
 package l1j.server.server.datatables;
 
 import java.sql.*;
-import java.util.HashMap;
+
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.L1NpcTalkData;
 import l1j.server.server.utils.SQLUtil;
@@ -32,7 +34,7 @@ public class NPCTalkDataTable {
 
 	private static NPCTalkDataTable _instance;
 
-	private HashMap<Integer, L1NpcTalkData> _datatable = new HashMap<Integer, L1NpcTalkData>();
+	private FastMap<Integer, L1NpcTalkData> _datatable = new FastMap<Integer, L1NpcTalkData>();
 
 	public static NPCTalkDataTable getInstance() {
 		if (_instance == null) {

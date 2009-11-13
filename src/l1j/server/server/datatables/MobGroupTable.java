@@ -23,10 +23,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.templates.L1MobGroup;
@@ -40,7 +42,7 @@ public class MobGroupTable {
 
 	private static MobGroupTable _instance;
 
-	private final HashMap<Integer, L1MobGroup> _mobGroupIndex = new HashMap<Integer, L1MobGroup>();
+	private final FastMap<Integer, L1MobGroup> _mobGroupIndex = new FastMap<Integer, L1MobGroup>();
 
 	public static MobGroupTable getInstance() {
 		if (_instance == null) {

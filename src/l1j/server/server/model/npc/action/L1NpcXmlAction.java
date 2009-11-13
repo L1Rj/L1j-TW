@@ -19,9 +19,11 @@
 package l1j.server.server.model.npc.action;
 
 import java.util.Arrays;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.StringTokenizer;
+
+import javolution.util.FastMap;
 
 import org.w3c.dom.Element;
 
@@ -69,7 +71,7 @@ public abstract class L1NpcXmlAction implements L1NpcAction {
 		return level == 0 ? new IntRange(min, max) : new IntRange(level, level);
 	}
 
-	private final static Map<Character, Integer> _charTypes = new HashMap<Character, Integer>();
+	private final static Map<Character, Integer> _charTypes = new FastMap<Character, Integer>();
 	static {
 		_charTypes.put('P', 0);
 		_charTypes.put('K', 1);

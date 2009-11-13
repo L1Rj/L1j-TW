@@ -19,10 +19,12 @@
 package l1j.server.server.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
+
+import javolution.util.FastMap;
 
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -40,7 +42,7 @@ public class L1HateList {
 		 * 但し、今後このクラスの利用方法が變わった場合、 例えば多くのスレッドから同時に讀み出しがかかるようになった場合は、
 		 * ConcurrentHashMapを利用した方が良いかもしれない。
 		 */
-		_hateMap = new HashMap<L1Character, Integer>();
+		_hateMap = new FastMap<L1Character, Integer>();
 	}
 
 	public synchronized void add(L1Character cha, int hate) {
@@ -157,7 +159,7 @@ public class L1HateList {
 	}
 
 	public synchronized L1HateList copy() {
-		return new L1HateList(new HashMap<L1Character, Integer>(_hateMap));
+		return new L1HateList(new FastMap<L1Character, Integer>(_hateMap));
 	}
 
 	public synchronized Set<Entry<L1Character, Integer>> entrySet() {

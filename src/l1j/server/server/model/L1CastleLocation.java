@@ -19,9 +19,11 @@
 package l1j.server.server.model;
 
 import java.util.logging.Logger;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.Random;
+
+import javolution.util.FastMap;
 
 import l1j.server.server.datatables.CastleTable;
 import l1j.server.server.model.L1Character;
@@ -220,7 +222,7 @@ public class L1CastleLocation {
 
 	private static final short DIAD_INNER_CASTLE_MAP = 330;
 
-	private static final Map<Integer, L1Location> _towers = new HashMap<Integer, L1Location>();
+	private static final Map<Integer, L1Location> _towers = new FastMap<Integer, L1Location>();
 
 	static {
 		_towers.put(KENT_CASTLE_ID, new L1Location(KENT_TOWER_X, KENT_TOWER_Y,
@@ -241,7 +243,7 @@ public class L1CastleLocation {
 				DIAD_TOWER_MAP));
 	}
 
-	private static final Map<Integer, L1MapArea> _areas = new HashMap<Integer, L1MapArea>();
+	private static final Map<Integer, L1MapArea> _areas = new FastMap<Integer, L1MapArea>();
 
 	static {
 		_areas.put(KENT_CASTLE_ID, new L1MapArea(KENT_X1, KENT_Y1, KENT_X2,
@@ -262,7 +264,7 @@ public class L1CastleLocation {
 				DIAD_Y2, DIAD_MAP));
 	}
 
-	private static final Map<Integer, Integer> _innerTowerMaps = new HashMap<Integer, Integer>();
+	private static final Map<Integer, Integer> _innerTowerMaps = new FastMap<Integer, Integer>();
 
 	static {
 		_innerTowerMaps.put(KENT_CASTLE_ID, (int) KENT_INNER_CASTLE_MAP);
@@ -274,7 +276,7 @@ public class L1CastleLocation {
 	}
 
 	private static final Map<Integer, L1Location> _subTowers
-			= new HashMap<Integer, L1Location>();
+			= new FastMap<Integer, L1Location>();
 
 	static {
 		_subTowers.put(1, new L1Location(ADEN_SUB_TOWER1_X, ADEN_SUB_TOWER1_Y,
@@ -575,7 +577,7 @@ public class L1CastleLocation {
 	}
 
 	// 各城の稅率を保管しておくHashMap(ショップ用)
-	private static HashMap<Integer, Integer> _castleTaxRate = new HashMap<Integer, Integer>();
+	private static FastMap<Integer, Integer> _castleTaxRate = new FastMap<Integer, Integer>();
 
 	private static L1CastleTaxRateListener _listener;
 

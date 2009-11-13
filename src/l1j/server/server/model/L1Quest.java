@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -50,7 +52,7 @@ public class L1Quest {
 	public static final int QUEST_END = 255; // 終了濟みクエストのステップ
 
 	private L1PcInstance _owner = null;
-	private HashMap<Integer, Integer> _quest = null;
+	private FastMap<Integer, Integer> _quest = null;
 
 	public L1Quest(L1PcInstance owner) {
 		_owner = owner;
@@ -68,7 +70,7 @@ public class L1Quest {
 			PreparedStatement pstm = null;
 			ResultSet rs = null;
 			try {
-				_quest = new HashMap<Integer, Integer>();
+				_quest = new FastMap<Integer, Integer>();
 
 				con = L1DatabaseFactory.getInstance().getConnection();
 				pstm = con

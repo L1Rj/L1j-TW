@@ -23,9 +23,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.templates.L1PetItem;
@@ -37,8 +39,8 @@ public class PetItemTable {
 
 	private static PetItemTable _instance;
 
-	private final HashMap<Integer, L1PetItem> _petItemIdIndex
-			= new HashMap<Integer, L1PetItem>();
+	private final FastMap<Integer, L1PetItem> _petItemIdIndex
+			= new FastMap<Integer, L1PetItem>();
 
 	public static PetItemTable getInstance() {
 		if (_instance == null) {

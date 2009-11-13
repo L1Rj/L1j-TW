@@ -23,10 +23,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap; // import java.util.Iterator;
+ // import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.L1Buddy;
@@ -43,7 +45,7 @@ public class BuddyTable {
 
 	private static BuddyTable _instance;
 
-	private final Map<Integer, L1Buddy> _buddys = new HashMap<Integer, L1Buddy>();
+	private final Map<Integer, L1Buddy> _buddys = new FastMap<Integer, L1Buddy>();
 
 	public static BuddyTable getInstance() {
 		if (_instance == null) {

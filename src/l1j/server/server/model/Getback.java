@@ -22,10 +22,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -38,7 +40,7 @@ public class Getback {
 
 	//private static Random _random = new Random();
 
-	private static HashMap<Integer, ArrayList<Getback>> _getback = new HashMap<Integer, ArrayList<Getback>>();
+	private static FastMap<Integer, ArrayList<Getback>> _getback = new FastMap<Integer, ArrayList<Getback>>();
 
 	private int _areaX1;
 	private int _areaY1;

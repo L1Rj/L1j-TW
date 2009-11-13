@@ -24,11 +24,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.Config;
 import l1j.server.L1DatabaseFactory;
@@ -55,7 +57,7 @@ public class DropTable {
 
 	private static DropTable _instance;
 
-	private final HashMap<Integer, ArrayList<L1Drop>> _droplists; // モンスター每のドロップリスト
+	private final FastMap<Integer, ArrayList<L1Drop>> _droplists; // モンスター每のドロップリスト
 
 	public static DropTable getInstance() {
 		if (_instance == null) {
@@ -68,8 +70,8 @@ public class DropTable {
 		_droplists = allDropList();
 	}
 
-	private HashMap<Integer, ArrayList<L1Drop>> allDropList() {
-		HashMap<Integer, ArrayList<L1Drop>> droplistMap = new HashMap<Integer, ArrayList<L1Drop>>();
+	private FastMap<Integer, ArrayList<L1Drop>> allDropList() {
+		FastMap<Integer, ArrayList<L1Drop>> droplistMap = new FastMap<Integer, ArrayList<L1Drop>>();
 
 		Connection con = null;
 		PreparedStatement pstm = null;

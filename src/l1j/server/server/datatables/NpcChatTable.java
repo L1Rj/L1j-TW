@@ -22,9 +22,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.Instance.L1NpcInstance;
@@ -38,14 +40,14 @@ public class NpcChatTable {
 
 	private static NpcChatTable _instance;
 
-	private HashMap<Integer, L1NpcChat> _npcChatAppearance
-			= new HashMap<Integer, L1NpcChat>();
-	private HashMap<Integer, L1NpcChat> _npcChatDead
-			= new HashMap<Integer, L1NpcChat>();
-	private HashMap<Integer, L1NpcChat> _npcChatHide
-			= new HashMap<Integer, L1NpcChat>();
-	private HashMap<Integer, L1NpcChat> _npcChatGameTime
-			= new HashMap<Integer, L1NpcChat>();
+	private FastMap<Integer, L1NpcChat> _npcChatAppearance
+			= new FastMap<Integer, L1NpcChat>();
+	private FastMap<Integer, L1NpcChat> _npcChatDead
+			= new FastMap<Integer, L1NpcChat>();
+	private FastMap<Integer, L1NpcChat> _npcChatHide
+			= new FastMap<Integer, L1NpcChat>();
+	private FastMap<Integer, L1NpcChat> _npcChatGameTime
+			= new FastMap<Integer, L1NpcChat>();
 
 	public static NpcChatTable getInstance() {
 		if (_instance == null) {

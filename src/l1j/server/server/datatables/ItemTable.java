@@ -23,11 +23,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.HashMap;
+
 import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.IdFactory;
@@ -44,17 +46,17 @@ public class ItemTable {
 
 	private static Logger _log = Logger.getLogger(ItemTable.class.getName());
 
-	private static final Map<String, Integer> _armorTypes = new HashMap<String, Integer>();
+	private static final Map<String, Integer> _armorTypes = new FastMap<String, Integer>();
 
-	private static final Map<String, Integer> _weaponTypes = new HashMap<String, Integer>();
+	private static final Map<String, Integer> _weaponTypes = new FastMap<String, Integer>();
 
-	private static final Map<String, Integer> _weaponId = new HashMap<String, Integer>();
+	private static final Map<String, Integer> _weaponId = new FastMap<String, Integer>();
 
-	private static final Map<String, Integer> _materialTypes = new HashMap<String, Integer>();
+	private static final Map<String, Integer> _materialTypes = new FastMap<String, Integer>();
 
-	private static final Map<String, Integer> _etcItemTypes = new HashMap<String, Integer>();
+	private static final Map<String, Integer> _etcItemTypes = new FastMap<String, Integer>();
 
-	private static final Map<String, Integer> _useTypes = new HashMap<String, Integer>();
+	private static final Map<String, Integer> _useTypes = new FastMap<String, Integer>();
 
 	private static ItemTable _instance;
 
@@ -224,7 +226,7 @@ public class ItemTable {
 	}
 
 	private Map<Integer, L1EtcItem> allEtcItem() {
-		Map<Integer, L1EtcItem> result = new HashMap<Integer, L1EtcItem>();
+		Map<Integer, L1EtcItem> result = new FastMap<Integer, L1EtcItem>();
 
 		Connection con = null;
 		PreparedStatement pstm = null;
@@ -294,7 +296,7 @@ public class ItemTable {
 	}
 
 	private Map<Integer, L1Weapon> allWeapon() {
-		Map<Integer, L1Weapon> result = new HashMap<Integer, L1Weapon>();
+		Map<Integer, L1Weapon> result = new FastMap<Integer, L1Weapon>();
 
 		Connection con = null;
 		PreparedStatement pstm = null;
@@ -386,7 +388,7 @@ public class ItemTable {
 	}
 
 	private Map<Integer, L1Armor> allArmor() {
-		Map<Integer, L1Armor> result = new HashMap<Integer, L1Armor>();
+		Map<Integer, L1Armor> result = new FastMap<Integer, L1Armor>();
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;

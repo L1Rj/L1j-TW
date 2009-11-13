@@ -4,7 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -19,6 +19,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import javolution.util.FastMap;
 
 import l1j.server.server.datatables.BossSpawnTable;
 import l1j.server.server.utils.PerformanceTimer;
@@ -383,7 +385,7 @@ public class L1BossCycle {
 		System.out.println(_sdf.format(getSpawnEndTime(now).getTime()));
 	}
 
-	private static HashMap<String, L1BossCycle> _cycleMap = new HashMap<String, L1BossCycle>();
+	private static FastMap<String, L1BossCycle> _cycleMap = new FastMap<String, L1BossCycle>();
 
 	public static L1BossCycle getBossCycle(String type) {
 		return _cycleMap.get(type);

@@ -19,9 +19,11 @@
 package l1j.server.server.model.npc.action;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
+
+import javolution.util.FastMap;
 
 import l1j.server.server.model.L1Quest;
 import l1j.server.server.utils.IterableElementList;
@@ -72,7 +74,7 @@ public class L1NpcXmlParser {
 		return result;
 	}
 
-	private final static Map<String, Integer> _questIds = new HashMap<String, Integer>();
+	private final static Map<String, Integer> _questIds = new FastMap<String, Integer>();
 	static {
 		_questIds.put("level15", L1Quest.QUEST_LEVEL15);
 		_questIds.put("level30", L1Quest.QUEST_LEVEL30);

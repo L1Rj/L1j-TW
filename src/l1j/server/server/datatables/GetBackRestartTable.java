@@ -22,9 +22,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.templates.L1GetBackRestart;
@@ -40,7 +42,7 @@ public class GetBackRestartTable {
 
 	private static GetBackRestartTable _instance;
 
-	private final HashMap<Integer, L1GetBackRestart> _getbackrestart = new HashMap<Integer, L1GetBackRestart>();
+	private final FastMap<Integer, L1GetBackRestart> _getbackrestart = new FastMap<Integer, L1GetBackRestart>();
 
 	public static GetBackRestartTable getInstance() {
 		if (_instance == null) {

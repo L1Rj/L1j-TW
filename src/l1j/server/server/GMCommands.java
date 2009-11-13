@@ -19,11 +19,12 @@
 
 package l1j.server.server;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.server.command.L1Commands;
 import l1j.server.server.command.executor.L1CommandExecutor;
@@ -129,7 +130,7 @@ public class GMCommands
 		gm.sendPackets(new S_SystemMessage("指令 . " + cmd + " 不存在或無法使用。"));
 	}
 
-	private static Map<Integer, String> _lastCommands = new HashMap<Integer, String>();
+	private static Map<Integer, String> _lastCommands = new FastMap<Integer, String>();
 
 	private void redo(L1PcInstance pc, String arg) {
 		try {

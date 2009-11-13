@@ -1,6 +1,8 @@
 package l1j.server.server.encryptions;
 
-import java.util.HashMap;
+
+
+import javolution.util.FastMap;
 
 import l1j.server.server.types.UChar8;
 import l1j.server.server.types.ULong32;
@@ -12,7 +14,7 @@ import l1j.server.server.types.ULong32;
  */
 public class LineageEncryption {
 	// Initialized keys - one key per client ID
-	private static HashMap<Object, LineageKeys> keyMap = new HashMap<Object, LineageKeys>();
+	private static FastMap<Object, LineageKeys> keyMap = new FastMap<Object, LineageKeys>();
 
 	// The current key to use for encryption/decryption
 	// private static LineageKeys currentKeys = null;

@@ -22,10 +22,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 //import java.util.Random;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
@@ -46,7 +48,7 @@ public class DungeonRandom {
 	private static DungeonRandom _instance = null;
 
 	private static Map<String, NewDungeonRandom> _dungeonMap =
-			new HashMap<String, NewDungeonRandom>();
+			new FastMap<String, NewDungeonRandom>();
 //	private static Random _random = new Random();
 
 	public static DungeonRandom getInstance() {

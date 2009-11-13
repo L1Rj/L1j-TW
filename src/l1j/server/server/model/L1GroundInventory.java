@@ -1,11 +1,13 @@
 package l1j.server.server.model;
 
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.Config;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -21,7 +23,7 @@ public class L1GroundInventory extends L1Inventory {
 
 	private static final Timer _timer = new Timer();
 
-	private Map<Integer, DeletionTimer> _reservedTimers = new HashMap<Integer, DeletionTimer>();
+	private Map<Integer, DeletionTimer> _reservedTimers = new FastMap<Integer, DeletionTimer>();
 
 	private class DeletionTimer extends TimerTask {
 		private final L1ItemInstance _item;

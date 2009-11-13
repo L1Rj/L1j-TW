@@ -22,12 +22,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.templates.L1PetType;
@@ -37,7 +39,7 @@ import l1j.server.server.utils.SQLUtil;
 public class PetTypeTable {
 	private static PetTypeTable _instance;
 	private static Logger _log = Logger.getLogger(PetTypeTable.class.getName());
-	private Map<Integer, L1PetType> _types = new HashMap<Integer, L1PetType>();
+	private Map<Integer, L1PetType> _types = new FastMap<Integer, L1PetType>();
 	private Set<String> _defaultNames = new HashSet<String>();
 
 	public static void load() {

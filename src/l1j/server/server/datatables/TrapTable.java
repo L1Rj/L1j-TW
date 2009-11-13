@@ -23,10 +23,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.trap.L1Trap;
@@ -38,7 +40,7 @@ public class TrapTable {
 
 	private static TrapTable _instance;
 
-	private Map<Integer, L1Trap> _traps = new HashMap<Integer, L1Trap>();
+	private Map<Integer, L1Trap> _traps = new FastMap<Integer, L1Trap>();
 
 	private TrapTable() {
 		initialize();

@@ -19,7 +19,7 @@
 package l1j.server.server.model.Instance;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +29,8 @@ import java.util.TimerTask;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
@@ -1189,7 +1191,7 @@ public class L1NpcInstance extends L1Character {
 			setBraveSpeed(0);
 		}
 		if (template.get_digestitem() > 0) {
-			_digestItems = new HashMap<Integer, Integer>();
+			_digestItems = new FastMap<Integer, Integer>();
 		}
 		setKarma(template.getKarma());
 		setLightSize(template.getLightSize());

@@ -23,9 +23,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.L1PolyMorph;
@@ -36,8 +38,8 @@ public class PolyTable {
 
 	private static PolyTable _instance;
 
-	private final HashMap<String, L1PolyMorph> _polymorphs = new HashMap<String, L1PolyMorph>();
-	private final HashMap<Integer, L1PolyMorph> _polyIdIndex = new HashMap<Integer, L1PolyMorph>();
+	private final FastMap<String, L1PolyMorph> _polymorphs = new FastMap<String, L1PolyMorph>();
+	private final FastMap<Integer, L1PolyMorph> _polyIdIndex = new FastMap<Integer, L1PolyMorph>();
 
 	public static PolyTable getInstance() {
 		if (_instance == null) {

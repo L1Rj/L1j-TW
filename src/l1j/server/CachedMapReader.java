@@ -28,8 +28,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
+
+import javolution.util.FastMap;
 
 import l1j.server.server.datatables.MapsTable;
 import l1j.server.server.model.map.L1Map;
@@ -169,7 +170,7 @@ public class CachedMapReader extends MapReader {
 	 */
 	@Override
 	public Map<Integer, L1Map> read() throws IOException {
-		Map<Integer, L1Map> maps = new HashMap<Integer, L1Map>();
+		Map<Integer, L1Map> maps = new FastMap<Integer, L1Map>();
 		for (int id : listMapIds()) {
 			maps.put(id, read(id));
 		}

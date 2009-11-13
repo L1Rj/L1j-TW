@@ -23,10 +23,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.Instance.L1NpcInstance;
@@ -40,8 +42,8 @@ public class NpcTable {
 
 	private static NpcTable _instance;
 
-	private final HashMap<Integer, L1Npc> _npcs = new HashMap<Integer, L1Npc>();
-	private final HashMap<String, Constructor<?>> _constructorCache = new HashMap<String, Constructor<?>>();
+	private final FastMap<Integer, L1Npc> _npcs = new FastMap<Integer, L1Npc>();
+	private final FastMap<String, Constructor<?>> _constructorCache = new FastMap<String, Constructor<?>>();
 
 	private static final Map<String, Integer> _familyTypes = NpcTable
 			.buildFamily();
@@ -202,7 +204,7 @@ public class NpcTable {
 	}
 
 	public static Map<String, Integer> buildFamily() {
-		Map<String, Integer> result = new HashMap<String, Integer>();
+		Map<String, Integer> result = new FastMap<String, Integer>();
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;

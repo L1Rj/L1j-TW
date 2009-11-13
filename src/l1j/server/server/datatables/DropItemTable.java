@@ -22,10 +22,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.utils.SQLUtil;
@@ -42,7 +44,7 @@ public final class DropItemTable {
 	private static DropItemTable _instance;
 
 	private final Map<Integer, dropItemData> _dropItem
-			= new HashMap<Integer, dropItemData>();
+			= new FastMap<Integer, dropItemData>();
 
 	public static DropItemTable getInstance() {
 		if (_instance == null) {

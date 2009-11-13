@@ -22,9 +22,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.Instance.L1NpcInstance;
@@ -40,7 +42,7 @@ public class PetTable {
 
 	private static PetTable _instance;
 
-	private final HashMap<Integer, L1Pet> _pets = new HashMap<Integer, L1Pet>();
+	private final FastMap<Integer, L1Pet> _pets = new FastMap<Integer, L1Pet>();
 
 	public static PetTable getInstance() {
 		if (_instance == null) {

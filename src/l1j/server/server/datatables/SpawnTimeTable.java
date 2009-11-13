@@ -22,10 +22,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.templates.L1SpawnTime;
@@ -37,7 +39,7 @@ public class SpawnTimeTable {
 
 	private static SpawnTimeTable _instance;
 
-	private final Map<Integer, L1SpawnTime> _times = new HashMap<Integer, L1SpawnTime>();
+	private final Map<Integer, L1SpawnTime> _times = new FastMap<Integer, L1SpawnTime>();
 
 	public static SpawnTimeTable getInstance() {
 		if (_instance == null) {

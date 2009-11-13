@@ -20,7 +20,7 @@ package l1j.server.server;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +28,8 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import javolution.util.FastMap;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -107,15 +109,15 @@ public class GMCommandsConfig {
 		}
 	}
 
-	private static HashMap<String, ConfigLoader> _loaders = new HashMap<String, ConfigLoader>();
+	private static FastMap<String, ConfigLoader> _loaders = new FastMap<String, ConfigLoader>();
 	static {
 		GMCommandsConfig instance = new GMCommandsConfig();
 		_loaders.put("roomlist", instance.new RoomLoader());
 		_loaders.put("itemsetlist", instance.new ItemSetLoader());
 	}
 
-	public static HashMap<String, L1Location> ROOMS = new HashMap<String, L1Location>();
-	public static HashMap<String, List<L1ItemSetItem>> ITEM_SETS = new HashMap<String, List<L1ItemSetItem>>();
+	public static FastMap<String, L1Location> ROOMS = new FastMap<String, L1Location>();
+	public static FastMap<String, List<L1ItemSetItem>> ITEM_SETS = new FastMap<String, List<L1ItemSetItem>>();
 
 	private static Document loadXml(String file)
 			throws ParserConfigurationException, SAXException, IOException {

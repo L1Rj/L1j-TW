@@ -21,9 +21,11 @@ package l1j.server.server.datatables;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.L1UbPattern;
@@ -36,7 +38,7 @@ public class UBSpawnTable {
 
 	private static UBSpawnTable _instance;
 
-	private HashMap<Integer, L1UbSpawn> _spawnTable = new HashMap<Integer, L1UbSpawn>();;
+	private FastMap<Integer, L1UbSpawn> _spawnTable = new FastMap<Integer, L1UbSpawn>();;
 
 	public static UBSpawnTable getInstance() {
 		if (_instance == null) {

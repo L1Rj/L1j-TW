@@ -22,10 +22,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.utils.SQLUtil;
@@ -37,7 +39,7 @@ public final class ResolventTable {
 	private static ResolventTable _instance;
 
 	private final Map<Integer, Integer> _resolvent
-			= new HashMap<Integer, Integer>();
+			= new FastMap<Integer, Integer>();
 
 	public static ResolventTable getInstance() {
 		if (_instance == null) {

@@ -22,10 +22,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.Config;
 import l1j.server.L1DatabaseFactory;
@@ -41,7 +43,7 @@ public class SpawnTable {
 
 	private static SpawnTable _instance;
 
-	private Map<Integer, L1Spawn> _spawntable = new HashMap<Integer, L1Spawn>();
+	private Map<Integer, L1Spawn> _spawntable = new FastMap<Integer, L1Spawn>();
 
 	private int _highestId;
 

@@ -18,11 +18,13 @@
  */
 package l1j.server.telnet.command;
 
-import java.util.HashMap;
+
 import java.util.Map;
 
+import javolution.util.FastMap;
+
 public class TelnetCommandList {
-	private static Map<String, TelnetCommand> _cmds = new HashMap<String, TelnetCommand>();
+	private static Map<String, TelnetCommand> _cmds = new FastMap<String, TelnetCommand>();
 	static {
 		_cmds.put("echo", new EchoCommand());
 		_cmds.put("playerid", new PlayerIdCommand());

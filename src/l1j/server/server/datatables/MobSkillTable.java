@@ -23,9 +23,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.templates.L1MobSkill;
@@ -40,7 +42,7 @@ public class MobSkillTable {
 
 	private static MobSkillTable _instance;
 
-	private final HashMap<Integer, L1MobSkill> _mobskills;
+	private final FastMap<Integer, L1MobSkill> _mobskills;
 
 	public static MobSkillTable getInstance() {
 		if (_instance == null) {
@@ -54,7 +56,7 @@ public class MobSkillTable {
 	}
 
 	private MobSkillTable() {
-		_mobskills = new HashMap<Integer, L1MobSkill>();
+		_mobskills = new FastMap<Integer, L1MobSkill>();
 		loadMobSkillData();
 		_initialized = true;
 	}

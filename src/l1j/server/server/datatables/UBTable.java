@@ -23,9 +23,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.L1UltimateBattle;
@@ -36,7 +38,7 @@ public class UBTable {
 
 	private static UBTable _instance = new UBTable();
 
-	private HashMap<Integer, L1UltimateBattle> _ub = new HashMap<Integer, L1UltimateBattle>();
+	private FastMap<Integer, L1UltimateBattle> _ub = new FastMap<Integer, L1UltimateBattle>();
 
 	public static UBTable getInstance() {
 		return _instance;

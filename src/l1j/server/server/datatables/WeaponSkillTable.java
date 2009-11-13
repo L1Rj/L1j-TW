@@ -23,9 +23,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.L1WeaponSkill;
@@ -37,8 +39,8 @@ public class WeaponSkillTable {
 
 	private static WeaponSkillTable _instance;
 
-	private final HashMap<Integer, L1WeaponSkill> _weaponIdIndex
-			= new HashMap<Integer, L1WeaponSkill>();
+	private final FastMap<Integer, L1WeaponSkill> _weaponIdIndex
+			= new FastMap<Integer, L1WeaponSkill>();
 
 	public static WeaponSkillTable getInstance() {
 		if (_instance == null) {

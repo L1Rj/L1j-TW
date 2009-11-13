@@ -23,9 +23,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastMap;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.IdFactory;
@@ -41,8 +43,8 @@ public class ClanTable {
 
 	private static Logger _log = Logger.getLogger(ClanTable.class.getName());
 
-	private final HashMap<Integer, L1Clan> _clans
-	= new HashMap<Integer, L1Clan>();
+	private final FastMap<Integer, L1Clan> _clans
+	= new FastMap<Integer, L1Clan>();
 
 	private static ClanTable _instance;
 

@@ -18,15 +18,17 @@
  */
 package l1j.server.telnet.command;
 
-import java.util.HashMap;
+
 import java.util.Map;
+
+import javolution.util.FastMap;
 
 public class TelnetCommandResult {
 	private final int _code;
 	private final String _codeMessage;
 	private final String _result;
 
-	private static final Map<Integer, String> _codeMessages = new HashMap<Integer, String>();
+	private static final Map<Integer, String> _codeMessages = new FastMap<Integer, String>();
 
 	public static final int CMD_OK = 0;
 	public static final int CMD_NOT_FOUND = 1;

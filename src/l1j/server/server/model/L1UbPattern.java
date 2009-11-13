@@ -20,12 +20,14 @@ package l1j.server.server.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+
 import java.util.Map;
+
+import javolution.util.FastMap;
 
 public class L1UbPattern {
 	private boolean _isFrozen = false;
-	private Map<Integer, ArrayList<L1UbSpawn>> _groups = new HashMap<Integer, ArrayList<L1UbSpawn>>();
+	private Map<Integer, ArrayList<L1UbSpawn>> _groups = new FastMap<Integer, ArrayList<L1UbSpawn>>();
 
 	public void addSpawn(int groupNumber, L1UbSpawn spawn) {
 		if (_isFrozen) {

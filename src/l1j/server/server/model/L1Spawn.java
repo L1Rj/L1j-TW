@@ -21,9 +21,11 @@ package l1j.server.server.model;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Random;
+
+import javolution.util.FastMap;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
@@ -69,7 +71,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 	private int _spawnType;
 	private int _delayInterval;
 	private L1SpawnTime _time;
-	private HashMap<Integer, Point> _homePoint = null; // initでspawnした個々のオブジェクトのホームポイント
+	private FastMap<Integer, Point> _homePoint = null; // initでspawnした個々のオブジェクトのホームポイント
 	private List<L1NpcInstance> _mobs = new ArrayList<L1NpcInstance>();
 
 	private static Random _random = new Random();
@@ -301,7 +303,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 				&& Config.SPAWN_HOME_POINT_DELAY >= getMinRespawnDelay()
 				&& isAreaSpawn()) {
 			_spawnHomePoint = true;
-			_homePoint = new HashMap<Integer, Point>();
+			_homePoint = new FastMap<Integer, Point>();
 		}
 
 		int spawnNum = 0;
