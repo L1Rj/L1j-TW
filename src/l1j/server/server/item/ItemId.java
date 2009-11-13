@@ -16,10 +16,10 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
+package l1j.server.server.item;
 
-package l1j.server.server.model.item;
+public class ItemId {
 
-public class L1ItemId {
 	/**
 	 * レッドポーション
 	 */
@@ -160,13 +160,10 @@ public class L1ItemId {
 	 */
 	public static final int C_SCROLL_OF_ENCHANT_WEAPON = 240087;
 
-	/**
-	 * 試練のスクロール
-	 */
+	/** 試練のスクロール */
 	public static final int SCROLL_OF_ENCHANT_QUEST_WEAPON = 40660;
 
-	/**
-	 * アデナ
-	 */
+	/** 金幣 */
 	public static final int ADENA = 40308;
+
 }

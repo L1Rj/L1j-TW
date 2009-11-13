@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.ShopTable;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.log.LogElfDwarfIn;
 import l1j.server.server.log.LogElfDwarfOut;
 import l1j.server.server.log.LogClanDwarfIn;
@@ -40,7 +41,6 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.model.shop.L1Shop;
 import l1j.server.server.model.shop.L1ShopBuyOrderList;
 import l1j.server.server.model.shop.L1ShopSellOrderList;
@@ -173,7 +173,7 @@ public class C_Result extends ClientBasePacket {
 				int item_count_after = 0;
 				if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) // 容量重量確認及びメッセージ送信
 				{
-					if (pc.getInventory().consumeItem(L1ItemId.ADENA, 30)) {
+					if (pc.getInventory().consumeItem(ItemId.ADENA, 30)) {
 						pc.getDwarfInventory().tradeItem(item, count,
 								pc.getInventory());
 						L1ItemInstance dwitem = pc.getDwarfInventory().getItem(objectId);
@@ -278,7 +278,7 @@ public class C_Result extends ClientBasePacket {
 					int item_count_before = item.getCount();
 					int item_count_after = 0;
 					if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) { // 容量重量確認及びメッセージ送信
-						if (pc.getInventory().consumeItem(L1ItemId.ADENA, 30)) {
+						if (pc.getInventory().consumeItem(ItemId.ADENA, 30)) {
 							clan.getDwarfForClanInventory().tradeItem(item,
 									count, pc.getInventory());
 							L1ItemInstance dwitem = clan.getDwarfForClanInventory().getItem(objectId);
@@ -455,9 +455,9 @@ public class C_Result extends ClientBasePacket {
 							}
 						}
 						price = count * sellPrice;
-						if (pc.getInventory().checkItem(L1ItemId.ADENA, price)) {
+						if (pc.getInventory().checkItem(ItemId.ADENA, price)) {
 							L1ItemInstance adena = pc.getInventory()
-									.findItemId(L1ItemId.ADENA);
+									.findItemId(ItemId.ADENA);
 							if (targetPc != null && adena != null) {
 								int item_count_before = item.getCount();
 								int item_count_after = 0;
@@ -559,10 +559,10 @@ public class C_Result extends ClientBasePacket {
 							return;
 						}
 					}
-					if (targetPc.getInventory().checkItem(L1ItemId.ADENA,
+					if (targetPc.getInventory().checkItem(ItemId.ADENA,
 							count * buyPrice)) {
 						L1ItemInstance adena = targetPc.getInventory()
-								.findItemId(L1ItemId.ADENA);
+								.findItemId(ItemId.ADENA);
 						if (adena != null) {
 							int item_count_before = item.getCount();
 							int item_count_after = 0;

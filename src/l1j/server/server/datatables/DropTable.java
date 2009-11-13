@@ -34,6 +34,7 @@ import javolution.util.FastMap;
 
 import l1j.server.Config;
 import l1j.server.L1DatabaseFactory;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1Quest;
@@ -43,7 +44,6 @@ import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Drop;
 import l1j.server.server.utils.SQLUtil;
@@ -138,7 +138,7 @@ public class DropTable {
 		for (L1Drop drop : dropList) {
 			// ドロップアイテムの取得
 			itemId = drop.getItemid();
-			if (adenarate == 0 && itemId == L1ItemId.ADENA) {
+			if (adenarate == 0 && itemId == ItemId.ADENA) {
 				continue; // アデナレート０でドロップがアデナの場合はスルー
 			}
 
@@ -162,7 +162,7 @@ public class DropTable {
 			if (addCount > 1) {
 				itemCount += random.nextInt(addCount);
 			}
-			if (itemId == L1ItemId.ADENA) { // ドロップがアデナの場合はアデナレートを掛ける
+			if (itemId == ItemId.ADENA) { // ドロップがアデナの場合はアデナレートを掛ける
 				itemCount *= adenarate;
 			}
 			if (itemCount < 0) {
@@ -228,7 +228,7 @@ public class DropTable {
 				item.setNowLighting(false);
 			}
 
-			if (((Config.AUTO_LOOT != 0) || itemId == L1ItemId.ADENA)
+			if (((Config.AUTO_LOOT != 0) || itemId == ItemId.ADENA)
 					&& totalHate > 0) { // オートルーティングかアデナで取得者がいる場合
 				randomInt = random.nextInt(totalHate);
 				chanceHate = 0;
@@ -256,7 +256,7 @@ public class DropTable {
 								player = (L1PcInstance) acquisitor;
 								L1ItemInstance l1iteminstance = player
 										.getInventory().findItemId(
-												L1ItemId.ADENA); // 所持アデナをチェック
+												ItemId.ADENA); // 所持アデナをチェック
 								if (l1iteminstance != null
 										&& l1iteminstance.getCount() > 2000000000) {
 									targetInventory = L1World.getInstance()

@@ -30,11 +30,11 @@ import l1j.server.server.datatables.AuctionBoardTable;
 import l1j.server.server.datatables.HouseTable;
 import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.datatables.NpcActionTable;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.model.npc.L1NpcHtml;
 import l1j.server.server.model.npc.action.L1NpcAction;
 import l1j.server.server.serverpackets.S_NPCTalkReturn;
@@ -90,7 +90,7 @@ public class C_Amount extends ClientBasePacket {
 			if (board != null) {
 				int nowPrice = board.getPrice();
 				int nowBidderId = board.getBidderId();
-				if (pc.getInventory().consumeItem(L1ItemId.ADENA, amount)) {
+				if (pc.getInventory().consumeItem(ItemId.ADENA, amount)) {
 					// 競賣揭示板を更新
 					board.setPrice(amount);
 					board.setBidder(pcName);
@@ -101,7 +101,7 @@ public class C_Amount extends ClientBasePacket {
 						L1PcInstance bidPc = (L1PcInstance) L1World
 								.getInstance().findObject(nowBidderId);
 						if (bidPc != null) { // オンライン中
-							bidPc.getInventory().storeItem(L1ItemId.ADENA,
+							bidPc.getInventory().storeItem(ItemId.ADENA,
 									nowPrice);
 							// あなたが提示された金額よりももっと高い金額を提示した方が現れたため、殘念ながら入札に失敗しました。%n
 							// あなたが競賣に預けた%0アデナをお返しします。%nありがとうございました。%n%n
@@ -109,7 +109,7 @@ public class C_Amount extends ClientBasePacket {
 									.valueOf(nowPrice)));
 						} else { // オフライン中
 							L1ItemInstance item = ItemTable.getInstance()
-									.createItem(L1ItemId.ADENA);
+									.createItem(ItemId.ADENA);
 							item.setCount(nowPrice);
 							CharactersItemStorage storage = CharactersItemStorage
 									.create();

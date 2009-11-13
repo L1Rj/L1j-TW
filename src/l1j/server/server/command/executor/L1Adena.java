@@ -21,9 +21,9 @@ package l1j.server.server.command.executor;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
+import l1j.server.server.item.ItemId;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.serverpackets.S_SystemMessage;
 
 public class L1Adena implements L1CommandExecutor {
@@ -42,7 +42,7 @@ public class L1Adena implements L1CommandExecutor {
 			StringTokenizer stringtokenizer = new StringTokenizer(arg);
 			int count = Integer.parseInt(stringtokenizer.nextToken());
 
-			L1ItemInstance adena = pc.getInventory().storeItem(L1ItemId.ADENA,
+			L1ItemInstance adena = pc.getInventory().storeItem(ItemId.ADENA,
 					count);
 			if (adena != null) {
 				pc.sendPackets(new S_SystemMessage((new StringBuilder())

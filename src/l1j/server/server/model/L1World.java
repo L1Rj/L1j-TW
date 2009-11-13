@@ -28,7 +28,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
 
 import l1j.server.Config;
-import l1j.server.gameserver.L1WorldMap;
+import l1j.server.server.WorldMap;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
@@ -37,8 +37,7 @@ import l1j.server.server.serverpackets.S_SystemMessage;
 import l1j.server.server.serverpackets.ServerBasePacket;
 import l1j.server.server.types.Point;
 
-public class L1World
-{
+public class L1World {
 	private static Logger _log = Logger.getLogger(L1World.class.getName());
 
 	private final ConcurrentHashMap<String, L1PcInstance> _allPlayers;
@@ -56,8 +55,7 @@ public class L1World
 
 	private static L1World _instance;
 
-	private L1World()
-	{
+	private L1World() {
 		_allPlayers = new ConcurrentHashMap<String, L1PcInstance>(); // 全てのプレイヤー
 		_allPets = new ConcurrentHashMap<Integer, L1PetInstance>(); // 全てのペット
 		_allSummons = new ConcurrentHashMap<Integer, L1SummonInstance>(); // 全てのサモンモンスター
@@ -129,41 +127,38 @@ public class L1World
 				.unmodifiableCollection(_allObjects.values()));
 	}
 
-	public L1GroundInventory getInventory(int x, int y, short map)
-	{
+	public L1GroundInventory getInventory(int x, int y, short map) {
 		int inventoryKey = ((x - 30000) * 10000 + (y - 30000)) * -1; // xyのマイナス值をインベントリキーとして使用
 
-		Object object = L1WorldMap.getMap(map).Get(inventoryKey);
-		
-		if (object == null)
+		Object object = WorldMap.getMap(map).Get(inventoryKey);
+
+		if (object == null) {
 			return new L1GroundInventory(inventoryKey, x, y, map);
-		else
+		} else {
 			return (L1GroundInventory) object;
+		}
 	}
 
 	public L1GroundInventory getInventory(L1Location loc) {
-		return getInventory(loc.getX(), loc.getY(), (short) loc.getMap()
-				.getId());
+		return getInventory(loc.getX(), loc.getY(), (short) loc.getMap().getId());
 	}
 
-	public void addVisibleObject(L1Object object)
-	{
-		L1WorldMap.getMap(object.getMapId()).Add(object);
+	public void addVisibleObject(L1Object object) {
+		WorldMap.getMap(object.getMapId()).Add(object);
 	}
 
-	public void removeVisibleObject(L1Object object)
-	{
-		L1WorldMap.getMap(object.getMapId()).Remove(object);
+	public void removeVisibleObject(L1Object object) {
+		WorldMap.getMap(object.getMapId()).Remove(object);
 	}
 
 	// set_Mapで新しいMapにするまえに呼ぶこと
-	public void moveVisibleObject(L1Object object, int newMap) 
-	{
-		if (object.getMapId() == newMap)
+	public void moveVisibleObject(L1Object object, int newMap) {
+		if (object.getMapId() == newMap) {
 			return;
-		
-		L1WorldMap.getMap(object.getMapId()).Remove(object);
-		L1WorldMap.getMap((short)newMap).Add(object);
+		}
+
+		WorldMap.getMap(object.getMapId()).Remove(object);
+		WorldMap.getMap((short) newMap).Add(object);
 	}
 
 	private ConcurrentHashMap<Integer, Integer> createLineMap(Point src,
@@ -220,30 +215,30 @@ public class L1World
 		return lineMap;
 	}
 
-	public ArrayList<L1Object> getVisibleLineObjects(L1Object src,
-			L1Object target) {
-		ConcurrentHashMap<Integer, Integer> lineMap = createLineMap(src
-				.getLocation(), target.getLocation());
+	public ArrayList<L1Object> getVisibleLineObjects(L1Object src, L1Object target) {
+		ConcurrentHashMap<Integer, Integer> lineMap = createLineMap(src.getLocation(), target
+				.getLocation());
 
 		short map = target.getMapId();
 		ArrayList<L1Object> result = new ArrayList<L1Object>();
 
-		for (L1Object element : L1WorldMap.getMap(map).getObjects())
-		{
-			if (element.equals(src))
+		for (L1Object element : WorldMap.getMap(map).getObjects()) {
+			if (element.equals(src)) {
 				continue;
+			}
 
 			int key = (element.getX() << 16) + element.getY();
-			
-			if (lineMap.containsKey(key))
+
+			if (lineMap.containsKey(key)) {
 				result.add(element);
+			}
 		}
 
 		return result;
 	}
 
-	public ArrayList<L1Object> getVisibleBoxObjects(L1Object object,
-			int heading, int width, int height) {
+	public ArrayList<L1Object> getVisibleBoxObjects(L1Object object, int heading, int width,
+			int height) {
 		int x = object.getX();
 		int y = object.getY();
 		short map = object.getMapId();
@@ -253,23 +248,22 @@ public class L1World
 		double cosSita = Math.cos(headingRotate[heading] * Math.PI / 4);
 		double sinSita = Math.sin(headingRotate[heading] * Math.PI / 4);
 
-		for (L1Object element : L1WorldMap.getMap(map).getObjects())
-		{
+		for (L1Object element : WorldMap.getMap(map).getObjects()) {
 			if (element.equals(object) || map != element.getMapId())
 				continue;
 
 			// 同じ座標に重なっている場合は範圍內とする
-			if (location.isSamePoint(element.getLocation()))
-			{
+			if (location.isSamePoint(element.getLocation())) {
 				result.add(element);
 				continue;
 			}
 
 			int distance = location.getTileLineDistance(element.getLocation());
-			
+
 			// 直線距離が高さ、幅どちらよりも大きい場合、計算するまでもなく範圍外
-			if (distance > height && distance > width)
+			if (distance > height && distance > width) {
 				continue;
+			}
 
 			int x1 = element.getX() - x;
 			int y1 = element.getY() - y;
@@ -279,9 +273,10 @@ public class L1World
 			int xmax = height;
 			int ymin = -width;
 			int ymax = width;
-			
-			if (rotX > xmin && distance <= xmax && rotY >= ymin && rotY <= ymax)
+
+			if (rotX > xmin && distance <= xmax && rotY >= ymin && rotY <= ymax) {
 				result.add(element);
+			}
 		}
 
 		return result;
@@ -291,14 +286,12 @@ public class L1World
 		return getVisibleObjects(object, -1);
 	}
 
-	public ArrayList<L1Object> getVisibleObjects(L1Object object, int radius)
-	{
+	public ArrayList<L1Object> getVisibleObjects(L1Object object, int radius) {
 		L1Map map = object.getMap();
 		Point pt = object.getLocation();
 		ArrayList<L1Object> result = new ArrayList<L1Object>();
-		
-		for (L1Object element : L1WorldMap.getMap((short)map.getId()).getObjects())
-		{
+
+		for (L1Object element : WorldMap.getMap((short) map.getId()).getObjects()) {
 			if (element.equals(object) || map != element.getMap())
 				continue;
 
@@ -320,13 +313,11 @@ public class L1World
 		return result;
 	}
 
-	public ArrayList<L1Object> getVisiblePoint(L1Location loc, int radius)
-	{
+	public ArrayList<L1Object> getVisiblePoint(L1Location loc, int radius) {
 		ArrayList<L1Object> result = new ArrayList<L1Object>();
 		short mapId = (short) loc.getMapId();
 
-		for (L1Object element : L1WorldMap.getMap(mapId).getObjects())
-		{
+		for (L1Object element : WorldMap.getMap(mapId).getObjects()) {
 			if (mapId != element.getMapId())
 				continue;
 
@@ -372,8 +363,8 @@ public class L1World
 		return result;
 	}
 
-	public ArrayList<L1PcInstance> getVisiblePlayerExceptTargetSight(
-			L1Object object, L1Object target) {
+	public ArrayList<L1PcInstance> getVisiblePlayerExceptTargetSight(L1Object object,
+			L1Object target) {
 		int map = object.getMapId();
 		Point objectPt = object.getLocation();
 		Point targetPt = target.getLocation();
@@ -427,8 +418,8 @@ public class L1World
 	/**
 	 * ワールド內にいる指定された名前のプレイヤーを取得する。
 	 * 
-	 * @param name -
-	 *            プレイヤー名(小文字‧大文字は無視される)
+	 * @param name
+	 *            - プレイヤー名(小文字‧大文字は無視される)
 	 * @return 指定された名前のL1PcInstance。該當プレイヤーが存在しない場合はnullを返す。
 	 */
 	public L1PcInstance getPlayer(String name) {
@@ -448,8 +439,8 @@ public class L1World
 
 	public Collection<L1PetInstance> getAllPets() {
 		Collection<L1PetInstance> vs = _allPetValues;
-		return (vs != null) ? vs : (_allPetValues = Collections
-				.unmodifiableCollection(_allPets.values()));
+		return (vs != null) ? vs : (_allPetValues = Collections.unmodifiableCollection(_allPets
+				.values()));
 	}
 
 	// _allSummonsのビュー
@@ -465,22 +456,19 @@ public class L1World
 		return _allObjects;
 	}
 
-	/*
-	public final Map<Integer, L1Object>[] getVisibleObjects()
-	{
+/*
+	public final Map<Integer, L1Object>[] getVisibleObjects() {
 		return null;
 	}
-	
 
-	public final Map<Integer, L1WorldMap> getVisibleObjects(int mapId)
-	{
-		return L1WorldMap.getMap(mapId).getMapList();
+	public final Map<Integer, WorldMap> getVisibleObjects(int mapId) {
+		return WorldMap.getMap(mapId).getMapList();
 	}
 
 	public Object getRegion(Object object) {
 		return null;
 	}
-	*/
+*/
 
 	public void addWar(L1War war) {
 		if (!_allWars.contains(war)) {
@@ -576,4 +564,5 @@ public class L1World
 	public void broadcastServerMessage(String message) {
 		broadcastPacketToAll(new S_SystemMessage(message));
 	}
+
 }

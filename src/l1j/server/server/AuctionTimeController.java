@@ -28,11 +28,11 @@ import l1j.server.server.datatables.AuctionBoardTable;
 import l1j.server.server.datatables.ClanTable;
 import l1j.server.server.datatables.HouseTable;
 import l1j.server.server.datatables.ItemTable;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.model.L1Clan;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.storage.CharactersItemStorage;
 import l1j.server.server.templates.L1AuctionBoard;
@@ -89,14 +89,14 @@ public class AuctionTimeController implements Runnable {
 					.findObject(oldOwnerId);
 			int payPrice = (int) (price * 0.9);
 			if (oldOwnerPc != null) { // 以前の所有者がオンライン中
-				oldOwnerPc.getInventory().storeItem(L1ItemId.ADENA, payPrice);
+				oldOwnerPc.getInventory().storeItem(ItemId.ADENA, payPrice);
 				// あなたが所有していた家が最終價格%1アデナで落札されました。%n
 				// 手數料10%%を除いた殘りの金額%0アデナを差し上げます。%nありがとうございました。%n%n
 				oldOwnerPc.sendPackets(new S_ServerMessage(527, String
 						.valueOf(payPrice)));
 			} else { // 以前の所有者がオフライン中
 				L1ItemInstance item = ItemTable.getInstance().createItem(
-						L1ItemId.ADENA);
+						ItemId.ADENA);
 				item.setCount(payPrice);
 				try {
 					CharactersItemStorage storage = CharactersItemStorage

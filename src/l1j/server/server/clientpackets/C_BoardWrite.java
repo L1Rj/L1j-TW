@@ -26,10 +26,10 @@ import java.util.logging.Logger;
 import l1j.server.Config;
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.BoardTable;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.item.L1ItemId;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
@@ -50,7 +50,7 @@ public class C_BoardWrite extends ClientBasePacket {
 
 		if (tg != null) {
 			L1PcInstance pc = client.getActiveChar();
-			pc.getInventory().consumeItem(L1ItemId.ADENA, 300);
+			pc.getInventory().consumeItem(ItemId.ADENA, 300);
 			BoardTable.getInstance().writeTopic(pc, date, title, content);
 		} else {
 			_log.warning("非正確的NPC編號：" + id);

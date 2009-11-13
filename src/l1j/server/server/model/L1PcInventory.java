@@ -19,15 +19,14 @@
 package l1j.server.server.model;
 
 import java.text.DecimalFormat;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.Config;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.serverpackets.S_AddItem;
 import l1j.server.server.serverpackets.S_CharVisualUpdate;
 import l1j.server.server.serverpackets.S_DeleteInventoryItem;
@@ -781,7 +780,7 @@ public class L1PcInventory extends L1Inventory {
 		//Random random = new Random();
 		int rnd = RandomArrayList.getInt(_items.size());
 		L1ItemInstance penaltyItem = _items.get(rnd);
-		if (penaltyItem.getItem().getItemId() == L1ItemId.ADENA // アデナ、トレード不可のアイテムは落とさない
+		if (penaltyItem.getItem().getItemId() == ItemId.ADENA // アデナ、トレード不可のアイテムは落とさない
 				|| !penaltyItem.getItem().isTradable()) {
 			return null;
 		}

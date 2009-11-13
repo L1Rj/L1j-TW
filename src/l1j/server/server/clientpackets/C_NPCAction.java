@@ -37,6 +37,7 @@ import l1j.server.server.datatables.PolyTable;
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.datatables.TownTable;
 import l1j.server.server.datatables.UBTable;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.model.L1CastleLocation;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1Clan;
@@ -60,7 +61,6 @@ import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.model.npc.L1NpcHtml;
 import l1j.server.server.model.npc.action.L1NpcAction;
 import l1j.server.server.model.skill.L1SkillId;
@@ -633,7 +633,7 @@ public class C_NPCAction extends ClientBasePacket {
 								pc.sendPackets(new S_ServerMessage(1135));
 							} else {
 								if (pc.getInventory().consumeItem(
-										L1ItemId.ADENA, 5000000)) {
+										ItemId.ADENA, 5000000)) {
 									house.setPurchaseBasement(true);
 									HouseTable.getInstance().updateHouse(house); // DBに書き⑸み
 									// 地下アジトが生成されました。
@@ -771,7 +771,7 @@ public class C_NPCAction extends ClientBasePacket {
 			} else if (pc.get_PKcount() < 5) {
 				pc.sendPackets(new S_ServerMessage(560)); // \f1まだ罪晴らしをする必要はありません。
 			} else {
-				if (pc.getInventory().consumeItem(L1ItemId.ADENA, 700000)) {
+				if (pc.getInventory().consumeItem(ItemId.ADENA, 700000)) {
 					pc.set_PKcount(pc.get_PKcount() - 5);
 					pc.sendPackets(new S_ServerMessage(561, String.valueOf(pc
 							.get_PKcount()))); // PK回數が%0になりました。
@@ -2071,7 +2071,7 @@ public class C_NPCAction extends ClientBasePacket {
 					int i1 = l1iteminstance.getCount();
 					materials[totem] = 40131;
 					counts[totem] = i1;
-					createitem[totem] = L1ItemId.ADENA;
+					createitem[totem] = ItemId.ADENA;
 					createcount[totem] = i1 * 50;
 					totem++;
 				}
@@ -2081,7 +2081,7 @@ public class C_NPCAction extends ClientBasePacket {
 					int i1 = l1iteminstance.getCount();
 					materials[totem] = 40132;
 					counts[totem] = i1;
-					createitem[totem] = L1ItemId.ADENA;
+					createitem[totem] = ItemId.ADENA;
 					createcount[totem] = i1 * 100;
 					totem++;
 				}
@@ -2091,7 +2091,7 @@ public class C_NPCAction extends ClientBasePacket {
 					int i1 = l1iteminstance.getCount();
 					materials[totem] = 40133;
 					counts[totem] = i1;
-					createitem[totem] = L1ItemId.ADENA;
+					createitem[totem] = ItemId.ADENA;
 					createcount[totem] = i1 * 50;
 					totem++;
 				}
@@ -2101,7 +2101,7 @@ public class C_NPCAction extends ClientBasePacket {
 					int i1 = l1iteminstance.getCount();
 					materials[totem] = 40134;
 					counts[totem] = i1;
-					createitem[totem] = L1ItemId.ADENA;
+					createitem[totem] = ItemId.ADENA;
 					createcount[totem] = i1 * 30;
 					totem++;
 				}
@@ -2111,7 +2111,7 @@ public class C_NPCAction extends ClientBasePacket {
 					int i1 = l1iteminstance.getCount();
 					materials[totem] = 40135;
 					counts[totem] = i1;
-					createitem[totem] = L1ItemId.ADENA;
+					createitem[totem] = ItemId.ADENA;
 					createcount[totem] = i1 * 200;
 					totem++;
 				}
@@ -2163,7 +2163,7 @@ public class C_NPCAction extends ClientBasePacket {
 						} else {
 							int level = pc.getLevel();
 							int cost = level * level * 10;
-							if (pc.getInventory().consumeItem(L1ItemId.ADENA,
+							if (pc.getInventory().consumeItem(ItemId.ADENA,
 									cost)) {
 								pc.setHomeTownId(town_id);
 								pc.setContribution(0); // 念のため
@@ -2368,8 +2368,8 @@ public class C_NPCAction extends ClientBasePacket {
 		// 治療師（西部）
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71030) {
 			if (s.equalsIgnoreCase("fullheal")) {
-				if (pc.getInventory().checkItem(L1ItemId.ADENA, 5)) { // check
-					pc.getInventory().consumeItem(L1ItemId.ADENA, 5); // del
+				if (pc.getInventory().checkItem(ItemId.ADENA, 5)) { // check
+					pc.getInventory().consumeItem(ItemId.ADENA, 5); // del
 					pc.setCurrentHp(pc.getMaxHp());
 					pc.setCurrentMp(pc.getMaxMp());
 					pc.sendPackets(new S_ServerMessage(77));
@@ -2881,8 +2881,8 @@ public class C_NPCAction extends ClientBasePacket {
 			// 援助金を出して運勢を見る
 			else if (s.equalsIgnoreCase("1")) {
 				if (!pc.getInventory().checkItem(41314)) { // 占星術師のお守り
-					if (pc.getInventory().checkItem(L1ItemId.ADENA, 1000)) {
-						materials = new int[] { L1ItemId.ADENA, 41313 }; // アデナ、占星術師の玉
+					if (pc.getInventory().checkItem(ItemId.ADENA, 1000)) {
+						materials = new int[] { ItemId.ADENA, 41313 }; // アデナ、占星術師の玉
 						counts = new int[] { 1000, 1 };
 						createitem = new int[] { 41314 }; // 占星術師のお守り
 						createcount = new int[] { 1 };
@@ -2973,8 +2973,8 @@ public class C_NPCAction extends ClientBasePacket {
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80082) {
 			// 「長くて重い釣り竿」
 			if (s.equalsIgnoreCase("L")) {
-				if (pc.getInventory().checkItem(L1ItemId.ADENA, 1000)) {
-					materials = new int[] { L1ItemId.ADENA };
+				if (pc.getInventory().checkItem(ItemId.ADENA, 1000)) {
+					materials = new int[] { ItemId.ADENA };
 					counts = new int[] { 1000 };
 					createitem = new int[] { 41293 };
 					createcount = new int[] { 1 };
@@ -2986,8 +2986,8 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 				// 「短くて輕い釣り竿」
 			} else if (s.equalsIgnoreCase("S")) {
-				if (pc.getInventory().checkItem(L1ItemId.ADENA, 1000)) {
-					materials = new int[] { L1ItemId.ADENA };
+				if (pc.getInventory().checkItem(ItemId.ADENA, 1000)) {
+					materials = new int[] { ItemId.ADENA };
 					counts = new int[] { 1000 };
 					createitem = new int[] { 41294 };
 					createcount = new int[] { 1 };
@@ -3036,14 +3036,14 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("c")) {
 				if (pc.isCrown()) {
 					if (pc.getInventory().checkItem(20383, 1)) {
-						if (pc.getInventory().checkItem(L1ItemId.ADENA, 100000)) {
+						if (pc.getInventory().checkItem(ItemId.ADENA, 100000)) {
 							L1ItemInstance item = pc.getInventory().findItemId(
 									20383);
 							if (item != null && item.getChargeCount() != 50) {
 								item.setChargeCount(50);
 								pc.getInventory().updateItem(item,
 										L1PcInventory.COL_CHARGE_COUNT);
-								pc.getInventory().consumeItem(L1ItemId.ADENA,
+								pc.getInventory().consumeItem(ItemId.ADENA,
 										100000);
 								htmlid = "";
 							}
@@ -4194,7 +4194,7 @@ public class C_NPCAction extends ClientBasePacket {
 	private String watchUb(L1PcInstance pc, int npcId) {
 		L1UltimateBattle ub = UBTable.getInstance().getUbForNpcId(npcId);
 		L1Location loc = ub.getLocation();
-		if (pc.getInventory().consumeItem(L1ItemId.ADENA, 100)) {
+		if (pc.getInventory().consumeItem(ItemId.ADENA, 100)) {
 			try {
 				pc.save();
 				pc.beginGhost(loc.getX(), loc.getY(), (short) loc.getMapId(),
@@ -4361,8 +4361,8 @@ public class C_NPCAction extends ClientBasePacket {
 			return;
 		}
 
-		if (pc.getInventory().checkItem(L1ItemId.ADENA, 100)) { // check
-			pc.getInventory().consumeItem(L1ItemId.ADENA, 100); // del
+		if (pc.getInventory().checkItem(ItemId.ADENA, 100)) { // check
+			pc.getInventory().consumeItem(ItemId.ADENA, 100); // del
 
 			L1PolyMorph.doPoly(pc, polyId, 1800, L1PolyMorph.MORPH_BY_NPC);
 		} else {
@@ -4380,8 +4380,8 @@ public class C_NPCAction extends ClientBasePacket {
 			return;
 		}
 
-		if (pc.getInventory().checkItem(L1ItemId.ADENA, 100)) { // check
-			pc.getInventory().consumeItem(L1ItemId.ADENA, 100); // del
+		if (pc.getInventory().checkItem(ItemId.ADENA, 100)) { // check
+			pc.getInventory().consumeItem(ItemId.ADENA, 100); // del
 
 			L1PolyMorph.doPoly(pc, polyId, 1800, L1PolyMorph.MORPH_BY_KEPLISHA);
 		} else {
@@ -4636,8 +4636,8 @@ public class C_NPCAction extends ClientBasePacket {
 				L1House house = HouseTable.getInstance().getHouseTable(houseId);
 				int keeperId = house.getKeeperId();
 				if (npc.getNpcTemplate().get_npcId() == keeperId) {
-					if (pc.getInventory().checkItem(L1ItemId.ADENA, 2000)) {
-						pc.getInventory().consumeItem(L1ItemId.ADENA, 2000);
+					if (pc.getInventory().checkItem(ItemId.ADENA, 2000)) {
+						pc.getInventory().consumeItem(ItemId.ADENA, 2000);
 						TimeZone tz = TimeZone.getTimeZone(Config.TIME_ZONE);
 						Calendar cal = Calendar.getInstance(tz);
 						cal.add(Calendar.DATE, Config.HOUSE_TAX_INTERVAL);

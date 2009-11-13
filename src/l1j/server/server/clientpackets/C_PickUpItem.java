@@ -16,13 +16,13 @@ import java.util.logging.Logger;
 
 import l1j.server.server.ActionCodes;
 import l1j.server.server.ClientThread;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.log.LogPickUpItem;
 import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.serverpackets.S_AttackPacket;
 import l1j.server.server.serverpackets.S_ServerMessage;
 
@@ -63,8 +63,8 @@ public class C_PickUpItem extends ClientBasePacket {
 				return;
 			}
 
-			if (item.getItem().getItemId() == L1ItemId.ADENA) {
-				L1ItemInstance inventoryItem = pc.getInventory().findItemId(L1ItemId.ADENA);
+			if (item.getItem().getItemId() == ItemId.ADENA) {
+				L1ItemInstance inventoryItem = pc.getInventory().findItemId(ItemId.ADENA);
 				int inventoryItemCount = 0;
 				if (inventoryItem != null) {
 					inventoryItemCount = inventoryItem.getCount();

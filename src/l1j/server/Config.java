@@ -61,14 +61,11 @@ public final class Config {
 	public static String TIME_ZONE;
 
 	public static int CLIENT_LANGUAGE;
-	// 5.05 Start 系統語系自動切換
-	public static String CLIENT_LANGUAGE_CODE;// 把下面的字串組放進來 擬暫存 其他檔案若需要判斷語系可以讀取該變數
-	/* 使用 import l1j.server.Config; 或 import l1j.server.Config.CLIENT_LANGUAGE_CODE; 
-	 * 使用前宣告
-	 * private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE; // 避免每次都要透過函數呼叫(較快)
-	 */
-	public static String[] LANGUAGE_CODE_ARRAY = { "UTF8", "EUCKR", "UTF8", "BIG5", "SJIS", "GBK"}; // 僅用來避免 使用if判斷要用哪一個字串
-	// 5.05 End 
+
+	public static String CLIENT_LANGUAGE_CODE;
+
+	public static String[] LANGUAGE_CODE_ARRAY = { "UTF8", "EUCKR", "UTF8", "BIG5", "SJIS", "GBK" };
+
 	public static boolean HOSTNAME_LOOKUPS;
 
 	public static int AUTOMATIC_KICK;
@@ -266,12 +263,12 @@ public final class Config {
 	public static int NPC_DELETION_TIME;
 
 	public static int DEFAULT_CHARACTER_SLOT;
-	
-	public static boolean Skillcheck;// 施法前判斷法術
-	
-	public static boolean SHOW_HP_BAR;// 怪物血條
-	
-	public static int GDROPITEM_TIME;// 妖森道具掉落時間控制
+
+	public static boolean SKILL_CHECK; // 施法前判斷法術
+
+	public static boolean SHOW_HP_BAR; // 怪物血條
+
+	public static int GDROPITEM_TIME; // 妖森道具掉落時間控制
 
 	/** CharSettings control */
 	public static int PRINCE_MAX_HP;
@@ -419,34 +416,7 @@ public final class Config {
 	// 一回の攻擊で吸えるMP限界(SOM、鋼鐵SOM）
 	public static final int MANA_DRAIN_LIMIT_PER_SOM_ATTACK = 9;
 
-/*
-	private static int REVISION;
-	private static String EDIT_DATE;
-	private static String[] _systemInfo;
-	private static void loadInfo(){
-		try {
-			Properties logSettings = new Properties();
-			InputStream is = new FileInputStream(new File("RevisionLog.ini"));
-			logSettings.load(is);
-			is.close();
-			REVISION = Integer.parseInt(logSettings.getProperty(
-					"Revision", "1982"));
-			EDIT_DATE = logSettings.getProperty("Date", "2009/08/07");
-			
-			_systemInfo = new String []{
-					  "==========================================================="
-					, " Lineage 3.0C Revision r" + REVISION + " 編 輯 日 期 " + EDIT_DATE + "."
-					, "==========================================================="
-				};
-			for(int i = 0; i < _systemInfo.length; i++){
-				System.out.println(_systemInfo[i]);
-			}
-		} catch (Exception e) {
-		}
-	}
-*/
 	public static void load() {
-//		loadInfo();
 		_log.info("正在讀取遊戲伺服器配置");
 		// server.properties
 		try {
@@ -710,14 +680,12 @@ public final class Config {
 					"NpcDeletionTime", "10"));
 			DEFAULT_CHARACTER_SLOT = Integer.parseInt(altSettings.getProperty(
 					"DefaultCharacterSlot", "6"));
-			Skillcheck = Boolean.parseBoolean(altSettings.getProperty(
-					"Skillcheck", "false")); // 施法前判斷法術
-
-			SHOW_HP_BAR = Boolean.parseBoolean(altSettings.getProperty(
-					"ShowHPBar", "false")); // 怪物血條
-
-			GDROPITEM_TIME = Integer.parseInt(altSettings.getProperty("GDropItemTime", "15"));// 妖森守護神道具時間控制
-
+			// 施法前判斷法術
+			SKILL_CHECK = Boolean.parseBoolean(altSettings.getProperty("SkillCheck", "false"));
+			// 怪物血條
+			SHOW_HP_BAR = Boolean.parseBoolean(altSettings.getProperty("ShowHPBar", "false"));
+			// 妖森守護神道具時間控制
+			GDROPITEM_TIME = Integer.parseInt(altSettings.getProperty("GDropItemTime", "15"));
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + ALT_SETTINGS_FILE + " File.");

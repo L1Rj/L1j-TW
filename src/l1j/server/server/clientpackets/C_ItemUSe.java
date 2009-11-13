@@ -18,38 +18,6 @@
  */
 package l1j.server.server.clientpackets;
 
-import static l1j.server.server.model.skill.L1SkillId.ABSOLUTE_BARRIER;
-import static l1j.server.server.model.skill.L1SkillId.AWAKEN_ANTHARAS;
-import static l1j.server.server.model.skill.L1SkillId.AWAKEN_FAFURION;
-import static l1j.server.server.model.skill.L1SkillId.AWAKEN_VALAKAS;
-import static l1j.server.server.model.skill.L1SkillId.BLOODLUST;
-import static l1j.server.server.model.skill.L1SkillId.COOKING_NOW;
-import static l1j.server.server.model.skill.L1SkillId.CURSE_BLIND;
-import static l1j.server.server.model.skill.L1SkillId.DARKNESS;
-import static l1j.server.server.model.skill.L1SkillId.DECAY_POTION;
-import static l1j.server.server.model.skill.L1SkillId.ENTANGLE;
-import static l1j.server.server.model.skill.L1SkillId.GREATER_HASTE;
-import static l1j.server.server.model.skill.L1SkillId.HASTE;
-import static l1j.server.server.model.skill.L1SkillId.HOLY_WALK;
-import static l1j.server.server.model.skill.L1SkillId.MASS_SLOW;
-import static l1j.server.server.model.skill.L1SkillId.MOVING_ACCELERATION;
-import static l1j.server.server.model.skill.L1SkillId.POLLUTE_WATER;
-import static l1j.server.server.model.skill.L1SkillId.SHAPE_CHANGE;
-import static l1j.server.server.model.skill.L1SkillId.SLOW;
-import static l1j.server.server.model.skill.L1SkillId.SOLID_CARRIAGE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_BLUE_POTION;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_BRAVE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_ELFBRAVE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_FLOATING_EYE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_HASTE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_MITHRIL_POWDER;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_WATER;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_WATER_OF_EVA;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_RIBRAVE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_UNDERWATER_BREATH;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_WISDOM_POTION;
-import static l1j.server.server.model.skill.L1SkillId.WIND_WALK;
-
 import java.lang.reflect.Constructor;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -75,6 +43,8 @@ import l1j.server.server.datatables.PetTable;
 import l1j.server.server.datatables.PolyTable;
 import l1j.server.server.datatables.ResolventTable;
 import l1j.server.server.datatables.SkillsTable;
+import l1j.server.server.item.ItemId;
+import l1j.server.server.item.TreasureBox;
 import l1j.server.server.log.LogEnchantFail;
 import l1j.server.server.log.LogEnchantSuccess;
 import l1j.server.server.model.Getback;
@@ -107,8 +77,6 @@ import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1TowerInstance;
-import l1j.server.server.model.item.L1ItemId;
-import l1j.server.server.model.item.L1TreasureBox;
 import l1j.server.server.model.poison.L1DamagePoison;
 import l1j.server.server.model.skill.L1SkillUse;
 import l1j.server.server.serverpackets.S_AttackPacket;
@@ -151,6 +119,38 @@ import l1j.server.server.types.Point;
 import l1j.server.server.utils.L1SpawnUtil;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.StaticFinalList;
+
+import static l1j.server.server.model.skill.L1SkillId.ABSOLUTE_BARRIER;
+import static l1j.server.server.model.skill.L1SkillId.AWAKEN_ANTHARAS;
+import static l1j.server.server.model.skill.L1SkillId.AWAKEN_FAFURION;
+import static l1j.server.server.model.skill.L1SkillId.AWAKEN_VALAKAS;
+import static l1j.server.server.model.skill.L1SkillId.BLOODLUST;
+import static l1j.server.server.model.skill.L1SkillId.COOKING_NOW;
+import static l1j.server.server.model.skill.L1SkillId.CURSE_BLIND;
+import static l1j.server.server.model.skill.L1SkillId.DARKNESS;
+import static l1j.server.server.model.skill.L1SkillId.DECAY_POTION;
+import static l1j.server.server.model.skill.L1SkillId.ENTANGLE;
+import static l1j.server.server.model.skill.L1SkillId.GREATER_HASTE;
+import static l1j.server.server.model.skill.L1SkillId.HASTE;
+import static l1j.server.server.model.skill.L1SkillId.HOLY_WALK;
+import static l1j.server.server.model.skill.L1SkillId.MASS_SLOW;
+import static l1j.server.server.model.skill.L1SkillId.MOVING_ACCELERATION;
+import static l1j.server.server.model.skill.L1SkillId.POLLUTE_WATER;
+import static l1j.server.server.model.skill.L1SkillId.SHAPE_CHANGE;
+import static l1j.server.server.model.skill.L1SkillId.SLOW;
+import static l1j.server.server.model.skill.L1SkillId.SOLID_CARRIAGE;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_BLUE_POTION;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_BRAVE;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_ELFBRAVE;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_FLOATING_EYE;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_HASTE;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_MITHRIL_POWDER;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_WATER;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_WATER_OF_EVA;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_RIBRAVE;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_UNDERWATER_BREATH;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_WISDOM_POTION;
+import static l1j.server.server.model.skill.L1SkillId.WIND_WALK;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
@@ -224,9 +224,9 @@ public class C_ItemUSe extends ClientBasePacket
 		int use_type = item.getItem().getUseType();
 		if (itemId == 40088 || itemId == 40096 || itemId == 140088) {
 			s = readS();
-		} else if (itemId == L1ItemId.SCROLL_OF_ENCHANT_ARMOR
-				|| itemId == L1ItemId.SCROLL_OF_ENCHANT_WEAPON
-				|| itemId == L1ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON
+		} else if (itemId == ItemId.SCROLL_OF_ENCHANT_ARMOR
+				|| itemId == ItemId.SCROLL_OF_ENCHANT_WEAPON
+				|| itemId == ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON
 				|| itemId == 40077
 				|| itemId == 40078
 				|| itemId == 40126
@@ -235,10 +235,10 @@ public class C_ItemUSe extends ClientBasePacket
 				|| itemId == 40130
 				|| itemId == 140129
 				|| itemId == 140130
-				|| itemId == L1ItemId.B_SCROLL_OF_ENCHANT_ARMOR
-				|| itemId == L1ItemId.B_SCROLL_OF_ENCHANT_WEAPON
-				|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_ARMOR
-				|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_WEAPON
+				|| itemId == ItemId.B_SCROLL_OF_ENCHANT_ARMOR
+				|| itemId == ItemId.B_SCROLL_OF_ENCHANT_WEAPON
+				|| itemId == ItemId.C_SCROLL_OF_ENCHANT_ARMOR
+				|| itemId == ItemId.C_SCROLL_OF_ENCHANT_WEAPON
 				|| itemId == 41029 // 召喚球の欠片
 				|| itemId == 40317
 				|| itemId == 41036
@@ -362,11 +362,11 @@ public class C_ItemUSe extends ClientBasePacket
 			L1ItemInstance l1iteminstance1 = pc.getInventory().getItem(l);
 			_log.finest("request item use (obj) = " + itemObjid + " action = "
 					+ l + " value = " + s);
-			if (itemId == 40077 || itemId == L1ItemId.SCROLL_OF_ENCHANT_WEAPON
-					|| itemId == L1ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON
+			if (itemId == 40077 || itemId == ItemId.SCROLL_OF_ENCHANT_WEAPON
+					|| itemId == ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON
 					|| itemId == 40130 || itemId == 140130
-					|| itemId == L1ItemId.B_SCROLL_OF_ENCHANT_WEAPON
-					|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_WEAPON
+					|| itemId == ItemId.B_SCROLL_OF_ENCHANT_WEAPON
+					|| itemId == ItemId.C_SCROLL_OF_ENCHANT_WEAPON
 					|| itemId == 40128) { // 武器強化スクロール
 				if (l1iteminstance1 == null
 						|| l1iteminstance1.getItem().getType2() != 1) {
@@ -382,13 +382,13 @@ public class C_ItemUSe extends ClientBasePacket
 
 				int quest_weapon = l1iteminstance1.getItem().getItemId();
 				if (quest_weapon >= 246 && quest_weapon <= 249) { // 強化不可
-					if (itemId == L1ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
+					if (itemId == ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 						return;
 					}
 				}
-				if (itemId == L1ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
+				if (itemId == ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
 					if (quest_weapon >= 246 && quest_weapon <= 249) { // 強化不可
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
@@ -415,7 +415,7 @@ public class C_ItemUSe extends ClientBasePacket
 
 				int enchant_level = l1iteminstance1.getEnchantLevel();
 
-				if (itemId == L1ItemId.C_SCROLL_OF_ENCHANT_WEAPON) { // c-dai
+				if (itemId == ItemId.C_SCROLL_OF_ENCHANT_WEAPON) { // c-dai
 					pc.getInventory().removeItem(item, 1);
 					if (enchant_level < -6) {
 						// -7以上はできない。
@@ -658,10 +658,10 @@ public class C_ItemUSe extends ClientBasePacket
 						pc.getInventory().removeItem(item, 1);// 刪除道具
 				}
 			} else if (itemId == 40078
-					|| itemId == L1ItemId.SCROLL_OF_ENCHANT_ARMOR
+					|| itemId == ItemId.SCROLL_OF_ENCHANT_ARMOR
 					|| itemId == 40129 || itemId == 140129
-					|| itemId == L1ItemId.B_SCROLL_OF_ENCHANT_ARMOR
-					|| itemId == L1ItemId.C_SCROLL_OF_ENCHANT_ARMOR
+					|| itemId == ItemId.B_SCROLL_OF_ENCHANT_ARMOR
+					|| itemId == ItemId.C_SCROLL_OF_ENCHANT_ARMOR
 					|| itemId == 40127) { // 防具強化スクロール
 				if (l1iteminstance1 == null
 						|| l1iteminstance1.getItem().getType2() != 2) {
@@ -694,7 +694,7 @@ public class C_ItemUSe extends ClientBasePacket
 				}
 
 				int enchant_level = l1iteminstance1.getEnchantLevel();
-				if (itemId == L1ItemId.C_SCROLL_OF_ENCHANT_ARMOR) { // c-zel
+				if (itemId == ItemId.C_SCROLL_OF_ENCHANT_ARMOR) { // c-zel
 					pc.getInventory().removeItem(item, 1);
 					if (enchant_level < -6) {
 						// -7以上はできない。
@@ -783,7 +783,7 @@ public class C_ItemUSe extends ClientBasePacket
 					pc.sendPackets(new S_ServerMessage(452, // %0が選擇されました。
 							item.getLogName()));
 				} else if (item.getItem().getType() == 16) { // treasure_box
-					L1TreasureBox box = L1TreasureBox.get(itemId);
+					TreasureBox box = TreasureBox.get(itemId);
 
 					if (box != null) {
 						if (box.open(pc)) {
@@ -902,23 +902,23 @@ public class C_ItemUSe extends ClientBasePacket
 					}
 				}
 				// レッドポーション、濃縮体力回復劑、象牙の塔の体力回復劑
-				else if (itemId == L1ItemId.POTION_OF_HEALING
-						|| itemId == L1ItemId.CONDENSED_POTION_OF_HEALING
+				else if (itemId == ItemId.POTION_OF_HEALING
+						|| itemId == ItemId.CONDENSED_POTION_OF_HEALING
 						|| itemId == 40029) {
 					UseHeallingPotion(pc, 15, 189);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40022) { // 古代の体力回復劑
 					UseHeallingPotion(pc, 20, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == L1ItemId.POTION_OF_EXTRA_HEALING
-						|| itemId == L1ItemId.CONDENSED_POTION_OF_EXTRA_HEALING) {
+				} else if (itemId == ItemId.POTION_OF_EXTRA_HEALING
+						|| itemId == ItemId.CONDENSED_POTION_OF_EXTRA_HEALING) {
 					UseHeallingPotion(pc, 45, 194);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40023) { // 古代強力體力恢復劑
 					UseHeallingPotion(pc, 30, 194);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == L1ItemId.POTION_OF_GREATER_HEALING
-						|| itemId == L1ItemId.CONDENSED_POTION_OF_GREATER_HEALING) {
+				} else if (itemId == ItemId.POTION_OF_GREATER_HEALING
+						|| itemId == ItemId.CONDENSED_POTION_OF_GREATER_HEALING) {
 					UseHeallingPotion(pc, 75, 197);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40024 || itemId == 49137) { // 古代終極體力恢復劑 鮮奶油蛋糕
@@ -940,17 +940,17 @@ public class C_ItemUSe extends ClientBasePacket
 				} else if (itemId == 40734) { // 信賴貨幣
 					UseHeallingPotion(pc, 50, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == L1ItemId.B_POTION_OF_HEALING) {
+				} else if (itemId == ItemId.B_POTION_OF_HEALING) {
 					UseHeallingPotion(pc, 25, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == L1ItemId.C_POTION_OF_HEALING) {
+				} else if (itemId == ItemId.C_POTION_OF_HEALING) {
 					UseHeallingPotion(pc, 10, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == L1ItemId.B_POTION_OF_EXTRA_HEALING) { // 祝福されたオレンジ
+				} else if (itemId == ItemId.B_POTION_OF_EXTRA_HEALING) { // 祝福されたオレンジ
 					// ポーション
 					UseHeallingPotion(pc, 55, 194);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == L1ItemId.B_POTION_OF_GREATER_HEALING) { // 祝福されたクリアー
+				} else if (itemId == ItemId.B_POTION_OF_GREATER_HEALING) { // 祝福されたクリアー
 					// ポーション
 					UseHeallingPotion(pc, 85, 197);
 					pc.getInventory().removeItem(item, 1);
@@ -973,7 +973,7 @@ public class C_ItemUSe extends ClientBasePacket
 					pc.setDrink(true);
 					pc.sendPackets(new S_Liquor(pc.getId()));
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == L1ItemId.POTION_OF_CURE_POISON
+				} else if (itemId == ItemId.POTION_OF_CURE_POISON
 						|| itemId == 40507) { // シアンポーション、エントの枝
 					if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
 						pc.sendPackets(new S_ServerMessage(698)); // 魔力によって何も飲むことができません。
@@ -981,7 +981,7 @@ public class C_ItemUSe extends ClientBasePacket
 						cancelAbsoluteBarrier(pc); // アブソルート バリアの解除
 						pc.sendPackets(new S_SkillSound(pc.getId(), 192));
 						pc.broadcastPacket(new S_SkillSound(pc.getId(), 192));
-						if (itemId == L1ItemId.POTION_OF_CURE_POISON) {
+						if (itemId == ItemId.POTION_OF_CURE_POISON) {
 							pc.getInventory().removeItem(item, 1);
 						} else if (itemId == 40507) {
 							pc.getInventory().removeItem(item, 1);
@@ -989,8 +989,8 @@ public class C_ItemUSe extends ClientBasePacket
 
 						pc.curePoison();
 					}
-				} else if (itemId == L1ItemId.POTION_OF_HASTE_SELF
-						|| itemId == L1ItemId.B_POTION_OF_HASTE_SELF
+				} else if (itemId == ItemId.POTION_OF_HASTE_SELF
+						|| itemId == ItemId.B_POTION_OF_HASTE_SELF
 						|| itemId == 40018 // 強化グリーン ポーション
 						|| itemId == 140018 // 祝福された強化グリーン ポーション
 
@@ -1012,8 +1012,8 @@ public class C_ItemUSe extends ClientBasePacket
 						|| itemId == 41342) { // メデューサの血
 					useGreenPotion(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == L1ItemId.POTION_OF_EMOTION_BRAVERY // ブレイブポーション
-						|| itemId == L1ItemId.B_POTION_OF_EMOTION_BRAVERY // 祝福されたブレイブポーション
+				} else if (itemId == ItemId.POTION_OF_EMOTION_BRAVERY // ブレイブポーション
+						|| itemId == ItemId.B_POTION_OF_EMOTION_BRAVERY // 祝福されたブレイブポーション
 						|| itemId == 41415) { // 強化ブレイブポーション
 					if (pc.isKnight()) {
 						useBravePotion(pc, itemId);
@@ -1127,15 +1127,15 @@ public class C_ItemUSe extends ClientBasePacket
 						|| itemId == 41344) { // エヴァの祝福、マーメイドの鱗、水の精粹
 					useBlessOfEva(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == L1ItemId.POTION_OF_MANA // ブルー ポーション
-						|| itemId == L1ItemId.B_POTION_OF_MANA // 祝福されたブルー
+				} else if (itemId == ItemId.POTION_OF_MANA // ブルー ポーション
+						|| itemId == ItemId.B_POTION_OF_MANA // 祝福されたブルー
 						// ポーション
 						|| itemId == 40736) { // 智慧貨幣
 					useBluePotion(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == L1ItemId.POTION_OF_EMOTION_WISDOM // ウィズダム
+				} else if (itemId == ItemId.POTION_OF_EMOTION_WISDOM // ウィズダム
 						// ポーション
-						|| itemId == L1ItemId.B_POTION_OF_EMOTION_WISDOM) { // 祝福されたウィズダム
+						|| itemId == ItemId.B_POTION_OF_EMOTION_WISDOM) { // 祝福されたウィズダム
 					// ポーション
 					if (pc.isWizard()) {
 						useWisdomPotion(pc, itemId);
@@ -1143,7 +1143,7 @@ public class C_ItemUSe extends ClientBasePacket
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == L1ItemId.POTION_OF_BLINDNESS) { // オペイクポーション
+				} else if (itemId == ItemId.POTION_OF_BLINDNESS) { // オペイクポーション
 					useBlindPotion(pc);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40088 // 變形卷軸
@@ -3607,9 +3607,9 @@ public class C_ItemUSe extends ClientBasePacket
 		cancelAbsoluteBarrier(pc);
 
 		int time = 0;
-		if (itemId == L1ItemId.POTION_OF_HASTE_SELF) { // グリーン ポーション
+		if (itemId == ItemId.POTION_OF_HASTE_SELF) { // グリーン ポーション
 			time = 300;
-		} else if (itemId == L1ItemId.B_POTION_OF_HASTE_SELF) { // 祝福されたグリーン
+		} else if (itemId == ItemId.B_POTION_OF_HASTE_SELF) { // 祝福されたグリーン
 			// ポーション
 			time = 350;
 		} else if (itemId == 40018 || itemId == 41338 || itemId == 41342) { // 強化グリーンポーション、祝福されたワイン、メデューサの血
@@ -3686,9 +3686,9 @@ public class C_ItemUSe extends ClientBasePacket
 		cancelAbsoluteBarrier(pc);
 
 		int time = 0;
-		if (item_id == L1ItemId.POTION_OF_EMOTION_BRAVERY) { // ブレイブ ポーション
+		if (item_id == ItemId.POTION_OF_EMOTION_BRAVERY) { // ブレイブ ポーション
 			time = 300;
-		} else if (item_id == L1ItemId.B_POTION_OF_EMOTION_BRAVERY) { // 祝福されたブレイブポーション
+		} else if (item_id == ItemId.B_POTION_OF_EMOTION_BRAVERY) { // 祝福されたブレイブポーション
 			time = 350;
 		} else if (item_id == 49158) { // ユグドラの実
 			time = 480;
@@ -3833,9 +3833,9 @@ public class C_ItemUSe extends ClientBasePacket
 		cancelAbsoluteBarrier(pc);
 
 		int time = 0; // 時間は4の倍數にすること
-		if (item_id == L1ItemId.POTION_OF_EMOTION_WISDOM) { // ウィズダム ポーション
+		if (item_id == ItemId.POTION_OF_EMOTION_WISDOM) { // ウィズダム ポーション
 			time = 300;
-		} else if (item_id == L1ItemId.B_POTION_OF_EMOTION_WISDOM) { // 祝福されたウィズダム
+		} else if (item_id == ItemId.B_POTION_OF_EMOTION_WISDOM) { // 祝福されたウィズダム
 			// ポーション
 			time = 360;
 		}
@@ -4291,8 +4291,8 @@ public class C_ItemUSe extends ClientBasePacket
 	}
 
 	private int RandomELevel(L1ItemInstance item, int itemId) {
-		if (itemId == L1ItemId.B_SCROLL_OF_ENCHANT_ARMOR
-				|| itemId == L1ItemId.B_SCROLL_OF_ENCHANT_WEAPON
+		if (itemId == ItemId.B_SCROLL_OF_ENCHANT_ARMOR
+				|| itemId == ItemId.B_SCROLL_OF_ENCHANT_WEAPON
 				|| itemId == 140129 || itemId == 140130) {
 			if (item.getEnchantLevel() <= 2) {
 				int j = RandomArrayList.getInc(100, 1);

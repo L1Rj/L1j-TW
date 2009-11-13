@@ -67,7 +67,7 @@ import l1j.server.server.templates.L1NpcChat;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.TimerPool;
-import static l1j.server.server.model.item.L1ItemId.*;
+import static l1j.server.server.item.ItemId.*;
 import static l1j.server.server.model.skill.L1SkillId.*;
 
 public class L1NpcInstance extends L1Character {

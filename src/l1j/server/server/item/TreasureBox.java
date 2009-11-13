@@ -1,10 +1,27 @@
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+package l1j.server.server.item;
 
-package l1j.server.server.model.item;
 import java.io.File;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,18 +46,17 @@ import l1j.server.server.utils.PerformanceTimer;
 import l1j.server.server.utils.RandomArrayList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class L1TreasureBox {
+public class TreasureBox {
 
-	private static Logger _log =
-			Logger.getLogger(L1TreasureBox.class.getName());
+	private static Logger _log = Logger.getLogger(TreasureBox.class.getName());
 
 	@XmlAccessorType(XmlAccessType.FIELD)
 	@XmlRootElement(name = "TreasureBoxList")
-	private static class TreasureBoxList implements Iterable<L1TreasureBox> {
+	private static class TreasureBoxList implements Iterable<TreasureBox> {
 		@XmlElement(name = "TreasureBox")
-		private List<L1TreasureBox> _list;
+		private List<TreasureBox> _list;
 
-		public Iterator<L1TreasureBox> iterator() {
+		public Iterator<TreasureBox> iterator() {
 			return _list.iterator();
 		}
 	}
@@ -79,8 +95,8 @@ public class L1TreasureBox {
 
 	private static final String PATH = "./data/xml/Item/TreasureBox.xml";
 
-	private static final FastMap<Integer, L1TreasureBox> _dataMap =
-			new FastMap<Integer, L1TreasureBox>();
+	private static final FastMap<Integer, TreasureBox> _dataMap =
+			new FastMap<Integer, TreasureBox>();
 
 	/**
 	 * 指定されたIDのTreasureBoxを返す。
@@ -88,7 +104,7 @@ public class L1TreasureBox {
 	 * @param id - TreasureBoxのID。普通はアイテムのItemIdになる。
 	 * @return 指定されたIDのTreasureBox。見つからなかった場合はnull。
 	 */
-	public static L1TreasureBox get(int id) {
+	public static TreasureBox get(int id) {
 		return _dataMap.get(id);
 	}
 
@@ -139,14 +155,14 @@ public class L1TreasureBox {
 		try {
 			JAXBContext context =
 					JAXBContext
-							.newInstance(L1TreasureBox.TreasureBoxList.class);
+							.newInstance(TreasureBox.TreasureBoxList.class);
 
 			Unmarshaller um = context.createUnmarshaller();
 
 			File file = new File(PATH);
 			TreasureBoxList list = (TreasureBoxList) um.unmarshal(file);
 
-			for (L1TreasureBox each : list) {
+			for (TreasureBox each : list) {
 				each.init();
 				_dataMap.put(each.getBoxId(), each);
 			}

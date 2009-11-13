@@ -23,8 +23,8 @@ import java.util.ArrayList;
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.SkillsTable;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillList;
 import l1j.server.server.templates.L1Skills;
@@ -71,9 +71,9 @@ public class C_SkillBuyOK extends ClientBasePacket
 		L1Skills[] Skills = SkillList.toArray(new L1Skills[Count]); // 將 ArrayList 轉換成 L1Skills 陣列
 
 		// 判斷金幣是否足夠學習魔法
-		if (pc.getInventory().checkItem(L1ItemId.ADENA, Price))
+		if (pc.getInventory().checkItem(ItemId.ADENA, Price))
 		{
-			pc.getInventory().consumeItem(L1ItemId.ADENA, Price); // 消耗金幣數量
+			pc.getInventory().consumeItem(ItemId.ADENA, Price); // 消耗金幣數量
 			pc.sendPackets(new S_SkillList(true, Skills)); // 將魔法插入角色魔法欄內
 
 			for (L1Skills Skill : Skills)

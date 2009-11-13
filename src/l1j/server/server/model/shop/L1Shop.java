@@ -20,12 +20,12 @@ package l1j.server.server.model.shop;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import l1j.server.Config;
 import l1j.server.server.datatables.CastleTable;
 import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.datatables.TownTable;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.model.L1CastleLocation;
 import l1j.server.server.model.L1PcInventory;
 import l1j.server.server.model.L1TaxCalculator;
@@ -33,7 +33,6 @@ import l1j.server.server.model.L1TownLocation;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Castle;
 import l1j.server.server.templates.L1Item;
@@ -146,7 +145,7 @@ public class L1Shop {
 			return false;
 		}
 		// 購入できるかチェック
-		if (!pc.getInventory().checkItem(L1ItemId.ADENA, price)) {
+		if (!pc.getInventory().checkItem(ItemId.ADENA, price)) {
 			System.out.println(price);
 			// \f1アデナが不足しています。
 			pc.sendPackets(new S_ServerMessage(189));
@@ -283,7 +282,7 @@ public class L1Shop {
 	 * 販賣取引
 	 */
 	private void sellItems(L1PcInventory inv, L1ShopBuyOrderList orderList) {
-		if (!inv.consumeItem(L1ItemId.ADENA, orderList
+		if (!inv.consumeItem(ItemId.ADENA, orderList
 				.getTotalPriceTaxIncluded())) {
 			throw new IllegalStateException("購入に必要なアデナを消費できませんでした。");
 		}
@@ -351,7 +350,7 @@ public class L1Shop {
 
 		totalPrice = IntRange.ensure(totalPrice, 0, 2000000000);
 		if (0 < totalPrice) {
-			inv.storeItem(L1ItemId.ADENA, totalPrice);
+			inv.storeItem(ItemId.ADENA, totalPrice);
 		}
 	}
 

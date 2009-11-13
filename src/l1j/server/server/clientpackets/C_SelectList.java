@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.NpcTable;
 import l1j.server.server.datatables.PetTable;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1PcInventory;
 import l1j.server.server.model.L1World;
@@ -31,7 +32,6 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Pet;
@@ -69,7 +69,7 @@ public class C_SelectList extends ClientBasePacket {
 			L1PcInventory pcInventory = pc.getInventory();
 			L1ItemInstance item = pcInventory.getItem(itemObjectId);
 			int cost = item.get_durability() * 200;
-			if (!pc.getInventory().consumeItem(L1ItemId.ADENA, cost)) {
+			if (!pc.getInventory().consumeItem(ItemId.ADENA, cost)) {
 				return;
 			}
 			item.set_durability(0);

@@ -23,10 +23,10 @@ import java.util.logging.Logger;
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.CastleTable;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.model.L1Clan;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.templates.L1Castle;
 
 // Referenced classes of package l1j.server.server.clientpackets:
@@ -55,7 +55,7 @@ public class C_Deposit extends ClientBasePacket {
 					synchronized (l1castle) {
 						int money = l1castle.getPublicMoney();
 						if (player.getInventory()
-								.consumeItem(L1ItemId.ADENA, j)) {
+								.consumeItem(ItemId.ADENA, j)) {
 							money += j;
 							l1castle.setPublicMoney(money);
 							CastleTable.getInstance().updateCastle(l1castle);

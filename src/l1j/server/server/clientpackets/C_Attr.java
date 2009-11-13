@@ -31,6 +31,7 @@ import l1j.server.server.datatables.ClanTable;
 import l1j.server.server.datatables.HouseTable;
 import l1j.server.server.datatables.NpcTable;
 import l1j.server.server.datatables.PetTable;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.log.LogStatusUp;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1CastleLocation;
@@ -45,7 +46,6 @@ import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.model.map.L1Map;
 import l1j.server.server.serverpackets.S_ChangeName;
 import l1j.server.server.serverpackets.S_CharTitle;
@@ -378,7 +378,7 @@ public class C_Attr extends ClientBasePacket {
 				if (lawful >= 0) {
 					cost = (cost / 2);
 				}
-				if (pc.getInventory().consumeItem(L1ItemId.ADENA, cost)) {
+				if (pc.getInventory().consumeItem(ItemId.ADENA, cost)) {
 					pc.resExp();
 					pc.setExpRes(0);
 				} else {

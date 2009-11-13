@@ -31,15 +31,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.Config;
-import l1j.server.gameserver.L1WorldMap;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.GeneralThreadPool;
+import l1j.server.server.WorldMap;
 import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.datatables.UBSpawnTable;
+import l1j.server.server.item.ItemId;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1MonsterInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.item.L1ItemId;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Item;
 import l1j.server.server.utils.IntRange;
@@ -112,25 +112,25 @@ public class L1UltimateBattle {
 	 */
 	private void spawnSupplies(int curRound) {
 		if (curRound == 1) {
-			spawnGroundItem(L1ItemId.ADENA, 1000, 60);
-			spawnGroundItem(L1ItemId.POTION_OF_CURE_POISON, 3, 20);
-			spawnGroundItem(L1ItemId.POTION_OF_EXTRA_HEALING, 5, 20);
-			spawnGroundItem(L1ItemId.POTION_OF_GREATER_HEALING, 3, 20);
+			spawnGroundItem(ItemId.ADENA, 1000, 60);
+			spawnGroundItem(ItemId.POTION_OF_CURE_POISON, 3, 20);
+			spawnGroundItem(ItemId.POTION_OF_EXTRA_HEALING, 5, 20);
+			spawnGroundItem(ItemId.POTION_OF_GREATER_HEALING, 3, 20);
 			spawnGroundItem(40317, 1, 5); // 砥石
 			spawnGroundItem(40079, 1, 20); // 歸還スク
 		} else if (curRound == 2) {
-			spawnGroundItem(L1ItemId.ADENA, 5000, 50);
-			spawnGroundItem(L1ItemId.POTION_OF_CURE_POISON, 5, 20);
-			spawnGroundItem(L1ItemId.POTION_OF_EXTRA_HEALING, 10, 20);
-			spawnGroundItem(L1ItemId.POTION_OF_GREATER_HEALING, 5, 20);
+			spawnGroundItem(ItemId.ADENA, 5000, 50);
+			spawnGroundItem(ItemId.POTION_OF_CURE_POISON, 5, 20);
+			spawnGroundItem(ItemId.POTION_OF_EXTRA_HEALING, 10, 20);
+			spawnGroundItem(ItemId.POTION_OF_GREATER_HEALING, 5, 20);
 			spawnGroundItem(40317, 1, 7); // 砥石
 			spawnGroundItem(40093, 1, 10); // ブランクスク(Lv4)
 			spawnGroundItem(40079, 1, 5); // 歸還スク
 		} else if (curRound == 3) {
-			spawnGroundItem(L1ItemId.ADENA, 10000, 30);
-			spawnGroundItem(L1ItemId.POTION_OF_CURE_POISON, 7, 20);
-			spawnGroundItem(L1ItemId.POTION_OF_EXTRA_HEALING, 20, 20);
-			spawnGroundItem(L1ItemId.POTION_OF_GREATER_HEALING, 10, 20);
+			spawnGroundItem(ItemId.ADENA, 10000, 30);
+			spawnGroundItem(ItemId.POTION_OF_CURE_POISON, 7, 20);
+			spawnGroundItem(ItemId.POTION_OF_EXTRA_HEALING, 20, 20);
+			spawnGroundItem(ItemId.POTION_OF_GREATER_HEALING, 10, 20);
 			spawnGroundItem(40317, 1, 10); // 砥石
 			spawnGroundItem(40094, 1, 10); // ブランクスク(Lv5)
 		}
@@ -209,13 +209,10 @@ public class L1UltimateBattle {
 	/**
 	 * コロシアム上のアイテムとモンスターを全て削除する。
 	 */
-	private void clearColosseum()
-	{
-		for (Object obj : L1WorldMap.getMap(_mapId).getObjects())
-		{
+	private void clearColosseum() {
+		for (Object obj : WorldMap.getMap(_mapId).getObjects()) {
 			// モンスター削除
-			if (obj instanceof L1MonsterInstance) 
-			{
+			if (obj instanceof L1MonsterInstance) {
 				L1MonsterInstance mob = (L1MonsterInstance) obj;
 				if (!mob.isDead()) {
 					mob.setDead(true);
@@ -226,8 +223,7 @@ public class L1UltimateBattle {
 				}
 			}
 			// アイテム削除
-			else if (obj instanceof L1Inventory)
-			{
+			else if (obj instanceof L1Inventory) {
 				L1Inventory inventory = (L1Inventory) obj;
 				inventory.clearItems();
 			}
