@@ -1,4 +1,25 @@
-﻿DATA目錄內容說明:
+﻿主目錄檔案說明:
+l1jserver.jar				主程式
+ServerStart.bat				啟動批次檔
+ServerConfig.bat			伺服器設定工具批次檔
+SQLiteManager.bat			紀錄檔查閱工具批次檔
+starlin.sh				Linux 啟動批次檔
+
+各目錄概略說明:
+bin\					主程式編譯完成java執行檔
+config\					伺服器主要設定
+data\					廣播/時間/npc控制設定
+db\					資料庫
+Documents\				說明文件
+emblem\					血盟盟輝存放目錄
+etc\					日版舊的部份說明與檔案
+lib\					共用函式庫
+log\					紀錄檔存放目錄
+maps\					伺服器地圖檔
+src\					伺服器原始碼
+tool\					伺服器工具
+
+DATA目錄內容說明:
 \data\badnames.txt			設定遊戲內不可命名的角色名稱
 \data\announcements.txt			伺服器登入公告.
 \data\mapcache\				伺服器地圖快取暫存目錄.
