@@ -33,16 +33,14 @@ import l1j.server.server.utils.SQLUtil;
 public class LogSpeedHack {
 	private static Logger _log = Logger.getLogger(LogSpeedHack.class.getName());
 
-	public static void storeLogSpeedHack(L1PcInstance pc) {
+	public void storeLogSpeedHack(L1PcInstance pc) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
 			con = L1LogDataFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO LogSpeedHack VALUES (?, ?, ?, ?, ?);");
+			pstm = con.prepareStatement("INSERT INTO LogSpeedHack VALUES (?, ?, ?, ?, ?);");
 			Date time = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat(
-					"yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time.getTime());
 			pstm.setString(1, fm);
 			pstm.setString(2, pc.getNetConnection().getIp());

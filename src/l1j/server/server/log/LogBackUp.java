@@ -120,17 +120,16 @@ public class LogBackUp {
 	}
 
 	/**
-	 * Tests if the specified <code>File</code> is older than the specified time
-	 * reference.
+	 * Tests if the specified <code>File</code> is older than the specified time reference.
 	 * 
 	 * @param file
-	 *            the <code>File</code> of which the modification date must be
-	 *            compared, must not be <code>null</code>
+	 *            the <code>File</code> of which the modification date must be compared, must not be
+	 *            <code>null</code>
 	 * @param timeMillis
-	 *            the time reference measured in milliseconds since the epoch
-	 *            (00:00:00 GMT, January 1, 1970)
-	 * @return true if the <code>File</code> exists and has been modified before
-	 *         the given time reference.
+	 *            the time reference measured in milliseconds since the epoch (00:00:00 GMT, January
+	 *            1, 1970)
+	 * @return true if the <code>File</code> exists and has been modified before the given time
+	 *         reference.
 	 * @throws IllegalArgumentException
 	 *             if the file is <code>null</code>
 	 */
@@ -145,8 +144,8 @@ public class LogBackUp {
 	}
 
 	/**
-	 * Computes the checksum of a file using the CRC32 checksum routine. The
-	 * value of the checksum is returned.
+	 * Computes the checksum of a file using the CRC32 checksum routine. The value of the checksum
+	 * is returned.
 	 * 
 	 * @param file
 	 *            the file to checksum, must not be <code>null</code>
@@ -166,13 +165,10 @@ public class LogBackUp {
 	}
 
 	/**
-	 * Computes the checksum of a file using the specified checksum object.
-	 * Multiple files may be checked using one <code>Checksum</code> instance if
-	 * desired simply by reusing the same checksum object. For example:
-	 * 
-	 * <pre>
-	 * long csum = FileUtils.checksum(file, new CRC32()).getValue();
-	 * </pre>
+	 * Computes the checksum of a file using the specified checksum object. Multiple files may be
+	 * checked using one <code>Checksum</code> instance if desired simply by reusing the same
+	 * checksum object. For example: <pre> long csum = FileUtils.checksum(file, new
+	 * CRC32()).getValue(); </pre>
 	 * 
 	 * @param file
 	 *            the file to checksum, must not be <code>null</code>
@@ -202,16 +198,11 @@ public class LogBackUp {
 	}
 
 	/**
-	 * Copy bytes from an <code>InputStream</code> to an
-	 * <code>OutputStream</code>.
-	 * <p>
-	 * This method buffers the input internally, so there is no need to use a
-	 * <code>BufferedInputStream</code>.
-	 * <p>
-	 * Large streams (over 2GB) will return a bytes copied value of
-	 * <code>-1</code> after the copy has completed since the correct number of
-	 * bytes cannot be returned as an int. For large streams use the
-	 * <code>copyLarge(InputStream, OutputStream)</code> method.
+	 * Copy bytes from an <code>InputStream</code> to an <code>OutputStream</code>. <p> This method
+	 * buffers the input internally, so there is no need to use a <code>BufferedInputStream</code>.
+	 * <p> Large streams (over 2GB) will return a bytes copied value of <code>-1</code> after the
+	 * copy has completed since the correct number of bytes cannot be returned as an int. For large
+	 * streams use the <code>copyLarge(InputStream, OutputStream)</code> method.
 	 * 
 	 * @param input
 	 *            the <code>InputStream</code> to read from
@@ -235,10 +226,8 @@ public class LogBackUp {
 	}
 
 	/**
-	 * Copy bytes from a large (over 2GB) <code>InputStream</code> to an
-	 * <code>OutputStream</code>.
-	 * <p>
-	 * This method buffers the input internally, so there is no need to use a
+	 * Copy bytes from a large (over 2GB) <code>InputStream</code> to an <code>OutputStream</code>.
+	 * <p> This method buffers the input internally, so there is no need to use a
 	 * <code>BufferedInputStream</code>.
 	 * 
 	 * @param input
@@ -264,10 +253,8 @@ public class LogBackUp {
 	}
 
 	/**
-	 * Unconditionally close an <code>Reader</code>.
-	 * <p>
-	 * Equivalent to {@link Reader#close()}, except any exceptions will be
-	 * ignored. This is typically used in finally blocks.
+	 * Unconditionally close an <code>Reader</code>. <p> Equivalent to {@link Reader#close()},
+	 * except any exceptions will be ignored. This is typically used in finally blocks.
 	 * 
 	 * @param input
 	 *            the Reader to close, may be null or already closed
@@ -283,10 +270,8 @@ public class LogBackUp {
 	}
 
 	/**
-	 * Unconditionally close a <code>Channel</code>.
-	 * <p>
-	 * Equivalent to {@link Channel#close()}, except any exceptions will be
-	 * ignored. This is typically used in finally blocks.
+	 * Unconditionally close a <code>Channel</code>. <p> Equivalent to {@link Channel#close()},
+	 * except any exceptions will be ignored. This is typically used in finally blocks.
 	 * 
 	 * @param channel
 	 *            the Channel to close, may be null or already closed
@@ -302,10 +287,8 @@ public class LogBackUp {
 	}
 
 	/**
-	 * Unconditionally close a <code>Writer</code>.
-	 * <p>
-	 * Equivalent to {@link Writer#close()}, except any exceptions will be
-	 * ignored. This is typically used in finally blocks.
+	 * Unconditionally close a <code>Writer</code>. <p> Equivalent to {@link Writer#close()}, except
+	 * any exceptions will be ignored. This is typically used in finally blocks.
 	 * 
 	 * @param output
 	 *            the Writer to close, may be null or already closed
@@ -321,10 +304,9 @@ public class LogBackUp {
 	}
 
 	/**
-	 * Unconditionally close an <code>InputStream</code>.
-	 * <p>
-	 * Equivalent to {@link InputStream#close()}, except any exceptions will be
-	 * ignored. This is typically used in finally blocks.
+	 * Unconditionally close an <code>InputStream</code>. <p> Equivalent to
+	 * {@link InputStream#close()}, except any exceptions will be ignored. This is typically used in
+	 * finally blocks.
 	 * 
 	 * @param input
 	 *            the InputStream to close, may be null or already closed
@@ -340,10 +322,9 @@ public class LogBackUp {
 	}
 
 	/**
-	 * Unconditionally close an <code>OutputStream</code>.
-	 * <p>
-	 * Equivalent to {@link OutputStream#close()}, except any exceptions will be
-	 * ignored. This is typically used in finally blocks.
+	 * Unconditionally close an <code>OutputStream</code>. <p> Equivalent to
+	 * {@link OutputStream#close()}, except any exceptions will be ignored. This is typically used
+	 * in finally blocks.
 	 * 
 	 * @param output
 	 *            the OutputStream to close, may be null or already closed
@@ -359,16 +340,11 @@ public class LogBackUp {
 	}
 
 	/**
-	 * Opens a {@link FileInputStream} for the specified file, providing better
-	 * error messages than simply calling <code>new FileInputStream(file)</code>
-	 * .
-	 * <p>
-	 * At the end of the method either the stream will be successfully opened,
-	 * or an exception will have been thrown.
-	 * <p>
-	 * An exception is thrown if the file does not exist. An exception is thrown
-	 * if the file object exists but is a directory. An exception is thrown if
-	 * the file exists but cannot be read.
+	 * Opens a {@link FileInputStream} for the specified file, providing better error messages than
+	 * simply calling <code>new FileInputStream(file)</code> . <p> At the end of the method either
+	 * the stream will be successfully opened, or an exception will have been thrown. <p> An
+	 * exception is thrown if the file does not exist. An exception is thrown if the file object
+	 * exists but is a directory. An exception is thrown if the file exists but cannot be read.
 	 * 
 	 * @param file
 	 *            the file to open for input, must not be <code>null</code>
@@ -397,10 +373,8 @@ public class LogBackUp {
 }
 
 /**
- * This OutputStream writes all data to the famous <b>/dev/null</b>.
- * <p>
- * This output stream has no destination (file/socket etc.) and all bytes
- * written to it are ignored and lost.
+ * This OutputStream writes all data to the famous <b>/dev/null</b>. <p> This output stream has no
+ * destination (file/socket etc.) and all bytes written to it are ignored and lost.
  * 
  * @author Jeremias Maerki
  * @version $Id: NullOutputStream.java 659817 2008-05-24 13:23:10Z niallp $
