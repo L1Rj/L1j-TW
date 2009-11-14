@@ -19,7 +19,6 @@
 package l1j.server.server.model;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Random;
@@ -29,6 +28,8 @@ import java.util.TimeZone;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
@@ -89,7 +90,7 @@ public class L1UltimateBattle {
 	private static final Logger _log = Logger.getLogger(L1UltimateBattle.class
 			.getName());
 
-	private final ArrayList<L1PcInstance> _members = new ArrayList<L1PcInstance>();
+	private final FastTable<L1PcInstance> _members = new FastTable<L1PcInstance>();
 
 	/**
 	 * ラウンド開始時のメッセージを送信する。
@@ -308,7 +309,7 @@ public class L1UltimateBattle {
 					L1UbPattern pattern = UBSpawnTable.getInstance()
 							.getPattern(_ubId, _pattern);
 
-					ArrayList<L1UbSpawn> spawnList = pattern
+					FastTable<L1UbSpawn> spawnList = pattern
 							.getSpawnList(round);
 
 					for (L1UbSpawn spawn : spawnList) {

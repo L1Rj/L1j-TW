@@ -18,8 +18,9 @@
  */
 package l1j.server.server.model.shop;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.datatables.CastleTable;
@@ -117,7 +118,7 @@ public class L1Shop {
 	 * @return 查定された買取可能アイテムのリスト
 	 */
 	public List<L1AssessedItem> assessItems(L1PcInventory inv) {
-		List<L1AssessedItem> result = new ArrayList<L1AssessedItem>();
+		List<L1AssessedItem> result = new FastTable<L1AssessedItem>();
 		for (L1ShopItem item : _purchasingItems) {
 			for (L1ItemInstance targetItem : inv.findItemsId(item.getItemId())) {
 				if (!isPurchaseableItem(targetItem)) {

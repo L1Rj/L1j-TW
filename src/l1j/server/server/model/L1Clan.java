@@ -18,9 +18,10 @@
  */
 package l1j.server.server.model;
 
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.datatables.CharacterTable;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -51,7 +52,7 @@ public class L1Clan {
 	private final L1DwarfForClanInventory _dwarfForClan = new L1DwarfForClanInventory(
 			this);
 
-	private final ArrayList<String> membersNameList = new ArrayList<String>();
+	private final FastTable<String> membersNameList = new FastTable<String>();
 
 	public int getClanId() {
 		return _clanId;
@@ -115,7 +116,7 @@ public class L1Clan {
 
 	public L1PcInstance[] getOnlineClanMember() // オンライン中のクラン員のみ
 	{
-		ArrayList<L1PcInstance> onlineMembers = new ArrayList<L1PcInstance>();
+		FastTable<L1PcInstance> onlineMembers = new FastTable<L1PcInstance>();
 		for (String name : membersNameList) {
 			L1PcInstance pc = L1World.getInstance().getPlayer(name);
 			if (pc != null && !onlineMembers.contains(pc)) {

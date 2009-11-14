@@ -22,9 +22,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.utils.SQLUtil;
@@ -40,7 +41,7 @@ public class IpTable {
 
 	private IpTable() {
 		if (!isInitialized) {
-			_banip = new ArrayList<String>();
+			_banip = new FastTable<String>();
 			getIpTable();
 		}
 	}
@@ -117,7 +118,7 @@ public class IpTable {
 
 	private static Logger _log = Logger.getLogger(IpTable.class.getName());
 
-	private static ArrayList<String> _banip;
+	private static FastTable<String> _banip;
 
 	public static boolean isInitialized;
 

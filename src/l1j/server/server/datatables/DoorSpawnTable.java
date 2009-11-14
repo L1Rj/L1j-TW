@@ -24,9 +24,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.L1DatabaseFactory;
@@ -42,8 +43,8 @@ public class DoorSpawnTable {
 
 	private static DoorSpawnTable _instance;
 
-	private final ArrayList<L1DoorInstance> _doorList =
-			new ArrayList<L1DoorInstance>();
+	private final FastTable<L1DoorInstance> _doorList =
+			new FastTable<L1DoorInstance>();
 
 	public static DoorSpawnTable getInstance() {
 		if (_instance == null) {

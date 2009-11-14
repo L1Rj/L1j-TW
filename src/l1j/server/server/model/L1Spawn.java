@@ -20,12 +20,12 @@ package l1j.server.server.model;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Random;
 
 import javolution.util.FastMap;
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
@@ -72,7 +72,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 	private int _delayInterval;
 	private L1SpawnTime _time;
 	private FastMap<Integer, Point> _homePoint = null; // initでspawnした個々のオブジェクトのホームポイント
-	private List<L1NpcInstance> _mobs = new ArrayList<L1NpcInstance>();
+	private List<L1NpcInstance> _mobs = new FastTable<L1NpcInstance>();
 
 	private static Random _random = new Random();
 
@@ -368,7 +368,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 				switch (getSpawnType()) {
 				case SPAWN_TYPE_PC_AROUND: // PC周邊に湧くタイプ
 					if (!_initSpawn) { // 初期配置では無條件に通常spawn
-						ArrayList<L1PcInstance> players = new ArrayList<L1PcInstance>();
+						FastTable<L1PcInstance> players = new FastTable<L1PcInstance>();
 						for (L1PcInstance pc : L1World.getInstance()
 								.getAllPlayers()) {
 							if (getMapId() == pc.getMapId()) {

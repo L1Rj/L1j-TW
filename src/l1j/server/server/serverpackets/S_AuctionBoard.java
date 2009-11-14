@@ -20,10 +20,11 @@
 package l1j.server.server.serverpackets;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.Opcodes;
@@ -45,7 +46,7 @@ public class S_AuctionBoard extends ServerBasePacket {
 	}
 
 	private void buildPacket(L1NpcInstance board) {
-		ArrayList<Integer> houseList = new ArrayList<Integer>();
+		FastTable<Integer> houseList = new FastTable<Integer>();
 		int houseId = 0;
 		int count = 0;
 		int[] id = null;

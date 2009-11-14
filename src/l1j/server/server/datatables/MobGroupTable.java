@@ -68,7 +68,7 @@ public class MobGroupTable {
 				boolean isRemoveGroup = (rs
 						.getBoolean("remove_group_if_leader_die"));
 				int leaderId = rs.getInt("leader_id");
-				List<L1NpcCount> minions = Lists.newArrayList();
+				List<L1NpcCount> minions = Lists.newFastTable();
 				for (int i = 1; i <= 7; i++) {
 					int id = rs.getInt("minion" + i + "_id");
 					int count = rs.getInt("minion" + i + "_count");

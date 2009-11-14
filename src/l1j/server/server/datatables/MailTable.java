@@ -23,11 +23,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.L1DatabaseFactory;
@@ -44,7 +45,7 @@ public class MailTable {
 
 	private static MailTable _instance;
 
-	private static ArrayList<L1Mail> _allMail = new ArrayList<L1Mail>();
+	private static FastTable<L1Mail> _allMail = new FastTable<L1Mail>();
 
 	public static MailTable getInstance() {
 		if (_instance == null) {
@@ -226,7 +227,7 @@ public class MailTable {
 		}
 	}
 
-	public static ArrayList<L1Mail> getAllMail() {
+	public static FastTable<L1Mail> getAllMail() {
 		return _allMail;
 	}
 

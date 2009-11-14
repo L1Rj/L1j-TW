@@ -1,7 +1,8 @@
 package l1j.server.server.model.Instance;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.model.L1Attack;
 import l1j.server.server.serverpackets.S_ChangeHeading;
@@ -24,10 +25,10 @@ public class L1ScarecrowInstance extends L1NpcInstance {
 		L1Attack attack = new L1Attack(player, this);
 		if (attack.calcHit()) {
 			if (player.getLevel() < 5) { // ＬＶ制限もうける場合はここを變更
-				ArrayList<L1PcInstance> targetList = new ArrayList<L1PcInstance>();
+				FastTable<L1PcInstance> targetList = new FastTable<L1PcInstance>();
 
 				targetList.add(player);
-				ArrayList<Integer> hateList = new ArrayList<Integer>();
+				FastTable<Integer> hateList = new FastTable<Integer>();
 				hateList.add(1);
 				CalcExp.calcExp(player, getId(),
 						targetList, hateList, getExp());

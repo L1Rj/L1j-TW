@@ -18,9 +18,10 @@
  */
 package l1j.server.server.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.model.L1Spawn;
 import l1j.server.server.model.Instance.L1NpcInstance;
@@ -33,7 +34,7 @@ public class L1MobGroupInfo {
 			.getName());
 
 	private final List<L1NpcInstance> _membersList =
-			new ArrayList<L1NpcInstance>();
+			new FastTable<L1NpcInstance>();
 
 	private L1NpcInstance _leader;
 

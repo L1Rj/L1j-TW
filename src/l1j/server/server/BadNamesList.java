@@ -23,9 +23,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.LineNumberReader;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.utils.StreamUtil;
 
@@ -34,7 +35,7 @@ public class BadNamesList {
 
 	private static BadNamesList _instance;
 
-	private ArrayList<String> _nameList = new ArrayList<String>();
+	private FastTable<String> _nameList = new FastTable<String>();
 
 	public static BadNamesList getInstance() {
 		if (_instance == null) {

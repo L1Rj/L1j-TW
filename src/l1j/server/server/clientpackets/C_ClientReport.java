@@ -3,9 +3,10 @@ package l1j.server.server.clientpackets;
 import java.io.File;
 import java.io.FileReader;
 import java.io.LineNumberReader;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -20,7 +21,7 @@ public class C_ClientReport extends ClientBasePacket {
 
 		private static final String C_CLIENT_REPORT = "[C] C_ClientReport";
 		private static Logger _log = Logger.getLogger(C_ClientReport.class.getName());
-		private ArrayList _ToAll;
+		private FastTable _ToAll;
 		public C_ClientReport(byte abyte0[], ClientThread clientthread)
 		throws Exception {
 
@@ -28,7 +29,7 @@ public class C_ClientReport extends ClientBasePacket {
 
 			L1PcInstance pc = clientthread.getActiveChar();
 
-			_ToAll = new ArrayList();
+			_ToAll = new FastTable();
 			loadAnnouncements();
 			String message = "";
 			for (int i = 0; i < _ToAll.size(); i++) {

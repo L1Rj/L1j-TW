@@ -24,11 +24,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.LineNumberReader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -41,7 +42,7 @@ public class Announcements {
 
 	private static Announcements _instance;
 
-	private final List<String> _announcements = new ArrayList<String>();
+	private final List<String> _announcements = new FastTable<String>();
 
 	private Announcements() {
 		loadAnnouncements();

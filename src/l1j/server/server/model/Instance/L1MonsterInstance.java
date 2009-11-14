@@ -20,9 +20,10 @@ package l1j.server.server.model.Instance;
 
 import static l1j.server.server.model.skill.L1SkillId.FOG_OF_SLEEPING;
 
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
@@ -50,9 +51,6 @@ import l1j.server.server.utils.RandomArrayList;
 
 public class L1MonsterInstance extends L1NpcInstance {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private static Logger _log = Logger.getLogger(L1MonsterInstance.class
@@ -513,8 +511,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 		}
 
 		if (pc != null) {
-			ArrayList<L1Character> targetList = _hateList.toTargetArrayList();
-			ArrayList<Integer> hateList = _hateList.toHateArrayList();
+			FastTable<L1Character> targetList = _hateList.toTargetArrayList();
+			FastTable<Integer> hateList = _hateList.toHateArrayList();
 			int exp = getExp();
 			CalcExp.calcExp(pc, getId(), targetList, hateList, exp);
 			// 死亡した場合はドロップとカルマも分配、死亡せず變身した場合はEXPのみ
@@ -523,8 +521,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 				giveKarma(pc);
 			}
 		} else if (lastAttacker instanceof L1EffectInstance) { // FWが倒した場合
-			ArrayList<L1Character> targetList = _hateList.toTargetArrayList();
-			ArrayList<Integer> hateList = _hateList.toHateArrayList();
+			FastTable<L1Character> targetList = _hateList.toTargetArrayList();
+			FastTable<Integer> hateList = _hateList.toHateArrayList();
 			// ヘイトリストにキャラクターが存在する
 			if (hateList.size() != 0) {
 				// 最大ヘイトを持つキャラクターが倒したものとする
@@ -558,9 +556,9 @@ public class L1MonsterInstance extends L1NpcInstance {
 	}
 
 	private void distributeDrop() {
-		ArrayList<L1Character> dropTargetList = _dropHateList
+		FastTable<L1Character> dropTargetList = _dropHateList
 				.toTargetArrayList();
-		ArrayList<Integer> dropHateList = _dropHateList.toHateArrayList();
+		FastTable<Integer> dropHateList = _dropHateList.toHateArrayList();
 		try {
 			int npcId = getNpcTemplate().get_npcId();
 			if (npcId != 45640

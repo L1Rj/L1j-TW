@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javolution.util.FastTable;
+
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.CharacterTable;
 import l1j.server.server.datatables.MailTable;
@@ -138,7 +140,7 @@ public class C_Mail extends ClientBasePacket {
 	}
 
 	private int getMailSizeByReceiver(String receiverName, int type) {
-		ArrayList<L1Mail> mails = new ArrayList<L1Mail>();
+		FastTable<L1Mail> mails = new FastTable<L1Mail>();
 		for (L1Mail mail : MailTable.getInstance().getAllMail()) {
 			if (mail.getReceiverName().equalsIgnoreCase(receiverName)) {
 				if (mail.getType() == type) {

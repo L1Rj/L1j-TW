@@ -19,7 +19,7 @@
 
 package l1j.server.server.clientpackets;
 
-import java.util.ArrayList;
+import javolution.util.FastTable;
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.SkillsTable;
@@ -37,7 +37,7 @@ public class C_SkillBuyOK extends ClientBasePacket
 	{
 		super(abyte0);
 
-		ArrayList<L1Skills> SkillList = new ArrayList<L1Skills>();
+		FastTable<L1Skills> SkillList = new FastTable<L1Skills>();
 		int Count = readH();
 		int Price = 0;
 		String SkillName = null;

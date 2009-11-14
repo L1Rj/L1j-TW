@@ -91,6 +91,8 @@ public class Logins {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} catch (UnsupportedEncodingException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} catch (Exception e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
 			SQLUtil.close(rs);
 			SQLUtil.close(pstm);

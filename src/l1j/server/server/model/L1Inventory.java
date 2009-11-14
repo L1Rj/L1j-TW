@@ -18,13 +18,14 @@
  */
 package l1j.server.server.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
-import java.util.Random;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.IdFactory;
@@ -269,7 +270,7 @@ public class L1Inventory extends L1Object {
 		return false;
 	}
 
-	public class DataComparator implements java.util.Comparator {
+	public class DataComparator implements Comparator {
 		public int compare(Object item1, Object item2) {
 			return ((L1ItemInstance) item1).getEnchantLevel()
 					- ((L1ItemInstance) item2).getEnchantLevel();
@@ -456,7 +457,7 @@ public class L1Inventory extends L1Object {
 	}
 
 	public L1ItemInstance[] findItemsId(int id) {
-		ArrayList<L1ItemInstance> itemList = new ArrayList<L1ItemInstance>();
+		FastTable<L1ItemInstance> itemList = new FastTable<L1ItemInstance>();
 		for (L1ItemInstance item : _items) {
 			if (item.getItemId() == id) {
 				itemList.add(item);
@@ -466,7 +467,7 @@ public class L1Inventory extends L1Object {
 	}
 
 	public L1ItemInstance[] findItemsIdNotEquipped(int id) {
-		ArrayList<L1ItemInstance> itemList = new ArrayList<L1ItemInstance>();
+		FastTable<L1ItemInstance> itemList = new FastTable<L1ItemInstance>();
 		for (L1ItemInstance item : _items) {
 			if (item.getItemId() == id) {
 				if (!item.isEquipped()) {

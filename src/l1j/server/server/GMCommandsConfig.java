@@ -19,7 +19,6 @@
 package l1j.server.server;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -30,6 +29,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import javolution.util.FastMap;
+import javolution.util.FastTable;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -97,7 +97,7 @@ public class GMCommandsConfig {
 
 		@Override
 		public void loadElement(Element element) {
-			List<L1ItemSetItem> list = new ArrayList<L1ItemSetItem>();
+			List<L1ItemSetItem> list = new FastTable<L1ItemSetItem>();
 			NodeList nodes = element.getChildNodes();
 			for (Element elem : new IterableElementList(nodes)) {
 				if (elem.getNodeName().equalsIgnoreCase("Item")) {

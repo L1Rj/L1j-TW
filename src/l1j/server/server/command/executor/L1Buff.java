@@ -18,10 +18,11 @@
  */
 package l1j.server.server.command.executor;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.model.L1World;
@@ -47,7 +48,7 @@ public class L1Buff implements L1CommandExecutor {
 			Collection<L1PcInstance> players = null;
 			String s = tok.nextToken();
 			if (s.equals("me")) {
-				players = new ArrayList<L1PcInstance>();
+				players = new FastTable<L1PcInstance>();
 				players.add(pc);
 				s = tok.nextToken();
 			} else if (s.equals("all")) {

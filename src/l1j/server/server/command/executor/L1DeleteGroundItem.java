@@ -18,8 +18,9 @@
  */
 package l1j.server.server.command.executor;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.datatables.FurnitureSpawnTable;
 import l1j.server.server.datatables.LetterTable;
@@ -51,7 +52,7 @@ public class L1DeleteGroundItem implements L1CommandExecutor {
 					continue;
 				}
 
-				ArrayList<L1PcInstance> players = L1World.getInstance()
+				FastTable<L1PcInstance> players = L1World.getInstance()
 						.getVisiblePlayer(l1iteminstance, 0);
 				if (0 == players.size()) {
 					L1Inventory groundInventory = L1World.getInstance()

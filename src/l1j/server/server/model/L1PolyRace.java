@@ -18,10 +18,11 @@
  */
 package l1j.server.server.model;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.datatables.DoorSpawnTable;
 import l1j.server.server.datatables.ItemTable;
@@ -78,7 +79,7 @@ public class L1PolyRace {
 	private static int readyTime = 60*1000; 	//進場之後等待時間 60秒
 	private static int limitTime = 240*1000;	//遊戲時間 240秒
 	
-	private ArrayList<L1PcInstance> playerList = new ArrayList<L1PcInstance>();
+	private FastTable<L1PcInstance> playerList = new FastTable<L1PcInstance>();
 
 	public void addPlayerList(L1PcInstance pc){
 		if(!playerList.contains(pc)){
@@ -118,7 +119,7 @@ public class L1PolyRace {
 		L1Teleport.teleport(pc,32768,32849,(short)5143,6,true);
 	}
 	
-	private ArrayList<L1PcInstance> orderList = new ArrayList();
+	private FastTable<L1PcInstance> orderList = new FastTable();
 	
 	public void removeOrderList(L1PcInstance pc){
 		orderList.remove(pc);
@@ -261,11 +262,11 @@ public class L1PolyRace {
 			pc.setInOrderList(false);
 		}
 	}
-	private ArrayList<L1PcInstance> position = new ArrayList();
+	private FastTable<L1PcInstance> position = new FastTable();
 
 	//判斷排名
 	private void comparePosition(){
-		ArrayList<L1PcInstance> temp = new ArrayList();
+		FastTable<L1PcInstance> temp = new FastTable();
 		int size = playerList.size();
 		int count = 0;
 		while(size > count){

@@ -27,7 +27,7 @@ import l1j.server.server.utils.collections.Lists;
 public class L1MobGroup {
 	private final int _id;
 	private final int _leaderId;
-	private final List<L1NpcCount> _minions = Lists.newArrayList();
+	private final List<L1NpcCount> _minions = Lists.newFastTable();
 	private final boolean _isRemoveGroupIfLeaderDie;
 
 	public L1MobGroup(int id, int leaderId, List<L1NpcCount> minions,

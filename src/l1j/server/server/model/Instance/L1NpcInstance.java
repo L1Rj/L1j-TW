@@ -18,8 +18,6 @@
  */
 package l1j.server.server.model.Instance;
 
-import java.util.ArrayList;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +29,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javolution.util.FastMap;
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
@@ -565,8 +564,8 @@ public class L1NpcInstance extends L1Character {
 
 	// ターゲットアイテムを探す
 	public void searchTargetItem() {
-		ArrayList<L1GroundInventory> gInventorys =
-				new ArrayList<L1GroundInventory>();
+		FastTable<L1GroundInventory> gInventorys =
+				new FastTable<L1GroundInventory>();
 
 		for (L1Object obj : L1World.getInstance().getVisibleObjects(this)) {
 			if (obj != null && obj instanceof L1GroundInventory) {
@@ -591,8 +590,8 @@ public class L1NpcInstance extends L1Character {
 
 	// 飛んでいる狀態からアイテムを探し、あれば降りて拾う
 	public void searchItemFromAir() {
-		ArrayList<L1GroundInventory> gInventorys =
-				new ArrayList<L1GroundInventory>();
+		FastTable<L1GroundInventory> gInventorys =
+				new FastTable<L1GroundInventory>();
 
 		for (L1Object obj : L1World.getInstance().getVisibleObjects(this)) {
 			if (obj != null && obj instanceof L1GroundInventory) {
@@ -924,7 +923,7 @@ public class L1NpcInstance extends L1Character {
 	protected L1HateList _hateList = new L1HateList();
 	protected L1HateList _dropHateList = new L1HateList();
 	// ※攻擊するターゲットの判定とＰＴ時のドロップ判定で使用
-	protected List<L1ItemInstance> _targetItemList = new ArrayList<L1ItemInstance>(); // ダーゲットアイテム一覽
+	protected List<L1ItemInstance> _targetItemList = new FastTable<L1ItemInstance>(); // ダーゲットアイテム一覽
 	protected L1Character _target = null; // 現在のターゲット
 	protected L1ItemInstance _targetItem = null; // 現在のターゲットアイテム
 	protected L1Character _master = null; // 主人orグループリーダー

@@ -19,9 +19,10 @@
 
 package l1j.server.server.serverpackets;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.Opcodes;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -42,7 +43,7 @@ public class S_PetList extends ServerBasePacket {
 	}
 
 	private void buildPacket(int npcObjId, L1PcInstance pc) {
-		List<L1ItemInstance> amuletList = new ArrayList<L1ItemInstance>();
+		List<L1ItemInstance> amuletList = new FastTable<L1ItemInstance>();
 		for (Object itemObject : pc.getInventory().getItems()) {
 			L1ItemInstance item = (L1ItemInstance) itemObject;
 			if (item.getItem().getItemId() == 40314

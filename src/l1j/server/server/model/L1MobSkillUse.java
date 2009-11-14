@@ -19,7 +19,6 @@
 package l1j.server.server.model;
 
 import java.lang.reflect.Constructor;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +26,8 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.ActionCodes;
 import l1j.server.server.IdFactory;
@@ -364,7 +365,7 @@ public class L1MobSkillUse {
 
 		if (areaHeight > 0) {
 			// 範圍攻擊
-			ArrayList<L1Object> objs = L1World.getInstance()
+			FastTable<L1Object> objs = L1World.getInstance()
 					.getVisibleBoxObjects(_attacker, _attacker.getHeading(),
 							areaWidth, areaHeight);
 
@@ -614,7 +615,7 @@ public class L1MobSkillUse {
 			break;
 		case L1MobSkill.CHANGE_TARGET_RANDOM:
 			// ターゲット候補の選定
-			List<L1Character> targetList = new ArrayList<L1Character>();
+			List<L1Character> targetList = new FastTable<L1Character>();
 			for (L1Object obj : L1World.getInstance().getVisibleObjects(
 					_attacker)) {
 				if (obj instanceof L1PcInstance || obj instanceof L1PetInstance

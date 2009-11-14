@@ -19,13 +19,14 @@
 
 package l1j.server.server.model.skill;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.lang.String;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
@@ -132,7 +133,7 @@ public class L1SkillUse {
 	private static final byte NPC_PC = 3;
 	private static final byte NPC_NPC = 4;
 
-	private ArrayList<TargetStatus> _targetList;
+	private FastTable<TargetStatus> _targetList;
 
 	private static Logger _log = Logger.getLogger(L1SkillUse.class.getName());
 
@@ -227,7 +228,7 @@ public class L1SkillUse {
 			L1Character attacker) {
 		// 初期設定ここから
 		setCheckedUseSkill(true);
-		_targetList = new ArrayList<TargetStatus>(); // ターゲットリストの初期化
+		_targetList = new FastTable<TargetStatus>(); // ターゲットリストの初期化
 
 		_skill = SkillsTable.getInstance().getTemplate(skillid);
 		_skillId = skillid;
@@ -872,7 +873,7 @@ public class L1SkillUse {
 			}
 
 			if (_skillId == LIGHTNING || _skillId == FREEZING_BREATH) { // ライトニング、フリージングブレス直線的に範囲を決める
-				ArrayList<L1Object> al1object = L1World.getInstance()
+				FastTable<L1Object> al1object = L1World.getInstance()
 						.getVisibleLineObjects(_user, _target);
 
 				for (L1Object tgobj : al1object) {

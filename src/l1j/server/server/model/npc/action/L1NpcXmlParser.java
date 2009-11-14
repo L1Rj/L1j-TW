@@ -18,12 +18,11 @@
  */
 package l1j.server.server.model.npc.action;
 
-import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Map;
 
 import javolution.util.FastMap;
+import javolution.util.FastTable;
 
 import l1j.server.server.model.L1Quest;
 import l1j.server.server.utils.IterableElementList;
@@ -33,7 +32,7 @@ import org.w3c.dom.NodeList;
 
 public class L1NpcXmlParser {
 	public static List<L1NpcAction> listActions(Element element) {
-		List<L1NpcAction> result = new ArrayList<L1NpcAction>();
+		List<L1NpcAction> result = new FastTable<L1NpcAction>();
 		NodeList list = element.getChildNodes();
 		for (Element elem : new IterableElementList(list)) {
 			L1NpcAction action = L1NpcActionFactory.newAction(elem);

@@ -23,15 +23,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;	//修正小屋報錯格式
 import java.util.Calendar;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.templates.L1House;
@@ -131,7 +131,7 @@ public class HouseTable {
 	}
 
 	public static List<Integer> getHouseIdList() {
-		List<Integer> houseIdList = new ArrayList<Integer>();
+		List<Integer> houseIdList = new FastTable<Integer>();
 
 		Connection con = null;
 		PreparedStatement pstm = null;

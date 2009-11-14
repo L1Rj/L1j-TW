@@ -18,7 +18,7 @@
  */
 package l1j.server.server.model.npc.action;
 
-import java.util.ArrayList;
+import javolution.util.FastTable;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -37,7 +37,7 @@ public class L1NpcShowHtmlAction extends L1NpcXmlAction {
 
 		_htmlId = element.getAttribute("HtmlId");
 		NodeList list = element.getChildNodes();
-		ArrayList<String> dataList = new ArrayList<String>();
+		FastTable<String> dataList = new FastTable<String>();
 		for (Element elem : new IterableElementList(list)) {
 			if (elem.getNodeName().equalsIgnoreCase("Data")) {
 				dataList.add(elem.getAttribute("Value"));

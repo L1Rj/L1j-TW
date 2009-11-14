@@ -18,13 +18,12 @@
  */
 package l1j.server.server.model;
 
-import java.util.ArrayList;
-
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
 import javolution.util.FastMap;
+import javolution.util.FastTable;
 
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -90,7 +89,7 @@ public class L1HateList {
 	}
 
 	public synchronized void removeInvalidCharacter(L1NpcInstance npc) {
-		ArrayList<L1Character> invalidChars = new ArrayList<L1Character>();
+		FastTable<L1Character> invalidChars = new FastTable<L1Character>();
 		for (L1Character cha : _hateMap.keySet()) {
 			if (cha == null || cha.isDead() || !npc.knownsObject(cha)) {
 				invalidChars.add(cha);
@@ -166,11 +165,11 @@ public class L1HateList {
 		return _hateMap.entrySet();
 	}
 
-	public synchronized ArrayList<L1Character> toTargetArrayList() {
-		return new ArrayList<L1Character>(_hateMap.keySet());
+	public synchronized FastTable<L1Character> toTargetArrayList() {
+		return new FastTable<L1Character>(_hateMap.keySet());
 	}
 
-	public synchronized ArrayList<Integer> toHateArrayList() {
-		return new ArrayList<Integer>(_hateMap.values());
+	public synchronized FastTable<Integer> toHateArrayList() {
+		return new FastTable<Integer>(_hateMap.values());
 	}
 }

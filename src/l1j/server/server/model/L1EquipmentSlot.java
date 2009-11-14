@@ -18,8 +18,9 @@
  */
 package l1j.server.server.model;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -46,16 +47,16 @@ public class L1EquipmentSlot {
 	/**
 	 * 效果中のセットアイテム
 	 */
-	private ArrayList<L1ArmorSet> _currentArmorSet;
+	private FastTable<L1ArmorSet> _currentArmorSet;
 
 	private L1ItemInstance _weapon;
-	private ArrayList<L1ItemInstance> _armors;
+	private FastTable<L1ItemInstance> _armors;
 
 	public L1EquipmentSlot(L1PcInstance owner) {
 		_owner = owner;
 
-		_armors = new ArrayList<L1ItemInstance>();
-		_currentArmorSet = new ArrayList<L1ArmorSet>();
+		_armors = new FastTable<L1ItemInstance>();
+		_currentArmorSet = new FastTable<L1ArmorSet>();
 	}
 
 	private void setWeapon(L1ItemInstance weapon) {
@@ -154,7 +155,7 @@ public class L1EquipmentSlot {
 		armor.startEquipmentTimer(_owner);
 	}
 
-	public ArrayList<L1ItemInstance> getArmors() {
+	public FastTable<L1ItemInstance> getArmors() {
 		return _armors;
 	}
 

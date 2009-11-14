@@ -18,9 +18,10 @@
  */
 package l1j.server.server;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_CharVisualUpdate;
@@ -33,7 +34,7 @@ public class FishingTimeController implements Runnable {
 
 	private static FishingTimeController _instance;
 	private final List<L1PcInstance> _fishingList =
-			new ArrayList<L1PcInstance>();
+			new FastTable<L1PcInstance>();
 
 	public static FishingTimeController getInstance() {
 		if (_instance == null) {

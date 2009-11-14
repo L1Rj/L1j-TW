@@ -19,8 +19,7 @@
 
 package l1j.server.server.serverpackets;
 
-import java.util.ArrayList;
-
+import javolution.util.FastTable;
 import l1j.server.server.Opcodes;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -46,7 +45,7 @@ public class S_PrivateShop extends ServerBasePacket {
 		writeD(objectId);
 
 		if (type == 0) {
-			ArrayList list = shopPc.getSellList();
+			FastTable list = shopPc.getSellList();
 			int size = list.size();
 			pc.setPartnersPrivateShopItemCount(size);
 			writeH(size);
@@ -68,7 +67,7 @@ public class S_PrivateShop extends ServerBasePacket {
 				}
 			}
 		} else if (type == 1) {
-			ArrayList list = shopPc.getBuyList();
+			FastTable list = shopPc.getBuyList();
 			int size = list.size();
 			writeH(size);
 			for (int i = 0; i < size; i++) {

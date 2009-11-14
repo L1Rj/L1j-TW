@@ -18,12 +18,13 @@
  */
 package l1j.server.server.utils.collections;
 
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import javolution.util.FastTable;
+
 public class Lists {
-	public static <E> ArrayList<E> newArrayList() {
-		return new ArrayList<E>();
+	public static <E> FastTable<E> newFastTable() {
+		return new FastTable<E>();
 	}
 
 	public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList() {

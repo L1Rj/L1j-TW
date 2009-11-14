@@ -22,6 +22,8 @@ import static l1j.server.server.model.Instance.L1PcInstance.REGENSTATE_MOVE;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javolution.util.FastTable;
+
 import l1j.server.Config;
 import l1j.server.server.ClientThread;
 import l1j.server.server.log.LogSpeedHack;
@@ -112,7 +114,7 @@ public class C_MoveChar extends ClientBasePacket {
 		locy += HEADING_TABLE_Y[heading];// 4.26 End
 
 		// waja add 測試禁止穿過物件
-		ArrayList<L1Object> objs = L1World.getInstance().getVisibleObjects(pc,
+		FastTable<L1Object> objs = L1World.getInstance().getVisibleObjects(pc,
 				1);
 		for (L1Object obj : objs) {
 			if (pc.isDead() && obj instanceof L1PcInstance

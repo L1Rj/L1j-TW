@@ -18,13 +18,13 @@
  */
 package l1j.server.server.storage;
 
-import java.util.ArrayList;
+import javolution.util.FastTable;
 
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.storage.mysql.MySqlCharactersItemStorage;
 
 public abstract class CharactersItemStorage {
-	public abstract ArrayList<L1ItemInstance> loadItems(int objId)
+	public abstract FastTable<L1ItemInstance> loadItems(int objId)
 			throws Exception;
 
 	public abstract void storeItem(int objId, L1ItemInstance item)

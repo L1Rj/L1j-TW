@@ -18,9 +18,10 @@
  */
 package l1j.server.server.model;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.GeneralThreadPool;
@@ -37,7 +38,7 @@ import l1j.server.server.templates.L1Castle;
 public class L1War {
 	private String _param1 = null;
 	private String _param2 = null;
-	private final ArrayList<String> _attackClanList = new ArrayList<String>();
+	private final FastTable<String> _attackClanList = new FastTable<String>();
 	private String _defenceClanName = null;
 	private int _warType = 0;
 	private int _castleId = 0;

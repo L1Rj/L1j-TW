@@ -1,6 +1,6 @@
 package Threading;
 
-import java.util.ArrayList;
+import javolution.util.FastTable;
 
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.L1Object;
@@ -24,9 +24,9 @@ public class R_Gamble implements Runnable
 	}
 	
 	private L1GambleInstance[] Babys = new L1GambleInstance[20]; // 肥肥要使用的物件
-	private ArrayList<L1NpcInstance> Npcs; // 賭場 NPC 清單
-	private ArrayList<L1GambleInstance> BabyOrder; // 比賽後前三名的肥肥
-	private ArrayList<L1GambleInstance> CurrentBaby; // 比賽前的肥肥
+	private FastTable<L1NpcInstance> Npcs; // 賭場 NPC 清單
+	private FastTable<L1GambleInstance> BabyOrder; // 比賽後前三名的肥肥
+	private FastTable<L1GambleInstance> CurrentBaby; // 比賽前的肥肥
 	
 	private final int locX = 33522; // 肥肥初始X座標
 	private final int locY = 32661; // 肥肥初始Y座標
@@ -66,11 +66,11 @@ public class R_Gamble implements Runnable
 		// (肥肥, 場次)
 		// 比賽前先紀錄5隻肥肥的物件
 		// 比賽後移除非在前三名的肥肥
-		BabyOrder = new ArrayList<L1GambleInstance>();
+		BabyOrder = new FastTable<L1GambleInstance>();
 		// 比賽前的肥肥名單
-		CurrentBaby = new ArrayList<L1GambleInstance>();
+		CurrentBaby = new FastTable<L1GambleInstance>();
 		// 賭場管理員
-		Npcs = new ArrayList<L1NpcInstance>();
+		Npcs = new FastTable<L1NpcInstance>();
 		
 		int Gfxid1 = 3478; // #1、#6、#11、#16 肥肥的外觀
 		int Gfxid2 = 3497; // 其他肥肥的外觀

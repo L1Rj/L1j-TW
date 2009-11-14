@@ -22,10 +22,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.templates.L1Command;
@@ -69,7 +70,7 @@ public class L1Commands {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		List<L1Command> result = new ArrayList<L1Command>();
+		List<L1Command> result = new FastTable<L1Command>();
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con

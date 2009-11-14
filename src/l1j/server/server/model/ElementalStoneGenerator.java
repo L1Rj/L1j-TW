@@ -1,9 +1,10 @@
 package l1j.server.server.model;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.datatables.ItemTable;
@@ -28,7 +29,7 @@ public class ElementalStoneGenerator implements Runnable {
 	private static final int LAST_Y = 32500;
 	private static final int ELEMENTAL_STONE_ID = 40515; // 精靈の石
 
-	private ArrayList<L1GroundInventory> _itemList = new ArrayList<L1GroundInventory>(
+	private FastTable<L1GroundInventory> _itemList = new FastTable<L1GroundInventory>(
 			MAX_COUNT);
 	//private Random _random = new Random();
 

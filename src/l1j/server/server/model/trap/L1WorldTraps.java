@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.IdFactory;
@@ -24,8 +25,8 @@ import l1j.server.server.utils.SQLUtil;
 public class L1WorldTraps {
 	private static Logger _log = Logger.getLogger(L1WorldTraps.class.getName());
 
-	private List<L1TrapInstance> _allTraps = new ArrayList<L1TrapInstance>();
-	private List<L1TrapInstance> _allBases = new ArrayList<L1TrapInstance>();
+	private List<L1TrapInstance> _allTraps = new FastTable<L1TrapInstance>();
+	private List<L1TrapInstance> _allBases = new FastTable<L1TrapInstance>();
 
 	private Timer _timer = new Timer();
 

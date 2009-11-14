@@ -22,7 +22,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Map;
@@ -30,6 +29,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javolution.util.FastMap;
+import javolution.util.FastTable;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.shop.L1Shop;
@@ -57,8 +57,8 @@ public class ShopTable {
 		loadShops();
 	}
 
-	private ArrayList<Integer> enumNpcIds() {
-		ArrayList<Integer> ids = new ArrayList<Integer>();
+	private FastTable<Integer> enumNpcIds() {
+		FastTable<Integer> ids = new FastTable<Integer>();
 
 		Connection con = null;
 		PreparedStatement pstm = null;
@@ -79,8 +79,8 @@ public class ShopTable {
 	}
 
 	private L1Shop loadShop(int npcId, ResultSet rs) throws SQLException {
-		List<L1ShopItem> sellingList = new ArrayList<L1ShopItem>();
-		List<L1ShopItem> purchasingList = new ArrayList<L1ShopItem>();
+		List<L1ShopItem> sellingList = new FastTable<L1ShopItem>();
+		List<L1ShopItem> purchasingList = new FastTable<L1ShopItem>();
 		while (rs.next()) {
 			int itemId = rs.getInt("item_id");
 			int sellingPrice = rs.getInt("selling_price");

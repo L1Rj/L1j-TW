@@ -18,9 +18,10 @@
  */
 package l1j.server.server.command.executor;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1World;
@@ -44,7 +45,7 @@ public class L1Recall implements L1CommandExecutor {
 			if (arg.equalsIgnoreCase("all")) {
 				targets = L1World.getInstance().getAllPlayers();
 			} else {
-				targets = new ArrayList<L1PcInstance>();
+				targets = new FastTable<L1PcInstance>();
 				L1PcInstance tg = L1World.getInstance().getPlayer(arg);
 				if (tg == null) {
 					pc.sendPackets(new S_SystemMessage("該角色不存在。"));

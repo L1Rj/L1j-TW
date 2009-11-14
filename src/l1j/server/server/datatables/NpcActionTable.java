@@ -20,7 +20,6 @@ package l1j.server.server.datatables;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +27,8 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -43,8 +44,8 @@ public class NpcActionTable {
 	private static Logger _log = Logger.getLogger(NpcActionTable.class
 			.getName());
 	private static NpcActionTable _instance;
-	private final List<L1NpcAction> _actions = new ArrayList<L1NpcAction>();
-	private final List<L1NpcAction> _talkActions = new ArrayList<L1NpcAction>();
+	private final List<L1NpcAction> _actions = new FastTable<L1NpcAction>();
+	private final List<L1NpcAction> _talkActions = new FastTable<L1NpcAction>();
 
 	private List<L1NpcAction> loadAction(File file, String nodeName)
 
@@ -54,7 +55,7 @@ public class NpcActionTable {
 		Document doc = builder.parse(file);
 
 		if (!doc.getDocumentElement().getNodeName().equalsIgnoreCase(nodeName)) {
-			return new ArrayList<L1NpcAction>();
+			return new FastTable<L1NpcAction>();
 		}
 		return L1NpcXmlParser.listActions(doc.getDocumentElement());
 	}

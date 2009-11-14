@@ -19,10 +19,11 @@
 package l1j.server.server.model.trap;
 
 import java.lang.reflect.Constructor;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.IdFactory;
 import l1j.server.server.datatables.NpcTable;
@@ -60,7 +61,7 @@ public class L1MonsterTrap extends L1Trap {
 	}
 
 	private List<Point> getSpawnablePoints(L1Location loc, int d) {
-		List<Point> result = new ArrayList<Point>();
+		List<Point> result = new FastTable<Point>();
 		L1Map m = loc.getMap();
 		int x = loc.getX();
 		int y = loc.getY();

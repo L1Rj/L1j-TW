@@ -18,7 +18,6 @@
  */
 package l1j.server.server.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -26,6 +25,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.WorldMap;
@@ -215,12 +216,12 @@ public class L1World {
 		return lineMap;
 	}
 
-	public ArrayList<L1Object> getVisibleLineObjects(L1Object src, L1Object target) {
+	public FastTable<L1Object> getVisibleLineObjects(L1Object src, L1Object target) {
 		ConcurrentHashMap<Integer, Integer> lineMap = createLineMap(src.getLocation(), target
 				.getLocation());
 
 		short map = target.getMapId();
-		ArrayList<L1Object> result = new ArrayList<L1Object>();
+		FastTable<L1Object> result = new FastTable<L1Object>();
 
 		for (L1Object element : WorldMap.getMap(map).getObjects()) {
 			if (element.equals(src)) {
@@ -237,13 +238,13 @@ public class L1World {
 		return result;
 	}
 
-	public ArrayList<L1Object> getVisibleBoxObjects(L1Object object, int heading, int width,
+	public FastTable<L1Object> getVisibleBoxObjects(L1Object object, int heading, int width,
 			int height) {
 		int x = object.getX();
 		int y = object.getY();
 		short map = object.getMapId();
 		L1Location location = object.getLocation();
-		ArrayList<L1Object> result = new ArrayList<L1Object>();
+		FastTable<L1Object> result = new FastTable<L1Object>();
 		int headingRotate[] = { 6, 7, 0, 1, 2, 3, 4, 5 };
 		double cosSita = Math.cos(headingRotate[heading] * Math.PI / 4);
 		double sinSita = Math.sin(headingRotate[heading] * Math.PI / 4);
@@ -282,14 +283,14 @@ public class L1World {
 		return result;
 	}
 
-	public ArrayList<L1Object> getVisibleObjects(L1Object object) {
+	public FastTable<L1Object> getVisibleObjects(L1Object object) {
 		return getVisibleObjects(object, -1);
 	}
 
-	public ArrayList<L1Object> getVisibleObjects(L1Object object, int radius) {
+	public FastTable<L1Object> getVisibleObjects(L1Object object, int radius) {
 		L1Map map = object.getMap();
 		Point pt = object.getLocation();
-		ArrayList<L1Object> result = new ArrayList<L1Object>();
+		FastTable<L1Object> result = new FastTable<L1Object>();
 
 		for (L1Object element : WorldMap.getMap((short) map.getId()).getObjects()) {
 			if (element.equals(object) || map != element.getMap())
@@ -313,8 +314,8 @@ public class L1World {
 		return result;
 	}
 
-	public ArrayList<L1Object> getVisiblePoint(L1Location loc, int radius) {
-		ArrayList<L1Object> result = new ArrayList<L1Object>();
+	public FastTable<L1Object> getVisiblePoint(L1Location loc, int radius) {
+		FastTable<L1Object> result = new FastTable<L1Object>();
 		short mapId = (short) loc.getMapId();
 
 		for (L1Object element : WorldMap.getMap(mapId).getObjects()) {
@@ -328,14 +329,14 @@ public class L1World {
 		return result;
 	}
 
-	public ArrayList<L1PcInstance> getVisiblePlayer(L1Object object) {
+	public FastTable<L1PcInstance> getVisiblePlayer(L1Object object) {
 		return getVisiblePlayer(object, -1);
 	}
 
-	public ArrayList<L1PcInstance> getVisiblePlayer(L1Object object, int radius) {
+	public FastTable<L1PcInstance> getVisiblePlayer(L1Object object, int radius) {
 		int map = object.getMapId();
 		Point pt = object.getLocation();
-		ArrayList<L1PcInstance> result = new ArrayList<L1PcInstance>();
+		FastTable<L1PcInstance> result = new FastTable<L1PcInstance>();
 
 		for (L1PcInstance element : _allPlayers.values()) {
 			if (element.equals(object)) {
@@ -363,12 +364,12 @@ public class L1World {
 		return result;
 	}
 
-	public ArrayList<L1PcInstance> getVisiblePlayerExceptTargetSight(L1Object object,
+	public FastTable<L1PcInstance> getVisiblePlayerExceptTargetSight(L1Object object,
 			L1Object target) {
 		int map = object.getMapId();
 		Point objectPt = object.getLocation();
 		Point targetPt = target.getLocation();
-		ArrayList<L1PcInstance> result = new ArrayList<L1PcInstance>();
+		FastTable<L1PcInstance> result = new FastTable<L1PcInstance>();
 
 		for (L1PcInstance element : _allPlayers.values()) {
 			if (element.equals(object)) {
@@ -402,7 +403,7 @@ public class L1World {
 	 * @param object
 	 * @return
 	 */
-	public ArrayList<L1PcInstance> getRecognizePlayer(L1Object object) {
+	public FastTable<L1PcInstance> getRecognizePlayer(L1Object object) {
 		return getVisiblePlayer(object, Config.PC_RECOGNIZE_RANGE);
 	}
 

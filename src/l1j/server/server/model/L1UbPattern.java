@@ -18,25 +18,25 @@
  */
 package l1j.server.server.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 import java.util.Map;
 
 import javolution.util.FastMap;
+import javolution.util.FastTable;
 
 public class L1UbPattern {
 	private boolean _isFrozen = false;
-	private Map<Integer, ArrayList<L1UbSpawn>> _groups = new FastMap<Integer, ArrayList<L1UbSpawn>>();
+	private Map<Integer, FastTable<L1UbSpawn>> _groups = new FastMap<Integer, FastTable<L1UbSpawn>>();
 
 	public void addSpawn(int groupNumber, L1UbSpawn spawn) {
 		if (_isFrozen) {
 			return;
 		}
 
-		ArrayList<L1UbSpawn> spawnList = _groups.get(groupNumber);
+		FastTable<L1UbSpawn> spawnList = _groups.get(groupNumber);
 		if (spawnList == null) {
-			spawnList = new ArrayList<L1UbSpawn>();
+			spawnList = new FastTable<L1UbSpawn>();
 			_groups.put(groupNumber, spawnList);
 		}
 
@@ -49,7 +49,7 @@ public class L1UbPattern {
 		}
 
 		// 格納されているグループのスポーンリストをID順にソート
-		for (ArrayList<L1UbSpawn> spawnList : _groups.values()) {
+		for (FastTable<L1UbSpawn> spawnList : _groups.values()) {
 			Collections.sort(spawnList);
 		}
 
@@ -60,7 +60,7 @@ public class L1UbPattern {
 		return _isFrozen;
 	}
 
-	public ArrayList<L1UbSpawn> getSpawnList(int groupNumber) {
+	public FastTable<L1UbSpawn> getSpawnList(int groupNumber) {
 		if (!_isFrozen) {
 			return null;
 		}

@@ -18,9 +18,10 @@
  */
 package l1j.server.server.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -34,7 +35,7 @@ public class L1Party {
 	private static final Logger _log = Logger
 			.getLogger(L1Party.class.getName());
 
-	private final List<L1PcInstance> _membersList = new ArrayList<L1PcInstance>();
+	private final List<L1PcInstance> _membersList = new FastTable<L1PcInstance>();
 
 	private L1PcInstance _leader = null;
 

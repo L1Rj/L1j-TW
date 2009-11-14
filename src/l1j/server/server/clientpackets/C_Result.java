@@ -18,8 +18,9 @@
  */
 package l1j.server.server.clientpackets;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.ShopTable;
@@ -399,7 +400,7 @@ public class C_Result extends ClientBasePacket {
 			int order;
 			int count;
 			int price;
-			ArrayList sellList;
+			FastTable sellList;
 			L1PrivateShopSellList pssl;
 			int itemObjectId;
 			int sellPrice;
@@ -508,7 +509,7 @@ public class C_Result extends ClientBasePacket {
 		} else if (resultType == 1 && size != 0 && isPrivateShop) { // 個人商店にアイテム賣卻
 			int count;
 			int order;
-			ArrayList buyList;
+			FastTable buyList;
 			L1PrivateShopBuyList psbl;
 			int itemObjectId;
 			L1ItemInstance item;

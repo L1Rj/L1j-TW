@@ -19,8 +19,9 @@
 
 package l1j.server.server.clientpackets;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.ActionCodes;
 import l1j.server.server.ClientThread;
@@ -56,8 +57,8 @@ public class C_Shop extends ClientBasePacket {
 			return;
 		}
 
-		ArrayList sellList = pc.getSellList();
-		ArrayList buyList = pc.getBuyList();
+		FastTable sellList = pc.getSellList();
+		FastTable buyList = pc.getBuyList();
 		L1ItemInstance checkItem;
 		boolean tradable = true;
 

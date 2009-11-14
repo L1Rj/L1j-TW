@@ -18,8 +18,9 @@
  */
 package l1j.server.server.model.npc.action;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javolution.util.FastTable;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -38,8 +39,8 @@ import l1j.server.server.templates.L1Item;
 import l1j.server.server.utils.IterableElementList;
 
 public class L1NpcMakeItemAction extends L1NpcXmlAction {
-	private final List<L1ObjectAmount<Integer>> _materials = new ArrayList<L1ObjectAmount<Integer>>();
-	private final List<L1ObjectAmount<Integer>> _items = new ArrayList<L1ObjectAmount<Integer>>();
+	private final List<L1ObjectAmount<Integer>> _materials = new FastTable<L1ObjectAmount<Integer>>();
+	private final List<L1ObjectAmount<Integer>> _items = new FastTable<L1ObjectAmount<Integer>>();
 	private final boolean _isAmountInputable;
 	private final L1NpcAction _actionOnSucceed;
 	private final L1NpcAction _actionOnFail;

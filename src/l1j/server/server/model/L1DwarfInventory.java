@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.datatables.ItemTable;
@@ -185,7 +186,7 @@ public class L1DwarfInventory extends L1Inventory {
 			}
 			rs = pstm.executeQuery();
 
-			ArrayList<String> accountList = new ArrayList<String>();
+			FastTable<String> accountList = new FastTable<String>();
 			while (rs.next()) {
 				accountList.add(rs.getString("login"));
 			}
@@ -223,7 +224,7 @@ public class L1DwarfInventory extends L1Inventory {
 			pstm.setInt(2, maxlvl);
 			rs = pstm.executeQuery();
 
-			ArrayList<String> accountList = new ArrayList<String>();
+			FastTable<String> accountList = new FastTable<String>();
 			while (rs.next()) {
 				accountList.add(rs.getString("account_name"));
 			}
@@ -241,7 +242,7 @@ public class L1DwarfInventory extends L1Inventory {
 
 	}
 
-	private static void present(ArrayList<String> accountList, int itemid,
+	private static void present(FastTable<String> accountList, int itemid,
 			int enchant, int count) throws Exception {
 
 		L1Item temp = ItemTable.getInstance().getTemplate(itemid);

@@ -23,8 +23,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.datatables.ItemTable;
@@ -39,14 +40,14 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 			Logger.getLogger(MySqlCharactersItemStorage.class.getName());
 	
 	@Override
-	public ArrayList<L1ItemInstance> loadItems(int objId) throws Exception {
-		ArrayList<L1ItemInstance> items = null;
+	public FastTable<L1ItemInstance> loadItems(int objId) throws Exception {
+		FastTable<L1ItemInstance> items = null;
 
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-			items = new ArrayList<L1ItemInstance>();
+			items = new FastTable<L1ItemInstance>();
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con
 					.prepareStatement("SELECT * FROM character_items WHERE char_id = ?");

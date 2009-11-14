@@ -20,12 +20,13 @@
 package l1j.server.server.model.Instance;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import Threading.R_FrameUpdate;
 
@@ -461,7 +462,7 @@ public class L1PcInstance extends L1Character
 		sendVisualEffect();
 	}
 
-	private ArrayList<Integer> skillList = new ArrayList<Integer>();
+	private FastTable<Integer> skillList = new FastTable<Integer>();
 
 	public void setSkillMastery(int skillid) {
 		if (!skillList.contains(skillid)) {
@@ -490,7 +491,7 @@ public class L1PcInstance extends L1Character
 		_dwarf = new L1DwarfInventory(this);
 		_dwarfForElf = new L1DwarfForElfInventory(this);
 		_tradewindow = new L1Inventory();
-		_bookmarks = new ArrayList<L1BookMark>();
+		_bookmarks = new FastTable<L1BookMark>();
 		_quest = new L1Quest(this);
 		_equipSlot = new L1EquipmentSlot(this); // コンストラクタでthisポインタを渡すのは安全だろうか‧‧‧
 	}
@@ -829,15 +830,15 @@ public class L1PcInstance extends L1Character
 		_isPinkName = flag;
 	}
 
-	private ArrayList<L1PrivateShopSellList> _sellList = new ArrayList<L1PrivateShopSellList>();
+	private FastTable<L1PrivateShopSellList> _sellList = new FastTable<L1PrivateShopSellList>();
 
-	public ArrayList getSellList() {
+	public FastTable getSellList() {
 		return _sellList;
 	}
 
-	private ArrayList<L1PrivateShopBuyList> _buyList = new ArrayList<L1PrivateShopBuyList>();
+	private FastTable<L1PrivateShopBuyList> _buyList = new FastTable<L1PrivateShopBuyList>();
 
-	public ArrayList getBuyList() {
+	public FastTable getBuyList() {
 		return _buyList;
 	}
 
@@ -1798,7 +1799,7 @@ public class L1PcInstance extends L1Character
 	private boolean _isDrink = false;
 	private boolean _isGres = false;
 	private boolean _isPinkName = false;
-	private final ArrayList<L1BookMark> _bookmarks;
+	private final FastTable<L1BookMark> _bookmarks;
 	private L1Quest _quest;
 	private MpRegeneration _mpRegen;
 	private MpRegenerationByDoll _mpRegenByDoll;

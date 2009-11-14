@@ -19,8 +19,9 @@
 
 package l1j.server.server.serverpackets;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javolution.util.FastTable;
 
 import static l1j.server.server.Opcodes.S_OPCODE_SELECTLIST;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -40,7 +41,7 @@ public class S_FixWeaponList extends ServerBasePacket
 		writeC(S_OPCODE_SELECTLIST);
 		writeD(Fix_InitPrice); // 初始價格
 
-		List<L1ItemInstance> list = new ArrayList<L1ItemInstance>();
+		List<L1ItemInstance> list = new FastTable<L1ItemInstance>();
 		List<L1ItemInstance> itemList = pc.getInventory().getItems();
 		
 		// 搜尋角色背包之物品

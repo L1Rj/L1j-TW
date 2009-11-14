@@ -21,13 +21,13 @@ package l1j.server.server.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javolution.util.FastMap;
+import javolution.util.FastTable;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -40,7 +40,7 @@ public class Getback {
 
 	//private static Random _random = new Random();
 
-	private static FastMap<Integer, ArrayList<Getback>> _getback = new FastMap<Integer, ArrayList<Getback>>();
+	private static FastMap<Integer, FastTable<Getback>> _getback = new FastMap<Integer, FastTable<Getback>>();
 
 	private int _areaX1;
 	private int _areaY1;
@@ -96,10 +96,10 @@ public class Getback {
 				getback._getbackTownIdForDarkelf = rs
 						.getInt("getback_townid_darkelf");
 				getback._escapable = rs.getBoolean("scrollescape");
-				ArrayList<Getback> getbackList = _getback
+				FastTable<Getback> getbackList = _getback
 						.get(getback._areaMapId);
 				if (getbackList == null) {
-					getbackList = new ArrayList<Getback>();
+					getbackList = new FastTable<Getback>();
 					_getback.put(getback._areaMapId, getbackList);
 				}
 				getbackList.add(getback);
@@ -129,7 +129,7 @@ public class Getback {
 		int pcLocX = pc.getX();
 		int pcLocY = pc.getY();
 		int pcMapId = pc.getMapId();
-		ArrayList<Getback> getbackList = _getback.get(pcMapId);
+		FastTable<Getback> getbackList = _getback.get(pcMapId);
 
 		if (getbackList != null) {
 			Getback getback = null;

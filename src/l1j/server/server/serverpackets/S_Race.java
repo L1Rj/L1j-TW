@@ -19,8 +19,9 @@
 
 package l1j.server.server.serverpackets;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.Opcodes;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -51,7 +52,7 @@ public class S_Race extends ServerBasePacket {
 		}
 	}
 	
-	public S_Race(ArrayList<L1PcInstance> playerList,L1PcInstance pc){
+	public S_Race(FastTable<L1PcInstance> playerList,L1PcInstance pc){
 		writeC(Opcodes.S_OPCODE_PACKETBOX);
 		writeC(PlayerInfo);
 		writeH(playerList.size()); //參賽者人數

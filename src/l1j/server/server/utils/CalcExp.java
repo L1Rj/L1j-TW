@@ -19,8 +19,9 @@
 
 package l1j.server.server.utils;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.datatables.ExpTable;
@@ -53,7 +54,7 @@ public class CalcExp {
 	}
 
 	public static void calcExp(L1PcInstance l1pcinstance, int targetid,
-			ArrayList acquisitorList, ArrayList hateList, int exp) {
+			FastTable acquisitorList, FastTable hateList, int exp) {
 
 		int i = 0;
 		double party_level = 0;

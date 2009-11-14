@@ -18,8 +18,9 @@
  */
 package l1j.server.server.model.shop;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 
@@ -45,7 +46,7 @@ class L1ShopSellOrder {
 public class L1ShopSellOrderList {
 	private final L1Shop _shop;
 	private final L1PcInstance _pc;
-	private final List<L1ShopSellOrder> _list = new ArrayList<L1ShopSellOrder>();
+	private final List<L1ShopSellOrder> _list = new FastTable<L1ShopSellOrder>();
 
 	L1ShopSellOrderList(L1Shop shop, L1PcInstance pc) {
 		_shop = shop;

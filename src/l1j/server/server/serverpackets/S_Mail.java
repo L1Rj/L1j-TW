@@ -19,9 +19,10 @@
 
 package l1j.server.server.serverpackets;
 
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.Opcodes;
 import l1j.server.server.datatables.MailTable;
@@ -51,7 +52,7 @@ public class S_Mail extends ServerBasePacket {
  */
 	// 打開收信夾 ?封信件顯示標題
 	public S_Mail(String receiverName, int type) {
-		ArrayList<L1Mail> mails = new ArrayList<L1Mail>();
+		FastTable<L1Mail> mails = new FastTable<L1Mail>();
 		for (L1Mail mail : MailTable.getInstance().getAllMail()) {
 			if (mail.getReceiverName().equalsIgnoreCase(receiverName)) {
 				if (mail.getType() == type) {

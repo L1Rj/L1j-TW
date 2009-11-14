@@ -18,11 +18,12 @@
  */
 package l1j.server.server.model.Instance;
 
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 import l1j.server.server.datatables.ItemTable;// 妖森守護神道具控制
 import l1j.server.server.model.L1Inventory;// 妖森守護神道具控制
 import l1j.server.server.templates.L1Item;// 妖森守護神道具控制
@@ -471,9 +472,9 @@ public class L1GuardianInstance extends L1NpcInstance {
 						.getMaster();
 			}
 			if (player != null) {
-				ArrayList<L1Character> targetList = _hateList
+				FastTable<L1Character> targetList = _hateList
 						.toTargetArrayList();
-				ArrayList<Integer> hateList = _hateList.toHateArrayList();
+				FastTable<Integer> hateList = _hateList.toHateArrayList();
 				int exp = getExp();
 				CalcExp.calcExp(player, targetobjid, targetList, hateList, exp);
 

@@ -23,9 +23,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.templates.L1ArmorSets;
@@ -37,8 +38,8 @@ public class ArmorSetTable {
 
 	private static ArmorSetTable _instance;
 
-	private final ArrayList<L1ArmorSets> _armorSetList
-			= new ArrayList<L1ArmorSets>();
+	private final FastTable<L1ArmorSets> _armorSetList
+			= new FastTable<L1ArmorSets>();
 
 	public static ArmorSetTable getInstance() {
 		if (_instance == null) {

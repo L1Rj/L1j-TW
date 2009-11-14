@@ -18,8 +18,9 @@
  */
 package l1j.server.server.model.Instance;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.datatables.NPCTalkDataTable;
 import l1j.server.server.model.L1Attack;
@@ -35,7 +36,7 @@ public class L1DwarfInstance extends L1NpcInstance {
 	private static Logger _log = Logger.getLogger(L1DwarfInstance.class
 			.getName());
 
-	private ArrayList _tpLocs;
+	private FastTable _tpLocs;
 
 	private int _tpId;
 

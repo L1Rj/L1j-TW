@@ -18,11 +18,11 @@
  */
 package l1j.server.server.model;
 
-import java.util.ArrayList;
+import javolution.util.FastTable;
 
 public class L1ExcludingList {
 
-	private ArrayList<String> _nameList = new ArrayList<String>();
+	private FastTable<String> _nameList = new FastTable<String>();
 
 	public void add(String name) {
 		_nameList.add(name);

@@ -20,9 +20,10 @@
 package l1j.server.server.serverpackets;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.Opcodes;
 
@@ -32,7 +33,7 @@ import l1j.server.server.Opcodes;
 public class S_CommonNews extends ServerBasePacket {
 
 	public S_CommonNews() {
-		_announcements = new ArrayList();
+		_announcements = new FastTable();
 		loadAnnouncements();
 		writeC(Opcodes.S_OPCODE_COMMONNEWS);
 		String message = "";
@@ -91,6 +92,6 @@ public class S_CommonNews extends ServerBasePacket {
 
 	private static Logger _log = Logger.getLogger(S_CommonNews.class.getName());
 
-	private ArrayList _announcements;
+	private FastTable _announcements;
 
 }

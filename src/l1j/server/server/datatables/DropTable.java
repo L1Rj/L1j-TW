@@ -23,7 +23,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Random;
@@ -31,6 +30,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javolution.util.FastMap;
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.L1DatabaseFactory;
@@ -57,7 +57,7 @@ public class DropTable {
 
 	private static DropTable _instance;
 
-	private final FastMap<Integer, ArrayList<L1Drop>> _droplists; // モンスター每のドロップリスト
+	private final FastMap<Integer, FastTable<L1Drop>> _droplists; // モンスター每のドロップリスト
 
 	public static DropTable getInstance() {
 		if (_instance == null) {
@@ -70,8 +70,8 @@ public class DropTable {
 		_droplists = allDropList();
 	}
 
-	private FastMap<Integer, ArrayList<L1Drop>> allDropList() {
-		FastMap<Integer, ArrayList<L1Drop>> droplistMap = new FastMap<Integer, ArrayList<L1Drop>>();
+	private FastMap<Integer, FastTable<L1Drop>> allDropList() {
+		FastMap<Integer, FastTable<L1Drop>> droplistMap = new FastMap<Integer, FastTable<L1Drop>>();
 
 		Connection con = null;
 		PreparedStatement pstm = null;
@@ -89,9 +89,9 @@ public class DropTable {
 
 				L1Drop drop = new L1Drop(mobId, itemId, min, max, chance);
 
-				ArrayList<L1Drop> dropList = droplistMap.get(drop.getMobid());
+				FastTable<L1Drop> dropList = droplistMap.get(drop.getMobid());
 				if (dropList == null) {
-					dropList = new ArrayList<L1Drop>();
+					dropList = new FastTable<L1Drop>();
 					droplistMap.put(new Integer(drop.getMobid()), dropList);
 				}
 				dropList.add(drop);
@@ -110,7 +110,7 @@ public class DropTable {
 	public void setDrop(L1NpcInstance npc, L1Inventory inventory) {
 		// ドロップリストの取得
 		int mobId = npc.getNpcTemplate().get_npcId();
-		ArrayList<L1Drop> dropList = _droplists.get(mobId);
+		FastTable<L1Drop> dropList = _droplists.get(mobId);
 		if (dropList == null) {
 			return;
 		}
@@ -182,8 +182,7 @@ public class DropTable {
 	}
 
 	// ドロップを分配
-	public void dropShare(L1NpcInstance npc, ArrayList acquisitorList,
-			ArrayList hateList) {
+	public void dropShare(L1NpcInstance npc, FastTable acquisitorList, FastTable hateList) {
 		L1Inventory inventory = npc.getInventory();
 		if (inventory.getSize() == 0) {
 			return;
@@ -202,8 +201,7 @@ public class DropTable {
 				hateList.remove(i);
 			} else if (acquisitor != null
 					&& acquisitor.getMapId() == npc.getMapId()
-					&& acquisitor.getLocation().getTileLineDistance(
-							npc.getLocation()) <= Config.LOOTING_RANGE) {
+					&& acquisitor.getLocation().getTileLineDistance(npc.getLocation()) <= Config.LOOTING_RANGE) {
 				totalHate += (Integer) hateList.get(i);
 			} else { // nullだったり死んでたり遠かったら排除
 				acquisitorList.remove(i);
@@ -297,7 +295,7 @@ public class DropTable {
 					}
 				}
 			} else { // ノンオートルーティング
-				List<Integer> dirList = new ArrayList<Integer>();
+				List<Integer> dirList = new FastTable<Integer>();
 				for (int j = 0; j < 8; j++) {
 					dirList.add(j);
 				}

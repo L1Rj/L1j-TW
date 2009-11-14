@@ -1,8 +1,9 @@
 package l1j.server.server.model;
 
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.datatables.ArmorSetTable;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -22,11 +23,11 @@ public abstract class L1ArmorSet {
 
 	public abstract boolean isEquippedRingOfArmorSet(L1PcInstance pc);
 
-	public static ArrayList<L1ArmorSet> getAllSet() {
+	public static FastTable<L1ArmorSet> getAllSet() {
 		return _allSet;
 	}
 
-	private static ArrayList<L1ArmorSet> _allSet = new ArrayList<L1ArmorSet>();
+	private static FastTable<L1ArmorSet> _allSet = new FastTable<L1ArmorSet>();
 
 	/*
 	 * ここで初期化してしまうのはいかがなものか‧‧‧美しくない氣がする
@@ -81,13 +82,13 @@ interface L1ArmorSetEffect {
 
 class L1ArmorSetImpl extends L1ArmorSet {
 	private final int _ids[];
-	private final ArrayList<L1ArmorSetEffect> _effects;
+	private final FastTable<L1ArmorSetEffect> _effects;
 	private static Logger _log = Logger.getLogger(L1ArmorSetImpl.class
 			.getName());
 
 	protected L1ArmorSetImpl(int ids[]) {
 		_ids = ids;
-		_effects = new ArrayList<L1ArmorSetEffect>();
+		_effects = new FastTable<L1ArmorSetEffect>();
 	}
 
 	public void addEffect(L1ArmorSetEffect effect) {

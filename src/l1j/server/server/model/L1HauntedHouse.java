@@ -18,10 +18,11 @@
  */
 package l1j.server.server.model;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javolution.util.FastTable;
 
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.Instance.L1DoorInstance;
@@ -39,8 +40,8 @@ public class L1HauntedHouse {
 	public static final int STATUS_READY = 1;
 	public static final int STATUS_PLAYING = 2;
 
-	private final ArrayList<L1PcInstance> _members =
-			new ArrayList<L1PcInstance>();
+	private final FastTable<L1PcInstance> _members =
+			new FastTable<L1PcInstance>();
 	private int _hauntedHouseStatus = STATUS_NONE;
 	private int _winnersCount = 0;
 	private int _goalCount = 0;

@@ -27,10 +27,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Map;
 
 import javolution.util.FastMap;
+import javolution.util.FastTable;
 
 import l1j.server.server.datatables.MapsTable;
 import l1j.server.server.model.map.L1Map;
@@ -53,8 +53,8 @@ public class CachedMapReader extends MapReader {
 	 * 
 	 * @return ArraryList
 	 */
-	private ArrayList<Integer> listMapIds() {
-		ArrayList<Integer> ids = new ArrayList<Integer>();
+	private FastTable<Integer> listMapIds() {
+		FastTable<Integer> ids = new FastTable<Integer>();
 
 		File mapDir = new File(MAP_DIR);
 		for (String name : mapDir.list()) {

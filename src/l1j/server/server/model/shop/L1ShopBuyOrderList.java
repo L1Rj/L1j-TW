@@ -18,9 +18,10 @@
  */
 package l1j.server.server.model.shop;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+
+import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.model.L1TaxCalculator;
@@ -49,7 +50,7 @@ public class L1ShopBuyOrderList {
 			.getName());
 
 	private final L1Shop _shop;
-	private final List<L1ShopBuyOrder> _list = new ArrayList<L1ShopBuyOrder>();
+	private final List<L1ShopBuyOrder> _list = new FastTable<L1ShopBuyOrder>();
 	private final L1TaxCalculator _taxCalc;
 
 	private int _totalWeight = 0;
