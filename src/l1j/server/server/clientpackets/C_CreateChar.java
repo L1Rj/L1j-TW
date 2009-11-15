@@ -236,9 +236,9 @@ public class C_CreateChar extends ClientBasePacket {
 			return false;
 		}
 
-		if ((isAlphaNumeric(name)
-				// 全形字串長度<5 或  全部字串長度<12
-				&& ((numOfNameBytes - name.length()) < 6 || numOfNameBytes < 12))
+		if (isAlphaNumeric(name)
+				// 字串位元長度 > 4 時，才允許建立名稱
+				&& (4 < numOfNameBytes)
 				&& !BadNamesList.getInstance().isBadName(name)) {
 			return false;
 		}
