@@ -236,17 +236,10 @@ public class C_CreateChar extends ClientBasePacket {
 			return false;
 		}
 
-		if (isAlphaNumeric(name)) {
-			return false;
-		}
-
-		// XXX - 本鯖の仕樣と同等か未確認
-		// 全角文字が5文字を超えるか、全体で12バイトを超えたら無效な名前とする
-		if (5 < (numOfNameBytes - name.length()) || 12 < numOfNameBytes) {
-			return false;
-		}
-
-		if (BadNamesList.getInstance().isBadName(name)) {
+		if ((isAlphaNumeric(name)
+				// 全形字串長度<5 或  全部字串長度<12
+				&& ((numOfNameBytes - name.length()) < 6 || numOfNameBytes < 12))
+				&& !BadNamesList.getInstance().isBadName(name)) {
 			return false;
 		}
 		return true;
