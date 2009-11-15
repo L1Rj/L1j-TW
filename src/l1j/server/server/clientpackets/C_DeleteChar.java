@@ -113,9 +113,9 @@ public class C_DeleteChar extends ClientBasePacket {
 					clan.delMemberName(name);
 				}
 			}
-			CharacterTable.getInstance().deleteCharacter(client.getAccountName(), name);
 			LogDeleteChar ldc = new LogDeleteChar();
 			ldc.storeLogDeleteChar(pc, hostip);
+			CharacterTable.getInstance().deleteCharacter(client.getAccountName(), name);
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			client.close();

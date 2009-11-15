@@ -43,7 +43,7 @@ public class LogDeleteChar {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time.getTime());
 			pstm.setString(1, fm);
-			pstm.setString(2, pc.getNetConnection().getIp());
+			pstm.setString(2, hostip);
 			pstm.setString(3, pc.getAccountName());
 			pstm.setInt(4, pc.getId());
 			pstm.setString(5, pc.getName());
