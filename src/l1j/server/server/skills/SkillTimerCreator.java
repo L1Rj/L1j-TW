@@ -16,21 +16,20 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.model.skill;
+package l1j.server.server.skills;
 
 import l1j.server.Config;
 import l1j.server.server.model.L1Character;
 
-public class L1SkillTimerCreator {
-	public static L1SkillTimer create(L1Character cha, int skillId,
-			int timeMillis) {
+public class SkillTimerCreator {
+	public static SkillTimer create(L1Character cha, int skillId, int timeMillis) {
 		if (Config.SKILLTIMER_IMPLTYPE == 1) {
-			return new L1SkillTimerTimerImpl(cha, skillId, timeMillis);
+			return new SkillTimerTimerImpl(cha, skillId, timeMillis);
 		} else if (Config.SKILLTIMER_IMPLTYPE == 2) {
-			return new L1SkillTimerThreadImpl(cha, skillId, timeMillis);
+			return new SkillTimerThreadImpl(cha, skillId, timeMillis);
 		}
 
 		// 不正な值の場合は、とりあえずTimer
-		return new L1SkillTimerTimerImpl(cha, skillId, timeMillis);
+		return new SkillTimerTimerImpl(cha, skillId, timeMillis);
 	}
 }

@@ -18,26 +18,26 @@
 
 package l1j.server.server.clientpackets;
 
-import static l1j.server.server.model.skill.L1SkillId.COOKING_1_0_N;
-import static l1j.server.server.model.skill.L1SkillId.COOKING_1_0_S;
-import static l1j.server.server.model.skill.L1SkillId.COOKING_1_6_N;
-import static l1j.server.server.model.skill.L1SkillId.COOKING_1_6_S;
-import static l1j.server.server.model.skill.L1SkillId.COOKING_2_0_N;
-import static l1j.server.server.model.skill.L1SkillId.COOKING_2_0_S;
-import static l1j.server.server.model.skill.L1SkillId.COOKING_2_6_N;
-import static l1j.server.server.model.skill.L1SkillId.COOKING_2_6_S;
-import static l1j.server.server.model.skill.L1SkillId.COOKING_3_0_N;
-import static l1j.server.server.model.skill.L1SkillId.COOKING_3_0_S;
-import static l1j.server.server.model.skill.L1SkillId.COOKING_3_6_N;
-import static l1j.server.server.model.skill.L1SkillId.COOKING_3_6_S;
-import static l1j.server.server.model.skill.L1SkillId.SHAPE_CHANGE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_BLUE_POTION;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_BRAVE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_CHAT_PROHIBITED;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_ELFBRAVE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_HASTE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_RIBRAVE;
-import static l1j.server.server.model.skill.L1SkillId.GMSTATUS_CRAZY;
+import static l1j.server.server.skills.SkillId.COOKING_1_0_N;
+import static l1j.server.server.skills.SkillId.COOKING_1_0_S;
+import static l1j.server.server.skills.SkillId.COOKING_1_6_N;
+import static l1j.server.server.skills.SkillId.COOKING_1_6_S;
+import static l1j.server.server.skills.SkillId.COOKING_2_0_N;
+import static l1j.server.server.skills.SkillId.COOKING_2_0_S;
+import static l1j.server.server.skills.SkillId.COOKING_2_6_N;
+import static l1j.server.server.skills.SkillId.COOKING_2_6_S;
+import static l1j.server.server.skills.SkillId.COOKING_3_0_N;
+import static l1j.server.server.skills.SkillId.COOKING_3_0_S;
+import static l1j.server.server.skills.SkillId.COOKING_3_6_N;
+import static l1j.server.server.skills.SkillId.COOKING_3_6_S;
+import static l1j.server.server.skills.SkillId.SHAPE_CHANGE;
+import static l1j.server.server.skills.SkillId.STATUS_BLUE_POTION;
+import static l1j.server.server.skills.SkillId.STATUS_BRAVE;
+import static l1j.server.server.skills.SkillId.STATUS_CHAT_PROHIBITED;
+import static l1j.server.server.skills.SkillId.STATUS_ELFBRAVE;
+import static l1j.server.server.skills.SkillId.STATUS_HASTE;
+import static l1j.server.server.skills.SkillId.STATUS_RIBRAVE;
+import static l1j.server.server.skills.SkillId.GMSTATUS_CRAZY;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -65,7 +65,7 @@ import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_ActiveSpells;
 import l1j.server.server.serverpackets.S_AddSkill;
 import l1j.server.server.serverpackets.S_Bookmarks;
@@ -788,10 +788,10 @@ public class C_LoginToServer extends ClientBasePacket
 					pc.setBraveSpeed(5);
 					pc.setSkillEffect(skillid, remaining_time * 1000);
 				} else {
-					L1SkillUse l1skilluse = new L1SkillUse();
-					l1skilluse.handleCommands(clientthread.getActiveChar(),
+					SkillUse skilluse = new SkillUse();
+					skilluse.handleCommands(clientthread.getActiveChar(),
 							skillid, pc.getId(), pc.getX(), pc.getY(), null,
-							remaining_time, L1SkillUse.TYPE_LOGIN);
+							remaining_time, SkillUse.TYPE_LOGIN);
 				}
 			}
 		} catch (SQLException e) {

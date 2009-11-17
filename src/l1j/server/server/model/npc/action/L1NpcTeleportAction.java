@@ -20,7 +20,7 @@ package l1j.server.server.model.npc.action;
 
 import org.w3c.dom.Element;
 
-import l1j.server.server.item.ItemId;
+import l1j.server.server.items.ItemId;
 import l1j.server.server.model.L1Location;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1Teleport;

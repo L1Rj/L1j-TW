@@ -28,24 +28,23 @@ import l1j.server.server.ActionCodes;
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.datatables.SkillsTable;
-import l1j.server.server.item.ItemAction;
-import l1j.server.server.item.ItemCreate;
-import l1j.server.server.item.ItemId;
-import l1j.server.server.item.TreasureBox;
-import l1j.server.server.item.actions.Armor;
-import l1j.server.server.item.actions.Cooking;
-import l1j.server.server.item.actions.Enchant;
-import l1j.server.server.item.actions.Fishing;
-import l1j.server.server.item.actions.Furniture;
-import l1j.server.server.item.actions.Letter;
-import l1j.server.server.item.actions.MagicDoll;
-import l1j.server.server.item.actions.Poly;
-import l1j.server.server.item.actions.Potion;
-import l1j.server.server.item.actions.Resolvent;
-import l1j.server.server.item.actions.SpellBook;
-import l1j.server.server.item.actions.Teleport;
-import l1j.server.server.item.actions.Wand;
-import l1j.server.server.item.actions.Weapon;
+import l1j.server.server.items.ItemAction;
+import l1j.server.server.items.ItemCreate;
+import l1j.server.server.items.TreasureBox;
+import l1j.server.server.items.actions.Armor;
+import l1j.server.server.items.actions.Cooking;
+import l1j.server.server.items.actions.Enchant;
+import l1j.server.server.items.actions.Fishing;
+import l1j.server.server.items.actions.Furniture;
+import l1j.server.server.items.actions.Letter;
+import l1j.server.server.items.actions.MagicDoll;
+import l1j.server.server.items.actions.Poly;
+import l1j.server.server.items.actions.Potion;
+import l1j.server.server.items.actions.Resolvent;
+import l1j.server.server.items.actions.SpellBook;
+import l1j.server.server.items.actions.Teleport;
+import l1j.server.server.items.actions.Wand;
+import l1j.server.server.items.actions.Weapon;
 import l1j.server.server.model.Getback;
 import l1j.server.server.model.L1CastleLocation;
 import l1j.server.server.model.L1Character;
@@ -73,7 +72,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1TowerInstance;
 import l1j.server.server.model.poison.L1DamagePoison;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_AttackPacket;
 import l1j.server.server.serverpackets.S_IdentifyDesc;
 import l1j.server.server.serverpackets.S_ItemName;
@@ -101,13 +100,8 @@ import l1j.server.server.templates.L1Skills;
 import l1j.server.server.utils.L1SpawnUtil;
 import l1j.server.server.utils.RandomArrayList;
 
-import static l1j.server.server.model.skill.L1SkillId.HOLY_WALK;
-import static l1j.server.server.model.skill.L1SkillId.MOVING_ACCELERATION;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_FLOATING_EYE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_MITHRIL_POWDER;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_WATER;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_WATER_OF_EVA;
-import static l1j.server.server.model.skill.L1SkillId.WIND_WALK;
+import static l1j.server.server.items.ItemId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
@@ -175,111 +169,128 @@ public class C_ItemUSe extends ClientBasePacket {
 		int fishY = 0;
 
 		int use_type = item.getItem().getUseType();
-		if (itemId == 40088 || itemId == 40096 || itemId == 140088) {
-			s = readS();
-		} else if (itemId == ItemId.SCROLL_OF_ENCHANT_ARMOR
-				|| itemId == ItemId.SCROLL_OF_ENCHANT_WEAPON
-				|| itemId == ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON
-				|| itemId == 40077
-				|| itemId == 40078
-				|| itemId == 40126
-				|| itemId == 40098
-				|| itemId == 40129
-				|| itemId == 40130
-				|| itemId == 140129
-				|| itemId == 140130
-				|| itemId == ItemId.B_SCROLL_OF_ENCHANT_ARMOR
-				|| itemId == ItemId.B_SCROLL_OF_ENCHANT_WEAPON
-				|| itemId == ItemId.C_SCROLL_OF_ENCHANT_ARMOR
-				|| itemId == ItemId.C_SCROLL_OF_ENCHANT_WEAPON
-				|| itemId == 41029 // 召喚球の欠片
-				|| itemId == 40317
-				|| itemId == 41036
-				|| itemId == 41245
-				|| itemId == 40127
-				|| itemId == 40128
-				|| itemId == 41048
-				|| itemId == 41049
-				|| itemId == 41050 // 糊付けされた航海日誌ページ
-				|| itemId == 41051
-				|| itemId == 41052
-				|| itemId == 41053 // 糊付けされた航海日誌ページ
-				|| itemId == 41054
-				|| itemId == 41055
-				|| itemId == 41056 // 糊付けされた航海日誌ページ
-				|| itemId == 41057 // 糊付けされた航海日誌ページ
-				|| itemId == 40925
-				|| itemId == 40926
-				|| itemId == 40927 // 淨化‧ミステリアスポーション
-				|| itemId == 40928
-				|| itemId == 40929
-				|| itemId == 40931
-				|| itemId == 40932
-				|| itemId == 40933 // 加工されたサファイア
-				|| itemId == 40934
-				|| itemId == 40935
-				|| itemId == 40936
-				|| itemId == 40937 // 加工されたエメラルド
-				|| itemId == 40938
-				|| itemId == 40939
-				|| itemId == 40940
-				|| itemId == 40941 // 加工されたルビー
-				|| itemId == 40942
-				|| itemId == 40943
-				|| itemId == 40944
-				|| itemId == 40945 // 加工された地ダイア
-				|| itemId == 40946
-				|| itemId == 40947
-				|| itemId == 40948
-				|| itemId == 40949 // 加工された水ダイア
-				|| itemId == 40950 || itemId == 40951
-				|| itemId == 40952
-				|| itemId == 40953 // 加工された風ダイア
-				|| itemId == 40954 || itemId == 40955 || itemId == 40956
-				|| itemId == 40957 // 加工された火ダイア
-				|| itemId == 40958 || itemId == 40964 // ダークマジックパウダー
-				|| itemId == 49092 // 歪みのコア
-				|| itemId == 41426 // 封印捲軸
-				|| itemId == 41427 // 解封印捲軸
-				|| itemId == 40075 // 毀滅盔甲的捲軸
-				|| itemId == 41429 // 風之武器強化卷軸
-				|| itemId == 41430 // 地之武器強化卷軸
-				|| itemId == 41431 // 水之武器強化卷軸
-				|| itemId == 41432 // 火之武器強化卷軸
-				|| itemId == 30001 // 裝備保護卷軸
-				|| itemId == 49148 // 飾品強化卷軸
-		) {
-			l = readD();
-		} else if (itemId == 140100 || itemId == 40100 || itemId == 40099
-				|| itemId == 40086 || itemId == 40863) {
-			bmapid = readH();
-			btele = readD();
-			pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_TELEPORT_UNLOCK,
-					false));
-		} else if (itemId == 40090 || itemId == 40091 || itemId == 40092
-				|| itemId == 40093 || itemId == 40094) { // ブランクスクロール(Lv1)～(Lv5)
-			blanksc_skillid = readC();
-		} else if (use_type == 30 || itemId == 40870 || itemId == 40879) { // spell_buff
+		if (use_type == 30) { // spell_buff
 			spellsc_objid = readD();
 		} else if (use_type == 5 || use_type == 17) { // spell_long、spell_short
 			spellsc_objid = readD();
 			spellsc_x = readH();
 			spellsc_y = readH();
-		} else if (itemId == 40089 || itemId == 140089) { // 復活捲軸、祝福的復活捲軸
-			resid = readD();
-		} else if (itemId == 40310 || itemId == 40311 || itemId == 40730
-				|| itemId == 40731 || itemId == 40732) { // 便箋
-			letterCode = readH();
-			letterReceiver = readS();
-			letterText = readByte();
-		} else if (itemId >= 41255 && itemId <= 41259) { // 料理の本
-			cookStatus = readC();
-			cookNo = readC();
-		} else if (itemId == 41293 || itemId == 41294) { // 釣竿
-			fishX = readH();
-			fishY = readH();
-		} else {
-			l = readC();
+		}
+
+		switch (itemId) {
+			case 40088: case 40096: case 140088:
+				s = readS();
+			break;
+
+			case SCROLL_OF_ENCHANT_ARMOR: case SCROLL_OF_ENCHANT_WEAPON: case SCROLL_OF_ENCHANT_QUEST_WEAPON:
+			case 40077:
+			case 40078:
+			case 40126:
+			case 40098:
+			case 40129:
+			case 40130:
+			case 140129: case 140130:
+			case B_SCROLL_OF_ENCHANT_ARMOR: case B_SCROLL_OF_ENCHANT_WEAPON:
+			case C_SCROLL_OF_ENCHANT_ARMOR: case C_SCROLL_OF_ENCHANT_WEAPON:
+			case 41029: // 召喚球の欠片
+			case 40317:
+			case 41036:
+			case 41245:
+			case 40127:
+			case 40128:
+			case 41048:
+			case 41049:
+			case 41050: // 糊付けされた航海日誌ページ
+			case 41051:
+			case 41052:
+			case 41053: // 糊付けされた航海日誌ページ
+			case 41054:
+			case 41055:
+			case 41056: // 糊付けされた航海日誌ページ
+			case 41057: // 糊付けされた航海日誌ページ
+			case 40925:
+			case 40926:
+			case 40927: // 淨化‧ミステリアスポーション
+			case 40928:
+			case 40929:
+			case 40931:
+			case 40932:
+			case 40933: // 加工されたサファイア
+			case 40934:
+			case 40935:
+			case 40936:
+			case 40937: // 加工されたエメラルド
+			case 40938:
+			case 40939:
+			case 40940:
+			case 40941: // 加工されたルビー
+			case 40942:
+			case 40943:
+			case 40944:
+			case 40945: // 加工された地ダイア
+			case 40946:
+			case 40947:
+			case 40948:
+			case 40949: // 加工された水ダイア
+			case 40950:
+			case 40951:
+			case 40952:
+			case 40953: // 加工された風ダイア
+			case 40954:
+			case 40955:
+			case 40956:
+			case 40957: // 加工された火ダイア
+			case 40958:
+			case 40964: // ダークマジックパウダー
+			case 49092: // 歪みのコア
+			case 41426: // 封印捲軸
+			case 41427: // 解封印捲軸
+			case 40075: // 毀滅盔甲的捲軸
+			case 41429: // 風之武器強化卷軸
+			case 41430: // 地之武器強化卷軸
+			case 41431: // 水之武器強化卷軸
+			case 41432: // 火之武器強化卷軸
+			case 30001: // 裝備保護卷軸
+			case 49148: // 飾品強化卷軸
+				l = readD();
+			break;
+
+			case 40086: case 40099: case 40100: case 40863: case 140100:
+				bmapid = readH();
+				btele = readD();
+				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_TELEPORT_UNLOCK, false));
+			break;
+			// 空的魔法卷軸(等級1~5)
+			case 40090: case 40091: case 40092: case 40093: case 40094:
+				blanksc_skillid = readC();
+			break;
+			// spell_buff
+			case 40870: case 40879:
+				spellsc_objid = readD();
+			break;
+			// 復活捲軸、祝福的復活捲軸
+			case 40089: case 140089:
+				resid = readD();
+			break;
+			// 便箋
+			case 40310: case 40311: case 40730: case 40731: case 40732:
+				letterCode = readH();
+				letterReceiver = readS();
+				letterText = readByte();
+			break;
+
+			case 41255: case 41256: case 41257: case 41258: case 41259:
+				cookStatus = readC();
+				cookNo = readC();
+			break;
+			// 釣竿
+			case 41293: case 41294:
+				fishX = readH();
+				fishY = readH();
+			break;
+
+			default:
+				l = readC();
 		}
 
 		if (pc.getCurrentHp() > 0) {
@@ -315,11 +326,11 @@ public class C_ItemUSe extends ClientBasePacket {
 			L1ItemInstance l1iteminstance1 = pc.getInventory().getItem(l);
 			_log.finest("request item use (obj) = " + itemObjid + " action = "
 					+ l + " value = " + s);
-			if (itemId == 40077 || itemId == ItemId.SCROLL_OF_ENCHANT_WEAPON
-					|| itemId == ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON
+			if (itemId == 40077 || itemId == SCROLL_OF_ENCHANT_WEAPON
+					|| itemId == SCROLL_OF_ENCHANT_QUEST_WEAPON
 					|| itemId == 40130 || itemId == 140130
-					|| itemId == ItemId.B_SCROLL_OF_ENCHANT_WEAPON
-					|| itemId == ItemId.C_SCROLL_OF_ENCHANT_WEAPON
+					|| itemId == B_SCROLL_OF_ENCHANT_WEAPON
+					|| itemId == C_SCROLL_OF_ENCHANT_WEAPON
 					|| itemId == 40128) { // 武器強化スクロール
 				if (l1iteminstance1 == null
 						|| l1iteminstance1.getItem().getType2() != 1) {
@@ -335,13 +346,13 @@ public class C_ItemUSe extends ClientBasePacket {
 
 				int quest_weapon = l1iteminstance1.getItem().getItemId();
 				if (quest_weapon >= 246 && quest_weapon <= 249) { // 強化不可
-					if (itemId == ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
+					if (itemId == SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 						return;
 					}
 				}
-				if (itemId == ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
+				if (itemId == SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
 					if (quest_weapon >= 246 && quest_weapon <= 249) { // 強化不可
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
@@ -368,7 +379,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 				int enchant_level = l1iteminstance1.getEnchantLevel();
 
-				if (itemId == ItemId.C_SCROLL_OF_ENCHANT_WEAPON) { // c-dai
+				if (itemId == C_SCROLL_OF_ENCHANT_WEAPON) { // c-dai
 					pc.getInventory().removeItem(item, 1);
 					if (enchant_level < -6) {
 						// -7以上はできない。
@@ -611,10 +622,10 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().removeItem(item, 1);// 刪除道具
 				}
 			} else if (itemId == 40078
-					|| itemId == ItemId.SCROLL_OF_ENCHANT_ARMOR
+					|| itemId == SCROLL_OF_ENCHANT_ARMOR
 					|| itemId == 40129 || itemId == 140129
-					|| itemId == ItemId.B_SCROLL_OF_ENCHANT_ARMOR
-					|| itemId == ItemId.C_SCROLL_OF_ENCHANT_ARMOR
+					|| itemId == B_SCROLL_OF_ENCHANT_ARMOR
+					|| itemId == C_SCROLL_OF_ENCHANT_ARMOR
 					|| itemId == 40127) { // 防具強化スクロール
 				if (l1iteminstance1 == null
 						|| l1iteminstance1.getItem().getType2() != 2) {
@@ -647,7 +658,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				}
 
 				int enchant_level = l1iteminstance1.getEnchantLevel();
-				if (itemId == ItemId.C_SCROLL_OF_ENCHANT_ARMOR) { // c-zel
+				if (itemId == C_SCROLL_OF_ENCHANT_ARMOR) { // c-zel
 					pc.getInventory().removeItem(item, 1);
 					if (enchant_level < -6) {
 						// -7以上はできない。
@@ -855,23 +866,23 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				}
 				// レッドポーション、濃縮体力回復劑、象牙の塔の体力回復劑
-				else if (itemId == ItemId.POTION_OF_HEALING
-						|| itemId == ItemId.CONDENSED_POTION_OF_HEALING
+				else if (itemId == POTION_OF_HEALING
+						|| itemId == CONDENSED_POTION_OF_HEALING
 						|| itemId == 40029) {
 					Potion.Healing(pc, 15, 189);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40022) { // 古代の体力回復劑
 					Potion.Healing(pc, 20, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == ItemId.POTION_OF_EXTRA_HEALING
-						|| itemId == ItemId.CONDENSED_POTION_OF_EXTRA_HEALING) {
+				} else if (itemId == POTION_OF_EXTRA_HEALING
+						|| itemId == CONDENSED_POTION_OF_EXTRA_HEALING) {
 					Potion.Healing(pc, 45, 194);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40023) { // 古代強力體力恢復劑
 					Potion.Healing(pc, 30, 194);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == ItemId.POTION_OF_GREATER_HEALING
-						|| itemId == ItemId.CONDENSED_POTION_OF_GREATER_HEALING) {
+				} else if (itemId == POTION_OF_GREATER_HEALING
+						|| itemId == CONDENSED_POTION_OF_GREATER_HEALING) {
 					Potion.Healing(pc, 75, 197);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40024 || itemId == 49137) { // 古代終極體力恢復劑 鮮奶油蛋糕
@@ -893,17 +904,17 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 40734) { // 信賴貨幣
 					Potion.Healing(pc, 50, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == ItemId.B_POTION_OF_HEALING) {
+				} else if (itemId == B_POTION_OF_HEALING) {
 					Potion.Healing(pc, 25, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == ItemId.C_POTION_OF_HEALING) {
+				} else if (itemId == C_POTION_OF_HEALING) {
 					Potion.Healing(pc, 10, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == ItemId.B_POTION_OF_EXTRA_HEALING) { // 祝福されたオレンジ
+				} else if (itemId == B_POTION_OF_EXTRA_HEALING) { // 祝福されたオレンジ
 					// ポーション
 					Potion.Healing(pc, 55, 194);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == ItemId.B_POTION_OF_GREATER_HEALING) { // 祝福されたクリアー
+				} else if (itemId == B_POTION_OF_GREATER_HEALING) { // 祝福されたクリアー
 					// ポーション
 					Potion.Healing(pc, 85, 197);
 					pc.getInventory().removeItem(item, 1);
@@ -926,7 +937,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.setDrink(true);
 					pc.sendPackets(new S_Liquor(pc.getId()));
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == ItemId.POTION_OF_CURE_POISON
+				} else if (itemId == POTION_OF_CURE_POISON
 						|| itemId == 40507) { // シアンポーション、エントの枝
 					if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
 						pc.sendPackets(new S_ServerMessage(698)); // 魔力によって何も飲むことができません。
@@ -934,7 +945,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						ItemAction.cancelAbsoluteBarrier(pc);
 						pc.sendPackets(new S_SkillSound(pc.getId(), 192));
 						pc.broadcastPacket(new S_SkillSound(pc.getId(), 192));
-						if (itemId == ItemId.POTION_OF_CURE_POISON) {
+						if (itemId == POTION_OF_CURE_POISON) {
 							pc.getInventory().removeItem(item, 1);
 						} else if (itemId == 40507) {
 							pc.getInventory().removeItem(item, 1);
@@ -942,8 +953,8 @@ public class C_ItemUSe extends ClientBasePacket {
 
 						pc.curePoison();
 					}
-				} else if (itemId == ItemId.POTION_OF_HASTE_SELF
-						|| itemId == ItemId.B_POTION_OF_HASTE_SELF
+				} else if (itemId == POTION_OF_HASTE_SELF
+						|| itemId == B_POTION_OF_HASTE_SELF
 						|| itemId == 40018 // 強化グリーン ポーション
 						|| itemId == 140018 // 祝福された強化グリーン ポーション
 
@@ -965,8 +976,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						|| itemId == 41342) { // メデューサの血
 					Potion.Green(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == ItemId.POTION_OF_EMOTION_BRAVERY // ブレイブポーション
-						|| itemId == ItemId.B_POTION_OF_EMOTION_BRAVERY // 祝福されたブレイブポーション
+				} else if (itemId == POTION_OF_EMOTION_BRAVERY // ブレイブポーション
+						|| itemId == B_POTION_OF_EMOTION_BRAVERY // 祝福されたブレイブポーション
 						|| itemId == 41415) { // 強化ブレイブポーション
 					if (pc.isKnight()) {
 						Potion.Brave(pc, itemId);
@@ -1080,15 +1091,15 @@ public class C_ItemUSe extends ClientBasePacket {
 						|| itemId == 41344) { // エヴァの祝福、マーメイドの鱗、水の精粹
 					Potion.BlessOfEva(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == ItemId.POTION_OF_MANA // ブルー ポーション
-						|| itemId == ItemId.B_POTION_OF_MANA // 祝福されたブルー
+				} else if (itemId == POTION_OF_MANA // ブルー ポーション
+						|| itemId == B_POTION_OF_MANA // 祝福されたブルー
 						// ポーション
 						|| itemId == 40736) { // 智慧貨幣
 					Potion.Blue(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == ItemId.POTION_OF_EMOTION_WISDOM // ウィズダム
+				} else if (itemId == POTION_OF_EMOTION_WISDOM // ウィズダム
 						// ポーション
-						|| itemId == ItemId.B_POTION_OF_EMOTION_WISDOM) { // 祝福されたウィズダム
+						|| itemId == B_POTION_OF_EMOTION_WISDOM) { // 祝福されたウィズダム
 					// ポーション
 					if (pc.isWizard()) {
 						Potion.Wisdom(pc, itemId);
@@ -1096,7 +1107,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == ItemId.POTION_OF_BLINDNESS) { // オペイクポーション
+				} else if (itemId == POTION_OF_BLINDNESS) { // オペイクポーション
 					Potion.Blind(pc);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40088 // 變形卷軸
@@ -1550,10 +1561,10 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					ItemAction.cancelAbsoluteBarrier(pc);
 					int skillid = itemId - 40858;
-					L1SkillUse l1skilluse = new L1SkillUse();
-					l1skilluse.handleCommands(client.getActiveChar(), skillid,
+					SkillUse skilluse = new SkillUse();
+					skilluse.handleCommands(client.getActiveChar(), skillid,
 							spellsc_objid, spellsc_x, spellsc_y, null, 0,
-							L1SkillUse.TYPE_SPELLSC);
+							SkillUse.TYPE_SPELLSC);
 
 				} else if (itemId >= 40373 && itemId <= 40382 // 地圖各種
 						|| itemId >= 40385 && itemId <= 40390) {

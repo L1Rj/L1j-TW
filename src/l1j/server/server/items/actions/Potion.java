@@ -16,12 +16,12 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.item.actions;
+package l1j.server.server.items.actions;
 
 import java.util.Random;
 
-import l1j.server.server.item.ItemAction;
-import l1j.server.server.item.ItemId;
+import l1j.server.server.items.ItemAction;
+import l1j.server.server.items.ItemId;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_CurseBlind;
 import l1j.server.server.serverpackets.S_ServerMessage;
@@ -32,27 +32,27 @@ import l1j.server.server.serverpackets.S_SkillIconGFX;
 import l1j.server.server.serverpackets.S_SkillIconWisdomPotion;
 import l1j.server.server.serverpackets.S_SkillSound;
 
-import static l1j.server.server.model.skill.L1SkillId.BLOODLUST;
-import static l1j.server.server.model.skill.L1SkillId.CURSE_BLIND;
-import static l1j.server.server.model.skill.L1SkillId.DARKNESS;
-import static l1j.server.server.model.skill.L1SkillId.DECAY_POTION;
-import static l1j.server.server.model.skill.L1SkillId.ENTANGLE;
-import static l1j.server.server.model.skill.L1SkillId.GREATER_HASTE;
-import static l1j.server.server.model.skill.L1SkillId.HASTE;
-import static l1j.server.server.model.skill.L1SkillId.HOLY_WALK;
-import static l1j.server.server.model.skill.L1SkillId.MASS_SLOW;
-import static l1j.server.server.model.skill.L1SkillId.MOVING_ACCELERATION;
-import static l1j.server.server.model.skill.L1SkillId.POLLUTE_WATER;
-import static l1j.server.server.model.skill.L1SkillId.SLOW;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_BLUE_POTION;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_BRAVE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_ELFBRAVE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_FLOATING_EYE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_HASTE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_RIBRAVE;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_UNDERWATER_BREATH;
-import static l1j.server.server.model.skill.L1SkillId.STATUS_WISDOM_POTION;
-import static l1j.server.server.model.skill.L1SkillId.WIND_WALK;
+import static l1j.server.server.skills.SkillId.BLOODLUST;
+import static l1j.server.server.skills.SkillId.CURSE_BLIND;
+import static l1j.server.server.skills.SkillId.DARKNESS;
+import static l1j.server.server.skills.SkillId.DECAY_POTION;
+import static l1j.server.server.skills.SkillId.ENTANGLE;
+import static l1j.server.server.skills.SkillId.GREATER_HASTE;
+import static l1j.server.server.skills.SkillId.HASTE;
+import static l1j.server.server.skills.SkillId.HOLY_WALK;
+import static l1j.server.server.skills.SkillId.MASS_SLOW;
+import static l1j.server.server.skills.SkillId.MOVING_ACCELERATION;
+import static l1j.server.server.skills.SkillId.POLLUTE_WATER;
+import static l1j.server.server.skills.SkillId.SLOW;
+import static l1j.server.server.skills.SkillId.STATUS_BLUE_POTION;
+import static l1j.server.server.skills.SkillId.STATUS_BRAVE;
+import static l1j.server.server.skills.SkillId.STATUS_ELFBRAVE;
+import static l1j.server.server.skills.SkillId.STATUS_FLOATING_EYE;
+import static l1j.server.server.skills.SkillId.STATUS_HASTE;
+import static l1j.server.server.skills.SkillId.STATUS_RIBRAVE;
+import static l1j.server.server.skills.SkillId.STATUS_UNDERWATER_BREATH;
+import static l1j.server.server.skills.SkillId.STATUS_WISDOM_POTION;
+import static l1j.server.server.skills.SkillId.WIND_WALK;
 
 public class Potion {
 

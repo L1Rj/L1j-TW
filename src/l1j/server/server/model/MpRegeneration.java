@@ -5,9 +5,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.skills.SkillId;
 import l1j.server.server.types.Point;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 public class MpRegeneration extends TimerTask {
 	private static Logger _log = Logger.getLogger(MpRegeneration.class

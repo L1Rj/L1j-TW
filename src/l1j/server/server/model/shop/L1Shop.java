@@ -26,7 +26,7 @@ import l1j.server.Config;
 import l1j.server.server.datatables.CastleTable;
 import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.datatables.TownTable;
-import l1j.server.server.item.ItemId;
+import l1j.server.server.items.ItemId;
 import l1j.server.server.model.L1CastleLocation;
 import l1j.server.server.model.L1PcInventory;
 import l1j.server.server.model.L1TaxCalculator;

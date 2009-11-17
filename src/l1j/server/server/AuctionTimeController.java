@@ -28,7 +28,7 @@ import l1j.server.server.datatables.AuctionBoardTable;
 import l1j.server.server.datatables.ClanTable;
 import l1j.server.server.datatables.HouseTable;
 import l1j.server.server.datatables.ItemTable;
-import l1j.server.server.item.ItemId;
+import l1j.server.server.items.ItemId;
 import l1j.server.server.model.L1Clan;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1ItemInstance;

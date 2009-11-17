@@ -25,14 +25,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import l1j.server.server.model.L1Location;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.map.L1Map;
-import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.skills.SkillId;
 import l1j.server.server.model.trap.L1Trap;
 import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_Trap;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.StaticFinalList;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 public class L1TrapInstance extends L1Object {
 

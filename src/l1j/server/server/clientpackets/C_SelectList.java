@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.NpcTable;
 import l1j.server.server.datatables.PetTable;
-import l1j.server.server.item.ItemId;
+import l1j.server.server.items.ItemId;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1PcInventory;
 import l1j.server.server.model.L1World;

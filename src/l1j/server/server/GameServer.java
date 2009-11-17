@@ -55,7 +55,7 @@ import l1j.server.server.datatables.SpawnTable;
 import l1j.server.server.datatables.SprTable;
 import l1j.server.server.datatables.UBSpawnTable;
 import l1j.server.server.datatables.WeaponSkillTable;
-import l1j.server.server.item.TreasureBox;
+import l1j.server.server.items.TreasureBox;
 import l1j.server.server.model.Dungeon;
 import l1j.server.server.model.ElementalStoneGenerator;
 import l1j.server.server.model.Getback;

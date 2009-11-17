@@ -36,11 +36,11 @@ import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1DoorInstance;// 門
-import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.skills.SkillId;
 import l1j.server.server.model.trap.L1WorldTraps;
 import l1j.server.server.serverpackets.S_MoveCharPacket;
 import l1j.server.server.serverpackets.S_SystemMessage;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 //修正檔案 : l1j.server.server.clientpackets.C_MoveChar
 //修正者 : KIUSBT

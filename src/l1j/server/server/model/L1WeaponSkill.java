@@ -31,7 +31,7 @@ import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_EffectLocation;
 import l1j.server.server.serverpackets.S_Paralysis;
@@ -40,7 +40,7 @@ import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_UseAttackSkill;
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.utils.RandomArrayList;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
 // L1PcInstance
@@ -464,10 +464,10 @@ public class L1WeaponSkill {
 			probability = 10;
 		}
 		if (probability >= chance) {
-			L1SkillUse l1skilluse = new L1SkillUse();
-			l1skilluse.handleCommands(pc, 56,
+			SkillUse skilluse = new SkillUse();
+			skilluse.handleCommands(pc, 56,
 					cha.getId(), cha.getX(), cha.getY(), null, 0,
-					L1SkillUse.TYPE_GMBUFF);
+					SkillUse.TYPE_GMBUFF);
 	   }
 	}
 

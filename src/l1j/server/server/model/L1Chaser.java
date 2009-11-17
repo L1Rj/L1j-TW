@@ -32,7 +32,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_EffectLocation;
 import l1j.server.server.utils.RandomArrayList;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 public class L1Chaser extends TimerTask {
 	private static Logger _log = Logger.getLogger(L1Chaser.class.getName());

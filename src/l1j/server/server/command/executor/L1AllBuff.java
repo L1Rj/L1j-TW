@@ -18,7 +18,7 @@
  */
 package l1j.server.server.command.executor;
 
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
@@ -27,11 +27,11 @@ import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.model.L1PolyMorph;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.skill.L1BuffUtil;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SystemMessage;
 import l1j.server.server.templates.L1Skills;
+import l1j.server.server.utils.BuffUtil;
 
 public class L1AllBuff implements L1CommandExecutor {
 	private static Logger _log = Logger.getLogger(L1AllBuff.class.getName());
@@ -62,15 +62,15 @@ public class L1AllBuff implements L1CommandExecutor {
 				return;
 			}
 
-			L1BuffUtil.haste(target, 3600 * 1000);
-			L1BuffUtil.brave(target, 3600 * 1000);
+			BuffUtil.haste(target, 3600 * 1000);
+			BuffUtil.brave(target, 3600 * 1000);
 			L1PolyMorph.doPoly(target, 5641, 7200, L1PolyMorph.MORPH_BY_GM);
 			for (int i = 0; i < allBuffSkill.length; i++) {
 				L1Skills skill = SkillsTable.getInstance().getTemplate(
 						allBuffSkill[i]);
-				new L1SkillUse().handleCommands(target, allBuffSkill[i], target
+				new SkillUse().handleCommands(target, allBuffSkill[i], target
 						.getId(), target.getX(), target.getY(), null, skill
-						.getBuffDuration() * 1000, L1SkillUse.TYPE_GMBUFF);
+						.getBuffDuration() * 1000, SkillUse.TYPE_GMBUFF);
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(".allBuff 角色名稱。"));

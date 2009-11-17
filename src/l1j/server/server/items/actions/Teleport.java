@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.item.actions;
+package l1j.server.server.items.actions;
 
 import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.Instance.L1ItemInstance;

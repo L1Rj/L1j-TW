@@ -23,11 +23,11 @@ import java.util.logging.Logger;
 
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.skills.SkillId;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillIconGFX;
 import l1j.server.server.serverpackets.S_SystemMessage;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 public class L1ChatNG implements L1CommandExecutor {
 	private static Logger _log = Logger.getLogger(L1ChatNG.class.getName());

@@ -32,7 +32,7 @@ import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1World;
-import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.skills.SkillId;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_HPMeter;
 import l1j.server.server.serverpackets.S_NpcChatPacket;
@@ -43,7 +43,7 @@ import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Pet;
 import l1j.server.server.templates.L1PetType;
 import l1j.server.server.utils.RandomArrayList;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 public class L1PetInstance extends L1NpcInstance {
 

@@ -24,8 +24,8 @@ import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.Instance.L1MonsterInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.skill.L1SkillId;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import l1j.server.server.skills.SkillId;
+import static l1j.server.server.skills.SkillId.*;
 
 public class L1DamagePoison extends L1Poison {
 	private static Logger _log = Logger.getLogger(L1DamagePoison.class

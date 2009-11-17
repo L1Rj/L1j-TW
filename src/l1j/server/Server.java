@@ -42,6 +42,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -52,23 +53,40 @@ import l1j.server.server.log.LogBackUp;
 import l1j.server.telnet.TelnetServer;
 
 /**
- * l1j-jpのサーバを起動する.
+ * 啟動 L1J-TW 伺服器
  */
 public class Server {
-	/** メッセージログ用. */
+
+	/** 用於訊息記錄 */
 	private static Logger _log = Logger.getLogger(Server.class.getName());
 
-	/** ログ設定ファイルのフォルダー. */
+	/** 記錄設定檔的檔資料夾 */
 	private static final String LOG_PROP = "./config/log.properties";
 
 	/**
-	 * サーバメイン.
+	 * 主要伺服器
 	 * 
 	 * @param args
-	 *            コマンドライン引數
+	 *            命令匯流排因數
 	 * @throws Exception
 	 */
 	public static void main(final String[] args) throws Exception {
+		startServer();
+	}
+
+	/** 啟動伺服器 */
+	public static void startServer() {
+		setLogManager();
+		setDatabaseFactory();
+		setServerSetting();
+
+		if (Config.TELNET_SERVER) {
+			TelnetServer.getInstance().start();
+		}
+	}
+
+	/** 設定記錄系統 */
+	private static void setLogManager() {
 		File logFolder = new File("log");
 		logFolder.mkdir();
 
@@ -87,17 +105,30 @@ public class Server {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			System.exit(0);
 		}
+	}
 
-		// L1DatabaseFactory初期設定
-		L1DatabaseFactory.setDatabaseSettings(Config.DB_DRIVER, Config.DB_URL, Config.DB_LOGIN,
+	/** 設定資料庫 */
+	private static void setDatabaseFactory() {
+		// L1DatabaseFactory 初始設定
+		L1DatabaseFactory.setDatabaseSettings(
+				Config.DB_DRIVER,
+				Config.DB_URL,
+				Config.DB_LOGIN,
 				Config.DB_PASSWORD);
-		L1DatabaseFactory.getInstance();
-		L1LogDataFactory.getInstance();
 
-		GameServer.getInstance().initialize();
-
-		if (Config.TELNET_SERVER) {
-			TelnetServer.getInstance().start();
+		try {
+			L1DatabaseFactory.getInstance();
+			L1LogDataFactory.getInstance();
+		} catch (SQLException e) {
 		}
 	}
+
+	/** 設定遊戲設定 */
+	private static void setServerSetting() {
+		try {
+			GameServer.getInstance().initialize();
+		} catch (Exception e) {
+		}
+	}
+
 }

@@ -24,7 +24,7 @@ import javolution.util.FastTable;
 
 import l1j.server.server.ClientThread;
 import l1j.server.server.datatables.ShopTable;
-import l1j.server.server.item.ItemId;
+import l1j.server.server.items.ItemId;
 import l1j.server.server.log.LogElfDwarfIn;
 import l1j.server.server.log.LogElfDwarfOut;
 import l1j.server.server.log.LogClanDwarfIn;

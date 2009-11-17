@@ -16,18 +16,16 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.model.skill;
-
-import java.util.logging.Logger;
+package l1j.server.server.utils;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_SkillBrave;
 import l1j.server.server.serverpackets.S_SkillHaste;
 import l1j.server.server.serverpackets.S_SkillSound;
-import static l1j.server.server.model.skill.L1SkillId.*;
 
-public class L1BuffUtil {
-	private static Logger _log = Logger.getLogger(L1BuffUtil.class.getName());
+import static l1j.server.server.skills.SkillId.*;
+
+public class BuffUtil {
 
 	public static void haste(L1PcInstance pc, int timeMillis) {
 		pc.setSkillEffect(STATUS_HASTE, timeMillis);

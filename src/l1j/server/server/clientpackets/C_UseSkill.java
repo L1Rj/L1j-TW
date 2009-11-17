@@ -29,10 +29,10 @@ import l1j.server.server.log.LogSpeedHack;
 import l1j.server.server.model.AcceleratorChecker;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_Disconnect;
 import l1j.server.server.serverpackets.S_ServerMessage;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
@@ -151,9 +151,9 @@ public class C_UseSkill extends ClientBasePacket {
 					}
 				}
 			}
-			L1SkillUse l1skilluse = new L1SkillUse();
-			l1skilluse.handleCommands(pc, skillId, targetId, targetX, targetY,
-					message, 0, L1SkillUse.TYPE_NORMAL);
+			SkillUse skilluse = new SkillUse();
+			skilluse.handleCommands(pc, skillId, targetId, targetX, targetY,
+					message, 0, SkillUse.TYPE_NORMAL);
 
 		} catch (Exception e) {
 			e.printStackTrace();

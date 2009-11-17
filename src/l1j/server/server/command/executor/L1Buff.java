@@ -27,7 +27,7 @@ import javolution.util.FastTable;
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_SystemMessage;
 import l1j.server.server.templates.L1Skills;
 
@@ -68,15 +68,15 @@ public class L1Buff implements L1CommandExecutor {
 
 			if (skill.getTarget().equals("buff")) {
 				for (L1PcInstance tg : players) {
-					new L1SkillUse().handleCommands(pc, skillId, tg.getId(), tg
+					new SkillUse().handleCommands(pc, skillId, tg.getId(), tg
 							.getX(), tg.getY(), null, time,
-							L1SkillUse.TYPE_SPELLSC);
+							SkillUse.TYPE_SPELLSC);
 				}
 			} else if (skill.getTarget().equals("none")) {
 				for (L1PcInstance tg : players) {
-					new L1SkillUse().handleCommands(tg, skillId, tg.getId(), tg
+					new SkillUse().handleCommands(tg, skillId, tg.getId(), tg
 							.getX(), tg.getY(), null, time,
-							L1SkillUse.TYPE_GMBUFF);
+							SkillUse.TYPE_GMBUFF);
 				}
 			} else {
 				pc.sendPackets(new S_SystemMessage("並非Buff系列技能。"));

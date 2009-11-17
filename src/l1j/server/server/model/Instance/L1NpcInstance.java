@@ -52,8 +52,8 @@ import l1j.server.server.model.L1World;
 import l1j.server.server.model.Action.NpcAction;
 import l1j.server.server.model.map.L1Map;
 import l1j.server.server.model.map.L1WorldMap;
-import l1j.server.server.model.skill.L1SkillId;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillId;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_ChangeShape;
 import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_DoActionGFX;
@@ -66,8 +66,9 @@ import l1j.server.server.templates.L1NpcChat;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.TimerPool;
-import static l1j.server.server.item.ItemId.*;
-import static l1j.server.server.model.skill.L1SkillId.*;
+
+import static l1j.server.server.items.ItemId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 public class L1NpcInstance extends L1Character {
 	private static final long serialVersionUID = 1L;
@@ -2024,9 +2025,9 @@ public class L1NpcInstance extends L1Character {
 
 		// キャンセレーションをエフェクトなしでかける
 		// 本來は死亡時に行うべきだが、負荷が大きくなるため復活時に行う
-		L1SkillUse skill = new L1SkillUse();
+		SkillUse skill = new SkillUse();
 		skill.handleCommands(null, CANCELLATION, getId(), getX(),
-				getY(), null, 0, L1SkillUse.TYPE_LOGIN, this);
+				getY(), null, 0, SkillUse.TYPE_LOGIN, this);
 	}
 
 	// 死んでから消えるまでの時間計測用

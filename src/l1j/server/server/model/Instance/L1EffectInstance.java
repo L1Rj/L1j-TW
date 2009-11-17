@@ -38,7 +38,7 @@ import l1j.server.server.serverpackets.S_OwnCharAttrDef;
 import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1Npc;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 public class L1EffectInstance extends L1NpcInstance {
 

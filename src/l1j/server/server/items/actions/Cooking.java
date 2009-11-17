@@ -16,9 +16,9 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.item.actions;
+package l1j.server.server.items.actions;
 
-import l1j.server.server.item.ItemCreate;
+import l1j.server.server.items.ItemCreate;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1EffectInstance;
@@ -27,7 +27,7 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.utils.RandomArrayList;
 
-import static l1j.server.server.model.skill.L1SkillId.COOKING_NOW;
+import static l1j.server.server.skills.SkillId.COOKING_NOW;
 
 public class Cooking {
 

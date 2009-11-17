@@ -19,7 +19,7 @@ package l1j.server.server.model.trap;
 
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.storage.TrapStorage;
 
 public class L1SkillTrap extends L1Trap {
@@ -37,9 +37,9 @@ public class L1SkillTrap extends L1Trap {
 	public void onTrod(L1PcInstance trodFrom, L1Object trapObj) {
 		sendEffect(trapObj);
 
-		new L1SkillUse().handleCommands(trodFrom, _skillId, trodFrom.getId(),
+		new SkillUse().handleCommands(trodFrom, _skillId, trodFrom.getId(),
 				trodFrom.getX(), trodFrom.getY(), null, _skillTimeSeconds,
-				L1SkillUse.TYPE_GMBUFF);
+				SkillUse.TYPE_GMBUFF);
 	}
 
 }

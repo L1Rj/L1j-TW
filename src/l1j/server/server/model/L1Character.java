@@ -34,16 +34,16 @@ import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.map.L1Map;
 import l1j.server.server.model.poison.L1Poison;
-import l1j.server.server.model.skill.L1SkillId;
-import l1j.server.server.model.skill.L1SkillTimer;
-import l1j.server.server.model.skill.L1SkillTimerCreator;
+import l1j.server.server.skills.SkillId;
+import l1j.server.server.skills.SkillTimer;
+import l1j.server.server.skills.SkillTimerCreator;
 import l1j.server.server.serverpackets.S_Light;
 import l1j.server.server.serverpackets.S_Poison;
 import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.ServerBasePacket;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.IntRange;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
 // L1Object, Die, L1PcInstance, L1MonsterInstance,
@@ -62,7 +62,7 @@ public class L1Character extends L1Object {
 
 	private final Map<Integer, L1NpcInstance> _petlist = new FastMap<Integer, L1NpcInstance>();
 	private final Map<Integer, L1DollInstance> _dolllist = new FastMap<Integer, L1DollInstance>();
-	private final Map<Integer, L1SkillTimer> _skillEffect = new FastMap<Integer, L1SkillTimer>();
+	private final Map<Integer, SkillTimer> _skillEffect = new FastMap<Integer, SkillTimer>();
 	private final Map<Integer, L1ItemDelay.ItemDelayTimer> _itemdelay = new FastMap<Integer, L1ItemDelay.ItemDelayTimer>();
 	private final Map<Integer, L1FollowerInstance> _followerlist = new FastMap<Integer, L1FollowerInstance>();
 
@@ -472,9 +472,9 @@ public class L1Character extends L1Object {
 	 *            追加する效果の持續時間。無限の場合は0。
 	 */
 	private void addSkillEffect(int skillId, int timeMillis) {
-		L1SkillTimer timer = null;
+		SkillTimer timer = null;
 		if (0 < timeMillis) {
-			timer = L1SkillTimerCreator.create(this, skillId, timeMillis);
+			timer = SkillTimerCreator.create(this, skillId, timeMillis);
 			timer.begin();
 		}
 		_skillEffect.put(skillId, timer);
@@ -512,7 +512,7 @@ public class L1Character extends L1Object {
 	 *            削除する效果のスキルID
 	 */
 	public void removeSkillEffect(int skillId) {
-		L1SkillTimer timer = _skillEffect.remove(skillId);
+		SkillTimer timer = _skillEffect.remove(skillId);
 		if (timer != null) {
 			timer.end();
 		}
@@ -525,7 +525,7 @@ public class L1Character extends L1Object {
 	 *            削除するタイマーのスキルＩＤ
 	 */
 	public void killSkillEffectTimer(int skillId) {
-		L1SkillTimer timer = _skillEffect.remove(skillId);
+		SkillTimer timer = _skillEffect.remove(skillId);
 		if (timer != null) {
 			timer.kill();
 		}
@@ -535,7 +535,7 @@ public class L1Character extends L1Object {
 	 * キャラクターから、全てのスキル效果タイマーを削除する。スキル效果は削除されない。
 	 */
 	public void clearSkillEffectTimer() {
-		for (L1SkillTimer timer : _skillEffect.values()) {
+		for (SkillTimer timer : _skillEffect.values()) {
 			if (timer != null) {
 				timer.kill();
 			}
@@ -562,7 +562,7 @@ public class L1Character extends L1Object {
 	 * @return スキル效果の殘り時間(秒)。スキルがかかっていないか效果時間が無限の場合、-1。
 	 */
 	public int getSkillEffectTimeSec(int skillId) {
-		L1SkillTimer timer = _skillEffect.get(skillId);
+		SkillTimer timer = _skillEffect.get(skillId);
 		if (timer == null) {
 			return -1;
 		}

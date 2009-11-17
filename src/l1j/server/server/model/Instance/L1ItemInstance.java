@@ -30,7 +30,7 @@ import l1j.server.server.model.L1EquipmentTimer;
 import l1j.server.server.model.L1ItemOwnerTimer;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1PcInventory;
-import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.skills.SkillId;
 import l1j.server.server.serverpackets.S_OwnCharStatus;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Armor;
@@ -38,7 +38,7 @@ import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Pet;
 import l1j.server.server.utils.BinaryOutputStream;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
 // L1Object, L1PcInstance

@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.model.skill;
+package l1j.server.server.skills;
 
 import java.util.logging.Logger;
 
@@ -26,12 +26,11 @@ import l1j.server.server.model.L1Character;
 // Referenced classes of package l1j.server.server.model:
 // L1SkillDelay
 
-public class L1SkillDelay {
+public class SkillDelay {
 
-	private static final Logger _log = Logger.getLogger(L1SkillDelay.class
-			.getName());
+	private static final Logger _log = Logger.getLogger(SkillDelay.class.getName());
 
-	private L1SkillDelay() {
+	private SkillDelay() {
 	}
 
 	static class SkillDelayTimer implements Runnable {
@@ -55,8 +54,7 @@ public class L1SkillDelay {
 
 	public static void onSkillUse(L1Character cha, int time) {
 		cha.setSkillDelay(true);
-		GeneralThreadPool.getInstance().schedule(
-				new SkillDelayTimer(cha, time), time);
+		GeneralThreadPool.getInstance().schedule(new SkillDelayTimer(cha, time), time);
 	}
 
 }

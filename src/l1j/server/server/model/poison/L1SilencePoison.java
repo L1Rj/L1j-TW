@@ -19,8 +19,8 @@
 package l1j.server.server.model.poison;
 
 import l1j.server.server.model.L1Character;
-import l1j.server.server.model.skill.L1SkillId;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import l1j.server.server.skills.SkillId;
+import static l1j.server.server.skills.SkillId.*;
 
 public class L1SilencePoison extends L1Poison {
 	private final L1Character _target;

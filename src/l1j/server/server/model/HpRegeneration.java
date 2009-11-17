@@ -26,10 +26,10 @@ import java.util.Random;
 
 import l1j.server.server.model.Instance.L1EffectInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.skills.SkillId;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 public class HpRegeneration extends TimerTask {
 

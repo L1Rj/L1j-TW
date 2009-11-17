@@ -16,11 +16,11 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.item.actions;
+package l1j.server.server.items.actions;
 
 import l1j.server.Config;
 import l1j.server.server.ClientThread;
-import l1j.server.server.item.ItemId;
+import l1j.server.server.items.ItemId;
 import l1j.server.server.log.LogEnchantFail;
 import l1j.server.server.log.LogEnchantSuccess;
 import l1j.server.server.model.L1PcInventory;

@@ -32,8 +32,8 @@ import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.Instance.L1DoorInstance;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.skill.L1SkillId;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillId;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_Race;
 import l1j.server.server.serverpackets.S_EffectLocation;
 import l1j.server.server.serverpackets.S_Message_YN;
@@ -309,10 +309,10 @@ public class L1PolyRace {
 		}
 	}
 	public void removeSkillEffect(L1PcInstance pc){
-		L1SkillUse skill = new L1SkillUse();
-		skill.handleCommands(pc,L1SkillId.CANCELLATION,
+		SkillUse skill = new SkillUse();
+		skill.handleCommands(pc,SkillId.CANCELLATION,
 				pc.getId(), pc.getX(), pc.getY(),null,
-				0, L1SkillUse.TYPE_LOGIN);
+				0, SkillUse.TYPE_LOGIN);
 	}
 	//很蠢的陷阱設定 ...
 	private void onEffectTrap(L1PcInstance pc){
@@ -377,8 +377,8 @@ public class L1PolyRace {
 		int objectId = pc.getId();
 		//競速專用 -超級加速
 		pc.sendPackets(new S_SkillBrave(objectId, 5, time));
-		pc.setSkillEffect(L1SkillId.STATUS_BRAVE, time*1000);
-		pc.setSkillEffect(L1SkillId.STATUS_BRAVE2, time*1000);
+		pc.setSkillEffect(SkillId.STATUS_BRAVE, time*1000);
+		pc.setSkillEffect(SkillId.STATUS_BRAVE2, time*1000);
 		pc.setBraveSpeed(1);
 		/**
 		 * XXX 注意!加速效果必須給同畫面的人知道 否則會造成錯位!!!
@@ -387,7 +387,7 @@ public class L1PolyRace {
 		pc.broadcastPacket(new S_SkillBrave(objectId, 5, time));
 		
 		pc.sendPackets(new S_SkillHaste(objectId, 1, time*10));
-		pc.setSkillEffect(L1SkillId.STATUS_HASTE, time*10*1000);
+		pc.setSkillEffect(SkillId.STATUS_HASTE, time*10*1000);
 		pc.setMoveSpeed(1);
 	
 		for(L1PcInstance player : playerList){

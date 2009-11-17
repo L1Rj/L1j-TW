@@ -16,9 +16,9 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.item;
+package l1j.server.server.items;
 
-import static l1j.server.server.model.skill.L1SkillId.ABSOLUTE_BARRIER;
+import static l1j.server.server.skills.SkillId.ABSOLUTE_BARRIER;
 
 import java.util.concurrent.ConcurrentHashMap;
 

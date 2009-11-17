@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.item.actions;
+package l1j.server.server.items.actions;
 
 import l1j.server.server.datatables.PolyTable;
 import l1j.server.server.datatables.SkillsTable;
@@ -29,10 +29,10 @@ import l1j.server.server.serverpackets.S_ShowPolyList;
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.utils.RandomArrayList;
 
-import static l1j.server.server.model.skill.L1SkillId.AWAKEN_ANTHARAS;
-import static l1j.server.server.model.skill.L1SkillId.AWAKEN_FAFURION;
-import static l1j.server.server.model.skill.L1SkillId.AWAKEN_VALAKAS;
-import static l1j.server.server.model.skill.L1SkillId.SHAPE_CHANGE;
+import static l1j.server.server.skills.SkillId.AWAKEN_ANTHARAS;
+import static l1j.server.server.skills.SkillId.AWAKEN_FAFURION;
+import static l1j.server.server.skills.SkillId.AWAKEN_VALAKAS;
+import static l1j.server.server.skills.SkillId.SHAPE_CHANGE;
 
 public class Poly {
 

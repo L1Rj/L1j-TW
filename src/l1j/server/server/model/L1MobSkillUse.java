@@ -40,7 +40,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_NPCPack;
 import l1j.server.server.serverpackets.S_SkillSound;
@@ -309,14 +309,14 @@ public class L1MobSkillUse {
 	}
 
 	private boolean magicAttack(int idx) {
-		L1SkillUse skillUse = new L1SkillUse();
+		SkillUse skillUse = new SkillUse();
 		int skillid = getMobSkillTemplate().getSkillId(idx);
 		boolean canUseSkill = false;
 
 		if (skillid > 0) {
 			canUseSkill = skillUse.checkUseSkill(null, skillid,
 					_target.getId(), _target.getX(), _target.getY(), null, 0,
-					L1SkillUse.TYPE_NORMAL, _attacker);
+					SkillUse.TYPE_NORMAL, _attacker);
 		}
 
 		if (canUseSkill == true) {
@@ -324,7 +324,7 @@ public class L1MobSkillUse {
 				skillUse.setLeverage(getMobSkillTemplate().getLeverage(idx));
 			}
 			skillUse.handleCommands(null, skillid, _target.getId(), _target
-					.getX(), _target.getX(), null, 0, L1SkillUse.TYPE_NORMAL,
+					.getX(), _target.getX(), null, 0, SkillUse.TYPE_NORMAL,
 					_attacker);
 			// 使用スキルによるsleepTimeの設定
 			L1Skills skill = SkillsTable.getInstance().getTemplate(skillid);

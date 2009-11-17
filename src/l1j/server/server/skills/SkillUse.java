@@ -16,8 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
-package l1j.server.server.model.skill;
+package l1j.server.server.skills;
 
 import java.util.Iterator;
 import java.util.List;
@@ -89,9 +88,10 @@ import l1j.server.server.templates.L1BookMark;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.utils.RandomArrayList;
-import static l1j.server.server.model.skill.L1SkillId.*;
 
-public class L1SkillUse {
+import static l1j.server.server.skills.SkillId.*;
+
+public class SkillUse {
 	public static final byte TYPE_NORMAL = 0;
 	public static final byte TYPE_LOGIN = 1;
 	public static final byte TYPE_SPELLSC = 2;
@@ -135,7 +135,7 @@ public class L1SkillUse {
 
 	private FastTable<TargetStatus> _targetList;
 
-	private static Logger _log = Logger.getLogger(L1SkillUse.class.getName());
+	private static Logger _log = Logger.getLogger(SkillUse.class.getName());
 
 	private static final int[] CAST_WITH_INVIS = { 1, 2, 3, 5, 8, 9, 12, 13,
 			14, 19, 21, 26, 31, 32, 35, 37, 42, 43, 44, 48, 49, 52, 54, 55, 57,
@@ -162,7 +162,7 @@ public class L1SkillUse {
 			MIRROR_IMAGE, ILLUSION_OGRE, ILLUSION_LICH, PATIENCE, 10026, 10027,
 			ILLUSION_DIA_GOLEM, INSIGHT, ILLUSION_AVATAR, 10028, 10029 };
 
-	public L1SkillUse() {
+	public SkillUse() {
 	}
 
 	private static class TargetStatus {
@@ -1565,7 +1565,7 @@ public class L1SkillUse {
 	// ディレイの設定
 	private void setDelay() {
 		if (_skill.getReuseDelay() > 0) {
-			L1SkillDelay.onSkillUse(_user, _skill.getReuseDelay());
+			SkillDelay.onSkillUse(_user, _skill.getReuseDelay());
 		}
 	}
 

@@ -25,7 +25,7 @@ import javolution.util.FastTable;
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.skills.SkillId;
 import l1j.server.server.serverpackets.S_Ability;
 import l1j.server.server.serverpackets.S_AddSkill;
 import l1j.server.server.serverpackets.S_CharVisualUpdate;
@@ -36,7 +36,7 @@ import l1j.server.server.serverpackets.S_SPMR;
 import l1j.server.server.serverpackets.S_SkillBrave;
 import l1j.server.server.serverpackets.S_SkillHaste;
 import l1j.server.server.templates.L1Item;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 public class L1EquipmentSlot {
 	private static Logger _log = Logger.getLogger(L1EquipmentSlot.class

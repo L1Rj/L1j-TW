@@ -31,7 +31,7 @@ import l1j.server.server.datatables.ClanTable;
 import l1j.server.server.datatables.HouseTable;
 import l1j.server.server.datatables.NpcTable;
 import l1j.server.server.datatables.PetTable;
-import l1j.server.server.item.ItemId;
+import l1j.server.server.items.ItemId;
 import l1j.server.server.log.LogStatusUp;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1CastleLocation;

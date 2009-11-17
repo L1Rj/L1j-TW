@@ -37,7 +37,7 @@ import l1j.server.server.datatables.PolyTable;
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.datatables.TownTable;
 import l1j.server.server.datatables.UBTable;
-import l1j.server.server.item.ItemId;
+import l1j.server.server.items.ItemId;
 import l1j.server.server.model.L1CastleLocation;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1Clan;
@@ -63,8 +63,8 @@ import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
 import l1j.server.server.model.npc.L1NpcHtml;
 import l1j.server.server.model.npc.action.L1NpcAction;
-import l1j.server.server.model.skill.L1SkillId;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillId;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_ApplyAuction;
 import l1j.server.server.serverpackets.S_AuctionBoardRead;
 import l1j.server.server.serverpackets.S_CharReset;
@@ -98,7 +98,7 @@ import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.templates.L1Town;
 import l1j.server.server.utils.RandomArrayList;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 public class C_NPCAction extends ClientBasePacket {
 
@@ -483,10 +483,10 @@ public class C_NPCAction extends ClientBasePacket {
 			} else {
 				for (L1ItemInstance item : pc.getInventory().getItems()) {
 					if (pc.getWeapon().equals(item)) {
-						L1SkillUse l1skilluse = new L1SkillUse();
-						l1skilluse.handleCommands(pc, ENCHANT_WEAPON,
+						SkillUse skilluse = new SkillUse();
+						skilluse.handleCommands(pc, ENCHANT_WEAPON,
 								item.getId(), 0, 0, null, 0,
-								L1SkillUse.TYPE_SPELLSC);
+								SkillUse.TYPE_SPELLSC);
 						break;
 					}
 				}
@@ -495,9 +495,9 @@ public class C_NPCAction extends ClientBasePacket {
 		} else if (s.equalsIgnoreCase("enca")) { // 防具專門家 / 防具の強化魔法を受ける
 			L1ItemInstance item = pc.getInventory().getItemEquipped(2, 2);
 			if (item != null) {
-				L1SkillUse l1skilluse = new L1SkillUse();
-				l1skilluse.handleCommands(pc, BLESSED_ARMOR, item
-						.getId(), 0, 0, null, 0, L1SkillUse.TYPE_SPELLSC);
+				SkillUse skilluse = new SkillUse();
+				skilluse.handleCommands(pc, BLESSED_ARMOR, item
+						.getId(), 0, 0, null, 0, SkillUse.TYPE_SPELLSC);
 			} else {
 				pc.sendPackets(new S_ServerMessage(79));
 			}
@@ -799,10 +799,10 @@ public class C_NPCAction extends ClientBasePacket {
 					pc.sendPackets(new S_ServerMessage(1290)); // ステータス初期化に必要なアイテムがありません。
 					return;
 				}
-				L1SkillUse l1skilluse = new L1SkillUse();
-				l1skilluse.handleCommands(pc, CANCELLATION,
+				SkillUse skilluse = new SkillUse();
+				skilluse.handleCommands(pc, CANCELLATION,
 						pc.getId(), pc.getX(), pc.getY(), null, 0,
-						L1SkillUse.TYPE_LOGIN);
+						SkillUse.TYPE_LOGIN);
 				pc.getInventory().takeoffEquip(945); // 牛のpolyIdで裝備を全部外す。
 				L1Teleport.teleport(pc, 32737, 32789, (short) 997, 4, false);
 				int initStatusPoint = 75 + pc.getElixirStats();
@@ -2391,10 +2391,10 @@ public class C_NPCAction extends ClientBasePacket {
 			// キャンセレーション魔法をかけてもらう
 			if (s.equalsIgnoreCase("0")) {
 				if (pc.getLevel() <= 13) {
-					L1SkillUse skillUse = new L1SkillUse();
+					SkillUse skillUse = new SkillUse();
 					skillUse.handleCommands(pc, CANCELLATION, pc
 							.getId(), pc.getX(), pc.getY(), null, 0,
-							L1SkillUse.TYPE_NPCBUFF, (L1NpcInstance) obj);
+							SkillUse.TYPE_NPCBUFF, (L1NpcInstance) obj);
 					htmlid = ""; // ウィンドウを消す
 				}
 			}

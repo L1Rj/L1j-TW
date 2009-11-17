@@ -5,7 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.skills.SkillId;
 import l1j.server.server.serverpackets.S_SkillSound; //娃娃回血效果
 
 public class HpRegenerationByDoll extends TimerTask {
@@ -45,8 +45,8 @@ public class HpRegenerationByDoll extends TimerTask {
 	}
 
 	private boolean isOverWeight(L1PcInstance pc) {
-		if (pc.hasSkillEffect(L1SkillId.EXOTIC_VITALIZE)
-				|| pc.hasSkillEffect(L1SkillId.ADDITIONAL_FIRE)) {
+		if (pc.hasSkillEffect(SkillId.EXOTIC_VITALIZE)
+				|| pc.hasSkillEffect(SkillId.ADDITIONAL_FIRE)) {
 			return false;
 		}
 		return (14 < pc.getInventory().getWeight240()) ? true : false;

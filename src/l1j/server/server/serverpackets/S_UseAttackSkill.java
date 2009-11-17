@@ -26,8 +26,8 @@ import l1j.server.server.ActionCodes;
 import l1j.server.server.Opcodes;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.model.skill.L1SkillId;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import l1j.server.server.skills.SkillId;
+import static l1j.server.server.skills.SkillId.*;
 
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket

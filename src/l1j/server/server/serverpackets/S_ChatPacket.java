@@ -18,15 +18,19 @@
  */
 package l1j.server.server.serverpackets;
 
+import l1j.server.server.Opcodes;
 import l1j.server.server.model.Instance.L1PcInstance;
 
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
 
-public class S_ChatPacket extends ServerBasePacket
-{
-	public S_ChatPacket(L1PcInstance pc, String chat, int opcode, int type)
-	{
+public class S_ChatPacket extends ServerBasePacket {
+
+	private static final String _S__1F_NORMALCHATPACK = "[S] S_ChatPacket";
+
+	private byte[] _byte = null;
+
+	public S_ChatPacket(L1PcInstance pc, String chat, int opcode, int type) {
 		if (type == 0) { // 通常チャット
 			writeC(opcode);
 			writeC(type);
@@ -91,9 +95,28 @@ public class S_ChatPacket extends ServerBasePacket
 		}
 	}
 
+	public S_ChatPacket(String targetname, String chat, int opcode) {
+		writeC(opcode);
+		writeC(9);
+		writeS("-> (" + targetname + ") " + chat);
+	}
+	
+	public S_ChatPacket(String from , String chat) {
+		writeC(Opcodes.S_OPCODE_WHISPERCHAT);
+		writeS(from);
+		writeS(chat);
+	}
+
 	@Override
-	public byte[] getContent()
-	{
-		return getBytes();
+	public byte[] getContent() {
+		if (null == _byte) {
+			_byte = _bao.toByteArray();
+		}
+		return _byte;
+	}
+
+	@Override
+	public String getType() {
+		return _S__1F_NORMALCHATPACK;
 	}
 }

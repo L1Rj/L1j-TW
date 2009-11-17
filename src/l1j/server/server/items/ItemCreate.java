@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.item;
+package l1j.server.server.items;
 
 import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.model.L1Inventory;

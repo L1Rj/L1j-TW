@@ -25,12 +25,12 @@ import l1j.server.server.model.L1HauntedHouse;
 import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1World;
-import l1j.server.server.model.skill.L1SkillId;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillId;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Npc;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 public class L1FieldObjectInstance extends L1NpcInstance {
 
@@ -91,10 +91,10 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 									.getLogName())); // %0を手に入れました。
 						}
 					}
-					L1SkillUse l1skilluse = new L1SkillUse();
-					l1skilluse.handleCommands(pc,
+					SkillUse skilluse = new SkillUse();
+					skilluse.handleCommands(pc,
 							CANCELLATION, pc.getId(), pc.getX(),
-							pc.getY(), null, 0, L1SkillUse.TYPE_LOGIN);
+							pc.getY(), null, 0, SkillUse.TYPE_LOGIN);
 					L1Teleport.teleport(pc, 32624, 32813, (short) 4, 5, true);
 				}
 			}

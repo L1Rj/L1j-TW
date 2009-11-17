@@ -21,7 +21,7 @@ package l1j.server.server.command.executor;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
-import l1j.server.server.item.ItemId;
+import l1j.server.server.items.ItemId;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_SystemMessage;

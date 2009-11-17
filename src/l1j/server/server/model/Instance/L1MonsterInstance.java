@@ -18,7 +18,7 @@
  */
 package l1j.server.server.model.Instance;
 
-import static l1j.server.server.model.skill.L1SkillId.FOG_OF_SLEEPING;
+import static l1j.server.server.skills.SkillId.FOG_OF_SLEEPING;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

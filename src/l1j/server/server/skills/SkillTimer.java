@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.model.skill;
+package l1j.server.server.skills;
 
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
@@ -54,9 +54,10 @@ import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_Strup;
 import l1j.server.server.serverpackets.S_SystemMessage;//waja add 租旅館
 import l1j.server.server.templates.L1Skills;
-import static l1j.server.server.model.skill.L1SkillId.*;
 
-public interface L1SkillTimer {
+import static l1j.server.server.skills.SkillId.*;
+
+public interface SkillTimer {
 	public int getRemainingTime();
 
 	public void begin();
@@ -69,9 +70,8 @@ public interface L1SkillTimer {
 /*
  * XXX 2008/02/13 vala 本來、このクラスはあるべきではないが暫定處置。
  */
-class L1SkillStop {
-	private static Logger _log = Logger.getLogger(L1SkillStop.class
-			.getName());
+class SkillStop {
+	private static Logger _log = Logger.getLogger(SkillStop.class.getName());
 
 	public static void stopSkill(L1Character cha, int skillId) {
 		if (skillId == LIGHT) { // ライト
@@ -90,11 +90,11 @@ class L1SkillStop {
 				pc.sendPackets(new S_SPMR(pc));
 				pc.sendPackets(new S_SkillIconAura(113, 0));
 			}
-//waja add 租旅館
+			//waja add 租旅館
 		} else if (skillId == 1910) { //3小時55分到
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				if (pc.getMapId() == 99){
+				if (pc.getMapId() == 99) {
 					pc.sendPackets(new S_SystemMessage("出租時間還剩餘 5 分鐘。"));
 				}
 				pc.setSkillEffect(1911, 120 * 1000);
@@ -102,7 +102,7 @@ class L1SkillStop {
 		} else if (skillId == 1911) {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				if (pc.getMapId() == 99){
+				if (pc.getMapId() == 99) {
 					pc.sendPackets(new S_SystemMessage("出租時間還剩餘 3 分鐘。"));
 				}
 				pc.setSkillEffect(1912, 60 * 1000);
@@ -110,7 +110,7 @@ class L1SkillStop {
 		} else if (skillId == 1912) {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				if (pc.getMapId() == 99){
+				if (pc.getMapId() == 99) {
 					pc.sendPackets(new S_SystemMessage("出租時間還剩餘 2 分鐘。"));
 				}
 				pc.setSkillEffect(1913, 60 * 1000);
@@ -118,7 +118,7 @@ class L1SkillStop {
 		} else if (skillId == 1913) {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				if (pc.getMapId() == 99){
+				if (pc.getMapId() == 99) {
 					pc.sendPackets(new S_SystemMessage("出租時間還剩餘 1 分鐘。"));
 				}
 				pc.setSkillEffect(1914, 60 * 1000);
@@ -126,13 +126,13 @@ class L1SkillStop {
 		} else if (skillId == 1914) {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				if (pc.getMapId() == 99){
+				if (pc.getMapId() == 99) {
 					L1Teleport.teleport(pc, 33442, 32797, (short) 4, 4, true);
 				}
-				pc.getInventory().consumeItem(40312,1);
+				pc.getInventory().consumeItem(40312, 1);
 				pc.setSkillEffect(1915, 60 * 1000); //租完1分鐘內無法再租
 			}
-//add end
+			//add end
 		} else if (skillId == SHINING_AURA) { // シャイニング オーラ
 			cha.addAc(8);
 			if (cha instanceof L1PcInstance) {
@@ -228,19 +228,19 @@ class L1SkillStop {
 				int attr = pc.getAddAttrKind();
 				int i = 50;
 				switch (attr) {
-				case 1:
-					pc.addEarth(i);
+					case 1:
+						pc.addEarth(i);
 					break;
-				case 2:
-					pc.addFire(i);
+					case 2:
+						pc.addFire(i);
 					break;
-				case 4:
-					pc.addWater(i);
+					case 4:
+						pc.addWater(i);
 					break;
-				case 8:
-					pc.addWind(i);
+					case 8:
+						pc.addWind(i);
 					break;
-				default:
+					default:
 					break;
 				}
 				pc.setAddAttrKind(0);
@@ -250,19 +250,19 @@ class L1SkillStop {
 				int attr = npc.getAddAttrKind();
 				int i = 50;
 				switch (attr) {
-				case 1:
-					npc.addEarth(i);
+					case 1:
+						npc.addEarth(i);
 					break;
-				case 2:
-					npc.addFire(i);
+					case 2:
+						npc.addFire(i);
 					break;
-				case 4:
-					npc.addWater(i);
+					case 4:
+						npc.addWater(i);
 					break;
-				case 8:
-					npc.addWind(i);
+					case 8:
+						npc.addWind(i);
 					break;
-				default:
+					default:
 					break;
 				}
 				npc.setAddAttrKind(0);
@@ -347,15 +347,11 @@ class L1SkillStop {
 				pc.addMaxMp(-pc.getAdvenMp());
 				pc.setAdvenHp(0);
 				pc.setAdvenMp(0);
-				pc
-						.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc
-								.getMaxHp()));
+				pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 				if (pc.isInParty()) { // パーティー中
 					pc.getParty().updateMiniHP(pc);
 				}
-				pc
-						.sendPackets(new S_MPUpdate(pc.getCurrentMp(), pc
-								.getMaxMp()));
+				pc.sendPackets(new S_MPUpdate(pc.getCurrentMp(), pc.getMaxMp()));
 			}
 		} else if (skillId == HASTE || skillId == GREATER_HASTE) { // ヘイスト、グレーターヘイスト
 			cha.setMoveSpeed(0);
@@ -364,8 +360,8 @@ class L1SkillStop {
 				pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
 			}
-		} else if (skillId == HOLY_WALK || skillId == MOVING_ACCELERATION
-				|| skillId == WIND_WALK || skillId == BLOODLUST) { // ホーリーウォーク、ムービングアクセレーション、ウィンドウォーク、ブラッドラスト
+		} else if (skillId == HOLY_WALK || skillId == MOVING_ACCELERATION || skillId == WIND_WALK
+				|| skillId == BLOODLUST) { // ホーリーウォーク、ムービングアクセレーション、ウィンドウォーク、ブラッドラスト
 			cha.setBraveSpeed(0);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
@@ -419,8 +415,7 @@ class L1SkillStop {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));
 				pc.broadcastPacket(new S_Poison(pc.getId(), (byte) 0));
-				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_PARALYSIS,
-						false));
+				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_PARALYSIS, false));
 			}
 		} else if (skillId == WEAKNESS) { // ウィークネス
 			if (cha instanceof L1PcInstance) {
@@ -442,8 +437,7 @@ class L1SkillStop {
 				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));
 				pc.broadcastPacket(new S_Poison(pc.getId(), (byte) 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, false));
-			} else if (cha instanceof L1MonsterInstance
-					|| cha instanceof L1SummonInstance
+			} else if (cha instanceof L1MonsterInstance || cha instanceof L1SummonInstance
 					|| cha instanceof L1PetInstance) {
 				L1NpcInstance npc = (L1NpcInstance) cha;
 				npc.broadcastPacket(new S_Poison(npc.getId(), (byte) 0));
@@ -455,8 +449,7 @@ class L1SkillStop {
 				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));
 				pc.broadcastPacket(new S_Poison(pc.getId(), (byte) 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, false));
-			} else if (cha instanceof L1MonsterInstance
-					|| cha instanceof L1SummonInstance
+			} else if (cha instanceof L1MonsterInstance || cha instanceof L1SummonInstance
 					|| cha instanceof L1PetInstance) {
 				L1NpcInstance npc = (L1NpcInstance) cha;
 				npc.broadcastPacket(new S_Poison(npc.getId(), (byte) 0));
@@ -466,8 +459,7 @@ class L1SkillStop {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_STUN, false));
-			} else if (cha instanceof L1MonsterInstance
-					|| cha instanceof L1SummonInstance
+			} else if (cha instanceof L1MonsterInstance || cha instanceof L1SummonInstance
 					|| cha instanceof L1PetInstance) {
 				L1NpcInstance npc = (L1NpcInstance) cha;
 				npc.setParalyzed(false);
@@ -491,8 +483,7 @@ class L1SkillStop {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconWindShackle(pc.getId(), 0));
 			}
-		} else if (skillId == SLOW || skillId == ENTANGLE
-				|| skillId == MASS_SLOW) { // スロー、エンタングル、マススロー
+		} else if (skillId == SLOW || skillId == ENTANGLE || skillId == MASS_SLOW) { // スロー、エンタングル、マススロー
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
@@ -503,8 +494,7 @@ class L1SkillStop {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_BIND, false));
-			} else if (cha instanceof L1MonsterInstance
-					|| cha instanceof L1SummonInstance
+			} else if (cha instanceof L1MonsterInstance || cha instanceof L1SummonInstance
 					|| cha instanceof L1PetInstance) {
 				L1NpcInstance npc = (L1NpcInstance) cha;
 				npc.setParalyzed(false);
@@ -542,11 +532,11 @@ class L1SkillStop {
 		} else if (skillId == STATUS_CUBE_QUAKE_TO_ENEMY) { // キューブ[クエイク]：敵
 		} else if (skillId == STATUS_CUBE_SHOCK_TO_ENEMY) { // キューブ[ショック]：敵
 		} else if (skillId == STATUS_MR_REDUCTION_BY_CUBE_SHOCK) { // キューブ[ショック]によるMR減少
-// cha.addMr(10);
-// if (cha instanceof L1PcInstance) {
-// L1PcInstance pc = (L1PcInstance) cha;
-// pc.sendPackets(new S_SPMR(pc));
-// }
+		// cha.addMr(10);
+		// if (cha instanceof L1PcInstance) {
+		// L1PcInstance pc = (L1PcInstance) cha;
+		// pc.sendPackets(new S_SPMR(pc));
+		// }
 		} else if (skillId == STATUS_CUBE_BALANCE) { // キューブ[バランス]
 		}
 
@@ -611,8 +601,7 @@ class L1SkillStop {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addMaxHp(-30);
-				pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(),
-						pc.getMaxHp()));
+				pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 				if (pc.isInParty()) { // パーティー中
 					pc.getParty().updateMiniHP(pc);
 				}
@@ -636,8 +625,7 @@ class L1SkillStop {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addMaxMp(-20);
-				pc.sendPackets(new S_MPUpdate(pc.getCurrentMp(),
-						pc.getMaxMp()));
+				pc.sendPackets(new S_MPUpdate(pc.getCurrentMp(), pc.getMaxMp()));
 				pc.sendPackets(new S_PacketBox(53, 4, 0));
 				pc.setCookingId(0);
 			}
@@ -671,14 +659,12 @@ class L1SkillStop {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addMaxHp(-30);
-				pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(),
-						pc.getMaxHp()));
+				pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 				if (pc.isInParty()) { // パーティー中
 					pc.getParty().updateMiniHP(pc);
 				}
 				pc.addMaxMp(-30);
-				pc.sendPackets(new S_MPUpdate(pc.getCurrentMp(),
-						pc.getMaxMp()));
+				pc.sendPackets(new S_MPUpdate(pc.getCurrentMp(), pc.getMaxMp()));
 				pc.sendPackets(new S_PacketBox(53, 9, 0));
 				pc.setCookingId(0);
 			}
@@ -733,14 +719,12 @@ class L1SkillStop {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addMaxHp(-50);
-				pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(),
-						pc.getMaxHp()));
+				pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 				if (pc.isInParty()) { // パーティー中
 					pc.getParty().updateMiniHP(pc);
 				}
 				pc.addMaxMp(-50);
-				pc.sendPackets(new S_MPUpdate(pc.getCurrentMp(),
-						pc.getMaxMp()));
+				pc.sendPackets(new S_MPUpdate(pc.getCurrentMp(), pc.getMaxMp()));
 				pc.sendPackets(new S_PacketBox(53, 17, 0));
 				pc.setCookingId(0);
 			}
@@ -782,8 +766,7 @@ class L1SkillStop {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addMaxHp(-30);
-				pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(),
-						pc.getMaxHp()));
+				pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 				if (pc.isInParty()) { // パーティー中
 					pc.getParty().updateMiniHP(pc);
 				}
@@ -819,8 +802,8 @@ class L1SkillStop {
 	}
 }
 
-class L1SkillTimerThreadImpl extends Thread implements L1SkillTimer {
-	public L1SkillTimerThreadImpl(L1Character cha, int skillId, int timeMillis) {
+class SkillTimerThreadImpl extends Thread implements SkillTimer {
+	public SkillTimerThreadImpl(L1Character cha, int skillId, int timeMillis) {
 		_cha = cha;
 		_skillId = skillId;
 		_timeMillis = timeMillis;
@@ -849,7 +832,7 @@ class L1SkillTimerThreadImpl extends Thread implements L1SkillTimer {
 
 	public void end() {
 		super.interrupt();
-		L1SkillStop.stopSkill(_cha, _skillId);
+		SkillStop.stopSkill(_cha, _skillId);
 	}
 
 	public void kill() {
@@ -865,12 +848,11 @@ class L1SkillTimerThreadImpl extends Thread implements L1SkillTimer {
 	private int _remainingTime;
 }
 
-class L1SkillTimerTimerImpl implements L1SkillTimer, Runnable {
-	private static Logger _log = Logger.getLogger(L1SkillTimerTimerImpl.class
-			.getName());
+class SkillTimerTimerImpl implements SkillTimer, Runnable {
+	private static Logger _log = Logger.getLogger(SkillTimerTimerImpl.class.getName());
 	private ScheduledFuture<?> _future = null;
 
-	public L1SkillTimerTimerImpl(L1Character cha, int skillId, int timeMillis) {
+	public SkillTimerTimerImpl(L1Character cha, int skillId, int timeMillis) {
 		_cha = cha;
 		_skillId = skillId;
 		_timeMillis = timeMillis;
@@ -888,15 +870,14 @@ class L1SkillTimerTimerImpl implements L1SkillTimer, Runnable {
 
 	@Override
 	public void begin() {
-		_future = GeneralThreadPool.getInstance().scheduleAtFixedRate(this,
-				1000, 1000);
+		_future = GeneralThreadPool.getInstance().scheduleAtFixedRate(this, 1000, 1000);
 	}
 
 	@Override
 	public void end() {
 		kill();
 		try {
-			L1SkillStop.stopSkill(_cha, _skillId);
+			SkillStop.stopSkill(_cha, _skillId);
 		} catch (Throwable e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}

@@ -78,8 +78,8 @@ import l1j.server.server.model.monitor.L1PcExpMonitor;
 import l1j.server.server.model.monitor.L1PcGhostMonitor;
 import l1j.server.server.model.monitor.L1PcHellMonitor;
 import l1j.server.server.model.monitor.L1PcInvisDelay;
-import l1j.server.server.model.skill.L1SkillId;
-import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.skills.SkillId;
+import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_BlueMessage;
 import l1j.server.server.serverpackets.S_CastleMaster;
 import l1j.server.server.serverpackets.S_ChangeShape;
@@ -112,7 +112,7 @@ import l1j.server.server.templates.L1PrivateShopSellList;
 import l1j.server.server.utils.CalcStat;
 import l1j.server.server.utils.IntRange;
 import l1j.server.server.utils.RandomArrayList;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
 // L1Character, L1DropTable, L1Object, L1ItemInstance,
@@ -1291,10 +1291,10 @@ public class L1PcInstance extends L1Character
 			}
 
 			// キャンセレーションをエフェクトなしでかける
-			L1SkillUse l1skilluse = new L1SkillUse();
-			l1skilluse.handleCommands(L1PcInstance.this,
+			SkillUse skilluse = new SkillUse();
+			skilluse.handleCommands(L1PcInstance.this,
 					CANCELLATION, getId(), getX(), getY(), null, 0,
-					L1SkillUse.TYPE_LOGIN);
+					SkillUse.TYPE_LOGIN);
 
 			// シャドウ系變身中に死亡するとクライアントが落ちるため暫定對應
 			if (tempchargfx == 5727 || tempchargfx == 5730

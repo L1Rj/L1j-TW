@@ -25,7 +25,7 @@ import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_SystemMessage;
-import static l1j.server.server.model.skill.L1SkillId.*;
+import static l1j.server.server.skills.SkillId.*;
 
 public class L1FindInvis implements L1CommandExecutor {
 	private static Logger _log = Logger.getLogger(L1FindInvis.class.getName());
