@@ -19,9 +19,9 @@
 
 package l1j.server.server.utils;
 
-import java.util.HashSet;
 import java.util.logging.Logger;
-import java.util.Random;
+
+import javolution.util.FastSet;
 
 import l1j.server.server.model.L1Clan;
 import l1j.server.server.model.L1Location;
@@ -119,7 +119,7 @@ public class Teleportation {
 		 * 各ペット每にUpdateObjectを行う方がコード上ではスマートだが、
 		 * ネットワーク負荷が大きくなる為、一旦Setへ格納して最後にまとめてUpdateObjectする。
 		 */
-		HashSet<L1PcInstance> subjects = new HashSet<L1PcInstance>();
+		FastSet<L1PcInstance> subjects = new FastSet<L1PcInstance>();
 		subjects.add(pc);
 /*
 		if (!pc.isGhost()) {

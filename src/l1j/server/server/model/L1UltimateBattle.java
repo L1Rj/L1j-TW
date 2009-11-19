@@ -20,7 +20,6 @@ package l1j.server.server.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import java.util.SortedSet;
@@ -29,6 +28,7 @@ import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javolution.util.FastSet;
 import javolution.util.FastTable;
 
 import l1j.server.Config;
@@ -84,7 +84,7 @@ public class L1UltimateBattle {
 	private static int BEFORE_MINUTE = 5; // 5分前から入場開始
 	private static Random random = new Random();
 
-	private Set<Integer> _managers = new HashSet<Integer>();
+	private Set<Integer> _managers = new FastSet<Integer>();
 	private SortedSet<Integer> _ubTimes = new TreeSet<Integer>();
 
 	private static final Logger _log = Logger.getLogger(L1UltimateBattle.class

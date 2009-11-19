@@ -19,15 +19,16 @@
  */
 package l1j.server.server.model;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
+
+import javolution.util.FastMap;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 
 public class L1Buddy {
 	private final int _charId;
 
-	private final LinkedHashMap<Integer, String> _buddys = new LinkedHashMap<Integer, String>();
+	private final FastMap<Integer, String> _buddys = new FastMap<Integer, String>();
 
 	public L1Buddy(int charId) {
 		_charId = charId;

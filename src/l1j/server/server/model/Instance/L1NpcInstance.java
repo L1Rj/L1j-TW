@@ -18,7 +18,6 @@
  */
 package l1j.server.server.model.Instance;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -28,6 +27,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javolution.util.FastList;
 import javolution.util.FastMap;
 import javolution.util.FastTable;
 
@@ -1597,7 +1597,7 @@ public class L1NpcInstance extends L1Character {
 		int[] locCopy;
 		//int[] dirFront = new int[5];
 		boolean serchMap[][] = new boolean[locCenter * 2 + 1][locCenter * 2 + 1];
-		LinkedList<int[]> queueSerch = new LinkedList<int[]>();
+		FastList<int[]> queueSerch = new FastList<int[]>();
 
 		// 探索用マップの設定
 		for (int j = courceRange * 2 + 1; j > 0; j--) {
