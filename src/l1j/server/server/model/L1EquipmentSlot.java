@@ -133,9 +133,9 @@ public class L1EquipmentSlot {
 		}
 
 		if (itemId == 20077 || itemId == 20062 || itemId == 120077) {//隱身道具
-			if (!_owner.hasSkillEffect(INVISIBILITY)) {
-				_owner.killSkillEffectTimer(BLIND_HIDING);
-				_owner.setSkillEffect(INVISIBILITY, 0);
+			if (!_owner.hasSkillEffect(SKILL_INVISIBILITY)) {
+				_owner.killSkillEffectTimer(SKILL_BLIND_HIDING);
+				_owner.setSkillEffect(SKILL_INVISIBILITY, 0);
 				_owner.sendPackets(new S_Invis(_owner.getId(), 1));
 				_owner.broadcastPacketForFindInvis(new S_RemoveObject(_owner),
 						false);
@@ -170,8 +170,8 @@ public class L1EquipmentSlot {
             _owner.sendPackets(new S_CharVisualUpdate(_owner));
             _owner.broadcastPacket(new S_CharVisualUpdate(_owner));
         }
-		if (_owner.hasSkillEffect(COUNTER_BARRIER)) {
-			_owner.removeSkillEffect(COUNTER_BARRIER);
+		if (_owner.hasSkillEffect(SKILL_COUNTER_BARRIER)) {
+			_owner.removeSkillEffect(SKILL_COUNTER_BARRIER);
 		}
 	}
 
@@ -391,31 +391,31 @@ public class L1EquipmentSlot {
 	public void setMagicHelm(L1ItemInstance item) {
 		switch (item.getItemId()) {
 		case 20013:
-			_owner.setSkillMastery(PHYSICAL_ENCHANT_DEX);
-			_owner.setSkillMastery(HASTE);
+			_owner.setSkillMastery(SKILL_ENCHANT_DEXTERITY);
+			_owner.setSkillMastery(SKILL_HASTE);
 			_owner.sendPackets(new S_AddSkill(0, 0, 0, 2, 0, 4, 0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			break;
 		case 20014:
-			_owner.setSkillMastery(HEAL);
-			_owner.setSkillMastery(EXTRA_HEAL);
+			_owner.setSkillMastery(SKILL_LESSER_HEAL);
+			_owner.setSkillMastery(SKILL_HEAL);
 			_owner.sendPackets(new S_AddSkill(1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			break;
 		case 20015:
-			_owner.setSkillMastery(ENCHANT_WEAPON);
-			_owner.setSkillMastery(DETECTION);
-			_owner.setSkillMastery(PHYSICAL_ENCHANT_STR);
+			_owner.setSkillMastery(SKILL_ENCHANT_WEAPON);
+			_owner.setSkillMastery(SKILL_DETECTION);
+			_owner.setSkillMastery(SKILL_ENCHANT_MIGHTY);
 			_owner.sendPackets(new S_AddSkill(0, 24, 0, 0, 0, 2, 0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			break;
 		case 20008:
-			_owner.setSkillMastery(HASTE);
+			_owner.setSkillMastery(SKILL_HASTE);
 			_owner.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			break;
 		case 20023:
-			_owner.setSkillMastery(GREATER_HASTE);
+			_owner.setSkillMastery(SKILL_GREATER_HASTE);
 			_owner.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			break;
@@ -426,60 +426,60 @@ public class L1EquipmentSlot {
 		switch (item.getItemId()) {
 		case 20013: //敏盔
 			if (!SkillsTable.getInstance().spellCheck(objectId,
-					PHYSICAL_ENCHANT_DEX)) {
-				_owner.removeSkillMastery(PHYSICAL_ENCHANT_DEX);
+					SKILL_ENCHANT_DEXTERITY)) {
+				_owner.removeSkillMastery(SKILL_ENCHANT_DEXTERITY);
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 2, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			}
-			if (!SkillsTable.getInstance().spellCheck(objectId, HASTE)) {
-				_owner.removeSkillMastery(HASTE);
+			if (!SkillsTable.getInstance().spellCheck(objectId, SKILL_HASTE)) {
+				_owner.removeSkillMastery(SKILL_HASTE);
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			}
 			break;
 		case 20014: //治盔
-			if (!SkillsTable.getInstance().spellCheck(objectId, HEAL)) {
-				_owner.removeSkillMastery(HEAL);
+			if (!SkillsTable.getInstance().spellCheck(objectId, SKILL_LESSER_HEAL)) {
+				_owner.removeSkillMastery(SKILL_LESSER_HEAL);
 				_owner.sendPackets(new S_DelSkill(1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			}
-			if (!SkillsTable.getInstance().spellCheck(objectId, EXTRA_HEAL)) {
-				_owner.removeSkillMastery(EXTRA_HEAL);
+			if (!SkillsTable.getInstance().spellCheck(objectId, SKILL_HEAL)) {
+				_owner.removeSkillMastery(SKILL_HEAL);
 				_owner.sendPackets(new S_DelSkill(0, 0, 4, 0, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			}
 			break;
 		case 20015: //力盔
 			if (!SkillsTable.getInstance().spellCheck(objectId,
-					ENCHANT_WEAPON)) {
-				_owner.removeSkillMastery(ENCHANT_WEAPON);
+					SKILL_ENCHANT_WEAPON)) {
+				_owner.removeSkillMastery(SKILL_ENCHANT_WEAPON);
 				_owner.sendPackets(new S_DelSkill(0, 8, 0, 0, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			}
-			if (!SkillsTable.getInstance().spellCheck(objectId, DETECTION)) {
-				_owner.removeSkillMastery(DETECTION);
+			if (!SkillsTable.getInstance().spellCheck(objectId, SKILL_DETECTION)) {
+				_owner.removeSkillMastery(SKILL_DETECTION);
 				_owner.sendPackets(new S_DelSkill(0, 16, 0, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 						0));
 			}
 			if (!SkillsTable.getInstance().spellCheck(objectId,
-					PHYSICAL_ENCHANT_STR)) {
-				_owner.removeSkillMastery(PHYSICAL_ENCHANT_STR);
+					SKILL_ENCHANT_MIGHTY)) {
+				_owner.removeSkillMastery(SKILL_ENCHANT_MIGHTY);
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			}
 			break;
 		case 20008: //小型風之頭盔
-			if (!SkillsTable.getInstance().spellCheck(objectId, HASTE)) {
-				_owner.removeSkillMastery(HASTE);
+			if (!SkillsTable.getInstance().spellCheck(objectId, SKILL_HASTE)) {
+				_owner.removeSkillMastery(SKILL_HASTE);
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			}
 			break;
 		case 20023: //風之頭盔
 			if (!SkillsTable.getInstance().spellCheck(objectId,
-					GREATER_HASTE)) {
-				_owner.removeSkillMastery(GREATER_HASTE);
+					SKILL_GREATER_HASTE)) {
+				_owner.removeSkillMastery(SKILL_GREATER_HASTE);
 				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 0, 32, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 						0));

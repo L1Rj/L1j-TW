@@ -214,7 +214,7 @@ public class L1Magic {
  		if (!checkZone(skillId)) {
 			return false;
 		}
-		if (skillId == CANCELLATION) {
+		if (skillId == SKILL_CANCEL_MAGIC) {
 			if (_calcType == PC_PC && _pc != null && _targetPc != null) {
 				// 自分自身の場合は100%成功
 				if (_pc.getId() == _targetPc.getId()) {
@@ -245,16 +245,16 @@ public class L1Magic {
 
 		// アースバインド中はWB、キャンセレーション以外無效
 		if (_calcType == PC_PC || _calcType == NPC_PC) {
-			if (_targetPc.hasSkillEffect(EARTH_BIND)) {
-				if (skillId != WEAPON_BREAK
-						&& skillId != CANCELLATION) {
+			if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
+				if (skillId != SKILL_WEAPON_BREAK
+						&& skillId != SKILL_CANCEL_MAGIC) {
 					return false;
 				}
 			}
 		} else {
-			if (_targetNpc.hasSkillEffect(EARTH_BIND)) {
-				if (skillId != WEAPON_BREAK
-						&& skillId != CANCELLATION) {
+			if (_targetNpc.hasSkillEffect(SKILL_EARTH_BIND)) {
+				if (skillId != SKILL_WEAPON_BREAK
+						&& skillId != SKILL_CANCEL_MAGIC) {
 					return false;
 				}
 			}
@@ -327,20 +327,20 @@ public class L1Magic {
 	private boolean checkZone(int skillId) {
 		if (_pc != null && _targetPc != null) {
 			if (_pc.getZoneType() == 1 || _targetPc.getZoneType() == 1) { // セーフティーゾーン
-				if (skillId == WEAPON_BREAK || skillId == SLOW
-						|| skillId == CURSE_PARALYZE || skillId == MANA_DRAIN
-						|| skillId == DARKNESS || skillId == WEAKNESS
-						|| skillId == DISEASE || skillId == DECAY_POTION
-						|| skillId == MASS_SLOW || skillId == ENTANGLE
-						|| skillId == ERASE_MAGIC || skillId == EARTH_BIND
-						|| skillId == AREA_OF_SILENCE || skillId == WIND_SHACKLE
-						|| skillId == STRIKER_GALE || skillId == SHOCK_STUN
-						|| skillId == FOG_OF_SLEEPING || skillId == ICE_LANCE
-						|| skillId == FREEZING_BLIZZARD
-						|| skillId == FREEZING_BREATH
-						|| skillId == POLLUTE_WATER
-						|| skillId == ELEMENTAL_FALL_DOWN
-						|| skillId == RETURN_TO_NATURE) {
+				if (skillId == SKILL_WEAPON_BREAK || skillId == SKILL_SLOW
+						|| skillId == SKILL_CURSE_PARALYZE || skillId == SKILL_MANA_DRAIN
+						|| skillId == SKILL_DARKNESS || skillId == SKILL_WEAKNESS
+						|| skillId == SKILL_DISEASE || skillId == SKILL_DECAY_POTION
+						|| skillId == SKILL_MASS_SLOW || skillId == SKILL_ENTANGLE
+						|| skillId == SKILL_ERASE_MAGIC || skillId == SKILL_EARTH_BIND
+						|| skillId == SKILL_AREA_OF_SILENCE || skillId == SKILL_WIND_SHACKLE
+						|| skillId == SKILL_STRIKER_GALE || skillId == SKILL_STUN_SHOCK
+						|| skillId == SKILL_FOG_OF_SLEEPING || skillId == SKILL_ICE_LANCE
+						|| skillId == SKILL_FREEZING_BLIZZARD
+						|| skillId == SKILL_FREEZING_BREATH
+						|| skillId == SKILL_POLLUTE_WATER
+						|| skillId == SKILL_ELEMENTAL_FALL_DOWN
+						|| skillId == SKILL_RETURN_TO_NATURE) {
 					return false;
 				}
 			}
@@ -365,7 +365,7 @@ public class L1Magic {
 			defenseLevel = _targetPc.getLevel();
 		} else {
 			defenseLevel = _targetNpc.getLevel();
-			if (skillId == RETURN_TO_NATURE) {
+			if (skillId == SKILL_RETURN_TO_NATURE) {
 				if (_targetNpc instanceof L1SummonInstance) {
 					L1SummonInstance summon = (L1SummonInstance) _targetNpc;
 					defenseLevel = summon.getMaster().getLevel();
@@ -373,11 +373,11 @@ public class L1Magic {
 			}
 		}
 
-		if (skillId == ELEMENTAL_FALL_DOWN || skillId == RETURN_TO_NATURE
-				|| skillId == ENTANGLE || skillId == ERASE_MAGIC
-				|| skillId == AREA_OF_SILENCE || skillId == WIND_SHACKLE
-				|| skillId == STRIKER_GALE || skillId == POLLUTE_WATER
-				|| skillId == EARTH_BIND) {
+		if (skillId == SKILL_ELEMENTAL_FALL_DOWN || skillId == SKILL_RETURN_TO_NATURE
+				|| skillId == SKILL_ENTANGLE || skillId == SKILL_ERASE_MAGIC
+				|| skillId == SKILL_AREA_OF_SILENCE || skillId == SKILL_WIND_SHACKLE
+				|| skillId == SKILL_STRIKER_GALE || skillId == SKILL_POLLUTE_WATER
+				|| skillId == SKILL_EARTH_BIND) {
 			// 成功確率は 魔法固有係數 × LV差 + 基本確率
 			probability = (int) (((l1skills.getProbabilityDice()) / 10D)
 					* (attackLevel - defenseLevel)) + l1skills
@@ -386,7 +386,7 @@ public class L1Magic {
 			if (_calcType == PC_PC || _calcType == PC_NPC) {
 				probability += 2 * _pc.getOriginalMagicHit();
 			}
-		} else if (skillId == SHOCK_STUN) {
+		} else if (skillId == SKILL_STUN_SHOCK) {
 			// 成功確率は 基本確率 + LV差1毎に+-2%
 			probability = l1skills.getProbabilityValue() + (attackLevel - defenseLevel) * 2;
 
@@ -394,7 +394,7 @@ public class L1Magic {
 			if (_calcType == PC_PC || _calcType == PC_NPC) {
 				probability += 2 * _pc.getOriginalMagicHit();
 			}
-		} else if (skillId == COUNTER_BARRIER) {
+		} else if (skillId == SKILL_COUNTER_BARRIER) {
 			// 成功確率は 基本確率 + LV差1毎に+-1%
 			probability = l1skills.getProbabilityValue() + attackLevel - defenseLevel;
 
@@ -402,8 +402,8 @@ public class L1Magic {
 			if (_calcType == PC_PC || _calcType == PC_NPC) {
 				probability += 2 * _pc.getOriginalMagicHit();
 			}
-		} else if (skillId == GUARD_BRAKE || skillId == RESIST_FEAR
-				|| skillId ==HORROR_OF_DEATH) {
+		} else if (skillId == SKILL_GUARD_BRAKE || skillId == SKILL_RESIST_FEAR
+				|| skillId == SKILL_HORROR_OF_DEATH) {
 			int dice = l1skills.getProbabilityDice();
 			int value = l1skills.getProbabilityValue();
 			int diceCount = 0;
@@ -454,7 +454,7 @@ public class L1Magic {
 
 			probability -= getTargetMr();
 
-			if (skillId == TAMING_MONSTER) {
+			if (skillId == SKILL_TAME_MONSTER) {
 				double probabilityRevision = 1;
 				if ((_targetNpc.getMaxHp() * 1 / 4) > _targetNpc.getCurrentHp()) {
 					probabilityRevision = 1.3;
@@ -470,30 +470,30 @@ public class L1Magic {
 		}
 
 		// 狀態異常に對する耐性
-		if (skillId == EARTH_BIND) {
+		if (skillId == SKILL_EARTH_BIND) {
 			if (_calcType == PC_PC || _calcType == NPC_PC) {
 				probability -= _targetPc.getRegistSustain();
 			}
-		} else if (skillId == SHOCK_STUN) {
+		} else if (skillId == SKILL_STUN_SHOCK) {
 			if (_calcType == PC_PC || _calcType == NPC_PC) {
 				probability -= 2 * _targetPc.getRegistStun();
 			}
-		} else if (skillId == CURSE_PARALYZE) {
+		} else if (skillId == SKILL_CURSE_PARALYZE) {
 			if (_calcType == PC_PC || _calcType == NPC_PC) {
 				probability -= _targetPc.getRegistStone();
 			}
-		} else if (skillId == FOG_OF_SLEEPING) {
+		} else if (skillId == SKILL_FOG_OF_SLEEPING) {
 			if (_calcType == PC_PC || _calcType == NPC_PC) {
 				probability -= _targetPc.getRegistSleep();
 			}
-		} else if (skillId == ICE_LANCE
-				|| skillId == FREEZING_BLIZZARD
-				|| skillId == FREEZING_BREATH) {
+		} else if (skillId == SKILL_ICE_LANCE
+				|| skillId == SKILL_FREEZING_BLIZZARD
+				|| skillId == SKILL_FREEZING_BREATH) {
 			if (_calcType == PC_PC || _calcType == NPC_PC) {
 				probability -= _targetPc.getRegistFreeze();
 			}
-		} else if (skillId == CURSE_BLIND
-				|| skillId == DARKNESS || skillId == DARK_BLIND) {
+		} else if (skillId == SKILL_CURSE_BLIND
+				|| skillId == SKILL_DARKNESS || skillId == SKILL_DARK_BLIND) {
 			if (_calcType == PC_PC || _calcType == NPC_PC) {
 				probability -= _targetPc.getRegistBlind();
 			}
@@ -521,22 +521,22 @@ public class L1Magic {
 	public int calcPcFireWallDamage() {
 		int dmg = 0;
 		double attrDeffence = calcAttrResistance(L1Skills.ATTR_FIRE);
-		L1Skills l1skills = SkillsTable.getInstance().getTemplate(FIRE_WALL);
+		L1Skills l1skills = SkillsTable.getInstance().getTemplate(SKILL_FIRE_WALL);
 		dmg = (int) ((1.0 - attrDeffence) * l1skills.getDamageValue());
 
-		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
+		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(ICE_LANCE)) {
+		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) {
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(FREEZING_BREATH)) {
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
+		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
 			dmg = 0;
 		}
 
@@ -551,19 +551,19 @@ public class L1Magic {
 	public int calcNpcFireWallDamage() {
 		int dmg = 0;
 		double attrDeffence = calcAttrResistance(L1Skills.ATTR_FIRE);
-		L1Skills l1skills = SkillsTable.getInstance().getTemplate(FIRE_WALL);
+		L1Skills l1skills = SkillsTable.getInstance().getTemplate(SKILL_FIRE_WALL);
 		dmg = (int) ((1.0 - attrDeffence) * l1skills.getDamageValue());
 
-		if (_targetNpc.hasSkillEffect(ICE_LANCE)) {
+		if (_targetNpc.hasSkillEffect(SKILL_ICE_LANCE)) {
 			dmg = 0;
 		}
-		if (_targetNpc.hasSkillEffect(FREEZING_BLIZZARD)) {
+		if (_targetNpc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
-		if (_targetNpc.hasSkillEffect(FREEZING_BREATH)) {
+		if (_targetNpc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 			dmg = 0;
 		}
-		if (_targetNpc.hasSkillEffect(EARTH_BIND)) {
+		if (_targetNpc.hasSkillEffect(SKILL_EARTH_BIND)) {
 			dmg = 0;
 		}
 
@@ -577,7 +577,7 @@ public class L1Magic {
 	// ●●●● プレイヤー‧ＮＰＣ から プレイヤー への魔法ダメージ算出 ●●●●
 	private int calcPcMagicDamage(int skillId) {
 		int dmg = 0;
-		if (skillId == FINAL_BURN) {
+		if (skillId == SKILL_FINAL_BURN) {
 			if (_calcType == PC_PC || _calcType == PC_NPC) {
 				dmg = _pc.getCurrentMp();
 			} else {
@@ -625,18 +625,18 @@ public class L1Magic {
 			dmg -= 5;
 		}
 
-		if (_targetPc.hasSkillEffect(REDUCTION_ARMOR)) {
+		if (_targetPc.hasSkillEffect(SKILL_REDUCTION_ARMOR)) {
 			int targetPcLvl = _targetPc.getLevel();
 			if (targetPcLvl < 50) {
 				targetPcLvl = 50;
 			}
 			dmg -= (targetPcLvl - 50) / 5 + 1;
 		}
-		if (_targetPc.hasSkillEffect(DRAGON_SKIN)) {
+		if (_targetPc.hasSkillEffect(SKILL_DRAGON_SKIN)) {
 			dmg -= 2;
 		}
 
-		if (_targetPc.hasSkillEffect(PATIENCE)) {
+		if (_targetPc.hasSkillEffect(SKILL_PATIENCE)) {
 			dmg -= 2;
 		}
 
@@ -659,26 +659,26 @@ public class L1Magic {
 			}
 		}
 
-		if (_targetPc.hasSkillEffect(IMMUNE_TO_HARM)) {
+		if (_targetPc.hasSkillEffect(SKILL_IMMUNE_TO_HARM)) {
 			dmg /= 2;
 		}
-		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
+		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(ICE_LANCE)) {
+		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) {
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(FREEZING_BREATH)) {
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
+		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
 			dmg = 0;
 		}
 
-		if (_targetPc.hasSkillEffect(COUNTER_MIRROR)) {
+		if (_targetPc.hasSkillEffect(SKILL_COUNTER_MIRROR)) {
 			if (_calcType == PC_PC) {
 				if (_targetPc.getWis() >= RandomArrayList.getInc(100, 1)) {
 					_pc.sendPackets(new S_DoActionGFX(_pc.getId(),
@@ -691,7 +691,7 @@ public class L1Magic {
 							.getId(), 4395));
 					_pc.receiveDamage(_targetPc, dmg, false);
 					dmg = 0;
-					_targetPc.killSkillEffectTimer(COUNTER_MIRROR);
+					_targetPc.killSkillEffectTimer(SKILL_COUNTER_MIRROR);
 				}
 			} else if (_calcType == NPC_PC) {
 				int npcId = _npc.getNpcTemplate().get_npcId();
@@ -708,7 +708,7 @@ public class L1Magic {
 								.getId(), 4395));
 						_npc.receiveDamage(_targetPc, dmg);
 						dmg = 0;
-						_targetPc.killSkillEffectTimer(COUNTER_MIRROR);
+						_targetPc.killSkillEffectTimer(SKILL_COUNTER_MIRROR);
 					}
 				}
 			}
@@ -724,7 +724,7 @@ public class L1Magic {
 	// ●●●● プレイヤー‧ＮＰＣ から ＮＰＣ へのダメージ算出 ●●●●
 	private int calcNpcMagicDamage(int skillId) {
 		int dmg = 0;
-		if (skillId == FINAL_BURN) {
+		if (skillId == SKILL_FINAL_BURN) {
 			if (_calcType == PC_PC || _calcType == PC_NPC) {
 				dmg = _pc.getCurrentMp();
 			} else {
@@ -754,16 +754,16 @@ public class L1Magic {
 			}
 		}
 
-		if (_targetNpc.hasSkillEffect(ICE_LANCE)) {
+		if (_targetNpc.hasSkillEffect(SKILL_ICE_LANCE)) {
 			dmg = 0;
 		}
-		if (_targetNpc.hasSkillEffect(FREEZING_BLIZZARD)) {
+		if (_targetNpc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
-		if (_targetNpc.hasSkillEffect(FREEZING_BREATH)) {
+		if (_targetNpc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 			dmg = 0;
 		}
-		if (_targetNpc.hasSkillEffect(EARTH_BIND)) {
+		if (_targetNpc.hasSkillEffect(SKILL_EARTH_BIND)) {
 			dmg = 0;
 		}
 		// TODO 吉爾塔斯反擊屏障判斷
@@ -892,7 +892,7 @@ public class L1Magic {
 			magicDamage += _pc.getOriginalMagicDamage();
 		}
 		if (_calcType == PC_PC || _calcType == PC_NPC) { // アバターによる追加ダメージ
-			if (_pc.hasSkillEffect(ILLUSION_AVATAR)) {
+			if (_pc.hasSkillEffect(SKILL_ILLUSION_AVATAR)) {
 				magicDamage += 10;
 			}
 		}

@@ -1475,7 +1475,7 @@ public class L1Character extends L1Object {
 	}
 
 	public boolean isInvisble() {
-		return (hasSkillEffect(INVISIBILITY) || hasSkillEffect(BLIND_HIDING));
+		return (hasSkillEffect(SKILL_INVISIBILITY) || hasSkillEffect(SKILL_BLIND_HIDING));
 	}
 
 	public void healHp(int pt) {
@@ -1518,7 +1518,7 @@ public class L1Character extends L1Object {
 			L1NpcInstance npc = (L1NpcInstance) this;
 			lightSize = npc.getLightSize(); // npc.sqlのライトサイズ
 		}
-		if (hasSkillEffect(LIGHT)) {
+		if (hasSkillEffect(SKILL_LIGHT)) {
 			lightSize = 14;
 		}
 

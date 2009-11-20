@@ -45,8 +45,8 @@ public class HpRegenerationByDoll extends TimerTask {
 	}
 
 	private boolean isOverWeight(L1PcInstance pc) {
-		if (pc.hasSkillEffect(SkillId.EXOTIC_VITALIZE)
-				|| pc.hasSkillEffect(SkillId.ADDITIONAL_FIRE)) {
+		if (pc.hasSkillEffect(SkillId.SKILL_EXOTIC_VITALIZE)
+				|| pc.hasSkillEffect(SkillId.SKILL_ADDITIONAL_FIRE)) {
 			return false;
 		}
 		return (14 < pc.getInventory().getWeight240()) ? true : false;

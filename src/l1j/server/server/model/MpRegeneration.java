@@ -65,10 +65,10 @@ public class MpRegeneration extends TimerTask {
 			}
 			baseMpr += wis - 10;
 		}
-		if (_pc.hasSkillEffect(MEDITATION)) { // メディテーション中
+		if (_pc.hasSkillEffect(SKILL_MEDITATION)) { // メディテーション中
 			baseMpr += 5;
 		}
-		if (_pc.hasSkillEffect(CONCENTRATION)) { // コンセントレーション中
+		if (_pc.hasSkillEffect(SKILL_CONCENTRATION)) { // コンセントレーション中
 			baseMpr += 2;
 		}
 		if (L1HouseLocation.isInHouse(_pc.getX(), _pc.getY(), _pc.getMapId())) {
@@ -123,8 +123,8 @@ public class MpRegeneration extends TimerTask {
 	private boolean isOverWeight(L1PcInstance pc) {
 		// エキゾチックバイタライズ狀態、アディショナルファイアー狀態であれば、
 		// 重量オーバーでは無いとみなす。
-		if (pc.hasSkillEffect(EXOTIC_VITALIZE)
-				|| pc.hasSkillEffect(ADDITIONAL_FIRE)) {
+		if (pc.hasSkillEffect(SKILL_EXOTIC_VITALIZE)
+				|| pc.hasSkillEffect(SKILL_ADDITIONAL_FIRE)) {
 			return false;
 		}
 

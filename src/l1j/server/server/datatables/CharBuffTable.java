@@ -100,7 +100,7 @@ public class CharBuffTable {
 			int timeSec = pc.getSkillEffectTimeSec(skillId);
 			if (0 < timeSec) {
 				int polyId = 0;
-				if (skillId == SHAPE_CHANGE) {
+				if (skillId == SKILL_POLYMORPH) {
 					polyId = pc.getTempCharGfx();
 				}
 				StoreBuff(pc.getId(), skillId, timeSec, polyId);

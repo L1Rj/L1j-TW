@@ -114,7 +114,7 @@ public class HpRegeneration extends TimerTask {
 		equipHpr += _pc.getHpr();
 		int bonus = RandomArrayList.getInc(maxBonus, 1);
 
-		if (_pc.hasSkillEffect(NATURES_TOUCH)) {
+		if (_pc.hasSkillEffect(SKILL_NATURES_TOUCH)) {
 			bonus += 15;
 		}
 		if (L1HouseLocation.isInHouse(_pc.getX(), _pc.getY(), _pc.getMapId())) {
@@ -158,7 +158,7 @@ public class HpRegeneration extends TimerTask {
 
 		// 空腹と重量のチェック
 		if (_pc.get_food() < 3 || isOverWeight(_pc)
-				|| _pc.hasSkillEffect(BERSERKERS)) {
+				|| _pc.hasSkillEffect(SKILL_BERSERKERS)) {
 			bonus = 0;
 			// 裝備によるＨＰＲ增加は滿腹度、重量によってなくなるが、 減少である場合は滿腹度、重量に關係なく效果が殘る
 			if (equipHpr > 0) {
@@ -232,8 +232,8 @@ public class HpRegeneration extends TimerTask {
 	private boolean isOverWeight(L1PcInstance pc) {
 		// エキゾチックバイタライズ狀態、アディショナルファイアー狀態か
 		// ゴールデンウィング裝備時であれば、重量オーバーでは無いとみなす。
-		if (pc.hasSkillEffect(EXOTIC_VITALIZE)
-				|| pc.hasSkillEffect(ADDITIONAL_FIRE)) {
+		if (pc.hasSkillEffect(SKILL_EXOTIC_VITALIZE)
+				|| pc.hasSkillEffect(SKILL_ADDITIONAL_FIRE)) {
 			return false;
 		}
 		if (pc.getInventory().checkEquipped(20049)) {

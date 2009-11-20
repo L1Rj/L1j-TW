@@ -32,18 +32,18 @@ import l1j.server.server.serverpackets.S_SkillIconGFX;
 import l1j.server.server.serverpackets.S_SkillIconWisdomPotion;
 import l1j.server.server.serverpackets.S_SkillSound;
 
-import static l1j.server.server.skills.SkillId.BLOODLUST;
-import static l1j.server.server.skills.SkillId.CURSE_BLIND;
-import static l1j.server.server.skills.SkillId.DARKNESS;
-import static l1j.server.server.skills.SkillId.DECAY_POTION;
-import static l1j.server.server.skills.SkillId.ENTANGLE;
-import static l1j.server.server.skills.SkillId.GREATER_HASTE;
-import static l1j.server.server.skills.SkillId.HASTE;
-import static l1j.server.server.skills.SkillId.HOLY_WALK;
-import static l1j.server.server.skills.SkillId.MASS_SLOW;
-import static l1j.server.server.skills.SkillId.MOVING_ACCELERATION;
-import static l1j.server.server.skills.SkillId.POLLUTE_WATER;
-import static l1j.server.server.skills.SkillId.SLOW;
+import static l1j.server.server.skills.SkillId.SKILL_BLOODLUST;
+import static l1j.server.server.skills.SkillId.SKILL_CURSE_BLIND;
+import static l1j.server.server.skills.SkillId.SKILL_DARKNESS;
+import static l1j.server.server.skills.SkillId.SKILL_DECAY_POTION;
+import static l1j.server.server.skills.SkillId.SKILL_ENTANGLE;
+import static l1j.server.server.skills.SkillId.SKILL_GREATER_HASTE;
+import static l1j.server.server.skills.SkillId.SKILL_HASTE;
+import static l1j.server.server.skills.SkillId.SKILL_HOLY_WALK;
+import static l1j.server.server.skills.SkillId.SKILL_MASS_SLOW;
+import static l1j.server.server.skills.SkillId.SKILL_MOVING_ACCELERATION;
+import static l1j.server.server.skills.SkillId.SKILL_POLLUTE_WATER;
+import static l1j.server.server.skills.SkillId.SKILL_SLOW;
 import static l1j.server.server.skills.SkillId.STATUS_BLUE_POTION;
 import static l1j.server.server.skills.SkillId.STATUS_BRAVE;
 import static l1j.server.server.skills.SkillId.STATUS_ELFBRAVE;
@@ -52,7 +52,7 @@ import static l1j.server.server.skills.SkillId.STATUS_HASTE;
 import static l1j.server.server.skills.SkillId.STATUS_RIBRAVE;
 import static l1j.server.server.skills.SkillId.STATUS_UNDERWATER_BREATH;
 import static l1j.server.server.skills.SkillId.STATUS_WISDOM_POTION;
-import static l1j.server.server.skills.SkillId.WIND_WALK;
+import static l1j.server.server.skills.SkillId.SKILL_WIND_WALK;
 
 public class Potion {
 
@@ -71,7 +71,7 @@ public class Potion {
 		pc.broadcastPacket(new S_SkillSound(pc.getId(), gfxid));
 		pc.sendPackets(new S_ServerMessage(77)); // \f1氣分が良くなりました。
 		healHp *= (_random.nextGaussian() / 5.0D) + 1.0D;
-		if (pc.hasSkillEffect(POLLUTE_WATER)) { // ポルートウォーター中は回復量1/2倍
+		if (pc.hasSkillEffect(SKILL_POLLUTE_WATER)) { // ポルートウォーター中は回復量1/2倍
 			healHp /= 2;
 		}
 		pc.setCurrentHp(pc.getCurrentHp() + healHp);
@@ -118,13 +118,13 @@ public class Potion {
 		pc.setDrink(false);
 
 		// ヘイスト、グレーターヘイストとは重複しない
-		if (pc.hasSkillEffect(HASTE)) {
-			pc.killSkillEffectTimer(HASTE);
+		if (pc.hasSkillEffect(SKILL_HASTE)) {
+			pc.killSkillEffectTimer(SKILL_HASTE);
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
 			pc.setMoveSpeed(0);
-		} else if (pc.hasSkillEffect(GREATER_HASTE)) {
-			pc.killSkillEffectTimer(GREATER_HASTE);
+		} else if (pc.hasSkillEffect(SKILL_GREATER_HASTE)) {
+			pc.killSkillEffectTimer(SKILL_GREATER_HASTE);
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
 			pc.setMoveSpeed(0);
@@ -136,16 +136,16 @@ public class Potion {
 		}
 
 		// スロー、マス スロー、エンタングル中はスロー狀態を解除するだけ
-		if (pc.hasSkillEffect(SLOW)) { // スロー
-			pc.killSkillEffectTimer(SLOW);
+		if (pc.hasSkillEffect(SKILL_SLOW)) { // スロー
+			pc.killSkillEffectTimer(SKILL_SLOW);
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
-		} else if (pc.hasSkillEffect(MASS_SLOW)) { // マス スロー
-			pc.killSkillEffectTimer(MASS_SLOW);
+		} else if (pc.hasSkillEffect(SKILL_MASS_SLOW)) { // マス スロー
+			pc.killSkillEffectTimer(SKILL_MASS_SLOW);
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
-		} else if (pc.hasSkillEffect(ENTANGLE)) { // エンタングル
-			pc.killSkillEffectTimer(ENTANGLE);
+		} else if (pc.hasSkillEffect(SKILL_ENTANGLE)) { // エンタングル
+			pc.killSkillEffectTimer(SKILL_ENTANGLE);
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
 		} else {
@@ -188,8 +188,8 @@ public class Potion {
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
 			}
-			if (pc.hasSkillEffect(WIND_WALK)) { // ウィンドウォークとは重複しない
-				pc.killSkillEffectTimer(WIND_WALK);
+			if (pc.hasSkillEffect(SKILL_WIND_WALK)) { // ウィンドウォークとは重複しない
+				pc.killSkillEffectTimer(SKILL_WIND_WALK);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
@@ -202,8 +202,8 @@ public class Potion {
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
 			}
-			if (pc.hasSkillEffect(WIND_WALK)) { // ウィンドウォークとは重複しない
-				pc.killSkillEffectTimer(WIND_WALK);
+			if (pc.hasSkillEffect(SKILL_WIND_WALK)) { // ウィンドウォークとは重複しない
+				pc.killSkillEffectTimer(SKILL_WIND_WALK);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
@@ -224,20 +224,20 @@ public class Potion {
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
 			}
-			if (pc.hasSkillEffect(HOLY_WALK)) { // ホーリーウォークとは重複しない
-				pc.killSkillEffectTimer(HOLY_WALK);
+			if (pc.hasSkillEffect(SKILL_HOLY_WALK)) { // ホーリーウォークとは重複しない
+				pc.killSkillEffectTimer(SKILL_HOLY_WALK);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
 			}
-			if (pc.hasSkillEffect(MOVING_ACCELERATION)) { // ムービングアクセレーションとは重複しない
-				pc.killSkillEffectTimer(MOVING_ACCELERATION);
+			if (pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)) { // ムービングアクセレーションとは重複しない
+				pc.killSkillEffectTimer(SKILL_MOVING_ACCELERATION);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
 			}
-			if (pc.hasSkillEffect(WIND_WALK)) { // ウィンドウォークとは重複しない
-				pc.killSkillEffectTimer(WIND_WALK);
+			if (pc.hasSkillEffect(SKILL_WIND_WALK)) { // ウィンドウォークとは重複しない
+				pc.killSkillEffectTimer(SKILL_WIND_WALK);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
@@ -248,8 +248,8 @@ public class Potion {
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
 			}
-			if (pc.hasSkillEffect(BLOODLUST)) { // ブラッドラストとは重複しない
-				pc.killSkillEffectTimer(BLOODLUST);
+			if (pc.hasSkillEffect(SKILL_BLOODLUST)) { // ブラッドラストとは重複しない
+				pc.killSkillEffectTimer(SKILL_BLOODLUST);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
@@ -278,7 +278,7 @@ public class Potion {
 
 	/** 加速魔力回復動作 */
 	public static void Blue(L1PcInstance pc, int item_id) {
-		if (pc.hasSkillEffect(DECAY_POTION)) { // ディケイポーションの狀態
+		if (pc.hasSkillEffect(SKILL_DECAY_POTION)) { // ディケイポーションの狀態
 			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
 			return;
 		}
@@ -366,7 +366,7 @@ public class Potion {
 
 	/** 黑色藥水動作 */
 	public static void Blind(L1PcInstance pc) {
-		if (pc.hasSkillEffect(DECAY_POTION)) {
+		if (pc.hasSkillEffect(SKILL_DECAY_POTION)) {
 			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
 			return;
 		}
@@ -374,10 +374,10 @@ public class Potion {
 		ItemAction.cancelAbsoluteBarrier(pc);
 
 		int time = 16;
-		if (pc.hasSkillEffect(CURSE_BLIND)) {
-			pc.killSkillEffectTimer(CURSE_BLIND);
-		} else if (pc.hasSkillEffect(DARKNESS)) {
-			pc.killSkillEffectTimer(DARKNESS);
+		if (pc.hasSkillEffect(SKILL_CURSE_BLIND)) {
+			pc.killSkillEffectTimer(SKILL_CURSE_BLIND);
+		} else if (pc.hasSkillEffect(SKILL_DARKNESS)) {
+			pc.killSkillEffectTimer(SKILL_DARKNESS);
 		}
 
 		if (pc.hasSkillEffect(STATUS_FLOATING_EYE)) {
@@ -386,7 +386,7 @@ public class Potion {
 			pc.sendPackets(new S_CurseBlind(1));
 		}
 
-		pc.setSkillEffect(CURSE_BLIND, time * 1000);
+		pc.setSkillEffect(SKILL_CURSE_BLIND, time * 1000);
 	}
 
 }

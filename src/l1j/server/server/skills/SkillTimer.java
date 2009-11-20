@@ -50,7 +50,6 @@ import l1j.server.server.serverpackets.S_SkillIconBlessOfEva;
 import l1j.server.server.serverpackets.S_SkillIconShield;
 import l1j.server.server.serverpackets.S_SkillIconWindShackle;
 import l1j.server.server.serverpackets.S_SkillIconWisdomPotion;
-import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_Strup;
 import l1j.server.server.serverpackets.S_SystemMessage;//waja add 租旅館
 import l1j.server.server.templates.L1Skills;
@@ -74,14 +73,14 @@ class SkillStop {
 	private static Logger _log = Logger.getLogger(SkillStop.class.getName());
 
 	public static void stopSkill(L1Character cha, int skillId) {
-		if (skillId == LIGHT) { // ライト
+		if (skillId == SKILL_LIGHT) { // ライト
 			if (cha instanceof L1PcInstance) {
 				if (!cha.isInvisble()) {
 					L1PcInstance pc = (L1PcInstance) cha;
 					pc.turnOnOffLight();
 				}
 			}
-		} else if (skillId == GLOWING_AURA) { // グローウィング オーラ
+		} else if (skillId == SKILL_GLOWING_AURA) { // グローウィング オーラ
 			cha.addHitup(-5);
 			cha.addBowHitup(-5);
 			cha.addMr(-20);
@@ -133,72 +132,72 @@ class SkillStop {
 				pc.setSkillEffect(1915, 60 * 1000); //租完1分鐘內無法再租
 			}
 			//add end
-		} else if (skillId == SHINING_AURA) { // シャイニング オーラ
+		} else if (skillId == SKILL_SHINING_AURA) { // シャイニング オーラ
 			cha.addAc(8);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconAura(114, 0));
 			}
-		} else if (skillId == BRAVE_AURA) { // ブレイブ オーラ
+		} else if (skillId == SKILL_BRAVE_AURA) { // ブレイブ オーラ
 			cha.addDmgup(-5);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconAura(116, 0));
 			}
-		} else if (skillId == SHIELD) { // シールド
+		} else if (skillId == SKILL_SHIELD) { // シールド
 			cha.addAc(2);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconShield(5, 0));
 			}
-		} else if (skillId == BLIND_HIDING) { // ブラインドハイディング
+		} else if (skillId == SKILL_BLIND_HIDING) { // ブラインドハイディング
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.delBlindHiding();
 			}
-		} else if (skillId == SHADOW_ARMOR) { // シャドウ アーマー
+		} else if (skillId == SKILL_SHADOW_ARMOR) { // シャドウ アーマー
 			cha.addAc(3);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconShield(3, 0));
 			}
-		} else if (skillId == DRESS_DEXTERITY) { // ドレス デクスタリティー
+		} else if (skillId == SKILL_DRESS_DEXTERITY) { // ドレス デクスタリティー
 			cha.addDex((byte) -2);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Dexup(pc, 2, 0));
 			}
-		} else if (skillId == DRESS_MIGHTY) { // ドレス マイティー
+		} else if (skillId == SKILL_DRESS_MIGHTY) { // ドレス マイティー
 			cha.addStr((byte) -2);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Strup(pc, 2, 0));
 			}
-		} else if (skillId == SHADOW_FANG) { // シャドウ ファング
+		} else if (skillId == SKILL_SHADOW_FANG) { // シャドウ ファング
 			cha.addDmgup(-5);
-		} else if (skillId == ENCHANT_WEAPON) { // エンチャント ウェポン
+		} else if (skillId == SKILL_ENCHANT_WEAPON) { // エンチャント ウェポン
 			cha.addDmgup(-2);
-		} else if (skillId == BLESSED_ARMOR) { // ブレスド アーマー
+		} else if (skillId == SKILL_BLESSED_ARMOR) { // ブレスド アーマー
 			cha.addAc(3);
-		} else if (skillId == EARTH_BLESS) { // アース ブレス
+		} else if (skillId == SKILL_BLESS_OF_EARTH) { // アース ブレス
 			cha.addAc(7);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconShield(7, 0));
 			}
-		} else if (skillId == RESIST_MAGIC) { // レジスト マジック
+		} else if (skillId == SKILL_RESIST_MAGIC) { // レジスト マジック
 			cha.addMr(-10);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SPMR(pc));
 			}
-		} else if (skillId == CLEAR_MIND) { // クリアー マインド
+		} else if (skillId == SKILL_CLEAR_MIND) { // クリアー マインド
 			cha.addWis((byte) -3);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.resetBaseMr();
 			}
-		} else if (skillId == RESIST_ELEMENTAL) { // レジスト エレメント
+		} else if (skillId == SKILL_RESIST_ELEMENTAL) { // レジスト エレメント
 			cha.addWind(-10);
 			cha.addWater(-10);
 			cha.addFire(-10);
@@ -207,7 +206,7 @@ class SkillStop {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_OwnCharAttrDef(pc));
 			}
-		} else if (skillId == ELEMENTAL_PROTECTION) { // エレメンタルプロテクション
+		} else if (skillId == SKILL_PROTECTION_FROM_ELEMENTAL) { // エレメンタルプロテクション
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				int attr = pc.getElfAttr();
@@ -222,7 +221,7 @@ class SkillStop {
 				}
 				pc.sendPackets(new S_OwnCharAttrDef(pc));
 			}
-		} else if (skillId == ELEMENTAL_FALL_DOWN) { // エレメンタルフォールダウン
+		} else if (skillId == SKILL_ELEMENTAL_FALL_DOWN) { // エレメンタルフォールダウン
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				int attr = pc.getAddAttrKind();
@@ -267,80 +266,80 @@ class SkillStop {
 				}
 				npc.setAddAttrKind(0);
 			}
-		} else if (skillId == IRON_SKIN) { // アイアン スキン
+		} else if (skillId == SKILL_IRON_SKIN) { // アイアン スキン
 			cha.addAc(10);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconShield(10, 0));
 			}
-		} else if (skillId == EARTH_SKIN) { // アース スキン
+		} else if (skillId == SKILL_EARTH_SKIN) { // アース スキン
 			cha.addAc(6);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconShield(6, 0));
 			}
-		} else if (skillId == PHYSICAL_ENCHANT_STR) { // フィジカル エンチャント：STR
+		} else if (skillId == SKILL_ENCHANT_MIGHTY) { // フィジカル エンチャント：STR
 			cha.addStr((byte) -5);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Strup(pc, 5, 0));
 			}
-		} else if (skillId == PHYSICAL_ENCHANT_DEX) { // フィジカル エンチャント：DEX
+		} else if (skillId == SKILL_ENCHANT_DEXTERITY) { // フィジカル エンチャント：DEX
 			cha.addDex((byte) -5);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Dexup(pc, 5, 0));
 			}
-		} else if (skillId == FIRE_WEAPON) { // ファイアー ウェポン
+		} else if (skillId == SKILL_FIRE_WEAPON) { // ファイアー ウェポン
 			cha.addDmgup(-4);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconAura(147, 0));
 			}
-		} else if (skillId == FIRE_BLESS) { // ファイアー ブレス
+		} else if (skillId == SKILL_BLESS_OF_FIRE) { // ファイアー ブレス
 			cha.addDmgup(-4);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconAura(154, 0));
 			}
-		} else if (skillId == BURNING_WEAPON) { // バーニング ウェポン
+		} else if (skillId == SKILL_BURNING_WEAPON) { // バーニング ウェポン
 			cha.addDmgup(-6);
 			cha.addHitup(-3);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconAura(162, 0));
 			}
-		} else if (skillId == BLESS_WEAPON) { // ブレス ウェポン
+		} else if (skillId == SKILL_BLESS_WEAPON) { // ブレス ウェポン
 			cha.addDmgup(-2);
 			cha.addHitup(-2);
 			cha.addBowHitup(-2);
-		} else if (skillId == WIND_SHOT) { // ウィンド ショット
+		} else if (skillId == SKILL_WIND_SHOT) { // ウィンド ショット
 			cha.addBowHitup(-6);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconAura(148, 0));
 			}
-		} else if (skillId == STORM_EYE) { // ストーム アイ
+		} else if (skillId == SKILL_EYE_OF_STORM) { // ストーム アイ
 			cha.addBowHitup(-2);
 			cha.addBowDmgup(-3);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconAura(155, 0));
 			}
-		} else if (skillId == STORM_SHOT) { // ストーム ショット
+		} else if (skillId == SKILL_STORM_SHOT) { // ストーム ショット
 			cha.addBowDmgup(-5);
 			cha.addBowHitup(1);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconAura(165, 0));
 			}
-		} else if (skillId == BERSERKERS) { // バーサーカー
+		} else if (skillId == SKILL_BERSERKERS) { // バーサーカー
 			cha.addAc(-10);
 			cha.addDmgup(-5);
 			cha.addHitup(-2);
-		} else if (skillId == SHAPE_CHANGE) { // シェイプ チェンジ
+		} else if (skillId == SKILL_POLYMORPH) { // シェイプ チェンジ
 			L1PolyMorph.undoPoly(cha);
-		} else if (skillId == ADVANCE_SPIRIT) { // アドバンスド スピリッツ
+		} else if (skillId == SKILL_ADVANCE_SPIRIT) { // アドバンスド スピリッツ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addMaxHp(-pc.getAdvenHp());
@@ -353,22 +352,22 @@ class SkillStop {
 				}
 				pc.sendPackets(new S_MPUpdate(pc.getCurrentMp(), pc.getMaxMp()));
 			}
-		} else if (skillId == HASTE || skillId == GREATER_HASTE) { // ヘイスト、グレーターヘイスト
+		} else if (skillId == SKILL_HASTE || skillId == SKILL_GREATER_HASTE) { // ヘイスト、グレーターヘイスト
 			cha.setMoveSpeed(0);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
 			}
-		} else if (skillId == HOLY_WALK || skillId == MOVING_ACCELERATION || skillId == WIND_WALK
-				|| skillId == BLOODLUST) { // ホーリーウォーク、ムービングアクセレーション、ウィンドウォーク、ブラッドラスト
+		} else if (skillId == SKILL_HOLY_WALK || skillId == SKILL_MOVING_ACCELERATION || skillId == SKILL_WIND_WALK
+				|| skillId == SKILL_BLOODLUST) { // ホーリーウォーク、ムービングアクセレーション、ウィンドウォーク、ブラッドラスト
 			cha.setBraveSpeed(0);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			}
-		} else if (skillId == ILLUSION_OGRE) { // イリュージョン：オーガ
+		} else if (skillId == SKILL_ILLUSION_OGRE) { // イリュージョン：オーガ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addDmgup(-4);
@@ -376,24 +375,24 @@ class SkillStop {
 				pc.addBowDmgup(-4);
 				pc.addBowHitup(-4);
 			}
-		} else if (skillId == ILLUSION_LICH) { // イリュージョン：リッチ
+		} else if (skillId == SKILL_ILLUSION_LICH) { // イリュージョン：リッチ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addSp(-2);
 				pc.sendPackets(new S_SPMR(pc));
 			}
-		} else if (skillId == ILLUSION_DIA_GOLEM) { // イリュージョン：ダイアモンドゴーレム
+		} else if (skillId == SKILL_ILLUSION_DIA_GOLEM) { // イリュージョン：ダイアモンドゴーレム
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addAc(20);
 			}
-		} else if (skillId == ILLUSION_AVATAR) { // イリュージョン：アバター
+		} else if (skillId == SKILL_ILLUSION_AVATAR) { // イリュージョン：アバター
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addDmgup(-10);
 				pc.addBowDmgup(-10);
 			}
-		} else if (skillId == INSIGHT) { // インサイト
+		} else if (skillId == SKILL_INSIGHT) { // インサイト
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addStr((byte) -1);
@@ -405,33 +404,33 @@ class SkillStop {
 		}
 
 		// ****** 狀態變化が解けた場合
-		else if (skillId == CURSE_BLIND || skillId == DARKNESS) {
+		else if (skillId == SKILL_CURSE_BLIND || skillId == SKILL_DARKNESS) {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_CurseBlind(0));
 			}
-		} else if (skillId == CURSE_PARALYZE) { // カーズ パラライズ
+		} else if (skillId == SKILL_CURSE_PARALYZE) { // カーズ パラライズ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));
 				pc.broadcastPacket(new S_Poison(pc.getId(), (byte) 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_PARALYSIS, false));
 			}
-		} else if (skillId == WEAKNESS) { // ウィークネス
+		} else if (skillId == SKILL_WEAKNESS) { // ウィークネス
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addDmgup(5);
 				pc.addHitup(1);
 			}
-		} else if (skillId == DISEASE) { // ディジーズ
+		} else if (skillId == SKILL_DISEASE) { // ディジーズ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addDmgup(6);
 				pc.addAc(-12);
 			}
-		} else if (skillId == ICE_LANCE // アイスランス
-				|| skillId == FREEZING_BLIZZARD // フリージングブリザード
-				|| skillId == FREEZING_BREATH) { // フリージングブレス
+		} else if (skillId == SKILL_ICE_LANCE // アイスランス
+				|| skillId == SKILL_FREEZING_BLIZZARD // フリージングブリザード
+				|| skillId == SKILL_FREEZING_BREATH) { // フリージングブレス
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));
@@ -443,7 +442,7 @@ class SkillStop {
 				npc.broadcastPacket(new S_Poison(npc.getId(), (byte) 0));
 				npc.setParalyzed(false);
 			}
-		} else if (skillId == EARTH_BIND) { // アースバインド
+		} else if (skillId == SKILL_EARTH_BIND) { // アースバインド
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));
@@ -455,7 +454,7 @@ class SkillStop {
 				npc.broadcastPacket(new S_Poison(npc.getId(), (byte) 0));
 				npc.setParalyzed(false);
 			}
-		} else if (skillId == SHOCK_STUN) { // ショック スタン
+		} else if (skillId == SKILL_STUN_SHOCK) { // ショック スタン
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_STUN, false));
@@ -464,26 +463,26 @@ class SkillStop {
 				L1NpcInstance npc = (L1NpcInstance) cha;
 				npc.setParalyzed(false);
 			}
-		} else if (skillId == FOG_OF_SLEEPING) { // フォグ オブ スリーピング
+		} else if (skillId == SKILL_FOG_OF_SLEEPING) { // フォグ オブ スリーピング
 			cha.setSleeped(false);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_SLEEP, false));
 				pc.sendPackets(new S_OwnCharStatus(pc));
 			}
-		} else if (skillId == ABSOLUTE_BARRIER) { // アブソルート バリア
+		} else if (skillId == SKILL_ABSOLUTE_BARRIER) { // アブソルート バリア
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.startHpRegeneration();
 				pc.startMpRegeneration();
 				pc.startMpRegenerationByDoll();
 			}
-		} else if (skillId == WIND_SHACKLE) { // ウィンド シャックル
+		} else if (skillId == SKILL_WIND_SHACKLE) { // ウィンド シャックル
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillIconWindShackle(pc.getId(), 0));
 			}
-		} else if (skillId == SLOW || skillId == ENTANGLE || skillId == MASS_SLOW) { // スロー、エンタングル、マススロー
+		} else if (skillId == SKILL_SLOW || skillId == SKILL_ENTANGLE || skillId == SKILL_MASS_SLOW) { // スロー、エンタングル、マススロー
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
@@ -499,12 +498,12 @@ class SkillStop {
 				L1NpcInstance npc = (L1NpcInstance) cha;
 				npc.setParalyzed(false);
 			}
-		} else if (skillId == GUARD_BRAKE) { // ガードブレイク
+		} else if (skillId == SKILL_GUARD_BRAKE) { // ガードブレイク
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addAc(-15);
 			}
-		} else if (skillId == HORROR_OF_DEATH) { // ホラーオブデス
+		} else if (skillId == SKILL_HORROR_OF_DEATH) { // ホラーオブデス
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addStr(5);

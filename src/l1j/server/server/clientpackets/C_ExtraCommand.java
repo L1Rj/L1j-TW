@@ -49,7 +49,7 @@ public class C_ExtraCommand extends ClientBasePacket {
 		if (pc.isTeleport()) { // テレポート處理中
 			return;
 		}
-		if (pc.hasSkillEffect(SHAPE_CHANGE)) { // 念の為、變身中は他プレイヤーに送信しない
+		if (pc.hasSkillEffect(SKILL_POLYMORPH)) { // 念の為、變身中は他プレイヤーに送信しない
 			int gfxId = pc.getTempCharGfx();
 			if (gfxId != 6080 && gfxId != 6094) { // 騎馬用ヘルム變身は例外
 				return;

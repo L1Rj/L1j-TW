@@ -92,17 +92,17 @@ public class C_UseSkill extends ClientBasePacket {
 
 		if (abyte0.length > 4) {
 			try {
-				if (skillId == CALL_CLAN || skillId == RUN_CLAN) { // コールクラン、ランクラン
+				if (skillId == SKILL_CALL_PLEDGE_MEMBER || skillId == SKILL_RUN_CLAN) { // コールクラン、ランクラン
 					charName = readS();
-				} else if (skillId == TRUE_TARGET) { // トゥルーターゲット
+				} else if (skillId == SKILL_TRUE_TARGET) { // トゥルーターゲット
 					targetId = readD();
 					targetX = readH();
 					targetY = readH();
 					message = readS();
-				} else if (skillId == TELEPORT || skillId == MASS_TELEPORT) { // テレポート、マステレポート
+				} else if (skillId == SKILL_TELEPORT || skillId == SKILL_MASS_TELEPORT) { // テレポート、マステレポート
 					readH(); // MapID
 					targetId = readD(); // Bookmark ID
-				} else if (skillId == FIRE_WALL || skillId == LIFE_STREAM) { // ファイアーウォール、ライフストリーム
+				} else if (skillId == SKILL_FIRE_WALL || skillId == SKILL_LIFE_STREAM) { // ファイアーウォール、ライフストリーム
 					targetX = readH();
 					targetY = readH();
 				} else {
@@ -115,16 +115,16 @@ public class C_UseSkill extends ClientBasePacket {
 			}
 		}
 
-		if (pc.hasSkillEffect(ABSOLUTE_BARRIER)) { // アブソルート バリアの解除
-			pc.killSkillEffectTimer(ABSOLUTE_BARRIER);
+		if (pc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) { // アブソルート バリアの解除
+			pc.killSkillEffectTimer(SKILL_ABSOLUTE_BARRIER);
 			pc.startHpRegeneration();
 			pc.startMpRegeneration();
 			pc.startMpRegenerationByDoll();
 		}
-		pc.killSkillEffectTimer(MEDITATION);
+		pc.killSkillEffectTimer(SKILL_MEDITATION);
 
 		try {
-			if (skillId == CALL_CLAN || skillId == RUN_CLAN) { // コールクラン、ランクラン
+			if (skillId == SKILL_CALL_PLEDGE_MEMBER || skillId == SKILL_RUN_CLAN) { // コールクラン、ランクラン
 				if (charName.isEmpty()) {
 					// 名前が空の場合クライアントで彈かれるはず
 					return;
@@ -142,7 +142,7 @@ public class C_UseSkill extends ClientBasePacket {
 					return;
 				}
 				targetId = target.getId();
-				if (skillId == CALL_CLAN) {
+				if (skillId == SKILL_CALL_PLEDGE_MEMBER) {
 					// 移動せずに連續して同じクラン員にコールクランした場合、向きは前回の向きになる
 					int callClanId = pc.getCallClanId();
 					if (callClanId == 0 || callClanId != targetId) {

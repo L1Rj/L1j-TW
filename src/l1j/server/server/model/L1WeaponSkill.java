@@ -257,7 +257,7 @@ public class L1WeaponSkill {
 			int sp = pc.getSp();
 			int intel = pc.getInt();
 			double bsk = 0;
-			if (pc.hasSkillEffect(BERSERKERS)) {
+			if (pc.hasSkillEffect(SKILL_BERSERKERS)) {
 				bsk = 0.2;
 			}
 			dmg = (intel + sp) * (1.8 + bsk) + RandomArrayList.getInt(intel + sp)
@@ -319,7 +319,7 @@ public class L1WeaponSkill {
 		dmg += kiringkuFloor + pc.getWeapon().getEnchantLevel()
 		+ pc.getOriginalMagicDamage();
 
-		if (pc.hasSkillEffect(ILLUSION_AVATAR)) {
+		if (pc.hasSkillEffect(SKILL_ILLUSION_AVATAR)) {
 			dmg += 10;
 		}
 
@@ -370,7 +370,7 @@ public class L1WeaponSkill {
 				areaBase = pc;
 			}
 			double bsk = 0;
-			if (pc.hasSkillEffect(BERSERKERS)) {
+			if (pc.hasSkillEffect(SKILL_BERSERKERS)) {
 				bsk = 0.2;
 			}
 			dmg = (intel + sp) * (damageRate + bsk) + RandomArrayList.getInt(intel + sp) * damageRate;
@@ -442,7 +442,7 @@ public class L1WeaponSkill {
 			int sp = pc.getSp();
 			int intel = pc.getInt();
 			double bsk = 0;
-			if (pc.hasSkillEffect(BERSERKERS)) {
+			if (pc.hasSkillEffect(SKILL_BERSERKERS)) {
 				bsk = 0.2;
 			}
 			dmg = (intel + sp) * (2 + bsk) + RandomArrayList.getInt(intel + sp)* 2;
@@ -548,27 +548,27 @@ public class L1WeaponSkill {
 		if (cha.hasSkillEffect(STATUS_FREEZE)) {
 			return true;
 		}
-		if (cha.hasSkillEffect(ABSOLUTE_BARRIER)) {
+		if (cha.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
 			return true;
 		}
-		if (cha.hasSkillEffect(ICE_LANCE)) {
+		if (cha.hasSkillEffect(SKILL_ICE_LANCE)) {
 			return true;
 		}
-		if (cha.hasSkillEffect(FREEZING_BLIZZARD)) {
+		if (cha.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 			return true;
 		}
-		if (cha.hasSkillEffect(FREEZING_BREATH)) {
+		if (cha.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 			return true;
 		}
-		if (cha.hasSkillEffect(EARTH_BIND)) {
+		if (cha.hasSkillEffect(SKILL_EARTH_BIND)) {
 			return true;
 		}
 
 		// カウンターマジック判定
-		if (cha.hasSkillEffect(COUNTER_MAGIC)) {
-			cha.removeSkillEffect(COUNTER_MAGIC);
+		if (cha.hasSkillEffect(SKILL_COUNTER_MAGIC)) {
+			cha.removeSkillEffect(SKILL_COUNTER_MAGIC);
 			int castgfx = SkillsTable.getInstance().getTemplate(
-					COUNTER_MAGIC).getCastGfx();
+					SKILL_COUNTER_MAGIC).getCastGfx();
 			cha.broadcastPacket(new S_SkillSound(cha.getId(), castgfx));
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;

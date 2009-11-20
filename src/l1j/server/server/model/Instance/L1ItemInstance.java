@@ -1193,21 +1193,21 @@ class EnchantTimer extends TimerTask {
 		}
 
 		switch(skillId) {
-			case HOLY_WEAPON:
+			case SKILL_HOLY_WEAPON:
 				setHolyDmgByMagic(1);
 				setHitByMagic(1);
 				break;
 
-			case ENCHANT_WEAPON:
+			case SKILL_ENCHANT_WEAPON:
 				setDmgByMagic(2);
 				break;
 
-			case BLESS_WEAPON:
+			case SKILL_BLESS_WEAPON:
 				setDmgByMagic(2);
 				setHitByMagic(2);
 				break;
 
-			case SHADOW_FANG:
+			case SKILL_SHADOW_FANG:
 				setDmgByMagic(5);
 				break;
 

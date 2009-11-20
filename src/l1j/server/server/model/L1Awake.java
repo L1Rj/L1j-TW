@@ -46,7 +46,7 @@ public class L1Awake {
 		} else if (pc.getAwakeSkillId() != 0) { // 他の覚醒スキルの場合はリターン
 			return;
 		} else {
-			if (skillId == AWAKEN_ANTHARAS) { // 覺醒：アンタラス
+			if (skillId == SKILL_AWAKEN_ANTHARAS) { // 覺醒：アンタラス
 				pc.addMaxHp(127);
 				pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(),
 						pc.getMaxHp()));
@@ -54,7 +54,7 @@ public class L1Awake {
 					pc.getParty().updateMiniHP(pc);
 				}
 				pc.addAc(-12);
-			} else if (skillId == AWAKEN_FAFURION) { // 覺醒：パプリオン
+			} else if (skillId == SKILL_AWAKEN_FAFURION) { // 覺醒：パプリオン
 				pc.addMr(30);
 				pc.sendPackets(new S_SPMR(pc));
 				pc.addWind(30);
@@ -62,7 +62,7 @@ public class L1Awake {
 				pc.addFire(30);
 				pc.addEarth(30);
 				pc.sendPackets(new S_OwnCharAttrDef(pc));
-			} else if (skillId == AWAKEN_VALAKAS) { // 覺醒：ヴァラカス
+			} else if (skillId == SKILL_AWAKEN_VALAKAS) { // 覺醒：ヴァラカス
 				pc.addStr(5);
 				pc.addCon(5);
 				pc.addDex(5);
@@ -79,7 +79,7 @@ public class L1Awake {
 
 	public static void stop(L1PcInstance pc) {
 		int skillId = pc.getAwakeSkillId();
-		if (skillId == AWAKEN_ANTHARAS) { // 覺醒：アンタラス
+		if (skillId == SKILL_AWAKEN_ANTHARAS) { // 覺醒：アンタラス
 			pc.addMaxHp(-127);
 			pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(),
 					pc.getMaxHp()));
@@ -87,7 +87,7 @@ public class L1Awake {
 				pc.getParty().updateMiniHP(pc);
 			}
 			pc.addAc(12);
-		} else if (skillId == AWAKEN_FAFURION) { // 覺醒：パプリオン
+		} else if (skillId == SKILL_AWAKEN_FAFURION) { // 覺醒：パプリオン
 			pc.addMr(-30);
 			pc.sendPackets(new S_SPMR(pc));
 			pc.addWind(-30);
@@ -95,7 +95,7 @@ public class L1Awake {
 			pc.addFire(-30);
 			pc.addEarth(-30);
 			pc.sendPackets(new S_OwnCharAttrDef(pc));
-		} else if (skillId == AWAKEN_VALAKAS) { // 覺醒：ヴァラカス
+		} else if (skillId == SKILL_AWAKEN_VALAKAS) { // 覺醒：ヴァラカス
 			pc.addStr(-5);
 			pc.addCon(-5);
 			pc.addDex(-5);
@@ -111,8 +111,8 @@ public class L1Awake {
 
 	public static void doPoly(L1PcInstance pc) {
 		int polyId = 6894;
-		if (pc.hasSkillEffect(SHAPE_CHANGE)) {
-			pc.killSkillEffectTimer(SHAPE_CHANGE);
+		if (pc.hasSkillEffect(SKILL_POLYMORPH)) {
+			pc.killSkillEffectTimer(SKILL_POLYMORPH);
 		}
 		pc.setTempCharGfx(polyId);
 		pc.sendPackets(new S_ChangeShape(pc.getId(), polyId));

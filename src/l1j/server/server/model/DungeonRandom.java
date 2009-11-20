@@ -138,7 +138,7 @@ public class DungeonRandom {
 			int heading = newDungeonRandom._heading;
 
 			// 2秒間は無敵（アブソルートバリア狀態）にする。
-			pc.setSkillEffect(ABSOLUTE_BARRIER, 2000);
+			pc.setSkillEffect(SKILL_ABSOLUTE_BARRIER, 2000);
 			pc.stopHpRegeneration();
 			pc.stopMpRegeneration();
 			pc.stopMpRegenerationByDoll();

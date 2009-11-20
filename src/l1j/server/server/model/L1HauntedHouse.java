@@ -74,7 +74,7 @@ public class L1HauntedHouse {
 		for (L1PcInstance pc : getMembersArray()) {
 			SkillUse skilluse = new SkillUse();
 			skilluse.handleCommands(pc,
-					CANCELLATION, pc.getId(), pc.getX(), pc.getY(),
+					SKILL_CANCEL_MAGIC, pc.getId(), pc.getX(), pc.getY(),
 					null, 0, SkillUse.TYPE_LOGIN);
 			L1PolyMorph.doPoly(pc, 6284, 300, L1PolyMorph.MORPH_BY_NPC);
 		}
@@ -97,7 +97,7 @@ public class L1HauntedHouse {
 			if (pc.getMapId() == 5140) {
 				SkillUse skilluse = new SkillUse();
 				skilluse.handleCommands(pc,
-						CANCELLATION, pc.getId(), pc.getX(),
+						SKILL_CANCEL_MAGIC, pc.getId(), pc.getX(),
 						pc.getY(), null, 0, SkillUse.TYPE_LOGIN);
 				L1Teleport.teleport(pc, 32624, 32813, (short) 4, 5, true);
 			}

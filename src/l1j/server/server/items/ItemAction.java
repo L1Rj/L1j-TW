@@ -18,7 +18,7 @@
  */
 package l1j.server.server.items;
 
-import static l1j.server.server.skills.SkillId.ABSOLUTE_BARRIER;
+import static l1j.server.server.skills.SkillId.SKILL_ABSOLUTE_BARRIER;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -261,8 +261,8 @@ public class ItemAction {
 
 	/** 解除絕對屏障效果 */
 	public static void cancelAbsoluteBarrier(L1PcInstance pc) {
-		if (pc.hasSkillEffect(ABSOLUTE_BARRIER)) {
-			pc.killSkillEffectTimer(ABSOLUTE_BARRIER);
+		if (pc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
+			pc.killSkillEffectTimer(SKILL_ABSOLUTE_BARRIER);
 			pc.startHpRegeneration();
 			pc.startHpRegenerationByDoll();
 			pc.startMpRegeneration();

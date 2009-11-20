@@ -135,7 +135,7 @@ public class L1Chaser extends TimerTask {
 
 		dmg = L1WeaponSkill.calcDamageReduction(pc, cha, dmg, 0);
 
-		if (cha.hasSkillEffect(IMMUNE_TO_HARM)) {
+		if (cha.hasSkillEffect(SKILL_IMMUNE_TO_HARM)) {
 			dmg /= 2.0;
 		}
 

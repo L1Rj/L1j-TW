@@ -18,65 +18,6 @@
  */
 package l1j.server.server.model;
 
-import static l1j.server.server.skills.SkillId.ABSOLUTE_BARRIER;
-import static l1j.server.server.skills.SkillId.BERSERKERS;
-import static l1j.server.server.skills.SkillId.BLIND_HIDING;
-import static l1j.server.server.skills.SkillId.BOUNCE_ATTACK;
-import static l1j.server.server.skills.SkillId.BURNING_SPIRIT;
-import static l1j.server.server.skills.SkillId.BURNING_WEAPON;
-import static l1j.server.server.skills.SkillId.COOKING_1_0_S;
-import static l1j.server.server.skills.SkillId.COOKING_1_1_S;
-import static l1j.server.server.skills.SkillId.COOKING_1_2_S;
-import static l1j.server.server.skills.SkillId.COOKING_1_3_S;
-import static l1j.server.server.skills.SkillId.COOKING_1_4_S;
-import static l1j.server.server.skills.SkillId.COOKING_1_5_S;
-import static l1j.server.server.skills.SkillId.COOKING_1_6_S;
-import static l1j.server.server.skills.SkillId.COOKING_1_7_S;
-import static l1j.server.server.skills.SkillId.COOKING_2_0_N;
-import static l1j.server.server.skills.SkillId.COOKING_2_0_S;
-import static l1j.server.server.skills.SkillId.COOKING_2_1_S;
-import static l1j.server.server.skills.SkillId.COOKING_2_2_S;
-import static l1j.server.server.skills.SkillId.COOKING_2_3_N;
-import static l1j.server.server.skills.SkillId.COOKING_2_3_S;
-import static l1j.server.server.skills.SkillId.COOKING_2_4_S;
-import static l1j.server.server.skills.SkillId.COOKING_2_5_S;
-import static l1j.server.server.skills.SkillId.COOKING_2_6_S;
-import static l1j.server.server.skills.SkillId.COOKING_2_7_S;
-import static l1j.server.server.skills.SkillId.COOKING_3_0_N;
-import static l1j.server.server.skills.SkillId.COOKING_3_0_S;
-import static l1j.server.server.skills.SkillId.COOKING_3_1_S;
-import static l1j.server.server.skills.SkillId.COOKING_3_2_N;
-import static l1j.server.server.skills.SkillId.COOKING_3_2_S;
-import static l1j.server.server.skills.SkillId.COOKING_3_3_S;
-import static l1j.server.server.skills.SkillId.COOKING_3_4_S;
-import static l1j.server.server.skills.SkillId.COOKING_3_5_S;
-import static l1j.server.server.skills.SkillId.COOKING_3_6_S;
-import static l1j.server.server.skills.SkillId.COOKING_3_7_S;
-import static l1j.server.server.skills.SkillId.DOUBLE_BRAKE;
-import static l1j.server.server.skills.SkillId.DRAGON_SKIN;
-import static l1j.server.server.skills.SkillId.EARTH_BIND;
-import static l1j.server.server.skills.SkillId.ELEMENTAL_FIRE;
-import static l1j.server.server.skills.SkillId.ENCHANT_VENOM;
-import static l1j.server.server.skills.SkillId.FIRE_BLESS;
-import static l1j.server.server.skills.SkillId.FIRE_WEAPON;
-import static l1j.server.server.skills.SkillId.FREEZING_BLIZZARD;
-import static l1j.server.server.skills.SkillId.FREEZING_BREATH;
-import static l1j.server.server.skills.SkillId.ICE_LANCE;
-import static l1j.server.server.skills.SkillId.IMMUNE_TO_HARM;
-import static l1j.server.server.skills.SkillId.ILLUSION_AVATAR;
-import static l1j.server.server.skills.SkillId.INVISIBILITY;
-import static l1j.server.server.skills.SkillId.MIRROR_IMAGE;
-import static l1j.server.server.skills.SkillId.PATIENCE;
-import static l1j.server.server.skills.SkillId.REDUCTION_ARMOR;
-import static l1j.server.server.skills.SkillId.RESIST_FEAR;
-import static l1j.server.server.skills.SkillId.SOUL_OF_FLAME;
-import static l1j.server.server.skills.SkillId.STATUS_CURSE_BARLOG;
-import static l1j.server.server.skills.SkillId.STATUS_CURSE_YAHEE;
-import static l1j.server.server.skills.SkillId.STATUS_HOLY_MITHRIL_POWDER;
-import static l1j.server.server.skills.SkillId.STATUS_HOLY_WATER;
-import static l1j.server.server.skills.SkillId.STATUS_HOLY_WATER_OF_EVA;
-import static l1j.server.server.skills.SkillId.UNCANNY_DODGE;
-
 import java.util.Random;
 
 import l1j.server.Config;
@@ -100,6 +41,8 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SystemMessage;
 // import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
+
+import static l1j.server.server.skills.SkillId.*;
 
 public class L1Attack
 {
@@ -481,15 +424,15 @@ public class L1Attack
 
 		int attackerDice = RandomArrayList.getInc(20, _hitRate - 10); // getArrayshortList((short) 20) + 1 + _hitRate - 10;
 
-		if (_targetPc.hasSkillEffect(UNCANNY_DODGE)) {
+		if (_targetPc.hasSkillEffect(SKILL_UNCANNY_DODGE)) {
 			attackerDice -= 5;
 		}
 
-		if (_targetPc.hasSkillEffect(MIRROR_IMAGE)) {
+		if (_targetPc.hasSkillEffect(SKILL_MIRROR_IMAGE)) {
 			attackerDice -= 5;
 		}
 
-		if (_targetPc.hasSkillEffect(RESIST_FEAR)) {
+		if (_targetPc.hasSkillEffect(SKILL_RESIST_FEAR)) {
 			attackerDice += 5;
 		}
 
@@ -527,19 +470,19 @@ public class L1Attack
 			_hitRate = 100; // キーリンクの命中率は100%
 		}
 
-		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
+		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
 			_hitRate = 0;
 		}
-		if (_targetPc.hasSkillEffect(ICE_LANCE)) {
+		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
 			_hitRate = 0;
 		}
-		if (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) {
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 			_hitRate = 0;
 		}
-		if (_targetPc.hasSkillEffect(FREEZING_BREATH)) {
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 			_hitRate = 0;
 		}
-		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
+		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
 			_hitRate = 0;
 		}
 		int rnd = RandomArrayList.getInc(100, 1);
@@ -620,15 +563,15 @@ public class L1Attack
 
 		int attackerDice = RandomArrayList.getInc(20, _hitRate - 10); // getArrayshortList((short) 20) + _hitRate - 10;
 
-		if (_targetNpc.hasSkillEffect(UNCANNY_DODGE)) {
+		if (_targetNpc.hasSkillEffect(SKILL_UNCANNY_DODGE)) {
 			attackerDice -= 5;
 		}
 
-		if (_targetNpc.hasSkillEffect(MIRROR_IMAGE)) {
+		if (_targetNpc.hasSkillEffect(SKILL_MIRROR_IMAGE)) {
 			attackerDice -= 5;
 		}
 
-		if (_targetNpc.hasSkillEffect(RESIST_FEAR)) {
+		if (_targetNpc.hasSkillEffect(SKILL_RESIST_FEAR)) {
 			attackerDice += 5;
 		}
 
@@ -725,15 +668,15 @@ public class L1Attack
 
 		int attackerDice = RandomArrayList.getInc(20, _hitRate); // getArrayshortList((short)20) + _hitRate - 1;//原寫法 _random.nextInt(20) + 1 + _hitRate - 1;
 
-		if (_targetPc.hasSkillEffect(UNCANNY_DODGE)) {
+		if (_targetPc.hasSkillEffect(SKILL_UNCANNY_DODGE)) {
 			attackerDice -= 5;
 		}
 
-		if (_targetPc.hasSkillEffect(MIRROR_IMAGE)) {
+		if (_targetPc.hasSkillEffect(SKILL_MIRROR_IMAGE)) {
 			attackerDice -= 5;
 		}
 
-		if (_targetPc.hasSkillEffect(RESIST_FEAR)) {
+		if (_targetPc.hasSkillEffect(SKILL_RESIST_FEAR)) {
 			attackerDice += 5;
 		}
 
@@ -762,19 +705,19 @@ public class L1Attack
 			}
 		}
 
-		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
+		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
 			_hitRate = 0;
 		}
-		if (_targetPc.hasSkillEffect(ICE_LANCE)) {
+		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
 			_hitRate = 0;
 		}
-		if (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) {
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 			_hitRate = 0;
 		}
-		if (_targetPc.hasSkillEffect(FREEZING_BREATH)) {
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 			_hitRate = 0;
 		}
-		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
+		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
 			_hitRate = 0;
 		}
 
@@ -803,15 +746,15 @@ public class L1Attack
 
 		int attackerDice = RandomArrayList.getInc(20, _hitRate); // getInt()getArrayshortList((short)20) + _hitRate - 1;//原寫法_random.nextInt(20) + 1 + _hitRate - 1;
 
-		if (_targetNpc.hasSkillEffect(UNCANNY_DODGE)) {
+		if (_targetNpc.hasSkillEffect(SKILL_UNCANNY_DODGE)) {
 			attackerDice -= 5;
 		}
 
-		if (_targetNpc.hasSkillEffect(MIRROR_IMAGE)) {
+		if (_targetNpc.hasSkillEffect(SKILL_MIRROR_IMAGE)) {
 			attackerDice -= 5;
 		}
 
-		if (_targetNpc.hasSkillEffect(RESIST_FEAR)) {
+		if (_targetNpc.hasSkillEffect(SKILL_RESIST_FEAR)) {
 			attackerDice += 5;
 		}
 
@@ -895,7 +838,7 @@ public class L1Attack
 		} else {
 			weaponDamage = RandomArrayList.getInc(weaponMaxDamage, 1); // getArrayshortList((short) weaponMaxDamage) + 1;
 		}
-		if (_pc.hasSkillEffect(SOUL_OF_FLAME)) {
+		if (_pc.hasSkillEffect(SKILL_SOUL_OF_FLAME)) {
 			if (_weaponType != 20 && _weaponType != 62) {
 				weaponDamage = weaponMaxDamage;
 			}
@@ -913,7 +856,7 @@ public class L1Attack
 
 		weaponTotalDamage += calcAttrEnchantDmg(); // 属性強化ダメージボーナス
 
-		if (_pc.hasSkillEffect(DOUBLE_BRAKE)
+		if (_pc.hasSkillEffect(SKILL_DOUBLE_BRAKE)
 				&& (_weaponType == 54 || _weaponType == 58)) {
 			if (RandomArrayList.getInt(3) == 0) {
 				weaponTotalDamage *= 2;
@@ -1057,35 +1000,35 @@ public class L1Attack
 		/*if (_targetPc.hasSkillEffect(COOKING_1_7_S)|| _targetPc.hasSkillEffect(COOKING_2_7_S)|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {dmg -= 5;}
 		*/ //檢查透視鏡資料後 發現該段程式碼 可以與上面合體
 
-		if (_targetPc.hasSkillEffect(REDUCTION_ARMOR)) {
+		if (_targetPc.hasSkillEffect(SKILL_REDUCTION_ARMOR)) {
 			int targetPcLvl = _targetPc.getLevel();
 			if (targetPcLvl < 50) {
 				targetPcLvl = 50;
 			}
 			dmg -= (targetPcLvl - 50) / 5 + 1;
 		}
-		if (_targetPc.hasSkillEffect(DRAGON_SKIN)) {
+		if (_targetPc.hasSkillEffect(SKILL_DRAGON_SKIN)) {
 			dmg -= 2;
 		}
-		if (_targetPc.hasSkillEffect(PATIENCE)) {
+		if (_targetPc.hasSkillEffect(SKILL_PATIENCE)) {
 			dmg -= 2;
 		}
-		if (_targetPc.hasSkillEffect(IMMUNE_TO_HARM)) {
+		if (_targetPc.hasSkillEffect(SKILL_IMMUNE_TO_HARM)) {
 			dmg /= 2;
 		}
-		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
+		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(ICE_LANCE)) {
+		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) {
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(FREEZING_BREATH)) {
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
+		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
 			dmg = 0;
 		}
 
@@ -1095,8 +1038,8 @@ public class L1Attack
 		}
 // 20090720 BAO提供 隱身被攻擊現形形
 		if (_isHit = true) {
-			if ((_pc.hasSkillEffect(BLIND_HIDING)
-					|| _pc.hasSkillEffect(INVISIBILITY))){
+			if ((_pc.hasSkillEffect(SKILL_BLIND_HIDING)
+					|| _pc.hasSkillEffect(SKILL_INVISIBILITY))){
 				_pc.delInvis();
 			}
 		}
@@ -1131,7 +1074,7 @@ public class L1Attack
 		} else {
 			weaponDamage = RandomArrayList.getInc(weaponMaxDamage, 1); // getArrayshortList((short) weaponMaxDamage) + 1;
 		}
-		if (_pc.hasSkillEffect(SOUL_OF_FLAME)) {
+		if (_pc.hasSkillEffect(SKILL_SOUL_OF_FLAME)) {
 			if (_weaponType != 20 && _weaponType != 62) {
 				weaponDamage = weaponMaxDamage;
 			}
@@ -1151,7 +1094,7 @@ public class L1Attack
 
 		weaponTotalDamage += calcAttrEnchantDmg(); // 属性強化ダメージボーナス
 
-		if (_pc.hasSkillEffect(DOUBLE_BRAKE) && _weaponType == 54 || _weaponType == 58)
+		if (_pc.hasSkillEffect(SKILL_DOUBLE_BRAKE) && _weaponType == 54 || _weaponType == 58)
 		{
 			if (RandomArrayList.getInt(3) == 0)
 			{
@@ -1306,16 +1249,16 @@ public class L1Attack
 			}
 		}
 
-		if (_targetNpc.hasSkillEffect(ICE_LANCE)) {
+		if (_targetNpc.hasSkillEffect(SKILL_ICE_LANCE)) {
 			dmg = 0;
 		}
-		if (_targetNpc.hasSkillEffect(FREEZING_BLIZZARD)) {
+		if (_targetNpc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
-		if (_targetNpc.hasSkillEffect(FREEZING_BREATH)) {
+		if (_targetNpc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 			dmg = 0;
 		}
-		if (_targetNpc.hasSkillEffect(EARTH_BIND)) {
+		if (_targetNpc.hasSkillEffect(SKILL_EARTH_BIND)) {
 			dmg = 0;
 		}
 		//TODO 吉爾塔斯反擊屏障判斷
@@ -1340,8 +1283,8 @@ public class L1Attack
 		}
 // 20090720 BAO提供 隱身被攻擊現形
 		if (_isHit = true) {
-			if ((_pc.hasSkillEffect(BLIND_HIDING)
-					|| _pc.hasSkillEffect(INVISIBILITY))){
+			if ((_pc.hasSkillEffect(SKILL_BLIND_HIDING)
+					|| _pc.hasSkillEffect(SKILL_INVISIBILITY))){
 				_pc.delInvis();
 			}
 		}
@@ -1418,35 +1361,35 @@ public class L1Attack
 		/*if (_targetPc.hasSkillEffect(COOKING_1_7_S)|| _targetPc.hasSkillEffect(COOKING_2_7_S)|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {dmg -= 5;}
 		*/ //檢查透視鏡資料後 發現該段程式碼 可以與上面合體
 
-		if (_targetPc.hasSkillEffect(REDUCTION_ARMOR)) {
+		if (_targetPc.hasSkillEffect(SKILL_REDUCTION_ARMOR)) {
 			int targetPcLvl = _targetPc.getLevel();
 			if (targetPcLvl < 50) {
 				targetPcLvl = 50;
 			}
 			dmg -= (targetPcLvl - 50) / 5 + 1;
 		}
-		if (_targetPc.hasSkillEffect(DRAGON_SKIN)) {
+		if (_targetPc.hasSkillEffect(SKILL_DRAGON_SKIN)) {
 			dmg -= 2;
 		}
-		if (_targetPc.hasSkillEffect(PATIENCE)) {
+		if (_targetPc.hasSkillEffect(SKILL_PATIENCE)) {
 			dmg -= 2;
 		}
-		if (_targetPc.hasSkillEffect(IMMUNE_TO_HARM)) {
+		if (_targetPc.hasSkillEffect(SKILL_IMMUNE_TO_HARM)) {
 			dmg /= 2;
 		}
-		if (_targetPc.hasSkillEffect(ABSOLUTE_BARRIER)) {
+		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(ICE_LANCE)) {
+		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(FREEZING_BLIZZARD)) {
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(FREEZING_BREATH)) {
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 			dmg = 0;
 		}
-		if (_targetPc.hasSkillEffect(EARTH_BIND)) {
+		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
 			dmg = 0;
 		}
 
@@ -1474,8 +1417,8 @@ public class L1Attack
 		addNpcPoisonAttack(_npc, _targetPc);
 // 20090720 BAO提供 隱身被攻擊現形
 		if (_isHit = true) {
-			if ((_targetPc.hasSkillEffect(BLIND_HIDING)
-					|| _targetPc.hasSkillEffect(INVISIBILITY))){
+			if ((_targetPc.hasSkillEffect(SKILL_BLIND_HIDING)
+					|| _targetPc.hasSkillEffect(SKILL_INVISIBILITY))){
 				_targetPc.delInvis();
 			}
 		}
@@ -1509,16 +1452,16 @@ public class L1Attack
 
 		addNpcPoisonAttack(_npc, _targetNpc);
 
-		if (_targetNpc.hasSkillEffect(ICE_LANCE)) {
+		if (_targetNpc.hasSkillEffect(SKILL_ICE_LANCE)) {
 			dmg = 0;
 		}
-		if (_targetNpc.hasSkillEffect(FREEZING_BLIZZARD)) {
+		if (_targetNpc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 			dmg = 0;
 		}
-		if (_targetNpc.hasSkillEffect(FREEZING_BREATH)) {
+		if (_targetNpc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 			dmg = 0;
 		}
-		if (_targetNpc.hasSkillEffect(EARTH_BIND)) {
+		if (_targetNpc.hasSkillEffect(SKILL_EARTH_BIND)) {
 			dmg = 0;
 		}
 		// TODO 吉爾塔斯反擊屏障判斷
@@ -1540,22 +1483,22 @@ public class L1Attack
 	// ●●●● プレイヤーのダメージ強化魔法 ●●●●
 	private double calcBuffDamage(double dmg) {
 		// 火武器、バーサーカーのダメージは1.5倍しない
-		if (_pc.hasSkillEffect(BURNING_SPIRIT)
-				|| (_pc.hasSkillEffect(ELEMENTAL_FIRE)
+		if (_pc.hasSkillEffect(SKILL_BURNING_SPIRIT)
+				|| (_pc.hasSkillEffect(SKILL_ELEMENTAL_FIRE)
 						&& _weaponType != 20 && _weaponType != 62
 						&& _weaponType2 !=17)) {
 			if (RandomArrayList.getInt(3) == 0) {
 				double tempDmg = dmg;
-				if (_pc.hasSkillEffect(FIRE_WEAPON)) {
+				if (_pc.hasSkillEffect(SKILL_FIRE_WEAPON)) {
 					tempDmg -= 4;
 				}
-				if (_pc.hasSkillEffect(FIRE_BLESS)) {
+				if (_pc.hasSkillEffect(SKILL_BLESS_OF_FIRE)) {
 					tempDmg -= 4;
 				}
-				if (_pc.hasSkillEffect(BURNING_WEAPON)) {
+				if (_pc.hasSkillEffect(SKILL_BURNING_WEAPON)) {
 					tempDmg -= 6;
 				}
-				if (_pc.hasSkillEffect(BERSERKERS)) {
+				if (_pc.hasSkillEffect(SKILL_BERSERKERS)) {
 					tempDmg -= 5;
 				}
 				double diffDmg = dmg - tempDmg;
@@ -1736,7 +1679,7 @@ public class L1Attack
 		int chance = RandomArrayList.getInc(100, 1);
 		
 		if ((_weaponId == 13 || _weaponId == 44 // FOD、古代のダークエルフソード
-				|| (_weaponId != 0 && _pc.hasSkillEffect(ENCHANT_VENOM))) // エンチャント
+				|| (_weaponId != 0 && _pc.hasSkillEffect(SKILL_ENCHANT_VENOM))) // エンチャント
 																			// ベノム中
 				&& chance <= 10) {
 			// 通常毒、3秒周期、ダメージHP-5
@@ -2098,7 +2041,7 @@ public class L1Attack
 		if (!PC_NPC
 				|| _targetNpc.getNpcTemplate().is_hard() == false
 				|| _weaponType == 0 || weapon.getItem().get_canbedmg() == 0
-				|| _pc.hasSkillEffect(SOUL_OF_FLAME)) {
+				|| _pc.hasSkillEffect(SKILL_SOUL_OF_FLAME)) {
 			return;
 		}
 		// 通常の武器‧咒われた武器
@@ -2124,8 +2067,8 @@ public class L1Attack
 		// PvP以外、素手、弓、ガントトレット、相手がバウンスアタック未使用、SOF中の場合何もしない
 		if (!PC_PC || _weaponType == 0 || _weaponType == 20
 				|| _weaponType == 62
-				|| !_targetPc.hasSkillEffect(BOUNCE_ATTACK)
-				|| _pc.hasSkillEffect(SOUL_OF_FLAME)) {
+				|| !_targetPc.hasSkillEffect(SKILL_BOUNCE_ATTACK)
+				|| _pc.hasSkillEffect(SKILL_SOUL_OF_FLAME)) {
 			return;
 		}
 

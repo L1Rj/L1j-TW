@@ -388,7 +388,7 @@ public class L1GuardInstance extends L1NpcInstance {
 				}
 			}
 			if (damage > 0) {
-				removeSkillEffect(FOG_OF_SLEEPING);
+				removeSkillEffect(SKILL_FOG_OF_SLEEPING);
 			}
 
 			onNpcAI();

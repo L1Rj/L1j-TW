@@ -157,9 +157,9 @@ public class C_NPCAction extends ClientBasePacket {
 					}
 				} else {
 		int awakeSkillId = target.getAwakeSkillId();
-				if (awakeSkillId == AWAKEN_ANTHARAS
-							|| awakeSkillId == AWAKEN_FAFURION
-							|| awakeSkillId == AWAKEN_VALAKAS) {
+				if (awakeSkillId == SKILL_AWAKEN_ANTHARAS
+							|| awakeSkillId == SKILL_AWAKEN_FAFURION
+							|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
 						target.sendPackets(new S_ServerMessage(1384)); // 
 						return;
 					}
@@ -484,7 +484,7 @@ public class C_NPCAction extends ClientBasePacket {
 				for (L1ItemInstance item : pc.getInventory().getItems()) {
 					if (pc.getWeapon().equals(item)) {
 						SkillUse skilluse = new SkillUse();
-						skilluse.handleCommands(pc, ENCHANT_WEAPON,
+						skilluse.handleCommands(pc, SKILL_ENCHANT_WEAPON,
 								item.getId(), 0, 0, null, 0,
 								SkillUse.TYPE_SPELLSC);
 						break;
@@ -496,7 +496,7 @@ public class C_NPCAction extends ClientBasePacket {
 			L1ItemInstance item = pc.getInventory().getItemEquipped(2, 2);
 			if (item != null) {
 				SkillUse skilluse = new SkillUse();
-				skilluse.handleCommands(pc, BLESSED_ARMOR, item
+				skilluse.handleCommands(pc, SKILL_BLESSED_ARMOR, item
 						.getId(), 0, 0, null, 0, SkillUse.TYPE_SPELLSC);
 			} else {
 				pc.sendPackets(new S_ServerMessage(79));
@@ -736,8 +736,8 @@ public class C_NPCAction extends ClientBasePacket {
 					}
 				}
 				// エレメンタルプロテクションによって上昇している屬性防御をリセット
-				if (pc.hasSkillEffect(ELEMENTAL_PROTECTION)) {
-					pc.removeSkillEffect(ELEMENTAL_PROTECTION);
+				if (pc.hasSkillEffect(SKILL_PROTECTION_FROM_ELEMENTAL)) {
+					pc.removeSkillEffect(SKILL_PROTECTION_FROM_ELEMENTAL);
 				}
 				pc.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 						0, 0, 0, 0, 0, 0, 0, 248, 252, 252, 255, 0, 0, 0, 0, 0,
@@ -800,7 +800,7 @@ public class C_NPCAction extends ClientBasePacket {
 					return;
 				}
 				SkillUse skilluse = new SkillUse();
-				skilluse.handleCommands(pc, CANCELLATION,
+				skilluse.handleCommands(pc, SKILL_CANCEL_MAGIC,
 						pc.getId(), pc.getX(), pc.getY(), null, 0,
 						SkillUse.TYPE_LOGIN);
 				pc.getInventory().takeoffEquip(945); // 牛のpolyIdで裝備を全部外す。
@@ -2392,7 +2392,7 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("0")) {
 				if (pc.getLevel() <= 13) {
 					SkillUse skillUse = new SkillUse();
-					skillUse.handleCommands(pc, CANCELLATION, pc
+					skillUse.handleCommands(pc, SKILL_CANCEL_MAGIC, pc
 							.getId(), pc.getX(), pc.getY(), null, 0,
 							SkillUse.TYPE_NPCBUFF, (L1NpcInstance) obj);
 					htmlid = ""; // ウィンドウを消す
@@ -4354,9 +4354,9 @@ public class C_NPCAction extends ClientBasePacket {
 	private void poly(ClientThread clientthread, int polyId) {
 		L1PcInstance pc = clientthread.getActiveChar();
 		int awakeSkillId = pc.getAwakeSkillId();
-		if (awakeSkillId == AWAKEN_ANTHARAS
-				|| awakeSkillId == AWAKEN_FAFURION
-				|| awakeSkillId == AWAKEN_VALAKAS) {
+		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS
+				|| awakeSkillId == SKILL_AWAKEN_FAFURION
+				|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
 			pc.sendPackets(new S_ServerMessage(1384)); // 
 			return;
 		}
@@ -4373,9 +4373,9 @@ public class C_NPCAction extends ClientBasePacket {
 	private void polyByKeplisha(ClientThread clientthread, int polyId) {
 		L1PcInstance pc = clientthread.getActiveChar();
 		int awakeSkillId = pc.getAwakeSkillId();
-		if (awakeSkillId == AWAKEN_ANTHARAS
-				|| awakeSkillId == AWAKEN_FAFURION
-				|| awakeSkillId == AWAKEN_VALAKAS) {
+		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS
+				|| awakeSkillId == SKILL_AWAKEN_FAFURION
+				|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
 			pc.sendPackets(new S_ServerMessage(1384)); // 
 			return;
 		}
@@ -4999,7 +4999,7 @@ public class C_NPCAction extends ClientBasePacket {
 					|| pc.getTempCharGfx() == 6035) {
 				isUseItem = true;
 			} else {
-				pc.removeSkillEffect(SHAPE_CHANGE);
+				pc.removeSkillEffect(SKILL_POLYMORPH);
 				isUseItem = true;
 			}
 		} else if (poly.getMinLevel() <= pc.getLevel() || pc.isGm()) {

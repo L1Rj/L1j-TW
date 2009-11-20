@@ -927,10 +927,10 @@ public class L1PcInstance extends L1Character
 			boolean isCounterBarrier = false;
 			L1Attack attack = new L1Attack(attacker, this);
 			if (attack.calcHit()) {
-				if (hasSkillEffect(COUNTER_BARRIER)) {
+				if (hasSkillEffect(SKILL_COUNTER_BARRIER)) {
 					L1Magic magic = new L1Magic(this, attacker);
 					boolean isProbability = magic
-					.calcProbabilityMagic(COUNTER_BARRIER);
+					.calcProbabilityMagic(SKILL_COUNTER_BARRIER);
 					boolean isShortDistance = attack.isShortDistance();
 					if (isProbability && isShortDistance) {
 						isCounterBarrier = true;
@@ -1022,16 +1022,16 @@ public class L1PcInstance extends L1Character
 
 	public void delInvis() {
 		// 魔法接続時間内はこちらを利用
-		if (hasSkillEffect(INVISIBILITY)) { // インビジビリティ
-			killSkillEffectTimer(INVISIBILITY);
+		if (hasSkillEffect(SKILL_INVISIBILITY)) { // インビジビリティ
+			killSkillEffectTimer(SKILL_INVISIBILITY);
 			sendPackets(new S_Invis(getId(), 0));
 			broadcastPacket(new S_OtherCharPacks(this));
 			sendPackets(new S_CharVisualUpdate(this));
 			broadcastPacket(new S_CharVisualUpdate(this));
 		}
 		// 20090720 BAO提供 隱身被攻擊現形
-		if (hasSkillEffect(BLIND_HIDING)) { // ブラインド ハイディング
-			killSkillEffectTimer(BLIND_HIDING);
+		if (hasSkillEffect(SKILL_BLIND_HIDING)) { // ブラインド ハイディング
+			killSkillEffectTimer(SKILL_BLIND_HIDING);
 			sendPackets(new S_Invis(getId(), 0));
 			broadcastPacket(new S_OtherCharPacks(this));
 			sendPackets(new S_CharVisualUpdate(this));
@@ -1042,7 +1042,7 @@ public class L1PcInstance extends L1Character
 
 	public void delBlindHiding() {
 		// 魔法接続時間終了はこちら
-		killSkillEffectTimer(BLIND_HIDING);
+		killSkillEffectTimer(SKILL_BLIND_HIDING);
 		sendPackets(new S_Invis(getId(), 0));
 		broadcastPacket(new S_OtherCharPacks(this));
 	}
@@ -1173,10 +1173,10 @@ public class L1PcInstance extends L1Character
 						}
 					}
 				}
-				removeSkillEffect(FOG_OF_SLEEPING);
+				removeSkillEffect(SKILL_FOG_OF_SLEEPING);
 			}
 
-			if (hasSkillEffect(MORTAL_BODY)
+			if (hasSkillEffect(SKILL_MORTAL_BODY)
 					&& getId() != attacker.getId()) {
 				int rnd = RandomArrayList.getInc(100, 1);
 				if (damage > 0 && rnd <= 10) {
@@ -1195,7 +1195,7 @@ public class L1PcInstance extends L1Character
 					}
 				}
 			}
-			if (attacker.hasSkillEffect(JOY_OF_PAIN)
+			if (attacker.hasSkillEffect(SKILL_JOY_OF_PAIN)
 					&& getId() != attacker.getId()) {
 				int nowDamage = getMaxHp() - getCurrentHp();
 				if (nowDamage > 0) {
@@ -1218,7 +1218,7 @@ public class L1PcInstance extends L1Character
 					|| getInventory().checkEquipped(149)) { // ミノタウルスアックス
 				damage *= 1.5; // 被ダメ1.5倍
 			}
-			if (hasSkillEffect(ILLUSION_AVATAR)) {
+			if (hasSkillEffect(SKILL_ILLUSION_AVATAR)) {
 				damage *= 1.5; // 被ダメ1.5倍
 			}
 			int newHp = getCurrentHp() - (int) (damage);
@@ -1283,7 +1283,7 @@ public class L1PcInstance extends L1Character
 			// エンチャントを解除する
 			// 變身狀態も解除されるため、キャンセレーションをかけてから變身狀態に戾す
 			int tempchargfx = 0;
-			if (hasSkillEffect(SHAPE_CHANGE)) {
+			if (hasSkillEffect(SKILL_POLYMORPH)) {
 				tempchargfx = getTempCharGfx();
 				setTempCharGfxAtDead(tempchargfx);
 			} else {
@@ -1293,7 +1293,7 @@ public class L1PcInstance extends L1Character
 			// キャンセレーションをエフェクトなしでかける
 			SkillUse skilluse = new SkillUse();
 			skilluse.handleCommands(L1PcInstance.this,
-					CANCELLATION, getId(), getX(), getY(), null, 0,
+					SKILL_CANCEL_MAGIC, getId(), getX(), getY(), null, 0,
 					SkillUse.TYPE_LOGIN);
 
 			// シャドウ系變身中に死亡するとクライアントが落ちるため暫定對應
@@ -1667,7 +1667,7 @@ public class L1PcInstance extends L1Character
 	}
 
 	public int getEr() {
-		if (hasSkillEffect(STRIKER_GALE)) {
+		if (hasSkillEffect(SKILL_STRIKER_GALE)) {
 			return 0;
 		}
 
@@ -1677,10 +1677,10 @@ public class L1PcInstance extends L1Character
 
 		er += getOriginalEr();
 
-		if (hasSkillEffect(DRESS_EVASION)) {
+		if (hasSkillEffect(SKILL_DRESS_EVASION)) {
 			er += 12;
 		}
-		if (hasSkillEffect(SOLID_CARRIAGE)) {
+		if (hasSkillEffect(SKILL_SOLID_CARRIAGE)) {
 			er += 15;
 		}
 		return er;
@@ -2347,7 +2347,7 @@ public class L1PcInstance extends L1Character
 		weightReductionByDoll /= 100;
 
 		int weightReductionByMagic = 0;
-		if (hasSkillEffect(DECREASE_WEIGHT)) { // ディクリースウェイト
+		if (hasSkillEffect(SKILL_DECREASE_WEIGHT)) { // ディクリースウェイト
 			weightReductionByMagic = 180;
 		}
 
@@ -2368,14 +2368,14 @@ public class L1PcInstance extends L1Character
 	}
 
 	public boolean isFastMovable() {
-		return (hasSkillEffect(HOLY_WALK)
-				|| hasSkillEffect(MOVING_ACCELERATION)
-				|| hasSkillEffect(WIND_WALK)
+		return (hasSkillEffect(SKILL_HOLY_WALK)
+				|| hasSkillEffect(SKILL_MOVING_ACCELERATION)
+				|| hasSkillEffect(SKILL_WIND_WALK)
 				|| hasSkillEffect(STATUS_BRAVE2)); // 寵物競速
 	}
 
 	public boolean isFastAttackable() {
-		return hasSkillEffect(BLOODLUST);
+		return hasSkillEffect(SKILL_BLOODLUST);
 	}
 
 	public boolean isBrave() {
@@ -2392,8 +2392,8 @@ public class L1PcInstance extends L1Character
 
 	public boolean isHaste() {
 		return (hasSkillEffect(STATUS_HASTE)
-				|| hasSkillEffect(HASTE)
-				|| hasSkillEffect(GREATER_HASTE) || getMoveSpeed() == 1);
+				|| hasSkillEffect(SKILL_HASTE)
+				|| hasSkillEffect(SKILL_GREATER_HASTE) || getMoveSpeed() == 1);
 	}
 
 	public boolean isCrazy() {
@@ -2858,20 +2858,20 @@ public class L1PcInstance extends L1Character
 	}
 
 	public void removeHasteSkillEffect() {
-		if (hasSkillEffect(SLOW)) {
-			removeSkillEffect(SLOW);
+		if (hasSkillEffect(SKILL_SLOW)) {
+			removeSkillEffect(SKILL_SLOW);
 		}
-		if (hasSkillEffect(MASS_SLOW)) {
-			removeSkillEffect(MASS_SLOW);
+		if (hasSkillEffect(SKILL_MASS_SLOW)) {
+			removeSkillEffect(SKILL_MASS_SLOW);
 		}
-		if (hasSkillEffect(ENTANGLE)) {
-			removeSkillEffect(ENTANGLE);
+		if (hasSkillEffect(SKILL_ENTANGLE)) {
+			removeSkillEffect(SKILL_ENTANGLE);
 		}
-		if (hasSkillEffect(HASTE)) {
-			removeSkillEffect(HASTE);
+		if (hasSkillEffect(SKILL_HASTE)) {
+			removeSkillEffect(SKILL_HASTE);
 		}
-		if (hasSkillEffect(GREATER_HASTE)) {
-			removeSkillEffect(GREATER_HASTE);
+		if (hasSkillEffect(SKILL_GREATER_HASTE)) {
+			removeSkillEffect(SKILL_GREATER_HASTE);
 		}
 		if (hasSkillEffect(STATUS_HASTE)) {
 			removeSkillEffect(STATUS_HASTE);
@@ -3974,13 +3974,13 @@ public class L1PcInstance extends L1Character
 	}
 
 	public boolean isStun() {
-		if (hasSkillEffect(SHOCK_STUN)) {
+		if (hasSkillEffect(SKILL_STUN_SHOCK)) {
 			return true;
 		}
-		if (hasSkillEffect(SHOCK_SKIN)) {
+		if (hasSkillEffect(SKILL_SHOCK_SKIN)) {
 			return true;
 		}
-		if (hasSkillEffect(BONE_BREAK)) {
+		if (hasSkillEffect(SKILL_BONE_BREAK)) {
 			return true;
 		}
 		return false;
@@ -3990,16 +3990,16 @@ public class L1PcInstance extends L1Character
 		if (hasSkillEffect(STATUS_FREEZE)) {
 			return true;
 		}
-		if (hasSkillEffect(ICE_LANCE)) {
+		if (hasSkillEffect(SKILL_ICE_LANCE)) {
 			return true;
 		}
-		if (hasSkillEffect(FREEZING_BLIZZARD)) {
+		if (hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 			return true;
 		}
-		if (hasSkillEffect(FREEZING_BREATH)) {
+		if (hasSkillEffect(SKILL_FREEZING_BREATH)) {
 			return true;
 		}
-		if (hasSkillEffect(EARTH_BIND)) {
+		if (hasSkillEffect(SKILL_EARTH_BIND)) {
 			return true;
 		}
 		return false;

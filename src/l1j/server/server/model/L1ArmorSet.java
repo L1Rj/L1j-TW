@@ -279,9 +279,9 @@ class PolymorphEffect implements L1ArmorSetEffect {
 	@Override
 	public void giveEffect(L1PcInstance pc) {
 		int awakeSkillId = pc.getAwakeSkillId();
-		if (awakeSkillId == AWAKEN_ANTHARAS
-				|| awakeSkillId == AWAKEN_FAFURION
-				|| awakeSkillId == AWAKEN_VALAKAS) {
+		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS
+				|| awakeSkillId == SKILL_AWAKEN_FAFURION
+				|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
 			pc.sendPackets(new S_ServerMessage(1384)); // 
 			return;
 		}
@@ -301,9 +301,9 @@ class PolymorphEffect implements L1ArmorSetEffect {
 	@Override
 	public void cancelEffect(L1PcInstance pc) {
 		int awakeSkillId = pc.getAwakeSkillId();
-		if (awakeSkillId == AWAKEN_ANTHARAS
-				|| awakeSkillId == AWAKEN_FAFURION
-				|| awakeSkillId == AWAKEN_VALAKAS) {
+		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS
+				|| awakeSkillId == SKILL_AWAKEN_FAFURION
+				|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
 			pc.sendPackets(new S_ServerMessage(1384)); // 
 			return;
 		}

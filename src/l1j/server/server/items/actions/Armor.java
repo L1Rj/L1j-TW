@@ -28,7 +28,7 @@ import l1j.server.server.serverpackets.S_OwnCharStatus;
 import l1j.server.server.serverpackets.S_SPMR;
 import l1j.server.server.serverpackets.S_ServerMessage;
 
-import static l1j.server.server.skills.SkillId.SOLID_CARRIAGE;
+import static l1j.server.server.skills.SkillId.SKILL_SOLID_CARRIAGE;
 
 public class Armor {
 
@@ -90,8 +90,8 @@ public class Armor {
 				return;
 			}
 			if (type == 7) { // シールドの場合、ソリッドキャリッジの効果消失
-				if (activeChar.hasSkillEffect(SOLID_CARRIAGE)) {
-					activeChar.removeSkillEffect(SOLID_CARRIAGE);
+				if (activeChar.hasSkillEffect(SKILL_SOLID_CARRIAGE)) {
+					activeChar.removeSkillEffect(SKILL_SOLID_CARRIAGE);
 				}
 			}
 			pcInventory.setEquipped(armor, false);

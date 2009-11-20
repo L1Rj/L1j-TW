@@ -124,7 +124,7 @@ public class L1EffectSpawn {
 	public void doSpawnFireWall(L1Character cha, int targetX, int targetY) {
 		L1Npc firewall = NpcTable.getInstance().getTemplate(81157); // ファイアーウォール
 		int duration = SkillsTable.getInstance().getTemplate(
-				FIRE_WALL).getBuffDuration();
+				SKILL_FIRE_WALL).getBuffDuration();
 
 		if (firewall == null) {
 			throw new NullPointerException(

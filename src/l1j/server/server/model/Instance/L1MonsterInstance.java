@@ -18,7 +18,7 @@
  */
 package l1j.server.server.model.Instance;
 
-import static l1j.server.server.skills.SkillId.FOG_OF_SLEEPING;
+import static l1j.server.server.skills.SkillId.SKILL_FOG_OF_SLEEPING;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -337,7 +337,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				}
 			}
 			if (damage > 0) {
-				removeSkillEffect(FOG_OF_SLEEPING);
+				removeSkillEffect(SKILL_FOG_OF_SLEEPING);
 			}
 
 			onNpcAI();

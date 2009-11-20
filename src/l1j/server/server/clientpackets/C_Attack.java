@@ -20,8 +20,8 @@
 package l1j.server.server.clientpackets;
 
 import static l1j.server.server.model.Instance.L1PcInstance.REGENSTATE_ATTACK;
-import static l1j.server.server.skills.SkillId.ABSOLUTE_BARRIER;
-import static l1j.server.server.skills.SkillId.MEDITATION;
+import static l1j.server.server.skills.SkillId.SKILL_ABSOLUTE_BARRIER;
+import static l1j.server.server.skills.SkillId.SKILL_MEDITATION;
 
 import java.util.logging.Logger;
 
@@ -107,13 +107,13 @@ public class C_Attack extends ClientBasePacket
 		}
 
 		// 攻擊アクションがとれる場合の處理
-		if (pc.hasSkillEffect(ABSOLUTE_BARRIER)) { // アブソルート バリアの解除
-			pc.killSkillEffectTimer(ABSOLUTE_BARRIER);
+		if (pc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) { // アブソルート バリアの解除
+			pc.killSkillEffectTimer(SKILL_ABSOLUTE_BARRIER);
 			pc.startHpRegeneration();
 			pc.startMpRegeneration();
 			pc.startMpRegenerationByDoll();
 		}
-		pc.killSkillEffectTimer(MEDITATION);
+		pc.killSkillEffectTimer(SKILL_MEDITATION);
 
 		pc.delInvis(); // 透明狀態の解除
 

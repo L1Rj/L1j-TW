@@ -74,7 +74,7 @@ public class S_UseAttackSkill extends ServerBasePacket {
 			int x, int y, int actionId, int isHit, boolean withCastMotion) {
 		if (cha instanceof L1PcInstance) {
 			// シャドウ系變身中に攻擊魔法を使用するとクライアントが落ちるため暫定對應
-			if (cha.hasSkillEffect(SHAPE_CHANGE)
+			if (cha.hasSkillEffect(SKILL_POLYMORPH)
 					&& actionId == ActionCodes.ACTION_SkillAttack) {
 				int tempchargfx = cha.getTempCharGfx();
 				if (tempchargfx == 5727 || tempchargfx == 5730) {

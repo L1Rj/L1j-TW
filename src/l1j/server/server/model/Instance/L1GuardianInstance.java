@@ -388,7 +388,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 						setHate(attacker, damage);
 					}
 					if (damage > 0) {
-						removeSkillEffect(FOG_OF_SLEEPING);
+						removeSkillEffect(SKILL_FOG_OF_SLEEPING);
 					}
 					onNpcAI();
 					// 仲間意識をもつモンスターのターゲットに設定

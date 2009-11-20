@@ -202,7 +202,7 @@ public class L1PolyMorph {
 				if (pc.getTempCharGfx() == 6034
 						|| pc.getTempCharGfx() == 6035) {
 				} else {
-					pc.removeSkillEffect(SHAPE_CHANGE);
+					pc.removeSkillEffect(SKILL_POLYMORPH);
 					pc.sendPackets(new S_CloseList(pc.getId()));
 				}
 			} else if (pc.getLevel() >= poly.getMinLevel() || pc.isGm()) {
@@ -241,8 +241,8 @@ public class L1PolyMorph {
 				return;
 			}
 
- 			pc.killSkillEffectTimer(SHAPE_CHANGE);
-			pc.setSkillEffect(SHAPE_CHANGE, timeSecs * 1000);
+ 			pc.killSkillEffectTimer(SKILL_POLYMORPH);
+			pc.setSkillEffect(SKILL_POLYMORPH, timeSecs * 1000);
 			if (pc.getTempCharGfx() != polyId) { // 同じ變身の場合はアイコン送信以外が必要ない
 				L1ItemInstance weapon = pc.getWeapon();
 				// 變身によって武器が外れるか
@@ -272,8 +272,8 @@ public class L1PolyMorph {
 			pc.sendPackets(new S_SkillIconGFX(35, timeSecs));
 		} else if (cha instanceof L1MonsterInstance) {
 			L1MonsterInstance mob = (L1MonsterInstance) cha;
-			mob.killSkillEffectTimer(SHAPE_CHANGE);
-			mob.setSkillEffect(SHAPE_CHANGE, timeSecs * 1000);
+			mob.killSkillEffectTimer(SKILL_POLYMORPH);
+			mob.setSkillEffect(SKILL_POLYMORPH, timeSecs * 1000);
 			if (mob.getTempCharGfx() != polyId) { // 同じ變身の場合はアイコン送信以外が必要ない
 				mob.setTempCharGfx(polyId);
 				mob.broadcastPacket(new S_ChangeShape(mob.getId(), polyId));

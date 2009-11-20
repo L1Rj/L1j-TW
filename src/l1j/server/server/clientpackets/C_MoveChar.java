@@ -93,11 +93,11 @@ public class C_MoveChar extends ClientBasePacket {
 			}
 		}
 
-		pc.killSkillEffectTimer(MEDITATION);
+		pc.killSkillEffectTimer(SKILL_MEDITATION);
 		pc.setCallClanId(0); // コールクランを唱えた後に移動すると召喚無効
 
 		// アブソルートバリア中ではない
-		if (!pc.hasSkillEffect(ABSOLUTE_BARRIER))
+		if (!pc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER))
 			pc.setRegenState(REGENSTATE_MOVE);
 
 		pc.getMap().setPassable(pc.getLocation(), true);

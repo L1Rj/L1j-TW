@@ -29,10 +29,10 @@ import l1j.server.server.serverpackets.S_ShowPolyList;
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.utils.RandomArrayList;
 
-import static l1j.server.server.skills.SkillId.AWAKEN_ANTHARAS;
-import static l1j.server.server.skills.SkillId.AWAKEN_FAFURION;
-import static l1j.server.server.skills.SkillId.AWAKEN_VALAKAS;
-import static l1j.server.server.skills.SkillId.SHAPE_CHANGE;
+import static l1j.server.server.skills.SkillId.SKILL_AWAKEN_ANTHARAS;
+import static l1j.server.server.skills.SkillId.SKILL_AWAKEN_FAFURION;
+import static l1j.server.server.skills.SkillId.SKILL_AWAKEN_VALAKAS;
+import static l1j.server.server.skills.SkillId.SKILL_POLYMORPH;
 
 public class Poly {
 
@@ -63,8 +63,8 @@ public class Poly {
 		if (cha instanceof L1PcInstance) {
 			L1PcInstance pc = (L1PcInstance) cha;
 			int awakeSkillId = pc.getAwakeSkillId();
-			if (awakeSkillId == AWAKEN_ANTHARAS || awakeSkillId == AWAKEN_FAFURION
-					|| awakeSkillId == AWAKEN_VALAKAS) {
+			if (awakeSkillId == SKILL_AWAKEN_ANTHARAS || awakeSkillId == SKILL_AWAKEN_FAFURION
+					|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
 				pc.sendPackets(new S_ServerMessage(1384)); // 
 				return;
 			}
@@ -78,7 +78,7 @@ public class Poly {
 				// 魔法の力によって保護されます。
 				// 變身の際のメッセージは、他人が自分を變身させた時に出るメッセージと、レベルが足りない時に出るメッセージ以外はありません。
 			} else {
-				L1Skills skillTemp = SkillsTable.getInstance().getTemplate(SHAPE_CHANGE);
+				L1Skills skillTemp = SkillsTable.getInstance().getTemplate(SKILL_POLYMORPH);
 
 				L1PolyMorph.doPoly(pc, polyId, skillTemp.getBuffDuration(),
 						L1PolyMorph.MORPH_BY_ITEMMAGIC);
@@ -94,7 +94,7 @@ public class Poly {
 						&& npcId != 45464 && npcId != 45473 && npcId != 45488 // セマ、バルタザール、カスパー
 						&& npcId != 45497 && npcId != 45516 && npcId != 45529 // メルキオール、イフリート、ドレイク(DV)
 						&& npcId != 45458) { // ドレイク(船長)
-					L1Skills skillTemp = SkillsTable.getInstance().getTemplate(SHAPE_CHANGE);
+					L1Skills skillTemp = SkillsTable.getInstance().getTemplate(SKILL_POLYMORPH);
 					L1PolyMorph.doPoly(mob, polyId, skillTemp.getBuffDuration(),
 							L1PolyMorph.MORPH_BY_ITEMMAGIC);
 				}
@@ -314,8 +314,8 @@ public class Poly {
 	/** 變身卷軸動作 */
 	public static boolean Scroll(L1PcInstance pc, int item_id, String s) {
 		int awakeSkillId = pc.getAwakeSkillId();
-		if (awakeSkillId == AWAKEN_ANTHARAS || awakeSkillId == AWAKEN_FAFURION
-				|| awakeSkillId == AWAKEN_VALAKAS) {
+		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS || awakeSkillId == SKILL_AWAKEN_FAFURION
+				|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
 			pc.sendPackets(new S_ServerMessage(1384)); // 
 			return false;
 		}
@@ -333,7 +333,7 @@ public class Poly {
 				if (pc.getTempCharGfx() == 6034 || pc.getTempCharGfx() == 6035) {
 					return true;
 				} else {
-					pc.removeSkillEffect(SHAPE_CHANGE);
+					pc.removeSkillEffect(SKILL_POLYMORPH);
 					return true;
 				}
 			} else if (poly.getMinLevel() <= pc.getLevel() || pc.isGm()) {

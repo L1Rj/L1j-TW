@@ -30,7 +30,7 @@ import static l1j.server.server.skills.SkillId.COOKING_3_0_N;
 import static l1j.server.server.skills.SkillId.COOKING_3_0_S;
 import static l1j.server.server.skills.SkillId.COOKING_3_6_N;
 import static l1j.server.server.skills.SkillId.COOKING_3_6_S;
-import static l1j.server.server.skills.SkillId.SHAPE_CHANGE;
+import static l1j.server.server.skills.SkillId.SKILL_POLYMORPH;
 import static l1j.server.server.skills.SkillId.STATUS_BLUE_POTION;
 import static l1j.server.server.skills.SkillId.STATUS_BRAVE;
 import static l1j.server.server.skills.SkillId.STATUS_CHAT_PROHIBITED;
@@ -737,7 +737,7 @@ public class C_LoginToServer extends ClientBasePacket
 			while (rs.next()) {
 				int skillid = rs.getInt("skill_id");
 				int remaining_time = rs.getInt("remaining_time");
-				if (skillid == SHAPE_CHANGE) { // 變身
+				if (skillid == SKILL_POLYMORPH) { // 變身
 					int poly_id = rs.getInt("poly_id");
 					L1PolyMorph.doPoly(pc, poly_id, remaining_time, L1PolyMorph
 							.MORPH_BY_LOGIN);

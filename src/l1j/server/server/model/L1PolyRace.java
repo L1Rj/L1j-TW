@@ -310,7 +310,7 @@ public class L1PolyRace {
 	}
 	public void removeSkillEffect(L1PcInstance pc){
 		SkillUse skill = new SkillUse();
-		skill.handleCommands(pc,SkillId.CANCELLATION,
+		skill.handleCommands(pc,SkillId.SKILL_CANCEL_MAGIC,
 				pc.getId(), pc.getX(), pc.getY(),null,
 				0, SkillUse.TYPE_LOGIN);
 	}

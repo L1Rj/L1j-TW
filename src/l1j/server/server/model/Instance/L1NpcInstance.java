@@ -540,10 +540,10 @@ public class L1NpcInstance extends L1Character {
 		boolean isCounterBarrier = false;
 		L1Attack attack = new L1Attack(this, target);
 		if (attack.calcHit()) {
-			if (target.hasSkillEffect(COUNTER_BARRIER)) {
+			if (target.hasSkillEffect(SKILL_COUNTER_BARRIER)) {
 				L1Magic magic = new L1Magic(target, this);
 				boolean isProbability = magic
-						.calcProbabilityMagic(COUNTER_BARRIER);
+						.calcProbabilityMagic(SKILL_COUNTER_BARRIER);
 				boolean isShortDistance = attack.isShortDistance();
 				if (isProbability && isShortDistance) {
 					isCounterBarrier = true;
@@ -1677,7 +1677,7 @@ public class L1NpcInstance extends L1Character {
 
 	private void useHealPotion(int healHp, int effectId) {
 		broadcastPacket(new S_SkillSound(getId(), effectId));
-		if (this.hasSkillEffect(POLLUTE_WATER)) { // ポルートウォーター中は回復量1/2倍
+		if (this.hasSkillEffect(SKILL_POLLUTE_WATER)) { // ポルートウォーター中は回復量1/2倍
 			healHp /= 2;
 		}
 		if (this instanceof L1PetInstance) {
@@ -1909,7 +1909,7 @@ public class L1NpcInstance extends L1Character {
 		if (getBraveSpeed() == 1) {
 			sleepTime -= (sleepTime * 0.25);
 		}
-		if (hasSkillEffect(WIND_SHACKLE)) {
+		if (hasSkillEffect(SKILL_WIND_SHACKLE)) {
 			if (type == ATTACK_SPEED || type == MAGIC_SPEED) {
 				sleepTime += (sleepTime * 0.25);
 			}
@@ -2026,7 +2026,7 @@ public class L1NpcInstance extends L1Character {
 		// キャンセレーションをエフェクトなしでかける
 		// 本來は死亡時に行うべきだが、負荷が大きくなるため復活時に行う
 		SkillUse skill = new SkillUse();
-		skill.handleCommands(null, CANCELLATION, getId(), getX(),
+		skill.handleCommands(null, SKILL_CANCEL_MAGIC, getId(), getX(),
 				getY(), null, 0, SkillUse.TYPE_LOGIN, this);
 	}
 

@@ -88,19 +88,19 @@ public class L1Cube extends TimerTask {
 			if (_cha.hasSkillEffect(STATUS_FREEZE)) {
 				return;
 			}
-			if (_cha.hasSkillEffect(ABSOLUTE_BARRIER)) {
+			if (_cha.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
 				return;
 			}
-			if (_cha.hasSkillEffect(ICE_LANCE)) {
+			if (_cha.hasSkillEffect(SKILL_ICE_LANCE)) {
 				return;
 			}
-			if (_cha.hasSkillEffect(FREEZING_BLIZZARD)) {
+			if (_cha.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 				return;
 			}
-			if (_cha.hasSkillEffect(FREEZING_BREATH)) {
+			if (_cha.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 				return;
 			}
-			if (_cha.hasSkillEffect(EARTH_BIND)) {
+			if (_cha.hasSkillEffect(SKILL_EARTH_BIND)) {
 				return;
 			}
 
@@ -124,19 +124,19 @@ public class L1Cube extends TimerTask {
 			if (_cha.hasSkillEffect(STATUS_FREEZE)) {
 				return;
 			}
-			if (_cha.hasSkillEffect(ABSOLUTE_BARRIER)) {
+			if (_cha.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
 				return;
 			}
-			if (_cha.hasSkillEffect(ICE_LANCE)) {
+			if (_cha.hasSkillEffect(SKILL_ICE_LANCE)) {
 				return;
 			}
-			if (_cha.hasSkillEffect(FREEZING_BLIZZARD)) {
+			if (_cha.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
 				return;
 			}
-			if (_cha.hasSkillEffect(FREEZING_BREATH)) {
+			if (_cha.hasSkillEffect(SKILL_FREEZING_BREATH)) {
 				return;
 			}
-			if (_cha.hasSkillEffect(EARTH_BIND)) {
+			if (_cha.hasSkillEffect(SKILL_EARTH_BIND)) {
 				return;
 			}
 

@@ -45,20 +45,20 @@ public class BuffUtil {
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(HOLY_WALK)) { // 如果已經有(神聖疾走就)狀態就不重複
-			pc.killSkillEffectTimer(HOLY_WALK);
+		if (pc.hasSkillEffect(SKILL_HOLY_WALK)) { // 如果已經有(神聖疾走就)狀態就不重複
+			pc.killSkillEffectTimer(SKILL_HOLY_WALK);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(MOVING_ACCELERATION)) { // 如果已經有(行走加速)狀態就不重複
-			pc.killSkillEffectTimer(MOVING_ACCELERATION);
+		if (pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)) { // 如果已經有(行走加速)狀態就不重複
+			pc.killSkillEffectTimer(SKILL_MOVING_ACCELERATION);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(WIND_WALK)) { // 如果已經有(風之疾走)狀態就不重複
-			pc.killSkillEffectTimer(WIND_WALK);
+		if (pc.hasSkillEffect(SKILL_WIND_WALK)) { // 如果已經有(風之疾走)狀態就不重複
+			pc.killSkillEffectTimer(SKILL_WIND_WALK);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
@@ -69,8 +69,8 @@ public class BuffUtil {
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(BLOODLUST)) { // 如果已經有(血之渴望)狀態就不重複
-			pc.killSkillEffectTimer(BLOODLUST);
+		if (pc.hasSkillEffect(SKILL_BLOODLUST)) { // 如果已經有(血之渴望)狀態就不重複
+			pc.killSkillEffectTimer(SKILL_BLOODLUST);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
@@ -93,20 +93,20 @@ public class BuffUtil {
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(HOLY_WALK)) { // 如果已經有(神聖疾走就)狀態就不重複
-			pc.killSkillEffectTimer(HOLY_WALK);
+		if (pc.hasSkillEffect(SKILL_HOLY_WALK)) { // 如果已經有(神聖疾走就)狀態就不重複
+			pc.killSkillEffectTimer(SKILL_HOLY_WALK);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(MOVING_ACCELERATION)) { // 如果已經有(行走加速)狀態就不重複
-			pc.killSkillEffectTimer(MOVING_ACCELERATION);
+		if (pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)) { // 如果已經有(行走加速)狀態就不重複
+			pc.killSkillEffectTimer(SKILL_MOVING_ACCELERATION);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(WIND_WALK)) { // 如果已經有(風之疾走)狀態就不重複
-			pc.killSkillEffectTimer(WIND_WALK);
+		if (pc.hasSkillEffect(SKILL_WIND_WALK)) { // 如果已經有(風之疾走)狀態就不重複
+			pc.killSkillEffectTimer(SKILL_WIND_WALK);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
@@ -117,8 +117,8 @@ public class BuffUtil {
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		if (pc.hasSkillEffect(BLOODLUST)) { // 如果已經有(血之渴望)狀態就不重複
-			pc.killSkillEffectTimer(BLOODLUST);
+		if (pc.hasSkillEffect(SKILL_BLOODLUST)) { // 如果已經有(血之渴望)狀態就不重複
+			pc.killSkillEffectTimer(SKILL_BLOODLUST);
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
