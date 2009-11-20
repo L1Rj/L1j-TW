@@ -1,5 +1,55 @@
 以下為目前仍有的錯誤訊息紀錄
 
+2009/11/20 下午 04:03:06 l1j.server.server.model.L1PcInventory saveItem
+嚴重的: The last packet successfully received from the server was 38,010,898 milliseconds ago.  The last packet sent successfully to the server was 38,010,898 milliseconds ago. is longer than the server configured value of 'wait_timeout'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts, or using the Connector/J connection property 'autoReconnect=true' to avoid this problem.
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: The last packet successfully received from the server was 38,010,898 milliseconds ago.  The last packet sent successfully to the server was 38,010,898 milliseconds ago. is longer than the server configured value of 'wait_timeout'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts, or using the Connector/J connection property 'autoReconnect=true' to avoid this problem.
+        at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+        at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+        at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+        at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+        at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+        at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+        at com.mysql.jdbc.MysqlIO.send(MysqlIO.java:3313)
+        at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1940)
+        at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2109)
+        at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2648)
+        at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2077)
+        at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1356)
+        at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.execute(NewProxyPreparedStatement.java:989)
+        at l1j.server.server.storage.mysql.MySqlCharactersItemStorage.executeUpdate(Unknown Source)
+        at l1j.server.server.storage.mysql.MySqlCharactersItemStorage.updateItemCount(Unknown Source)
+        at l1j.server.server.model.L1PcInventory.saveItem(Unknown Source)
+        at l1j.server.server.model.Instance.L1PcInstance.saveInventory(Unknown Source)
+        at l1j.server.server.ClientThread.quitGame(Unknown Source)
+        at l1j.server.server.ClientThread.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+        at java.lang.Thread.run(Thread.java:619)
+Caused by: java.net.SocketException: Broken pipe
+        at java.net.SocketOutputStream.socketWrite0(Native Method)
+        at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:92)
+        at java.net.SocketOutputStream.write(SocketOutputStream.java:136)
+        at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:65)
+        at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:123)
+        at com.mysql.jdbc.MysqlIO.send(MysqlIO.java:3294)
+        ... 15 more
+
+
+2009/11/19 下午 11:25:25 l1j.server.server.log.LogDropItem storeLogDropItem
+嚴重的: database locked
+java.sql.SQLException: database locked
+        at org.sqlite.DB.execute(DB.java:270)
+        at org.sqlite.PrepStmt.execute(PrepStmt.java:57)
+        at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.execute(NewProxyPreparedStatement.java:989)
+        at l1j.server.server.log.LogDropItem.storeLogDropItem(Unknown Source)
+        at l1j.server.server.clientpackets.C_DropItem.<init>(Unknown Source)
+        at l1j.server.server.PacketHandler.handlePacket(Unknown Source)
+        at l1j.server.server.ClientThread$AutoResponse.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+        at java.lang.Thread.run(Thread.java:619)
+
+
 -------------------- 以下為舊訊息 僅供參考 --------------------------------------------------------------------------------
 
 20090808
