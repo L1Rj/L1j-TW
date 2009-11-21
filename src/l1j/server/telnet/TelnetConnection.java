@@ -51,15 +51,12 @@ public class TelnetConnection {
 
 				String cmd = null;
 				while (null != (cmd = in.readLine())) {
-					TelnetCommandResult result = TelnetCommandExecutor
-							.getInstance().execute(cmd);
-					out.write(result.getCode() + " " + result.getCodeMessage()
-							+ "\r\n");
+					TelnetCommandResult result = TelnetCommandExecutor.getInstance().execute(cmd);
+					out.write(result.getCode() + " " + result.getCodeMessage() + "\r\n");
 					out.write(result.getResult() + "\r\n");
 					out.flush();
-					// // for debug
-					// System.out.println(result.getCode() + " " +
-					// result.getCodeMessage());
+					// for debug
+					// System.out.println(result.getCode() + " " + result.getCodeMessage());
 					// System.out.println(result.getResult());
 				}
 			} catch (IOException e) {

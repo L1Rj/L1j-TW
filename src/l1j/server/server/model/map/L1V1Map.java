@@ -18,12 +18,10 @@
  */
 package l1j.server.server.model.map;
 
-import java.util.logging.Logger;
-
-import l1j.server.Config;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.datatables.DoorSpawnTable;
 import l1j.server.server.model.Instance.L1DoorInstance;
+import l1j.server.server.types.HeadType;
 import l1j.server.server.types.Point;
 
 public class L1V1Map extends L1Map {
@@ -61,8 +59,8 @@ public class L1V1Map extends L1Map {
 
 	private boolean _isUsableSkill;
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 5.01 Start
-	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 5.01 End
+	private static final byte HEADING_TABLE_X[] = HeadType.TABLE_X;
+	private static final byte HEADING_TABLE_Y[] = HeadType.TABLE_Y;
 
 	/*
 	 * マップ情報を1面で保持するために仕方なくビットフラグ。 可讀性が大きく下がるので良い子は真似しない。

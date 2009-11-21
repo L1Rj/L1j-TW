@@ -16,27 +16,14 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.utils;
+package l1j.server.server.types;
 
-import java.util.Timer;
+public class HeadType {
 
-public class TimerPool {
-	private Timer _timers[];
-	private int _numOfTimers;
-	private int _pointer = 0;
+	/* 方向類型 */
 
-	public TimerPool(int numOfTimers) {
-		_timers = new Timer[numOfTimers];
-		for (int i = 0; i < numOfTimers; i++) {
-			_timers[i] = new Timer();
-		}
-		_numOfTimers = numOfTimers;
-	}
+	public static final byte[] TABLE_X = { 0, 1, 1, 1, 0, -1, -1, -1 };
 
-	public synchronized Timer getTimer() {
-		if (_numOfTimers <= _pointer) {
-			_pointer = 0;
-		}
-		return _timers[_pointer++];
-	}
+	public static final byte[] TABLE_Y = { -1, -1, 0, 1, 1, 1, 0, -1 };
+
 }

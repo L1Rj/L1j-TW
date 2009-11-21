@@ -18,8 +18,6 @@
  */
 package l1j.server.server.model;
 
-import java.util.Random;
-
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;// 吉爾塔斯反擊屏障
 import l1j.server.server.WarTimeController;
@@ -39,6 +37,7 @@ import l1j.server.server.serverpackets.S_AttackMissPacket;// 吉爾塔斯反擊�
 import l1j.server.server.serverpackets.S_DoActionGFX;// 吉爾塔斯反擊屏障
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SystemMessage;
+import l1j.server.server.types.HeadType;
 // import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
 
@@ -1793,8 +1792,8 @@ public class L1Attack
 	}
 
 	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 5.05 Start
-	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 5.05 End
+	private static final byte HEADING_TABLE_X[] = HeadType.TABLE_X;
+	private static final byte HEADING_TABLE_Y[] = HeadType.TABLE_Y;
 
 	// 飛び道具（矢、スティング）がミスだったときの軌道を計算 // 5.12 Start 標記 城上NPC問題
 /*	public void calcOrbit(int cx, int cy, int heading) // 起點Ｘ 起點Ｙ 今向いてる方向

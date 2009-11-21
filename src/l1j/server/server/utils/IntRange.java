@@ -18,10 +18,6 @@
  */
 package l1j.server.server.utils;
 
-import java.util.Random;
-
-import l1j.server.server.utils.RandomArrayList;
-
 /**
  * <p>
  * 最低值lowと最大值highによって圍まれた、數值の範圍を指定するクラス。
@@ -32,7 +28,6 @@ import l1j.server.server.utils.RandomArrayList;
  * </p>
  */
 public class IntRange {
-	private static final Random _rnd = new Random();
 	private int _low;
 	private int _high;
 

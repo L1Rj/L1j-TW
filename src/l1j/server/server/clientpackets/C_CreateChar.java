@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package l1j.server.server.clientpackets;
 
 import java.io.IOException;
@@ -38,7 +37,6 @@ import l1j.server.server.serverpackets.S_AddSkill;
 import l1j.server.server.serverpackets.S_CharCreateStatus;
 import l1j.server.server.serverpackets.S_NewCharPacket;
 import l1j.server.server.templates.L1Skills;
-import l1j.server.server.utils.CalcInitHpMp;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket

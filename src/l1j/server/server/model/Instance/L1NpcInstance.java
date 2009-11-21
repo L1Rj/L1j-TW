@@ -63,7 +63,9 @@ import l1j.server.server.serverpackets.S_SkillHaste;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1NpcChat;
+import l1j.server.server.types.HeadType;
 import l1j.server.server.types.Point;
+import l1j.server.server.types.SkillType;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.TimerPool;
 
@@ -1435,8 +1437,8 @@ public class L1NpcInstance extends L1Character {
 	}
 
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };
-	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
+	private static final byte HEADING_TABLE_X[] = HeadType.TABLE_X;
+	private static final byte HEADING_TABLE_Y[] = HeadType.TABLE_Y;
 
 	// 指定された方向に移動させる
 	public void setDirectionMove(int dir) { // 5.06 Start
@@ -2027,7 +2029,7 @@ public class L1NpcInstance extends L1Character {
 		// 本來は死亡時に行うべきだが、負荷が大きくなるため復活時に行う
 		SkillUse skill = new SkillUse();
 		skill.handleCommands(null, SKILL_CANCEL_MAGIC, getId(), getX(),
-				getY(), null, 0, SkillUse.TYPE_LOGIN, this);
+				getY(), null, 0, SkillType.LOGIN, this);
 	}
 
 	// 死んでから消えるまでの時間計測用

@@ -39,7 +39,9 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_UseAttackSkill;
 import l1j.server.server.templates.L1Skills;
+import l1j.server.server.types.SkillType;
 import l1j.server.server.utils.RandomArrayList;
+
 import static l1j.server.server.skills.SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
@@ -467,7 +469,7 @@ public class L1WeaponSkill {
 			SkillUse skilluse = new SkillUse();
 			skilluse.handleCommands(pc, 56,
 					cha.getId(), cha.getX(), cha.getY(), null, 0,
-					SkillUse.TYPE_GMBUFF);
+					SkillType.GMBUFF);
 	   }
 	}
 

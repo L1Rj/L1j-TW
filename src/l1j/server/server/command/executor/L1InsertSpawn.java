@@ -28,7 +28,7 @@ import l1j.server.server.datatables.SpawnTable;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_SystemMessage;
 import l1j.server.server.templates.L1Npc;
-import l1j.server.server.utils.L1SpawnUtil;
+import l1j.server.server.utils.SpawnUtil;
 
 public class L1InsertSpawn implements L1CommandExecutor {
 	private static Logger _log = Logger
@@ -64,7 +64,7 @@ public class L1InsertSpawn implements L1CommandExecutor {
 			} else if (type.equals("npc")) {
 				NpcSpawnTable.getInstance().storeSpawn(pc, template);
 			}
-			L1SpawnUtil.spawn(pc, npcId, 0, 0);
+			SpawnUtil.spawn(pc, npcId, 0, 0);
 			msg = new StringBuilder().append(template.get_name()).append(
 					" (" + npcId + ") ").append("追加。").toString();
 		} catch (Exception e) {

@@ -34,8 +34,7 @@ import java.util.logging.Logger;
 import javolution.util.FastMap;
 
 public class LeakCheckedConnection {
-	private static final Logger _log = Logger
-			.getLogger(LeakCheckedConnection.class.getName());
+	private static final Logger _log = Logger.getLogger(LeakCheckedConnection.class.getName());
 	private Connection _con;
 	private Throwable _stackTrace;
 	private Map<Statement, Throwable> _openedStatements = new FastMap<Statement, Throwable>();
@@ -100,18 +99,15 @@ public class LeakCheckedConnection {
 		@Override
 		protected void finalize() throws Throwable {
 			if (!_con.isClosed()) {
-				_log.log(Level.WARNING, "Leaked Connection detected.",
-						_stackTrace);
+				_log.log(Level.WARNING, "Leaked Connection detected.", _stackTrace);
 				_con.close();
 			}
 		}
 	};
 
-	private class ConnectionHandler implements
-			java.lang.reflect.InvocationHandler {
+	private class ConnectionHandler implements java.lang.reflect.InvocationHandler {
 		@Override
-		public Object invoke(Object proxy, Method method, Object[] args)
-				throws Throwable {
+		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 			if (method.getName().equals("close")) {
 				closeAll();
 			}
@@ -130,12 +126,10 @@ public class LeakCheckedConnection {
 
 		Delegate(Object o, Class c) {
 			_original = o;
-			_delegateProxy = Proxy.newProxyInstance(c.getClassLoader(),
-					new Class[] { c }, this);
+			_delegateProxy = Proxy.newProxyInstance(c.getClassLoader(), new Class[] { c }, this);
 		}
 
-		public Object invoke(Object proxy, Method method, Object[] args)
-				throws Throwable {
+		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 			if (method.getName().equals("close")) {
 				remove(_original);
 			}

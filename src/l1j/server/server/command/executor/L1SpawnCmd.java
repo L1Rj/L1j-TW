@@ -27,7 +27,7 @@ import l1j.server.server.datatables.NpcTable;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_SystemMessage;
 import l1j.server.server.templates.L1Npc;
-import l1j.server.server.utils.L1SpawnUtil;
+import l1j.server.server.utils.SpawnUtil;
 
 public class L1SpawnCmd implements L1CommandExecutor {
 	private static Logger _log = Logger.getLogger(L1SpawnCmd.class.getName());
@@ -75,7 +75,7 @@ public class L1SpawnCmd implements L1CommandExecutor {
 				return;
 			}
 			for (int i = 0; i < count; i++) {
-				L1SpawnUtil.spawn(pc, npcid, randomrange, 0);
+				SpawnUtil.spawn(pc, npcid, randomrange, 0);
 			}
 			String msg = String.format("%s(%d) (%d) 已招喚。 (範圍:%d)", npc
 					.get_name(), npcid, count, randomrange);

@@ -18,7 +18,6 @@
  */
 package l1j.server.server.utils.collections;
 
-
 import java.util.concurrent.ConcurrentHashMap;
 
 import javolution.util.FastMap;

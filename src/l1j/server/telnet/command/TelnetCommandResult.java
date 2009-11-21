@@ -18,7 +18,6 @@
  */
 package l1j.server.telnet.command;
 
-
 import java.util.Map;
 
 import javolution.util.FastMap;

@@ -19,19 +19,17 @@
 package l1j.server.server.model.Instance;
 
 import java.util.List;
-//import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import l1j.server.server.model.L1Location;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.map.L1Map;
-import l1j.server.server.skills.SkillId;
 import l1j.server.server.model.trap.L1Trap;
 import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_Trap;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
-import l1j.server.server.utils.StaticFinalList;
+
 import static l1j.server.server.skills.SkillId.*;
 
 public class L1TrapInstance extends L1Object {
@@ -45,8 +43,6 @@ public class L1TrapInstance extends L1Object {
 	private final String _nameForView;
 
 	private List<L1PcInstance> _knownPlayers = new CopyOnWriteArrayList<L1PcInstance>();
-
-	//private static final Random _random = new Random();
 
 	public L1TrapInstance(int id, L1Trap trap, L1Location loc, Point rndPt,
 			int span) {

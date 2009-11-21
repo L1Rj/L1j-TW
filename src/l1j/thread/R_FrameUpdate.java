@@ -16,36 +16,29 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package Threading;
+package l1j.thread;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 
-public class R_FrameUpdate implements Runnable
-{
+public class R_FrameUpdate implements Runnable {
 	private final static ThreadGroup tGroup = new ThreadGroup("FrameUpdate");
+
 	private final L1PcInstance pc;
-	
+
 	private boolean isShutdown;
-	
-	public R_FrameUpdate(L1PcInstance pc)
-	{
+
+	public R_FrameUpdate(L1PcInstance pc) {
 		this.pc = pc;
-		
 		new Thread(tGroup, this, this.getClass().getSimpleName()).start();
 	}
-	
+
 	@Override
-	public void run()
-	{
-		while (!isShutdown)
-		{	
-			try
-			{
+	public void run() {
+		while (!isShutdown) {
+			try {
 				pc.updateObject(); // 更新一次畫面
 				Thread.sleep(250); // 延遲 0.200ms
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				e.fillInStackTrace(); // 顯示錯誤訊息
 				break;
 			}
@@ -53,18 +46,18 @@ public class R_FrameUpdate implements Runnable
 	}
 
 	/**
-	 * @param isShutdown the isShutdown to set
+	 * @param isShutdown
+	 *            the isShutdown to set
 	 */
-	public void setShutdown(boolean isShutdown)
-	{
+	public void setShutdown(boolean isShutdown) {
 		this.isShutdown = isShutdown;
 	}
 
 	/**
 	 * @return the isShutdown
 	 */
-	public boolean isShutdown()
-	{
+	public boolean isShutdown() {
 		return isShutdown;
 	}
+
 }

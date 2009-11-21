@@ -97,8 +97,9 @@ import l1j.server.server.templates.L1BookMark;
 import l1j.server.server.templates.L1EtcItem;
 import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1Skills;
-import l1j.server.server.utils.L1SpawnUtil;
+import l1j.server.server.types.SkillType;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.server.server.utils.SpawnUtil;
 
 import static l1j.server.server.items.ItemId.*;
 import static l1j.server.server.skills.SkillId.*;
@@ -169,6 +170,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		int fishY = 0;
 
 		int use_type = item.getItem().getUseType();
+
 		if (use_type == 30) { // spell_buff
 			spellsc_objid = readD();
 		} else if (use_type == 5 || use_type == 17) { // spell_long、spell_short
@@ -262,6 +264,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 			default:
 				l = readC();
+			break;
 		}
 
 		if (pc.getCurrentHp() > 0) {
@@ -1082,7 +1085,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								&& (pc.getX() >= 32612 && pc.getX() <= 32619)
 								&& (pc.getY() >= 32666 && pc.getY() <= 32673)
 								&& (pc.getMapId() == 4)) {
-							L1SpawnUtil.spawn(pc, 46163, 0, 0);
+							SpawnUtil.spawn(pc, 46163, 0, 0);
 						} else {
 							pc.sendPackets(new S_ServerMessage(79));
 						}
@@ -1429,7 +1432,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					int skillid = itemId - 40858;
 					SkillUse skilluse = new SkillUse();
 					skilluse.handleCommands(client.getActiveChar(), skillid, spellsc_objid,
-							spellsc_x, spellsc_y, null, 0, SkillUse.TYPE_SPELLSC);
+							spellsc_x, spellsc_y, null, 0, SkillType.SPELLSC);
 
 				} else if (itemId >= 40373 && itemId <= 40382 // 地圖各種
 						|| itemId >= 40385 && itemId <= 40390) {
@@ -1785,7 +1788,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						if (found) {
 							pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 						} else {
-							L1SpawnUtil.spawn(pc, 45300, 0, 0); // 古代人の亡靈
+							SpawnUtil.spawn(pc, 45300, 0, 0); // 古代人の亡靈
 						}
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
@@ -1801,7 +1804,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								}
 							}
 						}
-						L1SpawnUtil.spawn(pc, 45883, 0, 300000);
+						SpawnUtil.spawn(pc, 45883, 0, 300000);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
@@ -1816,7 +1819,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								}
 							}
 						}
-						L1SpawnUtil.spawn(pc, 45884, 0, 300000);
+						SpawnUtil.spawn(pc, 45884, 0, 300000);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
@@ -1831,7 +1834,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								}
 							}
 						}
-						L1SpawnUtil.spawn(pc, 45885, 0, 300000);
+						SpawnUtil.spawn(pc, 45885, 0, 300000);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
@@ -1846,7 +1849,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								}
 							}
 						}
-						L1SpawnUtil.spawn(pc, 45886, 0, 300000);
+						SpawnUtil.spawn(pc, 45886, 0, 300000);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
@@ -1861,7 +1864,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								}
 							}
 						}
-						L1SpawnUtil.spawn(pc, 45887, 0, 300000);
+						SpawnUtil.spawn(pc, 45887, 0, 300000);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
@@ -1876,7 +1879,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								}
 							}
 						}
-						L1SpawnUtil.spawn(pc, 45888, 0, 300000);
+						SpawnUtil.spawn(pc, 45888, 0, 300000);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
@@ -1891,7 +1894,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								}
 							}
 						}
-						L1SpawnUtil.spawn(pc, 45889, 0, 300000);
+						SpawnUtil.spawn(pc, 45889, 0, 300000);
 					} else {
 						pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 					}
@@ -1934,7 +1937,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						 * バグベアー
 						 */
 						int rnd = RandomArrayList.getInt(mobArray.length);
-						L1SpawnUtil.spawn(pc, mobArray[rnd], 0, 300000);
+						SpawnUtil.spawn(pc, mobArray[rnd], 0, 300000);
 						if (itemId == 40006 || itemId == 140006) {//創杖
 							item.setChargeCount(item.getChargeCount() - 1);
 							pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
@@ -2368,7 +2371,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 						if (found) {
 						} else {
-							L1SpawnUtil.spawn(pc, 45875, 0, 0); // ラバーボーンヘッド
+							SpawnUtil.spawn(pc, 45875, 0, 0); // ラバーボーンヘッド
 						}
 					}
 				} else if (itemId == 41121) { // カヘルの契約書
@@ -2674,7 +2677,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						if (found) {
 							pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
 						} else {
-							L1SpawnUtil.spawn(pc, 46161, 0, 0); // オーク 密使リーダー
+							SpawnUtil.spawn(pc, 46161, 0, 0); // オーク 密使リーダー
 						}
 						pc.getInventory().consumeItem(49222, 1);
 					}

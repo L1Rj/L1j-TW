@@ -32,8 +32,6 @@ import l1j.server.server.model.classes.L1ClassFeature;
 import l1j.server.server.serverpackets.S_CharReset;
 import l1j.server.server.serverpackets.S_Disconnect;
 import l1j.server.server.serverpackets.S_OwnCharStatus;
-import l1j.server.server.utils.CalcInitHpMp;
-import l1j.server.server.utils.CalcStat;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket

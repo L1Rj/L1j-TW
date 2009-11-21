@@ -20,13 +20,11 @@ package l1j.server.server.utils;
 
 public class SystemUtil {
 	/**
-	 * システムが利用中のヒープサイズをメガバイト單位で返す。<br>
-	 * この值にスタックのサイズは含まれない。
+	 * 系統使用兆位元組單位獲得記憶體使用量。<br> この值にスタックのサイズは含まれない。
 	 * 
-	 * @return 利用中のヒープサイズ
+	 * @return 記憶體使用量
 	 */
 	public static long getUsedMemoryMB() {
-		return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime()
-				.freeMemory()) / 1024L / 1024L;
+		return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024L / 1024L;
 	}
 }

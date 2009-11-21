@@ -23,7 +23,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import javolution.util.FastTable;
 
 public class Lists {
-	public static <E> FastTable<E> newFastTable() {
+	public static <E> FastTable<E> newArrayList() {
 		return new FastTable<E>();
 	}
 

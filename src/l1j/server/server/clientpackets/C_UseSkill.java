@@ -32,6 +32,8 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_Disconnect;
 import l1j.server.server.serverpackets.S_ServerMessage;
+import l1j.server.server.types.SkillType;
+
 import static l1j.server.server.skills.SkillId.*;
 
 // Referenced classes of package l1j.server.server.clientpackets:
@@ -153,7 +155,7 @@ public class C_UseSkill extends ClientBasePacket {
 			}
 			SkillUse skilluse = new SkillUse();
 			skilluse.handleCommands(pc, skillId, targetId, targetX, targetY,
-					message, 0, SkillUse.TYPE_NORMAL);
+					message, 0, SkillType.NORMAL);
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package l1j.server.server.model.Instance;
 
 import java.sql.Timestamp;
@@ -27,8 +26,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javolution.util.FastTable;
-
-import Threading.R_FrameUpdate;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
@@ -109,9 +106,10 @@ import l1j.server.server.templates.L1BookMark;
 import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1PrivateShopBuyList;
 import l1j.server.server.templates.L1PrivateShopSellList;
-import l1j.server.server.utils.CalcStat;
+import l1j.server.server.types.SkillType;
 import l1j.server.server.utils.IntRange;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.thread.R_FrameUpdate;
 import static l1j.server.server.skills.SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
@@ -1294,7 +1292,7 @@ public class L1PcInstance extends L1Character
 			SkillUse skilluse = new SkillUse();
 			skilluse.handleCommands(L1PcInstance.this,
 					SKILL_CANCEL_MAGIC, getId(), getX(), getY(), null, 0,
-					SkillUse.TYPE_LOGIN);
+					SkillType.LOGIN);
 
 			// シャドウ系變身中に死亡するとクライアントが落ちるため暫定對應
 			if (tempchargfx == 5727 || tempchargfx == 5730

@@ -30,6 +30,8 @@ import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Npc;
+import l1j.server.server.types.SkillType;
+
 import static l1j.server.server.skills.SkillId.*;
 
 public class L1FieldObjectInstance extends L1NpcInstance {
@@ -94,7 +96,7 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 					SkillUse skilluse = new SkillUse();
 					skilluse.handleCommands(pc,
 							SKILL_CANCEL_MAGIC, pc.getId(), pc.getX(),
-							pc.getY(), null, 0, SkillUse.TYPE_LOGIN);
+							pc.getY(), null, 0, SkillType.LOGIN);
 					L1Teleport.teleport(pc, 32624, 32813, (short) 4, 5, true);
 				}
 			}

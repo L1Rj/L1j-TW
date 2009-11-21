@@ -41,8 +41,8 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillBrave;
 import l1j.server.server.serverpackets.S_SkillHaste;
 import l1j.server.server.serverpackets.S_SystemMessage;
+import l1j.server.server.types.SkillType;
 import l1j.server.server.utils.RandomArrayList;
-
 
 public class L1PolyRace {
 
@@ -312,7 +312,7 @@ public class L1PolyRace {
 		SkillUse skill = new SkillUse();
 		skill.handleCommands(pc,SkillId.SKILL_CANCEL_MAGIC,
 				pc.getId(), pc.getX(), pc.getY(),null,
-				0, SkillUse.TYPE_LOGIN);
+				0, SkillType.LOGIN);
 	}
 	//很蠢的陷阱設定 ...
 	private void onEffectTrap(L1PcInstance pc){

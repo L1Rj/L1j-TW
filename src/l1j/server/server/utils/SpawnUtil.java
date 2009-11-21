@@ -29,11 +29,10 @@ import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.utils.RandomArrayList;
 
-public class L1SpawnUtil {
-	private static Logger _log = Logger.getLogger(L1SpawnUtil.class.getName());
+public class SpawnUtil {
+	private static Logger _log = Logger.getLogger(SpawnUtil.class.getName());
 
-	public static void spawn(L1PcInstance pc, int npcId, int randomRange,
-			int timeMillisToDelete) {
+	public static void spawn(L1PcInstance pc, int npcId, int randomRange, int timeMillisToDelete) {
 		try {
 			L1NpcInstance npc = NpcTable.getInstance().newNpcInstance(npcId);
 			npc.setId(IdFactory.getInstance().nextId());
@@ -72,8 +71,7 @@ public class L1SpawnUtil {
 			npc.turnOnOffLight();
 			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // チャット開始
 			if (0 < timeMillisToDelete) {
-				L1NpcDeleteTimer timer = new L1NpcDeleteTimer(npc,
-						timeMillisToDelete);
+				L1NpcDeleteTimer timer = new L1NpcDeleteTimer(npc, timeMillisToDelete);
 				timer.begin();
 			}
 		} catch (Exception e) {

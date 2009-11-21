@@ -25,8 +25,7 @@ import java.io.OutputStream;
 import l1j.server.Config;
 
 public class BinaryOutputStream extends OutputStream {
-	private static final String CLIENT_LANGUAGE_CODE = Config
-	.CLIENT_LANGUAGE_CODE;
+	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
 
 	private final ByteArrayOutputStream _bao = new ByteArrayOutputStream();
 

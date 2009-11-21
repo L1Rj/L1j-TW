@@ -41,6 +41,7 @@ import l1j.server.server.serverpackets.S_Light;
 import l1j.server.server.serverpackets.S_Poison;
 import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.ServerBasePacket;
+import l1j.server.server.types.HeadType;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.IntRange;
 import static l1j.server.server.skills.SkillId.*;
@@ -280,8 +281,8 @@ public class L1Character extends L1Object {
 	}
 
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 4.26 Start
-	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 4.26 End
+	private static final byte HEADING_TABLE_X[] = HeadType.TABLE_X;
+	private static final byte HEADING_TABLE_Y[] = HeadType.TABLE_Y;
 	/**
 	 * キャラクターの正面の座標を返す。
 	 *

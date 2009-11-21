@@ -26,7 +26,6 @@ import l1j.server.server.serverpackets.S_SkillSound;
 import static l1j.server.server.skills.SkillId.*;
 
 public class BuffUtil {
-
 	public static void haste(L1PcInstance pc, int timeMillis) {
 		pc.setSkillEffect(STATUS_HASTE, timeMillis);
 

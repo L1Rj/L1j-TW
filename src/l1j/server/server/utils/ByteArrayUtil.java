@@ -40,11 +40,11 @@ public class ByteArrayUtil {
 		short j = 0;
 		for (short k = 0; k < _byteArray.length; k++) {
 			if (j % 16 == 0) {
-				stringbuffer.append((new StringBuilder()).append(fillHex(k, 4))
-						.append(": ").toString());
+				stringbuffer.append((new StringBuilder()).append(fillHex(k, 4)).append(": ")
+						.toString());
 			}
-			stringbuffer.append((new StringBuilder()).append(
-					fillHex(_byteArray[k] & 0xff, 2)).append(" ").toString());
+			stringbuffer.append((new StringBuilder()).append(fillHex(_byteArray[k] & 0xff, 2))
+					.append(" ").toString());
 			if (++j != 16) {
 				continue;
 			}

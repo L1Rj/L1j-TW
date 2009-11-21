@@ -20,7 +20,6 @@ package l1j.server.server.skills;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.lang.String;
@@ -87,16 +86,13 @@ import l1j.server.server.serverpackets.S_UseAttackSkill;
 import l1j.server.server.templates.L1BookMark;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Skills;
+import l1j.server.server.types.SkillType;
+import l1j.server.server.types.TargetType;
 import l1j.server.server.utils.RandomArrayList;
 
 import static l1j.server.server.skills.SkillId.*;
 
 public class SkillUse {
-	public static final byte TYPE_NORMAL = 0;
-	public static final byte TYPE_LOGIN = 1;
-	public static final byte TYPE_SPELLSC = 2;
-	public static final byte TYPE_NPCBUFF = 3;
-	public static final byte TYPE_GMBUFF = 4;
 
 	private L1Skills _skill;
 	private int _skillId;
@@ -110,7 +106,6 @@ public class SkillUse {
 	private int _targetY = 0;
 	private String _message = null;
 	private int _skillTime = 0;
-	private int _type = 0;
 	private boolean _isPK = false;
 	private int _bookmarkId = 0;
 	private int _itemobjid = 0;
@@ -127,40 +122,44 @@ public class SkillUse {
 	private L1NpcInstance _npc = null;
 	private L1NpcInstance _targetNpc = null;
 
-	private int _calcType;
-	private static final byte PC_PC = 1;
-	private static final byte PC_NPC = 2;
-	private static final byte NPC_PC = 3;
-	private static final byte NPC_NPC = 4;
+	private int _skillType = 0;
+	private static byte NORMAL = SkillType.NORMAL;
+	private static byte LOGIN = SkillType.LOGIN;
+	private static byte SPELLSC = SkillType.SPELLSC;
+	private static byte NPCBUFF = SkillType.NPCBUFF;
+	private static byte GMBUFF = SkillType.GMBUFF;
+
+	private int _targetType;
+	private static byte PC_PC = TargetType.PC_PC;
+	private static byte PC_NPC = TargetType.PC_NPC;
+	private static byte NPC_PC = TargetType.NPC_PC;
+	private static byte NPC_NPC = TargetType.NPC_NPC;
 
 	private FastTable<TargetStatus> _targetList;
 
 	private static Logger _log = Logger.getLogger(SkillUse.class.getName());
 
-	private static final int[] CAST_WITH_INVIS = { 1, 2, 3, 5, 8, 9, 12, 13,
-			14, 19, 21, 26, 31, 32, 35, 37, 42, 43, 44, 48, 49, 52, 54, 55, 57,
-			60, 61, 63, 67, 68, 69, 72, 73, 75, 78, 79, SKILL_REDUCTION_ARMOR,
-			SKILL_BOUNCE_ATTACK, SKILL_SOLID_CARRIAGE, SKILL_COUNTER_BARRIER, 97, 98, 99, 100,
-			101, 102, 104, 105, 106, 107, 109, 110, 111, 113, 114, 115, 116,
-			117, 118, 129, 130, 131, 133, 134, 137, 138, 146, 147, 148, 149,
-			150, 151, 155, 156, 158, 159, 163, 164, 165, 166, 168, 169, 170,
-			171, SKILL_SOUL_OF_FLAME, SKILL_ADDITIONAL_FIRE, SKILL_DRAGON_SKIN, SKILL_AWAKEN_ANTHARAS,
+	private static final int[] CAST_WITH_INVIS = { 1, 2, 3, 5, 8, 9, 12, 13, 14, 19, 21, 26, 31,
+			32, 35, 37, 42, 43, 44, 48, 49, 52, 54, 55, 57, 60, 61, 63, 67, 68, 69, 72, 73, 75, 78,
+			79, SKILL_REDUCTION_ARMOR, SKILL_BOUNCE_ATTACK, SKILL_SOLID_CARRIAGE,
+			SKILL_COUNTER_BARRIER, 97, 98, 99, 100, 101, 102, 104, 105, 106, 107, 109, 110, 111,
+			113, 114, 115, 116, 117, 118, 129, 130, 131, 133, 134, 137, 138, 146, 147, 148, 149,
+			150, 151, 155, 156, 158, 159, 163, 164, 165, 166, 168, 169, 170, 171,
+			SKILL_SOUL_OF_FLAME, SKILL_ADDITIONAL_FIRE, SKILL_DRAGON_SKIN, SKILL_AWAKEN_ANTHARAS,
 			SKILL_AWAKEN_FAFURION, SKILL_AWAKEN_VALAKAS, SKILL_MIRROR_IMAGE, SKILL_ILLUSION_OGRE,
 			SKILL_ILLUSION_LICH, SKILL_PATIENCE, SKILL_ILLUSION_DIA_GOLEM, SKILL_INSIGHT,
 			SKILL_ILLUSION_AVATAR };
 
-	private static final int[] EXCEPT_COUNTER_MAGIC = { 1, 2, 3, 5, 8, 9, 12,
-			13, 14, 19, 21, 26, 31, 32, 35, 37, 42, 43, 44, 48, 49, 52, 54, 55,
-			57, 60, 61, 63, 67, 68, 69, 72, 73, 75, 78, 79, SKILL_STUN_SHOCK,
-			SKILL_REDUCTION_ARMOR, SKILL_BOUNCE_ATTACK, SKILL_SOLID_CARRIAGE, SKILL_COUNTER_BARRIER,
-			97, 98, 99, 100, 101, 102, 104, 105, 106, 107, 109, 110, 111, 113,
-			114, 115, 116, 117, 118, 129, 130, 131, 132, 134, 137, 138, 146,
-			147, 148, 149, 150, 151, 155, 156, 158, 159, 161, 163, 164, 165,
-			166, 168, 169, 170, 171, SKILL_SOUL_OF_FLAME, SKILL_ADDITIONAL_FIRE,
-			SKILL_DRAGON_SKIN, SKILL_FOE_SLAYER,
-			SKILL_AWAKEN_ANTHARAS, SKILL_AWAKEN_FAFURION, SKILL_AWAKEN_VALAKAS,
-			SKILL_MIRROR_IMAGE, SKILL_ILLUSION_OGRE, SKILL_ILLUSION_LICH, SKILL_PATIENCE, 10026, 10027,
-			SKILL_ILLUSION_DIA_GOLEM, SKILL_INSIGHT, SKILL_ILLUSION_AVATAR, 10028, 10029 };
+	private static final int[] EXCEPT_COUNTER_MAGIC = { 1, 2, 3, 5, 8, 9, 12, 13, 14, 19, 21, 26,
+			31, 32, 35, 37, 42, 43, 44, 48, 49, 52, 54, 55, 57, 60, 61, 63, 67, 68, 69, 72, 73, 75,
+			78, 79, SKILL_STUN_SHOCK, SKILL_REDUCTION_ARMOR, SKILL_BOUNCE_ATTACK,
+			SKILL_SOLID_CARRIAGE, SKILL_COUNTER_BARRIER, 97, 98, 99, 100, 101, 102, 104, 105, 106,
+			107, 109, 110, 111, 113, 114, 115, 116, 117, 118, 129, 130, 131, 132, 134, 137, 138,
+			146, 147, 148, 149, 150, 151, 155, 156, 158, 159, 161, 163, 164, 165, 166, 168, 169,
+			170, 171, SKILL_SOUL_OF_FLAME, SKILL_ADDITIONAL_FIRE, SKILL_DRAGON_SKIN,
+			SKILL_FOE_SLAYER, SKILL_AWAKEN_ANTHARAS, SKILL_AWAKEN_FAFURION, SKILL_AWAKEN_VALAKAS,
+			SKILL_MIRROR_IMAGE, SKILL_ILLUSION_OGRE, SKILL_ILLUSION_LICH, SKILL_PATIENCE, 10026,
+			10027, SKILL_ILLUSION_DIA_GOLEM, SKILL_INSIGHT, SKILL_ILLUSION_AVATAR, 10028, 10029 };
 
 	public SkillUse() {
 	}
@@ -236,7 +235,7 @@ public class SkillUse {
 		_targetY = y;
 		_message = message;
 		_skillTime = time;
-		_type = type;
+		_skillType = type;
 		boolean checkedResult = true;
 
 		if (attacker == null) {
@@ -257,11 +256,11 @@ public class SkillUse {
 			_targetID = target_id;
 		}
 
-		if (type == TYPE_NORMAL) { // 通常の魔法使用時
+		if (type == NORMAL) { // 通常の魔法使用時
 			checkedResult = isNormalSkillUsable();
-		} else if (type == TYPE_SPELLSC) { // スペルスクロール使用時
+		} else if (type == SPELLSC) { // スペルスクロール使用時
 			checkedResult = isSpellScrollUsable();
-		} else if (type == TYPE_NPCBUFF) {
+		} else if (type == NPCBUFF) {
 			checkedResult = true;
 		}
 		if (!checkedResult) {
@@ -285,18 +284,18 @@ public class SkillUse {
 		}
 		if (_user instanceof L1PcInstance) {
 			if (l1object instanceof L1PcInstance) {
-				_calcType = PC_PC;
+				_targetType = PC_PC;
 			} else {
-				_calcType = PC_NPC;
+				_targetType = PC_NPC;
 				_targetNpc = (L1NpcInstance) l1object;
 			}
 		} else if (_user instanceof L1NpcInstance) {
 			if (l1object instanceof L1PcInstance) {
-				_calcType = NPC_PC;
+				_targetType = NPC_PC;
 			} else if (_skill.getTarget().equals("none")) {
-				_calcType = NPC_PC;
+				_targetType = NPC_PC;
 			} else {
-				_calcType = NPC_NPC;
+				_targetType = NPC_NPC;
 				_targetNpc = (L1NpcInstance) l1object;
 			}
 		}
@@ -506,7 +505,7 @@ public class SkillUse {
 				}
 			}
 
-			if (type == TYPE_NORMAL) { // 魔法詠唱時
+			if (type == NORMAL) { // 魔法詠唱時
 				if (!_isGlanceCheckFail || _skill.getArea() > 0
 						|| _skill.getTarget().equals("none")) {
 					runSkill();
@@ -515,15 +514,15 @@ public class SkillUse {
 					sendFailMessageHandle();
 					setDelay();
 				}
-			} else if (type == TYPE_LOGIN) { // ログイン時（HPMP材料消費なし、グラフィックなし）
+			} else if (type == LOGIN) { // ログイン時（HPMP材料消費なし、グラフィックなし）
 				runSkill();
-			} else if (type == TYPE_SPELLSC) { // スペルスクロール使用時（HPMP材料消費なし）
+			} else if (type == SPELLSC) { // スペルスクロール使用時（HPMP材料消費なし）
 				runSkill();
 				sendGrfx(true);
-			} else if (type == TYPE_GMBUFF) { // GMBUFF使用時（HPMP材料消費なし、魔法モーションなし）
+			} else if (type == GMBUFF) { // GMBUFF使用時（HPMP材料消費なし、魔法モーションなし）
 				runSkill();
 				sendGrfx(false);
-			} else if (type == TYPE_NPCBUFF) { // NPCBUFF使用時（HPMP材料消費なし）
+			} else if (type == NPCBUFF) { // NPCBUFF使用時（HPMP材料消費なし）
 				runSkill();
 				sendGrfx(true);
 			}
@@ -561,7 +560,7 @@ public class SkillUse {
 				return false;
 			}
 		}
-		if (_calcType == NPC_PC
+		if (_targetType == NPC_PC
 				&& (cha instanceof L1PcInstance || cha instanceof L1PetInstance || cha instanceof L1SummonInstance)) {
 			_flg = true;
 		}
@@ -579,7 +578,7 @@ public class SkillUse {
 		}
 
 		// 元のターゲットがPet、Summon以外のNPCの場合、PC、Pet、Summonは對象外
-		if (_calcType == PC_NPC
+		if (_targetType == PC_NPC
 				&& _target instanceof L1NpcInstance
 				&& !(_target instanceof L1PetInstance)
 				&& !(_target instanceof L1SummonInstance)
@@ -589,7 +588,7 @@ public class SkillUse {
 		}
 
 		// 元のターゲットがガード以外のNPCの場合、ガードは對象外
-		if (_calcType == PC_NPC
+		if (_targetType == PC_NPC
 				&& _target instanceof L1NpcInstance
 				&& !(_target instanceof L1GuardInstance)
 				&& cha instanceof L1GuardInstance) {
@@ -598,7 +597,7 @@ public class SkillUse {
 
 		// NPC對PCでターゲットがモンスターの場合ターゲットではない。
 		if ((_skill.getTarget().equals("attack") || _skill.getType() == L1Skills.TYPE_ATTACK)
-				&& _calcType == NPC_PC
+				&& _targetType == NPC_PC
 				&& !(cha instanceof L1PetInstance)
 				&& !(cha instanceof L1SummonInstance)
 				&& !(cha instanceof L1PcInstance)) {
@@ -608,7 +607,7 @@ public class SkillUse {
 		// NPC對NPCで使用者がMOBで、ターゲットがMOBの場合ターゲットではない。
 		if ((_skill.getTarget().equals("attack")
 				|| _skill.getType() == L1Skills.TYPE_ATTACK)
-				&& _calcType == NPC_NPC
+				&& _targetType == NPC_NPC
 				&& _user instanceof L1MonsterInstance
 				&& cha instanceof L1MonsterInstance) {
 			return false;
@@ -824,7 +823,7 @@ public class SkillUse {
 			}
 		}
 
-		if (_calcType == PC_PC && cha instanceof L1PcInstance) {
+		if (_targetType == PC_PC && cha instanceof L1PcInstance) {
 			if ((_skill.getTargetTo() & L1Skills.TARGET_TO_CLAN) == L1Skills.TARGET_TO_CLAN
 					&& ((_player.getClanid() != 0 // ターゲットがクラン員
 					&& _player.getClanid() == ((L1PcInstance) cha).getClanid()) || _player
@@ -844,7 +843,7 @@ public class SkillUse {
 	// ターゲットの一覽を作成
 	private void makeTargetList() {
 		try {
-			if (_type == TYPE_LOGIN) { // ログイン時(死亡時、お化け屋敷のキャンセレーション含む)は使用者のみ
+			if (_skillType == LOGIN) { // ログイン時(死亡時、お化け屋敷のキャンセレーション含む)は使用者のみ
 				_targetList.add(new TargetStatus(_user));
 				return;
 			}
@@ -2336,7 +2335,7 @@ public class SkillUse {
 					 * 對NPCの場合、L1Magicのダメージ算出でダメージ1/2としているので
 					 * こちらには、對PCの場合しか記入しない。 損傷量は1~(int/3)まで
 					 */
-					if (_calcType == PC_PC || _calcType == NPC_PC) {
+					if (_targetType == PC_PC || _targetType == NPC_PC) {
 						if (cha instanceof L1PcInstance) {
 							L1PcInstance pc = (L1PcInstance) cha;
 							L1ItemInstance weapon = pc.getWeapon();
@@ -2379,7 +2378,7 @@ public class SkillUse {
 				}
 
 				// ●●●● PCにしか效果のないスキル ●●●●
-				if (_calcType == PC_PC || _calcType == NPC_PC) {
+				if (_targetType == PC_PC || _targetType == NPC_PC) {
 					// ★★★ 特殊系スキル★★★
 					if (_skillId == SKILL_TELEPORT || _skillId == SKILL_MASS_TELEPORT) { // マステレ、テレポート
 						L1PcInstance pc = (L1PcInstance) cha;
@@ -2998,7 +2997,7 @@ public class SkillUse {
 				}
 
 				// ●●●● NPCにしか效果のないスキル ●●●●
-				if (_calcType == PC_NPC || _calcType == NPC_NPC) {
+				if (_targetType == PC_NPC || _targetType == NPC_NPC) {
 					// ★★★ ペット系スキル ★★★
 					if (_skillId == SKILL_TAME_MONSTER
 							&& ((L1MonsterInstance) cha).getNpcTemplate()
@@ -3098,12 +3097,12 @@ public class SkillUse {
 				// ■■■■ 個別處理ここまで ■■■■
 
 				if (_skill.getType() == L1Skills.TYPE_HEAL
-						&& _calcType == PC_NPC && undeadType == 1) {
+						&& _targetType == PC_NPC && undeadType == 1) {
 					dmg *= -1; // もし、アンデットで回復系スキルならばダメージになる。
 				}
 
 				if (_skill.getType() == L1Skills.TYPE_HEAL
-						&& _calcType == PC_NPC && undeadType == 3) {
+						&& _targetType == PC_NPC && undeadType == 3) {
 					dmg = 0; // もし、アンデット系ボスで回復系スキルならば無效
 				}
 
@@ -3223,11 +3222,11 @@ public class SkillUse {
 
 	// 對象がPC、サモン、ペットかを返す
 	private boolean isPcSummonPet(L1Character cha) {
-		if (_calcType == PC_PC) { // 對象がPC
+		if (_targetType == PC_PC) { // 對象がPC
 			return true;
 		}
 
-		if (_calcType == PC_NPC) {
+		if (_targetType == PC_NPC) {
 			if (cha instanceof L1SummonInstance) { // 對象がサモン
 				L1SummonInstance summon = (L1SummonInstance) cha;
 				if (summon.isExsistMaster()) { // マスターが居る
@@ -3253,7 +3252,7 @@ public class SkillUse {
 		}
 
 		if (cha instanceof L1PcInstance) { // 對PCの場合
-			if (_calcType == PC_PC && _player.checkNonPvP(_player, cha)) { // Non-PvP設定
+			if (_targetType == PC_PC && _player.checkNonPvP(_player, cha)) { // Non-PvP設定
 				L1PcInstance pc = (L1PcInstance) cha;
 				if (_player.getId() == pc.getId()
 						|| (pc.getClanid() != 0 && _player.getClanid() == pc

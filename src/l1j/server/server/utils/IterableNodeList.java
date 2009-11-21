@@ -25,7 +25,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * org.w3c.dom.NodeListにIterableを付加するためのアダプタ。
+ * 用於 org.w3c.dom.NodeList 附加 Iterable 的適配器。
  */
 // 標準ライブラリに同じものが用意されているようなら置換してください。
 public class IterableNodeList implements Iterable<Node> {

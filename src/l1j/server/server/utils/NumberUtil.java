@@ -21,17 +21,16 @@ package l1j.server.server.utils;
 import java.util.Random;
 
 public class NumberUtil {
-
 	/**
-	 * 少數を小數點第二位までの確率で上か下に丸めた整數を返す。
-	 * 例えば1.3は30%の確率で切り捨て、70%の確率で切り上げられる。
+	 * 少數を小數點第二位までの確率で上か下に丸めた整數を返す。 例えば1.3は30%の確率で切り捨て、70%の確率で切り上げられる。
 	 * 
-	 * @param number - もとの少數
+	 * @param number
+	 *            - もとの少數
 	 * @return 丸められた整數
 	 */
 	public static int randomRound(double number) {
 		double percentage = (number - Math.floor(number)) * 100;
-		
+
 		if (percentage == 0) {
 			return 0; // 意謂 失敗
 		} else {

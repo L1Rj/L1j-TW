@@ -109,8 +109,7 @@ public class Server {
 
 	/** 設定資料庫 */
 	private static void setDatabaseFactory() {
-		// L1DatabaseFactory 初始設定
-		L1DatabaseFactory.setDatabaseSettings(
+		L1DatabaseFactory.setDatabaseSettings( // L1DatabaseFactory 初始設定
 				Config.DB_DRIVER,
 				Config.DB_URL,
 				Config.DB_LOGIN,

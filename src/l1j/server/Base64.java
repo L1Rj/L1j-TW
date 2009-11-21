@@ -156,154 +156,140 @@ package l1j.server;
  * @author rob@iharder.net
  * @version 2.3.5
  */
-public class Base64
-{
-    
-/* ********  P U B L I C   F I E L D S  ******** */   
-    
-    
-    /** No options specified. Value is zero. */
-    public final static int NO_OPTIONS = 0;
-    
-    /** Specify encoding in first bit. Value is one. */
-    public final static int ENCODE = 1;
-    
-    
-    /** Specify decoding in first bit. Value is zero. */
-    public final static int DECODE = 0;
-    
+public class Base64 {
 
-    /** Specify that data should be gzip-compressed in second bit. Value is two. */
-    public final static int GZIP = 2;
+	/*  ******** P U B L I C F I E L D S ******** */
 
-    /** Specify that gzipped data should <em>not</em> be automatically gunzipped. */
-    public final static int DONT_GUNZIP = 4;
-    
-    
-    /** Do break lines when encoding. Value is 8. */
-    public final static int DO_BREAK_LINES = 8;
-	
-    /** 
-     * Encode using Base64-like encoding that is URL- and Filename-safe as described
-     * in Section 4 of RFC3548: 
-     * <a href="http://www.faqs.org/rfcs/rfc3548.html">http://www.faqs.org/rfcs/rfc3548.html</a>.
-     * It is important to note that data encoded this way is <em>not</em> officially valid Base64, 
-     * or at the very least should not be called Base64 without also specifying that is
-     * was encoded using the URL- and Filename-safe dialect.
-     */
-     public final static int URL_SAFE = 16;
+	/** No options specified. Value is zero. */
+	public final static int NO_OPTIONS = 0;
 
+	/** Specify encoding in first bit. Value is one. */
+	public final static int ENCODE = 1;
 
-     /**
-      * Encode using the special "ordered" dialect of Base64 described here:
-      * <a href="http://www.faqs.org/qa/rfcc-1940.html">http://www.faqs.org/qa/rfcc-1940.html</a>.
-      */
-     public final static int ORDERED = 32;
-    
-    
-/* ********  P R I V A T E   F I E L D S  ******** */  
-    
-    
-    /** Maximum line length (76) of Base64 output. */
-    private final static int MAX_LINE_LENGTH = 76;
-    
-    
-    /** The equals sign (=) as a byte. */
-    private final static byte EQUALS_SIGN = (byte)'=';
-    
-    
-    /** The new line character (\n) as a byte. */
-    private final static byte NEW_LINE = (byte)'\n';
-    
-    
-    /** Preferred encoding. */
-    private final static String PREFERRED_ENCODING = "US-ASCII";
-    
-	
-    private final static byte WHITE_SPACE_ENC = -5; // Indicates white space in encoding
-    private final static byte EQUALS_SIGN_ENC = -1; // Indicates equals sign in encoding
-	
-	
-/* ********  S T A N D A R D   B A S E 6 4   A L P H A B E T  ******** */	
-    
-    /** The 64 valid Base64 values. */
-    /* Host platform me be something funny like EBCDIC, so we hardcode these values. */
-    private final static byte[] _STANDARD_ALPHABET = {
-        (byte)'A', (byte)'B', (byte)'C', (byte)'D', (byte)'E', (byte)'F', (byte)'G',
-        (byte)'H', (byte)'I', (byte)'J', (byte)'K', (byte)'L', (byte)'M', (byte)'N',
-        (byte)'O', (byte)'P', (byte)'Q', (byte)'R', (byte)'S', (byte)'T', (byte)'U', 
-        (byte)'V', (byte)'W', (byte)'X', (byte)'Y', (byte)'Z',
-        (byte)'a', (byte)'b', (byte)'c', (byte)'d', (byte)'e', (byte)'f', (byte)'g',
-        (byte)'h', (byte)'i', (byte)'j', (byte)'k', (byte)'l', (byte)'m', (byte)'n',
-        (byte)'o', (byte)'p', (byte)'q', (byte)'r', (byte)'s', (byte)'t', (byte)'u', 
-        (byte)'v', (byte)'w', (byte)'x', (byte)'y', (byte)'z',
-        (byte)'0', (byte)'1', (byte)'2', (byte)'3', (byte)'4', (byte)'5', 
-        (byte)'6', (byte)'7', (byte)'8', (byte)'9', (byte)'+', (byte)'/'
-    };
-	
-    
-    /** 
-     * Translates a Base64 value to either its 6-bit reconstruction value
-     * or a negative number indicating some other meaning.
-     **/
-    private final static byte[] _STANDARD_DECODABET = {
-        -9,-9,-9,-9,-9,-9,-9,-9,-9,                 // Decimal  0 -  8
-        -5,-5,                                      // Whitespace: Tab and Linefeed
-        -9,-9,                                      // Decimal 11 - 12
-        -5,                                         // Whitespace: Carriage Return
-        -9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 14 - 26
-        -9,-9,-9,-9,-9,                             // Decimal 27 - 31
-        -5,                                         // Whitespace: Space
-        -9,-9,-9,-9,-9,-9,-9,-9,-9,-9,              // Decimal 33 - 42
-        62,                                         // Plus sign at decimal 43
-        -9,-9,-9,                                   // Decimal 44 - 46
-        63,                                         // Slash at decimal 47
-        52,53,54,55,56,57,58,59,60,61,              // Numbers zero through nine
-        -9,-9,-9,                                   // Decimal 58 - 60
-        -1,                                         // Equals sign at decimal 61
-        -9,-9,-9,                                      // Decimal 62 - 64
-        0,1,2,3,4,5,6,7,8,9,10,11,12,13,            // Letters 'A' through 'N'
-        14,15,16,17,18,19,20,21,22,23,24,25,        // Letters 'O' through 'Z'
-        -9,-9,-9,-9,-9,-9,                          // Decimal 91 - 96
-        26,27,28,29,30,31,32,33,34,35,36,37,38,     // Letters 'a' through 'm'
-        39,40,41,42,43,44,45,46,47,48,49,50,51,     // Letters 'n' through 'z'
-        -9,-9,-9,-9                                 // Decimal 123 - 126
-        /*,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 127 - 139
-        -9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 140 - 152
-        -9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 153 - 165
-        -9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 166 - 178
-        -9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 179 - 191
-        -9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 192 - 204
-        -9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 205 - 217
-        -9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 218 - 230
-        -9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 231 - 243
-        -9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9         // Decimal 244 - 255 */
-    };
-	
-	
-/* ********  U R L   S A F E   B A S E 6 4   A L P H A B E T  ******** */
-	
-    /**
-     * Used in the URL- and Filename-safe dialect described in Section 4 of RFC3548: 
-     * <a href="http://www.faqs.org/rfcs/rfc3548.html">http://www.faqs.org/rfcs/rfc3548.html</a>.
-     * Notice that the last two bytes become "hyphen" and "underscore" instead of "plus" and "slash."
-     */
-    private final static byte[] _URL_SAFE_ALPHABET = {
-      (byte)'A', (byte)'B', (byte)'C', (byte)'D', (byte)'E', (byte)'F', (byte)'G',
-      (byte)'H', (byte)'I', (byte)'J', (byte)'K', (byte)'L', (byte)'M', (byte)'N',
-      (byte)'O', (byte)'P', (byte)'Q', (byte)'R', (byte)'S', (byte)'T', (byte)'U', 
-      (byte)'V', (byte)'W', (byte)'X', (byte)'Y', (byte)'Z',
-      (byte)'a', (byte)'b', (byte)'c', (byte)'d', (byte)'e', (byte)'f', (byte)'g',
-      (byte)'h', (byte)'i', (byte)'j', (byte)'k', (byte)'l', (byte)'m', (byte)'n',
-      (byte)'o', (byte)'p', (byte)'q', (byte)'r', (byte)'s', (byte)'t', (byte)'u', 
-      (byte)'v', (byte)'w', (byte)'x', (byte)'y', (byte)'z',
-      (byte)'0', (byte)'1', (byte)'2', (byte)'3', (byte)'4', (byte)'5', 
-      (byte)'6', (byte)'7', (byte)'8', (byte)'9', (byte)'-', (byte)'_'
-    };
-	
-    /**
-     * Used in decoding URL- and Filename-safe dialects of Base64.
-     */
+	/** Specify decoding in first bit. Value is zero. */
+	public final static int DECODE = 0;
+
+	/** Specify that data should be gzip-compressed in second bit. Value is two. */
+	public final static int GZIP = 2;
+
+	/** Specify that gzipped data should <em>not</em> be automatically gunzipped. */
+	public final static int DONT_GUNZIP = 4;
+
+	/** Do break lines when encoding. Value is 8. */
+	public final static int DO_BREAK_LINES = 8;
+
+	/**
+	 * Encode using Base64-like encoding that is URL- and Filename-safe as described in Section 4 of
+	 * RFC3548: <a
+	 * href="http://www.faqs.org/rfcs/rfc3548.html">http://www.faqs.org/rfcs/rfc3548.html</a>. It is
+	 * important to note that data encoded this way is <em>not</em> officially valid Base64, or at
+	 * the very least should not be called Base64 without also specifying that is was encoded using
+	 * the URL- and Filename-safe dialect.
+	 */
+	public final static int URL_SAFE = 16;
+
+	/**
+	 * Encode using the special "ordered" dialect of Base64 described here: <a
+	 * href="http://www.faqs.org/qa/rfcc-1940.html">http://www.faqs.org/qa/rfcc-1940.html</a>.
+	 */
+	public final static int ORDERED = 32;
+
+	/*   ******** P R I V A T E F I E L D S ******** */
+
+	/** Maximum line length (76) of Base64 output. */
+	private final static int MAX_LINE_LENGTH = 76;
+
+	/** The equals sign (=) as a byte. */
+	private final static byte EQUALS_SIGN = (byte) '=';
+
+	/** The new line character (\n) as a byte. */
+	private final static byte NEW_LINE = (byte) '\n';
+
+	/** Preferred encoding. */
+	private final static String PREFERRED_ENCODING = "US-ASCII";
+
+	private final static byte WHITE_SPACE_ENC = -5; // Indicates white space in encoding
+	private final static byte EQUALS_SIGN_ENC = -1; // Indicates equals sign in encoding
+
+	/*  ******** S T A N D A R D B A S E 6 4 A L P H A B E T ******** */
+
+	/** The 64 valid Base64 values. */
+	/* Host platform me be something funny like EBCDIC, so we hardcode these values. */
+	private final static byte[] _STANDARD_ALPHABET = {
+		(byte)'A', (byte)'B', (byte)'C', (byte)'D', (byte)'E', (byte)'F', (byte)'G',
+		(byte)'H', (byte)'I', (byte)'J', (byte)'K', (byte)'L', (byte)'M', (byte)'N',
+		(byte)'O', (byte)'P', (byte)'Q', (byte)'R', (byte)'S', (byte)'T', (byte)'U', 
+		(byte)'V', (byte)'W', (byte)'X', (byte)'Y', (byte)'Z',
+		(byte)'a', (byte)'b', (byte)'c', (byte)'d', (byte)'e', (byte)'f', (byte)'g',
+		(byte)'h', (byte)'i', (byte)'j', (byte)'k', (byte)'l', (byte)'m', (byte)'n',
+		(byte)'o', (byte)'p', (byte)'q', (byte)'r', (byte)'s', (byte)'t', (byte)'u', 
+		(byte)'v', (byte)'w', (byte)'x', (byte)'y', (byte)'z',
+		(byte)'0', (byte)'1', (byte)'2', (byte)'3', (byte)'4', (byte)'5', 
+		(byte)'6', (byte)'7', (byte)'8', (byte)'9', (byte)'+', (byte)'/'
+	};
+
+	/**
+	 * Translates a Base64 value to either its 6-bit reconstruction value or a negative number
+	 * indicating some other meaning.
+	 **/
+	private final static byte[] _STANDARD_DECODABET = {
+		-9,-9,-9,-9,-9,-9,-9,-9,-9,                 // Decimal  0 -  8
+		-5,-5,                                      // Whitespace: Tab and Linefeed
+		-9,-9,                                      // Decimal 11 - 12
+		-5,                                         // Whitespace: Carriage Return
+		-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 14 - 26
+		-9,-9,-9,-9,-9,                             // Decimal 27 - 31
+		-5,                                         // Whitespace: Space
+		-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,              // Decimal 33 - 42
+		62,                                         // Plus sign at decimal 43
+		-9,-9,-9,                                   // Decimal 44 - 46
+		63,                                         // Slash at decimal 47
+		52,53,54,55,56,57,58,59,60,61,              // Numbers zero through nine
+		-9,-9,-9,                                   // Decimal 58 - 60
+		-1,                                         // Equals sign at decimal 61
+		-9,-9,-9,                                      // Decimal 62 - 64
+		0,1,2,3,4,5,6,7,8,9,10,11,12,13,            // Letters 'A' through 'N'
+		14,15,16,17,18,19,20,21,22,23,24,25,        // Letters 'O' through 'Z'
+		-9,-9,-9,-9,-9,-9,                          // Decimal 91 - 96
+		26,27,28,29,30,31,32,33,34,35,36,37,38,     // Letters 'a' through 'm'
+		39,40,41,42,43,44,45,46,47,48,49,50,51,     // Letters 'n' through 'z'
+		-9,-9,-9,-9,                                // Decimal 123 - 126
+/*		-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 127 - 139
+		-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 140 - 152
+		-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 153 - 165
+		-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 166 - 178
+		-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 179 - 191
+		-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 192 - 204
+		-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 205 - 217
+		-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 218 - 230
+		-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,     // Decimal 231 - 243
+		-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9         // Decimal 244 - 255
+*/	};
+
+	/*   ******** U R L S A F E B A S E 6 4 A L P H A B E T ******** */
+
+	/**
+	 * Used in the URL- and Filename-safe dialect described in Section 4 of RFC3548: <a
+	 * href="http://www.faqs.org/rfcs/rfc3548.html">http://www.faqs.org/rfcs/rfc3548.html</a>.
+	 * Notice that the last two bytes become "hyphen" and "underscore" instead of "plus" and
+	 * "slash."
+	 */
+	private final static byte[] _URL_SAFE_ALPHABET = {
+		(byte)'A', (byte)'B', (byte)'C', (byte)'D', (byte)'E', (byte)'F', (byte)'G',
+		(byte)'H', (byte)'I', (byte)'J', (byte)'K', (byte)'L', (byte)'M', (byte)'N',
+		(byte)'O', (byte)'P', (byte)'Q', (byte)'R', (byte)'S', (byte)'T', (byte)'U', 
+		(byte)'V', (byte)'W', (byte)'X', (byte)'Y', (byte)'Z',
+		(byte)'a', (byte)'b', (byte)'c', (byte)'d', (byte)'e', (byte)'f', (byte)'g',
+		(byte)'h', (byte)'i', (byte)'j', (byte)'k', (byte)'l', (byte)'m', (byte)'n',
+		(byte)'o', (byte)'p', (byte)'q', (byte)'r', (byte)'s', (byte)'t', (byte)'u', 
+		(byte)'v', (byte)'w', (byte)'x', (byte)'y', (byte)'z',
+		(byte)'0', (byte)'1', (byte)'2', (byte)'3', (byte)'4', (byte)'5', 
+		(byte)'6', (byte)'7', (byte)'8', (byte)'9', (byte)'-', (byte)'_'
+	};
+
+	/**
+	 * Used in decoding URL- and Filename-safe dialects of Base64.
+	 */
     private final static byte[] _URL_SAFE_DECODABET = {
       -9,-9,-9,-9,-9,-9,-9,-9,-9,                 // Decimal  0 -  8
       -5,-5,                                      // Whitespace: Tab and Linefeed
@@ -342,15 +328,12 @@ public class Base64
       -9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9         // Decimal 244 - 255 */
     };
 
+	/*  ******** O R D E R E D B A S E 6 4 A L P H A B E T ******** */
 
-
-/* ********  O R D E R E D   B A S E 6 4   A L P H A B E T  ******** */
-
-    /**
-     * I don't get the point of this technique, but someone requested it,
-     * and it is described here:
-     * <a href="http://www.faqs.org/qa/rfcc-1940.html">http://www.faqs.org/qa/rfcc-1940.html</a>.
-     */
+	/**
+	 * I don't get the point of this technique, but someone requested it, and it is described here:
+	 * <a href="http://www.faqs.org/qa/rfcc-1940.html">http://www.faqs.org/qa/rfcc-1940.html</a>.
+	 */
     private final static byte[] _ORDERED_ALPHABET = {
       (byte)'-',
       (byte)'0', (byte)'1', (byte)'2', (byte)'3', (byte)'4',
@@ -1365,7 +1348,7 @@ public class Base64
                     @Override
                     public Class<?> resolveClass(java.io.ObjectStreamClass streamClass)
                     throws java.io.IOException, ClassNotFoundException {
-                        Class c = Class.forName(streamClass.getName(), false, loader);
+                        Class<?> c = Class.forName(streamClass.getName(), false, loader);
                         if( c == null ){
                             return super.resolveClass(streamClass);
                         } else {
@@ -1839,233 +1822,207 @@ public class Base64
         }   // end read
         
     }   // end inner class InputStream
-    
-    
-    
-    
-    
-    
-    /* ********  I N N E R   C L A S S   O U T P U T S T R E A M  ******** */
-    
-    
-    
-    /**
-     * A {@link Base64.OutputStream} will write data to another
-     * <tt>java.io.OutputStream</tt>, given in the constructor,
-     * and encode/decode to/from Base64 notation on the fly.
-     *
-     * @see Base64
-     * @since 1.3
-     */
-    public static class OutputStream extends java.io.FilterOutputStream {
-        
-        private boolean encode;
-        private int     position;
-        private byte[]  buffer;
-        private int     bufferLength;
-        private int     lineLength;
-        private boolean breakLines;
-        private byte[]  b4;         // Scratch used in a few places
-        private boolean suspendEncoding;
-        private int     options;    // Record for later
-        private byte[]  decodabet;  // Local copies to avoid extra method calls
-        
-        /**
-         * Constructs a {@link Base64.OutputStream} in ENCODE mode.
-         *
-         * @param out the <tt>java.io.OutputStream</tt> to which data will be written.
-         * @since 1.3
-         */
-        public OutputStream( java.io.OutputStream out ) {
-            this( out, ENCODE );
-        }   // end constructor
-        
-        
-        /**
-         * Constructs a {@link Base64.OutputStream} in
-         * either ENCODE or DECODE mode.
-         * <p>
-         * Valid options:<pre>
-         *   ENCODE or DECODE: Encode or Decode as data is read.
-         *   DO_BREAK_LINES: don't break lines at 76 characters
-         *     (only meaningful when encoding)</i>
-         * </pre>
-         * <p>
-         * Example: <code>new Base64.OutputStream( out, Base64.ENCODE )</code>
-         *
-         * @param out the <tt>java.io.OutputStream</tt> to which data will be written.
-         * @param options Specified options.
-         * @see Base64#ENCODE
-         * @see Base64#DECODE
-         * @see Base64#DO_BREAK_LINES
-         * @since 1.3
-         */
-        public OutputStream( java.io.OutputStream out, int options ) {
-            super( out );
-            this.breakLines   = (options & DO_BREAK_LINES) != 0;
-            this.encode       = (options & ENCODE) != 0;
-            this.bufferLength = encode ? 3 : 4;
-            this.buffer       = new byte[ bufferLength ];
-            this.position     = 0;
-            this.lineLength   = 0;
-            this.suspendEncoding = false;
-            this.b4           = new byte[4];
-            this.options      = options;
-            this.decodabet    = getDecodabet(options);
-        }   // end constructor
-        
-        
-        /**
-         * Writes the byte to the output stream after
-         * converting to/from Base64 notation.
-         * When encoding, bytes are buffered three
-         * at a time before the output stream actually
-         * gets a write() call.
-         * When decoding, bytes are buffered four
-         * at a time.
-         *
-         * @param theByte the byte to write
-         * @since 1.3
-         */
-        @Override
-        public void write(int theByte) 
-        throws java.io.IOException {
-            // Encoding suspended?
-            if( suspendEncoding ) {
-                this.out.write( theByte );
-                return;
-            }   // end if: supsended
-            
-            // Encode?
-            if( encode ) {
-                buffer[ position++ ] = (byte)theByte;
-                if( position >= bufferLength ) { // Enough to encode.
-                
-                    this.out.write( encode3to4( b4, buffer, bufferLength, options ) );
 
-                    lineLength += 4;
-                    if( breakLines && lineLength >= MAX_LINE_LENGTH ) {
-                        this.out.write( NEW_LINE );
-                        lineLength = 0;
-                    }   // end if: end of line
+	/*   ******** I N N E R C L A S S O U T P U T S T R E A M ******** */
 
-                    position = 0;
-                }   // end if: enough to output
-            }   // end if: encoding
+	/**
+	 * A {@link Base64.OutputStream} will write data to another <tt>java.io.OutputStream</tt>, given
+	 * in the constructor, and encode/decode to/from Base64 notation on the fly.
+	 * 
+	 * @see Base64
+	 * @since 1.3
+	 */
+	public static class OutputStream extends java.io.FilterOutputStream {
 
-            // Else, Decoding
-            else {
-                // Meaningful Base64 character?
-                if( decodabet[ theByte & 0x7f ] > WHITE_SPACE_ENC ) {
-                    buffer[ position++ ] = (byte)theByte;
-                    if( position >= bufferLength ) { // Enough to output.
-                    
-                        int len = Base64.decode4to3( buffer, 0, b4, 0, options );
-                        out.write( b4, 0, len );
-                        position = 0;
-                    }   // end if: enough to output
-                }   // end if: meaningful base64 character
-                else if( decodabet[ theByte & 0x7f ] != WHITE_SPACE_ENC ) {
-                    throw new java.io.IOException( "Invalid character in Base64 data." );
-                }   // end else: not white space either
-            }   // end else: decoding
-        }   // end write
-        
-        
-        
-        /**
-         * Calls {@link #write(int)} repeatedly until <var>len</var> 
-         * bytes are written.
-         *
-         * @param theBytes array from which to read bytes
-         * @param off offset for array
-         * @param len max number of bytes to read into array
-         * @since 1.3
-         */
-        @Override
-        public void write( byte[] theBytes, int off, int len ) 
-        throws java.io.IOException {
-            // Encoding suspended?
-            if( suspendEncoding ) {
-                this.out.write( theBytes, off, len );
-                return;
-            }   // end if: supsended
-            
-            for( int i = 0; i < len; i++ ) {
-                write( theBytes[ off + i ] );
-            }   // end for: each byte written
-            
-        }   // end write
-        
-        
-        
-        /**
-         * Method added by PHIL. [Thanks, PHIL. -Rob]
-         * This pads the buffer without closing the stream.
-         * @throws java.io.IOException  if there's an error.
-         */
-        public void flushBase64() throws java.io.IOException  {
-            if( position > 0 ) {
-                if( encode ) {
-                    out.write( encode3to4( b4, buffer, position, options ) );
-                    position = 0;
-                }   // end if: encoding
-                else {
-                    throw new java.io.IOException( "Base64 input not properly padded." );
-                }   // end else: decoding
-            }   // end if: buffer partially full
+		private boolean encode;
+		private int position;
+		private byte[] buffer;
+		private int bufferLength;
+		private int lineLength;
+		private boolean breakLines;
+		private byte[] b4; // Scratch used in a few places
+		private boolean suspendEncoding;
+		private int options; // Record for later
+		private byte[] decodabet; // Local copies to avoid extra method calls
 
-        }   // end flush
+		/**
+		 * Constructs a {@link Base64.OutputStream} in ENCODE mode.
+		 * 
+		 * @param out
+		 *            the <tt>java.io.OutputStream</tt> to which data will be written.
+		 * @since 1.3
+		 */
+		public OutputStream(java.io.OutputStream out) {
+			this(out, ENCODE);
+		} // end constructor
 
-        
-        /** 
-         * Flushes and closes (I think, in the superclass) the stream. 
-         *
-         * @since 1.3
-         */
-        @Override
-        public void close() throws java.io.IOException {
-            // 1. Ensure that pending characters are written
-            flushBase64();
+		/**
+		 * Constructs a {@link Base64.OutputStream} in either ENCODE or DECODE mode. <p> Valid
+		 * options:<pre> ENCODE or DECODE: Encode or Decode as data is read. DO_BREAK_LINES: don't
+		 * break lines at 76 characters (only meaningful when encoding)</i> </pre> <p> Example:
+		 * <code>new Base64.OutputStream( out, Base64.ENCODE )</code>
+		 * 
+		 * @param out
+		 *            the <tt>java.io.OutputStream</tt> to which data will be written.
+		 * @param options
+		 *            Specified options.
+		 * @see Base64#ENCODE
+		 * @see Base64#DECODE
+		 * @see Base64#DO_BREAK_LINES
+		 * @since 1.3
+		 */
+		public OutputStream(java.io.OutputStream out, int options) {
+			super(out);
+			this.breakLines = (options & DO_BREAK_LINES) != 0;
+			this.encode = (options & ENCODE) != 0;
+			this.bufferLength = encode ? 3 : 4;
+			this.buffer = new byte[bufferLength];
+			this.position = 0;
+			this.lineLength = 0;
+			this.suspendEncoding = false;
+			this.b4 = new byte[4];
+			this.options = options;
+			this.decodabet = getDecodabet(options);
+		} // end constructor
 
-            // 2. Actually close the stream
-            // Base class both flushes and closes.
-            super.close();
-            
-            buffer = null;
-            out    = null;
-        }   // end close
-        
-        
-        
-        /**
-         * Suspends encoding of the stream.
-         * May be helpful if you need to embed a piece of
-         * base64-encoded data in a stream.
-         *
-         * @throws java.io.IOException  if there's an error flushing
-         * @since 1.5.1
-         */
-        public void suspendEncoding() throws java.io.IOException  {
-            flushBase64();
-            this.suspendEncoding = true;
-        }   // end suspendEncoding
-        
-        
-        /**
-         * Resumes encoding of the stream.
-         * May be helpful if you need to embed a piece of
-         * base64-encoded data in a stream.
-         *
-         * @since 1.5.1
-         */
-        public void resumeEncoding() {
-            this.suspendEncoding = false;
-        }   // end resumeEncoding
-        
-        
-        
-    }   // end inner class OutputStream
-    
-    
-}   // end class Base64
+		/**
+		 * Writes the byte to the output stream after converting to/from Base64 notation. When
+		 * encoding, bytes are buffered three at a time before the output stream actually gets a
+		 * write() call. When decoding, bytes are buffered four at a time.
+		 * 
+		 * @param theByte
+		 *            the byte to write
+		 * @since 1.3
+		 */
+		@Override
+		public void write(int theByte) throws java.io.IOException {
+			// Encoding suspended?
+			if (suspendEncoding) {
+				this.out.write(theByte);
+				return;
+			} // end if: supsended
+
+			// Encode?
+			if (encode) {
+				buffer[position++] = (byte) theByte;
+				if (position >= bufferLength) { // Enough to encode.
+
+					this.out.write(encode3to4(b4, buffer, bufferLength, options));
+
+					lineLength += 4;
+					if (breakLines && lineLength >= MAX_LINE_LENGTH) {
+						this.out.write(NEW_LINE);
+						lineLength = 0;
+					} // end if: end of line
+
+					position = 0;
+				} // end if: enough to output
+			} // end if: encoding
+
+			// Else, Decoding
+			else {
+				// Meaningful Base64 character?
+				if (decodabet[theByte & 0x7f] > WHITE_SPACE_ENC) {
+					buffer[position++] = (byte) theByte;
+					if (position >= bufferLength) { // Enough to output.
+
+						int len = Base64.decode4to3(buffer, 0, b4, 0, options);
+						out.write(b4, 0, len);
+						position = 0;
+					} // end if: enough to output
+				} // end if: meaningful base64 character
+				else if (decodabet[theByte & 0x7f] != WHITE_SPACE_ENC) {
+					throw new java.io.IOException("Invalid character in Base64 data.");
+				} // end else: not white space either
+			} // end else: decoding
+		} // end write
+
+		/**
+		 * Calls {@link #write(int)} repeatedly until <var>len</var> bytes are written.
+		 * 
+		 * @param theBytes
+		 *            array from which to read bytes
+		 * @param off
+		 *            offset for array
+		 * @param len
+		 *            max number of bytes to read into array
+		 * @since 1.3
+		 */
+		@Override
+		public void write(byte[] theBytes, int off, int len) throws java.io.IOException {
+			// Encoding suspended?
+			if (suspendEncoding) {
+				this.out.write(theBytes, off, len);
+				return;
+			} // end if: supsended
+
+			for (int i = 0; i < len; i++) {
+				write(theBytes[off + i]);
+			} // end for: each byte written
+
+		} // end write
+
+		/**
+		 * Method added by PHIL. [Thanks, PHIL. -Rob] This pads the buffer without closing the
+		 * stream.
+		 * 
+		 * @throws java.io.IOException
+		 *             if there's an error.
+		 */
+		public void flushBase64() throws java.io.IOException {
+			if (position > 0) {
+				if (encode) {
+					out.write(encode3to4(b4, buffer, position, options));
+					position = 0;
+				} // end if: encoding
+				else {
+					throw new java.io.IOException("Base64 input not properly padded.");
+				} // end else: decoding
+			} // end if: buffer partially full
+
+		} // end flush
+
+		/**
+		 * Flushes and closes (I think, in the superclass) the stream.
+		 * 
+		 * @since 1.3
+		 */
+		@Override
+		public void close() throws java.io.IOException {
+			// 1. Ensure that pending characters are written
+			flushBase64();
+
+			// 2. Actually close the stream
+			// Base class both flushes and closes.
+			super.close();
+
+			buffer = null;
+			out = null;
+		} // end close
+
+		/**
+		 * Suspends encoding of the stream. May be helpful if you need to embed a piece of
+		 * base64-encoded data in a stream.
+		 * 
+		 * @throws java.io.IOException
+		 *             if there's an error flushing
+		 * @since 1.5.1
+		 */
+		public void suspendEncoding() throws java.io.IOException {
+			flushBase64();
+			this.suspendEncoding = true;
+		} // end suspendEncoding
+
+		/**
+		 * Resumes encoding of the stream. May be helpful if you need to embed a piece of
+		 * base64-encoded data in a stream.
+		 * 
+		 * @since 1.5.1
+		 */
+		public void resumeEncoding() {
+			this.suspendEncoding = false;
+		} // end resumeEncoding
+
+	} // end inner class OutputStream
+
+} // end class Base64

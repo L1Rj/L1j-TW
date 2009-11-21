@@ -97,7 +97,9 @@ import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.templates.L1Town;
+import l1j.server.server.types.SkillType;
 import l1j.server.server.utils.RandomArrayList;
+
 import static l1j.server.server.skills.SkillId.*;
 
 public class C_NPCAction extends ClientBasePacket {
@@ -486,7 +488,7 @@ public class C_NPCAction extends ClientBasePacket {
 						SkillUse skilluse = new SkillUse();
 						skilluse.handleCommands(pc, SKILL_ENCHANT_WEAPON,
 								item.getId(), 0, 0, null, 0,
-								SkillUse.TYPE_SPELLSC);
+								SkillType.SPELLSC);
 						break;
 					}
 				}
@@ -497,7 +499,7 @@ public class C_NPCAction extends ClientBasePacket {
 			if (item != null) {
 				SkillUse skilluse = new SkillUse();
 				skilluse.handleCommands(pc, SKILL_BLESSED_ARMOR, item
-						.getId(), 0, 0, null, 0, SkillUse.TYPE_SPELLSC);
+						.getId(), 0, 0, null, 0, SkillType.SPELLSC);
 			} else {
 				pc.sendPackets(new S_ServerMessage(79));
 			}
@@ -802,7 +804,7 @@ public class C_NPCAction extends ClientBasePacket {
 				SkillUse skilluse = new SkillUse();
 				skilluse.handleCommands(pc, SKILL_CANCEL_MAGIC,
 						pc.getId(), pc.getX(), pc.getY(), null, 0,
-						SkillUse.TYPE_LOGIN);
+						SkillType.LOGIN);
 				pc.getInventory().takeoffEquip(945); // 牛のpolyIdで裝備を全部外す。
 				L1Teleport.teleport(pc, 32737, 32789, (short) 997, 4, false);
 				int initStatusPoint = 75 + pc.getElixirStats();
@@ -2394,7 +2396,7 @@ public class C_NPCAction extends ClientBasePacket {
 					SkillUse skillUse = new SkillUse();
 					skillUse.handleCommands(pc, SKILL_CANCEL_MAGIC, pc
 							.getId(), pc.getX(), pc.getY(), null, 0,
-							SkillUse.TYPE_NPCBUFF, (L1NpcInstance) obj);
+							SkillType.NPCBUFF, (L1NpcInstance) obj);
 					htmlid = ""; // ウィンドウを消す
 				}
 			}

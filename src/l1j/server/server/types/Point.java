@@ -65,8 +65,8 @@ public class Point {
 		_y = y;
 	}
 
-	private static final int HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };
-	private static final int HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
+	private static final byte HEADING_TABLE_X[] = HeadType.TABLE_X;
+	private static final byte HEADING_TABLE_Y[] = HeadType.TABLE_Y;
 
 	/**
 	 * 指定された向きにこの座標をひとつ進める。

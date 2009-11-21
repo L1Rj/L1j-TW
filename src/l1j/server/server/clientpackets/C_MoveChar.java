@@ -40,6 +40,7 @@ import l1j.server.server.skills.SkillId;
 import l1j.server.server.model.trap.L1WorldTraps;
 import l1j.server.server.serverpackets.S_MoveCharPacket;
 import l1j.server.server.serverpackets.S_SystemMessage;
+import l1j.server.server.types.HeadType;
 import static l1j.server.server.skills.SkillId.*;
 
 //修正檔案 : l1j.server.server.clientpackets.C_MoveChar
@@ -49,10 +50,9 @@ public class C_MoveChar extends ClientBasePacket {
 
 	private static Logger _log = Logger.getLogger(C_MoveChar.class.getName());
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };// 4.26
-																				// Start
-	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };// 4.26
-																				// End
+	private static final byte HEADING_TABLE_X[] = HeadType.TABLE_X;
+	private static final byte HEADING_TABLE_Y[] = HeadType.TABLE_Y;
+
 	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.10
 
 	// マップタイル調查用
