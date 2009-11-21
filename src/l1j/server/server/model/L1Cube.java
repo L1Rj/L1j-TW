@@ -24,14 +24,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.server.ActionCodes;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.Instance.L1MonsterInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.skills.SkillId;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_Paralysis;
-import l1j.server.server.serverpackets.S_SPMR;
+import l1j.thread.GeneralThreadPool;
 import static l1j.server.server.skills.SkillId.*;
 
 public class L1Cube extends TimerTask {
@@ -42,6 +40,7 @@ public class L1Cube extends TimerTask {
 	private final L1Character _effect;
 	private final L1Character _cha;
 	private final int _skillId;
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	public L1Cube(L1Character effect, L1Character cha, int skillId) {
 		_effect = effect;
@@ -70,7 +69,7 @@ public class L1Cube extends TimerTask {
 	public void begin() {
 		// 効果時間が8秒のため、4秒毎のスキルの場合処理時間を考慮すると実際には1回しか効果が現れない
 		// よって開始時間を0.9秒後に設定しておく
-		_future = GeneralThreadPool.getInstance().scheduleAtFixedRate(this,
+		_future = _threadPool.scheduleAtFixedRate(this,
 				900, 1000);
 	}
 

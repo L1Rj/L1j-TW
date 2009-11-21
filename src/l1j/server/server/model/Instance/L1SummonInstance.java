@@ -6,7 +6,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
 
 import l1j.server.server.ActionCodes;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.IdFactory;
 import l1j.server.server.datatables.DropTable;
 import l1j.server.server.datatables.NpcTable;
@@ -14,7 +13,6 @@ import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1World;
-import l1j.server.server.skills.SkillId;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_HPMeter;
 import l1j.server.server.serverpackets.S_PetMenuPacket;
@@ -23,6 +21,8 @@ import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_SummonPack;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.thread.GeneralThreadPool;
+
 import static l1j.server.server.skills.SkillId.*;
 
 public class L1SummonInstance extends L1NpcInstance {
@@ -30,6 +30,7 @@ public class L1SummonInstance extends L1NpcInstance {
 
 	private static Logger _log = Logger.getLogger(L1SummonInstance.class
 			.getName());
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 	private ScheduledFuture<?> _summonFuture;
 	private static final long SUMMON_TIME = 3600000L;
 	private int _currentPetStatus;
@@ -109,7 +110,7 @@ public class L1SummonInstance extends L1NpcInstance {
 		super(template);
 		setId(IdFactory.getInstance().nextId());
 
-		_summonFuture = GeneralThreadPool.getInstance().schedule(
+		_summonFuture = _threadPool.schedule(
 				new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);
@@ -167,7 +168,7 @@ public class L1SummonInstance extends L1NpcInstance {
 			setCurrentMpDirect(target.getCurrentMp());
 		}
 
-		_summonFuture = GeneralThreadPool.getInstance().schedule(
+		_summonFuture = _threadPool.schedule(
 				new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);

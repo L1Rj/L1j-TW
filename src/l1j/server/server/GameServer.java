@@ -70,6 +70,7 @@ import l1j.server.server.model.map.L1WorldMap;
 import l1j.server.server.model.trap.L1WorldTraps;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.SystemUtil;
+import l1j.thread.GeneralThreadPool;
 
 // Referenced classes of package l1j.server.server:
 // ClientThread, Logins, RateTable, IdFactory,
@@ -80,6 +81,7 @@ import l1j.server.server.utils.SystemUtil;
 
 public class GameServer extends Thread {
 	private ServerSocket _serverSocket;
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 	private static Logger _log = Logger.getLogger(GameServer.class.getName());
 	private int _port;
 	// private Logins _logins;
@@ -99,7 +101,7 @@ public class GameServer extends Thread {
 					_log.info("banned IP(" + host + ")");
 				} else {
 					ClientThread client = new ClientThread(socket);
-					GeneralThreadPool.getInstance().execute(client);
+					_threadPool.execute(client);
 				}
 			} catch (IOException ioexception) {
 			}
@@ -176,17 +178,17 @@ public class GameServer extends Thread {
 
 		// UBタイムコントローラー
 		UbTimeController ubTimeContoroller = UbTimeController.getInstance();
-		GeneralThreadPool.getInstance().execute(ubTimeContoroller);
+		_threadPool.execute(ubTimeContoroller);
 
 		// 戰爭タイムコントローラー
 		WarTimeController warTimeController = WarTimeController.getInstance();
-		GeneralThreadPool.getInstance().execute(warTimeController);
+		_threadPool.execute(warTimeController);
 
 		// 精靈の石生成
 		if (Config.ELEMENTAL_STONE_AMOUNT > 0) {
 			ElementalStoneGenerator elementalStoneGenerator
 					= ElementalStoneGenerator.getInstance();
-			GeneralThreadPool.getInstance().execute(elementalStoneGenerator);
+			_threadPool.execute(elementalStoneGenerator);
 		}
 
 		// ホームタウン
@@ -195,22 +197,22 @@ public class GameServer extends Thread {
 		// アジト競賣タイムコントローラー
 		AuctionTimeController auctionTimeController = AuctionTimeController
 				.getInstance();
-		GeneralThreadPool.getInstance().execute(auctionTimeController);
+		_threadPool.execute(auctionTimeController);
 
 		// アジト稅金タイムコントローラー
 		HouseTaxTimeController houseTaxTimeController = HouseTaxTimeController
 				.getInstance();
-		GeneralThreadPool.getInstance().execute(houseTaxTimeController);
+		_threadPool.execute(houseTaxTimeController);
 
 		// 釣りタイムコントローラー
 		FishingTimeController fishingTimeController = FishingTimeController
 				.getInstance();
-		GeneralThreadPool.getInstance().execute(fishingTimeController);
+		_threadPool.execute(fishingTimeController);
 
 		// NPCチャットタイムコントローラー
 		NpcChatTimeController npcChatTimeController = NpcChatTimeController
 				.getInstance();
-		GeneralThreadPool.getInstance().execute(npcChatTimeController);
+		_threadPool.execute(npcChatTimeController);
 
 		Announcements.getInstance();
 		NpcTable.getInstance();
@@ -325,7 +327,7 @@ public class GameServer extends Thread {
 			return;
 		}
 		_shutdownThread = new ServerShutdownThread(secondsCount);
-		GeneralThreadPool.getInstance().execute(_shutdownThread);
+		_threadPool.execute(_shutdownThread);
 	}
 
 	public void shutdown() {

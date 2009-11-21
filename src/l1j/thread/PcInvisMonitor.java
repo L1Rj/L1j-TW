@@ -20,44 +20,43 @@ package l1j.thread;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 
-public class R_FrameUpdate implements Runnable {
-	private final static ThreadGroup tGroup = new ThreadGroup("FrameUpdate");
+public class PcInvisMonitor implements Runnable {
+	private final static ThreadGroup threadGroup = new ThreadGroup("PcInvisMonitor");
+
+	private boolean isCancelled;
 
 	private final L1PcInstance pc;
 
-	private boolean isShutdown;
-
-	public R_FrameUpdate(L1PcInstance pc) {
+	public PcInvisMonitor(L1PcInstance pc) {
 		this.pc = pc;
-		new Thread(tGroup, this, this.getClass().getSimpleName()).start();
+		new Thread(threadGroup, this, this.getClass().getSimpleName()).start();
 	}
 
 	@Override
 	public void run() {
-		while (!isShutdown) {
+		while (!isCancelled) {
 			try {
-				pc.updateObject(); // 更新一次畫面
-				Thread.sleep(250); // 延遲 0.200ms
+				pc.addInvisDelayCounter(-1); // 更新玩家背包
+				Thread.sleep(3000); // 延遲 3.000 毫秒
 			} catch (Exception e) {
-				e.fillInStackTrace(); // 顯示錯誤訊息
+				e.fillInStackTrace(); // 錯誤訊息
 				break;
 			}
 		}
 	}
 
 	/**
-	 * @param isShutdown
-	 *            the isShutdown to set
+	 * @return the isCancelled
 	 */
-	public void setShutdown(boolean isShutdown) {
-		this.isShutdown = isShutdown;
+	public boolean isCancelled() {
+		return isCancelled;
 	}
 
 	/**
-	 * @return the isShutdown
+	 * @param isCancelled
+	 *            the isCancelled to set
 	 */
-	public boolean isShutdown() {
-		return isShutdown;
+	public void cancel(boolean isCancelled) {
+		this.isCancelled = isCancelled;
 	}
-
 }

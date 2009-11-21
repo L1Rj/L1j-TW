@@ -22,10 +22,10 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import l1j.server.Config;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_ServerMessage;
+import l1j.thread.GeneralThreadPool;
 
 // Referenced classes of package l1j.server.server.model:
 // L1DeleteItemOnGround
@@ -35,6 +35,8 @@ public class L1DeleteItemOnGround {
 
 	private static final Logger _log = Logger
 			.getLogger(L1DeleteItemOnGround.class.getName());
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	public L1DeleteItemOnGround() {
 	}
@@ -76,7 +78,7 @@ public class L1DeleteItemOnGround {
 		}
 
 		_deleteTimer = new DeleteTimer();
-		GeneralThreadPool.getInstance().execute(_deleteTimer); // タイマー開始
+		_threadPool.execute(_deleteTimer); // タイマー開始
 	}
 
 	private void deleteItem() {

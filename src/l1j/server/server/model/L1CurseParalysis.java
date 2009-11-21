@@ -18,12 +18,12 @@
  */
 package l1j.server.server.model;
 
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.Instance.L1MonsterInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.skills.SkillId;
 import l1j.server.server.serverpackets.S_Paralysis;
 import l1j.server.server.serverpackets.S_ServerMessage;
+import l1j.thread.GeneralThreadPool;
+
 import static l1j.server.server.skills.SkillId.*;
 
 /*
@@ -35,6 +35,7 @@ public class L1CurseParalysis extends L1Paralysis {
 	private final int _time;
 
 	private Thread _timer;
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private class ParalysisDelayTimer extends Thread {
 		@Override
@@ -56,7 +57,7 @@ public class L1CurseParalysis extends L1Paralysis {
 			}
 			_target.setParalyzed(true);
 			_timer = new ParalysisTimer();
-			GeneralThreadPool.getInstance().execute(_timer); // 麻痺タイマー開始
+			_threadPool.execute(_timer); // 麻痺タイマー開始
 			if (isInterrupted()) {
 				_timer.interrupt();
 			}

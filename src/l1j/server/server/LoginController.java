@@ -23,6 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 import l1j.server.server.serverpackets.S_ServerMessage;
+import l1j.thread.GeneralThreadPool;
 
 public class LoginController {
 	private static LoginController _instance;
@@ -33,6 +34,8 @@ public class LoginController {
 	private Map<String, ClientThread> _accounts = new ConcurrentHashMap<String, ClientThread>();
 
 	private int _maxAllowedOnlinePlayers;
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private LoginController() {
 	}
@@ -65,7 +68,7 @@ public class LoginController {
 			return;
 		}
 
-		GeneralThreadPool.getInstance().execute(new Runnable() {
+		_threadPool.execute(new Runnable() {
 			@Override
 			public void run() {
 				if (client.getActiveChar() != null) {

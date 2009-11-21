@@ -21,7 +21,6 @@ package l1j.server.server.model.Instance;
 import java.util.logging.Logger;
 
 import l1j.server.server.ActionCodes;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.WarTimeController;
 import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1CastleLocation;
@@ -35,12 +34,15 @@ import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_NPCPack;
 import l1j.server.server.templates.L1Npc;
+import l1j.thread.GeneralThreadPool;
 
 public class L1TowerInstance extends L1NpcInstance {
 
 	private static final long serialVersionUID = 1L;
 	private static Logger _log = Logger.getLogger(L1TowerInstance.class
 			.getName());
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	public L1TowerInstance(L1Npc template) {
 		super(template);
@@ -146,7 +148,7 @@ public class L1TowerInstance extends L1NpcInstance {
 					_lastattacker = attacker;
 					_crackStatus = 0;
 					Death death = new Death();
-					GeneralThreadPool.getInstance().execute(death);
+					_threadPool.execute(death);
 					// Death(attacker);
 				}
 				if (newHp > 0) {
@@ -179,7 +181,7 @@ public class L1TowerInstance extends L1NpcInstance {
 				setStatus(ActionCodes.ACTION_TowerDie);
 				_lastattacker = attacker;
 				Death death = new Death();
-				GeneralThreadPool.getInstance().execute(death);
+				_threadPool.execute(death);
 				// Death(attacker);
 			}
 		}

@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server;
+package l1j.thread;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -29,11 +29,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 
 import l1j.server.Config;
-import l1j.server.server.model.monitor.L1PcMonitor;
+import l1j.thread.PcMonitor;
 
 public class GeneralThreadPool {
-	private static Logger _log = Logger.getLogger(GeneralThreadPool.class
-			.getName());
+	private static Logger _log = Logger.getLogger(GeneralThreadPool.class.getName());
 
 	private static GeneralThreadPool _instance;
 
@@ -61,13 +60,10 @@ public class GeneralThreadPool {
 		} else {
 			_executor = null;
 		}
-		_scheduler = Executors
-				.newScheduledThreadPool(SCHEDULED_CORE_POOL_SIZE,
-						new PriorityThreadFactory("GerenalSTPool",
-								Thread.NORM_PRIORITY));
+		_scheduler = Executors.newScheduledThreadPool(SCHEDULED_CORE_POOL_SIZE,
+				new PriorityThreadFactory("GerenalSTPool", Thread.NORM_PRIORITY));
 		_pcScheduler = Executors.newScheduledThreadPool(_pcSchedulerPoolSize,
-				new PriorityThreadFactory("PcMonitorSTPool",
-						Thread.NORM_PRIORITY));
+				new PriorityThreadFactory("PcMonitorSTPool", Thread.NORM_PRIORITY));
 	}
 
 	public void execute(Runnable r) {
@@ -95,13 +91,11 @@ public class GeneralThreadPool {
 		}
 	}
 
-	public ScheduledFuture<?> scheduleAtFixedRate(Runnable r,
-			long initialDelay, long period) {
-		return _scheduler.scheduleAtFixedRate(r, initialDelay, period,
-				TimeUnit.MILLISECONDS);
+	public ScheduledFuture<?> scheduleAtFixedRate(Runnable r, long initialDelay, long period) {
+		return _scheduler.scheduleAtFixedRate(r, initialDelay, period, TimeUnit.MILLISECONDS);
 	}
 
-	public ScheduledFuture<?> pcSchedule(L1PcMonitor r, long delay) {
+	public ScheduledFuture<?> pcSchedule(PcMonitor r, long delay) {
 		try {
 			if (delay <= 0) {
 				_executor.execute(r);
@@ -113,10 +107,8 @@ public class GeneralThreadPool {
 		}
 	}
 
-	public ScheduledFuture<?> pcScheduleAtFixedRate(L1PcMonitor r,
-			long initialDelay, long period) {
-		return _pcScheduler.scheduleAtFixedRate(r, initialDelay, period,
-				TimeUnit.MILLISECONDS);
+	public ScheduledFuture<?> pcScheduleAtFixedRate(PcMonitor r, long initialDelay, long period) {
+		return _pcScheduler.scheduleAtFixedRate(r, initialDelay, period, TimeUnit.MILLISECONDS);
 	}
 
 	// ThreadPoolManager から拜借

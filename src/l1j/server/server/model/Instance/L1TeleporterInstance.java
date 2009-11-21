@@ -21,7 +21,6 @@ package l1j.server.server.model.Instance;
 
 import java.util.logging.Logger;
 
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.datatables.NPCTalkDataTable;
 import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1NpcTalkData;
@@ -32,6 +31,7 @@ import l1j.server.server.model.npc.L1NpcHtml;
 import l1j.server.server.serverpackets.S_NPCTalkReturn;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.thread.GeneralThreadPool;
 
 // Referenced classes of package l1j.server.server.model:
 // L1NpcInstance, L1Teleport, L1NpcTalkData, L1PcInstance,
@@ -40,6 +40,8 @@ import l1j.server.server.utils.RandomArrayList;
 public class L1TeleporterInstance extends L1NpcInstance {
 
 	private static final long serialVersionUID = 1L;
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	public L1TeleporterInstance(L1Npc template) {
 		super(template);
@@ -487,13 +489,13 @@ public class L1TeleporterInstance extends L1NpcInstance {
 						L1Teleport.teleport(wiz, 32876, 33003, (short) 2000, 0,
 								true);
 						TeleportDelyTimer timer = new TeleportDelyTimer();
-						GeneralThreadPool.getInstance().execute(timer);
+						_threadPool.execute(timer);
 					}
 				} else if (action.equalsIgnoreCase("teleport barlog")) { // 古代人（Lv50クエスト古代の空間2F）
 					L1Teleport.teleport(player, 32755, 32844, (short) 2002, 5,
 							true);
 					TeleportDelyTimer timer = new TeleportDelyTimer();
-					GeneralThreadPool.getInstance().execute(timer);
+					_threadPool.execute(timer);
 				}
 			} catch (Exception e) {
 			}

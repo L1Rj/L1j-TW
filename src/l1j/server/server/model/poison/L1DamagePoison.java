@@ -20,16 +20,18 @@ package l1j.server.server.model.poison;
 
 import java.util.logging.Logger;
 
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.Instance.L1MonsterInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
-import l1j.server.server.skills.SkillId;
+import l1j.thread.GeneralThreadPool;
+
 import static l1j.server.server.skills.SkillId.*;
 
 public class L1DamagePoison extends L1Poison {
 	private static Logger _log = Logger.getLogger(L1DamagePoison.class
 			.getName());
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private Thread _timer;
 	private final L1Character _attacker;
@@ -89,7 +91,7 @@ public class L1DamagePoison extends L1Poison {
 
 		if (isDamageTarget(_target)) {
 			_timer = new NormalPoisonTimer();
-			GeneralThreadPool.getInstance().execute(_timer); // 通常毒タイマー開始
+			_threadPool.execute(_timer); // 通常毒タイマー開始
 		}
 	}
 

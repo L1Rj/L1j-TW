@@ -20,10 +20,10 @@ package l1j.server.server.model;
 
 import java.util.logging.Logger;
 
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.WarTimeController;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_PinkName;
+import l1j.thread.GeneralThreadPool;
 
 // Referenced classes of package l1j.server.server.model:
 // L1PinkName
@@ -31,6 +31,8 @@ import l1j.server.server.serverpackets.S_PinkName;
 public class L1PinkName {
 	private static final Logger _log = Logger.getLogger(L1PinkName.class
 			.getName());
+
+	private static GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private L1PinkName() {
 	}
@@ -107,7 +109,7 @@ public class L1PinkName {
 							180));
 				}
 				PinkNameTimer pink = new PinkNameTimer(attacker);
-				GeneralThreadPool.getInstance().execute(pink);
+				_threadPool.execute(pink);
 			}
 		}
 	}

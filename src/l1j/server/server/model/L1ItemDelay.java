@@ -21,10 +21,10 @@ package l1j.server.server.model;
 import java.util.logging.Logger;
 
 import l1j.server.server.ClientThread;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.templates.L1EtcItem;
+import l1j.thread.GeneralThreadPool;
 
 // Referenced classes of package l1j.server.server.model:
 // L1ItemDelay
@@ -33,6 +33,8 @@ public class L1ItemDelay {
 
 	private static final Logger _log = Logger.getLogger(L1ItemDelay.class
 			.getName());
+
+	private static GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private L1ItemDelay() {
 	}
@@ -89,7 +91,7 @@ public class L1ItemDelay {
 		ItemDelayTimer timer = new ItemDelayTimer(pc, delayId, delayTime);
 
 		pc.addItemDelay(delayId, timer);
-		GeneralThreadPool.getInstance().schedule(timer, delayTime);
+		_threadPool.schedule(timer, delayTime);
 	}
 
 }

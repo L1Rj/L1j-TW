@@ -22,7 +22,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1PolyMorph;
@@ -53,6 +52,7 @@ import l1j.server.server.serverpackets.S_SkillIconWisdomPotion;
 import l1j.server.server.serverpackets.S_Strup;
 import l1j.server.server.serverpackets.S_SystemMessage;//waja add 租旅館
 import l1j.server.server.templates.L1Skills;
+import l1j.thread.GeneralThreadPool;
 
 import static l1j.server.server.skills.SkillId.*;
 
@@ -802,6 +802,8 @@ class SkillStop {
 }
 
 class SkillTimerThreadImpl extends Thread implements SkillTimer {
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
+
 	public SkillTimerThreadImpl(L1Character cha, int skillId, int timeMillis) {
 		_cha = cha;
 		_skillId = skillId;
@@ -826,7 +828,7 @@ class SkillTimerThreadImpl extends Thread implements SkillTimer {
 	}
 
 	public void begin() {
-		GeneralThreadPool.getInstance().execute(this);
+		_threadPool.execute(this);
 	}
 
 	public void end() {
@@ -849,6 +851,9 @@ class SkillTimerThreadImpl extends Thread implements SkillTimer {
 
 class SkillTimerTimerImpl implements SkillTimer, Runnable {
 	private static Logger _log = Logger.getLogger(SkillTimerTimerImpl.class.getName());
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
+
 	private ScheduledFuture<?> _future = null;
 
 	public SkillTimerTimerImpl(L1Character cha, int skillId, int timeMillis) {
@@ -869,7 +874,7 @@ class SkillTimerTimerImpl implements SkillTimer, Runnable {
 
 	@Override
 	public void begin() {
-		_future = GeneralThreadPool.getInstance().scheduleAtFixedRate(this, 1000, 1000);
+		_future = _threadPool.scheduleAtFixedRate(this, 1000, 1000);
 	}
 
 	@Override

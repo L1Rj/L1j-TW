@@ -20,8 +20,8 @@ package l1j.server.server.skills;
 
 import java.util.logging.Logger;
 
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.L1Character;
+import l1j.thread.GeneralThreadPool;
 
 // Referenced classes of package l1j.server.server.model:
 // L1SkillDelay
@@ -29,6 +29,8 @@ import l1j.server.server.model.L1Character;
 public class SkillDelay {
 
 	private static final Logger _log = Logger.getLogger(SkillDelay.class.getName());
+
+	private static GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private SkillDelay() {
 	}
@@ -54,7 +56,7 @@ public class SkillDelay {
 
 	public static void onSkillUse(L1Character cha, int time) {
 		cha.setSkillDelay(true);
-		GeneralThreadPool.getInstance().schedule(new SkillDelayTimer(cha, time), time);
+		_threadPool.schedule(new SkillDelayTimer(cha, time), time);
 	}
 
 }

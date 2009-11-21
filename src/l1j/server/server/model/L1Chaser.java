@@ -18,26 +18,25 @@
  */
 package l1j.server.server.model;
 
-import java.util.Random;
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.server.ActionCodes;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_EffectLocation;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.thread.GeneralThreadPool;
 import static l1j.server.server.skills.SkillId.*;
 
 public class L1Chaser extends TimerTask {
 	private static Logger _log = Logger.getLogger(L1Chaser.class.getName());
 
-	private static final Random _random = new Random();
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 	private ScheduledFuture<?> _future = null;
 	private int _timeCounter = 0;
 	private final L1PcInstance _pc;
@@ -69,7 +68,7 @@ public class L1Chaser extends TimerTask {
 	public void begin() {
 		// 効果時間が8秒のため、4秒毎のスキルの場合処理時間を考慮すると実際には1回しか効果が現れない
 		// よって開始時間を0.9秒後に設定しておく
-		_future = GeneralThreadPool.getInstance().scheduleAtFixedRate(this,
+		_future = _threadPool.scheduleAtFixedRate(this,
 				0, 1000);
 	}
 

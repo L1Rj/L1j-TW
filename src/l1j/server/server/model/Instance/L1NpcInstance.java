@@ -20,7 +20,6 @@ package l1j.server.server.model.Instance;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledFuture;
@@ -33,7 +32,6 @@ import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.datatables.NpcChatTable;
 import l1j.server.server.datatables.NpcTable;
 import l1j.server.server.model.L1Attack;
@@ -49,10 +47,8 @@ import l1j.server.server.model.L1NpcChatTimer;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1Spawn;
 import l1j.server.server.model.L1World;
-import l1j.server.server.model.Action.NpcAction;
 import l1j.server.server.model.map.L1Map;
 import l1j.server.server.model.map.L1WorldMap;
-import l1j.server.server.skills.SkillId;
 import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_ChangeShape;
 import l1j.server.server.serverpackets.S_RemoveObject;
@@ -68,12 +64,15 @@ import l1j.server.server.types.Point;
 import l1j.server.server.types.SkillType;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.TimerPool;
+import l1j.thread.GeneralThreadPool;
 
 import static l1j.server.server.items.ItemId.*;
 import static l1j.server.server.skills.SkillId.*;
 
 public class L1NpcInstance extends L1Character {
 	private static final long serialVersionUID = 1L;
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	public static final int MOVE_SPEED = 0;
 	public static final int ATTACK_SPEED = 1;
@@ -100,7 +99,6 @@ public class L1NpcInstance extends L1Character {
 	private int _petcost; // ペットになったときのコスト
 	public L1Inventory _inventory = new L1Inventory();
 	private L1MobSkillUse mobSkill;
-	private static Random _random = new Random();
 
 	// 對象を初めて發見したとき。（テレポート用）
 	private boolean firstFound = true;
@@ -216,7 +214,7 @@ public class L1NpcInstance extends L1Character {
 	class NpcAIThreadImpl implements Runnable, NpcAI {
 		@Override
 		public void start() {
-			GeneralThreadPool.getInstance().execute(NpcAIThreadImpl.this);
+			_threadPool.execute(NpcAIThreadImpl.this);
 		}
 
 		@Override
@@ -1343,7 +1341,7 @@ public class L1NpcInstance extends L1Character {
 				getNpcTemplate().get_digestitem()));
 		if (!_digestItemRunning) {
 			DigestItemTimer digestItemTimer = new DigestItemTimer();
-			GeneralThreadPool.getInstance().execute(digestItemTimer);
+			_threadPool.execute(digestItemTimer);
 		}
 	}
 
@@ -2041,7 +2039,7 @@ public class L1NpcInstance extends L1Character {
 			return;
 		}
 		_deleteTask = new DeleteTimer(getId());
-		_future = GeneralThreadPool.getInstance().schedule(_deleteTask,
+		_future = _threadPool.schedule(_deleteTask,
 				Config.NPC_DELETION_TIME * 1000);
 	}
 

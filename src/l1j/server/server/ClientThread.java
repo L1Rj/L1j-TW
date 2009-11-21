@@ -57,6 +57,7 @@ import l1j.server.server.types.UByte8;
 import l1j.server.server.types.UChar8;
 import l1j.server.server.utils.StreamUtil;
 import l1j.server.server.utils.SystemUtil;
+import l1j.thread.GeneralThreadPool;
 
 // Referenced classes of package l1j.server.server:
 // PacketHandler, Logins, IpTable, LoginController,
@@ -74,6 +75,7 @@ public class ClientThread implements Runnable, PacketOutput
 	private String _ip;
 	private String _hostname;
 	private Socket _csocket;
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 	private int _loginStatus;
 
 	private static final byte[] FIRST_PACKET = { // 3.0
@@ -198,7 +200,7 @@ public class ClientThread implements Runnable, PacketOutput
 		Socket socket = _csocket;
 
 		AutoResponse response = new AutoResponse();
-		GeneralThreadPool.getInstance().execute(response);
+		_threadPool.execute(response);
 
 		ClientThreadObserver observer =
 				new ClientThreadObserver(AUTOMATIC_KICK * 60 * 1000); // 自动切断までの时间（单位:ms）

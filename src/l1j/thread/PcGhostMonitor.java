@@ -16,32 +16,25 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.model.monitor;
+package l1j.thread;
 
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.Instance.L1PcInstance;
 
-public class L1PcHellMonitor extends L1PcMonitor {
+public class PcGhostMonitor extends PcMonitor {
 
-	public L1PcHellMonitor(int oId) {
+	public PcGhostMonitor(int oId) {
 		super(oId);
 	}
 
 	@Override
 	public void execTask(L1PcInstance pc) {
-		if (pc.isDead()) { // 死んでいたらカウントダウンしない
-			return;
-		}
-		pc.setHellTime(pc.getHellTime() - 1);
-		if (pc.getHellTime() <= 0) {
-			// endHellの實行時間が影響ないように
-			Runnable r = new L1PcMonitor(pc.getId()) {
-				@Override
-				public void execTask(L1PcInstance pc) {
-					pc.endHell();
-				}
-			};
-			GeneralThreadPool.getInstance().execute(r);
-		}
+		// endGhostの実行時間が影響ないように
+		Runnable r = new PcMonitor(pc.getId()) {
+			@Override
+			public void execTask(L1PcInstance pc) {
+				pc.endGhost();
+			}
+		};
+		GeneralThreadPool.getInstance().execute(r);
 	}
 }

@@ -21,15 +21,16 @@ package l1j.server.server.model;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Calendar;
-import java.util.Random;
 
 import l1j.server.Config;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.thread.GeneralThreadPool;
 
 public class L1BossSpawn extends L1Spawn {
 	private static Logger _log = Logger.getLogger(L1BossSpawn.class.getName());
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private class SpawnTask implements Runnable {
 		private int _spawnNumber;
@@ -103,8 +104,6 @@ public class L1BossSpawn extends L1Spawn {
 
 	private Calendar _activeSpawnTime;
 
-	private static Random _rnd = new Random();
-
 	@Override
 	public void init() {
 		if (_percentage <= 0) {
@@ -144,8 +143,7 @@ public class L1BossSpawn extends L1Spawn {
 		_spawnCount = getAmount();
 		while (cnt < getAmount()) {
 			cnt++;
-			GeneralThreadPool.getInstance().schedule(
-					new SpawnTask(0, objectId), delay);
+			_threadPool.schedule(new SpawnTask(0, objectId), delay);
 		}
 		_log.log(Level.FINE, toString());
 	}

@@ -30,8 +30,6 @@ import javolution.util.FastTable;
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.ClientThread;
-import l1j.server.server.GMCommands;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.PacketOutput;
 import l1j.server.server.WarTimeController;
 import l1j.server.server.command.executor.L1HpBar;
@@ -63,19 +61,12 @@ import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1TownLocation;
 import l1j.server.server.model.L1War;
 import l1j.server.server.model.L1World;
-import l1j.server.server.model.map.L1Map;
 import l1j.server.server.model.MpReductionByAwake;
 import l1j.server.server.model.MpRegeneration;
 import l1j.server.server.model.MpRegenerationByDoll;
-import l1j.server.server.model.HpRegenerationByDoll;//waja add 魔法娃娃回血功能
+import l1j.server.server.model.HpRegenerationByDoll;
 import l1j.server.server.model.classes.L1ClassFeature;
 import l1j.server.server.model.gametime.L1GameTimeCarrier;
-import l1j.server.server.model.monitor.L1PcAutoUpdate;
-import l1j.server.server.model.monitor.L1PcExpMonitor;
-import l1j.server.server.model.monitor.L1PcGhostMonitor;
-import l1j.server.server.model.monitor.L1PcHellMonitor;
-import l1j.server.server.model.monitor.L1PcInvisDelay;
-import l1j.server.server.skills.SkillId;
 import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_BlueMessage;
 import l1j.server.server.serverpackets.S_CastleMaster;
@@ -84,7 +75,6 @@ import l1j.server.server.serverpackets.S_CharVisualUpdate;
 import l1j.server.server.serverpackets.S_Disconnect;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_DoActionShop;
-import l1j.server.server.serverpackets.S_Emblem;
 import l1j.server.server.serverpackets.S_Exp;
 import l1j.server.server.serverpackets.S_HPMeter;
 import l1j.server.server.serverpackets.S_HPUpdate;
@@ -107,9 +97,14 @@ import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1PrivateShopBuyList;
 import l1j.server.server.templates.L1PrivateShopSellList;
 import l1j.server.server.types.SkillType;
-import l1j.server.server.utils.IntRange;
 import l1j.server.server.utils.RandomArrayList;
-import l1j.thread.R_FrameUpdate;
+import l1j.thread.GeneralThreadPool;
+import l1j.thread.PcExpMonitor;
+import l1j.thread.PcFrameMonitor;
+import l1j.thread.PcGhostMonitor;
+import l1j.thread.PcHellMonitor;
+import l1j.thread.PcInvisMonitor;
+
 import static l1j.server.server.skills.SkillId.*;
 
 // Referenced classes of package l1j.server.server.model:
@@ -117,12 +112,12 @@ import static l1j.server.server.skills.SkillId.*;
 // L1World
 //
 
-public class L1PcInstance extends L1Character
-	{
+public class L1PcInstance extends L1Character {
 	private static final long serialVersionUID = 1L;
 
-	public int getAc()
-	{
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
+
+	public int getAc() {
 		return _ac + L1DollInstance.getAcByDoll(this);
 	}
 
@@ -164,6 +159,7 @@ public class L1PcInstance extends L1Character
 		return _originalMpr;
 	}
 
+	/** 開始玩家恢復自身體力 */
 	public void startHpRegeneration() {
 		final int INTERVAL = 1000;
 
@@ -174,6 +170,7 @@ public class L1PcInstance extends L1Character
 		}
 	}
 
+	/** 停止玩家恢復自身體力 */
 	public void stopHpRegeneration() {
 		if (_hpRegenActive) {
 			_hpRegen.cancel();
@@ -182,6 +179,7 @@ public class L1PcInstance extends L1Character
 		}
 	}
 
+	/** 開始玩家恢復自身魔力 */
 	public void startMpRegeneration() {
 		final int INTERVAL = 1000;
 
@@ -192,6 +190,43 @@ public class L1PcInstance extends L1Character
 		}
 	}
 
+	/** 停止玩家恢復自身魔力 */
+	public void stopMpRegeneration() {
+		if (_mpRegenActive) {
+			_mpRegen.cancel();
+			_mpRegen = null;
+			_mpRegenActive = false;
+		}
+	}
+
+	/** 開始娃娃恢復玩家體力 */
+	public void startHpRegenerationByDoll() {
+		final int INTERVAL_BY_DOLL = 60000;
+		boolean isExistHprDoll = false;
+		Object[] dollList = getDollList().values().toArray();
+		for (Object dollObject : dollList) {
+			L1DollInstance doll = (L1DollInstance) dollObject;
+			if (doll.isHpRegeneration()) {
+				isExistHprDoll = true;
+			}
+		}
+		if (!_hpRegenActiveByDoll && isExistHprDoll) {
+			_hpRegenByDoll = new HpRegenerationByDoll(this);
+			_regenTimer.scheduleAtFixedRate(_hpRegenByDoll, INTERVAL_BY_DOLL, INTERVAL_BY_DOLL);
+			_hpRegenActiveByDoll = true;
+		}
+	}
+
+	/** 停止娃娃恢復玩家體力 */
+	public void stopHpRegenerationByDoll() {
+		if (_hpRegenActiveByDoll) {
+			_hpRegenByDoll.cancel();
+			_hpRegenByDoll = null;
+			_hpRegenActiveByDoll = false;
+		}
+	}
+
+	/** 開始娃娃恢復玩家魔力 */
 	public void startMpRegenerationByDoll() {
 		final int INTERVAL_BY_DOLL = 60000;
 		boolean isExistMprDoll = false;
@@ -204,48 +239,12 @@ public class L1PcInstance extends L1Character
 		}
 		if (!_mpRegenActiveByDoll && isExistMprDoll) {
 			_mpRegenByDoll = new MpRegenerationByDoll(this);
-			_regenTimer.scheduleAtFixedRate(_mpRegenByDoll, INTERVAL_BY_DOLL,
-					INTERVAL_BY_DOLL);
+			_regenTimer.scheduleAtFixedRate(_mpRegenByDoll, INTERVAL_BY_DOLL, INTERVAL_BY_DOLL);
 			_mpRegenActiveByDoll = true;
 		}
 	}
 
-	public void startHpRegenerationByDoll() { // 魔法娃娃回血功能
-		final int INTERVAL_BY_DOLL = 60000;
-		boolean isExistHprDoll = false;
-		Object[] dollList = getDollList().values().toArray();
-		for (Object dollObject : dollList) {
-			L1DollInstance doll = (L1DollInstance) dollObject;
-			if (doll.isHpRegeneration()) {
-				isExistHprDoll = true;
-			}
-		}
-		if (!_hpRegenActiveByDoll && isExistHprDoll) {
-			_hpRegenByDoll = new HpRegenerationByDoll(this);
-			_regenTimer.scheduleAtFixedRate(_hpRegenByDoll, INTERVAL_BY_DOLL,
-					INTERVAL_BY_DOLL);
-			_hpRegenActiveByDoll = true;
-		}
-	}
-
-	public void startMpReductionByAwake() {
-		final int INTERVAL_BY_AWAKE = 4000;
-		if (!_mpReductionActiveByAwake) {
-			_mpReductionByAwake = new MpReductionByAwake(this);
-			_regenTimer.scheduleAtFixedRate(_mpReductionByAwake,
-					INTERVAL_BY_AWAKE, INTERVAL_BY_AWAKE);
-			_mpReductionActiveByAwake = true;
-		}
-	}
-
-	public void stopMpRegeneration() {
-		if (_mpRegenActive) {
-			_mpRegen.cancel();
-			_mpRegen = null;
-			_mpRegenActive = false;
-		}
-	}
-
+	/** 停止娃娃恢復玩家魔力 */
 	public void stopMpRegenerationByDoll() {
 		if (_mpRegenActiveByDoll) {
 			_mpRegenByDoll.cancel();
@@ -254,14 +253,18 @@ public class L1PcInstance extends L1Character
 		}
 	}
 
-	public void stopHpRegenerationByDoll() { // 魔法娃娃回血功能
-		if (_hpRegenActiveByDoll) {
-			_hpRegenByDoll.cancel();
-			_hpRegenByDoll = null;
-			_hpRegenActiveByDoll = false;
+	/** 開始覺醒恢復玩家魔力 */
+	public void startMpReductionByAwake() {
+		final int INTERVAL_BY_AWAKE = 4000;
+		if (!_mpReductionActiveByAwake) {
+			_mpReductionByAwake = new MpReductionByAwake(this);
+			_regenTimer.scheduleAtFixedRate(_mpReductionByAwake, INTERVAL_BY_AWAKE,
+					INTERVAL_BY_AWAKE);
+			_mpReductionActiveByAwake = true;
 		}
 	}
 
+	/** 停止覺醒恢復玩家魔力 */
 	public void stopMpReductionByAwake() {
 		if (_mpReductionActiveByAwake) {
 			_mpReductionByAwake.cancel();
@@ -270,49 +273,39 @@ public class L1PcInstance extends L1Character
 		}
 	}
 
+	/** 開始自動更新物件 */
 	public void startObjectAutoUpdate() {
 		removeAllKnownObjects();
-		/*
-		_FrameUpdate = GeneralThreadPool.getInstance()
-				.pcScheduleAtFixedRate(new L1PcAutoUpdate(getId()), 0L,
-						INTERVAL_AUTO_UPDATE);
-		*/
-		_FrameUpdate = new R_FrameUpdate(this);
+		_frameMonitorFuture = new PcFrameMonitor(this);
 	}
 
-	/**
-	 * 各種モニタータスクを停止する。
-	 */
-	public void stopEtcMonitor()
-	{
-		if (_FrameUpdate != null)
-		{
-			_FrameUpdate.setShutdown(true);
-			_FrameUpdate = null;
+	/** 停止各種監控任務 */
+	public void stopEtcMonitor() {
+		if (_frameMonitorFuture != null) {
+			_frameMonitorFuture.cancel(true);
+			_frameMonitorFuture = null;
 		}
-
 		if (_expMonitorFuture != null) {
 			_expMonitorFuture.cancel(true);
 			_expMonitorFuture = null;
 		}
-		if (_ghostFuture != null) {
-			_ghostFuture.cancel(true);
-			_ghostFuture = null;
+		if (_invisMonitorFuture != null) {
+			_invisMonitorFuture.cancel(true);
+			_invisMonitorFuture = null;
 		}
-
-		if (_hellFuture != null) {
-			_hellFuture.cancel(true);
-			_hellFuture = null;
+		if (_ghostMonitorFuture != null) {
+			_ghostMonitorFuture.cancel(true);
+			_ghostMonitorFuture = null;
 		}
-
+		if (_hellMonitorFuture != null) {
+			_hellMonitorFuture.cancel(true);
+			_hellMonitorFuture = null;
+		}
 	}
 
-	private static final long INTERVAL_AUTO_UPDATE = 300;
-	// private ScheduledFuture<?> _autoUpdateFuture;
-	private R_FrameUpdate _FrameUpdate;
+	private PcFrameMonitor _frameMonitorFuture;
 
-	private static final long INTERVAL_EXP_MONITOR = 500;
-	private ScheduledFuture<?> _expMonitorFuture;
+	private PcExpMonitor _expMonitorFuture;
 
 	public void onChangeExp() {
 		int level = ExpTable.getLevelByExp(getExp());
@@ -1248,7 +1241,7 @@ public class L1PcInstance extends L1Character
 			setDead(true);
 			setStatus(ActionCodes.ACTION_Die);
 		}
-		GeneralThreadPool.getInstance().execute(new Death(lastAttacker));
+		_threadPool.execute(new Death(lastAttacker));
 
 	}
 
@@ -2412,12 +2405,11 @@ public class L1PcInstance extends L1Character
 		}
 	}
 
-	private static final long DELAY_INVIS = 3000L;
+	private PcInvisMonitor _invisMonitorFuture;
 
 	public void beginInvisTimer() {
 		addInvisDelayCounter(1);
-		GeneralThreadPool.getInstance().pcSchedule(new L1PcInvisDelay(getId()),
-				DELAY_INVIS);
+		_invisMonitorFuture = new PcInvisMonitor(this);
 	}
 
 	public synchronized void addExp(int exp) {
@@ -2432,9 +2424,7 @@ public class L1PcInstance extends L1Character
 	}
 
 	public void beginExpMonitor() {
-		_expMonitorFuture = GeneralThreadPool.getInstance()
-				.pcScheduleAtFixedRate(new L1PcExpMonitor(getId()), 0L,
-						INTERVAL_EXP_MONITOR);
+		_expMonitorFuture = new PcExpMonitor(this);
 	}
 
 	private void levelUp(int gap) {
@@ -2618,8 +2608,7 @@ public class L1PcInstance extends L1Character
 		setGhostCanTalk(canTalk);
 		L1Teleport.teleport(this, locx, locy, mapid, 5, true);
 		if (sec > 0) {
-			_ghostFuture = GeneralThreadPool.getInstance().pcSchedule(
-					new L1PcGhostMonitor(getId()), sec * 1000);
+			_ghostMonitorFuture = _threadPool.pcSchedule(new PcGhostMonitor(getId()), sec * 1000);
 		}
 	}
 
@@ -2635,14 +2624,14 @@ public class L1PcInstance extends L1Character
 		setReserveGhost(false);
 	}
 
-	private ScheduledFuture<?> _ghostFuture;
+	private ScheduledFuture<?> _ghostMonitorFuture;
 
 	private int _ghostSaveLocX = 0;
 	private int _ghostSaveLocY = 0;
 	private short _ghostSaveMapId = 0;
 	private int _ghostSaveHeading = 0;
 
-	private ScheduledFuture<?> _hellFuture;
+	private PcHellMonitor _hellMonitorFuture;
 
 	public void beginHell(boolean isFirst) {
 		// 座標非地獄則傳送到地獄地圖
@@ -2666,17 +2655,15 @@ public class L1PcInstance extends L1Character
 			// あなたは%0秒間ここにとどまらなければなりません。
 			sendPackets(new S_BlueMessage(637, String.valueOf(getHellTime())));
 		}
-		if (_hellFuture == null) {
-			_hellFuture = GeneralThreadPool.getInstance()
-					.pcScheduleAtFixedRate(new L1PcHellMonitor(getId()), 0L,
-							1000L);
+		if (_hellMonitorFuture == null) {
+			_hellMonitorFuture = new PcHellMonitor(this);
 		}
 	}
 
 	public void endHell() {
-		if (_hellFuture != null) {
-			_hellFuture.cancel(false);
-			_hellFuture = null;
+		if (_hellMonitorFuture != null) {
+			_hellMonitorFuture.cancel(false);
+			_hellMonitorFuture = null;
 		}
 		// 地獄から脫出したら火田村へ歸還させる。
 		int[] loc = L1TownLocation

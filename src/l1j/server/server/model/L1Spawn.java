@@ -20,16 +20,13 @@ package l1j.server.server.model;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import java.util.List;
-import java.util.Random;
 
 import javolution.util.FastMap;
 import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.IdFactory;
 import l1j.server.server.datatables.NpcTable;
 import l1j.server.server.model.Instance.L1DoorInstance;
@@ -43,6 +40,7 @@ import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1SpawnTime;
 import l1j.server.server.types.Point;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.thread.GeneralThreadPool;
 
 public class L1Spawn extends L1GameTimeAdapter {
 	private static Logger _log = Logger.getLogger(L1Spawn.class.getName());
@@ -71,10 +69,9 @@ public class L1Spawn extends L1GameTimeAdapter {
 	private int _spawnType;
 	private int _delayInterval;
 	private L1SpawnTime _time;
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 	private FastMap<Integer, Point> _homePoint = null; // initでspawnした個々のオブジェクトのホームポイント
 	private List<L1NpcInstance> _mobs = new FastTable<L1NpcInstance>();
-
-	private static Random _random = new Random();
 
 	private String _name;
 
@@ -283,7 +280,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 	 */
 	public void executeSpawnTask(int spawnNumber, int objectId) {
 		SpawnTask task = new SpawnTask(spawnNumber, objectId);
-		GeneralThreadPool.getInstance().schedule(task, calcRespawnDelay());
+		_threadPool.schedule(task, calcRespawnDelay());
 	}
 
 	private boolean _initSpawn = false;
@@ -439,7 +436,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 						}
 						// 畫面內にPCが居て出現できない場合は、3秒後にスケジューリングしてやり直し
 						SpawnTask task = new SpawnTask(spawnNumber, mob.getId());
-						GeneralThreadPool.getInstance().schedule(task, 3000L);
+						_threadPool.schedule(task, 3000L);
 						return;
 					}
 				}

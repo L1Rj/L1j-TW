@@ -33,7 +33,6 @@ import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.WorldMap;
 import l1j.server.server.datatables.ItemTable;
 import l1j.server.server.datatables.UBSpawnTable;
@@ -45,6 +44,7 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Item;
 import l1j.server.server.utils.IntRange;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.thread.GeneralThreadPool;
 
 // Referenced classes of package l1j.server.server.model:
 // L1UltimateBattle
@@ -83,6 +83,8 @@ public class L1UltimateBattle {
 
 	private static int BEFORE_MINUTE = 5; // 5分前から入場開始
 	private static Random random = new Random();
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private Set<Integer> _managers = new FastSet<Integer>();
 	private SortedSet<Integer> _ubTimes = new TreeSet<Integer>();
@@ -359,7 +361,7 @@ public class L1UltimateBattle {
 		_pattern = random.nextInt(patternsMax) + 1; // 出現パターンを決める
 
 		UbThread ub = new UbThread();
-		GeneralThreadPool.getInstance().execute(ub);
+		_threadPool.execute(ub);
 	}
 
 	/**

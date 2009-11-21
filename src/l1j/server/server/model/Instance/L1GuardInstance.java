@@ -21,7 +21,6 @@ package l1j.server.server.model.Instance;
 import java.util.logging.Logger;
 
 import l1j.server.server.ActionCodes;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.datatables.NPCTalkDataTable;
 import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1CastleLocation;
@@ -29,11 +28,12 @@ import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1Clan;
 import l1j.server.server.model.L1NpcTalkData;
 import l1j.server.server.model.L1World;
-import l1j.server.server.skills.SkillId;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_NPCTalkReturn;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.types.Point;
+import l1j.thread.GeneralThreadPool;
+
 import static l1j.server.server.skills.SkillId.*;
 
 public class L1GuardInstance extends L1NpcInstance {
@@ -41,6 +41,8 @@ public class L1GuardInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 	private static Logger _log = Logger.getLogger(L1GuardInstance.class
 			.getName());
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	// ターゲットを探す
 	@Override
@@ -404,7 +406,7 @@ public class L1GuardInstance extends L1NpcInstance {
 				setDead(true);
 				setStatus(ActionCodes.ACTION_Die);
 				Death death = new Death(attacker);
-				GeneralThreadPool.getInstance().execute(death);
+				_threadPool.execute(death);
 			}
 			if (newHp > 0) {
 				setCurrentHp(newHp);
@@ -414,7 +416,7 @@ public class L1GuardInstance extends L1NpcInstance {
 			setDead(true);
 			setStatus(ActionCodes.ACTION_Die);
 			Death death = new Death(attacker);
-			GeneralThreadPool.getInstance().execute(death);
+			_threadPool.execute(death);
 		}
 	}
 

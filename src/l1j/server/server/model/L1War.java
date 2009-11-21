@@ -24,13 +24,13 @@ import java.util.logging.Logger;
 import javolution.util.FastTable;
 
 import l1j.server.Config;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.WarTimeController;
 import l1j.server.server.datatables.CastleTable;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_War;
 import l1j.server.server.templates.L1Castle;
+import l1j.thread.GeneralThreadPool;
 
 // Referenced classes of package l1j.server.server.model:
 // L1War
@@ -46,6 +46,8 @@ public class L1War {
 	private Calendar _warEndTime;
 
 	private boolean _isWarTimerDelete = false;
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private static final Logger _log = Logger.getLogger(L1War.class.getName());
 
@@ -124,10 +126,10 @@ public class L1War {
 			}
 
 			CastleWarTimer castle_war_timer = new CastleWarTimer();
-			GeneralThreadPool.getInstance().execute(castle_war_timer); // タイマー開始
+			_threadPool.execute(castle_war_timer); // タイマー開始
 		} else if (war_type == 2) { // 模擬戰
 			SimWarTimer sim_war_timer = new SimWarTimer();
-			GeneralThreadPool.getInstance().execute(sim_war_timer); // タイマー開始
+			_threadPool.execute(sim_war_timer); // タイマー開始
 		}
 		L1World.getInstance().addWar(this); // 戰爭リストに追加
 	}

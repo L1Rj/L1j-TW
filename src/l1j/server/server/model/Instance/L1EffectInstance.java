@@ -22,7 +22,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
 
 import l1j.server.server.ActionCodes;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.WarTimeController;
 import l1j.server.server.datatables.SkillsTable;
 import l1j.server.server.model.L1CastleLocation;
@@ -38,6 +37,8 @@ import l1j.server.server.serverpackets.S_OwnCharAttrDef;
 import l1j.server.server.serverpackets.S_RemoveObject;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1Npc;
+import l1j.thread.GeneralThreadPool;
+
 import static l1j.server.server.skills.SkillId.*;
 
 public class L1EffectInstance extends L1NpcInstance {
@@ -45,6 +46,8 @@ public class L1EffectInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 	private static Logger _log = Logger.getLogger(L1EffectInstance.class
 			.getName());
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private ScheduledFuture<?> _effectFuture;
 	private static final int FW_DAMAGE_INTERVAL = 1000;
@@ -56,14 +59,12 @@ public class L1EffectInstance extends L1NpcInstance {
 
 		int npcId = getNpcTemplate().get_npcId();
 		if (npcId == 81157) { // FW
-			_effectFuture = GeneralThreadPool.getInstance().schedule(
-					new FwDamageTimer(this), 0);
+			_effectFuture = _threadPool.schedule(new FwDamageTimer(this), 0);
 		} else if (npcId == 80149 // キューブ[イグニション]
 				|| npcId == 80150 // キューブ[クエイク]
 				|| npcId == 80151 // キューブ[ショック]
 				|| npcId == 80152) { // キューブ[バランス]
-			_effectFuture = GeneralThreadPool.getInstance().schedule(
-					new CubeTimer(this), 0);
+			_effectFuture = _threadPool.schedule(new CubeTimer(this), 0);
 		}
 	}
 

@@ -16,26 +16,47 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.model.monitor;
+package l1j.thread;
 
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.Instance.L1PcInstance;
 
-public class L1PcGhostMonitor extends L1PcMonitor {
+public class PcFrameMonitor implements Runnable {
+	private final static ThreadGroup threadGroup = new ThreadGroup("PcFrameMonitor");
 
-	public L1PcGhostMonitor(int oId) {
-		super(oId);
+	private boolean isCancelled;
+
+	private final L1PcInstance pc;
+
+	public PcFrameMonitor(L1PcInstance pc) {
+		this.pc = pc;
+		new Thread(threadGroup, this, this.getClass().getSimpleName()).start();
 	}
 
 	@Override
-	public void execTask(L1PcInstance pc) {
-		// endGhostの實行時間が影響ないように
-		Runnable r = new L1PcMonitor(pc.getId()) {
-			@Override
-			public void execTask(L1PcInstance pc) {
-				pc.endGhost();
+	public void run() {
+		while (!isCancelled) {
+			try {
+				pc.updateObject(); // 更新玩家畫面
+				Thread.sleep(300); // 延遲 0.300 毫秒
+			} catch (Exception e) {
+				e.fillInStackTrace(); // 錯誤訊息
+				break;
 			}
-		};
-		GeneralThreadPool.getInstance().execute(r);
+		}
+	}
+
+	/**
+	 * @return the isCancelled
+	 */
+	public boolean isCancelled() {
+		return isCancelled;
+	}
+
+	/**
+	 * @param isCancelled
+	 *            the isCancelled to set
+	 */
+	public void cancel(boolean isCancelled) {
+		this.isCancelled = isCancelled;
 	}
 }

@@ -24,15 +24,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import l1j.server.server.GeneralThreadPool;
+import l1j.thread.GeneralThreadPool;
 
 public class L1GameTimeClock {
 	private static Logger _log = Logger.getLogger(L1GameTimeClock.class
 			.getName());
 
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 	private static L1GameTimeClock _instance;
-	private volatile L1GameTime _currentTime = L1GameTime
-			.fromSystemCurrentTime();
+	private volatile L1GameTime _currentTime = L1GameTime.fromSystemCurrentTime();
 	private L1GameTime _previousTime = null;
 
 	private List<L1GameTimeListener> _listeners = new CopyOnWriteArrayList<L1GameTimeListener>();
@@ -82,7 +82,7 @@ public class L1GameTimeClock {
 	}
 
 	private L1GameTimeClock() {
-		GeneralThreadPool.getInstance().execute(new TimeUpdater());
+		_threadPool.execute(new TimeUpdater());
 	}
 
 	public static void init() {

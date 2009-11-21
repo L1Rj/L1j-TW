@@ -27,19 +27,15 @@ import javolution.util.FastTable;
 import l1j.server.server.datatables.ItemTable;// 妖森守護神道具控制
 import l1j.server.server.model.L1Inventory;// 妖森守護神道具控制
 import l1j.server.server.templates.L1Item;// 妖森守護神道具控制
-// import java.util.Random;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
-import l1j.server.server.GeneralThreadPool;
-import l1j.server.server.datatables.DropTable;
 import l1j.server.server.datatables.NPCTalkDataTable;
 import l1j.server.server.model.L1Attack;
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1NpcTalkData;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1World;
-import l1j.server.server.skills.SkillId;
 import l1j.server.server.serverpackets.S_ChangeHeading;
 import l1j.server.server.serverpackets.S_DoActionGFX;
 import l1j.server.server.serverpackets.S_NpcChatPacket;
@@ -48,6 +44,8 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.CalcExp;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.thread.GeneralThreadPool;
+
 import static l1j.server.server.skills.SkillId.*;
 
 public class L1GuardianInstance extends L1NpcInstance {
@@ -59,7 +57,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 	private static Logger _log = Logger.getLogger(L1GuardianInstance.class
 			.getName());
 
-	//private Random _random = new Random();
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private int _configtime = Config.GDROPITEM_TIME;// 妖森守護神道具控制
 
@@ -404,7 +402,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 						setStatus(ActionCodes.ACTION_Die);
 						_lastattacker = attacker;
 						Death death = new Death();
-						GeneralThreadPool.getInstance().execute(death);
+						_threadPool.execute(death);
 					}
 					if (newHp > 0) {
 						setCurrentHp(newHp);
@@ -414,7 +412,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					setStatus(ActionCodes.ACTION_Die);
 					_lastattacker = attacker;
 					Death death = new Death();
-					GeneralThreadPool.getInstance().execute(death);
+					_threadPool.execute(death);
 				}
 			}
 		}
@@ -513,7 +511,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 
 	public void doGDropItem(int timer) { // 妖森守護神道具控制
 		GDropItemTask task = new GDropItemTask();
-		GeneralThreadPool.getInstance().schedule(task, timer * 60000);
+		_threadPool.schedule(task, timer * 60000);
 	}
 
 	private class GDropItemTask implements Runnable {

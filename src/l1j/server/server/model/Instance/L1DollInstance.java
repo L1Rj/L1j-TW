@@ -25,7 +25,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
 
 import static l1j.server.server.ActionCodes.*; // 魔法娃娃閒置動作
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.IdFactory;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -34,9 +33,12 @@ import l1j.server.server.serverpackets.S_DollPack;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.thread.GeneralThreadPool;
 
 public class L1DollInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	public static final int DOLLTYPE_BUGBEAR = 0; // 長老
 	public static final int DOLLTYPE_SUCCUBUS = 1; // 思克巴
@@ -113,7 +115,7 @@ public class L1DollInstance extends L1NpcInstance {
 
 		setDollType(dollType);
 		setItemObjId(itemObjId);
-		_dollFuture = GeneralThreadPool.getInstance().schedule(
+		_dollFuture = _threadPool.schedule(
 				new DollTimer(), DOLL_TIME);
 
 		setMaster(master);

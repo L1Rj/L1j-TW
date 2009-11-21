@@ -16,35 +16,35 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package l1j.server.server.model.monitor;
+package l1j.thread;
 
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
 
 /**
- * L1PcInstanceの定期處理、監視處理等を行う為の共通的な處理を實裝した抽象クラス
+ * L1PcInstanceの定期処理、監視処理等を行う為の共通的な処理を実装した抽象クラス
  * 
- * 各タスク處理は{@link #run()}ではなく{@link #execTask(L1PcInstance)}にて實裝する。
+ * 各タスク処理は{@link #run()}ではなく{@link #execTask(L1PcInstance)}にて実装する。
  * PCがログアウトするなどしてサーバ上に存在しなくなった場合、run()メソッドでは即座にリターンする。
- * その場合、タスクが定期實行スケジューリングされていたら、ログアウト處理等でスケジューリングを停止する必要がある。
- * 停止しなければタスクは止まらず、永遠に定期實行されることになる。
- * 定期實行でなく單發アクションの場合はそのような制御は不要。
+ * その場合、タスクが定期実行スケジューリングされていたら、ログアウト処理等でスケジューリングを停止する必要がある。
+ * 停止しなければタスクは止まらず、永遠に定期実行されることになる。
+ * 定期実行でなく単発アクションの場合はそのような制御は不要。
  * 
- * L1PcInstanceの參照を直接持つことは望ましくない。
+ * L1PcInstanceの参照を直接持つことは望ましくない。
  * 
  * @author frefre
  *
  */
-public abstract class L1PcMonitor implements Runnable {
+public abstract class PcMonitor implements Runnable {
 
-	/** モニター對象L1PcInstanceのオブジェクトID */
+	/** モニター対象L1PcInstanceのオブジェクトID */
 	protected int _id;
 
 	/**
-	 * 指定されたパラメータでL1PcInstanceに對するモニターを作成する。
+	 * 指定されたパラメータでL1PcInstanceに対するモニターを作成する。
 	 * @param oId {@link L1PcInstance#getId()}で取得できるオブジェクトID
 	 */
-	public L1PcMonitor(int oId) {
+	public PcMonitor(int oId) {
 		_id = oId;
 	}
 
@@ -58,8 +58,8 @@ public abstract class L1PcMonitor implements Runnable {
 	}
 
 	/**
-	 * タスク實行時の處理
-	 * @param pc モニター對象のPC
+	 * タスク実行時の処理
+	 * @param pc モニター対象のPC
 	 */
 	public abstract void execTask(L1PcInstance pc);
 }

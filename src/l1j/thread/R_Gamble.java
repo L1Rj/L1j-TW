@@ -20,7 +20,6 @@ package l1j.thread;
 
 import javolution.util.FastTable;
 
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1GambleInstance;

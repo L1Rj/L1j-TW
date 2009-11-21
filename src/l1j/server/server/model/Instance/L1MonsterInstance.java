@@ -27,7 +27,6 @@ import javolution.util.FastTable;
 
 import l1j.server.Config;
 import l1j.server.server.ActionCodes;
-import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.datatables.DropTable;
 import l1j.server.server.datatables.NPCTalkDataTable;
 import l1j.server.server.datatables.UBTable;
@@ -48,6 +47,7 @@ import l1j.server.server.serverpackets.S_SkillBrave;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.utils.CalcExp;
 import l1j.server.server.utils.RandomArrayList;
+import l1j.thread.GeneralThreadPool;
 
 public class L1MonsterInstance extends L1NpcInstance {
 
@@ -55,6 +55,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 
 	private static Logger _log = Logger.getLogger(L1MonsterInstance.class
 			.getName());
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private boolean _storeDroped; // ドロップアイテムの讀⑸が完了したか
 
@@ -370,7 +372,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 					setStatus(ActionCodes.ACTION_Die);
 					openDoorWhenNpcDied(this);
 					Death death = new Death(attacker);
-					GeneralThreadPool.getInstance().execute(death);
+					_threadPool.execute(death);
 					// Death(attacker);
 				} else { // 變身するモンスター
 // distributeExpDropKarma(attacker);
@@ -385,7 +387,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 			setDead(true);
 			setStatus(ActionCodes.ACTION_Die);
 			Death death = new Death(attacker);
-			GeneralThreadPool.getInstance().execute(death);
+			_threadPool.execute(death);
 			// Death(attacker);
 		}
 	}
