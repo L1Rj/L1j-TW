@@ -1,0 +1,600 @@
+600
+6
+45 95 209 ; field zone name 0 blue
+10 173 90 ; 1-19 zone 1 green
+174 157 14 ; 20-29 zone 2 yellow
+213 130 23 ; 30-39 zone 3 orange
+222 60 60 ; 40-49 zone 4 red
+133 14 189 ; 50-99 zone 5 purple
+
+; Zone Infomation
+"蜓朝 撰" 0 0 0 0 0 0 ;Talking Island
+"蜓朝 撰 湍瞪1類" 1 1 0 0 0 0 ;Talking island dungeon B1
+"蜓朝 撰 湍瞪2類" 1 2 0 0 0 0 ;Talking island dungeon B2
+"捱攪曖 餵" 0 3 0 0 0 0 ;Gunter's house
+"旋瑞蛞 寡" 0 5 0 0 0 0 ;Ship talking island to aden world
+"蜓朝 撰 寡" 0 6 0 0 0 0 ;Ship aden world to talking island
+"旋瑞蛤螃 湍瞪1類" 1 7 0 0 0 0 ;Dungeon in gludio B1
+"旋瑞蛤螃 湍瞪2類" 1 8 0 0 0 0 ;Dungeon in gludio B2
+"旋瑞蛤螃 湍瞪3類" 1 9 0 0 0 0 ;Dungeon in gludio B3
+"旋瑞蛤螃 湍瞪4類" 1 10 0 0 0 0 ;Dungeon in gludio B4
+"旋瑞蛤螃 湍瞪5類" 1 11 0 0 0 0 ;Dungeon in gludio B5
+"旋瑞蛤螃 湍瞪6類" 1 12 0 0 0 0 ;Dungeon in gludio B6
+"旋瑞蛤螃 湍瞪7類" 1 13 0 0 0 0 ;Dungeon in gludio B7
+"雖 鱔煎" 1 14 0 0 0 0 ;Underworld path
+"騰 頂撩" 0 15 0 0 0 0 ;Kent inner castle
+"蛞曖 翱掘模" 0 16 0 0 0 0 ;Hardin's lab
+"啻瑞曖 翕掉" 0 17 0 0 0 0 ;Nerupa's house
+"菽啪凱 湍瞪" 0 18 0 0 0 0 ;Dupelgenon dungeon
+"蹂薑膛 湍瞪1類" 1 19 0 0 0 0 ;Dungeon in Elven forest B1
+"蹂薑膛 湍瞪2類" 1 20 0 0 0 0 ;Dungeon in Elven forest B2
+"蹂薑膛 湍瞪3類" 1 21 0 0 0 0 ;Dungeon in Elven forest B3
+"啪塭萄曖 衛湍瞪" 1 22 0 0 0 0 ;Gerard test dungeon
+"孺棻辦萄撩 湍瞪" 1 23 0 0 0 0 ;Windawood castle dungeon
+"孺棻辦萄撩 湍瞪" 2 24 0 0 0 0 ;Windawood castle dungeon
+"熱溼 湍瞪1類" 1 25 0 0 0 0 ;Dungeon in windawood B1
+"熱溼 湍瞪2類" 1 26 0 0 0 0 ;Dungeon in windawood B2
+"熱溼 湍瞪3類" 1 27 0 0 0 0 ;Dungeon in windawood B3
+"熱溼 湍瞪4類" 2 28 0 0 0 0 ;Dungeon in windawood B4
+"孺棻辦萄 頂撩" 0 29 0 0 0 0 ;Windawood inner castle
+"辨曖啗堊 湍瞪1類" 2 30 0 0 0 0 ;Dungeon in dragon valley B1
+"辨曖啗堊 湍瞪2類" 2 31 0 0 0 0 ;Dungeon in dragon valley B2
+"辨曖啗堊 湍瞪3類" 2 32 0 0 0 0 ;Dungeon in dragon valley B3
+"辨曖啗堊 湍瞪4類" 2 33 0 0 0 0 ;Dungeon in dragon valley B4
+"辨曖啗堊 湍瞪5類" 2 35 0 0 0 0 ;Dungeon in dragon valley B5
+"辨曖啗堊 湍瞪6類" 2 36 0 0 0 0 ;Dungeon in dragon valley B6
+"寰顫塭蝶 菅雖" 5 37 0 0 0 0 ;Lair of Antharas
+"偃嘐掉" 1 43 0 0 0 0 ;Ant cave
+"偃嘐掉" 1 44 0 0 0 0 ;Ant cave
+"偃嘐掉" 1 45 0 0 0 0 ;Ant cave
+"偃嘐掉" 1 46 0 0 0 0 ;Ant cave
+"偃嘐掉" 1 47 0 0 0 0 ;Ant cave
+"偃嘐掉" 2 48 0 0 0 0 ;Ant cave
+"偃嘐掉" 2 49 0 0 0 0 ;Ant cave
+"偃嘐掉" 1 50 0 0 0 0 ;Ant cave
+"偃嘐掉" 3 51 0 0 0 0 ;Ant cave
+"偃嘐掉" 2 541 0 0 0 0 ;Ant cave
+"偃嘐掉" 2 542 0 0 0 0 ;Ant cave
+"偃嘐掉" 3 543 0 0 0 0 ;Ant cave
+"晦塢 頂撩" 0 52 0 0 0 0 ;Giran inner castle
+"晦塢 馬螟1類" 5 53 0 0 0 0 ;Dungeon in giran B1
+"晦塢 馬螟2類" 5 54 0 0 0 0 ;Dungeon in giran B2
+"晦塢 馬螟3類" 5 55 0 0 0 0 ;Dungeon in giran B3
+"晦塢 馬螟4類" 5 56 0 0 0 0 ;Dungeon in giran B4
+"喻楚朝 撰" 0 57 0 0 0 0 ;Singing island
+"獗啖霞 啗堊" 0 58 0 0 0 0 ;Hidden valley
+"縑夥諾措 湍瞪1類" 1 59 0 0 0 0 ;Dungeon of Eva kingdom B1
+"縑夥諾措 湍瞪2類" 1 60 0 0 0 0 ;Dungeon of Eva kingdom B2
+"縑夥諾措 湍瞪3類" 2 61 0 0 0 0 ;Dungeon of Eva kingdom B3
+"縑夥曖 撩雖" 0 62 0 0 0 0 ;Sanctury of Eva
+"縑夥諾措" 1 63 0 0 0 0 ;Kingdom of Eva
+"檜啻 頂撩" 0 64 0 0 0 0 ;Heine inner castle
+"葬螞 菅雖" 5 65 0 0 0 0 ;Lair of Fafurion
+"萄錶 翕掉" 0 66 0 0 0 0 ;Dwarf cave
+"嫦塭蘋蝶 菅雖" 5 67 0 0 0 0 ;Lair of Valakas
+"喻楚朝 撰" 1 68 0 0 0 0 ;Singing island
+"獗啖霞 啗堊" 1 69 0 0 0 0 ;Hidden valley
+"萼萄綠螃腦 菅雖" 5 4 34065 33053 34017 32948 ;Lair of Lindvior
+"濱霞 撰" 3 70 0 0 0 0 ;Forgotten island
+"橡擠 熱薑 翕掉" 3 72 0 0 0 0 ;Oren ice dungeon B1
+"橡擠 罹諾曖 撩" 4 73 0 0 0 0 ;Oren ice dungeon B2
+"橡擠 罹諾曖 撩" 4 74 0 0 0 0 ;Oren ice dungeon B3
+"螃溶 鼻嬴鱉 1類" 1 75 0 0 0 0 ;Oren tower of ivory 1F
+"螃溶 鼻嬴鱉 2類" 1 76 0 0 0 0 ;Oren tower of ivory 2F
+"螃溶 鼻嬴鱉 3類" 1 77 0 0 0 0 ;Oren tower of ivory 3F
+"螃溶 鼻嬴鱉 4類" 1 78 0 0 0 0 ;Oren tower of ivory 4F
+"螃溶 鼻嬴鱉 5類" 1 79 0 0 0 0 ;Oren tower of ivory 5F
+"螃溶 鼻嬴鱉 6類" 1 80 0 0 0 0 ;Oren tower of ivory 6F
+"螃溶 鼻嬴鱉 7類" 1 81 0 0 0 0 ;Oren tower of ivory 7F
+"螃溶 鼻嬴鱉 8類" 3 82 0 0 0 0 ;Oren tower of ivory 8F
+"濱霞 撰 寡" 0 83 0 0 0 0 ;Ship aden world to forgotten island
+"檜啻 寡" 0 84 0 0 0 0 ;Ship forgotten island to Aden world
+"喻楚朝 撰 湍瞪" 1 85 0 0 0 0 ;Singing island dungeon
+"獗啖霞 啗堊 湍瞪" 1 86 0 0 0 0 ;Hidden valley dungeon
+"熱溼 翕掉" 0 87 0 0 0 0 ;Newbie dungeon
+"晦塢 屬煜撮遺" 0 88 0 0 0 0 ;Giran Colosseum
+"晦塢 屬煜撮遺" 0 89 0 0 0 0 ;Giran Colosseum
+"晦塢 屬煜撮遺" 0 90 0 0 0 0 ;Giran Colosseum
+"蜓朝 撰 屬煜撮遺" 0 91 0 0 0 0 ;Talking island Colosseum
+"旋瑞蛤螃 屬煜撮遺" 0 92 0 0 0 0 ;Gludio Colosseum
+"騰 屬煜撮遺" 0 93 0 0 0 0 ;Kent Colosseum
+"孺棻辦萄 屬煜撮遺" 0 94 0 0 0 0 ;Windawood Colosseum
+"擎晦餌葆擊 屬煜撮遺" 0 95 0 0 0 0 ;Silver knight Colosseum
+"嫦塭蘋蝶 菅雖 屬煜撮遺" 0 96 0 0 0 0 ;Lair of Valakas Colosseum
+"檜啻 屬煜撮遺" 0 97 0 0 0 0 ;Heine Colosseum
+"壓湍 屬煜撮遺" 0 98 0 0 0 0 ;Welldone Colosseum
+"遴艙濠曖 寞" 0 99 0 0 0 0 ;Healper's room
+"螃虜曖 鱉 1類" 0 101 0 0 0 0 ;Oman tower 1F
+"螃虜曖 鱉 2類" 3 102 0 0 0 0 ;Oman tower 2F
+"螃虜曖 鱉 3類" 3 103 0 0 0 0 ;Oman tower 3F
+"螃虜曖 鱉 4類" 2 104 0 0 0 0 ;Oman tower 4F
+"螃虜曖 鱉 5類" 3 105 0 0 0 0 ;Oman tower 5F
+"螃虜曖 鱉 6類" 1 106 0 0 0 0 ;Oman tower 6F
+"螃虜曖 鱉 7類" 3 107 0 0 0 0 ;Oman tower 7F
+"螃虜曖 鱉 8類" 1 108 0 0 0 0 ;Oman tower 8F
+"螃虜曖 鱉 9類" 3 109 0 0 0 0 ;Oman tower 9F
+"螃虜曖 鱉 10類" 3 110 0 0 0 0 ;Oman tower 10F
+"螃虜曖 鱉 11類" 3 111 0 0 0 0 ;Oman tower 11F
+"螃虜曖 鱉 12類" 3 112 0 0 0 0 ;Oman tower 12F
+"螃虜曖 鱉 13類" 3 113 0 0 0 0 ;Oman tower 13F
+"螃虜曖 鱉 14類" 1 114 0 0 0 0 ;Oman tower 14F
+"螃虜曖 鱉 15類" 3 115 0 0 0 0 ;Oman tower 15F
+"螃虜曖 鱉 16類" 1 116 0 0 0 0 ;Oman tower 16F
+"螃虜曖 鱉 17類" 3 117 0 0 0 0 ;Oman tower 17F
+"螃虜曖 鱉 18類" 1 118 0 0 0 0 ;Oman tower 18F
+"螃虜曖 鱉 19類" 3 119 0 0 0 0 ;Oman tower 19F
+"螃虜曖 鱉 20類" 4 120 0 0 0 0 ;Oman tower 20F
+"螃虜曖 鱉 21類" 3 121 0 0 0 0 ;Oman tower 21F
+"螃虜曖 鱉 22類" 4 122 0 0 0 0 ;Oman tower 22F
+"螃虜曖 鱉 23類" 4 123 0 0 0 0 ;Oman tower 23F
+"螃虜曖 鱉 24類" 2 124 0 0 0 0 ;Oman tower 24F
+"螃虜曖 鱉 25類" 4 125 0 0 0 0 ;Oman tower 25F
+"螃虜曖 鱉 26類" 1 126 0 0 0 0 ;Oman tower 26F
+"螃虜曖 鱉 27類" 4 127 0 0 0 0 ;Oman tower 27F
+"螃虜曖 鱉 28類" 2 128 0 0 0 0 ;Oman tower 28F
+"螃虜曖 鱉 29類" 4 129 0 0 0 0 ;Oman tower 29F
+"螃虜曖 鱉 30類" 4 130 0 0 0 0 ;Oman tower 30F
+"螃虜曖 鱉 31類" 4 131 0 0 0 0 ;Oman tower 31F
+"螃虜曖 鱉 32類" 4 132 0 0 0 0 ;Oman tower 32F
+"螃虜曖 鱉 33類" 4 133 0 0 0 0 ;Oman tower 33F
+"螃虜曖 鱉 34類" 1 134 0 0 0 0 ;Oman tower 34F
+"螃虜曖 鱉 35類" 4 135 0 0 0 0 ;Oman tower 35F
+"螃虜曖 鱉 36類" 1 136 0 0 0 0 ;Oman tower 36F
+"螃虜曖 鱉 37類" 4 137 0 0 0 0 ;Oman tower 37F
+"螃虜曖 鱉 38類" 2 138 0 0 0 0 ;Oman tower 38F
+"螃虜曖 鱉 39類" 4 139 0 0 0 0 ;Oman tower 39F
+"螃虜曖 鱉 40類" 4 140 0 0 0 0 ;Oman tower 40F
+"螃虜曖 鱉 41類" 4 141 0 0 0 0 ;Oman tower 41F
+"螃虜曖 鱉 42類" 4 142 0 0 0 0 ;Oman tower 42F
+"螃虜曖 鱉 43類" 4 143 0 0 0 0 ;Oman tower 43F
+"螃虜曖 鱉 44類" 2 144 0 0 0 0 ;Oman tower 44F
+"螃虜曖 鱉 45類" 4 145 0 0 0 0 ;Oman tower 45F
+"螃虜曖 鱉 46類" 1 146 0 0 0 0 ;Oman tower 46F
+"螃虜曖 鱉 47類" 4 147 0 0 0 0 ;Oman tower 47F
+"螃虜曖 鱉 48類" 2 148 0 0 0 0 ;Oman tower 48F
+"螃虜曖 鱉 49類" 4 149 0 0 0 0 ;Oman tower 49F
+"螃虜曖 鱉 50類" 4 150 0 0 0 0 ;Oman tower 50F
+"螃虜曖 鱉 51類" 4 151 0 0 0 0 ;Oman tower 51F
+"螃虜曖 鱉 52類" 4 152 0 0 0 0 ;Oman tower 52F
+"螃虜曖 鱉 53類" 4 153 0 0 0 0 ;Oman tower 53F
+"螃虜曖 鱉 54類" 2 154 0 0 0 0 ;Oman tower 54F
+"螃虜曖 鱉 55類" 4 155 0 0 0 0 ;Oman tower 55F
+"螃虜曖 鱉 56類" 1 156 0 0 0 0 ;Oman tower 56F
+"螃虜曖 鱉 57類" 4 157 0 0 0 0 ;Oman tower 57F
+"螃虜曖 鱉 58類" 2 158 0 0 0 0 ;Oman tower 58F
+"螃虜曖 鱉 59類" 4 159 0 0 0 0 ;Oman tower 59F
+"螃虜曖 鱉 60類" 5 160 0 0 0 0 ;Oman tower 60F
+"螃虜曖 鱉 61類" 4 161 0 0 0 0 ;Oman tower 61F
+"螃虜曖 鱉 62類" 4 162 0 0 0 0 ;Oman tower 62F
+"螃虜曖 鱉 63類" 4 163 0 0 0 0 ;Oman tower 63F
+"螃虜曖 鱉 64類" 2 164 0 0 0 0 ;Oman tower 64F
+"螃虜曖 鱉 65類" 4 165 0 0 0 0 ;Oman tower 65F
+"螃虜曖 鱉 66類" 1 166 0 0 0 0 ;Oman tower 66F
+"螃虜曖 鱉 67類" 4 167 0 0 0 0 ;Oman tower 67F
+"螃虜曖 鱉 68類" 2 168 0 0 0 0 ;Oman tower 68F
+"螃虜曖 鱉 69類" 4 169 0 0 0 0 ;Oman tower 69F
+"螃虜曖 鱉 70類" 5 170 0 0 0 0 ;Oman tower 70F
+"螃虜曖 鱉 71類" 4 171 0 0 0 0 ;Oman tower 71F
+"螃虜曖 鱉 72類" 4 172 0 0 0 0 ;Oman tower 72F
+"螃虜曖 鱉 73類" 4 173 0 0 0 0 ;Oman tower 73F
+"螃虜曖 鱉 74類" 2 174 0 0 0 0 ;Oman tower 74F
+"螃虜曖 鱉 75類" 5 175 0 0 0 0 ;Oman tower 75F
+"螃虜曖 鱉 76類" 1 176 0 0 0 0 ;Oman tower 76F
+"螃虜曖 鱉 77類" 4 177 0 0 0 0 ;Oman tower 77F
+"螃虜曖 鱉 78類" 2 178 0 0 0 0 ;Oman tower 78F
+"螃虜曖 鱉 79類" 5 179 0 0 0 0 ;Oman tower 79F
+"螃虜曖 鱉 80類" 5 180 0 0 0 0 ;Oman tower 80F
+"螃虜曖 鱉 81類" 5 181 0 0 0 0 ;Oman tower 81F
+"螃虜曖 鱉 82類" 5 182 0 0 0 0 ;Oman tower 82F
+"螃虜曖 鱉 83類" 5 183 0 0 0 0 ;Oman tower 83F
+"螃虜曖 鱉 84類" 3 184 0 0 0 0 ;Oman tower 84F
+"螃虜曖 鱉 85類" 5 185 0 0 0 0 ;Oman tower 85F
+"螃虜曖 鱉 86類" 1 186 0 0 0 0 ;Oman tower 86F
+"螃虜曖 鱉 87類" 5 187 0 0 0 0 ;Oman tower 87F
+"螃虜曖 鱉 88類" 3 188 0 0 0 0 ;Oman tower 88F
+"螃虜曖 鱉 89類" 5 189 0 0 0 0 ;Oman tower 89F
+"螃虜曖 鱉 90類" 5 190 0 0 0 0 ;Oman tower 90F
+"螃虜曖 鱉 91類" 5 191 0 0 0 0 ;Oman tower 91F
+"螃虜曖 鱉 92類" 5 192 0 0 0 0 ;Oman tower 92F
+"螃虜曖 鱉 93類" 5 193 0 0 0 0 ;Oman tower 93F
+"螃虜曖 鱉 94類" 5 194 0 0 0 0 ;Oman tower 94F
+"螃虜曖 鱉 95類" 5 195 0 0 0 0 ;Oman tower 95F
+"螃虜曖 鱉 96類" 1 196 0 0 0 0 ;Oman tower 96F
+"螃虜曖 鱉 97類" 5 197 0 0 0 0 ;Oman tower 97F
+"螃虜曖 鱉 98類" 5 198 0 0 0 0 ;Oman tower 98F
+"螃虜曖 鱉 99類" 5 199 0 0 0 0 ;Oman tower 99F
+"螃虜曖 鱉 100類" 5 200 0 0 0 0 ;Oman tower 100F
+"葆徹餌 蠡蝶 湍瞪" 1 201 0 0 0 0 ;Mage quest dungeon
+"葆徹餌 蠡蝶 湍瞪" 1 202 0 0 0 0 ;Mage quest dungeon
+"葆徹餌 蠡蝶 湍瞪" 1 203 0 0 0 0 ;Mage quest dungeon
+"葆徹餌 蠡蝶 湍瞪" 1 204 0 0 0 0 ;Mage quest dungeon
+"棻觼縣 湍瞪" 1 209 0 0 0 0 ;Darkelf dungeon
+"棻觼縣 湍瞪" 1 210 0 0 0 0 ;Darkelf dungeon
+"棻觼縣 湍瞪" 1 211 0 0 0 0 ;Darkelf dungeon
+"棻觼縣 湍瞪" 1 212 0 0 0 0 ;Darkelf dungeon
+"棻觼縣 湍瞪" 3 213 0 0 0 0 ;Darkelf dungeon
+"棻觼縣 湍瞪" 1 214 0 0 0 0 ;Darkelf dungeon
+"棻觼縣 湍瞪" 1 215 0 0 0 0 ;Darkelf dungeon
+"棻觼縣 湍瞪" 1 216 0 0 0 0 ;Darkelf dungeon
+"嗽欐 偃嘐 湍瞪" 1 217 0 0 0 0 ;Mutant ant dungeon
+"嗽欐 偃嘐 湍瞪" 1 218 0 0 0 0 ;Mutant ant dungeon
+"啪塭萄曖 衛 湍瞪" 1 221 0 0 0 0 ;Gerard test dungeon
+"啪塭萄曖 衛 湍瞪" 1 222 0 0 0 0 ;Gerard test dungeon
+"啪塭萄曖 衛 湍瞪" 1 223 0 0 0 0 ;Gerard test dungeon
+"啪塭萄曖 衛 湍瞪" 1 224 0 0 0 0 ;Gerard test dungeon
+"啪塭萄曖 衛 湍瞪" 1 225 0 0 0 0 ;Gerard test dungeon
+"啪塭萄曖 衛 湍瞪" 1 226 0 0 0 0 ;Gerard test dungeon
+"啪塭萄曖 衛 湍瞪" 1 227 0 0 0 0 ;Gerard test dungeon
+"啪塭萄曖 衛 湍瞪" 1 228 0 0 0 0 ;Gerard test dungeon
+"颶 湍瞪" 0 237 0 0 0 0 ;Jim dungeon
+"嬴筆 頂撩" 0 300 0 0 0 0 ;Aden inner castle
+"螃虜曖 鱉 雖熱煎" 0 301 0 0 0 0 ;Oman tower underground path
+"撮嬴 湍瞪" 0 302 0 0 0 0 ;Sepia dungeon
+"跦曖 撰" 3 303 0 0 0 0 ;Island of phantasm
+"藹僧曖 翕掉" 1 304 0 0 0 0 ;Silence cave
+"綰瑞蛤蘋 模掉" 1 305 0 0 0 0 ;Elder cave
+"棻觼縣 蠡蝶 湍瞪" 1 306 0 0 0 0 ;Dungeon of evil thoughts
+"雖 藹奢煎 1類" 1 307 0 0 0 0 ;Diad route B1
+"雖 藹奢煎 2類" 1 308 0 0 0 0 ;Diad route B2
+"雖 藹奢煎 3類" 1 309 0 0 0 0 ;Diad route B3
+"雖螟" 0 666 0 0 0 0 ;The hell
+"螃觼 膛" 0 4 32511 32191 32960 32537 ;Orcish Forest
+"旋瑞蛤螃" 0 4 32512 32537 32960 33023 ;Gludio
+"孺棻辦萄" 0 4 32512 33023 32960 33535 ;Windawood
+"蹂薑 膛" 0 4 32960 32191 33216 32511 ;Elven Forest
+"騰" 0 4 32960 32511 33280 33023 ;Kent
+"騰" 0 4 33088 33023 33280 33087 ; Kent2
+"擎晦餌 葆擊" 0 4 32960 33023 33088 33087 ;Silver knight Town
+"擎晦餌 葆擊" 0 4 32959 33087 33280 33535 ;Silver knight Town2
+"辨曖 啗堊" 0 4 33216 32191 33472 32511 ;Dragon valley
+"嫦塭蘋蝶 菅雖" 0 4 33472 32191 33856 32511 ;Lair of Valakas
+"嫦塭蘋蝶 菅雖" 0 4 33536 32511 33856 32575 ;Lair of Valakas2
+"晦塢" 0 4 33280 32511 33536 33023 ;Giran
+"晦塢" 0 4 33536 32575 33920 33023 ;Giran2
+"檜啻" 0 4 33280 33023 33792 33535 ;Heine
+"螃溶" 0 4 33856 32191 33920 32575 ;Oren
+"螃溶" 0 4 33920 32127 34304 32739 ;Oren2
+"嬴筆" 0 4 33920 32739 34304 33023 ;Aden
+"嬴筆" 0 4 33792 33023 34304 33535 ;Aden2
+"罹婦" 0 17492 0 0 0 0 ;Auberge
+"旋瑞蛞 衛濰" 0 340 0 0 0 0 ;Gludin market
+"晦塢 衛濰" 0 350 0 0 0 0 ;Giran market
+"螃溶 衛濰" 0 360 0 0 0 0 ;Oren market
+"擎晦餌 葆擊 衛濰" 0 370 0 0 0 0 ;Silver Knight market
+"螃遺 湍瞪" 0 310 0 0 0 0 ;Oum dungeon
+"蛤嬴萄 蹂億" 3 320 0 0 0 0 ;Diad Fortress
+"惜僭 翕掉" 0 330 0 0 0 0 ;Mineral cave
+"騰撩 湍瞪 1類" 3 240 0 0 0 0 ;Kent Castle Dungeon 1F
+"騰撩 湍瞪 2類" 3 241 0 0 0 0 ;Kent Castle Dungeon 2F
+"騰撩 湍瞪 3類" 3 242 0 0 0 0 ;Kent Castle Dungeon 3F
+"騰撩 湍瞪 4類" 4 243 0 0 0 0 ;Kent Castle Dungeon 4F
+"螃膩脹 蹴犒曖 階" 3 244 0 0 0 0 ;Orc Castle Dungeon
+"雖1類 顫煎蝶曖 雖頂撩" 3 248 0 0 0 0 ;Giran Castle Dungeon 1F
+"雖2類 鬚踹濠曖 薑" 3 249 0 0 0 0 ;Giran Castle Dungeon 2F
+"雖3類 鬚踹曖 " 3 250 0 0 0 0 ;Giran Castle Dungeon 3F
+"寥濛曖 寞" 4 251 0 0 0 0 ;Giran Castle Dungeon 4F
+"堅渠 剪檣曖 鼠渾" 5 400 32728 32853 32789 33017 ;Ruin of Ancient Giant
+"堅渠 剪檣曖 鼠渾" 5 400 32787 32905 32860 33014 ;Ruin of Ancient Giant
+"堅渠 剪檣曖 鼠渾" 5 400 32767 32827 32804 32855 ;Ruin of Ancient Giant
+"渠奢翕 盪捱雖羲" 3 400 32659 32811 32666 32818 ; 塭蝶顫夥萄瑞橾檜
+"渠奢翕 盪捱雖羲" 3 400 32563 32863 32577 32868 ; 盪雖羲瞼癱葬檜
+"渠奢翕 盪捱雖羲" 3 400 32550 32864 32555 32881 ; 盪雖羲瞼癱葬橾
+"渠奢翕 擎菩濠雖羲" 3 400 32890 32677 32899 32682 ; 擎菩雖羲瞼癱葬鳴
+"渠奢翕 擎菩濠雖羲" 3 400 32890 32677 32899 32683 ; 擎菩雖羲瞼癱葬餌
+"渠奢翕 擎菩濠雖羲" 3 400 32708 32794 32747 32832 ; 擎菩雖羲餌
+"渠奢翕 擎菩濠雖羲" 3 400 32546 32958 32552 32991 ; 擎菩雖羲鳴檜
+"渠奢翕 擎菩濠雖羲" 3 400 32534 32960 32546 32991 ; 擎菩雖羲鳴橾
+"渠奢翕 擎菩濠雖羲" 3 400 32552 32865 32583 32991 ; 擎菩雖羲檜
+"渠奢翕 擎菩濠雖羲" 3 400 32698 32650 32735 32717 ; 螃遺雖羲
+"渠奢翕 擎菩濠雖羲" 3 400 32622 32811 32636 32816 ; 擎菩雖羲瞼癱葬鳴
+"渠奢翕 擎菩濠雖羲" 3 400 32837 32590 32890 32629 ; 薑滄雖羲
+"渠奢翕 擎菩濠雖羲" 3 400 32735 32629 32890 32729 ; 螃遺雖羲檜
+"渠奢翕 擎菩濠雖羲" 3 400 32583 32816 32727 33004 ; 擎菩濠雖羲橾
+"渠奢翕 擎菩濠雖羲" 3 400 32817 32852 32863 32871 ; 雖盪熱雖羲鳴
+"渠奢翕 擎菩濠雖羲" 3 400 32918 32923 32996 32999 ; 雖盪熱雖羲檜
+"渠奢翕 擎菩濠雖羲" 3 400 32863 32828 32918 32939 ; 雖盪熱雖羲橾
+"渠奢翕 盪捱雖羲" 3 400 0 0 0 0 ;Cavern
+"渠奢翕 盪捱雖羲" 3 401 32705 32768 32777 32807 ; 盪雖螃遺翱唸
+"渠奢翕 擎菩濠雖羲" 3 401 32782 32787 32819 32814 ; 擎菩雖磁薹
+"渠奢翕 擎菩濠雖羲" 3 401 32790 32832 32818 32879 ; 擎菩雖雖盪熱
+"葆褶 褐瞪" 5 410 0 0 0 0 ;Sanctuary of Evil
+"雖盪 熱" 3 420 0 0 0 0 ;Abyss Lake
+"薑滄曖 鼠渾" 4 430 0 0 0 0 ;Elemental Grave
+"瞳撰" 2 440 0 0 0 0 ;Pirate Island
+"瞳撰 湍瞪 1類" 2 441 0 0 0 0 ;Pirate Island Dungeon B1
+"瞳撰 湍瞪 2類" 2 442 0 0 0 0 ;Pirate Island Dungeon B2
+"瞳撰 湍瞪 3類" 3 443 0 0 0 0 ;Pirate Island Dungeon B3
+"瞳撰 湍瞪 4類" 3 444 0 0 0 0 ;Pirate Island Dungeon B4
+"獗啖霞 摹雜濰" 0 445 0 0 0 0 ;Hidden dock to Pirate island
+"獗啖霞 摹雜濰 寡" 0 446 0 0 0 0 ;Ship Pirate island to Hidden dock
+"瞳撰 寡" 0 447 0 0 0 0 ;Ship Hidden dock to Pirate island
+"塭蝶顫夥萄 薑僥" 5 450 0 0 0 0 ;lastavard main door
+"1類 餵濰" 5 451 0 0 0 0 ; lastavard 451
+"1類 給問渠 溼濰" 5 452 0 0 0 0 ;lastavard 452
+"1類 葆熱捱諾曖 餵鼠褒" 5 453 0 0 0 0 ;lastavard 453
+"1類 撿熱 褻溼褒" 5 454 0 0 0 0 ;lastavard 454
+"1類 撿熱 溼濰" 5 455 0 0 0 0 ;lastavard 455
+"1類 葆熱 模褒" 5 456 0 0 0 0 ;lastavard 456
+"1類 橫菸曖 唸啗" 5 457 0 0 0 0 ;lastavard 457
+"2類 葆徹 熱溼濰" 5 460 0 0 0 0 ;lastavard 460
+"2類 葆徹 翱掘褒" 5 461 0 0 0 0 ;lastavard 461
+"2類 葆滄捱諾曖 餵鼠褒" 5 462 0 0 0 0 ;lastavard 462
+"2類 葆滄捱諾曖 憮營" 5 463 0 0 0 0 ;lastavard 463
+"2類 薑滄 模褒" 5 464 0 0 0 0 ;lastavard 464
+"2類 薑滄 憮衝雖" 5 465 0 0 0 0 ;lastavard 465
+"2類 懍薑滄 翱掘褒" 5 466 0 0 0 0 ;lastavard 466
+"2類 懍曖 唸啗" 5 467 0 0 0 0 ;lastavard 467
+"2類 懍曖 唸啗" 5 468 0 0 0 0 ;lastavard 468
+"3類 學滄薯欽" 5 470 0 0 0 0 ;lastavard 470
+"3類 等網煎萄 薯欽" 5 471 0 0 0 0 ;lastavard 471
+"3類 辨煽 溼濰" 5 472 0 0 0 0 ;lastavard 472
+"3類 貲徹捱曖 溼濰" 5 473 0 0 0 0 ;lastavard 473
+"3類 螃遺 褒褒" 5 474 0 0 0 0 ;lastavard 474
+"3類 貲徹捱諾曖 餵鼠褒" 5 475 0 0 0 0 ;lastavard 475
+"3類 醞懈 鱔薯褒" 5 476 0 0 0 0 ;lastavard 476
+"3類 等網煎萄 辨煽褒" 5 477 0 0 0 0 ;lastavard 477
+"3類 鱔薯掘羲" 5 478 0 0 0 0 ;lastavard 478
+"雖 溼濰" 5 490 0 0 0 0 ;lastavard 490
+"雖 鱔煎" 5 491 0 0 0 0 ;lastavard 491
+"懍髦捱諾曖 餵鼠褒" 5 492 0 0 0 0 ;lastavard 492
+"雖 鱔薯褒" 5 493 0 0 0 0 ;lastavard 493
+"雖 籀濰" 5 494 0 0 0 0 ;lastavard 494
+"雖 唸癱濰" 5 495 0 0 0 0 ;lastavard 495
+"雖 馬螟" 5 496 0 0 0 0 ;lastavard 496
+"瞳撰" 3 480 0 0 0 0 ;Pirate Island
+"蘋塵塭曖 寞" 0 481 0 0 0 0 ;Kamyla's Room 481
+"蘋螃蝶渠瞪" 2 509 0 0 0 0 ;Chaos Battle Colosseum 509
+"嫌囀曖 嘐煎" 3 482 0 0 0 0 ;Franco's Labyrinth 482
+"蛤縑堅曖 潑馬螟" 3 483 0 0 0 0 ;Closed Jail of Diego
+"撮曖 雖馬螟" 4 484 0 0 0 0 ;Underground Jail of Hose
+"斜葡濠 褐瞪 諼婉" 4 521 0 0 0 0 ;Temple of Shadow Outland
+"斜葡濠 褐瞪 1類" 5 522 0 0 0 0 ;Temple of Shadow 1F
+"斜葡濠 褐瞪 2類" 5 523 0 0 0 0 ;Temple of Shadow 2F
+"斜葡濠 褐瞪 3類" 5 524 0 0 0 0 ;Temple of Shadow 3F
+"4類 斜嫌蘋檣 褐瞪" 5 530 32716 32780 32796 32881 ;lastavard 530-1
+"4類 馨檜釭 餵鼠褒" 5 530 32796 32807 32888 32873 ;lastavard 530-2
+"4類 綠嬴顫蝶 餵鼠褒" 5 531 32726 32724 32790 32763 ;lastavard 531-1
+"4類 夥煎詭蝶 餵鼠褒" 5 531 32790 32722 32841 32765 ;lastavard 531-2
+"4類 夥煎詭蝶 餵鼠褒" 5 531 32803 32765 32834 32801 ;lastavard 531-3
+"4類 夥煎詭蝶 餵鼠褒" 5 531 32748 32765 32803 32816 ;lastavard 531-4
+"4類 縛蛤嬴蝶 餵鼠褒" 5 531 32759 32816 32799 32844 ;lastavard 531-5
+"4類 縛蛤嬴蝶 餵鼠褒" 5 531 32799 32801 32861 32882 ;lastavard 531-6
+"4類 薑錳 惜濰" 5 532 32804 32782 32880 32872 ;lastavard 532-1
+"4類 檜等嬴 餵鼠褒" 5 532 32725 32781 32804 32867 ;lastavard 532-2
+"4類 嬴詭蝶 餵鼠褒" 5 533 32835 32865 32879 32946 ;lastavard 533-1
+"4類 嬴詭蝶 餵鼠褒" 5 533 32820 32885 32835 32925 ;lastavard 533-2
+"4類 塭嘐嬴蝶 餵鼠褒" 5 533 32802 32861 32827 32885 ;lastavard 533-3
+"4類 塭嘐嬴蝶 餵鼠褒" 5 533 32743 32864 32802 32918 ;lastavard 533-4
+"4類 塭嘐嬴蝶 餵鼠褒" 5 533 32757 32856 32772 32864 ;lastavard 533-5
+"4類 夥煎萄 餵鼠褒" 5 533 32719 32782 32793 32856 ;lastavard 533-6
+"4類 夥煎萄 餵鼠褒" 5 533 32749 32856 32755 32856 ;lastavard 533-7
+"4類 濰煎 曖濰" 5 534 32720 32805 32790 32881 ;lastavard 534-1
+"4類 蘋骯萄塭 餵鼠褒" 5 534 32790 32784 32880 32865 ;lastavard 534-2
+"4類 欽纔蝶 餵鼠褒" 5 534 32880 32809 32936 32861 ;lastavard 534-3
+"棻觼縣 撩雖" 5 535 0 0 0 0 ;lastavard 535
+"3類 懍曖 唸啗" 5 536 0 0 0 0 ;lastavard 536
+"摹夢曖 鼠渾 熱賊" 4 550 0 0 0 0 ;grave of ships
+"摹夢曖 鼠渾 摹頂" 4 551 0 0 0 0 ;grave of ships
+"摹夢曖 鼠渾 摹頂" 4 552 0 0 0 0 ;grave of ships
+"摹夢曖 鼠渾 摹頂" 4 553 0 0 0 0 ;grave of ships
+"摹夢曖 鼠渾 摹頂" 4 554 0 0 0 0 ;grave of ships
+"摹夢曖 鼠渾 摹頂" 4 555 0 0 0 0 ;grave of ships
+"摹夢曖 鼠渾 摹頂" 4 556 0 0 0 0 ;grave of ships
+"摹夢曖 鼠渾 摹頂" 4 557 0 0 0 0 ;grave of ships
+"摹夢曖 鼠渾 褕" 4 558 0 0 0 0 ;grave of ships
+"踹蜂曖 翕掉 諼婉" 4 600 0 0 0 0 ;Cave of Desire Outland
+"踹蜂曖 翕掉 煎綠" 5 601 0 0 0 0 ;Cave of Desire lobby
+"嫦煙 憲模" 5 602 0 0 0 0 ;Barlog room
+"嫦煙曖 嬴雖" 5 603 0 0 0 0 ;Barlog lair
+"紫曖 寞" 5 604 0 0 0 0 ;Water area
+"膩曖 寞" 5 605 0 0 0 0 ;Fire area
+"曖 寞" 5 606 0 0 0 0 ;Air area
+"雖霞曖 寞" 5 607 0 0 0 0 ;Earth area
+"撿曖 翱掘褒" 5 608 0 0 0 0 ;Yahee LAB
+"棺曖 撩" 3 630 0 0 0 0 ;taiwan event map
+"檜離錳 奢除" 3 631 0 0 0 0 ;taiwan event map
+"煎葆 撮啗" 3 632 0 0 0 0 ;taiwan event map
+"檜啻 雖馬螟" 3 252 0 0 0 0 ;heineC 252
+"縑夥曖 諾措" 3 253 0 0 0 0 ;heineC 253
+"嫦夥紫蝶曖 擎褐籀" 4 254 0 0 0 0 ;heineC 254
+"雖1類 避擎濠曖 煎" 1 257 0 0 0 0 ;aden castle dungeon 1F
+"雖2類 避擎濠曖 鼠渾" 3 258 32664 32768 32831 32939 ;aden castle dungeon 2F
+"雖2類 葆撿曖 擎褐籀" 5 258 32640 32960 32831 33129 ;aden castle dungeon 4F
+"雖3類 避擎濠曖 煎" 4 259 32707 32768 32759 32946 ;aden castle dungeon 3F
+"萄錶 惜骯" 5 255 0 0 0 0 ;ore mine
+"撿" 5 256 0 0 0 0 ;savage land
+"幗葡嫡擎 濠菟曖 階" 4 777 0 0 0 0 ;fallen temple
+"幗葡嫡擎 濠菟曖 階" 4 778 0 0 0 0 ;fallen cave
+"幗葡嫡擎 濠菟曖 階" 4 779 0 0 0 0 ;fallen cave
+"嬴筆 餌傖攪" 0 701 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 702 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 703 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 704 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 705 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 706 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 707 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 708 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 709 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 710 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 711 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 712 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 713 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 714 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 715 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 716 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 717 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 718 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 719 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 720 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 721 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 722 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 723 0 0 0 0 ;memory land
+"嬴筆 餌傖攪" 0 724 0 0 0 0 ;memory land
+"纔漆 餌虞" 3 780 0 0 0 0 ; crack of time thebe 1st
+"纔漆 塭嘐萄 頂睡" 4 781 0 0 0 0 ; crack of time thebe 2st
+"纔漆 螃衛葬蝶曖 薯欽" 5 782 0 0 0 0 ; crack of time thebe 3st
+" 葆擊" 3 783 32783 32654 32911 32882 ; crack of time tikal temple
+"薑旋" 3 783 32912 32652 32977 32882 ; crack of time tikal temple
+"森" 3 783 32978 32651 33038 32883 ; crack of time tikal temple
+"蠔餌錳 殮掘" 4 783 33039 32652 33165 32885 ; crack of time tikal temple
+"蠔餌錳 頂睡" 4 783 33166 32651 33266 32886 ; crack of time tikal temple
+"瓔籐蘊曖 薯欽" 5 784 32709 32836 32764 32891 ; crack of time tikal temple
+"褒漆葬嬴" 0 1000 0 0 0 0 ; silveria 獎餌 葆擊
+"漆賅蝶" 0 1001 0 0 0 0 ; behimos 辨晦餌 葆擊
+"堅塭蝶" 3 2004 0 0 0 0 ; qeust world
+"閉衛攪" 0 5124 0 0 0 0 ;Fishing place
+"衙纂 渠瞪濰" 0 5125 0 0 0 0 ;petmatch place
+"衙纂 渠瞪濰" 0 5126 0 0 0 0 ;petmatch place
+"衙纂 渠瞪濰" 0 5127 0 0 0 0 ;petmatch place
+"衙纂 渠瞪濰" 0 5128 0 0 0 0 ;petmatch place
+"衙纂 渠瞪濰" 0 5129 0 0 0 0 ;petmatch place
+"衙纂 渠瞪濰" 0 5130 0 0 0 0 ;petmatch place
+"衙纂 渠瞪濰" 0 5131 0 0 0 0 ;petmatch place
+"衙纂 渠瞪濰" 0 5132 0 0 0 0 ;petmatch place
+"衙纂 渠瞪濰" 0 5133 0 0 0 0 ;petmatch place
+"衙纂 渠瞪濰" 0 5134 0 0 0 0 ;petmatch place
+"鼻曖 階" 0 5166 0 0 0 0 ; base status reset world
+"熱鼻 葆擊" 0 613 0 0 0 0 ;pc premium zone
+"褒漆葬嬴" 0 1000 0 0 0 0 ; illusionist village
+"營儅曖 撩模 1類" 1 2000 32706 32829 32833 32957
+"營儅曖 撩模 2類" 1 2000 32842 32706 32956 32950
+"營儅曖 撩模 3類" 1 2000 32717 32722 32824 32817
+"營儅曖 撩模 1類" 1 2001 32706 32829 32833 32957
+"營儅曖 撩模 2類" 1 2001 32842 32706 32956 32950
+"營儅曖 撩模 3類" 1 2001 32717 32722 32824 32817
+"營儅曖 撩模 1類" 1 2002 32706 32829 32833 32957
+"營儅曖 撩模 2類" 1 2002 32842 32706 32956 32950
+"營儅曖 撩模 3類" 1 2002 32717 32722 32824 32817
+"營儅曖 撩模 1類" 1 2003 32706 32829 32833 32957
+"營儅曖 撩模 2類" 1 2003 32842 32706 32956 32950
+"營儅曖 撩模 3類" 1 2003 32717 32722 32824 32817
+"學葆諾曖 艙饜" 4 5167 0 0 0 0 ;event devilking summon1
+"學葆諾曖 艙饜" 4 5168 0 0 0 0 ;event devilking summon2
+"學葆諾曖 艙饜" 4 5169 0 0 0 0 ;event devilking summon3
+"學葆諾曖 艙饜" 4 5170 0 0 0 0 ;event devilking summon4
+"學葆諾曖 艙饜" 4 5171 0 0 0 0 ;event devilking summon5
+"學葆諾曖 艙饜" 4 5172 0 0 0 0 ;event devilking summon6
+"學葆諾曖 艙饜" 4 5173 0 0 0 0 ;event devilking summon7
+"學葆諾曖 艙饜" 4 5174 0 0 0 0 ;event devilking summon8
+"學葆諾曖 艙饜" 4 5175 0 0 0 0 ;event devilking summon9
+"學葆諾曖 艙饜" 4 5176 0 0 0 0 ;event devilking summon10
+"學葆諾曖 艙饜" 4 5177 0 0 0 0 ;event devilking summon11
+"學葆諾曖 艙饜" 4 5178 0 0 0 0 ;event devilking summon12
+"學葆諾曖 艙饜" 4 5179 0 0 0 0 ;event devilking summon13
+"學葆諾曖 艙饜" 4 5180 0 0 0 0 ;event devilking summon14
+"學葆諾曖 艙饜" 4 5181 0 0 0 0 ;event devilking summon15
+"學葆諾曖 艙饜" 4 5182 0 0 0 0 ;event devilking summon16
+"學葆諾曖 艙饜" 4 5183 0 0 0 0 ;event devilking summon17
+"學葆諾曖 艙饜" 4 5184 0 0 0 0 ;event devilking summon18
+"學葆諾曖 艙饜" 4 5185 0 0 0 0 ;event devilking summon19
+"學葆諾曖 艙饜" 4 5186 0 0 0 0 ;event devilking summon20
+"學葆諾曖 艙饜" 4 5187 0 0 0 0 ;event devilking summon21
+"學葆諾曖 艙饜" 4 5188 0 0 0 0 ;event devilking summon22
+"學葆諾曖 艙饜" 4 5189 0 0 0 0 ;event devilking summon23
+"學葆諾曖 艙饜" 4 5190 0 0 0 0 ;event devilking summon24
+"鼻嬴鱉 雖璽堅" 1 5191 0 0 0 0 ;long term mission
+"鼻嬴鱉 雖璽堅" 1 5192 0 0 0 0 ;long term mission
+"鼻嬴鱉 雖璽堅" 1 5193 0 0 0 0 ;long term mission
+"鼻嬴鱉 雖璽堅" 1 5194 0 0 0 0 ;long term mission
+"鼻嬴鱉 雖璽堅" 1 5195 0 0 0 0 ;long term mission
+"鼻嬴鱉 雖璽堅" 1 5196 0 0 0 0 ;long term mission
+"鼻嬴鱉 雖璽堅" 1 5197 0 0 0 0 ;long term mission
+"鼻嬴鱉 雖璽堅" 1 5198 0 0 0 0 ;long term mission
+"鼻嬴鱉 雖璽堅" 1 5199 0 0 0 0 ;long term mission
+"陪爵檜 睡塊" 2 1002 32778 32832 32895 32959 ;forgotten valley of dragon
+"撩濰曖 渠雖" 3 1002 32725 32832 32777 32959 ;forgotten valley of dragon
+"驕儅曖 菅雖" 3 1002 32640 32832 32724 32959 ;forgotten valley of dragon
+"辨菟曖 鼠渾" 5 1002 32640 32576 32724 32710 ;forgotten valley of dragon
+"辨菟曖 鼠渾" 5 1002 32640 32711 32753 32831 ;forgotten valley of dragon
+"璽奢曖 啗堊" 5 1002 32782 32688 32969 32732 ;forgotten valley of dragon
+"璽奢曖 啗堊" 5 1002 32970 32622 33000 32687 ;forgotten valley of dragon
+"褻曖 渠雖" 5 1002 32725 32576 33023 32710 ;forgotten valley of dragon
+"褻曖 渠雖" 5 1002 32754 32691 33023 32831 ;forgotten valley of dragon
+"寰顫塭蝶 翕掉 殮掘" 0 1005 32588 32711 32691 32761 ; dungeon entrance of antharas
+"寰顫塭蝶 溯橫 殮掘" 0 1005 32662 32653 32709 32688 ; entrance of antharas lair
+"寰顫塭蝶 溯橫" 5 1005 32740 32652 32828 32728 ; antharas lair
+"寰顫塭蝶 翕掉" 5 1005 32580 32770 32698 32957 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1005 32709 32771 32827 32956 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1005 32837 32770 32954 32955 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1005 32841 32580 32955 32763 ; dungeon of antharas
+"寰顫塭蝶 翕掉 殮掘" 0 1006 32588 32711 32691 32761 ; dungeon entrance of antharas
+"寰顫塭蝶 溯橫 殮掘" 0 1006 32662 32653 32709 32688 ; entrance of antharas lair
+"寰顫塭蝶 溯橫" 5 1006 32740 32652 32828 32728 ; antharas lair
+"寰顫塭蝶 翕掉" 5 1006 32580 32770 32698 32957 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1006 32709 32771 32827 32956 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1006 32837 32770 32954 32955 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1006 32841 32580 32955 32763 ; dungeon of antharas
+"寰顫塭蝶 翕掉 殮掘" 0 1007 32588 32711 32691 32761 ; dungeon entrance of antharas
+"寰顫塭蝶 溯橫 殮掘" 0 1007 32662 32653 32709 32688 ; entrance of antharas lair
+"寰顫塭蝶 溯橫" 5 1007 32740 32652 32828 32728 ; antharas lair
+"寰顫塭蝶 翕掉" 5 1007 32580 32770 32698 32957 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1007 32709 32771 32827 32956 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1007 32837 32770 32954 32955 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1007 32841 32580 32955 32763 ; dungeon of antharas
+"寰顫塭蝶 翕掉 殮掘" 0 1008 32588 32711 32691 32761 ; dungeon entrance of antharas
+"寰顫塭蝶 溯橫 殮掘" 0 1008 32662 32653 32709 32688 ; entrance of antharas lair
+"寰顫塭蝶 溯橫" 5 1008 32740 32652 32828 32728 ; antharas lair
+"寰顫塭蝶 翕掉" 5 1008 32580 32770 32698 32957 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1008 32709 32771 32827 32956 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1008 32837 32770 32954 32955 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1008 32841 32580 32955 32763 ; dungeon of antharas
+"寰顫塭蝶 翕掉 殮掘" 0 1009 32588 32711 32691 32761 ; dungeon entrance of antharas
+"寰顫塭蝶 溯橫 殮掘" 0 1009 32662 32653 32709 32688 ; entrance of antharas lair
+"寰顫塭蝶 溯橫" 5 1009 32740 32652 32828 32728 ; antharas lair
+"寰顫塭蝶 翕掉" 5 1009 32580 32770 32698 32957 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1009 32709 32771 32827 32956 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1009 32837 32770 32954 32955 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1009 32841 32580 32955 32763 ; dungeon of antharas
+"寰顫塭蝶 翕掉 殮掘" 0 1010 32588 32711 32691 32761 ; dungeon entrance of antharas
+"寰顫塭蝶 溯橫 殮掘" 0 1010 32662 32653 32709 32688 ; entrance of antharas lair
+"寰顫塭蝶 溯橫" 5 1010 32740 32652 32828 32728 ; antharas lair
+"寰顫塭蝶 翕掉" 5 1010 32580 32770 32698 32957 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1010 32709 32771 32827 32956 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1010 32837 32770 32954 32955 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1010 32841 32580 32955 32763 ; dungeon of antharas
+"寰顫塭蝶 翕掉 殮掘" 0 1011 32588 32711 32691 32761 ; dungeon entrance of antharas
+"寰顫塭蝶 溯橫 殮掘" 0 1011 32662 32653 32709 32688 ; entrance of antharas lair
+"寰顫塭蝶 溯橫" 5 1011 32740 32652 32828 32728 ; antharas lair
+"寰顫塭蝶 翕掉" 5 1011 32580 32770 32698 32957 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1011 32709 32771 32827 32956 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1011 32837 32770 32954 32955 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1011 32841 32580 32955 32763 ; dungeon of antharas
+"寰顫塭蝶 翕掉 殮掘" 0 1012 32588 32711 32691 32761 ; dungeon entrance of antharas
+"寰顫塭蝶 溯橫 殮掘" 0 1012 32662 32653 32709 32688 ; entrance of antharas lair
+"寰顫塭蝶 溯橫" 5 1012 32740 32652 32828 32728 ; antharas lair
+"寰顫塭蝶 翕掉" 5 1012 32580 32770 32698 32957 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1012 32709 32771 32827 32956 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1012 32837 32770 32954 32955 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1012 32841 32580 32955 32763 ; dungeon of antharas
+"寰顫塭蝶 翕掉 殮掘" 0 1013 32588 32711 32691 32761 ; dungeon entrance of antharas
+"寰顫塭蝶 溯橫 殮掘" 0 1013 32662 32653 32709 32688 ; entrance of antharas lair
+"寰顫塭蝶 溯橫" 5 1013 32740 32652 32828 32728 ; antharas lair
+"寰顫塭蝶 翕掉" 5 1013 32580 32770 32698 32957 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1013 32709 32771 32827 32956 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1013 32837 32770 32954 32955 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1013 32841 32580 32955 32763 ; dungeon of antharas
+"寰顫塭蝶 翕掉 殮掘" 0 1014 32588 32711 32691 32761 ; dungeon entrance of antharas
+"寰顫塭蝶 溯橫 殮掘" 0 1014 32662 32653 32709 32688 ; entrance of antharas lair
+"寰顫塭蝶 溯橫" 5 1014 32740 32652 32828 32728 ; antharas lair
+"寰顫塭蝶 翕掉" 5 1014 32580 32770 32698 32957 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1014 32709 32771 32827 32956 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1014 32837 32770 32954 32955 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1014 32841 32580 32955 32763 ; dungeon of antharas
+"寰顫塭蝶 翕掉 殮掘" 0 1015 32588 32711 32691 32761 ; dungeon entrance of antharas
+"寰顫塭蝶 溯橫 殮掘" 0 1015 32662 32653 32709 32688 ; entrance of antharas lair
+"寰顫塭蝶 溯橫" 5 1015 32740 32652 32828 32728 ; antharas lair
+"寰顫塭蝶 翕掉" 5 1015 32580 32770 32698 32957 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1015 32709 32771 32827 32956 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1015 32837 32770 32954 32955 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1015 32841 32580 32955 32763 ; dungeon of antharas
+"寰顫塭蝶 翕掉 殮掘" 0 1016 32588 32711 32691 32761 ; dungeon entrance of antharas
+"寰顫塭蝶 溯橫 殮掘" 0 1016 32662 32653 32709 32688 ; entrance of antharas lair
+"寰顫塭蝶 溯橫" 5 1016 32740 32652 32828 32728 ; antharas lair
+"寰顫塭蝶 翕掉" 5 1016 32580 32770 32698 32957 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1016 32709 32771 32827 32956 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1016 32837 32770 32954 32955 ; dungeon of antharas
+"寰顫塭蝶 翕掉" 5 1016 32841 32580 32955 32763 ; dungeon of antharas
+"鼻嬴鱉曖 綠塵 翱掘褒" 0 9100 0 0 0 0 ; id lobby
+"婁剪曖 綠塵 翱掘模" 5 9000 32704 32704 32767 32767 ; id zero
+"婁剪曖 蜓朝 撰 湍瞪 2類" 5 9000 32640 32768 32831 32895 ; id zero
+"婁剪曖 蜓朝 撰" 5 9000 32704 32896 32767 32959 ; id zero
