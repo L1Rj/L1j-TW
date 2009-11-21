@@ -96,7 +96,7 @@ import l1j.server.server.templates.L1BookMark;
 import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1PrivateShopBuyList;
 import l1j.server.server.templates.L1PrivateShopSellList;
-import l1j.server.server.types.SkillType;
+import l1j.server.server.types.Base;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.thread.GeneralThreadPool;
 import l1j.thread.PcExpMonitor;
@@ -1285,7 +1285,7 @@ public class L1PcInstance extends L1Character {
 			SkillUse skilluse = new SkillUse();
 			skilluse.handleCommands(L1PcInstance.this,
 					SKILL_CANCEL_MAGIC, getId(), getX(), getY(), null, 0,
-					SkillType.LOGIN);
+					Base.SKILL_TYPE[1]);
 
 			// シャドウ系變身中に死亡するとクライアントが落ちるため暫定對應
 			if (tempchargfx == 5727 || tempchargfx == 5730

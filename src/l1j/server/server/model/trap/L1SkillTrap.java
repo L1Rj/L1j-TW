@@ -21,7 +21,7 @@ import l1j.server.server.model.L1Object;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.skills.SkillUse;
 import l1j.server.server.storage.TrapStorage;
-import l1j.server.server.types.SkillType;
+import l1j.server.server.types.Base;
 
 public class L1SkillTrap extends L1Trap {
 	private final int _skillId;
@@ -39,7 +39,7 @@ public class L1SkillTrap extends L1Trap {
 		sendEffect(trapObj);
 
 		new SkillUse().handleCommands(trodFrom, _skillId, trodFrom.getId(), trodFrom.getX(),
-				trodFrom.getY(), null, _skillTimeSeconds, SkillType.GMBUFF);
+				trodFrom.getY(), null, _skillTimeSeconds, Base.SKILL_TYPE[4]);
 	}
 
 }

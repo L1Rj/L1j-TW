@@ -97,7 +97,7 @@ import l1j.server.server.templates.L1BookMark;
 import l1j.server.server.templates.L1EtcItem;
 import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1Skills;
-import l1j.server.server.types.SkillType;
+import l1j.server.server.types.Base;
 import l1j.server.server.utils.RandomArrayList;
 import l1j.server.server.utils.SpawnUtil;
 
@@ -1432,7 +1432,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					int skillid = itemId - 40858;
 					SkillUse skilluse = new SkillUse();
 					skilluse.handleCommands(client.getActiveChar(), skillid, spellsc_objid,
-							spellsc_x, spellsc_y, null, 0, SkillType.SPELLSC);
+							spellsc_x, spellsc_y, null, 0, Base.SKILL_TYPE[2]);
 
 				} else if (itemId >= 40373 && itemId <= 40382 // 地圖各種
 						|| itemId >= 40385 && itemId <= 40390) {

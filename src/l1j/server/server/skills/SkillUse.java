@@ -86,8 +86,7 @@ import l1j.server.server.serverpackets.S_UseAttackSkill;
 import l1j.server.server.templates.L1BookMark;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Skills;
-import l1j.server.server.types.SkillType;
-import l1j.server.server.types.TargetType;
+import l1j.server.server.types.Base;
 import l1j.server.server.utils.RandomArrayList;
 
 import static l1j.server.server.skills.SkillId.*;
@@ -123,17 +122,17 @@ public class SkillUse {
 	private L1NpcInstance _targetNpc = null;
 
 	private int _skillType = 0;
-	private static byte NORMAL = SkillType.NORMAL;
-	private static byte LOGIN = SkillType.LOGIN;
-	private static byte SPELLSC = SkillType.SPELLSC;
-	private static byte NPCBUFF = SkillType.NPCBUFF;
-	private static byte GMBUFF = SkillType.GMBUFF;
+	private static byte NORMAL = Base.SKILL_TYPE[0];
+	private static byte LOGIN = Base.SKILL_TYPE[1];
+	private static byte SPELLSC = Base.SKILL_TYPE[2];
+	private static byte NPCBUFF = Base.SKILL_TYPE[3];
+	private static byte GMBUFF = Base.SKILL_TYPE[4];
 
 	private int _targetType;
-	private static byte PC_PC = TargetType.PC_PC;
-	private static byte PC_NPC = TargetType.PC_NPC;
-	private static byte NPC_PC = TargetType.NPC_PC;
-	private static byte NPC_NPC = TargetType.NPC_NPC;
+	private static byte PC_PC = Base.SKILL_TYPE[1];
+	private static byte PC_NPC = Base.SKILL_TYPE[2];
+	private static byte NPC_PC = Base.SKILL_TYPE[3];
+	private static byte NPC_NPC = Base.SKILL_TYPE[4];
 
 	private FastTable<TargetStatus> _targetList;
 

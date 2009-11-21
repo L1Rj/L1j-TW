@@ -15,7 +15,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package l1j.server.server.clientpackets;
 
 import static l1j.server.server.skills.SkillId.COOKING_1_0_N;
@@ -89,7 +88,7 @@ import l1j.server.server.serverpackets.S_bonusstats;
 import l1j.server.server.templates.L1BookMark;
 import l1j.server.server.templates.L1GetBackRestart;
 import l1j.server.server.templates.L1Skills;
-import l1j.server.server.types.SkillType;
+import l1j.server.server.types.Base;
 import l1j.server.server.utils.SQLUtil;
 
 // Referenced classes of package l1j.server.server.clientpackets:
@@ -790,9 +789,8 @@ public class C_LoginToServer extends ClientBasePacket
 					pc.setSkillEffect(skillid, remaining_time * 1000);
 				} else {
 					SkillUse skilluse = new SkillUse();
-					skilluse.handleCommands(clientthread.getActiveChar(),
-							skillid, pc.getId(), pc.getX(), pc.getY(), null,
-							remaining_time, SkillType.LOGIN);
+					skilluse.handleCommands(clientthread.getActiveChar(), skillid, pc.getId(), pc
+							.getX(), pc.getY(), null, remaining_time, Base.SKILL_TYPE[1]);
 				}
 			}
 		} catch (SQLException e) {

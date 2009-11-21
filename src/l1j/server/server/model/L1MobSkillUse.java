@@ -47,7 +47,7 @@ import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.templates.L1MobSkill;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Skills;
-import l1j.server.server.types.SkillType;
+import l1j.server.server.types.Base;
 import l1j.server.server.utils.RandomArrayList;
 
 public class L1MobSkillUse {
@@ -315,18 +315,16 @@ public class L1MobSkillUse {
 		boolean canUseSkill = false;
 
 		if (skillid > 0) {
-			canUseSkill = skillUse.checkUseSkill(null, skillid,
-					_target.getId(), _target.getX(), _target.getY(), null, 0,
-					SkillType.NORMAL, _attacker);
+			canUseSkill = skillUse.checkUseSkill(null, skillid, _target.getId(), _target.getX(),
+					_target.getY(), null, 0, Base.SKILL_TYPE[0], _attacker);
 		}
 
 		if (canUseSkill == true) {
 			if (getMobSkillTemplate().getLeverage(idx) > 0) {
 				skillUse.setLeverage(getMobSkillTemplate().getLeverage(idx));
 			}
-			skillUse.handleCommands(null, skillid, _target.getId(), _target
-					.getX(), _target.getX(), null, 0, SkillType.NORMAL,
-					_attacker);
+			skillUse.handleCommands(null, skillid, _target.getId(), _target.getX(), _target.getX(),
+					null, 0, Base.SKILL_TYPE[0], _attacker);
 			// 使用スキルによるsleepTimeの設定
 			L1Skills skill = SkillsTable.getInstance().getTemplate(skillid);
 			if (skill.getTarget().equals("attack") && skillid != 18) { // 有方向魔法

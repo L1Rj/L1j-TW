@@ -18,7 +18,6 @@
  */
 package l1j.server.server.model;
 
-import java.util.Random;
 import java.util.logging.Logger;
 
 import l1j.server.server.ActionCodes;
@@ -39,7 +38,7 @@ import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.serverpackets.S_UseAttackSkill;
 import l1j.server.server.templates.L1Skills;
-import l1j.server.server.types.SkillType;
+import l1j.server.server.types.Base;
 import l1j.server.server.utils.RandomArrayList;
 
 import static l1j.server.server.skills.SkillId.*;
@@ -51,8 +50,6 @@ public class L1WeaponSkill {
 
 	private static Logger _log = Logger
 			.getLogger(L1WeaponSkill.class.getName());
-
-	private static Random _random = new Random();
 
 	private int _weaponId;
 
@@ -467,9 +464,8 @@ public class L1WeaponSkill {
 		}
 		if (probability >= chance) {
 			SkillUse skilluse = new SkillUse();
-			skilluse.handleCommands(pc, 56,
-					cha.getId(), cha.getX(), cha.getY(), null, 0,
-					SkillType.GMBUFF);
+			skilluse.handleCommands(pc, 56, cha.getId(), cha.getX(), cha.getY(), null, 0,
+					Base.SKILL_TYPE[4]);
 	   }
 	}
 

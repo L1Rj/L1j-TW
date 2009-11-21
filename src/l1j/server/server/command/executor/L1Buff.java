@@ -30,7 +30,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_SystemMessage;
 import l1j.server.server.templates.L1Skills;
-import l1j.server.server.types.SkillType;
+import l1j.server.server.types.Base;
 
 public class L1Buff implements L1CommandExecutor {
 	private static Logger _log = Logger.getLogger(L1Buff.class.getName());
@@ -69,15 +69,13 @@ public class L1Buff implements L1CommandExecutor {
 
 			if (skill.getTarget().equals("buff")) {
 				for (L1PcInstance tg : players) {
-					new SkillUse().handleCommands(pc, skillId, tg.getId(), tg
-							.getX(), tg.getY(), null, time,
-							SkillType.SPELLSC);
+					new SkillUse().handleCommands(pc, skillId, tg.getId(), tg.getX(), tg.getY(),
+							null, time, Base.SKILL_TYPE[2]);
 				}
 			} else if (skill.getTarget().equals("none")) {
 				for (L1PcInstance tg : players) {
-					new SkillUse().handleCommands(tg, skillId, tg.getId(), tg
-							.getX(), tg.getY(), null, time,
-							SkillType.GMBUFF);
+					new SkillUse().handleCommands(tg, skillId, tg.getId(), tg.getX(), tg.getY(),
+							null, time, Base.SKILL_TYPE[4]);
 				}
 			} else {
 				pc.sendPackets(new S_SystemMessage("並非Buff系列技能。"));

@@ -21,7 +21,6 @@ package l1j.server.server.clientpackets;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Random;
 import java.util.TimeZone;
 
 import l1j.server.Config;
@@ -63,7 +62,6 @@ import l1j.server.server.model.Instance.L1PetInstance;
 import l1j.server.server.model.Instance.L1SummonInstance;
 import l1j.server.server.model.npc.L1NpcHtml;
 import l1j.server.server.model.npc.action.L1NpcAction;
-import l1j.server.server.skills.SkillId;
 import l1j.server.server.skills.SkillUse;
 import l1j.server.server.serverpackets.S_ApplyAuction;
 import l1j.server.server.serverpackets.S_AuctionBoardRead;
@@ -97,16 +95,15 @@ import l1j.server.server.templates.L1Item;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Skills;
 import l1j.server.server.templates.L1Town;
-import l1j.server.server.types.SkillType;
+import l1j.server.server.types.Base;
 import l1j.server.server.utils.RandomArrayList;
 
 import static l1j.server.server.skills.SkillId.*;
 
 public class C_NPCAction extends ClientBasePacket {
-
 	private static final String C_NPC_ACTION = "[C] C_NPCAction";
+
 	private static Logger _log = Logger.getLogger(C_NPCAction.class.getName());
-	private static Random _random = new Random();
 
 	public C_NPCAction(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
@@ -488,7 +485,7 @@ public class C_NPCAction extends ClientBasePacket {
 						SkillUse skilluse = new SkillUse();
 						skilluse.handleCommands(pc, SKILL_ENCHANT_WEAPON,
 								item.getId(), 0, 0, null, 0,
-								SkillType.SPELLSC);
+								Base.SKILL_TYPE[2]);
 						break;
 					}
 				}
@@ -499,7 +496,7 @@ public class C_NPCAction extends ClientBasePacket {
 			if (item != null) {
 				SkillUse skilluse = new SkillUse();
 				skilluse.handleCommands(pc, SKILL_BLESSED_ARMOR, item
-						.getId(), 0, 0, null, 0, SkillType.SPELLSC);
+						.getId(), 0, 0, null, 0, Base.SKILL_TYPE[2]);
 			} else {
 				pc.sendPackets(new S_ServerMessage(79));
 			}
@@ -804,7 +801,7 @@ public class C_NPCAction extends ClientBasePacket {
 				SkillUse skilluse = new SkillUse();
 				skilluse.handleCommands(pc, SKILL_CANCEL_MAGIC,
 						pc.getId(), pc.getX(), pc.getY(), null, 0,
-						SkillType.LOGIN);
+						Base.SKILL_TYPE[1]);
 				pc.getInventory().takeoffEquip(945); // 牛のpolyIdで裝備を全部外す。
 				L1Teleport.teleport(pc, 32737, 32789, (short) 997, 4, false);
 				int initStatusPoint = 75 + pc.getElixirStats();
@@ -2396,7 +2393,7 @@ public class C_NPCAction extends ClientBasePacket {
 					SkillUse skillUse = new SkillUse();
 					skillUse.handleCommands(pc, SKILL_CANCEL_MAGIC, pc
 							.getId(), pc.getX(), pc.getY(), null, 0,
-							SkillType.NPCBUFF, (L1NpcInstance) obj);
+							Base.SKILL_TYPE[3], (L1NpcInstance) obj);
 					htmlid = ""; // ウィンドウを消す
 				}
 			}

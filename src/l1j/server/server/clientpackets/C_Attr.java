@@ -59,7 +59,7 @@ import l1j.server.server.serverpackets.S_Trade;
 import l1j.server.server.templates.L1House;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Pet;
-import l1j.server.server.types.HeadType;
+import l1j.server.server.types.Base;
 
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
@@ -644,8 +644,8 @@ public class C_Attr extends ClientBasePacket {
 	}
 
 	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = HeadType.TABLE_X;
-	private static final byte HEADING_TABLE_Y[] = HeadType.TABLE_Y;
+	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 	private void callClan(L1PcInstance pc) {
 		L1PcInstance callClanPc = (L1PcInstance) L1World.getInstance()
 				.findObject(pc.getTempID());

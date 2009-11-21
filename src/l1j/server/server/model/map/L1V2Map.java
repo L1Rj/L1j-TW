@@ -21,7 +21,7 @@ package l1j.server.server.model.map;
 import l1j.server.server.ActionCodes;
 import l1j.server.server.datatables.DoorSpawnTable;
 import l1j.server.server.model.Instance.L1DoorInstance;
-import l1j.server.server.types.HeadType;
+import l1j.server.server.types.Base;
 import l1j.server.server.types.Point;
 
 public class L1V2Map extends L1Map {
@@ -43,8 +43,8 @@ public class L1V2Map extends L1Map {
 	private boolean _isUsableItem;
 	private boolean _isUsableSkill;
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = HeadType.TABLE_X;
-	private static final byte HEADING_TABLE_Y[] = HeadType.TABLE_Y;
+	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 
 	/**

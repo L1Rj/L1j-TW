@@ -40,7 +40,7 @@ import l1j.server.server.skills.SkillId;
 import l1j.server.server.model.trap.L1WorldTraps;
 import l1j.server.server.serverpackets.S_MoveCharPacket;
 import l1j.server.server.serverpackets.S_SystemMessage;
-import l1j.server.server.types.HeadType;
+import l1j.server.server.types.Base;
 import static l1j.server.server.skills.SkillId.*;
 
 //修正檔案 : l1j.server.server.clientpackets.C_MoveChar
@@ -50,8 +50,8 @@ public class C_MoveChar extends ClientBasePacket {
 
 	private static Logger _log = Logger.getLogger(C_MoveChar.class.getName());
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = HeadType.TABLE_X;
-	private static final byte HEADING_TABLE_Y[] = HeadType.TABLE_Y;
+	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.10
 

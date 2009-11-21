@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package l1j.server.server.clientpackets;
 
 import java.util.logging.Logger;
@@ -30,9 +29,8 @@ import l1j.server.server.model.AcceleratorChecker;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.skills.SkillUse;
-import l1j.server.server.serverpackets.S_Disconnect;
 import l1j.server.server.serverpackets.S_ServerMessage;
-import l1j.server.server.types.SkillType;
+import l1j.server.server.types.Base;
 
 import static l1j.server.server.skills.SkillId.*;
 
@@ -154,8 +152,8 @@ public class C_UseSkill extends ClientBasePacket {
 				}
 			}
 			SkillUse skilluse = new SkillUse();
-			skilluse.handleCommands(pc, skillId, targetId, targetX, targetY,
-					message, 0, SkillType.NORMAL);
+			skilluse.handleCommands(pc, skillId, targetId, targetX, targetY, message, 0,
+					Base.SKILL_TYPE[0]);
 
 		} catch (Exception e) {
 			e.printStackTrace();
