@@ -18,6 +18,7 @@
  */
 package l1j.server.server.model.map;
 
+import java.io.File;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +43,10 @@ public class L1WorldMap {
 		PerformanceTimer timer = new PerformanceTimer();
 		System.out.print("╔》正在讀取 Map...");
 
+		File file = new File("maps/0.txt");
+		if (!file.exists()){
+			System.out.println("你的地圖檔尚未解壓縮");
+		}	
 		MapReader in = MapReader.getDefaultReader();
 
 		try {
