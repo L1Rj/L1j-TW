@@ -23,7 +23,7 @@ import net.l1j.server.model.id.L1ClassId;
 public abstract class L1ClassFeature {
 	public static L1ClassFeature newClassFeature(int Type) {
 
-		switch(Type){
+		switch(Type) {
 		case L1ClassId.ROYAL: // 王族
 		case L1ClassId.Del_ROYAL:
 			return new L1RoyalClassFeature();
@@ -84,72 +84,36 @@ public abstract class L1ClassFeature {
 	public abstract int MaxHp();
 	/** 魔量上限 */
 	public abstract int MaxMp();
+
+	/**
+	 * StatMr：敏捷點數 對應 防禦加成
+	 */
+	public static byte[] Dex2AC = {
+		//	 0  1  2  3  4  5  6  7  8  9
+			 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, // Dex =  0 ~  9
+			 7, 7, 7, 6, 6, 6, 5, 5, 4};   // Dex = 10 ~ 18
 	/** 敏捷對防禦的加成 */
 	public int calcLvDex2AC(int level, int dex) {
-		int b_ac = 10;
-		switch (dex)
-		{
-		case 1: case 2: case 3: case 4:
-		case 5: case 6: case 7: case 8:
-		case 9:
-			b_ac -= (level / 8);
-			break;
-		case 10: case 11: case 12:
-			b_ac -= (level / 7);
-			break;
-		case 13: case 14: case 15:
-			b_ac -= (level / 6);
-			break;
-		case 16: case 17:
-			b_ac -= (level / 5);
-			break;
-		default:
-			b_ac -= (level / 4);
-		break;
-		}
-		return b_ac;
+		// 當『敏捷』超過27時，一律當作18(受限矩陣大小)
+		int temp_dex = (dex > 24) ? 25 : dex;
+		int base_ac = 10;
+		base_ac -= (level / Dex2AC[temp_dex]);
+		return base_ac;
 	}
+
+	/**
+	 * StatMr：精神點數 對應 魔防加成
+	 */
+	public static byte[] StatMr = {
+		//	 0  1  2  3  4  5  6  7  8  9
+			 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // Wis =  0 ~  9
+			 0, 0, 0, 0, 0, 3, 3, 6,10,15, // Wis = 10 ~ 19
+			21,28,37,47,50,50};			   // Wis = 20 ~ 25
 	/** 精神對魔防的加成 */
 	public byte calcStatMr(int wis) {
-		byte b_mr = 0;
-		switch (wis)
-		{
-		case 1: case 2: case 3: case 4: case 5: case 6: case 7:
-		case 8: case 9: case 10: case 11: case 12: case 13: case 14:
-			b_mr = 0;
-			break;
-		case 15: case 16:
-			b_mr = 3;
-			break;
-		case 17:
-			b_mr = 6;
-			break;
-		case 18:
-			b_mr = 10;
-			break;
-		case 19:
-			b_mr = 15;
-			break;
-		case 20:
-			b_mr = 21;
-			break;
-		case 21:
-			b_mr = 28;
-			break;
-		case 22:
-			b_mr = 37;
-			break;
-		case 23:
-			b_mr = 47;
-			break;
-		case 24:
-			b_mr = 50;
-			break;
-		default:
-			b_mr = 50;
-		break;
-		}
-		return b_mr;
+		// 當『精神』超過24時，一律當作25(受限矩陣大小)
+		int temp_wis = (wis > 24) ? 25 : wis;
+		return StatMr[temp_wis];
 	}
 
 }

@@ -1,4 +1,4 @@
-﻿主目錄檔案說明:
+主目錄檔案說明:
 l1jserver.jar				主程式
 ServerStart.bat				啟動批次檔
 ServerConfig.bat			伺服器設定工具批次檔

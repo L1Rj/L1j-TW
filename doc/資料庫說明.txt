@@ -1,4 +1,4 @@
-﻿資料庫目錄內容說明:
+資料庫目錄內容說明:
 db\MyISAM		L1J日版資料庫
 db\MyISAM_TW		L1J台版資料庫
 db\MyISAM_TW\Custom	L1J台版自訂道具資料庫(可於設定檔 database.properties 設定是否讀取)

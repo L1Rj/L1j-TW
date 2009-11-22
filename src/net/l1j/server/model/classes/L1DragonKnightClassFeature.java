@@ -25,14 +25,14 @@ import net.l1j.server.utils.RandomArrayList;
 class L1DragonKnightClassFeature extends L1ClassFeature {
 
 	@Override
-	public int[] InitSpawn(int type){
-		int spawn[] = {32714,32877,69};
+	public int[] InitSpawn(int type) {
+		int spawn[] = {32714, 32877, 69};
 		return spawn;
 	}
-	
+
 	@Override
 	public int InitSex(int sex) {
-		switch(sex){
+		switch(sex) {
 		case 0:
 			return L1ClassId.DRAGON_KNIGHT_MALE;
 		default:
@@ -47,7 +47,7 @@ class L1DragonKnightClassFeature extends L1ClassFeature {
 
 	@Override
 	public int InitMp(int BaseWis) {
-		switch (BaseWis){
+		switch(BaseWis) {
 		case 1: case 2: case 3: case 4: case 5:
 		case 6: case 7: case 8: case 9: case 10:
 		case 11: case 12: case 13: case 14: case 15:
@@ -64,10 +64,10 @@ class L1DragonKnightClassFeature extends L1ClassFeature {
 
 	@Override
 	public int[] InitPoints() {
-		int points[] = {13,11,14,12,8,11,6}; // 力、敏、體、精、魅、智、自由點數
+		int points[] = {13, 11, 14, 12, 8, 11, 6}; // 力、敏、體、精、魅、智、自由點數
 		return points;
 	}
-	
+
 	@Override
 	public int bounsCha() {
 		return 6;
@@ -80,7 +80,7 @@ class L1DragonKnightClassFeature extends L1ClassFeature {
 
 	@Override
 	public int calcLvFightDmg(int lv) {
-		return (lv/10); // 每10級加一點近戰額外傷害
+		return (lv / 10); // 每10級加一點近戰額外傷害
 	}
 
 	@Override
@@ -108,59 +108,48 @@ class L1DragonKnightClassFeature extends L1ClassFeature {
 		short randomhp = 0;
 		int randomadd = RandomArrayList.getInc(5, -2);
 		byte playerbasecon = (byte) (baseCon / 2);
-		randomhp += (short) (playerbasecon + randomadd + 5 ); // 初期值分追加 6 <-> 13
+		randomhp += (short) (playerbasecon + randomadd + 5); // 初期值分追加 6 <-> 13
 
 		return randomhp;
 	}
 
+	/**
+	 * *_RandomMp	：根據職業的隨機範圍
+	 * *_BaseMp		：基本數值
+	 */
+	public static int[] DK_RandomMp = {
+		//	 0  1  2  3  4  5  6  7  8  9
+			 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, // baseWis =  0 ~  9
+			 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, // baseWis = 10 ~ 19
+			 4, 4, 4, 4, 5, 4, 4, 5, 5, 4, // baseWis = 20 ~ 29
+			 4, 5, 5, 4, 4, 5 };		   // baseWis = 30 ~ 35
+	public static int[] DK_BaseMp = {
+		//	 0  1  2  3  4  5  6  7  8  9
+			 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, // baseWis =  0 ~  9
+			 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, // baseWis = 10 ~ 19
+			 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, // baseWis = 20 ~ 29
+			 6, 6, 6, 7, 7, 7 };		   // baseWis = 30 ~ 35
+
+	/**
+	 * randommp：透過 *_RandomMp 與 *_BaseMp 組合出升級時增加的MP量
+	 */
 	@Override
 	public int calclvUpMp(int baseWis) {
 		int randommp = 0;
-		int seedY = 0;
-		int seedZ = 0;
-		if (baseWis < 9 || baseWis > 9 && baseWis < 12) {
-			seedY = RandomArrayList.getInt(2);
-		} else if (baseWis == 9 || baseWis >= 12 && baseWis <= 17) {
-			seedY = RandomArrayList.getInt(3);
-		} else if (baseWis >= 18 && baseWis <= 23 || baseWis == 25
-					|| baseWis == 26 || baseWis == 29
-					|| baseWis == 30 || baseWis == 33
-					|| baseWis == 34) {
-			seedY = RandomArrayList.getInt(4);
-		} else if (baseWis == 24 ||baseWis == 27
-				 ||baseWis == 28 ||baseWis == 31
-				 ||baseWis == 32 ||baseWis >= 35) {
-			seedY = RandomArrayList.getInt(5);
-		}
-
-		if (baseWis >= 7 && baseWis <= 9) {
-			seedZ = 1; // seedZ = 0;
-		} else if (baseWis >= 10 && baseWis <= 14) {
-			seedZ = 2; // seedZ = 1;
-		} else if (baseWis >= 15 && baseWis <= 20) {
-			seedZ = 3; // seedZ = 2;
-		} else if (baseWis >= 21 && baseWis <= 24) {
-			seedZ = 4; // seedZ = 3;
-		} else if (baseWis >= 25 && baseWis <= 28) {
-			seedZ = 5; // seedZ = 4;
-		} else if (baseWis >= 29 && baseWis <= 32) {
-			seedZ = 6; // seedZ = 5;
-		} else if (baseWis >= 33) {
-			seedZ = 7; // seedZ = 5;
-		}
-		
-		randommp = seedY + seedZ; // seedY + 1 + seedZ;
-		
+		// 當『精神』超過34時，一律當作35(受限矩陣大小)
+		int temp_baseWis = (baseWis > 34) ? 35 : baseWis;
+		randommp = RandomArrayList.getInt(DK_RandomMp[temp_baseWis])
+				+ DK_BaseMp[temp_baseWis];
 		return (int) (randommp * 2 / 3);
 	}
-	
+
 	@Override
-	public int MaxHp(){
+	public int MaxHp() {
 		return Config.DRAGONKNIGHT_MAX_HP;
 	}
-	
+
 	@Override
-	public int MaxMp(){
+	public int MaxMp() {
 		return Config.DRAGONKNIGHT_MAX_MP;
 	}
 }
