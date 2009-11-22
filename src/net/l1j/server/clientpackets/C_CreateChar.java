@@ -226,17 +226,18 @@ public class C_CreateChar extends ClientBasePacket {
 	}
 
 	private static boolean isInvalidName(String name) {
-		int numOfNameBytes = 0;
-		try {
-			numOfNameBytes = name.getBytes(CLIENT_LANGUAGE_CODE).length;
-		} catch (UnsupportedEncodingException e) {
-			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			return false;
-		}
+		/**
+		 * 位元檢查，目前得知中文/英文字數限制為 最少3個字。
+		 * int numOfNameBytes = 0;try {
+		 * 	numOfNameBytes = name.getBytes(CLIENT_LANGUAGE_CODE).length;
+		 * } catch (UnsupportedEncodingException e) {
+		 * 	_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		 * 	return false;}
+		 */
 
 		if (isAlphaNumeric(name)
-				// 字串位元長度 > 4 時，才允許建立名稱
-				&& (4 < numOfNameBytes)
+				// 字串長度 >= 3 時，才允許建立名稱
+				&& (3 <= name.length())
 				&& !BadNamesList.getInstance().isBadName(name)) {
 			return false;
 		}
