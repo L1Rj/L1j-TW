@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.datatables;
 
 import java.sql.Connection;
@@ -28,18 +27,17 @@ import java.util.logging.Logger;
 
 import javolution.util.FastTable;
 
+import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.templates.L1ArmorSets;
 import net.l1j.server.utils.SQLUtil;
 
 public class ArmorSetTable {
-	private static Logger _log = Logger.getLogger(ArmorSetTable.class
-			.getName());
+	private static Logger _log = Logger.getLogger(ArmorSetTable.class.getName());
 
 	private static ArmorSetTable _instance;
 
-	private final FastTable<L1ArmorSets> _armorSetList
-			= new FastTable<L1ArmorSets>();
+	private final FastTable<L1ArmorSets> _armorSetList = new FastTable<L1ArmorSets>();
 
 	public static ArmorSetTable getInstance() {
 		if (_instance == null) {
@@ -57,18 +55,26 @@ public class ArmorSetTable {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM armor_set");
 			rs = pstm.executeQuery();
 			fillTable(rs);
 		} catch (SQLException e) {
-			_log.log(Level.SEVERE, "error while creating armor_set table",
-					e);
+			_log.log(Level.SEVERE, "error while creating armor_set table", e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
+		}
+		if (Config.ARMORSETS_CUSTOM_TABLE) {
+			try {
+				con = L1DatabaseFactory.getInstance().getConnection();
+				pstm = con.prepareStatement("SELECT * FROM armor_set_custom");
+				rs = pstm.executeQuery();
+				fillTable(rs);
+			} catch (SQLException e) {
+				_log.log(Level.SEVERE, "error while creating armor_set_custom table", e);
+			} finally {
+				SQLUtil.close(rs, pstm, con);
+			}
 		}
 	}
 

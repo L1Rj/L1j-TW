@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 
 import javolution.util.FastMap;
 
+import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.templates.L1Npc;
@@ -43,10 +44,10 @@ public class NpcTable {
 	private static NpcTable _instance;
 
 	private final FastMap<Integer, L1Npc> _npcs = new FastMap<Integer, L1Npc>();
+
 	private final FastMap<String, Constructor<?>> _constructorCache = new FastMap<String, Constructor<?>>();
 
-	private static final Map<String, Integer> _familyTypes = NpcTable
-			.buildFamily();
+	private static final Map<String, Integer> _familyTypes = NpcTable.buildFamily();
 
 	public static NpcTable getInstance() {
 		if (_instance == null) {
@@ -66,8 +67,7 @@ public class NpcTable {
 
 	private Constructor<?> getConstructor(String implName) {
 		try {
-			String implFullName = "net.l1j.server.model.instance."
-					+ implName + "Instance";
+			String implFullName = "net.l1j.server.model.instance." + implName + "Instance";
 			Constructor<?> con = Class.forName(implFullName).getConstructors()[0];
 			return con;
 		} catch (ClassNotFoundException e) {
@@ -87,10 +87,12 @@ public class NpcTable {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
+
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM npc");
 			rs = pstm.executeQuery();
+
 			while (rs.next()) {
 				L1Npc npc = new L1Npc();
 				int npcId = rs.getInt("npcid");
@@ -167,16 +169,104 @@ public class NpcTable {
 				npc.setAmountFixed(rs.getBoolean("amount_fixed"));
 				npc.setChangeHead(rs.getBoolean("change_head"));
 				npc.setCantResurrect(rs.getBoolean("cant_resurrect"));
-
 				registerConstructorCache(npc.getImpl());
 				_npcs.put(npcId, npc);
 			}
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
+		}
+		if (Config.ETCITEM_CUSTOM_TABLE) {
+			try {
+				con = L1DatabaseFactory.getInstance().getConnection();
+				pstm = con.prepareStatement("SELECT * FROM npc_custom");
+				rs = pstm.executeQuery();
+
+				while (rs.next()) {
+					L1Npc npc = new L1Npc();
+					int npcId = rs.getInt("npcid");
+					npc.set_npcId(npcId);
+					npc.set_name(rs.getString("name"));
+					npc.set_nameid(rs.getString("nameid"));
+					npc.setImpl(rs.getString("impl"));
+					npc.set_gfxid(rs.getInt("gfxid"));
+					npc.set_level(rs.getInt("lvl"));
+					npc.set_hp(rs.getInt("hp"));
+					npc.set_mp(rs.getInt("mp"));
+					npc.set_ac(rs.getInt("ac"));
+					npc.set_str(rs.getByte("str"));
+					npc.set_con(rs.getByte("con"));
+					npc.set_dex(rs.getByte("dex"));
+					npc.set_wis(rs.getByte("wis"));
+					npc.set_int(rs.getByte("intel"));
+					npc.set_mr(rs.getInt("mr"));
+					npc.set_exp(rs.getInt("exp"));
+					npc.set_lawful(rs.getInt("lawful"));
+					npc.set_size(rs.getString("size"));
+					npc.set_weakAttr(rs.getInt("weakAttr"));
+					npc.set_ranged(rs.getInt("ranged"));
+					npc.setTamable(rs.getBoolean("tamable"));
+					npc.set_passispeed(rs.getInt("passispeed"));
+					npc.set_atkspeed(rs.getInt("atkspeed"));
+					npc.setAltAtkSpeed(rs.getInt("alt_atk_speed"));
+					npc.setAtkMagicSpeed(rs.getInt("atk_magic_speed"));
+					npc.setSubMagicSpeed(rs.getInt("sub_magic_speed"));
+					npc.set_undead(rs.getInt("undead"));
+					npc.set_poisonatk(rs.getInt("poison_atk"));
+					npc.set_paralysisatk(rs.getInt("paralysis_atk"));
+					npc.set_agro(rs.getBoolean("agro"));
+					npc.set_agrososc(rs.getBoolean("agrososc"));
+					npc.set_agrocoi(rs.getBoolean("agrocoi"));
+					Integer family = _familyTypes.get(rs.getString("family"));
+					if (family == null) {
+						npc.set_family(0);
+					} else {
+						npc.set_family(family.intValue());
+					}
+					int agrofamily = rs.getInt("agrofamily");
+					if (npc.get_family() == 0 && agrofamily == 1) {
+						npc.set_agrofamily(0);
+					} else {
+						npc.set_agrofamily(agrofamily);
+					}
+					npc.set_agrogfxid1(rs.getInt("agrogfxid1"));
+					npc.set_agrogfxid2(rs.getInt("agrogfxid2"));
+					npc.set_picupitem(rs.getBoolean("picupitem"));
+					npc.set_digestitem(rs.getInt("digestitem"));
+					npc.set_bravespeed(rs.getBoolean("bravespeed"));
+					npc.set_hprinterval(rs.getInt("hprinterval"));
+					npc.set_hpr(rs.getInt("hpr"));
+					npc.set_mprinterval(rs.getInt("mprinterval"));
+					npc.set_mpr(rs.getInt("mpr"));
+					npc.set_teleport(rs.getBoolean("teleport"));
+					npc.set_randomlevel(rs.getInt("randomlevel"));
+					npc.set_randomhp(rs.getInt("randomhp"));
+					npc.set_randommp(rs.getInt("randommp"));
+					npc.set_randomac(rs.getInt("randomac"));
+					npc.set_randomexp(rs.getInt("randomexp"));
+					npc.set_randomlawful(rs.getInt("randomlawful"));
+					npc.set_damagereduction(rs.getInt("damage_reduction"));
+					npc.set_hard(rs.getBoolean("hard"));
+					npc.set_doppel(rs.getBoolean("doppel"));
+					npc.set_IsTU(rs.getBoolean("IsTU"));
+					npc.set_IsErase(rs.getBoolean("IsErase"));
+					npc.setBowActId(rs.getInt("bowActId"));
+					npc.setKarma(rs.getInt("karma"));
+					npc.setTransformId(rs.getInt("transform_id"));
+					npc.setTransformGfxId(rs.getInt("transform_gfxid"));
+					npc.setLightSize(rs.getInt("light_size"));
+					npc.setAmountFixed(rs.getBoolean("amount_fixed"));
+					npc.setChangeHead(rs.getBoolean("change_head"));
+					npc.setCantResurrect(rs.getBoolean("cant_resurrect"));
+					registerConstructorCache(npc.getImpl());
+					_npcs.put(npcId, npc);
+				}
+			} catch (SQLException e) {
+				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			} finally {
+				SQLUtil.close(rs, pstm, con);
+			}
 		}
 	}
 
@@ -187,8 +277,7 @@ public class NpcTable {
 	public L1NpcInstance newNpcInstance(int id) {
 		L1Npc npcTemp = getTemplate(id);
 		if (npcTemp == null) {
-			throw new IllegalArgumentException(String.format(
-					"NpcTemplate: %d not found", id));
+			throw new IllegalArgumentException(String.format("NpcTemplate: %d not found", id));
 		}
 		return newNpcInstance(npcTemp);
 	}
@@ -211,7 +300,7 @@ public class NpcTable {
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con
-					.prepareStatement("select distinct(family) as family from npc WHERE NOT trim(family) =''");
+					.prepareStatement("SELECT DISTINCT(family) AS family FROM npc WHERE NOT TRIM(family) =''");
 			rs = pstm.executeQuery();
 			int id = 1;
 			while (rs.next()) {

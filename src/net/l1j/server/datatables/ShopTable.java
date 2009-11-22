@@ -31,6 +31,7 @@ import java.util.logging.Logger;
 import javolution.util.FastMap;
 import javolution.util.FastTable;
 
+import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.shop.L1Shop;
 import net.l1j.server.templates.L1ShopItem;
@@ -63,10 +64,12 @@ public class ShopTable {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
+
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT DISTINCT npc_id FROM shop");
 			rs = pstm.executeQuery();
+
 			while (rs.next()) {
 				ids.add(rs.getInt("npc_id"));
 			}
@@ -74,6 +77,21 @@ public class ShopTable {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
 			SQLUtil.close(rs, pstm, con);
+		}
+		if (Config.SHOP_CUSTOM_TABLE) {
+			try {
+				con = L1DatabaseFactory.getInstance().getConnection();
+				pstm = con.prepareStatement("SELECT DISTINCT npc_id FROM shop_custom");
+				rs = pstm.executeQuery();
+
+				while (rs.next()) {
+					ids.add(rs.getInt("npc_id"));
+				}
+			} catch (SQLException e) {
+				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			} finally {
+				SQLUtil.close(rs, pstm, con);
+			}
 		}
 		return ids;
 	}
@@ -88,13 +106,11 @@ public class ShopTable {
 			int packCount = rs.getInt("pack_count");
 			packCount = packCount == 0 ? 1 : packCount;
 			if (0 <= sellingPrice) {
-				L1ShopItem item = new L1ShopItem(itemId, sellingPrice,
-						packCount);
+				L1ShopItem item = new L1ShopItem(itemId, sellingPrice, packCount);
 				sellingList.add(item);
 			}
 			if (0 <= purchasingPrice) {
-				L1ShopItem item = new L1ShopItem(itemId, purchasingPrice,
-						packCount);
+				L1ShopItem item = new L1ShopItem(itemId, purchasingPrice, packCount);
 				purchasingList.add(item);
 			}
 		}
@@ -107,8 +123,7 @@ public class ShopTable {
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT * FROM shop WHERE npc_id=? ORDER BY order_id");
+			pstm = con.prepareStatement("SELECT * FROM shop WHERE npc_id=? ORDER BY order_id");
 			for (int npcId : enumNpcIds()) {
 				pstm.setInt(1, npcId);
 				rs = pstm.executeQuery();
