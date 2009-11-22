@@ -7,27 +7,28 @@ echo #---------------------------------#
 echo # Output In One File System Of DB #
 echo #---------------------------------#
 echo.
-echo ¡n1. All In Default Files "l1jdb_*.sql"
-echo ¡n2. MyISAM Files         "l1jdb_jp.sql"
-echo ¡n3. MyISAM_TW Files      "l1jdb_tw.sql"
+echo ¡n1. MyISAM Files         [l1jdb_jp.sql]
+echo ¡n2. MyISAM_TW Files      [l1jdb_tw.sql + l1jdb_tw_custom.sql]
+echo ¡n3. All In Default Files [l1jdb_jp.sql + l1jdb_tw.sql]
 echo ¡n4. Exit
 echo.
-set /p Options="Actions is :"
+set /p Options="Actions is: "
 goto wherego
 
-# All In Default Files
-:options1
-copy ..\db\MyISAM\*.sql l1jdb_jp.sql
-copy ..\db\MyISAM_TW\*.sql l1jdb_tw.sql
-goto options0
-
 # MyISAM Files
-:options2
+:options1
 copy ..\db\MyISAM\*.sql l1jdb_jp.sql
 goto options0
 
 # MyISAM_TW Files
+:options2
+copy ..\db\MyISAM_TW\*.sql l1jdb_tw.sql
+copy ..\db\MyISAM_TW\Custom\*.sql l1jdb_tw_custom.sql
+goto options0
+
+# All In Default Files
 :options3
+copy ..\db\MyISAM\*.sql l1jdb_jp.sql
 copy ..\db\MyISAM_TW\*.sql l1jdb_tw.sql
 goto options0
 
@@ -41,4 +42,4 @@ goto options0
 
 :exit
 echo.
-pause
+cls
