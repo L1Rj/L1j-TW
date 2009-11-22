@@ -94,8 +94,8 @@ public abstract class L1ClassFeature {
 			 7, 7, 7, 6, 6, 6, 5, 5, 4};   // Dex = 10 ~ 18
 	/** 敏捷對防禦的加成 */
 	public int calcLvDex2AC(int level, int dex) {
-		// 當『敏捷』超過27時，一律當作18(受限矩陣大小)
-		int temp_dex = (dex > 24) ? 25 : dex;
+		// 當『敏捷』超過17時，一律當作18(受限矩陣大小)
+		int temp_dex = (dex > 17) ? 18 : dex;
 		int base_ac = 10;
 		base_ac -= (level / Dex2AC[temp_dex]);
 		return base_ac;
