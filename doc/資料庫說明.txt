@@ -1,7 +1,8 @@
 ﻿資料庫目錄內容說明:
-db\MyISAM	L1J日版資料庫
-db\MyISAM_TW	L1J台版資料庫
-db\upgrade	各版本升級資料庫(l1j 與 l1jtw)
+db\MyISAM		L1J日版資料庫
+db\MyISAM_TW		L1J台版資料庫
+db\MyISAM_TW\Custom	L1J台版自訂道具資料庫(可於設定檔 database.properties 設定是否讀取)
+db\upgrade		各版本升級資料庫(l1j 與 l1jtw)
 db\mobskill_test	怪物技能測試資料庫
 
 附註:怪物測試技能資料庫如果有匯入,必須於 db\Fix\Fix_mobskill_tw.sql 之前匯入.
