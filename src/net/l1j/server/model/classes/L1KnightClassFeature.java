@@ -137,8 +137,8 @@ class L1KnightClassFeature extends L1ClassFeature {
 		int randommp = 0;
 		// 當『精神』超過34時，一律當作35(受限矩陣大小)
 		int temp_baseWis = (baseWis > 34) ? 35 : baseWis;
-		randommp = RandomArrayList.getInt(K_RandomMp[temp_baseWis])
-				+ K_BaseMp[temp_baseWis];
+		randommp = RandomArrayList.getInc(K_RandomMp[temp_baseWis]
+				, K_BaseMp[temp_baseWis]);
 		return (int) (randommp * 2 / 3);
 	}
 

@@ -138,8 +138,8 @@ class L1WizardClassFeature extends L1ClassFeature {
 		int randommp = 0;
 		// 當『精神』超過34時，一律當作35(受限矩陣大小)
 		int temp_baseWis = (baseWis > 34) ? 35 : baseWis;
-		randommp = RandomArrayList.getInt(W_RandomMp[temp_baseWis])
-				+ W_BaseMp[temp_baseWis];
+		randommp = RandomArrayList.getInc(W_RandomMp[temp_baseWis]
+				, W_BaseMp[temp_baseWis]);
 		return (randommp * 2);
 	}
 
