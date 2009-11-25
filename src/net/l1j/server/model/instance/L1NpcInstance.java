@@ -592,7 +592,7 @@ public class L1NpcInstance extends L1Character {
 	// 飛んでいる狀態からアイテムを探し、あれば降りて拾う
 	public void searchItemFromAir() {
 		FastTable<L1GroundInventory> gInventorys =
-				new FastTable<L1GroundInventory>();
+		new FastTable<L1GroundInventory>();
 
 		for (L1Object obj : L1World.getInstance().getVisibleObjects(this)) {
 			if (obj != null && obj instanceof L1GroundInventory) {
@@ -604,18 +604,17 @@ public class L1NpcInstance extends L1Character {
 		}
 
 		// 拾うアイテム(のインベントリ)をランダムで選定
-		int pickupIndex = RandomArrayList.getInt(gInventorys.size()); // 5.14
+		int pickupIndex = RandomArrayList.getInt(gInventorys.size());
 		L1GroundInventory inventory = gInventorys.get(pickupIndex);
 		for (L1ItemInstance item : inventory.getItems()) {
 			if (item.getItem().getType() == 6 // potion
 					|| item.getItem().getType() == 7) { // food
-				if (getInventory().checkAddItem(item, item.getCount())
-						== L1Inventory.OK) {
+				if (getInventory().checkAddItem(item, item.getCount()) == L1Inventory.OK) {
 					if (getHiddenStatus() == HIDDEN_STATUS_FLY) {
 						setHiddenStatus(HIDDEN_STATUS_NONE);
-						broadcastPacket(new S_DoActionGFX(getId(),
-								ActionCodes.ACTION_Movedown));
+						broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Movedown));
 						setStatus(0);
+						setState(0);  // add
 						broadcastPacket(new S_NPCPack(this));
 						onNpcAI();
 						startChat(CHAT_TIMING_HIDE);
