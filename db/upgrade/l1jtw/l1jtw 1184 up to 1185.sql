@@ -1,33 +1,6 @@
-/*
-Navicat MySQL Data Transfer
+/* 20091126 新增與修正溶解道具數量 */
+delete from `resolvent`;
 
-Source Server         : LocalHost
-Source Server Version : 50402
-Source Host           : localhost:3306
-Source Database       : l1jdb_tw
-
-Target Server Type    : MYSQL
-Target Server Version : 50402
-File Encoding         : 65001
-
-Date: 2009-10-13 13:10:00
-*/
-
-SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for `resolvent`
--- ----------------------------
-DROP TABLE IF EXISTS `resolvent`;
-CREATE TABLE `resolvent` (
-  `item_id` int(10) NOT NULL DEFAULT '0',
-  `note` varchar(45) NOT NULL,
-  `crystal_count` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`item_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of resolvent
--- ----------------------------
 INSERT INTO `resolvent` VALUES ('1', '歐西斯匕首', '2');
 INSERT INTO `resolvent` VALUES ('2', '骰子匕首', '2');
 INSERT INTO `resolvent` VALUES ('8', '米索莉短劍', '10000');
