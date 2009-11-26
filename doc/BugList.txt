@@ -71,6 +71,100 @@ NPC類:
 
 道具類:
 1.血光斗篷使用無所遁形即可現形(透視鏡資料為強力無所遁形).
+2.40010 治癒藥水 40011 橙色藥水 40012 白色藥水 鑑定前後名稱相同.
+3.道具缺
+神奇戰鬥盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&item=9121
+驚喜遊樂盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9122#item_detail
+中秋禮盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9720#item_detail
+
+
+以下組合包內容未知:
+力量組合包 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9459#item_detail
+敏捷組合包 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9460#item_detail
+體質組合包 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9461#item_detail
+精神組合包 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9462#item_detail
+智力組合包 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9463#item_detail
+寵物組合包 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9464#item_detail
+神力禮盒A http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9587#item_detail
+神力禮盒B http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9588#item_detail
+超時空寶箱 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9597#item_detail
+媽祖禮盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9630#item_detail
+驚喜禮盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9715#item_detail
+報到禮 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9718#item_detail
+時空裂痕冒險箱 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9723#item_detail
+
+卷軸藥水缺:
+體力增強捲軸 http://gametsg.yatta.com.tw/lineage/index.php?view=item&list=no&k1=item&item=9030
+魔力增強捲軸 http://gametsg.yatta.com.tw/lineage/index.php?view=item&list=no&k1=item&item=9031
+強化戰鬥捲軸 http://gametsg.yatta.com.tw/lineage/index.php?view=item&list=no&k1=item&item=9032
+黃金史雷佛變形捲軸 http://gametsg.yatta.com.tw/lineage/index.php?view=item&list=no&k1=item&item=9047
+紅色海音警衛變形捲軸 http://gametsg.yatta.com.tw/lineage/index.php?view=item&list=no&k1=item&item=9048
+戰鬥藥水 http://gametsg.yatta.com.tw/lineage/index.php?view=item&list=no&k1=item&item=9029
+穿越卷 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9594#item_detail
+暢遊卷 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9595#item_detail
+異界鐵盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9596#item_detail
+兌換憑證 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9717#item_detail
+神秘徽章 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9785#item_detail
+
+媽祖祝福平安符 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9629#item_detail
+時空之泉 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9730#item_detail
+裂痕之泉 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9731#item_detail
+
+魔眼缺:
+地龍之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9663#item_detail
+水龍之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9664#item_detail
+風龍之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9665#item_detail
+火龍之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9666#item_detail
+誕生之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9667#item_detail
+形體之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9668#item_detail
+生命之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9669#item_detail
+
+傳送卷軸缺:
+精靈結晶 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=448#item_detail
+結盟瞬間移動捲軸 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9228#item_detail 龍騎士45級試煉道具
+妖精森林瞬間移動捲軸 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9280#item_detail 幻術士15級試煉道具
+歐瑞村莊瞬間移動捲軸 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9281#item_detail 幻術士30級試煉道具
+風木村莊瞬間移動捲軸 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9282#item_detail 幻術士45級試煉道具
+奇岩村莊瞬間移動捲軸 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9283#item_detail
+傲塔50樓傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9309#item_detail
+傲塔60樓傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9310#item_detail
+傲塔70樓傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9311#item_detail
+傲塔80樓傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9312#item_detail
+傲塔90樓傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9313#item_detail
+傲塔100樓傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9314#item_detail
+混沌1樓黑暗結界傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9315#item_detail
+混沌2樓黑暗結界傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9316#item_detail
+混沌3樓黑暗結界傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9317#item_detail
+暗影神殿2樓傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9318#item_detail
+暗影神殿3樓傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9319#item_detail
+黑暗妖精聖地傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9320#item_detail
+船舶之墓 深海傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9321#item_detail
+精靈墓穴傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9322#item_detail
+古代巨人之墓傳送符石 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9323#item_detail
+福利傳送回家捲軸：說話之島 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9745#item_detail
+福利傳送回家捲軸：古魯丁 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9746#item_detail
+福利傳送回家捲軸：肯特 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9747#item_detail
+福利傳送回家捲軸：風木 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9748#item_detail
+福利傳送回家捲軸：燃柳村 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9749#item_detail
+福利傳送回家捲軸：銀騎士村莊 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9750#item_detail
+福利傳送回家捲軸：奇岩 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9751#item_detail
+福利傳送回家捲軸：海音 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9752#item_detail
+福利傳送回家捲軸：歐瑞 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9753#item_detail
+福利傳送回家捲軸：威頓 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9754#item_detail
+
+有道具 未知是否實裝功能與製作
+41208 微弱的靈魂 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=6021#item_detail
+49216 普洛凱爾的護身符 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9246#item_detail 龍騎士50級試煉道具。能離開異界奎斯特的傳送符
+49202 時空裂痕邪念碎片 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9263#item_detail 幻術士45級試煉道具。 龍騎士、幻術士50級試煉道具。可以傳送到異界奎斯特
+49178 希蓮恩的護身符 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9267#item_detail 幻術士50級試煉道具。能離開異界奎斯特的傳送符
+
+強化卷軸缺:
+武器強化 古書 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=5268#item_detail
+古代之 武器強化 古書 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=5269#item_detail
+
+變形卷軸缺:
+幻之鱗 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=5421#item_detail
+
 
 錯誤列表相關資料蒐集:
 
