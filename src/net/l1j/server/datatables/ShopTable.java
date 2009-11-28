@@ -136,6 +136,23 @@ public class ShopTable {
 		} finally {
 			SQLUtil.close(rs, pstm, con);
 		}
+		if (Config.SHOP_CUSTOM_TABLE) {
+			try {
+				con = L1DatabaseFactory.getInstance().getConnection();
+				pstm = con.prepareStatement("SELECT * FROM shop_custom WHERE npc_id=? ORDER BY order_id");
+				for (int npcId : enumNpcIds()) {
+					pstm.setInt(1, npcId);
+					rs = pstm.executeQuery();
+					L1Shop shop = loadShop(npcId, rs);
+					_allShops.put(npcId, shop);
+					rs.close();
+				}
+			} catch (SQLException e) {
+				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			} finally {
+				SQLUtil.close(rs, pstm, con);
+			}
+		}
 	}
 
 	public L1Shop get(int npcId) {

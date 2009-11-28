@@ -310,9 +310,24 @@ public class NpcTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
+		}
+		if (Config.ETCITEM_CUSTOM_TABLE) {
+			try {
+				con = L1DatabaseFactory.getInstance().getConnection();
+				pstm = con
+						.prepareStatement("SELECT DISTINCT(family) AS family FROM npc_custom WHERE NOT TRIM(family) =''");
+				rs = pstm.executeQuery();
+				int id = 1;
+				while (rs.next()) {
+					String family = rs.getString("family");
+					result.put(family, id++);
+				}
+			} catch (SQLException e) {
+				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			} finally {
+				SQLUtil.close(rs, pstm, con);
+			}
 		}
 		return result;
 	}
