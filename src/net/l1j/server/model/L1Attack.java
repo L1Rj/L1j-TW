@@ -1129,14 +1129,6 @@ public class L1Attack
 				if (_targetNpc.getNpcTemplate().is_hard()) {
 					add_dmg /= 2;
 				}
-				/*if ((_arrow.getItem().getItemId() == 40741
-						|| _arrow.getItem().getItemId() == 40744
-						|| _arrow.getItem().getItemId() == 40746
-						|| _arrow.getItem().getItemId() == 40747
-						|| _arrow.getItem().getItemId() == 40748)
-						&& _targetNpc.getNpcTemplate().get_undead() != 0) {
-					dmg = RandomArrayList.getArrayshortList((short) 20) + add_dmg;
-				}*/ //原有的+成系統應該還有作用吧
 				dmg += RandomArrayList.getInc(add_dmg, 1); // getArrayshortList((short) add_dmg) + 1;
 			} else if (_weaponId == 190) { // 沙哈之弓
 				dmg += RandomArrayList.getInc(15, 1); // getArrayshortList((short) 15) + 1;
@@ -1792,11 +1784,11 @@ public class L1Attack
 	}
 
 	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+/*		private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
 	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	// 飛び道具（矢、スティング）がミスだったときの軌道を計算 // 5.12 Start 標記 城上NPC問題
-/*	public void calcOrbit(int cx, int cy, int heading) // 起點Ｘ 起點Ｙ 今向いてる方向
+	public void calcOrbit(int cx, int cy, int heading) // 起點Ｘ 起點Ｙ 今向いてる方向
 	{
 		int targetX = _target.getX();
 		int targetY = _target.getY();
