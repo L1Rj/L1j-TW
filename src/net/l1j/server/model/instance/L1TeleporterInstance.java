@@ -281,6 +281,16 @@ public class L1TeleporterInstance extends L1NpcInstance {
 					price = new String[]{ "580","680","680"};
 				}
 				break;
+//20091213 貝希摩斯,希培莉亞傳師加狩獵區
+                case 80132: { // 魔法師蒂卡菲兒
+                    price = new String[]{ "50","50","50","50","120","120","180","180","180","240","240","400","400","800","7700" };
+                }
+                break;
+                case 80146: { // 魔法師 賽莉恩
+                    price = new String[]{ "50","50","50","120","180","180","240","240","240","300","300","500","500","900","8000" };
+                }
+                break;
+//add end
 				default: {
 					price = new String[]{""};
 				}
@@ -349,6 +359,18 @@ public class L1TeleporterInstance extends L1NpcInstance {
 					html = "teleheine3";
 					price = new String[]{ "110","110","242","242","242","242","363","363","484","484","605" };
 				}
+//20091213 貝希摩斯,希培莉亞傳師加狩獵區
+                break;
+                case 80132: { // 魔法師蒂卡菲兒
+                    html = "dekabia3";
+                    price = new String[]{ "100","220","220","220","330","330","330","330","440","440" };
+                }
+                break;
+                case 80146: { // 魔法師 賽莉恩
+                    html = "sharial3"; 
+                    price = new String[]{ "220","330","330","330","440","440","550","550","550","550" };
+                }
+//add end
 				break;
 				default: {
 					price = new String[]{""};
@@ -401,8 +423,17 @@ public class L1TeleporterInstance extends L1NpcInstance {
 			String htmlid = "guide_4";
 			price=new String[]{"676","676","676","676","676","1066","936"};
 			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
-		}
+//20091213 貝希摩斯,希培莉亞傳師加狩獵區
+		} else if (action.equalsIgnoreCase("teleportURLA")){
+			String htmlid = "dekabia3";
+			price = new String[]{ "100","220","220","220","330","330","330","330","440","440" };
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
+		} else if (action.equalsIgnoreCase("teleportURLA")) {
+			String htmlid = "sharial3"; 
+			price = new String[]{ "220","330","330","330","440","440","550","550","550","550" };
+			player.sendPackets(new S_NPCTalkReturn(objid, htmlid, price));
 //add end
+		}
 
 		if (action.startsWith("teleport ")) {
 			_log.finest((new StringBuilder()).append("Setting action to : ")
