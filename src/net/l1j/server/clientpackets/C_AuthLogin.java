@@ -83,7 +83,8 @@ public class C_AuthLogin extends ClientBasePacket {
 
 		try {
 			LoginController.getInstance().login(client, account);
-			Account.updateLastActive(account); // 最終ログイン日を更新する
+//			Account.updateLastActive(account); // 最後登入日期更新
+			Account.updateLastActive(account, ip);// 最後登入日期與ip更新
 			client.setAccount(account);
 			client.sendPacket(new S_LoginResult(S_LoginResult.REASON_LOGIN_OK));
 			client.sendPacket(new S_CommonNews());

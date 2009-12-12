@@ -197,17 +197,26 @@ public class Account {
 	 * @param account
 	 *            アカウント
 	 */
-	public static void updateLastActive(final Account account) {
+	public static void updateLastActive(final Account account, final String ip/*更新登入IP*/) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
+/*
 			String sqlstr = "UPDATE accounts SET lastactive=? WHERE login = ?";
 			pstm = con.prepareStatement(sqlstr);
 			pstm.setTimestamp(1, ts);
 			pstm.setString(2, account.getName());
+*/
+//登入更新IP
+			String sqlstr = "UPDATE accounts SET lastactive=?,ip=? WHERE login = ?";
+			pstm = con.prepareStatement(sqlstr);
+			pstm.setTimestamp(1, ts);
+			pstm.setString(2, ip);
+			pstm.setString(3, account.getName());
+//add end
 			pstm.execute();
 			account._lastActive = ts;
 			_log.fine("update lastactive for " + account.getName());
