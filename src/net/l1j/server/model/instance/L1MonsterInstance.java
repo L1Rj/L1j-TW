@@ -50,11 +50,9 @@ import net.l1j.server.utils.RandomArrayList;
 import net.l1j.thread.GeneralThreadPool;
 
 public class L1MonsterInstance extends L1NpcInstance {
-
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(L1MonsterInstance.class
-			.getName());
+	private static Logger _log = Logger.getLogger(L1MonsterInstance.class.getName());
 
 	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
@@ -62,8 +60,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 
 	// アイテム使用處理
 	@Override
-	public void onItemUse()
-	{
+	public void onItemUse() {
 		if (!isActived() && _target != null) {
 			useItem(USEITEM_HASTE, 40); // ４０％の確率でヘイストポーション使用
 
@@ -78,9 +75,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 				setGfxId(targetPc.getClassId());
 				setPassispeed(640);
 				setAtkspeed(900); // 正確な值がわからん
-				
-				for (L1PcInstance pc : L1World.getInstance()
-						.getRecognizePlayer(this)) {
+
+				for (L1PcInstance pc : L1World.getInstance().getRecognizePlayer(this)) {
 					pc.sendPackets(new S_RemoveObject(this));
 					pc.removeKnownObject(this);
 					pc.updateObject();
@@ -96,20 +92,16 @@ public class L1MonsterInstance extends L1NpcInstance {
 	public void onPerceive(L1PcInstance perceivedFrom) {
 		perceivedFrom.addKnownObject(this);
 		if (0 < getCurrentHp()) {
-			if (getHiddenStatus() == HIDDEN_STATUS_SINK
-					|| getHiddenStatus() == HIDDEN_STATUS_ICE) {
-				perceivedFrom.sendPackets(new S_DoActionGFX(getId(),
-						ActionCodes.ACTION_Hide));
+			if (getHiddenStatus() == HIDDEN_STATUS_SINK || getHiddenStatus() == HIDDEN_STATUS_ICE) {
+				perceivedFrom.sendPackets(new S_DoActionGFX(getId(), ActionCodes.ACTION_Hide));
 			} else if (getHiddenStatus() == HIDDEN_STATUS_FLY) {
-				perceivedFrom.sendPackets(new S_DoActionGFX(getId(),
-						ActionCodes.ACTION_Moveup));
+				perceivedFrom.sendPackets(new S_DoActionGFX(getId(), ActionCodes.ACTION_Moveup));
 			}
-// waja add 吉爾塔斯反擊屏障
-			else if (getHiddenStatus() == HIDDEN_STATUS_COUNTER_BARRIER) { // 吉爾塔斯反擊屏障 
-				perceivedFrom.sendPackets(new S_DoActionGFX(getId(),
-				ActionCodes.ACTION_SwordWalk));
-				}
-// add end
+			// waja add 吉爾塔斯反擊屏障
+			else if (getHiddenStatus() == HIDDEN_STATUS_COUNTER_BARRIER) { // 吉爾塔斯反擊屏障
+				perceivedFrom.sendPackets(new S_DoActionGFX(getId(), ActionCodes.ACTION_SwordWalk));
+			}
+			// add end
 			perceivedFrom.sendPackets(new S_NPCPack(this));
 			onNpcAI(); // モンスターのＡＩを開始
 			if (getBraveSpeed() == 1) { // ちゃんとした方法がわからない
@@ -121,8 +113,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 	}
 
 	// ターゲットを探す
-	public static int[][] _classGfxId = { { 0, 1 }, { 48, 61 }, { 37, 138 },
-			{ 734, 1186 }, { 2786, 2796 } };
+	public static int[][] _classGfxId = { { 0, 1 }, { 48, 61 }, { 37, 138 }, { 734, 1186 }, { 2786, 2796 } };
 
 	@Override
 	public void searchTarget() {
@@ -130,35 +121,31 @@ public class L1MonsterInstance extends L1NpcInstance {
 		L1PcInstance targetPlayer = null;
 
 		for (L1PcInstance pc : L1World.getInstance().getVisiblePlayer(this)) {
-			if (pc.getCurrentHp() <= 0 || pc.isDead() || pc.isGm()
-					|| pc.isMonitor() || pc.isGhost()) {
+			if (pc.getCurrentHp() <= 0 || pc.isDead() || pc.isGm() || pc.isMonitor() || pc.isGhost()) {
 				continue;
 			}
 
 			// 鬥技場內は變身／未變身に限らず全てアクティブ
 			int mapId = getMapId();
-			if (mapId == 88 || mapId == 98 || mapId == 92 || mapId == 91
-					|| mapId == 95) {
+			if (mapId == 88 || mapId == 98 || mapId == 92 || mapId == 91 || mapId == 95) {
 				if (!pc.isInvisble() || getNpcTemplate().is_agrocoi()) { // インビジチェック
 					targetPlayer = pc;
 					break;
 				}
 			}
 
-			if (getNpcId() == 45600){ // 克特
-				if (pc.isCrown() || pc.isDarkelf()
-						|| pc.getTempCharGfx() != pc.getClassId()) { // 沒變身的王族、黑暗妖精
+			if (getNpcId() == 45600) { // 克特
+				if (pc.isCrown() || pc.isDarkelf() || pc.getTempCharGfx() != pc.getClassId()) { // 沒變身的王族、黑暗妖精
 					targetPlayer = pc;
 					break;
 				}
 			}
 			if (getNpcId() == 45215) {// 長者 僅搜尋正義值負值玩家
-				if(pc.getLawful() <= -1) {
+				if (pc.getLawful() <= -1) {
 					targetPlayer = pc;
 					break;
 				}
 			}
-
 
 			// どちらかの條件を滿たす場合、友好と見なされ先制攻擊されない。
 			// ‧モンスターのカルマがマイナス值（バルログ側モンスター）でPCのカルマレベルが1以上（バルログ友好）
@@ -175,8 +162,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				continue;
 			}
 
-			if (!getNpcTemplate().is_agro() && !getNpcTemplate().is_agrososc()
-					&& getNpcTemplate().is_agrogfxid1() < 0
+			if (!getNpcTemplate().is_agro() && !getNpcTemplate().is_agrososc() && getNpcTemplate().is_agrogfxid1() < 0
 					&& getNpcTemplate().is_agrogfxid2() < 0) { // 完全なノンアクティブモンスター
 				if (pc.getLawful() < -1000) { // プレイヤーがカオティック
 					targetPlayer = pc;
@@ -197,32 +183,24 @@ public class L1MonsterInstance extends L1NpcInstance {
 				}
 
 				// 特定のクラスorグラフィックＩＤにアクティブ
-				if (getNpcTemplate().is_agrogfxid1() >= 0
-						&& getNpcTemplate().is_agrogfxid1() <= 4) { // クラス指定
-					if (_classGfxId[getNpcTemplate().is_agrogfxid1()][0] == pc
-							.getTempCharGfx()
-							|| _classGfxId[getNpcTemplate().is_agrogfxid1()][1] == pc
-									.getTempCharGfx()) {
+				if (getNpcTemplate().is_agrogfxid1() >= 0 && getNpcTemplate().is_agrogfxid1() <= 4) { // クラス指定
+					if (_classGfxId[getNpcTemplate().is_agrogfxid1()][0] == pc.getTempCharGfx()
+							|| _classGfxId[getNpcTemplate().is_agrogfxid1()][1] == pc.getTempCharGfx()) {
 						targetPlayer = pc;
 						break;
 					}
-				} else if (pc.getTempCharGfx() == getNpcTemplate()
-						.is_agrogfxid1()) { // グラフィックＩＤ指定
+				} else if (pc.getTempCharGfx() == getNpcTemplate().is_agrogfxid1()) { // グラフィックＩＤ指定
 					targetPlayer = pc;
 					break;
 				}
 
-				if (getNpcTemplate().is_agrogfxid2() >= 0
-						&& getNpcTemplate().is_agrogfxid2() <= 4) { // クラス指定
-					if (_classGfxId[getNpcTemplate().is_agrogfxid2()][0] == pc
-							.getTempCharGfx()
-							|| _classGfxId[getNpcTemplate().is_agrogfxid2()][1] == pc
-									.getTempCharGfx()) {
+				if (getNpcTemplate().is_agrogfxid2() >= 0 && getNpcTemplate().is_agrogfxid2() <= 4) { // クラス指定
+					if (_classGfxId[getNpcTemplate().is_agrogfxid2()][0] == pc.getTempCharGfx()
+							|| _classGfxId[getNpcTemplate().is_agrogfxid2()][1] == pc.getTempCharGfx()) {
 						targetPlayer = pc;
 						break;
 					}
-				} else if (pc.getTempCharGfx() == getNpcTemplate()
-						.is_agrogfxid2()) { // グラフィックＩＤ指定
+				} else if (pc.getTempCharGfx() == getNpcTemplate().is_agrogfxid2()) { // グラフィックＩＤ指定
 					targetPlayer = pc;
 					break;
 				}
@@ -243,8 +221,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 		}
 	}
 
-	public L1MonsterInstance(L1Npc template)
-	{
+	public L1MonsterInstance(L1Npc template) {
 		super(template);
 		_storeDroped = false;
 	}
@@ -267,27 +244,25 @@ public class L1MonsterInstance extends L1NpcInstance {
 	@Override
 	public void onTalkAction(L1PcInstance pc) {
 		int objid = getId();
-		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(
-				getNpcTemplate().get_npcId());
+		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(getNpcTemplate().get_npcId());
 		String htmlid = null;
 		String[] htmldata = null;
 
-			// html表示パケット送信
-			if (htmlid != null) { // htmlidが指定されている場合
-				if (htmldata != null) { // html指定がある場合は表示
-					pc.sendPackets(new S_NPCTalkReturn(objid, htmlid,
-							htmldata));
-				} else {
-					pc.sendPackets(new S_NPCTalkReturn(objid, htmlid));
-				}
+		// html表示パケット送信
+		if (htmlid != null) { // htmlidが指定されている場合
+			if (htmldata != null) { // html指定がある場合は表示
+				pc.sendPackets(new S_NPCTalkReturn(objid, htmlid, htmldata));
 			} else {
-				if (pc.getLawful() < -1000) { // プレイヤーがカオティック
-					pc.sendPackets(new S_NPCTalkReturn(talking, objid, 2));
-				} else {
-					pc.sendPackets(new S_NPCTalkReturn(talking, objid, 1));
-				}
+				pc.sendPackets(new S_NPCTalkReturn(objid, htmlid));
+			}
+		} else {
+			if (pc.getLawful() < -1000) { // プレイヤーがカオティック
+				pc.sendPackets(new S_NPCTalkReturn(talking, objid, 2));
+			} else {
+				pc.sendPackets(new S_NPCTalkReturn(talking, objid, 1));
 			}
 		}
+	}
 
 	@Override
 	public void onAction(L1PcInstance pc) {
@@ -314,8 +289,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 			onNpcAI();
 
 			if (attacker instanceof L1PcInstance) { // 仲間意識をもつモンスターのターゲットに設定
-				serchLink((L1PcInstance) attacker, getNpcTemplate()
-						.get_family());
+				serchLink((L1PcInstance) attacker, getNpcTemplate().get_family());
 			}
 
 			int newMp = getCurrentMp() - mpDamage;
@@ -329,8 +303,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 	@Override
 	public void receiveDamage(L1Character attacker, int damage) { // 攻擊でＨＰを減らすときはここを使用
 		if (getCurrentHp() > 0 && !isDead()) {
-			if (getHiddenStatus() == HIDDEN_STATUS_SINK
-					|| getHiddenStatus() == HIDDEN_STATUS_FLY) {
+			if (getHiddenStatus() == HIDDEN_STATUS_SINK || getHiddenStatus() == HIDDEN_STATUS_FLY) {
 				return;
 			}
 			if (damage >= 0) {
@@ -345,8 +318,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 			onNpcAI();
 
 			if (attacker instanceof L1PcInstance) { // 仲間意識をもつモンスターのターゲットに設定
-				serchLink((L1PcInstance) attacker, getNpcTemplate()
-						.get_family());
+				serchLink((L1PcInstance) attacker, getNpcTemplate().get_family());
 			}
 
 			if (attacker instanceof L1PcInstance && damage > 0) {
@@ -375,7 +347,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 					_threadPool.execute(death);
 					// Death(attacker);
 				} else { // 變身するモンスター
-// distributeExpDropKarma(attacker);
+				// distributeExpDropKarma(attacker);
 					transform(transformId);
 				}
 			}
@@ -393,10 +365,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 	}
 
 	private static void openDoorWhenNpcDied(L1NpcInstance npc) {
-		int[] npcId = { 46143, 46144, 46145, 46146, 46147, 46148,
-				46149, 46150, 46151, 46152};
-		int[] doorId = { 5001, 5002, 5003, 5004, 5005, 5006,
-				5007, 5008, 5009, 5010};
+		int[] npcId = { 46143, 46144, 46145, 46146, 46147, 46148, 46149, 46150, 46151, 46152 };
+		int[] doorId = { 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010 };
 
 		for (int i = 0; i < npcId.length; i++) {
 			if (npc.getNpcTemplate().get_npcId() == npcId[i]) {
@@ -429,8 +399,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 			for (byte count = 0; count < 10; count++) {
 				L1Location newLoc = getLocation().randomLocation(3, 4, false);
 				if (glanceCheck(newLoc.getX(), newLoc.getY())) {
-					L1Teleport.teleport(pc, newLoc.getX(), newLoc.getY(),
-							getMapId(), 5, true);
+					L1Teleport.teleport(pc, newLoc.getX(), newLoc.getY(), getMapId(), 5, true);
 					break;
 				}
 			}
@@ -463,18 +432,15 @@ public class L1MonsterInstance extends L1NpcInstance {
 		}
 	}
 
-	class Death implements Runnable
-	{
+	class Death implements Runnable {
 		L1Character _lastAttacker;
 
-		public Death(L1Character lastAttacker)
-		{
+		public Death(L1Character lastAttacker) {
 			_lastAttacker = lastAttacker;
 		}
 
 		@Override
-		public void run()
-		{
+		public void run() {
 			setDeathProcessing(true);
 			setCurrentHpDirect(0);
 			setDead(true);
@@ -538,11 +504,9 @@ public class L1MonsterInstance extends L1NpcInstance {
 				if (lastAttacker instanceof L1PcInstance) {
 					pc = (L1PcInstance) lastAttacker;
 				} else if (lastAttacker instanceof L1PetInstance) {
-					pc = (L1PcInstance) ((L1PetInstance) lastAttacker)
-							.getMaster();
+					pc = (L1PcInstance) ((L1PetInstance) lastAttacker).getMaster();
 				} else if (lastAttacker instanceof L1SummonInstance) {
-					pc = (L1PcInstance) ((L1SummonInstance)
-							lastAttacker).getMaster();
+					pc = (L1PcInstance) ((L1SummonInstance) lastAttacker).getMaster();
 				}
 				if (pc != null) {
 					int exp = getExp();
@@ -558,15 +522,12 @@ public class L1MonsterInstance extends L1NpcInstance {
 	}
 
 	private void distributeDrop() {
-		FastTable<L1Character> dropTargetList = _dropHateList
-				.toTargetArrayList();
+		FastTable<L1Character> dropTargetList = _dropHateList.toTargetArrayList();
 		FastTable<Integer> dropHateList = _dropHateList.toHateArrayList();
 		try {
 			int npcId = getNpcTemplate().get_npcId();
-			if (npcId != 45640
-					|| (npcId == 45640 && getTempCharGfx() == 2332)) {
-				DropTable.getInstance().dropShare(L1MonsterInstance.this,
-						dropTargetList, dropHateList);
+			if (npcId != 45640 || (npcId == 45640 && getTempCharGfx() == 2332)) {
+				DropTable.getInstance().dropShare(L1MonsterInstance.this, dropTargetList, dropHateList);
 			}
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -594,10 +555,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 			if (ub != null) {
 				for (L1PcInstance pc : ub.getMembersArray()) {
 					if (pc != null && !pc.isDead() && !pc.isGhost()) {
-						L1ItemInstance item = pc.getInventory()
-								.storeItem(41402, getUbSealCount());
-						pc.sendPackets(new S_ServerMessage(403, item
-								.getLogName())); // %0を手に入れました。
+						L1ItemInstance item = pc.getInventory().storeItem(41402, getUbSealCount());
+						pc.sendPackets(new S_ServerMessage(403, item.getLogName())); // %0を手に入れました。
 					}
 				}
 			}
@@ -643,8 +602,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				if (2 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_SINK);
-					broadcastPacket(new S_DoActionGFX(getId(),
-							ActionCodes.ACTION_Hide));
+					broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Hide));
 					setStatus(13);
 					broadcastPacket(new S_NPCPack(this));
 				}
@@ -655,8 +613,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				if (3 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_SINK);
-					broadcastPacket(new S_DoActionGFX(getId(),
-							ActionCodes.ACTION_AntharasHide));
+					broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_AntharasHide));
 					setStatus(20);
 					broadcastPacket(new S_NPCPack(this));
 				}
@@ -668,70 +625,62 @@ public class L1MonsterInstance extends L1NpcInstance {
 				|| npcid == 45321 // 格利芬 (一般)
 				|| npcid == 45445)// 格利芬 (遺忘之島)
 		{
-			if (getMaxHp() / 3 > getCurrentHp())
-			{
+			if (getMaxHp() / 3 > getCurrentHp()) {
 				int rnd = RandomArrayList.getInc(10, 1);
 				if (2 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_FLY);
-					broadcastPacket(new S_DoActionGFX(getId(),
-							ActionCodes.ACTION_Moveup));
+					broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Moveup));
 					setStatus(0);
 					setState(2); // 空中類型的怪物 在天上設2, 在地上設1
 					// broadcastPacket(new S_NPCPack(this));
 				}
 			}
-		}
-		else if (npcid == 45681) // 風龍 - 林德拜爾
+		} else if (npcid == 45681) // 風龍 - 林德拜爾
 		{
 			if (getMaxHp() / 3 > getCurrentHp()) {
 				int rnd = RandomArrayList.getInc(10, 1);
 				if (3 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_FLY);
-					broadcastPacket(new S_DoActionGFX(getId(),
-							ActionCodes.ACTION_Moveup));
+					broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Moveup));
 					setStatus(11);
 					setState(2);
 					broadcastPacket(new S_NPCPack(this));
 				}
 			}
 		} else if (npcid == 46107 // テーベ マンドラゴラ(白)
-				 || npcid == 46108) { // テーベ マンドラゴラ(黒)
-			if (getMaxHp() / 4> getCurrentHp()) {
+				|| npcid == 46108) { // テーベ マンドラゴラ(黒)
+			if (getMaxHp() / 4 > getCurrentHp()) {
 				int rnd = RandomArrayList.getInc(10, 1);
 				if (2 > rnd) {
 					allTargetClear();
 					setHiddenStatus(HIDDEN_STATUS_SINK);
-					broadcastPacket(new S_DoActionGFX(getId(),
-							ActionCodes.ACTION_Hide));
+					broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Hide));
 					setStatus(13);
 					broadcastPacket(new S_NPCPack(this));
 				}
 			}
 		}
-//TODO 吉爾塔斯反擊屏障
-		else if (npcid == 81163)
-		{
-		if (getMaxHp() / 6 > getCurrentHp())
-//		{
-//			int rnd = RandomArrayList.getInc(10, 1);
-//			if (9 > rnd)
+		// TODO 吉爾塔斯反擊屏障
+		else if (npcid == 81163) {
+			if (getMaxHp() / 6 > getCurrentHp())
+			// {
+			// int rnd = RandomArrayList.getInc(10, 1);
+			// if (9 > rnd)
 			{
-		allTargetClear();
-		setHiddenStatus(HIDDEN_STATUS_COUNTER_BARRIER);
-		broadcastPacket(new S_DoActionGFX(getId(),
-		ActionCodes.ACTION_SwordWalk));
-		setStatus(4);
-		broadcastPacket(new S_NPCPack(this));
-//			}
+				allTargetClear();
+				setHiddenStatus(HIDDEN_STATUS_COUNTER_BARRIER);
+				broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_SwordWalk));
+				setStatus(4);
+				broadcastPacket(new S_NPCPack(this));
+				// }
+			}
 		}
-		}
-//add end
+		// add end
 	}
 
-	public void initHide()
-	{
+	public void initHide() {
 		// 出現直後の隱れる動作
 		// 潛るMOBは一定の確率で地中に潛った狀態に、
 		// 飛ぶMOBは飛んだ狀態にしておく
@@ -764,25 +713,20 @@ public class L1MonsterInstance extends L1NpcInstance {
 			setHiddenStatus(HIDDEN_STATUS_FLY);
 			setStatus(0);
 			setState(1); // 空中類型的怪物 在天上設2, 在地上設1
-		}
-		else if (npcid == 45681) { // リンドビオル
+		} else if (npcid == 45681) { // リンドビオル
 			setHiddenStatus(HIDDEN_STATUS_FLY);
 			setStatus(11);
 			setState(1); // 空中類型的怪物 在天上設2, 在地上設1
-		}
-		else if (npcid >= 46125 && npcid <= 46128)
-		{
+		} else if (npcid >= 46125 && npcid <= 46128) {
 			setHiddenStatus(HIDDEN_STATUS_ICE);
 			setStatus(4);
 		}
 	}
 
-	public void initHideForMinion(L1NpcInstance leader)
-	{
+	public void initHideForMinion(L1NpcInstance leader) {
 		// グループに屬するモンスターの出現直後の隱れる動作（リーダーと同じ動作にする）
 		int npcid = getNpcTemplate().get_npcId();
-		if (leader.getHiddenStatus() == HIDDEN_STATUS_SINK)
-		{
+		if (leader.getHiddenStatus() == HIDDEN_STATUS_SINK) {
 			if (npcid == 45061 // カーズドスパルトイ
 					|| npcid == 45161 // スパルトイ
 					|| npcid == 45181 // スパルトイ
@@ -796,10 +740,8 @@ public class L1MonsterInstance extends L1NpcInstance {
 				setHiddenStatus(HIDDEN_STATUS_SINK);
 				setStatus(4);
 			}
-		}
-		else if (leader.getHiddenStatus() == HIDDEN_STATUS_FLY)
-		{
-			if (npcid == 45067 		  // 弱化哈維 (新手村莊)
+		} else if (leader.getHiddenStatus() == HIDDEN_STATUS_FLY) {
+			if (npcid == 45067 // 弱化哈維 (新手村莊)
 					|| npcid == 45264 // 哈維 (一般)
 					|| npcid == 45452 // 哈維 (遺忘之島)
 					|| npcid == 45090 // 弱化格利芬 (新手村莊
@@ -809,16 +751,13 @@ public class L1MonsterInstance extends L1NpcInstance {
 				setHiddenStatus(HIDDEN_STATUS_FLY);
 				setStatus(0);
 				setState(1); // 空中類型的怪物 在天上設2, 在地上設1
-			}
-			else if (npcid == 45681) // 風龍 - 林德拜爾
+			} else if (npcid == 45681) // 風龍 - 林德拜爾
 			{
 				setHiddenStatus(HIDDEN_STATUS_FLY);
 				setStatus(11);
 				setState(1); // 空中類型的怪物 在天上設2, 在地上設1
 			}
-		}
-		else if (npcid >= 46125 && npcid <= 46128)
-		{
+		} else if (npcid >= 46125 && npcid <= 46128) {
 			setHiddenStatus(HIDDEN_STATUS_ICE);
 			setStatus(4);
 		}

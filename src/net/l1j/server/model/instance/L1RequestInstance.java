@@ -26,12 +26,9 @@ import net.l1j.server.serverpackets.S_NPCTalkReturn;
 import net.l1j.server.templates.L1Npc;
 
 public class L1RequestInstance extends L1NpcInstance {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private static Logger _log = Logger.getLogger(L1RequestInstance.class
-			.getName());
+
+	private static Logger _log = Logger.getLogger(L1RequestInstance.class.getName());
 
 	public L1RequestInstance(L1Npc template) {
 		super(template);
@@ -41,8 +38,7 @@ public class L1RequestInstance extends L1NpcInstance {
 	public void onAction(L1PcInstance player) {
 		int objid = getId();
 
-		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(
-				getNpcTemplate().get_npcId());
+		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(getNpcTemplate().get_npcId());
 
 		if (talking != null) {
 			if (player.getLawful() < -1000) { // プレイヤーがカオティック

@@ -151,7 +151,7 @@ public final class Config {
 
 	public static boolean SHOP_CUSTOM_TABLE;
 
-	/* 進階設定控制 */
+	/* 管理進階設定 */
 
 	public static short GLOBAL_CHAT_LEVEL;
 
@@ -448,75 +448,45 @@ public final class Config {
 			is.close();
 
 			GAME_SERVER_HOST_NAME = serverSettings.getProperty("GameserverHostname", "*");
-			GAME_SERVER_PORT = Integer.parseInt(serverSettings
-					.getProperty("GameserverPort", "2000"));
-			THREAD_P_TYPE_GENERAL = Integer.parseInt(serverSettings.getProperty(
-					"GeneralThreadPoolType", "0"), 10);
-			THREAD_P_SIZE_GENERAL = Integer.parseInt(serverSettings.getProperty(
-					"GeneralThreadPoolSize", "0"), 10);
+			GAME_SERVER_PORT = Integer.parseInt(serverSettings.getProperty("GameserverPort", "2000"));
+			THREAD_P_TYPE_GENERAL = Integer.parseInt(serverSettings.getProperty("GeneralThreadPoolType", "0"), 10);
+			THREAD_P_SIZE_GENERAL = Integer.parseInt(serverSettings.getProperty("GeneralThreadPoolSize", "0"), 10);
 			CLIENT_LANGUAGE = Integer.parseInt(serverSettings.getProperty("ClientLanguage", "3"));
 			CLIENT_LANGUAGE_CODE = LANGUAGE_CODE_ARRAY[CLIENT_LANGUAGE];
 			TIME_ZONE = serverSettings.getProperty("TimeZone", "TST");
-			HOSTNAME_LOOKUPS = Boolean.parseBoolean(serverSettings.getProperty("HostnameLookups",
-					"false"));
+			HOSTNAME_LOOKUPS = Boolean.parseBoolean(serverSettings.getProperty("HostnameLookups", "false"));
 			AUTOMATIC_KICK = Integer.parseInt(serverSettings.getProperty("AutomaticKick", "10"));
-			AUTO_CREATE_ACCOUNTS = Boolean.parseBoolean(serverSettings.getProperty(
-					"AutoCreateAccounts", "true"));
-			MAX_ONLINE_USERS = Short.parseShort(serverSettings.getProperty("MaximumOnlineUsers",
-					"30"));
-			CACHE_MAP_FILES = Boolean.parseBoolean(serverSettings.getProperty("CacheMapFiles",
-					"false"));
-			LOAD_V2_MAP_FILES = Boolean.parseBoolean(serverSettings.getProperty("LoadV2MapFiles",
-					"false"));
-			CHECK_MOVE_INTERVAL = Boolean.parseBoolean(serverSettings.getProperty(
-					"CheckMoveInterval", "false"));
-			CHECK_ATTACK_INTERVAL = Boolean.parseBoolean(serverSettings.getProperty(
-					"CheckAttackInterval", "false"));
-			CHECK_SPELL_INTERVAL = Boolean.parseBoolean(serverSettings.getProperty(
-					"CheckSpellInterval", "false"));
+			AUTO_CREATE_ACCOUNTS = Boolean.parseBoolean(serverSettings.getProperty("AutoCreateAccounts", "true"));
+			MAX_ONLINE_USERS = Short.parseShort(serverSettings.getProperty("MaximumOnlineUsers", "30"));
+			CACHE_MAP_FILES = Boolean.parseBoolean(serverSettings.getProperty("CacheMapFiles", "false"));
+			LOAD_V2_MAP_FILES = Boolean.parseBoolean(serverSettings.getProperty("LoadV2MapFiles", "false"));
+			CHECK_MOVE_INTERVAL = Boolean.parseBoolean(serverSettings.getProperty("CheckMoveInterval", "false"));
+			CHECK_ATTACK_INTERVAL = Boolean.parseBoolean(serverSettings.getProperty("CheckAttackInterval", "false"));
+			CHECK_SPELL_INTERVAL = Boolean.parseBoolean(serverSettings.getProperty("CheckSpellInterval", "false"));
 			INJUSTICE_COUNT = Short.parseShort(serverSettings.getProperty("InjusticeCount", "10"));
 			JUSTICE_COUNT = Integer.parseInt(serverSettings.getProperty("JusticeCount", "4"));
-			CHECK_STRICTNESS = Integer.parseInt(serverSettings
-					.getProperty("CheckStrictness", "102"));
-			LOGGING_WEAPON_ENCHANT = Byte.parseByte(serverSettings.getProperty(
-					"LoggingWeaponEnchant", "0"));
-			LOGGING_ARMOR_ENCHANT = Byte.parseByte(serverSettings.getProperty(
-					"LoggingArmorEnchant", "0"));
-			LOGGING_CHAT_NORMAL = Boolean.parseBoolean(serverSettings.getProperty(
-					"LoggingChatNormal", "false"));
-			LOGGING_CHAT_WHISPER = Boolean.parseBoolean(serverSettings.getProperty(
-					"LoggingChatWhisper", "false"));
-			LOGGING_CHAT_SHOUT = Boolean.parseBoolean(serverSettings.getProperty(
-					"LoggingChatShout", "false"));
-			LOGGING_CHAT_WORLD = Boolean.parseBoolean(serverSettings.getProperty(
-					"LoggingChatWorld", "false"));
-			LOGGING_CHAT_CLAN = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatClan",
-					"false"));
-			LOGGING_CHAT_PARTY = Boolean.parseBoolean(serverSettings.getProperty(
-					"LoggingChatParty", "false"));
-			LOGGING_CHAT_COMBINED = Boolean.parseBoolean(serverSettings.getProperty(
-					"LoggingChatCombined", "false"));
-			LOGGING_CHAT_CHAT_PARTY = Boolean.parseBoolean(serverSettings.getProperty(
-					"LoggingChatChatParty", "false"));
-			AUTOSAVE_INTERVAL = Integer.parseInt(serverSettings.getProperty("AutosaveInterval",
-					"1200"), 10);
-			AUTOSAVE_INTERVAL_INVENTORY = Integer.parseInt(serverSettings.getProperty(
-					"AutosaveIntervalOfInventory", "300"), 10);
-			SKILLTIMER_IMPLTYPE = Integer.parseInt(serverSettings.getProperty("SkillTimerImplType",
-					"1"));
+			CHECK_STRICTNESS = Integer.parseInt(serverSettings.getProperty("CheckStrictness", "102"));
+			LOGGING_WEAPON_ENCHANT = Byte.parseByte(serverSettings.getProperty("LoggingWeaponEnchant", "0"));
+			LOGGING_ARMOR_ENCHANT = Byte.parseByte(serverSettings.getProperty("LoggingArmorEnchant", "0"));
+			LOGGING_CHAT_NORMAL = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatNormal", "false"));
+			LOGGING_CHAT_WHISPER = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatWhisper", "false"));
+			LOGGING_CHAT_SHOUT = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatShout", "false"));
+			LOGGING_CHAT_WORLD = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatWorld", "false"));
+			LOGGING_CHAT_CLAN = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatClan", "false"));
+			LOGGING_CHAT_PARTY = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatParty", "false"));
+			LOGGING_CHAT_COMBINED = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatCombined", "false"));
+			LOGGING_CHAT_CHAT_PARTY = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatChatParty", "false"));
+			AUTOSAVE_INTERVAL = Integer.parseInt(serverSettings.getProperty("AutosaveInterval", "1200"), 10);
+			AUTOSAVE_INTERVAL_INVENTORY = Integer.parseInt(serverSettings.getProperty("AutosaveIntervalOfInventory", "300"), 10);
+			SKILLTIMER_IMPLTYPE = Integer.parseInt(serverSettings.getProperty("SkillTimerImplType", "1"));
 			NPCAI_IMPLTYPE = Integer.parseInt(serverSettings.getProperty("NpcAIImplType", "1"));
-			TELNET_SERVER = Boolean.parseBoolean(serverSettings
-					.getProperty("TelnetServer", "false"));
-			TELNET_SERVER_PORT = Integer.parseInt(serverSettings.getProperty("TelnetServerPort",
-					"23"));
-			PC_RECOGNIZE_RANGE = Integer.parseInt(serverSettings.getProperty("PcRecognizeRange",
-					"20"));
-			CHARACTER_CONFIG_IN_SERVER_SIDE = Boolean.parseBoolean(serverSettings.getProperty(
-					"CharacterConfigInServerSide", "true"));
+			TELNET_SERVER = Boolean.parseBoolean(serverSettings.getProperty("TelnetServer", "false"));
+			TELNET_SERVER_PORT = Integer.parseInt(serverSettings.getProperty("TelnetServerPort", "23"));
+			PC_RECOGNIZE_RANGE = Integer.parseInt(serverSettings.getProperty("PcRecognizeRange", "20"));
+			CHARACTER_CONFIG_IN_SERVER_SIDE = Boolean.parseBoolean(serverSettings.getProperty("CharacterConfigInServerSide", "true"));
 			ALLOW_2PC = Boolean.parseBoolean(serverSettings.getProperty("Allow2PC", "true"));
 			LEVEL_DOWN_RANGE = Integer.parseInt(serverSettings.getProperty("LevelDownRange", "0"));
-			SEND_PACKET_BEFORE_TELEPORT = Boolean.parseBoolean(serverSettings.getProperty(
-					"SendPacketBeforeTeleport", "false"));
+			SEND_PACKET_BEFORE_TELEPORT = Boolean.parseBoolean(serverSettings.getProperty("SendPacketBeforeTeleport", "false"));
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + SERVER_CONFIG_FILE + " File.");
@@ -530,26 +500,17 @@ public final class Config {
 			is.close();
 
 			DB_DRIVER = databaseSettings.getProperty("Driver", "com.mysql.jdbc.Driver");
-			DB_URL = databaseSettings.getProperty("URL",
-					"jdbc:mysql://localhost/l1jdb?useUnicode=true&characterEncoding=utf8");
+			DB_URL = databaseSettings.getProperty("URL", "jdbc:mysql://localhost/l1jdb?useUnicode=true&characterEncoding=utf8");
 			DB_LOGIN = databaseSettings.getProperty("Login", "root");
 			DB_PASSWORD = databaseSettings.getProperty("Password", "");
-			DETECT_DB_RESOURCE_LEAKS = Boolean.parseBoolean(databaseSettings.getProperty(
-					"EnableDatabaseResourceLeaksDetection", "false"));
-			ARMOR_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty(
-					"ArmorCustomTable", "false"));
-			ARMORSETS_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty(
-					"ArmorSetsCustomTable", "false"));
-			ETCITEM_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty(
-					"EtcItemCustomTable", "false"));
-			WEAPON_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty(
-					"WeaponCustomTable", "false"));
-			NPC_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("NpcCustomTable",
-					"false"));
-			DROPLIST_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty(
-					"DropListCustomTable", "false"));
-			SHOP_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("ShopCustomTable",
-					"false"));
+			DETECT_DB_RESOURCE_LEAKS = Boolean.parseBoolean(databaseSettings.getProperty("EnableDatabaseResourceLeaksDetection", "false"));
+			ARMOR_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("ArmorCustomTable", "false"));
+			ARMORSETS_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("ArmorSetsCustomTable", "false"));
+			ETCITEM_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("EtcItemCustomTable", "false"));
+			WEAPON_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("WeaponCustomTable", "false"));
+			NPC_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("NpcCustomTable", "false"));
+			DROPLIST_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("DropListCustomTable", "false"));
+			SHOP_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("ShopCustomTable", "false"));
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + DATABASE_CONFIG_FILE + " File.");
@@ -568,34 +529,24 @@ public final class Config {
 			LOOTING_RANGE = Integer.parseInt(altSettings.getProperty("LootingRange", "3"));
 			ALT_NONPVP = Boolean.parseBoolean(altSettings.getProperty("NonPvP", "true"));
 			ALT_ATKMSG = Boolean.parseBoolean(altSettings.getProperty("AttackMessageOn", "true"));
-			CHANGE_TITLE_BY_ONESELF = Boolean.parseBoolean(altSettings.getProperty(
-					"ChangeTitleByOneself", "false"));
+			CHANGE_TITLE_BY_ONESELF = Boolean.parseBoolean(altSettings.getProperty("ChangeTitleByOneself", "false"));
 			MAX_CLAN_MEMBER = Integer.parseInt(altSettings.getProperty("MaxClanMember", "0"));
 			CLAN_ALLIANCE = Boolean.parseBoolean(altSettings.getProperty("ClanAlliance", "true"));
 			MAX_PT = Integer.parseInt(altSettings.getProperty("MaxPT", "8"));
 			MAX_CHAT_PT = Integer.parseInt(altSettings.getProperty("MaxChatPT", "8"));
-			SIM_WAR_PENALTY = Boolean
-					.parseBoolean(altSettings.getProperty("SimWarPenalty", "true"));
+			SIM_WAR_PENALTY = Boolean.parseBoolean(altSettings.getProperty("SimWarPenalty", "true"));
 			GET_BACK = Boolean.parseBoolean(altSettings.getProperty("GetBack", "false"));
 			ALT_ITEM_DELETION_TYPE = altSettings.getProperty("ItemDeletionType", "auto");
-			ALT_ITEM_DELETION_TIME = Integer.parseInt(altSettings.getProperty("ItemDeletionTime",
-					"10"));
-			ALT_ITEM_DELETION_RANGE = Integer.parseInt(altSettings.getProperty("ItemDeletionRange",
-					"5"));
+			ALT_ITEM_DELETION_TIME = Integer.parseInt(altSettings.getProperty("ItemDeletionTime", "10"));
+			ALT_ITEM_DELETION_RANGE = Integer.parseInt(altSettings.getProperty("ItemDeletionRange", "5"));
 			ALT_GMSHOP = Boolean.parseBoolean(altSettings.getProperty("GMshop", "false"));
-			ALT_GMSHOP_MIN_ID = Integer.parseInt(altSettings.getProperty("GMshopMinID",
-					"0xffffffff")); // 取得失敗時は無效
-			ALT_GMSHOP_MAX_ID = Integer.parseInt(altSettings.getProperty("GMshopMaxID",
-					"0xffffffff")); // 取得失敗時は無效
-			ALT_HALLOWEENIVENT = Boolean.parseBoolean(altSettings.getProperty("HalloweenIvent",
-					"true"));
-			ALT_JPPRIVILEGED = Boolean.parseBoolean(altSettings
-					.getProperty("JpPrivileged", "false"));
-			ALT_TALKINGSCROLLQUEST = Boolean.parseBoolean(altSettings.getProperty(
-					"TalkingScrollQuest", "false"));
+			ALT_GMSHOP_MIN_ID = Integer.parseInt(altSettings.getProperty("GMshopMinID", "0xffffffff")); // 取得失敗時は無效
+			ALT_GMSHOP_MAX_ID = Integer.parseInt(altSettings.getProperty("GMshopMaxID", "0xffffffff")); // 取得失敗時は無效
+			ALT_HALLOWEENIVENT = Boolean.parseBoolean(altSettings.getProperty("HalloweenIvent", "true"));
+			ALT_JPPRIVILEGED = Boolean.parseBoolean(altSettings.getProperty("JpPrivileged", "false"));
+			ALT_TALKINGSCROLLQUEST = Boolean.parseBoolean(altSettings.getProperty("TalkingScrollQuest", "false"));
 			ALT_WHO_COMMAND = Boolean.parseBoolean(altSettings.getProperty("WhoCommand", "false"));
-			ALT_REVIVAL_POTION = Boolean.parseBoolean(altSettings.getProperty("RevivalPotion",
-					"false"));
+			ALT_REVIVAL_POTION = Boolean.parseBoolean(altSettings.getProperty("RevivalPotion", "false"));
 			String strWar;
 			strWar = altSettings.getProperty("WarTime", "2h");
 			if (strWar.indexOf("d") >= 0) {
@@ -621,33 +572,21 @@ public final class Config {
 				strWar = strWar.replace("m", "");
 			}
 			ALT_WAR_INTERVAL = Integer.parseInt(strWar);
-			SPAWN_HOME_POINT = Boolean.parseBoolean(altSettings.getProperty("SpawnHomePoint",
-					"true"));
-			SPAWN_HOME_POINT_COUNT = Integer.parseInt(altSettings.getProperty(
-					"SpawnHomePointCount", "2"));
-			SPAWN_HOME_POINT_DELAY = Integer.parseInt(altSettings.getProperty(
-					"SpawnHomePointDelay", "100"));
-			SPAWN_HOME_POINT_RANGE = Integer.parseInt(altSettings.getProperty(
-					"SpawnHomePointRange", "8"));
-			INIT_BOSS_SPAWN = Boolean
-					.parseBoolean(altSettings.getProperty("InitBossSpawn", "true"));
-			ELEMENTAL_STONE_AMOUNT = Integer.parseInt(altSettings.getProperty(
-					"ElementalStoneAmount", "300"));
-			HOUSE_TAX_INTERVAL = Integer
-					.parseInt(altSettings.getProperty("HouseTaxInterval", "10"));
+			SPAWN_HOME_POINT = Boolean.parseBoolean(altSettings.getProperty("SpawnHomePoint", "true"));
+			SPAWN_HOME_POINT_COUNT = Integer.parseInt(altSettings.getProperty("SpawnHomePointCount", "2"));
+			SPAWN_HOME_POINT_DELAY = Integer.parseInt(altSettings.getProperty("SpawnHomePointDelay", "100"));
+			SPAWN_HOME_POINT_RANGE = Integer.parseInt(altSettings.getProperty("SpawnHomePointRange", "8"));
+			INIT_BOSS_SPAWN = Boolean.parseBoolean(altSettings.getProperty("InitBossSpawn", "true"));
+			ELEMENTAL_STONE_AMOUNT = Integer.parseInt(altSettings.getProperty("ElementalStoneAmount", "300"));
+			HOUSE_TAX_INTERVAL = Integer.parseInt(altSettings.getProperty("HouseTaxInterval", "10"));
 			MAX_DOLL_COUNT = Integer.parseInt(altSettings.getProperty("MaxDollCount", "1"));
-			RETURN_TO_NATURE = Boolean.parseBoolean(altSettings.getProperty("ReturnToNature",
-					"false"));
+			RETURN_TO_NATURE = Boolean.parseBoolean(altSettings.getProperty("ReturnToNature", "false"));
 			MAX_NPC_ITEM = Integer.parseInt(altSettings.getProperty("MaxNpcItem", "8"));
-			MAX_PERSONAL_WAREHOUSE_ITEM = Integer.parseInt(altSettings.getProperty(
-					"MaxPersonalWarehouseItem", "100"));
-			MAX_CLAN_WAREHOUSE_ITEM = Integer.parseInt(altSettings.getProperty(
-					"MaxClanWarehouseItem", "200"));
-			DELETE_CHARACTER_AFTER_7DAYS = Boolean.parseBoolean(altSettings.getProperty(
-					"DeleteCharacterAfter7Days", "True"));
+			MAX_PERSONAL_WAREHOUSE_ITEM = Integer.parseInt(altSettings.getProperty("MaxPersonalWarehouseItem", "100"));
+			MAX_CLAN_WAREHOUSE_ITEM = Integer.parseInt(altSettings.getProperty("MaxClanWarehouseItem", "200"));
+			DELETE_CHARACTER_AFTER_7DAYS = Boolean.parseBoolean(altSettings.getProperty("DeleteCharacterAfter7Days", "True"));
 			NPC_DELETION_TIME = Integer.parseInt(altSettings.getProperty("NpcDeletionTime", "10"));
-			DEFAULT_CHARACTER_SLOT = Integer.parseInt(altSettings.getProperty(
-					"DefaultCharacterSlot", "6"));
+			DEFAULT_CHARACTER_SLOT = Integer.parseInt(altSettings.getProperty("DefaultCharacterSlot", "6"));
 			SKILL_CHECK = Boolean.parseBoolean(altSettings.getProperty("SkillCheck", "false"));
 			SHOW_HP_BAR = Boolean.parseBoolean(altSettings.getProperty("ShowHPBar", "false"));
 			GDROPITEM_TIME = Integer.parseInt(altSettings.getProperty("GDropItemTime", "10"));
@@ -673,14 +612,10 @@ public final class Config {
 			WIZARD_MAX_MP = Integer.parseInt(charSettings.getProperty("WizardMaxMP", "1200"));
 			DARKELF_MAX_HP = Integer.parseInt(charSettings.getProperty("DarkelfMaxHP", "1000"));
 			DARKELF_MAX_MP = Integer.parseInt(charSettings.getProperty("DarkelfMaxMP", "900"));
-			DRAGONKNIGHT_MAX_HP = Integer.parseInt(charSettings.getProperty("DragonKnightMaxHP",
-					"1400"));
-			DRAGONKNIGHT_MAX_MP = Integer.parseInt(charSettings.getProperty("DragonKnightMaxMP",
-					"600"));
-			ILLUSIONIST_MAX_HP = Integer.parseInt(charSettings.getProperty("IllusionistMaxHP",
-					"900"));
-			ILLUSIONIST_MAX_MP = Integer.parseInt(charSettings.getProperty("IllusionistMaxMP",
-					"1100"));
+			DRAGONKNIGHT_MAX_HP = Integer.parseInt(charSettings.getProperty("DragonKnightMaxHP", "1400"));
+			DRAGONKNIGHT_MAX_MP = Integer.parseInt(charSettings.getProperty("DragonKnightMaxMP", "600"));
+			ILLUSIONIST_MAX_HP = Integer.parseInt(charSettings.getProperty("IllusionistMaxHP", "900"));
+			ILLUSIONIST_MAX_MP = Integer.parseInt(charSettings.getProperty("IllusionistMaxMP", "1100"));
 			LV50_EXP = Integer.parseInt(charSettings.getProperty("Lv50Exp", "1"));
 			LV51_EXP = Integer.parseInt(charSettings.getProperty("Lv51Exp", "1"));
 			LV52_EXP = Integer.parseInt(charSettings.getProperty("Lv52Exp", "1"));
@@ -748,36 +683,21 @@ public final class Config {
 			RATE_KARMA = Double.parseDouble(rateSettings.getProperty("RateKarma", "1.0"));
 			RATE_DROP_ADENA = Double.parseDouble(rateSettings.getProperty("RateDropAdena", "1.0"));
 			RATE_DROP_ITEMS = Double.parseDouble(rateSettings.getProperty("RateDropItems", "1.0"));
-			ENCHANT_CHANCE_WEAPON = Integer.parseInt(rateSettings.getProperty(
-					"EnchantChanceWeapon", "68"));
-			ENCHANT_CHANCE_ARMOR = Integer.parseInt(rateSettings.getProperty("EnchantChanceArmor",
-					"52"));
-			ATTR_ENCHANT_CHANCE = Integer.parseInt(rateSettings.getProperty("AttrEnchantChance",
-					"10"));
-			RATE_WEIGHT_LIMIT = Double
-					.parseDouble(rateSettings.getProperty("RateWeightLimit", "1"));
-			RATE_WEIGHT_LIMIT_PET = Double.parseDouble(rateSettings.getProperty(
-					"RateWeightLimitforPet", "1"));
-			RATE_SHOP_SELLING_PRICE = Double.parseDouble(rateSettings.getProperty(
-					"RateShopSellingPrice", "1.0"));
-			RATE_SHOP_PURCHASING_PRICE = Double.parseDouble(rateSettings.getProperty(
-					"RateShopPurchasingPrice", "1.0"));
-			CREATE_CHANCE_DIARY = Integer.parseInt(rateSettings.getProperty("CreateChanceDiary",
-					"33"));
-			CREATE_CHANCE_RECOLLECTION = Integer.parseInt(rateSettings.getProperty(
-					"CreateChanceRecollection", "90"));
-			CREATE_CHANCE_MYSTERIOUS = Integer.parseInt(rateSettings.getProperty(
-					"CreateChanceMysterious", "90"));
-			CREATE_CHANCE_PROCESSING = Integer.parseInt(rateSettings.getProperty(
-					"CreateChanceProcessing", "90"));
-			CREATE_CHANCE_PROCESSING_DIAMOND = Integer.parseInt(rateSettings.getProperty(
-					"CreateChanceProcessingDiamond", "90"));
-			CREATE_CHANCE_DANTES = Integer.parseInt(rateSettings.getProperty("CreateChanceDantes",
-					"50"));
-			CREATE_CHANCE_ANCIENT_AMULET = Integer.parseInt(rateSettings.getProperty(
-					"CreateChanceAncientAmulet", "90"));
-			CREATE_CHANCE_HISTORY_BOOK = Integer.parseInt(rateSettings.getProperty(
-					"CreateChanceHistoryBook", "50"));
+			ENCHANT_CHANCE_WEAPON = Integer.parseInt(rateSettings.getProperty("EnchantChanceWeapon", "68"));
+			ENCHANT_CHANCE_ARMOR = Integer.parseInt(rateSettings.getProperty("EnchantChanceArmor", "52"));
+			ATTR_ENCHANT_CHANCE = Integer.parseInt(rateSettings.getProperty("AttrEnchantChance", "10"));
+			RATE_WEIGHT_LIMIT = Double.parseDouble(rateSettings.getProperty("RateWeightLimit", "1"));
+			RATE_WEIGHT_LIMIT_PET = Double.parseDouble(rateSettings.getProperty("RateWeightLimitforPet", "1"));
+			RATE_SHOP_SELLING_PRICE = Double.parseDouble(rateSettings.getProperty("RateShopSellingPrice", "1.0"));
+			RATE_SHOP_PURCHASING_PRICE = Double.parseDouble(rateSettings.getProperty("RateShopPurchasingPrice", "1.0"));
+			CREATE_CHANCE_DIARY = Integer.parseInt(rateSettings.getProperty("CreateChanceDiary", "33"));
+			CREATE_CHANCE_RECOLLECTION = Integer.parseInt(rateSettings.getProperty("CreateChanceRecollection", "90"));
+			CREATE_CHANCE_MYSTERIOUS = Integer.parseInt(rateSettings.getProperty("CreateChanceMysterious", "90"));
+			CREATE_CHANCE_PROCESSING = Integer.parseInt(rateSettings.getProperty("CreateChanceProcessing", "90"));
+			CREATE_CHANCE_PROCESSING_DIAMOND = Integer.parseInt(rateSettings.getProperty("CreateChanceProcessingDiamond", "90"));
+			CREATE_CHANCE_DANTES = Integer.parseInt(rateSettings.getProperty("CreateChanceDantes", "50"));
+			CREATE_CHANCE_ANCIENT_AMULET = Integer.parseInt(rateSettings.getProperty("CreateChanceAncientAmulet", "90"));
+			CREATE_CHANCE_HISTORY_BOOK = Integer.parseInt(rateSettings.getProperty("CreateChanceHistoryBook", "50"));
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + RATES_CONFIG_FILE + " File.");

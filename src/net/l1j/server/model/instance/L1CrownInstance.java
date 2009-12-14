@@ -36,10 +36,9 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Npc;
 
 public class L1CrownInstance extends L1NpcInstance {
-
 	private static final long serialVersionUID = 1L;
-	private static Logger _log = Logger.getLogger(L1CrownInstance.class
-			.getName());
+
+	private static Logger _log = Logger.getLogger(L1CrownInstance.class.getName());
 
 	public L1CrownInstance(L1Npc template) {
 		super(template);
@@ -48,7 +47,7 @@ public class L1CrownInstance extends L1NpcInstance {
 	@Override
 	public void onAction(L1PcInstance player) {
 		boolean in_war = false;
-		if (player.getClanid() == 0) { // クラン未所屬
+		if (player.getClanid() == 0) { // 尚未加入血盟
 			return;
 		}
 		String playerClanName = player.getClanname();
@@ -59,8 +58,7 @@ public class L1CrownInstance extends L1NpcInstance {
 		if (!player.isCrown()) { // 君主以外
 			return;
 		}
-		if (player.getTempCharGfx() != 0 && // 變身中
-				player.getTempCharGfx() != 1) {
+		if (player.getTempCharGfx() != 0 && player.getTempCharGfx() != 1) { // 變身中
 			return;
 		}
 		if (player.getId() != clan.getLeaderId()) { // 血盟主以外
@@ -69,25 +67,20 @@ public class L1CrownInstance extends L1NpcInstance {
 		if (!checkRange(player)) { // クラウンの1セル以內
 			return;
 		}
-		if (clan.getCastleId() != 0) {
-			// 城主クラン
-			// あなたはすでに城を所有しているので、他の城を取ることは出來ません。
-			player.sendPackets(new S_ServerMessage(474));
+		if (clan.getCastleId() != 0) { // 城主クラン
+			player.sendPackets(new S_ServerMessage(474)); // 你已經擁有城堡，無法再擁有其他城堡。
 			return;
 		}
 
 		// クラウンの座標からcastle_idを取得
-		int castle_id = L1CastleLocation
-				.getCastleId(getX(), getY(), getMapId());
+		int castle_id = L1CastleLocation.getCastleId(getX(), getY(), getMapId());
 
 		// 布告しているかチェック。但し、城主が居ない場合は布告不要
 		boolean existDefenseClan = false;
 		L1Clan defence_clan = null;
 		for (L1Clan defClan : L1World.getInstance().getAllClans()) {
-			if (castle_id == defClan.getCastleId()) {
-				// 元の城主クラン
-				defence_clan = L1World.getInstance().getClan(
-						defClan.getClanName());
+			if (castle_id == defClan.getCastleId()) { // 元の城主クラン
+				defence_clan = L1World.getInstance().getClan(defClan.getClanName());
 				existDefenseClan = true;
 				break;
 			}
@@ -107,15 +100,11 @@ public class L1CrownInstance extends L1NpcInstance {
 		if (existDefenseClan && defence_clan != null) { // 元の城主クランが居る
 			defence_clan.setCastleId(0);
 			ClanTable.getInstance().updateClan(defence_clan);
-			L1PcInstance defence_clan_member[] = defence_clan
-					.getOnlineClanMember();
+			L1PcInstance defence_clan_member[] = defence_clan.getOnlineClanMember();
 			for (int m = 0; m < defence_clan_member.length; m++) {
-				if (defence_clan_member[m].getId() == defence_clan
-						.getLeaderId()) { // 元の城主クランの君主
-					defence_clan_member[m].sendPackets(new S_CastleMaster(0,
-							defence_clan_member[m].getId()));
-					defence_clan_member[m].broadcastPacket(new S_CastleMaster(
-							0, defence_clan_member[m].getId()));
+				if (defence_clan_member[m].getId() == defence_clan.getLeaderId()) { // 元の城主クランの君主
+					defence_clan_member[m].sendPackets(new S_CastleMaster(0, defence_clan_member[m].getId()));
+					defence_clan_member[m].broadcastPacket(new S_CastleMaster(0, defence_clan_member[m].getId()));
 					break;
 				}
 			}
@@ -141,7 +130,7 @@ public class L1CrownInstance extends L1NpcInstance {
 			}
 		}
 
-		// メッセージ表示
+		// 訊息顯示
 		for (L1War war : wars) {
 			if (war.CheckClanInWar(playerClanName) && existDefenseClan) {
 				// 自クランが參加中で、城主が交代
@@ -200,7 +189,6 @@ public class L1CrownInstance extends L1NpcInstance {
 	}
 
 	private boolean checkRange(L1PcInstance pc) {
-		return (getX() - 1 <= pc.getX() && pc.getX() <= getX() + 1
-				&& getY() - 1 <= pc.getY() && pc.getY() <= getY() + 1);
+		return (getX() - 1 <= pc.getX() && pc.getX() <= getX() + 1 && getY() - 1 <= pc.getY() && pc.getY() <= getY() + 1);
 	}
 }

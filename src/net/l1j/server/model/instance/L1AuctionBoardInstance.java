@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.model.instance;
 
 import java.util.logging.Logger;
@@ -26,10 +25,9 @@ import net.l1j.server.serverpackets.S_AuctionBoard;
 import net.l1j.server.templates.L1Npc;
 
 public class L1AuctionBoardInstance extends L1NpcInstance {
-
 	private static final long serialVersionUID = 1L;
-	private static Logger _log = Logger.getLogger(L1AuctionBoardInstance.class
-			.getName());
+
+	private static Logger _log = Logger.getLogger(L1AuctionBoardInstance.class.getName());
 
 	public L1AuctionBoardInstance(L1Npc template) {
 		super(template);
@@ -39,5 +37,4 @@ public class L1AuctionBoardInstance extends L1NpcInstance {
 	public void onAction(L1PcInstance pc) {
 		pc.sendPackets(new S_AuctionBoard(this));
 	}
-
 }

@@ -1,3 +1,21 @@
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 package net.l1j.server.model.instance;
 
 import java.util.logging.Logger;
@@ -13,8 +31,7 @@ public class L1ScarecrowInstance extends L1NpcInstance {
 
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(L1ScarecrowInstance.class
-			.getName());
+	private static Logger _log = Logger.getLogger(L1ScarecrowInstance.class.getName());
 
 	public L1ScarecrowInstance(L1Npc template) {
 		super(template);
@@ -30,8 +47,7 @@ public class L1ScarecrowInstance extends L1NpcInstance {
 				targetList.add(player);
 				FastTable<Integer> hateList = new FastTable<Integer>();
 				hateList.add(1);
-				CalcExp.calcExp(player, getId(),
-						targetList, hateList, getExp());
+				CalcExp.calcExp(player, getId(), targetList, hateList, getExp());
 			}
 			if (getHeading() < 7) { // 今の向きを取得
 				setHeading(getHeading() + 1); // 今の向きを設定
@@ -52,5 +68,6 @@ public class L1ScarecrowInstance extends L1NpcInstance {
 
 	}
 
-	public void doFinalAction() {}
+	public void doFinalAction() {
+	}
 }

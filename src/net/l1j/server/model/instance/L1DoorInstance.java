@@ -36,11 +36,10 @@ public class L1DoorInstance extends L1NpcInstance {
 
 	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
+	private static Logger _log = Logger.getLogger(L1DoorInstance.class.getName());
+
 	public static final int PASS = 0;
 	public static final int NOT_PASS = 1;
-
-	private static Logger _log = Logger.getLogger(L1DoorInstance.class
-			.getName());
 
 	public L1DoorInstance(L1Npc template) {
 		super(template);
@@ -110,36 +109,31 @@ public class L1DoorInstance extends L1NpcInstance {
 				setCurrentHp(newHp);
 				if ((getMaxHp() * 1 / 6) > getCurrentHp()) {
 					if (_crackStatus != 5) {
-						broadcastPacket(new S_DoActionGFX(getId(),
-								ActionCodes.ACTION_DoorAction5));
+						broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_DoorAction5));
 						setStatus(ActionCodes.ACTION_DoorAction5);
 						_crackStatus = 5;
 					}
 				} else if ((getMaxHp() * 2 / 6) > getCurrentHp()) {
 					if (_crackStatus != 4) {
-						broadcastPacket(new S_DoActionGFX(getId(),
-								ActionCodes.ACTION_DoorAction4));
+						broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_DoorAction4));
 						setStatus(ActionCodes.ACTION_DoorAction4);
 						_crackStatus = 4;
 					}
 				} else if ((getMaxHp() * 3 / 6) > getCurrentHp()) {
 					if (_crackStatus != 3) {
-						broadcastPacket(new S_DoActionGFX(getId(),
-								ActionCodes.ACTION_DoorAction3));
+						broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_DoorAction3));
 						setStatus(ActionCodes.ACTION_DoorAction3);
 						_crackStatus = 3;
 					}
 				} else if ((getMaxHp() * 4 / 6) > getCurrentHp()) {
 					if (_crackStatus != 2) {
-						broadcastPacket(new S_DoActionGFX(getId(),
-								ActionCodes.ACTION_DoorAction2));
+						broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_DoorAction2));
 						setStatus(ActionCodes.ACTION_DoorAction2);
 						_crackStatus = 2;
 					}
 				} else if ((getMaxHp() * 5 / 6) > getCurrentHp()) {
 					if (_crackStatus != 1) {
-						broadcastPacket(new S_DoActionGFX(getId(),
-								ActionCodes.ACTION_DoorAction1));
+						broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_DoorAction1));
 						setStatus(ActionCodes.ACTION_DoorAction1);
 						_crackStatus = 1;
 					}
@@ -177,8 +171,7 @@ public class L1DoorInstance extends L1NpcInstance {
 
 			getMap().setPassable(getLocation(), true);
 
-			broadcastPacket(new S_DoActionGFX(getId(), ActionCodes
-					.ACTION_DoorDie));
+			broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_DoorDie));
 			setPassable(PASS);
 			sendDoorPacket(null);
 		}
@@ -222,8 +215,7 @@ public class L1DoorInstance extends L1NpcInstance {
 		if (isDead()) {
 			return;
 		}
-		if (getOpenStatus() == ActionCodes.ACTION_Close)
-		{
+		if (getOpenStatus() == ActionCodes.ACTION_Close) {
 			setOpenStatus(ActionCodes.ACTION_Open);
 			setPassable(PASS);
 			broadcastPacket(new S_DoActionGFX(getId(), getOpenStatus()));
@@ -236,8 +228,7 @@ public class L1DoorInstance extends L1NpcInstance {
 		if (isDead()) {
 			return;
 		}
-		if (getOpenStatus() == ActionCodes.ACTION_Open)
-		{
+		if (getOpenStatus() == ActionCodes.ACTION_Open) {
 			setOpenStatus(ActionCodes.ACTION_Close);
 			setPassable(NOT_PASS);
 			broadcastPacket(new S_DoActionGFX(getId(), getOpenStatus()));
@@ -362,5 +353,4 @@ public class L1DoorInstance extends L1NpcInstance {
 	public void setCrackStatus(int i) {
 		_crackStatus = i;
 	}
-
 }

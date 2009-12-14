@@ -24,12 +24,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javolution.util.FastTable;
-import net.l1j.server.datatables.ItemTable;// 妖森守護神道具控制
-import net.l1j.server.model.L1Inventory;// 妖森守護神道具控制
-import net.l1j.server.templates.L1Item;// 妖森守護神道具控制
 
 import net.l1j.Config;
 import net.l1j.server.ActionCodes;
+import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.datatables.NPCTalkDataTable;
 import net.l1j.server.model.L1Attack;
 import net.l1j.server.model.L1Character;
@@ -41,6 +39,7 @@ import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_NpcChatPacket;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
 import net.l1j.server.serverpackets.S_ServerMessage;
+import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.utils.CalcExp;
 import net.l1j.server.utils.RandomArrayList;
@@ -49,17 +48,13 @@ import net.l1j.thread.GeneralThreadPool;
 import static net.l1j.server.skills.SkillId.*;
 
 public class L1GuardianInstance extends L1NpcInstance {
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(L1GuardianInstance.class
-			.getName());
+	private static Logger _log = Logger.getLogger(L1GuardianInstance.class.getName());
 
 	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
-	private int _configtime = Config.GDROPITEM_TIME;// 妖森守護神道具控制
+	private int _configtime = Config.GDROPITEM_TIME; // 妖森守護神道具控制
 
 	private L1GuardianInstance _npc = this;
 
@@ -71,7 +66,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 
 		if (!isDropitems()) { // 妖森守護神道具控制
 			doGDropItem(0);
-			}
+		}
 	}
 
 	@Override
@@ -80,8 +75,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 		L1PcInstance targetPlayer = null;
 
 		for (L1PcInstance pc : L1World.getInstance().getVisiblePlayer(this)) {
-			if (pc.getCurrentHp() <= 0 || pc.isDead() || pc.isGm()
-					|| pc.isGhost()) {
+			if (pc.getCurrentHp() <= 0 || pc.isDead() || pc.isGm() || pc.isGhost()) {
 				continue;
 			}
 			if (!pc.isInvisble() || getNpcTemplate().is_agrocoi()) { // インビジチェック
@@ -122,19 +116,19 @@ public class L1GuardianInstance extends L1NpcInstance {
 		startAI();
 	}
 
-// 跟NPC打材料需要的變數
+	// 跟NPC打材料需要的變數
 	private int chance; // 5.19 Start
 	private int PT_Npc_id;
+
 	@Override
 	public void onAction(L1PcInstance player) {
-		if (player.getType() == 2 && player.getCurrentWeapon() == 0
-				&& player.isElf()) {
+		if (player.getType() == 2 && player.getCurrentWeapon() == 0 && player.isElf()) {
 			L1Attack attack = new L1Attack(player, this);
 			chance = RandomArrayList.getInc(100, 1);
 			PT_Npc_id = getNpcTemplate().get_npcId();
 
 			if (attack.calcHit()) {
-//waja change test code 妖森守護神道具控制
+// waja change test code 妖森守護神道具控制
 /*
 				if (PT_Npc_id == 70848) { // エント
 					if (chance <= 5) {
@@ -178,102 +172,98 @@ public class L1GuardianInstance extends L1NpcInstance {
 					L1Item item40519 = ItemTable.getInstance().getTemplate(40519);
 
 					switch (PT_Npc_id) {
-					case 70848: { //安特
-						if(_inventory.checkItem(40499)){ // 蘑菇汁 換 安特之樹皮
-							itemName = item40505.getName();
-							itemCount = _inventory.countItems(40499);
-							if(itemCount > 1) {
-								itemName += " (" + itemCount + ")";
-							}
-							_inventory.consumeItem(40499, itemCount);
-							player.getInventory().storeItem(40505, itemCount);
-							player.sendPackets(new S_ServerMessage(143, npcName, itemName));
-							if (!isDropitems()) {
-								doGDropItem(3);
-							}
-						}
-						if(_inventory.checkItem(40507)) {// 安特之樹枝
-							if (chance <= 25) {
-								itemName = item40507.getName();
-								itemName += " (6)";
-								_inventory.consumeItem(40507, 6);
-								player.getInventory().storeItem(40507, 6);
-								player.sendPackets(new S_ServerMessage(143, npcName, itemName));
-							} else {
-								itemName = item40499.getName();
-								player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
-							}
-
-						} else if(_inventory.checkItem(40506)
-								&& !_inventory.checkItem(40507)) { //安特的水果
-							if (chance <= 10) {
-								itemName = item40506.getName();
-								_inventory.consumeItem(40506, 1);
-								player.getInventory().storeItem(40506, 1);
-								player.sendPackets(new S_ServerMessage(143, npcName, itemName));
-							} else {
-								itemName = item40499.getName();
-								player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
-							}
-						} else {
-							if (!forDropitems())
-							{
-								setDropItems(false);
-								doGDropItem(_configtime);
-							}
-							if (chance <= 70 && chance >= 40) {
-								broadcastPacket(new S_NpcChatPacket(_npc, "$822", 0));
-							} else {
-								itemName = item40499.getName();
-								player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
-							}
-						}
-						break ;
-					}
-
-					case 70850: // 潘
-					{
-						if(_inventory.checkItem(40519)) { // 潘的鬃毛
-							if (chance <= 30) {
-								itemName = item40519.getName();
-								itemName += " (5)";
-								_inventory.consumeItem(40519, 5);
-								player.getInventory().storeItem(40519, 5);
-								player.sendPackets(new S_ServerMessage(143, npcName, itemName));
-							}
-						} else {
-							if (!forDropitems()) {
-								setDropItems(false);
-								doGDropItem(_configtime);
+						case 70848: { // 安特
+							if (_inventory.checkItem(40499)) { // 蘑菇汁 換 安特之樹皮
+								itemName = item40505.getName();
+								itemCount = _inventory.countItems(40499);
+								if (itemCount > 1) {
+									itemName += " (" + itemCount + ")";
 								}
-							if (chance <= 80 && chance >= 40) {
-								broadcastPacket(new S_NpcChatPacket(_npc, "$824", 0));
+								_inventory.consumeItem(40499, itemCount);
+								player.getInventory().storeItem(40505, itemCount);
+								player.sendPackets(new S_ServerMessage(143, npcName, itemName));
+								if (!isDropitems()) {
+									doGDropItem(3);
+								}
 							}
-						}
-						break ;
-					}
+							if (_inventory.checkItem(40507)) {// 安特之樹枝
+								if (chance <= 25) {
+									itemName = item40507.getName();
+									itemName += " (6)";
+									_inventory.consumeItem(40507, 6);
+									player.getInventory().storeItem(40507, 6);
+									player.sendPackets(new S_ServerMessage(143, npcName, itemName));
+								} else {
+									itemName = item40499.getName();
+									player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
+								}
 
-					case 70846: // 芮克妮
-					{
-						if(_inventory.checkItem(40507)) { // 安特之樹枝 換 芮克妮的網
-							itemName = item40503.getName();
-							itemCount = _inventory.countItems(40507);
-							if(itemCount > 1) {
-								itemName += " (" + itemCount + ")";
+							} else if (_inventory.checkItem(40506) && !_inventory.checkItem(40507)) { // 安特的水果
+								if (chance <= 10) {
+									itemName = item40506.getName();
+									_inventory.consumeItem(40506, 1);
+									player.getInventory().storeItem(40506, 1);
+									player.sendPackets(new S_ServerMessage(143, npcName, itemName));
+								} else {
+									itemName = item40499.getName();
+									player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
+								}
+							} else {
+								if (!forDropitems()) {
+									setDropItems(false);
+									doGDropItem(_configtime);
+								}
+								if (chance <= 70 && chance >= 40) {
+									broadcastPacket(new S_NpcChatPacket(_npc, "$822", 0));
+								} else {
+									itemName = item40499.getName();
+									player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
+								}
 							}
-							_inventory.consumeItem(40507, itemCount);
-							player.getInventory().storeItem(40503, itemCount);
-							player.sendPackets(new S_ServerMessage(143, npcName, itemName));
-						} else {
-							itemName = item40507.getName();
-							player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
+							break;
 						}
-						break ;
+
+						case 70850: { // 潘
+							if (_inventory.checkItem(40519)) { // 潘的鬃毛
+								if (chance <= 30) {
+									itemName = item40519.getName();
+									itemName += " (5)";
+									_inventory.consumeItem(40519, 5);
+									player.getInventory().storeItem(40519, 5);
+									player.sendPackets(new S_ServerMessage(143, npcName, itemName));
+								}
+							} else {
+								if (!forDropitems()) {
+									setDropItems(false);
+									doGDropItem(_configtime);
+								}
+								if (chance <= 80 && chance >= 40) {
+									broadcastPacket(new S_NpcChatPacket(_npc, "$824", 0));
+								}
+							}
+							break;
+						}
+
+						case 70846: { // 芮克妮
+							if (_inventory.checkItem(40507)) { // 安特之樹枝 換 芮克妮的網
+								itemName = item40503.getName();
+								itemCount = _inventory.countItems(40507);
+								if (itemCount > 1) {
+									itemName += " (" + itemCount + ")";
+								}
+								_inventory.consumeItem(40507, itemCount);
+								player.getInventory().storeItem(40503, itemCount);
+								player.sendPackets(new S_ServerMessage(143, npcName, itemName));
+							} else {
+								itemName = item40507.getName();
+								player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
+							}
+							break;
+						}
 					}
-				}
 				} catch (Exception e) {
 					_log.log(Level.SEVERE, "發生錯誤", e);
-				} // 5.19 End
+				}
 				attack.calcDamage();
 				attack.calcStaffOfMana();
 				attack.addPcPoisonAttack(player, this);
@@ -297,8 +287,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 	@Override
 	public void onTalkAction(L1PcInstance player) {
 		int objid = getId();
-		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(
-				getNpcTemplate().get_npcId());
+		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(getNpcTemplate().get_npcId());
 		L1Object object = L1World.getInstance().findObject(getId());
 		L1NpcInstance target = (L1NpcInstance) object;
 		String htmlid = null;
@@ -328,30 +317,30 @@ public class L1GuardianInstance extends L1NpcInstance {
 				setHeading(7);
 			}
 			broadcastPacket(new S_ChangeHeading(this));
-// 20090725 BAO提供 妖森 安特與潘對話(未完成)
-			switch (PT_Npc_id){
-			case 70848: // Elven forest ENT
-				if (player.isElf()) {
-					htmlid = "ente1";
-				} else {
-					htmlid = "entm1";
-				}
+			// 20090725 BAO提供 妖森 安特與潘對話(未完成)
+			switch (PT_Npc_id) {
+				case 70848: // Elven forest ENT
+					if (player.isElf()) {
+						htmlid = "ente1";
+					} else {
+						htmlid = "entm1";
+					}
 				break;
 
-			case 70850://Elven forest PAN
-				if (player.isElf()) {
-					htmlid = "pane1";
-				} else {
-					htmlid = "panm1";
-				}
+				case 70850:// Elven forest PAN
+					if (player.isElf()) {
+						htmlid = "pane1";
+					} else {
+						htmlid = "panm1";
+					}
 				break;
 			}
-// add end
+			// 20090725 BAO提供 妖森 安特與潘對話(未完成)
+
 			// html表示パケット送信
 			if (htmlid != null) { // htmlidが指定されている場合
 				if (htmldata != null) { // html指定がある場合は表示
-					player.sendPackets(new S_NPCTalkReturn(objid, htmlid,
-							htmldata));
+					player.sendPackets(new S_NPCTalkReturn(objid, htmlid, htmldata));
 				} else {
 					player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
 				}
@@ -456,22 +445,18 @@ public class L1GuardianInstance extends L1NpcInstance {
 			setStatus(ActionCodes.ACTION_Die);
 			int targetobjid = getId();
 			getMap().setPassable(getLocation(), true);
-			broadcastPacket(new S_DoActionGFX(targetobjid,
-					ActionCodes.ACTION_Die));
+			broadcastPacket(new S_DoActionGFX(targetobjid, ActionCodes.ACTION_Die));
 
 			L1PcInstance player = null;
 			if (lastAttacker instanceof L1PcInstance) {
 				player = (L1PcInstance) lastAttacker;
 			} else if (lastAttacker instanceof L1PetInstance) {
-				player = (L1PcInstance) ((L1PetInstance) lastAttacker)
-						.getMaster();
+				player = (L1PcInstance) ((L1PetInstance) lastAttacker).getMaster();
 			} else if (lastAttacker instanceof L1SummonInstance) {
-				player = (L1PcInstance) ((L1SummonInstance) lastAttacker)
-						.getMaster();
+				player = (L1PcInstance) ((L1SummonInstance) lastAttacker).getMaster();
 			}
 			if (player != null) {
-				FastTable<L1Character> targetList = _hateList
-						.toTargetArrayList();
+				FastTable<L1Character> targetList = _hateList.toTargetArrayList();
 				FastTable<Integer> hateList = _hateList.toHateArrayList();
 				int exp = getExp();
 				CalcExp.calcExp(player, targetobjid, targetList, hateList, exp);
@@ -525,17 +510,16 @@ public class L1GuardianInstance extends L1NpcInstance {
 			try {
 				if (_configtime > 0 && !isDropitems()) {
 					if (npcId == 70848) { // 安特
-						if(!_inventory.checkItem(40505)
-								&& !_inventory.checkItem(40506)
-								&& !_inventory.checkItem(40507)){
-							_inventory.storeItem(40506, 1);// 水果
-							_inventory.storeItem(40507, 66);// 樹枝
-							_inventory.storeItem(40505, 8);// 樹皮
+						if (!_inventory.checkItem(40505) && !_inventory.checkItem(40506)
+								&& !_inventory.checkItem(40507)) {
+							_inventory.storeItem(40506, 1); // 水果
+							_inventory.storeItem(40507, 66); // 樹枝
+							_inventory.storeItem(40505, 8); // 樹皮
 						}
 					}
 					if (npcId == 70850) { // 潘
-						if(!_inventory.checkItem(40519)) {
-							_inventory.storeItem(40519, 30);// 潘毛
+						if (!_inventory.checkItem(40519)) {
+							_inventory.storeItem(40519, 30); // 潘毛
 						}
 					}
 					setDropItems(true);

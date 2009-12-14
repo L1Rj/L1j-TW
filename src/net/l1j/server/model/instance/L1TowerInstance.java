@@ -37,10 +37,9 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.thread.GeneralThreadPool;
 
 public class L1TowerInstance extends L1NpcInstance {
-
 	private static final long serialVersionUID = 1L;
-	private static Logger _log = Logger.getLogger(L1TowerInstance.class
-			.getName());
+
+	private static Logger _log = Logger.getLogger(L1TowerInstance.class.getName());
 
 	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
@@ -78,17 +77,14 @@ public class L1TowerInstance extends L1NpcInstance {
 			if (isSubTower()) {
 				_castle_id = L1CastleLocation.ADEN_CASTLE_ID;
 			} else {
-				_castle_id = L1CastleLocation.getCastleId(getX(), getY(),
-						getMapId());
+				_castle_id = L1CastleLocation.getCastleId(getX(), getY(), getMapId());
 			}
 		}
 
-		if (_castle_id > 0
-				&& WarTimeController.getInstance().isNowWar(_castle_id)) { // 戰爭時間內
+		if (_castle_id > 0 && WarTimeController.getInstance().isNowWar(_castle_id)) { // 戰爭時間內
 
 			// アデン城のメインタワーはサブタワーが3つ以上破壞されている場合のみ攻擊可能
-			if (_castle_id == L1CastleLocation.ADEN_CASTLE_ID
-					&& !isSubTower()) {
+			if (_castle_id == L1CastleLocation.ADEN_CASTLE_ID && !isSubTower()) {
 				int subTowerDeadCount = 0;
 				for (L1Object l1object : L1World.getInstance().getObject()) {
 					if (l1object instanceof L1TowerInstance) {
@@ -155,22 +151,19 @@ public class L1TowerInstance extends L1NpcInstance {
 					setCurrentHp(newHp);
 					if ((getMaxHp() * 1 / 4) > getCurrentHp()) {
 						if (_crackStatus != 3) {
-							broadcastPacket(new S_DoActionGFX(getId(),
-									ActionCodes.ACTION_TowerCrack3));
+							broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_TowerCrack3));
 							setStatus(ActionCodes.ACTION_TowerCrack3);
 							_crackStatus = 3;
 						}
 					} else if ((getMaxHp() * 2 / 4) > getCurrentHp()) {
 						if (_crackStatus != 2) {
-							broadcastPacket(new S_DoActionGFX(getId(),
-									ActionCodes.ACTION_TowerCrack2));
+							broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_TowerCrack2));
 							setStatus(ActionCodes.ACTION_TowerCrack2);
 							_crackStatus = 2;
 						}
 					} else if ((getMaxHp() * 3 / 4) > getCurrentHp()) {
 						if (_crackStatus != 1) {
-							broadcastPacket(new S_DoActionGFX(getId(),
-									ActionCodes.ACTION_TowerCrack1));
+							broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_TowerCrack1));
 							setStatus(ActionCodes.ACTION_TowerCrack1);
 							_crackStatus = 1;
 						}
@@ -210,8 +203,7 @@ public class L1TowerInstance extends L1NpcInstance {
 
 			npc.getMap().setPassable(npc.getLocation(), true);
 
-			npc.broadcastPacket(new S_DoActionGFX(targetobjid,
-					ActionCodes.ACTION_TowerDie));
+			npc.broadcastPacket(new S_DoActionGFX(targetobjid, ActionCodes.ACTION_TowerDie));
 
 			// クラウンをspawnする
 			if (!isSubTower()) {
@@ -239,10 +231,8 @@ public class L1TowerInstance extends L1NpcInstance {
 	}
 
 	public boolean isSubTower() {
-		return (getNpcTemplate().get_npcId() == 81190
-				|| getNpcTemplate().get_npcId() == 81191
-				|| getNpcTemplate().get_npcId() == 81192
-				|| getNpcTemplate().get_npcId() == 81193);
+		return (getNpcTemplate().get_npcId() == 81190 || getNpcTemplate().get_npcId() == 81191
+				|| getNpcTemplate().get_npcId() == 81192 || getNpcTemplate().get_npcId() == 81193);
 	}
 
 }

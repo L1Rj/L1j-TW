@@ -39,8 +39,7 @@ import net.l1j.server.templates.L1Npc;
 public class L1FollowerInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(L1FollowerInstance.class
-			.getName());
+	private static Logger _log = Logger.getLogger(L1FollowerInstance.class.getName());
 
 	@Override
 	public boolean noTarget() {
@@ -70,9 +69,8 @@ public class L1FollowerInstance extends L1NpcInstance {
 						&& getNpcTemplate().get_npcId() == 71062) { // カミット
 					if (getLocation().getTileLineDistance(_master.getLocation()) < 3) {
 						L1PcInstance pc = (L1PcInstance) _master;
-						if((pc.getX() >= 32448 && pc.getX() <= 32452) // カドモス周邊座標
-								&& (pc.getY() >= 33048 && pc.getY() <= 33052)
-								&& (pc.getMapId() == 440)) {
+						if ((pc.getX() >= 32448 && pc.getX() <= 32452) // カドモス周邊座標
+								&& (pc.getY() >= 33048 && pc.getY() <= 33052) && (pc.getMapId() == 440)) {
 							setParalyzed(true);
 							if (!pc.getInventory().checkItem(40711)) {
 								createNewItem(pc, 40711, 1);
@@ -87,9 +85,8 @@ public class L1FollowerInstance extends L1NpcInstance {
 					// 疲れ果てたリザードマンファイター
 					if (getLocation().getTileLineDistance(_master.getLocation()) < 3) {
 						L1PcInstance pc = (L1PcInstance) _master;
-						if((pc.getX() >= 32731 && pc.getX() <= 32735) // リザードマン長老周邊座標
-								&& (pc.getY() >= 32854 && pc.getY() <= 32858)
-								&& (pc.getMapId() == 480)) {
+						if ((pc.getX() >= 32731 && pc.getX() <= 32735) // リザードマン長老周邊座標
+								&& (pc.getY() >= 32854 && pc.getY() <= 32858) && (pc.getMapId() == 480)) {
 							setParalyzed(true);
 							if (!pc.getInventory().checkItem(40633)) {
 								createNewItem(pc, 40633, 1);
@@ -101,11 +98,10 @@ public class L1FollowerInstance extends L1NpcInstance {
 					}
 				} else if (npc.getNpcTemplate().get_npcId() == 70964 // バッシュ
 						&& getNpcTemplate().get_npcId() == 70957) { // ロイ
-					if (getLocation().getTileLineDistance(_master.getLocation()) < 3){
+					if (getLocation().getTileLineDistance(_master.getLocation()) < 3) {
 						L1PcInstance pc = (L1PcInstance) _master;
-						if((pc.getX() >= 32917 && pc.getX() <= 32921) // バッシュ周邊座標
-								&& (pc.getY() >= 32974 && pc.getY() <= 32978)
-								&& (pc.getMapId() == 410)) {
+						if ((pc.getX() >= 32917 && pc.getX() <= 32921) // バッシュ周邊座標
+								&& (pc.getY() >= 32974 && pc.getY() <= 32978) && (pc.getMapId() == 410)) {
 							setParalyzed(true);
 							createNewItem(pc, 41003, 1);
 							pc.getQuest().set_step(L1Quest.QUEST_ROI, 0);
@@ -117,11 +113,9 @@ public class L1FollowerInstance extends L1NpcInstance {
 			}
 		}
 
-		if (_master.isDead() || getLocation().getTileLineDistance(_master
-				.getLocation()) > 10) {
+		if (_master.isDead() || getLocation().getTileLineDistance(_master.getLocation()) > 10) {
 			setParalyzed(true);
-			spawn(getNpcTemplate().get_npcId(), getX(), getY(), getHeading(),
-					getMapId());
+			spawn(getNpcTemplate().get_npcId(), getX(), getY(), getHeading(), getMapId());
 			deleteMe();
 			return true;
 		} else if (_master != null && _master.getMapId() == getMapId()) {
@@ -133,8 +127,7 @@ public class L1FollowerInstance extends L1NpcInstance {
 		return false;
 	}
 
-	public L1FollowerInstance(L1Npc template, L1NpcInstance target,
-			L1Character master) {
+	public L1FollowerInstance(L1Npc template, L1NpcInstance target, L1Character master) {
 		super(template);
 
 		_master = master;
@@ -231,8 +224,7 @@ public class L1FollowerInstance extends L1NpcInstance {
 			if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) {
 				pc.getInventory().storeItem(item);
 			} else {
-				L1World.getInstance().getInventory(pc.getX(), pc.getY(),
-						pc.getMapId()).storeItem(item);
+				L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(item);
 			}
 			pc.sendPackets(new S_ServerMessage(403, item.getLogName()));
 		}
@@ -244,10 +236,9 @@ public class L1FollowerInstance extends L1NpcInstance {
 			L1NpcInstance mob = null;
 			try {
 				String implementationName = l1npc.getImpl();
-				Constructor _constructor = Class.forName((new StringBuilder())
-						.append("net.l1j.server.model.instance.")
-						.append(implementationName).append("Instance")
-						.toString()).getConstructors()[0];
+				Constructor _constructor = Class.forName(
+						(new StringBuilder()).append("net.l1j.server.model.instance.").append(implementationName)
+								.append("Instance").toString()).getConstructors()[0];
 				mob = (L1NpcInstance) _constructor.newInstance(new Object[] { l1npc });
 				mob.setId(IdFactory.getInstance().nextId());
 				mob.setX(X);

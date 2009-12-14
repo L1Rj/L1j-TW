@@ -30,11 +30,9 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Npc;
 
 public class L1DwarfInstance extends L1NpcInstance {
-
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(L1DwarfInstance.class
-			.getName());
+	private static Logger _log = Logger.getLogger(L1DwarfInstance.class.getName());
 
 	private FastTable _tpLocs;
 
@@ -57,8 +55,7 @@ public class L1DwarfInstance extends L1NpcInstance {
 	@Override
 	public void onTalkAction(L1PcInstance pc) {
 		int objid = getId();
-		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(
-				getNpcTemplate().get_npcId());
+		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(getNpcTemplate().get_npcId());
 		int npcId = getNpcTemplate().get_npcId();
 		String htmlid = null;
 
@@ -96,8 +93,7 @@ public class L1DwarfInstance extends L1NpcInstance {
 
 			if (pc.getClanname().equalsIgnoreCase(" ")) {
 				_log.finest("pc isnt in a pledge");
-				S_ServerMessage talk = new S_ServerMessage(
-						(S_ServerMessage.NO_PLEDGE), Action);
+				S_ServerMessage talk = new S_ServerMessage((S_ServerMessage.NO_PLEDGE), Action);
 				pc.sendPackets(talk);
 			} else {
 				_log.finest("pc is in a pledge");

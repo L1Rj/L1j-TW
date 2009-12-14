@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.model.instance;
 
 import java.util.Arrays;
@@ -57,12 +56,11 @@ public class L1DollInstance extends L1NpcInstance {
 	public static final int DOLLTYPE_PRINCESS = 14; // 魔法娃娃：公主
 	public static final int DOLL_TIME = 1800000;
 
-	private static Logger _log = Logger.getLogger(L1DollInstance.class
-			.getName());
+	private static Logger _log = Logger.getLogger(L1DollInstance.class.getName());
 	private ScheduledFuture<?> _dollFuture;
 	private int _dollType;
 	private int _itemObjId;
-	private static final int[] DollAction = {ACTION_Think, ACTION_Aggress, ACTION_Salute, ACTION_Cheer};
+	private static final int[] DollAction = { ACTION_Think, ACTION_Aggress, ACTION_Salute, ACTION_Cheer };
 	private int sleeptime_PT = 10;
 
 	// ターゲットがいない場合の處理
@@ -108,15 +106,13 @@ public class L1DollInstance extends L1NpcInstance {
 		}
 	}
 
-	public L1DollInstance(L1Npc template, L1PcInstance master, int dollType,
-			int itemObjId) {
+	public L1DollInstance(L1Npc template, L1PcInstance master, int dollType, int itemObjId) {
 		super(template);
 		setId(IdFactory.getInstance().nextId());
 
 		setDollType(dollType);
 		setItemObjId(itemObjId);
-		_dollFuture = _threadPool.schedule(
-				new DollTimer(), DOLL_TIME);
+		_dollFuture = _threadPool.schedule(new DollTimer(), DOLL_TIME);
 
 		setMaster(master);
 		setX(RandomArrayList.getInc(5, master.getX() - 2)); // master.getX() + RandomArrayList.getInt(2));
@@ -134,21 +130,21 @@ public class L1DollInstance extends L1NpcInstance {
 		if (!isAiRunning()) {
 			startAI();
 		}
-		if (isMpRegeneration()) {// 魔法娃娃回魔開始
+		if (isMpRegeneration()) { // 魔法娃娃回魔開始
 			master.startMpRegenerationByDoll();
 		}
 
-		if (isHpRegeneration()) {// 魔法娃娃回血開始
+		if (isHpRegeneration()) { // 魔法娃娃回血開始
 			master.startHpRegenerationByDoll();
 		}
 	}
 
 	public void deleteDoll() {
-		if (isMpRegeneration()) {// 魔法娃娃回魔停止
+		if (isMpRegeneration()) { // 魔法娃娃回魔停止
 			((L1PcInstance) _master).stopMpRegenerationByDoll();
 		}
 
-		if (isHpRegeneration()) {// 魔法娃娃回血停止
+		if (isHpRegeneration()) { // 魔法娃娃回血停止
 			((L1PcInstance) _master).stopHpRegenerationByDoll();
 		}
 
@@ -196,7 +192,7 @@ public class L1DollInstance extends L1NpcInstance {
 		_itemObjId = i;
 	}
 
-	public int getDamageByDoll() {// 娃娃增加傷害
+	public int getDamageByDoll() { // 娃娃增加傷害
 		int damage = 0;
 		if (getDollType() == DOLLTYPE_WAREWOLF || getDollType() == DOLLTYPE_CRUSTANCEAN) {
 			int chance = RandomArrayList.getInc(100, 1);
@@ -204,11 +200,9 @@ public class L1DollInstance extends L1NpcInstance {
 				damage = 15;
 				if (_master instanceof L1PcInstance) {
 					L1PcInstance pc = (L1PcInstance) _master;
-					pc.sendPackets(new S_SkillSound(_master.getId(),
-							6319));
+					pc.sendPackets(new S_SkillSound(_master.getId(), 6319));
 				}
-				_master.broadcastPacket(new S_SkillSound(_master
-						.getId(), 6319));
+				_master.broadcastPacket(new S_SkillSound(_master.getId(), 6319));
 			}
 		}
 		return damage;
@@ -248,46 +242,45 @@ public class L1DollInstance extends L1NpcInstance {
 		}
 		return damageReduction;
 	}
-// waja add to si 寫法
-	private static int getTypeCountByDoll(Map<Integer, L1DollInstance> dolls, int type)
-	{
+
+	private static int getTypeCountByDoll(Map<Integer, L1DollInstance> dolls, int type) {
 		int s = 0;
-		for(Object obj : dolls.values().toArray())
-			if(((L1DollInstance)obj).getDollType() == type)
+		for (Object obj : dolls.values().toArray()) {
+			if (((L1DollInstance) obj).getDollType() == type) {
 				s++;
+			}
+		}
 		return s;
 	}
-	private static int getTypeCountByDoll(Map<Integer, L1DollInstance> dolls
-		, int type, int type1)
-	{
+
+	private static int getTypeCountByDoll(Map<Integer, L1DollInstance> dolls, int type, int type1) {
 		int s = 0;
-		for(Object obj : dolls.values().toArray())
-			if(((L1DollInstance)obj).getDollType() == type
-				|| ((L1DollInstance)obj).getDollType() == type1)
+		for (Object obj : dolls.values().toArray()) {
+			if (((L1DollInstance) obj).getDollType() == type || ((L1DollInstance) obj).getDollType() == type1) {
 				s++;
+			}
+		}
 		return s;
 	}
 
 	// 魔法娃娃增加弓命中功能
-	public static int getBowHitAddByDoll(L1PcInstance _master)
-	{
+	public static int getBowHitAddByDoll(L1PcInstance _master) {
 		int s = 0;
 		s += getTypeCountByDoll(_master.getDollList(), DOLLTYPE_COCKATRICE);
 		return s;
 	}
+
 	// 魔法娃娃增加弓傷害功能
-	public static int getBowDamageByDoll(L1PcInstance _master) 
-	{
+	public static int getBowDamageByDoll(L1PcInstance _master) {
 		int s = 0;
 		s += getTypeCountByDoll(_master.getDollList(), DOLLTYPE_COCKATRICE);
 		return s;
 	}
+
 	// 魔法娃娃增加AC
-	public static int getAcByDoll(L1PcInstance _master) 
-	{
+	public static int getAcByDoll(L1PcInstance _master) {
 		int s = 0;
 		s -= getTypeCountByDoll(_master.getDollList(), DOLLTYPE_IRONGATES_SNOWMAN);
 		return s;
 	}
-//add end
 }

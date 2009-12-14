@@ -1,3 +1,21 @@
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 package net.l1j.server.model.instance;
 
 import java.util.Arrays;
@@ -28,8 +46,8 @@ import static net.l1j.server.skills.SkillId.*;
 public class L1SummonInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(L1SummonInstance.class
-			.getName());
+	private static Logger _log = Logger.getLogger(L1SummonInstance.class.getName());
+
 	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 	private ScheduledFuture<?> _summonFuture;
 	private static final long SUMMON_TIME = 3600000L;
@@ -45,8 +63,7 @@ public class L1SummonInstance extends L1NpcInstance {
 			return true;
 		} else if (_currentPetStatus == 4) {
 			// ● 配備の場合
-			if (_master != null
-					&& _master.getMapId() == getMapId()
+			if (_master != null && _master.getMapId() == getMapId()
 					&& getLocation().getTileLineDistance(_master.getLocation()) < 5) {
 				int dir = targetReverseDirection(_master.getX(), _master.getY());
 				dir = checkObject(getX(), getY(), getMapId(), dir);
@@ -67,7 +84,7 @@ public class L1SummonInstance extends L1NpcInstance {
 				setDirectionMove(dir);
 				setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 			}
-		} else if (_master != null && _master.getMapId() == getMapId()) { // 5.26 Start 寵物修正
+		} else if (_master != null && _master.getMapId() == getMapId()) { // 寵物修正
 			// ●主人を追尾
 			int dir = moveDirection(_master.getX(), _master.getY());
 			if (dir == -1) {
@@ -79,7 +96,7 @@ public class L1SummonInstance extends L1NpcInstance {
 					setDirectionMove(dir);
 				}
 				setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
-			} // 5.26 End 寵物修正 
+			} // 寵物修正
 		} else {
 			// ● 主人を見失ったら休憩狀態に
 			_currentPetStatus = 3;
@@ -114,8 +131,8 @@ public class L1SummonInstance extends L1NpcInstance {
 				new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);
-		setX(RandomArrayList.getInc(5, master.getX() - 2)); // master.getX() + StaticFinalList.getRang2()); // 5.14
-		setY(RandomArrayList.getInc(5, master.getY() - 2)); // master.getY() + StaticFinalList.getRang2()); // 5.14
+		setX(RandomArrayList.getInc(5, master.getX() - 2)); // master.getX() + StaticFinalList.getRang2());
+		setY(RandomArrayList.getInc(5, master.getY() - 2)); // master.getY() + StaticFinalList.getRang2());
 		setMap(master.getMapId());
 		setHeading(RandomArrayList.getInt(8));
 		setLightSize(template.getLightSize());
@@ -132,8 +149,7 @@ public class L1SummonInstance extends L1NpcInstance {
 	}
 
 	// テイミングモンスター、クリエイトゾンビ用
-	public L1SummonInstance(L1NpcInstance target, L1Character master,
-			boolean isCreateZombie) {
+	public L1SummonInstance(L1NpcInstance target, L1Character master, boolean isCreateZombie) {
 		super(null);
 		setId(IdFactory.getInstance().nextId());
 
@@ -168,8 +184,7 @@ public class L1SummonInstance extends L1NpcInstance {
 			setCurrentMpDirect(target.getCurrentMp());
 		}
 
-		_summonFuture = _threadPool.schedule(
-				new SummonTimer(), SUMMON_TIME);
+		_summonFuture = _threadPool.schedule(new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);
 		setX(target.getX());
@@ -179,8 +194,7 @@ public class L1SummonInstance extends L1NpcInstance {
 		setLightSize(target.getLightSize());
 		setPetcost(6);
 
-		if (target instanceof L1MonsterInstance
-				&& !((L1MonsterInstance) target).is_storeDroped()) {
+		if (target instanceof L1MonsterInstance && !((L1MonsterInstance) target).is_storeDroped()) {
 			DropTable.getInstance().setDrop(target, target.getInventory());
 		}
 		setInventory(target.getInventory());
@@ -226,8 +240,7 @@ public class L1SummonInstance extends L1NpcInstance {
 			} else {
 				setCurrentHp(newHp);
 			}
-		} else if (!isDead()) // 念のため
-		{
+		} else if (!isDead()) { // 念のため
 			System.out.println("警告︰寵物的hp減少的運算出現錯誤。※將視為hp=0作處理");
 			Death(attacker);
 		}
@@ -247,22 +260,17 @@ public class L1SummonInstance extends L1NpcInstance {
 			for (L1ItemInstance item : items) {
 				if (_master.getInventory().checkAddItem( // 容量重量確認及びメッセージ送信
 						item, item.getCount()) == L1Inventory.OK) {
-					_inventory
-							.tradeItem(item, item.getCount(), targetInventory);
+					_inventory.tradeItem(item, item.getCount(), targetInventory);
 					// \f1%0が%1をくれました。
-					((L1PcInstance) _master).sendPackets(new S_ServerMessage(
-							143, getName(), item.getLogName()));
+					((L1PcInstance) _master).sendPackets(new S_ServerMessage(143, getName(), item.getLogName()));
 				} else { // 持てないので足元に落とす
-					targetInventory = L1World.getInstance().getInventory(
-							getX(), getY(), getMapId());
-					_inventory
-							.tradeItem(item, item.getCount(), targetInventory);
+					targetInventory = L1World.getInstance().getInventory(getX(), getY(), getMapId());
+					_inventory.tradeItem(item, item.getCount(), targetInventory);
 				}
 			}
 
 			if (_tamed) {
-				broadcastPacket(new S_DoActionGFX(getId(),
-						ActionCodes.ACTION_Die));
+				broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Die));
 				startDeleteTimer();
 			} else {
 				deleteMe();
@@ -280,16 +288,12 @@ public class L1SummonInstance extends L1NpcInstance {
 			for (L1ItemInstance item : items) {
 				if (_master.getInventory().checkAddItem( // 容量重量確認及びメッセージ送信
 						item, item.getCount()) == L1Inventory.OK) {
-					_inventory
-							.tradeItem(item, item.getCount(), targetInventory);
+					_inventory.tradeItem(item, item.getCount(), targetInventory);
 					// \f1%0が%1をくれました。
-					((L1PcInstance) _master).sendPackets(new S_ServerMessage(
-							143, getName(), item.getLogName()));
+					((L1PcInstance) _master).sendPackets(new S_ServerMessage(143, getName(), item.getLogName()));
 				} else { // 持てないので足元に落とす
-					targetInventory = L1World.getInstance().getInventory(
-							getX(), getY(), getMapId());
-					_inventory
-							.tradeItem(item, item.getCount(), targetInventory);
+					targetInventory = L1World.getInstance().getInventory(getX(), getY(), getMapId());
+					_inventory.tradeItem(item, item.getCount(), targetInventory);
 				}
 			}
 			deleteMe();
@@ -338,8 +342,7 @@ public class L1SummonInstance extends L1NpcInstance {
 	}
 
 	public void setTarget(L1Character target) {
-		if (target != null
-				&& (_currentPetStatus == 1 || _currentPetStatus == 2 || _currentPetStatus == 5)) {
+		if (target != null && (_currentPetStatus == 1 || _currentPetStatus == 2 || _currentPetStatus == 5)) {
 			setHate(target, 0);
 			if (!isAiRunning()) {
 				startAI();
@@ -348,8 +351,7 @@ public class L1SummonInstance extends L1NpcInstance {
 	}
 
 	public void setMasterTarget(L1Character target) {
-		if (target != null
-				&& (_currentPetStatus == 1 || _currentPetStatus == 5)) {
+		if (target != null && (_currentPetStatus == 1 || _currentPetStatus == 5)) {
 			setHate(target, 0);
 			if (!isAiRunning()) {
 				startAI();
@@ -372,8 +374,7 @@ public class L1SummonInstance extends L1NpcInstance {
 			// テレポート處理中
 			return;
 		}
-		if ((getZoneType() == 1 || attacker.getZoneType() == 1)
-				&& isExsistMaster()) {
+		if ((getZoneType() == 1 || attacker.getZoneType() == 1) && isExsistMaster()) {
 			// 攻擊される側がセーフティーゾーン
 			// 攻擊モーション送信
 			L1Attack attack_mortion = new L1Attack(attacker, this);
@@ -462,8 +463,7 @@ public class L1SummonInstance extends L1NpcInstance {
 			if (getCurrentHp() != getMaxHp()) {
 				useItem(USEITEM_HEAL, 100);
 			}
-		} else if (Arrays
-				.binarySearch(haestPotions, item.getItem().getItemId()) >= 0) {
+		} else if (Arrays.binarySearch(haestPotions, item.getItem().getItemId()) >= 0) {
 			useItem(USEITEM_HASTE, 100);
 		}
 	}
@@ -548,5 +548,4 @@ public class L1SummonInstance extends L1NpcInstance {
 		}
 		return isExsistMaster;
 	}
-
 }

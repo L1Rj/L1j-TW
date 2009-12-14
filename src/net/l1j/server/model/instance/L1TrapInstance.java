@@ -33,8 +33,8 @@ import net.l1j.server.utils.RandomArrayList;
 import static net.l1j.server.skills.SkillId.*;
 
 public class L1TrapInstance extends L1Object {
-
 	private static final long serialVersionUID = 1L;
+
 	private final L1Trap _trap;
 	private final Point _baseLoc = new Point();
 	private final Point _rndPt = new Point();
@@ -44,8 +44,7 @@ public class L1TrapInstance extends L1Object {
 
 	private List<L1PcInstance> _knownPlayers = new CopyOnWriteArrayList<L1PcInstance>();
 
-	public L1TrapInstance(int id, L1Trap trap, L1Location loc, Point rndPt,
-			int span) {
+	public L1TrapInstance(int id, L1Trap trap, L1Location loc, Point rndPt, int span) {
 		setId(id);
 		_trap = trap;
 		getLocation().set(loc);
@@ -65,7 +64,7 @@ public class L1TrapInstance extends L1Object {
 		_nameForView = "trap base";
 	}
 
-	private final byte[] WorR_Way = { -1, 1 }; // 用來決定方向權的矩陣 // 4.30 Start
+	private final byte[] WorR_Way = { -1, 1 }; // 用來決定方向權的矩陣
 
 	public void resetLocation() {
 		if (_rndPt.getX() == 0 && _rndPt.getY() == 0) {
@@ -73,10 +72,8 @@ public class L1TrapInstance extends L1Object {
 		}
 
 		for (byte i = 0; i < 50; i++) {
-			int rndX = RandomArrayList.getInt(_rndPt.getX()) // 5.14
-					* WorR_Way[RandomArrayList.getInt(2)]; // 1/2の確率でマイナスにする
-			int rndY = RandomArrayList.getInt(_rndPt.getY()) // 5.14
-					* WorR_Way[RandomArrayList.getInt(2)];
+			int rndX = RandomArrayList.getInt(_rndPt.getX()) * WorR_Way[RandomArrayList.getInt(2)]; // 1/2の確率でマイナスにする
+			int rndY = RandomArrayList.getInt(_rndPt.getY()) * WorR_Way[RandomArrayList.getInt(2)];
 
 			rndX += _baseLoc.getX();
 			rndY += _baseLoc.getY();
@@ -88,7 +85,7 @@ public class L1TrapInstance extends L1Object {
 			}
 		}
 		// ループ內で位置が確定しない場合、前回と同じ位置になる。
-	} // 4.30 End
+	}
 
 	public void enableTrap() {
 		_isEnable = true;

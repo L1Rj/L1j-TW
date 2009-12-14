@@ -31,7 +31,6 @@ import net.l1j.server.model.L1NpcTalkData;
 import net.l1j.server.model.L1Quest;
 import net.l1j.server.model.L1TownLocation;
 import net.l1j.server.model.L1World;
-import net.l1j.server.model.instance.L1QuestInstance.RestMonitor;
 import net.l1j.server.model.gametime.L1GameTimeClock;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -39,10 +38,9 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.serverpackets.S_ChangeHeading;
 
 public class L1MerchantInstance extends L1NpcInstance {
-
 	private static final long serialVersionUID = 1L;
-	private static Logger _log = Logger.getLogger(L1MerchantInstance.class
-			.getName());
+
+	private static Logger _log = Logger.getLogger(L1MerchantInstance.class.getName());
 
 	/**
 	 * @param template
@@ -70,8 +68,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 	@Override
 	public void onTalkAction(L1PcInstance player) {
 		int objid = getId();
-		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(
-				getNpcTemplate().get_npcId());
+		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(getNpcTemplate().get_npcId());
 		int npcid = getNpcTemplate().get_npcId();
 		L1Quest quest = player.getQuest();
 		String htmlid = null;
@@ -82,7 +79,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 		int npcX = getX();
 		int npcY = getY();
 
-		if(getNpcTemplate().getChangeHead()) {
+		if (getNpcTemplate().getChangeHead()) {
 			if (pcX == npcX && pcY < npcY) {
 				setHeading(0);
 			} else if (pcX > npcX && pcY < npcY) {
@@ -155,8 +152,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				if (player.isCrown()) { // 君主
 					if (player.getLevel() >= 45) {
 						if (quest.isEnd(L1Quest.QUEST_LEVEL30)) { // lv30クリア濟み
-							int lv45_step = quest
-									.get_step(L1Quest.QUEST_LEVEL45);
+							int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
 							if (lv45_step == L1Quest.QUEST_END) { // クリア濟み
 								htmlid = "masha4";
 							} else if (lv45_step >= 1) { // 同意濟み
@@ -169,8 +165,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				} else if (player.isKnight()) { // ナイト
 					if (player.getLevel() >= 45) {
 						if (quest.isEnd(L1Quest.QUEST_LEVEL30)) { // Lv30クエスト終了濟み
-							int lv45_step = quest
-									.get_step(L1Quest.QUEST_LEVEL45);
+							int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
 							if (lv45_step == L1Quest.QUEST_END) { // クリア濟み
 								htmlid = "mashak3";
 							} else if (lv45_step == 0) { // 未開始
@@ -183,8 +178,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				} else if (player.isElf()) { // エルフ
 					if (player.getLevel() >= 45) {
 						if (quest.isEnd(L1Quest.QUEST_LEVEL30)) { // Lv30クエスト終了濟み
-							int lv45_step = quest
-									.get_step(L1Quest.QUEST_LEVEL45);
+							int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
 							if (lv45_step == L1Quest.QUEST_END) { // クリア濟み
 								htmlid = "mashae3";
 							} else if (lv45_step >= 1) { // 同意濟み
@@ -214,8 +208,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				if (player.isCrown()) { // 君主
 					if (player.getLevel() >= 30) {
 						if (quest.isEnd(L1Quest.QUEST_LEVEL15)) { // lv15試練クリア濟み
-							int lv30_step = quest
-									.get_step(L1Quest.QUEST_LEVEL30);
+							int lv30_step = quest.get_step(L1Quest.QUEST_LEVEL30);
 							if (lv30_step == L1Quest.QUEST_END) { // クリア濟み
 								htmlid = "aria3";
 							} else if (lv30_step == 1) { // 同意濟み
@@ -254,7 +247,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
 					if (lv45_step == 1) {
 						htmlid = "meg1";
-					} else if (lv45_step == 2 && lv45_step <= 3 ) { // メグ同意濟み
+					} else if (lv45_step == 2 && lv45_step <= 3) { // メグ同意濟み
 						htmlid = "meg2";
 					} else if (lv45_step >= 4) { // メグクリア濟み
 						htmlid = "meg3";
@@ -268,39 +261,38 @@ public class L1MerchantInstance extends L1NpcInstance {
 						final int[] item_ids = { 40568 };
 						final int[] item_amounts = { 1 };
 						for (int i = 0; i < item_ids.length; i++) {
-							player.getInventory().storeItem(
-									item_ids[i], item_amounts[i]);
+							player.getInventory().storeItem(item_ids[i], item_amounts[i]);
 						}
 					}
 				}
-			// } else if (npcid == 71200) { // 白魔術師 ピエタ
+				// } else if (npcid == 71200) { // 白魔術師 ピエタ
 				// if (player.isCrown()) { // 君主
-					// int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
-					// if (lv45_step >= 6 && lv45_step == L1Quest.QUEST_END ) {
-					// //メグクリア濟みor終了
-						// htmlid = "pieta9";
-					// } else if (lv45_step == 2) { // クエスト開始前‧メグ同意濟み
-						// htmlid = "pieta2";
-					// } else if (lv45_step == 2 ||
-								// player.getInventory().checkItem(41422) ) {//
-								// 輝きを失った魂保持
-						// htmlid = "pieta4";
-					// } else if (lv45_step == 3) { // 輝きを失った魂入後
-						// htmlid = "pieta6";
-					// } else {//lv45未滿orクエスト30未
-						// htmlid = "pieta8";
-					// }
-				// } else { // 君主以外
-					// htmlid = "pieta1";
+				// int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
+				// if (lv45_step >= 6 && lv45_step == L1Quest.QUEST_END ) {
+				// //メグクリア濟みor終了
+				// htmlid = "pieta9";
+				// } else if (lv45_step == 2) { // クエスト開始前‧メグ同意濟み
+				// htmlid = "pieta2";
+				// } else if (lv45_step == 2 ||
+				// player.getInventory().checkItem(41422) ) {//
+				// 輝きを失った魂保持
+				// htmlid = "pieta4";
+				// } else if (lv45_step == 3) { // 輝きを失った魂入後
+				// htmlid = "pieta6";
+				// } else {//lv45未滿orクエスト30未
+				// htmlid = "pieta8";
 				// }
-			// } else if (npcid == 70751) { // ブラッド
+				// } else { // 君主以外
+				// htmlid = "pieta1";
+				// }
+				// } else if (npcid == 70751) { // ブラッド
 				// if (player.isCrown()) { // 君主
-					// if (player.getLevel() >= 45) {
-						// if (quest.get_step(L1Quest.QUEST_LEVEL45) == 2) { //
-						// メグ同意濟み
-							// htmlid = "brad1";
-						// }
-					// }
+				// if (player.getLevel() >= 45) {
+				// if (quest.get_step(L1Quest.QUEST_LEVEL45) == 2) { //
+				// メグ同意濟み
+				// htmlid = "brad1";
+				// }
+				// }
 				// }
 			} else if (npcid == 70798) { // リッキー
 				if (player.isKnight()) { // ナイト
@@ -330,8 +322,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				if (player.isKnight()) { // ナイト
 					if (player.getLevel() >= 30) {
 						if (quest.isEnd(L1Quest.QUEST_LEVEL15)) { // LV15クエスト終了濟み
-							int lv30_step = quest
-									.get_step(L1Quest.QUEST_LEVEL30);
+							int lv30_step = quest.get_step(L1Quest.QUEST_LEVEL30);
 							if (lv30_step == 0) { // 未開始
 								htmlid = "mark1";
 							} else {
@@ -415,8 +406,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				if (player.isElf()) { // エルフ
 					if (player.getLevel() >= 30) {
 						if (quest.isEnd(L1Quest.QUEST_LEVEL15)) { // Lv15終了濟み
-							int lv30_step = quest
-									.get_step(L1Quest.QUEST_LEVEL30);
+							int lv30_step = quest.get_step(L1Quest.QUEST_LEVEL30);
 							if (lv30_step == L1Quest.QUEST_END) { // 終了濟み
 								htmlid = "motherEE3";
 							} else if (lv30_step >= 1) { // 同意濟み
@@ -464,8 +454,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				} else if (player.isWizard()) { // ウィザード
 					if (player.getLevel() >= 30) {
 						if (quest.isEnd(L1Quest.QUEST_LEVEL15)) {
-							int lv30_step = quest
-									.get_step(L1Quest.QUEST_LEVEL30);
+							int lv30_step = quest.get_step(L1Quest.QUEST_LEVEL30);
 							if (lv30_step >= 4) { // ゲレン終了濟み
 								htmlid = "gerengw3";
 							} else if (lv30_step >= 3) { // 要求濟み
@@ -491,10 +480,8 @@ public class L1MerchantInstance extends L1NpcInstance {
 					int lv30_step = quest.get_step(L1Quest.QUEST_LEVEL30);
 					if (lv30_step == L1Quest.QUEST_END) {
 						if (player.getLevel() >= 45) {
-							int lv45_step = quest
-									.get_step(L1Quest.QUEST_LEVEL45);
-							if (lv45_step >= 1
-									&& lv45_step != L1Quest.QUEST_END) { // 同意濟み
+							int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
+							if (lv45_step >= 1 && lv45_step != L1Quest.QUEST_END) { // 同意濟み
 								htmlid = "talassmq2";
 							} else if (lv45_step <= 0) { // 未同意
 								htmlid = "talassmq1";
@@ -581,8 +568,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				if (player.isDarkelf()) { // ダークエルフ
 					if (player.getLevel() >= 30) {
 						if (quest.isEnd(L1Quest.QUEST_LEVEL15)) {
-							int lv30_step = quest
-									.get_step(L1Quest.QUEST_LEVEL30);
+							int lv30_step = quest.get_step(L1Quest.QUEST_LEVEL30);
 							if (lv30_step == L1Quest.QUEST_END) { // 終了濟み
 								htmlid = "ronde5";
 							} else if (lv30_step >= 2) { // 名簿交換濟み
@@ -603,14 +589,12 @@ public class L1MerchantInstance extends L1NpcInstance {
 				if (player.isDarkelf()) { // ダークエルフ
 					if (player.getLevel() >= 45) {
 						if (quest.isEnd(L1Quest.QUEST_LEVEL30)) {
-							int lv45_step = quest
-									.get_step(L1Quest.QUEST_LEVEL45);
+							int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
 							if (lv45_step == L1Quest.QUEST_END) { // 終了濟み
 								if (player.getLevel() < 50) { // Lv50未滿
 									htmlid = "bluedikaq3";
 								} else {
-									int lv50_step = quest
-											.get_step(L1Quest.QUEST_LEVEL50);
+									int lv50_step = quest.get_step(L1Quest.QUEST_LEVEL50);
 									if (lv50_step == L1Quest.QUEST_END) { // 終了濟み
 										htmlid = "bluedikaq8";
 									} else {
@@ -688,14 +672,12 @@ public class L1MerchantInstance extends L1NpcInstance {
 					}
 				}
 			} else if (npcid == 70011) { // 話せる島の船著き管理人
-				int time = L1GameTimeClock.getInstance().currentTime()
-						.getSeconds() % 86400;
+				int time = L1GameTimeClock.getInstance().currentTime().getSeconds() % 86400;
 				if (time < 60 * 60 * 6 || time > 60 * 60 * 20) { // 20:00～6:00
 					htmlid = "shipEvI6";
 				}
 			} else if (npcid == 70553) { // ケント城 侍從長 イスマエル
-				boolean hascastle = checkHasCastle(player,
-						L1CastleLocation.KENT_CASTLE_ID);
+				boolean hascastle = checkHasCastle(player, L1CastleLocation.KENT_CASTLE_ID);
 				if (hascastle) { // 城主クラン員
 					if (checkClanLeader(player)) { // 血盟主
 						htmlid = "ishmael1";
@@ -707,8 +689,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "ishmael7";
 				}
 			} else if (npcid == 70822) { // オークの森 セゲム アトゥバ
-				boolean hascastle = checkHasCastle(player,
-						L1CastleLocation.OT_CASTLE_ID);
+				boolean hascastle = checkHasCastle(player, L1CastleLocation.OT_CASTLE_ID);
 				if (hascastle) { // 城主クラン員
 					if (checkClanLeader(player)) { // 血盟主
 						htmlid = "seghem1";
@@ -720,8 +701,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "seghem7";
 				}
 			} else if (npcid == 70784) { // ウィンダウッド城 侍從長 オスモンド
-				boolean hascastle = checkHasCastle(player,
-						L1CastleLocation.WW_CASTLE_ID);
+				boolean hascastle = checkHasCastle(player, L1CastleLocation.WW_CASTLE_ID);
 				if (hascastle) { // 城主クラン員
 					if (checkClanLeader(player)) { // 血盟主
 						htmlid = "othmond1";
@@ -733,8 +713,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "othmond7";
 				}
 			} else if (npcid == 70623) { // ギラン城 侍從長 オービル
-				boolean hascastle = checkHasCastle(player,
-						L1CastleLocation.GIRAN_CASTLE_ID);
+				boolean hascastle = checkHasCastle(player, L1CastleLocation.GIRAN_CASTLE_ID);
 				if (hascastle) { // 城主クラン員
 					if (checkClanLeader(player)) { // 血盟主
 						htmlid = "orville1";
@@ -746,8 +725,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "orville7";
 				}
 			} else if (npcid == 70880) { // ハイネ城 侍從長 フィッシャー
-				boolean hascastle = checkHasCastle(player,
-						L1CastleLocation.HEINE_CASTLE_ID);
+				boolean hascastle = checkHasCastle(player, L1CastleLocation.HEINE_CASTLE_ID);
 				if (hascastle) { // 城主クラン員
 					if (checkClanLeader(player)) { // 血盟主
 						htmlid = "fisher1";
@@ -759,8 +737,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "fisher7";
 				}
 			} else if (npcid == 70665) { // ドワーフ城 侍從長 ポテンピン
-				boolean hascastle = checkHasCastle(player,
-						L1CastleLocation.DOWA_CASTLE_ID);
+				boolean hascastle = checkHasCastle(player, L1CastleLocation.DOWA_CASTLE_ID);
 				if (hascastle) { // 城主クラン員
 					if (checkClanLeader(player)) { // 血盟主
 						htmlid = "potempin1";
@@ -772,8 +749,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "potempin7";
 				}
 			} else if (npcid == 70721) { // アデン城 侍從長 ティモン
-				boolean hascastle = checkHasCastle(player,
-						L1CastleLocation.ADEN_CASTLE_ID);
+				boolean hascastle = checkHasCastle(player, L1CastleLocation.ADEN_CASTLE_ID);
 				if (hascastle) { // 城主クラン員
 					if (checkClanLeader(player)) { // 血盟主
 						htmlid = "timon1";
@@ -785,8 +761,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "timon7";
 				}
 			} else if (npcid == 81155) { // ディアド要塞 オーレ
-				boolean hascastle = checkHasCastle(player,
-						L1CastleLocation.DIAD_CASTLE_ID);
+				boolean hascastle = checkHasCastle(player, L1CastleLocation.DIAD_CASTLE_ID);
 				if (hascastle) { // 城主クラン員
 					if (checkClanLeader(player)) { // 血盟主
 						htmlid = "olle1";
@@ -799,10 +774,12 @@ public class L1MerchantInstance extends L1NpcInstance {
 				}
 			} else if (npcid == 80057) { // アルフォンス
 				int karmaLevel = player.getKarmaLevel();
-				String[] html1 = { "alfons1", "cbk1", "cbk2", "cbk3", "cbk4",
-						"cbk5", "cbk6", "cbk7", "cbk8" }; // 0 ~ 8
-				String[] html2 = { "cyk1", "cyk2", "cyk3", "cyk4", "cyk5",
-						"cyk6", "cyk7", "cyk8" }; // -1 ~ -8
+				String[] html1 = { "alfons1", "cbk1", "cbk2", "cbk3", "cbk4", "cbk5", "cbk6", "cbk7", "cbk8" }; // 0
+																												// ~
+																												// 8
+				String[] html2 = { "cyk1", "cyk2", "cyk3", "cyk4", "cyk5", "cyk6", "cyk7", "cyk8" }; // -1
+																										// ~
+																										// -8
 				if (karmaLevel < 0) {
 					htmlid = html2[Math.abs(karmaLevel) - 1];
 				} else if (karmaLevel >= 0) {
@@ -944,14 +921,10 @@ public class L1MerchantInstance extends L1NpcInstance {
 				if (karmaLevel == 0) {
 					htmlid = "aliceyet";
 				} else if (karmaLevel >= 1) {
-					if (player.getInventory().checkItem(196)
-							|| player.getInventory().checkItem(197)
-							|| player.getInventory().checkItem(198)
-							|| player.getInventory().checkItem(199)
-							|| player.getInventory().checkItem(200)
-							|| player.getInventory().checkItem(201)
-							|| player.getInventory().checkItem(202)
-							|| player.getInventory().checkItem(203)) {
+					if (player.getInventory().checkItem(196) || player.getInventory().checkItem(197)
+							|| player.getInventory().checkItem(198) || player.getInventory().checkItem(199)
+							|| player.getInventory().checkItem(200) || player.getInventory().checkItem(201)
+							|| player.getInventory().checkItem(202) || player.getInventory().checkItem(203)) {
 						htmlid = "alice_gd";
 					} else {
 						htmlid = "gd";
@@ -1169,8 +1142,8 @@ public class L1MerchantInstance extends L1NpcInstance {
 				}
 			} else if (npcid == 80072) { // バルログの鍛冶屋
 				int karmaLevel = player.getKarmaLevel();
-				String[] html = { "lsmith0", "lsmith1", "lsmith2", "lsmith3",
-						"lsmith4", "lsmith5", "lsmith7", "lsmith8" };
+				String[] html = { "lsmith0", "lsmith1", "lsmith2", "lsmith3", "lsmith4", "lsmith5", "lsmith7",
+						"lsmith8" };
 				if (karmaLevel <= 8) {
 					htmlid = html[karmaLevel - 1];
 				} else {
@@ -1187,21 +1160,17 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "horseseller4";
 				}
 			} else if (npcid == 70528) { // 話せる島の村 タウンマスター
-				htmlid = talkToTownmaster(player,
-						L1TownLocation.TOWNID_TALKING_ISLAND);
+				htmlid = talkToTownmaster(player, L1TownLocation.TOWNID_TALKING_ISLAND);
 			} else if (npcid == 70546) { // ケント村 タウンマスター
 				htmlid = talkToTownmaster(player, L1TownLocation.TOWNID_KENT);
 			} else if (npcid == 70567) { // グルーディン村 タウンマスター
 				htmlid = talkToTownmaster(player, L1TownLocation.TOWNID_GLUDIO);
 			} else if (npcid == 70815) { // 火田村 タウンマスター
-				htmlid = talkToTownmaster(player,
-						L1TownLocation.TOWNID_ORCISH_FOREST);
+				htmlid = talkToTownmaster(player, L1TownLocation.TOWNID_ORCISH_FOREST);
 			} else if (npcid == 70774) { // ウッドベック村 タウンマスター
-				htmlid = talkToTownmaster(player,
-						L1TownLocation.TOWNID_WINDAWOOD);
+				htmlid = talkToTownmaster(player, L1TownLocation.TOWNID_WINDAWOOD);
 			} else if (npcid == 70799) { // シルバーナイトタウン タウンマスター
-				htmlid = talkToTownmaster(player,
-						L1TownLocation.TOWNID_SILVER_KNIGHT_TOWN);
+				htmlid = talkToTownmaster(player, L1TownLocation.TOWNID_SILVER_KNIGHT_TOWN);
 			} else if (npcid == 70594) { // ギラン都市 タウンマスター
 				htmlid = talkToTownmaster(player, L1TownLocation.TOWNID_GIRAN);
 			} else if (npcid == 70860) { // ハイネ都市 タウンマスター
@@ -1211,28 +1180,23 @@ public class L1MerchantInstance extends L1NpcInstance {
 			} else if (npcid == 70748) { // 象牙の塔の村 タウンマスター
 				htmlid = talkToTownmaster(player, L1TownLocation.TOWNID_OREN);
 			} else if (npcid == 70534) { // 話せる島の村 タウンアドバイザー
-				htmlid = talkToTownadviser(player,
-						L1TownLocation.TOWNID_TALKING_ISLAND);
+				htmlid = talkToTownadviser(player, L1TownLocation.TOWNID_TALKING_ISLAND);
 			} else if (npcid == 70556) { // ケント村 タウンアドバイザー
 				htmlid = talkToTownadviser(player, L1TownLocation.TOWNID_KENT);
 			} else if (npcid == 70572) { // グルーディン村 タウンアドバイザー
 				htmlid = talkToTownadviser(player, L1TownLocation.TOWNID_GLUDIO);
 			} else if (npcid == 70830) { // 火田村 タウンアドバイザー
-				htmlid = talkToTownadviser(player,
-						L1TownLocation.TOWNID_ORCISH_FOREST);
+				htmlid = talkToTownadviser(player, L1TownLocation.TOWNID_ORCISH_FOREST);
 			} else if (npcid == 70788) { // ウッドベック村 タウンアドバイザー
-				htmlid = talkToTownadviser(player,
-						L1TownLocation.TOWNID_WINDAWOOD);
+				htmlid = talkToTownadviser(player, L1TownLocation.TOWNID_WINDAWOOD);
 			} else if (npcid == 70806) { // シルバーナイトタウン タウンアドバイザー
-				htmlid = talkToTownadviser(player,
-						L1TownLocation.TOWNID_SILVER_KNIGHT_TOWN);
+				htmlid = talkToTownadviser(player, L1TownLocation.TOWNID_SILVER_KNIGHT_TOWN);
 			} else if (npcid == 70631) { // ギラン都市 タウンアドバイザー
 				htmlid = talkToTownadviser(player, L1TownLocation.TOWNID_GIRAN);
 			} else if (npcid == 70876) { // ハイネ都市 タウンアドバイザー
 				htmlid = talkToTownadviser(player, L1TownLocation.TOWNID_HEINE);
 			} else if (npcid == 70663) { // ウェルダン村 タウンアドバイザー
-				htmlid = talkToTownadviser(player,
-						L1TownLocation.TOWNID_WERLDAN);
+				htmlid = talkToTownadviser(player, L1TownLocation.TOWNID_WERLDAN);
 			} else if (npcid == 70761) { // 象牙の塔の村 タウンアドバイザー
 				htmlid = talkToTownadviser(player, L1TownLocation.TOWNID_OREN);
 			} else if (npcid == 70997) { // ドロモンド
@@ -3139,8 +3103,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 		pc.getInventory().consumeItem(sealId, sealCount);
 		L1ItemInstance item = pc.getInventory().storeItem(rulerId, 1);
 		if (item != null) {
-			pc.sendPackets(new S_ServerMessage(143,
-					getNpcTemplate().get_name(), item.getLogName())); // \f1%0が%1をくれました。
+			pc.sendPackets(new S_ServerMessage(143, getNpcTemplate().get_name(), item.getLogName())); // \f1%0が%1をくれました。
 		}
 	}
 
@@ -3247,10 +3210,8 @@ public class L1MerchantInstance extends L1NpcInstance {
 		String htmlid = "";
 		if (pc.getLevel() < 25) {
 			htmlid = "jpe0041";
-			if (pc.getInventory().checkItem(41209)
-					|| pc.getInventory().checkItem(41210)
-					|| pc.getInventory().checkItem(41211)
-					|| pc.getInventory().checkItem(41212)) {
+			if (pc.getInventory().checkItem(41209) || pc.getInventory().checkItem(41210)
+					|| pc.getInventory().checkItem(41211) || pc.getInventory().checkItem(41212)) {
 				htmlid = "jpe0043";
 			}
 			if (pc.getInventory().checkItem(41213)) {
@@ -3302,5 +3263,4 @@ public class L1MerchantInstance extends L1NpcInstance {
 			setRest(false);
 		}
 	}
-
 }

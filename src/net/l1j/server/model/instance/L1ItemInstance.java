@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.model.instance;
 
 import java.sql.Timestamp;
@@ -30,7 +29,6 @@ import net.l1j.server.model.L1EquipmentTimer;
 import net.l1j.server.model.L1ItemOwnerTimer;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1PcInventory;
-import net.l1j.server.skills.SkillId;
 import net.l1j.server.serverpackets.S_OwnCharStatus;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Armor;
@@ -38,14 +36,14 @@ import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1Pet;
 import net.l1j.server.utils.BinaryOutputStream;
+
 import static net.l1j.server.skills.SkillId.*;
 
 // Referenced classes of package net.l1j.server.model:
 // L1Object, L1PcInstance
 
 public class L1ItemInstance extends L1Object {
-	private static Logger _log = Logger.getLogger(L1ItemInstance.class
-			.getName());
+	private static Logger _log = Logger.getLogger(L1ItemInstance.class.getName());
 
 	private static final long serialVersionUID = 1L;
 
@@ -98,7 +96,7 @@ public class L1ItemInstance extends L1Object {
 
 	/**
 	 * アイテムが確認(鑑定)濟みであるかを返す。
-	 *
+	 * 
 	 * @return 確認濟みならtrue、未確認ならfalse。
 	 */
 	public boolean isIdentified() {
@@ -107,7 +105,7 @@ public class L1ItemInstance extends L1Object {
 
 	/**
 	 * アイテムが確認(鑑定)濟みであるかを設定する。
-	 *
+	 * 
 	 * @param identified
 	 *            確認濟みならtrue、未確認ならfalse。
 	 */
@@ -121,7 +119,7 @@ public class L1ItemInstance extends L1Object {
 
 	/**
 	 * アイテムの個數を返す。
-	 *
+	 * 
 	 * @return アイテムの個數
 	 */
 	public int getCount() {
@@ -130,7 +128,7 @@ public class L1ItemInstance extends L1Object {
 
 	/**
 	 * アイテムの個數を設定する。
-	 *
+	 * 
 	 * @param count
 	 *            アイテムの個數
 	 */
@@ -140,7 +138,7 @@ public class L1ItemInstance extends L1Object {
 
 	/**
 	 * アイテムが裝備されているかを返す。
-	 *
+	 * 
 	 * @return アイテムが裝備されていればtrue、裝備されていなければfalse。
 	 */
 	public boolean isEquipped() {
@@ -149,7 +147,7 @@ public class L1ItemInstance extends L1Object {
 
 	/**
 	 * アイテムが裝備されているかを設定する。
-	 *
+	 * 
 	 * @param equipped
 	 *            アイテムが裝備されていればtrue,裝備されていなければfalse。
 	 */
@@ -256,12 +254,11 @@ public class L1ItemInstance extends L1Object {
 
 	public int getMr() {
 		int mr = _item.get_mdef();
-		if (getItemId() == 20011 || getItemId() == 20110
-				|| getItemId() == 120011) {
+		if (getItemId() == 20011 || getItemId() == 20110 || getItemId() == 120011) {
 			mr += getEnchantLevel();
 		}
-		if (getItemId() == 20056 || getItemId() == 120056 // 抗魔法斗篷 受祝福的抗魔法斗篷
-				|| getItemId() == 220056 || getItemId() == 21535 ) { // 受詛咒的抗魔法斗篷 強化抗魔斗篷
+		if (getItemId() == 20056 || getItemId() == 120056 || getItemId() == 220056 || getItemId() == 21535) {
+
 			mr += getEnchantLevel() * 2;
 		}
 		return mr;
@@ -288,7 +285,6 @@ public class L1ItemInstance extends L1Object {
 			return Math.max(getCount() * getItem().getWeight() / 1000, 1);
 		}
 	}
-
 
 	/**
 	 * 前回DBへ保存した際のアイテムのステータスを格納するクラス
@@ -319,7 +315,7 @@ public class L1ItemInstance extends L1Object {
 
 		public int attrEnchantLevel;
 
-//waja add 飾品強化卷軸
+		// waja add 飾品強化卷軸
 		public int firemr;
 
 		public int watermr;
@@ -337,7 +333,8 @@ public class L1ItemInstance extends L1Object {
 		public int mpr;
 
 		public int addsp;
-//add end
+		// waja add 飾品強化卷軸
+
 		public void updateAll() {
 			count = getCount();
 			itemId = getItemId();
@@ -351,7 +348,7 @@ public class L1ItemInstance extends L1Object {
 			bless = getBless();
 			attrEnchantKind = getAttrEnchantKind();
 			attrEnchantLevel = getAttrEnchantLevel();
-//waja add 飾品強化卷軸
+			// waja add 飾品強化卷軸
 			firemr = getFireMr();
 			watermr = getWaterMr();
 			earthmr = getEarthMr();
@@ -361,7 +358,7 @@ public class L1ItemInstance extends L1Object {
 			addsp = getaddSp();
 			hpr = getHpr();
 			mpr = getMpr();
-//add end
+			// waja add 飾品強化卷軸
 		}
 
 		public void updateCount() {
@@ -411,43 +408,44 @@ public class L1ItemInstance extends L1Object {
 		public void updateAttrEnchantLevel() {
 			attrEnchantLevel = getAttrEnchantLevel();
 		}
-//waja add 飾品強化卷軸
-		public void updateFireMr(){
+
+		// waja add 飾品強化卷軸
+		public void updateFireMr() {
 			firemr = getFireMr();
 		}
 
-		public void updateWaterMr(){
+		public void updateWaterMr() {
 			watermr = getWaterMr();
 		}
 
-		public void updateEarthMr(){
+		public void updateEarthMr() {
 			earthmr = getEarthMr();
 		}
 
-		public void updateWindMr(){
+		public void updateWindMr() {
 			windmr = getWindMr();
 		}
 
-		public void updateSp(){
+		public void updateSp() {
 			addsp = getaddSp();
 		}
 
-		public void updateaddHp(){
+		public void updateaddHp() {
 			addhp = getaddHp();
 		}
 
-		public void updateaddMp(){
+		public void updateaddMp() {
 			addmp = getaddMp();
 		}
 
-		public void updateHpr(){
+		public void updateHpr() {
 			hpr = getHpr();
 		}
 
-		public void updateMpr(){
+		public void updateMpr() {
 			mpr = getMpr();
 		}
-//add end
+		// waja add 飾品強化卷軸
 	}
 
 	public LastStatus getLastStatus() {
@@ -496,35 +494,35 @@ public class L1ItemInstance extends L1Object {
 		if (getAttrEnchantLevel() != _lastStatus.attrEnchantLevel) {
 			column += L1PcInventory.COL_ATTR_ENCHANT_LEVEL;
 		}
-//waja add 飾品強化卷軸
-		if (getFireMr() != _lastStatus.firemr ) {
+		// waja add 飾品強化卷軸
+		if (getFireMr() != _lastStatus.firemr) {
 			column += L1PcInventory.COL_FIREMR;
 		}
-		if (getWaterMr() != _lastStatus.watermr ) {
+		if (getWaterMr() != _lastStatus.watermr) {
 			column += L1PcInventory.COL_WATERMR;
 		}
-		if (getEarthMr() != _lastStatus.earthmr ) {
+		if (getEarthMr() != _lastStatus.earthmr) {
 			column += L1PcInventory.COL_EARTHMR;
 		}
-		if (getWindMr() != _lastStatus.windmr ) {
+		if (getWindMr() != _lastStatus.windmr) {
 			column += L1PcInventory.COL_WINDMR;
 		}
-		if (getaddSp() != _lastStatus.addsp ) {
+		if (getaddSp() != _lastStatus.addsp) {
 			column += L1PcInventory.COL_ADDSP;
 		}
-		if (getaddHp() != _lastStatus.addhp ) {
+		if (getaddHp() != _lastStatus.addhp) {
 			column += L1PcInventory.COL_ADDHP;
 		}
-		if (getaddMp() != _lastStatus.addmp ) {
+		if (getaddMp() != _lastStatus.addmp) {
 			column += L1PcInventory.COL_ADDMP;
 		}
-		if (getHpr() != _lastStatus.hpr ) {
+		if (getHpr() != _lastStatus.hpr) {
 			column += L1PcInventory.COL_HPR;
 		}
-		if (getMpr() != _lastStatus.mpr ) {
+		if (getMpr() != _lastStatus.mpr) {
 			column += L1PcInventory.COL_MPR;
 		}
-//add end
+		// waja add 飾品強化卷軸
 		return column;
 	}
 
@@ -540,10 +538,9 @@ public class L1ItemInstance extends L1Object {
 			L1Pet pet = PetTable.getInstance().getTemplate(getId());
 			if (pet != null) {
 				L1Npc npc = NpcTable.getInstance().getTemplate(pet.get_npcid());
-// name.append("[Lv." + pet.get_level() + " "
-// + npc.get_nameid() + "]");
-				name.append("[Lv." + pet.get_level() + " " + pet.get_name()
-						+ "]HP" + pet.get_hp() + " " + npc.get_nameid());
+				// name.append("[Lv." + pet.get_level() + " " + npc.get_nameid() + "]");
+				name.append("[Lv." + pet.get_level() + " " + pet.get_name() + "]HP" + pet.get_hp() + " "
+						+ npc.get_nameid());
 			}
 		}
 
@@ -598,49 +595,49 @@ public class L1ItemInstance extends L1Object {
 				if (attrEnchantLevel > 0) {
 					String attrStr = null;
 					switch (getAttrEnchantKind()) {
-					case 1: // 地
-						if (attrEnchantLevel == 1) {
-							attrStr = "$6124";
-						} else if (attrEnchantLevel == 2) {
-							attrStr = "$6125";
-						} else if (attrEnchantLevel == 3) {
-							attrStr = "$6126";
-						}
+						case 1: // 地
+							if (attrEnchantLevel == 1) {
+								attrStr = "$6124";
+							} else if (attrEnchantLevel == 2) {
+								attrStr = "$6125";
+							} else if (attrEnchantLevel == 3) {
+								attrStr = "$6126";
+							}
 						break;
-					case 2: // 火
-						if (attrEnchantLevel == 1) {
-							attrStr = "$6115";
-						} else if (attrEnchantLevel == 2) {
-							attrStr = "$6116";
-						} else if (attrEnchantLevel == 3) {
-							attrStr = "$6117";
-						}
+						case 2: // 火
+							if (attrEnchantLevel == 1) {
+								attrStr = "$6115";
+							} else if (attrEnchantLevel == 2) {
+								attrStr = "$6116";
+							} else if (attrEnchantLevel == 3) {
+								attrStr = "$6117";
+							}
 						break;
-					case 4: // 水
-						if (attrEnchantLevel == 1) {
-							attrStr = "$6118";
-						} else if (attrEnchantLevel == 2) {
-							attrStr = "$6119";
-						} else if (attrEnchantLevel == 3) {
-							attrStr = "$6120";
-						}
+						case 4: // 水
+							if (attrEnchantLevel == 1) {
+								attrStr = "$6118";
+							} else if (attrEnchantLevel == 2) {
+								attrStr = "$6119";
+							} else if (attrEnchantLevel == 3) {
+								attrStr = "$6120";
+							}
 						break;
-					case 8: // 風
-						if (attrEnchantLevel == 1) {
-							attrStr = "$6121";
-						} else if (attrEnchantLevel == 2) {
-							attrStr = "$6122";
-						} else if (attrEnchantLevel == 3) {
-							attrStr = "$6123";
-						}
+						case 8: // 風
+							if (attrEnchantLevel == 1) {
+								attrStr = "$6121";
+							} else if (attrEnchantLevel == 2) {
+								attrStr = "$6122";
+							} else if (attrEnchantLevel == 3) {
+								attrStr = "$6123";
+							}
 						break;
-					default:
+						default:
 						break;
 					}
 					name.append(attrStr + " ");
 				}
 			}
-			
+
 			if (getItem().getType2() != 0) { // 武器‧防具
 				if (getEnchantLevel() >= 0)
 					name.append("+" + getEnchantLevel() + " ");
@@ -648,13 +645,13 @@ public class L1ItemInstance extends L1Object {
 					name.append(String.valueOf(getEnchantLevel()) + " ");
 			}
 		}
-		if (isIdentified())
+		if (isIdentified()) {
 			name.append(_item.getIdentifiedNameId());
-		else
+		} else {
 			name.append(_item.getUnidentifiedNameId());
-		
-		if (isIdentified())
-		{
+		}
+
+		if (isIdentified()) {
 			if (getItem().getMaxChargeCount() > 0) {
 				name.append(" (" + getChargeCount() + ")");
 			}
@@ -673,21 +670,25 @@ public class L1ItemInstance extends L1Object {
 		return name.toString();
 	}
 
-//waja add 裝備保護卷軸
+	// waja add 裝備保護卷軸
 	private boolean proctect = false;
 
 	public boolean getproctect() {
 		return proctect;
 	}
+
 	public void setproctect(boolean i) {
 		proctect = i;
 	}
-//waja add 飾品強化卷軸
+	// waja add 裝備保護卷軸
+
+	// waja add 飾品強化卷軸
 	private int _FireMr = 0;
 
 	public int getFireMr() {
 		return _FireMr;
 	}
+
 	public void setFireMr(int i) {
 		_FireMr = i;
 	}
@@ -697,6 +698,7 @@ public class L1ItemInstance extends L1Object {
 	public int getWaterMr() {
 		return _WaterMr;
 	}
+
 	public void setWaterMr(int i) {
 		_WaterMr = i;
 	}
@@ -706,6 +708,7 @@ public class L1ItemInstance extends L1Object {
 	public int getEarthMr() {
 		return _EarthMr;
 	}
+
 	public void setEarthMr(int i) {
 		_EarthMr = i;
 	}
@@ -715,6 +718,7 @@ public class L1ItemInstance extends L1Object {
 	public int getWindMr() {
 		return _WindMr;
 	}
+
 	public void setWindMr(int i) {
 		_WindMr = i;
 	}
@@ -724,6 +728,7 @@ public class L1ItemInstance extends L1Object {
 	public int getMpr() {
 		return _Mpr;
 	}
+
 	public void setMpr(int i) {
 		_Mpr = i;
 	}
@@ -733,6 +738,7 @@ public class L1ItemInstance extends L1Object {
 	public int getHpr() {
 		return _Hpr;
 	}
+
 	public void setHpr(int i) {
 		_Hpr = i;
 	}
@@ -742,6 +748,7 @@ public class L1ItemInstance extends L1Object {
 	public int getaddHp() {
 		return _addHp;
 	}
+
 	public void setaddHp(int i) {
 		_addHp = i;
 	}
@@ -751,6 +758,7 @@ public class L1ItemInstance extends L1Object {
 	public int getaddMp() {
 		return _addMp;
 	}
+
 	public void setaddMp(int i) {
 		_addMp = i;
 	}
@@ -760,44 +768,44 @@ public class L1ItemInstance extends L1Object {
 	public int getaddSp() {
 		return _addSp;
 	}
+
 	public void setaddSp(int i) {
 		_addSp = i;
 	}
-//add end
+	// waja add 飾品強化卷軸
 
 	/**
 	 * アイテムの狀態からサーバーパケットで利用する形式のバイト列を生成し、返す。
 	 */
-	public byte[] getStatusBytes()
-	{
+	public byte[] getStatusBytes() {
 		int itemType2 = getItem().getType2();
 		int itemId = getItemId();
 		BinaryOutputStream os = new BinaryOutputStream();
 
 		if (itemType2 == 0) { // etcitem
 			switch (getItem().getType()) {
-			case 2: // light
-				os.writeC(22); // 明るさ
-				os.writeH(getItem().getLightRange());
+				case 2: // light
+					os.writeC(22); // 明るさ
+					os.writeH(getItem().getLightRange());
 				break;
-			case 7: // food
-				os.writeC(21);
-				// 榮養
-				os.writeH(getItem().getFoodVolume());
+				case 7: // food
+					os.writeC(21);
+					// 榮養
+					os.writeH(getItem().getFoodVolume());
 				break;
-			case 0: // arrow
-			case 20: // sting
-				os.writeC(1); // 打擊值
-				os.writeC(getItem().getDmgSmall());
-				os.writeC(getItem().getDmgLarge());
+				case 0: // arrow
+				case 20: // sting
+					os.writeC(1); // 打擊值
+					os.writeC(getItem().getDmgSmall());
+					os.writeC(getItem().getDmgLarge());
 				break;
-//waja add 修正高等寵物裝備顯示 可否裝備
-			case 11:
-				os.writeC(7);
-				os.writeC(128);
-//add end
-			default:
-				os.writeC(23); // 材質
+				// waja add 修正高等寵物裝備顯示 可否裝備
+				case 11:
+					os.writeC(7);
+					os.writeC(128);
+					// add end
+				default:
+					os.writeC(23); // 材質
 				break;
 			}
 			os.writeC(getItem().getMaterial());
@@ -823,7 +831,7 @@ public class L1ItemInstance extends L1Object {
 				os.writeD(getWeight());
 			}
 			// 強化數
-//waja add & change 飾品強化卷軸
+			// waja add & change 飾品強化卷軸
 /* 原本寫法
 			if (getEnchantLevel() != 0) {
 				os.writeC(2);
@@ -832,19 +840,16 @@ public class L1ItemInstance extends L1Object {
 */
 			if (getEnchantLevel() != 0) {
 				os.writeC(2);
-				if (getItem().getType2() !=2){
+				if (getItem().getType2() != 2) {
 					os.writeC(getEnchantLevel());
-				} else if (getItem().getType2() == 2
-						&&getItem().getType() == 8
-						||getItem().getType() == 9
-						||getItem().getType() == 10
-						||getItem().getType() == 12){
+				} else if (getItem().getType2() == 2 && getItem().getType() == 8 || getItem().getType() == 9
+						|| getItem().getType() == 10 || getItem().getType() == 12) {
 					os.writeC(0);
 				} else {
 					os.writeC(getEnchantLevel());
 				}
 			}
-//add end
+			// waja add & change 飾品強化卷軸
 			// 損傷度
 			if (get_durability() != 0) {
 				os.writeC(3);
@@ -866,7 +871,7 @@ public class L1ItemInstance extends L1Object {
 					os.writeC(getItem().getHitModifierByArmor());
 				}
 			}
- 			// 追加打撃
+			// 追加打撃
 			if (itemType2 == 1) { // weapon
 				if (getItem().getDmgModifier() != 0) {
 					os.writeC(6);
@@ -880,13 +885,13 @@ public class L1ItemInstance extends L1Object {
 			}
 			// 使用可能
 			int bit = 0;
-			bit |= getItem().isUseRoyal()        ?  1 : 0;
-			bit |= getItem().isUseKnight()       ?  2 : 0;
-			bit |= getItem().isUseElf()          ?  4 : 0;
-			bit |= getItem().isUseMage()         ?  8 : 0;
-			bit |= getItem().isUseDarkelf()      ? 16 : 0;
+			bit |= getItem().isUseRoyal() ? 1 : 0;
+			bit |= getItem().isUseKnight() ? 2 : 0;
+			bit |= getItem().isUseElf() ? 4 : 0;
+			bit |= getItem().isUseMage() ? 8 : 0;
+			bit |= getItem().isUseDarkelf() ? 16 : 0;
 			bit |= getItem().isUseDragonknight() ? 32 : 0;
-			bit |= getItem().isUseIllusionist()  ? 64 : 0;
+			bit |= getItem().isUseIllusionist() ? 64 : 0;
 			// bit |= getItem().isUseHiPet() ? 127 : 0;
 			os.writeC(7);
 			os.writeC(bit);
@@ -900,12 +905,12 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(35);
 				os.writeC(getItem().getBowDmgModifierByArmor());
 			}
-			
+
 			// MP吸収
 			if (itemId == 126 || itemId == 127) { // マナスタッフ、鋼鉄のマナスタッフ
 				os.writeC(16);
 			}
-			
+
 			// HP吸収
 			if (itemId == 262) { // ディストラクション
 				os.writeC(34);
@@ -935,14 +940,14 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(13);
 				os.writeC(getItem().get_addcha());
 			}
-			
+
 			// ヘイスト
 			if (getItem().isHasteItem()) {
 				os.writeC(18);
 			}
-			
+
 			//waja add & change 飾品強化卷軸
-			/* 原本寫法
+/* 原本寫法
 			// 火の屬性
 			if (getItem().get_defense_fire() != 0) {
 				os.writeC(27);
@@ -963,29 +968,24 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(30);
 				os.writeC(getItem().get_defense_earth());
 			}
-			*
-			*/
-			
-			if (getItem().get_addhp() != 0 || getaddHp() != 0)
-			{
+*/
+			if (getItem().get_addhp() != 0 || getaddHp() != 0) {
 				os.writeC(14);
 				os.writeH(getItem().get_addhp() + getaddHp());
 			}
-			
+
 			if (getItem().get_addmp() != 0 || getaddMp() != 0) {
 				os.writeC(32);
 				os.writeC(getItem().get_addmp() + getaddMp());
 			}
 
-			if (getItem().get_addsp() != 0 || getaddSp() != 0)
-			{
+			if (getItem().get_addsp() != 0 || getaddSp() != 0) {
 				os.writeC(17);
 				os.writeC(getItem().get_addsp() + getaddSp());
 			}
-			
+
 			// MR
-			if (getMr() != 0)
-			{
+			if (getMr() != 0) {
 				os.writeC(15);
 				os.writeH(getMr());
 			}
@@ -1006,62 +1006,56 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(30);
 				os.writeC(getItem().get_defense_earth() + getEarthMr());
 			}
-			//add end
-			
+			// waja add & change 飾品強化卷軸
+
 			// 凍結耐性
-			if (getItem().get_regist_freeze() != 0)
-			{
+			if (getItem().get_regist_freeze() != 0) {
 				os.writeC(15);
 				os.writeH(getItem().get_regist_freeze());
 				os.writeC(33);
 				os.writeC(1);
 			}
-			
+
 			// 石化耐性
-			if (getItem().get_regist_stone() != 0)
-			{
+			if (getItem().get_regist_stone() != 0) {
 				os.writeC(15);
 				os.writeH(getItem().get_regist_stone());
 				os.writeC(33);
 				os.writeC(2);
 			}
-			
+
 			// 睡眠耐性
-			if (getItem().get_regist_sleep() != 0)
-			{
+			if (getItem().get_regist_sleep() != 0) {
 				os.writeC(15);
 				os.writeH(getItem().get_regist_sleep());
 				os.writeC(33);
 				os.writeC(3);
 			}
-			
+
 			// 暗闇耐性
-			if (getItem().get_regist_blind() != 0)
-			{
+			if (getItem().get_regist_blind() != 0) {
 				os.writeC(15);
 				os.writeH(getItem().get_regist_blind());
 				os.writeC(33);
 				os.writeC(4);
 			}
-			
+
 			// スタン耐性
-			if (getItem().get_regist_stun() != 0)
-			{
+			if (getItem().get_regist_stun() != 0) {
 				os.writeC(15);
 				os.writeH(getItem().get_regist_stun());
 				os.writeC(33);
 				os.writeC(5);
 			}
-			
+
 			// ホールド耐性
-			if (getItem().get_regist_sustain() != 0)
-			{
+			if (getItem().get_regist_sustain() != 0) {
 				os.writeC(15);
 				os.writeH(getItem().get_regist_sustain());
 				os.writeC(33);
 				os.writeC(6);
 			}
-			
+
 			// 幸運
 			// if (getItem.getLuck() != 0) {
 			// os.writeC(20);
@@ -1081,34 +1075,34 @@ public class L1ItemInstance extends L1Object {
 		return os.getBytes();
 	}
 
-class EnchantTimer extends TimerTask {
+	class EnchantTimer extends TimerTask {
 
-	public EnchantTimer() {
-	}
+		public EnchantTimer() {
+		}
 
-	@Override
-	public void run() {
-		try {
-			int type = getItem().getType();
-			int type2 = getItem().getType2();
-			int itemId = getItem().getItemId();
-			if (_pc != null && _pc.getInventory().checkItem(itemId)) {
-				if (type == 2 && type2 == 2 && isEquipped()) {
-					_pc.addAc(3);
-					_pc.sendPackets(new S_OwnCharStatus(_pc));
+		@Override
+		public void run() {
+			try {
+				int type = getItem().getType();
+				int type2 = getItem().getType2();
+				int itemId = getItem().getItemId();
+				if (_pc != null && _pc.getInventory().checkItem(itemId)) {
+					if (type == 2 && type2 == 2 && isEquipped()) {
+						_pc.addAc(3);
+						_pc.sendPackets(new S_OwnCharStatus(_pc));
+					}
 				}
+				setAcByMagic(0);
+				setDmgByMagic(0);
+				setHolyDmgByMagic(0);
+				setHitByMagic(0);
+				_pc.sendPackets(new S_ServerMessage(308, getLogName()));
+				_isRunning = false;
+				_timer = null;
+			} catch (Exception e) {
 			}
-			setAcByMagic(0);
-			setDmgByMagic(0);
-			setHolyDmgByMagic(0);
-			setHitByMagic(0);
-			_pc.sendPackets(new S_ServerMessage(308, getLogName()));
-			_isRunning = false;
-			_timer = null;
-		} catch (Exception e) {
 		}
 	}
-}
 
 	private int _acByMagic = 0;
 
@@ -1178,8 +1172,7 @@ class EnchantTimer extends TimerTask {
 		_isRunning = true;
 	}
 
-	public void setSkillWeaponEnchant(L1PcInstance pc, int skillId,
-			int skillTime) {
+	public void setSkillWeaponEnchant(L1PcInstance pc, int skillId, int skillTime) {
 		if (getItem().getType2() != 1) {
 			return;
 		}
@@ -1192,27 +1185,27 @@ class EnchantTimer extends TimerTask {
 			_timer = null;
 		}
 
-		switch(skillId) {
+		switch (skillId) {
 			case SKILL_HOLY_WEAPON:
 				setHolyDmgByMagic(1);
 				setHitByMagic(1);
-				break;
+			break;
 
 			case SKILL_ENCHANT_WEAPON:
 				setDmgByMagic(2);
-				break;
+			break;
 
 			case SKILL_BLESS_WEAPON:
 				setDmgByMagic(2);
 				setHitByMagic(2);
-				break;
+			break;
 
 			case SKILL_SHADOW_FANG:
 				setDmgByMagic(5);
-				break;
+			break;
 
 			default:
-				break;
+			break;
 		}
 
 		_pc = pc;
