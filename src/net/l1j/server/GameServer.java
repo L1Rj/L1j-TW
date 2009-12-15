@@ -122,7 +122,8 @@ public class GameServer extends Thread {
 	}
 
 	public void initialize() throws Exception {
-		String s = Config.GAME_SERVER_HOST_NAME;
+		String ps = Config.PASSWORD_SALT;
+		String gs = Config.GAME_SERVER_HOST_NAME;
 		double rateXp = Config.RATE_XP;
 		double LA = Config.RATE_LA;
 		double rateKarma = Config.RATE_KARMA;
@@ -131,8 +132,12 @@ public class GameServer extends Thread {
 
 		chatlvl = Config.GLOBAL_CHAT_LEVEL;
 		_port = Config.GAME_SERVER_PORT;
-		if (!"*".equals(s)) {
-			InetAddress inetaddress = InetAddress.getByName(s);
+		if ("lineage".equals(ps)) {
+			System.out.println("伺服器設置: 帳號密碼的加密算法數值不建議使用預設值");
+			System.out.println("伺服器設置: 系統已經強制停止伺服器啟動");
+			return;
+		} else if (!"*".equals(gs)) {
+			InetAddress inetaddress = InetAddress.getByName(gs);
 			inetaddress.getHostAddress();
 			_serverSocket = new ServerSocket(_port, 50, inetaddress);
 			System.out.println("伺服器設置: 產生伺服器連接埠");
@@ -154,7 +159,7 @@ public class GameServer extends Thread {
 		}
 
 		System.out.println("=================================================");
-		System.out.println("===== Lineage 3.0C ======= L1j2021-tw1192 版 ====");
+		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1195 ========");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;

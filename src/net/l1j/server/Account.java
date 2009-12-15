@@ -28,7 +28,9 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import net.l1j.Base64;
+import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.utils.SQLUtil;
 
@@ -66,15 +68,35 @@ public class Account {
 	/** メッセージログ用. */
 	private static Logger _log = Logger.getLogger(Account.class.getName());
 
+	private static MessageDigest _md;
+
 	/**
 	 * コンストラクタ.
 	 */
 	private Account() {
 	}
 
+	/* Convert from Byte[] to String */
+	private static String convertToString(byte[] data) {
+		StringBuffer buf = new StringBuffer();
+		for (int i = 0; i < data.length; i++) {
+			int halfbyte = (data[i] >>> 4) & 0x0F;
+			int two_halfs = 0;
+			do {
+				if ((0 <= halfbyte) && (halfbyte <= 9)) {
+					buf.append((char) ('0' + halfbyte));
+				} else {
+					buf.append((char) ('a' + (halfbyte - 10)));
+				}
+				halfbyte = data[i] & 0x0F;
+			} while (two_halfs++ < 1);
+		}
+		return buf.toString();
+	}
+
 	/**
-	 * パスワードを暗號化する.
-	 *
+	 * 使用 SHA512 加密
+	 * 
 	 * @param rawPassword
 	 *            平文のパスワード
 	 * @return String
@@ -83,8 +105,47 @@ public class Account {
 	 * @throws UnsupportedEncodingException
 	 *             文字のエンコードがサポートされていない時
 	 */
-	private static String encodePassword(final String rawPassword)
-			throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	private static String makeSHA256(String rawPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		_md = MessageDigest.getInstance("SHA-256");
+		byte[] sha256hash = new byte[32];
+		_md.update(rawPassword.getBytes("UTF-8"), 0, rawPassword.length());
+		sha256hash = _md.digest();
+
+		return convertToString(sha256hash);
+	}
+
+	/**
+	 * 使用 MD5 加密
+	 * 
+	 * @param rawPassword
+	 *            平文のパスワード
+	 * @return String
+	 * @throws NoSuchAlgorithmException
+	 *             暗號アルゴリズムが使用できない環境の時
+	 * @throws UnsupportedEncodingException
+	 *             文字のエンコードがサポートされていない時
+	 */
+	private static String makeMD5(String rawPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		_md = MessageDigest.getInstance("MD5");
+		byte[] md5hash = new byte[32];
+		_md.update(rawPassword.getBytes("UTF-8"), 0, rawPassword.length());
+		md5hash = _md.digest();
+
+		return convertToString(md5hash);
+	}
+
+	/**
+	 * 密碼加密
+	 * 
+	 * @param rawPassword
+	 *            平文のパスワード
+	 * @return String
+	 * @throws NoSuchAlgorithmException
+	 *             暗號アルゴリズムが使用できない環境の時
+	 * @throws UnsupportedEncodingException
+	 *             文字のエンコードがサポートされていない時
+	 */
+	private static String encodePassword(final String rawPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		byte[] buf = rawPassword.getBytes("UTF-8");
 		buf = MessageDigest.getInstance("SHA").digest(buf);
 
@@ -93,7 +154,7 @@ public class Account {
 
 	/**
 	 * アカウントを新規作成する.
-	 *
+	 * 
 	 * @param name
 	 *            アカウント名
 	 * @param rawPassword
@@ -104,15 +165,14 @@ public class Account {
 	 *            接續先のホスト名
 	 * @return Account
 	 */
-	public static Account create(final String name, final String rawPassword,
-			final String ip, final String host) {
+	public static Account create(final String name, final String rawPassword, final String ip, final String host) {
 		Connection con = null;
 		PreparedStatement pstm = null;
-		try {
 
+		try {
 			Account account = new Account();
 			account._name = name;
-			account._password = encodePassword(rawPassword);
+			account._password = makeSHA256(Config.PASSWORD_SALT + rawPassword + makeMD5(name));
 			account._ip = ip;
 			account._host = host;
 			account._banned = false;
@@ -148,7 +208,7 @@ public class Account {
 
 	/**
 	 * アカウント情報をDBから抽出する.
-	 *
+	 * 
 	 * @param name
 	 *            アカウント名
 	 * @return Account
@@ -157,8 +217,8 @@ public class Account {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-
 		Account account = null;
+
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			String sqlstr = "SELECT * FROM accounts WHERE login=? LIMIT 1";
@@ -191,35 +251,27 @@ public class Account {
 	}
 
 	/**
-	 *
 	 * 最終ログイン日をDBに反映する.
-	 *
+	 * 
 	 * @param account
 	 *            アカウント
 	 */
-	public static void updateLastActive(final Account account, final String ip/*更新登入IP*/) {
+	public static void updateLastActive(final Account account, final String ip) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-/*
-			String sqlstr = "UPDATE accounts SET lastactive=? WHERE login = ?";
-			pstm = con.prepareStatement(sqlstr);
-			pstm.setTimestamp(1, ts);
-			pstm.setString(2, account.getName());
-*/
-//登入更新IP
 			String sqlstr = "UPDATE accounts SET lastactive=?,ip=? WHERE login = ?";
 			pstm = con.prepareStatement(sqlstr);
 			pstm.setTimestamp(1, ts);
 			pstm.setString(2, ip);
 			pstm.setString(3, account.getName());
-//add end
 			pstm.execute();
 			account._lastActive = ts;
-			_log.fine("update lastactive for " + account.getName());
+
+			_log.fine("update lastactive and ip for " + account.getName());
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
@@ -246,6 +298,7 @@ public class Account {
 			pstm.setString(2, account.getName());
 			pstm.execute();
 			account._characterSlot = account.getCharacterSlot();
+
 			_log.fine("update characterslot for " + account.getName());
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -256,9 +309,8 @@ public class Account {
 	}
 
 	/**
-	 *
 	 * キャラクター所有數をカウントする.
-	 *
+	 * 
 	 * @return int
 	 */
 	public int countCharacters() {
@@ -266,6 +318,7 @@ public class Account {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
+
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			String sqlstr = "SELECT count(*) as cnt FROM characters WHERE account_name=?";
@@ -286,15 +339,15 @@ public class Account {
 	}
 
 	/**
-	 *
 	 * アカウントを無效にする.
-	 *
+	 * 
 	 * @param login
 	 *            アカウント名
 	 */
 	public static void ban(final String login) {
 		Connection con = null;
 		PreparedStatement pstm = null;
+
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			String sqlstr = "UPDATE accounts SET banned=1 WHERE login=?";
@@ -310,9 +363,34 @@ public class Account {
 	}
 
 	/**
-	 *
+	 * 更改密碼
+	 * 
+	 * @param password
+	 *            密碼
+	 */
+	private void changePassword(String password) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("UPDATE accounts SET password=? WHERE login=?");
+			pstm.setString(1, password);
+			pstm.setString(2, _name);
+			pstm.execute();
+
+			_log.info("Rehashed password for " + _name + ".");
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+	}
+
+	/**
 	 * 入力されたパスワードとDB上のパスワードを照合する.
-	 *
+	 * 
 	 * @param rawPassword
 	 *            平文パスワード
 	 * @return boolean
@@ -322,10 +400,17 @@ public class Account {
 		if (_isValid) {
 			return false;
 		}
+
 		try {
-			_isValid = _password.equals(encodePassword(rawPassword));
+			_isValid = _password.equals(makeSHA256(Config.PASSWORD_SALT + rawPassword + makeMD5(_name)));
 			if (_isValid) {
 				_password = null; // 認証が成功した場合、パスワードを破棄する。
+			} else { // 如果密碼不符合
+				_isValid = _password.equals(encodePassword(rawPassword));
+				if (_isValid) { // 如果密碼是舊的加密算法
+					// 更新密碼為新的加密算法
+					changePassword(makeSHA256(Config.PASSWORD_SALT + rawPassword + makeMD5(_name)));
+				}
 			}
 			return _isValid;
 		} catch (Exception e) {
@@ -336,7 +421,7 @@ public class Account {
 
 	/**
 	 * アカウントが有效かどうかを返す(Trueで有效).
-	 *
+	 * 
 	 * @return boolean
 	 */
 	public boolean isValid() {
@@ -345,7 +430,7 @@ public class Account {
 
 	/**
 	 * アカウントがゲームマスタかどうか返す(Trueでゲームマスタ).
-	 *
+	 * 
 	 * @return boolean
 	 */
 	public boolean isGameMaster() {
@@ -354,7 +439,7 @@ public class Account {
 
 	/**
 	 * アカウント名を取得する.
-	 *
+	 * 
 	 * @return String
 	 */
 	public String getName() {
@@ -363,7 +448,7 @@ public class Account {
 
 	/**
 	 * 接續先のIPアドレスを取得する.
-	 *
+	 * 
 	 * @return String
 	 */
 	public String getIp() {
@@ -379,7 +464,7 @@ public class Account {
 
 	/**
 	 * アクセスレベルを取得する.
-	 *
+	 * 
 	 * @return int
 	 */
 	public int getAccessLevel() {
@@ -388,7 +473,7 @@ public class Account {
 
 	/**
 	 * ホスト名を取得する.
-	 *
+	 * 
 	 * @return String
 	 */
 	public String getHost() {
@@ -397,7 +482,7 @@ public class Account {
 
 	/**
 	 * アクセス禁止情報を取得する.
-	 *
+	 * 
 	 * @return boolean
 	 */
 	public boolean isBanned() {

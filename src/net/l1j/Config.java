@@ -51,6 +51,8 @@ public final class Config {
 
 	public static int GAME_SERVER_PORT;
 
+	public static String PASSWORD_SALT;
+
 	public static String TIME_ZONE;
 
 	public static int CLIENT_LANGUAGE;
@@ -451,6 +453,7 @@ public final class Config {
 			GAME_SERVER_PORT = Integer.parseInt(serverSettings.getProperty("GameserverPort", "2000"));
 			THREAD_P_TYPE_GENERAL = Integer.parseInt(serverSettings.getProperty("GeneralThreadPoolType", "0"), 10);
 			THREAD_P_SIZE_GENERAL = Integer.parseInt(serverSettings.getProperty("GeneralThreadPoolSize", "0"), 10);
+			PASSWORD_SALT = serverSettings.getProperty("PasswordSalt", "lineage");
 			CLIENT_LANGUAGE = Integer.parseInt(serverSettings.getProperty("ClientLanguage", "3"));
 			CLIENT_LANGUAGE_CODE = LANGUAGE_CODE_ARRAY[CLIENT_LANGUAGE];
 			TIME_ZONE = serverSettings.getProperty("TimeZone", "TST");

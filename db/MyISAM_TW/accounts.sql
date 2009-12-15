@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `accounts`;
 CREATE TABLE `accounts` (
   `login` varchar(50) NOT NULL DEFAULT '',
-  `password` varchar(50) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
   `lastactive` datetime DEFAULT NULL,
   `access_level` int(11) DEFAULT NULL,
   `ip` varchar(20) NOT NULL DEFAULT '',

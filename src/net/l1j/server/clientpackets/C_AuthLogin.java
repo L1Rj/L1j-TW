@@ -33,8 +33,8 @@ import net.l1j.server.serverpackets.S_LoginResult;
 // ClientBasePacket
 
 public class C_AuthLogin extends ClientBasePacket {
-
 	private static final String C_AUTH_LOGIN = "[C] C_AuthLogin";
+
 	private static Logger _log = Logger.getLogger(C_AuthLogin.class.getName());
 
 	public C_AuthLogin(byte[] decrypt, ClientThread client) {
@@ -48,13 +48,10 @@ public class C_AuthLogin extends ClientBasePacket {
 		_log.finest("Request AuthLogin from user : " + accountName);
 
 		if (!Config.ALLOW_2PC) {
-			for (ClientThread tempClient : LoginController.getInstance()
-					.getAllAccounts()) {
+			for (ClientThread tempClient : LoginController.getInstance().getAllAccounts()) {
 				if (ip.equalsIgnoreCase(tempClient.getIp())) {
-					_log.info("拒絕兩台電腦同時登入。帳號="
-							+ accountName + " 來源=" + host);
-					client.sendPacket(new S_LoginResult(
-							S_LoginResult.REASON_USER_OR_PASS_WRONG));
+					_log.info("拒絕兩台電腦同時登入。帳號=" + accountName + " 來源=" + host);
+					client.sendPacket(new S_LoginResult(S_LoginResult.REASON_USER_OR_PASS_WRONG));
 					return;
 				}
 			}
@@ -69,34 +66,28 @@ public class C_AuthLogin extends ClientBasePacket {
 			}
 		}
 		if (account == null || !account.validatePassword(password)) {
-			client.sendPacket(new S_LoginResult(
-					S_LoginResult.REASON_USER_OR_PASS_WRONG));
+			client.sendPacket(new S_LoginResult(S_LoginResult.REASON_USER_OR_PASS_WRONG));
 			return;
 		}
 		if (account.isBanned()) { // BANアカウント
-			_log.info("拒絕禁止列表(BAN List)中的帳號登入。帳號=" + accountName + " 來源="
-					+ host);
-			client.sendPacket(new S_LoginResult(
-					S_LoginResult.REASON_USER_OR_PASS_WRONG));
+			_log.info("拒絕禁止列表(BAN List)中的帳號登入。帳號=" + accountName + " 來源=" + host);
+			client.sendPacket(new S_LoginResult(S_LoginResult.REASON_USER_OR_PASS_WRONG));
 			return;
 		}
 
 		try {
 			LoginController.getInstance().login(client, account);
-//			Account.updateLastActive(account); // 最後登入日期更新
-			Account.updateLastActive(account, ip);// 最後登入日期與ip更新
+			Account.updateLastActive(account, ip);
 			client.setAccount(account);
 			client.sendPacket(new S_LoginResult(S_LoginResult.REASON_LOGIN_OK));
 			client.sendPacket(new S_CommonNews());
 		} catch (GameServerFullException e) {
 			client.kick();
-			_log.info("因為登入人數到達上限(" + client.getHostname()
-					+ ")所以連線中斷。");
+			_log.info("因為登入人數到達上限(" + client.getHostname() + ")所以連線中斷。");
 			return;
 		} catch (AccountAlreadyLoginException e) {
 			client.kick();
-			_log.info("因為相同帳號同時登入(" + client.getHostname()
-					+ ")所以強制切斷連線。");
+			_log.info("因為相同帳號同時登入(" + client.getHostname() + ")所以強制切斷連線。");
 			return;
 		}
 	}
