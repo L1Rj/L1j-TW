@@ -20,6 +20,7 @@ package net.l1j.tool;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -45,7 +46,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.ToolTipManager;
 
 import net.l1j.tool.images.ImagesTable;
-import java.awt.Font;
 
 public class ConfigManager extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -79,7 +79,7 @@ public class ConfigManager extends JFrame implements ActionListener {
 		});
 	}
 
-	private ConfigManager() {
+	public ConfigManager() {
 		panelMain = new JPanel();
 		panelMain.setBackground(null);
 		panelMain.setLayout(null);
@@ -177,7 +177,7 @@ public class ConfigManager extends JFrame implements ActionListener {
 				System.exit(2);
 			}
 		} else if (cmd.equals("exit")) {
-			System.exit(0);
+			dispose();
 		}
 	}
 

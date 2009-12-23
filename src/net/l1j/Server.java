@@ -56,6 +56,7 @@ import net.l1j.telnet.TelnetServer;
  * 啟動 L1J-TW 伺服器
  */
 public class Server {
+	private volatile static Server uniqueInstance = null;
 
 	/** 用於訊息記錄 */
 	private static Logger _log = Logger.getLogger(Server.class.getName());
@@ -63,13 +64,17 @@ public class Server {
 	/** 記錄設定檔的檔資料夾 */
 	private static final String LOG_PROP = "./config/log.properties";
 
-	/**
-	 * 主要伺服器
-	 * 
-	 * @param args
-	 *            命令匯流排因數
-	 * @throws Exception
-	 */
+	public static Server getInstance() {
+		if (uniqueInstance == null) {
+			synchronized (Server.class) {
+				if (uniqueInstance == null) {
+					uniqueInstance = new Server();
+				}
+			}
+		}
+		return uniqueInstance;
+	}
+
 	public static void main(final String[] args) throws Exception {
 		startServer();
 	}
