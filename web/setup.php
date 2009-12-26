@@ -55,7 +55,7 @@ $adminid="admin";		// 管理者帳號
 $adminpass="1234";		// 管理者密碼
 $e_adminid=hash('md5', $adminid);
 $adminpass=hash('sha256', "$d_PasswordSalt$adminpass$e_adminid");
-//$adminpass=base64_encode(mhash(MHASH_SHA1,$adminpass));	// 請勿刪除
+//$adminpass=base64_encode(mhash(MHASH_SHA1,$adminpass));	// 舊的密碼編碼方式
 
 $open_gm="1";	// 是否開放管理員管理專區(1為開放)
 
@@ -115,8 +115,8 @@ $open_poly="0";	// 是否開放變身專區系統(1為開放)
 $polypoint="10";	// 變身所需點數(1為開放)
 
 $open_usermoney="0";	// 是否開放全體玩家領取獎勵(1為開放)
-$usermoneymin="1";	// 全體玩家登入獎勵最低值
-$usermoneymax="1";	// 全體玩家登入獎勵最高值
+$usermoneymin="0";	// 全體玩家登入獎勵最低值
+$usermoneymax="0";	// 全體玩家登入獎勵最高值
 
 //------網站連結設置------
 //$menuurl第X行第Y個=Array('連結名稱','連結位置','目標框架位置');
@@ -138,11 +138,11 @@ $menuurlb6=Array('儲值專區','../point/point.php?mode=1','main');
 $menuurlb7=Array('心情筆記','../notebook/','main');
 
 $menuurlc1=Array('變身功能','../poly/','main');
-$menuurlc2=Array('','','main');
+$menuurlc2=Array('地圖資訊','../html/map.php','main');
 $menuurlc3=Array('','','main');
 $menuurlc4=Array('改名換性','../char/char.php?mode=1','main');
 $menuurlc5=Array('點數重置','../char/char.php?mode=2','main');
-$menuurlc6=Array('舊愛新歡','../trade/char.php','main');
+$menuurlc6=Array('角色交易','../trade/char.php','main');
 $menuurlc7=Array('二手市場','../trade/item.php','main');
 
 $menuurld1=Array('裝備販售','../item/buyitem.php','main');

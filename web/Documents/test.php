@@ -2,7 +2,7 @@
 $passwordSalt = test; // 自訂加密
 
 $userAccount = admin; // 玩家帳號
-$userPassword = 12345; // 玩家密碼
+$userPassword = 1234; // 玩家密碼
 
 $md5 = hash('md5', $userAccount);
 
