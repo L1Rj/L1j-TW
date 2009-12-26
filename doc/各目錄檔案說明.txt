@@ -14,12 +14,12 @@ db\					資料庫
 Documents\				說明文件
 emblem\					血盟盟輝存放目錄
 etc\					日版舊的部份說明與檔案
-web\					網站(註冊等功能)
 lib\					共用函式庫
 log\					紀錄檔存放目錄
-maps\					伺服器地圖檔
+maps\					伺服器地圖檔 (為降低SVN流量請自行解壓縮)
 src\					伺服器原始碼
 tool\					伺服器工具
+web\					網站(註冊等功能)
 
 DATA目錄內容說明:
 \data\badnames.txt			設定遊戲內不可命名的角色名稱
