@@ -1,0 +1,3 @@
+<?
+include("invite/index.php");
+?>

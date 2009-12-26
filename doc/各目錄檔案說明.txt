@@ -3,6 +3,7 @@ l1jserver.jar				主程式
 ServerStart.bat				啟動批次檔
 ServerConfig.bat			伺服器設定工具批次檔
 SQLiteManager.bat			紀錄檔查閱工具批次檔
+ServerManager.bat			
 starlin.sh				Linux 啟動批次檔
 
 各目錄概略說明:
@@ -13,6 +14,7 @@ db\					資料庫
 Documents\				說明文件
 emblem\					血盟盟輝存放目錄
 etc\					日版舊的部份說明與檔案
+l1jweb_v1\				網站(註冊等功能)
 lib\					共用函式庫
 log\					紀錄檔存放目錄
 maps\					伺服器地圖檔
