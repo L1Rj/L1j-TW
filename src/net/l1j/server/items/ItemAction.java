@@ -290,15 +290,15 @@ public class ItemAction {
 		int charisma = pc.getCha();
 		if (pc.isCrown()) { // 君主
 			charisma += 6;
-		} else if (pc.isElf()) { // エルフ
+		} else if (pc.isElf()) { // 妖精
 			charisma += 12;
-		} else if (pc.isWizard()) { // WIZ
+		} else if (pc.isWizard()) { // 法師
 			charisma += 6;
-		} else if (pc.isDarkelf()) { // DE
+		} else if (pc.isDarkelf()) { // 黑妖
 			charisma += 6;
-		} else if (pc.isDragonKnight()) { // ドラゴンナイト
+		} else if (pc.isDragonKnight()) { // 龍騎士
 			charisma += 6;
-		} else if (pc.isIllusionist()) { // イリュージョニスト
+		} else if (pc.isIllusionist()) { // 幻術師
 			charisma += 6;
 		}
 		//charisma -= petCost;
@@ -321,8 +321,8 @@ public class ItemAction {
 		if (l1pet != null) {
 			int npcId = l1pet.get_npcid();
 			charisma -= petCost;
-			if (npcId == 45313 || npcId == 45710 // タイガー、バトルタイガー
-					|| npcId == 45711 || npcId == 45712) { // 紀州犬の子犬、紀州犬
+			if (npcId == 45313 || npcId == 45710 // 虎男、真．虎男
+					|| npcId == 45711 || npcId == 45712) { // 高麗幼犬、高麗犬
 				divisor = 12;
 			} else {
 				divisor = 6;

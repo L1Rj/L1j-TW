@@ -34,10 +34,10 @@ public class ItemCreate {
 		if (item != null) {
 			if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) {
 				pc.getInventory().storeItem(item);
-			} else { // 持てない場合は地面に落とす 處理のキャンセルはしない（不正防止）
+			}/* else { // 持てない場合は地面に落とす 處理のキャンセルはしない（不正防止）
 				L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(
 						item);
-			}
+			} */
 			pc.sendPackets(new S_ServerMessage(403, item.getLogName())); // %0を手に入れました。
 			return true;
 		} else {

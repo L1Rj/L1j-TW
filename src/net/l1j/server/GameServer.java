@@ -133,17 +133,17 @@ public class GameServer extends Thread {
 		chatlvl = Config.GLOBAL_CHAT_LEVEL;
 		_port = Config.GAME_SERVER_PORT;
 		if ("lineage".equals(ps)) {
-			System.out.println("伺服器設置: 帳號密碼的加密算法數值不建議使用預設值");
-			System.out.println("伺服器設置: 系統已經強制停止伺服器啟動");
+			System.out.println("伺服器設定: 帳號密碼的加密算法數值不建議使用預設值");
+			System.out.println("伺服器設定: 系統已經強制停止伺服器啟動");
 			return;
 		} else if (!"*".equals(gs)) {
 			InetAddress inetaddress = InetAddress.getByName(gs);
 			inetaddress.getHostAddress();
 			_serverSocket = new ServerSocket(_port, 50, inetaddress);
-			System.out.println("伺服器設置: 產生伺服器連接埠");
+			System.out.println("伺服器設定: 建立伺服器連接埠");
 		} else {
 			_serverSocket = new ServerSocket(_port);
-			System.out.println("伺服器設置: 產生伺服器連接埠");
+			System.out.println("伺服器設定: 建立伺服器連接埠");
 		}
 
 		System.out.println("經驗值: " + (rateXp) + "倍"
@@ -159,7 +159,7 @@ public class GameServer extends Thread {
 		}
 
 		System.out.println("=================================================");
-		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1195 ========");
+		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1210 ========");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;

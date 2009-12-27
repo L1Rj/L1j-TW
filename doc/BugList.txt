@@ -167,6 +167,9 @@ NPC類:
 變形卷軸缺:
 幻之鱗 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=5421#item_detail
 
+4.道具編號
+49281/49282/49283/49284/49285/49286 魔法卷軸(xxxxx) 無法使用
+
 
 錯誤列表相關資料蒐集:
 
