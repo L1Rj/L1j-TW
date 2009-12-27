@@ -228,7 +228,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				l = readD();
 			break;
 
-			case 40086: case 40099: case 40100: case 40863: case 140100:
+			case 40086: case 40099: case 40100: case 50005: case 140100:
 				bmapid = readH();
 				btele = readD();
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_TELEPORT_UNLOCK, false));
@@ -1662,7 +1662,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					ItemAction.cancelAbsoluteBarrier(pc);
 				} else if (itemId == 140100 || itemId == 40100 || itemId == 40099 // 祝福されたテレポートスクロール、テレポートスクロール
-						|| itemId == 40086 || itemId == 40863) { // スペルスクロール(テレポート)
+						|| itemId == 40086 || itemId == 50005) { // 5005 魔法卷軸 (指定傳送)
 					L1BookMark bookm = pc.getBookMark(btele);
 					if (bookm != null) { // ブックマークを取得出來たらテレポート
 						if (pc.getMap().isEscapable() || pc.isGm()) {

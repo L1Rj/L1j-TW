@@ -159,7 +159,7 @@ public class GameServer extends Thread {
 		}
 
 		System.out.println("=================================================");
-		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1211 ========");
+		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1212 ========");
 		System.out.println("=================================================");
 
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;

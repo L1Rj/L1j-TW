@@ -3,7 +3,7 @@ Update etcitem Set item_id = '50001' Where item_id = '40859'; /* 魔法卷軸 (�
 Update etcitem Set item_id = '50002' Where item_id = '40860'; 
 Update etcitem Set item_id = '50003' Where item_id = '40861'; 
 Update etcitem Set item_id = '50004' Where item_id = '40862'; 
-Update etcitem Set item_id = '50005' Where item_id = '40863'; 
+Update etcitem Set item_id = '50005' Where item_id = '40863'; /* 魔法卷軸 (指定傳送) */
 Update etcitem Set item_id = '50006' Where item_id = '40864'; 
 Update etcitem Set item_id = '50007' Where item_id = '40865'; 
 Update etcitem Set item_id = '50008' Where item_id = '40866'; 
