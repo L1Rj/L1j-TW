@@ -24,6 +24,7 @@ web\					網站(註冊等功能)
 DATA目錄內容說明:
 \data\badnames.txt			設定遊戲內不可命名的角色名稱
 \data\announcements.txt			伺服器登入公告.
+\data\toall.txt				伺服器定時公告(客戶端登入後自動索取).
 \data\mapcache\				伺服器地圖快取暫存目錄.
 \data\xml\Cycle\BossCycle.xml		spawnlist_boss.sql內的Boss重生時間示範檔,無任何效果.
 \data\xml\Cycle\users\BossCycle.xml	控制spawnlist_boss.sql內的Boss重生時間.

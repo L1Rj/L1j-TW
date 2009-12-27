@@ -1415,7 +1415,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 
 					// スペルスクロール
-				} else if ((itemId >= 40859 && itemId <= 40898) && itemId != 40863) { // 40863はテレポートスクロールとして處理される
+				} else if ((itemId >= 50001 && itemId <= 51000) && itemId != 50005) { // 50005 魔法卷軸 (指定傳送)
 					if (spellsc_objid == pc.getId() && item.getItem().getUseType() != 30) { // spell_buff
 						pc.sendPackets(new S_ServerMessage(281)); // \f1魔法が無效になりました。
 						return;
@@ -1429,7 +1429,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						// handleCommandsのほうで判斷＆處理すべき部分かもしれない
 					}
 					ItemAction.cancelAbsoluteBarrier(pc);
-					int skillid = itemId - 40858;
+					int skillid = itemId - 50000;
 					SkillUse skilluse = new SkillUse();
 					skilluse.handleCommands(client.getActiveChar(), skillid, spellsc_objid,
 							spellsc_x, spellsc_y, null, 0, Base.SKILL_TYPE[2]);

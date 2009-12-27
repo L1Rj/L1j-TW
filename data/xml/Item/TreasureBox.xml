@@ -1249,16 +1249,16 @@
 		<Item ItemId="40014" Count="10" Chance="15" />	<!-- 勇敢藥水 -->
 		<Item ItemId="40031" Count="10" Chance="2" />	<!-- 惡魔之血 -->
 		<Item ItemId="40068" Count="10" Chance="3" />	<!-- 精靈餅乾 -->
-		<Item ItemId="40861" Count="10" Chance="10" />	<!-- 魔法捲軸 (保護罩) -->
-		<Item ItemId="40866" Count="10" Chance="10" />	<!-- 魔法捲軸 (神聖武器) -->
-		<Item ItemId="40867" Count="10" Chance="10" />	<!-- 魔法捲軸 (解毒術) -->
-		<Item ItemId="40884" Count="10" Chance="10" />	<!-- 魔法捲軸 (通暢氣脈術) -->
-		<Item ItemId="40890" Count="10" Chance="10" />	<!-- 魔法捲軸 (冥想術) -->
-		<Item ItemId="49282" Count="10" Chance="9" />	<!-- 魔法捲軸 (祝福魔法武器) -->
-		<Item ItemId="49283" Count="10" Chance="5" />	<!-- 魔法捲軸 (體力回復術) -->
-		<Item ItemId="49284" Count="10" Chance="5" />	<!-- 魔法捲軸 (神聖疾走) -->
-		<Item ItemId="49285" Count="10" Chance="5" />	<!-- 魔法捲軸 (強力加速術) -->
-		<Item ItemId="49286" Count="10" Chance="5" />	<!-- 魔法捲軸 (全部治癒術) -->
+		<Item ItemId="50003" Count="10" Chance="10" />	<!-- 魔法捲軸 (保護罩) -->
+		<Item ItemId="50008" Count="10" Chance="10" />	<!-- 魔法捲軸 (神聖武器) -->
+		<Item ItemId="50009" Count="10" Chance="10" />	<!-- 魔法捲軸 (解毒術) -->
+		<Item ItemId="50026" Count="10" Chance="10" />	<!-- 魔法捲軸 (通暢氣脈術) -->
+		<Item ItemId="50032" Count="10" Chance="10" />	<!-- 魔法捲軸 (冥想術) -->
+		<Item ItemId="50048" Count="10" Chance="9" />	<!-- 魔法捲軸 (祝福魔法武器) -->
+		<Item ItemId="50049" Count="10" Chance="5" />	<!-- 魔法捲軸 (體力回復術) -->
+		<Item ItemId="50052" Count="10" Chance="5" />	<!-- 魔法捲軸 (神聖疾走) -->
+		<Item ItemId="50054" Count="10" Chance="5" />	<!-- 魔法捲軸 (強力加速術) -->
+		<Item ItemId="50057" Count="10" Chance="5" />	<!-- 魔法捲軸 (全部治癒術) -->
 		<Item ItemId="41254" Count="1" Chance="1" />	<!-- 勝利的徽章 -->
 	</TreasureBox>
 </TreasureBoxList>
