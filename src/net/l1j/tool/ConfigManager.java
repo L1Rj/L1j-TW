@@ -27,6 +27,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -49,6 +52,8 @@ import net.l1j.tool.images.ImagesTable;
 
 public class ConfigManager extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
+
+	private static int mousePointX, mousePointY;
 
 	private JPanel panelMain;
 	private JPanel panelConfigManager;
@@ -81,6 +86,16 @@ public class ConfigManager extends JFrame implements ActionListener {
 
 	public ConfigManager() {
 		panelMain = new JPanel();
+		panelMain.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent evt) {
+				PanelMainMousePressed(evt);
+			}
+		});
+		panelMain.addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent evt) {
+				PanelMainMouseDragged(evt);
+			}
+		});
 		panelMain.setBackground(null);
 		panelMain.setLayout(null);
 
@@ -155,6 +170,7 @@ public class ConfigManager extends JFrame implements ActionListener {
 		buttonConfigExit.setActionCommand("exit");
 		buttonConfigExit.addActionListener(this);
 		panelConfigManager.add(buttonConfigExit);
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -332,5 +348,14 @@ public class ConfigManager extends JFrame implements ActionListener {
 		}
 
 		return value;
+	}
+
+	private void PanelMainMousePressed(MouseEvent evt) {
+		mousePointX = evt.getX();
+		mousePointY = evt.getY();
+	}
+
+	private void PanelMainMouseDragged(MouseEvent evt) {
+		setLocation(getX() - (mousePointX - evt.getX()), getY() - (mousePointY - evt.getY()));
 	}
 }
