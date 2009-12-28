@@ -44,7 +44,7 @@ public class L1CastGfx implements L1CommandExecutor {
 			pc.sendPackets(new S_SkillSound(pc.getId(), sprid));
 			pc.broadcastPacket(new S_SkillSound(pc.getId(), sprid));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " castgfxid と入力して下さい。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " castgfxid。"));
 		}
 	}
 }

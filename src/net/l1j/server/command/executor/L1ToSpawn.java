@@ -74,7 +74,7 @@ public class L1ToSpawn implements L1CommandExecutor {
 			}
 			_spawnId.put(pc.getId(), id);
 		} catch (Exception exception) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " spawnid|+|-"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " spawnid|+|-"));
 		}
 	}
 }

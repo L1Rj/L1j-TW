@@ -58,7 +58,7 @@ public class L1Present implements L1CommandExecutor {
 		} catch (Exception e) {
 			pc
 					.sendPackets(new S_SystemMessage(
-							"請輸入 .present 角色名稱 道具編號 增強等級 數量（角色名稱使用*則為全體）"));
+							"請輸入 " + cmdName + " 角色名稱 道具編號 增強等級 數量（角色名稱使用*則為全體）。"));
 		}
 	}
 }

@@ -61,7 +61,7 @@ public class L1LevelPresent implements L1CommandExecutor {
 		} catch (Exception e) {
 			pc
 					.sendPackets(new S_SystemMessage(
-							".lvpresent minlvl maxlvl アイテムID エンチャント數 アイテム數 と入力してください。"));
+							"請輸入 " + cmdName + " 發送道具最低等級 最高等級 道具編號 增強等級 道具數量。"));
 		}
 	}
 }

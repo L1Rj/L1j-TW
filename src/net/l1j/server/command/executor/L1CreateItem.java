@@ -109,7 +109,7 @@ public class L1CreateItem implements L1CommandExecutor {
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			pc.sendPackets(new S_SystemMessage(
-					"請輸入 .item itemid|name [數量] [增強等級] [鑑定狀態]。"));
+					"請輸入 " + cmdName + " [數量] [增強等級] [鑑定狀態]。"));
 		}
 	}
 }

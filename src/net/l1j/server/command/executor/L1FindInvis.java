@@ -52,7 +52,7 @@ public class L1FindInvis implements L1CommandExecutor {
 				}
 			}
 		} else {
-			pc.sendPackets(new S_SystemMessage(cmdName + " on|off と入力してください。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " on|off 切換是否顯示隱身角色。"));
 		}
 	}
 

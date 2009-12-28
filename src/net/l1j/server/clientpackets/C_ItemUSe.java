@@ -1662,7 +1662,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					ItemAction.cancelAbsoluteBarrier(pc);
 				} else if (itemId == 140100 || itemId == 40100 || itemId == 40099 // 祝福されたテレポートスクロール、テレポートスクロール
-						|| itemId == 40086 || itemId == 50005) { // 5005 魔法卷軸 (指定傳送)
+						|| itemId == 40086 || itemId == 50005) { // 50005 魔法卷軸 (指定傳送)
 					L1BookMark bookm = pc.getBookMark(btele);
 					if (bookm != null) { // ブックマークを取得出來たらテレポート
 						if (pc.getMap().isEscapable() || pc.isGm()) {

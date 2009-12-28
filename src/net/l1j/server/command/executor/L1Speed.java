@@ -40,7 +40,7 @@ public class L1Speed implements L1CommandExecutor {
 			BuffUtil.haste(pc, 3600 * 1000);
 			BuffUtil.brave(pc, 3600 * 1000);
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".speed 指令錯誤"));
+			pc.sendPackets(new S_SystemMessage( cmdName + " 指令錯誤"));
 		}
 	}
 }

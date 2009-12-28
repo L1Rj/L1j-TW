@@ -53,7 +53,7 @@ public class L1AccountBanKick implements L1CommandExecutor {
 						" 角色名稱輸入錯誤或是該角色不存在。"));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " 角色名稱。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 角色名稱。"));
 		}
 	}
 }

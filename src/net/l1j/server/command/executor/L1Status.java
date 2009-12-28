@@ -117,8 +117,7 @@ public class L1Status implements L1CommandExecutor {
 			pc.sendPackets(new S_SystemMessage(target.getName() + " 的" + param
 					+ "數值" + value + "已變更。"));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName
-					+ " 角色名稱|me 素質變更數值。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 角色名稱|me 素質變更數值。"));
 		}
 	}
 }

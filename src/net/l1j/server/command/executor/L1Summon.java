@@ -66,8 +66,7 @@ public class L1Summon implements L1CommandExecutor {
 			pc.sendPackets(new S_SystemMessage(nameid + "(ID:" + npcid + ") ("
 					+ count + ") 已招喚。"));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName
-					+ " npcid|name [數量] 。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " npcid|name [數量] 。"));
 		}
 	}
 }

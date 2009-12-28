@@ -86,7 +86,7 @@ public class L1SpawnCmd implements L1CommandExecutor {
 			sendErrorMessage(pc, cmdName);
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			pc.sendPackets(new S_SystemMessage(cmdName + " 部份錯誤。"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " 指令錯誤。"));
 		}
 	}
 }

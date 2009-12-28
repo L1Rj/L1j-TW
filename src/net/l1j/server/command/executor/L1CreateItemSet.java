@@ -64,7 +64,7 @@ public class L1CreateItemSet implements L1CommandExecutor {
 				}
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage("請輸入 .itemset 套裝名稱。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 套裝名稱。"));
 		}
 	}
 }

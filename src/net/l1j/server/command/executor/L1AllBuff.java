@@ -75,7 +75,7 @@ public class L1AllBuff implements L1CommandExecutor {
 						.getBuffDuration() * 1000, Base.SKILL_TYPE[4]);
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".allBuff 角色名稱。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 角色名稱。"));
 		}
 	}
 }
