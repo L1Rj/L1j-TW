@@ -19,7 +19,6 @@
 package net.l1j.server.command.executor;
 
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -27,12 +26,9 @@ import net.l1j.server.serverpackets.S_Lawful;
 import net.l1j.server.serverpackets.S_OwnCharStatus;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SystemMessage;
+import net.l1j.tool.ServerManager;
 
 public class L1Status implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Status.class.getName());
-
-	private L1Status() {
-	}
 
 	public static L1CommandExecutor getInstance() {
 		return new L1Status();
@@ -70,19 +66,14 @@ public class L1Status implements L1CommandExecutor {
 				// -- use DB --
 			} else {
 				if (param.equalsIgnoreCase("HP")) {
-					target
-							.addBaseMaxHp((short) (value - target
-									.getBaseMaxHp()));
+					target.addBaseMaxHp((short) (value - target.getBaseMaxHp()));
 					target.setCurrentHpDirect(target.getMaxHp());
 				} else if (param.equalsIgnoreCase("MP")) {
-					target
-							.addBaseMaxMp((short) (value - target
-									.getBaseMaxMp()));
+					target.addBaseMaxMp((short) (value - target.getBaseMaxMp()));
 					target.setCurrentMpDirect(target.getMaxMp());
 				} else if (param.equalsIgnoreCase("LAWFUL")) {
 					target.setLawful(value);
-					S_Lawful s_lawful = new S_Lawful(target.getId(), target
-							.getLawful());
+					S_Lawful s_lawful = new S_Lawful(target.getId(), target.getLawful());
 					target.sendPackets(s_lawful);
 					target.broadcastPacket(s_lawful);
 				} else if (param.equalsIgnoreCase("KARMA")) {
@@ -92,8 +83,11 @@ public class L1Status implements L1CommandExecutor {
 						value = 200;
 					}
 					target.setAccessLevel((short) value);
-					target.sendPackets(new S_SystemMessage(
-							"GM變更你的素質,重登之後生效。"));
+					target.sendPackets(new S_SystemMessage("GM變更你的素質,重登之後生效。"));
+					if (value == 200) {
+						ServerManager.listModelPlayer.removeElement(pc.getName());
+						ServerManager.listModelPlayer.addElement("[GM]" + pc.getName());
+					}
 				} else if (param.equalsIgnoreCase("STR")) {
 					target.addBaseStr((byte) (value - target.getBaseStr()));
 				} else if (param.equalsIgnoreCase("CON")) {
@@ -107,15 +101,13 @@ public class L1Status implements L1CommandExecutor {
 				} else if (param.equalsIgnoreCase("CHA")) {
 					target.addBaseCha((byte) (value - target.getBaseCha()));
 				} else {
-					pc.sendPackets(new S_SystemMessage("角色素質 " + param
-							+ " 未知。"));
+					pc.sendPackets(new S_SystemMessage("角色素質 " + param + " 未知。"));
 					return;
 				}
 				target.save(); // DBにキャラクター情報を書き⑸む
 			}
 			target.sendPackets(new S_OwnCharStatus(target));
-			pc.sendPackets(new S_SystemMessage(target.getName() + " 的" + param
-					+ "數值" + value + "已變更。"));
+			pc.sendPackets(new S_SystemMessage(target.getName() + " 的" + param + "數值" + value + "已變更。"));
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 角色名稱|me 素質變更數值。"));
 		}

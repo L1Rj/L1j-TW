@@ -18,11 +18,6 @@
  */
 package net.l1j.server;
 
-import static net.l1j.Config.AUTOMATIC_KICK;
-import static net.l1j.Config.AUTOSAVE_INTERVAL;
-import static net.l1j.Config.AUTOSAVE_INTERVAL_INVENTORY;
-import static net.l1j.Config.HOSTNAME_LOOKUPS;
-
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,13 +53,15 @@ import net.l1j.server.types.UChar8;
 import net.l1j.server.utils.StreamUtil;
 import net.l1j.server.utils.SystemUtil;
 import net.l1j.thread.GeneralThreadPool;
+import net.l1j.tool.ServerManager;
+
+import static net.l1j.Config.*;
 
 // Referenced classes of package net.l1j.server:
 // PacketHandler, Logins, IpTable, LoginController,
 // ClanTable, IdFactory
 //
-public class ClientThread implements Runnable, PacketOutput
-{
+public class ClientThread implements Runnable, PacketOutput {
 	private static Logger _log = Logger.getLogger(ClientThread.class.getName());
 
 	private InputStream _in;
@@ -79,9 +76,9 @@ public class ClientThread implements Runnable, PacketOutput
 	private int _loginStatus;
 
 	private static final byte[] FIRST_PACKET = { // 3.0
-			(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,
-			(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,
-			(byte) 0x02, (byte) 0x08, (byte) 0x00 };
+		(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,
+		(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,
+		(byte) 0x02, (byte) 0x08, (byte) 0x00 };
 
 	//private static final byte[] FIRST_PACKET = { // 3.1
 	//	(byte) 0x77, (byte) 0x10, (byte) 0xd9, (byte) 0x7d,
@@ -91,10 +88,10 @@ public class ClientThread implements Runnable, PacketOutput
 	/**
 	 * for Test
 	 */
-	protected ClientThread() {}
+	protected ClientThread() {
+	}
 
-	public ClientThread(Socket socket) throws IOException
-	{
+	public ClientThread(Socket socket) throws IOException {
 		_csocket = socket;
 		_ip = socket.getInetAddress().getHostAddress();
 
@@ -129,13 +126,11 @@ public class ClientThread implements Runnable, PacketOutput
 	private LineageKeys _clkey;
 
 	private byte[] readPacket() throws Exception {
-		try
-		{
+		try {
 			int hiByte = _in.read();
 			int loByte = _in.read();
 
-			if (loByte < 0)
-			{
+			if (loByte < 0) {
 				throw new RuntimeException();
 			}
 
@@ -150,8 +145,7 @@ public class ClientThread implements Runnable, PacketOutput
 			}
 
 			if (readSize != dataLength) {
-				_log
-						.warning("Incomplete Packet is sent to the server, closing connection.");
+				_log.warning("Incomplete Packet is sent to the server, closing connection.");
 				throw new RuntimeException();
 			}
 
@@ -171,15 +165,13 @@ public class ClientThread implements Runnable, PacketOutput
 		}
 		try {
 			// キャラクター情报
-			if (AUTOSAVE_INTERVAL * 1000
-					< System.currentTimeMillis() - _lastSavedTime) {
+			if (AUTOSAVE_INTERVAL * 1000 < System.currentTimeMillis() - _lastSavedTime) {
 				_activeChar.save();
 				_lastSavedTime = System.currentTimeMillis();
 			}
 
 			// 所持アイテム情报
-			if (AUTOSAVE_INTERVAL_INVENTORY * 1000
-					< System.currentTimeMillis() - _lastSavedTime_inventory) {
+			if (AUTOSAVE_INTERVAL_INVENTORY * 1000 < System.currentTimeMillis() - _lastSavedTime_inventory) {
 				_activeChar.saveInventory();
 				_lastSavedTime_inventory = System.currentTimeMillis();
 			}
@@ -191,8 +183,7 @@ public class ClientThread implements Runnable, PacketOutput
 	}
 
 	@Override
-	public void run()
-	{
+	public void run() {
 		_log.info("(" + _hostname + ")開始連線...");
 		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
 		System.out.println("等待連線中...");
@@ -202,37 +193,31 @@ public class ClientThread implements Runnable, PacketOutput
 		AutoResponse response = new AutoResponse();
 		_threadPool.execute(response);
 
-		ClientThreadObserver observer =
-				new ClientThreadObserver(AUTOMATIC_KICK * 60 * 1000); // 自动切断までの时间（单位:ms）
+		ClientThreadObserver observer = new ClientThreadObserver(AUTOMATIC_KICK * 60 * 1000); // 自动切断までの时间（单位:ms）
 
 		// クライアントスレッドの监视
 		if (AUTOMATIC_KICK > 0)
 			observer.start();
 
-		try
-		{
+		try {
 			long seed = 0x7c98bdfa; // 不一定要更換這個Seed [無版本限制]
-			byte Bogus = (byte)(FIRST_PACKET.length + 7);
+			byte Bogus = (byte) (FIRST_PACKET.length + 7);
 			_out.write(Bogus & 0xFF);
 			_out.write(Bogus >> 8 & 0xFF);
 			_out.write(Opcodes.S_OPCODE_INITPACKET); // 主要是更改的地方在這
-			_out.write((byte)(seed & 0xFF));
-			_out.write((byte)(seed >> 8 & 0xFF));
-			_out.write((byte)(seed >> 16 & 0xFF));
-			_out.write((byte)(seed >> 24 & 0xFF));
+			_out.write((byte) (seed & 0xFF));
+			_out.write((byte) (seed >> 8 & 0xFF));
+			_out.write((byte) (seed >> 16 & 0xFF));
+			_out.write((byte) (seed >> 24 & 0xFF));
 			_out.write(FIRST_PACKET);
 			_out.flush();
 
-			try
-			{
+			try {
 				_clkey = LineageEncryption.initKeys(socket, seed);
-			}
-			catch (ClientIdExistsException e)
-			{
+			} catch (ClientIdExistsException e) {
 			}
 
-			while (true)
-			{
+			while (true) {
 				doAutoSave();
 
 				byte data[] = null;
@@ -248,42 +233,44 @@ public class ClientThread implements Runnable, PacketOutput
 				int opcode = data[0] & 0xFF;
 
 				// 多重ログイン对策
-				if (opcode == Opcodes.C_OPCODE_COMMONCLICK
-						|| opcode == Opcodes.C_OPCODE_CHANGECHAR)
+				if (opcode == Opcodes.C_OPCODE_COMMONCLICK || opcode == Opcodes.C_OPCODE_CHANGECHAR) {
 					_loginStatus = 1;
+				}
 
-				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVER)
-					if (_loginStatus != 1)
+				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVER) {
+					if (_loginStatus != 1) {
 						continue;
+					}
+				}
 
-				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVEROK
-						|| opcode == Opcodes.C_OPCODE_RETURNTOLOGIN)
+				if (opcode == Opcodes.C_OPCODE_LOGINTOSERVEROK || opcode == Opcodes.C_OPCODE_RETURNTOLOGIN) {
 					_loginStatus = 0;
+				}
 
 				// C_OPCODE_KEEPALIVE以外の何かしらのパケットを受け取ったらObserverへ通知
-				if (opcode != Opcodes.C_OPCODE_KEEPALIVE)
+				if (opcode != Opcodes.C_OPCODE_KEEPALIVE) {
 					observer.packetReceived();
+				}
 
 				// 一般封包處理
 				response.AddWork(data);
 			}
-		}
-		catch (Throwable e)
-		{
+		} catch (Throwable e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-		}
-		finally
-		{
+		} finally {
 			_csocket = null;
 
-			try
-			{
-				if (_activeChar != null)
-				{
+			try {
+				if (_activeChar != null) {
 					quitGame(_activeChar);
 
-					synchronized (_activeChar)
-					{
+					synchronized (_activeChar) {
+						if (_activeChar.getAccessLevel() == 200) {
+							ServerManager.listModelPlayer.removeElement("[GM]" + _activeChar.getName());
+						} else {
+							ServerManager.listModelPlayer.removeElement(_activeChar.getName());
+						}
+						ServerManager.listModelHost.removeElement(getHostname());
 						// キャラクターをワールド内から除去
 						_activeChar.logout();
 						setActiveChar(null);
@@ -291,23 +278,17 @@ public class ClientThread implements Runnable, PacketOutput
 				}
 
 				StreamUtil.close(_out, _in);
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			}
-			finally
-			{
+			} finally {
 				LoginController.getInstance().logout(this);
 			}
 		}
 
 		_log.fine("Server thread[C] stopped");
 
-		if (_kick < 1)
-		{
-			_log.info("(" + getAccountName() + ":" + _hostname
-					+ ")連線結束...");
+		if (_kick < 1) {
+			_log.info("(" + getAccountName() + ":" + _hostname + ")連線結束...");
 			System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
 			System.out.println("等待連線中...");
 		}
@@ -324,37 +305,29 @@ public class ClientThread implements Runnable, PacketOutput
 	}
 
 	// 自動回應程序
-	class AutoResponse implements Runnable
-	{
+	class AutoResponse implements Runnable {
 		private final SynchronousQueue<byte[]> _SyncQueue;
 		private PacketHandler _handler;
 
-		public AutoResponse()
-		{
+		public AutoResponse() {
 			_SyncQueue = new SynchronousQueue<byte[]>();
 			_handler = ClientThread.this._handler;
 		}
 
-		public void AddWork(byte[] data) throws InterruptedException
-		{
+		public void AddWork(byte[] data) throws InterruptedException {
 			_SyncQueue.put(data);
 		}
 
 		@Override
-		public void run()
-		{
-			while (_csocket != null)
-			{
-				try
-				{
+		public void run() {
+			while (_csocket != null) {
+				try {
 					byte[] data = _SyncQueue.take();
 
 					// 判斷封包是否非為空
 					if (data != null)
 						_handler.handlePacket(data); // 處理當前的工作
-				}
-				catch (Exception io)
-				{
+				} catch (Exception io) {
 				}
 			}
 
@@ -376,8 +349,7 @@ public class ClientThread implements Runnable, PacketOutput
 		}
 
 		public void start() {
-			_observerTimer.scheduleAtFixedRate(ClientThreadObserver.this, 0,
-					_disconnectTimeMillis);
+			_observerTimer.scheduleAtFixedRate(ClientThreadObserver.this, 0, _disconnectTimeMillis);
 		}
 
 		@Override
@@ -396,8 +368,7 @@ public class ClientThread implements Runnable, PacketOutput
 				if (_activeChar == null // キャラクター选択前
 						|| _activeChar != null && !_activeChar.isPrivateShop()) { // 个人商店中
 					kick();
-					_log.warning("因為等待時間過長(" + _hostname
-							+ ")連線中斷。");
+					_log.warning("因為等待時間過長(" + _hostname + ")連線中斷。");
 					cancel();
 					return;
 				}
@@ -413,16 +384,14 @@ public class ClientThread implements Runnable, PacketOutput
 	}
 
 	@Override
-	public void sendPacket(ServerBasePacket packet)
-	{
+	public void sendPacket(ServerBasePacket packet) {
 		// 判斷資料封包是否為空
-		if (packet == null)
+		if (packet == null) {
 			return;
+		}
 
-		synchronized (this)
-		{
-			try
-			{
+		synchronized (this) {
+			try {
 				byte[] abyte0 = packet.getContent();
 				char ac[] = new char[abyte0.length];
 				ac = UChar8.fromArray(abyte0);
@@ -434,9 +403,7 @@ public class ClientThread implements Runnable, PacketOutput
 				_out.write(j >> 8 & 0xff);
 				_out.write(abyte0);
 				_out.flush();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 			}
 		}
 	}
@@ -468,8 +435,7 @@ public class ClientThread implements Runnable, PacketOutput
 		return _account.getName();
 	}
 
-	public static void quitGame(L1PcInstance pc)
-	{
+	public static void quitGame(L1PcInstance pc) {
 		// 死亡していたら街に戻し、空腹状态にする
 		if (pc.isDead()) {
 			int[] loc = Getback.GetBack_Location(pc, true);
@@ -488,12 +454,10 @@ public class ClientThread implements Runnable, PacketOutput
 		// 决斗を中止する
 		if (pc.getFightId() != 0) {
 			pc.setFightId(0);
-			L1PcInstance fightPc = (L1PcInstance) L1World.getInstance()
-					.findObject(pc.getFightId());
+			L1PcInstance fightPc = (L1PcInstance) L1World.getInstance().findObject(pc.getFightId());
 			if (fightPc != null) {
 				fightPc.setFightId(0);
-				fightPc.sendPackets(new S_PacketBox(S_PacketBox.MSG_DUEL,
-						0, 0));
+				fightPc.sendPackets(new S_PacketBox(S_PacketBox.MSG_DUEL, 0, 0));
 			}
 		}
 
@@ -527,10 +491,8 @@ public class ClientThread implements Runnable, PacketOutput
 			}
 			if (petObject instanceof L1SummonInstance) {
 				L1SummonInstance summon = (L1SummonInstance) petObject;
-				for (L1PcInstance visiblePc : L1World.getInstance()
-						.getVisiblePlayer(summon)) {
-					visiblePc.sendPackets(new S_SummonPack(summon, visiblePc,
-							false));
+				for (L1PcInstance visiblePc : L1World.getInstance().getVisiblePlayer(summon)) {
+					visiblePc.sendPackets(new S_SummonPack(summon, visiblePc, false));
 				}
 			}
 		}
@@ -547,9 +509,7 @@ public class ClientThread implements Runnable, PacketOutput
 		for (Object followerObject : followerList) {
 			L1FollowerInstance follower = (L1FollowerInstance) followerObject;
 			follower.setParalyzed(true);
-			follower.spawn(follower.getNpcTemplate().get_npcId(),
-					follower.getX(), follower.getY(), follower.getHeading(),
-					follower.getMapId());
+			follower.spawn(follower.getNpcTemplate().get_npcId(), follower.getX(), follower.getY(), follower.getHeading(), follower.getMapId());
 			follower.deleteMe();
 		}
 

@@ -20,40 +20,45 @@ package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
 
-import net.l1j.server.Account;
 import net.l1j.server.ClientThread;
-import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_PacketBox;
+import net.l1j.tool.ServerManager;
 
-public class C_NewCharSelect extends ClientBasePacket
-{
+public class C_NewCharSelect extends ClientBasePacket {
 	private Logger _log = Logger.getLogger(C_NewCharSelect.class.getName());
-	public C_NewCharSelect(byte[] decrypt, ClientThread client)
-	{
+
+	public C_NewCharSelect(byte[] decrypt, ClientThread client) {
 		super(decrypt);
 
 		client.CharReStart(true);
 
-		if (client.getActiveChar() != null)
-		{
+		if (client.getActiveChar() != null) {
 			L1PcInstance pc = client.getActiveChar();
 			_log.fine("Disconnect from: " + pc.getName());
-			//XXX 修正死亡洗血bug
+			// XXX 修正死亡洗血bug
 			if (pc.isDead()) {
 				return;
 			}
 			ClientThread.quitGame(pc);
 
-			synchronized (pc)
-			{
+//			ServerManager.count -= 1;
+//			ServerManager.lblUser.setText("" + ServerManager.count);
+			if (pc.getAccessLevel() == 200) {
+				ServerManager.listModelPlayer.removeElement("[GM]" + pc.getName());
+			} else {
+				ServerManager.listModelPlayer.removeElement(pc.getName());
+			}
+//			ServerManager.textAreaServer.append("\n " + totime1 + " " + pc.getName() + "님께서 종료하셨습니다." + client.getIp());
+			ServerManager.listModelHost.removeElement(client.getHostname());
+
+			synchronized (pc) {
 				pc.logout();
 				client.setActiveChar(null);
 			}
 
 			client.sendPacket(new S_PacketBox(S_PacketBox.LOGOUT));
-		}
-		else
+		} else
 			_log.fine("Disconnect Request from Account : " + client.getAccountName());
 	}
 }

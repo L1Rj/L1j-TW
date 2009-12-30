@@ -30,8 +30,10 @@ import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -42,7 +44,6 @@ import javax.swing.SwingConstants;
 
 import net.l1j.Config;
 import net.l1j.Server;
-import net.l1j.server.GameServer;
 import net.l1j.tool.images.ImagesTable;
 
 public class ServerManager extends JFrame implements ActionListener {
@@ -54,6 +55,7 @@ public class ServerManager extends JFrame implements ActionListener {
 
 	private JPanel panelMain;
 	private JPanel panelServerManager;
+	private JLabel labelBeta;
 
 	private JButton buttonServerManagerIcon;
 	private JButton buttonServerManagerClose;
@@ -67,6 +69,14 @@ public class ServerManager extends JFrame implements ActionListener {
 	private JTabbedPane tabbedPaneMessage;
 	private JTextArea textAreaSystem;
 	private JScrollPane scrollPaneSystem;
+	private JTextArea textAreaChat;
+	private JScrollPane scrollPaneChat;
+
+	private JTabbedPane tabbedPaneClient;
+	private JList listPlayer;
+	private JScrollPane scrollPanePlayer;
+	private JList listHost;
+	private JScrollPane scrollPaneHost;
 
 	private JLabel labelRateXp;
 	private JLabel labelRateLawful;
@@ -77,6 +87,10 @@ public class ServerManager extends JFrame implements ActionListener {
 
 	private JPanel panelStatus;
 	private GroupLayout gl_panelStatus;
+
+	public static int player_count = 0;
+	public static DefaultListModel listModelPlayer;
+	public static DefaultListModel listModelHost;
 
 	/**
 	 * 執行應用程式
@@ -129,6 +143,12 @@ public class ServerManager extends JFrame implements ActionListener {
 
 		panelMain.add(panelServerManager);
 		panelServerManager.setLayout(null);
+		
+		labelBeta = new JLabel();
+		labelBeta.setBounds(190, 5, 35, 14);
+		labelBeta.setForeground(new Color(255, 255, 128));
+		labelBeta.setText("(Beta)");
+		panelServerManager.add(labelBeta);
 		
 		buttonServerManagerIcon = new JButton();
 		buttonServerManagerIcon.setIcon(ImagesTable.getIcon("servermanager.png"));
@@ -189,7 +209,7 @@ public class ServerManager extends JFrame implements ActionListener {
 		
 		tabbedPaneMessage = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPaneMessage.setFont(new Font("Arial Unicode MS", Font.PLAIN, 11));
-		tabbedPaneMessage.setBounds(6, 59, 344, 349);
+		tabbedPaneMessage.setBounds(5, 57, 450, 335);
 		panelServerManager.add(tabbedPaneMessage);
 
 		textAreaSystem = new JTextArea();
@@ -198,11 +218,50 @@ public class ServerManager extends JFrame implements ActionListener {
 		textAreaSystem.setEditable(false);
 		textAreaSystem.setColumns(20);
 		textAreaSystem.setRows(5);
-		textAreaSystem.append("[測試]: " + "測試");
+		textAreaSystem.append("[Test]: " + "Test Message");
 
 		scrollPaneSystem = new JScrollPane();
 		scrollPaneSystem.setViewportView(textAreaSystem);
 		tabbedPaneMessage.addTab("Test", scrollPaneSystem);
+
+		textAreaChat = new JTextArea();
+		textAreaChat.setBackground(new Color(0, 0, 0));
+		textAreaChat.setForeground(new Color(255, 255, 255));
+		textAreaChat.setEditable(false);
+		textAreaChat.setColumns(20);
+		textAreaChat.setRows(5);
+		textAreaChat.append("[Test]: " + "Test Message");
+
+		scrollPaneChat = new JScrollPane();
+		scrollPaneChat.setViewportView(textAreaChat);
+		tabbedPaneMessage.addTab("Test", scrollPaneChat);
+
+		tabbedPaneClient = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPaneClient.setFont(new Font("Arial Unicode MS", Font.PLAIN, 11));
+		tabbedPaneClient.setBounds(535, 57, 135, 335);
+		panelServerManager.add(tabbedPaneClient);
+		
+		listModelPlayer = new DefaultListModel();
+		
+		listPlayer = new JList(listModelPlayer);
+		listPlayer.setBackground(new Color(28, 28, 28));
+		listPlayer.setForeground(new Color(255, 255, 255));
+		listPlayer.setFont(new Font("Arial Unicode MS", Font.PLAIN, 11));
+		
+		scrollPanePlayer = new JScrollPane();
+		scrollPanePlayer.setViewportView(listPlayer);
+		tabbedPaneClient.addTab("玩家", scrollPanePlayer);
+		
+		listModelHost = new DefaultListModel();
+		
+		listHost = new JList(listModelHost);
+		listHost.setBackground(new Color(28, 28, 28));
+		listHost.setForeground(new Color(255, 255, 255));
+		listHost.setFont(new Font("Arial Unicode MS", Font.PLAIN, 11));
+		
+		scrollPaneHost = new JScrollPane();
+		scrollPaneHost.setViewportView(listHost);
+		tabbedPaneClient.addTab("主機", scrollPaneHost);
 
 		Config.load();
 		
@@ -291,17 +350,17 @@ public class ServerManager extends JFrame implements ActionListener {
 			}
 		} else if (cmd.equals("serverstop")) {
 			if (serverStarted) {
-				serverStarted = false;
-				System.exit(0);
+//				serverStarted = false;
+//				System.exit(0);
 			}
 		} else if (cmd.equals("serverrestart")) {
 			if (serverStarted) {
-				serverStarted = false;
-				GameServer.getInstance().shutdownWithCountdown(0);
+//				serverStarted = false;
+//				GameServer.getInstance().shutdownWithCountdown(0);
 			}
-			serverStarted = true;
+//			serverStarted = true;
 		} else if (cmd.equals("serverconfig")) {
-			ConfigManager.main(null);
+//			ConfigManager.main(null);
 		} else if (cmd.equals("exit")) {
 			System.exit(0);
 		}
