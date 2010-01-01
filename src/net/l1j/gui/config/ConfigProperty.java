@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package net.l1j.tool;
+package net.l1j.gui.config;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -117,7 +117,7 @@ public class ConfigProperty extends ConfigComment {
 				checkBox.setSelected(bool);
 				return checkBox;
 			case IPv4:
-				return new JIPTextField((Inet4Address) this.getValue());
+				return new ConfigIPTextField((Inet4Address) this.getValue());
 			case DOUBLE:
 			case INTEGER:
 			case STRING:
@@ -134,8 +134,8 @@ public class ConfigProperty extends ConfigComment {
 		String value;
 		if (this.getValueComponent() instanceof JCheckBox) {
 			value = ((JCheckBox) this.getValueComponent()).isSelected() + "";
-		} else if (this.getValueComponent() instanceof JIPTextField) {
-			value = ((JIPTextField) this.getValueComponent()).getText();
+		} else if (this.getValueComponent() instanceof ConfigIPTextField) {
+			value = ((ConfigIPTextField) this.getValueComponent()).getText();
 		} else if (this.getValueComponent() instanceof JTextField) {
 			value = ((JTextField) this.getValueComponent()).getText();
 		} else {

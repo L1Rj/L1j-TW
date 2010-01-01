@@ -16,33 +16,42 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package net.l1j.tool.images;
+package net.l1j.gui.config;
 
-import java.awt.Image;
-import java.util.Map;
+import java.io.IOException;
+import java.io.Writer;
 
-import javax.swing.ImageIcon;
+public class ConfigComment {
 
-import javolution.util.FastMap;
+	private String _comments;
 
-public class ImagesTable {
-	private static final String IMAGES_DIRECTORY = "data/images/";
-
-	private static final Map<String, Image> IMAGES = new FastMap<String, Image>();
-
-	private static final Map<String, ImageIcon> ICONS = new FastMap<String, ImageIcon>();
-
-	public static Image getImage(String name) {
-		if (!IMAGES.containsKey(name)) {
-			IMAGES.put(name, new ImageIcon(IMAGES_DIRECTORY + name).getImage());
-		}
-		return IMAGES.get(name);
+	/**
+	 * @param comments
+	 */
+	public ConfigComment(String comments) {
+		_comments = comments;
 	}
 
-	public static ImageIcon getIcon(String name) {
-		if (!ICONS.containsKey(name)) {
-			ICONS.put(name, new ImageIcon(IMAGES_DIRECTORY + name));
-		}
-		return ICONS.get(name);
+	/**
+	 * @return Returns the comments.
+	 */
+	public String getComments() {
+		return _comments;
+	}
+
+	/**
+	 * @param comments
+	 *            The comments to set.
+	 */
+	public void setComments(String comments) {
+		_comments = comments;
+	}
+
+	public void save(Writer writer) throws IOException {
+		StringBuilder sb = new StringBuilder();
+		sb.append('#');
+		sb.append(this.getComments().replace("\r\n", "\r\n#"));
+		sb.append("\r\n\r\n");
+		writer.write(sb.toString());
 	}
 }

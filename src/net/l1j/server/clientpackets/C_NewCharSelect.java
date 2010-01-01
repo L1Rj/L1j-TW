@@ -20,10 +20,10 @@ package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
 
+import net.l1j.gui.ServerManager;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_PacketBox;
-import net.l1j.tool.ServerManager;
 
 public class C_NewCharSelect extends ClientBasePacket {
 	private Logger _log = Logger.getLogger(C_NewCharSelect.class.getName());

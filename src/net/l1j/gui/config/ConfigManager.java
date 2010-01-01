@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package net.l1j.tool;
+package net.l1j.gui.config;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -48,7 +48,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.ToolTipManager;
 
-import net.l1j.tool.images.ImagesTable;
+import net.l1j.gui.images.ImagesTable;
 
 public class ConfigManager extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;

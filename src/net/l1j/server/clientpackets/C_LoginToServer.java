@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
+import net.l1j.gui.ServerManager;
 import net.l1j.server.ActionCodes;
 import net.l1j.server.ClientThread;
 import net.l1j.server.WarTimeController;
@@ -66,7 +67,6 @@ import net.l1j.server.templates.L1GetBackRestart;
 import net.l1j.server.templates.L1Skills;
 import net.l1j.server.types.Base;
 import net.l1j.server.utils.SQLUtil;
-import net.l1j.tool.ServerManager;
 
 import static net.l1j.server.skills.SkillId.*;
 

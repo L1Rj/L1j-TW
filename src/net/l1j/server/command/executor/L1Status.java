@@ -20,13 +20,13 @@ package net.l1j.server.command.executor;
 
 import java.util.StringTokenizer;
 
+import net.l1j.gui.ServerManager;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Lawful;
 import net.l1j.server.serverpackets.S_OwnCharStatus;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SystemMessage;
-import net.l1j.tool.ServerManager;
 
 public class L1Status implements L1CommandExecutor {
 

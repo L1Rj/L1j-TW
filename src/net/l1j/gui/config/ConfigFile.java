@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package net.l1j.tool;
+package net.l1j.gui.config;
 
 import java.io.BufferedWriter;
 import java.io.File;

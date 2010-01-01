@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package net.l1j.tool;
+package net.l1j.gui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -44,9 +44,12 @@ import javax.swing.SwingConstants;
 
 import net.l1j.Config;
 import net.l1j.Server;
-import net.l1j.tool.images.ImagesTable;
+import net.l1j.gui.config.ConfigManager;
+import net.l1j.gui.images.ImagesTable;
+import net.l1j.gui.memory.MemoryMonitor;
 
 public class ServerManager extends JFrame implements ActionListener {
+
 	private static final long serialVersionUID = 1L;
 
 	private static boolean serverStarted = false;
@@ -83,7 +86,6 @@ public class ServerManager extends JFrame implements ActionListener {
 	private JLabel labelRateKarma;
 	private JLabel labelRateDropAdena;
 	private JLabel labelRateDropItems;
-	private JLabel labelMemoryUse;
 
 	private JPanel panelStatus;
 	private GroupLayout gl_panelStatus;
@@ -91,6 +93,8 @@ public class ServerManager extends JFrame implements ActionListener {
 	public static int player_count = 0;
 	public static DefaultListModel listModelPlayer;
 	public static DefaultListModel listModelHost;
+
+	private JPanel memoryMonitor;
 
 	/**
 	 * 執行應用程式
@@ -209,7 +213,7 @@ public class ServerManager extends JFrame implements ActionListener {
 		
 		tabbedPaneMessage = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPaneMessage.setFont(new Font("Arial Unicode MS", Font.PLAIN, 11));
-		tabbedPaneMessage.setBounds(5, 57, 450, 335);
+		tabbedPaneMessage.setBounds(5, 57, 365, 335);
 		panelServerManager.add(tabbedPaneMessage);
 
 		textAreaSystem = new JTextArea();
@@ -238,7 +242,7 @@ public class ServerManager extends JFrame implements ActionListener {
 
 		tabbedPaneClient = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPaneClient.setFont(new Font("Arial Unicode MS", Font.PLAIN, 11));
-		tabbedPaneClient.setBounds(535, 57, 135, 335);
+		tabbedPaneClient.setBounds(380, 57, 135, 335);
 		panelServerManager.add(tabbedPaneClient);
 		
 		listModelPlayer = new DefaultListModel();
@@ -262,7 +266,7 @@ public class ServerManager extends JFrame implements ActionListener {
 		scrollPaneHost = new JScrollPane();
 		scrollPaneHost.setViewportView(listHost);
 		tabbedPaneClient.addTab("主機", scrollPaneHost);
-
+		
 		Config.load();
 		
 		labelRateXp = new JLabel();
@@ -295,12 +299,6 @@ public class ServerManager extends JFrame implements ActionListener {
 		labelRateDropItems.setHorizontalAlignment(SwingConstants.CENTER);
 		labelRateDropItems.setText("掉落: " + Config.RATE_DROP_ITEMS);
 
-		labelMemoryUse = new JLabel();
-		labelMemoryUse.setFont(new Font("Arial Unicode MS", Font.PLAIN, 9));
-		labelMemoryUse.setForeground(new Color(255, 0, 0));
-		labelMemoryUse.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMemoryUse.setText("記憶體使用量: 999 MB");
-		
 		panelStatus = new JPanel();
 		panelStatus.setBackground(new Color(45, 45, 45));
 		panelStatus.setBounds(1, 419, 673, 15);
@@ -319,9 +317,7 @@ public class ServerManager extends JFrame implements ActionListener {
 					.addComponent(labelRateDropAdena, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(labelRateDropItems, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-					.addGap(295)
-					.addComponent(labelMemoryUse, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-					.addContainerGap())
+					.addGap(295))
 		);
 		gl_panelStatus.setVerticalGroup(
 			gl_panelStatus.createParallelGroup(Alignment.LEADING)
@@ -331,11 +327,13 @@ public class ServerManager extends JFrame implements ActionListener {
 						.addComponent(labelRateLawful, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
 						.addComponent(labelRateKarma, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
 						.addComponent(labelRateDropAdena, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-						.addComponent(labelRateDropItems, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-						.addComponent(labelMemoryUse, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+						.addComponent(labelRateDropItems, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelStatus.setLayout(gl_panelStatus);
+		
+		memoryMonitor = MemoryMonitor.getInstance();
+		panelServerManager.add(memoryMonitor);
 		
 	}
 	
@@ -360,7 +358,7 @@ public class ServerManager extends JFrame implements ActionListener {
 			}
 //			serverStarted = true;
 		} else if (cmd.equals("serverconfig")) {
-//			ConfigManager.main(null);
+			ConfigManager.main(null);
 		} else if (cmd.equals("exit")) {
 			System.exit(0);
 		}
@@ -374,4 +372,5 @@ public class ServerManager extends JFrame implements ActionListener {
 	private void PanelMainMouseDragged(MouseEvent evt) {
 		setLocation(getX() - (mousePointX - evt.getX()), getY() - (mousePointY - evt.getY()));
 	}
+
 }

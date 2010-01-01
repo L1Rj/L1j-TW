@@ -30,6 +30,7 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import net.l1j.gui.ServerManager;
 import net.l1j.server.datatables.CharBuffTable;
 import net.l1j.server.encryptions.ClientIdExistsException;
 import net.l1j.server.encryptions.LineageEncryption;
@@ -53,7 +54,6 @@ import net.l1j.server.types.UChar8;
 import net.l1j.server.utils.StreamUtil;
 import net.l1j.server.utils.SystemUtil;
 import net.l1j.thread.GeneralThreadPool;
-import net.l1j.tool.ServerManager;
 
 import static net.l1j.Config.*;
 

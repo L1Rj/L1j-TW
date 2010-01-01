@@ -19,12 +19,53 @@
 package net.l1j.server.utils;
 
 public class SystemUtil {
+	private static Runtime runTime = Runtime.getRuntime();
+
 	/**
-	 * 系統使用兆位元組單位獲得記憶體使用量。<br> この值にスタックのサイズは含まれない。
+	 * <font color=#00800>傳回記憶體使用量</font>
 	 * 
 	 * @return 記憶體使用量
 	 */
 	public static long getUsedMemoryMB() {
-		return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024L / 1024L;
+		return (runTime.totalMemory() - runTime.freeMemory()) / 1024L / 1024L;
+	}
+
+	/**
+	 * <font color=#00800>傳回記憶體使用量上限</font>
+	 * 
+	 * @return 記憶體最大可用量
+	 */
+	public static long getTotalMemoryMB() {
+		return runTime.totalMemory() / 1024L;
+	}
+
+	/**
+	 * <font color=#00800>傳回記憶體尚未使用量</font>
+	 * 
+	 * @return 記憶體尚未使用量
+	 */
+	public static long getFreeMemoryMB() {
+		return runTime.freeMemory() / 1024L;
+	}
+
+	/**
+	 * <font color=#00800>計時器啟動時間</font>
+	 */
+	private static long _begin = System.currentTimeMillis();
+
+	/**
+	 * <font color=#00800>設置計時器啟動時間</font>
+	 */
+	public static void resetStartedTime() {
+		_begin = System.currentTimeMillis();
+	}
+
+	/**
+	 * <font color=#00800>傳回計時器已使用時間</font>
+	 * 
+	 * @return
+	 */
+	public static long getStartedTime() {
+		return System.currentTimeMillis() - _begin;
 	}
 }

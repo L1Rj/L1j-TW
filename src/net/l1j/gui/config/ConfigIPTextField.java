@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package net.l1j.tool;
+package net.l1j.gui.config;
 
 import java.awt.Component;
 import java.awt.GridBagConstraints;
@@ -39,11 +39,12 @@ import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
+import java.awt.Color;
 
 /**
  * @author KenM
  */
-public class JIPTextField extends JPanel implements FocusListener {
+public class ConfigIPTextField extends JPanel implements FocusListener {
 	/**
 	 * Comment for <code>serialVersionUID</code>
 	 */
@@ -51,7 +52,7 @@ public class JIPTextField extends JPanel implements FocusListener {
 	private JTextField[] _textFields;
 	private List<FocusListener> _focusListeners;
 
-	public JIPTextField(String textIp) {
+	public ConfigIPTextField(String textIp) {
 		super.addFocusListener(this);
 
 		initIPTextField(textIp);
@@ -61,14 +62,14 @@ public class JIPTextField extends JPanel implements FocusListener {
 		}
 	}
 
-	public JIPTextField() {
+	public ConfigIPTextField() {
 		this("...");
 	}
 
 	/**
 	 * @param value
 	 */
-	public JIPTextField(Inet4Address value) {
+	public ConfigIPTextField(Inet4Address value) {
 		this(value.getHostAddress());
 	}
 
@@ -80,6 +81,8 @@ public class JIPTextField extends JPanel implements FocusListener {
 		};
 
 		this.setLayout(new GridBagLayout());
+		this.setBackground(new Color(45, 45, 45));
+
 		_textFields = new JTextField[4];
 
 		GridBagConstraints cons = new GridBagConstraints();
@@ -95,6 +98,7 @@ public class JIPTextField extends JPanel implements FocusListener {
 			String str = parts[i];
 			if (i > 0) {
 				JLabel dot = new JLabel(".");
+				dot.setForeground(new Color(255, 255, 255));
 				cons.weightx = 0;
 				add(dot, cons);
 				cons.gridx++;
@@ -107,6 +111,7 @@ public class JIPTextField extends JPanel implements FocusListener {
 			previous = maxDoc;
 			//ic.weightx = 1;
 			add(_textFields[i], cons);
+			_textFields[i].setForeground(new Color(255, 0, 0));
 			_textFields[i].addActionListener(nextfocusaction);
 			cons.gridx++;
 		}
