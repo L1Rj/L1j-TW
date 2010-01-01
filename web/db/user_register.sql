@@ -31,6 +31,6 @@ CREATE TABLE `user_register` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `user_register` VALUES ('1', 'admin', '1234', '43e724dd398a9fcf6c7a20a48ec4c8254a1f7646f9034fc5331ecc9eed236ed2', 'admin@lineagesf.no-ip.biz', '0000-00-00 00:00:00', '127.0.0.1', '0', '0', 'admin', '0000-00-00 00:00:00', '127.0.0.1', '蝬脩?蝞∠???);
-INSERT INTO `user_register` VALUES ('2', 'free', 'free', 'nopassword', 'free@lineagesf.no-ip.biz', '0000-00-00 00:00:00', '127.0.0.1', '0', '0', 'free', '0000-00-00 00:00:00', '127.0.0.1', '?祥閮餃?蝣?);
-INSERT INTO `user_register` VALUES ('3', 'system', 'system', 'nopassword', 'system@lineagesf.no-ip.biz', '0000-00-00 00:00:00', '127.0.0.1', '0', '0', 'system', '0000-00-00 00:00:00', '127.0.0.1', '蝟餌絞');
+INSERT INTO `user_register` VALUES ('1', 'admin', '1234', '43e724dd398a9fcf6c7a20a48ec4c8254a1f7646f9034fc5331ecc9eed236ed2', 'admin@l1j.com', '0000-00-00 00:00:00', '127.0.0.1', '0', '0', 'admin', '0000-00-00 00:00:00', '127.0.0.1', '管理員');
+INSERT INTO `user_register` VALUES ('2', 'free', 'free', 'nopassword', 'free@l1j.com', '0000-00-00 00:00:00', '127.0.0.1', '0', '0', 'free', '0000-00-00 00:00:00', '127.0.0.1', 'free');
+INSERT INTO `user_register` VALUES ('3', 'system', 'system', 'nopassword', 'system@l1j.com', '0000-00-00 00:00:00', '127.0.0.1', '0', '0', 'system', '0000-00-00 00:00:00', '127.0.0.1', 'system');

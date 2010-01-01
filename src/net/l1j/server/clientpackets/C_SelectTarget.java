@@ -50,7 +50,7 @@ public class C_SelectTarget extends ClientBasePacket {
 		if (pet != null && target != null) {
 			if (target instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) target;
-				if (pc.checkNonPvP(pc, pet)) {
+				if (pc.checkNonPvP(pc, pet)|| pc.getZoneType() == 1) {
 					return;
 				}
 			}

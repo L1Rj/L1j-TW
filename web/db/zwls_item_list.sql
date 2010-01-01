@@ -1,268 +1,184 @@
-/*
-MySQL Data Transfer
-Source Host: localhost
-Source Database: l1jdb1747
-Target Host: localhost
-Target Database: l1jdb1747
-Date: 2009/4/24 上午 01:37:21
-*/
+-- phpMyAdmin SQL Dump
+-- version 3.2.4
+-- http://www.phpmyadmin.net
+--
+-- 主機: localhost
+-- 建立日期: Jan 02, 2010, 03:09 AM
+-- 伺服器版本: 5.1.41
+-- PHP 版本: 5.2.11
 
-SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for zwls_item_list
--- ----------------------------
-CREATE TABLE `zwls_item_list` (
-  `id` int(10) NOT NULL auto_increment,
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- 資料庫: `l1jdb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 資料表格式： `zwls_item_list`
+--
+
+CREATE TABLE IF NOT EXISTS `zwls_item_list` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `itemid` int(10) NOT NULL,
-  `itemlv` int(10) NOT NULL default '0',
+  `itemlv` int(10) NOT NULL DEFAULT '0',
   `itemname` varchar(255) NOT NULL,
-  `itemcount` int(10) NOT NULL default '1',
-  `charge_count` int(10) NOT NULL default '0',
-  `usetime` int(10) NOT NULL default '0',
-  `count` int(10) NOT NULL default '0',
-  `maxbuycount` int(10) NOT NULL default '0',
-  `point` int(10) NOT NULL default '1',
-  `starttime` datetime default NULL,
-  `stoptime` datetime default NULL,
-  `itemhelp` varchar(255) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2419 DEFAULT CHARSET=utf8;
+  `itemcount` int(10) NOT NULL DEFAULT '1',
+  `charge_count` int(10) NOT NULL DEFAULT '0',
+  `usetime` int(10) NOT NULL DEFAULT '0',
+  `count` int(10) NOT NULL DEFAULT '0',
+  `maxbuycount` int(10) NOT NULL DEFAULT '0',
+  `point` int(10) NOT NULL DEFAULT '1',
+  `starttime` datetime DEFAULT NULL,
+  `stoptime` datetime DEFAULT NULL,
+  `itemhelp` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=633 ;
 
--- ----------------------------
--- Records 
--- ----------------------------
-INSERT INTO `zwls_item_list` VALUES ('1', '0', '0', '<font color=red>??憿?</font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2', '8', '0', '蝐喟揣???, '1', '0', '0', '1000', '6', '1', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('3', '9', '0', '憟折??陌?寧??, '1', '0', '0', '1000', '0', '20', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('4', '10', '0', '撠郎憯怠?', '1', '0', '0', '1000', '0', '1', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('5', '11', '0', '瘞湔?剖?', '1', '0', '0', '1000', '0', '19', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('6', '12', '0', '憸典??剖?', '1', '0', '0', '1000', '0', '900', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('7', '16', '0', '敺拐?銋?', '1', '0', '0', '1000', '0', '250', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('8', '22', '0', '???脩憯?, '1', '0', '0', '1000', '0', '20', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('9', '42', '0', '蝝啣?', '1', '0', '0', '1000', '0', '40', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('10', '43', '0', '瘚瑁?敶?', '1', '0', '0', '1000', '0', '25', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('11', '47', '0', '瘝?銋?', '1', '0', '0', '1000', '0', '700', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('12', '49', '0', '甇血?銋?', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('13', '53', '0', '?亥??憯思???, '1', '0', '0', '1000', '0', '15', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('14', '57', '0', '?陌?箔???, '1', '0', '0', '1000', '0', '225', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('15', '58', '0', '甇颱滿擉ㄚ??????, '1', '0', '0', '1000', '0', '2500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('16', '59', '0', '擉ㄚ?噸銋?', '1', '0', '0', '1000', '0', '2500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('17', '61', '0', '?Ｗ?銵?', '1', '0', '0', '1000', '0', '5000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('18', '62', '0', '甇血?????, '1', '0', '0', '1000', '0', '25', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('19', '66', '0', '撅???, '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('100', '0', '0', '<font color=red>???憿?</font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('101', '74', '0', '????', '1', '0', '0', '1000', '0', '65', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('102', '81', '0', '撟賣???', '1', '0', '0', '1000', '0', '70', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('103', '84', '0', '????', '1', '0', '0', '1000', '0', '10000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('104', '76', '0', '?怠???', '1', '0', '0', '1000', '0', '900', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('105', '83', '0', '??敺??', '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('106', '85', '0', '?⊿???', '1', '0', '0', '1000', '0', '1100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('107', '86', '0', '蝝蔣??', '1', '0', '0', '1000', '0', '1500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('200', '0', '0', '<font color=red>??憿?</font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('201', '106', '0', '鞎??', '1', '0', '0', '1000', '0', '1', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('202', '107', '0', '瘛梁??瑞?', '1', '0', '0', '1000', '0', '550', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('300', '0', '0', '<font color=red>??憿?</font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('301', '118', '0', '瞍?瘞湔??, '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('302', '126', '0', '?芷擳?', '1', '0', '0', '1000', '0', '20', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('303', '127', '0', '?潮?芷擳?', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('304', '131', '0', '??擳???, '1', '0', '0', '1000', '0', '15', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('305', '134', '0', '?擳?', '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('400', '0', '0', '<font color=red>?憿?</font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('401', '149', '0', '?犖?折', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('402', '150', '0', '憭拍銋?, '1', '0', '0', '1000', '0', '900', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('500', '0', '0', '<font color=red>??芷???/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('501', '157', '0', '????, '1', '0', '0', '1000', '0', '65', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('502', '162', '0', '撟賣??潛', '1', '0', '0', '1000', '0', '70', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('503', '164', '0', '???潛', '1', '0', '0', '1000', '0', '10000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('504', '163', '0', '撌渲?⊿??, '1', '0', '0', '1000', '0', '900', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('505', '165', '0', '?⊿??潛', '1', '0', '0', '1000', '0', '1100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('506', '166', '0', '?其??潛', '1', '0', '0', '1000', '0', '1500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('600', '0', '0', '<font color=red>??憿?</font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('601', '177', '0', '撟賣???撘?, '1', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('602', '178', '0', '撖???撘?, '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('603', '180', '0', '??撘?, '1', '0', '0', '1000', '0', '20', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('604', '181', '0', '撠斤掖撘?, '1', '0', '0', '1000', '0', '40', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('605', '188', '0', '?憛毀敺琿???撘?, '1', '0', '0', '1000', '0', '15', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('606', '189', '0', '????撘?, '1', '0', '0', '1000', '0', '10000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('607', '190', '0', '瘝?銋?', '1', '0', '0', '1000', '0', '1500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('608', '194', '0', '??', '1', '0', '0', '1000', '0', '1', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('700', '0', '0', '<font color=red>?????/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('701', '20017', '0', '?其?隡?????, '1', '0', '0', '1000', '0', '400', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('702', '20019', '0', '??', '1', '0', '0', '1000', '0', '125', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('703', '20032', '0', '暺??剝ˇ', '1', '0', '0', '1000', '0', '1', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('704', '20033', '0', '?曄蝛?蟡?', '1', '0', '0', '1000', '0', '20', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('800', '0', '0', '<font color=red>??蝭琿???/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('801', '20049', '0', '撌刻憟喟???蝧?', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('802', '20050', '0', '撌刻憟喟???蝧?', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('803', '20064', '0', '蝝?憯思?擛亦窈', '1', '0', '0', '1000', '0', '25', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('804', '20068', '0', '鈭?擉ㄚ???, '1', '0', '0', '1000', '0', '3', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('805', '20070', '0', '暺?擛亦窈', '1', '0', '0', '1000', '0', '20', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('806', '20073', '0', '蝎暸??窈', '1', '0', '0', '1000', '0', '10', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('807', '20074', '0', '???蝭?, '1', '0', '0', '1000', '0', '450', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('900', '0', '0', '<font color=red>??日???/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('901', '20086', '0', '撘瑕?INT T??, '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('902', '20087', '0', '撘瑕?DEX T??, '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('903', '20088', '0', '撘瑕?STR T??, '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1000', '0', '0', '<font color=red>???脤???/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1001', '20117', '0', '撌湧◢?寧???, '1', '0', '0', '1000', '0', '250', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1002', '20132', '0', '暺??怨', '1', '0', '0', '1000', '0', '300', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1003', '20133', '0', '暺??瑁???撅祉???, '1', '0', '0', '1000', '0', '750', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1004', '20137', '0', '蝎暸??', '1', '0', '0', '1000', '0', '20', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1005', '20138', '0', '蝎暸??惇?', '1', '0', '0', '1000', '0', '80', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1100', '0', '0', '<font color=red>??憟???/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1101', '20164', '0', '敶勗???', '1', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1102', '20175', '0', '瘞湔??', '1', '0', '0', '1000', '0', '200', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1103', '20180', '0', '暺???', '1', '0', '0', '1000', '0', '1', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1104', '20187', '0', '????', '1', '0', '0', '1000', '0', '200', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1105', '20191', '0', '?', '1', '0', '0', '1000', '0', '2', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1200', '0', '0', '<font color=red>??湧???/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1201', '20195', '0', '敶勗??琿', '1', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1202', '20196', '0', '暺?璉脫????, '1', '0', '0', '1000', '0', '75', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1203', '20204', '0', '撌游??舫??, '1', '0', '0', '1000', '0', '400', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1204', '20210', '0', '暺??琿', '1', '0', '0', '1000', '0', '150', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1205', '20218', '0', '暺?飲??, '1', '0', '0', '1000', '0', '900', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1300', '0', '0', '<font color=red>?????/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1301', '20227', '0', '璇????, '1', '0', '0', '1000', '0', '1', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1302', '20234', '0', '靽∪艙銋', '1', '0', '0', '1000', '0', '125', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1303', '20235', '0', '隡?銋', '1', '0', '0', '1000', '0', '1200', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1304', '20236', '0', '蝎暸??曄?', '1', '0', '0', '1000', '0', '20', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1400', '0', '0', '<font color=red>??????/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1401', '20263', '0', '憒??啣ㄚ霅瑁澈蝚?, '1', '0', '0', '1000', '0', '10', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1500', '0', '0', '<font color=red>??????/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1501', '20303', '0', '????', '1', '0', '0', '1000', '0', '5', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1600', '0', '0', '<font color=red>?撣園???/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1601', '20312', '0', '頨恍??啣葆', '1', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1602', '20316', '0', '???啣葆', '1', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1603', '20319', '0', '蝎曄??啣葆', '1', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1604', '20321', '0', '憭??桀葆', '1', '0', '0', '1000', '0', '25', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1700', '0', '0', '<font color=red>?喟憿?</font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1701', '21005', '0', '?梢??喟', '1', '0', '0', '1000', '0', '300', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1702', '21006', '0', '???喟 (擉ㄚ)', '1', '0', '0', '1000', '0', '145', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1703', '21007', '0', '???喟 (擛亙ㄚ)', '1', '0', '0', '1000', '0', '145', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1704', '21014', '0', '???喟 (瘜葦)', '1', '0', '0', '1000', '0', '145', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1800', '0', '0', '<font color=red>?仃?駁???甇血憿?</font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1801', '15', '0', '憭勗擳????嫣???, '1', '0', '0', '1000', '0', '200', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1802', '108', '0', '憭勗擳??擳?', '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1803', '109', '0', '憭勗擳??毀憸函擳?', '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1804', '110', '0', '憭勗擳??毀?擳?', '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1805', '111', '0', '憭勗擳??銋戊????, '1', '0', '0', '1000', '0', '2000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1900', '0', '0', '<font color=red>?敹?拚???/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1901', '17', '0', '????鋡恍敹?撌典?', '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1902', '18', '0', '????鋡恍敹???, '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1903', '167', '0', '????鋡恍敹?撘拇?', '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1904', '20140', '0', '鋡恍敹??桃???, '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1905', '20141', '0', '鋡恍敹??瑁?', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1906', '20142', '0', '鋡恍敹?敼', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('1907', '20143', '0', '鋡恍敹??惇?', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2000', '0', '0', '<font color=red>?惇?扯?憿?</font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2001', '20061', '0', '憸典惇?扳?蝭?, '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2002', '20071', '0', '?怠惇?扳?蝭?, '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2003', '20059', '0', '瘞游惇?扳?蝭?, '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2004', '20054', '0', '?啣惇?扳?蝭?, '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2005', '20108', '0', '?支誨憸券?敼???, '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2006', '20119', '0', '?支誨?恍?敼???, '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2007', '20153', '0', '?支誨瘞湧?敼???, '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2008', '20130', '0', '?支誨?圈?敼???, '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2009', '20156', '0', '憸券?敼???, '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2010', '20159', '0', '?恍?敼???, '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2011', '20127', '0', '瘞湧?敼???, '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2012', '20146', '0', '?圈?敼???, '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2013', '20018', '0', '擐砍澈?曆?撣?, '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2014', '20025', '0', '撌游???撣?, '1', '0', '0', '1000', '0', '800', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2015', '20029', '0', '镼輻銋蜇', '1', '0', '0', '1000', '0', '400', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2016', '20040', '0', '?∪ㄚ隡臭?撣?, '1', '0', '0', '1000', '0', '600', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2100', '0', '0', '<font color=red>??鋆???/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2101', '20011', '0', '??瘜??, '1', '0', '0', '1000', '0', '1', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2102', '20056', '0', '??瘜?蝭?, '1', '0', '0', '1000', '0', '1', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2103', '20110', '0', '??瘜???, '1', '0', '0', '1000', '0', '1', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2104', '20044', '0', '?絲鞈撌?, '1', '0', '0', '1000', '0', '5', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2105', '20060', '0', '?絲鞈?蝭?, '1', '0', '0', '1000', '0', '25', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2106', '20155', '0', '?絲鞈?', '1', '0', '0', '1000', '0', '5', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2107', '20188', '0', '?絲鞈?憟?, '1', '0', '0', '1000', '0', '5', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2108', '20217', '0', '?絲鞈??, '1', '0', '0', '1000', '0', '5', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2109', '20012', '0', '瘜葦銋蜇', '1', '0', '0', '1000', '0', '3', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2110', '20111', '0', '瘜葦?瑁?', '1', '0', '0', '1000', '0', '3', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2111', '20003', '0', '?潮?剔?', '1', '0', '0', '1000', '0', '2', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2112', '20091', '0', '?潮?惇?', '1', '0', '0', '1000', '0', '2', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2113', '20163', '0', '?潮??', '1', '0', '0', '1000', '0', '5', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2114', '20194', '0', '?潮?琿', '1', '0', '0', '1000', '0', '5', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2115', '20220', '0', '?潮?曄?', '1', '0', '0', '1000', '0', '2', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2116', '20020', '0', '甇血??剔?', '1', '0', '0', '1000', '0', '75', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2117', '20058', '0', '甇血??窈', '1', '0', '0', '1000', '0', '75', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2118', '20113', '0', '甇血?霅琿', '1', '0', '0', '1000', '0', '75', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2119', '20168', '0', '甇血???', '1', '0', '0', '1000', '0', '75', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2120', '20201', '0', '甇血??琿', '1', '0', '0', '1000', '0', '75', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2121', '20228', '0', '甇血?銋', '1', '0', '0', '1000', '0', '75', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2122', '20030', '0', '蟡??剝ˇ', '1', '0', '0', '1000', '0', '75', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2123', '20067', '0', '蟡??窈', '1', '0', '0', '1000', '0', '75', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2124', '20129', '0', '蟡?瘜?', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2125', '20176', '0', '蟡???', '1', '0', '0', '1000', '0', '75', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2126', '20208', '0', '蟡??琿', '1', '0', '0', '1000', '0', '75', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2127', '20233', '0', '蟡?擳???, '1', '0', '0', '1000', '0', '125', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2128', '20057', '0', '?交?頠??窈', '1', '0', '0', '1000', '0', '800', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2129', '20109', '0', '瘜誘頠??瑁?', '1', '0', '0', '1000', '0', '700', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2130', '20178', '0', '?捏頠???', '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2131', '20200', '0', '擳頠??琿', '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2132', '20016', '0', '?潭郭撣賢?', '1', '0', '0', '1000', '0', '125', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2133', '20112', '0', '?潭郭憭?', '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2134', '20134', '0', '?唬?憟喟?擳?蝳格?', '1', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2135', '20211', '0', '?唬?憟喟?擳?瘨潮?', '1', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2136', '20022', '0', '撌渲?⊿??, '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2137', '20116', '0', '撌渲?∠???, '1', '0', '0', '1000', '0', '325', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2138', '20169', '0', '撌渲?⊥?憟?, '1', '0', '0', '1000', '0', '225', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2139', '20202', '0', '撌渲?⊿??, '1', '0', '0', '1000', '0', '5', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2140', '20009', '0', '?⊿??剔?', '1', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2141', '20099', '0', '?⊿??', '1', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2142', '20165', '0', '?⊿???', '1', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2143', '20197', '0', '?⊿??琿', '1', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2144', '20010', '0', '甇颱滿擉ㄚ?剔?', '1', '0', '0', '1000', '0', '200', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2145', '20100', '0', '甇颱滿擉ㄚ?', '1', '0', '0', '1000', '0', '200', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2146', '20166', '0', '甇颱滿擉ㄚ??', '1', '0', '0', '1000', '0', '200', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2147', '20198', '0', '甇颱滿擉ㄚ?琿', '1', '0', '0', '1000', '0', '200', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2148', '20024', '0', '???剔?', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2149', '20118', '0', '???', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2150', '20170', '0', '????', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2151', '20203', '0', '???琿', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2152', '20041', '0', '??剔?', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2153', '20150', '0', '??', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2154', '20184', '0', '???', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2155', '20214', '0', '??琿', '1', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2156', '20042', '0', '鞈賢側?舫蝞?, '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2157', '20151', '0', '鞈賢側?舀?蝭?, '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2158', '20185', '0', '鞈賢側?舀?憟?, '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2159', '20215', '0', '鞈賢側?舫??, '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2200', '0', '0', '<font color=red>???琿???/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2201', '40524', '0', '暺銵??, '10', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2204', '40039', '0', '蝝?', '1000', '0', '0', '1000', '0', '80', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2205', '40040', '0', '憡ㄚ敹?, '1000', '0', '0', '1000', '0', '80', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2206', '40031', '0', '?⊿?銋?', '1000', '0', '0', '1000', '0', '80', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2207', '140068', '0', '蝎暸?擗嗾', '1000', '0', '0', '1000', '0', '80', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2208', '140014', '0', '??交偌', '1000', '0', '0', '1000', '0', '80', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2209', '140100', '0', '?祇?蝘餃??瑁遘', '100', '0', '0', '1000', '0', '20', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2214', '140008', '0', '霈耦擳?', '1', '50', '0', '1000', '0', '25', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2215', '140006', '0', '?菟芰擳?', '1', '50', '0', '1000', '0', '25', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2216', '40745', '0', '暺?蝞?, '5000', '0', '0', '1000', '0', '10', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2217', '40746', '0', '蝐喟揣?悌', '5000', '0', '0', '1000', '0', '10', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2218', '40747', '0', '暺蝐喟揣?悌', '5000', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2219', '40748', '0', '憟折??陌?寧悌', '5000', '0', '0', '1000', '0', '50', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2223', '40093', '0', '蝛箇?擳??瑁遘(蝑?4)', '100', '0', '0', '1000', '0', '100', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2224', '40094', '0', '蝛箇?擳??瑁遘(蝑?5)', '100', '0', '0', '1000', '0', '200', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2300', '0', '0', '<font color=red>??瘜偌?園???/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2301', '40171', '0', '擳????瘞??銵?', '1', '0', '0', '1000', '0', '5', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2302', '40187', '0', '擳???擃?撘瑕銵?', '1', '0', '0', '1000', '0', '15', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2303', '40180', '0', '擳???擃?瘝餌?銵?', '1', '0', '0', '1000', '0', '10', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2304', '40193', '0', '擳???蟡?擳?甇血)', '1', '0', '0', '1000', '0', '10', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2305', '40164', '0', '?銵(銵?銋?)', '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2306', '40165', '0', '?銵(憓??脩戌)', '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2307', '40238', '0', '蝎暸?瘞湔(擳?頧?)', '1', '0', '0', '1000', '0', '500', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2308', '40240', '0', '蝎暸?瘞湔(銝???', '1', '0', '0', '1000', '0', '1000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2309', '40269', '0', '暺?蝎暸?瘞湔(????)', '1', '0', '0', '1000', '0', '10', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2310', '40274', '0', '暺?蝎暸?瘞湔(???)', '1', '0', '0', '1000', '0', '10', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2400', '0', '0', '<font color=red>???鞈潮???/font>', '0', '0', '0', '0', '0', '0', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2401', '40549', '0', '??銋?', '1', '0', '0', '1000', '0', '8888', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2402', '40550', '0', '??銋', '1', '0', '0', '1000', '0', '8888', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2403', '40551', '0', '??銋', '1', '0', '0', '1000', '0', '8888', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2404', '40552', '0', '??銋?', '1', '0', '0', '1000', '0', '8888', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2405', '213', '0', '?憛擳?', '1', '0', '0', '1000', '1', '18000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2406', '217', '0', '?憛銋?', '1', '0', '0', '1000', '1', '18000', null, null, null);
-INSERT INTO `zwls_item_list` VALUES ('2407', '205', '0', '?曄?憭拐蝙撘?, '1', '0', '0', '1000', '1', '18000', null, null, null);
+--
+-- 列出以下資料庫的數據： `zwls_item_list`
+--
+
+INSERT INTO `zwls_item_list` (`id`, `itemid`, `itemlv`, `itemname`, `itemcount`, `charge_count`, `usetime`, `count`, `maxbuycount`, `point`, `starttime`, `stoptime`, `itemhelp`) VALUES
+(1, 0, 0, '<font color=red>武器</font>', 0, 0, 0, 0, 0, 0, NULL, NULL, NULL),
+(2, 42, 0, '細劍', 1, 0, 0, 1000, 0, 30, NULL, NULL, NULL),
+(3, 22, 0, '鎖子甲破壞者', 1, 0, 0, 999, 0, 15, NULL, NULL, NULL),
+(4, 57, 0, '瑟魯基之劍', 1, 0, 0, 999, 0, 500, NULL, NULL, NULL),
+(5, 9, 0, '奧裡哈魯根短劍', 1, 0, 0, 999, 0, 400, NULL, NULL, NULL),
+(6, 259, 0, '魔力短劍', 1, 0, 0, 1000, 0, 1000, NULL, NULL, NULL),
+(11, 260, 0, '狂風之斧', 1, 0, 0, 998, 0, 1000, NULL, NULL, NULL),
+(12, 14, 0, '混沌之刺', 1, 0, 0, 1000, 0, 2500, NULL, NULL, NULL),
+(13, 16, 0, '復仇之劍', 1, 0, 0, 1000, 0, 2000, NULL, NULL, NULL),
+(14, 44, 0, '古代黑暗妖精之劍', 1, 0, 0, 1000, 0, 600, NULL, NULL, NULL),
+(15, 47, 0, '沉默之劍', 1, 0, 0, 1000, 0, 1800, NULL, NULL, NULL),
+(21, 81, 0, '幽暗雙刀', 1, 0, 0, 1000, 0, 100, NULL, NULL, NULL),
+(22, 84, 0, '暗黑雙刀', 1, 0, 0, 999, 0, 1500, NULL, NULL, NULL),
+(23, 86, 0, '紅影雙刀', 1, 0, 0, 998, 0, 1300, NULL, NULL, NULL),
+(31, 107, 0, '深紅長矛', 1, 0, 0, 1000, 0, 50, NULL, NULL, NULL),
+(42, 126, 0, '瑪那魔杖', 1, 0, 0, 997, 0, 120, NULL, NULL, NULL),
+(43, 131, 0, '力量魔法杖', 1, 0, 0, 998, 0, 90, NULL, NULL, NULL),
+(44, 127, 0, '鋼鐵瑪那魔杖', 1, 0, 0, 980, 0, 200, NULL, NULL, NULL),
+(45, 123, 0, '巴列斯魔杖', 1, 0, 0, 1000, 0, 699, NULL, NULL, NULL),
+(46, 124, 0, '巴風特魔杖', 1, 0, 0, 999, 0, 999, NULL, NULL, NULL),
+(51, 162, 0, '幽暗鋼爪', 1, 0, 0, 1000, 0, 100, NULL, NULL, NULL),
+(52, 164, 0, '暗黑鋼爪', 1, 0, 0, 1000, 0, 1500, NULL, NULL, NULL),
+(61, 180, 0, '十字弓', 1, 0, 0, 1000, 0, 30, NULL, NULL, NULL),
+(62, 181, 0, '尤米弓', 1, 0, 0, 1000, 0, 60, NULL, NULL, NULL),
+(63, 177, 0, '幽暗十字弓', 1, 0, 0, 1000, 0, 98, NULL, NULL, NULL),
+(71, 271, 0, '黑曜石奇古獸', 1, 0, 0, 1000, 0, 1200, NULL, NULL, NULL),
+(81, 273, 0, '破滅者鎖鏈劍', 1, 0, 0, 999, 0, 1200, NULL, NULL, NULL),
+(91, 265, 0, '底比斯歐西里斯雙刀', 1, 0, 0, 1000, 0, 1200, NULL, NULL, NULL),
+(92, 266, 0, '底比斯歐西里斯雙手劍', 1, 0, 0, 1000, 0, 1200, NULL, NULL, NULL),
+(93, 267, 0, '底比斯歐西里斯弓', 1, 0, 0, 998, 0, 1000, NULL, NULL, NULL),
+(94, 268, 0, '底比斯歐西里斯魔杖', 1, 0, 0, 998, 0, 1200, NULL, NULL, NULL),
+(101, 0, 0, '<font color=red>防具</font>', 0, 0, 0, 0, 0, 0, NULL, NULL, NULL),
+(102, 20033, 0, '艾爾穆的祝福', 1, 0, 0, 997, 0, 20, NULL, NULL, NULL),
+(103, 20020, 0, '武官頭盔', 1, 0, 0, 998, 0, 80, NULL, NULL, NULL),
+(104, 20010, 0, '死亡騎士頭盔', 1, 0, 0, 997, 0, 60, NULL, NULL, NULL),
+(111, 20058, 0, '武官斗篷', 1, 0, 0, 998, 0, 50, NULL, NULL, NULL),
+(112, 20075, 0, '死亡斗篷', 1, 0, 0, 1000, 0, 1600, NULL, NULL, NULL),
+(113, 20067, 0, '神官斗篷', 1, 0, 0, 1000, 0, 69, NULL, NULL, NULL),
+(121, 20137, 0, '精靈鏈甲', 1, 0, 0, 998, 0, 20, NULL, NULL, NULL),
+(122, 20132, 0, '黑暗披肩', 1, 0, 0, 1000, 0, 20, NULL, NULL, NULL),
+(123, 20100, 0, '死亡騎士盔甲', 1, 0, 0, 997, 0, 60, NULL, NULL, NULL),
+(124, 20113, 0, '武官護鎧', 1, 0, 0, 993, 0, 40, NULL, NULL, NULL),
+(131, 20187, 0, '力量手套', 1, 0, 0, 994, 0, 50, NULL, NULL, NULL),
+(132, 20166, 0, '死亡騎士手套', 1, 0, 0, 998, 0, 60, NULL, NULL, NULL),
+(133, 20168, 0, '武官手套', 1, 0, 0, 999, 0, 40, NULL, NULL, NULL),
+(141, 20201, 0, '武官長靴', 1, 0, 0, 998, 0, 80, NULL, NULL, NULL),
+(142, 20198, 0, '死亡騎士長靴', 1, 0, 0, 997, 0, 60, NULL, NULL, NULL),
+(151, 20236, 0, '精靈盾牌', 1, 0, 0, 994, 0, 10, NULL, NULL, NULL),
+(152, 20228, 0, '武官之盾', 1, 0, 0, 999, 0, 50, NULL, NULL, NULL),
+(162, 21105, 0, '古代神射臂甲', 1, 0, 0, 999, 0, 400, NULL, NULL, NULL),
+(163, 21106, 0, '古代鬥士臂甲', 1, 0, 0, 988, 0, 400, NULL, NULL, NULL),
+(170, 20453, 0, '艾莉絲變身頭巾', 1, 0, 0, 998, 0, 399, NULL, NULL, NULL),
+(171, 20454, 0, '騎士范德變身頭巾', 1, 0, 0, 1000, 0, 399, NULL, NULL, NULL),
+(172, 20455, 0, '思克巴女皇變身頭巾', 1, 0, 0, 1000, 0, 399, NULL, NULL, NULL),
+(173, 20420, 0, '招財貓領巾', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(174, 20343, 0, '曼波兔帽', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(200, 0, 0, '<font color=red>↓食品類↓</font>', 0, 0, 0, 0, 0, 0, NULL, NULL, NULL),
+(201, 40031, 0, '惡魔之血', 10, 0, 0, 828, 0, 2, NULL, NULL, NULL),
+(202, 40068, 0, '精靈餅乾', 30, 0, 0, 292, 0, 1, NULL, NULL, NULL),
+(203, 40043, 0, '兔子的肝', 10, 0, 0, 9903, 0, 3, NULL, NULL, NULL),
+(204, 40042, 0, '精神藥水', 5, 0, 0, 954, 0, 1, NULL, NULL, NULL),
+(205, 40070, 0, '進化果實', 1, 0, 0, 838, 0, 10, NULL, NULL, NULL),
+(206, 40015, 0, '加速魔力恢復藥水', 50, 0, 0, 997, 0, 1, NULL, NULL, NULL),
+(300, 0, 0, '<font color=red>↓其他道具↓</font>', 0, 0, 0, 0, 0, 0, NULL, NULL, NULL),
+(301, 40308, 0, '金幣', 98000, 0, 0, 9762, 0, 1, NULL, NULL, NULL),
+(302, 40308, 0, '金幣', 2950000, 0, 0, 9964, 0, 30, NULL, NULL, NULL),
+(303, 40308, 0, '金幣', 4910000, 0, 0, 9977, 0, 50, NULL, NULL, NULL),
+(304, 40308, 0, '金幣', 9900000, 0, 0, 9619, 0, 100, NULL, NULL, NULL),
+(305, 40076, 0, '古代的捲軸', 1, 0, 0, 996, 0, 2000, NULL, NULL, NULL),
+(306, 30001, 0, '裝備保護捲軸', 10, 0, 0, 882, 0, 150, NULL, NULL, NULL),
+(307, 41247, 0, '魔法娃娃的袋子', 1, 0, 0, 981, 0, 299, NULL, NULL, NULL),
+(308, 41428, 0, '太古的玉璽', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(309, 49142, 0, '回憶蠟燭', 1, 0, 0, 978, 0, 499, NULL, NULL, NULL),
+(310, 31001, 0, '魔法娃娃：希爾黛絲', 1, 0, 0, 1000, 0, 299, NULL, NULL, NULL),
+(311, 31002, 0, '魔法娃娃：雪怪', 1, 0, 0, 1000, 0, 399, NULL, NULL, NULL),
+(312, 31003, 0, '魔法娃娃：蛇女', 1, 0, 0, 1000, 0, 399, NULL, NULL, NULL),
+(320, 140087, 0, '對武器施法的捲軸', 1, 0, 0, 966, 0, 19, NULL, NULL, NULL),
+(321, 140087, 0, '對武器施法的捲軸', 10, 0, 0, 887, 0, 188, NULL, NULL, NULL),
+(322, 140074, 0, '對盔甲施法的捲軸', 1, 0, 0, 930, 0, 12, NULL, NULL, NULL),
+(323, 140074, 0, '對盔甲施法的捲軸', 10, 0, 0, 855, 0, 116, NULL, NULL, NULL),
+(400, 0, 0, '<font color=red>↓未開放試煉道具↓</font>', 0, 0, 0, 0, 0, 0, NULL, NULL, NULL),
+(401, 50, 0, '赤焰之劍', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(402, 184, 0, '赤焰之弓', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(403, 51, 0, '黃金權杖', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(404, 56, 0, '黑燄之劍', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(405, 20225, 0, '瑪那水晶球', 1, 0, 0, 998, 0, 499, NULL, NULL, NULL),
+(430, 21101, 0, '幻術士法書', 1, 0, 0, 1000, 0, 59, NULL, NULL, NULL),
+(431, 21100, 0, '幻術士斗篷', 1, 0, 0, 1000, 0, 59, NULL, NULL, NULL),
+(432, 270, 0, '藍寶石奇古獸', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(500, 0, 0, '<font color=red>↓活動道具↓</font>', 0, 0, 0, 0, 0, 0, NULL, NULL, NULL),
+(501, 21538, 0, '強化屬性斗篷(水)', 1, 0, 0, 1000, 0, 799, NULL, NULL, NULL),
+(502, 21537, 0, '強化屬性斗篷(風)', 1, 0, 0, 1000, 0, 799, NULL, NULL, NULL),
+(503, 21536, 0, '強化屬性斗篷(火)', 1, 0, 0, 999, 0, 799, NULL, NULL, NULL),
+(504, 21539, 0, '強化屬性斗篷(地)', 1, 0, 0, 1000, 0, 799, NULL, NULL, NULL),
+(505, 21535, 0, '強化抗魔斗篷', 1, 0, 0, 994, 0, 699, NULL, NULL, NULL),
+(511, 512, 0, '祭司魔杖', 1, 0, 1800, 988, 0, 6, NULL, NULL, NULL),
+(512, 513, 0, '戰士巨劍', 1, 0, 1800, 1000, 0, 6, NULL, NULL, NULL),
+(513, 514, 0, '戰士之劍', 1, 0, 1800, 1000, 0, 6, NULL, NULL, NULL),
+(514, 515, 0, '戰士之弓', 1, 0, 1800, 1000, 0, 6, NULL, NULL, NULL),
+(515, 516, 0, '戰士雙刀', 1, 0, 1800, 1000, 0, 6, NULL, NULL, NULL),
+(516, 517, 0, '戰士之矛', 1, 0, 1800, 1000, 0, 6, NULL, NULL, NULL),
+(520, 506, 0, '天雷劍', 1, 0, 0, 1000, 0, 599, NULL, NULL, NULL),
+(521, 507, 0, '玄冰弓', 1, 0, 0, 1000, 0, 599, NULL, NULL, NULL),
+(522, 520, 0, '黑帝斯鋼爪', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(523, 521, 0, '雅典娜之杖', 1, 0, 0, 999, 0, 499, NULL, NULL, NULL),
+(524, 522, 0, '宙斯巨劍', 1, 0, 0, 999, 0, 499, NULL, NULL, NULL),
+(525, 523, 0, '阿波羅之弓', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(530, 21534, 0, '魅力長靴(地)', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(531, 21533, 0, '魅力長靴(火)', 1, 0, 0, 999, 0, 499, NULL, NULL, NULL),
+(532, 21532, 0, '魅力長靴(水)', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(533, 21531, 0, '魅力長靴(風)', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(535, 21530, 0, '力量長靴(地)', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(536, 21529, 0, '力量長靴(火)', 1, 0, 0, 995, 0, 499, NULL, NULL, NULL),
+(537, 21528, 0, '力量長靴(水)', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(538, 21527, 0, '力量長靴(風)', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(540, 21526, 0, '敏捷長靴(地)', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(541, 21525, 0, '敏捷長靴(火)', 1, 0, 0, 998, 0, 499, NULL, NULL, NULL),
+(542, 21524, 0, '敏捷長靴(水)', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(543, 21523, 0, '敏捷長靴(風)', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(545, 21522, 0, '智力長靴(地)', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(546, 21521, 0, '智力長靴(火)', 1, 0, 0, 997, 0, 499, NULL, NULL, NULL),
+(547, 21520, 0, '智力長靴(水)', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(548, 21519, 0, '智力長靴(風)', 1, 0, 0, 1000, 0, 499, NULL, NULL, NULL),
+(570, 21505, 0, '殷海薩耳環', 1, 0, 0, 999, 0, 399, NULL, NULL, NULL),
+(600, 0, 0, '<font color=red>↓特殊道具↓</font>', 0, 0, 0, 0, 0, 0, NULL, NULL, NULL),
+(601, 20077, 0, '隱身斗篷', 1, 0, 0, 1000, 0, 5999, NULL, NULL, NULL),
+(602, 21551, 0, '蚩尤鎧甲', 1, 0, 0, 998, 0, 2499, NULL, NULL, NULL),
+(603, 21508, 0, '聖光戒指', 1, 0, 0, 996, 0, 2999, NULL, NULL, NULL),
+(610, 205, 0, '熾炎天使弓', 1, 0, 0, 1000, 0, 3999, NULL, NULL, NULL),
+(611, 61, 0, '真．冥皇執行劍', 1, 0, 0, 1000, 0, 8000, NULL, NULL, NULL),
+(612, 213, 0, '吉爾塔斯魔杖', 1, 0, 0, 1000, 0, 10000, NULL, NULL, NULL),
+(613, 217, 0, '吉爾塔斯之劍', 1, 0, 0, 998, 0, 13000, NULL, NULL, NULL),
+(614, 134, 0, '聖晶魔杖', 1, 0, 0, 1000, 0, 4999, NULL, NULL, NULL),
+(615, 160, 0, '獸王鋼爪', 1, 0, 0, 999, 0, 5999, NULL, NULL, NULL),
+(616, 12, 0, '風刃短劍', 1, 0, 0, 1000, 0, 4999, NULL, NULL, NULL),
+(621, 20057, 0, '冥法軍王斗篷', 1, 0, 0, 997, 0, 599, NULL, NULL, NULL),
+(622, 20109, 0, '法令軍王長袍', 1, 0, 0, 1000, 0, 799, NULL, NULL, NULL),
+(623, 20200, 0, '魔獸軍王長靴', 1, 0, 0, 1000, 0, 1299, NULL, NULL, NULL),
+(624, 20178, 0, '暗殺軍王手套', 1, 0, 0, 1000, 0, 1899, NULL, NULL, NULL),
+(631, 40212, 0, '魔法書 (變形術)', 1, 0, 0, 1000, 0, 2999, NULL, NULL, NULL),
+(632, 40218, 0, '魔法書 (創造魔法武器)', 1, 0, 0, 1000, 0, 3999, NULL, NULL, NULL);
