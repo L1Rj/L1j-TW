@@ -20,7 +20,6 @@ package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
 
-import net.l1j.gui.ServerManager;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_PacketBox;
@@ -44,13 +43,13 @@ public class C_NewCharSelect extends ClientBasePacket {
 
 //			ServerManager.count -= 1;
 //			ServerManager.lblUser.setText("" + ServerManager.count);
-			if (pc.getAccessLevel() == 200) {
-				ServerManager.listModelPlayer.removeElement("[GM]" + pc.getName());
-			} else {
-				ServerManager.listModelPlayer.removeElement(pc.getName());
-			}
+//			if (pc.getAccessLevel() == 200) {
+//				ServerManager.listModelPlayer.removeElement("[GM]" + pc.getName());
+//			} else {
+//				ServerManager.listModelPlayer.removeElement(pc.getName());
+//			}
 //			ServerManager.textAreaServer.append("\n " + totime1 + " " + pc.getName() + "님께서 종료하셨습니다." + client.getIp());
-			ServerManager.listModelHost.removeElement(client.getHostname());
+//			ServerManager.listModelHost.removeElement(client.getHostname());
 
 			synchronized (pc) {
 				pc.logout();

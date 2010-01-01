@@ -30,7 +30,6 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.l1j.gui.ServerManager;
 import net.l1j.server.datatables.CharBuffTable;
 import net.l1j.server.encryptions.ClientIdExistsException;
 import net.l1j.server.encryptions.LineageEncryption;
@@ -265,15 +264,16 @@ public class ClientThread implements Runnable, PacketOutput {
 					quitGame(_activeChar);
 
 					synchronized (_activeChar) {
-						if (_activeChar.getAccessLevel() == 200) {
-							ServerManager.listModelPlayer.removeElement("[GM]" + _activeChar.getName());
-						} else {
-							ServerManager.listModelPlayer.removeElement(_activeChar.getName());
-						}
-						ServerManager.listModelHost.removeElement(getHostname());
 						// キャラクターをワールド内から除去
 						_activeChar.logout();
 						setActiveChar(null);
+
+//						if (_activeChar.getAccessLevel() == 200) {
+//							ServerManager.listModelPlayer.removeElement("[GM]" + _activeChar.getName());
+//						} else {
+//							ServerManager.listModelPlayer.removeElement(_activeChar.getName());
+//						}
+//						ServerManager.listModelHost.removeElement(getHostname());
 					}
 				}
 

@@ -27,7 +27,6 @@ import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
-import net.l1j.gui.ServerManager;
 import net.l1j.server.ActionCodes;
 import net.l1j.server.ClientThread;
 import net.l1j.server.WarTimeController;
@@ -308,14 +307,14 @@ public class C_LoginToServer extends ClientBasePacket {
 //		} else {
 //			ServerManager.count += 1;
 //			ServerManager.lblUser.setText("  " + ServerManager.count);
-			if (pc.getAccessLevel() == 200) {
-				ServerManager.listModelPlayer.addElement("[GM]" + pc.getName());
-			} else {
-				ServerManager.listModelPlayer.addElement(pc.getName());
-			}
+//			if (pc.getAccessLevel() == 200) {
+//				ServerManager.listModelPlayer.addElement("[GM]" + pc.getName());
+//			} else {
+//				ServerManager.listModelPlayer.addElement(pc.getName());
+//			}
 //			ServerManager.textAreaServer.append("\n " + totime1 + " " + pc.getName() + "님께서 접속 하셨습니다." + client.getIp());
 //		}
-		ServerManager.listModelHost.addElement(client.getHostname());
+//		ServerManager.listModelHost.addElement(client.getHostname());
 
 		int currentHpAtLoad = pc.getCurrentHp();
 		int currentMpAtLoad = pc.getCurrentMp();
