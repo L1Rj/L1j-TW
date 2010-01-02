@@ -33,6 +33,7 @@ import java.util.Date;
 import javax.swing.JPanel;
 
 import net.l1j.server.model.L1World;
+import net.l1j.server.utils.PerformanceTimer;
 import net.l1j.server.utils.SystemUtil;
 
 import static java.awt.Color.*;
@@ -219,7 +220,7 @@ public class MemoryStart extends JPanel implements Runnable {
 
 	private String timeCount() {
 		// int src_ss = (int) ((System.currentTimeMillis() - S_Start.getInstance()._startTime) / 1000);
-		int src_ss = (int) (SystemUtil.getStartedTime() / 1000);
+		int src_ss = (int) (PerformanceTimer.get() / 1000);
 
 		String startTime[] = new String[3];
 

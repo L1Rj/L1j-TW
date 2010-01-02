@@ -150,7 +150,7 @@ public class C_CreateChar extends ClientBasePacket {
 		L1ClassFeature classFeature = L1ClassFeature.newClassFeature(pc.getType());
 		short initHp = (short)classFeature.InitHp();
 		short initMp = (short)classFeature.InitMp(pc.getWis());
-		short initLucky = (short)classFeature.InitLucky();
+		int initLucky = classFeature.InitLucky();
 		int [] spawn = classFeature.InitSpawn(pc.getType());
 		pc.setId(IdFactory.getInstance().nextId());
 		pc.setClassId(classFeature.InitSex(pc.get_sex()));
