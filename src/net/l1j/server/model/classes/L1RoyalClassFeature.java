@@ -56,6 +56,12 @@ class L1RoyalClassFeature extends L1ClassFeature {
 			return 4;
 		}
 	}
+	
+	@Override
+	public int InitLucky() {
+		int randomLucky = RandomArrayList.getInc(100, 1);
+		return randomLucky; // 初始幸運值
+	}
 
 	@Override
 	public int InitMr() {

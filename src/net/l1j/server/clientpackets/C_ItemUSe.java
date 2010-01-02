@@ -364,10 +364,11 @@ public class C_ItemUSe extends ClientBasePacket {
 
 					int rnd = RandomArrayList.getInc(100, 1);
 					int enchant_chance_wepon;
+					int luckymodify = (int) pc.getLucky() /20;
 					if (enchant_level >= 9) {
-						enchant_chance_wepon = (100 + 3 * Config.ENCHANT_CHANCE_WEAPON) / 6;
+						enchant_chance_wepon = (100 + 3 * (Config.ENCHANT_CHANCE_WEAPON + luckymodify)) / 6;
 					} else {
-						enchant_chance_wepon = (100 + 3 * Config.ENCHANT_CHANCE_WEAPON) / 3;
+						enchant_chance_wepon = (100 + 3 * (Config.ENCHANT_CHANCE_WEAPON + luckymodify)) / 3;
 					}
 
 					if (rnd < enchant_chance_wepon) {
@@ -606,6 +607,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					int rnd = RandomArrayList.getInc(100, 1);
 					int enchant_chance_armor;
 					int enchant_level_tmp;
+					int luckymodify = (int) pc.getLucky() / 20;
 					if (safe_enchant == 0) { // 骨、ブラックミスリル用補正
 						enchant_level_tmp = enchant_level + 2;
 					} else {
@@ -613,11 +615,11 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					if (enchant_level >= 9) {
 						enchant_chance_armor = (100 + enchant_level_tmp
-								* Config.ENCHANT_CHANCE_ARMOR)
+								* (Config.ENCHANT_CHANCE_ARMOR + luckymodify))
 								/ (enchant_level_tmp * 2);
 					} else {
 						enchant_chance_armor = (100 + enchant_level_tmp
-								* Config.ENCHANT_CHANCE_ARMOR)
+								* (Config.ENCHANT_CHANCE_ARMOR + luckymodify))
 								/ enchant_level_tmp;
 					}
 

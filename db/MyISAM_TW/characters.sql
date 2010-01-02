@@ -30,6 +30,7 @@ CREATE TABLE `characters` (
   `MaxMp` int(10) NOT NULL DEFAULT '0',
   `CurMp` int(10) NOT NULL DEFAULT '0',
   `Ac` int(10) NOT NULL DEFAULT '0',
+  `Lucky` int(10) NOT NULL DEFAULT '0',
   `Str` int(3) NOT NULL DEFAULT '0',
   `Con` int(3) NOT NULL DEFAULT '0',
   `Dex` int(3) NOT NULL DEFAULT '0',

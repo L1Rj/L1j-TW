@@ -561,6 +561,15 @@ public class L1PcInstance extends L1Character {
 		_accessLevel = i;
 	}
 
+	private byte _Lucky;
+    public byte getLucky() {
+		return _Lucky;
+	}
+
+	public void setLucky(byte i) {
+		_Lucky = i;
+	}
+
 	public int getClassId() {
 		return _classId;
 	}

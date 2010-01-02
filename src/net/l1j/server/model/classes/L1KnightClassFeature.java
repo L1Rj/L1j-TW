@@ -57,6 +57,12 @@ class L1KnightClassFeature extends L1ClassFeature {
 	}
 
 	@Override
+	public int InitLucky() {
+		int randomLucky = RandomArrayList.getInc(100, 1);
+		return randomLucky; // 初始幸運值
+	}
+	
+	@Override
 	public int InitMr() {
 		return 0;
 	}

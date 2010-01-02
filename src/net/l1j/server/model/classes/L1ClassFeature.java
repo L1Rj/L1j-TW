@@ -58,6 +58,8 @@ public abstract class L1ClassFeature {
 	public abstract int InitHp();
 	/** 角色初始魔量 */
 	public abstract int InitMp(int BaseWis);
+	/** 角色初始幸運值 */
+	public abstract int InitLucky();
 	/** 角色初始能力點數 */
 	public abstract int[] InitPoints();
 	/** 角色初始魔法防御點數 */

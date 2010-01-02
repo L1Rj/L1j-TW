@@ -943,6 +943,22 @@ public class L1Character extends L1Object {
 		setAc(_trueAc + i);
 	}
 
+	private byte _Lucky = 0;
+	private short _trueLucky = 0;
+
+	public byte getLucky() {
+		return _Lucky;
+	}
+
+	public void setLucky(int i) {
+		_trueLucky = (short) i;
+		_Lucky = (byte) IntRange.ensure(i, 1, 127);
+	}
+
+	public void addLucky(int i) {
+		setLucky(_trueLucky + i);
+		}
+
 	private byte _str = 0; // ● ＳＴＲ（1～127）
 	private short _trueStr = 0; // ● 本當のＳＴＲ
 

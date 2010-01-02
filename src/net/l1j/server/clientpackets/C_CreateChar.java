@@ -150,6 +150,7 @@ public class C_CreateChar extends ClientBasePacket {
 		L1ClassFeature classFeature = L1ClassFeature.newClassFeature(pc.getType());
 		short initHp = (short)classFeature.InitHp();
 		short initMp = (short)classFeature.InitMp(pc.getWis());
+		short initLucky = (short)classFeature.InitLucky();
 		int [] spawn = classFeature.InitSpawn(pc.getType());
 		pc.setId(IdFactory.getInstance().nextId());
 		pc.setClassId(classFeature.InitSex(pc.get_sex()));
@@ -163,6 +164,7 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.addBaseMaxMp(initMp);
 		pc.setCurrentMp(initMp);
 		pc.resetBaseAc();
+		pc.setLucky(initLucky); // 角色幸運值
 		pc.setTitle("");
 		pc.setClanid(0);
 		pc.setClanRank(0);
@@ -189,7 +191,7 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.setContribution(0);
 		pc.setBanned(false);
 		pc.setKarma(0);
-		if (pc.isWizard()) { // WIZ
+		if (pc.isWizard()) { // 法師
 			pc.sendPackets(new S_AddSkill(3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			int object_id = pc.getId();

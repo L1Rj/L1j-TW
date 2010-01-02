@@ -70,6 +70,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			pc.setStatus(0);
 			pc.addBaseMaxMp(rs.getShort("MaxMp"));
 			pc.setCurrentMpDirect(rs.getShort("CurMp"));
+			pc.setLucky(rs.getByte("Lucky"));
 			pc.addBaseStr(rs.getByte("Str"));
 			pc.addBaseCon(rs.getByte("Con"));
 			pc.addBaseDex(rs.getByte("Dex"));
@@ -179,7 +180,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			int i = 0;
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con
-			.prepareStatement("INSERT INTO characters SET account_name=?,objid=?,char_name=?,level=?,HighLevel=?,Exp=?,MaxHp=?,CurHp=?,MaxMp=?,CurMp=?,Ac=?,Str=?,Con=?,Dex=?,Cha=?,Intel=?,Wis=?,Status=?,Class=?,Sex=?,Type=?,Heading=?,LocX=?,LocY=?,MapID=?,Food=?,Lawful=?,Title=?,ClanID=?,Clanname=?,ClanRank=?,BonusStatus=?,ElixirStatus=?,ElfAttr=?,PKcount=?,PkCountForElf=?,ExpRes=?,PartnerID=?,AccessLevel=?,OnlineStatus=?,HomeTownID=?,Contribution=?,Pay=?,HellTime=?,Banned=?,Karma=?,LastPk=?,LastPkForElf=?,DeleteTime=?");
+			.prepareStatement("INSERT INTO characters SET account_name=?,objid=?,char_name=?,level=?,HighLevel=?,Exp=?,MaxHp=?,CurHp=?,MaxMp=?,CurMp=?,Ac=?,Lucky=?,Str=?,Con=?,Dex=?,Cha=?,Intel=?,Wis=?,Status=?,Class=?,Sex=?,Type=?,Heading=?,LocX=?,LocY=?,MapID=?,Food=?,Lawful=?,Title=?,ClanID=?,Clanname=?,ClanRank=?,BonusStatus=?,ElixirStatus=?,ElfAttr=?,PKcount=?,PkCountForElf=?,ExpRes=?,PartnerID=?,AccessLevel=?,OnlineStatus=?,HomeTownID=?,Contribution=?,Pay=?,HellTime=?,Banned=?,Karma=?,LastPk=?,LastPkForElf=?,DeleteTime=?");
 			pstm.setString(++i, pc.getAccountName());
 			pstm.setInt(++i, pc.getId());
 			pstm.setString(++i, pc.getName());
@@ -195,6 +196,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			pstm.setInt(++i, pc.getBaseMaxMp());
 			pstm.setInt(++i, pc.getCurrentMp());
 			pstm.setInt(++i, pc.getAc());
+			pstm.setInt(++i, pc.getLucky());
 			pstm.setInt(++i, pc.getBaseStr());
 			pstm.setInt(++i, pc.getBaseCon());
 			pstm.setInt(++i, pc.getBaseDex());
@@ -319,7 +321,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			int i = 0;
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con
-			.prepareStatement("UPDATE characters SET level=?,HighLevel=?,Exp=?,MaxHp=?,CurHp=?,MaxMp=?,CurMp=?,Ac=?,Str=?,Con=?,Dex=?,Cha=?,Intel=?,Wis=?,Status=?,Class=?,Sex=?,Type=?,Heading=?,LocX=?,LocY=?,MapID=?,Food=?,Lawful=?,Title=?,ClanID=?,Clanname=?,ClanRank=?,BonusStatus=?,ElixirStatus=?,ElfAttr=?,PKcount=?,PkCountForElf=?,ExpRes=?,PartnerID=?,AccessLevel=?,OnlineStatus=?,HomeTownID=?,Contribution=?,HellTime=?,Banned=?,Karma=?,LastPk=?,LastPkForElf=?,DeleteTime=? WHERE objid=?");
+			.prepareStatement("UPDATE characters SET level=?,HighLevel=?,Exp=?,MaxHp=?,CurHp=?,MaxMp=?,CurMp=?,Ac=?,Lucky=?,Str=?,Con=?,Dex=?,Cha=?,Intel=?,Wis=?,Status=?,Class=?,Sex=?,Type=?,Heading=?,LocX=?,LocY=?,MapID=?,Food=?,Lawful=?,Title=?,ClanID=?,Clanname=?,ClanRank=?,BonusStatus=?,ElixirStatus=?,ElfAttr=?,PKcount=?,PkCountForElf=?,ExpRes=?,PartnerID=?,AccessLevel=?,OnlineStatus=?,HomeTownID=?,Contribution=?,HellTime=?,Banned=?,Karma=?,LastPk=?,LastPkForElf=?,DeleteTime=? WHERE objid=?");
 			pstm.setInt(++i, pc.getLevel());
 			pstm.setInt(++i, pc.getHighLevel());
 			pstm.setInt(++i, pc.getExp());
@@ -332,6 +334,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			pstm.setInt(++i, pc.getBaseMaxMp());
 			pstm.setInt(++i, pc.getCurrentMp());
 			pstm.setInt(++i, pc.getAc());
+			pstm.setInt(++i, pc.getLucky());
 			pstm.setInt(++i, pc.getBaseStr());
 			pstm.setInt(++i, pc.getBaseCon());
 			pstm.setInt(++i, pc.getBaseDex());

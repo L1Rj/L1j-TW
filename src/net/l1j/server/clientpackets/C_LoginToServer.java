@@ -33,6 +33,7 @@ import net.l1j.server.WarTimeController;
 import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.datatables.GetBackRestartTable;
 import net.l1j.server.datatables.SkillsTable;
+import net.l1j.server.model.classes.L1ClassFeature;
 import net.l1j.server.model.L1CastleLocation;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1Cooking;
@@ -298,7 +299,7 @@ public class C_LoginToServer extends ClientBasePacket {
 				return;
 			}
 		}
-
+		
 		_log.info("【玩家登入】 帳號=" + login + " 角色=" + charName + " IP位址:" + client.getHostname());
 
 //		L1PcInstance textpc = L1World.getInstance().getPlayer(charName);
@@ -326,6 +327,13 @@ public class C_LoginToServer extends ClientBasePacket {
 		pc.setNetConnection(client);
 		pc.setPacketOutput(client);
 		client.setActiveChar(pc);
+		
+//add 角色登入時若幸運值為0則重新賦予新值
+		L1ClassFeature classFeature = L1ClassFeature.newClassFeature(pc.getType());
+		if (pc.getLucky() == 0){
+			pc.setLucky(classFeature.InitLucky()); // 角色幸運值
+		}
+//add end
 
 		pc.sendPackets(new S_LoginGame());
 		items(pc);

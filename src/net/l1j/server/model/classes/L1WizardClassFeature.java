@@ -56,10 +56,16 @@ class L1WizardClassFeature extends L1ClassFeature {
 			return 8;
 		}
 	}
+	
+	@Override
+	public int InitLucky() {
+		int randomLucky = RandomArrayList.getInc(100, 1);
+		return randomLucky; // 初始幸運值
+	}
 
 	@Override
 	public int InitMr() {
-		return 15; // 初始魔法點數15
+		return 15; // 初始魔法防禦點數15
 	}
 
 	@Override
