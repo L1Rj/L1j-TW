@@ -45,8 +45,8 @@ public class L1World {
 	private final ConcurrentHashMap<Integer, L1PetInstance> _allPets;
 	private final ConcurrentHashMap<Integer, L1SummonInstance> _allSummons;
 	private final ConcurrentHashMap<Integer, L1Object> _allObjects;
-	private final CopyOnWriteArrayList<L1War> _allWars;
 	private final ConcurrentHashMap<String, L1Clan> _allClans;
+	private final CopyOnWriteArrayList<L1War> _allWars;
 
 	private int _weather = 4;
 
@@ -61,8 +61,8 @@ public class L1World {
 		_allPets = new ConcurrentHashMap<Integer, L1PetInstance>(); // 全てのペット
 		_allSummons = new ConcurrentHashMap<Integer, L1SummonInstance>(); // 全てのサモンモンスター
 		_allObjects = new ConcurrentHashMap<Integer, L1Object>(); // 全てのオブジェクト(L1ItemInstance入り、L1Inventoryはなし)
-		_allWars = new CopyOnWriteArrayList<L1War>(); // 全ての戰爭
 		_allClans = new ConcurrentHashMap<String, L1Clan>(); // 全てのクラン(Online/Offlineどちらも)
+		_allWars = new CopyOnWriteArrayList<L1War>(); // 全ての戰爭
 	}
 
 	public static L1World getInstance() {
@@ -87,8 +87,7 @@ public class L1World {
 
 		_allObjects.put(object.getId(), object);
 		if (object instanceof L1PcInstance) {
-			_allPlayers.put(((L1PcInstance) object).getName(),
-					(L1PcInstance) object);
+			_allPlayers.put(((L1PcInstance) object).getName(), (L1PcInstance) object);
 		}
 		if (object instanceof L1PetInstance) {
 			_allPets.put(object.getId(), (L1PetInstance) object);
@@ -124,8 +123,7 @@ public class L1World {
 
 	public Collection<L1Object> getObject() {
 		Collection<L1Object> vs = _allValues;
-		return (vs != null) ? vs : (_allValues = Collections
-				.unmodifiableCollection(_allObjects.values()));
+		return (vs != null) ? vs : (_allValues = Collections.unmodifiableCollection(_allObjects.values()));
 	}
 
 	public L1GroundInventory getInventory(int x, int y, short map) {
@@ -162,8 +160,7 @@ public class L1World {
 		WorldMap.getMap((short) newMap).Add(object);
 	}
 
-	private ConcurrentHashMap<Integer, Integer> createLineMap(Point src,
-			Point target) {
+	private ConcurrentHashMap<Integer, Integer> createLineMap(Point src, Point target) {
 		ConcurrentHashMap<Integer, Integer> lineMap = new ConcurrentHashMap<Integer, Integer>();
 
 		/*
@@ -217,8 +214,7 @@ public class L1World {
 	}
 
 	public FastTable<L1Object> getVisibleLineObjects(L1Object src, L1Object target) {
-		ConcurrentHashMap<Integer, Integer> lineMap = createLineMap(src.getLocation(), target
-				.getLocation());
+		ConcurrentHashMap<Integer, Integer> lineMap = createLineMap(src.getLocation(), target.getLocation());
 
 		short map = target.getMapId();
 		FastTable<L1Object> result = new FastTable<L1Object>();
@@ -238,8 +234,7 @@ public class L1World {
 		return result;
 	}
 
-	public FastTable<L1Object> getVisibleBoxObjects(L1Object object, int heading, int width,
-			int height) {
+	public FastTable<L1Object> getVisibleBoxObjects(L1Object object, int heading, int width, int height) {
 		int x = object.getX();
 		int y = object.getY();
 		short map = object.getMapId();
@@ -250,8 +245,9 @@ public class L1World {
 		double sinSita = Math.sin(headingRotate[heading] * Math.PI / 4);
 
 		for (L1Object element : WorldMap.getMap(map).getObjects()) {
-			if (element.equals(object) || map != element.getMapId())
+			if (element.equals(object) || map != element.getMapId()) {
 				continue;
+			}
 
 			// 同じ座標に重なっている場合は範圍內とする
 			if (location.isSamePoint(element.getLocation())) {
@@ -293,8 +289,9 @@ public class L1World {
 		FastTable<L1Object> result = new FastTable<L1Object>();
 
 		for (L1Object element : WorldMap.getMap((short) map.getId()).getObjects()) {
-			if (element.equals(object) || map != element.getMap())
+			if (element.equals(object) || map != element.getMap()) {
 				continue;
+			}
 
 			if (radius == -1) {
 				if (pt.isInScreen(element.getLocation())) {
@@ -319,8 +316,9 @@ public class L1World {
 		short mapId = (short) loc.getMapId();
 
 		for (L1Object element : WorldMap.getMap(mapId).getObjects()) {
-			if (mapId != element.getMapId())
+			if (mapId != element.getMapId()) {
 				continue;
+			}
 
 			if (loc.getTileLineDistance(element.getLocation()) <= radius)
 				result.add(element);
@@ -364,8 +362,7 @@ public class L1World {
 		return result;
 	}
 
-	public FastTable<L1PcInstance> getVisiblePlayerExceptTargetSight(L1Object object,
-			L1Object target) {
+	public FastTable<L1PcInstance> getVisiblePlayerExceptTargetSight(L1Object object, L1Object target) {
 		int map = object.getMapId();
 		Point objectPt = object.getLocation();
 		Point targetPt = target.getLocation();
@@ -412,8 +409,7 @@ public class L1World {
 
 	public Collection<L1PcInstance> getAllPlayers() {
 		Collection<L1PcInstance> vs = _allPlayerValues;
-		return (vs != null) ? vs : (_allPlayerValues = Collections
-				.unmodifiableCollection(_allPlayers.values()));
+		return (vs != null) ? vs : (_allPlayerValues = Collections.unmodifiableCollection(_allPlayers.values()));
 	}
 
 	/**
@@ -440,8 +436,7 @@ public class L1World {
 
 	public Collection<L1PetInstance> getAllPets() {
 		Collection<L1PetInstance> vs = _allPetValues;
-		return (vs != null) ? vs : (_allPetValues = Collections.unmodifiableCollection(_allPets
-				.values()));
+		return (vs != null) ? vs : (_allPetValues = Collections.unmodifiableCollection(_allPets.values()));
 	}
 
 	// _allSummonsのビュー
@@ -449,8 +444,7 @@ public class L1World {
 
 	public Collection<L1SummonInstance> getAllSummons() {
 		Collection<L1SummonInstance> vs = _allSummonValues;
-		return (vs != null) ? vs : (_allSummonValues = Collections
-				.unmodifiableCollection(_allSummons.values()));
+		return (vs != null) ? vs : (_allSummonValues = Collections.unmodifiableCollection(_allSummons.values()));
 	}
 
 	public final Map<Integer, L1Object> getAllVisibleObjects() {
@@ -488,8 +482,7 @@ public class L1World {
 
 	public List<L1War> getWarList() {
 		List<L1War> vs = _allWarList;
-		return (vs != null) ? vs : (_allWarList = Collections
-				.unmodifiableList(_allWars));
+		return (vs != null) ? vs : (_allWarList = Collections.unmodifiableList(_allWars));
 	}
 
 	public void storeClan(L1Clan clan) {
@@ -515,8 +508,7 @@ public class L1World {
 
 	public Collection<L1Clan> getAllClans() {
 		Collection<L1Clan> vs = _allClanValues;
-		return (vs != null) ? vs : (_allClanValues = Collections
-				.unmodifiableCollection(_allClans.values()));
+		return (vs != null) ? vs : (_allClanValues = Collections.unmodifiableCollection(_allClans.values()));
 	}
 
 	public void setWeather(int weather) {
@@ -541,6 +533,39 @@ public class L1World {
 
 	public boolean isProcessingContributionTotal() {
 		return _processingContributionTotal;
+	}
+
+	/**
+	 * <font color=#827B00>傳回玩家的總數</font>
+	 * 
+	 * @return L1PcInstance[]
+	 */
+	public L1PcInstance[] getWorldPlayers() {
+		L1PcInstance[] pc = new L1PcInstance[_allPlayers.size()];
+		L1PcInstance[] allpc = _allPlayers.values().toArray(pc);
+		return allpc;
+	}
+
+	/**
+	 * <font color=#827B00>傳回物件的總數</font>
+	 * 
+	 * @return L1Object[]
+	 */
+	public L1Object[] getWorldObjects() {
+		L1Object[] obj = new L1Object[_allObjects.size()];
+		L1Object[] allobj = _allObjects.values().toArray(obj);
+		return allobj;
+	}
+
+	/**
+	 * <font color=#827B00>傳回血盟的總數</font>
+	 * 
+	 * @return L1Clan[]
+	 */
+	public L1Clan[] getWorldClans() {
+		L1Clan[] clan = new L1Clan[_allClans.size()];
+		L1Clan[] allclan = _allClans.values().toArray(clan);
+		return allclan;
 	}
 
 	/**

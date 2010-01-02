@@ -32,6 +32,7 @@ import java.util.Date;
 
 import javax.swing.JPanel;
 
+import net.l1j.server.model.L1World;
 import net.l1j.server.utils.SystemUtil;
 
 import static java.awt.Color.*;
@@ -205,19 +206,13 @@ public class MemoryStart extends JPanel implements Runnable {
 			}
 		}
 
-//		big.drawString("User  : (" + World.getWorld().getWorldPlayers().length + ")", 4, ascent + 120.0f);
-//		big.drawString("Item  : (" + World.getWorld().getWorldItems().length + ")", 4, ascent + 135.0f);
-//		big.drawString("Npcs  : (" + World.getWorld().getWorldNpcs().length + ")", 4, ascent + 150.0f);
-//		big.drawString("Dead  : (" + W_Info.getInfo().getDieCount() + ")", 4, ascent + 165.0f);
-//		big.drawString("Spawn : (" + W_Info.getInfo().getReSpawnCount() + ")", 4, ascent + 180.0f);
-
-/*		big.drawString("Npc : (" + World.getWorld().getWorldNpcs().length + ")", 4, (float) ascent+135.0f);
-        big.drawString("Dead : (" + WorldInfo.getInfo().getDieCount() + ")", 4, (float) ascent+150.0f);
-        big.drawString("ReSpawn : (" + WorldInfo.getInfo().getReSpawnCount() + ")", 4, (float) ascent+165.0f);
-        big.drawString("AiStart : (" + WorldInfo.getInfo().getAiStart() + ")", 4, (float) ascent+180.0f);
-*/
-		big.drawString("Thread : (" + Thread.activeCount() + ")", 4, ascent + 195.0f);
-		big.drawString("Time  : (" + timeCount() + ")", 4, ascent + 210.0f);
+		big.drawString("玩家: (" + L1World.getInstance().getWorldPlayers().length + ")", 4, ascent + 120.0f);
+//		big.drawString("NPC: (" + L1World.getInstance().getWorldNpcs().length + ")", 4, ascent + 135.0f);
+//		big.drawString("道具: (" + L1World.getInstance().getWorldItems().length + ")", 4, ascent + 150.0f);
+		big.drawString("物件: (" + L1World.getInstance().getWorldObjects().length + ")", 4, ascent + 165.0f);
+		big.drawString("血盟: (" + L1World.getInstance().getWorldClans().length + ")", 4, ascent + 180.0f);
+		big.drawString("線程: (" + Thread.activeCount() + ")", 4, ascent + 195.0f);
+		big.drawString("時間: (" + timeCount() + ")", 4, ascent + 210.0f);
 
 		g.drawImage(bimg, 0, 0, this);
 	}
