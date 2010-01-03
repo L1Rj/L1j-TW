@@ -55,7 +55,7 @@ public class L1LogDataFactory {
 				out.close();
 
 				Class.forName("org.sqlite.JDBC");
-			    con = DriverManager.getConnection("jdbc:sqlite:log/Server.db");
+				con = DriverManager.getConnection("jdbc:sqlite:log/Server.db");
 				stmt = con.createStatement();
 				stmt.executeUpdate("CREATE TABLE LogClanWareHouseIn (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ClanId Int, ClanName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCountBefore Int, ItemCountAfter Int, ItemCountDiff Int, ItemCount Int, InCount Int, CountDiff Int);");
 				stmt.executeUpdate("CREATE TABLE LogClanWareHouseOut (Time Timestamp, Ip Varchar, Account Varchar, CharId Int, CharName Varchar, ClanId Int, ClanName Varchar, ObjectId Int, ItemName Varchar, EnchantLevel Int, ItemCountBefore Int, ItemCountAfter Int, ItemCountDiff Int, ItemCount Int, OutCount Int, CountDiff Int);");

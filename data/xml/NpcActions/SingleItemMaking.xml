@@ -1002,18 +1002,18 @@
 			</Fail>
 		</MakeItem>
 	</Action>
-        <Action Name="request pet match coin" NpcId="80128">
-            <MakeItem AmountInputable="false">
-                <Material Amount="500" ItemId="41402"/>
-                <Item Amount="1" ItemId="41254"/>
-                <Succeed>
-                    <ShowHtml HtmlId=""/>
-                </Succeed>
-                <Fail>
-                    <ShowHtml HtmlId=""/>
-                </Fail>
-            </MakeItem>
-        </Action>
+	<Action Name="request pet match coin" NpcId="80128">
+		<MakeItem AmountInputable="false">
+			<Material Amount="500" ItemId="41402"/>
+			<Item Amount="1" ItemId="41254"/>
+			<Succeed>
+				<ShowHtml HtmlId=""/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId=""/>
+			</Fail>
+		</MakeItem>
+	</Action>
 	<!--鉱物の袋 / 坑夫オーム-->
 	<Action Name="request mineral bag">
 		<MakeItem>

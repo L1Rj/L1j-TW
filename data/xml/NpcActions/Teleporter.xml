@@ -1524,66 +1524,66 @@
 		<Teleport X="32745" Y="32857" Map="60" Heading="5" Price="936"/>
 	</Action>
 <!-- 貝希摩斯,希培莉亞傳師加狩獵區 -->
-    <Action Name="teleport behemoth-dragon" NpcId="80132">
-        <Teleport X="33434" Y="32546" Map="4" Heading="5" Price="100"/>
-    </Action>
-    <Action Name="teleport behemoth-girdun" NpcId="80132">
-        <Teleport X="33315" Y="33061" Map="4" Heading="5" Price="220"/>
-    </Action>
-    <Action Name="teleport behemoth-mirr" NpcId="80132">
-        <Teleport X="33717" Y="32921" Map="4" Heading="5" Price="220"/>
-    </Action>
-    <Action Name="teleport behemoth-gypsy" NpcId="80132">
-        <Teleport X="33969" Y="32941" Map="4" Heading="5" Price="220"/>
-    </Action>
-    <Action Name="teleport behemoth-train" NpcId="80132">
-        <Teleport X="32969" Y="33514" Map="4" Heading="5" Price="330"/>
-    </Action>
-    <Action Name="teleport behemoth-gludun" NpcId="80132">
-        <Teleport X="32719" Y="32930" Map="4" Heading="5" Price="330"/>
-    </Action>
-    <Action Name="teleport behemoth-oasis" NpcId="80132">
-        <Teleport X="32861" Y="33255" Map="4" Heading="5" Price="330"/>
-    </Action>
-    <Action Name="teleport behemoth-eva" NpcId="80132">
-        <Teleport X="33627" Y="33509" Map="4" Heading="5" Price="330"/>
-    </Action>
-    <Action Name="teleport behemoth-under" NpcId="80132">
-        <Teleport X="32561" Y="33460" Map="4" Heading="5" Price="440"/>
-    </Action>
-    <Action Name="teleport behemoth-reed" NpcId="80132">
-        <Teleport X="32740" Y="32377" Map="4" Heading="5" Price="440"/>
-    </Action>
-    <Action Name="teleport silveria-gypsy" NpcId="80146">
-        <Teleport X="33969" Y="32941" Map="4" Heading="5" Price="220"/>
-    </Action>
-    <Action Name="teleport silveria-girdun" NpcId="80146">
-        <Teleport X="33315" Y="33061" Map="4" Heading="5" Price="330"/>
-    </Action>
-    <Action Name="teleport silveria-mirr" NpcId="80146">
-        <Teleport X="33717" Y="32921" Map="4" Heading="5" Price="330"/>
-    </Action>
-    <Action Name="teleport silveria-dragon" NpcId="80146">
-        <Teleport X="33434" Y="32546" Map="4" Heading="5" Price="330"/>
-    </Action>
-    <Action Name="teleport silveria-train" NpcId="80146">
-        <Teleport X="32969" Y="33514" Map="4" Heading="5" Price="440"/>
-    </Action>
-    <Action Name="teleport silveria-eva" NpcId="80146">
-        <Teleport X="33627" Y="33509" Map="4" Heading="5" Price="440"/>
-    </Action>
-    <Action Name="teleport silveria-reed" NpcId="80146">
-        <Teleport X="32740" Y="32377" Map="4" Heading="5" Price="550"/>
-    </Action>
-    <Action Name="teleport silveria-gludun" NpcId="80146">
-        <Teleport X="32719" Y="32930" Map="4" Heading="5" Price="550"/>
-    </Action>
-    <Action Name="teleport silveria-oasis" NpcId="80146">
-        <Teleport X="32861" Y="33255" Map="4" Heading="5" Price="550"/>
-    </Action>
-    <Action Name="teleport silveria-under" NpcId="80146">
-        <Teleport X="32561" Y="33460" Map="4" Heading="5" Price="550"/>
-    </Action>
+	<Action Name="teleport behemoth-dragon" NpcId="80132">
+		<Teleport X="33434" Y="32546" Map="4" Heading="5" Price="100"/>
+	</Action>
+	<Action Name="teleport behemoth-girdun" NpcId="80132">
+		<Teleport X="33315" Y="33061" Map="4" Heading="5" Price="220"/>
+	</Action>
+	<Action Name="teleport behemoth-mirr" NpcId="80132">
+		<Teleport X="33717" Y="32921" Map="4" Heading="5" Price="220"/>
+	</Action>
+	<Action Name="teleport behemoth-gypsy" NpcId="80132">
+		<Teleport X="33969" Y="32941" Map="4" Heading="5" Price="220"/>
+	</Action>
+	<Action Name="teleport behemoth-train" NpcId="80132">
+		<Teleport X="32969" Y="33514" Map="4" Heading="5" Price="330"/>
+	</Action>
+	<Action Name="teleport behemoth-gludun" NpcId="80132">
+		<Teleport X="32719" Y="32930" Map="4" Heading="5" Price="330"/>
+	</Action>
+	<Action Name="teleport behemoth-oasis" NpcId="80132">
+		<Teleport X="32861" Y="33255" Map="4" Heading="5" Price="330"/>
+	</Action>
+	<Action Name="teleport behemoth-eva" NpcId="80132">
+		<Teleport X="33627" Y="33509" Map="4" Heading="5" Price="330"/>
+	</Action>
+	<Action Name="teleport behemoth-under" NpcId="80132">
+		<Teleport X="32561" Y="33460" Map="4" Heading="5" Price="440"/>
+	</Action>
+	<Action Name="teleport behemoth-reed" NpcId="80132">
+		<Teleport X="32740" Y="32377" Map="4" Heading="5" Price="440"/>
+	</Action>
+	<Action Name="teleport silveria-gypsy" NpcId="80146">
+		<Teleport X="33969" Y="32941" Map="4" Heading="5" Price="220"/>
+	</Action>
+	<Action Name="teleport silveria-girdun" NpcId="80146">
+		<Teleport X="33315" Y="33061" Map="4" Heading="5" Price="330"/>
+	</Action>
+	<Action Name="teleport silveria-mirr" NpcId="80146">
+		<Teleport X="33717" Y="32921" Map="4" Heading="5" Price="330"/>
+	</Action>
+	<Action Name="teleport silveria-dragon" NpcId="80146">
+		<Teleport X="33434" Y="32546" Map="4" Heading="5" Price="330"/>
+	</Action>
+	<Action Name="teleport silveria-train" NpcId="80146">
+		<Teleport X="32969" Y="33514" Map="4" Heading="5" Price="440"/>
+	</Action>
+	<Action Name="teleport silveria-eva" NpcId="80146">
+		<Teleport X="33627" Y="33509" Map="4" Heading="5" Price="440"/>
+	</Action>
+	<Action Name="teleport silveria-reed" NpcId="80146">
+		<Teleport X="32740" Y="32377" Map="4" Heading="5" Price="550"/>
+	</Action>
+	<Action Name="teleport silveria-gludun" NpcId="80146">
+		<Teleport X="32719" Y="32930" Map="4" Heading="5" Price="550"/>
+	</Action>
+	<Action Name="teleport silveria-oasis" NpcId="80146">
+		<Teleport X="32861" Y="33255" Map="4" Heading="5" Price="550"/>
+	</Action>
+	<Action Name="teleport silveria-under" NpcId="80146">
+		<Teleport X="32561" Y="33460" Map="4" Heading="5" Price="550"/>
+	</Action>
 	<!-- 退休的侍從長－曼孟 傳送奇岩隱藏宮殿 -->
 	<Action Name="teleport grtel" NpcId="91003">
 		<Teleport X="32805" Y="32793" Map="248" Heading="5" Price="1950"/>

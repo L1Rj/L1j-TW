@@ -1099,7 +1099,7 @@
 			<SetQuest Id="resta" Step="End"/>
 		</Succeed>
 	</MakeItem>
-    <MakeItem Name="D" Class="PWEKDRI" NpcId="71060" AmountInputable="false">
+	<MakeItem Name="D" Class="PWEKDRI" NpcId="71060" AmountInputable="false">
 		<Item Amount="1" ItemId="40647"/>
 		<Material Amount="1" ItemId="49277"/>
 		<Succeed>
