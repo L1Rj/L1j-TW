@@ -27,6 +27,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -44,13 +47,11 @@ import javax.swing.SwingConstants;
 
 import net.l1j.Config;
 import net.l1j.Server;
-import net.l1j.gui.config.ConfigManager;
 import net.l1j.gui.images.ImagesTable;
 import net.l1j.gui.memory.MemoryMonitor;
-import net.l1j.gui.message.SystemPrintStream;
+import net.l1j.server.GameServer;
 
 public class ServerManager extends JFrame implements ActionListener {
-
 	private static final long serialVersionUID = 1L;
 
 	private static boolean serverStarted = false;
@@ -72,9 +73,9 @@ public class ServerManager extends JFrame implements ActionListener {
 
 	private JTabbedPane tabbedPaneMessage;
 	private JScrollPane scrollPaneSystem;
-	private JTextArea textAreaSystem;
-	private JScrollPane scrollPaneChat;
-	private JTextArea textAreaChat;
+	private static JTextArea textAreaSystem;
+	private JScrollPane scrollPaneLog;
+	private JTextArea textAreaLog;
 
 	private JTabbedPane tabbedPaneClient;
 	private JScrollPane scrollPanePlayer;
@@ -102,6 +103,7 @@ public class ServerManager extends JFrame implements ActionListener {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		RedirectPrintStream();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -118,8 +120,6 @@ public class ServerManager extends JFrame implements ActionListener {
 
 	public ServerManager() {
 		initComponents();
-
-		System.setOut(new SystemPrintStream(System.out, textAreaSystem));
 	}
 
 	private void initComponents() {
@@ -227,24 +227,26 @@ public class ServerManager extends JFrame implements ActionListener {
 		tabbedPaneMessage.addTab("系統", scrollPaneSystem);
 
 		textAreaSystem = new JTextArea();
+		textAreaSystem.setEditable(false);
 		textAreaSystem.setFont(new Font("Terminal", Font.PLAIN, 11));
 		textAreaSystem.setBackground(new Color(28, 28, 28));
 		textAreaSystem.setForeground(new Color(255, 255, 255));
-		textAreaSystem.setEditable(false);
-		textAreaSystem.setColumns(20);
 		textAreaSystem.setRows(5);
 		scrollPaneSystem.setViewportView(textAreaSystem);
 
-		scrollPaneChat = new JScrollPane();
-		tabbedPaneMessage.addTab("Test", scrollPaneChat);
+		scrollPaneLog = new JScrollPane();
+		tabbedPaneMessage.addTab("記錄", scrollPaneLog);
 
-		textAreaChat = new JTextArea();
-		textAreaChat.setBackground(new Color(28, 28, 28));
-		textAreaChat.setForeground(new Color(255, 255, 255));
-		textAreaChat.setEditable(false);
-		textAreaChat.setColumns(20);
-		textAreaChat.setRows(5);
-		scrollPaneChat.setViewportView(textAreaChat);
+		textAreaLog = new JTextArea();
+		int cursorLog = textAreaLog.getText().length(); 
+		textAreaLog.setCaretPosition(cursorLog);
+		textAreaLog.setEditable(false);
+		textAreaLog.setFont(new Font("Terminal", Font.PLAIN, 11));
+		textAreaLog.setBackground(new Color(28, 28, 28));
+		textAreaLog.setForeground(new Color(255, 255, 255));
+		textAreaLog.setColumns(20);
+		textAreaLog.setRows(5);
+		scrollPaneLog.setViewportView(textAreaLog);
 
 		tabbedPaneClient = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPaneClient.setFont(new Font("Arial Unicode MS", Font.PLAIN, 11));
@@ -343,8 +345,8 @@ public class ServerManager extends JFrame implements ActionListener {
 		
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		String cmd = e.getActionCommand();
+	public void actionPerformed(ActionEvent ae) {
+		String cmd = ae.getActionCommand();
 		
 		if (cmd.equals("serverstart")) {
 			if (!serverStarted) {
@@ -354,20 +356,49 @@ public class ServerManager extends JFrame implements ActionListener {
 			}
 		} else if (cmd.equals("serverstop")) {
 			if (serverStarted) {
-//				serverStarted = false;
-//				System.exit(0);
+				serverStarted = false;
+				GameServer.getInstance().disconnectAllCharacters();
+				// 待續
 			}
 		} else if (cmd.equals("serverrestart")) {
 			if (serverStarted) {
-//				serverStarted = false;
-//				GameServer.getInstance().shutdownWithCountdown(0);
+				serverStarted = false;
+				GameServer.getInstance().shutdownWithCountdown(0);
 			}
-//			serverStarted = true;
+			serverStarted = true;
 		} else if (cmd.equals("serverconfig")) {
-			ConfigManager.main(null);
+			try {
+				Runtime.getRuntime().exec("ServerConfig.bat");
+			} catch (IOException e) {
+				System.out.println(e);
+			}
 		} else if (cmd.equals("exit")) {
-			System.exit(0);
+			GameServer.getInstance().shutdown();
 		}
+	}
+
+	private static void RedirectPrintStream() {
+		OutputStream output = new OutputStream() {
+			public void write(int b) throws IOException {
+				textAreaSystem.append(String.valueOf((char) b));
+				int length = textAreaSystem.getText().length(); 
+				textAreaSystem.setCaretPosition(length);
+			}
+			public void write(byte b[]) throws IOException {
+				textAreaSystem.append(new String(b));
+				int length = textAreaSystem.getText().length(); 
+				textAreaSystem.setCaretPosition(length);
+			}
+			public void write(byte b[], int off, int len) throws IOException {
+				textAreaSystem.append(new String(b, off, len));
+				int length = textAreaSystem.getText().length(); 
+				textAreaSystem.setCaretPosition(length);
+			}
+		};
+
+		PrintStream print = new PrintStream(output);
+		System.setOut(print);
+		System.setErr(print);
 	}
 
 	private void PanelMousePressed(MouseEvent evt) {

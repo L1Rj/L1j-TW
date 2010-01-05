@@ -171,19 +171,10 @@ public class C_ItemUSe extends ClientBasePacket {
 
 		int use_type = item.getItem().getUseType();
 
-		if (use_type == 30) { // spell_buff
-			spellsc_objid = readD();
-		} else if (use_type == 5 || use_type == 17) { // spell_long、spell_short
-			spellsc_objid = readD();
-			spellsc_x = readH();
-			spellsc_y = readH();
-		}
-
 		switch (itemId) {
 			case 40088: case 40096: case 140088:
 				s = readS();
 			break;
-
 			case SCROLL_OF_ENCHANT_ARMOR: case SCROLL_OF_ENCHANT_WEAPON: case SCROLL_OF_ENCHANT_QUEST_WEAPON:
 			case 40077: case 40078: case 40126: case 40098: case 40129: case 40130: case 140129: case 140130:
 			case B_SCROLL_OF_ENCHANT_ARMOR: case B_SCROLL_OF_ENCHANT_WEAPON:
@@ -227,7 +218,6 @@ public class C_ItemUSe extends ClientBasePacket {
 			case 49148: // 飾品強化卷軸
 				l = readD();
 			break;
-
 			case 40086: case 40099: case 40100: case 50005: case 140100:
 				bmapid = readH();
 				btele = readD();
@@ -251,7 +241,6 @@ public class C_ItemUSe extends ClientBasePacket {
 				letterReceiver = readS();
 				letterText = readByte();
 			break;
-
 			case 41255: case 41256: case 41257: case 41258: case 41259:
 				cookStatus = readC();
 				cookNo = readC();
@@ -261,10 +250,16 @@ public class C_ItemUSe extends ClientBasePacket {
 				fishX = readH();
 				fishY = readH();
 			break;
-
 			default:
-				l = readC();
-			break;
+				if (use_type == 30) { // spell_buff
+					spellsc_objid = readD();
+				} else if (use_type == 5 || use_type == 17) { // spell_long、spell_short
+					spellsc_objid = readD();
+					spellsc_x = readH();
+					spellsc_y = readH();
+				} else {
+					l = readC();
+				}
 		}
 
 		if (pc.getCurrentHp() > 0) {

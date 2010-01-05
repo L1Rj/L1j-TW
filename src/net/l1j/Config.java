@@ -53,6 +53,10 @@ public final class Config {
 
 	public static String PASSWORD_SALT;
 
+	public static boolean DEADLOCK_DETECTOR;
+	public static int DEADLOCK_CHECK_INTERVAL;
+	public static boolean RESTART_ON_DEADLOCK;
+
 	public static String TIME_ZONE;
 
 	public static int CLIENT_LANGUAGE;
@@ -456,6 +460,9 @@ public final class Config {
 			PASSWORD_SALT = serverSettings.getProperty("PasswordSalt", "lineage");
 			CLIENT_LANGUAGE = Integer.parseInt(serverSettings.getProperty("ClientLanguage", "3"));
 			CLIENT_LANGUAGE_CODE = LANGUAGE_CODE_ARRAY[CLIENT_LANGUAGE];
+			DEADLOCK_DETECTOR = Boolean.parseBoolean(serverSettings.getProperty("DeadLockDetector", "false"));
+			DEADLOCK_CHECK_INTERVAL = Integer.parseInt(serverSettings.getProperty("DeadLockCheckInterval", "20"));
+			RESTART_ON_DEADLOCK = Boolean.parseBoolean(serverSettings.getProperty("RestartOnDeadlock", "false"));
 			TIME_ZONE = serverSettings.getProperty("TimeZone", "TST");
 			HOSTNAME_LOOKUPS = Boolean.parseBoolean(serverSettings.getProperty("HostnameLookups", "false"));
 			AUTOMATIC_KICK = Integer.parseInt(serverSettings.getProperty("AutomaticKick", "10"));
@@ -726,6 +733,12 @@ public final class Config {
 			GAME_SERVER_PORT = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("ClientLanguage")) {
 			CLIENT_LANGUAGE = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("DeadLockDetector")) {
+			DEADLOCK_DETECTOR = Boolean.parseBoolean(pValue);
+		} else if (pName.equalsIgnoreCase("DeadLockCheckInterval")) {
+			DEADLOCK_CHECK_INTERVAL = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("RestartOnDeadlock")) {
+			RESTART_ON_DEADLOCK = Boolean.parseBoolean(pValue);
 		} else if (pName.equalsIgnoreCase("TimeZone")) {
 			TIME_ZONE = pValue;
 		} else if (pName.equalsIgnoreCase("AutomaticKick")) {

@@ -68,6 +68,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.gametime.L1GameTimeClock;
 import net.l1j.server.model.map.L1WorldMap;
 import net.l1j.server.model.trap.L1WorldTraps;
+import net.l1j.server.utils.DeadLockDetector;
 import net.l1j.server.utils.RandomArrayList;
 import net.l1j.server.utils.SystemUtil;
 import net.l1j.thread.GeneralThreadPool;
@@ -85,6 +86,7 @@ public class GameServer extends Thread {
 	private static Logger _log = Logger.getLogger(GameServer.class.getName());
 	private int _port;
 	// private Logins _logins;
+	private final DeadLockDetector _deadDetectThread;
 	private LoginController _loginController;
 	private int chatlvl;
 
@@ -112,6 +114,12 @@ public class GameServer extends Thread {
 
 	private GameServer() {
 		super("GameServer");
+		
+		if (Config.DEADLOCK_DETECTOR) {
+			_deadDetectThread = new DeadLockDetector();
+		} else {
+			_deadDetectThread = null;
+		}
 	}
 
 	public static GameServer getInstance() {
@@ -267,6 +275,11 @@ public class GameServer extends Thread {
 
 		System.out.println("伺服器啟動完成");
 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
+
+		if (Config.DEADLOCK_DETECTOR) {
+			_deadDetectThread.setDaemon(true);
+			_deadDetectThread.start();
+		}
 
 		this.start();
 	}
