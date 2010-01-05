@@ -228,7 +228,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				blanksc_skillid = readC();
 			break;
 			// spell_buff
-			case 40870: case 40879:
+			case 50012: case 50021: // 魔法卷軸(擬似魔法武器)40870 改為50012 魔法卷軸(鎧甲護持)40879 改為 50021
 				spellsc_objid = readD();
 			break;
 			// 復活捲軸、祝福的復活捲軸
@@ -1365,7 +1365,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								itemId == 40094 && blanksc_skillid <= 39) { // ブランク
 							// スクロール(Lv5)でレベル5以下の魔法
 							L1ItemInstance spellsc = ItemTable.getInstance().createItem(
-									40859 + blanksc_skillid);
+									50001 + blanksc_skillid);
 							if (spellsc != null) {
 								if (pc.getInventory().checkAddItem(spellsc, 1) == L1Inventory.OK) {
 									L1Skills l1skills = SkillsTable.getInstance().getTemplate(
