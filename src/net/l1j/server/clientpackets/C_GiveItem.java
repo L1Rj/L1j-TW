@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.io.BufferedWriter;//waja add 給予NPC物品記錄 文件版
@@ -24,9 +23,6 @@ import java.io.FileWriter;//waja add 給予NPC物品記錄 文件版
 import java.io.IOException;//waja add 給予NPC物品記錄 文件版
 import java.sql.Timestamp;//waja add 給予NPC物品記錄 文件版
 import java.util.logging.Logger;
-import java.util.Random;
-
-
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.IdFactory;
@@ -36,6 +32,7 @@ import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1PcInventory;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.instance.L1DollInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -48,14 +45,16 @@ import net.l1j.server.templates.L1PetType;
 import net.l1j.server.utils.RandomArrayList;
 
 public class C_GiveItem extends ClientBasePacket {
-	private static Logger _log = Logger.getLogger(C_GiveItem.class.getName());
 	private static final String C_GIVE_ITEM = "[C] C_GiveItem";
+
+	private static Logger _log = Logger.getLogger(C_GiveItem.class.getName());
 
 	//private static Random _random = new Random();
 	private static ItemTable IT = ItemTable.getInstance();
 
 	public C_GiveItem(byte decrypt[], ClientThread client) {
 		super(decrypt);
+
 		int targetId = readD();
 		int x = readH();
 		int y = readH();
@@ -100,8 +99,16 @@ public class C_GiveItem extends ClientBasePacket {
 				L1PetInstance pet = (L1PetInstance) petObject;
 				if (item.getId() == pet.getItemObjId()) {
 					// \f1%0は捨てたりまたは他人に讓ることができません。
-					pc.sendPackets(new S_ServerMessage(210, item.getItem()
-							.getName()));
+					pc.sendPackets(new S_ServerMessage(210, item.getItem().getName()));
+					return;
+				}
+			}
+		}
+		for (Object dollObject : pc.getDollList().values()) {
+			if (dollObject instanceof L1DollInstance) {
+				L1DollInstance doll = (L1DollInstance) dollObject;
+				if (item.getId() == doll.getItemObjId()) {
+					pc.sendPackets(new S_ServerMessage(1181)); // \f1這個魔法娃娃目前正在使用中。
 					return;
 				}
 			}
