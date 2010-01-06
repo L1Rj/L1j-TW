@@ -506,7 +506,7 @@ public class C_NPCAction extends ClientBasePacket {
 			for (Object petObject : petList) {
 				if (petObject instanceof L1PetInstance) { // ペット
 					L1PetInstance pet = (L1PetInstance) petObject;
-					pet.collect();
+					pet.Npccollect();
 					pc.getPetList().remove(pet.getId());
 					pet.deleteMe();
 				}

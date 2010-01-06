@@ -799,11 +799,10 @@ public class L1ItemInstance extends L1Object {
 					os.writeC(getItem().getDmgSmall());
 					os.writeC(getItem().getDmgLarge());
 				break;
-				// waja add 修正高等寵物裝備顯示 可否裝備
+				// 高等寵物裝備顯示 可否裝備
 				case 11:
 					os.writeC(7);
 					os.writeC(128);
-					// add end
 				default:
 					os.writeC(23); // 材質
 				break;

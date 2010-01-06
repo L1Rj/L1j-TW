@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 import net.l1j.server.ActionCodes;
 import net.l1j.server.IdFactory;
 import net.l1j.server.datatables.ExpTable;
+import net.l1j.server.datatables.PetItemTable;
 import net.l1j.server.datatables.PetTable;
 import net.l1j.server.datatables.PetTypeTable;
 import net.l1j.server.model.L1Attack;
@@ -39,6 +40,7 @@ import net.l1j.server.serverpackets.S_PetPack;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1Pet;
+import net.l1j.server.templates.L1PetItem;
 import net.l1j.server.templates.L1PetType;
 import net.l1j.server.utils.RandomArrayList;
 import static net.l1j.server.skills.SkillId.*;
@@ -327,7 +329,33 @@ public class L1PetInstance extends L1NpcInstance {
 		}
 	}
 
-	// リスタート時にDROPを地面に落とす
+// 寄放於npc時已裝備的物品直接給予主人
+    public void Npccollect() {
+        L1Inventory targetInventory = _petMaster.getInventory();
+        List<L1ItemInstance> items = _inventory.getItems();
+        int size = _inventory.getSize();
+        L1Pet l1pet = PetTable.getInstance().getTemplate(_itemObjId);
+        for (int i = 0; i < size; i++) {
+            L1ItemInstance item = items.get(0);
+            if (item.isEquipped()) {
+                item.setEquipped(false);
+                L1PetItem petitem = PetItemTable.getInstance().getTemplate(item.getItemId());
+                l1pet.set_hp(getMaxHp()- petitem.getAddHp());
+                setMaxHp(l1pet.get_hp());
+                l1pet.set_mp(getMaxMp() - petitem.getAddMp());
+                setMaxMp(l1pet.get_mp());
+            }
+            if (_petMaster.getInventory().checkAddItem(item, item.getCount()) == L1Inventory.OK) {
+                _inventory.tradeItem(item, item.getCount(), targetInventory);
+                _petMaster.sendPackets(new S_ServerMessage(143, getName(), item.getLogName()));
+            } else {
+                targetInventory = L1World.getInstance().getInventory(getX(), getY(), getMapId());
+                _inventory.tradeItem(item, item.getCount(), targetInventory);
+            }
+        }
+    }
+	
+// リスタート時にDROPを地面に落とす
 	public void dropItem() {
 		L1Inventory targetInventory = L1World.getInstance().getInventory(getX(), getY(), getMapId());
 		List<L1ItemInstance> items = _inventory.getItems();
