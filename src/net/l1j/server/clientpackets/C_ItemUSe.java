@@ -1305,7 +1305,7 @@ public class C_ItemUSe extends ClientBasePacket {
 									ringlevel = 20448;
 								} else if (ringId == 41199) {
 									ringlevel = 20449;
-								} else if (ringId == 411200) {
+								} else if (ringId == 41200) {
 									ringlevel = 20450;
 								}
 								pc
