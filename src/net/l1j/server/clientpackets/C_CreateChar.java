@@ -19,8 +19,6 @@
 package net.l1j.server.clientpackets;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.l1j.Config;
@@ -41,8 +39,6 @@ import net.l1j.server.templates.L1Skills;
 public class C_CreateChar extends ClientBasePacket {
 	private static final String C_CREATE_CHAR = "[C] C_CreateChar";
 
-	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
-
 	private static Logger _log = Logger.getLogger(C_CreateChar.class.getName());
 
 	private L1ClassFeature classFeature = null;
@@ -59,20 +55,8 @@ public class C_CreateChar extends ClientBasePacket {
 
 		name = name.replaceAll("\\s", "");
 		name = name.replaceAll("　", "");
-		if (name.length() == 0) {
-			S_CharCreateStatus s_charcreatestatus = new S_CharCreateStatus(S_CharCreateStatus.REASON_INVALID_NAME);
-			client.sendPacket(s_charcreatestatus);
-			return;
-		}
 
 		if (isInvalidName(name)) {
-			S_CharCreateStatus s_charcreatestatus = new S_CharCreateStatus(S_CharCreateStatus.REASON_INVALID_NAME);
-			client.sendPacket(s_charcreatestatus);
-			return;
-		}
-
-		BanNameTable bannametable = BanNameTable.getInstance();
-		if (bannametable.isBannedName(name)) {
 			S_CharCreateStatus s_charcreatestatus = new S_CharCreateStatus(S_CharCreateStatus.REASON_INVALID_NAME);
 			client.sendPacket(s_charcreatestatus);
 			return;
@@ -200,43 +184,27 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.refresh();
 	}
 
-	private static boolean isAlphaNumeric(String s) {
-		boolean flag = true;
-		char ac[] = s.toCharArray();
-		int i = 0;
-		do {
-			if (i >= ac.length) {
+	private static boolean isAlphaNumeric(String text) {
+		if (text == null) {
+			return false;
+		}
+		boolean result = true;
+		char[] chars = text.toCharArray();
+		for (int i = 0; i < chars.length; i++) {
+			if (!Character.isLetterOrDigit(chars[i])) {
+				result = false;
 				break;
 			}
-			if (!Character.isLetterOrDigit(ac[i])) {
-				flag = false;
-				break;
-			}
-			i++;
-		} while (true);
-		return flag;
+		}
+		return result;
 	}
 
+	/** 檢查是否無效名稱 */
 	private static boolean isInvalidName(String name) {
-		int numOfNameBytes = 0;
-
-		try {
-			numOfNameBytes = name.getBytes(CLIENT_LANGUAGE_CODE).length;
-		} catch (UnsupportedEncodingException e) {
-			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		// 檢查角色名稱、長度、禁止的名稱
+		if (isAlphaNumeric(name) && (3 <= name.length()) && !BanNameTable.getInstance().isBannedName(name)) {
 			return false;
 		}
-
-		if (isAlphaNumeric(name)) {
-			return false;
-		}
-
-		// XXX - 本鯖の仕様と同等か未確認
-		// 全角文字が5文字を超えるか、全体で12バイトを超えたら無効な名前とする
-		if (5 < (numOfNameBytes - name.length()) || 12 < numOfNameBytes) {
-			return false;
-		}
-
 		return true;
 	}
 
