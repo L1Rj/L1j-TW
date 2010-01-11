@@ -48,17 +48,17 @@ public class L1Who implements L1CommandExecutor {
 			// オンラインのプレイヤーリストを表示
 			if (arg.equalsIgnoreCase("all")) {
 				pc.sendPackets(new S_SystemMessage("-- 線上角色列表--"));
-				StringBuffer buf = new StringBuffer();
+				StringBuilder sb = new StringBuilder();
 				for (L1PcInstance each : players) {
-					buf.append(each.getName());
-					buf.append(" / ");
-					if (buf.length() > 50) {
-						pc.sendPackets(new S_SystemMessage(buf.toString()));
-						buf.delete(0, buf.length() - 1);
+					sb.append(each.getName());
+					sb.append(" / ");
+					if (sb.length() > 50) {
+						pc.sendPackets(new S_SystemMessage(sb.toString()));
+						sb.delete(0, sb.length() - 1);
 					}
 				}
-				if (buf.length() > 0) {
-					pc.sendPackets(new S_SystemMessage(buf.toString()));
+				if (sb.length() > 0) {
+					pc.sendPackets(new S_SystemMessage(sb.toString()));
 				}
 			}
 		} catch (Exception e) {

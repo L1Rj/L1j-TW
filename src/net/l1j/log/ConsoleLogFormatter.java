@@ -24,14 +24,13 @@ import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
 public class ConsoleLogFormatter extends Formatter {
-	public ConsoleLogFormatter() {
-	}
+	private static final String NEXT_LINE = "\r\n";
 
 	@Override
 	public String format(LogRecord record) {
-		StringBuffer output = new StringBuffer();
+		StringBuilder output = new StringBuilder();
 		output.append(record.getMessage());
-		output.append("\r\n");
+		output.append(NEXT_LINE);
 
 		if (record.getThrown() != null) {
 			try {
@@ -40,7 +39,7 @@ public class ConsoleLogFormatter extends Formatter {
 				record.getThrown().printStackTrace(pw);
 				pw.close();
 				output.append(sw.toString());
-				output.append("\r\n");
+				output.append(NEXT_LINE);
 			} catch (Exception ex) {
 			}
 		}

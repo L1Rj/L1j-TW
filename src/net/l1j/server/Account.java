@@ -78,20 +78,20 @@ public class Account {
 
 	/* Convert from Byte[] to String */
 	private static String convertToString(byte[] data) {
-		StringBuffer buf = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < data.length; i++) {
 			int halfbyte = (data[i] >>> 4) & 0x0F;
 			int two_halfs = 0;
 			do {
 				if ((0 <= halfbyte) && (halfbyte <= 9)) {
-					buf.append((char) ('0' + halfbyte));
+					sb.append((char) ('0' + halfbyte));
 				} else {
-					buf.append((char) ('a' + (halfbyte - 10)));
+					sb.append((char) ('a' + (halfbyte - 10)));
 				}
 				halfbyte = data[i] & 0x0F;
 			} while (two_halfs++ < 1);
 		}
-		return buf.toString();
+		return sb.toString();
 	}
 
 	/**
@@ -146,10 +146,10 @@ public class Account {
 	 *             文字のエンコードがサポートされていない時
 	 */
 	private static String encodePassword(final String rawPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		byte[] buf = rawPassword.getBytes("UTF-8");
-		buf = MessageDigest.getInstance("SHA").digest(buf);
+		byte[] sb = rawPassword.getBytes("UTF-8");
+		sb = MessageDigest.getInstance("SHA").digest(sb);
 
-		return Base64.encodeBytes(buf);
+		return Base64.encodeBytes(sb);
 	}
 
 	/**

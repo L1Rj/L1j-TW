@@ -1,7 +1,26 @@
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 package net.l1j.server.taskmanager;
 
 import static net.l1j.server.taskmanager.TaskTypes.TYPE_GLOBAL_TASK;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,18 +32,17 @@ import java.util.logging.Logger;
 import javolution.util.FastList;
 import javolution.util.FastMap;
 import net.l1j.L1DatabaseFactory;
-import net.l1j.server.ThreadPoolManager;
 import net.l1j.server.taskmanager.tasks.TaskRestart;
 import net.l1j.server.taskmanager.tasks.TaskShutdown;
 import net.l1j.server.utils.SQLUtil;
+import net.l1j.thread.ThreadPoolManager;
 
 /**
  * @author Layane
- * 
  */
 public final class TaskManager {
-	protected static final Logger _log = Logger.getLogger(TaskManager.class
-			.getName());
+	protected static final Logger _log = Logger.getLogger(TaskManager.class.getName());
+
 	private static TaskManager _instance;
 
 	protected static final String[] SQL_STATEMENTS = {
@@ -34,6 +52,7 @@ public final class TaskManager {
 			"INSERT INTO global_tasks (task,type,last_activation,param1,param2,param3) VALUES(?,?,?,?,?,?)" };
 
 	private final FastMap<Integer, Task> _tasks = new FastMap<Integer, Task>();
+
 	protected final FastList<ExecutedTask> _currentTasks = new FastList<ExecutedTask>();
 
 	public class ExecutedTask implements Runnable {
@@ -44,14 +63,12 @@ public final class TaskManager {
 		String[] _params;
 		ScheduledFuture _scheduled;
 
-		public ExecutedTask(Task task, TaskTypes type, ResultSet rset)
-				throws SQLException {
+		public ExecutedTask(Task task, TaskTypes type, ResultSet rset) throws SQLException {
 			_task = task;
 			_type = type;
 			_id = rset.getInt("id");
 			_lastActivation = rset.getLong("last_activation");
-			_params = new String[] { rset.getString("param1"),
-					rset.getString("param2"), rset.getString("param3") };
+			_params = new String[] { rset.getString("param1"), rset.getString("param2"), rset.getString("param3") };
 		}
 
 		public void run() {
@@ -59,7 +76,7 @@ public final class TaskManager {
 
 			_lastActivation = System.currentTimeMillis();
 
-			java.sql.Connection con = null;
+			Connection con = null;
 			PreparedStatement pstm = null;
 			try {
 				con = L1DatabaseFactory.getInstance().getConnection();
@@ -68,8 +85,7 @@ public final class TaskManager {
 				pstm.setInt(2, _id);
 				pstm.executeUpdate();
 			} catch (SQLException e) {
-				_log.warning("cannot updated the Global Task " + _id + ": "
-						+ e.getMessage());
+				_log.warning("cannot updated the Global Task " + _id + ": " + e.getMessage());
 			} finally {
 				SQLUtil.close(pstm);
 				SQLUtil.close(con);
@@ -140,7 +156,7 @@ public final class TaskManager {
 	}
 
 	private void startAllTasks() {
-		java.sql.Connection con = null;
+		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
@@ -149,8 +165,7 @@ public final class TaskManager {
 			rs = pstm.executeQuery();
 
 			while (rs.next()) {
-				Task task = _tasks.get(rs.getString("task").trim()
-						.toLowerCase().hashCode());
+				Task task = _tasks.get(rs.getString("task").trim().toLowerCase().hashCode());
 
 				if (task == null) {
 					continue;
@@ -159,7 +174,6 @@ public final class TaskManager {
 				TaskTypes type = TaskTypes.valueOf(rs.getString("type"));
 
 			}
-
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, "error while loading Global Task table", e);
 		} finally {
@@ -190,7 +204,6 @@ public final class TaskManager {
 				con = null;
 			}
 		}
-
 	}
 
 	private boolean launchTask(ExecutedTask task) {
@@ -202,8 +215,7 @@ public final class TaskManager {
 			String[] hour = task.getParams()[1].split(":");
 
 			if (hour.length != 3) {
-				_log.warning("Task " + task.getId()
-						+ " has incorrect parameters");
+				_log.warning("Task " + task.getId() + " has incorrect parameters");
 				return false;
 			}
 
@@ -216,8 +228,7 @@ public final class TaskManager {
 				min.set(Calendar.MINUTE, Integer.valueOf(hour[1]));
 				min.set(Calendar.SECOND, Integer.valueOf(hour[2]));
 			} catch (Exception e) {
-				_log.warning("Bad parameter on task " + task.getId() + ": "
-						+ e.getMessage());
+				_log.warning("Bad parameter on task " + task.getId() + ": " + e.getMessage());
 				return false;
 			}
 
@@ -227,8 +238,7 @@ public final class TaskManager {
 				delay += interval;
 			}
 
-			task._scheduled = scheduler.scheduleGeneralAtFixedRate(task, delay,
-					interval);
+			task._scheduled = scheduler.scheduleGeneralAtFixedRate(task, delay, interval);
 
 			return true;
 		}
@@ -236,14 +246,12 @@ public final class TaskManager {
 		return false;
 	}
 
-	public static boolean addUniqueTask(String task, TaskTypes type,
-			String param1, String param2, String param3) {
+	public static boolean addUniqueTask(String task, TaskTypes type, String param1, String param2, String param3) {
 		return addUniqueTask(task, type, param1, param2, param3, 0);
 	}
 
-	public static boolean addUniqueTask(String task, TaskTypes type,
-			String param1, String param2, String param3, long lastActivation) {
-		java.sql.Connection con = null;
+	public static boolean addUniqueTask(String task, TaskTypes type, String param1, String param2, String param3, long lastActivation) {
+		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 
@@ -276,14 +284,12 @@ public final class TaskManager {
 		return false;
 	}
 
-	public static boolean addTask(String task, TaskTypes type, String param1,
-			String param2, String param3) {
+	public static boolean addTask(String task, TaskTypes type, String param1, String param2, String param3) {
 		return addTask(task, type, param1, param2, param3, 0);
 	}
 
-	public static boolean addTask(String task, TaskTypes type, String param1,
-			String param2, String param3, long lastActivation) {
-		java.sql.Connection con = null;
+	public static boolean addTask(String task, TaskTypes type, String param1, String param2, String param3, long lastActivation) {
+		Connection con = null;
 		PreparedStatement pstm = null;
 
 		try {

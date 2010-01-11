@@ -75,7 +75,7 @@ public class ServerManager extends JFrame implements ActionListener {
 	private JScrollPane scrollPaneSystem;
 	private static JTextArea textAreaSystem;
 	private JScrollPane scrollPaneLog;
-	private JTextArea textAreaLog;
+	private static JTextArea textAreaLog;
 
 	private JTabbedPane tabbedPaneClient;
 	private JScrollPane scrollPanePlayer;
@@ -379,16 +379,19 @@ public class ServerManager extends JFrame implements ActionListener {
 
 	private static void RedirectPrintStream() {
 		OutputStream output = new OutputStream() {
+			@Override
 			public void write(int b) throws IOException {
 				textAreaSystem.append(String.valueOf((char) b));
 				int length = textAreaSystem.getText().length(); 
 				textAreaSystem.setCaretPosition(length);
 			}
+			@Override
 			public void write(byte b[]) throws IOException {
 				textAreaSystem.append(new String(b));
 				int length = textAreaSystem.getText().length(); 
 				textAreaSystem.setCaretPosition(length);
 			}
+			@Override
 			public void write(byte b[], int off, int len) throws IOException {
 				textAreaSystem.append(new String(b, off, len));
 				int length = textAreaSystem.getText().length(); 

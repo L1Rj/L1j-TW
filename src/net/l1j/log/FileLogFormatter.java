@@ -22,23 +22,24 @@ import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
 public class FileLogFormatter extends Formatter {
-	private static final String CRLF = "\r\n";
+	private static final String TAB = "\t";
 
-	private static final String _ = "\t";
+	private static final String NEXT_LINE = "\r\n";
 
 	@Override
 	public String format(LogRecord record) {
-		StringBuffer output = new StringBuffer();
+		StringBuilder output = new StringBuilder();
 		output.append(record.getMillis());
-		output.append(_);
+		output.append(TAB);
 		output.append(record.getLevel().getName());
-		output.append(_);
+		output.append(TAB);
 		output.append(record.getThreadID());
-		output.append(_);
+		output.append(TAB);
 		output.append(record.getLoggerName());
-		output.append(_);
+		output.append(TAB);
 		output.append(record.getMessage());
-		output.append(CRLF);
+		output.append(NEXT_LINE);
+
 		return output.toString();
 	}
 }
