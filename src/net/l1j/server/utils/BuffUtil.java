@@ -86,43 +86,6 @@ public class BuffUtil {
 	}
 
 	public static void crazy(L1PcInstance pc, int timeMillis) {
-		if (pc.hasSkillEffect(STATUS_ELFBRAVE)) { // 如果已經有(精靈餅乾)狀態就不重複
-			pc.killSkillEffectTimer(STATUS_ELFBRAVE);
-			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-			pc.setBraveSpeed(0);
-		}
-		if (pc.hasSkillEffect(SKILL_HOLY_WALK)) { // 如果已經有(神聖疾走就)狀態就不重複
-			pc.killSkillEffectTimer(SKILL_HOLY_WALK);
-			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-			pc.setBraveSpeed(0);
-		}
-		if (pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)) { // 如果已經有(行走加速)狀態就不重複
-			pc.killSkillEffectTimer(SKILL_MOVING_ACCELERATION);
-			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-			pc.setBraveSpeed(0);
-		}
-		if (pc.hasSkillEffect(SKILL_WIND_WALK)) { // 如果已經有(風之疾走)狀態就不重複
-			pc.killSkillEffectTimer(SKILL_WIND_WALK);
-			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-			pc.setBraveSpeed(0);
-		}
-		if (pc.hasSkillEffect(STATUS_RIBRAVE)) { // 如果已經有(生命之樹果實)狀態就不重複
-			pc.killSkillEffectTimer(STATUS_RIBRAVE);
-			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-			pc.setBraveSpeed(0);
-		}
-		if (pc.hasSkillEffect(SKILL_BLOODLUST)) { // 如果已經有(血之渴望)狀態就不重複
-			pc.killSkillEffectTimer(SKILL_BLOODLUST);
-			pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-			pc.setBraveSpeed(0);
-		}
-
 		pc.setSkillEffect(GMSTATUS_CRAZY, timeMillis);
 
 		int objId = pc.getId();
@@ -130,6 +93,6 @@ public class BuffUtil {
 		pc.broadcastPacket(new S_SkillBrave(objId, 5, 0));
 		pc.sendPackets(new S_SkillSound(objId, 751));
 		pc.broadcastPacket(new S_SkillSound(objId, 751));
-		pc.setBraveSpeed(5);
+		pc.setBraveSpeed(1);
 	}
 }

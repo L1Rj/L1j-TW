@@ -2306,12 +2306,16 @@ public class L1PcInstance extends L1Character {
 	}
 
 	public boolean isFastMovable() {
-		return (hasSkillEffect(SKILL_HOLY_WALK) || hasSkillEffect(SKILL_MOVING_ACCELERATION)
-				|| hasSkillEffect(SKILL_WIND_WALK) || hasSkillEffect(STATUS_BRAVE2)); // 寵物競速
+		return (hasSkillEffect(SKILL_HOLY_WALK)
+				|| hasSkillEffect(SKILL_MOVING_ACCELERATION)
+				|| hasSkillEffect(SKILL_WIND_WALK)
+				|| hasSkillEffect(STATUS_RIBRAVE)
+				|| hasSkillEffect(GMSTATUS_CRAZY)
+				|| hasSkillEffect(STATUS_BRAVE2)); // 寵物競速
 	}
 
 	public boolean isFastAttackable() {
-		return hasSkillEffect(SKILL_BLOODLUST);
+		return (hasSkillEffect(SKILL_BLOODLUST) || hasSkillEffect(GMSTATUS_CRAZY));
 	}
 
 	public boolean isBrave() {

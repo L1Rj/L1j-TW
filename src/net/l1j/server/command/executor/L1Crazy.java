@@ -38,6 +38,7 @@ public class L1Crazy implements L1CommandExecutor {
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
 		try {
 			BuffUtil.haste(pc, 32767 * 1000);
+			BuffUtil.brave(pc, 32767 * 1000);
 			BuffUtil.crazy(pc, 32767 * 1000);
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage("." + cmdName + " 指令錯誤"));

@@ -268,25 +268,8 @@ public class Teleportation {
 
 		pc.setTeleport(false);
 
-		if (pc.hasSkillEffect(STATUS_ELFBRAVE)) {
-			pc.sendPackets(new S_SkillBrave(pc.getId(), 3, pc
-					.getSkillEffectTimeSec(STATUS_ELFBRAVE)));
-		}
-		if (pc.hasSkillEffect(STATUS_RIBRAVE)) {
-			pc.setSkillEffect(STATUS_RIBRAVE, pc.getSkillEffectTimeSec(STATUS_RIBRAVE) * 1000);
-		}
 		if (pc.hasSkillEffect(SKILL_WIND_SHACKLE)) {
-			pc.sendPackets(new S_SkillIconWindShackle(pc.getId(), pc
-					.getSkillEffectTimeSec(SKILL_WIND_SHACKLE)));
-		}
-		if (pc.hasSkillEffect(SKILL_BLOODLUST)) {
-			pc.sendPackets(new S_SkillBrave(pc.getId(), 6, pc
-					.getSkillEffectTimeSec(SKILL_BLOODLUST)));
-		}
-		if (pc.hasSkillEffect(GMSTATUS_CRAZY)) {
-			pc
-					.sendPackets(new S_SkillBrave(pc.getId(), 5, pc
-							.getSkillEffectTimeSec(GMSTATUS_CRAZY)));
+			pc.sendPackets(new S_SkillIconWindShackle(pc.getId(), pc.getSkillEffectTimeSec(SKILL_WIND_SHACKLE)));
 		}
 	}
 
