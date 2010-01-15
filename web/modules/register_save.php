@@ -2,8 +2,8 @@
 require("../setup.php");
 $id=$_POST[id];
 $d_pass=$_POST[pass];
-$e_username=hash('md5', $username);
-$e_pass=hash('sha256', "$d_PasswordSalt$d_pass$e_username");
+$e_id=hash('md5', $id);
+$e_pass=hash('sha256', "$d_PasswordSalt$d_pass$e_id");
 //$e_pass=base64_encode(mhash(MHASH_SHA1,$d_pass));
 $e_mail=$_POST[e_mail];
 $username=$_POST[username];
