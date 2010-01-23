@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.templates;
 
 import java.sql.Connection;
@@ -27,6 +26,7 @@ import java.util.logging.Logger;
 
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.IdFactory;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Bookmarks;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -56,10 +56,8 @@ public class L1BookMark {
 			Connection con = null;
 			PreparedStatement pstm = null;
 			try {
-
 				con = L1DatabaseFactory.getInstance().getConnection();
-				pstm = con
-						.prepareStatement("DELETE FROM character_teleport WHERE id=?");
+				pstm = con.prepareStatement("DELETE FROM character_teleport WHERE id=?");
 				pstm.setInt(1, book.getId());
 				pstm.execute();
 				player.removeBookMark(book);
@@ -80,7 +78,7 @@ public class L1BookMark {
 //		}
 
 		if (!pc.getMap().isMarkable()) {
-			pc.sendPackets(new S_ServerMessage(214)); // \f1ここを記憶することができません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$214));
 			return;
 		}
 
@@ -100,11 +98,9 @@ public class L1BookMark {
 
 			Connection con = null;
 			PreparedStatement pstm = null;
-
 			try {
 				con = L1DatabaseFactory.getInstance().getConnection();
-				pstm = con
-						.prepareStatement("INSERT INTO character_teleport SET id = ?, char_id = ?, name = ?, locx = ?, locy = ?, mapid = ?");
+				pstm = con.prepareStatement("INSERT INTO character_teleport SET id = ?, char_id = ?, name = ?, locx = ?, locy = ?, mapid = ?");
 				pstm.setInt(1, bookmark.getId());
 				pstm.setInt(2, bookmark.getCharId());
 				pstm.setString(3, bookmark.getName());
@@ -120,10 +116,9 @@ public class L1BookMark {
 			}
 
 			pc.addBookMark(bookmark);
-			pc.sendPackets(new S_Bookmarks(s, bookmark.getMapId(),
-					bookmark.getId()));
+			pc.sendPackets(new S_Bookmarks(s, bookmark.getMapId(), bookmark.getId()));
 		} else {
-			pc.sendPackets(new S_ServerMessage(327)); // 同じ名前がすでに存在しています。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$327));
 		}
 	}
 

@@ -24,6 +24,7 @@ import net.l1j.server.items.ItemId;
 import net.l1j.log.LogEnchantFail;
 import net.l1j.log.LogEnchantSuccess;
 import net.l1j.server.model.L1PcInventory;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ItemStatus;
@@ -156,7 +157,7 @@ public class Enchant {
 				}
 			}
 		}
-		pc.sendPackets(new S_ServerMessage(161, s, sa, sb));
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$161, s, sa, sb));
 		int oldEnchantLvl = item.getEnchantLevel();
 		int newEnchantLvl = item.getEnchantLevel() + i;
 		int safe_enchant = item.getItem().get_safeenchant();
@@ -207,7 +208,7 @@ public class Enchant {
 			pc.sendPackets(new S_ItemStatus(item));
 			pc.getInventory().saveItem(item, L1PcInventory.COL_ENCHANTLVL);
 			item.setproctect(false);
-			pc.sendPackets(new S_ServerMessage(1310));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1310));
 			return;
 		}
 
@@ -256,7 +257,7 @@ public class Enchant {
 				}
 			}
 		}
-		pc.sendPackets(new S_ServerMessage(164, s, sa));
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$164, s, sa));
 		pc.getInventory().removeItem(item, item.getCount());
 	}
 

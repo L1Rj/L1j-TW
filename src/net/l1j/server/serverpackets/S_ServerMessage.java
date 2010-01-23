@@ -18,15 +18,11 @@
  */
 package net.l1j.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.Opcodes;
+import net.l1j.server.model.id.SystemMessageId;
 
 public class S_ServerMessage extends ServerBasePacket {
 	private static final String S_SERVER_MESSAGE = "[S] S_ServerMessage";
-
-	private static Logger _log = Logger.getLogger(S_ServerMessage.class
-			.getName());
 
 	public static final int NO_PLEDGE = 208;
 
@@ -46,66 +42,68 @@ public class S_ServerMessage extends ServerBasePacket {
 
 	private byte[] _byte = null;
 
-	public S_ServerMessage(int type) {
-		buildPacket(type, null, null, null, null, null, 0);
+	public S_ServerMessage(SystemMessageId msgId) {
+		buildPacket(msgId.getId(), null, null, null, null, null, 0);
 	}
 
-	public S_ServerMessage(int type, String msg1) {
-		buildPacket(type, msg1, null, null, null, null, 1);
+	public S_ServerMessage(SystemMessageId msgId, String msg1) {
+		buildPacket(msgId.getId(), msg1, null, null, null, null, 1);
 	}
 
-	public S_ServerMessage(int type, String msg1, String msg2) {
-		buildPacket(type, msg1, msg2, null, null, null, 2);
+	public S_ServerMessage(SystemMessageId msgId, String msg1, String msg2) {
+		buildPacket(msgId.getId(), msg1, msg2, null, null, null, 2);
 	}
 
-	public S_ServerMessage(int type, String msg1, String msg2, String msg3) {
-		buildPacket(type, msg1, msg2, msg3, null, null, 3);
+	public S_ServerMessage(SystemMessageId msgId, String msg1, String msg2, String msg3) {
+		buildPacket(msgId.getId(), msg1, msg2, msg3, null, null, 3);
 	}
 
-	public S_ServerMessage(int type, String msg1, String msg2, String msg3,
-			String msg4) {
-		buildPacket(type, msg1, msg2, msg3, msg4, null, 4);
+	public S_ServerMessage(SystemMessageId msgId, String msg1, String msg2, String msg3, String msg4) {
+		buildPacket(msgId.getId(), msg1, msg2, msg3, msg4, null, 4);
 	}
 
-	public S_ServerMessage(int type, String msg1, String msg2, String msg3,
-			String msg4, String msg5) {
-
-		buildPacket(type, msg1, msg2, msg3, msg4, msg5, 5);
+	public S_ServerMessage(SystemMessageId msgId, String msg1, String msg2, String msg3, String msg4, String msg5) {
+		buildPacket(msgId.getId(), msg1, msg2, msg3, msg4, msg5, 5);
 	}
 
-	private void buildPacket(int type, String msg1, String msg2, String msg3,
-			String msg4, String msg5, int check) {
-
+	private void buildPacket(int id, String msg1, String msg2, String msg3, String msg4, String msg5, int type) {
 		writeC(Opcodes.S_OPCODE_SERVERMSG);
-		writeH(type);
+		writeH(id);
 
-		if (check == 0) {
-			writeC(0);
-		} else if (check == 1) {
-			writeC(1);
-			writeS(msg1);
-		} else if (check == 2) {
-			writeC(2);
-			writeS(msg1);
-			writeS(msg2);
-		} else if (check == 3) {
-			writeC(3);
-			writeS(msg1);
-			writeS(msg2);
-			writeS(msg3);
-		} else if (check == 4) {
-			writeC(4);
-			writeS(msg1);
-			writeS(msg2);
-			writeS(msg3);
-			writeS(msg4);
-		} else {
-			writeC(5);
-			writeS(msg1);
-			writeS(msg2);
-			writeS(msg3);
-			writeS(msg4);
-			writeS(msg5);
+		switch (type) {
+			case 0:
+				writeC(0);
+			break;
+			case 1:
+				writeC(1);
+				writeS(msg1);
+			break;
+			case 2:
+				writeC(2);
+				writeS(msg1);
+				writeS(msg2);
+			break;
+			case 3:
+				writeC(3);
+				writeS(msg1);
+				writeS(msg2);
+				writeS(msg3);
+			break;
+			case 4:
+				writeC(4);
+				writeS(msg1);
+				writeS(msg2);
+				writeS(msg3);
+				writeS(msg4);
+			break;
+			case 5:
+				writeC(5);
+				writeS(msg1);
+				writeS(msg2);
+				writeS(msg3);
+				writeS(msg4);
+				writeS(msg5);
+			break;
 		}
 	}
 

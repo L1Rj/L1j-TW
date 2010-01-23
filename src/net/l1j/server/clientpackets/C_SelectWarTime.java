@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.Calendar;
@@ -26,22 +25,18 @@ import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.CastleTable;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_WarTime;
 import net.l1j.server.templates.L1Castle;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_SelectWarTime extends ClientBasePacket {
-
 	private static final String C_SELECT_WAR_TIME = "[C] C_SelectWarTime";
-	private static Logger _log = Logger.getLogger(C_SelectWarTime.class
-			.getName());
 
-	public C_SelectWarTime(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	private static Logger _log = Logger.getLogger(C_SelectWarTime.class.getName());
+
+	public C_SelectWarTime(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		L1PcInstance player = clientthread.getActiveChar();
@@ -50,12 +45,11 @@ public class C_SelectWarTime extends ClientBasePacket {
 		if (clan != null) {
 			int castle_id = clan.getCastleId();
 			if (castle_id != 0 && clan.getLeaderName().equals(player.getName())) { // 城主クラン
-				L1Castle l1castle = CastleTable.getInstance().getCastleTable(
-						castle_id);
+				L1Castle l1castle = CastleTable.getInstance().getCastleTable(castle_id);
 				Calendar cal = l1castle.getWarTime();
 				if (!l1castle.getRegTimeOver()) {
 					player.sendPackets(new S_WarTime(cal));
-					player.sendPackets(new S_ServerMessage(300));
+					player.sendPackets(new S_ServerMessage(SystemMessageId.$300));
 				}
 			}
 		}
@@ -65,5 +59,4 @@ public class C_SelectWarTime extends ClientBasePacket {
 	public String getType() {
 		return C_SELECT_WAR_TIME;
 	}
-
 }

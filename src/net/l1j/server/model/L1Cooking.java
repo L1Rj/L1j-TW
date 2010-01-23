@@ -20,6 +20,7 @@ package net.l1j.server.model;
 
 import java.util.logging.Logger;
 
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_HPUpdate;
@@ -47,8 +48,8 @@ public class L1Cooking {
 				|| itemId == 49056 || itemId == 49064
 				|| itemId == 49251 || itemId == 49259) { // デザート
 			if (pc.get_food() != 225) {
-				pc.sendPackets(new S_ServerMessage(74, item
-						.getNumberedName(1))); // \f1%0は使用できません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$74, item
+						.getNumberedName(1)));
 				return;
 			}
 		}
@@ -245,7 +246,7 @@ public class L1Cooking {
 			}
 			eatCooking(pc, cookingId, time);
 		}
-		pc.sendPackets(new S_ServerMessage(76, item.getNumberedName(1))); // \f1%0を食べました。
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$76, item.getNumberedName(1)));
 		pc.getInventory().removeItem(item , 1);
 	}
 

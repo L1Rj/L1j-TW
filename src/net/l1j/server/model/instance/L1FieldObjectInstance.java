@@ -25,6 +25,7 @@ import net.l1j.server.model.L1HauntedHouse;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.skills.SkillUse;
 import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -55,7 +56,7 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 						if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) {
 							item.setCount(count);
 							pc.getInventory().storeItem(item);
-							pc.sendPackets(new S_ServerMessage(403, item.getLogName())); // %0を手に入れました。
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$403, item.getLogName()));
 						}
 					}
 					L1HauntedHouse.getInstance().endHauntedHouse();
@@ -77,7 +78,7 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 						if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) {
 							item.setCount(count);
 							pc.getInventory().storeItem(item);
-							pc.sendPackets(new S_ServerMessage(403, item.getLogName())); // %0を手に入れました。
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$403, item.getLogName()));
 						}
 					}
 					SkillUse skilluse = new SkillUse();

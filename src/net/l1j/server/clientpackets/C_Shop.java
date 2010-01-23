@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
@@ -25,6 +24,7 @@ import javolution.util.FastTable;
 
 import net.l1j.server.ActionCodes;
 import net.l1j.server.ClientThread;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DollInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -35,12 +35,9 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1PrivateShopBuyList;
 import net.l1j.server.templates.L1PrivateShopSellList;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Shop extends ClientBasePacket {
-
 	private static final String C_SHOP = "[C] C_Shop";
+
 	private static Logger _log = Logger.getLogger(C_Shop.class.getName());
 
 	public C_Shop(byte abyte0[], ClientThread clientthread) {
@@ -53,7 +50,7 @@ public class C_Shop extends ClientBasePacket {
 
 		int mapId = pc.getMapId();
 		if (mapId != 340 && mapId != 350 && mapId != 360 && mapId != 370) {
-			pc.sendPackets(new S_ServerMessage(876)); // この場所では個人商店を開けません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$876));
 			return;
 		}
 
@@ -76,8 +73,7 @@ public class C_Shop extends ClientBasePacket {
 				checkItem = pc.getInventory().getItem(sellObjectId);
 				if (!checkItem.getItem().isTradable()) {
 					tradable = false;
-					pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
-							checkItem.getItem().getName(), "不可交易。"));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "不可交易。"));
 				}
 				Object[] petlist = pc.getPetList().values().toArray();
 				for (Object petObject : petlist) {
@@ -85,9 +81,7 @@ public class C_Shop extends ClientBasePacket {
 						L1PetInstance pet = (L1PetInstance) petObject;
 						if (checkItem.getId() == pet.getItemObjId()) {
 							tradable = false;
-							pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
-									checkItem.getItem().getName(),
-									"不可交易。"));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "不可交易。"));
 							break;
 						}
 					}
@@ -98,9 +92,7 @@ public class C_Shop extends ClientBasePacket {
 						L1DollInstance doll = (L1DollInstance) dollObject;
 						if (checkItem.getId() == doll.getItemObjId()) {
 							tradable = false;
-							pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
-									checkItem.getItem().getName(),
-									"不可交易。"));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "不可交易。"));
 							break;
 						}
 					}
@@ -123,13 +115,10 @@ public class C_Shop extends ClientBasePacket {
 				checkItem = pc.getInventory().getItem(buyObjectId);
 				if (!checkItem.getItem().isTradable()) {
 					tradable = false;
-					pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
-							checkItem.getItem().getName(), "不可交易。"));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "不可交易。"));
 				}
 				if (checkItem.getBless() >= 128) { // 封印的裝備
-					// \f1%0は捨てたりまたは他人に讓ることができません。
-					pc.sendPackets(new S_ServerMessage(210, checkItem.getItem()
-							.getName()));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, checkItem.getItem().getName()));
 					return;
 				}
 
@@ -139,9 +128,7 @@ public class C_Shop extends ClientBasePacket {
 						L1PetInstance pet = (L1PetInstance) petObject;
 						if (checkItem.getId() == pet.getItemObjId()) {
 							tradable = false;
-							pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
-									checkItem.getItem().getName(),
-									"不可交易。"));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "不可交易。"));
 							break;
 						}
 					}
@@ -152,9 +139,7 @@ public class C_Shop extends ClientBasePacket {
 						L1DollInstance doll = (L1DollInstance) dollObject;
 						if (checkItem.getId() == doll.getItemObjId()) {
 							tradable = false;
-							pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
-									checkItem.getItem().getName(),
-									"不可交易。"));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "不可交易。"));
 							break;
 						}
 					}
@@ -169,27 +154,21 @@ public class C_Shop extends ClientBasePacket {
 				sellList.clear();
 				buyList.clear();
 				pc.setPrivateShop(false);
-				pc.sendPackets(new S_DoActionGFX(pc.getId(),
-						ActionCodes.ACTION_Idle));
-				pc.broadcastPacket(new S_DoActionGFX(pc.getId(),
-						ActionCodes.ACTION_Idle));
+				pc.sendPackets(new S_DoActionGFX(pc.getId(), ActionCodes.ACTION_Idle));
+				pc.broadcastPacket(new S_DoActionGFX(pc.getId(), ActionCodes.ACTION_Idle));
 				return;
 			}
 			byte[] chat = readByte();
 			pc.setShopChat(chat);
 			pc.setPrivateShop(true);
-			pc.sendPackets(new S_DoActionShop(pc.getId(),
-					ActionCodes.ACTION_Shop, chat));
-			pc.broadcastPacket(new S_DoActionShop(pc.getId(),
-					ActionCodes.ACTION_Shop, chat));
+			pc.sendPackets(new S_DoActionShop(pc.getId(), ActionCodes.ACTION_Shop, chat));
+			pc.broadcastPacket(new S_DoActionShop(pc.getId(), ActionCodes.ACTION_Shop, chat));
 		} else if (type == 1) { // 終了
 			sellList.clear();
 			buyList.clear();
 			pc.setPrivateShop(false);
-			pc.sendPackets(new S_DoActionGFX(pc.getId(),
-					ActionCodes.ACTION_Idle));
-			pc.broadcastPacket(new S_DoActionGFX(pc.getId(),
-					ActionCodes.ACTION_Idle));
+			pc.sendPackets(new S_DoActionGFX(pc.getId(), ActionCodes.ACTION_Idle));
+			pc.broadcastPacket(new S_DoActionGFX(pc.getId(), ActionCodes.ACTION_Idle));
 		}
 	}
 
@@ -197,5 +176,4 @@ public class C_Shop extends ClientBasePacket {
 	public String getType() {
 		return C_SHOP;
 	}
-
 }

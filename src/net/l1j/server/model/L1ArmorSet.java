@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javolution.util.FastTable;
 
 import net.l1j.server.datatables.ArmorSetTable;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -282,7 +283,7 @@ class PolymorphEffect implements L1ArmorSetEffect {
 		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS
 				|| awakeSkillId == SKILL_AWAKEN_FAFURION
 				|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
-			pc.sendPackets(new S_ServerMessage(1384)); // 
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1384));
 			return;
 		}
 		if (_gfxId == 6080 || _gfxId == 6094) {
@@ -304,7 +305,7 @@ class PolymorphEffect implements L1ArmorSetEffect {
 		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS
 				|| awakeSkillId == SKILL_AWAKEN_FAFURION
 				|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
-			pc.sendPackets(new S_ServerMessage(1384)); // 
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1384));
 			return;
 		}
 		if (_gfxId == 6080) {

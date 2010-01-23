@@ -26,6 +26,7 @@ import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
@@ -61,35 +62,30 @@ public class C_BanClan extends ClientBasePacket {
 						tempPc.setClanRank(0);
 						tempPc.save(); // DBにキャラクター情報を書き⑸む
 						clan.delMemberName(tempPc.getName());
-						tempPc.sendPackets(new S_ServerMessage(238, pc
-								.getClanname())); // あなたは%0血盟から追放されました。
-						pc.sendPackets(new S_ServerMessage(240, tempPc
-								.getName())); // %0があなたの血盟から追放されました。
+						tempPc.sendPackets(new S_ServerMessage(SystemMessageId.$238, pc.getClanname()));
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$240, tempPc.getName()));
 					} else {
-						pc.sendPackets(new S_ServerMessage(109, s)); // %0という名前の人はいません。
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$109, s));
 					}
 				} else { // オフライン中
 					try {
-						L1PcInstance restorePc = CharacterTable.getInstance()
-								.restoreCharacter(s);
-						if (restorePc != null
-								&& restorePc.getClanid() == pc.getClanid()) { // 同じクラン
+						L1PcInstance restorePc = CharacterTable.getInstance().restoreCharacter(s);
+						if (restorePc != null && restorePc.getClanid() == pc.getClanid()) { // 同じクラン
 							restorePc.setClanid(0);
 							restorePc.setClanname("");
 							restorePc.setClanRank(0);
 							restorePc.save(); // DBにキャラクター情報を書き⑸む
 							clan.delMemberName(restorePc.getName());
-							pc.sendPackets(new S_ServerMessage(240, restorePc
-									.getName())); // %0があなたの血盟から追放されました。
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$240, restorePc.getName()));
 						} else {
-							pc.sendPackets(new S_ServerMessage(109, s)); // %0という名前の人はいません。
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$109, s));
 						}
 					} catch (Exception e) {
 						_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 					}
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(518)); // この命令は血盟の君主のみが利用できます。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$518));
 			}
 		}
 	}

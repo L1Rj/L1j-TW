@@ -27,6 +27,7 @@ import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.CastleTable;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Castle;
@@ -66,7 +67,7 @@ public class C_ChangeWarTime extends ClientBasePacket {
 							nextWarTime);
 					l1castle.setRegTimeOver(true);
 				}
-				player.sendPackets(new S_ServerMessage(304, nextWarTime.get(1)
+				player.sendPackets(new S_ServerMessage(SystemMessageId.$304, nextWarTime.get(1)
 						+ "年" + (nextWarTime.get(2) + 1) + "月"
 						+ nextWarTime.get(5) + "日" + nextWarTime.get(11) + "時"
 						+ nextWarTime.get(12) + "分"));

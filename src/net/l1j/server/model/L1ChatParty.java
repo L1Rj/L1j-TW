@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import javolution.util.FastTable;
 
 import net.l1j.Config;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
@@ -103,7 +104,7 @@ public class L1ChatParty {
 
 		for (L1PcInstance member : members) {
 			removeMember(member);
-			member.sendPackets(new S_ServerMessage(418)); // パーティーを解散しました。
+			member.sendPackets(new S_ServerMessage(SystemMessageId.$418));
 		}
 	}
 
@@ -143,7 +144,7 @@ public class L1ChatParty {
 			// 殘りのパーティーメンバーが２人以上いる
 			removeMember(pc);
 		}
-		pc.sendPackets(new S_ServerMessage(419)); // パーティーから追放されました。
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$419));
 	}
 
 	public L1PcInstance[] getMembers() {
@@ -155,8 +156,7 @@ public class L1ChatParty {
 	}
 
 	private void sendLeftMessage(L1PcInstance sendTo, L1PcInstance left) {
-		// %0がパーティーから去りました。
-		sendTo.sendPackets(new S_ServerMessage(420, left.getName()));
+		sendTo.sendPackets(new S_ServerMessage(SystemMessageId.$420, left.getName()));
 	}
 
 }

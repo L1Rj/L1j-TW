@@ -22,6 +22,7 @@ import java.util.Random;
 
 import net.l1j.server.items.ItemAction;
 import net.l1j.server.items.ItemId;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_CurseBlind;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -61,7 +62,7 @@ public class Potion {
 	/** 治癒藥水動作 */
 	public static void Healing(L1PcInstance pc, int healHp, int gfxid) {
 		if (pc.hasSkillEffect(71) == true) { // ディケイ ポーションの狀態
-			pc.sendPackets(new S_ServerMessage(698)); // 魔力によって何も飲むことができません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
 			return;
 		}
 
@@ -69,7 +70,7 @@ public class Potion {
 
 		pc.sendPackets(new S_SkillSound(pc.getId(), gfxid));
 		pc.broadcastPacket(new S_SkillSound(pc.getId(), gfxid));
-		pc.sendPackets(new S_ServerMessage(77)); // \f1氣分が良くなりました。
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$77));
 		healHp *= (_random.nextGaussian() / 5.0D) + 1.0D;
 		if (pc.hasSkillEffect(SKILL_POLLUTE_WATER)) { // ポルートウォーター中は回復量1/2倍
 			healHp /= 2;
@@ -80,7 +81,7 @@ public class Potion {
 	/** 加速藥水動作 */
 	public static void Green(L1PcInstance pc, int itemId) {
 		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
-			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
 			return;
 		}
 
@@ -159,7 +160,7 @@ public class Potion {
 	/** 勇敢藥水動作 */
 	public static void Brave(L1PcInstance pc, int item_id) {
 		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
-			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
 			return;
 		}
 
@@ -279,7 +280,7 @@ public class Potion {
 	/** 加速魔力回復動作 */
 	public static void Blue(L1PcInstance pc, int item_id) {
 		if (pc.hasSkillEffect(SKILL_DECAY_POTION)) { // ディケイポーションの狀態
-			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
 			return;
 		}
 
@@ -300,13 +301,13 @@ public class Potion {
 
 		pc.setSkillEffect(STATUS_BLUE_POTION, time * 1000);
 
-		pc.sendPackets(new S_ServerMessage(1007)); // MPの回復速度が速まります。
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$1007));
 	}
 
 	/** 慎重藥水動作 */
 	public static void Wisdom(L1PcInstance pc, int item_id) {
 		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
-			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
 			return;
 		}
 
@@ -334,7 +335,7 @@ public class Potion {
 	/** 伊娃的祝福動作 */
 	public static void BlessOfEva(L1PcInstance pc, int item_id) {
 		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
-			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
 			return;
 		}
 
@@ -367,7 +368,7 @@ public class Potion {
 	/** 黑色藥水動作 */
 	public static void Blind(L1PcInstance pc) {
 		if (pc.hasSkillEffect(SKILL_DECAY_POTION)) {
-			pc.sendPackets(new S_ServerMessage(698)); // \f1魔力によって何も飲むことができません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
 			return;
 		}
 

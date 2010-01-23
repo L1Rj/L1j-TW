@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
@@ -24,24 +23,20 @@ import java.util.logging.Logger;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Trade;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_TradeOK extends ClientBasePacket {
-
 	private static final String C_TRADE_CANCEL = "[C] C_TradeOK";
+
 	private static Logger _log = Logger.getLogger(C_TradeOK.class.getName());
 
-	public C_TradeOK(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_TradeOK(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		L1PcInstance player = clientthread.getActiveChar();
-		L1PcInstance trading_partner = (L1PcInstance) L1World.getInstance()
-				.findObject(player.getTradeID());
+		L1PcInstance trading_partner = (L1PcInstance) L1World.getInstance().findObject(player.getTradeID());
 		if (trading_partner != null) {
 			player.setTradeOk(true);
 
@@ -49,15 +44,14 @@ public class C_TradeOK extends ClientBasePacket {
 			{
 				// (180 - 16)個未滿ならトレード成立。
 				// 本來は重なるアイテム（アデナ等）を既に持っている場合を考慮しないければいけない。
-				if (player.getInventory().getSize() < (180 - 16)
-						&& trading_partner.getInventory().getSize() < (180 - 16)) // お互いのアイテムを相手に渡す
+				if (player.getInventory().getSize() < (180 - 16) && trading_partner.getInventory().getSize() < (180 - 16)) // お互いのアイテムを相手に渡す
 				{
 					L1Trade trade = new L1Trade();
 					trade.TradeOK(player);
 				} else // お互いのアイテムを手元に戾す
 				{
-					player.sendPackets(new S_ServerMessage(263)); // \f1一人のキャラクターが持って步けるアイテムは最大180個までです。
-					trading_partner.sendPackets(new S_ServerMessage(263)); // \f1一人のキャラクターが持って步けるアイテムは最大180個までです。
+					player.sendPackets(new S_ServerMessage(SystemMessageId.$263));
+					trading_partner.sendPackets(new S_ServerMessage(SystemMessageId.$263));
 					L1Trade trade = new L1Trade();
 					trade.TradeCancel(player);
 				}
@@ -69,5 +63,4 @@ public class C_TradeOK extends ClientBasePacket {
 	public String getType() {
 		return C_TRADE_CANCEL;
 	}
-
 }

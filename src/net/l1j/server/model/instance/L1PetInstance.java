@@ -32,6 +32,7 @@ import net.l1j.server.model.L1Attack;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_HPMeter;
 import net.l1j.server.serverpackets.S_NpcChatPacket;
@@ -321,7 +322,7 @@ public class L1PetInstance extends L1NpcInstance {
 			if (_petMaster.getInventory().checkAddItem( // 容量重量確認及びメッセージ送信
 					item, item.getCount()) == L1Inventory.OK) {
 				_inventory.tradeItem(item, item.getCount(), targetInventory);
-				_petMaster.sendPackets(new S_ServerMessage(143, getName(), item.getLogName())); // \f1%0が%1をくれました。
+				_petMaster.sendPackets(new S_ServerMessage(SystemMessageId.$143, getName(), item.getLogName()));
 			} else { // 持てないので足元に落とす
 				targetInventory = L1World.getInstance().getInventory(getX(), getY(), getMapId());
 				_inventory.tradeItem(item, item.getCount(), targetInventory);
@@ -347,7 +348,7 @@ public class L1PetInstance extends L1NpcInstance {
             }
             if (_petMaster.getInventory().checkAddItem(item, item.getCount()) == L1Inventory.OK) {
                 _inventory.tradeItem(item, item.getCount(), targetInventory);
-                _petMaster.sendPackets(new S_ServerMessage(143, getName(), item.getLogName()));
+                _petMaster.sendPackets(new S_ServerMessage(SystemMessageId.$143, getName(), item.getLogName()));
             } else {
                 targetInventory = L1World.getInstance().getInventory(getX(), getY(), getMapId());
                 _inventory.tradeItem(item, item.getCount(), targetInventory);

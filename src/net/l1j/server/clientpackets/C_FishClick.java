@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 import net.l1j.server.ClientThread;
 import net.l1j.server.FishingTimeController;
 import net.l1j.server.datatables.ItemTable;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.L1World;
@@ -97,11 +98,11 @@ public class C_FishClick extends ClientBasePacket {
 			} else if (chance < 171) {
 				successFishing(pc, 41252, "$5248"); // 1.0%
 			} else {
-				pc.sendPackets(new S_ServerMessage(1136, "")); // 釣りに失敗しました。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1136, ""));
 			}
 		} else {
 			finishFishing(pc);
-			pc.sendPackets(new S_ServerMessage(1136, "")); // 釣りに失敗しました。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1136, ""));
 		}
 	} // 5.19 End
 
@@ -131,7 +132,7 @@ public class C_FishClick extends ClientBasePacket {
 			L1World.getInstance().getInventory(Loc[0], Loc[1],
 					pc.getMapId()).storeItem(item);
 		}
-		pc.sendPackets(new S_ServerMessage(1185, message)); // 釣りに成功して%0%oを釣りました。
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$1185, message));
 	} // 5.19End
 
 	@Override

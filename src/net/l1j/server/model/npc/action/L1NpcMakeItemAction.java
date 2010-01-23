@@ -29,6 +29,7 @@ import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1ObjectAmount;
 import net.l1j.server.model.L1PcInventory;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -88,9 +89,9 @@ public class L1NpcMakeItemAction extends L1NpcXmlAction {
 					material.getAmount() * amount)) {
 				L1Item temp = ItemTable.getInstance().getTemplate(
 						material.getObject());
-				pc.sendPackets(new S_ServerMessage(337, temp.getName() + "("
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$337, temp.getName() + "("
 						+ ((material.getAmount() * amount) - pc.getInventory()
-						.countItems(temp.getItemId())) + ")")); // \f1%0が不足しています。
+						.countItems(temp.getItemId())) + ")"));
 				isEnoughMaterials = false;
 			}
 		}
@@ -117,12 +118,12 @@ public class L1NpcMakeItemAction extends L1NpcXmlAction {
 		}
 		// 容量確認
 		if (pc.getInventory().getSize() + countToCreate > 180) {
-			pc.sendPackets(new S_ServerMessage(263)); // \f1一人のキャラクターが持って步けるアイテムは最大180個までです。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$263));
 			return false;
 		}
 		// 重量確認
 		if (pc.getMaxWeight() < pc.getInventory().getWeight() + weight) {
-			pc.sendPackets(new S_ServerMessage(82)); // アイテムが重すぎて、これ以上持てません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$82));
 			return false;
 		}
 
@@ -142,7 +143,7 @@ public class L1NpcMakeItemAction extends L1NpcXmlAction {
 					itemName = itemName + " (" + makingItem.getAmount()
 							* amount + ")";
 				}
-				pc.sendPackets(new S_ServerMessage(143, npcName, itemName)); // \f1%0が%1をくれました。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
 			}
 		}
 		return true;

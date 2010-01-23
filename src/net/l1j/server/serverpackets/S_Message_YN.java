@@ -19,36 +19,42 @@
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
+import net.l1j.server.model.id.SystemMessageId;
 
 public class S_Message_YN extends ServerBasePacket {
+	private static final String S_MESSAGE_YN = "[S] S_Message_YN";
 
 	private byte[] _byte = null;
 
-	public S_Message_YN(int type, String msg1) {
-		buildPacket(type, msg1, null, null, 1);
+	public S_Message_YN(SystemMessageId msgId, String msg1) {
+		buildPacket(msgId.getId(), msg1, null, null, 1);
 	}
 
-	public S_Message_YN(int type, String msg1, String msg2) {
-		buildPacket(type, msg1, msg2, null, 2);
+	public S_Message_YN(SystemMessageId msgId, String msg1, String msg2) {
+		buildPacket(msgId.getId(), msg1, msg2, null, 2);
 	}
 
-	public S_Message_YN(int type, String msg1, String msg2, String msg3) {
-		buildPacket(type, msg1, msg2, msg3, 3);
+	public S_Message_YN(SystemMessageId msgId, String msg1, String msg2, String msg3) {
+		buildPacket(msgId.getId(), msg1, msg2, msg3, 3);
 	}
 
-	private void buildPacket(int type, String msg1, String msg2, String msg3,
-			int check) {
+	private void buildPacket(int msgId, String msg1, String msg2, String msg3, int type) {
 		writeC(Opcodes.S_OPCODE_YES_NO);
-		writeH(type);
-		if (check == 1) {
-			writeS(msg1);
-		} else if (check == 2) {
-			writeS(msg1);
-			writeS(msg2);
-		} else if (check == 3) {
-			writeS(msg1);
-			writeS(msg2);
-			writeS(msg3);
+		writeH(msgId);
+
+		switch (type) {
+			case 1:
+				writeS(msg1);
+			break;
+			case 2:
+				writeS(msg1);
+				writeS(msg2);
+			break;
+			case 3:
+				writeS(msg1);
+				writeS(msg2);
+				writeS(msg3);
+			break;
 		}
 	}
 
@@ -62,6 +68,6 @@ public class S_Message_YN extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return "[S] S_Message_YN";
+		return S_MESSAGE_YN;
 	}
 }

@@ -30,6 +30,7 @@ import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.L1War;
 import net.l1j.server.model.L1WarSpawn;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.serverpackets.S_CastleMaster;
 import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -68,7 +69,7 @@ public class L1CrownInstance extends L1NpcInstance {
 			return;
 		}
 		if (clan.getCastleId() != 0) { // 城主クラン
-			player.sendPackets(new S_ServerMessage(474)); // 你已經擁有城堡，無法再擁有其他城堡。
+			player.sendPackets(new S_ServerMessage(SystemMessageId.$474));
 			return;
 		}
 
@@ -141,8 +142,7 @@ public class L1CrownInstance extends L1NpcInstance {
 		L1PcInstance[] clanMember = clan.getOnlineClanMember();
 
 		if (clanMember.length > 0) {
-			// 城を占据しました。
-			S_ServerMessage s_serverMessage = new S_ServerMessage(643);
+			S_ServerMessage s_serverMessage = new S_ServerMessage(SystemMessageId.$643);
 			for (L1PcInstance pc : clanMember) {
 				pc.sendPackets(s_serverMessage);
 			}

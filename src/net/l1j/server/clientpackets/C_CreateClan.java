@@ -25,6 +25,7 @@ import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.ClanTable;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
@@ -49,20 +50,19 @@ public class C_CreateClan extends ClientBasePacket {
 				for (L1Clan clan : L1World.getInstance().getAllClans()) { // 同じクラン名をチェック
 					if (clan.getClanName().toLowerCase()
 							.equals(s.toLowerCase())) {
-						l1pcinstance.sendPackets(new S_ServerMessage(99)); // \f1同じ名前の血盟が存在します。
+						l1pcinstance.sendPackets(new S_ServerMessage(SystemMessageId.$99));
 						return;
 					}
 				}
-				L1Clan clan = ClanTable.getInstance().createClan(l1pcinstance,
-						s); // クラン創設
+				L1Clan clan = ClanTable.getInstance().createClan(l1pcinstance, s); // クラン創設
 				if (clan != null) {
-					l1pcinstance.sendPackets(new S_ServerMessage(84, s)); // \f1%0血盟が創設されました。
+					l1pcinstance.sendPackets(new S_ServerMessage(SystemMessageId.$84, s));
 				}
 			} else {
-				l1pcinstance.sendPackets(new S_ServerMessage(86)); // \f1すでに血盟を結成されているので作成できません。
+				l1pcinstance.sendPackets(new S_ServerMessage(SystemMessageId.$86));
 			}
 		} else {
-			l1pcinstance.sendPackets(new S_ServerMessage(85)); // \f1プリンスとプリンセスだけが血盟を創設できます。
+			l1pcinstance.sendPackets(new S_ServerMessage(SystemMessageId.$85));
 		}
 	}
 

@@ -20,6 +20,7 @@ package net.l1j.server.items.actions;
 
 import net.l1j.Config;
 import net.l1j.server.datatables.NpcTable;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DollInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_OwnCharStatus;
@@ -45,12 +46,11 @@ public class MagicDoll {
 
 		if (isAppear) {
 			if (!pc.getInventory().checkItem(41246, 50)) {
-				pc.sendPackets(new S_ServerMessage(337, "$5240")); // \f1%0が不足しています。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$337, "$5240"));
 				return;
 			}
 			if (dollList.length >= Config.MAX_DOLL_COUNT) {
-				// \f1これ以上のモンスターを操ることはできません。
-				pc.sendPackets(new S_ServerMessage(319));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$319));
 				return;
 			}
 			int npcId = 0;

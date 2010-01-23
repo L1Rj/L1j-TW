@@ -21,6 +21,7 @@ package net.l1j.server.items.actions;
 import net.l1j.server.items.ItemAction;
 import net.l1j.server.model.L1PcInventory;
 import net.l1j.server.model.L1PolyMorph;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_OwnCharAttrDef;
@@ -53,24 +54,24 @@ public class Armor {
 
 			if (type == 13 && pcInventory.getTypeEquipped(2, 7) >= 1 || type == 7
 					&& pcInventory.getTypeEquipped(2, 13) >= 1) { // 臂甲與盾牌不可同時裝備
-				activeChar.sendPackets(new S_ServerMessage(124)); // \f1すでに何かを装備しています。
+				activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$124));
 				return;
 			}
 			if (type == 7 && activeChar.getWeapon() != null) { // シールドの場合、武器を裝備していたら兩手武器チェック
 				if (activeChar.getWeapon().getItem().isTwohandedWeapon()) { // 兩手武器
-					activeChar.sendPackets(new S_ServerMessage(129)); // \f1兩手の武器を武裝したままシールドを著用することはできません。
+					activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$129));
 					return;
 				}
 			}
 
 			if (type == 3 && pcInventory.getTypeEquipped(2, 4) >= 1) { // シャツの場合、マントを著てないか確認
-				activeChar.sendPackets(new S_ServerMessage(126, "$224", "$225")); // \f1%1上に%0を著ることはできません。
+				activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$126, "$224", "$225"));
 				return;
 			} else if ((type == 3) && pcInventory.getTypeEquipped(2, 2) >= 1) { // シャツの場合、メイルを著てないか確認
-				activeChar.sendPackets(new S_ServerMessage(126, "$224", "$226")); // \f1%1上に%0を著ることはできません。
+				activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$126, "$224", "$226"));
 				return;
 			} else if ((type == 2) && pcInventory.getTypeEquipped(2, 4) >= 1) { // メイルの場合、マントを著てないか確認
-				activeChar.sendPackets(new S_ServerMessage(126, "$226", "$225")); // \f1%1上に%0を著ることはできません。
+				activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$126, "$226", "$225"));
 				return;
 			}
 
@@ -79,14 +80,14 @@ public class Armor {
 			pcInventory.setEquipped(armor, true);
 		} else if (armor.isEquipped()) { // 使用した防具を裝備していた場合（脫著を試みる）
 			if (armor.getItem().getBless() == 2) { // 咒われていた場合
-				activeChar.sendPackets(new S_ServerMessage(150)); // \f1はずすことができません。咒いをかけられているようです。
+				activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$150));
 				return;
 			}
 			if (type == 3 && pcInventory.getTypeEquipped(2, 2) >= 1) { // シャツの場合、メイルを著てないか確認
-				activeChar.sendPackets(new S_ServerMessage(127)); // \f1それは脫ぐことができません。
+				activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$127));
 				return;
 			} else if ((type == 2 || type == 3) && pcInventory.getTypeEquipped(2, 4) >= 1) { // シャツとメイルの場合、マントを著てないか確認
-				activeChar.sendPackets(new S_ServerMessage(127)); // \f1それは脫ぐことができません。
+				activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$127));
 				return;
 			}
 			if (type == 7) { // シールドの場合、ソリッドキャリッジの効果消失
@@ -96,7 +97,7 @@ public class Armor {
 			}
 			pcInventory.setEquipped(armor, false);
 		} else {
-			activeChar.sendPackets(new S_ServerMessage(124)); // \f1すでに何かを裝備しています。
+			activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$124));
 		}
 		// セット裝備用HP、MP、MR更新
 		activeChar.setCurrentHp(activeChar.getCurrentHp());

@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.log.LogDeleteItem;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DollInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -51,8 +52,7 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 		}
 
 		if (item.getItem().isCantDelete()) {
-			// \f1你不能夠放棄此樣物品。
-			pc.sendPackets(new S_ServerMessage(125));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$125));
 			return;
 		}
 
@@ -61,9 +61,7 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 			if (petObject instanceof L1PetInstance) {
 				L1PetInstance pet = (L1PetInstance) petObject;
 				if (item.getId() == pet.getItemObjId()) {
-					// \f1%0%d是不可轉移的…
-					pc.sendPackets(new S_ServerMessage(210, item.getItem()
-							.getName()));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, item.getItem().getName()));
 					return;
 				}
 			}
@@ -74,21 +72,18 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 			if (dollObject instanceof L1DollInstance) {
 				L1DollInstance doll = (L1DollInstance) dollObject;
 				if (item.getId() == doll.getItemObjId()) {
-					// \f1這個魔法娃娃目前正在使用中。
-					pc.sendPackets(new S_ServerMessage(1181));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1181));
 					return;
 				}
 			}
 		}
 
 		if (item.isEquipped()) {
-			// \f1你不能夠放棄此樣物品。
-			pc.sendPackets(new S_ServerMessage(125));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$125));
 			return;
 		}
 		if (item.getBless() >= 128) { // 封印的裝備
-			// \f1%0%d是不可轉移的…
-			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName()));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, item.getItem().getName()));
 			return;
 		}
 		LogDeleteItem ldi = new LogDeleteItem();

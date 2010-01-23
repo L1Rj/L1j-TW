@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1ChatParty;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Party;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -49,19 +50,16 @@ public class C_ChatParty extends ClientBasePacket {
 			String name = readS();
 
 			if (!pc.isInChatParty()) {
-				// パーティーに加入していません。
-				pc.sendPackets(new S_ServerMessage(425));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$425));
 				return;
 			}
 			if (!pc.getChatParty().isLeader(pc)) {
-				// パーティーのリーダーのみが追放できます。
-				pc.sendPackets(new S_ServerMessage(427));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$427));
 				return;
 			}
 			L1PcInstance targetPc = L1World.getInstance().getPlayer(name);
 			if (targetPc == null) {
-				// %0という名前の人はいません。
-				pc.sendPackets(new S_ServerMessage(109));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$109));
 				return;
 			}
 			if (pc.getId() == targetPc.getId()) {
@@ -75,8 +73,7 @@ public class C_ChatParty extends ClientBasePacket {
 				}
 			}
 			// 見つからなかった
-			// %0はパーティーメンバーではありません。
-			pc.sendPackets(new S_ServerMessage(426, name));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$426, name));
 		} else if (type == 1) { // /chatoutpartyコマンド
 			if (pc.isInChatParty()) {
 				pc.getChatParty().leaveMember(pc);
@@ -88,7 +85,7 @@ public class C_ChatParty extends ClientBasePacket {
 						.getLeader().getName(), chatParty
 						.getMembersNameList()));
 			} else {
-				pc.sendPackets(new S_ServerMessage(425)); // パーティーに加入していません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$425));
 // pc.sendPackets(new S_Party("party", pc.getId()));
 			}
 		}

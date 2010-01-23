@@ -31,6 +31,7 @@ import net.l1j.server.datatables.LetterTable;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -77,7 +78,7 @@ public class Letter {
 			}
 		}
 		if (targetClan == null) {
-			pc.sendPackets(new S_ServerMessage(434)); // 受信者がいません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$434));
 			return false;
 		}
 
@@ -137,11 +138,10 @@ public class Letter {
 			if (target.getInventory().checkAddItem(item, 1) == L1Inventory.OK) {
 				target.getInventory().storeItem(item);
 				target.sendPackets(new S_SkillSound(target.getId(), 1091));
-				target.sendPackets(new S_ServerMessage(428)); // 手紙が屆きました。
+				target.sendPackets(new S_ServerMessage(SystemMessageId.$428));
 			} else {
 				if (isFailureMessage) {
-					// 相手のアイテムが重すぎるため、これ以上あげられません。
-					pc.sendPackets(new S_ServerMessage(942));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$942));
 				}
 				return false;
 			}
@@ -154,8 +154,7 @@ public class Letter {
 						storage.storeItem(targetId, item);
 					} else {
 						if (isFailureMessage) {
-							// 相手のアイテムが重すぎるため、これ以上あげられません。
-							pc.sendPackets(new S_ServerMessage(942));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$942));
 						}
 						return false;
 					}
@@ -164,7 +163,7 @@ public class Letter {
 				}
 			} else {
 				if (isFailureMessage) {
-					pc.sendPackets(new S_ServerMessage(109, name)); // %0という名前の人はいません。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$109, name));
 				}
 				return false;
 			}

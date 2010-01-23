@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
@@ -24,18 +23,15 @@ import java.util.logging.Logger;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Message_YN;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_CreateParty extends ClientBasePacket {
-
 	private static final String C_CREATE_PARTY = "[C] C_CreateParty";
-	private static Logger _log = Logger.getLogger(C_CreateParty.class
-			.getName());
+
+	private static Logger _log = Logger.getLogger(C_CreateParty.class.getName());
 
 	public C_CreateParty(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
@@ -52,57 +48,47 @@ public class C_CreateParty extends ClientBasePacket {
 					return;
 				}
 				if (targetPc.isInParty()) {
-					// すでに他のパーティーに所屬しているため招待できません
-					pc.sendPackets(new S_ServerMessage(415));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$415));
 					return;
 				}
 
 				if (pc.isInParty()) {
 					if (pc.getParty().isLeader(pc)) {
 						targetPc.setPartyID(pc.getId());
-						// \f2%0\f>%sから \fUパーティー\f> に招待されました。應じますか？（Y/N）
-						targetPc.sendPackets(new S_Message_YN(953, pc
-								.getName()));
+						targetPc.sendPackets(new S_Message_YN(SystemMessageId.$953, pc.getName()));
 					} else {
-						// パーティーのリーダーのみが招待できます。
-						pc.sendPackets(new S_ServerMessage(416));
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$416));
 					}
 				} else {
 					targetPc.setPartyID(pc.getId());
-					// \f2%0\f>%sから \fUパーティー\f> に招待されました。應じますか？（Y/N）
-					targetPc.sendPackets(new S_Message_YN(953, pc.getName()));
+					targetPc.sendPackets(new S_Message_YN(SystemMessageId.$953, pc.getName()));
 				}
 			}
 		} else if (type == 2) { // チャットパーティー
 			String name = readS();
 			L1PcInstance targetPc = L1World.getInstance().getPlayer(name);
 			if (targetPc == null) {
-				// %0という名前の人はいません。
-				pc.sendPackets(new S_ServerMessage(109));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$109));
 				return;
 			}
 			if (pc.getId() == targetPc.getId()) {
 				return;
 			}
 			if (targetPc.isInChatParty()) {
-				// すでに他のパーティーに所屬しているため招待できません
-				pc.sendPackets(new S_ServerMessage(415));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$415));
 				return;
 			}
 
 			if (pc.isInChatParty()) {
 				if (pc.getChatParty().isLeader(pc)) {
 					targetPc.setPartyID(pc.getId());
-					// \f2%0\f>%sから\fUチャットパーティー\f>に招待されました。應じますか？（Y/N）
-					targetPc.sendPackets(new S_Message_YN(951, pc.getName()));
+					targetPc.sendPackets(new S_Message_YN(SystemMessageId.$951, pc.getName()));
 				} else {
-					// パーティーのリーダーのみが招待できます。
-					pc.sendPackets(new S_ServerMessage(416));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$416));
 				}
 			} else {
 				targetPc.setPartyID(pc.getId());
-				// \f2%0\f>%sから\fUチャットパーティー\f>に招待されました。應じますか？（Y/N）
-				targetPc.sendPackets(new S_Message_YN(951, pc.getName()));
+				targetPc.sendPackets(new S_Message_YN(SystemMessageId.$951, pc.getName()));
 			}
 		}
 
@@ -112,5 +98,4 @@ public class C_CreateParty extends ClientBasePacket {
 	public String getType() {
 		return C_CREATE_PARTY;
 	}
-
 }

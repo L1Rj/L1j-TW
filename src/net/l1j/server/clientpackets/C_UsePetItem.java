@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
@@ -24,6 +23,7 @@ import java.util.logging.Logger;
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.PetItemTable;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
@@ -31,24 +31,19 @@ import net.l1j.server.serverpackets.S_PetAttr;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1PetItem;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_UsePetItem extends ClientBasePacket {
-
 	private static final String C_USE_PET_ITEM = "[C] C_UsePetItem";
+
 	private static Logger _log = Logger.getLogger(C_UsePetItem.class.getName());
 
-	public C_UsePetItem(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_UsePetItem(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		int data = readC();
 		int petId = readD();
 		int listNo = readC();
 
-		L1PetInstance pet = (L1PetInstance) L1World.getInstance()
-				.findObject(petId);
+		L1PetInstance pet = (L1PetInstance) L1World.getInstance().findObject(petId);
 		L1PcInstance pc = clientthread.getActiveChar();
 
 		if (pet == null && pc == null) {
@@ -62,23 +57,21 @@ public class C_UsePetItem extends ClientBasePacket {
 		if (item.getItem().getType2() == 0 // 種別：その他のアイテム
 				&& item.getItem().getType() == 11) { // petitem
 			int itemId = item.getItem().getItemId();
-			if (itemId >= 40749 && itemId <= 40752
-					|| itemId >= 40756 && itemId <= 40758) {
+			if (itemId >= 40749 && itemId <= 40752 || itemId >= 40756 && itemId <= 40758) {
 				usePetWeapon(pc, pet, item);
 				pc.sendPackets(new S_PetAttr(data, pet, listNo)); // 將物品加入四格欄位中
 			} else if (itemId >= 40761 && itemId <= 40766) {
 				usePetArmor(pc, pet, item);
 				pc.sendPackets(new S_PetAttr(data, pet, listNo)); // 將物品加入四格欄位中
 			} else {
-				pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 		}
 	}
 
-	private void usePetWeapon(L1PcInstance pc, L1PetInstance pet,
-			L1ItemInstance weapon) {
+	private void usePetWeapon(L1PcInstance pc, L1PetInstance pet, L1ItemInstance weapon) {
 		if (pet.getWeapon() == null) {
 			setPetWeapon(pc, pet, weapon);
 		} else { // 既に何かを裝備している場合、前の裝備をはずす
@@ -91,8 +84,7 @@ public class C_UsePetItem extends ClientBasePacket {
 		}
 	}
 
-	private void usePetArmor(L1PcInstance pc, L1PetInstance pet,
-			L1ItemInstance armor) {
+	private void usePetArmor(L1PcInstance pc, L1PetInstance pet, L1ItemInstance armor) {
 		if (pet.getArmor() == null) {
 			setPetArmor(pc, pet, armor);
 		} else { // 既に何かを裝備している場合、前の裝備をはずす
@@ -105,8 +97,7 @@ public class C_UsePetItem extends ClientBasePacket {
 		}
 	}
 
-	private void setPetWeapon(L1PcInstance pc, L1PetInstance pet,
-			L1ItemInstance weapon) {
+	private void setPetWeapon(L1PcInstance pc, L1PetInstance pet, L1ItemInstance weapon) {
 		int itemId = weapon.getItem().getItemId();
 		L1PetItem petItem = PetItemTable.getInstance().getTemplate(itemId);
 		if (petItem == null) {
@@ -129,8 +120,7 @@ public class C_UsePetItem extends ClientBasePacket {
 		weapon.setEquipped(true);
 	}
 
-	private void removePetWeapon(L1PcInstance pc, L1PetInstance pet,
-			L1ItemInstance weapon) {
+	private void removePetWeapon(L1PcInstance pc, L1PetInstance pet, L1ItemInstance weapon) {
 		int itemId = weapon.getItem().getItemId();
 		L1PetItem petItem = PetItemTable.getInstance().getTemplate(itemId);
 		if (petItem == null) {
@@ -153,8 +143,7 @@ public class C_UsePetItem extends ClientBasePacket {
 		weapon.setEquipped(false);
 	}
 
-	private void setPetArmor(L1PcInstance pc, L1PetInstance pet,
-			L1ItemInstance armor) {
+	private void setPetArmor(L1PcInstance pc, L1PetInstance pet, L1ItemInstance armor) {
 		int itemId = armor.getItem().getItemId();
 		L1PetItem petItem = PetItemTable.getInstance().getTemplate(itemId);
 		if (petItem == null) {
@@ -176,8 +165,7 @@ public class C_UsePetItem extends ClientBasePacket {
 		armor.setEquipped(true);
 	}
 
-	private void removePetArmor(L1PcInstance pc, L1PetInstance pet,
-			L1ItemInstance armor) {
+	private void removePetArmor(L1PcInstance pc, L1PetInstance pet, L1ItemInstance armor) {
 		int itemId = armor.getItem().getItemId();
 		L1PetItem petItem = PetItemTable.getInstance().getTemplate(itemId);
 		if (petItem == null) {

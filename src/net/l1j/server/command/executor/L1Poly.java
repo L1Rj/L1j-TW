@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 
 import net.l1j.server.model.L1PolyMorph;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SystemMessage;
@@ -47,7 +48,7 @@ public class L1Poly implements L1CommandExecutor {
 			L1PcInstance tg = L1World.getInstance().getPlayer(name);
 
 			if (tg == null) {
-				pc.sendPackets(new S_ServerMessage(73, name)); // \f1%0はゲームをしていません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$73, name));
 			} else {
 				try {
 					L1PolyMorph.doPoly(tg, polyid, 7200,

@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.datatables.NpcTable;
 import net.l1j.server.datatables.PetTable;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
@@ -216,7 +217,7 @@ public class L1PetMatch {
 			return;
 		}
 		if (isWin) {
-			pc.sendPackets(new S_ServerMessage(1166, pc.getName())); // %0%sペットマッチで勝利を收めました。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1166, pc.getName()));
 			L1ItemInstance item = ItemTable.getInstance().createItem(41309);
 			int count = 3;
 			if (item != null) {
@@ -224,7 +225,7 @@ public class L1PetMatch {
 						.OK) {
 					item.setCount(count);
 					pc.getInventory().storeItem(item);
-					pc.sendPackets(new S_ServerMessage(403, item.getLogName())); // %0を手に入れました。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$403, item.getLogName()));
 				}
 			}
 		} else {
@@ -235,7 +236,7 @@ public class L1PetMatch {
 						.OK) {
 					item.setCount(count);
 					pc.getInventory().storeItem(item);
-					pc.sendPackets(new S_ServerMessage(403, item.getLogName())); // %0を手に入れました。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$403, item.getLogName()));
 				}
 			}
 		}

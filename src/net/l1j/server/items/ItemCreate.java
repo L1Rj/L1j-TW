@@ -20,7 +20,7 @@ package net.l1j.server.items;
 
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.model.L1Inventory;
-import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -38,7 +38,7 @@ public class ItemCreate {
 				L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(
 						item);
 			} */
-			pc.sendPackets(new S_ServerMessage(403, item.getLogName())); // %0を手に入れました。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$403, item.getLogName()));
 			return true;
 		} else {
 			return false;

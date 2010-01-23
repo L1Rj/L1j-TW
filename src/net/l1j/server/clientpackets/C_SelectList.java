@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
@@ -28,6 +27,7 @@ import net.l1j.server.items.ItemId;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1PcInventory;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -36,17 +36,14 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1Pet;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_SelectList extends ClientBasePacket {
-
 	private static final String C_SELECT_LIST = "[C] C_SelectList";
-	private static Logger _log = Logger.getLogger(C_SelectList.class
-			.getName());
+
+	private static Logger _log = Logger.getLogger(C_SelectList.class.getName());
 
 	public C_SelectList(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
+
 		// アイテム每にリクエストが來る。
 		int itemObjectId = readD();
 		int npcObjectId = readD();
@@ -109,7 +106,7 @@ public class C_SelectList extends ClientBasePacket {
 				}
 				petCount = charisma / divisor;
 				if (petCount <= 0) {
-					pc.sendPackets(new S_ServerMessage(489));// 引き取ろうとするペットが多すぎます。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$489));
 					return;
 				}
 				L1Npc npcTemp = NpcTable.getInstance().getTemplate(npcId);

@@ -26,6 +26,7 @@ import net.l1j.server.datatables.SkillsTable;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1PolyMorph;
 import net.l1j.server.model.L1Teleport;//waja add 租旅館
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -575,7 +576,7 @@ class SkillStop {
 		} else if (skillId == STATUS_CHAT_PROHIBITED) { // チャット禁止
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_ServerMessage(288)); // チャットができるようになりました。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$288));
 			}
 		}
 
@@ -794,9 +795,10 @@ class SkillStop {
 			return;
 		}
 
-		int msgID = l1skills.getSysmsgIdStop();
-		if (msgID > 0) {
-			charaPc.sendPackets(new S_ServerMessage(msgID));
+		int stopMsgId = l1skills.getSysmsgIdStop();
+		if (stopMsgId > 0) {
+			SystemMessageId msgId = SystemMessageId.getSystemMessageId(stopMsgId);
+			charaPc.sendPackets(new S_ServerMessage(msgId));
 		}
 	}
 }

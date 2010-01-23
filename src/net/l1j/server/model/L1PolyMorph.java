@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 import javolution.util.FastMap;
 
 import net.l1j.server.datatables.PolyTable;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -208,14 +209,13 @@ public class L1PolyMorph {
 			} else if (pc.getLevel() >= poly.getMinLevel() || pc.isGm()) {
 				if (pc.getTempCharGfx() == 6034
 						|| pc.getTempCharGfx() == 6035) {
-					pc.sendPackets(new S_ServerMessage(181));
-					// \f1そのようなモンスターには変身できません。				
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$181));
 				} else {
 				doPoly(pc, poly.getPolyId(), 7200, MORPH_BY_ITEMMAGIC);
 				pc.sendPackets(new S_CloseList(pc.getId()));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(181)); // \f1そのようなモンスターには變身できません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$181));
 			}
 		}
 	}
@@ -228,16 +228,16 @@ public class L1PolyMorph {
 		if (cha instanceof L1PcInstance) {
 			L1PcInstance pc = (L1PcInstance) cha;
 			if (pc.getMapId() == 5124) { // 釣り場
-				pc.sendPackets(new S_ServerMessage(1170)); // ここでは變身できません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1170));
 				return;
 			}
 			if (pc.getTempCharGfx() == 6034
 					|| pc.getTempCharGfx() == 6035) {
-				pc.sendPackets(new S_ServerMessage(181)); // \f1そのようなモンスターには變身できません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$181));
 				return;	
 			}
 			if (!isMatchCause(polyId, cause)) {
-				pc.sendPackets(new S_ServerMessage(181)); // \f1そのようなモンスターには變身できません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$181));
 				return;
 			}
 

@@ -22,6 +22,7 @@ import net.l1j.Config;
 import net.l1j.server.ActionCodes;// 吉爾塔斯反擊屏障
 import net.l1j.server.WarTimeController;
 import net.l1j.server.model.action.NpcAction;// 吉爾塔斯反擊屏障
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DollInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
@@ -1874,16 +1875,12 @@ public class L1Attack
 		msg3 = _isHit ? _damage + "傷害值" : "攻擊失敗";
 
 		// アタッカーがＰＣの場合
-		if (PC_PC || PC_NPC)
-		{
-			_pc.sendPackets(new S_ServerMessage(166, msg0, msg1, msg2, msg3,
-					msg4)); // \f1%0が%4%1%3 %2
+		if (PC_PC || PC_NPC) {
+			_pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, msg0, msg1, msg2, msg3, msg4));
 		}
 		// ターゲットがＰＣの場合
-		if (NPC_PC || PC_PC)
-		{
-			_targetPc.sendPackets(new S_ServerMessage(166, msg0, msg1, msg2,
-					msg3, msg4)); // \f1%0が%4%1%3 %2
+		if (NPC_PC || PC_PC) {
+			_targetPc.sendPackets(new S_ServerMessage(SystemMessageId.$166, msg0, msg1, msg2, msg3, msg4));
 		}
 	}
 
@@ -2038,14 +2035,12 @@ public class L1Attack
 		// 通常の武器‧咒われた武器
 		if ((_weaponBless == 1 || _weaponBless == 2)
 				&& (RandomArrayList.getInc(100, 1) < chance)) {
-			// \f1あなたの%0が損傷しました。
-			_pc.sendPackets(new S_ServerMessage(268, weapon.getLogName()));
+			_pc.sendPackets(new S_ServerMessage(SystemMessageId.$268, weapon.getLogName()));
 			_pc.getInventory().receiveDamage(weapon);
 		}
 		// 祝福された武器
 		if (_weaponBless == 0 && (RandomArrayList.getInc(100, 1) < bchance)) {
-			// \f1あなたの%0が損傷しました。
-			_pc.sendPackets(new S_ServerMessage(268, weapon.getLogName()));
+			_pc.sendPackets(new S_ServerMessage(SystemMessageId.$268, weapon.getLogName()));
 			_pc.getInventory().receiveDamage(weapon);
 		}
 	}
@@ -2065,8 +2060,7 @@ public class L1Attack
 
 		if (RandomArrayList.getInc(100, 1) <= 10)
 		{
-			// \f1あなたの%0が損傷しました。
-			_pc.sendPackets(new S_ServerMessage(268, weapon.getLogName()));
+			_pc.sendPackets(new S_ServerMessage(SystemMessageId.$268, weapon.getLogName()));
 			_pc.getInventory().receiveDamage(weapon);
 		}
 	}

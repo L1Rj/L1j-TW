@@ -24,12 +24,10 @@ import java.util.logging.Logger;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Pledge;
 import net.l1j.server.serverpackets.S_ServerMessage;
-
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
 
 public class C_Pledge extends ClientBasePacket {
 
@@ -51,8 +49,8 @@ public class C_Pledge extends ClientBasePacket {
 						clan.getClanName(), clan.getOnlineMembersFP()));
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(1064));
-// pc.sendPackets(new S_Pledge("pledge", pc.getId()));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1064));
+//			pc.sendPackets(new S_Pledge("pledge", pc.getId()));
 		}
 	}
 

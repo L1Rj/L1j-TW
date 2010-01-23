@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import net.l1j.server.datatables.SkillsTable;
 import net.l1j.server.model.L1PolyMorph;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.skills.SkillUse;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -60,7 +61,7 @@ public class L1AllBuff implements L1CommandExecutor {
 			String name = st.nextToken();
 			L1PcInstance target = L1World.getInstance().getPlayer(name);
 			if (target == null) {
-				pc.sendPackets(new S_ServerMessage(73, name)); // \f1%0はゲームをしていません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$73, name));
 				return;
 			}
 

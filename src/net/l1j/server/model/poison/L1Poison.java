@@ -19,6 +19,7 @@
 package net.l1j.server.model.poison;
 
 import net.l1j.server.model.L1Character;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Poison;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -48,7 +49,7 @@ public abstract class L1Poison {
 	}
 
 	// 微妙‧‧‧素直にsendPacketsをL1Characterへ引き上げるべきかもしれない
-	protected static void sendMessageIfPlayer(L1Character cha, int msgId) {
+	protected static void sendMessageIfPlayer(L1Character cha, SystemMessageId msgId) {
 		if (!(cha instanceof L1PcInstance)) {
 			return;
 		}

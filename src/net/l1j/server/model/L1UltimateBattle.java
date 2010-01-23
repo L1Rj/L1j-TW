@@ -37,6 +37,7 @@ import net.l1j.server.WorldMap;
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.datatables.UBSpawnTable;
 import net.l1j.server.items.ItemId;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -102,7 +103,7 @@ public class L1UltimateBattle {
 	 */
 	private void sendRoundMessage(int curRound) {
 		// XXX - このIDは間違っている
-		final int MSGID_ROUND_TABLE[] = { 893, 894, 895, 896 };
+		final SystemMessageId MSGID_ROUND_TABLE[] = { SystemMessageId.$893, SystemMessageId.$894, SystemMessageId.$895, SystemMessageId.$896 };
 
 		sendMessage(MSGID_ROUND_TABLE[curRound - 1], "");
 	}
@@ -159,9 +160,9 @@ public class L1UltimateBattle {
 	 * @param msg
 	 *            送信するメッセージ
 	 */
-	private void sendMessage(int type, String msg) {
+	private void sendMessage(SystemMessageId msgId, String msg) {
 		for (L1PcInstance pc : getMembersArray()) {
-			pc.sendPackets(new S_ServerMessage(type, msg));
+			pc.sendPackets(new S_ServerMessage(msgId, msg));
 		}
 	}
 
@@ -247,8 +248,8 @@ public class L1UltimateBattle {
 		 */
 		private void countDown() throws InterruptedException {
 			// XXX - このIDは間違っている
-			final int MSGID_COUNT = 637;
-			final int MSGID_START = 632;
+			final SystemMessageId MSGID_COUNT = SystemMessageId.$637;
+			final SystemMessageId MSGID_START = SystemMessageId.$632;
 
 			for (int loop = 0; loop < BEFORE_MINUTE * 60 - 10; loop++) { // 開始10秒前まで待つ
 				Thread.sleep(1000);

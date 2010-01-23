@@ -29,6 +29,7 @@ import net.l1j.server.datatables.ClanTable;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1War;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_CharTitle;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -61,36 +62,30 @@ public class C_LeaveClan extends ClientBasePacket {
 				int castleId = clan.getCastleId();
 				int houseId = clan.getHouseId();
 				if (castleId != 0 || houseId != 0) {
-					player.sendPackets(new S_ServerMessage(665)); // \f1城やアジトを所有した狀態で血盟を解散することはできません。
+					player.sendPackets(new S_ServerMessage(SystemMessageId.$665));
 					return;
 				}
 				for (L1War war : L1World.getInstance().getWarList()) {
 					if (war.CheckClanInWar(clan_name)) {
-						player.sendPackets(new S_ServerMessage(302)); // \f1解散させることができません。
+						player.sendPackets(new S_ServerMessage(SystemMessageId.$302));
 						return;
 					}
 				}
 
 				for (i = 0; i < clan_member_name.length; i++) { // クラン員のクラン情報をクリア
-					L1PcInstance online_pc = L1World.getInstance().getPlayer(
-							clan_member_name[i]);
+					L1PcInstance online_pc = L1World.getInstance().getPlayer(clan_member_name[i]);
 					if (online_pc != null) { // オンライン中のクラン員
 						online_pc.setClanid(0);
 						online_pc.setClanname("");
 						online_pc.setClanRank(0);
 						online_pc.setTitle("");
-						online_pc.sendPackets(new S_CharTitle(online_pc
-								.getId(), ""));
-						online_pc.broadcastPacket(new S_CharTitle(online_pc
-								.getId(), ""));
+						online_pc.sendPackets(new S_CharTitle(online_pc.getId(), ""));
+						online_pc.broadcastPacket(new S_CharTitle(online_pc.getId(), ""));
 						online_pc.save(); // DBにキャラクター情報を書き⑸む
-						online_pc.sendPackets(new S_ServerMessage(269,
-								player_name, clan_name)); // %1血盟の血盟主%0が血盟を解散させました。
+						online_pc.sendPackets(new S_ServerMessage(SystemMessageId.$269, player_name, clan_name));
 					} else { // オフライン中のクラン員
 						try {
-							L1PcInstance offline_pc = CharacterTable
-									.getInstance().restoreCharacter(
-											clan_member_name[i]);
+							L1PcInstance offline_pc = CharacterTable.getInstance().restoreCharacter(clan_member_name[i]);
 							offline_pc.setClanid(0);
 							offline_pc.setClanname("");
 							offline_pc.setClanRank(0);
@@ -108,11 +103,10 @@ public class C_LeaveClan extends ClientBasePacket {
 			} else { // 血盟主以外
 				L1PcInstance clanMember[] = clan.getOnlineClanMember();
 				for (i = 0; i < clanMember.length; i++) {
-					clanMember[i].sendPackets(new S_ServerMessage(178,
-							player_name, clan_name)); // \f1%0が%1血盟を脫退しました。
+					clanMember[i].sendPackets(new S_ServerMessage(SystemMessageId.$178, player_name, clan_name));
 				}
 				if (clan.getWarehouseUsingChar() // 自キャラがクラン倉庫使用中
-						== player.getId()) {
+				== player.getId()) {
 					clan.setWarehouseUsingChar(0); // クラン倉庫のロックを解除
 				}
 				player.setClanid(0);
@@ -132,9 +126,7 @@ public class C_LeaveClan extends ClientBasePacket {
 			player.sendPackets(new S_CharTitle(player.getId(), ""));
 			player.broadcastPacket(new S_CharTitle(player.getId(), ""));
 			player.save(); // DBにキャラクター情報を書き⑸む
-			player
-					.sendPackets(new S_ServerMessage(178, player_name,
-							clan_name)); // \f1%0が%1血盟を脫退しました。
+			player.sendPackets(new S_ServerMessage(SystemMessageId.$178, player_name, clan_name));
 		}
 	}
 
@@ -142,5 +134,4 @@ public class C_LeaveClan extends ClientBasePacket {
 	public String getType() {
 		return C_LEAVE_CLAN;
 	}
-
 }

@@ -16,27 +16,25 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Message_YN;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.utils.FaceToFace;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Propose extends ClientBasePacket {
-
 	private static final String C_PROPOSE = "[C] C_Propose";
+
 	private static Logger _log = Logger.getLogger(C_Propose.class.getName());
 
 	public C_Propose(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
+
 		int c = readC();
 
 		L1PcInstance pc = clientthread.getActiveChar();
@@ -47,15 +45,15 @@ public class C_Propose extends ClientBasePacket {
 			L1PcInstance target = FaceToFace.faceToFace(pc);
 			if (target != null) {
 				if (pc.getPartnerId() != 0) {
-					pc.sendPackets(new S_ServerMessage(657)); // \f1あなたはすでに結婚しています。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$657));
 					return;
 				}
 				if (target.getPartnerId() != 0) {
-					pc.sendPackets(new S_ServerMessage(658)); // \f1その相手はすでに結婚しています。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$658));
 					return;
 				}
 				if (pc.get_sex() == target.get_sex()) {
-					pc.sendPackets(new S_ServerMessage(661)); // \f1結婚相手は異性でなければなりません。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$661));
 					return;
 				}
 				if (pc.getX() >= 33974 && pc.getX() <= 33976
@@ -64,15 +62,15 @@ public class C_Propose extends ClientBasePacket {
 						&& target.getX() <= 33976 && target.getY() >= 33362
 						&& target.getY() <= 33365 && target.getMapId() == 4) {
 					target.setTempID(pc.getId()); // 相手のオブジェクトIDを保存しておく
-					target.sendPackets(new S_Message_YN(654, pc.getName())); // %0%sあなたと結婚したがっています。%0と結婚しますか？（Y/N）
+					target.sendPackets(new S_Message_YN(SystemMessageId.$654, pc.getName()));
 				}
 			}
 		} else if (c == 1) { // /divorce（/離婚）
 			if (pc.getPartnerId() == 0) {
-				pc.sendPackets(new S_ServerMessage(662)); // \f1あなたは結婚していません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$662));
 				return;
 			}
-			pc.sendPackets(new S_Message_YN(653, "")); // 離婚をするとリングは消えてしまいます。離婚を望みますか？（Y/N）
+			pc.sendPackets(new S_Message_YN(SystemMessageId.$653, ""));
 		}
 	}
 

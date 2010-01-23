@@ -32,6 +32,7 @@ import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.datatables.NpcActionTable;
 import net.l1j.server.items.ItemId;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -48,8 +49,7 @@ import net.l1j.server.templates.L1House;
 
 public class C_Amount extends ClientBasePacket {
 
-	private static final Logger _log = Logger.getLogger(C_Amount.class
-			.getName());
+	private static final Logger _log = Logger.getLogger(C_Amount.class.getName());
 	private static final String C_AMOUNT = "[C] C_Amount";
 
 	public C_Amount(byte[] decrypt, ClientThread client) throws Exception {
@@ -60,8 +60,7 @@ public class C_Amount extends ClientBasePacket {
 		String s = readS();
 
 		L1PcInstance pc = client.getActiveChar();
-		L1NpcInstance npc = (L1NpcInstance) L1World.getInstance().findObject(
-				objectId);
+		L1NpcInstance npc = (L1NpcInstance) L1World.getInstance().findObject(objectId);
 		if (npc == null) {
 			return;
 		}
@@ -81,7 +80,7 @@ public class C_Amount extends ClientBasePacket {
 			AuctionBoardTable boardTable = new AuctionBoardTable();
 			for (L1AuctionBoard board : boardTable.getAuctionBoardTableList()) {
 				if (pcName.equalsIgnoreCase(board.getBidder())) {
-					pc.sendPackets(new S_ServerMessage(523)); // すでに他の家の競賣に參加しています。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$523));
 					return;
 				}
 			}
@@ -98,26 +97,19 @@ public class C_Amount extends ClientBasePacket {
 					boardTable.updateAuctionBoard(board);
 					if (nowBidderId != 0) {
 						// 入札者にアデナを返金
-						L1PcInstance bidPc = (L1PcInstance) L1World
-								.getInstance().findObject(nowBidderId);
+						L1PcInstance bidPc = (L1PcInstance) L1World.getInstance().findObject(nowBidderId);
 						if (bidPc != null) { // オンライン中
-							bidPc.getInventory().storeItem(ItemId.ADENA,
-									nowPrice);
-							// あなたが提示された金額よりももっと高い金額を提示した方が現れたため、殘念ながら入札に失敗しました。%n
-							// あなたが競賣に預けた%0アデナをお返しします。%nありがとうございました。%n%n
-							bidPc.sendPackets(new S_ServerMessage(525, String
-									.valueOf(nowPrice)));
+							bidPc.getInventory().storeItem(ItemId.ADENA, nowPrice);
+							bidPc.sendPackets(new S_ServerMessage(SystemMessageId.$525, String.valueOf(nowPrice)));
 						} else { // オフライン中
-							L1ItemInstance item = ItemTable.getInstance()
-									.createItem(ItemId.ADENA);
+							L1ItemInstance item = ItemTable.getInstance().createItem(ItemId.ADENA);
 							item.setCount(nowPrice);
-							CharactersItemStorage storage = CharactersItemStorage
-									.create();
+							CharactersItemStorage storage = CharactersItemStorage.create();
 							storage.storeItem(nowBidderId, item);
 						}
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(189)); // \f1アデナが不足しています。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$189));
 				}
 			}
 		} else if (s1.equalsIgnoreCase("agsell")) { // 家を賣った場合

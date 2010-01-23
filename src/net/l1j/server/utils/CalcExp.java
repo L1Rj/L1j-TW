@@ -28,6 +28,7 @@ import net.l1j.server.datatables.PetTable;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
@@ -39,11 +40,7 @@ import net.l1j.server.templates.L1Pet;
 
 import static net.l1j.server.skills.SkillId.*;
 
-// Referenced classes of package net.l1j.server.utils:
-// CalcStat
-
 public class CalcExp {
-
 	private static final long serialVersionUID = 1L;
 
 	private static Logger _log = Logger.getLogger(CalcExp.class.getName());
@@ -53,9 +50,7 @@ public class CalcExp {
 	private CalcExp() {
 	}
 
-	public static void calcExp(L1PcInstance l1pcinstance, int targetid, FastTable acquisitorList,
-			FastTable hateList, int exp) {
-
+	public static void calcExp(L1PcInstance l1pcinstance, int targetid, FastTable acquisitorList, FastTable hateList, int exp) {
 		int i = 0;
 		double party_level = 0;
 		double dist = 0;
@@ -97,11 +92,9 @@ public class CalcExp {
 			return;
 		}
 
-		if (l1object != null && !(npc instanceof L1PetInstance)
-				&& !(npc instanceof L1SummonInstance)) {
+		if (l1object != null && !(npc instanceof L1PetInstance) && !(npc instanceof L1SummonInstance)) {
 			// int exp = npc.get_exp();
-			if (!L1World.getInstance().isProcessingContributionTotal()
-					&& l1pcinstance.getHomeTownId() > 0) {
+			if (!L1World.getInstance().isProcessingContributionTotal() && l1pcinstance.getHomeTownId() > 0) {
 				int contribution = npc.getLevel() / 10;
 				l1pcinstance.addContribution(contribution);
 			}
@@ -168,8 +161,7 @@ public class CalcExp {
 				// プリボーナス
 				double pri_bonus = 0;
 				L1PcInstance leader = l1pcinstance.getParty().getLeader();
-				if (leader.isCrown()
-						&& (l1pcinstance.knownsObject(leader) || l1pcinstance.equals(leader))) {
+				if (leader.isCrown() && (l1pcinstance.knownsObject(leader) || l1pcinstance.equals(leader))) {
 					pri_bonus = 0.059;
 				}
 
@@ -394,7 +386,7 @@ public class CalcExp {
 			petTemplate.set_hp(pet.getMaxHp());
 			petTemplate.set_mp(pet.getMaxMp());
 			PetTable.getInstance().storePet(petTemplate); // DBに書き⑸み
-			pc.sendPackets(new S_ServerMessage(320, pet.getName())); // \f1%0のレベルが上がりました。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$320, pet.getName()));
 		}
 	}
 }

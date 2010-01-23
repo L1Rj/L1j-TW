@@ -40,6 +40,7 @@ import net.l1j.server.model.L1Cooking;
 import net.l1j.server.model.L1PolyMorph;
 import net.l1j.server.model.L1War;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
 import net.l1j.server.skills.SkillUse;
@@ -436,7 +437,7 @@ public class C_LoginToServer extends ClientBasePacket {
 					L1PcInstance[] clanMembers = clan.getOnlineClanMember();
 					for (L1PcInstance clanMember : clanMembers) {
 						if (clanMember.getId() != pc.getId()) {
-							clanMember.sendPackets(new S_ServerMessage(843, pc.getName())); // 只今、血盟員の%0%sがゲームに接續しました。
+							clanMember.sendPackets(new S_ServerMessage(SystemMessageId.$843, pc.getName()));
 						}
 					}
 
@@ -465,8 +466,8 @@ public class C_LoginToServer extends ClientBasePacket {
 			L1PcInstance partner = (L1PcInstance) L1World.getInstance().findObject(pc.getPartnerId());
 			if (partner != null && partner.getPartnerId() != 0) {
 				if (pc.getPartnerId() == partner.getId() && partner.getPartnerId() == pc.getId()) {
-					pc.sendPackets(new S_ServerMessage(548)); // あなたのパートナーは今ゲーム中です。
-					partner.sendPackets(new S_ServerMessage(549)); // あなたのパートナーはたった今ログインしました。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$548));
+					partner.sendPackets(new S_ServerMessage(SystemMessageId.$549));
 				}
 			}
 		}

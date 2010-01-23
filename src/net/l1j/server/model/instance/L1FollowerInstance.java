@@ -30,6 +30,7 @@ import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1Quest;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.serverpackets.S_FollowerPack;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
@@ -226,7 +227,7 @@ public class L1FollowerInstance extends L1NpcInstance {
 			} else {
 				L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(item);
 			}
-			pc.sendPackets(new S_ServerMessage(403, item.getLogName()));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$403, item.getLogName()));
 		}
 	}
 

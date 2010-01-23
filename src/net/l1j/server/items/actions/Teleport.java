@@ -19,6 +19,7 @@
 package net.l1j.server.items.actions;
 
 import net.l1j.server.model.L1Teleport;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -59,7 +60,7 @@ public class Teleport {
 			L1Teleport.teleport(pc, item.getItem().get_locx(), item.getItem().get_locy(), item
 					.getItem().get_mapid(), 5, true);
 		} else {
-			pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 		}
 	}
 

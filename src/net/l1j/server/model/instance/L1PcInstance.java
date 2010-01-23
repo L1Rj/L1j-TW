@@ -37,6 +37,7 @@ import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.datatables.ExpTable;
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.model.id.L1ClassId;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.AcceleratorChecker;
 import net.l1j.server.model.HpRegeneration;
 import net.l1j.server.model.L1Attack;
@@ -1483,7 +1484,7 @@ public class L1PcInstance extends L1Character {
 			if (item != null) {
 				getInventory().tradeItem(item, item.isStackable() ? item.getCount() : 1,
 						L1World.getInstance().getInventory(getX(), getY(), getMapId()));
-				sendPackets(new S_ServerMessage(638, item.getLogName())); // %0を失いました。
+				sendPackets(new S_ServerMessage(SystemMessageId.$638, item.getLogName()));
 			} else {
 			}
 		}
@@ -2383,7 +2384,7 @@ public class L1PcInstance extends L1Character {
 				L1Item l1item = ItemTable.getInstance().getTemplate(43000);
 				if (l1item != null) {
 					getInventory().storeItem(43000, 1);
-					sendPackets(new S_ServerMessage(403, l1item.getName()));
+					sendPackets(new S_ServerMessage(SystemMessageId.$403, l1item.getName()));
 				} else {
 					sendPackets(new S_SystemMessage("無法取得轉生藥水。可能此道具不存在！"));
 				}
@@ -2491,7 +2492,7 @@ public class L1PcInstance extends L1Character {
 		resetBaseMr();
 		if (Config.LEVEL_DOWN_RANGE != 0) {
 			if (getHighLevel() - getLevel() >= Config.LEVEL_DOWN_RANGE) {
-				sendPackets(new S_ServerMessage(64)); // ワールドとの接續が切斷されました。
+				sendPackets(new S_ServerMessage(SystemMessageId.$64));
 				sendPackets(new S_Disconnect());
 				_log.info(String.format("超過允許等級上下限差異的範圍，切斷 %的連線。", getName()));
 			}
@@ -4045,7 +4046,7 @@ public class L1PcInstance extends L1Character {
 			if (_chatCount >= 3) {
 				setSkillEffect(STATUS_CHAT_PROHIBITED, 120 * 1000);
 				sendPackets(new S_SkillIconGFX(36, 120));
-				sendPackets(new S_ServerMessage(153)); // \f3迷惑なチャット流しをしたので、今後2分間チャットを行うことはできません。
+				sendPackets(new S_ServerMessage(SystemMessageId.$153));
 				_chatCount = 0;
 				_oldChatTimeInMillis = 0;
 			}

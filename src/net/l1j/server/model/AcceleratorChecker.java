@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.datatables.SprTable;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Disconnect;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -130,14 +131,12 @@ public class AcceleratorChecker {
 
 	private void doDisconnect() {
 		if (!_pc.isGm()) {
-			_pc.sendPackets(new S_ServerMessage(945)); // 違法プログラムが見つかったので、終了します。
+			_pc.sendPackets(new S_ServerMessage(SystemMessageId.$945));
 			_pc.sendPackets(new S_Disconnect());
-			_log.info(String.format(
-					"發現加速器效果，強制切斷服務。", _pc.getName()));
+			_log.info(String.format("發現加速器效果，強制切斷服務。", _pc.getName()));
 		} else {
 			// GMは切斷しない
-			_pc.sendPackets(new S_SystemMessage(
-					"因為加速器而斷線。"));
+			_pc.sendPackets(new S_SystemMessage("因為加速器而斷線。"));
 			_injusticeCount = 0;
 		}
 	}

@@ -32,6 +32,7 @@ import net.l1j.server.model.L1PcInventory;
 import net.l1j.server.model.L1TaxCalculator;
 import net.l1j.server.model.L1TownLocation;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -141,22 +142,19 @@ public class L1Shop {
 		int price = orderList.getTotalPriceTaxIncluded();
 		// オーバーフローチェック
 		if (!IntRange.includes(price, 0, 2000000000)) {
-			// 總販賣價格は%dアデナを超過できません。
-			pc.sendPackets(new S_ServerMessage(904, "2000000000"));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$904, "2000000000"));
 			return false;
 		}
 		// 購入できるかチェック
 		if (!pc.getInventory().checkItem(ItemId.ADENA, price)) {
 			System.out.println(price);
-			// \f1アデナが不足しています。
-			pc.sendPackets(new S_ServerMessage(189));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$189));
 			return false;
 		}
 		// 重量チェック
 		int currentWeight = pc.getInventory().getWeight() * 1000;
 		if (currentWeight + orderList.getTotalWeight() > pc.getMaxWeight() * 1000) {
-			// アイテムが重すぎて、これ以上持てません。
-			pc.sendPackets(new S_ServerMessage(82));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$82));
 			return false;
 		}
 		// 個數チェック
@@ -172,8 +170,7 @@ public class L1Shop {
 			}
 		}
 		if (totalCount > 180) {
-			// \f1一人のキャラクターが持って步けるアイテムは最大180個までです。
-			pc.sendPackets(new S_ServerMessage(263));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$263));
 			return false;
 		}
 		return true;

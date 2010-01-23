@@ -38,6 +38,7 @@ import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1Quest;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -282,21 +283,21 @@ public class DropTable {
 											acquisitor.getX(), acquisitor.getY(),
 											acquisitor.getMapId()); // 持てないので足元に落とす
 									isGround = true;
-									player.sendPackets(new S_ServerMessage(166, "持有金幣",
-											"超過 2,000,000,000。")); // \f1%0が%4%1%3%2
+									player.sendPackets(new S_ServerMessage(SystemMessageId.$166, "持有金幣",
+											"超過 2,000,000,000。"));
 								} else {
 									if (player.isInParty()) { // パーティの場合
 										partyMember = player.getParty().getMembers();
 										for (int p = 0; p < partyMember.length; p++) {
 											partyMember[p]
-													.sendPackets(new S_ServerMessage(813, npc
+													.sendPackets(new S_ServerMessage(SystemMessageId.$813, npc
 															.getName(), item.getLogName(), player
 															.getName()));
 										}
 									} else {
 										// ソロの場合
-										player.sendPackets(new S_ServerMessage(143, npc.getName(),
-												item.getLogName())); // \f1%0が%1をくれました。
+										player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getName(),
+												item.getLogName()));
 									}
 								}
 							}

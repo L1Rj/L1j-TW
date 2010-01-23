@@ -21,6 +21,7 @@ package net.l1j.server.serverpackets;
 import java.io.IOException;
 
 import net.l1j.server.Opcodes;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 
@@ -50,7 +51,7 @@ public class S_RetrieveList extends ServerBasePacket {
 			 * S_SystemMessage("何もお預かりしていません。")); }
 			 */
 		} else {
-			pc.sendPackets(new S_ServerMessage(263)); // \f1一人のキャラクターが持って步けるアイテムは最大180個までです。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$263));
 		}
 	}
 

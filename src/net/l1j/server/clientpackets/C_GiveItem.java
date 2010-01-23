@@ -32,6 +32,7 @@ import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1PcInventory;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DollInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
@@ -82,24 +83,22 @@ public class C_GiveItem extends ClientBasePacket {
 			return;
 		}
 		if (item.isEquipped()) {
-			pc.sendPackets(new S_ServerMessage(141)); // \f1裝備しているものは、人に渡すことができません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$141));
 			return;
 		}
 		if (!item.getItem().isTradable()) {
-			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0は捨てたりまたは他人に讓ることができません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, item.getItem().getName()));
 			return;
 		}
 		if (item.getBless() >= 128) { // 封印された装備
-			// \f1%0は捨てたりまたは他人に讓ることができません。
-			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName()));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, item.getItem().getName()));
 			return;
 		}
 		for (Object petObject : pc.getPetList().values()) {
 			if (petObject instanceof L1PetInstance) {
 				L1PetInstance pet = (L1PetInstance) petObject;
 				if (item.getId() == pet.getItemObjId()) {
-					// \f1%0は捨てたりまたは他人に讓ることができません。
-					pc.sendPackets(new S_ServerMessage(210, item.getItem().getName()));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, item.getItem().getName()));
 					return;
 				}
 			}
@@ -108,13 +107,13 @@ public class C_GiveItem extends ClientBasePacket {
 			if (dollObject instanceof L1DollInstance) {
 				L1DollInstance doll = (L1DollInstance) dollObject;
 				if (item.getId() == doll.getItemObjId()) {
-					pc.sendPackets(new S_ServerMessage(1181)); // \f1這個魔法娃娃目前正在使用中。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1181));
 					return;
 				}
 			}
 		}
 		if (targetInv.checkAddItem(item, count) != L1Inventory.OK) {
-			pc.sendPackets(new S_ServerMessage(942)); // 相手のアイテムが重すぎるため、これ以上あげられません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$942));
 			return;
 		}
 //waja add 給予NPC物品記錄 文件版
@@ -176,8 +175,7 @@ public class C_GiveItem extends ClientBasePacket {
 	}
 
 	private void tamePet(L1PcInstance pc, L1NpcInstance target) {
-		if (target instanceof L1PetInstance
-				|| target instanceof L1SummonInstance) {
+		if (target instanceof L1PetInstance || target instanceof L1SummonInstance) {
 			return;
 		}
 
@@ -203,10 +201,8 @@ public class C_GiveItem extends ClientBasePacket {
 		charisma -= petcost;
 
 		L1PcInventory inv = pc.getInventory();
-		if (charisma >= 6 && inv.getSize() < 180)
-		{
-			if (isTamePet(target))
-			{
+		if (charisma >= 6 && inv.getSize() < 180) {
+			if (isTamePet(target)) {
 				// 贈送鑑定過的項圈 Start
 				// ペットのアミュレット
 				L1ItemInstance petamu = new L1ItemInstance();
@@ -216,15 +212,12 @@ public class C_GiveItem extends ClientBasePacket {
 				petamu = inv.storeItem(petamu);
 				// 贈送鑑定過的項圈 End
 
-				if (petamu != null)
-				{
+				if (petamu != null) {
 					new L1PetInstance(target, pc, petamu.getId());
 					pc.sendPackets(new S_ItemName(petamu));
 				}
-			}
-			else
-			{
-				pc.sendPackets(new S_ServerMessage(324)); // てなずけるのに失敗しました。
+			} else {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$324));
 			}
 		}
 	}

@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import net.l1j.Config;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -55,9 +56,7 @@ public class L1DeleteItemOnGround {
 					_log.warning("L1DeleteItemOnGround error: " + exception);
 					break;
 				}
-				L1World.getInstance().broadcastPacketToAll(
-						new S_ServerMessage(166, "地上的物品",
-								"10秒後將清除")); // \f1%0が%4%1%3 %2
+				L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(SystemMessageId.$166, "地上的物品", "10秒後將清除"));
 				try {
 					Thread.sleep(10000);
 				} catch (Exception exception) {
@@ -65,8 +64,7 @@ public class L1DeleteItemOnGround {
 					break;
 				}
 				deleteItem();
-				L1World.getInstance().broadcastPacketToAll(
-						new S_ServerMessage(166, "地上的物品", "被清除了")); // \f1%0が%4%1%3
+				L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(SystemMessageId.$166, "地上的物品", "被清除了"));
 				// %2
 			}
 		}

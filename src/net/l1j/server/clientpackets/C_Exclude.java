@@ -24,6 +24,7 @@ import java.util.logging.Level;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1ExcludingList;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_PacketBox;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -49,7 +50,7 @@ public class C_Exclude extends ClientBasePacket {
 		try {
 			L1ExcludingList exList = pc.getExcludingList();
 			if (exList.isFull()) {
-				pc.sendPackets(new S_ServerMessage(472)); // \f1遮斷されたユーザーが多すぎます。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$472));
 				return;
 			}
 			if (exList.contains(name)) {

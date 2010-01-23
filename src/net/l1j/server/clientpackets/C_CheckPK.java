@@ -22,6 +22,7 @@ package net.l1j.server.clientpackets;
 import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
@@ -38,8 +39,7 @@ public class C_CheckPK extends ClientBasePacket {
 		super(abyte0);
 
 		L1PcInstance player = clientthread.getActiveChar();
-		player.sendPackets(new S_ServerMessage(562, String.valueOf(player
-				.get_PKcount()))); // 目前PK次數。
+		player.sendPackets(new S_ServerMessage(SystemMessageId.$562, String.valueOf(player.get_PKcount())));
 	}
 
 	@Override

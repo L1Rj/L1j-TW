@@ -16,26 +16,22 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Message_YN;
 import net.l1j.server.utils.FaceToFace;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Trade extends ClientBasePacket {
-
 	private static final String C_TRADE = "[C] C_Trade";
+
 	private static Logger _log = Logger.getLogger(C_Trade.class.getName());
 
-	public C_Trade(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_Trade(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		L1PcInstance player = clientthread.getActiveChar();
@@ -47,7 +43,7 @@ public class C_Trade extends ClientBasePacket {
 			if (!target.isParalyzed()) {
 				player.setTradeID(target.getId()); // 相手のオブジェクトIDを保存しておく
 				target.setTradeID(player.getId());
-				target.sendPackets(new S_Message_YN(252, player.getName())); // %0%sがあなたとアイテムの取引を望んでいます。取引しますか？（Y/N）
+				target.sendPackets(new S_Message_YN(SystemMessageId.$252, player.getName()));
 			}
 		}
 	}

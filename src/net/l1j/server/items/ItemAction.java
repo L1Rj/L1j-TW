@@ -25,6 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import net.l1j.server.datatables.NpcTable;
 import net.l1j.server.datatables.PetTable;
 import net.l1j.server.datatables.SkillsTable;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -272,7 +273,7 @@ public class ItemAction {
 
 	public static boolean withDrawPet(L1PcInstance pc, int itemObjectId) {
 		if (!pc.getMap().isTakePets()) {
-			pc.sendPackets(new S_ServerMessage(563)); // \f1ここでは使えません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$563));
 			return false;
 		}
 		int petCost = 0;
@@ -329,7 +330,7 @@ public class ItemAction {
 			}
 			petCount = charisma / divisor;
 			if (petCount <= 0) {
-				pc.sendPackets(new S_ServerMessage(489)); // 引き取ろうとするペットが多すぎます。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$489));
 				return false;
 			}
 			L1Npc npcTemp = NpcTable.getInstance().getTemplate(npcId);

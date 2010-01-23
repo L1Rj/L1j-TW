@@ -32,6 +32,7 @@ import net.l1j.server.model.L1Quest;
 import net.l1j.server.model.L1TownLocation;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.gametime.L1GameTimeClock;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Npc;
@@ -3103,7 +3104,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 		pc.getInventory().consumeItem(sealId, sealCount);
 		L1ItemInstance item = pc.getInventory().storeItem(rulerId, 1);
 		if (item != null) {
-			pc.sendPackets(new S_ServerMessage(143, getNpcTemplate().get_name(), item.getLogName())); // \f1%0が%1をくれました。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, getNpcTemplate().get_name(), item.getLogName()));
 		}
 	}
 

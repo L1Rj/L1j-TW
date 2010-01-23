@@ -33,6 +33,7 @@ import net.l1j.server.model.L1Attack;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -75,7 +76,7 @@ public class C_Attack extends ClientBasePacket
 
 		// 攻擊アクションをとれる狀態か確認
 		if (pc.getInventory().getWeight240() >= 197) { // 重量オーバー
-			pc.sendPackets(new S_ServerMessage(110)); // \f1アイテムが重すぎて戰鬥することができません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$110));
 			return;
 		}
 

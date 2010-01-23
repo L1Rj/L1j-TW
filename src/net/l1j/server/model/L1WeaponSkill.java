@@ -24,6 +24,7 @@ import net.l1j.server.ActionCodes;
 import net.l1j.server.datatables.SkillsTable;
 import net.l1j.server.datatables.WeaponSkillTable;
 import net.l1j.server.model.L1Character;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
@@ -278,8 +279,7 @@ public class L1WeaponSkill {
 				dmg = 0;
 			}
 			String msg = weapon.getLogName();
-			pc.sendPackets(new S_ServerMessage(158, msg));
-			// \f1%0が蒸發してなくなりました。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$158, msg));
 			pc.getInventory().removeItem(weapon, 1);
 		}
 		return dmg;

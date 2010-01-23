@@ -16,19 +16,16 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Party;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Party;
 import net.l1j.server.serverpackets.S_ServerMessage;
-
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
 
 public class C_Party extends ClientBasePacket {
 
@@ -43,13 +40,10 @@ public class C_Party extends ClientBasePacket {
 		}
 		L1Party party = pc.getParty();
 		if (pc.isInParty()) {
-			pc.sendPackets(new S_Party("party", pc
-					.getId(), party.getLeader().getName(), party
-					.getMembersNameList()));
+			pc.sendPackets(new S_Party("party", pc.getId(), party.getLeader().getName(), party.getMembersNameList()));
 		} else {
-			pc.sendPackets(new S_ServerMessage(425));
-// pc.sendPackets(new S_Party("party", pc
-// .getId()));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$425));
+//			pc.sendPackets(new S_Party("party", pc.getId()));
 		}
 	}
 

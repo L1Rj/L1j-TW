@@ -25,6 +25,7 @@ import java.util.TimerTask;
 import javolution.util.FastTable;
 
 import net.l1j.server.model.L1Object;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DoorInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.skills.SkillId;
@@ -122,7 +123,7 @@ public class L1HauntedHouse {
 		}
 	}
 
-	public void sendMessage(int type, String msg) {
+	public void sendMessage(SystemMessageId type, String msg) {
 		for (L1PcInstance pc : getMembersArray()) {
 			pc.sendPackets(new S_ServerMessage(type, msg));
 		}

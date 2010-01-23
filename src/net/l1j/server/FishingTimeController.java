@@ -23,18 +23,17 @@ import java.util.logging.Logger;
 
 import javolution.util.FastTable;
 
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_CharVisualUpdate;
 import net.l1j.server.serverpackets.S_PacketBox;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class FishingTimeController implements Runnable {
-	private static Logger _log = Logger.getLogger(FishingTimeController.class
-			.getName());
+	private static Logger _log = Logger.getLogger(FishingTimeController.class.getName());
 
 	private static FishingTimeController _instance;
-	private final List<L1PcInstance> _fishingList =
-			new FastTable<L1PcInstance>();
+	private final List<L1PcInstance> _fishingList = new FastTable<L1PcInstance>();
 
 	public static FishingTimeController getInstance() {
 		if (_instance == null) {
@@ -79,11 +78,9 @@ public class FishingTimeController implements Runnable {
 				L1PcInstance pc = _fishingList.get(i);
 				if (pc.isFishing()) {
 					time = pc.getFishingTime();
-					if (currentTime <= (time + 1000)
-							&& currentTime >= (time - 1000)
-							&& !pc.isFishingReady()) {
+					if (currentTime <= (time + 1000) && currentTime >= (time - 1000) && !pc.isFishingReady()) {
 						pc.setFishingReady(true);
-// pc.sendPackets(new S_Fishing());
+//						pc.sendPackets(new S_Fishing());
 						pc.sendPackets(new S_PacketBox(S_PacketBox.FISHING));
 					} else if (currentTime > (time + 1000)) {
 						pc.setFishingTime(0);
@@ -91,12 +88,11 @@ public class FishingTimeController implements Runnable {
 						pc.setFishing(false);
 						pc.sendPackets(new S_CharVisualUpdate(pc));
 						pc.broadcastPacket(new S_CharVisualUpdate(pc));
-						pc.sendPackets(new S_ServerMessage(1163, "")); // 釣りが終了しました。
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$1163, ""));
 						removeMember(pc);
 					}
 				}
 			}
 		}
 	}
-
 }

@@ -26,6 +26,7 @@ import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.BuddyTable;
 import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.model.L1Buddy;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1CharName;
@@ -48,8 +49,7 @@ public class C_AddBuddy extends ClientBasePacket {
 		if (charName.equalsIgnoreCase(pc.getName())) {
 			return;
 		} else if (buddyList.containsName(charName)) {
-			pc.sendPackets(new S_ServerMessage(1052, charName)); // %s
-																	// は既に登錄されています。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1052, charName));
 			return;
 		}
 
@@ -62,7 +62,7 @@ public class C_AddBuddy extends ClientBasePacket {
 				return;
 			}
 		}
-		pc.sendPackets(new S_ServerMessage(109, charName)); // %0という名前の人はいません。
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$109, charName));
 	}
 
 	@Override

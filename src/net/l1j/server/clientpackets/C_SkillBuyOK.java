@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import javolution.util.FastTable;
@@ -24,17 +23,14 @@ import javolution.util.FastTable;
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.SkillsTable;
 import net.l1j.server.items.ItemId;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillList;
 import net.l1j.server.templates.L1Skills;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-public class C_SkillBuyOK extends ClientBasePacket
-{
-	public C_SkillBuyOK(byte[] abyte0, ClientThread client) throws Exception
-	{
+public class C_SkillBuyOK extends ClientBasePacket {
+	public C_SkillBuyOK(byte[] abyte0, ClientThread client) throws Exception {
 		super(abyte0);
 
 		FastTable<L1Skills> SkillList = new FastTable<L1Skills>();
@@ -48,19 +44,16 @@ public class C_SkillBuyOK extends ClientBasePacket
 		if (pc.isGhost())
 			return;
 
-		for (int i = 0; i < Count; i++)
-		{
+		for (int i = 0; i < Count; i++) {
 			L1Skills skill = SkillsTable.getInstance().getTemplate(readD() + 1);
 			int Skillid = skill.getSkillId(); // 取得魔法代號
 			int SkillLv = skill.getSkillLevel(); // 取得魔法等級
 
 			// 確認魔法魔法是否可學習
-			if (!SpellCheck(pc, Skillid))
-			{
+			if (!SpellCheck(pc, Skillid)) {
 				SkillList.add(skill); // 加入魔法至清單中
 				Price += SkillLv * SkillLv * 100; // 計算價格並累計
-			}
-			else
+			} else
 				return; // 中斷程序
 		}
 
@@ -71,21 +64,17 @@ public class C_SkillBuyOK extends ClientBasePacket
 		L1Skills[] Skills = SkillList.toArray(new L1Skills[Count]); // 將 ArrayList 轉換成 L1Skills 陣列
 
 		// 判斷金幣是否足夠學習魔法
-		if (pc.getInventory().checkItem(ItemId.ADENA, Price))
-		{
+		if (pc.getInventory().checkItem(ItemId.ADENA, Price)) {
 			pc.getInventory().consumeItem(ItemId.ADENA, Price); // 消耗金幣數量
 			pc.sendPackets(new S_SkillList(true, Skills)); // 將魔法插入角色魔法欄內
 
-			for (L1Skills Skill : Skills)
-			{
+			for (L1Skills Skill : Skills) {
 				SkillName = Skill.getName(); // 魔法名稱
 				SkillId = Skill.getSkillId(); // 魔法代號
 				SkillsTable.getInstance().spellMastery(pc.getId(), SkillId, SkillName, 0, 0);
 			}
-		}
-		else
-		{
-			pc.sendPackets(new S_ServerMessage(189)); // \f1アデナが不足しています。
+		} else {
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$189));
 		}
 
 		SkillList.clear(); // 清除魔法清單
@@ -93,8 +82,7 @@ public class C_SkillBuyOK extends ClientBasePacket
 		Skills = null;
 	}
 
-	public static boolean SpellCheck(L1PcInstance Pc, int Skillid)
-	{
+	public static boolean SpellCheck(L1PcInstance Pc, int Skillid) {
 		int Type = Pc.getType();
 		int Level = Pc.getLevel();
 		L1Skills skill = SkillsTable.getInstance().getTemplate(Skillid);

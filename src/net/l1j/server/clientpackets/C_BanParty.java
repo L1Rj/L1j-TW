@@ -22,6 +22,7 @@ package net.l1j.server.clientpackets;
 import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
@@ -40,7 +41,7 @@ public class C_BanParty extends ClientBasePacket {
 		L1PcInstance player = client.getActiveChar();
 		if (!player.getParty().isLeader(player)) {
 			// パーティーリーダーでない場合
-			player.sendPackets(new S_ServerMessage(427)); // パーティーのリーダーのみが追放できます。
+			player.sendPackets(new S_ServerMessage(SystemMessageId.$427));
 			return;
 		}
 
@@ -51,7 +52,7 @@ public class C_BanParty extends ClientBasePacket {
 			}
 		}
 		// 見つからなかった
-		player.sendPackets(new S_ServerMessage(426, s)); // %0はパーティーメンバーではありません。
+		player.sendPackets(new S_ServerMessage(SystemMessageId.$426, s));
 	}
 
 	@Override

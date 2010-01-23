@@ -21,6 +21,7 @@ import net.l1j.log.LogPickUpItem;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_AttackPacket;
@@ -56,7 +57,7 @@ public class C_PickUpItem extends ClientBasePacket {
 		if (object != null && !pc.isDead()) {
 			L1ItemInstance item = (L1ItemInstance) object;
 			if (item.getItemOwnerId() != 0 && pc.getId() != item.getItemOwnerId()) {
-				pc.sendPackets(new S_ServerMessage(623)); // アイテムが拾えませんでした。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$623));
 				return;
 			}
 			if (pc.getLocation().getTileLineDistance(item.getLocation()) > 3) {
@@ -71,8 +72,7 @@ public class C_PickUpItem extends ClientBasePacket {
 				}
 				// 拾った後に2Gを超過しないようにチェック
 				if ((long) inventoryItemCount + (long) pickupCount > 2000000000L) {
-					pc.sendPackets(new S_ServerMessage(166, // \f1%0が%4%1%3%2
-							"所持有的金幣", "超過2,000,000,000。"));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, "所持有的金幣", "超過2,000,000,000。"));
 					return;
 				}
 			}

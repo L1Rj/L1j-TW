@@ -29,6 +29,7 @@ import net.l1j.server.datatables.ChatLogTable;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ChatPacket;
@@ -58,7 +59,7 @@ public class C_Chat extends ClientBasePacket {
 			return;
 		}
 		if (pc.hasSkillEffect(1005)) { // チャット禁止中
-			pc.sendPackets(new S_ServerMessage(242)); // 現在チャット禁止中です。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$242));
 			return;
 		}
 
@@ -245,14 +246,13 @@ public class C_Chat extends ClientBasePacket {
 						}
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(462)); // \f1空腹のためチャットできません。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$462));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(510)); // 現在ワールドチャットは停止中となっております。しばらくの間ご了承くださいませ。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$510));
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(195, String
-					.valueOf(Config.GLOBAL_CHAT_LEVEL))); // レベル%0未滿のキャラクターはチャットができません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$195, String.valueOf(Config.GLOBAL_CHAT_LEVEL)));
 		}
 	}
 

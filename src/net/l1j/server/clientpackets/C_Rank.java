@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Level;
@@ -26,19 +25,15 @@ import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Rank extends ClientBasePacket {
-
 	private static final String C_RANK = "[C] C_Rank";
 	private static Logger _log = Logger.getLogger(C_Rank.class.getName());
 
-	public C_Rank(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_Rank(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		int data = readC(); // ?
@@ -58,18 +53,17 @@ public class C_Rank extends ClientBasePacket {
 		}
 
 		if (rank < 1 && 3 < rank) {
-			// ランクを變更する人の名前とランクを入力してください。[ランク=ガーディアン、一般、見習い]
-			pc.sendPackets(new S_ServerMessage(781));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$781));
 			return;
 		}
 
 		if (pc.isCrown()) { // 君主
 			if (pc.getId() != clan.getLeaderId()) { // 血盟主
-				pc.sendPackets(new S_ServerMessage(785)); // あなたはもう君主ではありません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$785));
 				return;
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(518)); // この命令は血盟の君主のみが利用できます。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$518));
 			return;
 		}
 
@@ -86,19 +80,17 @@ public class C_Rank extends ClientBasePacket {
 					} else if (rank == L1Clan.CLAN_RANK_GUARDIAN) {
 						rankString = "$772";
 					}
-					targetPc.sendPackets(new S_ServerMessage(784, rankString)); // あなたのランクが%sに變更されました。
+					targetPc.sendPackets(new S_ServerMessage(SystemMessageId.$784, rankString));
 				} catch (Exception e) {
 					_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(414)); // 同じ血盟員ではありません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$414));
 				return;
 			}
 		} else { // オフライン中
-			L1PcInstance restorePc = CharacterTable.getInstance()
-					.restoreCharacter(name);
-			if (restorePc != null
-					&& restorePc.getClanid() == pc.getClanid()) { // 同じクラン
+			L1PcInstance restorePc = CharacterTable.getInstance().restoreCharacter(name);
+			if (restorePc != null && restorePc.getClanid() == pc.getClanid()) { // 同じクラン
 				try {
 					restorePc.setClanRank(rank);
 					restorePc.save(); // DBにキャラクター情報を書き⑸む
@@ -106,7 +98,7 @@ public class C_Rank extends ClientBasePacket {
 					_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(109, name)); // %0という名前の人はいません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$109, name));
 				return;
 			}
 		}

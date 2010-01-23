@@ -27,6 +27,7 @@ import net.l1j.server.datatables.SkillsTable;
 import net.l1j.log.LogSpeedHack;
 import net.l1j.server.model.AcceleratorChecker;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.skills.SkillUse;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -34,15 +35,12 @@ import net.l1j.server.types.Base;
 
 import static net.l1j.server.skills.SkillId.*;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_UseSkill extends ClientBasePacket {
-
 	private static Logger _log = Logger.getLogger(C_UseSkill.class.getName());
 
 	public C_UseSkill(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
+
 		int row = readC();
 		int column = readC();
 		int skillId = (row * 8) + column + 1;
@@ -57,13 +55,12 @@ public class C_UseSkill extends ClientBasePacket {
 			return;
 		}
 		if (!pc.getMap().isUsableSkill()) {
-			pc.sendPackets(new S_ServerMessage(563)); // \f1ここでは使えません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$563));
 			return;
 		}
 
 		// TODO 封鎖 LinHelp無條件喝水功能
-		if (pc.isParalyzed() || pc.isSleeped()
-				 || pc.isFreeze() || pc.isStun()) {
+		if (pc.isParalyzed() || pc.isSleeped() || pc.isFreeze() || pc.isStun()) {
 			return;
 		}
 
@@ -75,13 +72,10 @@ public class C_UseSkill extends ClientBasePacket {
 		if (Config.CHECK_SPELL_INTERVAL) {
 			int result;
 			// FIXME どのスキルがdir/no dirであるかの判斷が適當
-			if (SkillsTable.getInstance().getTemplate(skillId).getActionId() ==
-						ActionCodes.ACTION_SkillAttack) {
-				result = pc.getAcceleratorChecker().checkInterval(
-						AcceleratorChecker.ACT_TYPE.SPELL_DIR);
+			if (SkillsTable.getInstance().getTemplate(skillId).getActionId() == ActionCodes.ACTION_SkillAttack) {
+				result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.SPELL_DIR);
 			} else {
-				result = pc.getAcceleratorChecker().checkInterval(
-						AcceleratorChecker.ACT_TYPE.SPELL_NODIR);
+				result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.SPELL_NODIR);
 			}
 			if (result == AcceleratorChecker.R_DISCONNECTED) {
 				LogSpeedHack lsh = new LogSpeedHack();
@@ -134,11 +128,11 @@ public class C_UseSkill extends ClientBasePacket {
 
 				if (target == null) {
 					// メッセージが正確であるか未調查
-					pc.sendPackets(new S_ServerMessage(73, charName)); // \f1%0はゲームをしていません。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$73, charName));
 					return;
 				}
 				if (pc.getClanid() != target.getClanid()) {
-					pc.sendPackets(new S_ServerMessage(414)); // 同じ血盟員ではありません。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$414));
 					return;
 				}
 				targetId = target.getId();
@@ -152,9 +146,7 @@ public class C_UseSkill extends ClientBasePacket {
 				}
 			}
 			SkillUse skilluse = new SkillUse();
-			skilluse.handleCommands(pc, skillId, targetId, targetX, targetY, message, 0,
-					Base.SKILL_TYPE[0]);
-
+			skilluse.handleCommands(pc, skillId, targetId, targetX, targetY, message, 0, Base.SKILL_TYPE[0]);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -26,6 +26,7 @@ import javolution.util.FastTable;
 import net.l1j.Config;
 import net.l1j.server.WarTimeController;
 import net.l1j.server.datatables.CastleTable;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_War;
@@ -159,25 +160,19 @@ public class L1War {
 						clan2_member[cnt].sendPackets(new S_War(type,
 								clan1_name, clan2_name));
 					} else if (type == 2) { // 降伏
-						clan2_member[cnt].sendPackets(new S_War(type,
-								clan1_name, clan2_name));
+						clan2_member[cnt].sendPackets(new S_War(type, clan1_name, clan2_name));
 						if (attack_clan_num == 1) { // 攻擊側クランが一つ
-							clan2_member[cnt].sendPackets(new S_War(4,
-									clan2_name, clan1_name));
+							clan2_member[cnt].sendPackets(new S_War(4, clan2_name, clan1_name));
 						} else {
-							clan2_member[cnt].sendPackets(new S_ServerMessage( // %0血盟が%1血盟に降伏しました。
-									228, clan1_name, clan2_name));
+							clan2_member[cnt].sendPackets(new S_ServerMessage(SystemMessageId.$228, clan1_name, clan2_name));
 							RemoveAttackClan(clan1_name);
 						}
 					} else if (type == 3) { // 終結
-						clan2_member[cnt].sendPackets(new S_War(type,
-								clan1_name, clan2_name));
+						clan2_member[cnt].sendPackets(new S_War(type, clan1_name, clan2_name));
 						if (attack_clan_num == 1) { // 攻擊側クランが一つ
-							clan2_member[cnt].sendPackets(new S_War(4,
-									clan2_name, clan1_name));
+							clan2_member[cnt].sendPackets(new S_War(4, clan2_name, clan1_name));
 						} else {
-							clan2_member[cnt].sendPackets(new S_ServerMessage( // %0血盟と%1血盟間の戰爭が終結しました。
-									227, clan1_name, clan2_name));
+							clan2_member[cnt].sendPackets(new S_ServerMessage(SystemMessageId.$227, clan1_name, clan2_name));
 							RemoveAttackClan(clan1_name);
 						}
 					}
@@ -231,8 +226,7 @@ public class L1War {
 
 	public void WinCastleWar(String clan_name) { // クラウンを奪取して、攻擊側クランが勝利
 		String defence_clan_name = GetDefenceClanName();
-		L1World.getInstance().broadcastPacketToAll(new S_ServerMessage( // %0血盟が%1血盟との戰爭で勝利しました。
-				231, clan_name, defence_clan_name));
+		L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(SystemMessageId.$231, clan_name, defence_clan_name));
 
 		L1Clan defence_clan = L1World.getInstance().getClan(defence_clan_name);
 		if (defence_clan != null) {
@@ -249,8 +243,7 @@ public class L1War {
 		String clanList[] = GetAttackClanList();
 		for (int j = 0; j < clanList.length; j++) {
 			if (clanList[j] != null) {
-				L1World.getInstance().broadcastPacketToAll(new S_ServerMessage( // %0血盟と%1血盟間の戰爭が終結しました。
-						227, defence_clan_name, clanList[j]));
+				L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(SystemMessageId.$227, defence_clan_name, clanList[j]));
 				L1Clan clan = L1World.getInstance().getClan(clanList[j]);
 				if (clan != null) {
 					L1PcInstance clan_member[] = clan.getOnlineClanMember();
@@ -270,8 +263,7 @@ public class L1War {
 		String defence_clan_name = GetDefenceClanName();
 		String clanList[] = GetAttackClanList();
 		if (defence_clan_name != null) {
-			L1World.getInstance().broadcastPacketToAll(new S_ServerMessage( // %0血盟が%1血盟との戰爭で勝利しました。
-					231, defence_clan_name, clanList[0]));
+			L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(SystemMessageId.$231, defence_clan_name, clanList[0]));
 		}
 
 		L1Clan defence_clan = L1World.getInstance().getClan(defence_clan_name);
@@ -286,8 +278,7 @@ public class L1War {
 
 		for (int j = 0; j < clanList.length; j++) {
 			if (clanList[j] != null) {
-				L1World.getInstance().broadcastPacketToAll(new S_ServerMessage( // %0血盟と%1血盟間の戰爭が終結しました。
-						227, defence_clan_name, clanList[j]));
+				L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(SystemMessageId.$227, defence_clan_name, clanList[j]));
 				L1Clan clan = L1World.getInstance().getClan(clanList[j]);
 				if (clan != null) {
 					L1PcInstance clan_member[] = clan.getOnlineClanMember();

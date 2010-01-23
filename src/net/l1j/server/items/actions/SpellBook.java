@@ -19,6 +19,7 @@
 package net.l1j.server.items.actions;
 
 import net.l1j.server.items.ItemAction;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -51,10 +52,10 @@ public class SpellBook {
 					|| itemId == 40229 && level >= 55) {
 				regRoyalSpell(pc, item);
 			} else {
-				pc.sendPackets(new S_ServerMessage(312)); // 你還不能學習法術。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(79));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 		}
 	}
 
@@ -75,10 +76,10 @@ public class SpellBook {
 					|| itemId == 40166 && level >= 60) {
 				regKnightSpell(pc, item);
 			} else {
-				pc.sendPackets(new S_ServerMessage(312)); // 你還不能學習法術。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(79));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 		}
 	}
 
@@ -131,7 +132,7 @@ public class SpellBook {
 
 				regElfSpell(pc, item);
 		} else {
-			pc.sendPackets(new S_ServerMessage(79)); // (原文:精灵の水晶はエルフのみが习得できます。)
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 		}
 	}
 
@@ -194,17 +195,17 @@ public class SpellBook {
 						|| itemId >= 45008 && itemId <= 45015 && level >= 20) {
 					regWizardSpell(pc, item, isLawful);
 				} else if (itemId >= 45000 && itemId <= 45015){
-					pc.sendPackets(new S_ServerMessage(312)); // 你還不能學習法術。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1沒有任何事情發生。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 				}
 			} else if (pc.isKnight()) {
 				if (itemId >= 45000 && itemId <= 45007 && level >= 50) {
 					regWizardSpell(pc, item, isLawful);
 				} else if (itemId >= 45000 && itemId <= 45007) {
-					pc.sendPackets(new S_ServerMessage(312)); // 你還不能學習法術。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1沒有任何事情發生。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 				}
 			} else if (pc.isElf()) {
 				if (itemId >= 45000 && itemId <= 45007 && level >=  8
@@ -215,9 +216,9 @@ public class SpellBook {
 						|| itemId >= 40186 && itemId <= 40193 && level >= 48) {
 					regWizardSpell(pc, item, isLawful);
 				} else if (itemId >= 45000 && itemId <= 40193) {
-					pc.sendPackets(new S_ServerMessage(312)); // 你還不能學習法術。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1沒有任何事情發生。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 				}
 			} else if (pc.isWizard()) {
 				if (itemId >= 45000 && itemId <= 45007 && level >=  4
@@ -232,21 +233,21 @@ public class SpellBook {
 						|| itemId >= 40218 && itemId <= 40225 && level >= 40) {
 					regWizardSpell(pc, item, isLawful);
 				} else {
-					pc.sendPackets(new S_ServerMessage(312)); // 你還不能學習法術。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
 				}
 			} else if (pc.isDarkelf()) {
 				if (itemId >= 45000 && itemId <= 45007 && level >= 12
 						|| itemId >= 45008 && itemId <= 45015 && level >= 24) {
 					regWizardSpell(pc, item, isLawful);
 				} else if (itemId >= 45000 && itemId <= 45015) {
-					pc.sendPackets(new S_ServerMessage(312)); // 你還不能學習法術。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1沒有任何事情發生。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 				}
 			}
 		} else if (itemAttr != locAttr && itemAttr != 0 && locAttr != 0) {
 			// 間違ったテンプルで讀んだ場合雷が落ちる
-			pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 			S_SkillSound effect = new S_SkillSound(pc.getId(), 10);
 			pc.sendPackets(effect);
 			pc.broadcastPacket(effect);
@@ -257,7 +258,7 @@ public class SpellBook {
 			}
 			pc.getInventory().removeItem(item, 1);
 		} else {
-			pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 		}
 	}
 
@@ -279,10 +280,10 @@ public class SpellBook {
 					|| itemId >= 40275 && itemId <= 40279 && level >= 45) {
 				regDarkElfSpell(pc, item);
 			} else {
-				pc.sendPackets(new S_ServerMessage(312)); // 你還不能學習法術。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(79)); // (原文:闇精靈の水晶はダークエルフのみが習得できます。)
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 		}
 	}
 
@@ -303,10 +304,10 @@ public class SpellBook {
 					|| itemId >= 49112 && itemId <= 49116 && level >= 45) {
 				regDragonKnightSpell(pc, item);
 			} else {
-				pc.sendPackets(new S_ServerMessage(312));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(79));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 		}
 	}
 
@@ -328,10 +329,10 @@ public class SpellBook {
 					|| itemId >= 49132 && itemId <= 49136 && level >= 40) {
 				regIllusionistSpell(pc, item);
 			} else {
-				pc.sendPackets(new S_ServerMessage(312));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(79));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 		}
 	}
 

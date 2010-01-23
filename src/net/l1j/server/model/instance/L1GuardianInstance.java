@@ -34,6 +34,7 @@ import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1NpcTalkData;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.serverpackets.S_ChangeHeading;
 import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_NpcChatPacket;
@@ -181,7 +182,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 								}
 								_inventory.consumeItem(40499, itemCount);
 								player.getInventory().storeItem(40505, itemCount);
-								player.sendPackets(new S_ServerMessage(143, npcName, itemName));
+								player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
 								if (!isDropitems()) {
 									doGDropItem(3);
 								}
@@ -192,10 +193,10 @@ public class L1GuardianInstance extends L1NpcInstance {
 									itemName += " (6)";
 									_inventory.consumeItem(40507, 6);
 									player.getInventory().storeItem(40507, 6);
-									player.sendPackets(new S_ServerMessage(143, npcName, itemName));
+									player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
 								} else {
 									itemName = item40499.getName();
-									player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
+									player.sendPackets(new S_ServerMessage(SystemMessageId.$337, itemName));
 								}
 
 							} else if (_inventory.checkItem(40506) && !_inventory.checkItem(40507)) { // 安特的水果
@@ -203,10 +204,10 @@ public class L1GuardianInstance extends L1NpcInstance {
 									itemName = item40506.getName();
 									_inventory.consumeItem(40506, 1);
 									player.getInventory().storeItem(40506, 1);
-									player.sendPackets(new S_ServerMessage(143, npcName, itemName));
+									player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
 								} else {
 									itemName = item40499.getName();
-									player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
+									player.sendPackets(new S_ServerMessage(SystemMessageId.$337, itemName));
 								}
 							} else {
 								if (!forDropitems()) {
@@ -217,7 +218,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 									broadcastPacket(new S_NpcChatPacket(_npc, "$822", 0));
 								} else {
 									itemName = item40499.getName();
-									player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
+									player.sendPackets(new S_ServerMessage(SystemMessageId.$337, itemName));
 								}
 							}
 							break;
@@ -230,7 +231,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 									itemName += " (5)";
 									_inventory.consumeItem(40519, 5);
 									player.getInventory().storeItem(40519, 5);
-									player.sendPackets(new S_ServerMessage(143, npcName, itemName));
+									player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
 								}
 							} else {
 								if (!forDropitems()) {
@@ -253,10 +254,10 @@ public class L1GuardianInstance extends L1NpcInstance {
 								}
 								_inventory.consumeItem(40507, itemCount);
 								player.getInventory().storeItem(40503, itemCount);
-								player.sendPackets(new S_ServerMessage(143, npcName, itemName));
+								player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
 							} else {
 								itemName = item40507.getName();
-								player.sendPackets(new S_ServerMessage(337, itemName)); // \f1%0不足%s。
+								player.sendPackets(new S_ServerMessage(SystemMessageId.$337, itemName));
 							}
 							break;
 						}

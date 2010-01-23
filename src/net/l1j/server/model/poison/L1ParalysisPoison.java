@@ -19,6 +19,7 @@
 package net.l1j.server.model.poison;
 
 import net.l1j.server.model.L1Character;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Paralysis;
 import net.l1j.thread.GeneralThreadPool;
@@ -110,7 +111,7 @@ public class L1ParalysisPoison extends L1Poison {
 	}
 
 	private void doInfection() {
-		sendMessageIfPlayer(_target, 212);
+		sendMessageIfPlayer(_target, SystemMessageId.$212);
 		_target.setPoisonEffect((byte) 1);
 
 		if (_target instanceof L1PcInstance) {

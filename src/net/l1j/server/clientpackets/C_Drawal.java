@@ -28,6 +28,7 @@ import net.l1j.server.items.ItemId;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -68,8 +69,7 @@ public class C_Drawal extends ClientBasePacket {
 								pc.getY(), pc.getMapId()).storeItem(
 								ItemId.ADENA, j);
 					}
-					pc.sendPackets(new S_ServerMessage(143, "$457", "$4" + " ("
-							+ j + ")"));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, "$457", "$4" + " (" + j + ")"));
 				}
 			}
 		}

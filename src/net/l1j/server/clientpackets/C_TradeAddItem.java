@@ -25,6 +25,7 @@ import net.l1j.log.LogTradeBugItem;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1Trade;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DollInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -32,23 +33,18 @@ import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.model.L1CheckPcItem;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_TradeAddItem extends ClientBasePacket {
 	private static final String C_TRADE_ADD_ITEM = "[C] C_TradeAddItem";
-	private static Logger _log = Logger.getLogger(C_TradeAddItem.class
-			.getName());
 
-	public C_TradeAddItem(byte abyte0[], ClientThread client)
-			throws Exception {
+	private static Logger _log = Logger.getLogger(C_TradeAddItem.class.getName());
+
+	public C_TradeAddItem(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
 
 		int itemid = readD();
 		int itemcount = readD();
 		L1PcInstance pc = client.getActiveChar();
-		L1PcInstance target = (L1PcInstance) L1World.getInstance().findObject(
-				pc.getTradeID());
+		L1PcInstance target = (L1PcInstance) L1World.getInstance().findObject(pc.getTradeID());
 		L1Trade trade = new L1Trade();
 		L1ItemInstance item = pc.getInventory().getItem(itemid);
 		L1CheckPcItem checkPcItem = new L1CheckPcItem();
@@ -59,12 +55,11 @@ public class C_TradeAddItem extends ClientBasePacket {
 			return;
 		}
 		if (!item.getItem().isTradable()) {
-			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0%d是不可轉移的…
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, item.getItem().getName()));
 			return;
 		}
 		if (item.getBless() >= 128) { // 封印的裝備
-			// \f1%0%d是不可轉移的…
-			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName()));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, item.getItem().getName()));
 			return;
 		}
 		Object[] petlist = pc.getPetList().values().toArray();
@@ -72,9 +67,7 @@ public class C_TradeAddItem extends ClientBasePacket {
 			if (petObject instanceof L1PetInstance) {
 				L1PetInstance pet = (L1PetInstance) petObject;
 				if (item.getId() == pet.getItemObjId()) {
-					// \f1%0%d是不可轉移的…
-					pc.sendPackets(new S_ServerMessage(210, item.getItem()
-							.getName()));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, item.getItem().getName()));
 					return;
 				}
 			}
@@ -84,25 +77,22 @@ public class C_TradeAddItem extends ClientBasePacket {
 			if (dollObject instanceof L1DollInstance) {
 				L1DollInstance doll = (L1DollInstance) dollObject;
 				if (item.getId() == doll.getItemObjId()) {
-					// \f1這個魔法娃娃目前正在使用中。
-					pc.sendPackets(new S_ServerMessage(1181));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1181));
 					return;
 				}
 			}
 		}
 
-		L1PcInstance tradingPartner = (L1PcInstance) L1World.getInstance()
-				.findObject(pc.getTradeID());
+		L1PcInstance tradingPartner = (L1PcInstance) L1World.getInstance().findObject(pc.getTradeID());
 		if (tradingPartner == null) {
 			return;
 		}
 		if (pc.getTradeOk()) {
 			return;
 		}
-		if (tradingPartner.getInventory().checkAddItem(item, itemcount)
-				!= L1Inventory.OK) { // 容量重量確認以及訊息發送
-			tradingPartner.sendPackets(new S_ServerMessage(270)); // \f1當你負擔過重時不能交易。
-			pc.sendPackets(new S_ServerMessage(271)); // \f1對方攜帶的物品過重，無法交易。
+		if (tradingPartner.getInventory().checkAddItem(item, itemcount) != L1Inventory.OK) { // 容量重量確認以及訊息發送
+			tradingPartner.sendPackets(new S_ServerMessage(SystemMessageId.$270));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$271));
 			return;
 		}
 		if (isCheat) {

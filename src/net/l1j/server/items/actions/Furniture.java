@@ -30,6 +30,7 @@ import net.l1j.server.model.L1HouseLocation;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1PcInventory;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1FurnitureInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -42,7 +43,7 @@ public class Furniture {
 
 	public static void add(L1PcInstance pc, int itemId, int itemObjectId) {
 		if (!L1HouseLocation.isInHouse(pc.getX(), pc.getY(), pc.getMapId())) {
-			pc.sendPackets(new S_ServerMessage(563)); // \f1ここでは使えません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$563));
 			return;
 		}
 

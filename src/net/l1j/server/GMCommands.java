@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server;
 
 import java.util.Map;
@@ -28,19 +27,14 @@ import javolution.util.FastMap;
 
 import net.l1j.server.command.L1Commands;
 import net.l1j.server.command.executor.L1CommandExecutor;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ActiveSpells;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.templates.L1Command;
 
-// Referenced classes of package net.l1j.server:
-// ClientThread, Shutdown, IpTable, MobTable,
-// PolyTable, IdFactory
-//
-
-public class GMCommands
-{
+public class GMCommands {
 	private static Logger _log = Logger.getLogger(GMCommands.class.getName());
 
 	private static GMCommands _instance;
@@ -65,22 +59,19 @@ public class GMCommands
 		return "net.l1j.server.command.executor." + className;
 	}
 
-	private boolean executeDatabaseCommand(L1PcInstance pc, String name,
-			String arg) {
+	private boolean executeDatabaseCommand(L1PcInstance pc, String name, String arg) {
 		try {
 			L1Command command = L1Commands.get(name);
 			if (command == null) {
 				return false;
 			}
 			if (pc.getAccessLevel() < command.getLevel()) {
-				pc.sendPackets(new S_ServerMessage(74, "指令 ." + name)); // \f1%0は使用できません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$74, "指令 ." + name));
 				return true;
 			}
 
-			Class<?> cls = Class.forName(complementClassName(command
-					.getExecutorClassName()));
-			L1CommandExecutor exe = (L1CommandExecutor) cls.getMethod(
-					"getInstance").invoke(null);
+			Class<?> cls = Class.forName(complementClassName(command.getExecutorClassName()));
+			L1CommandExecutor exe = (L1CommandExecutor) cls.getMethod("getInstance").invoke(null);
 			exe.execute(pc, name, arg);
 			_log.info(pc.getName() + "使用了 ." + name + " " + arg + "指令。");
 			return true;
@@ -90,8 +81,7 @@ public class GMCommands
 		return false;
 	}
 
-	public void handleCommands(L1PcInstance gm, String cmdLine)
-	{
+	public void handleCommands(L1PcInstance gm, String cmdLine) {
 		StringTokenizer token = new StringTokenizer(cmdLine);
 		// 最初の空白までがコマンド、それ以降は空白を區切りとしたパラメータとして扱う
 		String cmd = token.nextToken();
@@ -103,16 +93,14 @@ public class GMCommands
 		param = param.trim();
 
 		// データベース化されたコマンド
-		if (executeDatabaseCommand(gm, cmd, param))
-		{
+		if (executeDatabaseCommand(gm, cmd, param)) {
 			if (!cmd.equalsIgnoreCase("r"))
 				_lastCommands.put(gm.getId(), cmdLine);
 
 			return;
 		}
 
-		if (cmdLine.startsWith("test "))
-		{
+		if (cmdLine.startsWith("test ")) {
 			cmdLine = cmdLine.substring(5);
 			int offset = Integer.parseInt(cmdLine);
 			gm.sendPackets(new S_ActiveSpells(gm, offset));
@@ -121,7 +109,7 @@ public class GMCommands
 
 		if (cmd.equalsIgnoreCase("r")) {
 			if (!_lastCommands.containsKey(gm.getId())) {
-				gm.sendPackets(new S_ServerMessage(74, "指令 ." + cmd)); // \f1%0は使用できません。
+				gm.sendPackets(new S_ServerMessage(SystemMessageId.$74, "指令 ." + cmd));
 				return;
 			}
 			redo(gm, param);
@@ -136,8 +124,7 @@ public class GMCommands
 		try {
 			String lastCmd = _lastCommands.get(pc.getId());
 			if (arg.isEmpty()) {
-				pc.sendPackets(new S_SystemMessage("指令 . " + lastCmd
-						+ " 重新執行"));
+				pc.sendPackets(new S_SystemMessage("指令 . " + lastCmd + " 重新執行"));
 				handleCommands(pc, lastCmd);
 			} else {
 				// 引數を變えて實行

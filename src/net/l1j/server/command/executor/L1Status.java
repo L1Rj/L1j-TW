@@ -21,6 +21,7 @@ package net.l1j.server.command.executor;
 import java.util.StringTokenizer;
 
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Lawful;
 import net.l1j.server.serverpackets.S_OwnCharStatus;
@@ -49,7 +50,7 @@ public class L1Status implements L1CommandExecutor {
 			}
 
 			if (target == null) {
-				pc.sendPackets(new S_ServerMessage(73, char_name)); // \f1%0はゲームをしていません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$73, char_name));
 				return;
 			}
 

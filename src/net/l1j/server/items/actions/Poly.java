@@ -22,6 +22,7 @@ import net.l1j.server.datatables.PolyTable;
 import net.l1j.server.datatables.SkillsTable;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1PolyMorph;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -65,7 +66,7 @@ public class Poly {
 			int awakeSkillId = pc.getAwakeSkillId();
 			if (awakeSkillId == SKILL_AWAKEN_ANTHARAS || awakeSkillId == SKILL_AWAKEN_FAFURION
 					|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
-				pc.sendPackets(new S_ServerMessage(1384)); // 
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1384));
 				return;
 			}
 
@@ -74,7 +75,7 @@ public class Poly {
 				if (!pc.isShapeChange()) {//變身判斷
 					pc.setShapeChange(true);
 				}
-				pc.sendPackets(new S_ServerMessage(966)); // string-j.tbl:968行目
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$966));
 				// 魔法の力によって保護されます。
 				// 變身の際のメッセージは、他人が自分を變身させた時に出るメッセージと、レベルが足りない時に出るメッセージ以外はありません。
 			} else {
@@ -83,7 +84,7 @@ public class Poly {
 				L1PolyMorph.doPoly(pc, polyId, skillTemp.getBuffDuration(),
 						L1PolyMorph.MORPH_BY_ITEMMAGIC);
 				if (attacker.getId() != pc.getId()) {
-					pc.sendPackets(new S_ServerMessage(241, attacker.getName())); // %0があなたを變身させました。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$241, attacker.getName()));
 				}
 			}
 		} else if (cha instanceof L1MonsterInstance) {
@@ -316,7 +317,7 @@ public class Poly {
 		int awakeSkillId = pc.getAwakeSkillId();
 		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS || awakeSkillId == SKILL_AWAKEN_FAFURION
 				|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
-			pc.sendPackets(new S_ServerMessage(1384)); // 
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1384));
 			return false;
 		}
 

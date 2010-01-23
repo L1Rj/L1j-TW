@@ -18,6 +18,7 @@
  */
 package net.l1j.server.model;
 
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Paralysis;
@@ -97,7 +98,7 @@ public class L1CurseParalysis extends L1Paralysis {
 	private void curse() {
 		if (_target instanceof L1PcInstance) {
 			L1PcInstance player = (L1PcInstance) _target;
-			player.sendPackets(new S_ServerMessage(212));
+			player.sendPackets(new S_ServerMessage(SystemMessageId.$212));
 		}
 
 		_target.setPoisonEffect((byte) 2);

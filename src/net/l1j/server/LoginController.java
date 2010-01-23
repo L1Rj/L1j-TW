@@ -22,16 +22,16 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.thread.GeneralThreadPool;
 
 public class LoginController {
-	private static LoginController _instance;
-
-	private static Logger _log = Logger.getLogger(LoginController.class
-			.getName());
+	private static Logger _log = Logger.getLogger(LoginController.class.getName());
 
 	private Map<String, ClientThread> _accounts = new ConcurrentHashMap<String, ClientThread>();
+
+	private static LoginController _instance;
 
 	private int _maxAllowedOnlinePlayers;
 
@@ -72,8 +72,7 @@ public class LoginController {
 			@Override
 			public void run() {
 				if (client.getActiveChar() != null) {
-					client.getActiveChar()
-							.sendPackets(new S_ServerMessage(357));
+					client.getActiveChar().sendPackets(new S_ServerMessage(SystemMessageId.$357));
 				}
 
 				try {
@@ -85,15 +84,13 @@ public class LoginController {
 		});
 	}
 
-	public synchronized void login(ClientThread client, Account account)
-			throws GameServerFullException, AccountAlreadyLoginException {
+	public synchronized void login(ClientThread client, Account account) throws GameServerFullException, AccountAlreadyLoginException {
 		if (!account.isValid()) {
 			// パスワード認証がされていない、あるいは認証に失敗したアカウントが指定された。
 			// このコードは、バグ檢出の為にのみ存在する。
 			throw new IllegalArgumentException("帳號尚未通過認證!!");
 		}
-		if ((getMaxAllowedOnlinePlayers() <= getOnlinePlayerCount())
-				&& !account.isGameMaster()) {
+		if ((getMaxAllowedOnlinePlayers() <= getOnlinePlayerCount()) && !account.isGameMaster()) {
 			throw new GameServerFullException();
 		}
 		if (_accounts.containsKey(account.getName())) {

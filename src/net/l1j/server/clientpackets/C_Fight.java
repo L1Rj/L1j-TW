@@ -16,27 +16,23 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Message_YN;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.utils.FaceToFace;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Fight extends ClientBasePacket {
-
 	private static final String C_FIGHT = "[C] C_Fight";
+
 	private static Logger _log = Logger.getLogger(C_Fight.class.getName());
 
-	public C_Fight(byte abyte0[], ClientThread client)
-			throws Exception {
+	public C_Fight(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
 
 		L1PcInstance pc = client.getActiveChar();
@@ -47,15 +43,15 @@ public class C_Fight extends ClientBasePacket {
 		if (target != null) {
 			if (!target.isParalyzed()) {
 				if (pc.getFightId() != 0) {
-					pc.sendPackets(new S_ServerMessage(633)); // \f1あなたはすでにほかの人と決鬥中です。
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$633));
 					return;
 				} else if (target.getFightId() != 0) {
-					target.sendPackets(new S_ServerMessage(634)); // \f1すでにほかの人と決鬥中です。
+					target.sendPackets(new S_ServerMessage(SystemMessageId.$634));
 					return;
 				}
 				pc.setFightId(target.getId());
 				target.setFightId(pc.getId());
-				target.sendPackets(new S_Message_YN(630, pc.getName())); // %0%sがあなたと決鬥を望んでいます。應じますか？（Y/N）
+				target.sendPackets(new S_Message_YN(SystemMessageId.$630, pc.getName()));
 			}
 		}
 	}
@@ -64,5 +60,4 @@ public class C_Fight extends ClientBasePacket {
 	public String getType() {
 		return C_FIGHT;
 	}
-
 }

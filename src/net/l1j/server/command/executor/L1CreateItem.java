@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.model.L1Inventory;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -61,8 +62,7 @@ public class L1CreateItem implements L1CommandExecutor {
 			try {
 				itemid = Integer.parseInt(nameid);
 			} catch (NumberFormatException e) {
-				itemid = ItemTable.getInstance().findItemIdByNameWithoutSpace(
-						nameid);
+				itemid = ItemTable.getInstance().findItemIdByNameWithoutSpace(nameid);
 				if (itemid == 0) {
 					pc.sendPackets(new S_SystemMessage("找不到這個道具編號。"));
 					return;
@@ -71,8 +71,7 @@ public class L1CreateItem implements L1CommandExecutor {
 			L1Item temp = ItemTable.getInstance().getTemplate(itemid);
 			if (temp != null) {
 				if (temp.isStackable()) {
-					L1ItemInstance item = ItemTable.getInstance().createItem(
-							itemid);
+					L1ItemInstance item = ItemTable.getInstance().createItem(itemid);
 					item.setEnchantLevel(0);
 					item.setCount(count);
 					if (isId == 1) {
@@ -80,8 +79,7 @@ public class L1CreateItem implements L1CommandExecutor {
 					}
 					if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) {
 						pc.getInventory().storeItem(item);
-						pc.sendPackets(new S_ServerMessage(403, // %0を手に入れました。
-								item.getLogName() + "(ID:" + itemid + ")"));
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$403, item.getLogName() + "(ID:" + itemid + ")"));
 					}
 				} else {
 					L1ItemInstance item = null;
@@ -99,8 +97,7 @@ public class L1CreateItem implements L1CommandExecutor {
 						}
 					}
 					if (createCount > 0) {
-						pc.sendPackets(new S_ServerMessage(403, // %0を手に入れました。
-								item.getLogName() + "(ID:" + itemid + ")"));
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$403, item.getLogName() + "(ID:" + itemid + ")"));
 					}
 				}
 			} else {
@@ -108,8 +105,7 @@ public class L1CreateItem implements L1CommandExecutor {
 			}
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			pc.sendPackets(new S_SystemMessage(
-					"請輸入 " + cmdName + " [數量] [增強等級] [鑑定狀態]。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " [數量] [增強等級] [鑑定狀態]。"));
 		}
 	}
 }

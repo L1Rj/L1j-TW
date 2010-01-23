@@ -22,12 +22,13 @@ import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillId;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillIconGFX;
 import net.l1j.server.serverpackets.S_SystemMessage;
-import static net.l1j.server.skills.SkillId.*;
+
+import static net.l1j.server.skills.SkillId.STATUS_CHAT_PROHIBITED;
 
 public class L1ChatNG implements L1CommandExecutor {
 	private static Logger _log = Logger.getLogger(L1ChatNG.class.getName());
@@ -49,15 +50,13 @@ public class L1ChatNG implements L1CommandExecutor {
 			L1PcInstance tg = L1World.getInstance().getPlayer(name);
 
 			if (tg != null) {
-				tg.setSkillEffect(STATUS_CHAT_PROHIBITED,
-						time * 60 * 1000);
+				tg.setSkillEffect(STATUS_CHAT_PROHIBITED, time * 60 * 1000);
 				tg.sendPackets(new S_SkillIconGFX(36, time * 60));
-				tg.sendPackets(new S_ServerMessage(286, String.valueOf(time))); // \f3ゲームに適合しない行動であるため、今後%0分間チャットを禁じます。
-				pc.sendPackets(new S_ServerMessage(287, name)); // %0のチャットを禁じました。
+				tg.sendPackets(new S_ServerMessage(SystemMessageId.$286, String.valueOf(time)));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$287, name));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName
-					+ " 禁言角色ID 時間。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 禁言角色ID 時間。"));
 		}
 	}
 }

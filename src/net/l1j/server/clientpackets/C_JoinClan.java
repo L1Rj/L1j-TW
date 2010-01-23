@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
@@ -24,21 +23,18 @@ import java.util.logging.Logger;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Message_YN;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.utils.FaceToFace;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_JoinClan extends ClientBasePacket {
-
 	private static final String C_JOIN_CLAN = "[C] C_JoinClan";
+
 	private static Logger _log = Logger.getLogger(C_JoinClan.class.getName());
 
-	public C_JoinClan(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_JoinClan(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		L1PcInstance pc = clientthread.getActiveChar();
@@ -54,14 +50,14 @@ public class C_JoinClan extends ClientBasePacket {
 
 	private void JoinClan(L1PcInstance player, L1PcInstance target) {
 		if (!target.isCrown()) { // 相手がプリンスまたはプリンセス以外
-			player.sendPackets(new S_ServerMessage(92, target.getName())); // \f1%0はプリンスやプリンセスではありません。
+			player.sendPackets(new S_ServerMessage(SystemMessageId.$92, target.getName()));
 			return;
 		}
 
 		int clan_id = target.getClanid();
 		String clan_name = target.getClanname();
 		if (clan_id == 0) { // 相手のクランがない
-			player.sendPackets(new S_ServerMessage(90, target.getName())); // \f1%0は血盟を創設していない狀態です。
+			player.sendPackets(new S_ServerMessage(SystemMessageId.$90, target.getName()));
 			return;
 		}
 
@@ -71,37 +67,36 @@ public class C_JoinClan extends ClientBasePacket {
 		}
 
 		if (target.getId() != clan.getLeaderId()) { // 相手が血盟主以外
-			player.sendPackets(new S_ServerMessage(92, target.getName())); // \f1%0はプリンスやプリンセスではありません。
+			player.sendPackets(new S_ServerMessage(SystemMessageId.$92, target.getName()));
 			return;
 		}
 
 		if (player.getClanid() != 0) { // 既にクランに加入濟み
 			if (player.isCrown()) { // 自分が君主
 				String player_clan_name = player.getClanname();
-				L1Clan player_clan = L1World.getInstance().getClan(
-						player_clan_name);
+				L1Clan player_clan = L1World.getInstance().getClan(player_clan_name);
 				if (player_clan == null) {
 					return;
 				}
 
 				if (player.getId() != player_clan.getLeaderId()) { // 自分が血盟主以外
-					player.sendPackets(new S_ServerMessage(89)); // \f1あなたはすでに血盟に加入しています。
+					player.sendPackets(new S_ServerMessage(SystemMessageId.$89));
 					return;
 				}
 
 				if (player_clan.getCastleId() != 0 || // 自分が城主‧アジト保有
 						player_clan.getHouseId() != 0) {
-					player.sendPackets(new S_ServerMessage(665)); // \f1城やアジトを所有した狀態で血盟を解散することはできません。
+					player.sendPackets(new S_ServerMessage(SystemMessageId.$665));
 					return;
 				}
 			} else {
-				player.sendPackets(new S_ServerMessage(89)); // \f1あなたはすでに血盟に加入しています。
+				player.sendPackets(new S_ServerMessage(SystemMessageId.$89));
 				return;
 			}
 		}
 
 		target.setTempID(player.getId()); // 相手のオブジェクトIDを保存しておく
-		target.sendPackets(new S_Message_YN(97, player.getName())); // %0が血盟に加入したがっています。承諾しますか？（Y/N）
+		target.sendPackets(new S_Message_YN(SystemMessageId.$97, player.getName()));
 	}
 
 	@Override

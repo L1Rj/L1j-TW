@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.items.ItemId;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
@@ -127,7 +128,7 @@ public class L1PcInventory extends L1Inventory {
 				|| (getSize() == MAX_SIZE && (!item.isStackable() || !checkItem(item
 						.getItem().getItemId())))) { // 容量確認
 			if (message) {
-				sendOverMessage(263); // \f1一人のキャラクターが持って步けるアイテムは最大180個までです。
+				_owner.sendPackets(new S_ServerMessage(SystemMessageId.$263));
 			}
 			return SIZE_OVER;
 		}
@@ -135,13 +136,13 @@ public class L1PcInventory extends L1Inventory {
 		int weight = getWeight() + item.getItem().getWeight() * count / 1000 + 1;
 		if (weight < 0 || (item.getItem().getWeight() * count / 1000) < 0) {
 			if (message) {
-				sendOverMessage(82); // アイテムが重すぎて、これ以上持てません。
+				_owner.sendPackets(new S_ServerMessage(SystemMessageId.$82));
 			}
 			return WEIGHT_OVER;
 		}
 		if (calcWeight240(weight) >= 240) {
 			if (message) {
-				sendOverMessage(82); // アイテムが重すぎて、これ以上持てません。
+				_owner.sendPackets(new S_ServerMessage(SystemMessageId.$82));
 			}
 			return WEIGHT_OVER;
 		}
@@ -149,18 +150,12 @@ public class L1PcInventory extends L1Inventory {
 		L1ItemInstance itemExist = findItemId(item.getItemId());
 		if (itemExist != null && (itemExist.getCount() + count) > MAX_AMOUNT) {
 			if (message) {
-				getOwner().sendPackets(new S_ServerMessage(166,
-						"持有金幣",
-						"超過2,000,000,000。")); // \f1%0が%4%1%3%2
+				getOwner().sendPackets(new S_ServerMessage(SystemMessageId.$166, "持有金幣", "超過2,000,000,000。"));
 			}
 			return AMOUNT_OVER;
 		}
 
 		return OK;
-	}
-
-	public void sendOverMessage(int message_id) {
-		_owner.sendPackets(new S_ServerMessage(message_id));
 	}
 
 	// ＤＢのcharacter_itemsの讀⑸

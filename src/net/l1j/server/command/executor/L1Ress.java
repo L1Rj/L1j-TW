@@ -21,6 +21,7 @@ package net.l1j.server.command.executor;
 import java.util.logging.Logger;
 
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Message_YN;
 import net.l1j.server.serverpackets.S_SkillSound;
@@ -51,7 +52,7 @@ public class L1Ress implements L1CommandExecutor {
 					tg.sendPackets(new S_SkillSound(tg.getId(), 3944));
 					// 祝福された 復活スクロールと同じ效果
 					tg.setTempID(objid);
-					tg.sendPackets(new S_Message_YN(322, "")); // また復活したいですか？（Y/N）
+					tg.sendPackets(new S_Message_YN(SystemMessageId.$322, ""));
 				} else {
 					tg.sendPackets(new S_SystemMessage("GM提供您治療。"));
 					tg.broadcastPacket(new S_SkillSound(tg.getId(), 832));

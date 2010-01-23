@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Level;
@@ -26,27 +25,25 @@ import net.l1j.Config;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_CharTitle;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Title extends ClientBasePacket {
-
 	private static final String C_TITLE = "[C] C_Title";
+
 	private static Logger _log = Logger.getLogger(C_Title.class.getName());
 
 	public C_Title(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
+
 		L1PcInstance pc = clientthread.getActiveChar();
 		String charName = readS();
 		String title = readS();
 
 		if (charName.isEmpty() || title.isEmpty()) {
-			// \f1次のように入力してください：「/title \f0キャラクター名 呼稱\f1」
-			pc.sendPackets(new S_ServerMessage(196));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$196));
 			return;
 		}
 		L1PcInstance target = L1World.getInstance().getPlayer(charName);
@@ -62,51 +59,42 @@ public class C_Title extends ClientBasePacket {
 		if (isClanLeader(pc)) { // 血盟主
 			if (pc.getId() == target.getId()) { // 自分
 				if (pc.getLevel() < 10) {
-					// \f1血盟員の場合、呼稱を持つにはレベル10以上でなければなりません。
-					pc.sendPackets(new S_ServerMessage(197));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$197));
 					return;
 				}
 				changeTitle(pc, title);
 			} else { // 他人
 				if (pc.getClanid() != target.getClanid()) {
-					// \f1血盟員でなければ他人に呼稱を与えることはできません。
-					pc.sendPackets(new S_ServerMessage(199));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$199));
 					return;
 				}
 				if (target.getLevel() < 10) {
-					// \f1%0のレベルが10未滿なので呼稱を与えることはできません。
-					pc.sendPackets(new S_ServerMessage(202, charName));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$202, charName));
 					return;
 				}
 				changeTitle(target, title);
 				L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 				if (clan != null) {
 					for (L1PcInstance clanPc : clan.getOnlineClanMember()) {
-						// \f1%0が%1に「%2」という呼稱を与えました。
-						clanPc.sendPackets(new S_ServerMessage(203, pc
-								.getName(), charName, title));
+						clanPc.sendPackets(new S_ServerMessage(SystemMessageId.$203, pc.getName(), charName, title));
 					}
 				}
 			}
 		} else {
 			if (pc.getId() == target.getId()) { // 自分
 				if (pc.getClanid() != 0 && !Config.CHANGE_TITLE_BY_ONESELF) {
-					// \f1血盟員に呼稱を与えられるのはプリンスとプリンセスだけです。
-					pc.sendPackets(new S_ServerMessage(198));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$198));
 					return;
 				}
 				if (target.getLevel() < 40) {
-					// \f1血盟員ではないのに呼稱を持つには、レベル40以上でなければなりません。
-					pc.sendPackets(new S_ServerMessage(200));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$200));
 					return;
 				}
 				changeTitle(pc, title);
 			} else { // 他人
 				if (pc.isCrown()) { // 連合に所屬した君主
 					if (pc.getClanid() == target.getClanid()) {
-						// \f1%0はあなたの血盟ではありません。
-						pc.sendPackets(new S_ServerMessage(201, pc
-								.getClanname()));
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$201, pc.getClanname()));
 						return;
 					}
 				}

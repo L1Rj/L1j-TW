@@ -22,6 +22,7 @@ import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.datatables.ResolventTable;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -31,29 +32,29 @@ public class Resolvent {
 
 	public static void use(L1PcInstance pc, L1ItemInstance item, L1ItemInstance resolvent) {
 		if (item == null || resolvent == null) {
-			pc.sendPackets(new S_ServerMessage(79)); // \f1何も起きませんでした。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 			return;
 		}
 		if (item.getItem().getType2() == 1 || item.getItem().getType2() == 2) { // 武器‧防具
 			if (item.getEnchantLevel() != 0) { // 強化濟み
-				pc.sendPackets(new S_ServerMessage(1161)); // 溶解できません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1161));
 				return;
 			}
 			if (item.isEquipped()) { // 裝備中
-				pc.sendPackets(new S_ServerMessage(1161)); // 溶解できません。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1161));
 				return;
 			}
 		}
 		int crystalCount = ResolventTable.getInstance().getCrystalCount(item.getItem().getItemId());
 		if (crystalCount == 0) {
-			pc.sendPackets(new S_ServerMessage(1161)); // 溶解できません。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1161));
 			return;
 		}
 
 		int rnd = RandomArrayList.getInc(100, 1);
 		if (rnd <= 50) {
 			crystalCount = 0;
-			pc.sendPackets(new S_ServerMessage(158, item.getName())); // \f1%0が蒸発してなくなりました。
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$158, item.getName()));
 		} else if (rnd <= 90) {
 			crystalCount *= 1;
 		} else if (rnd <= 100) {
@@ -65,10 +66,9 @@ public class Resolvent {
 			crystal.setCount(crystalCount);
 			if (pc.getInventory().checkAddItem(crystal, 1) == L1Inventory.OK) {
 				pc.getInventory().storeItem(crystal);
-				pc.sendPackets(new S_ServerMessage(403, crystal.getLogName())); // %0を手に入れました。
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$403, crystal.getLogName()));
 			} else { // 持てない場合は地面に落とす 處理のキャンセルはしない（不正防止）
-				L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(
-						crystal);
+				L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(crystal);
 			}
 		}
 		pc.getInventory().removeItem(item, 1);

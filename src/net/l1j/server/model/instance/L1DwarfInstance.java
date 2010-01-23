@@ -25,6 +25,7 @@ import javolution.util.FastTable;
 import net.l1j.server.datatables.NPCTalkDataTable;
 import net.l1j.server.model.L1Attack;
 import net.l1j.server.model.L1NpcTalkData;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Npc;
@@ -93,7 +94,7 @@ public class L1DwarfInstance extends L1NpcInstance {
 
 			if (pc.getClanname().equalsIgnoreCase(" ")) {
 				_log.finest("pc isnt in a pledge");
-				S_ServerMessage talk = new S_ServerMessage((S_ServerMessage.NO_PLEDGE), Action);
+				S_ServerMessage talk = new S_ServerMessage(SystemMessageId.$208, Action);
 				pc.sendPackets(talk);
 			} else {
 				_log.finest("pc is in a pledge");

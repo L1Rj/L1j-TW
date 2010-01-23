@@ -21,6 +21,7 @@ package net.l1j.server.items.actions;
 import net.l1j.server.items.ItemAction;
 import net.l1j.server.model.L1PcInventory;
 import net.l1j.server.model.L1PolyMorph;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -38,7 +39,7 @@ public class Weapon {
 				return;
 			}
 			if (weapon.getItem().isTwohandedWeapon() && pcInventory.getTypeEquipped(2, 7) >= 1) { // 兩手武器の場合、シールド裝備の確認
-				activeChar.sendPackets(new S_ServerMessage(128)); // \f1シールドを裝備している時は兩手で持つ武器を使うことはできません。
+				activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$128));
 				return;
 			}
 		}
@@ -47,7 +48,7 @@ public class Weapon {
 
 		if (activeChar.getWeapon() != null) { // 既に何かを裝備している場合、前の裝備をはずす
 			if (activeChar.getWeapon().getItem().getBless() == 2) { // 咒われていた場合
-				activeChar.sendPackets(new S_ServerMessage(150)); // \f1はずすことができません。咒いをかけられているようです。
+				activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$150));
 				return;
 			}
 			if (activeChar.getWeapon().equals(weapon)) {
@@ -60,7 +61,7 @@ public class Weapon {
 		}
 
 		if (weapon.getItemId() == 200002) { // 咒われたダイスダガー
-			activeChar.sendPackets(new S_ServerMessage(149, weapon.getLogName())); // \f1%0が手にくっつきました。
+			activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$149, weapon.getLogName()));
 		}
 		pcInventory.setEquipped(weapon, true, false, false);
 	}

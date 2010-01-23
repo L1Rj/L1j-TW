@@ -19,6 +19,7 @@
 package net.l1j.server.model.poison;
 
 import net.l1j.server.model.L1Character;
+import net.l1j.server.model.id.SystemMessageId;
 
 import static net.l1j.server.skills.SkillId.*;
 
@@ -42,7 +43,7 @@ public class L1SilencePoison extends L1Poison {
 
 	private void doInfection() {
 		_target.setPoisonEffect((byte) 1);
-		sendMessageIfPlayer(_target, 310);
+		sendMessageIfPlayer(_target, SystemMessageId.$310);
 
 		_target.setSkillEffect(STATUS_POISON_SILENCE, 0);
 	}
@@ -55,7 +56,7 @@ public class L1SilencePoison extends L1Poison {
 	@Override
 	public void cure() {
 		_target.setPoisonEffect((byte) 0);
-		sendMessageIfPlayer(_target, 311);
+		sendMessageIfPlayer(_target, SystemMessageId.$311);
 
 		_target.killSkillEffectTimer(STATUS_POISON_SILENCE);
 		_target.setPoison(null);

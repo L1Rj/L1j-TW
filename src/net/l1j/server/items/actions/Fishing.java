@@ -20,6 +20,7 @@ package net.l1j.server.items.actions;
 
 import net.l1j.server.ActionCodes;
 import net.l1j.server.FishingTimeController;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Fishing;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -31,8 +32,7 @@ public class Fishing {
 	public static void start(L1PcInstance pc, int itemId, int fishX, int fishY) {
 		if (pc.getMapId() != 5124 || fishX <= 32789 || fishX >= 32813 || fishY <= 32786
 				|| fishY >= 32812) {
-			// ここに釣り竿を投げることはできません。
-			pc.sendPackets(new S_ServerMessage(1138));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1138));
 			return;
 		}
 
@@ -48,11 +48,9 @@ public class Fishing {
 					&& pc.getMap().isFishingZone(fishX, fishY + 1)
 					&& pc.getMap().isFishingZone(fishX, fishY - 1)) {
 				if (fishX > pc.getX() + rodLength || fishX < pc.getX() - rodLength) {
-					// ここに釣り竿を投げることはできません。
-					pc.sendPackets(new S_ServerMessage(1138));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1138));
 				} else if (fishY > pc.getY() + rodLength || fishY < pc.getY() - rodLength) {
-					// ここに釣り竿を投げることはできません。
-					pc.sendPackets(new S_ServerMessage(1138));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1138));
 				} else if (pc.getInventory().consumeItem(41295, 1)) { // エサ
 					pc.sendPackets(new S_Fishing(pc.getId(), ActionCodes.ACTION_Fishing, fishX,
 							fishY));
@@ -64,16 +62,13 @@ public class Fishing {
 					pc.setFishingTime(time);
 					FishingTimeController.getInstance().addMember(pc);
 				} else {
-					// 釣りをするためにはエサが必要です。
-					pc.sendPackets(new S_ServerMessage(1137));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1137));
 				}
 			} else {
-				// ここに釣り竿を投げることはできません。
-				pc.sendPackets(new S_ServerMessage(1138));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1138));
 			}
 		} else {
-			// ここに釣り竿を投げることはできません。
-			pc.sendPackets(new S_ServerMessage(1138));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1138));
 		}
 	}
 
