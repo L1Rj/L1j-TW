@@ -17,6 +17,7 @@
 			<attribute name="javadoc_location" value="http://www.mchange.com/projects/c3p0/apidocs/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="lib/sqlitejdbc-v056.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/sqlitejdbc-v056.jar" sourcepath="lib/src/sqlitejdbc-v056-src.zip"/>
+	<classpathentry kind="lib" path="lib/nimrodlf-1.1a.jar" sourcepath="lib/src/nimrodlf-1.1a-src.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -19,6 +19,7 @@
 package net.l1j.gui.config;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.io.IOException;
 import java.io.Writer;
 import java.net.Inet4Address;
@@ -64,8 +65,7 @@ public class ConfigProperty extends ConfigComment {
 	}
 
 	/**
-	 * @param name
-	 *            The name to set.
+	 * @param name The name to set.
 	 */
 	public void setName(String name) {
 		_propname = name;
@@ -79,8 +79,7 @@ public class ConfigProperty extends ConfigComment {
 	}
 
 	/**
-	 * @param value
-	 *            The value to set.
+	 * @param value The value to set.
 	 */
 	public void setValue(String value) {
 		_value = value;
@@ -94,8 +93,7 @@ public class ConfigProperty extends ConfigComment {
 	}
 
 	/**
-	 * @param type
-	 *            The type to set.
+	 * @param type The type to set.
 	 */
 	public void setType(ConfigValueType type) {
 		_type = type;
@@ -113,7 +111,6 @@ public class ConfigProperty extends ConfigComment {
 			case BOOLEAN:
 				boolean bool = (Boolean) this.getValue();
 				JCheckBox checkBox = new JCheckBox();
-				checkBox.setBackground(null);
 				checkBox.setSelected(bool);
 				return checkBox;
 			case IPv4:
@@ -124,8 +121,9 @@ public class ConfigProperty extends ConfigComment {
 			default:
 				String val = this.getValue().toString();
 				JTextField textField = new JTextField(val);
-				textField.setForeground(new Color(255, 0, 0));
-				textField.setColumns(Math.max(val.length(), 10));
+				textField.setForeground(new Color(255, 255, 255));
+				textField.setFont(new Font(null, Font.BOLD, 11));
+				textField.setColumns(Math.max(15, 10));
 				return textField;
 		}
 	}

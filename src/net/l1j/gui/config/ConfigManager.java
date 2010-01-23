@@ -47,6 +47,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.ToolTipManager;
+import javax.swing.UIManager;
+
+import com.nilo.plaf.nimrod.NimRODLookAndFeel;
+import com.nilo.plaf.nimrod.NimRODTheme;
 
 import net.l1j.gui.images.ImagesTable;
 
@@ -57,7 +61,6 @@ public class ConfigManager extends JFrame implements ActionListener {
 
 	private JPanel panelMain;
 	private JPanel panelConfigManager;
-	private JButton buttonConfigManagerIcon;
 	private JButton buttonConfigManagerClose;
 	private JTabbedPane tabbedPaneProperty;
 	private JPanel panelProperty;
@@ -67,12 +70,19 @@ public class ConfigManager extends JFrame implements ActionListener {
 
 	/**
 	 * 執行應用程式
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				NimRODTheme nTheme = new NimRODTheme("./data/theme/DarkGrey.theme");
+				NimRODLookAndFeel nLookAndFeel = new NimRODLookAndFeel();
+
 				try {
+					nLookAndFeel.setCurrentTheme(nTheme);
+					UIManager.setLookAndFeel(nLookAndFeel);
+
 					ConfigManager frame = new ConfigManager();
 					frame.setLocationRelativeTo(null);
 					frame.setResizable(false);
@@ -99,13 +109,14 @@ public class ConfigManager extends JFrame implements ActionListener {
 		panelMain.setBackground(null);
 		panelMain.setLayout(null);
 
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setIconImage(ImagesTable.getImage("configmanager.ico"));
 		setTitle("L1J-TW Config Manager");
 		setBackground(null);
 		setBounds(100, 100, 600, 500);
 		setUndecorated(true);
 		setContentPane(panelMain);
-		
+
 		panelConfigManager = new JPanel() {
 			private static final long serialVersionUID = 1L;
 
@@ -118,23 +129,18 @@ public class ConfigManager extends JFrame implements ActionListener {
 		panelConfigManager.setBounds(0, 0, 600, 500);
 		panelConfigManager.setLayout(null);
 		panelMain.add(panelConfigManager);
-		
-		buttonConfigManagerIcon = new JButton();
-		buttonConfigManagerIcon.setIcon(ImagesTable.getIcon("configmanager.png"));
-		buttonConfigManagerIcon.setBounds(6, 3, 16, 16);
-		buttonConfigManagerIcon.setBorder(null);
-		panelConfigManager.add(buttonConfigManagerIcon);
 
 		buttonConfigManagerClose = new JButton();
 		buttonConfigManagerClose.setIcon(ImagesTable.getIcon("closewindow.png"));
 		buttonConfigManagerClose.setActionCommand("exit");
 		buttonConfigManagerClose.addActionListener(this);
-		buttonConfigManagerClose.setBounds(583, 4, 13, 13);
+		buttonConfigManagerClose.setBackground(null);
+		buttonConfigManagerClose.setBounds(581, 2, 16, 16);
 		panelConfigManager.add(buttonConfigManagerClose);
-		
+
 		tabbedPaneProperty = new JTabbedPane();
-		tabbedPaneProperty.setForeground(new Color(0, 0, 255));
-		tabbedPaneProperty.setFont(new Font("Arial Unicode MS", Font.PLAIN, 11));
+		tabbedPaneProperty.setForeground(new Color(0, 255, 0));
+		tabbedPaneProperty.setFont(new Font(null, Font.BOLD, 11));
 
 		gridBagProperty = new GridBagConstraints();
 		gridBagProperty.fill = GridBagConstraints.HORIZONTAL;
@@ -156,27 +162,27 @@ public class ConfigManager extends JFrame implements ActionListener {
 		panelProperty.setLayout(new GridBagLayout());
 		panelProperty.add(tabbedPaneProperty, gridBagProperty);
 		panelConfigManager.add(panelProperty);
-		
+
 		buttonConfigSave = new JButton();
 		buttonConfigSave.setIcon(ImagesTable.getIcon("configsave.png"));
 		buttonConfigSave.setActionCommand("save");
 		buttonConfigSave.addActionListener(this);
 		buttonConfigSave.setBounds(205, 470, 65, 23);
 		panelConfigManager.add(buttonConfigSave);
-		
+
 		buttonConfigExit = new JButton();
 		buttonConfigExit.setIcon(ImagesTable.getIcon("configexit.png"));
 		buttonConfigExit.setBounds(330, 470, 65, 23);
 		buttonConfigExit.setActionCommand("exit");
 		buttonConfigExit.addActionListener(this);
 		panelConfigManager.add(buttonConfigExit);
-		
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
 		StringBuilder errors = new StringBuilder();
-		
+
 		if (cmd.equals("save")) {
 			for (ConfigFile cf : ConfigFile.getConfigs()) {
 				try {
@@ -225,19 +231,17 @@ public class ConfigManager extends JFrame implements ActionListener {
 				JLabel keyLabel = new JLabel(cp.getDisplayName() + " :", ImagesTable.getIcon("configinfo.png"), JLabel.LEFT);
 				keyLabel.setBackground(new Color(28, 28, 28));
 				keyLabel.setForeground(new Color(255, 225, 128));
-				keyLabel.setFont(new Font("Arial Unicode MS", Font.BOLD, 11));
+				keyLabel.setFont(new Font(null, Font.BOLD, 11));
 				String comments = "<b>" + cp.getName() + " :</b><br>" + cp.getComments();
 				comments = comments.replace("\r\n", "<br>");
-				comments = "<html><font size='2' face='Arial Unicode MS'>"
-							+ comments
-							+ "</font></html>";
-				keyLabel.setToolTipText(comments);
-				cons.weightx = 0;
+				comments = "<html><font size='2' color='#FFBBFF'>" + comments + "</color></font></html>";
+				cons.weightx = 0.5;
 				panel.add(keyLabel, cons);
 				cons.gridx++;
 
 				JComponent valueComponent = cp.getValueComponent();
-				cons.weightx = 1;
+				valueComponent.setToolTipText(comments);
+				cons.weightx = 0.5;
 				panel.add(valueComponent, cons);
 				cons.gridx++;
 				cons.gridy++;
@@ -248,7 +252,7 @@ public class ConfigManager extends JFrame implements ActionListener {
 			tabbedPaneProperty.addTab(cf.getName(), new JScrollPane(panel));
 		}
 	}
-	
+
 	private void loadConfigs() {
 		File configsDir = new File("config");
 		for (File file : configsDir.listFiles()) {
@@ -262,7 +266,7 @@ public class ConfigManager extends JFrame implements ActionListener {
 			}
 		}
 	}
-	
+
 	/**
 	 * @param file
 	 * @throws IOException
@@ -312,13 +316,12 @@ public class ConfigManager extends JFrame implements ActionListener {
 			return Boolean.parseBoolean(value);
 		}
 
-		//		try {
-		//			double parseDouble = Double.parseDouble(value);
-		//			return parseDouble;
-		//		} catch (NumberFormatException e) {
-		//			// not a double, ignore
-		//		}
-
+//		try {
+//			double parseDouble = Double.parseDouble(value);
+//			return parseDouble;
+//		} catch (NumberFormatException e) {
+//			// not a double, ignore
+//		}
 		// localhost -> 127.0.0.1
 		if (value.equals("localhost")) {
 			value = "127.0.0.1";

@@ -19,6 +19,7 @@
 package net.l1j.gui.config;
 
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -45,10 +46,8 @@ import java.awt.Color;
  * @author KenM
  */
 public class ConfigIPTextField extends JPanel implements FocusListener {
-	/**
-	 * Comment for <code>serialVersionUID</code>
-	 */
 	private static final long serialVersionUID = 1L;
+
 	private JTextField[] _textFields;
 	private List<FocusListener> _focusListeners;
 
@@ -81,7 +80,7 @@ public class ConfigIPTextField extends JPanel implements FocusListener {
 		};
 
 		this.setLayout(new GridBagLayout());
-		this.setBackground(new Color(45, 45, 45));
+		this.setBackground(new Color(28, 28, 28));
 
 		_textFields = new JTextField[4];
 
@@ -99,6 +98,7 @@ public class ConfigIPTextField extends JPanel implements FocusListener {
 			if (i > 0) {
 				JLabel dot = new JLabel(".");
 				dot.setForeground(new Color(255, 255, 255));
+				dot.setFont(new Font(null, Font.BOLD, 11));
 				cons.weightx = 0;
 				add(dot, cons);
 				cons.gridx++;
@@ -109,9 +109,10 @@ public class ConfigIPTextField extends JPanel implements FocusListener {
 				previous.setNext(_textFields[i]);
 			}
 			previous = maxDoc;
-			//ic.weightx = 1;
+			//cons.weightx = 1;
 			add(_textFields[i], cons);
-			_textFields[i].setForeground(new Color(255, 0, 0));
+			_textFields[i].setForeground(new Color(255, 255, 255));
+			_textFields[i].setFont(new Font(null, Font.BOLD, 11));
 			_textFields[i].addActionListener(nextfocusaction);
 			cons.gridx++;
 		}
@@ -235,8 +236,7 @@ public class ConfigIPTextField extends JPanel implements FocusListener {
 			setNext(next);
 		}
 
-		public void insertString(int offset, String str, AttributeSet a)
-				throws BadLocationException {
+		public void insertString(int offset, String str, AttributeSet a) throws BadLocationException {
 			if (getLength() + str.length() > _max) {
 				if (getNext() != null) {
 					if (this.getNext().getText().length() > 0) {
@@ -254,8 +254,7 @@ public class ConfigIPTextField extends JPanel implements FocusListener {
 		}
 
 		/**
-		 * @param next
-		 *            The next to set.
+		 * @param next The next to set.
 		 */
 		public void setNext(JTextField next) {
 			_next = next;
