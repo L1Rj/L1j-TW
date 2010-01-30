@@ -1853,12 +1853,12 @@ public class SkillUse {
 					}
 				} else if (_skillId == SKILL_DETECTION) { // ディテクション
 					if (cha instanceof L1NpcInstance) {
-						L1NpcInstance npc = (L1NpcInstance) cha;
-						int hiddenStatus = npc.getHiddenStatus();
-						if (hiddenStatus == L1NpcInstance.HIDDEN_STATUS_SINK) {
-							npc.appearOnGround(_player);
-						}
-					}
+                                            L1NpcInstance npc = (L1NpcInstance) cha;
+                                            int hiddenStatus = npc.getHiddenStatus();
+                                            if (hiddenStatus == L1NpcInstance.HIDDEN_STATUS_SINK) {
+                                                npc.appearOnGround(_player);
+                                            }
+                                        }
 				} else if (_skillId == SKILL_COUNTER_DETECTION) { // カウンターディテクション
 					if (cha instanceof L1PcInstance) {
 						dmg = _magic.calcMagicDamage(_skillId);
@@ -3021,8 +3021,14 @@ public class SkillUse {
 					pc.turnOnOffLight();
 				}
 			}
+                        // 修正無所頓形術對血光斗篷的影響 Start
+                        if (_skillId == SKILL_DETECTION) {
+                            if (!_player.getInventory().checkEquipped(20062))
+                                detection(_player);
+                        }
+                        // 修正無所頓形術對血光斗篷的影響 End
 
-			if (_skillId == SKILL_DETECTION || _skillId == SKILL_COUNTER_DETECTION) { // ディテクション、カウンターディテクション
+			if (_skillId == SKILL_COUNTER_DETECTION) { // ディテクション、カウンターディテクション
 				detection(_player);
 			}
 
@@ -3045,13 +3051,13 @@ public class SkillUse {
 
 	private void detection(L1PcInstance pc) {
 		if (!pc.isGmInvis() && pc.isInvisble()) { // 自分
-			pc.delInvis();
+                        pc.delInvis();
 			pc.beginInvisTimer();
 		}
 
 		for (L1PcInstance tgt : L1World.getInstance().getVisiblePlayer(pc)) {
 			if (!tgt.isGmInvis() && tgt.isInvisble()) {
-				tgt.delInvis();
+                                tgt.delInvis();
 			}
 		}
 		L1WorldTraps.getInstance().onDetection(pc);
