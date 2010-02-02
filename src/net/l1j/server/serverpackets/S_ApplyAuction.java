@@ -32,8 +32,7 @@ import net.l1j.server.utils.SQLUtil;
 
 public class S_ApplyAuction extends ServerBasePacket {
 
-	private static Logger _log = Logger.getLogger(S_ApplyAuction.class.
-			getName());
+	private static Logger _log = Logger.getLogger(S_ApplyAuction.class.getName());
 	private static final String S_APPLYAUCTION = "[S] S_ApplyAuction";
 	private byte[] _byte = null;
 
@@ -72,9 +71,7 @@ public class S_ApplyAuction extends ServerBasePacket {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 

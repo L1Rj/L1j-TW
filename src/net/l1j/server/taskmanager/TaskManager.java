@@ -87,8 +87,7 @@ public final class TaskManager {
 			} catch (SQLException e) {
 				_log.warning("cannot updated the Global Task " + _id + ": " + e.getMessage());
 			} finally {
-				SQLUtil.close(pstm);
-				SQLUtil.close(con);
+				SQLUtil.close(pstm, con);
 			}
 
 		}
@@ -177,32 +176,7 @@ public final class TaskManager {
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, "error while loading Global Task table", e);
 		} finally {
-			if (null != rs) {
-				try {
-					rs.close();
-				} catch (SQLException ignore) {
-					// ignore
-				}
-				rs = null;
-			}
-
-			if (null != pstm) {
-				try {
-					pstm.close();
-				} catch (SQLException ignore) {
-					// ignore
-				}
-				pstm = null;
-			}
-
-			if (null != con) {
-				try {
-					con.close();
-				} catch (SQLException ignore) {
-					// ignore
-				}
-				con = null;
-			}
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -276,9 +250,7 @@ public final class TaskManager {
 		} catch (SQLException e) {
 			_log.warning("cannot add the unique task: " + e.getMessage());
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 
 		return false;
@@ -307,11 +279,9 @@ public final class TaskManager {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, "cannot add the task", e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 
 		return false;
 	}
-
 }

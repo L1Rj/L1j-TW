@@ -28,9 +28,7 @@ import net.l1j.server.model.L1NpcTalkData;
 import net.l1j.server.utils.SQLUtil;
 
 public class NPCTalkDataTable {
-
-	private static Logger _log = Logger.getLogger(NPCTalkDataTable.class
-			.getName());
+	private static Logger _log = Logger.getLogger(NPCTalkDataTable.class.getName());
 
 	private static NPCTalkDataTable _instance;
 
@@ -52,10 +50,8 @@ public class NPCTalkDataTable {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM npcaction");
-
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				L1NpcTalkData l1npctalkdata = new L1NpcTalkData();
@@ -64,21 +60,17 @@ public class NPCTalkDataTable {
 				l1npctalkdata.setCaoticAction(rs.getString(3));
 				l1npctalkdata.setTeleportURL(rs.getString(4));
 				l1npctalkdata.setTeleportURLA(rs.getString(5));
-				_datatable.put(new Integer(l1npctalkdata.getNpcID()),
-						l1npctalkdata);
+				_datatable.put(new Integer(l1npctalkdata.getNpcID()), l1npctalkdata);
 			}
 			_log.config("NPC動作清單 " + _datatable.size() + "件");
 		} catch (SQLException e) {
 			_log.warning("error while creating npc action table " + e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
 	public L1NpcTalkData getTemplate(int i) {
 		return _datatable.get(new Integer(i));
 	}
-
 }

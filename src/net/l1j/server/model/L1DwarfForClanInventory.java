@@ -32,13 +32,9 @@ import net.l1j.server.templates.L1Item;
 import net.l1j.server.utils.SQLUtil;
 
 public class L1DwarfForClanInventory extends L1Inventory {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private static Logger _log = Logger.getLogger(L1DwarfForClanInventory.class
-			.getName());
+
+	private static Logger _log = Logger.getLogger(L1DwarfForClanInventory.class.getName());
 	private final L1Clan _clan;
 
 	public L1DwarfForClanInventory(L1Clan clan) {
@@ -53,8 +49,7 @@ public class L1DwarfForClanInventory extends L1Inventory {
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT * FROM clan_warehouse WHERE clan_name = ?");
+			pstm = con.prepareStatement("SELECT * FROM clan_warehouse WHERE clan_name = ?");
 			pstm.setString(1, _clan.getClanName());
 			rs = pstm.executeQuery();
 			while (rs.next()) {
@@ -62,11 +57,9 @@ public class L1DwarfForClanInventory extends L1Inventory {
 				int objectId = rs.getInt("id");
 				item.setId(objectId);
 				int itemId = rs.getInt("item_id");
-				L1Item itemTemplate = ItemTable.getInstance().getTemplate(
-						itemId);
+				L1Item itemTemplate = ItemTable.getInstance().getTemplate(itemId);
 				if (itemTemplate == null) {
-					throw new NullPointerException("item_id=" + itemId
-							+ " not found");
+					throw new NullPointerException("item_id=" + itemId + " not found");
 				}
 				item.setItem(itemTemplate);
 				item.setCount(rs.getInt("count"));
@@ -96,9 +89,7 @@ public class L1DwarfForClanInventory extends L1Inventory {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -109,8 +100,7 @@ public class L1DwarfForClanInventory extends L1Inventory {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-			.prepareStatement("INSERT INTO clan_warehouse SET id = ?, clan_name = ?, item_id = ?, item_name = ?, count = ?, is_equipped=0, enchantlvl = ?, is_id= ?, durability = ?, charge_count = ?, remaining_time = ?, last_used = ?, bless = ?, attr_enchant_kind = ?, attr_enchant_level = ?, firemr = ?, watermr = ?, earthmr = ?, windmr = ?, addsp = ?, addhp = ?, addmp = ?, hpr = ?, mpr = ?"); //waja change
+			pstm = con.prepareStatement("INSERT INTO clan_warehouse SET id = ?, clan_name = ?, item_id = ?, item_name = ?, count = ?, is_equipped=0, enchantlvl = ?, is_id= ?, durability = ?, charge_count = ?, remaining_time = ?, last_used = ?, bless = ?, attr_enchant_kind = ?, attr_enchant_level = ?, firemr = ?, watermr = ?, earthmr = ?, windmr = ?, addsp = ?, addhp = ?, addmp = ?, hpr = ?, mpr = ?"); //waja change
 			pstm.setInt(1, item.getId());
 			pstm.setString(2, _clan.getClanName());
 			pstm.setInt(3, item.getItemId());
@@ -138,8 +128,7 @@ public class L1DwarfForClanInventory extends L1Inventory {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
@@ -150,8 +139,7 @@ public class L1DwarfForClanInventory extends L1Inventory {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("UPDATE clan_warehouse SET count = ? WHERE id = ?");
+			pstm = con.prepareStatement("UPDATE clan_warehouse SET count = ? WHERE id = ?");
 			pstm.setInt(1, item.getCount());
 			pstm.setInt(2, item.getId());
 			pstm.execute();
@@ -159,8 +147,7 @@ public class L1DwarfForClanInventory extends L1Inventory {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
@@ -171,15 +158,13 @@ public class L1DwarfForClanInventory extends L1Inventory {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("DELETE FROM clan_warehouse WHERE id = ?");
+			pstm = con.prepareStatement("DELETE FROM clan_warehouse WHERE id = ?");
 			pstm.setInt(1, item.getId());
 			pstm.execute();
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 		_items.remove(_items.indexOf(item));
 	}
@@ -190,16 +175,13 @@ public class L1DwarfForClanInventory extends L1Inventory {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("DELETE FROM clan_warehouse WHERE clan_name = ?");
+			pstm = con.prepareStatement("DELETE FROM clan_warehouse WHERE clan_name = ?");
 			pstm.setString(1, _clan.getClanName());
 			pstm.execute();
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
-
 }

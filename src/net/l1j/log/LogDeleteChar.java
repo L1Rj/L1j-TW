@@ -51,8 +51,7 @@ public class LogDeleteChar {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 }

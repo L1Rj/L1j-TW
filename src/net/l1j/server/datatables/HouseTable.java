@@ -61,7 +61,6 @@ public class HouseTable {
 		return cal;
 	}
 
-
 	public HouseTable() {
 		Connection con = null;
 		PreparedStatement pstm = null;
@@ -69,8 +68,7 @@ public class HouseTable {
 
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT * FROM house ORDER BY house_id");
+			pstm = con.prepareStatement("SELECT * FROM house ORDER BY house_id");
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				L1House house = new L1House();
@@ -81,16 +79,13 @@ public class HouseTable {
 				house.setKeeperId(rs.getInt(5));
 				house.setOnSale(rs.getInt(6) == 1 ? true : false);
 				house.setPurchaseBasement(rs.getInt(7) == 1 ? true : false);
-				house.setTaxDeadline(timestampToCalendar((Timestamp) rs
-						.getObject(8)));
+				house.setTaxDeadline(timestampToCalendar((Timestamp) rs.getObject(8)));
 				_house.put(house.getHouseId(), house);
 			}
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -107,16 +102,17 @@ public class HouseTable {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("UPDATE house SET house_name=?, house_area=?, location=?, keeper_id=?, is_on_sale=?, is_purchase_basement=?, tax_deadline=? WHERE house_id=?");
+			pstm = con.prepareStatement("UPDATE house SET house_name=?, house_area=?, location=?, keeper_id=?, is_on_sale=?, is_purchase_basement=?, tax_deadline=? WHERE house_id=?");
 			pstm.setString(1, house.getHouseName());
 			pstm.setInt(2, house.getHouseArea());
 			pstm.setString(3, house.getLocation());
 			pstm.setInt(4, house.getKeeperId());
 			pstm.setInt(5, house.isOnSale() == true ? 1 : 0);
 			pstm.setInt(6, house.isPurchaseBasement() == true ? 1 : 0);
-/*			String fm = DateFormat.getDateTimeInstance().format(
-					house.getTaxDeadline().getTime()); // 原有格式未定亦會出錯問題 */
+			/*
+			 * String fm = DateFormat.getDateTimeInstance().format(
+			 * house.getTaxDeadline().getTime()); // 原有格式未定亦會出錯問題
+			 */
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); // TODO 盟屋買賣系統時間自動更新 by pigermin
 			String fm = sdf.format(house.getTaxDeadline().getTime());//end
 			pstm.setString(7, fm);
@@ -125,8 +121,7 @@ public class HouseTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
@@ -139,8 +134,7 @@ public class HouseTable {
 
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT house_id FROM house ORDER BY house_id");
+			pstm = con.prepareStatement("SELECT house_id FROM house ORDER BY house_id");
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				int houseId = rs.getInt("house_id");
@@ -149,9 +143,7 @@ public class HouseTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 
 		return houseIdList;

@@ -60,9 +60,7 @@ public class PetTypeTable {
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM pettypes");
-
 			rs = pstm.executeQuery();
-
 			while (rs.next()) {
 				int baseNpcId = rs.getInt("BaseNpcId");
 				String name = rs.getString("Name");
@@ -79,17 +77,13 @@ public class PetTypeTable {
 				int defyMsgId = rs.getInt("DefyMessageId");
 				IntRange hpUpRange = new IntRange(hpUpMin, hpUpMax);
 				IntRange mpUpRange = new IntRange(mpUpMin, mpUpMax);
-				_types.put(baseNpcId, new L1PetType(baseNpcId, name,
-						itemIdForTaming, hpUpRange, mpUpRange,
-						npcIdForEvolving, msgIds, defyMsgId));
+				_types.put(baseNpcId, new L1PetType(baseNpcId, name, itemIdForTaming, hpUpRange, mpUpRange, npcIdForEvolving, msgIds, defyMsgId));
 				_defaultNames.add(name.toLowerCase());
 			}
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 

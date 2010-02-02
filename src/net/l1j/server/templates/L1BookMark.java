@@ -64,8 +64,7 @@ public class L1BookMark {
 			} catch (SQLException e) {
 				_log.log(Level.SEVERE, "因消除Bookmark而產生錯誤。", e);
 			} finally {
-				SQLUtil.close(pstm);
-				SQLUtil.close(con);
+				SQLUtil.close(pstm, con);
 			}
 		}
 	}
@@ -111,8 +110,7 @@ public class L1BookMark {
 			} catch (SQLException e) {
 				_log.log(Level.SEVERE, "因追加Bookmark而發生錯誤。", e);
 			} finally {
-				SQLUtil.close(pstm);
-				SQLUtil.close(con);
+				SQLUtil.close(pstm, con);
 			}
 
 			pc.addBookMark(bookmark);

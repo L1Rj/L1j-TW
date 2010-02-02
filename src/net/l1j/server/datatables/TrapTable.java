@@ -46,12 +46,10 @@ public class TrapTable {
 		initialize();
 	}
 
-	private L1Trap createTrapInstance(String name, TrapStorage storage)
-			throws Exception {
+	private L1Trap createTrapInstance(String name, TrapStorage storage) throws Exception {
 		final String packageName = "net.l1j.server.model.trap.";
 
-		Constructor con = Class.forName(packageName + name).getConstructor(
-				new Class[] { TrapStorage.class });
+		Constructor con = Class.forName(packageName + name).getConstructor(new Class[] { TrapStorage.class });
 		return (L1Trap) con.newInstance(storage);
 	}
 
@@ -59,19 +57,13 @@ public class TrapTable {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-
 			pstm = con.prepareStatement("SELECT * FROM trap");
-
 			rs = pstm.executeQuery();
-
 			while (rs.next()) {
 				String typeName = rs.getString("type");
-
-				L1Trap trap = createTrapInstance(typeName, new SqlTrapStorage(
-						rs));
+				L1Trap trap = createTrapInstance(typeName, new SqlTrapStorage(rs));
 
 				_traps.put(trap.getId(), trap);
 			}
@@ -80,9 +72,7 @@ public class TrapTable {
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 

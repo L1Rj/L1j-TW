@@ -32,7 +32,6 @@ import net.l1j.server.utils.SQLUtil;
 // IdFactory
 
 public class LetterTable {
-
 	private static Logger _log = Logger.getLogger(LetterTable.class.getName());
 
 	private static LetterTable _instance;
@@ -64,21 +63,16 @@ public class LetterTable {
 	// 224:あなたは、あなたの家に課せられた稅金%0アデナをまだ納めていません。
 	// 240:あなたは、結局あなたの家に課された稅金%0を納めなかったので、警告どおりにあなたの家に對する所有權を剝奪します。
 
-	public void writeLetter(int itemObjectId, int code, String sender,
-			String receiver, String date, int templateId, byte[] subject,
-			byte[] content) {
-
+	public void writeLetter(int itemObjectId, int code, String sender, String receiver, String date, int templateId, byte[] subject, byte[] content) {
 		Connection con = null;
 		PreparedStatement pstm1 = null;
 		ResultSet rs = null;
 		PreparedStatement pstm2 = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm1 = con
-					.prepareStatement("SELECT * FROM letter ORDER BY item_object_id");
+			pstm1 = con.prepareStatement("SELECT * FROM letter ORDER BY item_object_id");
 			rs = pstm1.executeQuery();
-			pstm2 = con
-					.prepareStatement("INSERT INTO letter SET item_object_id=?, code=?, sender=?, receiver=?, date=?, template_id=?, subject=?, content=?");
+			pstm2 = con.prepareStatement("INSERT INTO letter SET item_object_id=?, code=?, sender=?, receiver=?, date=?, template_id=?, subject=?, content=?");
 			pstm2.setInt(1, itemObjectId);
 			pstm2.setInt(2, code);
 			pstm2.setString(3, sender);
@@ -103,16 +97,13 @@ public class LetterTable {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("DELETE FROM letter WHERE item_object_id=?");
+			pstm = con.prepareStatement("DELETE FROM letter WHERE item_object_id=?");
 			pstm.setInt(1, itemObjectId);
 			pstm.execute();
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
-
 }

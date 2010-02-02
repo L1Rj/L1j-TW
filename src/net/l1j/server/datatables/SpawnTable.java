@@ -63,13 +63,11 @@ public class SpawnTable {
 	}
 
 	private void fillSpawnTable() {
-
 		int spawnCount = 0;
-		java.sql.Connection con = null;
+		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM spawnlist");
 			rs = pstm.executeQuery();
@@ -88,17 +86,14 @@ public class SpawnTable {
 				int count;
 
 				if (template1 == null) {
-					_log.warning("mob data for id:" + npcTemplateId
-							+ " missing in npc table");
+					_log.warning("mob data for id:" + npcTemplateId + " missing in npc table");
 					spawnDat = null;
 				} else {
 					if (rs.getInt("count") == 0) {
 						continue;
 					}
-					double amount_rate = MapsTable.getInstance()
-							.getMonsterAmount(rs.getShort("mapid"));
-					count = calcCount(template1, rs.getInt("count"),
-							amount_rate);
+					double amount_rate = MapsTable.getInstance().getMonsterAmount(rs.getShort("mapid"));
+					count = calcCount(template1, rs.getInt("count"), amount_rate);
 					if (count == 0) {
 						continue;
 					}
@@ -120,12 +115,10 @@ public class SpawnTable {
 					spawnDat.setMaxRespawnDelay(rs.getInt("max_respawn_delay"));
 					spawnDat.setMapId(rs.getShort("mapid"));
 					spawnDat.setRespawnScreen(rs.getBoolean("respawn_screen"));
-					spawnDat
-							.setMovementDistance(rs.getInt("movement_distance"));
+					spawnDat.setMovementDistance(rs.getInt("movement_distance"));
 					spawnDat.setRest(rs.getBoolean("rest"));
 					spawnDat.setSpawnType(rs.getInt("near_spawn"));
-					spawnDat.setTime(SpawnTimeTable.getInstance().get(
-							spawnDat.getId()));
+					spawnDat.setTime(SpawnTimeTable.getInstance().get(spawnDat.getId()));
 
 					spawnDat.setName(template1.get_name());
 
@@ -153,9 +146,7 @@ public class SpawnTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		_log.fine("普通怪物一共 " + spawnCount + "隻");
 	}
@@ -181,8 +172,7 @@ public class SpawnTable {
 			String note = npc.get_name();
 
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO spawnlist SET location=?,count=?,npc_templateid=?,group_id=?,locx=?,locy=?,randomx=?,randomy=?,heading=?,min_respawn_delay=?,max_respawn_delay=?,mapid=?");
+			pstm = con.prepareStatement("INSERT INTO spawnlist SET location=?,count=?,npc_templateid=?,group_id=?,locx=?,locy=?,randomx=?,randomy=?,heading=?,min_respawn_delay=?,max_respawn_delay=?,mapid=?");
 			pstm.setString(1, note);
 			pstm.setInt(2, count);
 			pstm.setInt(3, npc.get_npcId());
@@ -196,12 +186,10 @@ public class SpawnTable {
 			pstm.setInt(11, maxRespawnDelay);
 			pstm.setInt(12, pc.getMapId());
 			pstm.execute();
-
 		} catch (Exception e) {
 			NpcTable._log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 

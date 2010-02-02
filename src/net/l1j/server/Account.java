@@ -97,13 +97,10 @@ public class Account {
 	/**
 	 * 使用 SHA512 加密
 	 * 
-	 * @param rawPassword
-	 *            平文のパスワード
+	 * @param rawPassword 平文のパスワード
 	 * @return String
-	 * @throws NoSuchAlgorithmException
-	 *             暗號アルゴリズムが使用できない環境の時
-	 * @throws UnsupportedEncodingException
-	 *             文字のエンコードがサポートされていない時
+	 * @throws NoSuchAlgorithmException 暗號アルゴリズムが使用できない環境の時
+	 * @throws UnsupportedEncodingException 文字のエンコードがサポートされていない時
 	 */
 	private static String makeSHA256(String rawPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		_md = MessageDigest.getInstance("SHA-256");
@@ -117,13 +114,10 @@ public class Account {
 	/**
 	 * 使用 MD5 加密
 	 * 
-	 * @param rawPassword
-	 *            平文のパスワード
+	 * @param rawPassword 平文のパスワード
 	 * @return String
-	 * @throws NoSuchAlgorithmException
-	 *             暗號アルゴリズムが使用できない環境の時
-	 * @throws UnsupportedEncodingException
-	 *             文字のエンコードがサポートされていない時
+	 * @throws NoSuchAlgorithmException 暗號アルゴリズムが使用できない環境の時
+	 * @throws UnsupportedEncodingException 文字のエンコードがサポートされていない時
 	 */
 	private static String makeMD5(String rawPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		_md = MessageDigest.getInstance("MD5");
@@ -137,13 +131,10 @@ public class Account {
 	/**
 	 * 密碼加密
 	 * 
-	 * @param rawPassword
-	 *            平文のパスワード
+	 * @param rawPassword 平文のパスワード
 	 * @return String
-	 * @throws NoSuchAlgorithmException
-	 *             暗號アルゴリズムが使用できない環境の時
-	 * @throws UnsupportedEncodingException
-	 *             文字のエンコードがサポートされていない時
+	 * @throws NoSuchAlgorithmException 暗號アルゴリズムが使用できない環境の時
+	 * @throws UnsupportedEncodingException 文字のエンコードがサポートされていない時
 	 */
 	private static String encodePassword(final String rawPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		byte[] sb = rawPassword.getBytes("UTF-8");
@@ -155,14 +146,10 @@ public class Account {
 	/**
 	 * アカウントを新規作成する.
 	 * 
-	 * @param name
-	 *            アカウント名
-	 * @param rawPassword
-	 *            平文パスワード
-	 * @param ip
-	 *            接續先のIPアドレス
-	 * @param host
-	 *            接續先のホスト名
+	 * @param name アカウント名
+	 * @param rawPassword 平文パスワード
+	 * @param ip 接續先のIPアドレス
+	 * @param host 接續先のホスト名
 	 * @return Account
 	 */
 	public static Account create(final String name, final String rawPassword, final String ip, final String host) {
@@ -200,8 +187,7 @@ public class Account {
 		} catch (UnsupportedEncodingException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 		return null;
 	}
@@ -209,8 +195,7 @@ public class Account {
 	/**
 	 * アカウント情報をDBから抽出する.
 	 * 
-	 * @param name
-	 *            アカウント名
+	 * @param name アカウント名
 	 * @return Account
 	 */
 	public static Account load(final String name) {
@@ -242,9 +227,7 @@ public class Account {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 
 		return account;
@@ -253,8 +236,7 @@ public class Account {
 	/**
 	 * 最終ログイン日をDBに反映する.
 	 * 
-	 * @param account
-	 *            アカウント
+	 * @param account アカウント
 	 */
 	public static void updateLastActive(final Account account, final String ip) {
 		Connection con = null;
@@ -275,16 +257,14 @@ public class Account {
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
 	/**
 	 * スロット数をDBに反映する.
 	 * 
-	 * @param account
-	 *            アカウント
+	 * @param account アカウント
 	 */
 	public static void updateCharacterSlot(final Account account) {
 		Connection con = null;
@@ -303,8 +283,7 @@ public class Account {
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
@@ -331,9 +310,7 @@ public class Account {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		return result;
 	}
@@ -341,8 +318,7 @@ public class Account {
 	/**
 	 * アカウントを無效にする.
 	 * 
-	 * @param login
-	 *            アカウント名
+	 * @param login アカウント名
 	 */
 	public static void ban(final String login) {
 		Connection con = null;
@@ -357,16 +333,14 @@ public class Account {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
 	/**
 	 * 更改密碼
 	 * 
-	 * @param password
-	 *            密碼
+	 * @param password 密碼
 	 */
 	private void changePassword(String password) {
 		Connection con = null;
@@ -383,16 +357,14 @@ public class Account {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
 	/**
 	 * 入力されたパスワードとDB上のパスワードを照合する.
 	 * 
-	 * @param rawPassword
-	 *            平文パスワード
+	 * @param rawPassword 平文パスワード
 	 * @return boolean
 	 */
 	public boolean validatePassword(final String rawPassword) {

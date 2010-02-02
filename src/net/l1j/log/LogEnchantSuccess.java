@@ -34,14 +34,12 @@ import net.l1j.server.utils.SQLUtil;
 public class LogEnchantSuccess {
 	private static Logger _log = Logger.getLogger(LogEnchantSuccess.class.getName());
 
-	public void storeLogEnchantSuccess(L1PcInstance pc, L1ItemInstance item, int oldEnchantLvl,
-			int newEnchantLvl, int enchantnum) {
+	public void storeLogEnchantSuccess(L1PcInstance pc, L1ItemInstance item, int oldEnchantLvl, int newEnchantLvl, int enchantnum) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
 			con = L1LogDataFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO LogEnchantSuccess VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			pstm = con.prepareStatement("INSERT INTO LogEnchantSuccess VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 			Date time = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time.getTime());
@@ -55,16 +53,14 @@ public class LogEnchantSuccess {
 			pstm.setInt(8, item.getCount());
 			pstm.setInt(9, oldEnchantLvl);
 			pstm.setInt(10, newEnchantLvl);
-			int enchantdiff = newEnchantLvl > oldEnchantLvl ? newEnchantLvl - oldEnchantLvl
-					: oldEnchantLvl - newEnchantLvl;
+			int enchantdiff = newEnchantLvl > oldEnchantLvl ? newEnchantLvl - oldEnchantLvl : oldEnchantLvl - newEnchantLvl;
 			pstm.setInt(11, enchantdiff);
 			pstm.setInt(12, enchantnum);
 			pstm.execute();
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 }

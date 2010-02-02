@@ -34,20 +34,14 @@ import net.l1j.server.templates.L1NpcChat;
 import net.l1j.server.utils.SQLUtil;
 
 public class NpcChatTable {
-
-	private static Logger _log = Logger.getLogger(NpcChatTable.class
-			.getName());
+	private static Logger _log = Logger.getLogger(NpcChatTable.class.getName());
 
 	private static NpcChatTable _instance;
 
-	private FastMap<Integer, L1NpcChat> _npcChatAppearance
-			= new FastMap<Integer, L1NpcChat>();
-	private FastMap<Integer, L1NpcChat> _npcChatDead
-			= new FastMap<Integer, L1NpcChat>();
-	private FastMap<Integer, L1NpcChat> _npcChatHide
-			= new FastMap<Integer, L1NpcChat>();
-	private FastMap<Integer, L1NpcChat> _npcChatGameTime
-			= new FastMap<Integer, L1NpcChat>();
+	private FastMap<Integer, L1NpcChat> _npcChatAppearance = new FastMap<Integer, L1NpcChat>();
+	private FastMap<Integer, L1NpcChat> _npcChatDead = new FastMap<Integer, L1NpcChat>();
+	private FastMap<Integer, L1NpcChat> _npcChatHide = new FastMap<Integer, L1NpcChat>();
+	private FastMap<Integer, L1NpcChat> _npcChatGameTime = new FastMap<Integer, L1NpcChat>();
 
 	public static NpcChatTable getInstance() {
 		if (_instance == null) {
@@ -65,7 +59,6 @@ public class NpcChatTable {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM npcchat");
 			rs = pstm.executeQuery();
@@ -86,28 +79,20 @@ public class NpcChatTable {
 				npcChat.setRepeatInterval(rs.getInt("repeat_interval"));
 				npcChat.setGameTime(rs.getInt("game_time"));
 
-				if (npcChat.getChatTiming() == L1NpcInstance
-						.CHAT_TIMING_APPEARANCE) {
-					_npcChatAppearance.put(new Integer(npcChat.getNpcId()),
-							npcChat);
-				} else if (npcChat.getChatTiming() == L1NpcInstance
-						.CHAT_TIMING_DEAD) {
+				if (npcChat.getChatTiming() == L1NpcInstance.CHAT_TIMING_APPEARANCE) {
+					_npcChatAppearance.put(new Integer(npcChat.getNpcId()), npcChat);
+				} else if (npcChat.getChatTiming() == L1NpcInstance.CHAT_TIMING_DEAD) {
 					_npcChatDead.put(new Integer(npcChat.getNpcId()), npcChat);
-				} else if (npcChat.getChatTiming() == L1NpcInstance
-						.CHAT_TIMING_HIDE) {
+				} else if (npcChat.getChatTiming() == L1NpcInstance.CHAT_TIMING_HIDE) {
 					_npcChatHide.put(new Integer(npcChat.getNpcId()), npcChat);
-				} else if (npcChat.getChatTiming() == L1NpcInstance
-						.CHAT_TIMING_GAME_TIME) {
-					_npcChatGameTime.put(new Integer(npcChat.getNpcId()),
-							npcChat);
+				} else if (npcChat.getChatTiming() == L1NpcInstance.CHAT_TIMING_GAME_TIME) {
+					_npcChatGameTime.put(new Integer(npcChat.getNpcId()), npcChat);
 				}
 			}
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -128,7 +113,6 @@ public class NpcChatTable {
 	}
 
 	public L1NpcChat[] getAllGameTime() {
-		return _npcChatGameTime.values()
-				.toArray(new L1NpcChat[_npcChatGameTime.size()]);
+		return _npcChatGameTime.values().toArray(new L1NpcChat[_npcChatGameTime.size()]);
 	}
 }

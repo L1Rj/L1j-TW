@@ -62,7 +62,6 @@ public class PetTable {
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM pets");
-
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				L1Pet pet = new L1Pet();
@@ -82,10 +81,7 @@ public class PetTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
-
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -107,8 +103,7 @@ public class PetTable {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO pets SET item_obj_id=?,objid=?,npcid=?,name=?,lvl=?,hp=?,mp=?,exp=?,lawful=?");
+			pstm = con.prepareStatement("INSERT INTO pets SET item_obj_id=?,objid=?,npcid=?,name=?,lvl=?,hp=?,mp=?,exp=?,lawful=?");
 			pstm.setInt(1, l1pet.get_itemobjid());
 			pstm.setInt(2, l1pet.get_objid());
 			pstm.setInt(3, l1pet.get_npcid());
@@ -121,10 +116,8 @@ public class PetTable {
 			pstm.execute();
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 
 		}
 	}
@@ -134,8 +127,7 @@ public class PetTable {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("UPDATE pets SET objid=?,npcid=?,name=?,lvl=?,hp=?,mp=?,exp=?,lawful=? WHERE item_obj_id=?");
+			pstm = con.prepareStatement("UPDATE pets SET objid=?,npcid=?,name=?,lvl=?,hp=?,mp=?,exp=?,lawful=? WHERE item_obj_id=?");
 			pstm.setInt(1, pet.get_objid());
 			pstm.setInt(2, pet.get_npcid());
 			pstm.setString(3, pet.get_name());
@@ -149,8 +141,7 @@ public class PetTable {
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
@@ -166,8 +157,7 @@ public class PetTable {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 		_pets.remove(itemobjid);
 	}
@@ -175,8 +165,7 @@ public class PetTable {
 	/**
 	 * Petsテーブルに既に名前が存在するかを返す。
 	 * 
-	 * @param nameCaseInsensitive
-	 *            調べるペットの名前。大文字小文字の差異は無視される。
+	 * @param nameCaseInsensitive 調べるペットの名前。大文字小文字の差異は無視される。
 	 * @return 既に名前が存在すればtrue
 	 */
 	public static boolean isNameExists(String nameCaseInsensitive) {
@@ -190,8 +179,7 @@ public class PetTable {
 			 * 同じ名前を探す。MySQLはデフォルトでcase insensitiveなため
 			 * 本來LOWERは必要ないが、binaryに變更された場合に備えて。
 			 */
-			pstm = con
-					.prepareStatement("SELECT item_obj_id FROM pets WHERE LOWER(name)=?");
+			pstm = con.prepareStatement("SELECT item_obj_id FROM pets WHERE LOWER(name)=?");
 			pstm.setString(1, nameLower);
 			rs = pstm.executeQuery();
 			if (!rs.next()) { // 同じ名前が無かった
@@ -203,9 +191,7 @@ public class PetTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		return true;
 	}

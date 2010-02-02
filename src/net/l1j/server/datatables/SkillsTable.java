@@ -72,9 +72,7 @@ public class SkillsTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, "error while creating skills table", e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -120,13 +118,11 @@ public class SkillsTable {
 		_log.config("技能" + _skills.size() + "件");
 	}
 
-	public void spellMastery(int playerobjid, int skillid, String skillname,
-			int active, int time) {
+	public void spellMastery(int playerobjid, int skillid, String skillname, int active, int time) {
 		if (spellCheck(playerobjid, skillid)) {
 			return;
 		}
-		L1PcInstance pc = (L1PcInstance) L1World.getInstance()
-				.findObject(playerobjid);
+		L1PcInstance pc = (L1PcInstance) L1World.getInstance().findObject(playerobjid);
 		if (pc != null) {
 			pc.setSkillMastery(skillid);
 		}
@@ -134,10 +130,8 @@ public class SkillsTable {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO character_skills SET char_obj_id=?, skill_id=?, skill_name=?, is_active=?, activetimeleft=?");
+			pstm = con.prepareStatement("INSERT INTO character_skills SET char_obj_id=?, skill_id=?, skill_name=?, is_active=?, activetimeleft=?");
 			pstm.setInt(1, playerobjid);
 			pstm.setInt(2, skillid);
 			pstm.setString(3, skillname);
@@ -148,35 +142,28 @@ public class SkillsTable {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
 	public void spellLost(int playerobjid, int skillid) {
-
-		L1PcInstance pc = (L1PcInstance) L1World.getInstance()
-		.findObject(playerobjid);
-if (pc != null) {
-	pc.removeSkillMastery(skillid);
-}
+		L1PcInstance pc = (L1PcInstance) L1World.getInstance().findObject(playerobjid);
+		if (pc != null) {
+			pc.removeSkillMastery(skillid);
+		}
 
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("DELETE FROM character_skills WHERE char_obj_id=? AND skill_id=?");
+			pstm = con.prepareStatement("DELETE FROM character_skills WHERE char_obj_id=? AND skill_id=?");
 			pstm.setInt(1, playerobjid);
 			pstm.setInt(2, skillid);
 			pstm.execute();
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
@@ -186,10 +173,8 @@ if (pc != null) {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT * FROM character_skills WHERE char_obj_id=? AND skill_id=?");
+			pstm = con.prepareStatement("SELECT * FROM character_skills WHERE char_obj_id=? AND skill_id=?");
 			pstm.setInt(1, playerobjid);
 			pstm.setInt(2, skillid);
 			rs = pstm.executeQuery();
@@ -200,11 +185,8 @@ if (pc != null) {
 			}
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		return ret;
 	}
@@ -216,5 +198,4 @@ if (pc != null) {
 	public L1Skills getTemplate(int i) {
 		return _skills.get(new Integer(i));
 	}
-
 }

@@ -108,5 +108,4 @@ public class ArmorSetTable {
 	public L1ArmorSets[] getAllList() {
 		return _armorSetList.toArray(new L1ArmorSets[_armorSetList.size()]);
 	}
-
 }

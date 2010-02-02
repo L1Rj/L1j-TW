@@ -267,8 +267,7 @@ public class ItemTable {
 				result.put(new Integer(item.getItemId()), item);
 			}
 		} catch (NullPointerException e) {
-			_log.log(Level.SEVERE, new StringBuilder().append(item.getName()).append(
-					"(" + item.getItemId() + ")").append("讀入失敗。").toString());
+			_log.log(Level.SEVERE, new StringBuilder().append(item.getName()).append("(" + item.getItemId() + ")").append("讀入失敗。").toString());
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
@@ -316,8 +315,7 @@ public class ItemTable {
 					result.put(new Integer(item.getItemId()), item);
 				}
 			} catch (NullPointerException e) {
-				_log.log(Level.SEVERE, new StringBuilder().append(item.getName()).append(
-						"(" + item.getItemId() + ")").append("讀入失敗。").toString());
+				_log.log(Level.SEVERE, new StringBuilder().append(item.getName()).append("(" + item.getItemId() + ")").append("讀入失敗。").toString());
 			} catch (SQLException e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			} finally {
@@ -393,8 +391,7 @@ public class ItemTable {
 				result.put(new Integer(weapon.getItemId()), weapon);
 			}
 		} catch (NullPointerException e) {
-			_log.log(Level.SEVERE, new StringBuilder().append(weapon.getName()).append(
-					"(" + weapon.getItemId() + ")").append("讀入失敗。").toString());
+			_log.log(Level.SEVERE, new StringBuilder().append(weapon.getName()).append("(" + weapon.getItemId() + ")").append("讀入失敗。").toString());
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 
@@ -460,11 +457,9 @@ public class ItemTable {
 					result.put(new Integer(weapon.getItemId()), weapon);
 				}
 			} catch (NullPointerException e) {
-				_log.log(Level.SEVERE, new StringBuilder().append(weapon.getName()).append(
-						"(" + weapon.getItemId() + ")").append("讀入失敗。").toString());
+				_log.log(Level.SEVERE, new StringBuilder().append(weapon.getName()).append("(" + weapon.getItemId() + ")").append("讀入失敗。").toString());
 			} catch (SQLException e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-
 			} finally {
 				SQLUtil.close(rs, pstm, con);
 			}
@@ -547,8 +542,7 @@ public class ItemTable {
 				result.put(new Integer(armor.getItemId()), armor);
 			}
 		} catch (NullPointerException e) {
-			_log.log(Level.SEVERE, new StringBuilder().append(armor.getName()).append(
-					"(" + armor.getItemId() + ")").append("讀入失敗。").toString());
+			_log.log(Level.SEVERE, new StringBuilder().append(armor.getName()).append("(" + armor.getItemId() + ")").append("讀入失敗。").toString());
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
@@ -622,8 +616,7 @@ public class ItemTable {
 					result.put(new Integer(armor.getItemId()), armor);
 				}
 			} catch (NullPointerException e) {
-				_log.log(Level.SEVERE, new StringBuilder().append(armor.getName()).append(
-						"(" + armor.getItemId() + ")").append("讀入失敗。").toString());
+				_log.log(Level.SEVERE, new StringBuilder().append(armor.getName()).append("(" + armor.getItemId() + ")").append("讀入失敗。").toString());
 			} catch (SQLException e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			} finally {

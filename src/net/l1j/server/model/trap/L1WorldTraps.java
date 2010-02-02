@@ -69,23 +69,18 @@ public class L1WorldTraps {
 				int span = rs.getInt("span");
 
 				for (int i = 0; i < count; i++) {
-					L1TrapInstance trap = new L1TrapInstance(IdFactory
-							.getInstance().nextId(), trapTemp, loc, rndPt, span);
+					L1TrapInstance trap = new L1TrapInstance(IdFactory.getInstance().nextId(), trapTemp, loc, rndPt, span);
 					L1World.getInstance().addVisibleObject(trap);
 					_allTraps.add(trap);
 				}
-				L1TrapInstance base = new L1TrapInstance(IdFactory
-						.getInstance().nextId(), loc);
+				L1TrapInstance base = new L1TrapInstance(IdFactory.getInstance().nextId(), loc);
 				L1World.getInstance().addVisibleObject(base);
 				_allBases.add(base);
 			}
-
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 

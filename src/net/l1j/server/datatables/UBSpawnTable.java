@@ -18,6 +18,7 @@
  */
 package net.l1j.server.datatables;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,19 +53,15 @@ public class UBSpawnTable {
 	}
 
 	private void loadSpawnTable() {
-
-		java.sql.Connection con = null;
+		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM spawnlist_ub");
 			rs = pstm.executeQuery();
-
 			while (rs.next()) {
-				L1Npc npcTemp = NpcTable.getInstance()
-						.getTemplate(rs.getInt(6));
+				L1Npc npcTemp = NpcTable.getInstance().getTemplate(rs.getInt(6));
 				if (npcTemp == null) {
 					continue;
 				}
@@ -86,9 +83,7 @@ public class UBSpawnTable {
 			// problem with initializing spawn, go to next one
 			_log.warning("spawn couldnt be initialized:" + e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		_log.config("UB怪物配置清單 " + _spawnTable.size() + "件");
 	}
@@ -100,20 +95,17 @@ public class UBSpawnTable {
 	/**
 	 * 指定されたUBIDに對するパターンの最大數を返す。
 	 * 
-	 * @param ubId
-	 *            調べるUBID。
+	 * @param ubId 調べるUBID。
 	 * @return パターンの最大數。
 	 */
 	public int getMaxPattern(int ubId) {
 		int n = 0;
-		java.sql.Connection con = null;
+		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT MAX(pattern) FROM spawnlist_ub WHERE ub_id=?");
+			pstm = con.prepareStatement("SELECT MAX(pattern) FROM spawnlist_ub WHERE ub_id=?");
 			pstm.setInt(1, ubId);
 			rs = pstm.executeQuery();
 			if (rs.next()) {
@@ -122,9 +114,7 @@ public class UBSpawnTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		return n;
 	}

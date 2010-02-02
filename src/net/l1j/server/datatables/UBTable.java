@@ -18,6 +18,7 @@
  */
 package net.l1j.server.datatables;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,18 +50,14 @@ public class UBTable {
 	}
 
 	private void loadTable() {
-
-		java.sql.Connection con = null;
+		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM ub_settings");
 			rs = pstm.executeQuery();
-
 			while (rs.next()) {
-
 				L1UltimateBattle ub = new L1UltimateBattle();
 				ub.setUbId(rs.getInt("ub_id"));
 				ub.setMapId(rs.getShort("ub_mapid"));
@@ -98,7 +95,6 @@ public class UBTable {
 		try {
 			pstm = con.prepareStatement("SELECT * FROM ub_managers");
 			rs = pstm.executeQuery();
-
 			while (rs.next()) {
 				L1UltimateBattle ub = getUb(rs.getInt("ub_id"));
 				if (ub != null) {
@@ -151,20 +147,18 @@ public class UBTable {
 	/**
 	 * 指定されたUBIDに對するパターンの最大數を返す。
 	 * 
-	 * @param ubId
-	 *            調べるUBID。
+	 * @param ubId 調べるUBID。
 	 * @return パターンの最大數。
 	 */
 	public int getMaxPattern(int ubId) {
 		int n = 0;
-		java.sql.Connection con = null;
+		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT MAX(pattern) FROM spawnlist_ub WHERE ub_id=?");
+			pstm = con.prepareStatement("SELECT MAX(pattern) FROM spawnlist_ub WHERE ub_id=?");
 			pstm.setInt(1, ubId);
 			rs = pstm.executeQuery();
 			if (rs.next()) {
@@ -173,11 +167,8 @@ public class UBTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		return n;
 	}
-
 }

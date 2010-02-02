@@ -38,13 +38,11 @@ public final class DropItemTable {
 		public double dropAmount = 1;
 	}
 
-	private static Logger _log = Logger.getLogger(DropItemTable.class
-			.getName());
+	private static Logger _log = Logger.getLogger(DropItemTable.class.getName());
 
 	private static DropItemTable _instance;
 
-	private final Map<Integer, dropItemData> _dropItem
-			= new FastMap<Integer, dropItemData>();
+	private final Map<Integer, dropItemData> _dropItem = new FastMap<Integer, dropItemData>();
 
 	public static DropItemTable getInstance() {
 		if (_instance == null) {
@@ -78,9 +76,7 @@ public final class DropItemTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -99,5 +95,4 @@ public final class DropItemTable {
 		}
 		return data.dropAmount;
 	}
-
 }

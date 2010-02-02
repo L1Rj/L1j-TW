@@ -300,7 +300,7 @@ public class C_LoginToServer extends ClientBasePacket {
 				return;
 			}
 		}
-		
+
 		_log.info("【玩家登入】 帳號=" + login + " 角色=" + charName + " IP位址:" + client.getHostname());
 
 //		L1PcInstance textpc = L1World.getInstance().getPlayer(charName);
@@ -328,13 +328,13 @@ public class C_LoginToServer extends ClientBasePacket {
 		pc.setNetConnection(client);
 		pc.setPacketOutput(client);
 		client.setActiveChar(pc);
-		
-//add 角色登入時若幸運值為0則重新賦予新值
+
+		//add 角色登入時若幸運值為0則重新賦予新值
 		L1ClassFeature classFeature = L1ClassFeature.newClassFeature(pc.getType());
-		if (pc.getLucky() == 0){
+		if (pc.getLucky() == 0) {
 			pc.setLucky(classFeature.InitLucky()); // 角色幸運值
 		}
-//add end
+		//add end
 
 		pc.sendPackets(new S_LoginGame());
 		items(pc);
@@ -531,9 +531,7 @@ public class C_LoginToServer extends ClientBasePacket {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -676,9 +674,7 @@ public class C_LoginToServer extends ClientBasePacket {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -759,9 +755,7 @@ public class C_LoginToServer extends ClientBasePacket {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 }

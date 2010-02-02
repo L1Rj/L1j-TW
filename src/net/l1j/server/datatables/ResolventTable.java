@@ -33,13 +33,11 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.utils.SQLUtil;
 
 public final class ResolventTable {
-	private static Logger _log = Logger.getLogger(ResolventTable.class
-			.getName());
+	private static Logger _log = Logger.getLogger(ResolventTable.class.getName());
 
 	private static ResolventTable _instance;
 
-	private final Map<Integer, Integer> _resolvent
-			= new FastMap<Integer, Integer>();
+	private final Map<Integer, Integer> _resolvent = new FastMap<Integer, Integer>();
 
 	public static ResolventTable getInstance() {
 		if (_instance == null) {
@@ -71,9 +69,7 @@ public final class ResolventTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -84,5 +80,4 @@ public final class ResolventTable {
 		}
 		return crystalCount;
 	}
-
 }

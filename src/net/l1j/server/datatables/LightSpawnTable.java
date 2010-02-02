@@ -35,8 +35,7 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.utils.SQLUtil;
 
 public class LightSpawnTable {
-	private static Logger _log = Logger.getLogger(LightSpawnTable.class
-			.getName());
+	private static Logger _log = Logger.getLogger(LightSpawnTable.class.getName());
 
 	private static LightSpawnTable _instance;
 
@@ -56,7 +55,6 @@ public class LightSpawnTable {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM spawnlist_light");
 			rs = pstm.executeQuery();
@@ -64,18 +62,13 @@ public class LightSpawnTable {
 				if (!rs.next()) {
 					break;
 				}
-
 				L1Npc l1npc = NpcTable.getInstance().getTemplate(rs.getInt(2));
 				if (l1npc != null) {
 					String s = l1npc.getImpl();
-					Constructor constructor = Class.forName(
-							"net.l1j.server.model.instance." + s
-									+ "Instance").getConstructors()[0];
+					Constructor constructor = Class.forName("net.l1j.server.model.instance." + s + "Instance").getConstructors()[0];
 					Object parameters[] = { l1npc };
-					L1FieldObjectInstance field = (L1FieldObjectInstance) constructor
-							.newInstance(parameters);
-					field = (L1FieldObjectInstance) constructor
-							.newInstance(parameters);
+					L1FieldObjectInstance field = (L1FieldObjectInstance) constructor.newInstance(parameters);
+					field = (L1FieldObjectInstance) constructor.newInstance(parameters);
 					field.setId(IdFactory.getInstance().nextId());
 					field.setX(rs.getInt("locx"));
 					field.setY(rs.getInt("locy"));
@@ -104,10 +97,7 @@ public class LightSpawnTable {
 		} catch (InvocationTargetException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
-
 }

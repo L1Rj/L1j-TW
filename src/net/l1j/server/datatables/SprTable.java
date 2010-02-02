@@ -33,7 +33,6 @@ import static net.l1j.server.ActionCodes.*;
 import net.l1j.server.utils.SQLUtil;
 
 public class SprTable {
-
 	private static Logger _log = Logger.getLogger(SprTable.class.getName());
 
 	private static class Spr {
@@ -85,47 +84,45 @@ public class SprTable {
 				int speed = calcActionSpeed(frameCount, frameRate);
 
 				switch (actid) {
-				case ACTION_Walk:
-				case ACTION_SwordWalk:
-				case ACTION_AxeWalk:
-				case ACTION_BowWalk:
-				case ACTION_SpearWalk:
-				case ACTION_StaffWalk:
-				case ACTION_DaggerWalk:
-				case ACTION_TwoHandSwordWalk:
-				case ACTION_EdoryuWalk:
-				case ACTION_ClawWalk:
-				case ACTION_ThrowingKnifeWalk:
-					spr.moveSpeed.put(actid, speed);
+					case ACTION_Walk:
+					case ACTION_SwordWalk:
+					case ACTION_AxeWalk:
+					case ACTION_BowWalk:
+					case ACTION_SpearWalk:
+					case ACTION_StaffWalk:
+					case ACTION_DaggerWalk:
+					case ACTION_TwoHandSwordWalk:
+					case ACTION_EdoryuWalk:
+					case ACTION_ClawWalk:
+					case ACTION_ThrowingKnifeWalk:
+						spr.moveSpeed.put(actid, speed);
 					break;
-				case ACTION_SkillAttack:
-					spr.dirSpellSpeed = speed;
+					case ACTION_SkillAttack:
+						spr.dirSpellSpeed = speed;
 					break;
-				case ACTION_SkillBuff:
-					spr.nodirSpellSpeed = speed;
+					case ACTION_SkillBuff:
+						spr.nodirSpellSpeed = speed;
 					break;
-				case ACTION_Attack:
-				case ACTION_SwordAttack:
-				case ACTION_AxeAttack:
-				case ACTION_BowAttack:
-				case ACTION_SpearAttack:
-				case ACTION_StaffAttack:
-				case ACTION_DaggerAttack:
-				case ACTION_TwoHandSwordAttack:
-				case ACTION_EdoryuAttack:
-				case ACTION_ClawAttack:
-				case ACTION_ThrowingKnifeAttack:
-					spr.attackSpeed.put(actid, speed);
-				default:
+					case ACTION_Attack:
+					case ACTION_SwordAttack:
+					case ACTION_AxeAttack:
+					case ACTION_BowAttack:
+					case ACTION_SpearAttack:
+					case ACTION_StaffAttack:
+					case ACTION_DaggerAttack:
+					case ACTION_TwoHandSwordAttack:
+					case ACTION_EdoryuAttack:
+					case ACTION_ClawAttack:
+					case ACTION_ThrowingKnifeAttack:
+						spr.attackSpeed.put(actid, speed);
+					default:
 					break;
 				}
 			}
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		_log.config("SPR數據 " + _dataMap.size() + "件");
 	}
@@ -140,10 +137,8 @@ public class SprTable {
 	/**
 	 * 指定されたsprの攻擊速度を返す。もしsprに指定されたweapon_typeのデータが 設定されていない場合は、1.attackのデータを返す。
 	 * 
-	 * @param sprid -
-	 *            調べるsprのID
-	 * @param actid -
-	 *            武器の種類を表す值。L1Item.getType1()の返り值 + 1 と一致する
+	 * @param sprid - 調べるsprのID
+	 * @param actid - 武器の種類を表す值。L1Item.getType1()の返り值 + 1 と一致する
 	 * @return 指定されたsprの攻擊速度(ms)
 	 */
 	public int getAttackSpeed(int sprid, int actid) {

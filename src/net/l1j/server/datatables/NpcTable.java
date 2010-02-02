@@ -87,12 +87,10 @@ public class NpcTable {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM npc");
 			rs = pstm.executeQuery();
-
 			while (rs.next()) {
 				L1Npc npc = new L1Npc();
 				int npcId = rs.getInt("npcid");
@@ -182,7 +180,6 @@ public class NpcTable {
 				con = L1DatabaseFactory.getInstance().getConnection();
 				pstm = con.prepareStatement("SELECT * FROM npc_custom");
 				rs = pstm.executeQuery();
-
 				while (rs.next()) {
 					L1Npc npc = new L1Npc();
 					int npcId = rs.getInt("npcid");
@@ -299,8 +296,7 @@ public class NpcTable {
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT DISTINCT(family) AS family FROM npc WHERE NOT TRIM(family) =''");
+			pstm = con.prepareStatement("SELECT DISTINCT(family) AS family FROM npc WHERE NOT TRIM(family) =''");
 			rs = pstm.executeQuery();
 			int id = 1;
 			while (rs.next()) {
@@ -315,8 +311,7 @@ public class NpcTable {
 		if (Config.ETCITEM_CUSTOM_TABLE) {
 			try {
 				con = L1DatabaseFactory.getInstance().getConnection();
-				pstm = con
-						.prepareStatement("SELECT DISTINCT(family) AS family FROM npc_custom WHERE NOT TRIM(family) =''");
+				pstm = con.prepareStatement("SELECT DISTINCT(family) AS family FROM npc_custom WHERE NOT TRIM(family) =''");
 				rs = pstm.executeQuery();
 				int id = 1;
 				while (rs.next()) {

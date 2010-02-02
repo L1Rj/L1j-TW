@@ -39,8 +39,7 @@ public class LogTradeBugItem {
 		PreparedStatement pstm = null;
 		try {
 			con = L1LogDataFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO LogTradeBugItem VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			pstm = con.prepareStatement("INSERT INTO LogTradeBugItem VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 			Date time = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time.getTime());
@@ -61,8 +60,7 @@ public class LogTradeBugItem {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 }

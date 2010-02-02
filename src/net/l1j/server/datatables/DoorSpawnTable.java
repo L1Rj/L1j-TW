@@ -38,13 +38,11 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.utils.SQLUtil;
 
 public class DoorSpawnTable {
-	private static Logger _log = Logger.getLogger(DoorSpawnTable.class
-			.getName());
+	private static Logger _log = Logger.getLogger(DoorSpawnTable.class.getName());
 
 	private static DoorSpawnTable _instance;
 
-	private final FastTable<L1DoorInstance> _doorList =
-			new FastTable<L1DoorInstance>();
+	private final FastTable<L1DoorInstance> _doorList = new FastTable<L1DoorInstance>();
 
 	public static DoorSpawnTable getInstance() {
 		if (_instance == null) {
@@ -74,12 +72,9 @@ public class DoorSpawnTable {
 				L1Npc l1npc = NpcTable.getInstance().getTemplate(81158);
 				if (l1npc != null) {
 					String s = l1npc.getImpl();
-					Constructor constructor = Class.forName(
-							"net.l1j.server.model.instance." + s
-									+ "Instance").getConstructors()[0];
+					Constructor constructor = Class.forName("net.l1j.server.model.instance." + s + "Instance").getConstructors()[0];
 					Object parameters[] = { l1npc };
-					L1DoorInstance door = (L1DoorInstance) constructor
-							.newInstance(parameters);
+					L1DoorInstance door = (L1DoorInstance) constructor.newInstance(parameters);
 					door = (L1DoorInstance) constructor.newInstance(parameters);
 					door.setId(IdFactory.getInstance().nextId());
 
@@ -118,9 +113,7 @@ public class DoorSpawnTable {
 		} catch (InvocationTargetException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 

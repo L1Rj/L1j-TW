@@ -35,6 +35,7 @@ import javolution.util.FastMap;
 
 public class LeakCheckedConnection {
 	private static final Logger _log = Logger.getLogger(LeakCheckedConnection.class.getName());
+
 	private Connection _con;
 	private Throwable _stackTrace;
 	private Map<Statement, Throwable> _openedStatements = new FastMap<Statement, Throwable>();
@@ -43,8 +44,7 @@ public class LeakCheckedConnection {
 
 	private LeakCheckedConnection(Connection con) {
 		_con = con;
-		_proxy = Proxy.newProxyInstance(Connection.class.getClassLoader(),
-				new Class[] { Connection.class }, new ConnectionHandler());
+		_proxy = Proxy.newProxyInstance(Connection.class.getClassLoader(), new Class[] { Connection.class }, new ConnectionHandler());
 		_stackTrace = new Throwable();
 	}
 

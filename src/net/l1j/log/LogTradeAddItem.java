@@ -34,14 +34,12 @@ import net.l1j.server.utils.SQLUtil;
 public class LogTradeAddItem {
 	private static Logger _log = Logger.getLogger(LogTradeAddItem.class.getName());
 
-	public void storeLogTradeAddItem(L1PcInstance pc, L1PcInstance target, L1ItemInstance item,
-			int itembefore, int itemafter, int tradecount) {
+	public void storeLogTradeAddItem(L1PcInstance pc, L1PcInstance target, L1ItemInstance item, int itembefore, int itemafter, int tradecount) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
 			con = L1LogDataFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO LogTradeAddItem VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			pstm = con.prepareStatement("INSERT INTO LogTradeAddItem VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 			Date time = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time.getTime());
@@ -70,8 +68,7 @@ public class LogTradeAddItem {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 }

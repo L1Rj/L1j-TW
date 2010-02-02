@@ -46,13 +46,11 @@ public class L1CheckPcItem {
 			// 不可堆疊的道具同一格不等於1時設定為作弊
 			if (!isStackable && itemCount != 1) {
 				isCheat = true;
-			// 金幣大於20億以及金幣負值設定為作弊
-			} else if (itemId == 40308
-					&& (itemCount > 2000000000 || itemCount < 0)) {
+				// 金幣大於20億以及金幣負值設定為作弊
+			} else if (itemId == 40308 && (itemCount > 2000000000 || itemCount < 0)) {
 				isCheat = true;
-			// 可堆疊道具(金幣除外)堆疊超過十萬個以及堆疊負值設定為作弊
-			} else if (isStackable && itemId != 40308
-					&& (itemCount > 100000 || itemCount < 0)) {
+				// 可堆疊道具(金幣除外)堆疊超過十萬個以及堆疊負值設定為作弊
+			} else if (isStackable && itemId != 40308 && (itemCount > 100000 || itemCount < 0)) {
 				isCheat = true;
 			}
 		}
@@ -71,8 +69,7 @@ public class L1CheckPcItem {
 
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT * FROM weapon WHERE item_id = ?");
+			pstm = con.prepareStatement("SELECT * FROM weapon WHERE item_id = ?");
 			pstm.setInt(1, itemId);
 			rs = pstm.executeQuery();
 			if (rs != null) {
@@ -82,9 +79,7 @@ public class L1CheckPcItem {
 			}
 		} catch (Exception e) {
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		return inWeapon;
 	}
@@ -96,8 +91,7 @@ public class L1CheckPcItem {
 		boolean inArmor = false;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT * FROM armor WHERE item_id = ?");
+			pstm = con.prepareStatement("SELECT * FROM armor WHERE item_id = ?");
 			pstm.setInt(1, itemId);
 			rs = pstm.executeQuery();
 			if (rs != null) {
@@ -107,9 +101,7 @@ public class L1CheckPcItem {
 			}
 		} catch (Exception e) {
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		return inArmor;
 	}
@@ -121,8 +113,7 @@ public class L1CheckPcItem {
 		boolean inEtcitem = false;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT * FROM etcitem WHERE item_id = ?");
+			pstm = con.prepareStatement("SELECT * FROM etcitem WHERE item_id = ?");
 			pstm.setInt(1, itemId);
 			rs = pstm.executeQuery();
 			if (rs != null) {
@@ -133,9 +124,7 @@ public class L1CheckPcItem {
 			}
 		} catch (Exception e) {
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		return inEtcitem;
 	}

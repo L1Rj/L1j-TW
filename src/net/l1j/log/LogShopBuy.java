@@ -34,14 +34,12 @@ import net.l1j.server.utils.SQLUtil;
 public class LogShopBuy {
 	private static Logger _log = Logger.getLogger(LogShopBuy.class.getName());
 
-	public void storeLogShopBuy(L1PcInstance pc, L1ItemInstance item, int cnt, int adenabefore,
-			int adenaafter, int itemprice) {
+	public void storeLogShopBuy(L1PcInstance pc, L1ItemInstance item, int cnt, int adenabefore, int adenaafter, int itemprice) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
 			con = L1LogDataFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO LogShopBuy VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			pstm = con.prepareStatement("INSERT INTO LogShopBuy VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 			Date time = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time.getTime());
@@ -66,8 +64,7 @@ public class LogShopBuy {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 }

@@ -93,11 +93,9 @@ public class Getback {
 				getback._getbackMapId = rs.getInt("getback_mapid");
 				getback._getbackTownId = rs.getInt("getback_townid");
 				getback._getbackTownIdForElf = rs.getInt("getback_townid_elf");
-				getback._getbackTownIdForDarkelf = rs
-						.getInt("getback_townid_darkelf");
+				getback._getbackTownIdForDarkelf = rs.getInt("getback_townid_darkelf");
 				getback._escapable = rs.getBoolean("scrollescape");
-				FastTable<Getback> getbackList = _getback
-						.get(getback._areaMapId);
+				FastTable<Getback> getbackList = _getback.get(getback._areaMapId);
 				if (getbackList == null) {
 					getbackList = new FastTable<Getback>();
 					_getback.put(getback._areaMapId, getbackList);
@@ -107,9 +105,7 @@ public class Getback {
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, "could not Get Getback data", e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -135,8 +131,7 @@ public class Getback {
 			Getback getback = null;
 			for (Getback gb : getbackList) {
 				if (gb.isSpecifyArea()) {
-					if (gb._areaX1 <= pcLocX && pcLocX <= gb._areaX2
-							&& gb._areaY1 <= pcLocY && pcLocY <= gb._areaY2) {
+					if (gb._areaX1 <= pcLocX && pcLocX <= gb._areaX2 && gb._areaY1 <= pcLocY && pcLocY <= gb._areaY2) {
 						getback = gb;
 						break;
 					}
@@ -150,11 +145,9 @@ public class Getback {
 
 			// town_idが指定されている場合はそこへ歸還させる
 			if (pc.isElf() && getback._getbackTownIdForElf > 0) {
-				loc = L1TownLocation
-						.getGetBackLoc(getback._getbackTownIdForElf);
+				loc = L1TownLocation.getGetBackLoc(getback._getbackTownIdForElf);
 			} else if (pc.isDarkelf() && getback._getbackTownIdForDarkelf > 0) {
-				loc = L1TownLocation
-						.getGetBackLoc(getback._getbackTownIdForDarkelf);
+				loc = L1TownLocation.getGetBackLoc(getback._getbackTownIdForDarkelf);
 			} else if (getback._getbackTownId > 0) {
 				loc = L1TownLocation.getGetBackLoc(getback._getbackTownId);
 			}
@@ -171,19 +164,19 @@ public class Getback {
 	private static int[] ReadGetbackInfo(Getback getback, int nPosition) {
 		int[] loc = new int[3];
 		switch (nPosition) {
-		case 0:
-			loc[0] = getback._getbackX1;
-			loc[1] = getback._getbackY1;
+			case 0:
+				loc[0] = getback._getbackX1;
+				loc[1] = getback._getbackY1;
 			break;
 
-		case 1:
-			loc[0] = getback._getbackX2;
-			loc[1] = getback._getbackY2;
+			case 1:
+				loc[0] = getback._getbackX2;
+				loc[1] = getback._getbackY2;
 			break;
 
-		case 2:
-			loc[0] = getback._getbackX3;
-			loc[1] = getback._getbackY3;
+			case 2:
+				loc[0] = getback._getbackX3;
+				loc[1] = getback._getbackY3;
 			break;
 		}
 		loc[2] = getback._getbackMapId;

@@ -39,8 +39,7 @@ import net.l1j.server.utils.SQLUtil;
 public class C_CommonClick {
 	private static final String C_COMMON_CLICK = "[C] C_CommonClick";
 
-	private static Logger _log = Logger
-			.getLogger(C_CommonClick.class.getName());
+	private static Logger _log = Logger.getLogger(C_CommonClick.class.getName());
 
 	public C_CommonClick(ClientThread client) {
 		deleteCharacter(client); // 削除期限に達したキャラクターを削除する
@@ -56,10 +55,8 @@ public class C_CommonClick {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			conn = L1DatabaseFactory.getInstance().getConnection();
-			pstm = conn
-					.prepareStatement("SELECT * FROM characters WHERE account_name=? ORDER BY objid");
+			pstm = conn.prepareStatement("SELECT * FROM characters WHERE account_name=? ORDER BY objid");
 			pstm.setString(1, client.getAccountName());
 			rs = pstm.executeQuery();
 
@@ -70,24 +67,20 @@ public class C_CommonClick {
 				Timestamp deleteTime = rs.getTimestamp("DeleteTime");
 				if (deleteTime != null) {
 					Calendar cal = Calendar.getInstance();
-					long checkDeleteTime = ((cal.getTimeInMillis() - deleteTime
-							.getTime()) / 1000) / 3600;
+					long checkDeleteTime = ((cal.getTimeInMillis() - deleteTime.getTime()) / 1000) / 3600;
 					if (checkDeleteTime >= 0) {
 						L1Clan clan = L1World.getInstance().getClan(clanname);
 						if (clan != null) {
 							clan.delMemberName(name);
 						}
-						CharacterTable.getInstance().deleteCharacter(
-								client.getAccountName(), name);
+						CharacterTable.getInstance().deleteCharacter(client.getAccountName(), name);
 					}
 				}
 			}
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(conn);
+			SQLUtil.close(rs, pstm, conn);
 		}
 	}
 
@@ -98,8 +91,7 @@ public class C_CommonClick {
 		try {
 
 			conn = L1DatabaseFactory.getInstance().getConnection();
-			pstm = conn
-					.prepareStatement("SELECT * FROM characters WHERE account_name=? ORDER BY objid");
+			pstm = conn.prepareStatement("SELECT * FROM characters WHERE account_name=? ORDER BY objid");
 			pstm.setString(1, client.getAccountName());
 			rs = pstm.executeQuery();
 
@@ -145,18 +137,14 @@ public class C_CommonClick {
 				int intel = rs.getByte("Intel");
 				int accessLevel = rs.getShort("AccessLevel");
 
-				S_CharPacks cpk = new S_CharPacks(name, clanname, type, sex,
-						lawful, currenthp, currentmp, ac, lvl, str, dex, con,
-						wis, cha, intel, accessLevel);
+				S_CharPacks cpk = new S_CharPacks(name, clanname, type, sex, lawful, currenthp, currentmp, ac, lvl, str, dex, con, wis, cha, intel, accessLevel);
 
 				client.sendPacket(cpk);
 			}
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(conn);
+			SQLUtil.close(rs, pstm, conn);
 		}
 	}
 

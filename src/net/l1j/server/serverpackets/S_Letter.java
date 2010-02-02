@@ -19,24 +19,16 @@
 
 package net.l1j.server.serverpackets;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.l1j.L1DatabaseFactory;
-import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
-import net.l1j.server.utils.SQLUtil;
 
 // Referenced classes of package net.l1j.server.serverpackets:
 // ServerBasePacket
 
 public class S_Letter extends ServerBasePacket {
-
 	private static Logger _log = Logger.getLogger(S_Letter.class.getName());
+
 	private static final String S_LETTER = "[S] S_Letter";
 	private byte[] _byte = null;
 

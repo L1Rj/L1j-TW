@@ -38,7 +38,6 @@ import net.l1j.server.templates.L1ShopItem;
 import net.l1j.server.utils.SQLUtil;
 
 public class ShopTable {
-
 	private static final long serialVersionUID = 1L;
 
 	private static Logger _log = Logger.getLogger(ShopTable.class.getName());

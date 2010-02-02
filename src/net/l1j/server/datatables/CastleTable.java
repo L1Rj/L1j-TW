@@ -76,8 +76,7 @@ public class CastleTable {
 
 			while (rs.next()) {
 				L1Castle castle = new L1Castle(rs.getInt(1), rs.getString(2));
-				castle.setWarTime(timestampToCalendar((Timestamp) rs
-						.getObject(3)));
+				castle.setWarTime(timestampToCalendar((Timestamp) rs.getObject(3)));
 				castle.setTaxRate(rs.getInt(4));
 				castle.setPublicMoney(rs.getInt(5));
 				castle.setRegTimeOver(rs.getBoolean(6));
@@ -87,9 +86,7 @@ public class CastleTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -106,8 +103,7 @@ public class CastleTable {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("UPDATE castle SET name=?, war_time=?, tax_rate=?, public_money=? WHERE castle_id=?");
+			pstm = con.prepareStatement("UPDATE castle SET name=?, war_time=?, tax_rate=?, public_money=? WHERE castle_id=?");
 			pstm.setString(1, castle.getName());
 			// 盟屋買賣系統時間自動更新 by pigermin
 			// String fm = DateFormat.getDateTimeInstance().format(
@@ -125,8 +121,7 @@ public class CastleTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
@@ -139,10 +134,8 @@ public class CastleTable {
 		try {
 			Connection con = null;
 			con = L1DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con
-					.prepareStatement("UPDATE castle SET war_time=?, regTimeOver=? WHERE castle_id=?");
-			String fm = cal.get(1) + "-" + (cal.get(2) + 1) + "-" + cal.get(5)
-					+ " " + cal.get(11) + ":" + cal.get(12) + ":" + "00";
+			PreparedStatement statement = con.prepareStatement("UPDATE castle SET war_time=?, regTimeOver=? WHERE castle_id=?");
+			String fm = cal.get(1) + "-" + (cal.get(2) + 1) + "-" + cal.get(5) + " " + cal.get(11) + ":" + cal.get(12) + ":" + "00";
 			statement.setString(1, fm);
 			statement.setBoolean(2, true);
 			statement.setInt(3, castleid);
@@ -152,5 +145,4 @@ public class CastleTable {
 		} catch (Exception e) {
 		}
 	}
-
 }

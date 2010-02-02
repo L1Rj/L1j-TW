@@ -109,9 +109,7 @@ public final class MapsTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -130,8 +128,7 @@ public final class MapsTable {
 	/**
 	 * マップがのX開始座標を返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
+	 * @param mapId 調べるマップのマップID
 	 * @return X開始座標
 	 */
 	public int getStartX(int mapId) {
@@ -145,8 +142,7 @@ public final class MapsTable {
 	/**
 	 * マップがのX終了座標を返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
+	 * @param mapId 調べるマップのマップID
 	 * @return X終了座標
 	 */
 	public int getEndX(int mapId) {
@@ -160,8 +156,7 @@ public final class MapsTable {
 	/**
 	 * マップがのY開始座標を返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
+	 * @param mapId 調べるマップのマップID
 	 * @return Y開始座標
 	 */
 	public int getStartY(int mapId) {
@@ -175,8 +170,7 @@ public final class MapsTable {
 	/**
 	 * マップがのY終了座標を返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
+	 * @param mapId 調べるマップのマップID
 	 * @return Y終了座標
 	 */
 	public int getEndY(int mapId) {
@@ -190,8 +184,7 @@ public final class MapsTable {
 	/**
 	 * マップのモンスター量倍率を返す
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
+	 * @param mapId 調べるマップのマップID
 	 * @return モンスター量の倍率
 	 */
 	public double getMonsterAmount(int mapId) {
@@ -205,8 +198,7 @@ public final class MapsTable {
 	/**
 	 * マップのドロップ倍率を返す
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
+	 * @param mapId 調べるマップのマップID
 	 * @return ドロップ倍率
 	 */
 	public double getDropRate(int mapId) {
@@ -220,9 +212,7 @@ public final class MapsTable {
 	/**
 	 * マップが、水中であるかを返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
-	 * 
+	 * @param mapId 調べるマップのマップID
 	 * @return 水中であればtrue
 	 */
 	public boolean isUnderwater(int mapId) {
@@ -236,8 +226,7 @@ public final class MapsTable {
 	/**
 	 * マップが、ブックマーク可能であるかを返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
+	 * @param mapId 調べるマップのマップID
 	 * @return ブックマーク可能であればtrue
 	 */
 	public boolean isMarkable(int mapId) {
@@ -251,8 +240,7 @@ public final class MapsTable {
 	/**
 	 * マップが、ランダムテレポート可能であるかを返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
+	 * @param mapId 調べるマップのマップID
 	 * @return 可能であればtrue
 	 */
 	public boolean isTeleportable(int mapId) {
@@ -266,8 +254,7 @@ public final class MapsTable {
 	/**
 	 * マップが、MAPを超えたテレポート可能であるかを返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
+	 * @param mapId 調べるマップのマップID
 	 * @return 可能であればtrue
 	 */
 	public boolean isEscapable(int mapId) {
@@ -281,9 +268,7 @@ public final class MapsTable {
 	/**
 	 * マップが、復活可能であるかを返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
-	 * 
+	 * @param mapId 調べるマップのマップID
 	 * @return 復活可能であればtrue
 	 */
 	public boolean isUseResurrection(int mapId) {
@@ -297,9 +282,7 @@ public final class MapsTable {
 	/**
 	 * マップが、パインワンド使用可能であるかを返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
-	 * 
+	 * @param mapId 調べるマップのマップID
 	 * @return パインワンド使用可能であればtrue
 	 */
 	public boolean isUsePainwand(int mapId) {
@@ -313,9 +296,7 @@ public final class MapsTable {
 	/**
 	 * マップが、デスペナルティがあるかを返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
-	 * 
+	 * @param mapId 調べるマップのマップID
 	 * @return デスペナルティであればtrue
 	 */
 	public boolean isEnabledDeathPenalty(int mapId) {
@@ -329,9 +310,7 @@ public final class MapsTable {
 	/**
 	 * マップが、ペット‧サモンを連れて行けるかを返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
-	 * 
+	 * @param mapId 調べるマップのマップID
 	 * @return ペット‧サモンを連れて行けるならばtrue
 	 */
 	public boolean isTakePets(int mapId) {
@@ -345,9 +324,7 @@ public final class MapsTable {
 	/**
 	 * マップが、ペット‧サモンを呼び出せるかを返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
-	 * 
+	 * @param mapId 調べるマップのマップID
 	 * @return ペット‧サモンを呼び出せるならばtrue
 	 */
 	public boolean isRecallPets(int mapId) {
@@ -361,9 +338,7 @@ public final class MapsTable {
 	/**
 	 * マップが、アイテムを使用できるかを返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
-	 * 
+	 * @param mapId 調べるマップのマップID
 	 * @return アイテムを使用できるならばtrue
 	 */
 	public boolean isUsableItem(int mapId) {
@@ -377,9 +352,7 @@ public final class MapsTable {
 	/**
 	 * マップが、スキルを使用できるかを返す。
 	 * 
-	 * @param mapId
-	 *            調べるマップのマップID
-	 * 
+	 * @param mapId 調べるマップのマップID
 	 * @return スキルを使用できるならばtrue
 	 */
 	public boolean isUsableSkill(int mapId) {
@@ -389,5 +362,4 @@ public final class MapsTable {
 		}
 		return _maps.get(mapId).isUsableSkill;
 	}
-
 }

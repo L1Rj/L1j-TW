@@ -34,14 +34,12 @@ import net.l1j.server.utils.SQLUtil;
 public class LogClanDwarfOut {
 	private static Logger _log = Logger.getLogger(LogClanDwarfOut.class.getName());
 
-	public void storeLogClanDwarfOut(L1PcInstance pc, L1ItemInstance item, int item_count_before,
-			int item_count_after, int item_out_count) {
+	public void storeLogClanDwarfOut(L1PcInstance pc, L1ItemInstance item, int item_count_before, int item_count_after, int item_out_count) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
 			con = L1LogDataFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO LogClanWareHouseOut VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			pstm = con.prepareStatement("INSERT INTO LogClanWareHouseOut VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 			Date time = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time.getTime());
@@ -70,8 +68,7 @@ public class LogClanDwarfOut {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 }

@@ -33,14 +33,12 @@ import net.l1j.server.utils.SQLUtil;
 public class LogStatusUp {
 	private static Logger _log = Logger.getLogger(LogStatusUp.class.getName());
 
-	public void storeLogStatusUp(L1PcInstance pc, int str, int dex, int Con, int Int, int wis,
-			int cha) {
+	public void storeLogStatusUp(L1PcInstance pc, int str, int dex, int Con, int Int, int wis, int cha) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
 			con = L1LogDataFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO LogStatusUp VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			pstm = con.prepareStatement("INSERT INTO LogStatusUp VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 			Date time = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time.getTime());
@@ -68,8 +66,7 @@ public class LogStatusUp {
 			}
 			pstm.setInt(19, sorcestat);
 			pstm.setInt(20, pc.getBonusStats());
-			int allstat = (pc.getBaseStr() + pc.getBaseDex() + pc.getBaseCon() + pc.getBaseInt()
-					+ pc.getBaseWis() + pc.getBaseCha()) - 75;
+			int allstat = (pc.getBaseStr() + pc.getBaseDex() + pc.getBaseCon() + pc.getBaseInt() + pc.getBaseWis() + pc.getBaseCha()) - 75;
 			pstm.setInt(21, allstat);
 			int diffsc = sorcestat - pc.getBonusStats();
 			pstm.setInt(22, diffsc);
@@ -79,8 +76,7 @@ public class LogStatusUp {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 }

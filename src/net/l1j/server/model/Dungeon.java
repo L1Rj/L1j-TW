@@ -45,12 +45,11 @@ public class Dungeon {
 
 	private static Dungeon _instance = null;
 
-	private static Map<String, NewDungeon> _dungeonMap = new FastMap<String,
-			NewDungeon>();
+	private static Map<String, NewDungeon> _dungeonMap = new FastMap<String, NewDungeon>();
 
 	private enum DungeonType {
-		NONE, SHIP_FOR_FI, SHIP_FOR_HEINE, SHIP_FOR_PI, SHIP_FOR_HIDDENDOCK,
-		SHIP_FOR_GLUDIN, SHIP_FOR_TI, HOTEL // waja add HOTEL
+		NONE, SHIP_FOR_FI, SHIP_FOR_HEINE, SHIP_FOR_PI, SHIP_FOR_HIDDENDOCK, SHIP_FOR_GLUDIN, SHIP_FOR_TI, HOTEL
+		// waja add HOTEL
 	};
 
 	public static Dungeon getInstance() {
@@ -67,15 +66,13 @@ public class Dungeon {
 
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-
 			pstm = con.prepareStatement("SELECT * FROM dungeon");
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				int srcMapId = rs.getInt("src_mapid");
 				int srcX = rs.getInt("src_x");
 				int srcY = rs.getInt("src_y");
-				String key = new StringBuilder().append(srcMapId).append(srcX)
-						.append(srcY).toString();
+				String key = new StringBuilder().append(srcMapId).append(srcX).append(srcY).toString();
 				int newX = rs.getInt("new_x");
 				int newY = rs.getInt("new_y");
 				int newMapId = rs.getInt("new_mapid");
@@ -123,20 +120,16 @@ public class Dungeon {
 					dungeonType = DungeonType.HOTEL;
 //add end
 				}
-				NewDungeon newDungeon = new NewDungeon(newX, newY,
-						(short) newMapId, heading, dungeonType);
+				NewDungeon newDungeon = new NewDungeon(newX, newY, (short) newMapId, heading, dungeonType);
 				if (_dungeonMap.containsKey(key)) {
-					_log.log(Level.WARNING,
-							"相同的dungeon數值是關鍵。key=" + key); //google翻譯
+					_log.log(Level.WARNING, "相同的dungeon數值是關鍵。key=" + key); //google翻譯
 				}
 				_dungeonMap.put(key, newDungeon);
 			}
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -147,8 +140,7 @@ public class Dungeon {
 		int _heading;
 		DungeonType _dungeonType;
 
-		private NewDungeon(int newX, int newY, short newMapId, int heading,
-				DungeonType dungeonType) {
+		private NewDungeon(int newX, int newY, short newMapId, int heading, DungeonType dungeonType) {
 			_newX = newX;
 			_newY = newY;
 			_newMapId = newMapId;
@@ -159,11 +151,9 @@ public class Dungeon {
 	}
 
 	public boolean dg(int locX, int locY, int mapId, L1PcInstance pc) {
-		int servertime = L1GameTimeClock.getInstance().currentTime()
-				.getSeconds();
+		int servertime = L1GameTimeClock.getInstance().currentTime().getSeconds();
 		int nowtime = servertime % 86400;
-		String key = new StringBuilder().append(mapId).append(locX)
-				.append(locY).toString();
+		String key = new StringBuilder().append(mapId).append(locX).append(locY).toString();
 		if (_dungeonMap.containsKey(key)) {
 			NewDungeon newDungeon = _dungeonMap.get(key);
 			short newMap = newDungeon._newMapId;

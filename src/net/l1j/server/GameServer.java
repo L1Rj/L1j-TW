@@ -140,11 +140,7 @@ public class GameServer extends Thread {
 
 		chatlvl = Config.GLOBAL_CHAT_LEVEL;
 		_port = Config.GAME_SERVER_PORT;
-		if ("lineage".equals(ps)) {
-			System.out.println("伺服器設定: 帳號密碼的加密算法數值不建議使用預設值");
-			System.out.println("伺服器設定: 系統已經強制停止伺服器啟動");
-			return;
-		} else if (!"*".equals(gs)) {
+		if (!"*".equals(gs)) {
 			InetAddress inetaddress = InetAddress.getByName(gs);
 			inetaddress.getHostAddress();
 			_serverSocket = new ServerSocket(_port, 50, inetaddress);

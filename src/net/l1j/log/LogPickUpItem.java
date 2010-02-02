@@ -34,14 +34,12 @@ import net.l1j.server.utils.SQLUtil;
 public class LogPickUpItem {
 	private static Logger _log = Logger.getLogger(LogPickUpItem.class.getName());
 
-	public void storeLogPickUpItem(L1PcInstance pc, L1ItemInstance item, int before_inven,
-			int after_inven, int before_ground, int after_ground, int pickupCount) {
+	public void storeLogPickUpItem(L1PcInstance pc, L1ItemInstance item, int before_inven, int after_inven, int before_ground, int after_ground, int pickupCount) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
 			con = L1LogDataFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO LogPickUpItem VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			pstm = con.prepareStatement("INSERT INTO LogPickUpItem VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 			Date time = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time.getTime());
@@ -62,8 +60,7 @@ public class LogPickUpItem {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 }

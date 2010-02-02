@@ -36,8 +36,7 @@ public class L1Commands {
 	private static Logger _log = Logger.getLogger(L1Commands.class.getName());
 
 	private static L1Command fromResultSet(ResultSet rs) throws SQLException {
-		return new L1Command(rs.getString("name"), rs.getInt("access_level"),
-				rs.getString("class_name"));
+		return new L1Command(rs.getString("name"), rs.getInt("access_level"), rs.getString("class_name"));
 	}
 
 	public static L1Command get(String name) {
@@ -59,9 +58,7 @@ public class L1Commands {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, "輸入指令錯誤", e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		return null;
 	}
@@ -73,8 +70,7 @@ public class L1Commands {
 		List<L1Command> result = new FastTable<L1Command>();
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT * FROM commands WHERE access_level <= ?");
+			pstm = con.prepareStatement("SELECT * FROM commands WHERE access_level <= ?");
 			pstm.setInt(1, accessLevel);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
@@ -83,9 +79,7 @@ public class L1Commands {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, "輸入指令錯誤", e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		return result;
 	}

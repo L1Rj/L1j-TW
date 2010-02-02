@@ -37,8 +37,7 @@ import net.l1j.server.utils.SQLUtil;
 import net.l1j.server.utils.collections.Lists;
 
 public class MobGroupTable {
-	private static Logger _log = Logger
-			.getLogger(MobGroupTable.class.getName());
+	private static Logger _log = Logger.getLogger(MobGroupTable.class.getName());
 
 	private static MobGroupTable _instance;
 
@@ -65,8 +64,7 @@ public class MobGroupTable {
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				int mobGroupId = rs.getInt("id");
-				boolean isRemoveGroup = (rs
-						.getBoolean("remove_group_if_leader_die"));
+				boolean isRemoveGroup = (rs.getBoolean("remove_group_if_leader_die"));
 				int leaderId = rs.getInt("leader_id");
 				List<L1NpcCount> minions = Lists.newArrayList();
 				for (int i = 1; i <= 7; i++) {
@@ -74,22 +72,18 @@ public class MobGroupTable {
 					int count = rs.getInt("minion" + i + "_count");
 					minions.add(new L1NpcCount(id, count));
 				}
-				L1MobGroup mobGroup = new L1MobGroup(mobGroupId, leaderId,
-						minions, isRemoveGroup);
+				L1MobGroup mobGroup = new L1MobGroup(mobGroupId, leaderId, minions, isRemoveGroup);
 				_mobGroupIndex.put(mobGroupId, mobGroup);
 			}
 			_log.config("MOB清單一共 " + _mobGroupIndex.size() + "組");
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, "error while creating mobgroup table", e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
 	public L1MobGroup getTemplate(int mobGroupId) {
 		return _mobGroupIndex.get(mobGroupId);
 	}
-
 }

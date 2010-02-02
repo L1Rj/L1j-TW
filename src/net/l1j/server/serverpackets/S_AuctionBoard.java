@@ -36,8 +36,7 @@ import net.l1j.server.utils.SQLUtil;
 
 public class S_AuctionBoard extends ServerBasePacket {
 
-	private static Logger _log = Logger.getLogger(S_AuctionBoard.class.
-			getName());
+	private static Logger _log = Logger.getLogger(S_AuctionBoard.class.getName());
 	private static final String S_AUCTIONBOARD = "[S] S_AuctionBoard";
 	private byte[] _byte = null;
 
@@ -103,8 +102,7 @@ public class S_AuctionBoard extends ServerBasePacket {
 					id[i] = rs.getInt(1);
 					name[i] = rs.getString(2);
 					area[i] = rs.getInt(3);
-					Calendar cal = timestampToCalendar((Timestamp) rs.
-							getObject(4));
+					Calendar cal = timestampToCalendar((Timestamp) rs.getObject(4));
 					month[i] = cal.get(Calendar.MONTH) + 1;
 					day[i] = cal.get(Calendar.DATE);
 					price[i] = rs.getInt(5);
@@ -113,9 +111,7 @@ public class S_AuctionBoard extends ServerBasePacket {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 
 		writeC(Opcodes.S_OPCODE_HOUSELIST);

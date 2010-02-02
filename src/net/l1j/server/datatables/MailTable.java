@@ -79,12 +79,10 @@ public class MailTable {
 
 				_allMail.add(mail);
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			_log.log(Level.SEVERE, "error while creating mail table", e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -94,11 +92,9 @@ public class MailTable {
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			rs = con.createStatement().executeQuery(
-					"SELECT * FROM mail WHERE id=" + mailId);
+			rs = con.createStatement().executeQuery("SELECT * FROM mail WHERE id=" + mailId);
 			if (rs != null && rs.next()) {
-				pstm = con.prepareStatement(
-					"UPDATE mail SET read_status=? WHERE id=" + mailId);
+				pstm = con.prepareStatement("UPDATE mail SET read_status=? WHERE id=" + mailId);
 				pstm.setInt(1, 1);
 				pstm.execute();
 
@@ -107,9 +103,7 @@ public class MailTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -119,11 +113,9 @@ public class MailTable {
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			rs = con.createStatement().executeQuery(
-					"SELECT * FROM mail WHERE id=" + mailId);
+			rs = con.createStatement().executeQuery("SELECT * FROM mail WHERE id=" + mailId);
 			if (rs != null && rs.next()) {
-				pstm = con.prepareStatement(
-					"UPDATE mail SET type=? WHERE id=" + mailId);
+				pstm = con.prepareStatement("UPDATE mail SET type=? WHERE id=" + mailId);
 				pstm.setInt(1, type);
 				pstm.execute();
 
@@ -132,9 +124,7 @@ public class MailTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -144,21 +134,19 @@ public class MailTable {
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("DELETE FROM mail WHERE id=?");
-			pstm.setInt(1,mailId);
+			pstm.setInt(1, mailId);
 			pstm.execute();
 
 			delMail(mailId);
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 
 	}
 
-	public void writeMail(int type, String receiver, L1PcInstance writer,
-			byte[] text) {
+	public void writeMail(int type, String receiver, L1PcInstance writer, byte[] text) {
 		int readStatus = 0;
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
@@ -194,9 +182,7 @@ public class MailTable {
 		PreparedStatement pstm2 = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm2 = con.prepareStatement("INSERT INTO mail SET " +
-					"id=?, type=?, sender=?, receiver=?," +
-					" date=?, read_status=?, subject=?, content=?");
+			pstm2 = con.prepareStatement("INSERT INTO mail SET id=?, type=?, sender=?, receiver=?, date=?, read_status=?, subject=?, content=?");
 			int id = IdFactory.getInstance().nextId();
 			pstm2.setInt(1, id);
 			pstm2.setInt(2, type);
@@ -222,8 +208,7 @@ public class MailTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm2);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm2, con);
 		}
 	}
 
@@ -268,11 +253,10 @@ public class MailTable {
 
 	private void delMail(int mailId) {
 		for (L1Mail mail : _allMail) {
-			if(mail.getId() == mailId) {
+			if (mail.getId() == mailId) {
 				_allMail.remove(mail);
 				break;
 			}
 		}
 	}
-
 }

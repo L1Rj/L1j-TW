@@ -33,8 +33,7 @@ import net.l1j.server.utils.SQLUtil;
 
 public class S_AuctionBoardRead extends ServerBasePacket {
 
-	private static Logger _log = Logger.getLogger(S_AuctionBoardRead.class.
-			getName());
+	private static Logger _log = Logger.getLogger(S_AuctionBoardRead.class.getName());
 	private static final String S_AUCTIONBOARDREAD = "[S] S_AuctionBoardRead";
 	private byte[] _byte = null;
 
@@ -64,8 +63,7 @@ public class S_AuctionBoardRead extends ServerBasePacket {
 				writeS(rs.getString(7)); // 以前の所有者
 				writeS(rs.getString(9)); // 現在の入札者
 				writeS(String.valueOf(rs.getInt(5))); // 現在の入札價格
-				Calendar cal = timestampToCalendar((Timestamp) rs.
-						getObject(4));
+				Calendar cal = timestampToCalendar((Timestamp) rs.getObject(4));
 				int month = cal.get(Calendar.MONTH) + 1;
 				int day = cal.get(Calendar.DATE);
 				int hour = cal.get(Calendar.HOUR_OF_DAY);
@@ -76,9 +74,7 @@ public class S_AuctionBoardRead extends ServerBasePacket {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 

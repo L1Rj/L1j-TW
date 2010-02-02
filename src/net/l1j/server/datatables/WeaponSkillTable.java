@@ -34,13 +34,11 @@ import net.l1j.server.model.L1WeaponSkill;
 import net.l1j.server.utils.SQLUtil;
 
 public class WeaponSkillTable {
-	private static Logger _log = Logger.getLogger(WeaponSkillTable.class
-			.getName());
+	private static Logger _log = Logger.getLogger(WeaponSkillTable.class.getName());
 
 	private static WeaponSkillTable _instance;
 
-	private final FastMap<Integer, L1WeaponSkill> _weaponIdIndex
-			= new FastMap<Integer, L1WeaponSkill>();
+	private final FastMap<Integer, L1WeaponSkill> _weaponIdIndex = new FastMap<Integer, L1WeaponSkill>();
 
 	public static WeaponSkillTable getInstance() {
 		if (_instance == null) {
@@ -64,12 +62,9 @@ public class WeaponSkillTable {
 			rs = pstm.executeQuery();
 			fillWeaponSkillTable(rs);
 		} catch (SQLException e) {
-			_log.log(Level.SEVERE, "error while creating weapon_skill table",
-					e);
+			_log.log(Level.SEVERE, "error while creating weapon_skill table", e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -86,9 +81,7 @@ public class WeaponSkillTable {
 			int effectTarget = rs.getInt("effect_target");
 			boolean isArrowType = rs.getBoolean("arrow_type");
 			int attr = rs.getInt("attr");
-			L1WeaponSkill weaponSkill = new L1WeaponSkill(weaponId, probability,
-					fixDamage, randomDamage, area, skillId, skillTime, effectId,
-					effectTarget, isArrowType, attr);
+			L1WeaponSkill weaponSkill = new L1WeaponSkill(weaponId, probability, fixDamage, randomDamage, area, skillId, skillTime, effectId, effectTarget, isArrowType, attr);
 			_weaponIdIndex.put(weaponId, weaponSkill);
 		}
 		_log.config("武器技能列表 " + _weaponIdIndex.size() + "件");
@@ -97,5 +90,4 @@ public class WeaponSkillTable {
 	public L1WeaponSkill getTemplate(int weaponId) {
 		return _weaponIdIndex.get(weaponId);
 	}
-
 }

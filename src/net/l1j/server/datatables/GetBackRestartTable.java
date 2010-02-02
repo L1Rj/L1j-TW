@@ -36,9 +36,7 @@ import net.l1j.server.utils.SQLUtil;
 // IdFactory
 
 public class GetBackRestartTable {
-
-	private static Logger _log = Logger.getLogger(GetBackRestartTable.class
-			.getName());
+	private static Logger _log = Logger.getLogger(GetBackRestartTable.class.getName());
 
 	private static GetBackRestartTable _instance;
 
@@ -72,15 +70,11 @@ public class GetBackRestartTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
 	public L1GetBackRestart[] getGetBackRestartTableList() {
-		return _getbackrestart.values().toArray(
-				new L1GetBackRestart[_getbackrestart.size()]);
+		return _getbackrestart.values().toArray(new L1GetBackRestart[_getbackrestart.size()]);
 	}
-
 }

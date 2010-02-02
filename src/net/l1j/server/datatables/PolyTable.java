@@ -57,7 +57,6 @@ public class PolyTable {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM polymorphs");
 			rs = pstm.executeQuery();
@@ -65,9 +64,7 @@ public class PolyTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, "error while creating polymorph table", e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -82,8 +79,7 @@ public class PolyTable {
 			boolean canUseSkill = rs.getBoolean("isSkillUse");
 			int causeFlg = rs.getInt("cause");
 
-			L1PolyMorph poly = new L1PolyMorph(id, name, polyId, minLevel,
-					weaponEquipFlg, armorEquipFlg, canUseSkill, causeFlg);
+			L1PolyMorph poly = new L1PolyMorph(id, name, polyId, minLevel, weaponEquipFlg, armorEquipFlg, canUseSkill, causeFlg);
 
 			_polymorphs.put(name, poly);
 			_polyIdIndex.put(polyId, poly);
@@ -99,5 +95,4 @@ public class PolyTable {
 	public L1PolyMorph getTemplate(int polyId) {
 		return _polyIdIndex.get(polyId);
 	}
-
 }

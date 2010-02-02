@@ -18,6 +18,7 @@
  */
 package net.l1j.server.datatables;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,20 +31,17 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.utils.SQLUtil;
 
 public class BossSpawnTable {
-	private static Logger _log = Logger.getLogger(BossSpawnTable.class
-			.getName());
+	private static Logger _log = Logger.getLogger(BossSpawnTable.class.getName());
 
 	private BossSpawnTable() {
 	}
 
 	public static void fillSpawnTable() {
-
 		int spawnCount = 0;
-		java.sql.Connection con = null;
+		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM spawnlist_boss");
 			rs = pstm.executeQuery();
@@ -55,8 +53,7 @@ public class BossSpawnTable {
 				template1 = NpcTable.getInstance().getTemplate(npcTemplateId);
 
 				if (template1 == null) {
-					_log.warning("mob data for id:" + npcTemplateId
-							+ " missing in npc table");
+					_log.warning("mob data for id:" + npcTemplateId + " missing in npc table");
 					spawnDat = null;
 				} else {
 					spawnDat = new L1BossSpawn(template1);
@@ -77,8 +74,7 @@ public class BossSpawnTable {
 					spawnDat.setHeading(rs.getInt("heading"));
 					spawnDat.setMapId(rs.getShort("mapid"));
 					spawnDat.setRespawnScreen(rs.getBoolean("respawn_screen"));
-					spawnDat
-							.setMovementDistance(rs.getInt("movement_distance"));
+					spawnDat.setMovementDistance(rs.getInt("movement_distance"));
 					spawnDat.setRest(rs.getBoolean("rest"));
 					spawnDat.setSpawnType(rs.getInt("spawn_type"));
 					spawnDat.setPercentage(rs.getInt("percentage"));
@@ -88,17 +84,12 @@ public class BossSpawnTable {
 					// start the spawning
 					spawnDat.init();
 					spawnCount += spawnDat.getAmount();
-
 				}
-
 			}
-
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		_log.log(Level.FINE, "BOSS總數 " + spawnCount + "隻");
 	}

@@ -42,14 +42,13 @@ import net.l1j.server.utils.SQLUtil;
 
 public class DungeonRandom {
 
-	private static Logger _log = Logger.getLogger(DungeonRandom.class
-			.getName());
+	private static Logger _log = Logger.getLogger(DungeonRandom.class.getName());
 
 	private static DungeonRandom _instance = null;
 
-	private static Map<String, NewDungeonRandom> _dungeonMap =
-			new FastMap<String, NewDungeonRandom>();
-//	private static Random _random = new Random();
+	private static Map<String, NewDungeonRandom> _dungeonMap = new FastMap<String, NewDungeonRandom>();
+
+	//	private static Random _random = new Random();
 
 	public static DungeonRandom getInstance() {
 		if (_instance == null) {
@@ -72,8 +71,7 @@ public class DungeonRandom {
 				int srcMapId = rs.getInt("src_mapid");
 				int srcX = rs.getInt("src_x");
 				int srcY = rs.getInt("src_y");
-				String key = new StringBuilder().append(srcMapId).append(srcX)
-						.append(srcY).toString();
+				String key = new StringBuilder().append(srcMapId).append(srcX).append(srcY).toString();
 				int[] newX = new int[5];
 				int[] newY = new int[5];
 				short[] newMapId = new short[5];
@@ -93,8 +91,7 @@ public class DungeonRandom {
 				newY[4] = rs.getInt("new_y5");
 				newMapId[4] = rs.getShort("new_mapid5");
 				int heading = rs.getInt("new_heading");
-				NewDungeonRandom newDungeonRandom = new NewDungeonRandom(newX, newY,
-						newMapId, heading);
+				NewDungeonRandom newDungeonRandom = new NewDungeonRandom(newX, newY, newMapId, heading);
 				if (_dungeonMap.containsKey(key)) {
 					_log.log(Level.WARNING, "地監的關鍵數據相同。key=" + key);
 				}
@@ -103,9 +100,7 @@ public class DungeonRandom {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -115,8 +110,7 @@ public class DungeonRandom {
 		short[] _newMapId = new short[5];
 		int _heading;
 
-		private NewDungeonRandom(int[] newX, int[] newY, short[] newMapId,
-				int heading) {
+		private NewDungeonRandom(int[] newX, int[] newY, short[] newMapId, int heading) {
 			for (byte i = 0; i < 5; i++) {
 				_newX[i] = newX[i];
 				_newY[i] = newY[i];
@@ -127,8 +121,7 @@ public class DungeonRandom {
 	}
 
 	public boolean dg(int locX, int locY, int mapId, L1PcInstance pc) {
-		String key = new StringBuilder().append(mapId).append(locX)
-				.append(locY).toString();
+		String key = new StringBuilder().append(mapId).append(locX).append(locY).toString();
 		if (_dungeonMap.containsKey(key)) {
 			int rnd = RandomArrayList.getInt(5);
 			NewDungeonRandom newDungeonRandom = _dungeonMap.get(key);

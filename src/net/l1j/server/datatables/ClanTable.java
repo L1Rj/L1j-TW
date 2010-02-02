@@ -43,8 +43,7 @@ public class ClanTable {
 
 	private static Logger _log = Logger.getLogger(ClanTable.class.getName());
 
-	private final FastMap<Integer, L1Clan> _clans
-	= new FastMap<Integer, L1Clan>();
+	private final FastMap<Integer, L1Clan> _clans = new FastMap<Integer, L1Clan>();
 
 	private static ClanTable _instance;
 
@@ -63,8 +62,7 @@ public class ClanTable {
 
 			try {
 				con = L1DatabaseFactory.getInstance().getConnection();
-				pstm = con
-						.prepareStatement("SELECT * FROM clan_data ORDER BY clan_id");
+				pstm = con.prepareStatement("SELECT * FROM clan_data ORDER BY clan_id");
 
 				rs = pstm.executeQuery();
 				while (rs.next()) {
@@ -85,9 +83,7 @@ public class ClanTable {
 			} catch (SQLException e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			} finally {
-				SQLUtil.close(rs);
-				SQLUtil.close(pstm);
-				SQLUtil.close(con);
+				SQLUtil.close(rs, pstm, con);
 			}
 		}
 
@@ -99,8 +95,7 @@ public class ClanTable {
 
 			try {
 				con = L1DatabaseFactory.getInstance().getConnection();
-				pstm = con
-						.prepareStatement("SELECT char_name FROM characters WHERE ClanID = ?");
+				pstm = con.prepareStatement("SELECT char_name FROM characters WHERE ClanID = ?");
 				pstm.setInt(1, clan.getClanId());
 				rs = pstm.executeQuery();
 
@@ -110,9 +105,7 @@ public class ClanTable {
 			} catch (SQLException e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			} finally {
-				SQLUtil.close(rs);
-				SQLUtil.close(pstm);
-				SQLUtil.close(con);
+				SQLUtil.close(rs, pstm, con);
 			}
 		}
 		// クラン倉庫のロード
@@ -140,8 +133,7 @@ public class ClanTable {
 
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO clan_data SET clan_id=?, clan_name=?, leader_id=?, leader_name=?, hascastle=?, hashouse=?");
+			pstm = con.prepareStatement("INSERT INTO clan_data SET clan_id=?, clan_name=?, leader_id=?, leader_name=?, hascastle=?, hashouse=?");
 			pstm.setInt(1, clan.getClanId());
 			pstm.setString(2, clan.getClanName());
 			pstm.setInt(3, clan.getLeaderId());
@@ -152,8 +144,7 @@ public class ClanTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 
 		L1World.getInstance().storeClan(clan);
@@ -177,8 +168,7 @@ public class ClanTable {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("UPDATE clan_data SET clan_id=?, leader_id=?, leader_name=?, hascastle=?, hashouse=? WHERE clan_name=?");
+			pstm = con.prepareStatement("UPDATE clan_data SET clan_id=?, leader_id=?, leader_name=?, hascastle=?, hashouse=? WHERE clan_name=?");
 			pstm.setInt(1, clan.getClanId());
 			pstm.setInt(2, clan.getLeaderId());
 			pstm.setString(3, clan.getLeaderName());
@@ -189,8 +179,7 @@ public class ClanTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
@@ -203,15 +192,13 @@ public class ClanTable {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("DELETE FROM clan_data WHERE clan_name=?");
+			pstm = con.prepareStatement("DELETE FROM clan_data WHERE clan_name=?");
 			pstm.setString(1, clan_name);
 			pstm.execute();
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 		clan.getDwarfForClanInventory().clearItems();
 		clan.getDwarfForClanInventory().deleteAllItems();
@@ -223,5 +210,4 @@ public class ClanTable {
 	public L1Clan getTemplate(int clan_id) {
 		return _clans.get(clan_id);
 	}
-
 }

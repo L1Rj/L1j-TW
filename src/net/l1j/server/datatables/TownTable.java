@@ -36,7 +36,6 @@ import net.l1j.server.utils.SQLUtil;
 // IdFactory
 
 public class TownTable {
-
 	private static Logger _log = Logger.getLogger(TownTable.class.getName());
 
 	private static TownTable _instance;
@@ -79,8 +78,7 @@ public class TownTable {
 				town.set_tax_rate(rs.getInt("tax_rate"));
 				town.set_tax_rate_reserved(rs.getInt("tax_rate_reserved"));
 				town.set_sales_money(rs.getInt("sales_money"));
-				town.set_sales_money_yesterday(rs
-						.getInt("sales_money_yesterday"));
+				town.set_sales_money_yesterday(rs.getInt("sales_money_yesterday"));
 				town.set_town_tax(rs.getInt("town_tax"));
 				town.set_town_fix_tax(rs.getInt("town_fix_tax"));
 
@@ -89,9 +87,7 @@ public class TownTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 	}
 
@@ -127,8 +123,7 @@ public class TownTable {
 
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("UPDATE town SET sales_money = sales_money + ?, town_tax = town_tax + ?, town_fix_tax = town_fix_tax + ? WHERE town_id = ?");
+			pstm = con.prepareStatement("UPDATE town SET sales_money = sales_money + ?, town_tax = town_tax + ?, town_fix_tax = town_fix_tax + ? WHERE town_id = ?");
 			pstm.setInt(1, salesMoney);
 			pstm.setInt(2, townTax);
 			pstm.setInt(3, townFixTax);
@@ -138,46 +133,38 @@ public class TownTable {
 			town.set_sales_money(town.get_sales_money() + salesMoney);
 			town.set_town_tax(town.get_town_tax() + townTax);
 			town.set_town_fix_tax(town.get_town_fix_tax() + townFixTax);
-
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
 	public void updateTaxRate() {
 		Connection con = null;
 		PreparedStatement pstm = null;
-
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("UPDATE town SET tax_rate = tax_rate_reserved");
+			pstm = con.prepareStatement("UPDATE town SET tax_rate = tax_rate_reserved");
 			pstm.execute();
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
 	public void updateSalesMoneyYesterday() {
 		Connection con = null;
 		PreparedStatement pstm = null;
-
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("UPDATE town SET sales_money_yesterday = sales_money, sales_money = 0");
+			pstm = con.prepareStatement("UPDATE town SET sales_money_yesterday = sales_money, sales_money = 0");
 			pstm.execute();
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 }

@@ -73,22 +73,18 @@ public class L1Quest {
 				_quest = new FastMap<Integer, Integer>();
 
 				con = L1DatabaseFactory.getInstance().getConnection();
-				pstm = con
-						.prepareStatement("SELECT * FROM character_quests WHERE char_id=?");
+				pstm = con.prepareStatement("SELECT * FROM character_quests WHERE char_id=?");
 				pstm.setInt(1, _owner.getId());
 				rs = pstm.executeQuery();
 
 				while (rs.next()) {
-					_quest.put(new Integer(rs.getInt(2)), new Integer(rs
-							.getInt(3)));
+					_quest.put(new Integer(rs.getInt(2)), new Integer(rs.getInt(3)));
 				}
 
 			} catch (SQLException e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			} finally {
-				SQLUtil.close(rs);
-				SQLUtil.close(pstm);
-				SQLUtil.close(con);
+				SQLUtil.close(rs, pstm, con);
 			}
 		}
 		Integer step = _quest.get(new Integer(quest_id));
@@ -107,17 +103,13 @@ public class L1Quest {
 			con = L1DatabaseFactory.getInstance().getConnection();
 
 			if (_quest.get(new Integer(quest_id)) == null) {
-
-				pstm = con.prepareStatement("INSERT INTO character_quests "
-						+ "SET char_id = ?, quest_id = ?, quest_step = ?");
+				pstm = con.prepareStatement("INSERT INTO character_quests " + "SET char_id = ?, quest_id = ?, quest_step = ?");
 				pstm.setInt(1, _owner.getId());
 				pstm.setInt(2, quest_id);
 				pstm.setInt(3, step);
 				pstm.execute();
 			} else {
-				pstm = con
-						.prepareStatement("UPDATE character_quests "
-								+ "SET quest_step = ? WHERE char_id = ? AND quest_id = ?");
+				pstm = con.prepareStatement("UPDATE character_quests " + "SET quest_step = ? WHERE char_id = ? AND quest_id = ?");
 				pstm.setInt(1, step);
 				pstm.setInt(2, _owner.getId());
 				pstm.setInt(3, quest_id);
@@ -127,8 +119,7 @@ public class L1Quest {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 
 		}
 		_quest.put(new Integer(quest_id), new Integer(step));

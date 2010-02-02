@@ -32,9 +32,7 @@ import net.l1j.server.utils.SQLUtil;
 // IdFactory
 
 public class CharacterConfigTable {
-
-	private static Logger _log = Logger.getLogger(CharacterConfigTable.class
-			.getName());
+	private static Logger _log = Logger.getLogger(CharacterConfigTable.class.getName());
 
 	private static CharacterConfigTable _instance;
 
@@ -53,8 +51,7 @@ public class CharacterConfigTable {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("INSERT INTO character_config SET object_id=?, length=?, data=?");
+			pstm = con.prepareStatement("INSERT INTO character_config SET object_id=?, length=?, data=?");
 			pstm.setInt(1, objectId);
 			pstm.setInt(2, length);
 			pstm.setBytes(3, data);
@@ -62,8 +59,7 @@ public class CharacterConfigTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
@@ -72,8 +68,7 @@ public class CharacterConfigTable {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("UPDATE character_config SET length=?, data=? WHERE object_id=?");
+			pstm = con.prepareStatement("UPDATE character_config SET length=?, data=? WHERE object_id=?");
 			pstm.setInt(1, length);
 			pstm.setBytes(2, data);
 			pstm.setInt(3, objectId);
@@ -81,8 +76,7 @@ public class CharacterConfigTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
@@ -91,15 +85,13 @@ public class CharacterConfigTable {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("DELETE FROM character_config WHERE object_id=?");
+			pstm = con.prepareStatement("DELETE FROM character_config WHERE object_id=?");
 			pstm.setInt(1, objectId);
 			pstm.execute();
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(pstm, con);
 		}
 	}
 
@@ -110,8 +102,7 @@ public class CharacterConfigTable {
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con
-					.prepareStatement("SELECT count(*) as cnt FROM character_config WHERE object_id=?");
+			pstm = con.prepareStatement("SELECT count(*) as cnt FROM character_config WHERE object_id=?");
 			pstm.setInt(1, objectId);
 			rs = pstm.executeQuery();
 			if (rs.next()) {
@@ -120,11 +111,8 @@ public class CharacterConfigTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm, con);
 		}
 		return result;
 	}
-
 }
