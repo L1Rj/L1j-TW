@@ -46,7 +46,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 import net.l1j.Config;
-import net.l1j.Server;
 import net.l1j.gui.images.ImagesTable;
 import net.l1j.gui.memory.MemoryMonitor;
 import net.l1j.server.GameServer;
@@ -351,8 +350,8 @@ public class ServerManager extends JFrame implements ActionListener {
 		if (cmd.equals("serverstart")) {
 			if (!serverStarted) {
 				serverStarted = true;
-				Server.getInstance();
-				Server.startServer();
+//				Server.getInstance();
+//				Server.startServer();
 			}
 		} else if (cmd.equals("serverstop")) {
 			if (serverStarted) {

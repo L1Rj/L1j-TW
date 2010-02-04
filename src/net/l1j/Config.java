@@ -34,217 +34,124 @@ public final class Config {
 	/** 除錯/發行模式 */
 	public static final boolean DEBUG = false;
 
-	/** Thread pools size */
+	/** 控制一般設定 */
+
 	public static int THREAD_P_EFFECTS;
-
 	public static int THREAD_P_GENERAL;
-
+	public static int GENERAL_PACKET_THREAD_CORE_SIZE;
+	public static int IO_PACKET_THREAD_CORE_SIZE;
+	public static int GENERAL_THREAD_CORE_SIZE;
 	public static int AI_MAX_THREAD;
-
 	public static int THREAD_P_TYPE_GENERAL;
-
 	public static int THREAD_P_SIZE_GENERAL;
 
-	/* 管理伺服器設定 */
+	/** 控制伺服器設定 */
 
 	public static String GAME_SERVER_HOST_NAME;
-
 	public static int GAME_SERVER_PORT;
-
 	public static String PASSWORD_SALT;
-
 	public static boolean DEADLOCK_DETECTOR;
 	public static int DEADLOCK_CHECK_INTERVAL;
 	public static boolean RESTART_ON_DEADLOCK;
-
 	public static String TIME_ZONE;
-
 	public static int CLIENT_LANGUAGE;
-
 	public static String CLIENT_LANGUAGE_CODE;
-
 	public static String[] LANGUAGE_CODE_ARRAY = { "UTF8", "EUCKR", "UTF8", "BIG5", "SJIS", "GBK" };
-
 	public static boolean HOSTNAME_LOOKUPS;
-
 	public static int AUTOMATIC_KICK;
-
 	public static boolean AUTO_CREATE_ACCOUNTS;
-
 	public static short MAX_ONLINE_USERS;
-
 	public static boolean CACHE_MAP_FILES;
-
 	public static boolean LOAD_V2_MAP_FILES;
-
 	public static boolean CHECK_MOVE_INTERVAL;
-
 	public static boolean CHECK_ATTACK_INTERVAL;
-
 	public static boolean CHECK_SPELL_INTERVAL;
-
 	public static short INJUSTICE_COUNT;
-
 	public static int JUSTICE_COUNT;
-
 	public static int CHECK_STRICTNESS;
-
 	public static byte LOGGING_WEAPON_ENCHANT;
-
 	public static byte LOGGING_ARMOR_ENCHANT;
-
 	public static boolean LOGGING_CHAT_NORMAL;
-
 	public static boolean LOGGING_CHAT_WHISPER;
-
 	public static boolean LOGGING_CHAT_SHOUT;
-
 	public static boolean LOGGING_CHAT_WORLD;
-
 	public static boolean LOGGING_CHAT_CLAN;
-
 	public static boolean LOGGING_CHAT_PARTY;
-
 	public static boolean LOGGING_CHAT_COMBINED;
-
 	public static boolean LOGGING_CHAT_CHAT_PARTY;
-
 	public static int AUTOSAVE_INTERVAL;
-
 	public static int AUTOSAVE_INTERVAL_INVENTORY;
-
 	public static int SKILLTIMER_IMPLTYPE;
-
 	public static int NPCAI_IMPLTYPE;
-
 	public static boolean TELNET_SERVER;
-
 	public static int TELNET_SERVER_PORT;
-
 	public static int PC_RECOGNIZE_RANGE;
-
 	public static boolean CHARACTER_CONFIG_IN_SERVER_SIDE;
-
 	public static boolean ALLOW_2PC;
-
 	public static int LEVEL_DOWN_RANGE;
-
 	public static boolean SEND_PACKET_BEFORE_TELEPORT;
 
-	/* 管理資料庫設定 */
+	/** 控制資料庫設定 */
 
-	public static String DB_DRIVER;
-
-	public static String DB_URL;
-
-	public static String DB_LOGIN;
-
-	public static String DB_PASSWORD;
-
-	public static boolean DETECT_DB_RESOURCE_LEAKS;
-
+	public static String DATABASE_DRIVER;
+	public static String DATABASE_URL;
+	public static String DATABASE_LOGIN;
+	public static String DATABASE_PASSWORD;
+	public static int DATABASE_MAX_CONNECTIONS;
+	public static int DATABASE_MAX_IDLE_TIME;
 	public static boolean ARMOR_CUSTOM_TABLE;
-
 	public static boolean ARMORSETS_CUSTOM_TABLE;
-
 	public static boolean ETCITEM_CUSTOM_TABLE;
-
 	public static boolean WEAPON_CUSTOM_TABLE;
-
 	public static boolean NPC_CUSTOM_TABLE;
-
 	public static boolean DROPLIST_CUSTOM_TABLE;
-
 	public static boolean SHOP_CUSTOM_TABLE;
 
-	/* 管理進階設定 */
+	/** 控制進階設定 */
 
 	public static short GLOBAL_CHAT_LEVEL;
-
 	public static short WHISPER_CHAT_LEVEL;
-
 	public static byte AUTO_LOOT;
-
 	public static int LOOTING_RANGE;
-
 	public static boolean ALT_NONPVP;
-
 	public static boolean ALT_ATKMSG;
-
 	public static boolean CHANGE_TITLE_BY_ONESELF;
-
 	public static int MAX_CLAN_MEMBER;
-
 	public static boolean CLAN_ALLIANCE;
-
 	public static int MAX_PT;
-
 	public static int MAX_CHAT_PT;
-
 	public static boolean SIM_WAR_PENALTY;
-
 	public static boolean GET_BACK;
-
 	public static String ALT_ITEM_DELETION_TYPE;
-
 	public static int ALT_ITEM_DELETION_TIME;
-
 	public static int ALT_ITEM_DELETION_RANGE;
-
 	public static boolean ALT_GMSHOP;
-
 	public static int ALT_GMSHOP_MIN_ID;
-
 	public static int ALT_GMSHOP_MAX_ID;
-
 	public static boolean ALT_HALLOWEENIVENT;
-
 	public static boolean ALT_JPPRIVILEGED;
-
 	public static boolean ALT_TALKINGSCROLLQUEST;
-
 	public static boolean ALT_WHO_COMMAND;
-
 	public static boolean ALT_REVIVAL_POTION;
-
 	public static int ALT_WAR_TIME;
-
 	public static int ALT_WAR_TIME_UNIT;
-
 	public static int ALT_WAR_INTERVAL;
-
 	public static int ALT_WAR_INTERVAL_UNIT;
-
 	public static int ALT_RATE_OF_DUTY;
-
 	public static boolean SPAWN_HOME_POINT;
-
 	public static int SPAWN_HOME_POINT_RANGE;
-
 	public static int SPAWN_HOME_POINT_COUNT;
-
 	public static int SPAWN_HOME_POINT_DELAY;
-
 	public static boolean INIT_BOSS_SPAWN;
-
 	public static int ELEMENTAL_STONE_AMOUNT;
-
 	public static int HOUSE_TAX_INTERVAL;
-
 	public static int MAX_DOLL_COUNT;
-
 	public static boolean RETURN_TO_NATURE;
-
 	public static int MAX_NPC_ITEM;
-
 	public static int MAX_PERSONAL_WAREHOUSE_ITEM;
-
 	public static int MAX_CLAN_WAREHOUSE_ITEM;
-
 	public static boolean DELETE_CHARACTER_AFTER_7DAYS;
-
 	public static int NPC_DELETION_TIME;
-
 	public static int DEFAULT_CHARACTER_SLOT;
 	/** 設定施法前判斷法術 */
 	public static boolean SKILL_CHECK;
@@ -253,178 +160,98 @@ public final class Config {
 	/** 設定妖森道具掉落時間 */
 	public static int GDROPITEM_TIME;
 
-	/* 管理角色設定 */
+	/** 控制角色設定 */
 
 	public static int PRINCE_MAX_HP;
-
 	public static int PRINCE_MAX_MP;
-
 	public static int KNIGHT_MAX_HP;
-
 	public static int KNIGHT_MAX_MP;
-
 	public static int ELF_MAX_HP;
-
 	public static int ELF_MAX_MP;
-
 	public static int WIZARD_MAX_HP;
-
 	public static int WIZARD_MAX_MP;
-
 	public static int DARKELF_MAX_HP;
-
 	public static int DARKELF_MAX_MP;
-
 	public static int DRAGONKNIGHT_MAX_HP;
-
 	public static int DRAGONKNIGHT_MAX_MP;
-
 	public static int ILLUSIONIST_MAX_HP;
-
 	public static int ILLUSIONIST_MAX_MP;
-
 	public static int LV50_EXP;
-
 	public static int LV51_EXP;
-
 	public static int LV52_EXP;
-
 	public static int LV53_EXP;
-
 	public static int LV54_EXP;
-
 	public static int LV55_EXP;
-
 	public static int LV56_EXP;
-
 	public static int LV57_EXP;
-
 	public static int LV58_EXP;
-
 	public static int LV59_EXP;
-
 	public static int LV60_EXP;
-
 	public static int LV61_EXP;
-
 	public static int LV62_EXP;
-
 	public static int LV63_EXP;
-
 	public static int LV64_EXP;
-
 	public static int LV65_EXP;
-
 	public static int LV66_EXP;
-
 	public static int LV67_EXP;
-
 	public static int LV68_EXP;
-
 	public static int LV69_EXP;
-
 	public static int LV70_EXP;
-
 	public static int LV71_EXP;
-
 	public static int LV72_EXP;
-
 	public static int LV73_EXP;
-
 	public static int LV74_EXP;
-
 	public static int LV75_EXP;
-
 	public static int LV76_EXP;
-
 	public static int LV77_EXP;
-
 	public static int LV78_EXP;
-
 	public static int LV79_EXP;
-
 	public static int LV80_EXP;
-
 	public static int LV81_EXP;
-
 	public static int LV82_EXP;
-
 	public static int LV83_EXP;
-
 	public static int LV84_EXP;
-
 	public static int LV85_EXP;
-
 	public static int LV86_EXP;
-
 	public static int LV87_EXP;
-
 	public static int LV88_EXP;
-
 	public static int LV89_EXP;
-
 	public static int LV90_EXP;
-
 	public static int LV91_EXP;
-
 	public static int LV92_EXP;
-
 	public static int LV93_EXP;
-
 	public static int LV94_EXP;
-
 	public static int LV95_EXP;
-
 	public static int LV96_EXP;
-
 	public static int LV97_EXP;
-
 	public static int LV98_EXP;
-
 	public static int LV99_EXP;
 
-	/* 管理倍率設定 */
+	/** 控制倍率設定 */
 
 	public static double RATE_XP;
-
 	public static double RATE_LA;
-
 	public static double RATE_KARMA;
-
 	public static double RATE_DROP_ADENA;
-
 	public static double RATE_DROP_ITEMS;
-
 	public static int ENCHANT_CHANCE_WEAPON;
-
 	public static int ENCHANT_CHANCE_ARMOR;
-
 	public static int ATTR_ENCHANT_CHANCE;
-
 	public static double RATE_WEIGHT_LIMIT;
-
 	public static double RATE_WEIGHT_LIMIT_PET;
-
 	public static double RATE_SHOP_SELLING_PRICE;
-
 	public static double RATE_SHOP_PURCHASING_PRICE;
-
 	public static int CREATE_CHANCE_DIARY;
-
 	public static int CREATE_CHANCE_RECOLLECTION;
-
 	public static int CREATE_CHANCE_MYSTERIOUS;
-
 	public static int CREATE_CHANCE_PROCESSING;
-
 	public static int CREATE_CHANCE_PROCESSING_DIAMOND;
-
 	public static int CREATE_CHANCE_DANTES;
-
 	public static int CREATE_CHANCE_ANCIENT_AMULET;
-
 	public static int CREATE_CHANCE_HISTORY_BOOK;
 
+	/** 一般設定檔 */
+	public static final String GENERAL_CONFIG_FILE = "./config/general.properties";
 	/** 伺服器設定檔 */
 	public static final String SERVER_CONFIG_FILE = "./config/server.properties";
 	/** 資料庫設定檔 */
@@ -446,6 +273,26 @@ public final class Config {
 
 	public static void load() {
 		_log.info("正在讀取伺服器配置");
+		// general.properties
+		try {
+			Properties generalSettings = new Properties();
+			InputStream is = new FileInputStream(new File(GENERAL_CONFIG_FILE));
+			generalSettings.load(is);
+			is.close();
+
+			THREAD_P_EFFECTS = Integer.parseInt(generalSettings.getProperty("ThreadPoolSizeEffects", "10"));
+			THREAD_P_GENERAL = Integer.parseInt(generalSettings.getProperty("ThreadPoolSizeGeneral", "13"));
+			IO_PACKET_THREAD_CORE_SIZE = Integer.parseInt(generalSettings.getProperty("UrgentPacketThreadCoreSize", "2"));
+			GENERAL_PACKET_THREAD_CORE_SIZE = Integer.parseInt(generalSettings.getProperty("GeneralPacketThreadCoreSize", "4"));
+			GENERAL_THREAD_CORE_SIZE = Integer.parseInt(generalSettings.getProperty("GeneralThreadCoreSize", "4"));
+			AI_MAX_THREAD = Integer.parseInt(generalSettings.getProperty("AiMaxThread", "6"));
+			THREAD_P_TYPE_GENERAL = Integer.parseInt(generalSettings.getProperty("GeneralThreadPoolType", "0"), 10);
+			THREAD_P_SIZE_GENERAL = Integer.parseInt(generalSettings.getProperty("GeneralThreadPoolSize", "0"), 10);
+		} catch (Exception e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			throw new Error("Failed to Load " + GENERAL_CONFIG_FILE + " File.");
+		}
+
 		// server.properties
 		try {
 			Properties serverSettings = new Properties();
@@ -455,8 +302,6 @@ public final class Config {
 
 			GAME_SERVER_HOST_NAME = serverSettings.getProperty("GameserverHostname", "*");
 			GAME_SERVER_PORT = Integer.parseInt(serverSettings.getProperty("GameserverPort", "2000"));
-			THREAD_P_TYPE_GENERAL = Integer.parseInt(serverSettings.getProperty("GeneralThreadPoolType", "0"), 10);
-			THREAD_P_SIZE_GENERAL = Integer.parseInt(serverSettings.getProperty("GeneralThreadPoolSize", "0"), 10);
 			PASSWORD_SALT = serverSettings.getProperty("PasswordSalt", "lineage");
 			CLIENT_LANGUAGE = Integer.parseInt(serverSettings.getProperty("ClientLanguage", "3"));
 			CLIENT_LANGUAGE_CODE = LANGUAGE_CODE_ARRAY[CLIENT_LANGUAGE];
@@ -509,11 +354,12 @@ public final class Config {
 			databaseSettings.load(is);
 			is.close();
 
-			DB_DRIVER = databaseSettings.getProperty("Driver", "com.mysql.jdbc.Driver");
-			DB_URL = databaseSettings.getProperty("URL", "jdbc:mysql://localhost/l1jdb?useUnicode=true&characterEncoding=utf8");
-			DB_LOGIN = databaseSettings.getProperty("Login", "root");
-			DB_PASSWORD = databaseSettings.getProperty("Password", "");
-			DETECT_DB_RESOURCE_LEAKS = Boolean.parseBoolean(databaseSettings.getProperty("EnableDatabaseResourceLeaksDetection", "false"));
+			DATABASE_DRIVER = databaseSettings.getProperty("Driver", "com.mysql.jdbc.Driver");
+			DATABASE_URL = databaseSettings.getProperty("URL", "jdbc:mysql://localhost/l1jdb?useUnicode=true&characterEncoding=utf8");
+			DATABASE_LOGIN = databaseSettings.getProperty("Login", "root");
+			DATABASE_PASSWORD = databaseSettings.getProperty("Password", "");
+			DATABASE_MAX_CONNECTIONS = Integer.parseInt(databaseSettings.getProperty("MaximumDbConnections", "10"));
+			DATABASE_MAX_IDLE_TIME = Integer.parseInt(databaseSettings.getProperty("MaximumDbIdleTime", "0"));
 			ARMOR_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("ArmorCustomTable", "false"));
 			ARMORSETS_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("ArmorSetsCustomTable", "false"));
 			ETCITEM_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("EtcItemCustomTable", "false"));
@@ -726,8 +572,26 @@ public final class Config {
 	}
 
 	public static boolean setParameterValue(String pName, String pValue) {
+		// general.properties
+		if (pName.equalsIgnoreCase("ThreadPoolSizeEffects")) {
+			THREAD_P_EFFECTS = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("ThreadPoolSizeGeneral")) {
+			THREAD_P_GENERAL = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("UrgentPacketThreadCoreSize")) {
+			IO_PACKET_THREAD_CORE_SIZE = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("GeneralPacketThreadCoreSize")) {
+			GENERAL_PACKET_THREAD_CORE_SIZE = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("GeneralThreadCoreSize")) {
+			GENERAL_THREAD_CORE_SIZE = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("AiMaxThread")) {
+			AI_MAX_THREAD = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("GeneralThreadPoolType")) {
+			THREAD_P_TYPE_GENERAL = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("GeneralThreadPoolSize")) {
+			THREAD_P_SIZE_GENERAL = Integer.parseInt(pValue);
+		}
 		// server.properties
-		if (pName.equalsIgnoreCase("GameserverHostname")) {
+		else if (pName.equalsIgnoreCase("GameserverHostname")) {
 			GAME_SERVER_HOST_NAME = pValue;
 		} else if (pName.equalsIgnoreCase("GameserverPort")) {
 			GAME_SERVER_PORT = Integer.parseInt(pValue);
@@ -761,14 +625,18 @@ public final class Config {
 			SEND_PACKET_BEFORE_TELEPORT = Boolean.parseBoolean(pValue);
 		}
 		// database.properties
-		if (pName.equalsIgnoreCase("Driver")) {
-			DB_DRIVER = pValue;
+		else if (pName.equalsIgnoreCase("Driver")) {
+			DATABASE_DRIVER = pValue;
 		} else if (pName.equalsIgnoreCase("URL")) {
-			DB_URL = pValue;
+			DATABASE_URL = pValue;
 		} else if (pName.equalsIgnoreCase("Login")) {
-			DB_LOGIN = pValue;
+			DATABASE_LOGIN = pValue;
 		} else if (pName.equalsIgnoreCase("Password")) {
-			DB_PASSWORD = pValue;
+			DATABASE_PASSWORD = pValue;
+		} else if (pName.equalsIgnoreCase("MaximumDbConnections")) {
+			DATABASE_MAX_CONNECTIONS = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("MaximumDbIdleTime")) {
+			DATABASE_MAX_IDLE_TIME = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("ArmorCustomTable")) {
 			ARMOR_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
 		} else if (pName.equalsIgnoreCase("ArmorSetsCustomTable")) {

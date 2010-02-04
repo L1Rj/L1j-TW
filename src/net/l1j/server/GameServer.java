@@ -130,13 +130,13 @@ public class GameServer extends Thread {
 	}
 
 	public void initialize() throws Exception {
-		String ps = Config.PASSWORD_SALT;
 		String gs = Config.GAME_SERVER_HOST_NAME;
 		double rateXp = Config.RATE_XP;
 		double LA = Config.RATE_LA;
 		double rateKarma = Config.RATE_KARMA;
 		double rateDropItems = Config.RATE_DROP_ITEMS;
 		double rateDropAdena = Config.RATE_DROP_ADENA;
+		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
 
 		chatlvl = Config.GLOBAL_CHAT_LEVEL;
 		_port = Config.GAME_SERVER_PORT;
@@ -144,30 +144,31 @@ public class GameServer extends Thread {
 			InetAddress inetaddress = InetAddress.getByName(gs);
 			inetaddress.getHostAddress();
 			_serverSocket = new ServerSocket(_port, 50, inetaddress);
-			System.out.println("伺服器設定: 建立伺服器連接埠");
+			System.out.println("產生伺服器連接端口");
 		} else {
 			_serverSocket = new ServerSocket(_port);
-			System.out.println("伺服器設定: 建立伺服器連接埠");
+			System.out.println("產生伺服器連接端口");
 		}
 
-		System.out.println("經驗值: " + (rateXp) + "倍"
-				+ "\n\r正義值: " + (LA) + "倍"
-				+ "\n\r友好度: " + (rateKarma) + "倍"
-				+ "\n\r物品掉落: " + (rateDropItems) + "倍"
-				+ "\n\r金幣掉落: " + (rateDropAdena) + "倍");
-		System.out.println("廣播頻道可用等級: " + (chatlvl) + "級");
-		if (Config.ALT_NONPVP) { // Non-PvP設定
-			System.out.println("Non-PvP設定: 無效 (PvP可能)");
+		System.out.println(
+				"經驗值: " + (rateXp) + "倍\n\r" +
+				"正義值: " + (LA) + "倍\n\r" +
+				"友好度: " + (rateKarma) + "倍\n\r" +
+				"物品掉落: " + (rateDropItems) + "倍\n\r" +
+				"金幣掉落: " + (rateDropAdena) + "倍\n\r" +
+				"廣播等級: " + (chatlvl) + "級\n\r" +
+				"玩家限數: " + (maxOnlineUsers) + "人");
+
+		if (Config.ALT_NONPVP) {
+			System.out.println("玩家 PK 系統: 開啟");
 		} else {
-			System.out.println("Non-PvP設定: 有效 (PvP不可)");
+			System.out.println("玩家 PK 系統: 關閉");
 		}
 
 		System.out.println("=================================================");
-		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1230 ========");
+		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1244 ========");
 		System.out.println("=================================================");
 
-		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
-		System.out.println("連線人數上限: " + (maxOnlineUsers) + "人");
 		IdFactory.getInstance();
 		L1WorldMap.getInstance();
 		_loginController = LoginController.getInstance();

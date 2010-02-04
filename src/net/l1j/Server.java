@@ -42,7 +42,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -56,42 +55,21 @@ import net.l1j.telnet.TelnetServer;
  * 啟動 L1J-TW 伺服器
  */
 public class Server {
-	private volatile static Server uniqueInstance = null;
-
 	/** 用於訊息記錄 */
 	private static Logger _log = Logger.getLogger(Server.class.getName());
 
-	/** 記錄設定檔的檔資料夾 */
+	/** 設定記錄檔案的資料夾 */
 	private static final String LOG_PROP = "./config/log.properties";
 
-	public static Server getInstance() {
-		if (uniqueInstance == null) {
-			synchronized (Server.class) {
-				if (uniqueInstance == null) {
-					uniqueInstance = new Server();
-				}
-			}
-		}
-		return uniqueInstance;
-	}
-
+	/**
+	 * 啟動伺服器
+	 * 
+	 * @param args 命令匯流排參數
+	 * @throws Exception
+	 */
 	public static void main(final String[] args) throws Exception {
-		startServer();
-	}
+//		ServerManager.getInstance().setVisible(true);
 
-	/** 啟動伺服器 */
-	public static void startServer() {
-		setLogManager();
-		setDatabaseFactory();
-		setServerSetting();
-
-		if (Config.TELNET_SERVER) {
-			TelnetServer.getInstance().start();
-		}
-	}
-
-	/** 設定記錄系統 */
-	private static void setLogManager() {
 		File logFolder = new File("log");
 		logFolder.mkdir();
 
@@ -103,6 +81,7 @@ public class Server {
 			_log.log(Level.SEVERE, "Failed to Load " + LOG_PROP + " File.", e);
 			System.exit(0);
 		}
+
 		try {
 			Config.load();
 			BackUpLog.backup();
@@ -110,29 +89,13 @@ public class Server {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			System.exit(0);
 		}
-	}
 
-	/** 設定資料庫 */
-	private static void setDatabaseFactory() {
-		L1DatabaseFactory.setDatabaseSettings( // L1DatabaseFactory 初始設定
-				Config.DB_DRIVER,
-				Config.DB_URL,
-				Config.DB_LOGIN,
-				Config.DB_PASSWORD);
+		L1DatabaseFactory.getInstance();
+		L1LogDataFactory.getInstance();
 
-		try {
-			L1DatabaseFactory.getInstance();
-			L1LogDataFactory.getInstance();
-		} catch (SQLException e) {
+		GameServer.getInstance().initialize();
+		if (Config.TELNET_SERVER) {
+			TelnetServer.getInstance().start();
 		}
 	}
-
-	/** 設定遊戲設定 */
-	private static void setServerSetting() {
-		try {
-			GameServer.getInstance().initialize();
-		} catch (Exception e) {
-		}
-	}
-
 }

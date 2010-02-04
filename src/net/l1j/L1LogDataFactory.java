@@ -29,18 +29,21 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.l1j.server.utils.LeakCheckedConnection;
-
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class L1LogDataFactory {
-	private static L1LogDataFactory _instance;
-
-	private ComboPooledDataSource _source;
-
 	private static Logger _log = Logger.getLogger(L1LogDataFactory.class.getName());
 
+	// =========================================================
+	// Data Field
+	private static L1LogDataFactory _instance;
+	private ComboPooledDataSource _source;
+
+	// =========================================================
+	// Constructor
 	public L1LogDataFactory() throws SQLException {
+		_log.info("正在建立記錄資料庫");
+
 		File file = new File("log/Server.db");
 		boolean fileex = file.exists();
 		if (!fileex) {
@@ -90,19 +93,68 @@ public class L1LogDataFactory {
 		}
 
 		try {
+			if (Config.DATABASE_MAX_CONNECTIONS < 2) {
+				Config.DATABASE_MAX_CONNECTIONS = 2;
+				_log.warning("A minimum of " + Config.DATABASE_MAX_CONNECTIONS + " db connections are required.");
+			}
+
 			_source = new ComboPooledDataSource();
+			_source.setAutoCommitOnClose(true);
+
+			_source.setInitialPoolSize(10);
+			_source.setMinPoolSize(10);
+			_source.setMaxPoolSize(Math.max(10, Config.DATABASE_MAX_CONNECTIONS));
+
+			_source.setAcquireRetryAttempts(0); // try to obtain connections indefinitely (0 = never quit)
+			_source.setAcquireRetryDelay(500); // 500 milliseconds wait before try to acquire connection again
+			_source.setCheckoutTimeout(0); // 0 = wait indefinitely for new connection
+			// if pool is exhausted
+			_source.setAcquireIncrement(5); // if pool is exhausted, get 5 more connections at a time
+			// cause there is a "long" delay on acquire connection
+			// so taking more than one connection at once will make connection pooling
+			// more effective.
+
+			// this "connection_test_table" is automatically created if not already there
+			_source.setAutomaticTestTable("connection_test_table");
+			_source.setTestConnectionOnCheckin(false);
+
+			// testing OnCheckin used with IdleConnectionTestPeriod is faster than  testing on checkout
+
+			_source.setIdleConnectionTestPeriod(3600); // test idle connection every 60 sec
+			_source.setMaxIdleTime(Config.DATABASE_MAX_IDLE_TIME); // 0 = idle connections never expire
+			// *THANKS* to connection testing configured above
+			// but I prefer to disconnect all connections not used
+			// for more than 1 hour
+
+			// enables statement caching,  there is a "semi-bug" in c3p0 0.9.0 but in 0.9.0.2 and later it's fixed
+			_source.setMaxStatementsPerConnection(100);
+
+			_source.setBreakAfterAcquireFailure(false); // never fail if any way possible
+			// setting this to true will make
+			// c3p0 "crash" and refuse to work
+			// till restart thus making acquire
+			// errors "FATAL" ... we don't want that
+			// it should be possible to recover
 			_source.setDriverClass("org.sqlite.JDBC");
 			_source.setJdbcUrl("jdbc:sqlite:log/Server.db");
 
 			/* Test the connection */
 			_source.getConnection().close();
+
+			if (Config.DEBUG) {
+				_log.fine("Database Connection Working");
+			}
 		} catch (SQLException x) {
-			_log.fine("LogData Connection FAILED");
-			// rethrow the exception
+			if (Config.DEBUG) {
+				_log.fine("Database Connection FAILED");
+			}
+			// re-throw the exception
 			throw x;
 		} catch (Exception e) {
-			_log.fine("LogData Connection FAILED");
-			throw new SQLException("could not init Server Log connection:" + e);
+			if (Config.DEBUG) {
+				_log.fine("Database Connection FAILED");
+			}
+			throw new SQLException("could not init DB connection:" + e);
 		}
 	}
 
@@ -119,26 +171,35 @@ public class L1LogDataFactory {
 		}
 	}
 
+	// =========================================================
+	// Property - Public
 	public static L1LogDataFactory getInstance() throws SQLException {
-		if (_instance == null) {
-			_instance = new L1LogDataFactory();
+		synchronized (L1LogDataFactory.class) {
+			if (_instance == null) {
+				_instance = new L1LogDataFactory();
+			}
 		}
 		return _instance;
 	}
 
-	public Connection getConnection() {
+	public Connection getConnection() /*throws SQLException*/ {
 		Connection con = null;
 
 		while (con == null) {
 			try {
 				con = _source.getConnection();
 			} catch (SQLException e) {
-				_log
-						.warning("L1LogDataFactory: getConnection() failed, trying again "
-								+ e);
+				_log.warning("L1LogDataFactory: getConnection() failed, trying again " + e);
 			}
 		}
-		return Config.DETECT_DB_RESOURCE_LEAKS ? LeakCheckedConnection
-				.create(con) : con;
+		return con;
+	}
+
+	public int getBusyConnectionCount() throws SQLException {
+		return _source.getNumBusyConnectionsDefaultUser();
+	}
+
+	public int getIdleConnectionCount() throws SQLException {
+		return _source.getNumIdleConnectionsDefaultUser();
 	}
 }

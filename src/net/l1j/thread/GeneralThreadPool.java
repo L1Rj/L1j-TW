@@ -26,23 +26,20 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.thread.PcMonitor;
 
 public class GeneralThreadPool {
-	private static Logger _log = Logger.getLogger(GeneralThreadPool.class.getName());
+	private static final int SCHEDULED_CORE_POOL_SIZE = 100; // 原值10
 
 	private static GeneralThreadPool _instance;
-
-	private static final int SCHEDULED_CORE_POOL_SIZE = 100;// 原值10
 
 	private Executor _executor; // 汎用ExecutorService
 	private ScheduledExecutorService _scheduler; // 汎用ScheduledExecutorService
 	private ScheduledExecutorService _pcScheduler; // プレイヤーのモニター用ScheduledExecutorService
 	// 一應L1Jデフォルトの狀態で、map:4にいる何もしていないPCが1秒間に占有する實行時間は約6ms(AutoUpdate:約6ms,ExpMonitor:極小)
-	private final int _pcSchedulerPoolSize = 100 + Config.MAX_ONLINE_USERS / 2 ; // 適當(20Userに1つくらいの割り當て)
+	private final int _pcSchedulerPoolSize = 100 + Config.MAX_ONLINE_USERS / 2; // 適當(20Userに1つくらいの割り當て)
 
 	public static GeneralThreadPool getInstance() {
 		if (_instance == null) {
@@ -53,17 +50,14 @@ public class GeneralThreadPool {
 
 	private GeneralThreadPool() {
 		if (Config.THREAD_P_TYPE_GENERAL == 1) {
-			_executor = Executors
-					.newFixedThreadPool(Config.THREAD_P_SIZE_GENERAL);
+			_executor = Executors.newFixedThreadPool(Config.THREAD_P_SIZE_GENERAL);
 		} else if (Config.THREAD_P_TYPE_GENERAL == 2) {
 			_executor = Executors.newCachedThreadPool();
 		} else {
 			_executor = null;
 		}
-		_scheduler = Executors.newScheduledThreadPool(SCHEDULED_CORE_POOL_SIZE,
-				new PriorityThreadFactory("GerenalSTPool", Thread.NORM_PRIORITY));
-		_pcScheduler = Executors.newScheduledThreadPool(_pcSchedulerPoolSize,
-				new PriorityThreadFactory("PcMonitorSTPool", Thread.NORM_PRIORITY));
+		_scheduler = Executors.newScheduledThreadPool(SCHEDULED_CORE_POOL_SIZE, new PriorityThreadFactory("GerenalSTPool", Thread.NORM_PRIORITY));
+		_pcScheduler = Executors.newScheduledThreadPool(_pcSchedulerPoolSize, new PriorityThreadFactory("PcMonitorSTPool", Thread.NORM_PRIORITY));
 	}
 
 	public void execute(Runnable r) {
@@ -129,7 +123,6 @@ public class GeneralThreadPool {
 
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see java.util.concurrent.ThreadFactory#newThread(java.lang.Runnable)
 		 */
 		public Thread newThread(Runnable r) {

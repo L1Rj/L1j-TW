@@ -23,86 +23,87 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.l1j.server.utils.LeakCheckedConnection;
-
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-/**
- * DBへのアクセスするための各種インターフェースを提供する.
- */
 public class L1DatabaseFactory {
-	/** インスタンス. */
-	private static L1DatabaseFactory _instance;
+	private static Logger _log = Logger.getLogger(L1DatabaseFactory.class.getName());
 
-	/** DB接續情報をまとめたもの？. */
+	// =========================================================
+	// Data Field
+	private static L1DatabaseFactory _instance;
 	private ComboPooledDataSource _source;
 
-	/** メッセージログ用. */
-	private static Logger _log = Logger.getLogger(L1DatabaseFactory.class
-			.getName());
-
-	/* DBへのアクセスに必要な各情報 */
-	/** DB接續ドライバー. */
-	private static String _driver;
-
-	/** DBサーバのURL. */
-	private static String _url;
-
-	/** DBサーバに接續するユーザ名. */
-	private static String _user;
-
-	/** DBサーバに接續するパスワード. */
-	private static String _password;
-
-	/**
-	 * DBへのアクセスに必要な各情報の保存.
-	 * 
-	 * @param driver
-	 *            DB接續ドライバー
-	 * @param url
-	 *            DBサーバのURL
-	 * @param user
-	 *            DBサーバに接續するユーザ名
-	 * @param password
-	 *            DBサーバに接續するパスワード
-	 */
-	public static void setDatabaseSettings(final String driver,
-			final String url, final String user, final String password) {
-		_driver = driver;
-		_url = url;
-		_user = user;
-		_password = password;
-	}
-
-	/**
-	 * DB接續の情報の設定とテスト接續をする.
-	 * 
-	 * @throws SQLException
-	 */
+	// =========================================================
+	// Constructor
 	public L1DatabaseFactory() throws SQLException {
 		try {
-			// DatabaseFactoryをL2Jから一部を除いて拜借
+			if (Config.DATABASE_MAX_CONNECTIONS < 2) {
+				Config.DATABASE_MAX_CONNECTIONS = 2;
+				_log.warning("A minimum of " + Config.DATABASE_MAX_CONNECTIONS + " db connections are required.");
+			}
+
 			_source = new ComboPooledDataSource();
-			_source.setDriverClass(_driver);
-			_source.setJdbcUrl(_url);
-			_source.setUser(_user);
-			_source.setPassword(_password);
+			_source.setAutoCommitOnClose(true);
+
+			_source.setInitialPoolSize(10);
+			_source.setMinPoolSize(10);
+			_source.setMaxPoolSize(Math.max(10, Config.DATABASE_MAX_CONNECTIONS));
+
+			_source.setAcquireRetryAttempts(0); // try to obtain connections indefinitely (0 = never quit)
+			_source.setAcquireRetryDelay(500); // 500 milliseconds wait before try to acquire connection again
+			_source.setCheckoutTimeout(0); // 0 = wait indefinitely for new connection
+			// if pool is exhausted
+			_source.setAcquireIncrement(5); // if pool is exhausted, get 5 more connections at a time
+			// cause there is a "long" delay on acquire connection
+			// so taking more than one connection at once will make connection pooling
+			// more effective.
+
+			// this "connection_test_table" is automatically created if not already there
+			_source.setAutomaticTestTable("connection_test_table");
+			_source.setTestConnectionOnCheckin(false);
+
+			// testing OnCheckin used with IdleConnectionTestPeriod is faster than  testing on checkout
+
+			_source.setIdleConnectionTestPeriod(3600); // test idle connection every 60 sec
+			_source.setMaxIdleTime(Config.DATABASE_MAX_IDLE_TIME); // 0 = idle connections never expire
+			// *THANKS* to connection testing configured above
+			// but I prefer to disconnect all connections not used
+			// for more than 1 hour
+
+			// enables statement caching,  there is a "semi-bug" in c3p0 0.9.0 but in 0.9.0.2 and later it's fixed
+			_source.setMaxStatementsPerConnection(100);
+
+			_source.setBreakAfterAcquireFailure(false); // never fail if any way possible
+			// setting this to true will make
+			// c3p0 "crash" and refuse to work
+			// till restart thus making acquire
+			// errors "FATAL" ... we don't want that
+			// it should be possible to recover
+			_source.setDriverClass(Config.DATABASE_DRIVER);
+			_source.setJdbcUrl(Config.DATABASE_URL);
+			_source.setUser(Config.DATABASE_LOGIN);
+			_source.setPassword(Config.DATABASE_PASSWORD);
 
 			/* Test the connection */
 			_source.getConnection().close();
+
+			if (Config.DEBUG) {
+				_log.fine("Database Connection Working");
+			}
 		} catch (SQLException x) {
-			_log.fine("Database Connection FAILED");
-			// rethrow the exception
+			if (Config.DEBUG) {
+				_log.fine("Database Connection FAILED");
+			}
+			// re-throw the exception
 			throw x;
 		} catch (Exception e) {
-			_log.fine("Database Connection FAILED");
+			if (Config.DEBUG) {
+				_log.fine("Database Connection FAILED");
+			}
 			throw new SQLException("could not init DB connection:" + e);
 		}
 	}
 
-	/**
-	 * サーバシャットダウン時にDBコネクションを切斷する.
-	 */
 	public void shutdown() {
 		try {
 			_source.close();
@@ -116,38 +117,35 @@ public class L1DatabaseFactory {
 		}
 	}
 
-	/**
-	 * インスタンスを返す（nullなら作成する).
-	 * 
-	 * @return L1DatabaseFactory
-	 * @throws SQLException
-	 */
+	// =========================================================
+	// Property - Public
 	public static L1DatabaseFactory getInstance() throws SQLException {
-		if (_instance == null) {
-			_instance = new L1DatabaseFactory();
+		synchronized (L1DatabaseFactory.class) {
+			if (_instance == null) {
+				_instance = new L1DatabaseFactory();
+			}
 		}
 		return _instance;
 	}
 
-	/**
-	 * DB接續をし、コネクションオブジェクトを返す.
-	 * 
-	 * @return Connection コネクションオブジェクト
-	 * @throws SQLException
-	 */
-	public Connection getConnection() {
+	public Connection getConnection() /*throws SQLException*/ {
 		Connection con = null;
 
 		while (con == null) {
 			try {
 				con = _source.getConnection();
 			} catch (SQLException e) {
-				_log
-						.warning("L1DatabaseFactory: getConnection() failed, trying again "
-								+ e);
+				_log.warning("L1DatabaseFactory: getConnection() failed, trying again " + e);
 			}
 		}
-		return Config.DETECT_DB_RESOURCE_LEAKS ? LeakCheckedConnection
-				.create(con) : con;
+		return con;
+	}
+
+	public int getBusyConnectionCount() throws SQLException {
+		return _source.getNumBusyConnectionsDefaultUser();
+	}
+
+	public int getIdleConnectionCount() throws SQLException {
+		return _source.getNumIdleConnectionsDefaultUser();
 	}
 }
