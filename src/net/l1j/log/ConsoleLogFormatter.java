@@ -23,24 +23,29 @@ import java.io.StringWriter;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
+import net.l1j.server.utils.StreamUtil;
+import net.l1j.server.utils.StringUtil;
+
 public class ConsoleLogFormatter extends Formatter {
 	private static final String NEXT_LINE = "\r\n";
 
 	@Override
 	public String format(LogRecord record) {
-		StringBuilder output = new StringBuilder();
-		output.append(record.getMessage());
-		output.append(NEXT_LINE);
+		final StringBuilder output = new StringBuilder(500);
+		StringUtil.append(output, record.getMessage(), NEXT_LINE);
 
 		if (record.getThrown() != null) {
+			StringWriter sw = null;
+			PrintWriter pw = null;
 			try {
-				StringWriter sw = new StringWriter();
-				PrintWriter pw = new PrintWriter(sw);
+				sw = new StringWriter();
+				pw = new PrintWriter(sw);
 				record.getThrown().printStackTrace(pw);
-				pw.close();
-				output.append(sw.toString());
-				output.append(NEXT_LINE);
+				StringUtil.append(output, sw.toString(), NEXT_LINE);
 			} catch (Exception ex) {
+			} finally {
+				StreamUtil.close(pw);
+				StreamUtil.close(sw);
 			}
 		}
 		return output.toString();

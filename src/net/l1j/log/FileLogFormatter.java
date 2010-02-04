@@ -18,28 +18,32 @@
  */
 package net.l1j.log;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
+import net.l1j.server.utils.StringUtil;
+
 public class FileLogFormatter extends Formatter {
+	private static final String NEXT_LINE = "\r\n";
+
 	private static final String TAB = "\t";
 
-	private static final String NEXT_LINE = "\r\n";
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss,SSS");
 
 	@Override
 	public String format(LogRecord record) {
-		StringBuilder output = new StringBuilder();
-		output.append(record.getMillis());
-		output.append(TAB);
-		output.append(record.getLevel().getName());
-		output.append(TAB);
-		output.append(record.getThreadID());
-		output.append(TAB);
-		output.append(record.getLoggerName());
-		output.append(TAB);
-		output.append(record.getMessage());
-		output.append(NEXT_LINE);
-
-		return output.toString();
+		return StringUtil.concat(
+				dateFormat.format(new Date(record.getMillis())),
+				TAB,
+				record.getLevel().getName(),
+				TAB,
+				String.valueOf(record.getThreadID()),
+				TAB,
+				record.getLoggerName(),
+				TAB,
+				record.getMessage(), NEXT_LINE
+		);
 	}
 }
