@@ -73,31 +73,26 @@ import net.l1j.server.utils.RandomArrayList;
 import net.l1j.server.utils.SystemUtil;
 import net.l1j.thread.GeneralThreadPool;
 
-// Referenced classes of package net.l1j.server:
-// ClientThread, Logins, RateTable, IdFactory,
-// LoginController, GameTimeController, Announcements,
-// MobTable, SpawnTable, SkillsTable, PolyTable,
-// TeleportLocations, ShopTable, NPCTalkDataTable, NpcSpawnTable,
-// IpTable, Shutdown, NpcTable, MobGroupTable, NpcShoutTable
-
 public class GameServer extends Thread {
-	private ServerSocket _serverSocket;
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 	private static Logger _log = Logger.getLogger(GameServer.class.getName());
-	private int _port;
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
+
+	private DeadLockDetector _deadDetectThread;
+
+	private ServerSocket _serverSocket;
+
 	// private Logins _logins;
-	private final DeadLockDetector _deadDetectThread;
 	private LoginController _loginController;
-	private int chatlvl;
 
 	@Override
 	public void run() {
 		System.out.println("記憶體使用量: " + SystemUtil.getUsedMemoryMB() + "MB");
-		System.out.println("等待客戶端連線...");
+		System.out.println("等待客戶端連線中...");
 		while (true) {
 			try {
 				Socket socket = _serverSocket.accept();
-				System.out.println("連線中IP " + socket.getInetAddress());
+				// System.out.println("IP" + socket.getInetAddress() + " 嘗試連線中");
 				String host = socket.getInetAddress().getHostAddress();
 				if (IpTable.getInstance().isBannedIp(host)) {
 					_log.info("banned IP(" + host + ")");
@@ -105,7 +100,7 @@ public class GameServer extends Thread {
 					ClientThread client = new ClientThread(socket);
 					_threadPool.execute(client);
 				}
-			} catch (IOException ioexception) {
+			} catch (IOException e) {
 			}
 		}
 	}
@@ -114,12 +109,6 @@ public class GameServer extends Thread {
 
 	private GameServer() {
 		super("GameServer");
-		
-		if (Config.DEADLOCK_DETECTOR) {
-			_deadDetectThread = new DeadLockDetector();
-		} else {
-			_deadDetectThread = null;
-		}
 	}
 
 	public static GameServer getInstance() {
@@ -130,108 +119,103 @@ public class GameServer extends Thread {
 	}
 
 	public void initialize() throws Exception {
-		String gs = Config.GAME_SERVER_HOST_NAME;
+		String serverHost = Config.GAME_SERVER_HOST_NAME;
+		int serverPort = Config.GAME_SERVER_PORT;
+
 		double rateXp = Config.RATE_XP;
-		double LA = Config.RATE_LA;
+		double rateLA = Config.RATE_LA;
 		double rateKarma = Config.RATE_KARMA;
 		double rateDropItems = Config.RATE_DROP_ITEMS;
 		double rateDropAdena = Config.RATE_DROP_ADENA;
+		int chatLvl = Config.GLOBAL_CHAT_LEVEL;
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
 
-		chatlvl = Config.GLOBAL_CHAT_LEVEL;
-		_port = Config.GAME_SERVER_PORT;
-		if (!"*".equals(gs)) {
-			InetAddress inetaddress = InetAddress.getByName(gs);
-			inetaddress.getHostAddress();
-			_serverSocket = new ServerSocket(_port, 50, inetaddress);
-			System.out.println("產生伺服器連接端口");
-		} else {
-			_serverSocket = new ServerSocket(_port);
-			System.out.println("產生伺服器連接端口");
-		}
-
+		System.out.println("=================================================");
+		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1244 ========");
+		System.out.println("=================================================");
 		System.out.println(
 				"經驗值: " + (rateXp) + "倍\n\r" +
-				"正義值: " + (LA) + "倍\n\r" +
+				"正義值: " + (rateLA) + "倍\n\r" +
 				"友好度: " + (rateKarma) + "倍\n\r" +
 				"物品掉落: " + (rateDropItems) + "倍\n\r" +
 				"金幣掉落: " + (rateDropAdena) + "倍\n\r" +
-				"廣播等級: " + (chatlvl) + "級\n\r" +
+				"廣播等級: " + (chatLvl) + "級\n\r" +
 				"玩家限數: " + (maxOnlineUsers) + "人");
-
 		if (Config.ALT_NONPVP) {
 			System.out.println("玩家 PK 系統: 開啟");
 		} else {
 			System.out.println("玩家 PK 系統: 關閉");
 		}
+		System.out.println("=================================================");
+		System.out.println("                                  For All User...");
+		System.out.println("=================================================");
 
-		System.out.println("=================================================");
-		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1244 ========");
-		System.out.println("=================================================");
+		if (Config.DEADLOCK_DETECTOR) {
+			_deadDetectThread = new DeadLockDetector();
+			_deadDetectThread.setDaemon(true);
+			_deadDetectThread.start();
+		} else {
+			_deadDetectThread = null;
+		}
+
+		// 產生隨機陣列
+		RandomArrayList.setArrayList();
 
 		IdFactory.getInstance();
 		L1WorldMap.getInstance();
-		_loginController = LoginController.getInstance();
-		_loginController.setMaxAllowedOnlinePlayers(maxOnlineUsers);
 
-		// 隨機列表生成
-		RandomArrayList.setArrayList();
-
-		// 全キャラクターネームロード
+		// 讀取所有角色名稱
 		CharacterTable.getInstance().loadAllCharName();
-
-		// オンライン狀態リセット
+		// 清除角色上線狀態
 		CharacterTable.clearOnlineStatus();
-
-		// ゲーム時間時計
+		// 天堂遊戲時間日曆
 		L1GameTimeClock.init();
 
-		// UBタイムコントローラー
+		// 遊戲帳號驗證控制器
+		_loginController = LoginController.getInstance();
+		_loginController.setMaxAllowedOnlinePlayers(maxOnlineUsers);
+		// 無限大戰時間控制器
 		UbTimeController ubTimeContoroller = UbTimeController.getInstance();
 		_threadPool.execute(ubTimeContoroller);
-
-		// 戰爭タイムコントローラー
+		// 攻城戰爭時間控制器
 		WarTimeController warTimeController = WarTimeController.getInstance();
 		_threadPool.execute(warTimeController);
-
-		// 精靈の石生成
+		// 妖精森林產生元素石
 		if (Config.ELEMENTAL_STONE_AMOUNT > 0) {
-			ElementalStoneGenerator elementalStoneGenerator
-					= ElementalStoneGenerator.getInstance();
+			ElementalStoneGenerator elementalStoneGenerator = ElementalStoneGenerator.getInstance();
 			_threadPool.execute(elementalStoneGenerator);
 		}
-
-		// ホームタウン
+		// 村莊系統時間控制器
 		HomeTownTimeController.getInstance();
-
-		// アジト競賣タイムコントローラー
-		AuctionTimeController auctionTimeController = AuctionTimeController
-				.getInstance();
+		// 盟屋拍賣時間控制器
+		AuctionTimeController auctionTimeController = AuctionTimeController.getInstance();
 		_threadPool.execute(auctionTimeController);
-
-		// アジト稅金タイムコントローラー
-		HouseTaxTimeController houseTaxTimeController = HouseTaxTimeController
-				.getInstance();
+		// 盟屋稅金時間控制器
+		HouseTaxTimeController houseTaxTimeController = HouseTaxTimeController.getInstance();
 		_threadPool.execute(houseTaxTimeController);
-
-		// 釣りタイムコントローラー
-		FishingTimeController fishingTimeController = FishingTimeController
-				.getInstance();
+		// 釣魚系統時間控制器
+		FishingTimeController fishingTimeController = FishingTimeController.getInstance();
 		_threadPool.execute(fishingTimeController);
-
-		// NPCチャットタイムコントローラー
-		NpcChatTimeController npcChatTimeController = NpcChatTimeController
-				.getInstance();
+		// NPC 說話時間控制器
+		NpcChatTimeController npcChatTimeController = NpcChatTimeController.getInstance();
 		_threadPool.execute(npcChatTimeController);
+		// 光線變化時間控制器
+		LightTimeController lightTimeController = LightTimeController.getInstance();
+		_threadPool.execute(lightTimeController);
+		// 時空裂痕時間控制器
+		CrackTimeController crackTimeController = CrackTimeController.getInstance();
+		_threadPool.execute(crackTimeController);
 
 		Announcements.getInstance();
 		NpcTable.getInstance();
+
 		L1DeleteItemOnGround deleteitem = new L1DeleteItemOnGround();
 		deleteitem.initialize();
 
 		if (!NpcTable.getInstance().isInitialized()) {
 			throw new Exception("Could not initialize the npc table");
 		}
+
 		SpawnTable.getInstance();
 		MobGroupTable.getInstance();
 		SkillsTable.getInstance();
@@ -270,23 +254,28 @@ public class GameServer extends Thread {
 		NpcChatTable.getInstance();
 		MailTable.getInstance();
 
-		System.out.println("伺服器啟動完成");
-		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
-
-		if (Config.DEADLOCK_DETECTOR) {
-			_deadDetectThread.setDaemon(true);
-			_deadDetectThread.start();
+		if (!"*".equals(serverHost)) {
+			InetAddress inetaddress = InetAddress.getByName(serverHost);
+			inetaddress.getHostAddress();
+			_serverSocket = new ServerSocket(serverPort, 50, inetaddress);
+			System.out.println("伺服器端口建立中");
+		} else {
+			_serverSocket = new ServerSocket(serverPort);
+			System.out.println("伺服器端口建立中");
 		}
+
+		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
+		System.out.println("伺服器已啟動完畢");
+		System.gc();
 
 		this.start();
 	}
 
 	/**
-	 * オンライン中のプレイヤー全てに對してkick、キャラクター情報の保存をする。
+	 * this disconnects all clients from the server
 	 */
 	public void disconnectAllCharacters() {
-		Collection<L1PcInstance> players = L1World.getInstance()
-				.getAllPlayers();
+		Collection<L1PcInstance> players = L1World.getInstance().getAllPlayers();
 		for (L1PcInstance pc : players) {
 			pc.getNetConnection().setActiveChar(null);
 			pc.getNetConnection().kick();
@@ -310,16 +299,14 @@ public class GameServer extends Thread {
 			L1World world = L1World.getInstance();
 			try {
 				int secondsCount = _secondsCount;
-				world.broadcastServerMessage("伺服器即將關閉。");
-				world.broadcastServerMessage("請移動至安全區域。");
+				world.broadcastServerMessage("伺服器即將關機。");
+				world.broadcastServerMessage("請玩家移動到安全區域先行登出");
 				while (0 < secondsCount) {
 					if (secondsCount <= 30) {
-						world.broadcastServerMessage("伺服器將在" + secondsCount
-								+ "秒後關機。請玩家先行離線。");
+						world.broadcastServerMessage("伺服器將會在 " + secondsCount + " 秒後關機。請玩家先行離線。");
 					} else {
 						if (secondsCount % 60 == 0) {
-							world.broadcastServerMessage("伺服器將會在" + secondsCount
-									/ 60 + "分後關機。");
+							world.broadcastServerMessage("伺服器將會在 " + secondsCount / 60 + " 分鐘後關機。");
 						}
 					}
 					Thread.sleep(1000);
@@ -327,7 +314,7 @@ public class GameServer extends Thread {
 				}
 				shutdown();
 			} catch (InterruptedException e) {
-				world.broadcastServerMessage("取消關機，伺服器繼續運作。");
+				world.broadcastServerMessage("關機中斷了。 伺服器正常運作中。");
 				return;
 			}
 		}
@@ -337,8 +324,8 @@ public class GameServer extends Thread {
 
 	public synchronized void shutdownWithCountdown(int secondsCount) {
 		if (_shutdownThread != null) {
-			// 既にシャットダウン要求が行われている
-			// TODO エラー通知が必要かもしれない
+			// 執行關機要求
+			// TODO 可能需要錯誤通知
 			return;
 		}
 		_shutdownThread = new ServerShutdownThread(secondsCount);
@@ -352,8 +339,8 @@ public class GameServer extends Thread {
 
 	public synchronized void abortShutdown() {
 		if (_shutdownThread == null) {
-			// シャットダウン要求が行われていない
-			// TODO エラー通知が必要かもしれない
+			// 中斷關機要求
+			// TODO 可能需要錯誤通知
 			return;
 		}
 

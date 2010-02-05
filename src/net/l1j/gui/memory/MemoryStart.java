@@ -208,7 +208,7 @@ public class MemoryStart extends JPanel implements Runnable {
 		}
 
 		big.drawString("玩家: (" + L1World.getInstance().getWorldPlayers().length + ")", 4, ascent + 120.0f);
-//		big.drawString("NPC: (" + L1World.getInstance().getWorldNpcs().length + ")", 4, ascent + 135.0f);
+		big.drawString("NPC: (" + L1World.getInstance().getWorldNpcs().length + ")", 4, ascent + 135.0f);
 //		big.drawString("道具: (" + L1World.getInstance().getWorldItems().length + ")", 4, ascent + 150.0f);
 		big.drawString("物件: (" + L1World.getInstance().getWorldObjects().length + ")", 4, ascent + 165.0f);
 		big.drawString("血盟: (" + L1World.getInstance().getWorldClans().length + ")", 4, ascent + 180.0f);

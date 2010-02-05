@@ -30,6 +30,7 @@ import javolution.util.FastTable;
 
 import net.l1j.Config;
 import net.l1j.server.WorldMap;
+import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
@@ -42,6 +43,7 @@ public class L1World {
 	private static Logger _log = Logger.getLogger(L1World.class.getName());
 
 	private final ConcurrentHashMap<String, L1PcInstance> _allPlayers;
+	private final ConcurrentHashMap<Integer, L1NpcInstance> _allNpcs;
 	private final ConcurrentHashMap<Integer, L1PetInstance> _allPets;
 	private final ConcurrentHashMap<Integer, L1SummonInstance> _allSummons;
 	private final ConcurrentHashMap<Integer, L1Object> _allObjects;
@@ -58,6 +60,7 @@ public class L1World {
 
 	private L1World() {
 		_allPlayers = new ConcurrentHashMap<String, L1PcInstance>(); // 全てのプレイヤー
+		_allNpcs = new ConcurrentHashMap<Integer, L1NpcInstance>(); // 全てのNPC
 		_allPets = new ConcurrentHashMap<Integer, L1PetInstance>(); // 全てのペット
 		_allSummons = new ConcurrentHashMap<Integer, L1SummonInstance>(); // 全てのサモンモンスター
 		_allObjects = new ConcurrentHashMap<Integer, L1Object>(); // 全てのオブジェクト(L1ItemInstance入り、L1Inventoryはなし)
@@ -89,6 +92,9 @@ public class L1World {
 		if (object instanceof L1PcInstance) {
 			_allPlayers.put(((L1PcInstance) object).getName(), (L1PcInstance) object);
 		}
+		if (object instanceof L1NpcInstance) {
+			_allNpcs.put(((L1NpcInstance) object).getNpcTemplate().get_npcId(), (L1NpcInstance) object);
+		}
 		if (object instanceof L1PetInstance) {
 			_allPets.put(object.getId(), (L1PetInstance) object);
 		}
@@ -106,6 +112,9 @@ public class L1World {
 		if (object instanceof L1PcInstance) {
 			_allPlayers.remove(((L1PcInstance) object).getName());
 		}
+		if (object instanceof L1NpcInstance) {
+			_allNpcs.remove(((L1NpcInstance) object).getNpcTemplate().get_npcId());
+		}
 		if (object instanceof L1PetInstance) {
 			_allPets.remove(object.getId());
 		}
@@ -114,8 +123,12 @@ public class L1World {
 		}
 	}
 
-	public L1Object findObject(int oID) {
-		return _allObjects.get(oID);
+	public L1NpcInstance findNpc(int npcId) {
+		return _allNpcs.get(npcId);
+	}
+
+	public L1Object findObject(int objId) {
+		return _allObjects.get(objId);
 	}
 
 	// _allObjectsのビュー
@@ -542,8 +555,19 @@ public class L1World {
 	 */
 	public L1PcInstance[] getWorldPlayers() {
 		L1PcInstance[] pc = new L1PcInstance[_allPlayers.size()];
-		L1PcInstance[] allpc = _allPlayers.values().toArray(pc);
-		return allpc;
+		L1PcInstance[] allPc = _allPlayers.values().toArray(pc);
+		return allPc;
+	}
+
+	/**
+	 * <font color=#827B00>傳回NPC的總數</font>
+	 * 
+	 * @return L1NpcInstance[]
+	 */
+	public L1NpcInstance[] getWorldNpcs() {
+		L1NpcInstance[] npc = new L1NpcInstance[_allNpcs.size()];
+		L1NpcInstance[] allNpc = _allNpcs.values().toArray(npc);
+		return allNpc;
 	}
 
 	/**
@@ -553,8 +577,8 @@ public class L1World {
 	 */
 	public L1Object[] getWorldObjects() {
 		L1Object[] obj = new L1Object[_allObjects.size()];
-		L1Object[] allobj = _allObjects.values().toArray(obj);
-		return allobj;
+		L1Object[] allObj = _allObjects.values().toArray(obj);
+		return allObj;
 	}
 
 	/**
@@ -564,15 +588,14 @@ public class L1World {
 	 */
 	public L1Clan[] getWorldClans() {
 		L1Clan[] clan = new L1Clan[_allClans.size()];
-		L1Clan[] allclan = _allClans.values().toArray(clan);
-		return allclan;
+		L1Clan[] allClan = _allClans.values().toArray(clan);
+		return allClan;
 	}
 
 	/**
 	 * ワールド上に存在する全てのプレイヤーへパケットを送信する。
 	 * 
-	 * @param packet
-	 *            送信するパケットを表すServerBasePacketオブジェクト。
+	 * @param packet 送信するパケットを表すServerBasePacketオブジェクト。
 	 */
 	public void broadcastPacketToAll(ServerBasePacket packet) {
 		_log.finest("players to notify : " + getAllPlayers().size());
@@ -584,11 +607,9 @@ public class L1World {
 	/**
 	 * ワールド上に存在する全てのプレイヤーへサーバーメッセージを送信する。
 	 * 
-	 * @param message
-	 *            送信するメッセージ
+	 * @param message 送信するメッセージ
 	 */
 	public void broadcastServerMessage(String message) {
 		broadcastPacketToAll(new S_SystemMessage(message));
 	}
-
 }

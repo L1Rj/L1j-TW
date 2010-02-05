@@ -183,9 +183,9 @@ public class ClientThread implements Runnable, PacketOutput {
 
 	@Override
 	public void run() {
-		_log.info("(" + _hostname + ")開始連線...");
-		System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
-		System.out.println("等待連線中...");
+		_log.info("客戶端 (" + _hostname + ") 連線開始。");
+		System.out.println("記憶體使用量: " + SystemUtil.getUsedMemoryMB() + "MB");
+		System.out.println("等待客戶端連線中...");
 
 		Socket socket = _csocket;
 
@@ -288,9 +288,9 @@ public class ClientThread implements Runnable, PacketOutput {
 		_log.fine("Server thread[C] stopped");
 
 		if (_kick < 1) {
-			_log.info("(" + getAccountName() + ":" + _hostname + ")連線結束...");
-			System.out.println("記憶體使用: " + SystemUtil.getUsedMemoryMB() + "MB");
-			System.out.println("等待連線中...");
+			_log.info("客戶端 (" + _hostname + ") 連線結束。");
+			System.out.println("記憶體使用量: " + SystemUtil.getUsedMemoryMB() + "MB");
+			System.out.println("等待客戶端連線中...");
 		}
 
 		Thread.interrupted(); // 執行緒中止
