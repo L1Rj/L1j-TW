@@ -18,10 +18,10 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.io.BufferedWriter;//waja add 給予NPC物品記錄 文件版
-import java.io.FileWriter;//waja add 給予NPC物品記錄 文件版
-import java.io.IOException;//waja add 給予NPC物品記錄 文件版
-import java.sql.Timestamp;//waja add 給予NPC物品記錄 文件版
+import java.io.BufferedWriter;// add 給予NPC物品記錄 文件版
+import java.io.FileWriter;// add 給予NPC物品記錄 文件版
+import java.io.IOException;// add 給予NPC物品記錄 文件版
+import java.sql.Timestamp;// add 給予NPC物品記錄 文件版
 import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
@@ -116,7 +116,7 @@ public class C_GiveItem extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$942));
 			return;
 		}
-//waja add 給予NPC物品記錄 文件版
+// add 給予NPC物品記錄 文件版
 		giveitem("IP"
 				+ "(" + pc.getNetConnection().getIp() + ")"
 				+"玩家"
@@ -143,12 +143,12 @@ public class C_GiveItem extends ClientBasePacket {
 		if (item.getItemId() == petType.getItemIdForTaming()) {
 			tamePet(pc, target);
 		}
-		if (item.getItemId() == 40070 && petType.canEvolve()) {
+		if (item.getItemId() == petType.getEvolvItemId() && petType.canEvolve()) { // 由 40070 改為讀取資料庫進化所需道具編號
 			evolvePet(pc, target);
 		}
 	}
 
-//waja add 給予NPC道具紀錄 文件版 寫入檔案
+// add 給予NPC道具紀錄 文件版 寫入檔案
 	public static void giveitem(String info) {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("log/giveitem.log", true));
