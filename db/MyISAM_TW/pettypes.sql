@@ -27,7 +27,7 @@ CREATE TABLE `pettypes` (
   `HpUpMax` int(10) NOT NULL,
   `MpUpMin` int(10) NOT NULL,
   `MpUpMax` int(10) NOT NULL,
-  `evolvItemId` int(10) default '0',
+  `EvolvItemId` int(10) default '0',
   `NpcIdForEvolving` int(10) NOT NULL,
   `MessageId1` int(10) NOT NULL,
   `MessageId2` int(10) NOT NULL,
