@@ -121,7 +121,6 @@ public class L1GuardianInstance extends L1NpcInstance {
 	private int chance; // 5.19 Start
 	private int PT_Npc_id;
 	// 處理
-	private int itemCount = 0;
 	private L1Item item40499 = ItemTable.getInstance().getTemplate(40499);
 	private L1Item item40503 = ItemTable.getInstance().getTemplate(40503);
 	private L1Item item40505 = ItemTable.getInstance().getTemplate(40505);
