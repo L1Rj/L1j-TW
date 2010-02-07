@@ -82,12 +82,12 @@ public class L1GuardianInstance extends L1NpcInstance {
 			if (!pc.isInvisble() || getNpcTemplate().is_agrocoi()) { // インビジチェック
 				if (!pc.isElf()) { // エルフ以外
 					targetPlayer = pc;
-					wideBroadcastPacket(new S_NpcChatPacket(this, "$804", (byte) 2)); // エルフ以外の者よ、命が惜しければ早くここから去れ。ここは神聖な場所だ。
+					wideBroadcastPacket(new S_NpcChatPacket(this, "$804", (byte) 2)); // 人類，如果你重視你的生命現在就快離開這神聖的地方。
 					break;
 				}
 
 				else if (pc.isElf() && pc.isWantedForElf()) { // PK ELF 妖精殺死同族
-					wideBroadcastPacket(new S_NpcChatPacket(this, "$815", 1));
+					wideBroadcastPacket(new S_NpcChatPacket(this, "$815", 1)); // 若殺害同族，必須以自己的生命贖罪。
 					targetPlayer = pc;
 					break;
 				}
@@ -120,6 +120,14 @@ public class L1GuardianInstance extends L1NpcInstance {
 	// 跟NPC打材料需要的變數
 	private int chance; // 5.19 Start
 	private int PT_Npc_id;
+	// 處理
+	private int itemCount = 0;
+	private L1Item item40499 = ItemTable.getInstance().getTemplate(40499);
+	private L1Item item40503 = ItemTable.getInstance().getTemplate(40503);
+	private L1Item item40505 = ItemTable.getInstance().getTemplate(40505);
+	private L1Item item40506 = ItemTable.getInstance().getTemplate(40506);
+	private L1Item item40507 = ItemTable.getInstance().getTemplate(40507);
+	private L1Item item40519 = ItemTable.getInstance().getTemplate(40519);
 
 	@Override
 	public void onAction(L1PcInstance player) {
@@ -129,50 +137,29 @@ public class L1GuardianInstance extends L1NpcInstance {
 			PT_Npc_id = getNpcTemplate().get_npcId();
 
 			if (attack.calcHit()) {
-// waja change test code 妖森守護神道具控制
-/*
-				if (PT_Npc_id == 70848) { // エント
-					if (chance <= 5) {
-						player.getInventory().storeItem(40506, 1);
-						player.sendPackets(new S_ServerMessage(143, "$755",
-								"$794")); // \f1%0不足%s。 安特的水果
-					} else if (chance <= 25) {
-						player.getInventory().storeItem(40507, 6);
-						player.sendPackets(new S_ServerMessage(143, "$755",
-								"$763")); // \f1%0不足%s。 安特之樹枝
-					} else if (chance <= 35) {
-						player.getInventory().storeItem(40505, 1);
-						player.sendPackets(new S_ServerMessage(143, "$755",
-								"$770")); // \f1%0不足%s。 安特之樹皮
-					} else {
-						player.sendPackets(new S_ServerMessage(337, "$755",
-								"$764")); // \f1%0不足%s。 魔菇汁
-					}
-				} else if (PT_Npc_id == 70850) { // パン
-					if (chance <= 30) {
-						player.getInventory().storeItem(40519, 5);
-						player.sendPackets(new S_ServerMessage(143, "$753",
-								"$760" + " (" + 5 + ")")); // \f1%0が%1をくれました。 潘的鬃毛
-					}
-				} else if (PT_Npc_id == 70846) { // アラクネ
-					if (chance <= 30) {
-						player.getInventory().storeItem(40503, 1);
-						player.sendPackets(new S_ServerMessage(143, "$752",
-								"$769")); // \f1%0が%1をくれました。 芮克妮的網
-					}
-*/
 				try {
 					String npcName = getNpcTemplate().get_name();
 					String itemName = "";
 					int itemCount = 0;
-					L1Item item40499 = ItemTable.getInstance().getTemplate(40499);
-					L1Item item40503 = ItemTable.getInstance().getTemplate(40503);
-					L1Item item40505 = ItemTable.getInstance().getTemplate(40505);
-					L1Item item40506 = ItemTable.getInstance().getTemplate(40506);
-					L1Item item40507 = ItemTable.getInstance().getTemplate(40507);
-					L1Item item40519 = ItemTable.getInstance().getTemplate(40519);
 
 					switch (PT_Npc_id) {
+						case 70846: { // 芮克妮
+							if (_inventory.checkItem(40507)) { // 安特之樹枝 換 芮克妮的網
+								itemName = item40503.getName();
+								itemCount = _inventory.countItems(40507);
+								if (itemCount > 1) {
+									itemName += " (" + itemCount + ")";
+								}
+								_inventory.consumeItem(40507, itemCount);
+								player.getInventory().storeItem(40503, itemCount);
+								player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+							} else {
+								itemName = item40507.getName();
+								player.sendPackets(new S_ServerMessage(SystemMessageId.$337, itemName));
+							}
+							break;
+						}
+
 						case 70848: { // 安特
 							if (_inventory.checkItem(40499)) { // 蘑菇汁 換 安特之樹皮
 								itemName = item40505.getName();
@@ -190,10 +177,9 @@ public class L1GuardianInstance extends L1NpcInstance {
 							if (_inventory.checkItem(40507)) {// 安特之樹枝
 								if (chance <= 25) {
 									itemName = item40507.getName();
-									itemName += " (6)";
 									_inventory.consumeItem(40507, 6);
 									player.getInventory().storeItem(40507, 6);
-									player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+									player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName + "(6)"));
 								} else {
 									itemName = item40499.getName();
 									player.sendPackets(new S_ServerMessage(SystemMessageId.$337, itemName));
@@ -214,8 +200,8 @@ public class L1GuardianInstance extends L1NpcInstance {
 									setDropItems(false);
 									doGDropItem(_configtime);
 								}
-								if (chance <= 70 && chance >= 40) {
-									broadcastPacket(new S_NpcChatPacket(_npc, "$822", 0));
+								if (chance >= 70) {
+									broadcastPacket(new S_NpcChatPacket(_npc, "$822", 0)); // 現在、沒有樹皮、沒有枝脈。稍後、來、再一次、
 								} else {
 									itemName = item40499.getName();
 									player.sendPackets(new S_ServerMessage(SystemMessageId.$337, itemName));
@@ -228,36 +214,18 @@ public class L1GuardianInstance extends L1NpcInstance {
 							if (_inventory.checkItem(40519)) { // 潘的鬃毛
 								if (chance <= 30) {
 									itemName = item40519.getName();
-									itemName += " (5)";
 									_inventory.consumeItem(40519, 5);
 									player.getInventory().storeItem(40519, 5);
-									player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+									player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName + "(5)" ));
 								}
 							} else {
 								if (!forDropitems()) {
 									setDropItems(false);
 									doGDropItem(_configtime);
 								}
-								if (chance <= 80 && chance >= 40) {
-									broadcastPacket(new S_NpcChatPacket(_npc, "$824", 0));
+								if (chance >= 60) {
+									broadcastPacket(new S_NpcChatPacket(_npc, "$824", 0)); // 我已經沒有鬃毛了！待會再來吧！
 								}
-							}
-							break;
-						}
-
-						case 70846: { // 芮克妮
-							if (_inventory.checkItem(40507)) { // 安特之樹枝 換 芮克妮的網
-								itemName = item40503.getName();
-								itemCount = _inventory.countItems(40507);
-								if (itemCount > 1) {
-									itemName += " (" + itemCount + ")";
-								}
-								_inventory.consumeItem(40507, itemCount);
-								player.getInventory().storeItem(40503, itemCount);
-								player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
-							} else {
-								itemName = item40507.getName();
-								player.sendPackets(new S_ServerMessage(SystemMessageId.$337, itemName));
 							}
 							break;
 						}
