@@ -16,13 +16,9 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server;
 
 public class ActionCodes {
-
-	public ActionCodes() {
-	}
 
 	public static final int ACTION_Appear = 4;
 

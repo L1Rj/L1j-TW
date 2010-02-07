@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.Calendar;
@@ -31,16 +30,14 @@ import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_BoardWrite extends ClientBasePacket {
-
 	private static final String C_BOARD_WRITE = "[C] C_BoardWrite";
+
 	private static Logger _log = Logger.getLogger(C_BoardWrite.class.getName());
 
 	public C_BoardWrite(byte decrypt[], ClientThread client) {
 		super(decrypt);
+
 		int id = readD();
 		String date = currentTime();
 		String title = readS();
@@ -57,7 +54,7 @@ public class C_BoardWrite extends ClientBasePacket {
 		}
 	}
 
-private static String currentTime() {
+	private static String currentTime() {
 		TimeZone tz = TimeZone.getTimeZone(Config.TIME_ZONE);
 		Calendar cal = Calendar.getInstance(tz);
 		int year = cal.get(Calendar.YEAR) - 2000;
@@ -88,5 +85,4 @@ private static String currentTime() {
 	public String getType() {
 		return C_BOARD_WRITE;
 	}
-
 }

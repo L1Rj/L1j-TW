@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -29,8 +27,6 @@ import net.l1j.server.utils.FaceToFace;
 
 public class C_Fight extends ClientBasePacket {
 	private static final String C_FIGHT = "[C] C_Fight";
-
-	private static Logger _log = Logger.getLogger(C_Fight.class.getName());
 
 	public C_Fight(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);

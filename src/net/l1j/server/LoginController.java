@@ -20,22 +20,19 @@ package net.l1j.server;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Logger;
 
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.thread.GeneralThreadPool;
 
 public class LoginController {
-	private static Logger _log = Logger.getLogger(LoginController.class.getName());
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private Map<String, ClientThread> _accounts = new ConcurrentHashMap<String, ClientThread>();
 
 	private static LoginController _instance;
 
 	private int _maxAllowedOnlinePlayers;
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private LoginController() {
 	}

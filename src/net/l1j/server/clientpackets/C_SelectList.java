@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.NpcTable;
 import net.l1j.server.datatables.PetTable;
@@ -38,8 +36,6 @@ import net.l1j.server.templates.L1Pet;
 
 public class C_SelectList extends ClientBasePacket {
 	private static final String C_SELECT_LIST = "[C] C_SelectList";
-
-	private static Logger _log = Logger.getLogger(C_SelectList.class.getName());
 
 	public C_SelectList(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);

@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.io.FileNotFoundException;
@@ -28,18 +27,14 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_NPCTalkAction extends ClientBasePacket {
-
 	private static final String C_NPC_TALK_ACTION = "[C] C_NPCTalkAction";
-	private static Logger _log = Logger.getLogger(C_NPCTalkAction.class
-			.getName());
 
-	public C_NPCTalkAction(byte decrypt[], ClientThread client)
-			throws FileNotFoundException, Exception {
+	private static Logger _log = Logger.getLogger(C_NPCTalkAction.class.getName());
+
+	public C_NPCTalkAction(byte decrypt[], ClientThread client) throws FileNotFoundException, Exception {
 		super(decrypt);
+
 		int objectId = readD();
 		String action = readS();
 		L1PcInstance activeChar = client.getActiveChar();
@@ -61,5 +56,4 @@ public class C_NPCTalkAction extends ClientBasePacket {
 	public String getType() {
 		return C_NPC_TALK_ACTION;
 	}
-
 }

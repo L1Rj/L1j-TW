@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import javolution.util.FastTable;
 
 import net.l1j.server.ClientThread;
@@ -51,7 +49,6 @@ import net.l1j.server.templates.L1PrivateShopBuyList;
 import net.l1j.server.templates.L1PrivateShopSellList;
 
 public class C_Result extends ClientBasePacket {
-	private static Logger _log = Logger.getLogger(C_Result.class.getName());
 	private static final String C_RESULT = "[C] C_Result";
 
 	public C_Result(byte abyte0[], ClientThread clientthread) throws Exception {
@@ -135,8 +132,7 @@ public class C_Result extends ClientBasePacket {
 						}
 					}
 				}
-				if (pc.getDwarfInventory().checkAddItemToWarehouse(item, count,
-						L1Inventory.WAREHOUSE_TYPE_PERSONAL) == L1Inventory.SIZE_OVER) {
+				if (pc.getDwarfInventory().checkAddItemToWarehouse(item, count, L1Inventory.WAREHOUSE_TYPE_PERSONAL) == L1Inventory.SIZE_OVER) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$75));
 					break;
 				}
@@ -221,8 +217,7 @@ public class C_Result extends ClientBasePacket {
 								}
 							}
 						}
-						if (clan.getDwarfForClanInventory().checkAddItemToWarehouse(item, count,
-								L1Inventory.WAREHOUSE_TYPE_CLAN) == L1Inventory.SIZE_OVER) {
+						if (clan.getDwarfForClanInventory().checkAddItemToWarehouse(item, count, L1Inventory.WAREHOUSE_TYPE_CLAN) == L1Inventory.SIZE_OVER) {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$75));
 							break;
 						}
@@ -314,8 +309,7 @@ public class C_Result extends ClientBasePacket {
 						}
 					}
 				}
-				if (pc.getDwarfForElfInventory().checkAddItemToWarehouse(item, count,
-						L1Inventory.WAREHOUSE_TYPE_PERSONAL) == L1Inventory.SIZE_OVER) {
+				if (pc.getDwarfForElfInventory().checkAddItemToWarehouse(item, count, L1Inventory.WAREHOUSE_TYPE_PERSONAL) == L1Inventory.SIZE_OVER) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$75));
 					break;
 				}
@@ -556,5 +550,4 @@ public class C_Result extends ClientBasePacket {
 	public String getType() {
 		return C_RESULT;
 	}
-
 }

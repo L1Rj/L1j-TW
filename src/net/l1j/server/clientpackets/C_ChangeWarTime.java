@@ -16,11 +16,9 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.Calendar;
-import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
@@ -32,17 +30,10 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Castle;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_ChangeWarTime extends ClientBasePacket {
-
 	private static final String C_CHANGE_WAR_TIME = "[C] C_ChangeWarTime";
-	private static Logger _log = Logger.getLogger(C_ChangeWarTime.class
-			.getName());
 
-	public C_ChangeWarTime(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_ChangeWarTime(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		L1PcInstance player = clientthread.getActiveChar();
@@ -52,25 +43,24 @@ public class C_ChangeWarTime extends ClientBasePacket {
 //			int d = readC();
 			int castle_id = clan.getCastleId();
 			if (castle_id != 0 && clan.getLeaderName().equals(player.getName())) { // 城主クラン
-				L1Castle l1castle = CastleTable.getInstance().getCastleTable(
-						castle_id);
+				L1Castle l1castle = CastleTable.getInstance().getCastleTable(castle_id);
 				Calendar cal = l1castle.getWarTime();
 				Calendar nextWarTime = Calendar.getInstance();
 				nextWarTime.setTime(cal.getTime());
 				if (!l1castle.getRegTimeOver()) {
-					nextWarTime.add(Config.ALT_WAR_INTERVAL_UNIT,
-							Config.ALT_WAR_INTERVAL);
+					nextWarTime.add(Config.ALT_WAR_INTERVAL_UNIT, Config.ALT_WAR_INTERVAL);
 //					nextWarTime.add(Calendar.MINUTE, 182 * d);
 					nextWarTime.add(Calendar.MINUTE, 182);
 					l1castle.setWarTime(nextWarTime);
-					CastleTable.getInstance().updateWarTime(clan.getCastleId(),
-							nextWarTime);
+					CastleTable.getInstance().updateWarTime(clan.getCastleId(), nextWarTime);
 					l1castle.setRegTimeOver(true);
 				}
-				player.sendPackets(new S_ServerMessage(SystemMessageId.$304, nextWarTime.get(1)
-						+ "年" + (nextWarTime.get(2) + 1) + "月"
-						+ nextWarTime.get(5) + "日" + nextWarTime.get(11) + "時"
-						+ nextWarTime.get(12) + "分"));
+				player.sendPackets(new S_ServerMessage(SystemMessageId.$304,
+						nextWarTime.get(1) + "年" +
+						(nextWarTime.get(2) + 1) + "月" +
+						nextWarTime.get(5) + "日" +
+						nextWarTime.get(11) + "時" +
+						nextWarTime.get(12) + "分"));
 			}
 		}
 	}
@@ -79,5 +69,4 @@ public class C_ChangeWarTime extends ClientBasePacket {
 	public String getType() {
 		return C_CHANGE_WAR_TIME;
 	}
-
 }

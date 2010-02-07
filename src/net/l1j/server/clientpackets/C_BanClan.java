@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Level;
@@ -30,17 +29,14 @@ import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_BanClan extends ClientBasePacket {
-
 	private static final String C_BAN_CLAN = "[C] C_BanClan";
+
 	private static Logger _log = Logger.getLogger(C_BanClan.class.getName());
 
-	public C_BanClan(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_BanClan(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
+
 		String s = readS();
 
 		L1PcInstance pc = clientthread.getActiveChar();

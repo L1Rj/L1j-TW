@@ -16,10 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
@@ -28,16 +25,12 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_WhoAmount;
 import net.l1j.server.serverpackets.S_WhoCharinfo;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Who extends ClientBasePacket {
-
 	private static final String C_WHO = "[C] C_Who";
-	private static Logger _log = Logger.getLogger(C_Who.class.getName());
 
 	public C_Who(byte[] decrypt, ClientThread client) {
 		super(decrypt);
+
 		String s = readS();
 		L1PcInstance find = L1World.getInstance().getPlayer(s);
 		L1PcInstance pc = client.getActiveChar();
@@ -47,8 +40,7 @@ public class C_Who extends ClientBasePacket {
 			pc.sendPackets(s_whocharinfo);
 		} else {
 			if (Config.ALT_WHO_COMMAND) {
-				String amount = String.valueOf(L1World.getInstance()
-						.getAllPlayers().size());
+				String amount = String.valueOf(L1World.getInstance().getAllPlayers().size());
 				S_WhoAmount s_whoamount = new S_WhoAmount(amount);
 				pc.sendPackets(s_whoamount);
 			}

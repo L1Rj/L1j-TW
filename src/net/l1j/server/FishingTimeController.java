@@ -19,7 +19,6 @@
 package net.l1j.server;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javolution.util.FastTable;
 
@@ -30,10 +29,9 @@ import net.l1j.server.serverpackets.S_PacketBox;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class FishingTimeController implements Runnable {
-	private static Logger _log = Logger.getLogger(FishingTimeController.class.getName());
+	private final List<L1PcInstance> _fishingList = new FastTable<L1PcInstance>();
 
 	private static FishingTimeController _instance;
-	private final List<L1PcInstance> _fishingList = new FastTable<L1PcInstance>();
 
 	public static FishingTimeController getInstance() {
 		if (_instance == null) {
@@ -69,6 +67,7 @@ public class FishingTimeController implements Runnable {
 
 	// 釣魚關連
 	private long time;
+
 	private long currentTime;
 
 	private void fishing() {

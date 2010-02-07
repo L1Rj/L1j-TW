@@ -16,10 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Character;
@@ -27,17 +24,10 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_SelectTarget extends ClientBasePacket {
-
 	private static final String C_SELECT_TARGET = "[C] C_SelectTarget";
-	private static Logger _log = Logger.getLogger(C_SelectTarget.class
-			.getName());
 
-	public C_SelectTarget(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_SelectTarget(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		int petId = readD();
@@ -50,7 +40,7 @@ public class C_SelectTarget extends ClientBasePacket {
 		if (pet != null && target != null) {
 			if (target instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) target;
-				if (pc.checkNonPvP(pc, pet)|| pc.getZoneType() == 1) {
+				if (pc.checkNonPvP(pc, pet) || pc.getZoneType() == 1) {
 					return;
 				}
 			}

@@ -1,3 +1,21 @@
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 package net.l1j;
 
 import java.io.BufferedInputStream;
@@ -28,7 +46,7 @@ public class V2MapReader extends MapReader {
 	/**
 	 * 全マップIDのリストを返す.
 	 * 
-	 * @return ArraryList
+	 * @return FastTable
 	 */
 	private FastTable<Integer> listMapIds() {
 		FastTable<Integer> ids = new FastTable<Integer>();
@@ -72,8 +90,7 @@ public class V2MapReader extends MapReader {
 	/**
 	 * 指定のマップ番號のキャッシュマップを讀み⑸む.
 	 * 
-	 * @param mapId
-	 *            マップ番號
+	 * @param mapId マップ番號
 	 * @return L1Map
 	 * @throws IOException
 	 */
@@ -84,8 +101,7 @@ public class V2MapReader extends MapReader {
 			throw new FileNotFoundException("MapId: " + mapId);
 		}
 
-		BinaryInputStream in = new BinaryInputStream(new BufferedInputStream(
-				new InflaterInputStream(new FileInputStream(file))));
+		BinaryInputStream in = new BinaryInputStream(new BufferedInputStream(new InflaterInputStream(new FileInputStream(file))));
 
 		int id = in.readInt();
 		if (mapId != id) {

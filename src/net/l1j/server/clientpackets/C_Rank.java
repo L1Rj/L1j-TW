@@ -31,12 +31,12 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_Rank extends ClientBasePacket {
 	private static final String C_RANK = "[C] C_Rank";
+
 	private static Logger _log = Logger.getLogger(C_Rank.class.getName());
 
 	public C_Rank(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
-		int data = readC(); // ?
 		int rank = readC();
 		String name = readS();
 

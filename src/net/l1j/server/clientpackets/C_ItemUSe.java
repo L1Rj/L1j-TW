@@ -106,6 +106,8 @@ import static net.l1j.server.items.ItemId.*;
 import static net.l1j.server.skills.SkillId.*;
 
 public class C_ItemUSe extends ClientBasePacket {
+	private static final String C_ITEM_USE = "[C] C_ItemUSe";
+
 	private static Logger _log = Logger.getLogger(C_ItemUSe.class.getName());
 
 	private L1PcInstance pc;
@@ -2744,4 +2746,8 @@ public class C_ItemUSe extends ClientBasePacket {
 		}
 	}
 
+	@Override
+	public String getType() {
+		return C_ITEM_USE;
+	}
 }

@@ -16,10 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.ClanTable;
@@ -29,27 +26,20 @@ import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_CreateClan extends ClientBasePacket {
-
 	private static final String C_CREATE_CLAN = "[C] C_CreateClan";
-	private static Logger _log = Logger.getLogger(C_CreateClan.class.getName());
 
-	public C_CreateClan(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_CreateClan(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
+
 		String s = readS();
 		int i = s.length();
 
 		L1PcInstance l1pcinstance = clientthread.getActiveChar();
 		if (l1pcinstance.isCrown()) { // プリンスまたはプリンセス
 			if (l1pcinstance.getClanid() == 0) {
-
 				for (L1Clan clan : L1World.getInstance().getAllClans()) { // 同じクラン名をチェック
-					if (clan.getClanName().toLowerCase()
-							.equals(s.toLowerCase())) {
+					if (clan.getClanName().toLowerCase().equals(s.toLowerCase())) {
 						l1pcinstance.sendPackets(new S_ServerMessage(SystemMessageId.$99));
 						return;
 					}
@@ -70,5 +60,4 @@ public class C_CreateClan extends ClientBasePacket {
 	public String getType() {
 		return C_CREATE_CLAN;
 	}
-
 }

@@ -41,8 +41,7 @@ import net.l1j.server.templates.L1ItemSetItem;
 import net.l1j.server.utils.IterableElementList;
 
 public class GMCommandsConfig {
-	private static Logger _log = Logger.getLogger(GMCommandsConfig.class
-			.getName());
+	private static Logger _log = Logger.getLogger(GMCommandsConfig.class.getName());
 
 	private interface ConfigLoader {
 		public void load(Element element);
@@ -110,6 +109,7 @@ public class GMCommandsConfig {
 	}
 
 	private static FastMap<String, ConfigLoader> _loaders = new FastMap<String, ConfigLoader>();
+
 	static {
 		GMCommandsConfig instance = new GMCommandsConfig();
 		_loaders.put("roomlist", instance.new RoomLoader());
@@ -117,12 +117,11 @@ public class GMCommandsConfig {
 	}
 
 	public static FastMap<String, L1Location> ROOMS = new FastMap<String, L1Location>();
+
 	public static FastMap<String, List<L1ItemSetItem>> ITEM_SETS = new FastMap<String, List<L1ItemSetItem>>();
 
-	private static Document loadXml(String file)
-			throws ParserConfigurationException, SAXException, IOException {
-		DocumentBuilder builder = DocumentBuilderFactory.newInstance()
-				.newDocumentBuilder();
+	private static Document loadXml(String file) throws ParserConfigurationException, SAXException, IOException {
+		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		return builder.parse(file);
 	}
 
@@ -131,8 +130,7 @@ public class GMCommandsConfig {
 			Document doc = loadXml("./data/xml/GmCommands/GMCommands.xml");
 			NodeList nodes = doc.getDocumentElement().getChildNodes();
 			for (int i = 0; i < nodes.getLength(); i++) {
-				ConfigLoader loader = _loaders.get(nodes.item(i).getNodeName()
-						.toLowerCase());
+				ConfigLoader loader = _loaders.get(nodes.item(i).getNodeName().toLowerCase());
 				if (loader != null) {
 					loader.load((Element) nodes.item(i));
 				}

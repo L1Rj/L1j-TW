@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.io.File;
@@ -34,16 +33,12 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_CharTitle;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_LeaveClan extends ClientBasePacket {
-
 	private static final String C_LEAVE_CLAN = "[C] C_LeaveClan";
+
 	private static Logger _log = Logger.getLogger(C_LeaveClan.class.getName());
 
-	public C_LeaveClan(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_LeaveClan(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		L1PcInstance player = clientthread.getActiveChar();
@@ -105,8 +100,7 @@ public class C_LeaveClan extends ClientBasePacket {
 				for (i = 0; i < clanMember.length; i++) {
 					clanMember[i].sendPackets(new S_ServerMessage(SystemMessageId.$178, player_name, clan_name));
 				}
-				if (clan.getWarehouseUsingChar() // 自キャラがクラン倉庫使用中
-				== player.getId()) {
+				if (clan.getWarehouseUsingChar() == player.getId()) { // 自キャラがクラン倉庫使用中
 					clan.setWarehouseUsingChar(0); // クラン倉庫のロックを解除
 				}
 				player.setClanid(0);

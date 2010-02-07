@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Party;
 import net.l1j.server.model.id.SystemMessageId;
@@ -28,12 +26,11 @@ import net.l1j.server.serverpackets.S_Party;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_Party extends ClientBasePacket {
-
 	private static final String C_PARTY = "[C] C_Party";
-	private static Logger _log = Logger.getLogger(C_Party.class.getName());
 
 	public C_Party(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
+
 		L1PcInstance pc = clientthread.getActiveChar();
 		if (pc.isGhost()) {
 			return;
@@ -51,5 +48,4 @@ public class C_Party extends ClientBasePacket {
 	public String getType() {
 		return C_PARTY;
 	}
-
 }

@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j;
 
 import java.io.IOException;
@@ -30,7 +29,7 @@ import net.l1j.server.model.map.L1Map;
 public abstract class MapReader {
 	/**
 	 * 全てのテキストマップを読み込む(抽象クラス).
-	 *
+	 * 
 	 * @return Map
 	 * @throws IOException
 	 */
@@ -38,9 +37,8 @@ public abstract class MapReader {
 
 	/**
 	 * 指定のマップ番号のテキストマップを読み込む.
-	 *
-	 * @param id
-	 *            マップID
+	 * 
+	 * @param id マップID
 	 * @return L1Map
 	 * @throws IOException
 	 */
@@ -48,7 +46,7 @@ public abstract class MapReader {
 
 	/**
 	 * 読み込むマップファイルを判断する（テキストマップ or キャッシュマップ or V2テキストマップ).
-	 *
+	 * 
 	 * @return MapReader
 	 */
 	public static MapReader getDefaultReader() {

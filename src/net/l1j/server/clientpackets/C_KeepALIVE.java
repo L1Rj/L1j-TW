@@ -1,4 +1,5 @@
-/* This program is free software; you can redistribute it and/or modify
+/*
+ * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
@@ -17,22 +18,17 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_KeepALIVE extends ClientBasePacket {
-	private static Logger _log = Logger.getLogger(C_KeepALIVE.class.getName());
 	private static final String C_KEEP_ALIVE = "[C] C_KeepALIVE";
 
 	public C_KeepALIVE(byte decrypt[], ClientThread client) {
 		super(decrypt);
+
 		// XXX:GameTimeを送信（3バイトのデータを送って來ているのでそれを何かに利用しないといけないかもしれない）
-// L1PcInstance pc = client.getActiveChar();
-// pc.sendPackets(new S_GameTime());
+		// L1PcInstance pc = client.getActiveChar();
+		// pc.sendPackets(new S_GameTime());
 	}
 
 	@Override

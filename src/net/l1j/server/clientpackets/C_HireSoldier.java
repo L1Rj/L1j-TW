@@ -16,26 +16,17 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_HireSoldier extends ClientBasePacket {
-
 	private static final String C_HIRE_SOLDIER = "[C] C_HireSoldier";
-
-	private static Logger _log = Logger.getLogger(C_HireSoldier.class
-			.getName());
 
 	// S_HireSoldierを送ると表示される雇用ウィンドウでOKを押すとこのパケットが送られる
 	public C_HireSoldier(byte[] decrypt, ClientThread client) {
 		super(decrypt);
+
 		int something1 = readH(); // S_HireSoldierパケットの引數
 		int something2 = readH(); // S_HireSoldierパケットの引數
 		int something3 = readD(); // 1以外入らない？

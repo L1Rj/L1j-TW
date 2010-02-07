@@ -29,9 +29,6 @@ import net.l1j.server.LoginController;
 import net.l1j.server.serverpackets.S_CommonNews;
 import net.l1j.server.serverpackets.S_LoginResult;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_AuthLogin extends ClientBasePacket {
 	private static final String C_AUTH_LOGIN = "[C] C_AuthLogin";
 
@@ -39,6 +36,7 @@ public class C_AuthLogin extends ClientBasePacket {
 
 	public C_AuthLogin(byte[] decrypt, ClientThread client) {
 		super(decrypt);
+
 		String accountName = readS().toLowerCase();
 		String password = readS();
 
@@ -96,5 +94,4 @@ public class C_AuthLogin extends ClientBasePacket {
 	public String getType() {
 		return C_AUTH_LOGIN;
 	}
-
 }

@@ -16,10 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Location;
@@ -27,17 +24,12 @@ import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_CallPlayer extends ClientBasePacket {
-
 	private static final String C_CALL = "[C] C_Call";
-
-	private static Logger _log = Logger.getLogger(C_CallPlayer.class.getName());
 
 	public C_CallPlayer(byte[] decrypt, ClientThread client) {
 		super(decrypt);
+
 		L1PcInstance pc = client.getActiveChar();
 
 		if (!pc.isGm()) {
@@ -55,10 +47,8 @@ public class C_CallPlayer extends ClientBasePacket {
 			return;
 		}
 
-		L1Location loc =
-				L1Location.randomLocation(target.getLocation(), 1, 2, false);
-		L1Teleport.teleport(pc, loc.getX(), loc.getY(), target.getMapId(), pc
-				.getHeading(), false);
+		L1Location loc = L1Location.randomLocation(target.getLocation(), 1, 2, false);
+		L1Teleport.teleport(pc, loc.getX(), loc.getY(), target.getMapId(), pc.getHeading(), false);
 	}
 
 	@Override

@@ -16,10 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1World;
@@ -27,16 +24,10 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.serverpackets.S_PetInventory;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_PetMenu extends ClientBasePacket {
-
 	private static final String C_PET_MENU = "[C] C_PetMenu";
-	private static Logger _log = Logger.getLogger(C_PetMenu.class.getName());
 
-	public C_PetMenu(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_PetMenu(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		int petId = readD();

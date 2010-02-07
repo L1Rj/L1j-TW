@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.Config;
 import net.l1j.server.ActionCodes;
 import net.l1j.server.ClientThread;
@@ -36,7 +34,7 @@ import net.l1j.server.types.Base;
 import static net.l1j.server.skills.SkillId.*;
 
 public class C_UseSkill extends ClientBasePacket {
-	private static Logger _log = Logger.getLogger(C_UseSkill.class.getName());
+	private static final String C_USE_SKILL = "[C] C_UseSkill";
 
 	public C_UseSkill(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
@@ -150,5 +148,10 @@ public class C_UseSkill extends ClientBasePacket {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String getType() {
+		return C_USE_SKILL;
 	}
 }

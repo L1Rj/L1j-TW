@@ -16,11 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.ClanTable;
@@ -28,16 +24,12 @@ import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Emblem;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Clan extends ClientBasePacket {
-
 	private static final String C_CLAN = "[C] C_Clan";
-	private static Logger _log = Logger.getLogger(C_Clan.class.getName());
 
 	public C_Clan(byte abyte0[], ClientThread client) {
 		super(abyte0);
+
 		int clanId = readD();
 
 		L1PcInstance pc = client.getActiveChar();
@@ -50,5 +42,4 @@ public class C_Clan extends ClientBasePacket {
 	public String getType() {
 		return C_CLAN;
 	}
-
 }

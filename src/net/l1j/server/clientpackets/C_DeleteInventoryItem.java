@@ -16,13 +16,10 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
-import net.l1j.server.ClientThread;
 import net.l1j.log.LogDeleteItem;
+import net.l1j.server.ClientThread;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DollInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
@@ -30,18 +27,12 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_DeleteInventoryItem extends ClientBasePacket {
-
-	private static Logger _log = Logger.getLogger(C_DeleteInventoryItem.class
-			.getName());
-	private static final String C_DELETE_INVENTORY_ITEM
-			= "[C] C_DeleteInventoryItem";
+	private static final String C_DELETE_INVENTORY_ITEM = "[C] C_DeleteInventoryItem";
 
 	public C_DeleteInventoryItem(byte[] decrypt, ClientThread client) {
 		super(decrypt);
+
 		int itemObjectId = readD();
 		L1PcInstance pc = client.getActiveChar();
 		L1ItemInstance item = pc.getInventory().getItem(itemObjectId);

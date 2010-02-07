@@ -16,25 +16,16 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.utils.Teleportation;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Teleport extends ClientBasePacket {
-
 	private static final String C_TELEPORT = "[C] C_Teleport";
-	private static Logger _log = Logger.getLogger(C_Teleport.class.getName());
 
-	public C_Teleport(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_Teleport(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		L1PcInstance pc = clientthread.getActiveChar();

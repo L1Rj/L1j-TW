@@ -38,6 +38,7 @@ import net.l1j.server.model.L1ChatParty;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1Party;
+import net.l1j.server.model.L1PolyRace;
 import net.l1j.server.model.L1Quest;
 import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.L1War;
@@ -62,11 +63,13 @@ import net.l1j.server.templates.L1Pet;
 import net.l1j.server.types.Base;
 
 public class C_Attr extends ClientBasePacket {
-	private static final Logger _log = Logger.getLogger(C_Attr.class.getName());
 	private static final String C_ATTR = "[C] C_Attr";
+
+	private static final Logger _log = Logger.getLogger(C_Attr.class.getName());
 
 	public C_Attr(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
+
 		int i = readH();
 		int c;
 		String name;
@@ -138,7 +141,6 @@ public class C_Attr extends ClientBasePacket {
 					}
 				}
 			break;
-
 			case 217: // %0血盟の%1があなたの血盟との戰爭を望んでいます。戰爭に應じますか？（Y/N）
 			case 221: // %0血盟が降伏を望んでいます。受け入れますか？（Y/N）
 			case 222: // %0血盟が戰爭の終結を望んでいます。終結しますか？（Y/N）
@@ -175,7 +177,6 @@ public class C_Attr extends ClientBasePacket {
 					}
 				}
 			break;
-
 			case 252: // %0%sがあなたとアイテムの取引を望んでいます。取引しますか？（Y/N）
 				c = readC();
 				L1PcInstance trading_partner = (L1PcInstance) L1World.getInstance().findObject(pc.getTradeID());
@@ -192,7 +193,6 @@ public class C_Attr extends ClientBasePacket {
 					}
 				}
 			break;
-
 			case 321: // また復活したいですか？（Y/N）
 				c = readC();
 				L1PcInstance resusepc1 = (L1PcInstance) L1World.getInstance().findObject(pc.getTempID());
@@ -218,7 +218,6 @@ public class C_Attr extends ClientBasePacket {
 					}
 				}
 			break;
-
 			case 322: // また復活したいですか？（Y/N）
 				c = readC();
 				L1PcInstance resusepc2 = (L1PcInstance) L1World.getInstance().findObject(pc.getTempID());
@@ -249,7 +248,6 @@ public class C_Attr extends ClientBasePacket {
 					}
 				}
 			break;
-
 			case 325: // 動物の名前を決めてください：
 				c = readC(); // ?
 				name = readS();
@@ -257,7 +255,6 @@ public class C_Attr extends ClientBasePacket {
 				pc.setTempID(0);
 				renamePet(pet, name);
 			break;
-
 			case 512: // 家の名前は？
 				c = readC(); // ?
 				name = readS();
@@ -271,7 +268,6 @@ public class C_Attr extends ClientBasePacket {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$513));
 				}
 			break;
-
 			case 630: // %0%sがあなたと決鬥を望んでいます。應じますか？（Y/N）
 				c = readC();
 				L1PcInstance fightPc = (L1PcInstance) L1World.getInstance().findObject(pc.getFightId());
@@ -284,7 +280,6 @@ public class C_Attr extends ClientBasePacket {
 					pc.sendPackets(new S_PacketBox(S_PacketBox.MSG_DUEL, pc.getFightId(), pc.getId()));
 				}
 			break;
-
 			case 653: // 離婚をするとリングは消えてしまいます。離婚を望みますか？（Y/N）
 				c = readC();
 				L1PcInstance target653 = (L1PcInstance) L1World.getInstance().findObject(pc.getPartnerId());
@@ -303,7 +298,6 @@ public class C_Attr extends ClientBasePacket {
 				pc.save(); // DBにキャラクター情報を書き込む
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$662));
 			break;
-
 			case 654: // %0%sあなたと結婚したがっています。%0と結婚しますか？（Y/N）
 				c = readC();
 				L1PcInstance partner = (L1PcInstance) L1World.getInstance().findObject(pc.getTempID());
@@ -324,69 +318,62 @@ public class C_Attr extends ClientBasePacket {
 					}
 				}
 			break;
-
 			// コールクラン
 			case 729: // 君主が呼んでいます。召喚に應じますか？（Y/N）
-			c = readC();
-			if (c == 0) { // No
-				;
-			} else if (c == 1) { // Yes
-				callClan(pc);
-			}
-			break;
-
-		case 738: // 經驗值を回復するには%0のアデナが必要です。經驗值を回復しますか？
-			c = readC();
-			if (c == 0) { // No
-				;
-			} else if (c == 1 && pc.getExpRes() == 1) { // Yes
-				int cost = 0;
-				int level = pc.getLevel();
-				int lawful = pc.getLawful();
-				if (level < 45) {
-					cost = level * level * 100;
-				} else {
-					cost = level * level * 200;
-				}
-				if (lawful >= 0) {
-					cost = (cost / 2);
-				}
-				if (pc.getInventory().consumeItem(ItemId.ADENA, cost)) {
-					pc.resExp();
-					pc.setExpRes(0);
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$189));
-				}
-			}
-			break;
-
-		case 951: // チャットパーティー招待を許可しますか？（Y/N）
-			c = readC();
-			L1PcInstance chatPc = (L1PcInstance) L1World.getInstance()
-					.findObject(pc.getPartyID());
-			if (chatPc != null) {
+				c = readC();
 				if (c == 0) { // No
-					chatPc.sendPackets(new S_ServerMessage(SystemMessageId.$423, pc.getName()));
-					pc.setPartyID(0);
+					;
 				} else if (c == 1) { // Yes
-					if (chatPc.isInChatParty()) {
-						if (chatPc.getChatParty().isVacancy() || chatPc
-								.isGm()) {
-							chatPc.getChatParty().addMember(pc);
-						} else {
-							chatPc.sendPackets(new S_ServerMessage(SystemMessageId.$417));
-						}
+					callClan(pc);
+				}
+			break;
+			case 738: // 經驗值を回復するには%0のアデナが必要です。經驗值を回復しますか？
+				c = readC();
+				if (c == 0) { // No
+					;
+				} else if (c == 1 && pc.getExpRes() == 1) { // Yes
+					int cost = 0;
+					int level = pc.getLevel();
+					int lawful = pc.getLawful();
+					if (level < 45) {
+						cost = level * level * 100;
 					} else {
-						L1ChatParty chatParty = new L1ChatParty();
-						chatParty.addMember(chatPc);
-						chatParty.addMember(pc);
-						chatPc.sendPackets(new S_ServerMessage(SystemMessageId.$424, pc
-								.getName()));
+						cost = level * level * 200;
+					}
+					if (lawful >= 0) {
+						cost = (cost / 2);
+					}
+					if (pc.getInventory().consumeItem(ItemId.ADENA, cost)) {
+						pc.resExp();
+						pc.setExpRes(0);
+					} else {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$189));
 					}
 				}
-			}
 			break;
-
+			case 951: // チャットパーティー招待を許可しますか？（Y/N）
+				c = readC();
+				L1PcInstance chatPc = (L1PcInstance) L1World.getInstance().findObject(pc.getPartyID());
+				if (chatPc != null) {
+					if (c == 0) { // No
+						chatPc.sendPackets(new S_ServerMessage(SystemMessageId.$423, pc.getName()));
+						pc.setPartyID(0);
+					} else if (c == 1) { // Yes
+						if (chatPc.isInChatParty()) {
+							if (chatPc.getChatParty().isVacancy() || chatPc.isGm()) {
+								chatPc.getChatParty().addMember(pc);
+							} else {
+								chatPc.sendPackets(new S_ServerMessage(SystemMessageId.$417));
+							}
+						} else {
+							L1ChatParty chatParty = new L1ChatParty();
+							chatParty.addMember(chatPc);
+							chatParty.addMember(pc);
+							chatPc.sendPackets(new S_ServerMessage(SystemMessageId.$424, pc.getName()));
+						}
+					}
+				}
+			break;
 		case 953: // パーティー招待を許可しますか？（Y/N）
 			c = readC();
 			L1PcInstance target = (L1PcInstance) L1World.getInstance()
@@ -418,104 +405,102 @@ public class C_Attr extends ClientBasePacket {
 				}
 			}
 			break;
-
-		case 479: // どの能力值を向上させますか？（str、dex、int、con、wis、cha）
-			if (readC() == 1) {
-				String s = readS();
-				if (!(pc.getLevel() - 50 > pc.getBonusStats())) {
-					return;
+			case 479: // どの能力值を向上させますか？（str、dex、int、con、wis、cha）
+				if (readC() == 1) {
+					String s = readS();
+					if (!(pc.getLevel() - 50 > pc.getBonusStats())) {
+						return;
+					}
+					if (s.toLowerCase().equals("str".toLowerCase())) {
+						// if(l1pcinstance.get_str() < 255)
+						if (pc.getBaseStr() < 35) {
+							pc.addBaseStr((byte) 1); // 素のSTR值に+1
+							pc.setBonusStats(pc.getBonusStats() + 1);
+							pc.sendPackets(new S_OwnCharStatus2(pc));
+							pc.sendPackets(new S_CharVisualUpdate(pc));
+							pc.save(); // DBにキャラクター情報を書き⑸む
+						} else {
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
+						}
+					} else if (s.toLowerCase().equals("dex".toLowerCase())) {
+						// if(l1pcinstance.get_dex() < 255)
+						if (pc.getBaseDex() < 35) {
+							pc.addBaseDex((byte) 1); // 素のDEX值に+1
+							pc.resetBaseAc();
+							pc.setBonusStats(pc.getBonusStats() + 1);
+							pc.sendPackets(new S_OwnCharStatus2(pc));
+							pc.sendPackets(new S_CharVisualUpdate(pc));
+							pc.save(); // DBにキャラクター情報を書き⑸む
+						} else {
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
+						}
+					} else if (s.toLowerCase().equals("con".toLowerCase())) {
+						// if(l1pcinstance.get_con() < 255)
+						if (pc.getBaseCon() < 35) {
+							pc.addBaseCon((byte) 1); // 素のCON值に+1
+							pc.setBonusStats(pc.getBonusStats() + 1);
+							pc.sendPackets(new S_OwnCharStatus2(pc));
+							pc.sendPackets(new S_CharVisualUpdate(pc));
+							pc.save(); // DBにキャラクター情報を書き⑸む
+						} else {
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
+						}
+					} else if (s.toLowerCase().equals("int".toLowerCase())) {
+						// if(l1pcinstance.get_int() < 255)
+						if (pc.getBaseInt() < 35) {
+							pc.addBaseInt((byte) 1); // 素のINT值に+1
+							pc.setBonusStats(pc.getBonusStats() + 1);
+							pc.sendPackets(new S_OwnCharStatus2(pc));
+							pc.sendPackets(new S_CharVisualUpdate(pc));
+							pc.save(); // DBにキャラクター情報を書き⑸む
+						} else {
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
+						}
+					} else if (s.toLowerCase().equals("wis".toLowerCase())) {
+						// if(l1pcinstance.get_wis() < 255)
+						if (pc.getBaseWis() < 35) {
+							pc.addBaseWis((byte) 1); // 素のWIS值に+1
+							pc.resetBaseMr();
+							pc.setBonusStats(pc.getBonusStats() + 1);
+							pc.sendPackets(new S_OwnCharStatus2(pc));
+							pc.sendPackets(new S_CharVisualUpdate(pc));
+							pc.save(); // DBにキャラクター情報を書き⑸む
+						} else {
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
+						}
+					} else if (s.toLowerCase().equals("cha".toLowerCase())) {
+						// if(l1pcinstance.get_cha() < 255)
+						if (pc.getBaseCha() < 35) {
+							pc.addBaseCha((byte) 1); // 素のCHA值に+1
+							pc.setBonusStats(pc.getBonusStats() + 1);
+							pc.sendPackets(new S_OwnCharStatus2(pc));
+							pc.sendPackets(new S_CharVisualUpdate(pc));
+							pc.save(); // DBにキャラクター情報を書き⑸む
+						} else {
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
+						}
+					}
+					int str = pc.getBaseStr();
+					int dex = pc.getBaseDex();
+					int con = pc.getBaseCon();
+					int Int = pc.getBaseInt();
+					int wis = pc.getBaseWis();
+					int cha = pc.getBaseCha();
+					LogStatusUp lsu = new LogStatusUp();
+					lsu.storeLogStatusUp(pc, str, dex, con, Int, wis, cha);
 				}
-				if (s.toLowerCase().equals("str".toLowerCase())) {
-					// if(l1pcinstance.get_str() < 255)
-					if (pc.getBaseStr() < 35) {
-						pc.addBaseStr((byte) 1); // 素のSTR值に+1
-						pc.setBonusStats(pc.getBonusStats() + 1);
-						pc.sendPackets(new S_OwnCharStatus2(pc));
-						pc.sendPackets(new S_CharVisualUpdate(pc));
-						pc.save(); // DBにキャラクター情報を書き⑸む
-					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
-					}
-				} else if (s.toLowerCase().equals("dex".toLowerCase())) {
-					// if(l1pcinstance.get_dex() < 255)
-					if (pc.getBaseDex() < 35) {
-						pc.addBaseDex((byte) 1); // 素のDEX值に+1
-						pc.resetBaseAc();
-						pc.setBonusStats(pc.getBonusStats() + 1);
-						pc.sendPackets(new S_OwnCharStatus2(pc));
-						pc.sendPackets(new S_CharVisualUpdate(pc));
-						pc.save(); // DBにキャラクター情報を書き⑸む
-					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
-					}
-				} else if (s.toLowerCase().equals("con".toLowerCase())) {
-					// if(l1pcinstance.get_con() < 255)
-					if (pc.getBaseCon() < 35) {
-						pc.addBaseCon((byte) 1); // 素のCON值に+1
-						pc.setBonusStats(pc.getBonusStats() + 1);
-						pc.sendPackets(new S_OwnCharStatus2(pc));
-						pc.sendPackets(new S_CharVisualUpdate(pc));
-						pc.save(); // DBにキャラクター情報を書き⑸む
-					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
-					}
-				} else if (s.toLowerCase().equals("int".toLowerCase())) {
-					// if(l1pcinstance.get_int() < 255)
-					if (pc.getBaseInt() < 35) {
-						pc.addBaseInt((byte) 1); // 素のINT值に+1
-						pc.setBonusStats(pc.getBonusStats() + 1);
-						pc.sendPackets(new S_OwnCharStatus2(pc));
-						pc.sendPackets(new S_CharVisualUpdate(pc));
-						pc.save(); // DBにキャラクター情報を書き⑸む
-					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
-					}
-				} else if (s.toLowerCase().equals("wis".toLowerCase())) {
-					// if(l1pcinstance.get_wis() < 255)
-					if (pc.getBaseWis() < 35) {
-						pc.addBaseWis((byte) 1); // 素のWIS值に+1
-						pc.resetBaseMr();
-						pc.setBonusStats(pc.getBonusStats() + 1);
-						pc.sendPackets(new S_OwnCharStatus2(pc));
-						pc.sendPackets(new S_CharVisualUpdate(pc));
-						pc.save(); // DBにキャラクター情報を書き⑸む
-					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
-					}
-				} else if (s.toLowerCase().equals("cha".toLowerCase())) {
-					// if(l1pcinstance.get_cha() < 255)
-					if (pc.getBaseCha() < 35) {
-						pc.addBaseCha((byte) 1); // 素のCHA值に+1
-						pc.setBonusStats(pc.getBonusStats() + 1);
-						pc.sendPackets(new S_OwnCharStatus2(pc));
-						pc.sendPackets(new S_CharVisualUpdate(pc));
-						pc.save(); // DBにキャラクター情報を書き⑸む
-					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
-					}
-				}
-				int str = pc.getBaseStr();
-				int dex = pc.getBaseDex();
-				int con = pc.getBaseCon();
-				int Int = pc.getBaseInt();
-				int wis = pc.getBaseWis();
-				int cha = pc.getBaseCha();
-				LogStatusUp lsu = new LogStatusUp();
-				lsu.storeLogStatusUp(pc, str, dex, con, Int, wis, cha);
-			}
 			break;
-//waja add 寵物競速 預約名單回應
-		case 1256:
-			net.l1j.server.model.L1PolyRace.getInstance().requsetAttr(pc, readC());
+			// waja add 寵物競速 預約名單回應
+			case 1256:
+				L1PolyRace.getInstance().requsetAttr(pc, readC());
 			break;
-//add end
-		default:
+			// add end
+			default:
 			break;
 		}
 	}
 
-	private void changeClan(ClientThread clientthread,
-			L1PcInstance pc, L1PcInstance joinPc, int maxMember) {
+	private void changeClan(ClientThread clientthread, L1PcInstance pc, L1PcInstance joinPc, int maxMember) {
 		int clanId = pc.getClanid();
 		String clanName = pc.getClanname();
 		L1Clan clan = L1World.getInstance().getClan(clanName);
@@ -528,21 +513,18 @@ public class C_Attr extends ClientBasePacket {
 		String oldClanMemberName[] = oldClan.getAllMembers();
 		int oldClanNum = oldClanMemberName.length;
 		if (clan != null && oldClan != null && joinPc.isCrown() && // 自分が君主
-				joinPc.getId() == oldClan.getLeaderId()) {
+		joinPc.getId() == oldClan.getLeaderId()) {
 			if (maxMember < clanNum + oldClanNum) { // 空きがない
-				joinPc.sendPackets(
-						new S_ServerMessage(SystemMessageId.$188, pc.getName()));
+				joinPc.sendPackets(new S_ServerMessage(SystemMessageId.$188, pc.getName()));
 				return;
 			}
 			L1PcInstance clanMember[] = clan.getOnlineClanMember();
 			for (int cnt = 0; cnt < clanMember.length; cnt++) {
-				clanMember[cnt].sendPackets(new S_ServerMessage(SystemMessageId.$94, joinPc
-						.getName()));
+				clanMember[cnt].sendPackets(new S_ServerMessage(SystemMessageId.$94, joinPc.getName()));
 			}
 
 			for (int i = 0; i < oldClanMemberName.length; i++) {
-				L1PcInstance oldClanMember = L1World.getInstance().getPlayer(
-						oldClanMemberName[i]);
+				L1PcInstance oldClanMember = L1World.getInstance().getPlayer(oldClanMemberName[i]);
 				if (oldClanMember != null) { // オンライン中の舊クランメンバー
 					oldClanMember.setClanid(clanId);
 					oldClanMember.setClanname(clanName);
@@ -560,13 +542,10 @@ public class C_Attr extends ClientBasePacket {
 						_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 					}
 					clan.addMemberName(oldClanMember.getName());
-					oldClanMember.sendPackets(new S_ServerMessage(SystemMessageId.$95,
-							clanName));
+					oldClanMember.sendPackets(new S_ServerMessage(SystemMessageId.$95, clanName));
 				} else { // オフライン中の舊クランメンバー
 					try {
-						L1PcInstance offClanMember = CharacterTable
-								.getInstance().restoreCharacter(
-										oldClanMemberName[i]);
+						L1PcInstance offClanMember = CharacterTable.getInstance().restoreCharacter(oldClanMemberName[i]);
 						offClanMember.setClanid(clanId);
 						offClanMember.setClanname(clanName);
 						offClanMember.setClanRank(L1Clan.CLAN_RANK_PROBATION);
@@ -602,11 +581,11 @@ public class C_Attr extends ClientBasePacket {
 			return;
 		}
 		L1Npc l1npc = NpcTable.getInstance().getTemplate(pet.getNpcId());
-		if (!(pet.getName().equalsIgnoreCase(l1npc.get_name())) ) {
+		if (!(pet.getName().equalsIgnoreCase(l1npc.get_name()))) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$326));
 			return;
 		}
- 		pet.setName(name);
+		pet.setName(name);
 		petTemplate.set_name(name);
 		PetTable.getInstance().storePet(petTemplate); // DBに書き⑸み
 		L1ItemInstance item = pc.getInventory().getItem(pet.getItemObjId());
@@ -617,10 +596,11 @@ public class C_Attr extends ClientBasePacket {
 
 	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
 	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+
 	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
+
 	private void callClan(L1PcInstance pc) {
-		L1PcInstance callClanPc = (L1PcInstance) L1World.getInstance()
-				.findObject(pc.getTempID());
+		L1PcInstance callClanPc = (L1PcInstance) L1World.getInstance().findObject(pc.getTempID());
 		pc.setTempID(0);
 		if (callClanPc == null) {
 			return;
@@ -657,25 +637,21 @@ public class C_Attr extends ClientBasePacket {
 		heading = (heading + 4) % 4;
 
 		boolean isExsistCharacter = false;
-		for (L1Object object : L1World.getInstance()
-				.getVisibleObjects(callClanPc, 1)) {
+		for (L1Object object : L1World.getInstance().getVisibleObjects(callClanPc, 1)) {
 			if (object instanceof L1Character) {
 				L1Character cha = (L1Character) object;
-				if (cha.getX() == locX && cha.getY() == locY
-						&& cha.getMapId() == mapId) {
+				if (cha.getX() == locX && cha.getY() == locY && cha.getMapId() == mapId) {
 					isExsistCharacter = true;
 					break;
 				}
 			}
 		}
 
-		if (locX == 0 && locY == 0 || !map.isPassable(locX, locY)
-				|| isExsistCharacter) {
+		if (locX == 0 && locY == 0 || !map.isPassable(locX, locY) || isExsistCharacter) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$627));
 			return;
 		}
-		L1Teleport.teleport(pc, locX, locY, mapId, heading, true, L1Teleport
-				.CALL_CLAN);
+		L1Teleport.teleport(pc, locX, locY, mapId, heading, true, L1Teleport.CALL_CLAN);
 	}
 
 	@Override

@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Level;
@@ -33,32 +32,37 @@ import net.l1j.server.serverpackets.S_CharReset;
 import net.l1j.server.serverpackets.S_Disconnect;
 import net.l1j.server.serverpackets.S_OwnCharStatus;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_CharReset extends ClientBasePacket {
-
 	private static final String C_CHAR_RESET = "[C] C_CharReset";
+
 	private static Logger _log = Logger.getLogger(C_CharReset.class.getName());
 
 	private L1ClassFeature classFeature = null;
-/**
- * //配置完初期點數 按確定 127.0.0.1 Request Work ID : 120 0000: 78 01 0d 0a 0b 0a 12 0d
- * 
- * //提升10及 127.0.0.1 Request Work ID : 120 0000: 78 02 07 00 //提升1及 127.0.0.1
- * Request Work ID : 120 0000: 78 02 00 04
- * 
- * //提升完等級 127.0.0.1 Request Work ID : 120 0000: 78 02 08 00 x...
- * 
- * //萬能藥 127.0.0.1 Request Work ID : 120 0000: 78 03 23 0a 0b 17 12 0d
- */
 
+	/**
+	 * 配置完初期點數 按確定 127.0.0.1
+	 * Request Work ID : 120
+	 * 0000: 78 01 0d 0a 0b 0a 12 0d
+	 * 提升10及 127.0.0.1
+	 * Request Work ID : 120
+	 * 0000: 78 02 07 00
+	 * 提升1及 127.0.0.1
+	 * Request Work ID : 120
+	 * 0000: 78 02 00 04
+	 * 提升完等級 127.0.0.1
+	 * Request Work ID : 120
+	 * 0000: 78 02 08 00 x...
+	 * 萬能藥 127.0.0.1
+	 * Request Work ID : 120
+	 * 0000: 78 03 23 0a 0b 17 12 0d
+	 */
 	public C_CharReset(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
+
 		L1PcInstance pc = clientthread.getActiveChar();
 		classFeature = L1ClassFeature.newClassFeature(pc.getType());
 		// waja add 檢查角色素質狀態
-		if(!pc.isInCharReset()){ //如果不是重置狀態
+		if (!pc.isInCharReset()) { //如果不是重置狀態
 			return;
 		}
 		// add end
@@ -72,8 +76,7 @@ public class C_CharReset extends ClientBasePacket {
 			int con = readC();
 			int cha = readC();
 			// waja add 檢查角色素質狀態 加入初始化判斷
-			int statusAmount = str + intel + wis
-				+ dex + con + cha;
+			int statusAmount = str + intel + wis + dex + con + cha;
 			if (statusAmount != 75) {
 				pc.sendPackets(new S_Disconnect());
 				return;
@@ -81,8 +84,7 @@ public class C_CharReset extends ClientBasePacket {
 			// add end
 			int hp = classFeature.InitHp();
 			int mp = classFeature.InitMp(pc.getBaseWis());
-			pc.sendPackets(new S_CharReset(pc, 1, hp, mp, 10, str, intel, wis,
-					dex, con, cha));
+			pc.sendPackets(new S_CharReset(pc, 1, hp, mp, 10, str, intel, wis, dex, con, cha));
 			initCharStatus(pc, hp, mp, str, intel, wis, dex, con, cha);
 			CharacterTable.getInstance().saveCharStatus(pc);
 		} else if (stage == 0x02) { // 0x02:ステータス再分配
@@ -93,13 +95,13 @@ public class C_CharReset extends ClientBasePacket {
 				if (pc.getTempMaxLevel() - pc.getTempLevel() < 10) {
 					return;
 				}
-				setLevelUp(pc,10);
+				setLevelUp(pc, 10);
 			} else if (type2 == 0x01) {
 				pc.addBaseStr((byte) 1);
 				setLevelUp(pc, 1);
 			} else if (type2 == 0x02) {
 				pc.addBaseInt((byte) 1);
-				setLevelUp(pc,1);
+				setLevelUp(pc, 1);
 			} else if (type2 == 0x03) {
 				pc.addBaseWis((byte) 1);
 				setLevelUp(pc, 1);
@@ -113,24 +115,24 @@ public class C_CharReset extends ClientBasePacket {
 				pc.addBaseCha((byte) 1);
 				setLevelUp(pc, 1);
 			} else if (type2 == 0x08) {
-				switch(readC()){
-				case 1:
-					pc.addBaseStr((byte) 1);
+				switch (readC()) {
+					case 1:
+						pc.addBaseStr((byte) 1);
 					break;
-				case 2:
-					pc.addBaseInt((byte) 1);
+					case 2:
+						pc.addBaseInt((byte) 1);
 					break;
-				case 3:
-					pc.addBaseWis((byte) 1);
+					case 3:
+						pc.addBaseWis((byte) 1);
 					break;
-				case 4:
-					pc.addBaseDex((byte) 1);
+					case 4:
+						pc.addBaseDex((byte) 1);
 					break;
-				case 5:
-					pc.addBaseCon((byte) 1);
+					case 5:
+						pc.addBaseCon((byte) 1);
 					break;
-				case 6:
-					pc.addBaseCha((byte) 1);
+					case 6:
+						pc.addBaseCha((byte) 1);
 					break;
 				}
 				if (pc.getElixirStats() > 0) {
@@ -152,10 +154,10 @@ public class C_CharReset extends ClientBasePacket {
 
 	private void saveNewCharStatus(L1PcInstance pc) {
 		pc.setInCharReset(false);
-		if(pc.getOriginalAc() > 0) {
+		if (pc.getOriginalAc() > 0) {
 			pc.addAc(pc.getOriginalAc());
 		}
-		if(pc.getOriginalMr() > 0) {
+		if (pc.getOriginalMr() > 0) {
 			pc.addMr(0 - pc.getOriginalMr());
 		}
 		pc.refresh();
@@ -183,27 +185,26 @@ public class C_CharReset extends ClientBasePacket {
 		L1Teleport.teleport(pc, 32628, 32772, (short) 4, 4, false);
 	}
 
-	private void initCharStatus(L1PcInstance pc, int hp, int mp, int str,
-			int intel, int wis, int dex, int con, int cha) {
-		pc.addBaseMaxHp((short)(hp - pc.getBaseMaxHp()));
-		pc.addBaseMaxMp((short)(mp - pc.getBaseMaxMp()));
-		pc.addBaseStr((byte)(str - pc.getBaseStr()));
-		pc.addBaseInt((byte)(intel - pc.getBaseInt()));
-		pc.addBaseWis((byte)(wis - pc.getBaseWis()));
-		pc.addBaseDex((byte)(dex - pc.getBaseDex()));
-		pc.addBaseCon((byte)(con - pc.getBaseCon()));
-		pc.addBaseCha((byte)(cha - pc.getBaseCha()));
+	private void initCharStatus(L1PcInstance pc, int hp, int mp, int str, int intel, int wis, int dex, int con, int cha) {
+		pc.addBaseMaxHp((short) (hp - pc.getBaseMaxHp()));
+		pc.addBaseMaxMp((short) (mp - pc.getBaseMaxMp()));
+		pc.addBaseStr((byte) (str - pc.getBaseStr()));
+		pc.addBaseInt((byte) (intel - pc.getBaseInt()));
+		pc.addBaseWis((byte) (wis - pc.getBaseWis()));
+		pc.addBaseDex((byte) (dex - pc.getBaseDex()));
+		pc.addBaseCon((byte) (con - pc.getBaseCon()));
+		pc.addBaseCha((byte) (cha - pc.getBaseCha()));
 		pc.addMr(0 - pc.getMr());
 		pc.addDmgup(0 - pc.getDmgup());
 		pc.addHitup(0 - pc.getHitup());
 	}
 
-	private void setLevelUp(L1PcInstance pc ,int addLv) {
+	private void setLevelUp(L1PcInstance pc, int addLv) {
 		classFeature = L1ClassFeature.newClassFeature(pc.getType());
-		pc.setTempLevel(pc.getTempLevel()+ addLv);
+		pc.setTempLevel(pc.getTempLevel() + addLv);
 		for (int i = 0; i < addLv; i++) {
-			short randomHp = (short)classFeature.calclvUpHp(pc.getCon());
-			short randomMp = (short)classFeature.calclvUpMp(pc.getWis());
+			short randomHp = (short) classFeature.calclvUpHp(pc.getCon());
+			short randomMp = (short) classFeature.calclvUpMp(pc.getWis());
 			if (pc.getMaxHp() + randomHp > classFeature.MaxHp()) {
 				randomHp = 0;
 			}
@@ -214,15 +215,12 @@ public class C_CharReset extends ClientBasePacket {
 			pc.addBaseMaxMp(randomMp);
 		}
 		int newAc = classFeature.calcLvDex2AC(pc.getTempLevel(), pc.getDex());
-		pc.sendPackets(new S_CharReset(pc,pc.getTempLevel(),
-				pc.getBaseMaxHp(), pc.getBaseMaxMp(), newAc,
-				pc.getBaseStr(), pc.getBaseInt(), pc.getBaseWis(),
-				pc.getBaseDex(), pc.getBaseCon(), pc.getBaseCha()));
+		pc.sendPackets(new S_CharReset(pc, pc.getTempLevel(), pc.getBaseMaxHp(), pc.getBaseMaxMp(), newAc,
+				pc.getBaseStr(), pc.getBaseInt(), pc.getBaseWis(), pc.getBaseDex(), pc.getBaseCon(), pc.getBaseCha()));
 	}
 
 	@Override
 	public String getType() {
 		return C_CHAR_RESET;
 	}
-
 }

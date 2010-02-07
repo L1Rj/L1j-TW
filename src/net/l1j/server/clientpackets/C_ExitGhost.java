@@ -1,4 +1,5 @@
-/* This program is free software; you can redistribute it and/or modify
+/*
+ * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
@@ -17,24 +18,14 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_ExitGhost extends ClientBasePacket {
-
-	private static Logger _log = Logger.getLogger(C_ExitGhost.class
-			.getName());
-
 	private static final String C_EXIT_GHOST = "[C] C_ExitGhost";
 
 	// 移動
-	public C_ExitGhost(byte decrypt[], ClientThread client)
-			throws Exception {
+	public C_ExitGhost(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
 
 		L1PcInstance pc = client.getActiveChar();

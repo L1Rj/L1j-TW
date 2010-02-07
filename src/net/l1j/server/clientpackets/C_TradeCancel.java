@@ -16,26 +16,16 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Trade;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_TradeCancel extends ClientBasePacket {
-
 	private static final String C_TRADE_CANCEL = "[C] C_TradeCancel";
-	private static Logger _log = Logger.getLogger(C_TradeCancel.class
-			.getName());
 
-	public C_TradeCancel(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_TradeCancel(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		L1PcInstance player = clientthread.getActiveChar();
@@ -47,5 +37,4 @@ public class C_TradeCancel extends ClientBasePacket {
 	public String getType() {
 		return C_TRADE_CANCEL;
 	}
-
 }

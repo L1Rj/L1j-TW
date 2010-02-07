@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import net.l1j.server.ClientThread;
@@ -26,13 +25,8 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SkillBuy;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
-public class C_SkillBuy extends ClientBasePacket
-{
-	public C_SkillBuy(byte[] data, ClientThread client) throws Exception
-	{
+public class C_SkillBuy extends ClientBasePacket {
+	public C_SkillBuy(byte[] data, ClientThread client) throws Exception {
 		super(data);
 
 		int NpcId = readD();
@@ -47,15 +41,15 @@ public class C_SkillBuy extends ClientBasePacket
 		if (obj.getMapId() != pc.getMapId() || pc.getTileLineDistance(obj) > 3)
 			return;
 
-		if (obj instanceof L1NpcInstance)
-		{
+		if (obj instanceof L1NpcInstance) {
 			npc = (L1NpcInstance) obj;
 
-			if (npc.getNpcId() == 70003 ||	// 希莉斯
-				npc.getNpcId() == 70009 ||	// 吉倫
-				npc.getNpcId() == 70080 ||	// 何侖 (待修正)
-				npc.getNpcId() == 70087)	// 賽帝亞
-			pc.sendPackets(new S_SkillBuy(NpcId, pc));
+			if (npc.getNpcId() == 70003 || // 希莉斯
+			npc.getNpcId() == 70009 || // 吉倫
+			npc.getNpcId() == 70080 || // 何侖 (待修正)
+			npc.getNpcId() == 70087) { // 賽帝亞
+				pc.sendPackets(new S_SkillBuy(NpcId, pc));
+			}
 		}
 	}
 }

@@ -12,8 +12,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ActionCodes;
 import net.l1j.server.ClientThread;
 import net.l1j.server.items.ItemId;
@@ -28,12 +26,11 @@ import net.l1j.server.serverpackets.S_AttackPacket;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_PickUpItem extends ClientBasePacket {
-
 	private static final String C_PICK_UP_ITEM = "[C] C_PickUpItem";
-	private static Logger _log = Logger.getLogger(C_PickUpItem.class.getName());
 
 	public C_PickUpItem(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
+
 		int x = readH();
 		int y = readH();
 		int objectId = readD();
@@ -76,8 +73,7 @@ public class C_PickUpItem extends ClientBasePacket {
 					return;
 				}
 			}
-			if (pc.getInventory().checkAddItem( // 容量重量確認及びメッセージ送信
-					item, pickupCount) == L1Inventory.OK) {
+			if (pc.getInventory().checkAddItem(item, pickupCount) == L1Inventory.OK) { // 容量重量確認及びメッセージ送信
 				if (item.getX() != 0 && item.getY() != 0) { // ワールドマップ上のアイテム
 					L1ItemInstance pcitem = pc.getInventory().getItem(objectId);
 					int before_inven = 0;

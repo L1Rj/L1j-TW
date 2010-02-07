@@ -265,7 +265,6 @@ public class C_LoginToServer extends ClientBasePacket {
 		super(data);
 
 		String login = client.getAccountName();
-
 		String charName = readS();
 
 		if (client.getActiveChar() != null) {
@@ -303,23 +302,9 @@ public class C_LoginToServer extends ClientBasePacket {
 
 		_log.info("【玩家登入】 帳號=" + login + " 角色=" + charName + " IP位址:" + client.getHostname());
 
-//		L1PcInstance textpc = L1World.getInstance().getPlayer(charName);
-//		if (textpc != null) {
-//			ServerManager.textAreaServer.append("\n " + totime1 + " " + pc.getName() + "님께서 접속 하셨습니다." + client.getIp());
-//		} else {
-//			ServerManager.count += 1;
-//			ServerManager.lblUser.setText("  " + ServerManager.count);
-//			if (pc.getAccessLevel() == 200) {
-//				ServerManager.listModelPlayer.addElement("[GM]" + pc.getName());
-//			} else {
-//				ServerManager.listModelPlayer.addElement(pc.getName());
-//			}
-//			ServerManager.textAreaServer.append("\n " + totime1 + " " + pc.getName() + "님께서 접속 하셨습니다." + client.getIp());
-//		}
-//		ServerManager.listModelHost.addElement(client.getHostname());
-
 		int currentHpAtLoad = pc.getCurrentHp();
 		int currentMpAtLoad = pc.getCurrentMp();
+
 		pc.clearSkillMastery();
 		pc.setOnlineStatus(1);
 		CharacterTable.updateOnlineStatus(pc);
@@ -433,7 +418,7 @@ public class C_LoginToServer extends ClientBasePacket {
 			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 			if (clan != null) {
 				if (pc.getClanid() == clan.getClanId() && // クランを解散して、再度、同名のクランが創設された時の對策
-						pc.getClanname().toLowerCase().equals(clan.getClanName().toLowerCase())) {
+				pc.getClanname().toLowerCase().equals(clan.getClanName().toLowerCase())) {
 					L1PcInstance[] clanMembers = clan.getOnlineClanMember();
 					for (L1PcInstance clanMember : clanMembers) {
 						if (clanMember.getId() != pc.getId()) {

@@ -54,13 +54,13 @@ public class IdFactory {
 	}
 
 	private void loadState() {
-		// DBからMAXIDを求める
+		// 從資料庫尋找 MAXID
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("select max(id)+1 as nextid from (select id from character_items union all select id from character_teleport union all select id from character_warehouse union all select id from character_elf_warehouse union all select objid as id from characters union all select clan_id as id from clan_data union all select id from clan_warehouse union all select objid as id from pets) t");
+			pstm = con.prepareStatement("SELECT MAX(id)+1 AS NEXTID FROM (SELECT id FROM character_items UNION ALL SELECT objid AS id FROM character_pets UNION ALL SELECT id FROM character_teleport UNION ALL SELECT id FROM character_warehouse UNION ALL SELECT id FROM character_elf_warehouse UNION ALL SELECT objid AS id FROM characters UNION ALL SELECT clan_id AS id FROM clan_data UNION ALL SELECT id FROM clan_warehouse) t");
 			rs = pstm.executeQuery();
 
 			int id = 0;

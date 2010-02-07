@@ -51,7 +51,7 @@ public class CachedMapReader extends MapReader {
 	/**
 	 * 全マップIDのリストを返す.
 	 * 
-	 * @return ArraryList
+	 * @return FastTable
 	 */
 	private FastTable<Integer> listMapIds() {
 		FastTable<Integer> ids = new FastTable<Integer>();
@@ -80,8 +80,7 @@ public class CachedMapReader extends MapReader {
 	/**
 	 * 指定のマップ番號のテキストマップをキャッシュマップに變更する.
 	 * 
-	 * @param mapId
-	 *            マップ番號
+	 * @param mapId マップ番號
 	 * @return L1V1Map
 	 * @throws IOException
 	 */
@@ -93,8 +92,7 @@ public class CachedMapReader extends MapReader {
 
 		L1V1Map map = (L1V1Map) new TextMapReader().read(mapId);
 
-		DataOutputStream out = new DataOutputStream(new BufferedOutputStream(
-				new FileOutputStream(CACHE_DIR + mapId + ".map")));
+		DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(CACHE_DIR + mapId + ".map")));
 
 		out.writeInt(map.getId());
 		out.writeInt(map.getX());
@@ -116,8 +114,7 @@ public class CachedMapReader extends MapReader {
 	/**
 	 * 指定のマップ番號のキャッシュマップを讀み⑸む.
 	 * 
-	 * @param mapId
-	 *            マップ番號
+	 * @param mapId マップ番號
 	 * @return L1Map
 	 * @throws IOException
 	 */
@@ -128,8 +125,7 @@ public class CachedMapReader extends MapReader {
 			return cacheMap(mapId);
 		}
 
-		DataInputStream in = new DataInputStream(new BufferedInputStream(
-				new FileInputStream(CACHE_DIR + mapId + ".map")));
+		DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(CACHE_DIR + mapId + ".map")));
 
 		int id = in.readInt();
 		if (mapId != id) {

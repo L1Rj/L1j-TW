@@ -16,12 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
-
-import static net.l1j.server.serverpackets.S_PacketBox.MSG_FEEL_GOOD;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.Getback;
@@ -33,34 +28,31 @@ import net.l1j.server.serverpackets.S_OwnCharPack;
 import net.l1j.server.serverpackets.S_PacketBox;
 import net.l1j.server.serverpackets.S_RemoveObject;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
+import static net.l1j.server.serverpackets.S_PacketBox.MSG_FEEL_GOOD;
 
-public class C_Restart extends ClientBasePacket
-{
-	private static Logger _log = Logger.getLogger(C_Restart.class.getName());
+public class C_Restart extends ClientBasePacket {
+	private static final String C_RESTART = "[C] C_Restart";
 
-	public C_Restart(byte[] data, ClientThread client) throws Exception
-	{
+	public C_Restart(byte[] data, ClientThread client) throws Exception {
 		super(data);
 
 		L1PcInstance pc = client.getActiveChar();
 
 		// 判斷玩家是否未死亡
-		if (!pc.isDead())
+		if (!pc.isDead()) {
 			return; // 中斷程序
+		}
 
 		int[] loc = null;
 
-		if (pc.getHellTime() > 0)
-		{
+		if (pc.getHellTime() > 0) {
 			loc = new int[3];
 			loc[0] = 32701;
 			loc[1] = 32777;
 			loc[2] = 666;
-		}
-		else
+		} else {
 			loc = Getback.GetBack_Location(pc, true);
+		}
 
 		pc.setDead(false); // 設定為未死亡狀態
 		pc.removeAllKnownObjects(); // 清除畫面內已知的角色
@@ -71,14 +63,11 @@ public class C_Restart extends ClientBasePacket
 		L1World.getInstance().moveVisibleObject(pc, loc[2]);
 
 		// 判斷角色目前是否在 隱藏之谷 或 歌唱之島
-		if (pc.getMapId() == 68 || pc.getMapId() == 69)
-		{
+		if (pc.getMapId() == 68 || pc.getMapId() == 69) {
 			pc.setCurrentHp(pc.getMaxHp()); // 將體力補滿
 			pc.setCurrentMp(pc.getMaxMp()); // 將魔力補滿
 			pc.sendPackets(new S_PacketBox(MSG_FEEL_GOOD)); // 中級治癒術之音效
-		}
-		else
-		{
+		} else {
 			pc.setCurrentHp(pc.getLevel());
 		}
 
@@ -92,7 +81,13 @@ public class C_Restart extends ClientBasePacket
 		pc.startMpRegeneration();
 		// pc.sendPackets(new S_Weather(L1World.getInstance().getWeather())); 不需要使用
 
-		if (pc.getHellTime() > 0)
+		if (pc.getHellTime() > 0) {
 			pc.beginHell(false);
+		}
+	}
+
+	@Override
+	public String getType() {
+		return C_RESTART;
 	}
 }

@@ -16,25 +16,17 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
 import net.l1j.server.ClientThread;
 import net.l1j.server.serverpackets.S_ServerVersion;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_ServerVersion extends ClientBasePacket {
-
 	private static final String C_SERVER_VERSION = "[C] C_ServerVersion";
-	private static Logger _log = Logger.getLogger(C_ServerVersion.class
-			.getName());
 
-	public C_ServerVersion(byte decrypt[], ClientThread client)
-			throws Exception {
+	public C_ServerVersion(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
+
 		client.sendPacket(new S_ServerVersion());
 	}
 
@@ -42,5 +34,4 @@ public class C_ServerVersion extends ClientBasePacket {
 	public String getType() {
 		return C_SERVER_VERSION;
 	}
-
 }

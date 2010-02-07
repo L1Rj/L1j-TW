@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import javolution.util.FastTable;
 
 import net.l1j.server.ActionCodes;
@@ -37,8 +35,6 @@ import net.l1j.server.templates.L1PrivateShopSellList;
 
 public class C_Shop extends ClientBasePacket {
 	private static final String C_SHOP = "[C] C_Shop";
-
-	private static Logger _log = Logger.getLogger(C_Shop.class.getName());
 
 	public C_Shop(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);

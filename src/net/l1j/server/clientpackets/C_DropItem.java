@@ -12,8 +12,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.log.LogDropItem;
 import net.l1j.server.model.L1Inventory;
@@ -26,11 +24,11 @@ import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_DropItem extends ClientBasePacket {
-	private static Logger _log = Logger.getLogger(C_DropItem.class.getName());
 	private static final String C_DROP_ITEM = "[C] C_DropItem";
 
 	public C_DropItem(byte[] decrypt, ClientThread client) throws Exception {
 		super(decrypt);
+
 		int x = readH();
 		int y = readH();
 		int objectId = readD();

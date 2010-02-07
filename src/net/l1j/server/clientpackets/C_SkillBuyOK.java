@@ -92,25 +92,19 @@ public class C_SkillBuyOK extends ClientBasePacket {
 			return true;
 
 		// 王族
-		if ((Type == 0 && SkillLv == 1 && Level >= 10) ||
-			(Type == 0 && SkillLv == 2 && Level >= 20))
+		if ((Type == 0 && SkillLv == 1 && Level >= 10) || (Type == 0 && SkillLv == 2 && Level >= 20))
 			return false;
 		// 騎士
 		else if (Type == 1 && SkillLv == 1 && Level >= 50)
 			return false;
 		// 妖精
-		else if ((Type == 2 && SkillLv == 1 && Level >=  8) ||
-				 (Type == 2 && SkillLv == 2 && Level >= 16) ||
-				 (Type == 2 && SkillLv == 3 && Level >= 24))
+		else if ((Type == 2 && SkillLv == 1 && Level >= 8) || (Type == 2 && SkillLv == 2 && Level >= 16) || (Type == 2 && SkillLv == 3 && Level >= 24))
 			return false;
 		// 法師
-		else if ((Type == 3 && SkillLv == 1 && Level >=  4) ||
-				 (Type == 3 && SkillLv == 2 && Level >=  8) ||
-				 (Type == 3 && SkillLv == 3 && Level >= 12))
+		else if ((Type == 3 && SkillLv == 1 && Level >= 4) || (Type == 3 && SkillLv == 2 && Level >= 8) || (Type == 3 && SkillLv == 3 && Level >= 12))
 			return false;
 		// 黑暗妖精
-		else if ((Type == 4 && SkillLv == 1 && Level >= 12) ||
-				 (Type == 4 && SkillLv == 2 && Level >= 24))
+		else if ((Type == 4 && SkillLv == 1 && Level >= 12) || (Type == 4 && SkillLv == 2 && Level >= 24))
 			return false;
 
 		return true;

@@ -16,26 +16,19 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_BanParty extends ClientBasePacket {
-
 	private static final String C_BAN_PARTY = "[C] C_BanParty";
-	private static Logger _log = Logger.getLogger(C_BanParty.class.getName());
 
 	public C_BanParty(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
+
 		String s = readS();
 
 		L1PcInstance player = client.getActiveChar();
@@ -59,5 +52,4 @@ public class C_BanParty extends ClientBasePacket {
 	public String getType() {
 		return C_BAN_PARTY;
 	}
-
 }

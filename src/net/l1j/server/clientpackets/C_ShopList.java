@@ -16,22 +16,14 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_PrivateShop;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_ShopList extends ClientBasePacket {
-
 	private static final String C_SHOP_LIST = "[C] C_ShopList";
-	private static Logger _log = Logger.getLogger(C_ShopList.class.getName());
 
 	public C_ShopList(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -51,5 +43,4 @@ public class C_ShopList extends ClientBasePacket {
 	public String getType() {
 		return C_SHOP_LIST;
 	}
-
 }

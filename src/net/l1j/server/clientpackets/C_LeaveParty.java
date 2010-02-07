@@ -16,29 +16,19 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_LeaveParty extends ClientBasePacket {
-
 	private static final String C_LEAVE_PARTY = "[C] C_LeaveParty";
-	private static Logger _log = Logger.getLogger(C_LeaveParty.class.getName());
 
-	public C_LeaveParty(byte decrypt[], ClientThread client)
-			throws Exception {
+	public C_LeaveParty(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
 
 		L1PcInstance player = client.getActiveChar();
-		if (player.isInParty()) // パーティー中
-		{
+		if (player.isInParty()) { // パーティー中
 			player.getParty().leaveMember(player);
 		}
 	}
@@ -47,5 +37,4 @@ public class C_LeaveParty extends ClientBasePacket {
 	public String getType() {
 		return C_LEAVE_PARTY;
 	}
-
 }

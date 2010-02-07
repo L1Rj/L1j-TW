@@ -16,23 +16,15 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_OwnCharPack;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Ship extends ClientBasePacket {
-
 	private static final String C_SHIP = "[C] C_Ship";
-	private static Logger _log = Logger.getLogger(C_Ship.class.getName());
 
 	public C_Ship(byte abyte0[], ClientThread client) {
 		super(abyte0);

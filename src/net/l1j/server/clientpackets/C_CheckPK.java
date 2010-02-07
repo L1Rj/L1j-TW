@@ -16,26 +16,17 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_CheckPK extends ClientBasePacket {
-
 	private static final String C_CHECK_PK = "[C] C_CheckPK";
-	private static Logger _log = Logger.getLogger(C_CheckPK.class.getName());
 
-	public C_CheckPK(byte abyte0[], ClientThread clientthread) 
-			throws Exception {
+	public C_CheckPK(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		L1PcInstance player = clientthread.getActiveChar();
@@ -46,5 +37,4 @@ public class C_CheckPK extends ClientBasePacket {
 	public String getType() {
 		return C_CHECK_PK;
 	}
-
 }

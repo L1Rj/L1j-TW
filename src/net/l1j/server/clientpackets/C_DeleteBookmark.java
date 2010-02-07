@@ -18,19 +18,16 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1BookMark;
 
 public class C_DeleteBookmark extends ClientBasePacket {
 	private static final String C_DETELE_BOOKMARK = "[C] C_DeleteBookmark";
-	private static Logger _log = Logger.getLogger(C_DeleteBookmark.class
-			.getName());
 
 	public C_DeleteBookmark(byte[] decrypt, ClientThread client) {
 		super(decrypt);
+
 		String bookmarkname = readS();
 		L1PcInstance pc = client.getActiveChar();
 		L1BookMark.deleteBookmark(pc, bookmarkname);

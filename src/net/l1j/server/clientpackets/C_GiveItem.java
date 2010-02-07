@@ -22,7 +22,6 @@ import java.io.BufferedWriter;// add 給予NPC物品記錄 文件版
 import java.io.FileWriter;// add 給予NPC物品記錄 文件版
 import java.io.IOException;// add 給予NPC物品記錄 文件版
 import java.sql.Timestamp;// add 給予NPC物品記錄 文件版
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.IdFactory;
@@ -48,9 +47,6 @@ import net.l1j.server.utils.RandomArrayList;
 public class C_GiveItem extends ClientBasePacket {
 	private static final String C_GIVE_ITEM = "[C] C_GiveItem";
 
-	private static Logger _log = Logger.getLogger(C_GiveItem.class.getName());
-
-	//private static Random _random = new Random();
 	private static ItemTable IT = ItemTable.getInstance();
 
 	public C_GiveItem(byte decrypt[], ClientThread client) {
@@ -116,6 +112,7 @@ public class C_GiveItem extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$942));
 			return;
 		}
+
 // add 給予NPC物品記錄 文件版
 		giveitem("IP"
 				+ "(" + pc.getNetConnection().getIp() + ")"
@@ -129,13 +126,13 @@ public class C_GiveItem extends ClientBasePacket {
 				+ "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。");
 
 //add end
+
 		item = inv.tradeItem(item, count, targetInv);
 		target.onGetItem(item);
 		target.turnOnOffLight();
 		pc.turnOnOffLight();
 
-		L1PetType petType = PetTypeTable.getInstance().get(
-				target.getNpcTemplate().get_npcId());
+		L1PetType petType = PetTypeTable.getInstance().get(target.getNpcTemplate().get_npcId());
 		if (petType == null || target.isDead()) {
 			return;
 		}
@@ -148,7 +145,7 @@ public class C_GiveItem extends ClientBasePacket {
 		}
 	}
 
-// add 給予NPC道具紀錄 文件版 寫入檔案
+	// add 給予NPC道具紀錄 文件版 寫入檔案
 	public static void giveitem(String info) {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("log/giveitem.log", true));
@@ -158,12 +155,14 @@ public class C_GiveItem extends ClientBasePacket {
 			e.printStackTrace();
 		}
 	}
-//add end
-	private final static String receivableImpls[] = new String[] { "L1Npc", // NPC
-			"L1Monster", // モンスター
-			"L1Guardian", // エルフの森の守護者
-			"L1Teleporter", // テレポーター
-			"L1Guard" }; // ガード
+	//add end
+
+	private final static String receivableImpls[] = new String[] {
+		"L1Npc", // NPC
+		"L1Monster", // モンスター
+		"L1Guardian", // エルフの森の守護者
+		"L1Teleporter", // テレポーター
+		"L1Guard" }; // ガード
 
 	private boolean isNpcItemReceivable(L1Npc npc) {
 		for (String impl : receivableImpls) {
@@ -229,21 +228,18 @@ public class C_GiveItem extends ClientBasePacket {
 		L1PcInventory inv = pc.getInventory();
 		L1PetInstance pet = (L1PetInstance) target;
 		L1ItemInstance petamu = inv.getItem(pet.getItemObjId());
-		if (pet.getLevel() >= 30 && // Lv30以上
-				pc == pet.getMaster() && // 自分のペット
-				petamu != null)
-		{
-			// 贈送鑑定過的項圈 Start
+
+		// Lv30以上 自分のペット 贈送鑑定過的項圈
+		if (pet.getLevel() >= 30 && pc == pet.getMaster() && petamu != null) {
 			L1ItemInstance highpetamu = new L1ItemInstance();
 			highpetamu.setId(IdFactory.getInstance().nextId());
 			highpetamu.setItem(IT.getTemplate(40316));
 			highpetamu.setIdentified(true);
 			highpetamu = inv.storeItem(highpetamu);
-			// 贈送鑑定過的項圈 End
 
 			if (highpetamu != null) {
 				pet.evolvePet( // 寵物進化
-						highpetamu.getId());
+				highpetamu.getId());
 				pc.sendPackets(new S_ItemName(highpetamu));
 				inv.removeItem(petamu, 1);
 			}
@@ -254,8 +250,7 @@ public class C_GiveItem extends ClientBasePacket {
 		boolean isSuccess = false;
 		int npcId = npc.getNpcTemplate().get_npcId();
 		if (npcId == 45313) { // タイガー
-			if (npc.getMaxHp() / 3 > npc.getCurrentHp() // HPが1/3未滿で1/16の確率
-					&& RandomArrayList.getInt(16) == 15) { // 5.14
+			if (npc.getMaxHp() / 3 > npc.getCurrentHp() && RandomArrayList.getInt(16) == 15) { // HPが1/3未滿で1/16の確率
 				isSuccess = true;
 			}
 		} else {

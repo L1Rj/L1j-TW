@@ -16,14 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import static net.l1j.server.model.instance.L1PcInstance.REGENSTATE_ATTACK;
-import static net.l1j.server.skills.SkillId.SKILL_ABSOLUTE_BARRIER;
-import static net.l1j.server.skills.SkillId.SKILL_MEDITATION;
-
-import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
@@ -38,15 +31,14 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
+import static net.l1j.server.model.instance.L1PcInstance.REGENSTATE_ATTACK;
+import static net.l1j.server.skills.SkillId.SKILL_ABSOLUTE_BARRIER;
+import static net.l1j.server.skills.SkillId.SKILL_MEDITATION;
 
-public class C_Attack extends ClientBasePacket
-{
-	private static Logger _log = Logger.getLogger(C_Attack.class.getName());
+public class C_Attack extends ClientBasePacket {
+	private static final String C_ATTACK = "[C] C_Attack";
 
-	public C_Attack(byte[] decrypt, ClientThread client)
-	{
+	public C_Attack(byte[] decrypt, ClientThread client) {
 		super(decrypt);
 
 		int targetId = readD();
@@ -55,20 +47,10 @@ public class C_Attack extends ClientBasePacket
 
 		L1PcInstance pc = client.getActiveChar();
 
-		if (pc.isGhost() || pc.isDead() || pc.isTeleport())
+		if (pc.isGhost() || pc.isDead() || pc.isTeleport() || pc.isParalyzed() || pc.isSleeped() || pc.isFreeze() || pc.isStun())
 			return;
 
-		if (pc.isInvisble()) { // インビジビリティ、ブラインドハイディング中
-			return;
-		}
-
-		if (pc.isInvisDelay()) { // インビジビリティディレイ中
-			return;
-		}
-
-		// 封鎖 LinHelp無條件喝水功能
-		if (pc.isParalyzed() || pc.isSleeped()
-				 || pc.isFreeze() || pc.isStun()) {
+		if (pc.isInvisble() || pc.isInvisDelay()) { // インビジビリティ、ブラインドハイディング中、インビジビリティディレイ中
 			return;
 		}
 
@@ -81,16 +63,14 @@ public class C_Attack extends ClientBasePacket
 		}
 
 		if (target instanceof L1Character) {
-			if (target.getMapId() != pc.getMapId()
-					|| pc.getLocation().getLineDistance(target.getLocation()) > 20D) { // ターゲットが異常な場所にいたら終了
+			if (target.getMapId() != pc.getMapId() || pc.getLocation().getLineDistance(target.getLocation()) > 20D) { // ターゲットが異常な場所にいたら終了
 				return;
 			}
 		}
 
 		if (target instanceof L1NpcInstance) {
 			int hiddenStatus = ((L1NpcInstance) target).getHiddenStatus();
-			if (hiddenStatus == L1NpcInstance.HIDDEN_STATUS_SINK
-					|| hiddenStatus == L1NpcInstance.HIDDEN_STATUS_FLY) { // 地中に潜っているか、飛んでいる
+			if (hiddenStatus == L1NpcInstance.HIDDEN_STATUS_SINK || hiddenStatus == L1NpcInstance.HIDDEN_STATUS_FLY) { // 地中に潜っているか、飛んでいる
 				return;
 			}
 		}
@@ -98,8 +78,7 @@ public class C_Attack extends ClientBasePacket
 		// 攻擊要求間隔をチェックする
 		if (Config.CHECK_ATTACK_INTERVAL) {
 			int result;
-			result = pc.getAcceleratorChecker()
-					.checkInterval(AcceleratorChecker.ACT_TYPE.ATTACK);
+			result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.ATTACK);
 			if (result == AcceleratorChecker.R_DISCONNECTED) {
 				LogSpeedHack lsh = new LogSpeedHack();
 				lsh.storeLogSpeedHack(pc);
@@ -120,13 +99,9 @@ public class C_Attack extends ClientBasePacket
 
 		pc.setRegenState(REGENSTATE_ATTACK);
 
-		if (target != null)
-		{
+		if (target != null) {
 			target.onAction(pc);
-		}
-		// 對空攻擊
-		else
-		{
+		} else { // 對空攻擊
 			L1Character cha = new L1Character();
 			cha.setId(targetId);
 			cha.setX(x);
@@ -134,5 +109,10 @@ public class C_Attack extends ClientBasePacket
 			L1Attack atk = new L1Attack(pc, cha);
 			atk.actionPc();
 		}
+	}
+
+	@Override
+	public String getType() {
+		return C_ATTACK;
 	}
 }

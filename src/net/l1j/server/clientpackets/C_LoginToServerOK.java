@@ -16,22 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_LoginToServerOK extends ClientBasePacket {
-
 	private static final String C_LOGIN_TO_SERVER_OK = "[C] C_LoginToServerOK";
-
-	private static Logger _log = Logger.getLogger(C_LoginToServerOK.class
-			.getName());
 
 	public C_LoginToServerOK(byte[] decrypt, ClientThread client) {
 		super(decrypt);

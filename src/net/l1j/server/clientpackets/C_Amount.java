@@ -22,7 +22,6 @@ import java.util.Calendar;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
-import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
@@ -44,16 +43,12 @@ import net.l1j.server.storage.CharactersItemStorage;
 import net.l1j.server.templates.L1AuctionBoard;
 import net.l1j.server.templates.L1House;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket, C_Amount
-
 public class C_Amount extends ClientBasePacket {
-
-	private static final Logger _log = Logger.getLogger(C_Amount.class.getName());
 	private static final String C_AMOUNT = "[C] C_Amount";
 
 	public C_Amount(byte[] decrypt, ClientThread client) throws Exception {
 		super(decrypt);
+
 		int objectId = readD();
 		int amount = readD();
 		int c = readC();

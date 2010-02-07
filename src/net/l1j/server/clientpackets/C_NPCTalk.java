@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
@@ -30,17 +29,14 @@ import net.l1j.server.model.npc.L1NpcHtml;
 import net.l1j.server.model.npc.action.L1NpcAction;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket, C_NPCTalk
-
 public class C_NPCTalk extends ClientBasePacket {
-
 	private static final String C_NPC_TALK = "[C] C_NPCTalk";
+
 	private static Logger _log = Logger.getLogger(C_NPCTalk.class.getName());
 
-	public C_NPCTalk(byte abyte0[], ClientThread client)
-			throws Exception {
+	public C_NPCTalk(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
+
 		int objid = readD();
 		L1Object obj = L1World.getInstance().findObject(objid);
 		L1PcInstance pc = client.getActiveChar();

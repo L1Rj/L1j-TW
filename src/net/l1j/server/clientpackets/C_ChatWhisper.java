@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
 import net.l1j.server.Opcodes;
@@ -32,8 +30,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_ChatWhisper extends ClientBasePacket {
 	private static final String C_CHAT_WHISPER = "[C] C_ChatWhisper";
-
-	private static Logger _log = Logger.getLogger(C_ChatWhisper.class.getName());
 
 	public C_ChatWhisper(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);

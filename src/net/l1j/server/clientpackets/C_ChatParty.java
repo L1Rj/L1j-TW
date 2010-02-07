@@ -16,10 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1ChatParty;
@@ -29,13 +26,8 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Party;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_ChatParty extends ClientBasePacket {
-
 	private static final String C_CHAT_PARTY = "[C] C_ChatParty";
-	private static Logger _log = Logger.getLogger(C_ChatParty.class.getName());
 
 	public C_ChatParty(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -81,12 +73,10 @@ public class C_ChatParty extends ClientBasePacket {
 		} else if (type == 2) { // /chatpartyコマンド
 			L1ChatParty chatParty = pc.getChatParty();
 			if (pc.isInChatParty()) {
-				pc.sendPackets(new S_Party("party", pc.getId(), chatParty
-						.getLeader().getName(), chatParty
-						.getMembersNameList()));
+				pc.sendPackets(new S_Party("party", pc.getId(), chatParty.getLeader().getName(), chatParty.getMembersNameList()));
 			} else {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$425));
-// pc.sendPackets(new S_Party("party", pc.getId()));
+//				pc.sendPackets(new S_Party("party", pc.getId()));
 			}
 		}
 	}
@@ -95,5 +85,4 @@ public class C_ChatParty extends ClientBasePacket {
 	public String getType() {
 		return C_CHAT_PARTY;
 	}
-
 }

@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
@@ -31,8 +29,6 @@ import net.l1j.server.utils.FaceToFace;
 
 public class C_JoinClan extends ClientBasePacket {
 	private static final String C_JOIN_CLAN = "[C] C_JoinClan";
-
-	private static Logger _log = Logger.getLogger(C_JoinClan.class.getName());
 
 	public C_JoinClan(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -84,8 +80,7 @@ public class C_JoinClan extends ClientBasePacket {
 					return;
 				}
 
-				if (player_clan.getCastleId() != 0 || // 自分が城主‧アジト保有
-						player_clan.getHouseId() != 0) {
+				if (player_clan.getCastleId() != 0 || player_clan.getHouseId() != 0) { // 自分が城主‧アジト保有
 					player.sendPackets(new S_ServerMessage(SystemMessageId.$665));
 					return;
 				}

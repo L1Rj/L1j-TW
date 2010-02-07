@@ -20,7 +20,6 @@ package net.l1j.server.clientpackets;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Logger;
 
 import net.l1j.server.ActionCodes;
 import net.l1j.server.ClientThread;
@@ -31,17 +30,10 @@ import net.l1j.server.model.instance.L1DoorInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1House;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket, C_Door
-
-public class C_Door extends ClientBasePacket
-{
-	private static Logger _log = Logger.getLogger(C_Door.class
-			.getName());
+public class C_Door extends ClientBasePacket {
 	private static final String C_DOOR = "[C] C_Door";
 
-	public C_Door(byte abyte0[], ClientThread client) throws Exception
-	{
+	public C_Door(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
 
 		int locX = readH();
@@ -49,25 +41,25 @@ public class C_Door extends ClientBasePacket
 		int objectId = readD();
 
 		L1PcInstance pc = client.getActiveChar();
-		L1DoorInstance door = (L1DoorInstance)L1World.getInstance().findObject(objectId);
+		L1DoorInstance door = (L1DoorInstance) L1World.getInstance().findObject(objectId);
 
-		if (door == null)
+		if (door == null) {
 			return;
+		}
 
 		// 判斷地圖是否不相等 或 範圍是否超過 1
-		if (pc.getMapId() != door.getMapId() || pc.getTileLineDistance(door) > 1)
+		if (pc.getMapId() != door.getMapId() || pc.getTileLineDistance(door) > 1){
 			return;
+		}
 
-		if ((door.getDoorId() >= 5001 && door.getDoorId() <= 5010)) //水晶洞
+		if ((door.getDoorId() >= 5001 && door.getDoorId() <= 5010)) { //水晶洞
 			return;
-
-		else if (door.getDoorId() == 6006) // 話島冒洞2樓
-		{
-			if (door.getOpenStatus() == ActionCodes.ACTION_Open)
+		} else if (door.getDoorId() == 6006) { // 話島冒洞2樓
+			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
 				return;
+			}
 
-			if (pc.getInventory().consumeItem(40163,1)) //角色擁有黃金鑰匙
-			{
+			if (pc.getInventory().consumeItem(40163, 1)) { //角色擁有黃金鑰匙
 				door.open();
 				CloseTimer closetimer = new CloseTimer(door);
 				closetimer.begin();
@@ -76,7 +68,7 @@ public class C_Door extends ClientBasePacket
 			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
 				return;
 			}
-			if (pc.getInventory().consumeItem(40313,1)) { //角色擁有銀鑰匙
+			if (pc.getInventory().consumeItem(40313, 1)) { //角色擁有銀鑰匙
 				door.open();
 				CloseTimer closetimer = new CloseTimer(door);
 				closetimer.begin();
@@ -107,7 +99,6 @@ public class C_Door extends ClientBasePacket
 		}
 		return true;
 	}
-
 
 	public class CloseTimer extends TimerTask {
 

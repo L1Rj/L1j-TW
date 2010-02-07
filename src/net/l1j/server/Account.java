@@ -38,22 +38,25 @@ import net.l1j.server.utils.SQLUtil;
  * ログインの為の樣々なインターフェースを提供する.
  */
 public class Account {
-	/** アカウント名. */
+	/** 訊息記錄 */
+	private static Logger _log = Logger.getLogger(Account.class.getName());
+
+	/** 帳號名稱 */
 	private String _name;
 
-	/** 接續先のIPアドレス. */
-	private String _ip;
-
-	/** パスワード(暗號化されている). */
+	/** 密碼(已加密). */
 	private String _password;
 
-	/** 最終アクティブ日. */
+	/** 最後登入日期 */
 	private Timestamp _lastActive;
 
 	/** アクセスレベル(GMか？). */
 	private int _accessLevel;
 
-	/** 接續先のホスト名. */
+	/** 連線的主機位置 */
+	private String _ip;
+
+	/** 連線的主機名稱 */
 	private String _host;
 
 	/** アクセス禁止の有無(Trueで禁止). */
@@ -65,9 +68,6 @@ public class Account {
 	/** アカウントが有效か否か(Trueで有效). */
 	private boolean _isValid = false;
 
-	/** メッセージログ用. */
-	private static Logger _log = Logger.getLogger(Account.class.getName());
-
 	private static MessageDigest _md;
 
 	/**
@@ -76,31 +76,13 @@ public class Account {
 	private Account() {
 	}
 
-	/* Convert from Byte[] to String */
-	private static String convertToString(byte[] data) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < data.length; i++) {
-			int halfbyte = (data[i] >>> 4) & 0x0F;
-			int two_halfs = 0;
-			do {
-				if ((0 <= halfbyte) && (halfbyte <= 9)) {
-					sb.append((char) ('0' + halfbyte));
-				} else {
-					sb.append((char) ('a' + (halfbyte - 10)));
-				}
-				halfbyte = data[i] & 0x0F;
-			} while (two_halfs++ < 1);
-		}
-		return sb.toString();
-	}
-
 	/**
-	 * 使用 SHA512 加密
+	 * 密碼使用 SHA256 加密
 	 * 
-	 * @param rawPassword 平文のパスワード
+	 * @param rawPassword 密碼
 	 * @return String
-	 * @throws NoSuchAlgorithmException 暗號アルゴリズムが使用できない環境の時
-	 * @throws UnsupportedEncodingException 文字のエンコードがサポートされていない時
+	 * @throws NoSuchAlgorithmException 密碼算法不能使用環境的時候
+	 * @throws UnsupportedEncodingException 文字的編碼沒有被支援的時候
 	 */
 	private static String makeSHA256(String rawPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		_md = MessageDigest.getInstance("SHA-256");
@@ -112,12 +94,12 @@ public class Account {
 	}
 
 	/**
-	 * 使用 MD5 加密
+	 * 密碼使用 MD5 加密
 	 * 
-	 * @param rawPassword 平文のパスワード
+	 * @param rawPassword 密碼
 	 * @return String
-	 * @throws NoSuchAlgorithmException 暗號アルゴリズムが使用できない環境の時
-	 * @throws UnsupportedEncodingException 文字のエンコードがサポートされていない時
+	 * @throws NoSuchAlgorithmException 密碼算法不能使用環境的時候
+	 * @throws UnsupportedEncodingException 文字的編碼沒有被支援的時候
 	 */
 	private static String makeMD5(String rawPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		_md = MessageDigest.getInstance("MD5");
@@ -129,27 +111,27 @@ public class Account {
 	}
 
 	/**
-	 * 密碼加密
+	 * 密碼使用 SHA 加密
 	 * 
-	 * @param rawPassword 平文のパスワード
+	 * @param rawPassword 密碼
 	 * @return String
-	 * @throws NoSuchAlgorithmException 暗號アルゴリズムが使用できない環境の時
-	 * @throws UnsupportedEncodingException 文字のエンコードがサポートされていない時
+	 * @throws NoSuchAlgorithmException 密碼算法不能使用環境的時候
+	 * @throws UnsupportedEncodingException 文字的編碼沒有被支援的時候
 	 */
 	private static String encodePassword(final String rawPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		byte[] sb = rawPassword.getBytes("UTF-8");
-		sb = MessageDigest.getInstance("SHA").digest(sb);
+		byte[] buf = rawPassword.getBytes("UTF-8");
+		buf = MessageDigest.getInstance("SHA").digest(buf);
 
-		return Base64.encodeBytes(sb);
+		return Base64.encodeBytes(buf);
 	}
 
 	/**
 	 * アカウントを新規作成する.
 	 * 
-	 * @param name アカウント名
-	 * @param rawPassword 平文パスワード
-	 * @param ip 接續先のIPアドレス
-	 * @param host 接續先のホスト名
+	 * @param name 帳號名稱
+	 * @param rawPassword 帳號密碼
+	 * @param ip 連線的主機地址
+	 * @param host 連線的主機名稱
 	 * @return Account
 	 */
 	public static Account create(final String name, final String rawPassword, final String ip, final String host) {
@@ -193,9 +175,9 @@ public class Account {
 	}
 
 	/**
-	 * アカウント情報をDBから抽出する.
+	 * 從資料庫讀取帳號訊息
 	 * 
-	 * @param name アカウント名
+	 * @param name 帳號名稱
 	 * @return Account
 	 */
 	public static Account load(final String name) {
@@ -203,7 +185,6 @@ public class Account {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		Account account = null;
-
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			String sqlstr = "SELECT * FROM accounts WHERE login=? LIMIT 1";
@@ -236,13 +217,12 @@ public class Account {
 	/**
 	 * 最終ログイン日をDBに反映する.
 	 * 
-	 * @param account アカウント
+	 * @param account 帳號
 	 */
 	public static void updateLastActive(final Account account, final String ip) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
-
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			String sqlstr = "UPDATE accounts SET lastactive=?,ip=? WHERE login = ?";
@@ -264,12 +244,11 @@ public class Account {
 	/**
 	 * スロット数をDBに反映する.
 	 * 
-	 * @param account アカウント
+	 * @param account 帳號
 	 */
 	public static void updateCharacterSlot(final Account account) {
 		Connection con = null;
 		PreparedStatement pstm = null;
-
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			String sqlstr = "UPDATE accounts SET character_slot=? WHERE login=?";
@@ -297,7 +276,6 @@ public class Account {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			String sqlstr = "SELECT count(*) as cnt FROM characters WHERE account_name=?";
@@ -318,12 +296,11 @@ public class Account {
 	/**
 	 * アカウントを無效にする.
 	 * 
-	 * @param login アカウント名
+	 * @param login 帳號名稱
 	 */
 	public static void ban(final String login) {
 		Connection con = null;
 		PreparedStatement pstm = null;
-
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			String sqlstr = "UPDATE accounts SET banned=1 WHERE login=?";
@@ -364,7 +341,7 @@ public class Account {
 	/**
 	 * 入力されたパスワードとDB上のパスワードを照合する.
 	 * 
-	 * @param rawPassword 平文パスワード
+	 * @param rawPassword 密碼
 	 * @return boolean
 	 */
 	public boolean validatePassword(final String rawPassword) {
@@ -389,6 +366,24 @@ public class Account {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
 		return false;
+	}
+
+	/** Convert from Byte[] to String */
+	private static String convertToString(byte[] data) {
+		StringBuilder sbString = new StringBuilder();
+		for (int i = 0; i < data.length; i++) {
+			int halfbyte = (data[i] >>> 4) & 0x0F;
+			int two_halfs = 0;
+			do {
+				if ((0 <= halfbyte) && (halfbyte <= 9)) {
+					sbString.append((char) ('0' + halfbyte));
+				} else {
+					sbString.append((char) ('a' + (halfbyte - 10)));
+				}
+				halfbyte = data[i] & 0x0F;
+			} while (two_halfs++ < 1);
+		}
+		return sbString.toString();
 	}
 
 	/**

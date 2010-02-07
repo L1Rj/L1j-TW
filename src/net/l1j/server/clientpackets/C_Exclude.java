@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
@@ -29,12 +28,9 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_PacketBox;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Exclude extends ClientBasePacket {
-
 	private static final String C_EXCLUDE = "[C] C_Exclude";
+
 	private static Logger _log = Logger.getLogger(C_Exclude.class.getName());
 
 	/**

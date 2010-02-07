@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.PetItemTable;
 import net.l1j.server.model.L1World;
@@ -33,8 +31,6 @@ import net.l1j.server.templates.L1PetItem;
 
 public class C_UsePetItem extends ClientBasePacket {
 	private static final String C_USE_PET_ITEM = "[C] C_UsePetItem";
-
-	private static Logger _log = Logger.getLogger(C_UsePetItem.class.getName());
 
 	public C_UsePetItem(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);

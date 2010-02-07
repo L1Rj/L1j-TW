@@ -16,10 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.CastleTable;
@@ -29,18 +26,12 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1Castle;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Deposit extends ClientBasePacket {
-
 	private static final String C_DEPOSIT = "[C] C_Deposit";
-	private static Logger _log = Logger.getLogger(C_Deposit.class
-			.getName());
 
-	public C_Deposit(byte abyte0[], ClientThread clientthread)
-			throws Exception {
+	public C_Deposit(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
+
 		int i = readD();
 		int j = readD();
 
@@ -50,12 +41,10 @@ public class C_Deposit extends ClientBasePacket {
 			if (clan != null) {
 				int castle_id = clan.getCastleId();
 				if (castle_id != 0) { // 城主クラン
-					L1Castle l1castle = CastleTable.getInstance()
-							.getCastleTable(castle_id);
+					L1Castle l1castle = CastleTable.getInstance().getCastleTable(castle_id);
 					synchronized (l1castle) {
 						int money = l1castle.getPublicMoney();
-						if (player.getInventory()
-								.consumeItem(ItemId.ADENA, j)) {
+						if (player.getInventory().consumeItem(ItemId.ADENA, j)) {
 							money += j;
 							l1castle.setPublicMoney(money);
 							CastleTable.getInstance().updateCastle(l1castle);
@@ -70,5 +59,4 @@ public class C_Deposit extends ClientBasePacket {
 	public String getType() {
 		return C_DEPOSIT;
 	}
-
 }

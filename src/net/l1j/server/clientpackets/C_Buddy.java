@@ -17,10 +17,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  * Author: ChrisLiu.2007.07.20
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.BuddyTable;
@@ -28,19 +25,14 @@ import net.l1j.server.model.L1Buddy;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Buddy;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_Buddy extends ClientBasePacket {
-
 	private static final String C_BUDDY = "[C] C_Buddy";
-	private static Logger _log = Logger.getLogger(C_Buddy.class.getName());
 
 	public C_Buddy(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
+
 		L1PcInstance pc = clientthread.getActiveChar();
-		L1Buddy buddy = BuddyTable.getInstance().getBuddyTable(
-				pc.getId());
+		L1Buddy buddy = BuddyTable.getInstance().getBuddyTable(pc.getId());
 		pc.sendPackets(new S_Buddy(pc.getId(), buddy));
 	}
 
@@ -48,5 +40,4 @@ public class C_Buddy extends ClientBasePacket {
 	public String getType() {
 		return C_BUDDY;
 	}
-
 }

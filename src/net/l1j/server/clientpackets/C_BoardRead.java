@@ -16,26 +16,19 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1BoardInstance;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_BoardRead extends ClientBasePacket {
-
 	private static final String C_BOARD_READ = "[C] C_BoardRead";
-	private static Logger _log = Logger.getLogger(C_BoardRead.class.getName());
 
 	public C_BoardRead(byte decrypt[], ClientThread client) {
 		super(decrypt);
+
 		int objId = readD();
 		int topicNumber = readD();
 		L1Object obj = L1World.getInstance().findObject(objId);
@@ -47,5 +40,4 @@ public class C_BoardRead extends ClientBasePacket {
 	public String getType() {
 		return C_BOARD_READ;
 	}
-
 }

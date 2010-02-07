@@ -19,8 +19,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
@@ -30,23 +28,19 @@ import net.l1j.server.serverpackets.S_Pledge;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_Pledge extends ClientBasePacket {
-
 	private static final String C_PLEDGE = "[C] C_Pledge";
-	private static Logger _log = Logger.getLogger(C_Pledge.class.getName());
 
 	public C_Pledge(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
+
 		L1PcInstance pc = clientthread.getActiveChar();
 
 		if (pc.getClanid() > 0) {
 			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 			if (pc.isCrown() && pc.getId() == clan.getLeaderId()) {
-				pc.sendPackets(new S_Pledge("pledgeM", pc.getId(),
-						clan.getClanName(), clan.getOnlineMembersFPWithRank(),
-						clan.getAllMembersFPWithRank()));
+				pc.sendPackets(new S_Pledge("pledgeM", pc.getId(), clan.getClanName(), clan.getOnlineMembersFPWithRank(), clan.getAllMembersFPWithRank()));
 			} else {
-				pc.sendPackets(new S_Pledge("pledge", pc.getId(),
-						clan.getClanName(), clan.getOnlineMembersFP()));
+				pc.sendPackets(new S_Pledge("pledge", pc.getId(), clan.getClanName(), clan.getOnlineMembersFP()));
 			}
 		} else {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1064));
@@ -58,5 +52,4 @@ public class C_Pledge extends ClientBasePacket {
 	public String getType() {
 		return C_PLEDGE;
 	}
-
 }

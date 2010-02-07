@@ -10,7 +10,6 @@
  * Place - Suite 330, Boston, MA 02111-1307, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
 
 import java.sql.Timestamp;
@@ -27,17 +26,14 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.id.L1ClassId;
 import net.l1j.server.serverpackets.S_DeleteCharOK;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket, C_DeleteChar
-
 public class C_DeleteChar extends ClientBasePacket {
-
 	private static final String C_DELETE_CHAR = "[C] RequestDeleteChar";
 
 	private static Logger _log = Logger.getLogger(C_DeleteChar.class.getName());
 
 	public C_DeleteChar(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
+
 		String name = readS();
 		String hostip = client.getHostname();
 
@@ -47,27 +43,27 @@ public class C_DeleteChar extends ClientBasePacket {
 					&& Config.DELETE_CHARACTER_AFTER_7DAYS) {
 				if (pc.getType() < 32) {
 					// 角色刪除轉身
-					switch(pc.getType()){
-					case L1ClassId.ROYAL: // 王族
-						pc.setType(L1ClassId.Del_ROYAL);
+					switch (pc.getType()) {
+						case L1ClassId.ROYAL: // 王族
+							pc.setType(L1ClassId.Del_ROYAL);
 						break;
-					case L1ClassId.KNIGHT: // 騎士
-						pc.setType(L1ClassId.Del_KNIGHT);
+						case L1ClassId.KNIGHT: // 騎士
+							pc.setType(L1ClassId.Del_KNIGHT);
 						break;
-					case L1ClassId.ELF: // 精靈
-						pc.setType(L1ClassId.Del_ELF);
+						case L1ClassId.ELF: // 精靈
+							pc.setType(L1ClassId.Del_ELF);
 						break;
-					case L1ClassId.WIZARD: // 法師
-						pc.setType(L1ClassId.Del_WIZARD);
+						case L1ClassId.WIZARD: // 法師
+							pc.setType(L1ClassId.Del_WIZARD);
 						break;
-					case L1ClassId.DARK_ELF: // 黑暗精靈
-						pc.setType(L1ClassId.Del_DARK_ELF);
+						case L1ClassId.DARK_ELF: // 黑暗精靈
+							pc.setType(L1ClassId.Del_DARK_ELF);
 						break;
-					case L1ClassId.DRAGON_KNIGHT: // 龍騎士
-						pc.setType(L1ClassId.Del_DRAGON_KNIGHT);
+						case L1ClassId.DRAGON_KNIGHT: // 龍騎士
+							pc.setType(L1ClassId.Del_DRAGON_KNIGHT);
 						break;
-					case L1ClassId.ILLUSIONIST: // 幻術師
-						pc.setType(L1ClassId.Del_ILLUSIONIST);
+						case L1ClassId.ILLUSIONIST: // 幻術師
+							pc.setType(L1ClassId.Del_ILLUSIONIST);
 						break;
 					}
 					// add end
@@ -76,27 +72,27 @@ public class C_DeleteChar extends ClientBasePacket {
 					pc.save(); // DBにキャラクター情報を書き⑸む
 				} else {
 					// 角色刪除轉身
-					switch(pc.getType()){
-					case L1ClassId.Del_ROYAL: // 王族
-						pc.setType(L1ClassId.ROYAL);
+					switch (pc.getType()) {
+						case L1ClassId.Del_ROYAL: // 王族
+							pc.setType(L1ClassId.ROYAL);
 						break;
-					case L1ClassId.Del_KNIGHT: // 騎士
-						pc.setType(L1ClassId.KNIGHT);
+						case L1ClassId.Del_KNIGHT: // 騎士
+							pc.setType(L1ClassId.KNIGHT);
 						break;
-					case L1ClassId.Del_ELF: // 精靈
-						pc.setType(L1ClassId.ELF);
+						case L1ClassId.Del_ELF: // 精靈
+							pc.setType(L1ClassId.ELF);
 						break;
-					case L1ClassId.Del_WIZARD: // 法師
-						pc.setType(L1ClassId.WIZARD);
+						case L1ClassId.Del_WIZARD: // 法師
+							pc.setType(L1ClassId.WIZARD);
 						break;
-					case L1ClassId.Del_DARK_ELF: // 黑暗精靈
-						pc.setType(L1ClassId.DARK_ELF);
+						case L1ClassId.Del_DARK_ELF: // 黑暗精靈
+							pc.setType(L1ClassId.DARK_ELF);
 						break;
-					case L1ClassId.Del_DRAGON_KNIGHT: // 龍騎士
-						pc.setType(L1ClassId.DRAGON_KNIGHT);
+						case L1ClassId.Del_DRAGON_KNIGHT: // 龍騎士
+							pc.setType(L1ClassId.DRAGON_KNIGHT);
 						break;
-					case L1ClassId.Del_ILLUSIONIST: // 幻術師
-						pc.setType(L1ClassId.ILLUSIONIST);
+						case L1ClassId.Del_ILLUSIONIST: // 幻術師
+							pc.setType(L1ClassId.ILLUSIONIST);
 						break;
 					}
 					// add end
@@ -128,5 +124,4 @@ public class C_DeleteChar extends ClientBasePacket {
 	public String getType() {
 		return C_DELETE_CHAR;
 	}
-
 }

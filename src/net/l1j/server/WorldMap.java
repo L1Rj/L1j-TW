@@ -24,8 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import net.l1j.server.model.L1Object;
 
 public class WorldMap {
-
-	static private final ConcurrentHashMap<Integer, WorldMap> MapList;
+	private static final ConcurrentHashMap<Integer, WorldMap> MapList;
 
 	private final ConcurrentHashMap<Integer, L1Object> ObjectList;
 
@@ -33,11 +32,10 @@ public class WorldMap {
 		MapList = new ConcurrentHashMap<Integer, WorldMap>();
 	}
 
-	static public WorldMap getMap(int MapId) {
+	public static WorldMap getMap(int MapId) {
 		if (!MapList.containsKey(MapId)) {
 			new WorldMap(MapId);
 		}
-
 		return MapList.get(MapId);
 	}
 
@@ -65,5 +63,4 @@ public class WorldMap {
 	public ConcurrentHashMap<Integer, WorldMap> getMapList() {
 		return MapList;
 	}
-
 }

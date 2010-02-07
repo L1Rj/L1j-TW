@@ -56,12 +56,10 @@ import net.l1j.thread.GeneralThreadPool;
 
 import static net.l1j.Config.*;
 
-// Referenced classes of package net.l1j.server:
-// PacketHandler, Logins, IpTable, LoginController,
-// ClanTable, IdFactory
-//
 public class ClientThread implements Runnable, PacketOutput {
 	private static Logger _log = Logger.getLogger(ClientThread.class.getName());
+
+	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private InputStream _in;
 	private OutputStream _out;
@@ -71,7 +69,6 @@ public class ClientThread implements Runnable, PacketOutput {
 	private String _ip;
 	private String _hostname;
 	private Socket _csocket;
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 	private int _loginStatus;
 
 	private static final byte[] FIRST_PACKET = { // 3.0

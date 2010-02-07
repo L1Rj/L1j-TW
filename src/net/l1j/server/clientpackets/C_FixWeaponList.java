@@ -16,26 +16,18 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_FixWeaponList;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_FixWeaponList extends ClientBasePacket {
-
 	private static final String C_FIX_WEAPON_LIST = "[C] C_FixWeaponList";
-	private static Logger _log = Logger.getLogger(C_FixWeaponList.class
-			.getName());
 
 	public C_FixWeaponList(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
+
 		L1PcInstance pc = clientthread.getActiveChar();
 		pc.sendPackets(new S_FixWeaponList(pc));
 	}
@@ -44,5 +36,4 @@ public class C_FixWeaponList extends ClientBasePacket {
 	public String getType() {
 		return C_FIX_WEAPON_LIST;
 	}
-
 }

@@ -25,23 +25,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Reader;
-import java.io.Writer;
 import java.lang.management.ManagementFactory;
-import java.nio.channels.Channel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
 import java.util.zip.Checksum;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class BackUpLog {
-	private static Logger _log = Logger.getLogger(BackUpLog.class.getName());
+import net.l1j.server.utils.StreamUtil;
 
+public class BackUpLog {
 	/**
 	 * String that points to root directory for backups
 	 */
@@ -54,8 +49,7 @@ public class BackUpLog {
 
 	public static void backup() {
 		File file = new File("log/Server.db");
-		// Linux systems doesn't provide file creation time, so we have to hope
-		// that log files
+		// Linux systems doesn't provide file creation time, so we have to hope that log files
 		// were not modified manually after server starup
 		// We can use here Windowns-only solution but that suck :(
 		if (isFileOlder(file, ManagementFactory.getRuntimeMXBean().getStartTime())) {
@@ -68,8 +62,7 @@ public class BackUpLog {
 			try {
 				df = new SimpleDateFormat(backupDateFormat);
 			} catch (Exception e) {
-				throw new AppenderInitializationError("Invalid date formate for backup files: "
-						+ backupDateFormat, e);
+				throw new AppenderInitializationError("Invalid date formate for backup files: " + backupDateFormat, e);
 			}
 			String date = df.format(new Date(file.lastModified()));
 
@@ -90,30 +83,15 @@ public class BackUpLog {
 				while ((readed = fis.read(buffer)) != -1) {
 					zos.write(buffer, 0, readed);
 				}
-
 			} catch (Exception e) {
 				throw new AppenderInitializationError("Can't create zip file", e);
 			} finally {
-				if (zos != null) {
-					try {
-						zos.close();
-					} catch (IOException e) {
-						_log.log(Level.WARNING, "Can't close zip file", e);
-					}
-				}
-
-				if (fis != null) {
-					try {
-						fis.close();
-					} catch (IOException e) {
-						_log.log(Level.WARNING, "Can't close zipped file", e);
-					}
-				}
+				StreamUtil.close(zos);
+				StreamUtil.close(fis);
 			}
 
 			if (!file.delete()) {
-				throw new AppenderInitializationError("Can't delete old log file "
-						+ file.getAbsolutePath());
+				throw new AppenderInitializationError("Can't delete old log file " + file.getAbsolutePath());
 			}
 		}
 	}
@@ -121,16 +99,10 @@ public class BackUpLog {
 	/**
 	 * Tests if the specified <code>File</code> is older than the specified time reference.
 	 * 
-	 * @param file
-	 *            the <code>File</code> of which the modification date must be compared, must not be
-	 *            <code>null</code>
-	 * @param timeMillis
-	 *            the time reference measured in milliseconds since the epoch (00:00:00 GMT, January
-	 *            1, 1970)
-	 * @return true if the <code>File</code> exists and has been modified before the given time
-	 *         reference.
-	 * @throws IllegalArgumentException
-	 *             if the file is <code>null</code>
+	 * @param file the <code>File</code> of which the modification date must be compared, must not be <code>null</code>
+	 * @param timeMillis the time reference measured in milliseconds since the epoch (00:00:00 GMT, January 1, 1970)
+	 * @return true if the <code>File</code> exists and has been modified before the given time reference.
+	 * @throws IllegalArgumentException if the file is <code>null</code>
 	 */
 	public static boolean isFileOlder(File file, long timeMillis) {
 		if (file == null) {
@@ -143,18 +115,13 @@ public class BackUpLog {
 	}
 
 	/**
-	 * Computes the checksum of a file using the CRC32 checksum routine. The value of the checksum
-	 * is returned.
+	 * Computes the checksum of a file using the CRC32 checksum routine. The value of the checksum is returned.
 	 * 
-	 * @param file
-	 *            the file to checksum, must not be <code>null</code>
+	 * @param file the file to checksum, must not be <code>null</code>
 	 * @return the checksum value
-	 * @throws NullPointerException
-	 *             if the file or checksum is <code>null</code>
-	 * @throws IllegalArgumentException
-	 *             if the file is a directory
-	 * @throws IOException
-	 *             if an IO error occurs reading the file
+	 * @throws NullPointerException if the file or checksum is <code>null</code>
+	 * @throws IllegalArgumentException if the file is a directory
+	 * @throws IOException if an IO error occurs reading the file
 	 * @since Commons IO 1.3
 	 */
 	public static long checksumCRC32(File file) throws IOException {
@@ -164,22 +131,20 @@ public class BackUpLog {
 	}
 
 	/**
-	 * Computes the checksum of a file using the specified checksum object. Multiple files may be
-	 * checked using one <code>Checksum</code> instance if desired simply by reusing the same
-	 * checksum object. For example: <pre> long csum = FileUtils.checksum(file, new
-	 * CRC32()).getValue(); </pre>
+	 * Computes the checksum of a file using the specified checksum object.
+	 * Multiple files may be checked using one <code>Checksum</code> instance if desired simply by reusing the same checksum object.
+	 * <br><br>
+	 * For example:
+	 * <pre>
+	 * long csum = FileUtils.checksum(file, new CRC32()).getValue();
+	 * </pre>
 	 * 
-	 * @param file
-	 *            the file to checksum, must not be <code>null</code>
-	 * @param checksum
-	 *            the checksum object to be used, must not be <code>null</code>
+	 * @param file the file to checksum, must not be <code>null</code>
+	 * @param checksum the checksum object to be used, must not be <code>null</code>
 	 * @return the checksum specified, updated with the content of the file
-	 * @throws NullPointerException
-	 *             if the file or checksum is <code>null</code>
-	 * @throws IllegalArgumentException
-	 *             if the file is a directory
-	 * @throws IOException
-	 *             if an IO error occurs reading the file
+	 * @throws NullPointerException if the file or checksum is <code>null</code>
+	 * @throws IllegalArgumentException if the file is a directory
+	 * @throws IOException if an IO error occurs reading the file
 	 * @since Commons IO 1.3
 	 */
 	public static Checksum checksum(File file, Checksum checksum) throws IOException {
@@ -191,29 +156,27 @@ public class BackUpLog {
 			in = new CheckedInputStream(new FileInputStream(file), checksum);
 			copy(in, new NullOutputStream());
 		} finally {
-			closeQuietly(in);
+			StreamUtil.close(in);
 		}
 		return checksum;
 	}
 
 	/**
-	 * Copy bytes from an <code>InputStream</code> to an <code>OutputStream</code>. <p> This method
-	 * buffers the input internally, so there is no need to use a <code>BufferedInputStream</code>.
-	 * <p> Large streams (over 2GB) will return a bytes copied value of <code>-1</code> after the
-	 * copy has completed since the correct number of bytes cannot be returned as an int. For large
-	 * streams use the <code>copyLarge(InputStream, OutputStream)</code> method.
+	 * Copy bytes from an <code>InputStream</code> to an <code>OutputStream</code>.
+	 * <p>
+	 * This method buffers the input internally, so there is no need to use a <code>BufferedInputStream</code>.
+	 * <p>
+	 * Large streams (over 2GB) will return a bytes copied value of
+	 * <code>-1</code> after the copy has completed since the correct number of
+	 * bytes cannot be returned as an int. For large streams use the
+	 * <code>copyLarge(InputStream, OutputStream)</code> method.
 	 * 
-	 * @param input
-	 *            the <code>InputStream</code> to read from
-	 * @param output
-	 *            the <code>OutputStream</code> to write to
+	 * @param input the <code>InputStream</code> to read from
+	 * @param output the <code>OutputStream</code> to write to
 	 * @return the number of bytes copied
-	 * @throws NullPointerException
-	 *             if the input or output is null
-	 * @throws IOException
-	 *             if an I/O error occurs
-	 * @throws ArithmeticException
-	 *             if the byte count is too large
+	 * @throws NullPointerException if the input or output is null
+	 * @throws IOException if an I/O error occurs
+	 * @throws ArithmeticException if the byte count is too large
 	 * @since Commons IO 1.1
 	 */
 	public static int copy(InputStream input, OutputStream output) throws IOException {
@@ -225,19 +188,17 @@ public class BackUpLog {
 	}
 
 	/**
-	 * Copy bytes from a large (over 2GB) <code>InputStream</code> to an <code>OutputStream</code>.
-	 * <p> This method buffers the input internally, so there is no need to use a
+	 * Copy bytes from a large (over 2GB) <code>InputStream</code> to an
+	 * <code>OutputStream</code>.
+	 * <p>
+	 * This method buffers the input internally, so there is no need to use a
 	 * <code>BufferedInputStream</code>.
 	 * 
-	 * @param input
-	 *            the <code>InputStream</code> to read from
-	 * @param output
-	 *            the <code>OutputStream</code> to write to
+	 * @param input the <code>InputStream</code> to read from
+	 * @param output the <code>OutputStream</code> to write to
 	 * @return the number of bytes copied
-	 * @throws NullPointerException
-	 *             if the input or output is null
-	 * @throws IOException
-	 *             if an I/O error occurs
+	 * @throws NullPointerException if the input or output is null
+	 * @throws IOException if an I/O error occurs
 	 * @since Commons IO 1.3
 	 */
 	public static long copyLarge(InputStream input, OutputStream output) throws IOException {
@@ -252,108 +213,22 @@ public class BackUpLog {
 	}
 
 	/**
-	 * Unconditionally close an <code>Reader</code>. <p> Equivalent to {@link Reader#close()},
-	 * except any exceptions will be ignored. This is typically used in finally blocks.
+	 * Opens a {@link FileInputStream} for the specified file, providing better
+	 * error messages than simply calling <code>new FileInputStream(file)</code>
+	 * .
+	 * <p>
+	 * At the end of the method either the stream will be successfully opened,
+	 * or an exception will have been thrown.
+	 * <p>
+	 * An exception is thrown if the file does not exist. An exception is thrown
+	 * if the file object exists but is a directory. An exception is thrown if
+	 * the file exists but cannot be read.
 	 * 
-	 * @param input
-	 *            the Reader to close, may be null or already closed
-	 */
-	public static void closeQuietly(Reader input) {
-		try {
-			if (input != null) {
-				input.close();
-			}
-		} catch (IOException ioe) {
-			// ignore
-		}
-	}
-
-	/**
-	 * Unconditionally close a <code>Channel</code>. <p> Equivalent to {@link Channel#close()},
-	 * except any exceptions will be ignored. This is typically used in finally blocks.
-	 * 
-	 * @param channel
-	 *            the Channel to close, may be null or already closed
-	 */
-	public static void closeQuietly(Channel channel) {
-		try {
-			if (channel != null) {
-				channel.close();
-			}
-		} catch (IOException ioe) {
-			// ignore
-		}
-	}
-
-	/**
-	 * Unconditionally close a <code>Writer</code>. <p> Equivalent to {@link Writer#close()}, except
-	 * any exceptions will be ignored. This is typically used in finally blocks.
-	 * 
-	 * @param output
-	 *            the Writer to close, may be null or already closed
-	 */
-	public static void closeQuietly(Writer output) {
-		try {
-			if (output != null) {
-				output.close();
-			}
-		} catch (IOException ioe) {
-			// ignore
-		}
-	}
-
-	/**
-	 * Unconditionally close an <code>InputStream</code>. <p> Equivalent to
-	 * {@link InputStream#close()}, except any exceptions will be ignored. This is typically used in
-	 * finally blocks.
-	 * 
-	 * @param input
-	 *            the InputStream to close, may be null or already closed
-	 */
-	public static void closeQuietly(InputStream input) {
-		try {
-			if (input != null) {
-				input.close();
-			}
-		} catch (IOException ioe) {
-			// ignore
-		}
-	}
-
-	/**
-	 * Unconditionally close an <code>OutputStream</code>. <p> Equivalent to
-	 * {@link OutputStream#close()}, except any exceptions will be ignored. This is typically used
-	 * in finally blocks.
-	 * 
-	 * @param output
-	 *            the OutputStream to close, may be null or already closed
-	 */
-	public static void closeQuietly(OutputStream output) {
-		try {
-			if (output != null) {
-				output.close();
-			}
-		} catch (IOException ioe) {
-			// ignore
-		}
-	}
-
-	/**
-	 * Opens a {@link FileInputStream} for the specified file, providing better error messages than
-	 * simply calling <code>new FileInputStream(file)</code> . <p> At the end of the method either
-	 * the stream will be successfully opened, or an exception will have been thrown. <p> An
-	 * exception is thrown if the file does not exist. An exception is thrown if the file object
-	 * exists but is a directory. An exception is thrown if the file exists but cannot be read.
-	 * 
-	 * @param file
-	 *            the file to open for input, must not be <code>null</code>
+	 * @param file the file to open for input, must not be <code>null</code>
 	 * @return a new {@link FileInputStream} for the specified file
-	 * @throws FileNotFoundException
-	 *             if the file does not exist
-	 * @throws IOException
-	 *             if the file object is a directory
-	 * @throws IOException
-	 *             if the file cannot be read
+	 * @throws FileNotFoundException if the file does not exist
+	 * @throws IOException if the file object is a directory
+	 * @throws IOException if the file cannot be read
 	 * @since Commons IO 1.3
 	 */
 	public static FileInputStream openInputStream(File file) throws IOException {
@@ -371,14 +246,15 @@ public class BackUpLog {
 	}
 
 	/**
-	 * This OutputStream writes all data to the famous <b>/dev/null</b>. <p> This output stream has no
-	 * destination (file/socket etc.) and all bytes written to it are ignored and lost.
+	 * This OutputStream writes all data to the famous <b>/dev/null</b>.
+	 * <p>
+	 * This output stream has no destination (file/socket etc.) and all bytes
+	 * written to it are ignored and lost.
 	 * 
 	 * @author Jeremias Maerki
 	 * @version $Id: NullOutputStream.java 659817 2008-05-24 13:23:10Z niallp $
 	 */
 	static class NullOutputStream extends OutputStream {
-
 		/**
 		 * A singleton.
 		 */
@@ -387,12 +263,9 @@ public class BackUpLog {
 		/**
 		 * Does nothing - output to <code>/dev/null</code>.
 		 * 
-		 * @param b
-		 *            The bytes to write
-		 * @param off
-		 *            The start offset
-		 * @param len
-		 *            The number of bytes to write
+		 * @param b The bytes to write
+		 * @param off The start offset
+		 * @param len The number of bytes to write
 		 */
 		@Override
 		public void write(byte[] b, int off, int len) {
@@ -402,8 +275,7 @@ public class BackUpLog {
 		/**
 		 * Does nothing - output to <code>/dev/null</code>.
 		 * 
-		 * @param b
-		 *            The byte to write
+		 * @param b The byte to write
 		 */
 		@Override
 		public void write(int b) {
@@ -413,10 +285,8 @@ public class BackUpLog {
 		/**
 		 * Does nothing - output to <code>/dev/null</code>.
 		 * 
-		 * @param b
-		 *            The bytes to write
-		 * @throws IOException
-		 *             never
+		 * @param b The bytes to write
+		 * @throws IOException never
 		 */
 		@Override
 		public void write(byte[] b) throws IOException {
@@ -434,8 +304,7 @@ public class BackUpLog {
 		/**
 		 * Creates new error
 		 * 
-		 * @param message
-		 *            error description
+		 * @param message error description
 		 */
 		public AppenderInitializationError(String message) {
 			super(message);
@@ -444,10 +313,8 @@ public class BackUpLog {
 		/**
 		 * Creates new error
 		 * 
-		 * @param message
-		 *            error description
-		 * @param cause
-		 *            reason of this error
+		 * @param message error description
+		 * @param cause reason of this error
 		 */
 		public AppenderInitializationError(String message, Throwable cause) {
 			super(message, cause);
@@ -456,8 +323,7 @@ public class BackUpLog {
 		/**
 		 * Creates new error
 		 * 
-		 * @param cause
-		 *            reason of this error
+		 * @param cause reason of this error
 		 */
 		public AppenderInitializationError(Throwable cause) {
 			super(cause);

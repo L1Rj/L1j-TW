@@ -16,10 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1CastleLocation;
@@ -29,17 +26,12 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1BookMark;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_AddBookmark extends ClientBasePacket {
-
 	private static final String C_ADD_BOOKMARK = "[C] C_AddBookmark";
-	private static Logger _log = Logger.getLogger(C_AddBookmark.class
-			.getName());
 
 	public C_AddBookmark(byte[] decrypt, ClientThread client) {
 		super(decrypt);
+
 		String s = readS();
 
 		L1PcInstance pc = client.getActiveChar();
@@ -49,23 +41,16 @@ public class C_AddBookmark extends ClientBasePacket {
 
 		if (pc.getMap().isMarkable() || pc.isGm()) {
 			//火龍谷
-			if ((pc.getX() >= 33472 && pc.getX() <= 33855)
-					&& (pc.getY() >= 32191 && pc.getY() <= 32460)
-					&& pc.getMapId() == 4) {
+			if ((pc.getX() >= 33472 && pc.getX() <= 33855) && (pc.getY() >= 32191 && pc.getY() <= 32460) && pc.getMapId() == 4) {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$214));
 			//黃昏山脈
-			} else if ((pc.getX() >= 34225 && pc.getX() <= 34300)
-					&& (pc.getY() >= 33095 && pc.getY() <= 33280)
-					&& pc.getMapId() == 4) {
+			} else if ((pc.getX() >= 34225 && pc.getX() <= 34300) && (pc.getY() >= 33095 && pc.getY() <= 33280) && pc.getMapId() == 4) {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$214));
 			//黃昏山脈
-			} else if ((pc.getX() >= 34200 && pc.getX() <= 34300)
-					&& (pc.getY() >= 33280 && pc.getY() <= 33515)
-					&& pc.getMapId() == 4) {
+			} else if ((pc.getX() >= 34200 && pc.getX() <= 34300) && (pc.getY() >= 33280 && pc.getY() <= 33515) && pc.getMapId() == 4) {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$214));
 			} else if ((L1CastleLocation.checkInAllWarArea(pc.getX(), pc.getY(), pc.getMapId())
-					|| L1HouseLocation.isInHouse(pc.getX(), pc.getY(), pc.getMapId()))
-					&& !pc.isGm()) {
+					|| L1HouseLocation.isInHouse(pc.getX(), pc.getY(), pc.getMapId())) && !pc.isGm()) {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$214));
 			} else {
 				L1BookMark.addBookmark(pc, s);
@@ -73,7 +58,7 @@ public class C_AddBookmark extends ClientBasePacket {
 		} else {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$214));
 		}
-}
+	}
 
 	@Override
 	public String getType() {

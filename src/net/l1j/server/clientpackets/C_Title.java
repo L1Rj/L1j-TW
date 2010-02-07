@@ -131,5 +131,4 @@ public class C_Title extends ClientBasePacket {
 	public String getType() {
 		return C_TITLE;
 	}
-
 }

@@ -19,7 +19,6 @@
 package net.l1j.server;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,46 +28,34 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javolution.util.FastTable;
+import javolution.util.FastList;
 
+import net.l1j.Config;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.utils.StreamUtil;
 
 public class Announcements {
-	private static Logger _log = Logger
-			.getLogger(Announcements.class.getName());
+	private static Logger _log = Logger.getLogger(Announcements.class.getName());
 
-	private static Announcements _instance;
-
-	private final List<String> _announcements = new FastTable<String>();
+	private List<String> _messages = new FastList<String>();
 
 	private Announcements() {
 		loadAnnouncements();
 	}
 
 	public static Announcements getInstance() {
-		if (_instance == null) {
-			_instance = new Announcements();
-		}
-
-		return _instance;
+		return SingletonHolder._instance;
 	}
 
 	private void loadAnnouncements() {
-		_announcements.clear();
+		_messages.clear();
 		File file = new File("data/announcements.txt");
 		if (file.exists()) {
 			readFromDisk(file);
 		} else {
 			_log.config("data/announcements.txt doesn't exist");
-		}
-	}
-
-	public void showAnnouncements(L1PcInstance showTo) {
-		for (String msg : _announcements) {
-			showTo.sendPackets(new S_SystemMessage(msg));
 		}
 	}
 
@@ -82,20 +69,35 @@ public class Announcements {
 				StringTokenizer st = new StringTokenizer(line, "\n\r");
 				if (st.hasMoreTokens()) {
 					String announcement = st.nextToken();
-					_announcements.add(announcement);
-
+					_messages.add(announcement);
 					i++;
 				}
 			}
-
-			_log.config("告知事項 " + i + "件 佈告");
-		} catch (FileNotFoundException e) {
-			// ファイルがない場合は、告知事項なし
+			if (Config.DEBUG) {
+				_log.config("Announcements: Loaded " + i + " Announcements.");
+			}
 		} catch (IOException e) {
-			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			_log.log(Level.SEVERE, "Error reading announcements: ", e);
 		} finally {
 			StreamUtil.close(lnr);
 		}
+	}
+
+	public void showAnnouncements(L1PcInstance pc) {
+		for (int i = 0; i < _messages.size(); i++) {
+			S_SystemMessage s_sm = new S_SystemMessage(_messages.get(i));
+			pc.sendPackets(s_sm);
+		}
+	}
+
+	public void addAnnouncement(String text) {
+		_messages.add(text);
+		saveToDisk();
+	}
+
+	public void delAnnouncement(int line) {
+		_messages.remove(line);
+		saveToDisk();
 	}
 
 	private void saveToDisk() {
@@ -104,19 +106,23 @@ public class Announcements {
 
 		try {
 			save = new FileWriter(file);
-			for (String msg : _announcements) {
-				save.write(msg);
+			for (int i = 0; i < _messages.size(); i++) {
+				save.write(_messages.get(i));
 				save.write("\r\n");
 			}
 		} catch (IOException e) {
-			_log.log(Level.SEVERE, "saving the announcements file has failed",
-					e);
+			_log.log(Level.SEVERE, "Saving to the announcements file has failed: ", e);
 		} finally {
 			StreamUtil.close(save);
 		}
 	}
 
-	public void announceToAll(String msg) {
-		L1World.getInstance().broadcastServerMessage(msg);
+	public void announceToAll(String text) {
+		L1World.getInstance().broadcastServerMessage(text);
+	}
+
+	@SuppressWarnings("synthetic-access")
+	private static class SingletonHolder {
+		protected static final Announcements _instance = new Announcements();
 	}
 }

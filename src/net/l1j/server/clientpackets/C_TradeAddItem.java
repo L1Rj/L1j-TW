@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.log.LogTradeBugItem;
 import net.l1j.server.model.L1Inventory;
@@ -35,8 +33,6 @@ import net.l1j.server.model.L1CheckPcItem;
 
 public class C_TradeAddItem extends ClientBasePacket {
 	private static final String C_TRADE_ADD_ITEM = "[C] C_TradeAddItem";
-
-	private static Logger _log = Logger.getLogger(C_TradeAddItem.class.getName());
 
 	public C_TradeAddItem(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);

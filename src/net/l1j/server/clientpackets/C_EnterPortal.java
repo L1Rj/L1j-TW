@@ -16,27 +16,18 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.Dungeon;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
-
 public class C_EnterPortal extends ClientBasePacket {
-
 	private static final String C_ENTER_PORTAL = "[C] C_EnterPortal";
-	private static Logger _log = Logger.getLogger(C_EnterPortal.class
-			.getName());
 
-	public C_EnterPortal(byte abyte0[], ClientThread client)
-			throws Exception {
+	public C_EnterPortal(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
+
 		int locx = readH();
 		int locy = readH();
 		L1PcInstance pc = client.getActiveChar();

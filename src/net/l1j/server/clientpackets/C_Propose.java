@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -29,8 +27,6 @@ import net.l1j.server.utils.FaceToFace;
 
 public class C_Propose extends ClientBasePacket {
 	private static final String C_PROPOSE = "[C] C_Propose";
-
-	private static Logger _log = Logger.getLogger(C_Propose.class.getName());
 
 	public C_Propose(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);

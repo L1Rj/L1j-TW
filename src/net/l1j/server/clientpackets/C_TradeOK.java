@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Trade;
 import net.l1j.server.model.L1World;
@@ -30,8 +28,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 public class C_TradeOK extends ClientBasePacket {
 	private static final String C_TRADE_CANCEL = "[C] C_TradeOK";
 
-	private static Logger _log = Logger.getLogger(C_TradeOK.class.getName());
-
 	public C_TradeOK(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
@@ -40,16 +36,13 @@ public class C_TradeOK extends ClientBasePacket {
 		if (trading_partner != null) {
 			player.setTradeOk(true);
 
-			if (player.getTradeOk() && trading_partner.getTradeOk()) // 共にOKを押した
-			{
+			if (player.getTradeOk() && trading_partner.getTradeOk()) { // 共にOKを押した
 				// (180 - 16)個未滿ならトレード成立。
 				// 本來は重なるアイテム（アデナ等）を既に持っている場合を考慮しないければいけない。
-				if (player.getInventory().getSize() < (180 - 16) && trading_partner.getInventory().getSize() < (180 - 16)) // お互いのアイテムを相手に渡す
-				{
+				if (player.getInventory().getSize() < (180 - 16) && trading_partner.getInventory().getSize() < (180 - 16)) { // お互いのアイテムを相手に渡す
 					L1Trade trade = new L1Trade();
 					trade.TradeOK(player);
-				} else // お互いのアイテムを手元に戾す
-				{
+				} else { // お互いのアイテムを手元に戾す
 					player.sendPackets(new S_ServerMessage(SystemMessageId.$263));
 					trading_partner.sendPackets(new S_ServerMessage(SystemMessageId.$263));
 					L1Trade trade = new L1Trade();

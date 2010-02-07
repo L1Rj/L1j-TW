@@ -45,6 +45,7 @@ public class C_Mail extends ClientBasePacket {
 
 	public C_Mail(byte abyte0[], ClientThread client) {
 		super(abyte0);
+
 		int type = readC();
 		L1PcInstance pc = client.getActiveChar();
 

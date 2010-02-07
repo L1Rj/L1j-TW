@@ -1,4 +1,5 @@
-/* This program is free software; you can redistribute it and/or modify
+/*
+ * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
@@ -17,16 +18,11 @@
  */
 package net.l1j.server.clientpackets;
 
-import static net.l1j.server.model.instance.L1PcInstance.REGENSTATE_MOVE;
-
-import java.util.ArrayList;
-import java.util.logging.Logger;
-
 import javolution.util.FastTable;
 
 import net.l1j.Config;
-import net.l1j.server.ClientThread;
 import net.l1j.log.LogSpeedHack;
+import net.l1j.server.ClientThread;
 import net.l1j.server.model.AcceleratorChecker;
 import net.l1j.server.model.Dungeon;
 import net.l1j.server.model.DungeonRandom;
@@ -35,30 +31,27 @@ import net.l1j.server.model.L1PolyRace;
 import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.model.instance.L1DoorInstance;// 門
-import net.l1j.server.skills.SkillId;
 import net.l1j.server.model.trap.L1WorldTraps;
 import net.l1j.server.serverpackets.S_MoveCharPacket;
 import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.types.Base;
+
+import static net.l1j.server.model.instance.L1PcInstance.REGENSTATE_MOVE;
 import static net.l1j.server.skills.SkillId.*;
 
 //修正檔案 : net.l1j.server.clientpackets.C_MoveChar
 //修正者 : KIUSBT
 
 public class C_MoveChar extends ClientBasePacket {
+	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.10
 
-	private static Logger _log = Logger.getLogger(C_MoveChar.class.getName());
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
 	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
 	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
-	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.10
-
 	// マップタイル調查用
 	private void sendMapTileLog(L1PcInstance pc) {
-		pc.sendPackets(new S_SystemMessage(pc.getMap().toString(
-				pc.getLocation())));
+		pc.sendPackets(new S_SystemMessage(pc.getMap().toString(pc.getLocation())));
 	}
 
 	// 移動
@@ -72,8 +65,7 @@ public class C_MoveChar extends ClientBasePacket {
 		L1PcInstance pc = client.getActiveChar();
 
 		// TODO 封鎖 LinHelp無條件喝水功能
-		if (pc.isParalyzed() || pc.isSleeped()
-				 || pc.isFreeze() || pc.isStun()) {
+		if (pc.isParalyzed() || pc.isSleeped() || pc.isFreeze() || pc.isStun()) {
 			return;
 		}
 
@@ -83,9 +75,7 @@ public class C_MoveChar extends ClientBasePacket {
 
 		// 移動要求間隔をチェックする
 		if (Config.CHECK_MOVE_INTERVAL) {
-			int result = pc.getAcceleratorChecker().checkInterval(
-					AcceleratorChecker.ACT_TYPE.MOVE);
-
+			int result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.MOVE);
 			if (result == AcceleratorChecker.R_DISCONNECTED) {
 				LogSpeedHack lsh = new LogSpeedHack();
 				lsh.storeLogSpeedHack(pc);
@@ -114,14 +104,12 @@ public class C_MoveChar extends ClientBasePacket {
 		locy += HEADING_TABLE_Y[heading];// 4.26 End
 
 		// waja add 測試禁止穿過物件
-		FastTable<L1Object> objs = L1World.getInstance().getVisibleObjects(pc,
-				1);
+		FastTable<L1Object> objs = L1World.getInstance().getVisibleObjects(pc, 1);
 		for (L1Object obj : objs) {
-			if (pc.isDead() && obj instanceof L1PcInstance
-					&& pc.getName().equals(((L1PcInstance) obj).getName())
-					// && pc.isGmInvis() // GM隱形
-					// && ((L1PcInstance) obj).isInvisble()// 隱形
-					&& ((L1PcInstance) obj).isDead()) { // 死亡
+			if (pc.isDead() && obj instanceof L1PcInstance && pc.getName().equals(((L1PcInstance) obj).getName())
+			// && pc.isGmInvis() // GM隱形
+			// && ((L1PcInstance) obj).isInvisble()// 隱形
+			&& ((L1PcInstance) obj).isDead()) { // 死亡
 				continue;
 			}
 			if (obj.getX() == locx// pc.getX()

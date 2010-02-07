@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
@@ -30,8 +28,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_CreateParty extends ClientBasePacket {
 	private static final String C_CREATE_PARTY = "[C] C_CreateParty";
-
-	private static Logger _log = Logger.getLogger(C_CreateParty.class.getName());
 
 	public C_CreateParty(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);

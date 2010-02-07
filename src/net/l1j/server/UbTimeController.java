@@ -24,8 +24,7 @@ import net.l1j.server.datatables.UBTable;
 import net.l1j.server.model.L1UltimateBattle;
 
 public class UbTimeController implements Runnable {
-	private static Logger _log = Logger.getLogger(UbTimeController.class
-			.getName());
+	private static Logger _log = Logger.getLogger(UbTimeController.class.getName());
 
 	private static UbTimeController _instance;
 

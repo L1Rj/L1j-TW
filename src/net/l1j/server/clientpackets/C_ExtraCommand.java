@@ -16,28 +16,20 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.clientpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
-import static net.l1j.server.skills.SkillId.*;
 import net.l1j.server.serverpackets.S_DoActionGFX;
-import static net.l1j.server.skills.SkillId.*;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket
+import static net.l1j.server.skills.SkillId.*;
 
 public class C_ExtraCommand extends ClientBasePacket {
 	private static final String C_EXTRA_COMMAND = "[C] C_ExtraCommand";
-	private static Logger _log = Logger.getLogger(C_ExtraCommand.class
-			.getName());
 
-	public C_ExtraCommand(byte abyte0[], ClientThread client)
-			throws Exception {
+	public C_ExtraCommand(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
+
 		int actionId = readC();
 		L1PcInstance pc = client.getActiveChar();
 		if (pc.isGhost()) {

@@ -18,37 +18,26 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.CharacterConfigTable;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.clientpackets:
-// ClientBasePacket, C_RequestDoors
-
 public class C_CharcterConfig extends ClientBasePacket {
-
-	private static Logger _log = Logger.getLogger(C_CharcterConfig.class
-			.getName());
 	private static final String C_CHARCTER_CONFIG = "[C] C_CharcterConfig";
 
-	public C_CharcterConfig(byte abyte0[], ClientThread client)
-			throws Exception {
+	public C_CharcterConfig(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
+
 		if (Config.CHARACTER_CONFIG_IN_SERVER_SIDE) {
 			L1PcInstance pc = client.getActiveChar();
 			int length = readD() - 3;
 			byte data[] = readByte();
-			int count = CharacterConfigTable.getInstance()
-					.countCharacterConfig(pc.getId());
+			int count = CharacterConfigTable.getInstance().countCharacterConfig(pc.getId());
 			if (count == 0) {
-				CharacterConfigTable.getInstance().storeCharacterConfig(pc
-						.getId(), length, data);
+				CharacterConfigTable.getInstance().storeCharacterConfig(pc.getId(), length, data);
 			} else {
-				CharacterConfigTable.getInstance().updateCharacterConfig(pc
-						.getId(),length, data);
+				CharacterConfigTable.getInstance().updateCharacterConfig(pc.getId(), length, data);
 			}
 		}
 	}
