@@ -18,8 +18,6 @@
  */
 package net.l1j.server.command.executor;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.Account;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -27,12 +25,6 @@ import net.l1j.server.serverpackets.S_Disconnect;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1AccountBanKick implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1AccountBanKick.class
-			.getName());
-
-	private L1AccountBanKick() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1AccountBanKick();
 	}
@@ -45,12 +37,10 @@ public class L1AccountBanKick implements L1CommandExecutor {
 			if (target != null) {
 				// アカウントをBANする
 				Account.ban(target.getAccountName());
-				pc.sendPackets(new S_SystemMessage(target.getName()
-						+ " 已被封鎖並強制登出。"));
+				pc.sendPackets(new S_SystemMessage(target.getName() + " 已被封鎖並強制登出。"));
 				target.sendPackets(new S_Disconnect());
 			} else {
-				pc.sendPackets(new S_SystemMessage(
-						" 角色名稱輸入錯誤或是該角色不存在。"));
+				pc.sendPackets(new S_SystemMessage(" 角色名稱輸入錯誤或是該角色不存在。"));
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 角色名稱。"));

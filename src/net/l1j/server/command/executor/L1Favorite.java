@@ -32,10 +32,8 @@ import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1Favorite implements L1CommandExecutor {
 	private static Logger _log = Logger.getLogger(L1Favorite.class.getName());
-	private static final Map<Integer, String> _faviCom = new FastMap<Integer, String>();
 
-	private L1Favorite() {
-	}
+	private static final Map<Integer, String> _faviCom = new FastMap<Integer, String>();
 
 	public static L1CommandExecutor getInstance() {
 		return new L1Favorite();
@@ -59,9 +57,7 @@ public class L1Favorite implements L1CommandExecutor {
 				StringBuilder cmd = new StringBuilder();
 				String temp = st.nextToken(); // コマンドタイプ
 				if (temp.equalsIgnoreCase(cmdName)) {
-					pc
-							.sendPackets(new S_SystemMessage(cmdName
-									+ " 自身は登錄できません。"));
+					pc.sendPackets(new S_SystemMessage(cmdName + " 自身は登錄できません。"));
 					return;
 				}
 				cmd.append(temp + " ");
@@ -94,8 +90,7 @@ public class L1Favorite implements L1CommandExecutor {
 				GMCommands.getInstance().handleCommands(pc, cmd.toString());
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " set コマンド名 " + "| "
-					+ cmdName + " show | " + cmdName + " [引數] と入力してください。"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " set コマンド名 " + "| " + cmdName + " show | " + cmdName + " [引數] と入力してください。"));
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
 	}

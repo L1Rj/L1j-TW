@@ -66,7 +66,7 @@ public class FurnitureSpawnTable {
 				L1Npc l1npc = NpcTable.getInstance().getTemplate(rs.getInt(2));
 				if (l1npc != null) {
 					String s = l1npc.getImpl();
-					Constructor constructor = Class.forName("net.l1j.server.model.instance." + s + "Instance").getConstructors()[0];
+					Constructor<?> constructor = Class.forName("net.l1j.server.model.instance." + s + "Instance").getConstructors()[0];
 					Object parameters[] = { l1npc };
 					L1FurnitureInstance furniture = (L1FurnitureInstance) constructor.newInstance(parameters);
 					furniture = (L1FurnitureInstance) constructor.newInstance(parameters);

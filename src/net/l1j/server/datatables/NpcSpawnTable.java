@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.datatables;
 
 import java.sql.Connection;
@@ -36,9 +35,6 @@ import net.l1j.server.model.L1Spawn;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.utils.SQLUtil;
-
-// Referenced classes of package net.l1j.server:
-// MobTable, IdFactory
 
 public class NpcSpawnTable {
 	private static Logger _log = Logger.getLogger(NpcSpawnTable.class.getName());

@@ -20,7 +20,6 @@ package net.l1j.server.command.executor;
 
 import java.lang.reflect.Constructor;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import net.l1j.server.IdFactory;
 import net.l1j.server.datatables.NpcTable;
@@ -31,11 +30,6 @@ import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.templates.L1Npc;
 
 public class L1GfxId implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1GfxId.class.getName());
-
-	private L1GfxId() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1GfxId();
 	}
@@ -50,12 +44,9 @@ public class L1GfxId implements L1CommandExecutor {
 				L1Npc l1npc = NpcTable.getInstance().getTemplate(45001);
 				if (l1npc != null) {
 					String s = l1npc.getImpl();
-					Constructor constructor = Class.forName(
-							"net.l1j.server.model.instance." + s
-									+ "Instance").getConstructors()[0];
+					Constructor<?> constructor = Class.forName("net.l1j.server.model.instance." + s + "Instance").getConstructors()[0];
 					Object aobj[] = { l1npc };
-					L1NpcInstance npc = (L1NpcInstance) constructor
-							.newInstance(aobj);
+					L1NpcInstance npc = (L1NpcInstance) constructor.newInstance(aobj);
 					npc.setId(IdFactory.getInstance().nextId());
 					npc.setGfxId(gfxid + i);
 					npc.setTempCharGfx(0);
@@ -72,9 +63,7 @@ public class L1GfxId implements L1CommandExecutor {
 				}
 			}
 		} catch (Exception exception) {
-			pc
-					.sendPackets(new S_SystemMessage("請輸入 " + cmdName
-							+ " id 變身編號。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " id 變身編號。"));
 		}
 	}
 }

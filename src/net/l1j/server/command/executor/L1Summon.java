@@ -19,7 +19,6 @@
 package net.l1j.server.command.executor;
 
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import net.l1j.server.datatables.NpcTable;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -28,11 +27,6 @@ import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.templates.L1Npc;
 
 public class L1Summon implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Summon.class.getName());
-
-	private L1Summon() {
-	}
-
 	public static L1Summon getInstance() {
 		return new L1Summon();
 	}
@@ -46,8 +40,7 @@ public class L1Summon implements L1CommandExecutor {
 			try {
 				npcid = Integer.parseInt(nameid);
 			} catch (NumberFormatException e) {
-				npcid = NpcTable.getInstance().findNpcIdByNameWithoutSpace(
-						nameid);
+				npcid = NpcTable.getInstance().findNpcIdByNameWithoutSpace(nameid);
 				if (npcid == 0) {
 					pc.sendPackets(new S_SystemMessage("找不到這個NPC編號。"));
 					return;
@@ -63,8 +56,7 @@ public class L1Summon implements L1CommandExecutor {
 				summonInst.setPetcost(0);
 			}
 			nameid = NpcTable.getInstance().getTemplate(npcid).get_name();
-			pc.sendPackets(new S_SystemMessage(nameid + "(ID:" + npcid + ") ("
-					+ count + ") 已招喚。"));
+			pc.sendPackets(new S_SystemMessage(nameid + "(ID:" + npcid + ") (" + count + ") 已招喚。"));
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " npcid|name [數量] 。"));
 		}

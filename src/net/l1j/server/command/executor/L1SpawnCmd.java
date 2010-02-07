@@ -32,9 +32,6 @@ import net.l1j.server.utils.SpawnUtil;
 public class L1SpawnCmd implements L1CommandExecutor {
 	private static Logger _log = Logger.getLogger(L1SpawnCmd.class.getName());
 
-	private L1SpawnCmd() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1SpawnCmd();
 	}
@@ -77,8 +74,7 @@ public class L1SpawnCmd implements L1CommandExecutor {
 			for (int i = 0; i < count; i++) {
 				SpawnUtil.spawn(pc, npcid, randomrange, 0);
 			}
-			String msg = String.format("%s(%d) (%d) 已招喚。 (範圍:%d)", npc
-					.get_name(), npcid, count, randomrange);
+			String msg = String.format("%s(%d) (%d) 已招喚。 (範圍:%d)", npc.get_name(), npcid, count, randomrange);
 			pc.sendPackets(new S_SystemMessage(msg));
 		} catch (NoSuchElementException e) {
 			sendErrorMessage(pc, cmdName);

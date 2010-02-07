@@ -18,19 +18,12 @@
  */
 package net.l1j.server.command.executor;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1ToPC implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1ToPC.class.getName());
-
-	private L1ToPC() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1ToPC();
 	}
@@ -41,13 +34,10 @@ public class L1ToPC implements L1CommandExecutor {
 			L1PcInstance target = L1World.getInstance().getPlayer(arg);
 
 			if (target != null) {
-				L1Teleport.teleport(pc, target.getX(), target.getY(), target
-						.getMapId(), 5, false);
-				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						.append(arg).append("已移動到該角色位置。").toString()));
+				L1Teleport.teleport(pc, target.getX(), target.getY(), target.getMapId(), 5, false);
+				pc.sendPackets(new S_SystemMessage((new StringBuilder()).append(arg).append("已移動到該角色位置。").toString()));
 			} else {
-				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						.append(arg).append("角色不存在").toString()));
+				pc.sendPackets(new S_SystemMessage((new StringBuilder()).append(arg).append("角色不存在").toString()));
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 角色名稱。"));

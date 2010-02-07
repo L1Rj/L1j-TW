@@ -19,18 +19,12 @@
 package net.l1j.server.command.executor;
 
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1CastGfx implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1CastGfx.class.getName());
-
-	private L1CastGfx() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1CastGfx();
 	}

@@ -18,24 +18,17 @@
  */
 package net.l1j.server.command.executor;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
-import net.l1j.server.skills.SkillId;
 import net.l1j.server.serverpackets.S_HPMeter;
 import net.l1j.server.serverpackets.S_SystemMessage;
-import static net.l1j.server.skills.SkillId.*;
+
+import static net.l1j.server.skills.SkillId.GMSTATUS_HPBAR;
 
 public class L1HpBar implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1HpBar.class.getName());
-
-	private L1HpBar() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1HpBar();
 	}
@@ -53,7 +46,7 @@ public class L1HpBar implements L1CommandExecutor {
 				}
 			}
 		} else {
-			pc.sendPackets(new S_SystemMessage("請輸入 "+ cmdName + " on|off。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " on|off。"));
 		}
 	}
 

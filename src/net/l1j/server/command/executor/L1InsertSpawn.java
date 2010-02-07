@@ -31,11 +31,7 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.utils.SpawnUtil;
 
 public class L1InsertSpawn implements L1CommandExecutor {
-	private static Logger _log = Logger
-			.getLogger(L1InsertSpawn.class.getName());
-
-	private L1InsertSpawn() {
-	}
+	private static Logger _log = Logger.getLogger(L1InsertSpawn.class.getName());
 
 	public static L1CommandExecutor getInstance() {
 		return new L1InsertSpawn();
@@ -65,8 +61,7 @@ public class L1InsertSpawn implements L1CommandExecutor {
 				NpcSpawnTable.getInstance().storeSpawn(pc, template);
 			}
 			SpawnUtil.spawn(pc, npcId, 0, 0);
-			msg = new StringBuilder().append(template.get_name()).append(
-					" (" + npcId + ") ").append("追加。").toString();
+			msg = new StringBuilder().append(template.get_name()).append(" (" + npcId + ") ").append("追加。").toString();
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, "", e);
 			msg = "請輸入 " + cmdName + " mob|npc NPCID。";

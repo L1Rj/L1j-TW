@@ -19,7 +19,6 @@
 package net.l1j.server.command.executor;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import net.l1j.server.command.L1Commands;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -27,12 +26,6 @@ import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.templates.L1Command;
 
 public class L1CommandHelp implements L1CommandExecutor {
-	private static Logger _log = Logger
-			.getLogger(L1CommandHelp.class.getName());
-
-	private L1CommandHelp() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1CommandHelp();
 	}
@@ -50,8 +43,7 @@ public class L1CommandHelp implements L1CommandExecutor {
 
 	@Override
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
-		List<L1Command> list = L1Commands.availableCommandList(pc
-				.getAccessLevel());
+		List<L1Command> list = L1Commands.availableCommandList(pc.getAccessLevel());
 		pc.sendPackets(new S_SystemMessage(join(list, ", ")));
 	}
 }

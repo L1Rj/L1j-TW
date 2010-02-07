@@ -18,8 +18,6 @@
  */
 package net.l1j.server.command.executor;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -28,11 +26,6 @@ import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1Ress implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Ress.class.getName());
-
-	private L1Ress() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1Ress();
 	}

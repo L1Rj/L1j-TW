@@ -33,9 +33,6 @@ import net.l1j.server.utils.SQLUtil;
 public class BossSpawnTable {
 	private static Logger _log = Logger.getLogger(BossSpawnTable.class.getName());
 
-	private BossSpawnTable() {
-	}
-
 	public static void fillSpawnTable() {
 		int spawnCount = 0;
 		Connection con = null;

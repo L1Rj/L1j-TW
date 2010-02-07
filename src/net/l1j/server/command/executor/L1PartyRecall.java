@@ -28,11 +28,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1PartyRecall implements L1CommandExecutor {
-	private static Logger _log = Logger
-			.getLogger(L1PartyRecall.class.getName());
-
-	private L1PartyRecall() {
-	}
+	private static Logger _log = Logger.getLogger(L1PartyRecall.class.getName());
 
 	public static L1CommandExecutor getInstance() {
 		return new L1PartyRecall();
@@ -52,9 +48,7 @@ public class L1PartyRecall implements L1CommandExecutor {
 				for (L1PcInstance pc2 : players) {
 					try {
 						L1Teleport.teleport(pc2, x, y, map, 5, true);
-						pc2
-								.sendPackets(new S_SystemMessage(
-										"您被GM招回。"));
+						pc2.sendPackets(new S_SystemMessage("您被GM招回。"));
 					} catch (Exception e) {
 						_log.log(Level.SEVERE, "", e);
 					}

@@ -19,7 +19,6 @@
 package net.l1j.server.command.executor;
 
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import net.l1j.server.datatables.IpTable;
 import net.l1j.server.model.L1World;
@@ -27,11 +26,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1BanIp implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1BanIp.class.getName());
-
-	private L1BanIp() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1BanIp();
 	}
@@ -55,39 +49,32 @@ public class L1BanIp implements L1CommandExecutor {
 
 			for (L1PcInstance tg : L1World.getInstance().getAllPlayers()) {
 				if (s1.equals(tg.getNetConnection().getIp())) {
-					String msg = new StringBuilder().append("IP:").append(s1)
-							.append(" 連接中的玩家:").append(tg.getName())
-							.toString();
+					String msg = new StringBuilder().append("IP:").append(s1).append(" 連接中的玩家:").append(tg.getName()).toString();
 					pc.sendPackets(new S_SystemMessage(msg));
 				}
 			}
 
 			if ("add".equals(s2) && !isBanned) {
 				iptable.banIp(s1); // BANリストへIPを加える
-				String msg = new StringBuilder().append("IP:").append(s1)
-						.append(" 加入封鎖IP列表。").toString();
+				String msg = new StringBuilder().append("IP:").append(s1).append(" 加入封鎖IP列表。").toString();
 				pc.sendPackets(new S_SystemMessage(msg));
 			} else if ("del".equals(s2) && isBanned) {
 				if (iptable.liftBanIp(s1)) { // BANリストからIPを削除する
-					String msg = new StringBuilder().append("IP:").append(s1)
-							.append(" 從封鎖IP列表中移除。").toString();
+					String msg = new StringBuilder().append("IP:").append(s1).append(" 從封鎖IP列表中移除。").toString();
 					pc.sendPackets(new S_SystemMessage(msg));
 				}
 			} else {
 				// BANの確認
 				if (isBanned) {
-					String msg = new StringBuilder().append("IP:").append(s1)
-							.append(" 加入封鎖IP列表。").toString();
+					String msg = new StringBuilder().append("IP:").append(s1).append(" 加入封鎖IP列表。").toString();
 					pc.sendPackets(new S_SystemMessage(msg));
 				} else {
-					String msg = new StringBuilder().append("IP:").append(s1)
-							.append(" 不加入封鎖IP列表。").toString();
+					String msg = new StringBuilder().append("IP:").append(s1).append(" 不加入封鎖IP列表。").toString();
 					pc.sendPackets(new S_SystemMessage(msg));
 				}
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage( "請輸入" + cmdName
-					+ " IP [ add | del ]。"));
+			pc.sendPackets(new S_SystemMessage("請輸入" + cmdName + " IP [ add | del ]。"));
 		}
 	}
 }

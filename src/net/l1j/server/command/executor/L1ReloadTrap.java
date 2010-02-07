@@ -18,18 +18,11 @@
  */
 package net.l1j.server.command.executor;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.trap.L1WorldTraps;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1ReloadTrap implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1ReloadTrap.class.getName());
-
-	private L1ReloadTrap() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1ReloadTrap();
 	}

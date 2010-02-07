@@ -19,7 +19,6 @@
 package net.l1j.server.command.executor;
 
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.model.L1DwarfInventory;
@@ -28,12 +27,6 @@ import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.templates.L1Item;
 
 public class L1LevelPresent implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1LevelPresent.class
-			.getName());
-
-	private L1LevelPresent() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1LevelPresent();
 	}
@@ -56,12 +49,9 @@ public class L1LevelPresent implements L1CommandExecutor {
 			}
 
 			L1DwarfInventory.present(minlvl, maxlvl, itemid, enchant, count);
-			pc.sendPackets(new S_SystemMessage(temp.getName() + "を" + count
-					+ "個プレゼントしました。(Lv" + minlvl + "～" + maxlvl + ")"));
+			pc.sendPackets(new S_SystemMessage(temp.getName() + "を" + count + "個プレゼントしました。(Lv" + minlvl + "～" + maxlvl + ")"));
 		} catch (Exception e) {
-			pc
-					.sendPackets(new S_SystemMessage(
-							"請輸入 " + cmdName + " 發送道具最低等級 最高等級 道具編號 增強等級 道具數量。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 發送道具最低等級 最高等級 道具編號 增強等級 道具數量。"));
 		}
 	}
 }

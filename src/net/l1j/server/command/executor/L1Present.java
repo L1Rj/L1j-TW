@@ -19,7 +19,6 @@
 package net.l1j.server.command.executor;
 
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.model.L1DwarfInventory;
@@ -28,11 +27,6 @@ import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.templates.L1Item;
 
 public class L1Present implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Present.class.getName());
-
-	private L1Present() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1Present();
 	}
@@ -53,12 +47,9 @@ public class L1Present implements L1CommandExecutor {
 			}
 
 			L1DwarfInventory.present(account, itemid, enchant, count);
-			pc.sendPackets(new S_SystemMessage(temp.getIdentifiedNameId() + " " + count
-					+ "個 已送出。", true));
+			pc.sendPackets(new S_SystemMessage(temp.getIdentifiedNameId() + " " + count + "個 已送出。", true));
 		} catch (Exception e) {
-			pc
-					.sendPackets(new S_SystemMessage(
-							"請輸入 " + cmdName + " 角色名稱 道具編號 增強等級 數量（角色名稱使用*則為全體）。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 角色名稱 道具編號 增強等級 數量（角色名稱使用*則為全體）。"));
 		}
 	}
 }

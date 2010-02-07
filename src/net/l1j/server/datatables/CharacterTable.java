@@ -37,11 +37,11 @@ import net.l1j.server.templates.L1CharName;
 import net.l1j.server.utils.SQLUtil;
 
 public class CharacterTable {
+	private static Logger _log = Logger.getLogger(CharacterTable.class.getName());
+
 	private CharacterStorage _charStorage;
 
 	private static CharacterTable _instance;
-
-	private static Logger _log = Logger.getLogger(CharacterTable.class.getName());
 
 	private final Map<String, L1CharName> _charNameList = new ConcurrentHashMap<String, L1CharName>();
 

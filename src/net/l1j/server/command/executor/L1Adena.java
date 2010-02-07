@@ -19,7 +19,6 @@
 package net.l1j.server.command.executor;
 
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import net.l1j.server.items.ItemId;
 import net.l1j.server.model.instance.L1ItemInstance;
@@ -27,11 +26,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1Adena implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Adena.class.getName());
-
-	private L1Adena() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1Adena();
 	}
@@ -42,11 +36,9 @@ public class L1Adena implements L1CommandExecutor {
 			StringTokenizer stringtokenizer = new StringTokenizer(arg);
 			int count = Integer.parseInt(stringtokenizer.nextToken());
 
-			L1ItemInstance adena = pc.getInventory().storeItem(ItemId.ADENA,
-					count);
+			L1ItemInstance adena = pc.getInventory().storeItem(ItemId.ADENA, count);
 			if (adena != null) {
-				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						.append(count).append("金幣產生。").toString()));
+				pc.sendPackets(new S_SystemMessage((new StringBuilder()).append(count).append("金幣產生。").toString()));
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage((new StringBuilder()).append("請輸入 " + cmdName + " 金幣數量。").toString()));

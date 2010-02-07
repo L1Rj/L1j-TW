@@ -29,7 +29,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1Status implements L1CommandExecutor {
-
 	public static L1CommandExecutor getInstance() {
 		return new L1Status();
 	}

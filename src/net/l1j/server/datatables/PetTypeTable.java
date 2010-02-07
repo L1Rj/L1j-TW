@@ -36,9 +36,12 @@ import net.l1j.server.utils.IntRange;
 import net.l1j.server.utils.SQLUtil;
 
 public class PetTypeTable {
-	private static PetTypeTable _instance;
 	private static Logger _log = Logger.getLogger(PetTypeTable.class.getName());
+
+	private static PetTypeTable _instance;
+
 	private Map<Integer, L1PetType> _types = new FastMap<Integer, L1PetType>();
+
 	private Set<String> _defaultNames = new FastSet<String>();
 
 	public static void load() {

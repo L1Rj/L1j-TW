@@ -18,10 +18,8 @@
  */
 package net.l1j.server.command.executor;
 
-
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import javolution.util.FastMap;
 
@@ -33,11 +31,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1ToSpawn implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1ToSpawn.class.getName());
 	private static final Map<Integer, Integer> _spawnId = new FastMap<Integer, Integer>();
-
-	private L1ToSpawn() {
-	}
 
 	public static L1CommandExecutor getInstance() {
 		return new L1ToSpawn();
@@ -63,14 +57,10 @@ public class L1ToSpawn implements L1CommandExecutor {
 				spawn = SpawnTable.getInstance().getTemplate(id);
 			}
 			if (spawn != null) {
-				L1Teleport.teleport(pc, spawn.getLocX(), spawn.getLocY(), spawn
-						.getMapId(), 5, false);
-				pc
-						.sendPackets(new S_SystemMessage("移動到刷怪編號 spawnid(" + id
-								+ ")"));
+				L1Teleport.teleport(pc, spawn.getLocX(), spawn.getLocY(), spawn.getMapId(), 5, false);
+				pc.sendPackets(new S_SystemMessage("移動到刷怪編號 spawnid(" + id + ")"));
 			} else {
-				pc.sendPackets(new S_SystemMessage("刷怪編號 spawnid(" + id
-						+ ")沒找到!!"));
+				pc.sendPackets(new S_SystemMessage("刷怪編號 spawnid(" + id + ")沒找到!!"));
 			}
 			_spawnId.put(pc.getId(), id);
 		} catch (Exception exception) {

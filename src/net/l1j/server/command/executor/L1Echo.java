@@ -25,9 +25,6 @@ import net.l1j.server.serverpackets.S_SystemMessage;
  * 入力された引數をそのまま返すコマンド。 テスト、デバッグ及びコマンド實裝サンプル用。
  */
 public class L1Echo implements L1CommandExecutor {
-	private L1Echo() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1Echo();
 	}

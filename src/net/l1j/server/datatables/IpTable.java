@@ -31,6 +31,13 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.utils.SQLUtil;
 
 public class IpTable {
+	private static Logger _log = Logger.getLogger(IpTable.class.getName());
+
+	private static FastTable<String> _banip;
+
+	public static boolean isInitialized;
+
+	private static IpTable _instance;
 
 	public static IpTable getInstance() {
 		if (_instance == null) {
@@ -49,9 +56,7 @@ public class IpTable {
 	public void banIp(String ip) {
 		Connection con = null;
 		PreparedStatement pstm = null;
-
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("INSERT INTO ban_ip SET ip=?");
 			pstm.setString(1, ip);
@@ -73,10 +78,8 @@ public class IpTable {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM ban_ip");
-
 			rs = pstm.executeQuery();
 
 			while (rs.next()) {
@@ -84,7 +87,6 @@ public class IpTable {
 			}
 
 			isInitialized = true;
-
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
@@ -96,9 +98,7 @@ public class IpTable {
 		boolean ret = false;
 		Connection con = null;
 		PreparedStatement pstm = null;
-
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("DELETE FROM ban_ip WHERE ip=?");
 			pstm.setString(1, ip);
@@ -111,12 +111,4 @@ public class IpTable {
 		}
 		return ret;
 	}
-
-	private static Logger _log = Logger.getLogger(IpTable.class.getName());
-
-	private static FastTable<String> _banip;
-
-	public static boolean isInitialized;
-
-	private static IpTable _instance;
 }

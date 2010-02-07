@@ -18,8 +18,6 @@
  */
 package net.l1j.server.command.executor;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.GMCommandsConfig;
 import net.l1j.server.model.L1Location;
 import net.l1j.server.model.L1Teleport;
@@ -27,11 +25,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1GMRoom implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1GMRoom.class.getName());
-
-	private L1GMRoom() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1GMRoom();
 	}
@@ -61,12 +54,10 @@ public class L1GMRoom implements L1CommandExecutor {
 					pc.sendPackets(new S_SystemMessage(arg + " 尚未定義的房間"));
 					return;
 				}
-				L1Teleport.teleport(pc, loc.getX(), loc.getY(), (short) loc
-						.getMapId(), 5, false);
+				L1Teleport.teleport(pc, loc.getX(), loc.getY(), (short) loc.getMapId(), 5, false);
 			}
 		} catch (Exception exception) {
-			pc.sendPackets(new S_SystemMessage(
-					"請輸入 " + cmdName + " 1-5 或是 " + cmdName + " 已定義地區名稱。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 1-5 或是 " + cmdName + " 已定義地區名稱。"));
 		}
 	}
 }

@@ -36,11 +36,7 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.utils.SQLUtil;
 
-// Referenced classes of package net.l1j.server:
-// IdFactory
-
 public class ClanTable {
-
 	private static Logger _log = Logger.getLogger(ClanTable.class.getName());
 
 	private final FastMap<Integer, L1Clan> _clans = new FastMap<Integer, L1Clan>();
@@ -79,7 +75,6 @@ public class ClanTable {
 					L1World.getInstance().storeClan(clan);
 					_clans.put(clan_id, clan);
 				}
-
 			} catch (SQLException e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			} finally {

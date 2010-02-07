@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.datatables;
 
 import java.sql.Connection;
@@ -56,7 +55,6 @@ public class WeaponSkillTable {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM weapon_skill");
 			rs = pstm.executeQuery();

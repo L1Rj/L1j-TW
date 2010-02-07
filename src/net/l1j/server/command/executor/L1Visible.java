@@ -18,19 +18,12 @@
  */
 package net.l1j.server.command.executor;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Invis;
 import net.l1j.server.serverpackets.S_OtherCharPacks;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1Visible implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Visible.class.getName());
-
-	private L1Visible() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1Visible();
 	}

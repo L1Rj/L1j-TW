@@ -29,17 +29,10 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.utils.SQLUtil;
 
-// Referenced classes of package net.l1j.server:
-// IdFactory
-
 public class BoardTable {
-
 	private static Logger _log = Logger.getLogger(BoardTable.class.getName());
 
 	private static BoardTable _instance;
-
-	private BoardTable() {
-	}
 
 	public static BoardTable getInstance() {
 		if (_instance == null) {

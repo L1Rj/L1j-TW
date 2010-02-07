@@ -23,7 +23,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;	//修正小屋報錯格式
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -37,11 +37,7 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.templates.L1House;
 import net.l1j.server.utils.SQLUtil;
 
-// Referenced classes of package net.l1j.server:
-// IdFactory
-
 public class HouseTable {
-
 	private static Logger _log = Logger.getLogger(HouseTable.class.getName());
 
 	private static HouseTable _instance;
@@ -65,7 +61,6 @@ public class HouseTable {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("SELECT * FROM house ORDER BY house_id");
@@ -109,12 +104,8 @@ public class HouseTable {
 			pstm.setInt(4, house.getKeeperId());
 			pstm.setInt(5, house.isOnSale() == true ? 1 : 0);
 			pstm.setInt(6, house.isPurchaseBasement() == true ? 1 : 0);
-			/*
-			 * String fm = DateFormat.getDateTimeInstance().format(
-			 * house.getTaxDeadline().getTime()); // 原有格式未定亦會出錯問題
-			 */
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); // TODO 盟屋買賣系統時間自動更新 by pigermin
-			String fm = sdf.format(house.getTaxDeadline().getTime());//end
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			String fm = sdf.format(house.getTaxDeadline().getTime());
 			pstm.setString(7, fm);
 			pstm.setInt(8, house.getHouseId());
 			pstm.execute();

@@ -29,9 +29,6 @@ import net.l1j.server.serverpackets.S_SystemMessage;
 public class L1SKick implements L1CommandExecutor {
 	private static Logger _log = Logger.getLogger(L1SKick.class.getName());
 
-	private L1SKick() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1SKick();
 	}
@@ -41,9 +38,7 @@ public class L1SKick implements L1CommandExecutor {
 		try {
 			L1PcInstance target = L1World.getInstance().getPlayer(arg);
 			if (target != null) {
-				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						.append(target.getName()).append("剔除角色。")
-						.toString()));
+				pc.sendPackets(new S_SystemMessage((new StringBuilder()).append(target.getName()).append("剔除角色。").toString()));
 				// SKTへ移動させる
 				target.setX(33080);
 				target.setY(33392);
@@ -51,11 +46,9 @@ public class L1SKick implements L1CommandExecutor {
 				target.sendPackets(new S_Disconnect());
 				ClientThread targetClient = target.getNetConnection();
 				targetClient.kick();
-				_log.warning("按照GM的skick指令(" + targetClient.getAccountName()
-						+ ":" + targetClient.getHostname() + ")被強制切斷連線。");
+				_log.warning("按照GM的skick指令(" + targetClient.getAccountName() + ":" + targetClient.getHostname() + ")被強制切斷連線。");
 			} else {
-				pc.sendPackets(new S_SystemMessage(
-						"該角色不存在。"));
+				pc.sendPackets(new S_SystemMessage("該角色不存在。"));
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 角色名稱。"));

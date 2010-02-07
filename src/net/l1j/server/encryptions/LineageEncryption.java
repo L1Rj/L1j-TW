@@ -1,6 +1,18 @@
+/*
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 package net.l1j.server.encryptions;
-
-
 
 import javolution.util.FastMap;
 
@@ -23,16 +35,12 @@ public class LineageEncryption {
 	 * Initializes lineage encrypt/decrypt keys for the given clientID and maps
 	 * them to that id.
 	 * 
-	 * @param clientID
-	 *            the id to map the keys to
-	 * @param seed
-	 *            a random seed to compute the keys with
+	 * @param clientID the id to map the keys to
+	 * @param seed a random seed to compute the keys with
 	 * @return LineageKeys the generated encrypt/decrypt keys
-	 * @throws ClientIdExistsException
-	 *             If a client id already is in use
+	 * @throws ClientIdExistsException If a client id already is in use
 	 */
-	public static LineageKeys initKeys(Object clientID, long seed)
-			throws ClientIdExistsException {
+	public static LineageKeys initKeys(Object clientID, long seed) throws ClientIdExistsException {
 		if (keyMap.containsKey(clientID)) {
 			throw new ClientIdExistsException();
 		}
@@ -55,8 +63,7 @@ public class LineageEncryption {
 	 * Sets the keys that are mapped to the client id as the current keys to be
 	 * used.
 	 * 
-	 * @param clientID
-	 *            the client id to set the keys for
+	 * @param clientID the client id to set the keys for
 	 * @return boolean true if the client id was found, otherwise false
 	 */
 	public static LineageKeys prepareKeys(Object clientID) {
@@ -76,14 +83,11 @@ public class LineageEncryption {
 	/**
 	 * Encrypts the data with the prepared keys.
 	 * 
-	 * @param buf
-	 *            the data to be encrypted, this arrays data is overwritten
+	 * @param buf the data to be encrypted, this arrays data is overwritten
 	 * @return char[] an 8 bit unsigned char array with the encrypted data
-	 * @throws NoEncryptionKeysSelectedException
-	 *             If no keys have been prepared
+	 * @throws NoEncryptionKeysSelectedException If no keys have been prepared
 	 */
-	public static char[] encrypt(char[] buf, LineageKeys currentKeys)
-			throws NoEncryptionKeysSelectedException {
+	public static char[] encrypt(char[] buf, LineageKeys currentKeys) throws NoEncryptionKeysSelectedException {
 		if (currentKeys == null) {
 			throw new NoEncryptionKeysSelectedException();
 		}
@@ -93,8 +97,7 @@ public class LineageEncryption {
 		_encrypt(buf, currentKeys);
 
 		currentKeys.encodeKey[0] ^= mask;
-		currentKeys.encodeKey[1] = ULong32.add(currentKeys.encodeKey[1],
-				0x287EFFC3L);
+		currentKeys.encodeKey[1] = ULong32.add(currentKeys.encodeKey[1], 0x287EFFC3L);
 
 		// updatekeye( cp, e );
 		return buf;
@@ -103,14 +106,11 @@ public class LineageEncryption {
 	/**
 	 * Encrypts the data with the prepared keys.
 	 * 
-	 * @param buf
-	 *            the data to be encrypted, this arrays data is overwritten
+	 * @param buf the data to be encrypted, this arrays data is overwritten
 	 * @return char[] an 8 bit unsigned char array with the encrypted data
-	 * @throws NoEncryptionKeysSelectedException
-	 *             If no keys have been prepared
+	 * @throws NoEncryptionKeysSelectedException If no keys have been prepared
 	 */
-	public static byte[] encrypt(byte[] buf, LineageKeys currentKeys)
-			throws NoEncryptionKeysSelectedException {
+	public static byte[] encrypt(byte[] buf, LineageKeys currentKeys) throws NoEncryptionKeysSelectedException {
 		if (currentKeys == null) {
 			throw new NoEncryptionKeysSelectedException();
 		}
@@ -120,8 +120,7 @@ public class LineageEncryption {
 		_encrypt(buf, currentKeys);
 
 		currentKeys.encodeKey[0] ^= mask;
-		currentKeys.encodeKey[1] = ULong32.add(currentKeys.encodeKey[1],
-				0x287EFFC3L);
+		currentKeys.encodeKey[1] = ULong32.add(currentKeys.encodeKey[1], 0x287EFFC3L);
 
 		// updatekeye( cp, e );
 		return buf;
@@ -130,14 +129,11 @@ public class LineageEncryption {
 	/**
 	 * Decrypts the data with the prepared keys.
 	 * 
-	 * @param buf
-	 *            the data to be decrypted, this arrays data is overwritten
+	 * @param buf the data to be decrypted, this arrays data is overwritten
 	 * @return char[] an 8 bit unsigned char array with the encrypted data
-	 * @throws NoEncryptionKeysSelectedException
-	 *             If no keys have been prepared
+	 * @throws NoEncryptionKeysSelectedException If no keys have been prepared
 	 */
-	public static char[] decrypt(char[] buf, LineageKeys currentKeys)
-			throws NoEncryptionKeysSelectedException {
+	public static char[] decrypt(char[] buf, LineageKeys currentKeys) throws NoEncryptionKeysSelectedException {
 		if (currentKeys == null) {
 			throw new NoEncryptionKeysSelectedException();
 		}
@@ -147,8 +143,7 @@ public class LineageEncryption {
 		long mask = ULong32.fromArray(buf);
 
 		currentKeys.decodeKey[0] ^= mask;
-		currentKeys.decodeKey[1] = ULong32.add(currentKeys.decodeKey[1],
-				0x287EFFC3L);
+		currentKeys.decodeKey[1] = ULong32.add(currentKeys.decodeKey[1], 0x287EFFC3L);
 
 		// updatekeyd( cp, d );
 		return buf;
@@ -157,14 +152,11 @@ public class LineageEncryption {
 	/**
 	 * Decrypts the data with the prepared keys.
 	 * 
-	 * @param buf
-	 *            the data to be decrypted, this arrays data is overwritten
+	 * @param buf the data to be decrypted, this arrays data is overwritten
 	 * @return char[] an 8 bit unsigned char array with the encrypted data
-	 * @throws NoEncryptionKeysSelectedException
-	 *             If no keys have been prepared
+	 * @throws NoEncryptionKeysSelectedException If no keys have been prepared
 	 */
-	public static byte[] decrypt(byte[] buf, int length, LineageKeys currentKeys)
-			throws NoEncryptionKeysSelectedException {
+	public static byte[] decrypt(byte[] buf, int length, LineageKeys currentKeys) throws NoEncryptionKeysSelectedException {
 		if (currentKeys == null) {
 			throw new NoEncryptionKeysSelectedException();
 		}
@@ -174,8 +166,7 @@ public class LineageEncryption {
 		long mask = ULong32.fromArray(buf);
 
 		currentKeys.decodeKey[0] ^= mask;
-		currentKeys.decodeKey[1] = ULong32.add(currentKeys.decodeKey[1],
-				0x287EFFC3L);
+		currentKeys.decodeKey[1] = ULong32.add(currentKeys.decodeKey[1], 0x287EFFC3L);
 
 		// updatekeyd( cp, d );
 		return buf;
@@ -184,8 +175,7 @@ public class LineageEncryption {
 	/**
 	 * Does the actual hardcore encryption.
 	 * 
-	 * @param buf
-	 *            the data to be encrypted, this arrays data is overwritten
+	 * @param buf the data to be encrypted, this arrays data is overwritten
 	 * @return char[] an 8 bit unsigned char array with the encrypted data
 	 */
 	private static char[] _encrypt(char[] buf, LineageKeys currentKeys) {
@@ -209,8 +199,7 @@ public class LineageEncryption {
 	/**
 	 * Does the actual hardcore encryption.
 	 * 
-	 * @param buf
-	 *            the data to be encrypted, this arrays data is overwritten
+	 * @param buf the data to be encrypted, this arrays data is overwritten
 	 * @return byte[] an 8 bit unsigned char array with the encrypted data
 	 */
 	private static byte[] _encrypt(byte[] buf, LineageKeys currentKeys) {
@@ -234,8 +223,7 @@ public class LineageEncryption {
 	/**
 	 * Does the actual hardcore decryption.
 	 * 
-	 * @param buf
-	 *            the data to be decrypted, this arrays data is overwritten
+	 * @param buf the data to be decrypted, this arrays data is overwritten
 	 * @return char[] an 8 bit unsigned char array with the encrypted data
 	 */
 	private static char[] _decrypt(char[] buf, LineageKeys currentKeys) {
@@ -265,8 +253,7 @@ public class LineageEncryption {
 	/**
 	 * Does the actual hardcore decryption.
 	 * 
-	 * @param buf
-	 *            the data to be decrypted, this arrays data is overwritten
+	 * @param buf the data to be decrypted, this arrays data is overwritten
 	 * @return byte[] an 8 bit unsigned char array with the encrypted data
 	 */
 	private static byte[] _decrypt(byte[] buf, int size, LineageKeys currentKeys) {

@@ -28,16 +28,10 @@ import java.util.logging.Logger;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.utils.SQLUtil;
 
-// Referenced classes of package net.l1j.server:
-// IdFactory
-
 public class LetterTable {
 	private static Logger _log = Logger.getLogger(LetterTable.class.getName());
 
 	private static LetterTable _instance;
-
-	public LetterTable() {
-	}
 
 	public static LetterTable getInstance() {
 		if (_instance == null) {

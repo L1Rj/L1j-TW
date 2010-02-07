@@ -19,7 +19,6 @@
 package net.l1j.server.command.executor;
 
 import java.util.Collection;
-import java.util.logging.Logger;
 
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -27,11 +26,6 @@ import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.serverpackets.S_WhoAmount;
 
 public class L1Who implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Who.class.getName());
-
-	private L1Who() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1Who();
 	}
@@ -39,8 +33,8 @@ public class L1Who implements L1CommandExecutor {
 	@Override
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
 		try {
-			Collection<L1PcInstance> players = L1World.getInstance()
-					.getAllPlayers();
+			Collection<L1PcInstance> players = L1World.getInstance().getAllPlayers();
+
 			String amount = String.valueOf(players.size());
 			S_WhoAmount s_whoamount = new S_WhoAmount(amount);
 			pc.sendPackets(s_whoamount);

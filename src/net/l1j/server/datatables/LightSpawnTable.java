@@ -65,7 +65,7 @@ public class LightSpawnTable {
 				L1Npc l1npc = NpcTable.getInstance().getTemplate(rs.getInt(2));
 				if (l1npc != null) {
 					String s = l1npc.getImpl();
-					Constructor constructor = Class.forName("net.l1j.server.model.instance." + s + "Instance").getConstructors()[0];
+					Constructor<?> constructor = Class.forName("net.l1j.server.model.instance." + s + "Instance").getConstructors()[0];
 					Object parameters[] = { l1npc };
 					L1FieldObjectInstance field = (L1FieldObjectInstance) constructor.newInstance(parameters);
 					field = (L1FieldObjectInstance) constructor.newInstance(parameters);

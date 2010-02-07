@@ -20,7 +20,6 @@ package net.l1j.server.command.executor;
 
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import net.l1j.server.GMCommandsConfig;
 import net.l1j.server.datatables.ItemTable;
@@ -31,12 +30,6 @@ import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1ItemSetItem;
 
 public class L1CreateItemSet implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1CreateItemSet.class
-			.getName());
-
-	private L1CreateItemSet() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1CreateItemSet();
 	}
@@ -54,8 +47,7 @@ public class L1CreateItemSet implements L1CommandExecutor {
 				L1Item temp = ItemTable.getInstance().getTemplate(item.getId());
 				if (!temp.isStackable() && 0 != item.getEnchant()) {
 					for (int i = 0; i < item.getAmount(); i++) {
-						L1ItemInstance inst = ItemTable.getInstance()
-								.createItem(item.getId());
+						L1ItemInstance inst = ItemTable.getInstance().createItem(item.getId());
 						inst.setEnchantLevel(item.getEnchant());
 						pc.getInventory().storeItem(inst);
 					}

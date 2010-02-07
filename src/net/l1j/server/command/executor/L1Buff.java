@@ -20,7 +20,6 @@ package net.l1j.server.command.executor;
 
 import java.util.Collection;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import javolution.util.FastTable;
 
@@ -33,11 +32,6 @@ import net.l1j.server.templates.L1Skills;
 import net.l1j.server.types.Base;
 
 public class L1Buff implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Buff.class.getName());
-
-	private L1Buff() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1Buff();
 	}
@@ -69,20 +63,17 @@ public class L1Buff implements L1CommandExecutor {
 
 			if (skill.getTarget().equals("buff")) {
 				for (L1PcInstance tg : players) {
-					new SkillUse().handleCommands(pc, skillId, tg.getId(), tg.getX(), tg.getY(),
-							null, time, Base.SKILL_TYPE[2]);
+					new SkillUse().handleCommands(pc, skillId, tg.getId(), tg.getX(), tg.getY(), null, time, Base.SKILL_TYPE[2]);
 				}
 			} else if (skill.getTarget().equals("none")) {
 				for (L1PcInstance tg : players) {
-					new SkillUse().handleCommands(tg, skillId, tg.getId(), tg.getX(), tg.getY(),
-							null, time, Base.SKILL_TYPE[4]);
+					new SkillUse().handleCommands(tg, skillId, tg.getId(), tg.getX(), tg.getY(), null, time, Base.SKILL_TYPE[4]);
 				}
 			} else {
 				pc.sendPackets(new S_SystemMessage("並非Buff系列技能。"));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(" 請輸入 " + cmdName
-					+ " [all|me] skillId time 。"));
+			pc.sendPackets(new S_SystemMessage(" 請輸入 " + cmdName + " [all|me] skillId time 。"));
 		}
 	}
 }

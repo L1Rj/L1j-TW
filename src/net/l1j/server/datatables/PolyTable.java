@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.datatables;
 
 import java.sql.Connection;
@@ -39,6 +38,7 @@ public class PolyTable {
 	private static PolyTable _instance;
 
 	private final FastMap<String, L1PolyMorph> _polymorphs = new FastMap<String, L1PolyMorph>();
+
 	private final FastMap<Integer, L1PolyMorph> _polyIdIndex = new FastMap<Integer, L1PolyMorph>();
 
 	public static PolyTable getInstance() {

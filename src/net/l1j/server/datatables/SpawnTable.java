@@ -187,7 +187,7 @@ public class SpawnTable {
 			pstm.setInt(12, pc.getMapId());
 			pstm.execute();
 		} catch (Exception e) {
-			NpcTable._log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
 			SQLUtil.close(pstm, con);
 		}

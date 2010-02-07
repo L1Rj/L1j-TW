@@ -41,17 +41,16 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 public class NpcActionTable {
-	private static Logger _log = Logger.getLogger(NpcActionTable.class
-			.getName());
+	private static Logger _log = Logger.getLogger(NpcActionTable.class.getName());
+
 	private static NpcActionTable _instance;
+
 	private final List<L1NpcAction> _actions = new FastTable<L1NpcAction>();
+
 	private final List<L1NpcAction> _talkActions = new FastTable<L1NpcAction>();
 
-	private List<L1NpcAction> loadAction(File file, String nodeName)
-
-	throws ParserConfigurationException, SAXException, IOException {
-		DocumentBuilder builder = DocumentBuilderFactory.newInstance()
-				.newDocumentBuilder();
+	private List<L1NpcAction> loadAction(File file, String nodeName) throws ParserConfigurationException, SAXException, IOException {
+		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document doc = builder.parse(file);
 
 		if (!doc.getDocumentElement().getNodeName().equalsIgnoreCase(nodeName)) {

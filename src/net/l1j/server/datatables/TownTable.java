@@ -32,9 +32,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1Town;
 import net.l1j.server.utils.SQLUtil;
 
-// Referenced classes of package net.l1j.server:
-// IdFactory
-
 public class TownTable {
 	private static Logger _log = Logger.getLogger(TownTable.class.getName());
 

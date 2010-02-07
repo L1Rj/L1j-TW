@@ -18,22 +18,15 @@
  */
 package net.l1j.server.command.executor;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1TrapInstance;
-import net.l1j.server.skills.SkillId;
 import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_SystemMessage;
-import static net.l1j.server.skills.SkillId.*;
+
+import static net.l1j.server.skills.SkillId.GMSTATUS_SHOWTRAPS;
 
 public class L1ShowTrap implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1ShowTrap.class.getName());
-
-	private L1ShowTrap() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1ShowTrap();
 	}

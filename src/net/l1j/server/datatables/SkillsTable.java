@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.datatables;
 
 import java.sql.Connection;
@@ -38,7 +37,6 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class SkillsTable {
-
 	private static Logger _log = Logger.getLogger(SkillsTable.class.getName());
 
 	private static SkillsTable _instance;

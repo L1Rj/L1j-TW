@@ -18,8 +18,6 @@
  */
 package net.l1j.server.command.executor;
 
-import java.util.logging.Logger;
-
 import javolution.util.FastTable;
 
 import net.l1j.server.datatables.FurnitureSpawnTable;
@@ -33,12 +31,6 @@ import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class L1DeleteGroundItem implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1DeleteGroundItem.class
-			.getName());
-
-	private L1DeleteGroundItem() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1DeleteGroundItem();
 	}
@@ -47,42 +39,34 @@ public class L1DeleteGroundItem implements L1CommandExecutor {
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
 		for (L1Object l1object : L1World.getInstance().getObject()) {
 			if (l1object instanceof L1ItemInstance) {
-				L1ItemInstance l1iteminstance = (L1ItemInstance) l1object;
-				if (l1iteminstance.getX() == 0 && l1iteminstance.getY() == 0) { // 地面上のアイテムではなく、誰かの所有物
+				L1ItemInstance item = (L1ItemInstance) l1object;
+				if (item.getX() == 0 && item.getY() == 0) { // 地面上のアイテムではなく、誰かの所有物
 					continue;
 				}
 
-				FastTable<L1PcInstance> players = L1World.getInstance()
-						.getVisiblePlayer(l1iteminstance, 0);
+				FastTable<L1PcInstance> players = L1World.getInstance().getVisiblePlayer(item, 0);
 				if (0 == players.size()) {
-					L1Inventory groundInventory = L1World.getInstance()
-							.getInventory(l1iteminstance.getX(),
-									l1iteminstance.getY(),
-									l1iteminstance.getMapId());
-					int itemId = l1iteminstance.getItem().getItemId();
+					L1Inventory groundInventory = L1World.getInstance().getInventory(item.getX(), item.getY(), item.getMapId());
+					int itemId = item.getItem().getItemId();
 					if (itemId == 40314 || itemId == 40316) { // ペットのアミュレット
-						PetTable.getInstance()
-								.deletePet(l1iteminstance.getId());
+						PetTable.getInstance().deletePet(item.getId());
 					} else if (itemId >= 49016 && itemId <= 49025) { // 便箋
 						LetterTable lettertable = new LetterTable();
-						lettertable.deleteLetter(l1iteminstance.getId());
+						lettertable.deleteLetter(item.getId());
 					} else if (itemId >= 41383 && itemId <= 41400) { // 家具
 						if (l1object instanceof L1FurnitureInstance) {
 							L1FurnitureInstance furniture = (L1FurnitureInstance) l1object;
-							if (furniture.getItemObjId() == l1iteminstance
-									.getId()) { // 既に引き出している家具
-								FurnitureSpawnTable.getInstance()
-										.deleteFurniture(furniture);
+							if (furniture.getItemObjId() == item.getId()) { // 既に引き出している家具
+								FurnitureSpawnTable.getInstance().deleteFurniture(furniture);
 							}
 						}
 					}
-					groundInventory.deleteItem(l1iteminstance);
-					L1World.getInstance().removeVisibleObject(l1iteminstance);
-					L1World.getInstance().removeObject(l1iteminstance);
+					groundInventory.deleteItem(item);
+					L1World.getInstance().removeVisibleObject(item);
+					L1World.getInstance().removeObject(item);
 				}
 			}
 		}
-		L1World.getInstance().broadcastServerMessage(
-				"地面上的物品已被GM刪除。");
+		L1World.getInstance().broadcastServerMessage("地面上的物品已被GM刪除。");
 	}
 }

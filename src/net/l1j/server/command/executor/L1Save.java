@@ -18,37 +18,25 @@
 */
 package net.l1j.server.command.executor;
 
-
-import java.util.logging.Logger;
-
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
-
 public class L1Save implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Save.class.getName());
+	public static L1CommandExecutor getInstance() {
+		return new L1Save();
+	}
 
-    private L1Save() {
-    }
-
-    public static L1CommandExecutor getInstance() {
-        return new L1Save();
-    }
-
-    //@Override
-    public void execute(L1PcInstance pc, String cmdName, String arg) {
-        try{        
-            for (L1PcInstance pc1 : L1World.getInstance().getAllPlayers())
-            {
-            pc1.save();
-            pc1.saveInventory();
-            pc.sendPackets(new S_SystemMessage("伺服器資料儲存完畢。"));
-            System.out.println((new StringBuilder()).append("伺服器上的人物資料已儲存到資料庫中。 剩餘記憶體:").append(
-            Runtime.getRuntime().freeMemory() / 1024 / 1024).append("MB").toString());
-    }
-        }
-        catch (Exception e) {
-    }
-    }
+	@Override
+	public void execute(L1PcInstance pc, String cmdName, String arg) {
+		try {
+			for (L1PcInstance pc1 : L1World.getInstance().getAllPlayers()) {
+				pc1.save();
+				pc1.saveInventory();
+				pc.sendPackets(new S_SystemMessage("伺服器資料儲存完畢。"));
+				System.out.println((new StringBuilder()).append("伺服器上的人物資料已儲存到資料庫中。 剩餘記憶體:").append(Runtime.getRuntime().freeMemory() / 1024 / 1024).append("MB").toString());
+			}
+		} catch (Exception e) {
+		}
+	}
 }

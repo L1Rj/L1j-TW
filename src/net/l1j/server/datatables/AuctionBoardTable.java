@@ -23,8 +23,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;	//修正血盟小屋報錯格式
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -35,18 +34,14 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.templates.L1AuctionBoard;
 import net.l1j.server.utils.SQLUtil;
 
-// Referenced classes of package net.l1j.server:
-// IdFactory
-
 public class AuctionBoardTable {
-
 	private static Logger _log = Logger.getLogger(AuctionBoardTable.class.getName());
 
 	private static AuctionBoardTable _instance;
 
 	private final Map<Integer, L1AuctionBoard> _boards = new ConcurrentHashMap<Integer, L1AuctionBoard>();
 
-	private static AuctionBoardTable getInstance() {
+	public static AuctionBoardTable getInstance() {
 		if (_instance == null) {
 			_instance = new AuctionBoardTable();
 		}
@@ -105,12 +100,8 @@ public class AuctionBoardTable {
 			pstm.setInt(1, board.getHouseId());
 			pstm.setString(2, board.getHouseName());
 			pstm.setInt(3, board.getHouseArea());
-			/*
-			 * String fm = DateFormat.getDateTimeInstance().format(
-			 * board.getDeadline().getTime()); // 原有格式未定亦會出錯問題
-			 */
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); // TODO 盟屋買賣系統時間自動更新 by pigermin
-			String fm = sdf.format(board.getDeadline().getTime());//end
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			String fm = sdf.format(board.getDeadline().getTime());
 			pstm.setString(4, fm);
 			pstm.setInt(5, board.getPrice());
 			pstm.setString(6, board.getLocation());
@@ -136,12 +127,8 @@ public class AuctionBoardTable {
 			pstm = con.prepareStatement("UPDATE board_auction SET house_name=?, house_area=?, deadline=?, price=?, location=?, old_owner=?, old_owner_id=?, bidder=?, bidder_id=? WHERE house_id=?");
 			pstm.setString(1, board.getHouseName());
 			pstm.setInt(2, board.getHouseArea());
-			/*
-			 * String fm = DateFormat.getDateTimeInstance().format(
-			 * board.getDeadline().getTime()); // 原有格式未定義 導致報錯
-			 */
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); //TODO 盟屋買賣系統時間自動更新 by pigermin
-			String fm = sdf.format(board.getDeadline().getTime());//end
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			String fm = sdf.format(board.getDeadline().getTime());
 			pstm.setString(3, fm);
 			pstm.setInt(4, board.getPrice());
 			pstm.setString(5, board.getLocation());

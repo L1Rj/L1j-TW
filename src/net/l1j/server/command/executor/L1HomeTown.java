@@ -19,18 +19,12 @@
 package net.l1j.server.command.executor;
 
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import net.l1j.server.HomeTownTimeController;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1HomeTown implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1HomeTown.class.getName());
-
-	private L1HomeTown() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1HomeTown();
 	}
@@ -48,8 +42,7 @@ public class L1HomeTown implements L1CommandExecutor {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(
-					"請輸入 " + cmdName + " daily|monthly。"));
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " daily|monthly。"));
 		}
 	}
 }

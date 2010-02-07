@@ -60,7 +60,7 @@ public class IdFactory {
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("SELECT MAX(id)+1 AS NEXTID FROM (SELECT id FROM character_items UNION ALL SELECT objid AS id FROM character_pets UNION ALL SELECT id FROM character_teleport UNION ALL SELECT id FROM character_warehouse UNION ALL SELECT id FROM character_elf_warehouse UNION ALL SELECT objid AS id FROM characters UNION ALL SELECT clan_id AS id FROM clan_data UNION ALL SELECT id FROM clan_warehouse) t");
+			pstm = con.prepareStatement("SELECT MAX(id)+1 AS NEXTID FROM (SELECT id FROM character_items UNION ALL SELECT objid AS id FROM pets UNION ALL SELECT id FROM character_teleport UNION ALL SELECT id FROM character_warehouse UNION ALL SELECT id FROM character_elf_warehouse UNION ALL SELECT objid AS id FROM characters UNION ALL SELECT clan_id AS id FROM clan_data UNION ALL SELECT id FROM clan_warehouse) t");
 			rs = pstm.executeQuery();
 
 			int id = 0;

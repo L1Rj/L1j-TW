@@ -33,6 +33,8 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.utils.SQLUtil;
 
 public final class MapsTable {
+	private static Logger _log = Logger.getLogger(MapsTable.class.getName());
+
 	private class MapData {
 		public int startX = 0;
 		public int endX = 0;
@@ -52,8 +54,6 @@ public final class MapsTable {
 		public boolean isUsableItem = false;
 		public boolean isUsableSkill = false;
 	}
-
-	private static Logger _log = Logger.getLogger(MapsTable.class.getName());
 
 	private static MapsTable _instance;
 

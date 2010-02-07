@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.datatables;
 
 import net.l1j.Config;
@@ -25,9 +24,6 @@ import net.l1j.Config;
  * 經驗值テーブルを提供するクラス
  */
 public final class ExpTable {
-	private ExpTable() {
-	}
-
 	public static final int MAX_LEVEL = 99;
 
 	public static final int MAX_EXP = 0x6ecf16da;
@@ -35,8 +31,7 @@ public final class ExpTable {
 	/**
 	 * 指定されたレベルになるのに必要な累積經驗值を求める。
 	 * 
-	 * @param level
-	 *            レベル
+	 * @param level レベル
 	 * @return 必要な累積經驗值
 	 */
 	public static int getExpByLevel(int level) {
@@ -46,8 +41,7 @@ public final class ExpTable {
 	/**
 	 * 次のレベルになるのに必要な經驗值を求める。
 	 * 
-	 * @param level
-	 *            現在のレベル
+	 * @param level 現在のレベル
 	 * @return 必要な經驗值
 	 */
 	public static int getNeedExpNextLevel(int level) {
@@ -57,8 +51,7 @@ public final class ExpTable {
 	/**
 	 * 累積經驗值からレベルを求める。
 	 * 
-	 * @param exp
-	 *            累積經驗值
+	 * @param exp 累積經驗值
 	 * @return 求められたレベル
 	 */
 	public static int getLevelByExp(int exp) {
@@ -80,8 +73,7 @@ public final class ExpTable {
 	/**
 	 * 現在のレベルから、經驗值のペナルティーレートを求める
 	 * 
-	 * @param level
-	 *            現在のレベル
+	 * @param level 現在のレベル
 	 * @return 求められた經驗值のペナルティーレート
 	 */
 	public static double getPenaltyRate(int level) {
@@ -115,6 +107,7 @@ public final class ExpTable {
 			0x594ffe32, 0x5b764d76, 0x5d9c9cba, 0x5fc2ebfe, 0x61e93b42,
 			0x640f8a86, 0x6635d9ca, 0x685c290e, 0x6a827852, 0x6ca8c796,
 			0x6ecf16da, };
+
 	/**
 	 * 死亡時経験値ペナルティテーブル
 	 */

@@ -33,11 +33,7 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.templates.L1Pet;
 import net.l1j.server.utils.SQLUtil;
 
-// Referenced classes of package net.l1j.server:
-// IdFactory
-
 public class PetTable {
-
 	private static Logger _log = Logger.getLogger(PetTable.class.getName());
 
 	private static PetTable _instance;

@@ -18,17 +18,10 @@
  */
 package net.l1j.server.command.executor;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1Describe implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Describe.class.getName());
-
-	private L1Describe() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1Describe();
 	}
@@ -37,8 +30,7 @@ public class L1Describe implements L1CommandExecutor {
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
 		try {
 			StringBuilder msg = new StringBuilder();
-			pc.sendPackets(new S_SystemMessage("-- describe: " + pc.getName()
-					+ " --"));
+			pc.sendPackets(new S_SystemMessage("-- describe: " + pc.getName() + " --"));
 			int hpr = pc.getHpr() + pc.getInventory().hpRegenPerTick();
 			int mpr = pc.getMpr() + pc.getInventory().mpRegenPerTick();
 			msg.append("Dmg: +" + pc.getDmgup() + " / ");

@@ -36,11 +36,7 @@ import net.l1j.server.WarTimeController;
 import net.l1j.server.templates.L1Castle;
 import net.l1j.server.utils.SQLUtil;
 
-// Referenced classes of package net.l1j.server:
-// IdFactory
-
 public class CastleTable {
-
 	private static Logger _log = Logger.getLogger(CastleTable.class.getName());
 
 	private static CastleTable _instance;
@@ -105,12 +101,8 @@ public class CastleTable {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("UPDATE castle SET name=?, war_time=?, tax_rate=?, public_money=? WHERE castle_id=?");
 			pstm.setString(1, castle.getName());
-			// 盟屋買賣系統時間自動更新 by pigermin
-			// String fm = DateFormat.getDateTimeInstance().format(
-			//		castle.getWarTime().getTime());
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			String fm = sdf.format(castle.getWarTime().getTime());
-			// 盟屋買賣系統時間自動更新 by pigermin
 			pstm.setString(2, fm);
 			pstm.setInt(3, castle.getTaxRate());
 			pstm.setInt(4, castle.getPublicMoney());

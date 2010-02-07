@@ -30,9 +30,6 @@ import net.l1j.server.utils.SQLUtil;
 import static net.l1j.server.skills.SkillId.*;
 
 public class CharBuffTable {
-	private CharBuffTable() {
-	}
-
 	private static Logger _log = Logger.getLogger(CharBuffTable.class.getName());
 
 	private static final int[] buffSkill = { 2, 67, // ライト、シェイプチェンジ

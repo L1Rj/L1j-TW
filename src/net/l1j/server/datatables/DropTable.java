@@ -48,11 +48,7 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Drop;
 import net.l1j.server.utils.SQLUtil;
 
-// Referenced classes of package net.l1j.server.templates:
-// L1Npc, L1Item, ItemTable
-
 public class DropTable {
-
 	private static Logger _log = Logger.getLogger(DropTable.class.getName());
 
 	private static DropTable _instance;
@@ -208,7 +204,7 @@ public class DropTable {
 	}
 
 	// ドロップを分配
-	public void dropShare(L1NpcInstance npc, FastTable acquisitorList, FastTable hateList) {
+	public void dropShare(L1NpcInstance npc, FastTable<?> acquisitorList, FastTable<?> hateList) {
 		L1Inventory inventory = npc.getInventory();
 		if (inventory.getSize() == 0) {
 			return;

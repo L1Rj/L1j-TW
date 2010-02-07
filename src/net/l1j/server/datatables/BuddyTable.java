@@ -23,7 +23,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
- // import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,13 +33,7 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.L1Buddy;
 import net.l1j.server.utils.SQLUtil;
 
-// import net.l1j.server.model.instance.L1PcInstance;
-
-// Referenced classes of package net.l1j.server:
-// IdFactory
-
 public class BuddyTable {
-
 	private static Logger _log = Logger.getLogger(BuddyTable.class.getName());
 
 	private static BuddyTable _instance;

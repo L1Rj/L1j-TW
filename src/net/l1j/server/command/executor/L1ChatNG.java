@@ -19,7 +19,6 @@
 package net.l1j.server.command.executor;
 
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
@@ -31,11 +30,6 @@ import net.l1j.server.serverpackets.S_SystemMessage;
 import static net.l1j.server.skills.SkillId.STATUS_CHAT_PROHIBITED;
 
 public class L1ChatNG implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1ChatNG.class.getName());
-
-	private L1ChatNG() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1ChatNG();
 	}

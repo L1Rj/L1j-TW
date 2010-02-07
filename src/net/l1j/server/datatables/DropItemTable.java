@@ -35,6 +35,7 @@ import net.l1j.server.utils.SQLUtil;
 public final class DropItemTable {
 	private class dropItemData {
 		public double dropRate = 1;
+
 		public double dropAmount = 1;
 	}
 

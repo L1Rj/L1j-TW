@@ -21,9 +21,7 @@ package net.l1j.server.command.executor;
 import net.l1j.server.model.instance.L1PcInstance;
 
 /**
- * コマンド實行處理インターフェース
- * 
- * コマンド處理クラスは、このインターフェースメソッド以外に<br>
+ * コマンド實行處理インターフェース コマンド處理クラスは、このインターフェースメソッド以外に<br>
  * public static L1CommandExecutor getInstance()<br>
  * を實裝しなければならない。
  * 通常、自クラスをインスタンス化して返すが、必要に應じてキャッシュされたインスタンスを返したり、他のクラスをインスタンス化して返すことができる。
@@ -32,12 +30,9 @@ public interface L1CommandExecutor {
 	/**
 	 * このコマンドを實行する。
 	 * 
-	 * @param pc
-	 *            實行者
-	 * @param cmdName
-	 *            實行されたコマンド名
-	 * @param arg
-	 *            引數
+	 * @param pc 實行者
+	 * @param cmdName 實行されたコマンド名
+	 * @param arg 引數
 	 */
 	public void execute(L1PcInstance pc, String cmdName, String arg);
 }

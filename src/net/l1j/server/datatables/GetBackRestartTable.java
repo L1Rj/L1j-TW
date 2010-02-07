@@ -32,9 +32,6 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.templates.L1GetBackRestart;
 import net.l1j.server.utils.SQLUtil;
 
-// Referenced classes of package net.l1j.server:
-// IdFactory
-
 public class GetBackRestartTable {
 	private static Logger _log = Logger.getLogger(GetBackRestartTable.class.getName());
 

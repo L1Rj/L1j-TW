@@ -18,18 +18,11 @@
  */
 package net.l1j.server.command.executor;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.utils.BuffUtil;
 
 public class L1Speed implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Speed.class.getName());
-
-	private L1Speed() {
-	}
-
 	public static L1CommandExecutor getInstance() {
 		return new L1Speed();
 	}
@@ -40,7 +33,7 @@ public class L1Speed implements L1CommandExecutor {
 			BuffUtil.haste(pc, 3600 * 1000);
 			BuffUtil.brave(pc, 3600 * 1000);
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage( cmdName + " 指令錯誤"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " 指令錯誤"));
 		}
 	}
 }

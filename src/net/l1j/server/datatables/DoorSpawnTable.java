@@ -29,7 +29,6 @@ import java.util.logging.Logger;
 
 import javolution.util.FastTable;
 
-import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.IdFactory;
 import net.l1j.server.model.L1World;
@@ -72,7 +71,7 @@ public class DoorSpawnTable {
 				L1Npc l1npc = NpcTable.getInstance().getTemplate(81158);
 				if (l1npc != null) {
 					String s = l1npc.getImpl();
-					Constructor constructor = Class.forName("net.l1j.server.model.instance." + s + "Instance").getConstructors()[0];
+					Constructor<?> constructor = Class.forName("net.l1j.server.model.instance." + s + "Instance").getConstructors()[0];
 					Object parameters[] = { l1npc };
 					L1DoorInstance door = (L1DoorInstance) constructor.newInstance(parameters);
 					door = (L1DoorInstance) constructor.newInstance(parameters);
