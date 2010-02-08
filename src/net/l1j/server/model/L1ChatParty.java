@@ -19,7 +19,6 @@
 package net.l1j.server.model;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javolution.util.FastTable;
 
@@ -28,15 +27,8 @@ import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-// Referenced classes of package net.l1j.server.model:
-// L1ChatParty
-
 public class L1ChatParty {
-	private static final Logger _log = Logger.getLogger(L1ChatParty.class
-			.getName());
-
-	private final List<L1PcInstance> _membersList =
-			new FastTable<L1PcInstance>();
+	private final List<L1PcInstance> _membersList = new FastTable<L1PcInstance>();
 
 	private L1PcInstance _leader = null;
 
@@ -44,8 +36,7 @@ public class L1ChatParty {
 		if (pc == null) {
 			throw new NullPointerException();
 		}
-		if (_membersList.size() == Config.MAX_CHAT_PT && !_leader.isGm()
-				|| _membersList.contains(pc)) {
+		if (_membersList.size() == Config.MAX_CHAT_PT && !_leader.isGm() || _membersList.contains(pc)) {
 			return;
 		}
 
@@ -158,5 +149,4 @@ public class L1ChatParty {
 	private void sendLeftMessage(L1PcInstance sendTo, L1PcInstance left) {
 		sendTo.sendPackets(new S_ServerMessage(SystemMessageId.$420, left.getName()));
 	}
-
 }

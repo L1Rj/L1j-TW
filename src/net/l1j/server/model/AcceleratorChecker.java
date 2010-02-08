@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.model;
 
 import java.util.EnumMap;
@@ -34,9 +33,7 @@ import net.l1j.server.serverpackets.S_SystemMessage;
  * 加速器の使用をチェックするクラス。
  */
 public class AcceleratorChecker {
-
-	private static final Logger _log =
-			Logger.getLogger(AcceleratorChecker.class.getName());
+	private static final Logger _log = Logger.getLogger(AcceleratorChecker.class.getName());
 
 	private final L1PcInstance _pc;
 
@@ -60,11 +57,9 @@ public class AcceleratorChecker {
 
 	private static final double CRAZY_RATE = 0.1;
 
-	private final EnumMap<ACT_TYPE, Long> _actTimers =
-			new EnumMap<ACT_TYPE, Long>(ACT_TYPE.class);
+	private final EnumMap<ACT_TYPE, Long> _actTimers = new EnumMap<ACT_TYPE, Long>(ACT_TYPE.class);
 
-	private final EnumMap<ACT_TYPE, Long> _checkTimers =
-			new EnumMap<ACT_TYPE, Long>(ACT_TYPE.class);
+	private final EnumMap<ACT_TYPE, Long> _checkTimers = new EnumMap<ACT_TYPE, Long>(ACT_TYPE.class);
 
 	public static enum ACT_TYPE {
 		MOVE, ATTACK, SPELL_DIR, SPELL_NODIR
@@ -91,8 +86,7 @@ public class AcceleratorChecker {
 	/**
 	 * アクションの間隔が不正でないかチェックし、適宜處理を行う。
 	 * 
-	 * @param type -
-	 *            チェックするアクションのタイプ
+	 * @param type - チェックするアクションのタイプ
 	 * @return 問題がなかった場合は0、不正であった場合は1、不正動作が一定回數に達した ためプレイヤーを切斷した場合は2を返す。
 	 */
 	public int checkInterval(ACT_TYPE type) {
@@ -120,10 +114,8 @@ public class AcceleratorChecker {
 		}
 
 		// 檢証用
-// double rate = (double) interval / rightInterval;
-// System.out.println(String.format("%s: %d / %d = %.2f (o-%d x-%d)",
-// type.toString(), interval, rightInterval, rate,
-// _justiceCount, _injusticeCount));
+		// double rate = (double) interval / rightInterval;
+		// System.out.println(String.format("%s: %d / %d = %.2f (o-%d x-%d)", type.toString(), interval, rightInterval, rate, _justiceCount, _injusticeCount));
 
 		_actTimers.put(type, now);
 		return result;
@@ -144,34 +136,28 @@ public class AcceleratorChecker {
 	/**
 	 * PCの狀態から指定された種類のアクションの正しいインターバル(ms)を計算し、返す。
 	 * 
-	 * @param type -
-	 *            アクションの種類
-	 * @param _pc -
-	 *            調べるPC
+	 * @param type - アクションの種類
+	 * @param _pc - 調べるPC
 	 * @return 正しいインターバル(ms)
 	 */
 	private int getRightInterval(ACT_TYPE type) {
 		int interval;
 
 		switch (type) {
-		case ATTACK:
-			interval = SprTable.getInstance().getAttackSpeed(
-					_pc.getTempCharGfx(), _pc.getCurrentWeapon() + 1);
+			case ATTACK:
+				interval = SprTable.getInstance().getAttackSpeed(_pc.getTempCharGfx(), _pc.getCurrentWeapon() + 1);
 			break;
-		case MOVE:
-			interval = SprTable.getInstance().getMoveSpeed(
-					_pc.getTempCharGfx(), _pc.getCurrentWeapon());
+			case MOVE:
+				interval = SprTable.getInstance().getMoveSpeed(_pc.getTempCharGfx(), _pc.getCurrentWeapon());
 			break;
-		case SPELL_DIR:
-			interval = SprTable.getInstance().getDirSpellSpeed(
-							_pc.getTempCharGfx());
+			case SPELL_DIR:
+				interval = SprTable.getInstance().getDirSpellSpeed(_pc.getTempCharGfx());
 			break;
-		case SPELL_NODIR:
-			interval = SprTable.getInstance().getNodirSpellSpeed(
-							_pc.getTempCharGfx());
+			case SPELL_NODIR:
+				interval = SprTable.getInstance().getNodirSpellSpeed(_pc.getTempCharGfx());
 			break;
-		default:
-			return 0;
+			default:
+				return 0;
 		}
 
 		if (_pc.isHaste()) {
@@ -195,10 +181,10 @@ public class AcceleratorChecker {
 		if (_pc.isCrazy()) {
 			interval *= CRAZY_RATE;
 		}
-		if(_pc.getMapId() == 5143){ //寵物競速地圖
+		if (_pc.getMapId() == 5143) { // 寵物競速地圖
 			interval *= 0.1;
 		}
-		if(_pc.getGfxId() == 6284){//變身南瓜怪
+		if (_pc.getGfxId() == 6284) {// 變身南瓜怪
 			interval *= 0.1;
 		}
 

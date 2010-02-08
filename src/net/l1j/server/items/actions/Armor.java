@@ -52,8 +52,7 @@ public class Armor {
 				return;
 			}
 
-			if (type == 13 && pcInventory.getTypeEquipped(2, 7) >= 1 || type == 7
-					&& pcInventory.getTypeEquipped(2, 13) >= 1) { // 臂甲與盾牌不可同時裝備
+			if (type == 13 && pcInventory.getTypeEquipped(2, 7) >= 1 || type == 7 && pcInventory.getTypeEquipped(2, 13) >= 1) { // 臂甲與盾牌不可同時裝備
 				activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$124));
 				return;
 			}

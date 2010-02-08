@@ -48,8 +48,11 @@ import net.l1j.server.utils.RandomArrayList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TreasureBox {
-
 	private static Logger _log = Logger.getLogger(TreasureBox.class.getName());
+
+	private static final FastMap<Integer, TreasureBox> _dataMap = new FastMap<Integer, TreasureBox>();
+
+	private static final String PATH = "./data/xml/Item/TreasureBox.xml";
 
 	@XmlAccessorType(XmlAccessType.FIELD)
 	@XmlRootElement(name = "TreasureBoxList")
@@ -94,11 +97,6 @@ public class TreasureBox {
 		RANDOM, SPECIFIC
 	}
 
-	private static final String PATH = "./data/xml/Item/TreasureBox.xml";
-
-	private static final FastMap<Integer, TreasureBox> _dataMap =
-			new FastMap<Integer, TreasureBox>();
-
 	/**
 	 * 指定されたIDのTreasureBoxを返す。
 	 * 
@@ -141,8 +139,7 @@ public class TreasureBox {
 			_totalChance += each.getChance();
 			if (ItemTable.getInstance().getTemplate(each.getItemId()) == null) {
 				getItems().remove(each);
-				_log.warning("對象 ID ：" + each.getItemId()
-						+ " 無法找到對應的Template。");
+				_log.warning("對象 ID ：" + each.getItemId() + " 無法找到對應的Template。");
 			}
 		}
 		if (getTotalChance() != 0 && getTotalChance() != 1000000) {
@@ -154,9 +151,7 @@ public class TreasureBox {
 		PerformanceTimer timer = new PerformanceTimer();
 		System.out.print("╚》正在讀取 TreasureBox...");
 		try {
-			JAXBContext context =
-					JAXBContext
-							.newInstance(TreasureBox.TreasureBoxList.class);
+			JAXBContext context = JAXBContext.newInstance(TreasureBox.TreasureBoxList.class);
 
 			Unmarshaller um = context.createUnmarshaller();
 
@@ -175,12 +170,10 @@ public class TreasureBox {
 	}
 
 	/**
-	 * TreasureBoxを開けるPCにアイテムを入手させる。PCがアイテムを持ちきれなかった場合は
-	 * アイテムは地面に落ちる。
+	 * TreasureBoxを開けるPCにアイテムを入手させる。PCがアイテムを持ちきれなかった場合は アイテムは地面に落ちる。
 	 * 
 	 * @param pc - TreasureBoxを開けるPC
-	 * @return 開封した結果何らかのアイテムが出てきた場合はtrueを返す。
-	 *         持ちきれず地面に落ちた場合もtrueになる。
+	 * @return 開封した結果何らかのアイテムが出てきた場合はtrueを返す。 持ちきれず地面に落ちた場合もtrueになる。
 	 */
 	public boolean open(L1PcInstance pc) {
 		L1ItemInstance item = null;
@@ -194,7 +187,6 @@ public class TreasureBox {
 					storeItem(pc, item);
 				}
 			}
-
 		} else if (getType().equals(TYPE.RANDOM)) {
 			// 出るアイテムがランダムに決まるもの
 			int chance = 0;
@@ -221,8 +213,7 @@ public class TreasureBox {
 			int itemId = getBoxId();
 
 			// 魂の結晶の破片、魔族のスクロール、ブラックエントの實
-			if (itemId == 40576 || itemId == 40577 || itemId == 40578
-					|| itemId == 40411 || itemId == 49013) {
+			if (itemId == 40576 || itemId == 40577 || itemId == 40578 || itemId == 40411 || itemId == 49013) {
 				pc.death(null); // キャラクターを死亡させる
 			}
 			return true;

@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.model;
 
 import java.io.Serializable;
@@ -24,9 +23,6 @@ import java.io.Serializable;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.map.L1Map;
 import net.l1j.server.model.map.L1WorldMap;
-
-// Referenced classes of package net.l1j.server.model:
-// L1PcInstance, L1Character
 
 /**
  * ワールド上に存在する全てのオブジェクトのベースクラス
@@ -46,8 +42,7 @@ public class L1Object implements Serializable {
 	/**
 	 * オブジェクトが存在するマップのマップIDを設定する
 	 * 
-	 * @param mapId
-	 *            マップID
+	 * @param mapId マップID
 	 */
 	public void setMap(short mapId) {
 		_loc.setMap(L1WorldMap.getInstance().getMap(mapId));
@@ -55,7 +50,6 @@ public class L1Object implements Serializable {
 
 	/**
 	 * オブジェクトが存在するマップを保持するL1Mapオブジェクトを返す
-	 * 
 	 */
 	public L1Map getMap() {
 		return _loc.getMap();
@@ -64,8 +58,7 @@ public class L1Object implements Serializable {
 	/**
 	 * オブジェクトが存在するマップを設定する
 	 * 
-	 * @param map
-	 *            オブジェクトが存在するマップを保持するL1Mapオブジェクト
+	 * @param map オブジェクトが存在するマップを保持するL1Mapオブジェクト
 	 */
 	public void setMap(L1Map map) {
 		if (map == null) {
@@ -86,8 +79,7 @@ public class L1Object implements Serializable {
 	/**
 	 * オブジェクトを一意に識別するIDを設定する
 	 * 
-	 * @param id
-	 *            オブジェクトID
+	 * @param id オブジェクトID
 	 */
 	public void setId(int id) {
 		_id = id;
@@ -105,8 +97,7 @@ public class L1Object implements Serializable {
 	/**
 	 * オブジェクトが存在する座標のX值を設定する
 	 * 
-	 * @param x
-	 *            座標のX值
+	 * @param x 座標のX值
 	 */
 	public void setX(int x) {
 		_loc.setX(x);
@@ -124,8 +115,7 @@ public class L1Object implements Serializable {
 	/**
 	 * オブジェクトが存在する座標のY值を設定する
 	 * 
-	 * @param y
-	 *            座標のY值
+	 * @param y 座標のY值
 	 */
 	public void setY(int y) {
 		_loc.setY(y);
@@ -178,8 +168,7 @@ public class L1Object implements Serializable {
 	/**
 	 * オブジェクトがプレイヤーの畫面內に入った(認識された)際に呼び出される。
 	 * 
-	 * @param perceivedFrom
-	 *            このオブジェクトを認識したPC
+	 * @param perceivedFrom このオブジェクトを認識したPC
 	 */
 	public void onPerceive(L1PcInstance perceivedFrom) {
 	}
@@ -187,8 +176,7 @@ public class L1Object implements Serializable {
 	/**
 	 * オブジェクトへのアクションが發生した際に呼び出される
 	 * 
-	 * @param actionFrom
-	 *            アクションを起こしたPC
+	 * @param actionFrom アクションを起こしたPC
 	 */
 	public void onAction(L1PcInstance actionFrom) {
 	}
@@ -196,8 +184,7 @@ public class L1Object implements Serializable {
 	/**
 	 * オブジェクトが話しかけられたとき呼び出される
 	 * 
-	 * @param talkFrom
-	 *            話しかけたPC
+	 * @param talkFrom 話しかけたPC
 	 */
 	public void onTalkAction(L1PcInstance talkFrom) {
 	}

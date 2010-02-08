@@ -18,7 +18,6 @@
  */
 package net.l1j.server.model;
 
-import java.util.logging.Logger;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,8 +25,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Disconnect;
 
 public class L1PcDeleteTimer extends TimerTask {
-	private static final Logger _log = Logger.getLogger(L1PcDeleteTimer.class
-			.getName());
+	private final L1PcInstance _pc;
 
 	public L1PcDeleteTimer(L1PcInstance pc) {
 		_pc = pc;
@@ -43,7 +41,4 @@ public class L1PcDeleteTimer extends TimerTask {
 		Timer timer = new Timer();
 		timer.schedule(this, 10 * 60 * 1000);
 	}
-
-	private final L1PcInstance _pc;
-
 }

@@ -46,12 +46,9 @@ import net.l1j.server.utils.RandomArrayList;
 
 public class L1PolyRace {
 
-	/***	[變身清單]
-	 * 
-	 * 		資料提供 CTKI 
-	 * 
-	 * 		有錯請去幹蹻他 :)
-	 */  
+	/***
+	 * [變身清單] 資料提供 CTKI 有錯請去幹蹻他 :)
+	 */
 	private int[] polyList = {
 			936, 3134, 1642, 931, 96, 4038, 938, 929, 1540, 3783, 2145, 934, 3918, 3199, 3184, 3132,
 			3107, 3188, 3211, 3143, 3182, 3156, 3154, 3178, 4133, 5089, 945, 4171, 2541, 2001, 1649,
@@ -119,7 +116,7 @@ public class L1PolyRace {
 		L1Teleport.teleport(pc, 32768, 32849, (short) 5143, 6, true);
 	}
 
-	private FastTable<L1PcInstance> orderList = new FastTable();
+	private FastTable<L1PcInstance> orderList = new FastTable<L1PcInstance>();
 
 	public void removeOrderList(L1PcInstance pc) {
 		orderList.remove(pc);
@@ -266,11 +263,11 @@ public class L1PolyRace {
 		}
 	}
 
-	private FastTable<L1PcInstance> position = new FastTable();
+	private FastTable<L1PcInstance> position = new FastTable<L1PcInstance>();
 
 	//判斷排名
 	private void comparePosition() {
-		FastTable<L1PcInstance> temp = new FastTable();
+		FastTable<L1PcInstance> temp = new FastTable<L1PcInstance>();
 		int size = playerList.size();
 		int count = 0;
 		while (size > count) {

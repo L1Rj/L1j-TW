@@ -41,10 +41,9 @@ import net.l1j.server.storage.CharactersItemStorage;
 public class Letter {
 	private static Logger _log = Logger.getLogger(Letter.class.getName());
 
-	public static boolean writeLetter(int itemId, L1PcInstance pc, int letterCode,
-			String letterReceiver, byte[] letterText) {
-
+	public static boolean writeLetter(int itemId, L1PcInstance pc, int letterCode, String letterReceiver, byte[] letterText) {
 		int newItemId = 0;
+
 		if (itemId == 40310) {
 			newItemId = 49016;
 		} else if (itemId == 40730) {
@@ -68,8 +67,7 @@ public class Letter {
 		return true;
 	}
 
-	public static boolean writeClanLetter(int itemId, L1PcInstance pc, int letterCode,
-			String letterReceiver, byte[] letterText) {
+	public static boolean writeClanLetter(int itemId, L1PcInstance pc, int letterCode, String letterReceiver, byte[] letterText) {
 		L1Clan targetClan = null;
 		for (L1Clan clan : L1World.getInstance().getAllClans()) {
 			if (clan.getClanName().toLowerCase().equals(letterReceiver.toLowerCase())) {
@@ -96,8 +94,7 @@ public class Letter {
 		return true;
 	}
 
-	private static void saveLetter(int itemObjectId, int code, String sender, String receiver,
-			byte[] text) {
+	private static void saveLetter(int itemObjectId, int code, String sender, String receiver, byte[] text) {
 		// 日付を取得する
 		SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
 		TimeZone tz = TimeZone.getTimeZone(Config.TIME_ZONE);
@@ -127,12 +124,10 @@ public class Letter {
 		byte[] content = new byte[contentLength];
 		System.arraycopy(text, 0, subject, 0, subjectLength);
 		System.arraycopy(text, subjectLength, content, 0, contentLength);
-		LetterTable.getInstance().writeLetter(itemObjectId, code, sender, receiver, date, 0,
-				subject, content);
+		LetterTable.getInstance().writeLetter(itemObjectId, code, sender, receiver, date, 0, subject, content);
 	}
 
-	private static boolean sendLetter(L1PcInstance pc, String name, L1ItemInstance item,
-			boolean isFailureMessage) {
+	private static boolean sendLetter(L1PcInstance pc, String name, L1ItemInstance item, boolean isFailureMessage) {
 		L1PcInstance target = L1World.getInstance().getPlayer(name);
 		if (target != null) {
 			if (target.getInventory().checkAddItem(item, 1) == L1Inventory.OK) {
@@ -170,5 +165,4 @@ public class Letter {
 		}
 		return true;
 	}
-
 }

@@ -28,12 +28,9 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.utils.SQLUtil;
 
 public class L1CheckPcItem {
-
-	private int itemId;
 	private boolean isStackable = false;
 
-	public L1CheckPcItem() {
-	}
+	private int itemId;
 
 	public boolean checkPcItem(L1ItemInstance item, L1PcInstance pc) {
 		itemId = item.getItem().getItemId();

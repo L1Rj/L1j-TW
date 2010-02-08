@@ -18,15 +18,15 @@
  */
 package net.l1j.server.model;
 
-import java.util.logging.Logger;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class L1ItemOwnerTimer extends TimerTask {
-	private static final Logger _log = Logger.getLogger(L1ItemOwnerTimer.class
-			.getName());
+	private final L1ItemInstance _item;
+
+	private final int _timeMillis;
 
 	public L1ItemOwnerTimer(L1ItemInstance item, int timeMillis) {
 		_item = item;
@@ -43,7 +43,4 @@ public class L1ItemOwnerTimer extends TimerTask {
 		Timer timer = new Timer();
 		timer.schedule(this, _timeMillis);
 	}
-
-	private final L1ItemInstance _item;
-	private final int _timeMillis;
 }

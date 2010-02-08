@@ -32,24 +32,17 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SPMR;
 import static net.l1j.server.skills.SkillId.*;
 
-// Referenced classes of package net.l1j.server.model:
-// L1Cooking
-
 public class L1Cooking {
-	private static final Logger _log = Logger.getLogger(L1Cooking.class
-			.getName());
+	private static final Logger _log = Logger.getLogger(L1Cooking.class.getName());
 
 	private L1Cooking() {
 	}
 
 	public static void useCookingItem(L1PcInstance pc, L1ItemInstance item) {
 		int itemId = item.getItem().getItemId();
-		if (itemId == 41284 || itemId == 41292
-				|| itemId == 49056 || itemId == 49064
-				|| itemId == 49251 || itemId == 49259) { // デザート
+		if (itemId == 41284 || itemId == 41292 || itemId == 49056 || itemId == 49064 || itemId == 49251 || itemId == 49259) { // デザート
 			if (pc.get_food() != 225) {
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$74, item
-						.getNumberedName(1)));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$74, item.getNumberedName(1)));
 				return;
 			}
 		}
@@ -66,9 +59,7 @@ public class L1Cooking {
 			}
 		}
 
-		if (itemId == 41284 || itemId == 41292
-				|| itemId == 49056 || itemId == 49064
-				|| itemId == 49251 || itemId == 49259) { // デザート
+		if (itemId == 41284 || itemId == 41292 || itemId == 49056 || itemId == 49064 || itemId == 49251 || itemId == 49259) { // デザート
 			int dessertId = pc.getDessertId();
 			if (dessertId != 0) {
 				pc.removeSkillEffect(dessertId);
@@ -247,7 +238,7 @@ public class L1Cooking {
 			eatCooking(pc, cookingId, time);
 		}
 		pc.sendPackets(new S_ServerMessage(SystemMessageId.$76, item.getNumberedName(1)));
-		pc.getInventory().removeItem(item , 1);
+		pc.getInventory().removeItem(item, 1);
 	}
 
 	public static void eatCooking(L1PcInstance pc, int cookingId, int time) {
@@ -371,5 +362,4 @@ public class L1Cooking {
 		// XXX 空腹ゲージが17%になるため再送信。S_PacketBoxに空腹ゲージ更新のコードが含まれている？
 		pc.sendPackets(new S_OwnCharStatus(pc));
 	}
-
 }

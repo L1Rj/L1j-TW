@@ -44,8 +44,7 @@ public class Wand {
 				// 攻擊できないゾーン
 				return;
 			}
-			if (pc.hasSkillEffect(50) == true || pc.hasSkillEffect(78) == true
-					|| pc.hasSkillEffect(157) == true) {
+			if (pc.hasSkillEffect(50) == true || pc.hasSkillEffect(78) == true || pc.hasSkillEffect(157) == true) {
 				// ターゲットがアイス ランス、アブソルート、バリア アース バインド狀態
 				return;
 			}

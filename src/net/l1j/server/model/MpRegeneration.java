@@ -1,3 +1,17 @@
+/*
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 package net.l1j.server.model;
 
 import java.util.TimerTask;
@@ -5,13 +19,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillId;
 import net.l1j.server.types.Point;
+
 import static net.l1j.server.skills.SkillId.*;
 
 public class MpRegeneration extends TimerTask {
-	private static Logger _log = Logger.getLogger(MpRegeneration.class
-			.getName());
+	private static Logger _log = Logger.getLogger(MpRegeneration.class.getName());
 
 	private final L1PcInstance _pc;
 
@@ -85,23 +98,19 @@ public class MpRegeneration extends TimerTask {
 				|| _pc.getMapId() == 24576 || _pc.getMapId() == 25088) { // 宿屋
 			baseMpr += 3;
 		}
-		if ((_pc.getLocation().isInScreen(new Point(33055,32336))
-				&& _pc.getMapId() == 4 && _pc.isElf())) {
+		if ((_pc.getLocation().isInScreen(new Point(33055, 32336)) && _pc.getMapId() == 4 && _pc.isElf())) {
 			baseMpr += 3;
 		}
-		if (_pc.hasSkillEffect(COOKING_1_2_N)
-				|| _pc.hasSkillEffect(COOKING_1_2_S)) {
+		if (_pc.hasSkillEffect(COOKING_1_2_N) || _pc.hasSkillEffect(COOKING_1_2_S)) {
 			baseMpr += 3;
 		}
- 		if (_pc.hasSkillEffect(COOKING_2_4_N)
-				|| _pc.hasSkillEffect(COOKING_2_4_S)
-				|| _pc.hasSkillEffect(COOKING_3_5_N)
-				|| _pc.hasSkillEffect(COOKING_3_5_S)) {
+ 		if (_pc.hasSkillEffect(COOKING_2_4_N) || _pc.hasSkillEffect(COOKING_2_4_S)
+				|| _pc.hasSkillEffect(COOKING_3_5_N) || _pc.hasSkillEffect(COOKING_3_5_S)) {
 			baseMpr += 2;
 		}
- 		if (_pc.getOriginalMpr() > 0) { // オリジナルWIS MPR補正
- 			baseMpr += _pc.getOriginalMpr();
- 		}
+		if (_pc.getOriginalMpr() > 0) { // オリジナルWIS MPR補正
+			baseMpr += _pc.getOriginalMpr();
+		}
 
 		int itemMpr = _pc.getInventory().mpRegenPerTick();
 		itemMpr += _pc.getMpr();
@@ -123,8 +132,7 @@ public class MpRegeneration extends TimerTask {
 	private boolean isOverWeight(L1PcInstance pc) {
 		// エキゾチックバイタライズ狀態、アディショナルファイアー狀態であれば、
 		// 重量オーバーでは無いとみなす。
-		if (pc.hasSkillEffect(SKILL_EXOTIC_VITALIZE)
-				|| pc.hasSkillEffect(SKILL_ADDITIONAL_FIRE)) {
+		if (pc.hasSkillEffect(SKILL_EXOTIC_VITALIZE) || pc.hasSkillEffect(SKILL_ADDITIONAL_FIRE)) {
 			return false;
 		}
 

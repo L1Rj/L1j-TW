@@ -18,8 +18,6 @@
  */
 package net.l1j.server.model;
 
-import java.util.logging.Logger;
-
 import net.l1j.Config;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -30,8 +28,10 @@ import net.l1j.server.serverpackets.S_Teleport;
 import net.l1j.server.utils.Teleportation;
 
 public class L1Teleport {
+	// 順番にteleport(白), change position e(青), ad mass teleport e(赤), call clan(綠)
+	public static final int[] EFFECT_SPR = { 169, 2235, 2236, 2281 };
 
-	private static Logger _log = Logger.getLogger(L1Teleport.class.getName());
+	public static final int[] EFFECT_TIME = { 280, 440, 440, 1120 };
 
 	// テレポートスキルの種類
 	public static final int TELEPORT = 0;
@@ -42,42 +42,24 @@ public class L1Teleport {
 
 	public static final int CALL_CLAN = 3;
 
-	// 順番にteleport(白), change position e(青), ad mass teleport e(赤), call clan(綠)
-	public static final int[] EFFECT_SPR = { 169, 2235, 2236, 2281 };
-
-	public static final int[] EFFECT_TIME = { 280, 440, 440, 1120 };
-
-	private L1Teleport() {
+	public static void teleport(L1PcInstance pc, L1Location loc, int head, boolean effectable) {
+		teleport(pc, loc.getX(), loc.getY(), (short) loc.getMapId(), head, effectable, TELEPORT);
 	}
 
-	public static void teleport(L1PcInstance pc, L1Location loc, int head,
-			boolean effectable) {
-		teleport(pc, loc.getX(), loc.getY(), (short) loc.getMapId(), head,
-				effectable, TELEPORT);
+	public static void teleport(L1PcInstance pc, L1Location loc, int head, boolean effectable, int skillType) {
+		teleport(pc, loc.getX(), loc.getY(), (short) loc.getMapId(), head, effectable, skillType);
 	}
 
-	public static void teleport(L1PcInstance pc, L1Location loc, int head,
-			boolean effectable, int skillType) {
-		teleport(pc, loc.getX(), loc.getY(), (short) loc.getMapId(), head,
-				effectable, skillType);
-	}
-
-	public static void teleport(L1PcInstance pc, int x, int y, short mapid,
-			int head, boolean effectable) {
+	public static void teleport(L1PcInstance pc, int x, int y, short mapid, int head, boolean effectable) {
 		teleport(pc, x, y, mapid, head, effectable, TELEPORT);
 	}
 
-	public static void teleport(L1PcInstance pc, int x, int y, short mapId,
-			int head, boolean effectable, int skillType) {
-
-		pc
-				.sendPackets(new S_Paralysis(S_Paralysis.TYPE_TELEPORT_UNLOCK,
-						false));
+	public static void teleport(L1PcInstance pc, int x, int y, short mapId, int head, boolean effectable, int skillType) {
+		pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_TELEPORT_UNLOCK, false));
 
 		// エフェクトの表示
 		if (effectable && (skillType >= 0 && skillType <= EFFECT_SPR.length)) {
-			S_SkillSound packet = new S_SkillSound(pc.getId(),
-					EFFECT_SPR[skillType]);
+			S_SkillSound packet = new S_SkillSound(pc.getId(), EFFECT_SPR[skillType]);
 			pc.sendPackets(packet);
 			pc.broadcastPacket(packet);
 
@@ -108,8 +90,7 @@ public class L1Teleport {
 	/*
 	 * targetキャラクターのdistanceで指定したマス分前にテレポートする。指定されたマスがマップでない場合何もしない。
 	 */
-	public static void teleportToTargetFront(L1Character cha,
-			L1Character target, int distance) {
+	public static void teleportToTargetFront(L1Character cha, L1Character target, int distance) {
 		int locX = target.getX();
 		int locY = target.getY();
 		int heading = target.getHeading();
@@ -118,51 +99,42 @@ public class L1Teleport {
 
 		// ターゲットの向きからテレポート先の座標を決める。
 		switch (heading) {
-		case 1:
-			locX += distance;
-			locY -= distance;
+			case 1:
+				locX += distance;
+				locY -= distance;
 			break;
-
-		case 2:
-			locX += distance;
+			case 2:
+				locX += distance;
 			break;
-
-		case 3:
-			locX += distance;
-			locY += distance;
+			case 3:
+				locX += distance;
+				locY += distance;
 			break;
-
-		case 4:
-			locY += distance;
+			case 4:
+				locY += distance;
 			break;
-
-		case 5:
-			locX -= distance;
-			locY += distance;
+			case 5:
+				locX -= distance;
+				locY += distance;
 			break;
-
-		case 6:
-			locX -= distance;
+			case 6:
+				locX -= distance;
 			break;
-
-		case 7:
-			locX -= distance;
-			locY -= distance;
+			case 7:
+				locX -= distance;
+				locY -= distance;
 			break;
-
-		case 0:
-			locY -= distance;
+			case 0:
+				locY -= distance;
 			break;
-
-		default:
+			default:
 			break;
 
 		}
 
 		if (map.isPassable(locX, locY)) {
 			if (cha instanceof L1PcInstance) {
-				teleport((L1PcInstance) cha, locX, locY, mapId, cha
-						.getHeading(), true);
+				teleport((L1PcInstance) cha, locX, locY, mapId, cha.getHeading(), true);
 			} else if (cha instanceof L1NpcInstance) {
 				((L1NpcInstance) cha).teleport(locX, locY, cha.getHeading());
 			}

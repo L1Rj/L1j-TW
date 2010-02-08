@@ -16,7 +16,6 @@
  */
 package net.l1j.server.model;
 
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,17 +29,10 @@ import net.l1j.server.templates.L1MobGroup;
 import net.l1j.server.templates.L1NpcCount;
 import net.l1j.server.utils.RandomArrayList;
 
-// Referenced classes of package net.l1j.server.model:
-// L1MobGroupSpawn
-
 public class L1MobGroupSpawn {
-
-	private static final Logger _log = Logger.getLogger(L1MobGroupSpawn.class
-			.getName());
+	private static final Logger _log = Logger.getLogger(L1MobGroupSpawn.class.getName());
 
 	private static L1MobGroupSpawn _instance;
-
-	//private static Random _random = new Random();
 
 	private boolean _isRespawnScreen;
 
@@ -56,9 +48,7 @@ public class L1MobGroupSpawn {
 		return _instance;
 	}
 
-	public void doSpawn(L1NpcInstance leader, int groupId,
-			boolean isRespawnScreen, boolean isInitSpawn) {
-
+	public void doSpawn(L1NpcInstance leader, int groupId, boolean isRespawnScreen, boolean isInitSpawn) {
 		L1MobGroup mobGroup = MobGroupTable.getInstance().getTemplate(groupId);
 		if (mobGroup == null) {
 			return;
@@ -139,8 +129,7 @@ public class L1MobGroupSpawn {
 	}
 
 	private boolean canSpawn(L1NpcInstance mob) {
-		if (mob.getMap().isInMap(mob.getLocation())
-				&& mob.getMap().isPassable(mob.getLocation())) {
+		if (mob.getMap().isInMap(mob.getLocation()) && mob.getMap().isPassable(mob.getLocation())) {
 			if (_isRespawnScreen) {
 				return true;
 			}
@@ -150,5 +139,4 @@ public class L1MobGroupSpawn {
 		}
 		return false;
 	}
-
 }

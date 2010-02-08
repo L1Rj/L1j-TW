@@ -39,8 +39,7 @@ public class L1TaxCalculator {
 	private final int _taxRatesWar = WAR_TAX_RATES;
 
 	/**
-	 * @param merchantNpcId
-	 *            計算對象商店のNPCID
+	 * @param merchantNpcId 計算對象商店のNPCID
 	 */
 	public L1TaxCalculator(int merchantNpcId) {
 		_taxRatesCastle = L1CastleLocation.getCastleTaxRateByNpcId(merchantNpcId);
@@ -78,8 +77,7 @@ public class L1TaxCalculator {
 	/**
 	 * 課稅後の價格を求める。
 	 * 
-	 * @param price
-	 *            課稅前の價格
+	 * @param price 課稅前の價格
 	 * @return 課稅後の價格
 	 */
 	public int layTax(int price) {

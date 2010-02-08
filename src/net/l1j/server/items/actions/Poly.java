@@ -54,9 +54,11 @@ public class Poly {
 			}
 		}
 
-		int[] polyArray = { 29, 945, 947, 979, 1037, 1039, 3860, 3861, 3862, 3863, 3864, 3865,
-				3904, 3906, 95, 146, 2374, 2376, 2377, 2378, 3866, 3867, 3868, 3869, 3870, 3871,
-				3872, 3873, 3874, 3875, 3876 };
+		int[] polyArray = {
+				29, 945, 947, 979, 1037, 1039, 3860, 3861, 3862, 3863, 3864,
+				3865, 3904, 3906, 95, 146, 2374, 2376, 2377, 2378, 3866, 3867,
+				3868, 3869, 3870, 3871, 3872, 3873, 3874, 3875, 3876
+		};
 
 		int pid = RandomArrayList.getInt(polyArray.length);
 		int polyId = polyArray[pid];
@@ -64,8 +66,7 @@ public class Poly {
 		if (cha instanceof L1PcInstance) {
 			L1PcInstance pc = (L1PcInstance) cha;
 			int awakeSkillId = pc.getAwakeSkillId();
-			if (awakeSkillId == SKILL_AWAKEN_ANTHARAS || awakeSkillId == SKILL_AWAKEN_FAFURION
-					|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
+			if (awakeSkillId == SKILL_AWAKEN_ANTHARAS || awakeSkillId == SKILL_AWAKEN_FAFURION || awakeSkillId == SKILL_AWAKEN_VALAKAS) {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1384));
 				return;
 			}
@@ -81,8 +82,7 @@ public class Poly {
 			} else {
 				L1Skills skillTemp = SkillsTable.getInstance().getTemplate(SKILL_POLYMORPH);
 
-				L1PolyMorph.doPoly(pc, polyId, skillTemp.getBuffDuration(),
-						L1PolyMorph.MORPH_BY_ITEMMAGIC);
+				L1PolyMorph.doPoly(pc, polyId, skillTemp.getBuffDuration(), L1PolyMorph.MORPH_BY_ITEMMAGIC);
 				if (attacker.getId() != pc.getId()) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$241, attacker.getName()));
 				}
@@ -96,8 +96,7 @@ public class Poly {
 						&& npcId != 45497 && npcId != 45516 && npcId != 45529 // メルキオール、イフリート、ドレイク(DV)
 						&& npcId != 45458) { // ドレイク(船長)
 					L1Skills skillTemp = SkillsTable.getInstance().getTemplate(SKILL_POLYMORPH);
-					L1PolyMorph.doPoly(mob, polyId, skillTemp.getBuffDuration(),
-							L1PolyMorph.MORPH_BY_ITEMMAGIC);
+					L1PolyMorph.doPoly(mob, polyId, skillTemp.getBuffDuration(), L1PolyMorph.MORPH_BY_ITEMMAGIC);
 				}
 			}
 		}
@@ -315,8 +314,7 @@ public class Poly {
 	/** 變身卷軸動作 */
 	public static boolean Scroll(L1PcInstance pc, int item_id, String s) {
 		int awakeSkillId = pc.getAwakeSkillId();
-		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS || awakeSkillId == SKILL_AWAKEN_FAFURION
-				|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
+		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS || awakeSkillId == SKILL_AWAKEN_FAFURION || awakeSkillId == SKILL_AWAKEN_VALAKAS) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1384));
 			return false;
 		}

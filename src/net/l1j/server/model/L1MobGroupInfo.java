@@ -19,22 +19,14 @@
 package net.l1j.server.model;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javolution.util.FastTable;
 
 import net.l1j.server.model.L1Spawn;
 import net.l1j.server.model.instance.L1NpcInstance;
 
-// Referenced classes of package net.l1j.server.model:
-// L1MobGroupInfo
-
 public class L1MobGroupInfo {
-	private static final Logger _log = Logger.getLogger(L1MobGroupInfo.class
-			.getName());
-
-	private final List<L1NpcInstance> _membersList =
-			new FastTable<L1NpcInstance>();
+	private final List<L1NpcInstance> _membersList = new FastTable<L1NpcInstance>();
 
 	private L1NpcInstance _leader;
 
@@ -126,5 +118,4 @@ public class L1MobGroupInfo {
 	public void setRemoveGroup(boolean flag) {
 		_isRemoveGroup = flag;
 	}
-
 }

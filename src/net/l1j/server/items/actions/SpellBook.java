@@ -36,7 +36,7 @@ public class SpellBook {
 				|| pc.getLocation().isInScreen(new Point(33053, 32336)) && pcMapId == 4) { // マザーツリー
 			return true;
 		}
-		return false ;
+		return false;
 	}
 
 	/** 王族魔法書 */
@@ -63,7 +63,7 @@ public class SpellBook {
 		S_SkillSound s_skillSound = new S_SkillSound(pc.getId(), 224);
 		pc.sendPackets(s_skillSound);
 		pc.broadcastPacket(s_skillSound);
-		ItemAction.getAct().SpellBook(pc, item);
+		ItemAction.getInstance().SpellBook(pc, item);
 		pc.getInventory().removeItem(item, 1);
 	}
 
@@ -87,7 +87,7 @@ public class SpellBook {
 		S_SkillSound s_skillSound = new S_SkillSound(pc.getId(), 224);
 		pc.sendPackets(s_skillSound);
 		pc.broadcastPacket(s_skillSound);
-		ItemAction.getAct().SpellBook(pc, item);
+		ItemAction.getInstance().SpellBook(pc, item);
 		pc.getInventory().removeItem(item, 1);
 	}
 
@@ -140,7 +140,7 @@ public class SpellBook {
 		S_SkillSound s_skillSound = new S_SkillSound(pc.getId(), 224);
 		pc.sendPackets(s_skillSound);
 		pc.broadcastPacket(s_skillSound);
-		ItemAction.getAct().SpellBook(pc, item);
+		ItemAction.getInstance().SpellBook(pc, item);
 		pc.getInventory().removeItem(item, 1);
 	}
 
@@ -188,13 +188,12 @@ public class SpellBook {
 
 		if (pc.isGm()) {
 			regWizardSpell(pc, item, isLawful);
-			ItemAction.getAct().SpellBook(pc, item);
+			ItemAction.getInstance().SpellBook(pc, item);
 		} else if ((itemAttr == locAttr || itemAttr == 0) && locAttr != 0) {
 			if (pc.isCrown()) {
-				if (itemId >= 45000 && itemId <= 45007 && level >= 10
-						|| itemId >= 45008 && itemId <= 45015 && level >= 20) {
+				if (itemId >= 45000 && itemId <= 45007 && level >= 10 || itemId >= 45008 && itemId <= 45015 && level >= 20) {
 					regWizardSpell(pc, item, isLawful);
-				} else if (itemId >= 45000 && itemId <= 45015){
+				} else if (itemId >= 45000 && itemId <= 45015) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
 				} else {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
@@ -236,8 +235,7 @@ public class SpellBook {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
 				}
 			} else if (pc.isDarkelf()) {
-				if (itemId >= 45000 && itemId <= 45007 && level >= 12
-						|| itemId >= 45008 && itemId <= 45015 && level >= 24) {
+				if (itemId >= 45000 && itemId <= 45007 && level >= 12 || itemId >= 45008 && itemId <= 45015 && level >= 24) {
 					regWizardSpell(pc, item, isLawful);
 				} else if (itemId >= 45000 && itemId <= 45015) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$312));
@@ -266,7 +264,7 @@ public class SpellBook {
 		S_SkillSound Gfx = new S_SkillSound(pc.getId(), isLawful ? 224 : 231);
 		pc.sendPackets(Gfx);
 		pc.broadcastPacket(Gfx);
-		ItemAction.getAct().SpellBook(pc, item);
+		ItemAction.getInstance().SpellBook(pc, item);
 		pc.getInventory().removeItem(item, 1);
 	}
 
@@ -291,7 +289,7 @@ public class SpellBook {
 		S_SkillSound s_skillSound = new S_SkillSound(pc.getId(), 231);
 		pc.sendPackets(s_skillSound);
 		pc.broadcastPacket(s_skillSound);
-		ItemAction.getAct().SpellBook(pc, item);
+		ItemAction.getInstance().SpellBook(pc, item);
 		pc.getInventory().removeItem(item, 1);
 	}
 
@@ -315,7 +313,7 @@ public class SpellBook {
 		S_SkillSound s_skillSound = new S_SkillSound(pc.getId(), 224);
 		pc.sendPackets(s_skillSound);
 		pc.broadcastPacket(s_skillSound);
-		ItemAction.getAct().SpellBook(pc, item);
+		ItemAction.getInstance().SpellBook(pc, item);
 		pc.getInventory().removeItem(item, 1);
 	}
 
@@ -340,7 +338,7 @@ public class SpellBook {
 		S_SkillSound s_skillSound = new S_SkillSound(pc.getId(), 224);
 		pc.sendPackets(s_skillSound);
 		pc.broadcastPacket(s_skillSound);
-		ItemAction.getAct().SpellBook(pc, item);
+		ItemAction.getInstance().SpellBook(pc, item);
 		pc.getInventory().removeItem(item, 1);
 	}
 

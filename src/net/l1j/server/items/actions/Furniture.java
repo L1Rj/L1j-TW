@@ -108,9 +108,7 @@ public class Furniture {
 					Object obj = null;
 					try {
 						String s = l1npc.getImpl();
-						Constructor constructor = Class.forName(
-								"net.l1j.server.model.instance." + s + "Instance")
-								.getConstructors()[0];
+						Constructor constructor = Class.forName("net.l1j.server.model.instance." + s + "Instance").getConstructors()[0];
 						Object aobj[] = { l1npc };
 						furniture = (L1FurnitureInstance) constructor.newInstance(aobj);
 						furniture.setId(IdFactory.getInstance().nextId());

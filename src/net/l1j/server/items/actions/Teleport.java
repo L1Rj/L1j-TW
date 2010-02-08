@@ -30,35 +30,29 @@ public class Teleport {
 	public static void amulet(L1PcInstance pc, int itemId, L1ItemInstance item) {
 		boolean isTeleport = false;
 		if (itemId == 40289 || itemId == 40293) { // 11,51Famulet
-			if (pc.getX() >= 32816 && pc.getX() <= 32821 && pc.getY() >= 32778
-					&& pc.getY() <= 32783 && pc.getMapId() == 101) {
+			if (pc.getX() >= 32816 && pc.getX() <= 32821 && pc.getY() >= 32778 && pc.getY() <= 32783 && pc.getMapId() == 101) {
 				isTeleport = true;
 			}
 		} else if (itemId == 40290 || itemId == 40294) { // 21,61Famulet
-			if (pc.getX() >= 32815 && pc.getX() <= 32820 && pc.getY() >= 32815
-					&& pc.getY() <= 32820 && pc.getMapId() == 101) {
+			if (pc.getX() >= 32815 && pc.getX() <= 32820 && pc.getY() >= 32815 && pc.getY() <= 32820 && pc.getMapId() == 101) {
 				isTeleport = true;
 			}
 		} else if (itemId == 40291 || itemId == 40295) { // 31,71Famulet
-			if (pc.getX() >= 32779 && pc.getX() <= 32784 && pc.getY() >= 32778
-					&& pc.getY() <= 32783 && pc.getMapId() == 101) {
+			if (pc.getX() >= 32779 && pc.getX() <= 32784 && pc.getY() >= 32778 && pc.getY() <= 32783 && pc.getMapId() == 101) {
 				isTeleport = true;
 			}
 		} else if (itemId == 40292 || itemId == 40296) { // 41,81Famulet
-			if (pc.getX() >= 32779 && pc.getX() <= 32784 && pc.getY() >= 32815
-					&& pc.getY() <= 32820 && pc.getMapId() == 101) {
+			if (pc.getX() >= 32779 && pc.getX() <= 32784 && pc.getY() >= 32815 && pc.getY() <= 32820 && pc.getMapId() == 101) {
 				isTeleport = true;
 			}
 		} else if (itemId == 40297) { // 91Famulet
-			if (pc.getX() >= 32706 && pc.getX() <= 32710 && pc.getY() >= 32909
-					&& pc.getY() <= 32913 && pc.getMapId() == 190) {
+			if (pc.getX() >= 32706 && pc.getX() <= 32710 && pc.getY() >= 32909 && pc.getY() <= 32913 && pc.getMapId() == 190) {
 				isTeleport = true;
 			}
 		}
 
 		if (isTeleport) {
-			L1Teleport.teleport(pc, item.getItem().get_locx(), item.getItem().get_locy(), item
-					.getItem().get_mapid(), 5, true);
+			L1Teleport.teleport(pc, item.getItem().get_locx(), item.getItem().get_locy(), item.getItem().get_mapid(), 5, true);
 		} else {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 		}

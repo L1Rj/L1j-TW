@@ -30,8 +30,7 @@ public class Fishing {
 
 	/** 開始釣魚 */
 	public static void start(L1PcInstance pc, int itemId, int fishX, int fishY) {
-		if (pc.getMapId() != 5124 || fishX <= 32789 || fishX >= 32813 || fishY <= 32786
-				|| fishY >= 32812) {
+		if (pc.getMapId() != 5124 || fishX <= 32789 || fishX >= 32813 || fishY <= 32786 || fishY >= 32812) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1138));
 			return;
 		}
@@ -43,19 +42,14 @@ public class Fishing {
 			rodLength = 3;
 		}
 		if (pc.getMap().isFishingZone(fishX, fishY)) {
-			if (pc.getMap().isFishingZone(fishX + 1, fishY)
-					&& pc.getMap().isFishingZone(fishX - 1, fishY)
-					&& pc.getMap().isFishingZone(fishX, fishY + 1)
-					&& pc.getMap().isFishingZone(fishX, fishY - 1)) {
+			if (pc.getMap().isFishingZone(fishX + 1, fishY) && pc.getMap().isFishingZone(fishX - 1, fishY) && pc.getMap().isFishingZone(fishX, fishY + 1) && pc.getMap().isFishingZone(fishX, fishY - 1)) {
 				if (fishX > pc.getX() + rodLength || fishX < pc.getX() - rodLength) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1138));
 				} else if (fishY > pc.getY() + rodLength || fishY < pc.getY() - rodLength) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1138));
 				} else if (pc.getInventory().consumeItem(41295, 1)) { // エサ
-					pc.sendPackets(new S_Fishing(pc.getId(), ActionCodes.ACTION_Fishing, fishX,
-							fishY));
-					pc.broadcastPacket(new S_Fishing(pc.getId(), ActionCodes.ACTION_Fishing, fishX,
-							fishY));
+					pc.sendPackets(new S_Fishing(pc.getId(), ActionCodes.ACTION_Fishing, fishX, fishY));
+					pc.broadcastPacket(new S_Fishing(pc.getId(), ActionCodes.ACTION_Fishing, fishX, fishY));
 					pc.setFishing(true);
 					long time = System.currentTimeMillis() + RandomArrayList.getInc(5, 10) * 1000;
 					// + 10000 + RandomArrayList.getArray5List() * 1000;

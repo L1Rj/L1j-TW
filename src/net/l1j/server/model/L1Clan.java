@@ -27,13 +27,12 @@ import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class L1Clan {
+	private static final Logger _log = Logger.getLogger(L1Clan.class.getName());
 
 	public static final int CLAN_RANK_PROBATION = 1;
 	public static final int CLAN_RANK_PUBLIC = 2;
 	public static final int CLAN_RANK_GUARDIAN = 3;
 	public static final int CLAN_RANK_PRINCE = 4;
-
-	private static final Logger _log = Logger.getLogger(L1Clan.class.getName());
 
 	private int _clanId;
 
@@ -49,8 +48,7 @@ public class L1Clan {
 
 	private int _warehouse = 0;
 
-	private final L1DwarfForClanInventory _dwarfForClan = new L1DwarfForClanInventory(
-			this);
+	private final L1DwarfForClanInventory _dwarfForClan = new L1DwarfForClanInventory(this);
 
 	private final FastTable<String> membersNameList = new FastTable<String>();
 
@@ -114,8 +112,7 @@ public class L1Clan {
 		}
 	}
 
-	public L1PcInstance[] getOnlineClanMember() // オンライン中のクラン員のみ
-	{
+	public L1PcInstance[] getOnlineClanMember() { // オンライン中のクラン員のみ
 		FastTable<L1PcInstance> onlineMembers = new FastTable<L1PcInstance>();
 		for (String name : membersNameList) {
 			L1PcInstance pc = L1World.getInstance().getPlayer(name);
@@ -160,8 +157,7 @@ public class L1Clan {
 		String result = "";
 		try {
 			for (String name : membersNameList) {
-				L1PcInstance pc = CharacterTable.getInstance()
-						.restoreCharacter(name);
+				L1PcInstance pc = CharacterTable.getInstance().restoreCharacter(name);
 				if (pc != null) {
 					result = result + name + getRankString(pc) + " ";
 				}
@@ -171,7 +167,6 @@ public class L1Clan {
 		}
 		return result;
 	}
-
 
 	private String getRankString(L1PcInstance pc) {
 		String rank = "";

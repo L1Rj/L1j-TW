@@ -28,8 +28,7 @@ import net.l1j.server.serverpackets.S_NpcChatPacket;
 import net.l1j.server.templates.L1NpcChat;
 
 public class L1NpcChatTimer extends TimerTask {
-	private static final Logger _log = Logger.getLogger(L1NpcChatTimer.class
-			.getName());
+	private static final Logger _log = Logger.getLogger(L1NpcChatTimer.class.getName());
 
 	private final L1NpcInstance _npc;
 
@@ -47,8 +46,7 @@ public class L1NpcChatTimer extends TimerTask {
 				return;
 			}
 
-			if (_npc.getHiddenStatus() != L1NpcInstance.HIDDEN_STATUS_NONE
-					|| _npc._destroyed) {
+			if (_npc.getHiddenStatus() != L1NpcInstance.HIDDEN_STATUS_NONE || _npc._destroyed) {
 				return;
 			}
 
@@ -90,10 +88,8 @@ public class L1NpcChatTimer extends TimerTask {
 		}
 	}
 
-	private void chat(L1NpcInstance npc, int chatTiming, String chatId,
-			boolean isShout, boolean isWorldChat) {
-		if (chatTiming == L1NpcInstance.CHAT_TIMING_APPEARANCE && npc.
-				isDead()) {
+	private void chat(L1NpcInstance npc, int chatTiming, String chatId, boolean isShout, boolean isWorldChat) {
+		if (chatTiming == L1NpcInstance.CHAT_TIMING_APPEARANCE && npc.isDead()) {
 			return;
 		}
 		if (chatTiming == L1NpcInstance.CHAT_TIMING_DEAD && !npc.isDead()) {
@@ -119,5 +115,4 @@ public class L1NpcChatTimer extends TimerTask {
 			}
 		}
 	}
-
 }

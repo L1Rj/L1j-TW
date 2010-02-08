@@ -20,6 +20,7 @@ package net.l1j.server.model;
 
 public class L1ObjectAmount<T> {
 	private final T _obj;
+
 	private final int _amount;
 
 	public L1ObjectAmount(T obj, int amount) {

@@ -18,21 +18,12 @@
  */
 package net.l1j.server.model;
 
-import java.util.logging.Logger;
-import java.util.Random;
-
 import net.l1j.server.datatables.TownTable;
 import net.l1j.server.templates.L1Town;
 import net.l1j.server.types.Point;
 import net.l1j.server.utils.RandomArrayList;
 
-// Referenced classes of package net.l1j.server.model:
-// L1CastleLocation
-
 public class L1TownLocation {
-	private static final Logger _log = Logger.getLogger(L1TownLocation.class
-			.getName());
-
 	// town_id
 	public static final byte TOWNID_TALKING_ISLAND = 1;
 
@@ -178,9 +169,6 @@ public class L1TownLocation {
 			new Point(32603, 32908), new Point(32595, 32908),
 			new Point(32591, 32918), };
 
-	private L1TownLocation() {
-	}
-
 	public static int[] getGetBackLoc(int town_id) { // town_idから歸還先の座標をランダムに返す
 		//Random random = new Random();
 		int[] loc = new int[3];
@@ -304,128 +292,116 @@ public class L1TownLocation {
 		int town_id = 0;
 
 		switch (npcid) {
-		case 70528: // タウンマスター（TI）
-		case 50015: // ルーカス（テレポーター）
-		case 70010: // バルシム（犬小屋裏道具屋）
-		case 70011: // 船著場管理人
-		case 70012: // セレナ（宿屋）
-		case 70014: // パンドラ（港道具屋）
-		case 70532: // ジョンソン（ペット屋）
-		case 70536: // トーマ（鍛冶屋）
-			town_id = TOWNID_TALKING_ISLAND;
+			case 70528: // タウンマスター（TI）
+			case 50015: // ルーカス（テレポーター）
+			case 70010: // バルシム（犬小屋裏道具屋）
+			case 70011: // 船著場管理人
+			case 70012: // セレナ（宿屋）
+			case 70014: // パンドラ（港道具屋）
+			case 70532: // ジョンソン（ペット屋）
+			case 70536: // トーマ（鍛冶屋）
+				town_id = TOWNID_TALKING_ISLAND;
 			break;
-
-		case 70799: // タウンマスター（SKT）
-		case 50056: // メット（テレポーター）
-		case 70073: // グレン（武器屋）
-		case 70074: // メリン（道具屋）
-		case 70075: // ミランダ（宿屋）
-			town_id = TOWNID_SILVER_KNIGHT_TOWN;
+			case 70799: // タウンマスター（SKT）
+			case 50056: // メット（テレポーター）
+			case 70073: // グレン（武器屋）
+			case 70074: // メリン（道具屋）
+			case 70075: // ミランダ（宿屋）
+				town_id = TOWNID_SILVER_KNIGHT_TOWN;
 			break;
-
-		case 70546: // タウンマスター（KENT）
-		case 50020: // スタンリー（テレポーター）
-		case 70018: // イソーリア（道具屋）
-		case 70016: // アンディン（武器屋）
-		case 70544: // リック（ペット屋）
-			town_id = TOWNID_KENT;
+			case 70546: // タウンマスター（KENT）
+			case 50020: // スタンリー（テレポーター）
+			case 70018: // イソーリア（道具屋）
+			case 70016: // アンディン（武器屋）
+			case 70544: // リック（ペット屋）
+				town_id = TOWNID_KENT;
 			break;
-
-		case 70567: // タウンマスター（グル）
-		case 50024: // スティーブ（グルテレポーター）
-		case 70019: // ロリア（グル宿屋）
-		case 70020: // ロルコ（グル古代物品商人）
-		case 70021: // ロッテ（グル道具屋）
-		case 70022: // 船著場管理人
-		case 70024: // ケティ（グル武器屋）
-			town_id = TOWNID_GLUDIO;
+			case 70567: // タウンマスター（グル）
+			case 50024: // スティーブ（グルテレポーター）
+			case 70019: // ロリア（グル宿屋）
+			case 70020: // ロルコ（グル古代物品商人）
+			case 70021: // ロッテ（グル道具屋）
+			case 70022: // 船著場管理人
+			case 70024: // ケティ（グル武器屋）
+				town_id = TOWNID_GLUDIO;
 			break;
-
-		case 70815: // 火田村タウンマスター
-		case 70079: // ジャクソン（道具屋）
-		case 70836: // ハンス（ペット屋）
-			town_id = TOWNID_ORCISH_FOREST;
+			case 70815: // 火田村タウンマスター
+			case 70079: // ジャクソン（道具屋）
+			case 70836: // ハンス（ペット屋）
+				town_id = TOWNID_ORCISH_FOREST;
 			break;
-
-		case 70774: // タウンマスター（WB）
-		case 50054: // トレイ（テレポーター）
-		case 70070: // ベリッサ（宿屋）
-		case 70071: // アシュール（オアシス）
-		case 70072: // エルミナ（道具屋）
-		case 70773: // マービン（ペット屋）
-			town_id = TOWNID_WINDAWOOD;
+			case 70774: // タウンマスター（WB）
+			case 50054: // トレイ（テレポーター）
+			case 70070: // ベリッサ（宿屋）
+			case 70071: // アシュール（オアシス）
+			case 70072: // エルミナ（道具屋）
+			case 70773: // マービン（ペット屋）
+				town_id = TOWNID_WINDAWOOD;
 			break;
-
-		case 70594: // タウンマスター（ギラン）
-		case 50036: // ウィルマ（テレポーター）
-		case 70026: // デレック（ハンター）
-		case 70028: // ランダル（藥品商人）
-		case 70029: // マーガレット（食料品商人）
-		case 70030: // メイアー（道具屋）
-		case 70031: // モーリ（宿屋）
-		case 70032: // バージル（防具屋）
-		case 70033: // ベリタ（道具屋）
-		case 70038: // エバート（布商人）
-		case 70039: // ワーナー（武器屋）
-		case 70043: // フィリップ（皮商人）
-		case 70617: // アルモン（ペット屋）
-		case 70632: // ケビン（ペット屋）
-			town_id = TOWNID_GIRAN;
+			case 70594: // タウンマスター（ギラン）
+			case 50036: // ウィルマ（テレポーター）
+			case 70026: // デレック（ハンター）
+			case 70028: // ランダル（藥品商人）
+			case 70029: // マーガレット（食料品商人）
+			case 70030: // メイアー（道具屋）
+			case 70031: // モーリ（宿屋）
+			case 70032: // バージル（防具屋）
+			case 70033: // ベリタ（道具屋）
+			case 70038: // エバート（布商人）
+			case 70039: // ワーナー（武器屋）
+			case 70043: // フィリップ（皮商人）
+			case 70617: // アルモン（ペット屋）
+			case 70632: // ケビン（ペット屋）
+				town_id = TOWNID_GIRAN;
 			break;
-
-		case 70860: // タウンマスター（ハイネ）
-		case 50066: // リオル（テレポーター）
-		case 70082: // ブリット（道具屋）
-		case 70083: // シバン（武器屋）
-		case 70084: // エリー（宿屋）
-		case 70873: // エラン（ペット屋）
-			town_id = TOWNID_HEINE;
+			case 70860: // タウンマスター（ハイネ）
+			case 50066: // リオル（テレポーター）
+			case 70082: // ブリット（道具屋）
+			case 70083: // シバン（武器屋）
+			case 70084: // エリー（宿屋）
+			case 70873: // エラン（ペット屋）
+				town_id = TOWNID_HEINE;
 			break;
-
-		case 70654: // タウンマスター（ウェルダン）
-		case 50039: // レスリー（テレポーター）
-		case 70045: // ベリー（道具屋）
-		case 70044: // ラルフ（武器屋）
-		case 70664: // コブ（ペット屋）
-			town_id = TOWNID_WERLDAN;
+			case 70654: // タウンマスター（ウェルダン）
+			case 50039: // レスリー（テレポーター）
+			case 70045: // ベリー（道具屋）
+			case 70044: // ラルフ（武器屋）
+			case 70664: // コブ（ペット屋）
+				town_id = TOWNID_WERLDAN;
 			break;
-
-		case 70748: // タウンマスター（オーレン）
-		case 50051: // キリウス（テレポーター）
-		case 70059: // ディコ（國境要塞道具屋）
-		case 70060: // リンダ（象牙の塔精靈魔法屋）
-		case 70061: // マンドラ（武器屋）
-		case 70062: // バリエス（象牙の塔魔法屋）
-		case 70063: // ビウス（道具屋）
-		case 70065: // エンケ（宿屋）
-		case 70066: // クリスト（象牙の塔魔法屋）
-		case 70067: // パゴル（象牙の塔道具屋）
-		case 70068: // フランコ（古代物品商人）
-		case 70749: // マイルド（ペット屋）
-			town_id = TOWNID_OREN;
+			case 70748: // タウンマスター（オーレン）
+			case 50051: // キリウス（テレポーター）
+			case 70059: // ディコ（國境要塞道具屋）
+			case 70060: // リンダ（象牙の塔精靈魔法屋）
+			case 70061: // マンドラ（武器屋）
+			case 70062: // バリエス（象牙の塔魔法屋）
+			case 70063: // ビウス（道具屋）
+			case 70065: // エンケ（宿屋）
+			case 70066: // クリスト（象牙の塔魔法屋）
+			case 70067: // パゴル（象牙の塔道具屋）
+			case 70068: // フランコ（古代物品商人）
+			case 70749: // マイルド（ペット屋）
+				town_id = TOWNID_OREN;
 			break;
-
-		case 50044: // シリウス（テレポーター）
-		case 70057: // キャサリン（道具屋）
-		case 70048: // ラオン（道具屋）
-		case 70052: // メリサ（道具屋）
-		case 70053: // シャル（食料品屋）
-		case 70049: // ローゼン（ポーション屋）
-		case 70051: // マグス（道具屋）
-		case 70047: // デフマン（武器屋）
-		case 70058: // フェガ（防具屋）
-		case 70054: // スビン（宿屋）
-		case 70055: // エイシヌ（ペットショップ）
-		case 70056: // ゾード（ジプシータウン古代物品商人）
-			town_id = TOWNID_ADEN;
+			case 50044: // シリウス（テレポーター）
+			case 70057: // キャサリン（道具屋）
+			case 70048: // ラオン（道具屋）
+			case 70052: // メリサ（道具屋）
+			case 70053: // シャル（食料品屋）
+			case 70049: // ローゼン（ポーション屋）
+			case 70051: // マグス（道具屋）
+			case 70047: // デフマン（武器屋）
+			case 70058: // フェガ（防具屋）
+			case 70054: // スビン（宿屋）
+			case 70055: // エイシヌ（ペットショップ）
+			case 70056: // ゾード（ジプシータウン古代物品商人）
+				town_id = TOWNID_ADEN;
 			break;
-
-		case 70092: // 商人 エマルト
-		case 70093: // 商人 カルプ
-			town_id = TOWNID_OUM_DUNGEON;
+			case 70092: // 商人 エマルト
+			case 70093: // 商人 カルプ
+				town_id = TOWNID_OUM_DUNGEON;
 			break;
-
-		default:
+			default:
 			break;
 		}
 		return town_id;

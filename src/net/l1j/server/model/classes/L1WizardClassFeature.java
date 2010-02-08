@@ -25,18 +25,18 @@ import net.l1j.server.utils.RandomArrayList;
 class L1WizardClassFeature extends L1ClassFeature {
 
 	@Override
-	public int[] InitSpawn(int type){
-		int spawn[] = {32780, 32781, 68};
+	public int[] InitSpawn(int type) {
+		int spawn[] = { 32780, 32781, 68 };
 		return spawn;
 	}
 
 	@Override
 	public int InitSex(int sex) {
-		switch(sex) {
-		case 0:
-			return L1ClassId.WIZARD_MALE;
-		default:
-			return L1ClassId.WIZARD_FEMALE;
+		switch (sex) {
+			case 0:
+				return L1ClassId.WIZARD_MALE;
+			default:
+				return L1ClassId.WIZARD_FEMALE;
 		}
 	}
 
@@ -47,16 +47,28 @@ class L1WizardClassFeature extends L1ClassFeature {
 
 	@Override
 	public int InitMp(int BaseWis) {
-		switch(BaseWis) {
-		case 1: case 2: case 3: case 4: case 5:
-		case 6: case 7: case 8: case 9: case 10:
-		case 11: case 12: case 13: case 14: case 15:
-			return 6; // 初始魔力6
-		default: // 精神16以上
-			return 8;
+		switch (BaseWis) {
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+				return 6; // 初始魔力6
+			default: // 精神16以上
+				return 8;
 		}
 	}
-	
+
 	@Override
 	public int InitLucky() {
 		int randomLucky = RandomArrayList.getInc(100, 1);
@@ -70,7 +82,7 @@ class L1WizardClassFeature extends L1ClassFeature {
 
 	@Override
 	public int[] InitPoints() {
-		int points[] = {8, 7, 12, 12, 8, 12, 16}; // 力、敏、體、精、魅、智、自由點數
+		int points[] = { 8, 7, 12, 12, 8, 12, 16 }; // 力、敏、體、精、魅、智、自由點數
 		return points;
 	}
 
@@ -120,21 +132,20 @@ class L1WizardClassFeature extends L1ClassFeature {
 	}
 
 	/**
-	 * *_RandomMp	：根據職業的隨機範圍
-	 * *_BaseMp		：基本數值
+	 * *_RandomMp ：根據職業的隨機範圍 *_BaseMp ：基本數值
 	 */
 	public static int[] W_RandomMp = {
-		//	 0  1  2  3  4  5  6  7  8  9
-			 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, // baseWis =  0 ~  9
-			 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, // baseWis = 10 ~ 19
-			 4, 4, 4, 4, 5, 4, 4, 5, 5, 4, // baseWis = 20 ~ 29
-			 4, 5, 5, 4, 4, 5 };		   // baseWis = 30 ~ 35
+	//	 0  1  2  3  4  5  6  7  8  9
+	2, 2, 2, 2, 2, 2, 2, 2, 2, 3, // baseWis =  0 ~  9
+	2, 2, 2, 3, 3, 3, 3, 3, 4, 4, // baseWis = 10 ~ 19
+	4, 4, 4, 4, 5, 4, 4, 5, 5, 4, // baseWis = 20 ~ 29
+	4, 5, 5, 4, 4, 5 }; // baseWis = 30 ~ 35
 	public static int[] W_BaseMp = {
-		//	 0  1  2  3  4  5  6  7  8  9
-			 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, // baseWis =  0 ~  9
-			 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, // baseWis = 10 ~ 19
-			 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, // baseWis = 20 ~ 29
-			 6, 6, 6, 7, 7, 7 };		   // baseWis = 30 ~ 35
+	//	 0  1  2  3  4  5  6  7  8  9
+	0, 0, 0, 0, 0, 0, 0, 1, 1, 1, // baseWis =  0 ~  9
+	2, 2, 2, 2, 2, 3, 3, 3, 3, 3, // baseWis = 10 ~ 19
+	3, 4, 4, 4, 4, 5, 5, 5, 5, 6, // baseWis = 20 ~ 29
+	6, 6, 6, 7, 7, 7 }; // baseWis = 30 ~ 35
 
 	/**
 	 * randommp：透過 *_RandomMp 與 *_BaseMp 組合出升級時增加的MP量
@@ -144,8 +155,7 @@ class L1WizardClassFeature extends L1ClassFeature {
 		int randommp = 0;
 		// 當『精神』超過34時，一律當作35(受限矩陣大小)
 		int temp_baseWis = (baseWis > 34) ? 35 : baseWis;
-		randommp = RandomArrayList.getInc(W_RandomMp[temp_baseWis]
-				, W_BaseMp[temp_baseWis]);
+		randommp = RandomArrayList.getInc(W_RandomMp[temp_baseWis], W_BaseMp[temp_baseWis]);
 		return (randommp * 2);
 	}
 

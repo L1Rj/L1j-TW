@@ -54,8 +54,7 @@ public class L1BossSpawn extends L1Spawn {
 	/**
 	 * SpawnTaskを起動する。
 	 * 
-	 * @param spawnNumber
-	 *            L1Spawnで管理されている番號。ホームポイントが無ければ何を指定しても良い。
+	 * @param spawnNumber L1Spawnで管理されている番號。ホームポイントが無ければ何を指定しても良い。
 	 */
 	@Override
 	public void executeSpawnTask(int spawnNumber, int objectId) {
@@ -76,8 +75,7 @@ public class L1BossSpawn extends L1Spawn {
 			// アクティブだった周期の開始時間 < 最近の周期開始時間の場合は、最近の周期で出現
 			// わかりづらいが確率計算する為に、無理やりcalcNextSpawnTimeを通している。
 			latestStart.add(Calendar.SECOND, -1);
-			spawnTime = calcNextSpawnTime(_cycle
-					.getLatestStartTime(latestStart));
+			spawnTime = calcNextSpawnTime(_cycle.getLatestStartTime(latestStart));
 		}
 		spawnBoss(spawnTime, objectId);
 	}

@@ -37,17 +37,16 @@ import net.l1j.server.templates.L1Pet;
 import net.l1j.server.templates.L1Skills;
 
 public class ItemAction {
-	private static ItemAction itemAct;
-
-	public static ItemAction getAct() {
-		if (itemAct == null) {
-			itemAct = new ItemAction();
-		}
-
-		return itemAct;
-	}
-
 	private static ConcurrentHashMap<Integer, Byte> SpellBook;
+
+	private static ItemAction _instance;
+
+	public static ItemAction getInstance() {
+		if (_instance == null) {
+			_instance = new ItemAction();
+		}
+		return _instance;
+	}
 
 	static {
 		SpellBook = new ConcurrentHashMap<Integer, Byte>();
@@ -337,8 +336,6 @@ public class ItemAction {
 			L1PetInstance pet = new L1PetInstance(npcTemp, pc, l1pet);
 			pet.setPetcost(divisor);
 		}
-
 		return true;
 	}
-
 }

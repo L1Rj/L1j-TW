@@ -73,26 +73,22 @@ public class Enchant {
 			} else {
 				switch (i) {
 					case -1:
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ")
-								.append(s1).toString(); // \f1%0が%2%1光ります。
+						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
 						sa = "$246";
 						sb = "$247";
 					break;
 					case 1: // '\001'
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ")
-								.append(s1).toString(); // \f1%0が%2%1光ります。
+						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
 						sa = "$245";
 						sb = "$247";
 					break;
 					case 2: // '\002'
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ")
-								.append(s1).toString(); // \f1%0が%2%1光ります。
+						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
 						sa = "$245";
 						sb = "$248";
 					break;
 					case 3: // '\003'
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ")
-								.append(s1).toString(); // \f1%0が%2%1光ります。
+						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
 						sa = "$245";
 						sb = "$248";
 					break;
@@ -106,19 +102,16 @@ public class Enchant {
 						sa = "$246";
 						sb = "$247";
 					break;
-
 					case 1: // '\001'
 						s = s1;
 						sa = "$252";
 						sb = "$247 ";
 					break;
-
 					case 2: // '\002'
 						s = s1;
 						sa = "$252";
 						sb = "$248 ";
 					break;
-
 					case 3: // '\003'
 						s = s1;
 						sa = "$252";
@@ -128,29 +121,22 @@ public class Enchant {
 			} else {
 				switch (i) {
 					case -1:
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ")
-								.append(s1).toString(); // \f1%0が%2%1光ります。
+						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
 						sa = "$246";
 						sb = "$247";
 					break;
-
 					case 1: // '\001'
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ")
-								.append(s1).toString(); // \f1%0が%2%1光ります。
+						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
 						sa = "$252";
 						sb = "$247 ";
 					break;
-
 					case 2: // '\002'
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ")
-								.append(s1).toString(); // \f1%0が%2%1光ります。
+						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
 						sa = "$252";
 						sb = "$248 ";
 					break;
-
 					case 3: // '\003'
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ")
-								.append(s1).toString(); // \f1%0が%2%1光ります。
+						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
 						sa = "$252";
 						sb = "$248 ";
 					break;
@@ -228,8 +214,7 @@ public class Enchant {
 				if (item.getEnchantLevel() > 0) {
 					pm = "+";
 				}
-				s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(
-						nameId).toString(); // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
+				s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(nameId).toString(); // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
 				sa = "$245";
 			}
 			if (Config.LOGGING_WEAPON_ENCHANT != 0) {
@@ -246,8 +231,7 @@ public class Enchant {
 				if (item.getEnchantLevel() > 0) {
 					pm = "+";
 				}
-				s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(
-						nameId).toString(); // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
+				s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(nameId).toString(); // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
 				sa = " $252";
 			}
 			if (Config.LOGGING_ARMOR_ENCHANT != 0) {
@@ -269,43 +253,33 @@ public class Enchant {
 				case 0: // '\0'
 					byte0 = 50;
 				break;
-
 				case 1: // '\001'
 					byte0 = 33;
 				break;
-
 				case 2: // '\002'
 					byte0 = 25;
 				break;
-
 				case 3: // '\003'
 					byte0 = 25;
 				break;
-
 				case 4: // '\004'
 					byte0 = 25;
 				break;
-
 				case 5: // '\005'
 					byte0 = 20;
 				break;
-
 				case 6: // '\006'
 					byte0 = 33;
 				break;
-
 				case 7: // '\007'
 					byte0 = 33;
 				break;
-
 				case 8: // '\b'
 					byte0 = 33;
 				break;
-
 				case 9: // '\t'
 					byte0 = 25;
 				break;
-
 				case 10: // '\n'
 					byte0 = 20;
 				break;
@@ -315,39 +289,30 @@ public class Enchant {
 				case 0: // '\0'
 					byte0 = 50;
 				break;
-
 				case 1: // '\001'
 					byte0 = 33;
 				break;
-
 				case 2: // '\002'
 					byte0 = 25;
 				break;
-
 				case 3: // '\003'
 					byte0 = 25;
 				break;
-
 				case 4: // '\004'
 					byte0 = 25;
 				break;
-
 				case 5: // '\005'
 					byte0 = 20;
 				break;
-
 				case 6: // '\006'
 					byte0 = 17;
 				break;
-
 				case 7: // '\007'
 					byte0 = 14;
 				break;
-
 				case 8: // '\b'
 					byte0 = 12;
 				break;
-
 				case 9: // '\t'
 					byte0 = 11;
 				break;
@@ -357,9 +322,7 @@ public class Enchant {
 	}
 
 	public static int randomLevel(L1ItemInstance item, int itemId) {
-		if (itemId == ItemId.B_SCROLL_OF_ENCHANT_ARMOR
-				|| itemId == ItemId.B_SCROLL_OF_ENCHANT_WEAPON || itemId == 140129
-				|| itemId == 140130) {
+		if (itemId == ItemId.B_SCROLL_OF_ENCHANT_ARMOR || itemId == ItemId.B_SCROLL_OF_ENCHANT_WEAPON || itemId == 140129 || itemId == 140130) {
 			if (item.getEnchantLevel() <= 2) {
 				int j = RandomArrayList.getInc(100, 1);
 				if (j < 33) {

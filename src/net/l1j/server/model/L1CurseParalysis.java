@@ -111,8 +111,7 @@ public class L1CurseParalysis extends L1Paralysis {
 		if (!(cha instanceof L1PcInstance || cha instanceof L1MonsterInstance)) {
 			return false;
 		}
-		if (cha.hasSkillEffect(STATUS_CURSE_PARALYZING)
-				|| cha.hasSkillEffect(STATUS_CURSE_PARALYZED)) {
+		if (cha.hasSkillEffect(STATUS_CURSE_PARALYZING) || cha.hasSkillEffect(STATUS_CURSE_PARALYZED)) {
 			return false; // 既に麻痺している
 		}
 

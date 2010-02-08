@@ -18,26 +18,14 @@
  */
 package net.l1j.server.model;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1EtcItem;
 import net.l1j.thread.GeneralThreadPool;
 
-// Referenced classes of package net.l1j.server.model:
-// L1ItemDelay
-
 public class L1ItemDelay {
-
-	private static final Logger _log = Logger.getLogger(L1ItemDelay.class
-			.getName());
-
 	private static GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
-
-	private L1ItemDelay() {
-	}
 
 	static class ItemDelayTimer implements Runnable {
 		private int _delayId;
@@ -76,9 +64,7 @@ public class L1ItemDelay {
 		} else if (item.getItem().getType2() == 2) {
 			// 種別：防具
 
-			if (item.getItem().getItemId() == 20077
-					|| item.getItem().getItemId() == 20062
-					|| item.getItem().getItemId() == 120077) {
+			if (item.getItem().getItemId() == 20077 || item.getItem().getItemId() == 20062 || item.getItem().getItemId() == 120077) {
 				// インビジビリティクローク、バルログブラッディクローク
 				if (item.isEquipped() && !pc.isInvisble()) {
 					pc.beginInvisTimer();
@@ -93,5 +79,4 @@ public class L1ItemDelay {
 		pc.addItemDelay(delayId, timer);
 		_threadPool.schedule(timer, delayTime);
 	}
-
 }

@@ -428,8 +428,7 @@ public class L1World {
 	/**
 	 * ワールド內にいる指定された名前のプレイヤーを取得する。
 	 * 
-	 * @param name
-	 *            - プレイヤー名(小文字‧大文字は無視される)
+	 * @param name - プレイヤー名(小文字‧大文字は無視される)
 	 * @return 指定された名前のL1PcInstance。該當プレイヤーが存在しない場合はnullを返す。
 	 */
 	public L1PcInstance getPlayer(String name) {

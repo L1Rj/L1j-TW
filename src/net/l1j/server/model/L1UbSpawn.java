@@ -28,6 +28,8 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_NPCPack;
 
 public class L1UbSpawn implements Comparable<L1UbSpawn> {
+	private static final Logger _log = Logger.getLogger(L1UbSpawn.class.getName());
+
 	private int _id;
 	private int _ubId;
 	private int _pattern;
@@ -115,10 +117,8 @@ public class L1UbSpawn implements Comparable<L1UbSpawn> {
 
 	public void spawnOne() {
 		L1UltimateBattle ub = UBTable.getInstance().getUb(_ubId);
-		L1Location loc = ub.getLocation().randomLocation(
-				(ub.getLocX2() - ub.getLocX1()) / 2, false);
-		L1MonsterInstance mob = new L1MonsterInstance(NpcTable.getInstance()
-				.getTemplate(getNpcTemplateId()));
+		L1Location loc = ub.getLocation().randomLocation((ub.getLocX2() - ub.getLocX1()) / 2, false);
+		L1MonsterInstance mob = new L1MonsterInstance(NpcTable.getInstance().getTemplate(getNpcTemplateId()));
 		if (mob == null) {
 			_log.warning("mob == null");
 			return;
@@ -147,7 +147,7 @@ public class L1UbSpawn implements Comparable<L1UbSpawn> {
 		// モンスターのＡＩを開始
 		mob.onNpcAI();
 		mob.turnOnOffLight();
-// mob.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // チャット開始
+		// mob.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // チャット開始
 	}
 
 	public void spawnAll() {
@@ -166,7 +166,4 @@ public class L1UbSpawn implements Comparable<L1UbSpawn> {
 		}
 		return 0;
 	}
-
-	private static final Logger _log = Logger.getLogger(L1UbSpawn.class
-			.getName());
 }

@@ -22,14 +22,9 @@ import java.util.Timer;
 
 /**
  * NPCの自然回復TimerTaskをスケジュールするためのTimerクラス
- * 
  */
 public class L1NpcRegenerationTimer extends Timer {
-
 	private static L1NpcRegenerationTimer _instance = null;
-
-	private L1NpcRegenerationTimer() {
-	}
 
 	public static L1NpcRegenerationTimer getInstance() {
 		if (_instance == null) {
@@ -37,5 +32,4 @@ public class L1NpcRegenerationTimer extends Timer {
 		}
 		return _instance;
 	}
-
 }

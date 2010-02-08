@@ -18,10 +18,7 @@
  */
 package net.l1j.server.model;
 
-import java.util.logging.Logger;
-
 import java.util.Map;
-import java.util.Random;
 
 import javolution.util.FastMap;
 
@@ -33,13 +30,7 @@ import net.l1j.server.model.gametime.L1GameTimeClock;
 import net.l1j.server.templates.L1Castle;
 import net.l1j.server.utils.RandomArrayList;
 
-// Referenced classes of package net.l1j.server.model:
-// L1CastleLocation
-
 public class L1CastleLocation {
-	private static final Logger _log = Logger.getLogger(L1CastleLocation.class
-			.getName());
-
 	// castle_id
 	public static final int KENT_CASTLE_ID = 1;
 
@@ -225,43 +216,27 @@ public class L1CastleLocation {
 	private static final Map<Integer, L1Location> _towers = new FastMap<Integer, L1Location>();
 
 	static {
-		_towers.put(KENT_CASTLE_ID, new L1Location(KENT_TOWER_X, KENT_TOWER_Y,
-				KENT_TOWER_MAP));
-		_towers.put(OT_CASTLE_ID, new L1Location(OT_TOWER_X, OT_TOWER_Y,
-				OT_TOWER_MAP));
-		_towers.put(WW_CASTLE_ID, new L1Location(WW_TOWER_X, WW_TOWER_Y,
-				WW_TOWER_MAP));
-		_towers.put(GIRAN_CASTLE_ID, new L1Location(GIRAN_TOWER_X,
-				GIRAN_TOWER_Y, GIRAN_TOWER_MAP));
-		_towers.put(HEINE_CASTLE_ID, new L1Location(HEINE_TOWER_X,
-				HEINE_TOWER_Y, HEINE_TOWER_MAP));
-		_towers.put(DOWA_CASTLE_ID, new L1Location(DOWA_TOWER_X, DOWA_TOWER_Y,
-				DOWA_TOWER_MAP));
-		_towers.put(ADEN_CASTLE_ID, new L1Location(ADEN_TOWER_X, ADEN_TOWER_Y,
-				ADEN_TOWER_MAP));
-		_towers.put(DIAD_CASTLE_ID, new L1Location(DIAD_TOWER_X, DIAD_TOWER_Y,
-				DIAD_TOWER_MAP));
+		_towers.put(KENT_CASTLE_ID, new L1Location(KENT_TOWER_X, KENT_TOWER_Y, KENT_TOWER_MAP));
+		_towers.put(OT_CASTLE_ID, new L1Location(OT_TOWER_X, OT_TOWER_Y, OT_TOWER_MAP));
+		_towers.put(WW_CASTLE_ID, new L1Location(WW_TOWER_X, WW_TOWER_Y, WW_TOWER_MAP));
+		_towers.put(GIRAN_CASTLE_ID, new L1Location(GIRAN_TOWER_X, GIRAN_TOWER_Y, GIRAN_TOWER_MAP));
+		_towers.put(HEINE_CASTLE_ID, new L1Location(HEINE_TOWER_X, HEINE_TOWER_Y, HEINE_TOWER_MAP));
+		_towers.put(DOWA_CASTLE_ID, new L1Location(DOWA_TOWER_X, DOWA_TOWER_Y, DOWA_TOWER_MAP));
+		_towers.put(ADEN_CASTLE_ID, new L1Location(ADEN_TOWER_X, ADEN_TOWER_Y, ADEN_TOWER_MAP));
+		_towers.put(DIAD_CASTLE_ID, new L1Location(DIAD_TOWER_X, DIAD_TOWER_Y, DIAD_TOWER_MAP));
 	}
 
 	private static final Map<Integer, L1MapArea> _areas = new FastMap<Integer, L1MapArea>();
 
 	static {
-		_areas.put(KENT_CASTLE_ID, new L1MapArea(KENT_X1, KENT_Y1, KENT_X2,
-				KENT_Y2, KENT_MAP));
-		_areas.put(OT_CASTLE_ID, new L1MapArea(OT_X1, OT_Y1, OT_X2, OT_Y2,
-				OT_MAP));
-		_areas.put(WW_CASTLE_ID, new L1MapArea(WW_X1, WW_Y1, WW_X2, WW_Y2,
-				WW_MAP));
-		_areas.put(GIRAN_CASTLE_ID, new L1MapArea(GIRAN_X1, GIRAN_Y1, GIRAN_X2,
-				GIRAN_Y2, GIRAN_MAP));
-		_areas.put(HEINE_CASTLE_ID, new L1MapArea(HEINE_X1, HEINE_Y1, HEINE_X2,
-				HEINE_Y2, HEINE_MAP));
-		_areas.put(DOWA_CASTLE_ID, new L1MapArea(DOWA_X1, DOWA_Y1, DOWA_X2,
-				DOWA_Y2, DOWA_MAP));
-		_areas.put(ADEN_CASTLE_ID, new L1MapArea(ADEN_X1, ADEN_Y1, ADEN_X2,
-				ADEN_Y2, ADEN_MAP));
-		_areas.put(DIAD_CASTLE_ID, new L1MapArea(DIAD_X1, DIAD_Y1, DIAD_X2,
-				DIAD_Y2, DIAD_MAP));
+		_areas.put(KENT_CASTLE_ID, new L1MapArea(KENT_X1, KENT_Y1, KENT_X2, KENT_Y2, KENT_MAP));
+		_areas.put(OT_CASTLE_ID, new L1MapArea(OT_X1, OT_Y1, OT_X2, OT_Y2, OT_MAP));
+		_areas.put(WW_CASTLE_ID, new L1MapArea(WW_X1, WW_Y1, WW_X2, WW_Y2, WW_MAP));
+		_areas.put(GIRAN_CASTLE_ID, new L1MapArea(GIRAN_X1, GIRAN_Y1, GIRAN_X2, GIRAN_Y2, GIRAN_MAP));
+		_areas.put(HEINE_CASTLE_ID, new L1MapArea(HEINE_X1, HEINE_Y1, HEINE_X2, HEINE_Y2, HEINE_MAP));
+		_areas.put(DOWA_CASTLE_ID, new L1MapArea(DOWA_X1, DOWA_Y1, DOWA_X2, DOWA_Y2, DOWA_MAP));
+		_areas.put(ADEN_CASTLE_ID, new L1MapArea(ADEN_X1, ADEN_Y1, ADEN_X2, ADEN_Y2, ADEN_MAP));
+		_areas.put(DIAD_CASTLE_ID, new L1MapArea(DIAD_X1, DIAD_Y1, DIAD_X2, DIAD_Y2, DIAD_MAP));
 	}
 
 	private static final Map<Integer, Integer> _innerTowerMaps = new FastMap<Integer, Integer>();
@@ -275,18 +250,13 @@ public class L1CastleLocation {
 		_innerTowerMaps.put(DIAD_CASTLE_ID, (int) DIAD_INNER_CASTLE_MAP);
 	}
 
-	private static final Map<Integer, L1Location> _subTowers
-			= new FastMap<Integer, L1Location>();
+	private static final Map<Integer, L1Location> _subTowers = new FastMap<Integer, L1Location>();
 
 	static {
-		_subTowers.put(1, new L1Location(ADEN_SUB_TOWER1_X, ADEN_SUB_TOWER1_Y,
-				ADEN_TOWER_MAP));
-		_subTowers.put(2, new L1Location(ADEN_SUB_TOWER2_X, ADEN_SUB_TOWER2_Y,
-				ADEN_TOWER_MAP));
-		_subTowers.put(3, new L1Location(ADEN_SUB_TOWER3_X, ADEN_SUB_TOWER3_Y,
-				ADEN_TOWER_MAP));
-		_subTowers.put(4, new L1Location(ADEN_SUB_TOWER4_X, ADEN_SUB_TOWER4_Y,
-				ADEN_TOWER_MAP));
+		_subTowers.put(1, new L1Location(ADEN_SUB_TOWER1_X, ADEN_SUB_TOWER1_Y, ADEN_TOWER_MAP));
+		_subTowers.put(2, new L1Location(ADEN_SUB_TOWER2_X, ADEN_SUB_TOWER2_Y, ADEN_TOWER_MAP));
+		_subTowers.put(3, new L1Location(ADEN_SUB_TOWER3_X, ADEN_SUB_TOWER3_Y, ADEN_TOWER_MAP));
+		_subTowers.put(4, new L1Location(ADEN_SUB_TOWER4_X, ADEN_SUB_TOWER4_Y, ADEN_TOWER_MAP));
 	}
 
 	private L1CastleLocation() {
@@ -468,8 +438,7 @@ public class L1CastleLocation {
 		if (castle_id == KENT_CASTLE_ID) { // ケント城
 			loc = L1TownLocation.getGetBackLoc(L1TownLocation.TOWNID_KENT);
 		} else if (castle_id == OT_CASTLE_ID) { // オークの森
-			loc = L1TownLocation
-					.getGetBackLoc(L1TownLocation.TOWNID_ORCISH_FOREST);
+			loc = L1TownLocation.getGetBackLoc(L1TownLocation.TOWNID_ORCISH_FOREST);
 		} else if (castle_id == WW_CASTLE_ID) { // ウィンダウッド城
 			loc = L1TownLocation.getGetBackLoc(L1TownLocation.TOWNID_WINDAWOOD);
 		} else if (castle_id == GIRAN_CASTLE_ID) { // ギラン城
@@ -498,8 +467,7 @@ public class L1CastleLocation {
 				loc[2] = 310;
 			}
 		} else { // 存在しないcastle_idが指定された場合はSKT
-			loc = L1TownLocation
-					.getGetBackLoc(L1TownLocation.TOWNID_SILVER_KNIGHT_TOWN);
+			loc = L1TownLocation.getGetBackLoc(L1TownLocation.TOWNID_SILVER_KNIGHT_TOWN);
 		}
 		return loc;
 	}
@@ -525,43 +493,43 @@ public class L1CastleLocation {
 		int town_id = L1TownLocation.getTownIdByNpcid(npcid);
 
 		switch (town_id) {
-		case L1TownLocation.TOWNID_KENT:
-		case L1TownLocation.TOWNID_GLUDIO:
-			castle_id = KENT_CASTLE_ID; // ケント城
+			case L1TownLocation.TOWNID_KENT:
+			case L1TownLocation.TOWNID_GLUDIO:
+				castle_id = KENT_CASTLE_ID; // ケント城
 			break;
 
-		case L1TownLocation.TOWNID_ORCISH_FOREST:
-			castle_id = OT_CASTLE_ID; // オークの森
+			case L1TownLocation.TOWNID_ORCISH_FOREST:
+				castle_id = OT_CASTLE_ID; // オークの森
 			break;
 
-		case L1TownLocation.TOWNID_SILVER_KNIGHT_TOWN:
-		case L1TownLocation.TOWNID_WINDAWOOD:
-			castle_id = WW_CASTLE_ID; // ウィンダウッド城
+			case L1TownLocation.TOWNID_SILVER_KNIGHT_TOWN:
+			case L1TownLocation.TOWNID_WINDAWOOD:
+				castle_id = WW_CASTLE_ID; // ウィンダウッド城
 			break;
 
-		case L1TownLocation.TOWNID_TALKING_ISLAND:
-		case L1TownLocation.TOWNID_GIRAN:
-			castle_id = GIRAN_CASTLE_ID; // ギラン城
+			case L1TownLocation.TOWNID_TALKING_ISLAND:
+			case L1TownLocation.TOWNID_GIRAN:
+				castle_id = GIRAN_CASTLE_ID; // ギラン城
 			break;
 
-		case L1TownLocation.TOWNID_HEINE:
-			castle_id = HEINE_CASTLE_ID; // ハイネ城
+			case L1TownLocation.TOWNID_HEINE:
+				castle_id = HEINE_CASTLE_ID; // ハイネ城
 			break;
 
-		case L1TownLocation.TOWNID_WERLDAN:
-		case L1TownLocation.TOWNID_OREN:
-			castle_id = DOWA_CASTLE_ID; // ドワーフ城
+			case L1TownLocation.TOWNID_WERLDAN:
+			case L1TownLocation.TOWNID_OREN:
+				castle_id = DOWA_CASTLE_ID; // ドワーフ城
 			break;
 
-		case L1TownLocation.TOWNID_ADEN:
-			castle_id = ADEN_CASTLE_ID; // アデン城
+			case L1TownLocation.TOWNID_ADEN:
+				castle_id = ADEN_CASTLE_ID; // アデン城
 			break;
 
-		case L1TownLocation.TOWNID_OUM_DUNGEON:
-			castle_id = DIAD_CASTLE_ID; // ディアド要塞
+			case L1TownLocation.TOWNID_OUM_DUNGEON:
+				castle_id = DIAD_CASTLE_ID; // ディアド要塞
 			break;
 
-		default:
+			default:
 			break;
 		}
 		return castle_id;
@@ -612,5 +580,4 @@ public class L1CastleLocation {
 		}
 		return result;
 	}
-
 }

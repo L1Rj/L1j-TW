@@ -27,7 +27,8 @@ package net.l1j.server.model.gametime;
  * 關連するメソッドだけをオーバーライドしてabstractクラスL1GameTimeAdapterを擴張する。
  * </p>
  * <p>
- * そのようなクラスから作成されたリスナーオブジェクトは、L1GameTimeClockのaddListenerメソッドを使用してL1GameTimeClockに登錄される。
+ * そのようなクラスから作成されたリスナーオブジェクトは、
+ * L1GameTimeClockのaddListenerメソッドを使用してL1GameTimeClockに登錄される。
  * アデン時間變化の通知は、月日時分がそれぞれ變わったときに行われる。
  * </p>
  * <p>
@@ -35,38 +36,33 @@ package net.l1j.server.model.gametime;
  * これらのメソッドの處理に時間がかかった場合、他のリスナーへの通知が遲れる可能性がある。
  * 完了までに時間を要する處理や、スレッドをブロックするメソッドの呼び出しが含まれる處理を行う場合は、內部で新たにスレッドを作成して處理を行うべきである。
  * </p>
- * 
  */
 public interface L1GameTimeListener {
 	/**
 	 * アデン時間で月が變わったときに呼び出される。
 	 * 
-	 * @param time
-	 *            最新のアデン時間
+	 * @param time 最新のアデン時間
 	 */
 	public void onMonthChanged(L1GameTime time);
 
 	/**
 	 * アデン時間で日が變わったときに呼び出される。
 	 * 
-	 * @param time
-	 *            最新のアデン時間
+	 * @param time 最新のアデン時間
 	 */
 	public void onDayChanged(L1GameTime time);
 
 	/**
 	 * アデン時間で時間が變わったときに呼び出される。
 	 * 
-	 * @param time
-	 *            最新のアデン時間
+	 * @param time 最新のアデン時間
 	 */
 	public void onHourChanged(L1GameTime time);
 
 	/**
 	 * アデン時間で分が變わったときに呼び出される。
 	 * 
-	 * @param time
-	 *            最新のアデン時間
+	 * @param time 最新のアデン時間
 	 */
 	public void onMinuteChanged(L1GameTime time);
 }

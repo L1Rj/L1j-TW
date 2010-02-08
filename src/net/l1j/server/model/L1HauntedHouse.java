@@ -18,7 +18,6 @@
  */
 package net.l1j.server.model;
 
-import java.util.logging.Logger;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -28,7 +27,6 @@ import net.l1j.server.model.L1Object;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DoorInstance;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillId;
 import net.l1j.server.skills.SkillUse;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.types.Base;
@@ -36,15 +34,12 @@ import net.l1j.server.types.Base;
 import static net.l1j.server.skills.SkillId.*;
 
 public class L1HauntedHouse {
-	private static final Logger _log = Logger.getLogger(L1HauntedHouse.class
-			.getName());
+	private final FastTable<L1PcInstance> _members = new FastTable<L1PcInstance>();
 
 	public static final int STATUS_NONE = 0;
 	public static final int STATUS_READY = 1;
 	public static final int STATUS_PLAYING = 2;
 
-	private final FastTable<L1PcInstance> _members =
-			new FastTable<L1PcInstance>();
 	private int _hauntedHouseStatus = STATUS_NONE;
 	private int _winnersCount = 0;
 	private int _goalCount = 0;
@@ -76,8 +71,7 @@ public class L1HauntedHouse {
 		}
 		for (L1PcInstance pc : getMembersArray()) {
 			SkillUse skilluse = new SkillUse();
-			skilluse.handleCommands(pc, SKILL_CANCEL_MAGIC, pc.getId(), pc.getX(), pc.getY(), null,
-					0, Base.SKILL_TYPE[1]);
+			skilluse.handleCommands(pc, SKILL_CANCEL_MAGIC, pc.getId(), pc.getX(), pc.getY(), null, 0, Base.SKILL_TYPE[1]);
 			L1PolyMorph.doPoly(pc, 6284, 300, L1PolyMorph.MORPH_BY_NPC);
 		}
 
@@ -98,8 +92,7 @@ public class L1HauntedHouse {
 		for (L1PcInstance pc : getMembersArray()) {
 			if (pc.getMapId() == 5140) {
 				SkillUse skilluse = new SkillUse();
-				skilluse.handleCommands(pc, SKILL_CANCEL_MAGIC, pc.getId(), pc.getX(), pc.getY(),
-						null, 0, Base.SKILL_TYPE[1]);
+				skilluse.handleCommands(pc, SKILL_CANCEL_MAGIC, pc.getId(), pc.getX(), pc.getY(), null, 0, Base.SKILL_TYPE[1]);
 				L1Teleport.teleport(pc, 32624, 32813, (short) 4, 5, true);
 			}
 		}
@@ -182,43 +175,40 @@ public class L1HauntedHouse {
 		return _goalCount;
 	}
 
+	public class L1HauntedHouseReadyTimer extends TimerTask {
 
+		public L1HauntedHouseReadyTimer() {
+		}
 
-public class L1HauntedHouseReadyTimer extends TimerTask {
+		@Override
+		public void run() {
+			startHauntedHouse();
+			L1HauntedHouseTimer hhTimer = new L1HauntedHouseTimer();
+			hhTimer.begin();
+		}
 
-	public L1HauntedHouseReadyTimer() {
+		public void begin() {
+			Timer timer = new Timer();
+			timer.schedule(this, 90000); // 90秒くらい？
+		}
+
 	}
 
-	@Override
-	public void run() {
-		startHauntedHouse();
-		L1HauntedHouseTimer hhTimer = new L1HauntedHouseTimer();
-		hhTimer.begin();
+	public class L1HauntedHouseTimer extends TimerTask {
+
+		public L1HauntedHouseTimer() {
+		}
+
+		@Override
+		public void run() {
+			endHauntedHouse();
+			this.cancel();
+		}
+
+		public void begin() {
+			Timer timer = new Timer();
+			timer.schedule(this, 300000); // 5分
+		}
+
 	}
-
-	public void begin() {
-		Timer timer = new Timer();
-		timer.schedule(this, 90000); // 90秒くらい？
-	}
-
-}
-
-public class L1HauntedHouseTimer extends TimerTask {
-
-	public L1HauntedHouseTimer() {
-	}
-
-	@Override
-	public void run() {
-		endHauntedHouse();
-		this.cancel();
-	}
-
-	public void begin() {
-		Timer timer = new Timer();
-		timer.schedule(this, 300000); // 5分
-	}
-
-}
-
 }

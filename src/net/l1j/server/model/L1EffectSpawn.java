@@ -27,22 +27,17 @@ import net.l1j.server.model.instance.L1EffectInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.map.L1Map;
 import net.l1j.server.model.map.L1WorldMap;
-import net.l1j.server.skills.SkillId;
 import net.l1j.server.serverpackets.S_NPCPack;
 import net.l1j.server.templates.L1Npc;
+
 import static net.l1j.server.skills.SkillId.*;
 
-// Referenced classes of package net.l1j.server.model:
-// L1EffectSpawn
-
 public class L1EffectSpawn {
-
-	private static final Logger _log = Logger.getLogger(L1EffectSpawn.class
-			.getName());
+	private static final Logger _log = Logger.getLogger(L1EffectSpawn.class.getName());
 
 	private static L1EffectSpawn _instance;
 
-	private Constructor _constructor;
+	private Constructor<?> _constructor;
 
 	private L1EffectSpawn() {
 	}
@@ -57,25 +52,18 @@ public class L1EffectSpawn {
 	/**
 	 * エフェクトオブジェクトを生成し設置する
 	 * 
-	 * @param npcId
-	 *            エフェクトNPCのテンプレートID
-	 * @param time
-	 *            存在時間(ms)
-	 * @param locX
-	 *            設置する座標X
-	 * @param locY
-	 *            設置する座標Y
-	 * @param mapId
-	 *            設置するマップのID
+	 * @param npcId エフェクトNPCのテンプレートID
+	 * @param time 存在時間(ms)
+	 * @param locX 設置する座標X
+	 * @param locY 設置する座標Y
+	 * @param mapId 設置するマップのID
 	 * @return 生成されたエフェクトオブジェクト
 	 */
-	public L1EffectInstance spawnEffect(int npcId, int time, int locX,
-			int locY, short mapId) {
+	public L1EffectInstance spawnEffect(int npcId, int time, int locX, int locY, short mapId) {
 		return spawnEffect(npcId, time, locX, locY, mapId, null, 0);
 	}
 
-	public L1EffectInstance spawnEffect(int npcId, int time, int locX,
-			int locY, short mapId, L1PcInstance user, int skiiId) {
+	public L1EffectInstance spawnEffect(int npcId, int time, int locX, int locY, short mapId, L1PcInstance user, int skiiId) {
 		L1Npc template = NpcTable.getInstance().getTemplate(npcId);
 		L1EffectInstance effect = null;
 
@@ -83,9 +71,7 @@ public class L1EffectSpawn {
 			return null;
 		}
 
-		String className = (new StringBuilder()).append(
-				"net.l1j.server.model.instance.").append(
-				template.getImpl()).append("Instance").toString();
+		String className = ("net.l1j.server.model.instance." + template.getImpl() + "Instance");
 
 		try {
 			_constructor = Class.forName(className).getConstructors()[0];
@@ -105,8 +91,7 @@ public class L1EffectSpawn {
 			L1World.getInstance().storeObject(effect);
 			L1World.getInstance().addVisibleObject(effect);
 
-			for (L1PcInstance pc : L1World.getInstance()
-					.getRecognizePlayer(effect)) {
+			for (L1PcInstance pc : L1World.getInstance().getRecognizePlayer(effect)) {
 				effect.addKnownObject(pc);
 				pc.addKnownObject(effect);
 				pc.sendPackets(new S_NPCPack(effect));
@@ -123,12 +108,10 @@ public class L1EffectSpawn {
 
 	public void doSpawnFireWall(L1Character cha, int targetX, int targetY) {
 		L1Npc firewall = NpcTable.getInstance().getTemplate(81157); // ファイアーウォール
-		int duration = SkillsTable.getInstance().getTemplate(
-				SKILL_FIRE_WALL).getBuffDuration();
+		int duration = SkillsTable.getInstance().getTemplate(SKILL_FIRE_WALL).getBuffDuration();
 
 		if (firewall == null) {
-			throw new NullPointerException(
-					"FireWall data not found:npcid=81157");
+			throw new NullPointerException("FireWall data not found:npcid=81157");
 		}
 
 		L1Character base = cha;
@@ -166,13 +149,11 @@ public class L1EffectSpawn {
 				break;
 			}
 
-			L1EffectInstance effect = spawnEffect(81157, duration * 1000, x, y,
-					cha.getMapId());
+			L1EffectInstance effect = spawnEffect(81157, duration * 1000, x, y, cha.getMapId());
 			if (effect == null) {
 				break;
 			}
-			for (L1Object objects : L1World.getInstance()
-					.getVisibleObjects(effect, 0)) {
+			for (L1Object objects : L1World.getInstance().getVisibleObjects(effect, 0)) {
 				if (objects instanceof L1EffectInstance) {
 					L1EffectInstance npc = (L1EffectInstance) objects;
 					if (npc.getNpcTemplate().get_npcId() == 81157) {
@@ -185,6 +166,5 @@ public class L1EffectSpawn {
 			}
 			base = effect;
 		}
-
 	}
 }

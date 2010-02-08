@@ -18,18 +18,12 @@
  */
 package net.l1j.server.model;
 
-import java.util.Random;
-import java.util.logging.Logger;
-
 import net.l1j.server.model.map.L1Map;
 import net.l1j.server.model.map.L1WorldMap;
 import net.l1j.server.types.Point;
 import net.l1j.server.utils.RandomArrayList;
 
 public class L1Location extends Point {
-	private static Logger _log = Logger.getLogger(L1Location.class.getName());
-	//private static Random _random = new Random();
-	private static RandomArrayList RandomArrayList = new RandomArrayList();
 	protected L1Map _map = L1Map.newNull();
 
 	public L1Location() {
@@ -108,8 +102,7 @@ public class L1Location extends Point {
 			return false;
 		}
 		L1Location loc = (L1Location) obj;
-		return (this.getMap() == loc.getMap()) && (this.getX() == loc.getX())
-				&& (this.getY() == loc.getY());
+		return (this.getMap() == loc.getMap()) && (this.getX() == loc.getX()) && (this.getY() == loc.getY());
 	}
 
 	@Override
@@ -126,10 +119,8 @@ public class L1Location extends Point {
 	 * このLocationに對する、移動可能なランダム範圍のLocationを返す。
 	 * ランダムテレポートの場合は、城エリア、アジト內のLocationは返卻されない。
 	 * 
-	 * @param max
-	 *            ランダム範圍の最大值
-	 * @param isRandomTeleport
-	 *            ランダムテレポートか
+	 * @param max ランダム範圍の最大值
+	 * @param isRandomTeleport ランダムテレポートか
 	 * @return 新しいLocation
 	 */
 	public L1Location randomLocation(int max, boolean isRandomTeleport) {
@@ -140,12 +131,9 @@ public class L1Location extends Point {
 	 * このLocationに對する、移動可能なランダム範圍のLocationを返す。
 	 * ランダムテレポートの場合は、城エリア、アジト內のLocationは返卻されない。
 	 * 
-	 * @param min
-	 *            ランダム範圍の最小值(0で自身の座標を含む)
-	 * @param max
-	 *            ランダム範圍の最大值
-	 * @param isRandomTeleport
-	 *            ランダムテレポートか
+	 * @param min ランダム範圍の最小值(0で自身の座標を含む)
+	 * @param max ランダム範圍の最大值
+	 * @param isRandomTeleport ランダムテレポートか
 	 * @return 新しいLocation
 	 */
 	public L1Location randomLocation(int min, int max, boolean isRandomTeleport) {
@@ -156,18 +144,13 @@ public class L1Location extends Point {
 	 * 引數のLocationに對して、移動可能なランダム範圍のLocationを返す。
 	 * ランダムテレポートの場合は、城エリア、アジト內のLocationは返卻されない。
 	 * 
-	 * @param baseLocation
-	 *            ランダム範圍の元になるLocation
-	 * @param min
-	 *            ランダム範圍の最小值(0で自身の座標を含む)
-	 * @param max
-	 *            ランダム範圍の最大值
-	 * @param isRandomTeleport
-	 *            ランダムテレポートか
+	 * @param baseLocation ランダム範圍の元になるLocation
+	 * @param min ランダム範圍の最小值(0で自身の座標を含む)
+	 * @param max ランダム範圍の最大值
+	 * @param isRandomTeleport ランダムテレポートか
 	 * @return 新しいLocation
 	 */
-	public static L1Location randomLocation(L1Location baseLocation, int min,
-			int max, boolean isRandomTeleport) {
+	public static L1Location randomLocation(L1Location baseLocation, int min, int max, boolean isRandomTeleport) {
 		if (min > max) {
 			throw new IllegalArgumentException("min > max  所以參數無效");
 		}
@@ -229,8 +212,8 @@ public class L1Location extends Point {
 			}
 			trial++;
 
-			newX = L1Location.RandomArrayList.getInc(diffX + 1, locX1); // locX1 + L1Location._random.nextInt(diffX + 1);
-			newY = L1Location.RandomArrayList.getInc(diffY + 1, locY1); // locY1 + L1Location._random.nextInt(diffY + 1);
+			newX = RandomArrayList.getInc(diffX + 1, locX1); // locX1 + L1Location._random.nextInt(diffX + 1);
+			newY = RandomArrayList.getInc(diffY + 1, locY1); // locY1 + L1Location._random.nextInt(diffY + 1);
 
 			newLocation.set(newX, newY);
 

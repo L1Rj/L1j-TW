@@ -28,24 +28,14 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.thread.GeneralThreadPool;
 
-// Referenced classes of package net.l1j.server.model:
-// L1DeleteItemOnGround
-
 public class L1DeleteItemOnGround {
-	private DeleteTimer _deleteTimer;
-
-	private static final Logger _log = Logger
-			.getLogger(L1DeleteItemOnGround.class.getName());
+	private static final Logger _log = Logger.getLogger(L1DeleteItemOnGround.class.getName());
 
 	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
-	public L1DeleteItemOnGround() {
-	}
+	private DeleteTimer _deleteTimer;
 
 	private class DeleteTimer implements Runnable {
-		public DeleteTimer() {
-		}
-
 		@Override
 		public void run() {
 			int time = Config.ALT_ITEM_DELETION_TIME * 60 * 1000 - 10 * 1000;
@@ -93,17 +83,13 @@ public class L1DeleteItemOnGround {
 			if (item.getItem().getItemId() == 40515) { // 精靈の石
 				continue;
 			}
-			if (L1HouseLocation.isInHouse(item.getX(), item.getY(), item
-					.getMapId())) { // アジト內
+			if (L1HouseLocation.isInHouse(item.getX(), item.getY(), item.getMapId())) { // アジト內
 				continue;
 			}
 
-			List<L1PcInstance> players = L1World.getInstance()
-					.getVisiblePlayer(item, Config.ALT_ITEM_DELETION_RANGE);
+			List<L1PcInstance> players = L1World.getInstance().getVisiblePlayer(item, Config.ALT_ITEM_DELETION_RANGE);
 			if (players.isEmpty()) { // 指定範圍內にプレイヤーが居なければ削除
-				L1Inventory groundInventory = L1World
-						.getInstance()
-						.getInventory(item.getX(), item.getY(), item.getMapId());
+				L1Inventory groundInventory = L1World.getInstance().getInventory(item.getX(), item.getY(), item.getMapId());
 				groundInventory.removeItem(item);
 				numOfDeleted++;
 			}

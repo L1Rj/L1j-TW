@@ -19,7 +19,6 @@
 package net.l1j.server.model;
 
 import java.lang.reflect.Constructor;
-import java.util.logging.Logger;
 
 import net.l1j.server.IdFactory;
 import net.l1j.server.datatables.NpcTable;
@@ -28,19 +27,10 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_NPCPack;
 import net.l1j.server.templates.L1Npc;
 
-// Referenced classes of package net.l1j.server.model:
-// L1WarSpawn
-
 public class L1WarSpawn {
-	private static final Logger _log = Logger.getLogger(L1WarSpawn.class
-			.getName());
+	private Constructor<?> _constructor;
 
 	private static L1WarSpawn _instance;
-
-	private Constructor _constructor;
-
-	public L1WarSpawn() {
-	}
 
 	public static L1WarSpawn getInstance() {
 		if (_instance == null) {
@@ -109,16 +99,10 @@ public class L1WarSpawn {
 	private void SpawnWarObject(L1Npc l1npc, int locx, int locy, short mapid) {
 		try {
 			if (l1npc != null) {
-				Object obj = null;
 				String s = l1npc.getImpl();
-				_constructor = Class.forName(
-						(new StringBuilder()).append(
-								"net.l1j.server.model.instance.").append(s)
-								.append("Instance").toString())
-						.getConstructors()[0];
+				_constructor = Class.forName((new StringBuilder()).append("net.l1j.server.model.instance.").append(s).append("Instance").toString()).getConstructors()[0];
 				Object aobj[] = { l1npc };
-				L1NpcInstance npc = (L1NpcInstance) _constructor
-						.newInstance(aobj);
+				L1NpcInstance npc = (L1NpcInstance) _constructor.newInstance(aobj);
 				npc.setId(IdFactory.getInstance().nextId());
 				npc.setX(locx);
 				npc.setY(locy);
@@ -136,7 +120,7 @@ public class L1WarSpawn {
 					pc.broadcastPacket(new S_NPCPack(npc));
 				}
 			}
-		} catch (Exception exception) {
+		} catch (Exception e) {
 		}
 	}
 }

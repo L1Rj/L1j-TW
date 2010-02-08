@@ -1,7 +1,20 @@
+/*
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 package net.l1j.server.model;
 
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import javolution.util.FastTable;
 
@@ -11,6 +24,7 @@ import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1ArmorSets;
+
 import static net.l1j.server.skills.SkillId.*;
 
 public abstract class L1ArmorSet {
@@ -38,25 +52,16 @@ public abstract class L1ArmorSet {
 
 		for (L1ArmorSets armorSets : ArmorSetTable.getInstance().getAllList()) {
 			try {
-				
 				impl = new L1ArmorSetImpl(getArray(armorSets.getSets(), ","));
 				if (armorSets.getPolyId() != -1) {
 					impl.addEffect(new PolymorphEffect(armorSets.getPolyId()));
 				}
-				impl.addEffect(new AcHpMpBonusEffect(armorSets.getAc(),
-						armorSets.getHp(), armorSets.getMp(),
-						armorSets.getHpr(), armorSets.getMpr(),
-						armorSets.getMr()));
-				impl.addEffect(new StatBonusEffect(armorSets.getStr(),
-						armorSets.getDex(), armorSets.getCon(),
-						armorSets.getWis(), armorSets.getCha(),
-						armorSets.getIntl()));
-				impl.addEffect(new DefenseBonusEffect(armorSets
-						.getDefenseWater(), armorSets.getDefenseWind(),
-						armorSets.getDefenseFire(),armorSets.getDefenseWind()));
+				impl.addEffect(new AcHpMpBonusEffect(armorSets.getAc(), armorSets.getHp(), armorSets.getMp(), armorSets.getHpr(), armorSets.getMpr(), armorSets.getMr()));
+				impl.addEffect(new StatBonusEffect(armorSets.getStr(), armorSets.getDex(), armorSets.getCon(), armorSets.getWis(), armorSets.getCha(), armorSets.getIntl()));
+				impl.addEffect(new DefenseBonusEffect(armorSets.getDefenseWater(), armorSets.getDefenseWind(), armorSets.getDefenseFire(), armorSets.getDefenseWind()));
 
 				_allSet.add(impl);
-			} catch(Exception ex) {
+			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}
@@ -82,10 +87,9 @@ interface L1ArmorSetEffect {
 }
 
 class L1ArmorSetImpl extends L1ArmorSet {
-	private final int _ids[];
 	private final FastTable<L1ArmorSetEffect> _effects;
-	private static Logger _log = Logger.getLogger(L1ArmorSetImpl.class
-			.getName());
+
+	private final int _ids[];
 
 	protected L1ArmorSetImpl(int ids[]) {
 		_ids = ids;
@@ -138,8 +142,7 @@ class L1ArmorSetImpl extends L1ArmorSet {
 		// セット裝備にリングが含まれているか調べる
 		for (int id : _ids) {
 			armor = pcInventory.findItemId(id);
-			if (armor.getItem().getType2() == 2
-					&& armor.getItem().getType() == 9) { // ring
+			if (armor.getItem().getType2() == 2 && armor.getItem().getType() == 9) { // ring
 				isSetContainRing = true;
 				break;
 			}
@@ -151,8 +154,7 @@ class L1ArmorSetImpl extends L1ArmorSet {
 			if (pcInventory.getTypeEquipped(2, 9) == 2) {
 				L1ItemInstance ring[] = new L1ItemInstance[2];
 				ring = pcInventory.getRingEquipped();
-				if (ring[0].getItem().getItemId() == itemId
-						&& ring[1].getItem().getItemId() == itemId) {
+				if (ring[0].getItem().getItemId() == itemId && ring[1].getItem().getItemId() == itemId) {
 					return true;
 				}
 			}
@@ -170,8 +172,7 @@ class AcHpMpBonusEffect implements L1ArmorSetEffect {
 	private final int _regenMp;
 	private final int _addMr;
 
-	public AcHpMpBonusEffect(int ac, int addHp, int addMp, int regenHp,
-			int regenMp, int addMr) {
+	public AcHpMpBonusEffect(int ac, int addHp, int addMp, int regenHp, int regenMp, int addMr) {
 		_ac = ac;
 		_addHp = addHp;
 		_addMp = addMp;
@@ -245,15 +246,14 @@ class DefenseBonusEffect implements L1ArmorSetEffect {
 	private final int _defenseFire;
 	private final int _defenseEarth;
 
-	public DefenseBonusEffect(int defenseWater, int defenseWind,
-			int defenseFire, int defenseEarth) {
+	public DefenseBonusEffect(int defenseWater, int defenseWind, int defenseFire, int defenseEarth) {
 		_defenseWater = defenseWater;
 		_defenseWind = defenseWind;
 		_defenseFire = defenseFire;
 		_defenseEarth = defenseEarth;
 	}
 
-	// @Override
+	@Override
 	public void giveEffect(L1PcInstance pc) {
 		pc.addWater(_defenseWater);
 		pc.addWind(_defenseWind);
@@ -261,7 +261,7 @@ class DefenseBonusEffect implements L1ArmorSetEffect {
 		pc.addEarth(_defenseEarth);
 	}
 
-	// @Override
+	@Override
 	public void cancelEffect(L1PcInstance pc) {
 		pc.addWater(-_defenseWater);
 		pc.addWind(-_defenseWind);
@@ -280,9 +280,7 @@ class PolymorphEffect implements L1ArmorSetEffect {
 	@Override
 	public void giveEffect(L1PcInstance pc) {
 		int awakeSkillId = pc.getAwakeSkillId();
-		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS
-				|| awakeSkillId == SKILL_AWAKEN_FAFURION
-				|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
+		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS || awakeSkillId == SKILL_AWAKEN_FAFURION || awakeSkillId == SKILL_AWAKEN_VALAKAS) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1384));
 			return;
 		}
@@ -302,9 +300,7 @@ class PolymorphEffect implements L1ArmorSetEffect {
 	@Override
 	public void cancelEffect(L1PcInstance pc) {
 		int awakeSkillId = pc.getAwakeSkillId();
-		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS
-				|| awakeSkillId == SKILL_AWAKEN_FAFURION
-				|| awakeSkillId == SKILL_AWAKEN_VALAKAS) {
+		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS || awakeSkillId == SKILL_AWAKEN_FAFURION || awakeSkillId == SKILL_AWAKEN_VALAKAS) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1384));
 			return;
 		}
@@ -325,11 +321,10 @@ class PolymorphEffect implements L1ArmorSetEffect {
 			L1ItemInstance item = pc.getInventory().findItemId(20383);
 			if (item != null) {
 				if (item.getChargeCount() != 0) {
-					isRemainderOfCharge =true;
+					isRemainderOfCharge = true;
 				}
 			}
 		}
 		return isRemainderOfCharge;
 	}
-
 }

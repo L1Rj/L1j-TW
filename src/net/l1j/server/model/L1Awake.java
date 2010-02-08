@@ -30,12 +30,8 @@ import net.l1j.server.serverpackets.S_OwnCharStatus;
 import net.l1j.server.serverpackets.S_SPMR;
 import static net.l1j.server.skills.SkillId.*;
 
-// Referenced classes of package net.l1j.server.model:
-// L1Cooking
-
 public class L1Awake {
-	private static final Logger _log = Logger.getLogger(L1Awake.class
-			.getName());
+	private static final Logger _log = Logger.getLogger(L1Awake.class.getName());
 
 	private L1Awake() {
 	}
@@ -48,8 +44,7 @@ public class L1Awake {
 		} else {
 			if (skillId == SKILL_AWAKEN_ANTHARAS) { // 覺醒：アンタラス
 				pc.addMaxHp(127);
-				pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(),
-						pc.getMaxHp()));
+				pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 				if (pc.isInParty()) { // パーティー中
 					pc.getParty().updateMiniHP(pc);
 				}
@@ -81,8 +76,7 @@ public class L1Awake {
 		int skillId = pc.getAwakeSkillId();
 		if (skillId == SKILL_AWAKEN_ANTHARAS) { // 覺醒：アンタラス
 			pc.addMaxHp(-127);
-			pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(),
-					pc.getMaxHp()));
+			pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 			if (pc.isInParty()) { // パーティー中
 				pc.getParty().updateMiniHP(pc);
 			}
@@ -139,5 +133,4 @@ public class L1Awake {
 			pc.broadcastPacket(charVisual);
 		}
 	}
-
 }

@@ -26,8 +26,9 @@ import javolution.util.FastMap;
 import javolution.util.FastTable;
 
 public class L1UbPattern {
-	private boolean _isFrozen = false;
 	private Map<Integer, FastTable<L1UbSpawn>> _groups = new FastMap<Integer, FastTable<L1UbSpawn>>();
+
+	private boolean _isFrozen = false;
 
 	public void addSpawn(int groupNumber, L1UbSpawn spawn) {
 		if (_isFrozen) {

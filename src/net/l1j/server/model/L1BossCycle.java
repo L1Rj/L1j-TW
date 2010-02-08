@@ -1,3 +1,17 @@
+/*
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 package net.l1j.server.model;
 
 import java.io.File;
@@ -6,7 +20,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -28,6 +41,8 @@ import net.l1j.server.utils.RandomArrayList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class L1BossCycle {
+	private static Logger _log = Logger.getLogger(L1BossCycle.class.getName());
+
 	@XmlAttribute(name = "Name")
 	private String _name;
 	@XmlElement(name = "Base")
@@ -94,7 +109,6 @@ public class L1BossCycle {
 		}
 	}
 
-	//private static final Random _rnd = new Random();
 	private Calendar _baseDate;
 	private int _period; // 分換算
 	private int _periodDay;
@@ -105,8 +119,7 @@ public class L1BossCycle {
 	private int _endTime; // 分換算
 	private static SimpleDateFormat _sdfYmd = new SimpleDateFormat("yyyy/MM/dd");
 	private static SimpleDateFormat _sdfTime = new SimpleDateFormat("HH:mm");
-	private static SimpleDateFormat _sdf = new SimpleDateFormat(
-			"yyyy/MM/dd HH:mm");
+	private static SimpleDateFormat _sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 	private static Date _initDate = new Date();
 	private static String _initTime = "0:00";
 	private static final Calendar START_UP = Calendar.getInstance();
@@ -238,6 +251,7 @@ public class L1BossCycle {
 
 	/**
 	 * 指定日時を含む周期に對して、出現タイミングを算出する。
+	 * 
 	 * @return 出現する時間
 	 */
 	public Calendar calcSpawnTime(Calendar now) {
@@ -254,6 +268,7 @@ public class L1BossCycle {
 
 	/**
 	 * 指定日時を含む周期に對して、出現開始時間を算出する。
+	 * 
 	 * @return 周期の出現開始時間
 	 */
 	public Calendar getSpawnStartTime(Calendar now) {
@@ -266,6 +281,7 @@ public class L1BossCycle {
 
 	/**
 	 * 指定日時を含む周期に對して、出現終了時間を算出する。
+	 * 
 	 * @return 周期の出現終了時間
 	 */
 	public Calendar getSpawnEndTime(Calendar now) {
@@ -278,6 +294,7 @@ public class L1BossCycle {
 
 	/**
 	 * 指定日時を含む周期に對して、次の周期の出現タイミングを算出する。
+	 * 
 	 * @return 次の周期の出現する時間
 	 */
 	public Calendar nextSpawnTime(Calendar now) {
@@ -291,6 +308,7 @@ public class L1BossCycle {
 
 	/**
 	 * 指定日時に對して、最近の出現開始時間を返卻する。
+	 * 
 	 * @return 最近の出現開始時間
 	 */
 	public Calendar getLatestStartTime(Calendar now) {
@@ -340,8 +358,7 @@ public class L1BossCycle {
 		System.out.print("╠》正在讀取 BossCycle...");
 		try {
 			// BookOrder クラスをバインディングするコンテキストを生成
-			JAXBContext context = JAXBContext
-					.newInstance(L1BossCycle.L1BossCycleList.class);
+			JAXBContext context = JAXBContext.newInstance(L1BossCycle.L1BossCycleList.class);
 
 			// XML -> POJO 變換を行うアンマーシャラを生成
 			Unmarshaller um = context.createUnmarshaller();
@@ -376,6 +393,7 @@ public class L1BossCycle {
 
 	/**
 	 * 周期名と指定日時に對する出現期間、出現時間をコンソール出力
+	 * 
 	 * @param now 周期を出力する日時
 	 */
 	public void showData(Calendar now) {
@@ -414,6 +432,4 @@ public class L1BossCycle {
 	public void setCycle(Cycle cycle) {
 		this._cycle = cycle;
 	}
-
-	private static Logger _log = Logger.getLogger(L1BossCycle.class.getName());
 }

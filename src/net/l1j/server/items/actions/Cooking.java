@@ -128,8 +128,7 @@ public class Cooking {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1102));
 			}
 		} else if (cookNo == 4) { // フルーツサラダ
-			if (pc.getInventory().checkItem(40062, 1) && pc.getInventory().checkItem(40069, 1)
-					&& pc.getInventory().checkItem(40064, 1)) {
+			if (pc.getInventory().checkItem(40062, 1) && pc.getInventory().checkItem(40069, 1) && pc.getInventory().checkItem(40064, 1)) {
 				pc.getInventory().consumeItem(40062, 1);
 				pc.getInventory().consumeItem(40069, 1);
 				pc.getInventory().consumeItem(40064, 1);
@@ -148,8 +147,7 @@ public class Cooking {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1102));
 			}
 		} else if (cookNo == 5) { // フルーツ甘酢あんかけ
-			if (pc.getInventory().checkItem(40056, 1) && pc.getInventory().checkItem(40060, 1)
-					&& pc.getInventory().checkItem(40061, 1)) {
+			if (pc.getInventory().checkItem(40056, 1) && pc.getInventory().checkItem(40060, 1) && pc.getInventory().checkItem(40061, 1)) {
 				pc.getInventory().consumeItem(40056, 1);
 				pc.getInventory().consumeItem(40060, 1);
 				pc.getInventory().consumeItem(40061, 1);
@@ -239,8 +237,7 @@ public class Cooking {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1102));
 			}
 		} else if (cookNo == 10) { // タートルドラゴンの果子
-			if (pc.getInventory().checkItem(49042, 1) && pc.getInventory().checkItem(41265, 1)
-					&& pc.getInventory().checkItem(49048, 1)) {
+			if (pc.getInventory().checkItem(49042, 1) && pc.getInventory().checkItem(41265, 1) && pc.getInventory().checkItem(49048, 1)) {
 				pc.getInventory().consumeItem(49042, 1);
 				pc.getInventory().consumeItem(41265, 1);
 				pc.getInventory().consumeItem(49048, 1);
@@ -331,8 +328,7 @@ public class Cooking {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1102));
 			}
 		} else if (cookNo == 15) { // クラブスープ
-			if (pc.getInventory().checkItem(49047, 1) && pc.getInventory().checkItem(40499, 1)
-					&& pc.getInventory().checkItem(49048, 1)) {
+			if (pc.getInventory().checkItem(49047, 1) && pc.getInventory().checkItem(40499, 1) && pc.getInventory().checkItem(49048, 1)) {
 				pc.getInventory().consumeItem(49047, 1);
 				pc.getInventory().consumeItem(40499, 1);
 				pc.getInventory().consumeItem(49048, 1);
@@ -351,8 +347,7 @@ public class Cooking {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1102));
 			}
 		} else if (cookNo == 16) { // クラスタシアンのハサミ燒き
-			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1)
-					&& pc.getInventory().checkItem(49260, 1)) {
+			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1) && pc.getInventory().checkItem(49260, 1)) {
 				pc.getInventory().consumeItem(49048, 1);
 				pc.getInventory().consumeItem(49243, 1);
 				pc.getInventory().consumeItem(49260, 1);
@@ -371,8 +366,7 @@ public class Cooking {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1102));
 			}
 		} else if (cookNo == 17) { // グリフォン燒き
-			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1)
-					&& pc.getInventory().checkItem(49261, 1)) {
+			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1) && pc.getInventory().checkItem(49261, 1)) {
 				pc.getInventory().consumeItem(49048, 1);
 				pc.getInventory().consumeItem(49243, 1);
 				pc.getInventory().consumeItem(49261, 1);
@@ -391,8 +385,7 @@ public class Cooking {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1102));
 			}
 		} else if (cookNo == 18) { // コカトリスステーキ
-			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1)
-					&& pc.getInventory().checkItem(49262, 1)) {
+			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1) && pc.getInventory().checkItem(49262, 1)) {
 				pc.getInventory().consumeItem(49048, 1);
 				pc.getInventory().consumeItem(49243, 1);
 				pc.getInventory().consumeItem(49262, 1);
@@ -411,8 +404,7 @@ public class Cooking {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1102));
 			}
 		} else if (cookNo == 19) { // タートルドラゴン燒き
-			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1)
-					&& pc.getInventory().checkItem(49263, 1)) {
+			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1) && pc.getInventory().checkItem(49263, 1)) {
 				pc.getInventory().consumeItem(49048, 1);
 				pc.getInventory().consumeItem(49243, 1);
 				pc.getInventory().consumeItem(49263, 1);
@@ -431,8 +423,7 @@ public class Cooking {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1102));
 			}
 		} else if (cookNo == 20) { // レッサードラゴンの手羽先
-			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1)
-					&& pc.getInventory().checkItem(49264, 1)) {
+			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1) && pc.getInventory().checkItem(49264, 1)) {
 				pc.getInventory().consumeItem(49048, 1);
 				pc.getInventory().consumeItem(49243, 1);
 				pc.getInventory().consumeItem(49264, 1);
@@ -451,8 +442,7 @@ public class Cooking {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1102));
 			}
 		} else if (cookNo == 21) { // ドレイク燒き
-			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1)
-					&& pc.getInventory().checkItem(49265, 1)) {
+			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1) && pc.getInventory().checkItem(49265, 1)) {
 				pc.getInventory().consumeItem(49048, 1);
 				pc.getInventory().consumeItem(49243, 1);
 				pc.getInventory().consumeItem(49265, 1);
@@ -471,8 +461,7 @@ public class Cooking {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1102));
 			}
 		} else if (cookNo == 22) { // 深海魚のシチュー
-			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1)
-					&& pc.getInventory().checkItem(49266, 1)) {
+			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1) && pc.getInventory().checkItem(49266, 1)) {
 				pc.getInventory().consumeItem(49048, 1);
 				pc.getInventory().consumeItem(49243, 1);
 				pc.getInventory().consumeItem(49266, 1);
@@ -491,8 +480,7 @@ public class Cooking {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1102));
 			}
 		} else if (cookNo == 23) { // バシリスクの卵スープ
-			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1)
-					&& pc.getInventory().checkItem(49267, 1)) {
+			if (pc.getInventory().checkItem(49048, 1) && pc.getInventory().checkItem(49243, 1) && pc.getInventory().checkItem(49267, 1)) {
 				pc.getInventory().consumeItem(49048, 1);
 				pc.getInventory().consumeItem(49243, 1);
 				pc.getInventory().consumeItem(49267, 1);

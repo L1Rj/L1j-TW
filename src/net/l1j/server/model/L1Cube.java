@@ -69,8 +69,7 @@ public class L1Cube extends TimerTask {
 	public void begin() {
 		// 効果時間が8秒のため、4秒毎のスキルの場合処理時間を考慮すると実際には1回しか効果が現れない
 		// よって開始時間を0.9秒後に設定しておく
-		_future = _threadPool.scheduleAtFixedRate(this,
-				900, 1000);
+		_future = _threadPool.scheduleAtFixedRate(this, 900, 1000);
 	}
 
 	public void stop() {
@@ -105,15 +104,12 @@ public class L1Cube extends TimerTask {
 
 			if (_cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) _cha;
-				pc.sendPackets(new S_DoActionGFX(pc.getId(),
-						ActionCodes.ACTION_Damage));
-				pc.broadcastPacket(new S_DoActionGFX(pc.getId(),
-						ActionCodes.ACTION_Damage));
+				pc.sendPackets(new S_DoActionGFX(pc.getId(), ActionCodes.ACTION_Damage));
+				pc.broadcastPacket(new S_DoActionGFX(pc.getId(), ActionCodes.ACTION_Damage));
 				pc.receiveDamage(_effect, 10, false);
 			} else if (_cha instanceof L1MonsterInstance) {
 				L1MonsterInstance mob = (L1MonsterInstance) _cha;
-				mob.broadcastPacket(new S_DoActionGFX(mob.getId(),
-						ActionCodes.ACTION_Damage));
+				mob.broadcastPacket(new S_DoActionGFX(mob.getId(), ActionCodes.ACTION_Damage));
 				mob.receiveDamage(_effect, 10);
 			}
 		} else if (_skillId == STATUS_CUBE_QUAKE_TO_ENEMY) {
@@ -149,14 +145,14 @@ public class L1Cube extends TimerTask {
 				mob.setParalyzed(true);
 			}
 		} else if (_skillId == STATUS_CUBE_SHOCK_TO_ENEMY) {
-// if (_timeCounter % 5 != 0) {
-// return;
-// }
-// _cha.addMr(-10);
-// if (_cha instanceof L1PcInstance) {
-// L1PcInstance pc = (L1PcInstance) _cha;
-// pc.sendPackets(new S_SPMR(pc));
-// }
+			// if (_timeCounter % 5 != 0) {
+			// return;
+			// }
+			// _cha.addMr(-10);
+			// if (_cha instanceof L1PcInstance) {
+			// L1PcInstance pc = (L1PcInstance) _cha;
+			// pc.sendPackets(new S_SPMR(pc));
+			// }
 			_cha.setSkillEffect(STATUS_MR_REDUCTION_BY_CUBE_SHOCK, 4000);
 		} else if (_skillId == STATUS_CUBE_BALANCE) {
 			if (_timeCounter % 4 == 0) {
@@ -177,5 +173,4 @@ public class L1Cube extends TimerTask {
 			}
 		}
 	}
-
 }

@@ -25,17 +25,10 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_PinkName;
 import net.l1j.thread.GeneralThreadPool;
 
-// Referenced classes of package net.l1j.server.model:
-// L1PinkName
-
 public class L1PinkName {
-	private static final Logger _log = Logger.getLogger(L1PinkName.class
-			.getName());
+	private static final Logger _log = Logger.getLogger(L1PinkName.class.getName());
 
 	private static GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
-
-	private L1PinkName() {
-	}
 
 	static class PinkNameTimer implements Runnable {
 		private L1PcInstance _attacker = null;
@@ -63,9 +56,9 @@ public class L1PinkName {
 				}
 			}
 			stopPinkName(_attacker);
-	           if (!_attacker.isDead()) { // 非死亡狀態判斷
-	                _attacker.setPinkName(false);// 砍人後顏色變回藍色
-	            }
+			if (!_attacker.isDead()) { // 非死亡狀態判斷
+				_attacker.setPinkName(false);// 砍人後顏色變回藍色
+			}
 		}
 
 		private void stopPinkName(L1PcInstance attacker) {
@@ -96,17 +89,14 @@ public class L1PinkName {
 			isNowWar = WarTimeController.getInstance().isNowWar(castleId);
 		}
 
-		if (pc.getLawful() >= 0
-				&& // pc, attacker共に青ネーム
-				!pc.isPinkName() && attacker.getLawful() >= 0
-				&& !attacker.isPinkName()) {
+		if (pc.getLawful() >= 0 && // pc, attacker共に青ネーム
+		!pc.isPinkName() && attacker.getLawful() >= 0 && !attacker.isPinkName()) {
 			if (pc.getZoneType() == 0 && // 共にノーマルゾーンで、戰爭時間內で旗內でない
-					attacker.getZoneType() == 0 && isNowWar == false) {
+			attacker.getZoneType() == 0 && isNowWar == false) {
 				attacker.setPinkName(true);
 				attacker.sendPackets(new S_PinkName(attacker.getId(), 180));
 				if (!attacker.isGmInvis()) {
-					attacker.broadcastPacket(new S_PinkName(attacker.getId(),
-							180));
+					attacker.broadcastPacket(new S_PinkName(attacker.getId(), 180));
 				}
 				PinkNameTimer pink = new PinkNameTimer(attacker);
 				_threadPool.execute(pink);

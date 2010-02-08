@@ -1,5 +1,22 @@
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 package net.l1j.server.model;
-
 
 import java.util.Map;
 import java.util.Timer;
@@ -16,10 +33,9 @@ import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_DropItem;
 
 public class L1GroundInventory extends L1Inventory {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+
+	private static Logger _log = Logger.getLogger(L1PcInventory.class.getName());
 
 	private static final Timer _timer = new Timer();
 
@@ -55,8 +71,7 @@ public class L1GroundInventory extends L1Inventory {
 			return;
 		}
 
-		_timer.schedule(new DeletionTimer(item),
-				Config.ALT_ITEM_DELETION_TIME * 60 * 1000);
+		_timer.schedule(new DeletionTimer(item), Config.ALT_ITEM_DELETION_TIME * 60 * 1000);
 	}
 
 	private void cancelTimer(L1ItemInstance item) {
@@ -118,7 +133,4 @@ public class L1GroundInventory extends L1Inventory {
 			L1World.getInstance().removeVisibleObject(this);
 		}
 	}
-
-	private static Logger _log = Logger
-			.getLogger(L1PcInventory.class.getName());
 }

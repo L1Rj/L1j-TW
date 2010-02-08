@@ -56,7 +56,6 @@ import static net.l1j.server.skills.SkillId.STATUS_WISDOM_POTION;
 import static net.l1j.server.skills.SkillId.SKILL_WIND_WALK;
 
 public class Potion {
-
 	private static Random _random = new Random();
 
 	/** 治癒藥水動作 */

@@ -31,8 +31,7 @@ public class L1ExcludingList {
 	/**
 	 * 指定した名前のキャラクターを遮斷リストから削除する
 	 * 
-	 * @param name
-	 *            對象のキャラクター名
+	 * @param name 對象のキャラクター名
 	 * @return 實際に削除された、クライアントの遮斷リスト上のキャラクター名。 指定した名前がリストに見つからなかった場合はnullを返す。
 	 */
 	public String remove(String name) {
