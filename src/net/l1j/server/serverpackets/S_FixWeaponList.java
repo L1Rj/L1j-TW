@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import java.util.List;
@@ -27,47 +26,40 @@ import static net.l1j.server.Opcodes.S_OPCODE_SELECTLIST;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket, S_SystemMessage
-
-public class S_FixWeaponList extends ServerBasePacket
-{
+public class S_FixWeaponList extends ServerBasePacket {
 	private final static int Fix_InitPrice = 0x000000C8; // 初始價格
+
 	// 維護價格等於 初始價格 x 損壞程度 = 真正價格 (此值還未被加入到 CONFIG 中給使用者利用)
-	
+
 	// [封包] 武器維修清單
-	public S_FixWeaponList(L1PcInstance pc)
-	{
+	public S_FixWeaponList(L1PcInstance pc) {
 		writeC(S_OPCODE_SELECTLIST);
 		writeD(Fix_InitPrice); // 初始價格
 
 		List<L1ItemInstance> list = new FastTable<L1ItemInstance>();
 		List<L1ItemInstance> itemList = pc.getInventory().getItems();
-		
+
 		// 搜尋角色背包之物品
-		for (L1ItemInstance item : itemList)
-		{
+		for (L1ItemInstance item : itemList) {
 			// 判斷物品是否為武器 與 損壞程度是否大於 0
 			if (item.getItem().getType2() == 1 && item.get_durability() > 0)
 				list.add(item); // 加入到修復清單中
 		}
-		
+
 		writeH(list.size()); // 需要修復的道具數量
 
 		// 搜尋需要修復的道具資料
-		for (L1ItemInstance weapon : list)
-		{
+		for (L1ItemInstance weapon : list) {
 			writeD(weapon.getId()); // 編號
 			writeC(weapon.get_durability()); // 損壞程度
 		}
 	}
-	
+
 	// 備註 : 如有錯誤之處請自行修正, 這是我前年的作品我只有拿武器來測試而已..
 	// 我不清楚有損壞的防具會不會顯示到清單中 by KIUSBT
-	
+
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

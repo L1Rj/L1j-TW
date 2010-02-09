@@ -20,7 +20,6 @@ package net.l1j.server.model.instance;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Logger;
 
 import net.l1j.server.ActionCodes;
 import net.l1j.server.IdFactory;
@@ -44,12 +43,11 @@ import net.l1j.server.templates.L1Pet;
 import net.l1j.server.templates.L1PetItem;
 import net.l1j.server.templates.L1PetType;
 import net.l1j.server.utils.RandomArrayList;
+
 import static net.l1j.server.skills.SkillId.*;
 
 public class L1PetInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
-
-	private static Logger _log = Logger.getLogger(L1PetInstance.class.getName());
 
 	private int _currentPetStatus;
 	private L1PcInstance _petMaster;
@@ -63,8 +61,7 @@ public class L1PetInstance extends L1NpcInstance {
 		if (_currentPetStatus == 3) { // ● 休憩の場合
 			return true;
 		} else if (_currentPetStatus == 4) { // ● 配備の場合
-			if (_petMaster != null && _petMaster.getMapId() == getMapId()
-					&& getLocation().getTileLineDistance(_petMaster.getLocation()) < 5) {
+			if (_petMaster != null && _petMaster.getMapId() == getMapId() && getLocation().getTileLineDistance(_petMaster.getLocation()) < 5) {
 				int dir = targetReverseDirection(_petMaster.getX(), _petMaster.getY());
 				dir = checkObject(getX(), getY(), getMapId(), dir);
 				setDirectionMove(dir);
@@ -85,8 +82,7 @@ public class L1PetInstance extends L1NpcInstance {
 				}
 			}
 		} else if (_currentPetStatus == 7) { // ● ペットの笛で主人の元へ
-			if (_petMaster != null && _petMaster.getMapId() == getMapId()
-					&& getLocation().getTileLineDistance(_petMaster.getLocation()) <= 1) {
+			if (_petMaster != null && _petMaster.getMapId() == getMapId() && getLocation().getTileLineDistance(_petMaster.getLocation()) <= 1) {
 				_currentPetStatus = 3;
 				return true;
 			}
@@ -135,8 +131,7 @@ public class L1PetInstance extends L1NpcInstance {
 		setMaxMp(l1pet.get_mp());
 		setCurrentMpDirect(l1pet.get_mp());
 		setExp(l1pet.get_exp());
-		setExpPercent(ExpTable.getExpPercentage(l1pet.get_level(), l1pet
-				.get_exp()));
+		setExpPercent(ExpTable.getExpPercentage(l1pet.get_level(), l1pet.get_exp()));
 		setLawful(l1pet.get_lawful());
 		setTempLawful(l1pet.get_lawful());
 
@@ -319,8 +314,7 @@ public class L1PetInstance extends L1NpcInstance {
 			if (item.isEquipped()) { // 裝備中のペットアイテム
 				continue;
 			}
-			if (_petMaster.getInventory().checkAddItem( // 容量重量確認及びメッセージ送信
-					item, item.getCount()) == L1Inventory.OK) {
+			if (_petMaster.getInventory().checkAddItem(item, item.getCount()) == L1Inventory.OK) { // 容量重量確認及びメッセージ送信
 				_inventory.tradeItem(item, item.getCount(), targetInventory);
 				_petMaster.sendPackets(new S_ServerMessage(SystemMessageId.$143, getName(), item.getLogName()));
 			} else { // 持てないので足元に落とす
@@ -330,33 +324,33 @@ public class L1PetInstance extends L1NpcInstance {
 		}
 	}
 
-// 寄放於npc時已裝備的物品直接給予主人
-    public void Npccollect() {
-        L1Inventory targetInventory = _petMaster.getInventory();
-        List<L1ItemInstance> items = _inventory.getItems();
-        int size = _inventory.getSize();
-        L1Pet l1pet = PetTable.getInstance().getTemplate(_itemObjId);
-        for (int i = 0; i < size; i++) {
-            L1ItemInstance item = items.get(0);
-            if (item.isEquipped()) {
-                item.setEquipped(false);
-                L1PetItem petitem = PetItemTable.getInstance().getTemplate(item.getItemId());
-                l1pet.set_hp(getMaxHp()- petitem.getAddHp());
-                setMaxHp(l1pet.get_hp());
-                l1pet.set_mp(getMaxMp() - petitem.getAddMp());
-                setMaxMp(l1pet.get_mp());
-            }
-            if (_petMaster.getInventory().checkAddItem(item, item.getCount()) == L1Inventory.OK) {
-                _inventory.tradeItem(item, item.getCount(), targetInventory);
-                _petMaster.sendPackets(new S_ServerMessage(SystemMessageId.$143, getName(), item.getLogName()));
-            } else {
-                targetInventory = L1World.getInstance().getInventory(getX(), getY(), getMapId());
-                _inventory.tradeItem(item, item.getCount(), targetInventory);
-            }
-        }
-    }
-	
-// リスタート時にDROPを地面に落とす
+	// 寄放於npc時已裝備的物品直接給予主人
+	public void Npccollect() {
+		L1Inventory targetInventory = _petMaster.getInventory();
+		List<L1ItemInstance> items = _inventory.getItems();
+		int size = _inventory.getSize();
+		L1Pet l1pet = PetTable.getInstance().getTemplate(_itemObjId);
+		for (int i = 0; i < size; i++) {
+			L1ItemInstance item = items.get(0);
+			if (item.isEquipped()) {
+				item.setEquipped(false);
+				L1PetItem petitem = PetItemTable.getInstance().getTemplate(item.getItemId());
+				l1pet.set_hp(getMaxHp() - petitem.getAddHp());
+				setMaxHp(l1pet.get_hp());
+				l1pet.set_mp(getMaxMp() - petitem.getAddMp());
+				setMaxMp(l1pet.get_mp());
+			}
+			if (_petMaster.getInventory().checkAddItem(item, item.getCount()) == L1Inventory.OK) {
+				_inventory.tradeItem(item, item.getCount(), targetInventory);
+				_petMaster.sendPackets(new S_ServerMessage(SystemMessageId.$143, getName(), item.getLogName()));
+			} else {
+				targetInventory = L1World.getInstance().getInventory(getX(), getY(), getMapId());
+				_inventory.tradeItem(item, item.getCount(), targetInventory);
+			}
+		}
+	}
+
+	// リスタート時にDROPを地面に落とす
 	public void dropItem() {
 		L1Inventory targetInventory = L1World.getInstance().getInventory(getX(), getY(), getMapId());
 		List<L1ItemInstance> items = _inventory.getItems();

@@ -18,13 +18,10 @@
  */
 package net.l1j.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_UseMap extends ServerBasePacket {
-	private static Logger _log = Logger.getLogger(S_UseMap.class.getName());
 	private static final String S_USE_MAP = "[S] S_UseMap";
 
 	public S_UseMap(L1PcInstance pc, int objid, int itemid) {
@@ -33,59 +30,59 @@ public class S_UseMap extends ServerBasePacket {
 		writeD(objid);
 
 		switch (itemid) {
-		case 40373:
-			writeD(16);
+			case 40373:
+				writeD(16);
 			break;
-		case 40374:
-			writeD(1);
+			case 40374:
+				writeD(1);
 			break;
-		case 40375:
-			writeD(2);
+			case 40375:
+				writeD(2);
 			break;
-		case 40376:
-			writeD(3);
+			case 40376:
+				writeD(3);
 			break;
-		case 40377:
-			writeD(4);
+			case 40377:
+				writeD(4);
 			break;
-		case 40378:
-			writeD(5);
+			case 40378:
+				writeD(5);
 			break;
-		case 40379:
-			writeD(6);
+			case 40379:
+				writeD(6);
 			break;
-		case 40380:
-			writeD(7);
+			case 40380:
+				writeD(7);
 			break;
-		case 40381:
-			writeD(8);
+			case 40381:
+				writeD(8);
 			break;
-		case 40382:
-			writeD(9);
+			case 40382:
+				writeD(9);
 			break;
-		case 40383:
-			writeD(10);
+			case 40383:
+				writeD(10);
 			break;
-		case 40384:
-			writeD(11);
+			case 40384:
+				writeD(11);
 			break;
-		case 40385:
-			writeD(12);
+			case 40385:
+				writeD(12);
 			break;
-		case 40386:
-			writeD(13);
+			case 40386:
+				writeD(13);
 			break;
-		case 40387:
-			writeD(14);
+			case 40387:
+				writeD(14);
 			break;
-		case 40388:
-			writeD(15);
+			case 40388:
+				writeD(15);
 			break;
-		case 40389:
-			writeD(17);
+			case 40389:
+				writeD(17);
 			break;
-		case 40390:
-			writeD(18);
+			case 40390:
+				writeD(18);
 			break;
 		}
 	}

@@ -16,20 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_War extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_War.class.getName());
 	private static final String S_WAR = "[S] S_War";
+
 	private byte[] _byte = null;
 
 	public S_War(int type, String clan_name1, String clan_name2) {

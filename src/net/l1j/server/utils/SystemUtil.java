@@ -19,7 +19,6 @@
 package net.l1j.server.utils;
 
 public class SystemUtil {
-
 	private static Runtime runTime = Runtime.getRuntime();
 
 	/**
@@ -48,5 +47,4 @@ public class SystemUtil {
 	public static long getFreeMemoryMB() {
 		return runTime.freeMemory() / 1024L;
 	}
-
 }

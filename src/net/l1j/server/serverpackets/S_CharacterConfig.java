@@ -30,12 +30,11 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.Opcodes;
 import net.l1j.server.utils.SQLUtil;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_CharacterConfig extends ServerBasePacket {
 	private static Logger _log = Logger.getLogger(S_CharacterConfig.class.getName());
+
 	private static final String S_CHARACTER_CONFIG = "[S] S_CharacterConfig";
+
 	private byte[] _byte = null;
 
 	public S_CharacterConfig(int objectId) {

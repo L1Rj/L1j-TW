@@ -24,10 +24,10 @@ import net.l1j.server.model.npc.L1NpcHtml;
 
 public class S_NPCTalkReturn extends ServerBasePacket {
 	private static final String _S__25_TalkReturn = "[S] _S__25_TalkReturn";
+
 	private byte[] _byte = null;
 
-	public S_NPCTalkReturn(L1NpcTalkData npc, int objid, int action,
-			String[] data) {
+	public S_NPCTalkReturn(L1NpcTalkData npc, int objid, int action, String[] data) {
 
 		String htmlid = "";
 
@@ -58,11 +58,12 @@ public class S_NPCTalkReturn extends ServerBasePacket {
 		buildPacket(objid, html.getName(), html.getArgs());
 	}
 
-//waja add 修正傳送師顯示傳送金額 by 阿傑
+	//waja add 修正傳送師顯示傳送金額 by 阿傑
 	public S_NPCTalkReturn(int objid, L1NpcHtml html, String[] data) {
 		buildPacket(objid, html.getName(), data);
 	}
-//修正傳送師顯示傳送金額 end
+
+	//修正傳送師顯示傳送金額 end
 
 	private void buildPacket(int objid, String htmlid, String[] data) {
 

@@ -19,9 +19,6 @@
 package net.l1j.server.templates;
 
 public class L1Armor extends L1Item {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public L1Armor() {
@@ -213,5 +210,4 @@ public class L1Armor extends L1Item {
 	public int get_regist_blind() {
 		return this._regist_blind;
 	}
-
 }

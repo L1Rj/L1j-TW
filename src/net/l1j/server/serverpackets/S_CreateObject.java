@@ -3,10 +3,8 @@ package net.l1j.server.serverpackets;
 import static net.l1j.server.Opcodes.S_OPCODE_CHARPACK;
 import net.l1j.server.model.L1Character;
 
-public class S_CreateObject extends ServerBasePacket
-{
-	public S_CreateObject(L1Character cha)
-	{
+public class S_CreateObject extends ServerBasePacket {
+	public S_CreateObject(L1Character cha) {
 		writeC(S_OPCODE_CHARPACK);
 		writeH(cha.getX()); // 物件的X軸
 		writeH(cha.getY()); // 物件的Y軸
@@ -20,7 +18,7 @@ public class S_CreateObject extends ServerBasePacket
 		writeH(cha.getLawful()); // 物件正義值
 		writeS(cha.getName()); // 物件名稱
 		writeS(cha.getTitle()); // 物件封號, (備註. 如果物件為一般告示牌 這個就不是封號了
-							   // 就要輸入 HTML 名稱或者自定義告示牌內容)
+		// 就要輸入 HTML 名稱或者自定義告示牌內容)
 		writeC(0x00); // 物件狀態
 		writeD(0x00000000); // 物件血盟編號
 		writeS(null); // 物記血盟名稱
@@ -30,14 +28,13 @@ public class S_CreateObject extends ServerBasePacket
 		writeC(0x00); // 海底波紋程度 (0為不啟動, 只限於自身使用)
 		writeC(cha.getLevel()); // 物件等級
 		writeS(null); // 商人商店名稱 (商店名稱1 與 商店名稱2)
-					  // 在商店名稱1 與 商店名稱2 中間需加入 0xFF 並轉為字元
-					  // 不然會出現錯誤
+		// 在商店名稱1 與 商店名稱2 中間需加入 0xFF 並轉為字元
+		// 不然會出現錯誤
 		writeH(0xFFFF);
 	}
-	
+
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

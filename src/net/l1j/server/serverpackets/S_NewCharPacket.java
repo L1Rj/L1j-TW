@@ -16,17 +16,14 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_NewCharPacket extends ServerBasePacket {
 	private static final String _S__25_NEWCHARPACK = "[S] New Char Packet";
+
 	private byte[] _byte = null;
 
 	public S_NewCharPacket(L1PcInstance pc) {
@@ -56,11 +53,11 @@ public class S_NewCharPacket extends ServerBasePacket {
 		// 1 = true , can't attack
 		// > 1 true , can't attack
 		// can use Public GameMaster Command
-// if (pc.isGm()) {
-// writeC(1);
-// } else {
-			writeC(0);
-// }
+		// if (pc.isGm()) {
+		// writeC(1);
+		// } else {
+		writeC(0);
+		// }
 	}
 
 	@Override
@@ -75,5 +72,4 @@ public class S_NewCharPacket extends ServerBasePacket {
 	public String getType() {
 		return _S__25_NEWCHARPACK;
 	}
-
 }

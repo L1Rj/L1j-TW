@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import java.util.logging.Level;
@@ -28,7 +27,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.utils.SQLUtil;
 
 public class S_BoardRead extends ServerBasePacket {
-
 	private static final String S_BoardRead = "[C] S_BoardRead";
 
 	private static Logger _log = Logger.getLogger(S_BoardRead.class.getName());

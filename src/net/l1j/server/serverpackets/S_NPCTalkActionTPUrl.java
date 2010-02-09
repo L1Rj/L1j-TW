@@ -23,6 +23,7 @@ import net.l1j.server.model.L1NpcTalkData;
 
 public class S_NPCTalkActionTPUrl extends ServerBasePacket {
 	private static final String _S__25_TalkReturnAction = "[S] S_NPCTalkActionTPUrl";
+
 	private byte[] _byte = null;
 
 	public S_NPCTalkActionTPUrl(L1NpcTalkData cha, Object[] prices, int objid) {

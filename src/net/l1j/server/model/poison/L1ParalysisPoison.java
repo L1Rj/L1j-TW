@@ -49,8 +49,7 @@ public class L1ParalysisPoison extends L1Poison {
 			try {
 				Thread.sleep(_delay); // 麻痺するまでの猶予時間を待つ。
 			} catch (InterruptedException e) {
-				_target
-						.killSkillEffectTimer(STATUS_POISON_PARALYZING);
+				_target.killSkillEffectTimer(STATUS_POISON_PARALYZING);
 				return;
 			}
 

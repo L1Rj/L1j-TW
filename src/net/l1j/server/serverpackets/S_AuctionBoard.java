@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import java.sql.*;
@@ -31,13 +30,11 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.utils.SQLUtil;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_AuctionBoard extends ServerBasePacket {
+	private static final String S_AUCTIONBOARD = "[S] S_AuctionBoard";
 
 	private static Logger _log = Logger.getLogger(S_AuctionBoard.class.getName());
-	private static final String S_AUCTIONBOARD = "[S] S_AuctionBoard";
+
 	private byte[] _byte = null;
 
 	public S_AuctionBoard(L1NpcInstance board) {

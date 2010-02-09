@@ -16,21 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.ActionCodes;
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1DoorInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket, S_DoorPack
-
 public class S_DoorPack extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_DoorPack.class.getName());
 	private static final String S_DOOR_PACK = "[S] S_DoorPack";
 
 	private static final int STATUS_POISON = 1;
@@ -96,7 +88,6 @@ public class S_DoorPack extends ServerBasePacket {
 		if (_byte == null) {
 			_byte = _bao.toByteArray();
 		}
-
 		return _byte;
 	}
 
@@ -104,5 +95,4 @@ public class S_DoorPack extends ServerBasePacket {
 	public String getType() {
 		return S_DOOR_PACK;
 	}
-
 }

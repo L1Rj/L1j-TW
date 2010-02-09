@@ -18,14 +18,10 @@
  */
 package net.l1j.server.serverpackets;
 
-import java.util.Calendar;
-import java.util.TimeZone;
-
 import net.l1j.Config;
 import net.l1j.server.Opcodes;
 
-public class S_ServerVersion extends ServerBasePacket
-{
+public class S_ServerVersion extends ServerBasePacket {
 	private static final long lastTime = System.currentTimeMillis();
 	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.06 Start
 	private static final String S_SERVER_VERSION = "[S] ServerVersion";

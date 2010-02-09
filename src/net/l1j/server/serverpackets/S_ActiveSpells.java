@@ -21,8 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
-public class S_ActiveSpells extends ServerBasePacket
-{
+public class S_ActiveSpells extends ServerBasePacket {
 	// [Length:72] S -> C
 	// 0000    77 14 00 00 00 00 00 00 00 00 00 00 00 00 00 00    w...............
 	// 0010    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
@@ -32,8 +31,7 @@ public class S_ActiveSpells extends ServerBasePacket
 	
 	// [Length:8] S -> C
 	// 0000    7A DD F2 50 00 C6 1B 6A                            z..P...j
-	public S_ActiveSpells(L1PcInstance pc)
-	{
+	public S_ActiveSpells(L1PcInstance pc) {
 		writeC(Opcodes.S_OPCODE_ACTIVESPELLS);
 		writeC(0x14);
 		// 1~10
@@ -41,7 +39,7 @@ public class S_ActiveSpells extends ServerBasePacket
 		writeH(0x0000); // 負重強化
 		writeH(0x0000);
 		writeH(0x0000);
-		writeH(0x0000); 
+		writeH(0x0000);
 		writeH(0x0000);
 		writeH(0x0000);
 		writeH(0x0000);
@@ -92,20 +90,20 @@ public class S_ActiveSpells extends ServerBasePacket
 	 * 71, 遊戲2	- 開始
 	 * 72, 遊戲2	- 結束
 	 */
-	public S_ActiveSpells(L1PcInstance pc, int offset)
-	{
+	public S_ActiveSpells(L1PcInstance pc, int offset) {
 		int[] UByte8 = new int[68];
 		byte[] randBox = new byte[2];
 		random.nextBytes(randBox);
-		
+
 		writeC(Opcodes.S_OPCODE_ACTIVESPELLS);
 		writeC(0x14);
-		
+
 		UByte8[offset] = 0x64; // 時間 * 4 [最大時間 1020]
-		
-		for (int i : UByte8)
+
+		for (int i : UByte8) {
 			writeC(i);
-		
+		}
+
 		writeByte(randBox);
 		/**
 		 * 圖示集
@@ -148,8 +146,7 @@ public class S_ActiveSpells extends ServerBasePacket
 	}
 
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

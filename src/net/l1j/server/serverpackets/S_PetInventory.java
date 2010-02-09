@@ -16,69 +16,54 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.datatables.PetItemTable;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
-public class S_PetInventory extends ServerBasePacket
-{
-	public S_PetInventory(L1PetInstance pet)
-	{
+public class S_PetInventory extends ServerBasePacket {
+	public S_PetInventory(L1PetInstance pet) {
 		List<L1ItemInstance> itemList = pet.getInventory().getItems();
 
 		writeC(Opcodes.S_OPCODE_SHOWRETRIEVELIST);
 		writeD(pet.getId());
 		writeH(itemList.size());
 		writeC(0x0b);
-		
+
 		int DefaultAc = 0x0A; // 寵物初始防禦
-		
-		for (Object itemObject : itemList)
-		{
+
+		for (Object itemObject : itemList) {
 			L1ItemInstance item = (L1ItemInstance) itemObject;
-			
+
 			if (item == null)
 				continue;
-			
+
 			writeD(item.getId());
 			writeC(item.getItem().getUseType()); // 0x02:寵物裝備 (盔甲類), 0x16:寵物裝備(牙類)
 			writeH(item.get_gfxid());
 			writeC(item.getBless());
 			writeD(item.getCount());
-			
-			if (item.getItem().getType2() == 0
-			 && item.getItem().getType() == 11
-			 && item.isEquipped())
+
+			if (item.getItem().getType2() == 0 && item.getItem().getType() == 11 && item.isEquipped())
 				writeC(item.isIdentified() ? 3 : 2);
 			else
 				writeC(item.isIdentified() ? 1 : 0);
-			
+
 			writeS(item.getViewName().replace(" ($117)", ""));
-			
-			if (item.getItem().getType2() == 0
-			 && item.getItem().getType() == 11
-			 && item.isEquipped())
-				DefaultAc += PetItemTable.
-					getInstance().getTemplate(
-							item.getItemId()).getAddAc(); // 計算防禦總合
+
+			if (item.getItem().getType2() == 0 && item.getItem().getType() == 11 && item.isEquipped())
+				DefaultAc += PetItemTable.getInstance().getTemplate(item.getItemId()).getAddAc(); // 計算防禦總合
 		}
-		
+
 		writeC(DefaultAc);
 	}
 
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

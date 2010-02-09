@@ -21,21 +21,15 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket, S_SendInvOnLogin
-
-public class S_ItemName extends ServerBasePacket
-{
-	public S_ItemName(L1ItemInstance item)
-	{
+public class S_ItemName extends ServerBasePacket {
+	public S_ItemName(L1ItemInstance item) {
 		writeC(Opcodes.S_OPCODE_ITEMNAME);
 		writeD(item.getId());
 		writeS(item.getViewName());
 	}
 
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

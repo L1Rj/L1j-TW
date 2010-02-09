@@ -32,14 +32,10 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.utils.RandomArrayList;
 import net.l1j.thread.GeneralThreadPool;
 
-// Referenced classes of package net.l1j.server.model:
-// L1NpcInstance, L1Teleport, L1NpcTalkData, L1PcInstance,
-// L1TeleporterPrices, L1TeleportLocations
-
 public class L1TeleporterInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(net.l1j.server.model.instance.L1TeleporterInstance.class.getName());
+	private static Logger _log = Logger.getLogger(L1TeleporterInstance.class.getName());
 
 	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
@@ -353,7 +349,6 @@ public class L1TeleporterInstance extends L1NpcInstance {
 					html = "teleheine3";
 					price = new String[] { "110", "110", "242", "242", "242", "242", "363", "363", "484", "484", "605" };
 				}
-				// 20091213 貝希摩斯&希培莉亞傳師加狩獵區
 				break;
 				case 80132: { // 魔法師-蒂卡菲兒
 					html = "dekabia3";

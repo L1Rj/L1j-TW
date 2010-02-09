@@ -206,7 +206,7 @@ public class L1Npc extends L1Object implements Cloneable {
 	}
 
 	public void set_weakAttr(int i) {
-		_weakAttr= i;
+		_weakAttr = i;
 	}
 
 	private int _ranged;
@@ -598,7 +598,7 @@ public class L1Npc extends L1Object implements Cloneable {
 	public void setTransformGfxId(int i) {
 		_transformGfxId = i;
 	}
-	
+
 	private int _altAtkSpeed;
 
 	public int getAltAtkSpeed() {
@@ -640,7 +640,7 @@ public class L1Npc extends L1Object implements Cloneable {
 	}
 
 	private boolean _amountFixed;
-	
+
 	/**
 	 * mapidsテーブルで設定されたモンスター量倍率の影響を受けるかどうかを返す。
 	 * 

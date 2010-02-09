@@ -18,16 +18,11 @@
  */
 package net.l1j.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
 
 public class S_AttackPacketForNpc extends ServerBasePacket {
-	private static Logger _log = Logger.getLogger(S_AttackPacketForNpc.class
-			.getName());
-	private static final String S_ATTACK_PACKET_FOR_NPC
-			= "[S] S_AttackPacketForNpc";
+	private static final String S_ATTACK_PACKET_FOR_NPC = "[S] S_AttackPacketForNpc";
 
 	private byte[] _byte = null;
 

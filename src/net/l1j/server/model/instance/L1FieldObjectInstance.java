@@ -18,8 +18,6 @@
  */
 package net.l1j.server.model.instance;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.model.L1HauntedHouse;
 import net.l1j.server.model.L1Inventory;
@@ -36,8 +34,6 @@ import static net.l1j.server.skills.SkillId.*;
 
 public class L1FieldObjectInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
-
-	private static Logger _log = Logger.getLogger(L1FieldObjectInstance.class.getName());
 
 	public L1FieldObjectInstance(L1Npc template) {
 		super(template);
@@ -82,8 +78,7 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 						}
 					}
 					SkillUse skilluse = new SkillUse();
-					skilluse.handleCommands(pc, SKILL_CANCEL_MAGIC, pc.getId(), pc.getX(), pc.getY(), null, 0,
-							Base.SKILL_TYPE[1]);
+					skilluse.handleCommands(pc, SKILL_CANCEL_MAGIC, pc.getId(), pc.getX(), pc.getY(), null, 0, Base.SKILL_TYPE[1]);
 					L1Teleport.teleport(pc, 32624, 32813, (short) 4, 5, true);
 				}
 			}

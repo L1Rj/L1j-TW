@@ -24,6 +24,7 @@ import net.l1j.server.model.L1Buddy;
 
 public class S_Buddy extends ServerBasePacket {
 	private static final String _S_Buddy = "[S] _S_Buddy";
+
 	private static final String _HTMLID = "buddy";
 
 	private byte[] _byte = null;

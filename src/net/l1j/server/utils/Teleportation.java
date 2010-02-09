@@ -18,8 +18,6 @@
  */
 package net.l1j.server.utils;
 
-import java.util.logging.Logger;
-
 import javolution.util.FastSet;
 
 import net.l1j.server.model.L1Clan;
@@ -34,7 +32,6 @@ import net.l1j.server.model.map.L1Map;
 import net.l1j.server.model.map.L1WorldMap;
 import net.l1j.server.serverpackets.S_CharVisualUpdate;
 import net.l1j.server.serverpackets.S_DollPack;
-import net.l1j.server.serverpackets.S_SkillBrave;
 import net.l1j.server.serverpackets.S_SkillIconWindShackle;
 import net.l1j.server.serverpackets.S_MapID;
 import net.l1j.server.serverpackets.S_OtherCharPacks;
@@ -45,16 +42,7 @@ import net.l1j.server.utils.RandomArrayList;
 
 import static net.l1j.server.skills.SkillId.*;
 
-// Referenced classes of package net.l1j.server.utils:
-// FaceToFace
-
 public class Teleportation {
-
-	private static Logger _log = Logger.getLogger(Teleportation.class.getName());
-
-	private Teleportation() {
-	}
-
 	public static void Teleportation(L1PcInstance pc) {
 		if (pc.isDead() || pc.isTeleport()) {
 			return;

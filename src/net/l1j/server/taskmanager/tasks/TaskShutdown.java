@@ -23,14 +23,12 @@ import net.l1j.server.taskmanager.TaskManager.ExecutedTask;
 
 /**
  * @author Layane
- * 
  */
 public class TaskShutdown extends Task {
 	public static String NAME = "shutdown";
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see net.l1j.server.taskmanager.Task#getName()
 	 */
 	@Override
@@ -40,14 +38,12 @@ public class TaskShutdown extends Task {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see net.l1j.server.taskmanager.Task#onTimeElapsed(net.l1j.server.taskmanager.TaskManager.ExecutedTask)
+	 * @see
+	 * net.l1j.server.taskmanager.Task#onTimeElapsed(net.l1j.server.taskmanager.TaskManager.ExecutedTask)
 	 */
 	@Override
 	public void onTimeElapsed(ExecutedTask task) {
-		Shutdown handler = new Shutdown(Integer.valueOf(task.getParams()[2]),
-				false);
+		Shutdown handler = new Shutdown(Integer.valueOf(task.getParams()[2]), false);
 		handler.start();
 	}
-
 }

@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.model.map;
 
 import net.l1j.server.types.Point;
@@ -47,31 +46,23 @@ public abstract class L1Map {
 	public abstract int getHeight();
 
 	/**
-	 * 指定された座標の值を返す。
-	 * 
-	 * 推獎されていません。このメソッドは、既存コードとの互換性の為に提供されています。
+	 * 指定された座標の值を返す。 推獎されていません。このメソッドは、既存コードとの互換性の為に提供されています。
 	 * L1Mapの利用者は通常、マップにどのような值が格納されているかを知る必要はありません。
 	 * また、格納されている值に依存するようなコードを書くべきではありません。 デバッグ等の特殊な場合に限り、このメソッドを利用できます。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
+	 * @param x 座標のX值
+	 * @param y 座標のY值
 	 * @return 指定された座標の值
 	 */
 	public abstract int getTile(int x, int y);
 
 	/**
-	 * 指定された座標の值を返す。
-	 * 
-	 * 推獎されていません。このメソッドは、既存コードとの互換性の為に提供されています。
+	 * 指定された座標の值を返す。 推獎されていません。このメソッドは、既存コードとの互換性の為に提供されています。
 	 * L1Mapの利用者は通常、マップにどのような值が格納されているかを知る必要はありません。
 	 * また、格納されている值に依存するようなコードを書くべきではありません。 デバッグ等の特殊な場合に限り、このメソッドを利用できます。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
+	 * @param x 座標のX值
+	 * @param y 座標のY值
 	 * @return 指定された座標の值
 	 */
 	public abstract int getOriginalTile(int x, int y);
@@ -79,8 +70,7 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標がマップの範圍內であるかを返す。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
+	 * @param pt 座標を保持するPointオブジェクト
 	 * @return 範圍內であればtrue
 	 */
 	public abstract boolean isInMap(Point pt);
@@ -88,10 +78,8 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標がマップの範圍內であるかを返す。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
+	 * @param x 座標のX值
+	 * @param y 座標のY值
 	 * @return 範圍內であればtrue
 	 */
 	public abstract boolean isInMap(int x, int y);
@@ -99,8 +87,7 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標が通行可能であるかを返す。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
+	 * @param pt 座標を保持するPointオブジェクト
 	 * @return 通行可能であればtrue
 	 */
 	public abstract boolean isPassable(Point pt);
@@ -108,10 +95,8 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標が通行可能であるかを返す。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
+	 * @param x 座標のX值
+	 * @param y 座標のY值
 	 * @return 通行可能であればtrue
 	 */
 	public abstract boolean isPassable(int x, int y);
@@ -119,8 +104,7 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標のheading方向が通行可能であるかを返す。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
+	 * @param pt 座標を保持するPointオブジェクト
 	 * @return 通行可能であればtrue
 	 */
 	public abstract boolean isPassable(Point pt, int heading);
@@ -128,10 +112,8 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標のheading方向が通行可能であるかを返す。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
+	 * @param x 座標のX值
+	 * @param y 座標のY值
 	 * @return 通行可能であればtrue
 	 */
 	public abstract boolean isPassable(int x, int y, int heading);
@@ -139,30 +121,24 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標の通行可能、不能を設定する。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
-	 * @param isPassable
-	 *            通行可能であればtrue
+	 * @param pt 座標を保持するPointオブジェクト
+	 * @param isPassable 通行可能であればtrue
 	 */
 	public abstract void setPassable(Point pt, boolean isPassable);
 
 	/**
 	 * 指定された座標の通行可能、不能を設定する。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
-	 * @param isPassable
-	 *            通行可能であればtrue
+	 * @param x 座標のX值
+	 * @param y 座標のY值
+	 * @param isPassable 通行可能であればtrue
 	 */
 	public abstract void setPassable(int x, int y, boolean isPassable);
 
 	/**
 	 * 指定された座標がセーフティーゾーンであるかを返す。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
+	 * @param pt 座標を保持するPointオブジェクト
 	 * @return セーフティーゾーンであればtrue
 	 */
 	public abstract boolean isSafetyZone(Point pt);
@@ -170,10 +146,8 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標がセーフティーゾーンであるかを返す。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
+	 * @param x 座標のX值
+	 * @param y 座標のY值
 	 * @return セーフティーゾーンであればtrue
 	 */
 	public abstract boolean isSafetyZone(int x, int y);
@@ -181,8 +155,7 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標がコンバットゾーンであるかを返す。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
+	 * @param pt 座標を保持するPointオブジェクト
 	 * @return コンバットゾーンであればtrue
 	 */
 	public abstract boolean isCombatZone(Point pt);
@@ -190,10 +163,8 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標がコンバットゾーンであるかを返す。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
+	 * @param x 座標のX值
+	 * @param y 座標のY值
 	 * @return コンバットゾーンであればtrue
 	 */
 	public abstract boolean isCombatZone(int x, int y);
@@ -201,8 +172,7 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標がノーマルゾーンであるかを返す。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
+	 * @param pt 座標を保持するPointオブジェクト
 	 * @return ノーマルゾーンであればtrue
 	 */
 	public abstract boolean isNormalZone(Point pt);
@@ -210,10 +180,8 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標がノーマルゾーンであるかを返す。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
+	 * @param x 座標のX值
+	 * @param y 座標のY值
 	 * @return ノーマルゾーンであればtrue
 	 */
 	public abstract boolean isNormalZone(int x, int y);
@@ -221,8 +189,7 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標が矢や魔法を通すかを返す。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
+	 * @param pt 座標を保持するPointオブジェクト
 	 * @return 矢や魔法を通す場合、true
 	 */
 	public abstract boolean isArrowPassable(Point pt);
@@ -230,10 +197,8 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標が矢や魔法を通すかを返す。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
+	 * @param x 座標のX值
+	 * @param y 座標のY值
 	 * @return 矢や魔法を通す場合、true
 	 */
 	public abstract boolean isArrowPassable(int x, int y);
@@ -241,10 +206,8 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標のheading方向が矢や魔法を通すかを返す。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
-	 * @param heading
-	 *            方向
+	 * @param pt 座標を保持するPointオブジェクト
+	 * @param heading 方向
 	 * @return 矢や魔法を通す場合、true
 	 */
 	public abstract boolean isArrowPassable(Point pt, int heading);
@@ -252,12 +215,9 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標のheading方向が矢や魔法を通すかを返す。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
-	 * @param heading
-	 *            方向
+	 * @param x 座標のX值
+	 * @param y 座標のY值
+	 * @param heading 方向
 	 * @return 矢や魔法を通す場合、true
 	 */
 	public abstract boolean isArrowPassable(int x, int y, int heading);
@@ -342,21 +302,17 @@ public abstract class L1Map {
 	/**
 	 * 指定された座標が釣りゾーンであるかを返す。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
+	 * @param x 座標のX值
+	 * @param y 座標のY值
 	 * @return 釣りゾーンであればtrue
 	 */
-    public abstract boolean isFishingZone(int x, int y);
+	public abstract boolean isFishingZone(int x, int y);
 
 	/**
 	 * 指定された座標にドアが存在するかを返す。
 	 * 
-	 * @param x
-	 *            座標のX值
-	 * @param y
-	 *            座標のY值
+	 * @param x 座標のX值
+	 * @param y 座標のY值
 	 * @return ドアがあればtrue
 	 */
 	public abstract boolean isExistDoor(int x, int y);

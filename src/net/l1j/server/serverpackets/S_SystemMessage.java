@@ -18,25 +18,20 @@
  */
 package net.l1j.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.Opcodes;
 
 public class S_SystemMessage extends ServerBasePacket {
 	private static final String S_SYSTEM_MESSAGE = "[S] S_SystemMessage";
 
-	private static Logger _log = Logger.getLogger(S_SystemMessage.class
-			.getName());
-
 	private byte[] _byte = null;
+
 	private final String _msg;
 
 	/**
 	 * クライアントにデータの存在しないオリジナルのメッセージを表示する。
 	 * メッセージにnameid($xxx)が含まれている場合はオーバーロードされたもう一方を使用する。
 	 * 
-	 * @param msg -
-	 *            表示する文字列
+	 * @param msg - 表示する文字列
 	 */
 	public S_SystemMessage(String msg) {
 		_msg = msg;
@@ -48,10 +43,8 @@ public class S_SystemMessage extends ServerBasePacket {
 	/**
 	 * クライアントにデータの存在しないオリジナルのメッセージを表示する。
 	 * 
-	 * @param msg -
-	 *            表示する文字列
-	 * @param nameid -
-	 *            文字列にnameid($xxx)が含まれている場合trueにする。
+	 * @param msg - 表示する文字列
+	 * @param nameid - 文字列にnameid($xxx)が含まれている場合trueにする。
 	 */
 	public S_SystemMessage(String msg, boolean nameid) {
 		_msg = msg;

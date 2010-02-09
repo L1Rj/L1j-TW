@@ -34,8 +34,7 @@ public class L1NpcListedAction extends L1NpcXmlAction {
 	}
 
 	@Override
-	public L1NpcHtml execute(String actionName, L1PcInstance pc, L1Object obj,
-			byte[] args) {
+	public L1NpcHtml execute(String actionName, L1PcInstance pc, L1Object obj, byte[] args) {
 		L1NpcHtml result = null;
 		for (L1NpcAction action : _actions) {
 			if (!action.acceptsRequest(actionName, pc, obj)) {
@@ -50,8 +49,7 @@ public class L1NpcListedAction extends L1NpcXmlAction {
 	}
 
 	@Override
-	public L1NpcHtml executeWithAmount(String actionName, L1PcInstance pc,
-			L1Object obj, int amount) {
+	public L1NpcHtml executeWithAmount(String actionName, L1PcInstance pc, L1Object obj, int amount) {
 		L1NpcHtml result = null;
 		for (L1NpcAction action : _actions) {
 			if (!action.acceptsRequest(actionName, pc, obj)) {

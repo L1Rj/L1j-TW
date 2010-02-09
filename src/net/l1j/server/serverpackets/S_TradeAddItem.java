@@ -16,21 +16,12 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_TradeAddItem extends ServerBasePacket {
-	private static Logger _log = Logger.getLogger(S_TradeAddItem.class
-			.getName());
-
 	private static final String S_TRADE_ADD_ITEM = "[S] S_TradeAddItem";
 
 	public S_TradeAddItem(L1ItemInstance item, int count, int type) {

@@ -215,7 +215,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 									itemName = item40519.getName();
 									_inventory.consumeItem(40519, 5);
 									player.getInventory().storeItem(40519, 5);
-									player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName + "(5)" ));
+									player.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName + "(5)"));
 								}
 							} else {
 								if (!forDropitems()) {
@@ -470,7 +470,8 @@ public class L1GuardianInstance extends L1NpcInstance {
 	private class GDropItemTask implements Runnable {
 		int npcId = getNpcTemplate().get_npcId();
 		String npcName = getNpcTemplate().get_name();
-		private GDropItemTask(){
+
+		private GDropItemTask() {
 		}
 
 		@Override
@@ -478,8 +479,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 			try {
 				if (_configtime > 0 && !isDropitems()) {
 					if (npcId == 70848) { // 安特
-						if (!_inventory.checkItem(40505) && !_inventory.checkItem(40506)
-								&& !_inventory.checkItem(40507)) {
+						if (!_inventory.checkItem(40505) && !_inventory.checkItem(40506) && !_inventory.checkItem(40507)) {
 							_inventory.storeItem(40506, 1); // 水果
 							_inventory.storeItem(40507, 66); // 樹枝
 							_inventory.storeItem(40505, 8); // 樹皮

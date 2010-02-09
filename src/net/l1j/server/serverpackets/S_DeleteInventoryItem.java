@@ -16,23 +16,17 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class S_DeleteInventoryItem extends ServerBasePacket {
-
 	private static final String S_DELETE_INVENTORY_ITEM = "[S] S_DeleteInventoryItem";
-
-	private static Logger _log = Logger.getLogger(S_DeleteInventoryItem.class
-			.getName());
 
 	/**
 	 * インベントリからアイテムを削除する。
+	 * 
 	 * @param item - 削除するアイテム
 	 */
 	public S_DeleteInventoryItem(L1ItemInstance item) {

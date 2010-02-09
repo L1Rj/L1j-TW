@@ -18,20 +18,11 @@
  */
 package net.l1j.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket, S_SendInvOnLogin
-
 public class S_ItemAmount extends ServerBasePacket {
-
 	private static final String S_ITEM_AMOUNT = "[S] S_ItemAmount";
-
-	private static Logger _log = Logger.getLogger(S_ItemAmount.class
-			.getName());
 
 	public S_ItemAmount(L1ItemInstance item) {
 		if (item == null) {
@@ -42,10 +33,10 @@ public class S_ItemAmount extends ServerBasePacket {
 	}
 
 	private void buildPacket(L1ItemInstance item) {
-// writeC(Opcodes.S_OPCODE_ITEMAMOUNT);
-// writeD(item.getId());
-// writeD(item.getCount());
-// writeC(0);
+		// writeC(Opcodes.S_OPCODE_ITEMAMOUNT);
+		// writeD(item.getId());
+		// writeD(item.getCount());
+		// writeC(0);
 		// 3.0
 		writeC(Opcodes.S_OPCODE_ITEMAMOUNT);
 		writeD(item.getId());
@@ -73,5 +64,4 @@ public class S_ItemAmount extends ServerBasePacket {
 	public String getType() {
 		return S_ITEM_AMOUNT;
 	}
-
 }

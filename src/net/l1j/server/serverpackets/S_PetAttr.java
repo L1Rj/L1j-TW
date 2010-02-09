@@ -22,22 +22,18 @@ import static net.l1j.server.Opcodes.S_OPCODE_PACKETBOX;
 import net.l1j.server.model.instance.L1PetInstance;
 
 /**
- * @author DarkNight (Kiusbt)
- * 
- * [K] 寵物屬性更新封包
+ * @author DarkNight (Kiusbt) [K] 寵物屬性更新封包
  */
-public class S_PetAttr extends ServerBasePacket
-{
+public class S_PetAttr extends ServerBasePacket {
 	private static final int POS_PetAttr = 0x25;
-	
+
 	/**
 	 * 初始化-寵物屬性更新封包
 	 * 
 	 * @param 目標寵物 (L1PetInstance pet)
 	 * @param 目標寵物之防禦 (int Ac)
 	 */
-	public S_PetAttr(int data, L1PetInstance pet, int no)
-	{
+	public S_PetAttr(int data, L1PetInstance pet, int no) {
 		writeC(S_OPCODE_PACKETBOX);
 		writeC(POS_PetAttr); // POS
 		writeC(data); // unknown (作用為何?)
@@ -48,11 +44,11 @@ public class S_PetAttr extends ServerBasePacket
 
 	/**
 	 * 傳回-寵物屬性更新封包
+	 * 
 	 * @see net.l1j.server.serverpackets.ServerBasePacket#getContent()
 	 */
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

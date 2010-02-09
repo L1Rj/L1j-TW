@@ -40,9 +40,7 @@ public abstract class L1Poison {
 
 		L1PcInstance player = (L1PcInstance) cha;
 		// ゼニス リング裝備中、バフォ メットアーマー裝備中 、ベノム レジスト中
-		if (player.getInventory().checkEquipped(20298)
-				|| player.getInventory().checkEquipped(20117)
-				|| player.hasSkillEffect(104)) {
+		if (player.getInventory().checkEquipped(20298) || player.getInventory().checkEquipped(20117) || player.hasSkillEffect(104)) {
 			return false;
 		}
 		return true;
@@ -62,7 +60,6 @@ public abstract class L1Poison {
 	 * この毒のエフェクトIDを返す。
 	 * 
 	 * @see S_Poison#S_Poison(int, int)
-	 * 
 	 * @return S_Poisonで使用されるエフェクトID
 	 */
 	public abstract int getEffectId();

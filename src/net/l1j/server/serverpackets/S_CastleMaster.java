@@ -16,16 +16,11 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_CastleMaster extends ServerBasePacket {
-
 	private static final String _S__08_CASTLEMASTER = "[S] S_CastleMaster";
 
 	private byte[] _byte = null;
@@ -52,5 +47,4 @@ public class S_CastleMaster extends ServerBasePacket {
 	public String getType() {
 		return _S__08_CASTLEMASTER;
 	}
-
 }

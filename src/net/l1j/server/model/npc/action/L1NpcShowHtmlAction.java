@@ -47,9 +47,7 @@ public class L1NpcShowHtmlAction extends L1NpcXmlAction {
 	}
 
 	@Override
-	public L1NpcHtml execute(String actionName, L1PcInstance pc, L1Object obj,
-			byte[] args) {
+	public L1NpcHtml execute(String actionName, L1PcInstance pc, L1Object obj, byte[] args) {
 		return new L1NpcHtml(_htmlId, _args);
 	}
-
 }

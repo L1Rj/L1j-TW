@@ -75,8 +75,7 @@ public class PcExpMonitor implements Runnable {
 	}
 
 	/**
-	 * @param isCancelled
-	 *            the isCancelled to set
+	 * @param isCancelled the isCancelled to set
 	 */
 	public void cancel(boolean isCancelled) {
 		this.isCancelled = isCancelled;

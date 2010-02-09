@@ -16,21 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_SellHouse extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_SellHouse.class.
-			getName());
 	private static final String S_SELLHOUSE = "[S] S_SellHouse";
+
 	private byte[] _byte = null;
 
 	public S_SellHouse(int objectId, String houseNumber) {

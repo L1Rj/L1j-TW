@@ -51,10 +51,8 @@ public class R_AutoResponse {
 	/**
 	 * 將入新的工作
 	 * 
-	 * @param aWork
-	 *            客戶端封包資料
-	 * @param ActiveTime
-	 *            存活時間
+	 * @param aWork 客戶端封包資料
+	 * @param ActiveTime 存活時間
 	 */
 	public void AddWork(byte[] aWork, int ActiveTime) {
 		byte WorkId = aWork[0]; // 取得工作代碼

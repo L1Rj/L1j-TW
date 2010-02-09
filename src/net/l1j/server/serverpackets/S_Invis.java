@@ -16,15 +16,12 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_Invis extends ServerBasePacket {
+	private static final String S_INVIS = "[S] S_Invis";
 
 	private byte[] _byte = null;
 
@@ -50,6 +47,4 @@ public class S_Invis extends ServerBasePacket {
 	public String getType() {
 		return S_INVIS;
 	}
-
-	private static final String S_INVIS = "[S] S_Invis";
 }

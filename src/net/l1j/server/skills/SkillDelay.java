@@ -18,18 +18,10 @@
  */
 package net.l1j.server.skills;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.model.L1Character;
 import net.l1j.thread.GeneralThreadPool;
 
-// Referenced classes of package net.l1j.server.model:
-// L1SkillDelay
-
 public class SkillDelay {
-
-	private static final Logger _log = Logger.getLogger(SkillDelay.class.getName());
-
 	private static GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private SkillDelay() {
@@ -58,5 +50,4 @@ public class SkillDelay {
 		cha.setSkillDelay(true);
 		_threadPool.schedule(new SkillDelayTimer(cha, time), time);
 	}
-
 }

@@ -62,8 +62,7 @@ public class L1WorldMap {
 	/**
 	 * 指定されたマップの情報を保持するL1Mapを返す。
 	 * 
-	 * @param mapId
-	 *            マップID
+	 * @param mapId マップID
 	 * @return マップ情報を保持する、L1Mapオブジェクト。
 	 */
 	public L1Map getMap(short mapId) {

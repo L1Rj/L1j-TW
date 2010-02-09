@@ -16,16 +16,11 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import static net.l1j.server.Opcodes.S_OPCODE_ABILITY;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
-public class S_Ability extends ServerBasePacket
-{
+public class S_Ability extends ServerBasePacket {
 	/*
 	 * type 已知代號 :
 	 * 1, ROTC
@@ -33,8 +28,7 @@ public class S_Ability extends ServerBasePacket
 	 * 4, 夜視功能
 	 * 5, ROSC
 	 */
-	public S_Ability(int type, boolean equipped)
-	{
+	public S_Ability(int type, boolean equipped) {
 		writeC(S_OPCODE_ABILITY);
 		writeC(type);
 		writeB(equipped);
@@ -42,8 +36,7 @@ public class S_Ability extends ServerBasePacket
 	}
 
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

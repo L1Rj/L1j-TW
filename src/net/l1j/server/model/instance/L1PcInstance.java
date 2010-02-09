@@ -108,11 +108,6 @@ import net.l1j.thread.PcInvisMonitor;
 
 import static net.l1j.server.skills.SkillId.*;
 
-// Referenced classes of package net.l1j.server.model:
-// L1Character, L1DropTable, L1Object, L1ItemInstance,
-// L1World
-//
-
 public class L1PcInstance extends L1Character {
 	private static final long serialVersionUID = 1L;
 
@@ -426,8 +421,7 @@ public class L1PcInstance extends L1Character {
 		if (getClanid() != 0) { // クラン所屬
 			L1Clan clan = L1World.getInstance().getClan(getClanname());
 			if (clan != null) {
-				if (isCrown() && getId() == clan.getLeaderId() && // プリンスまたはプリンセス、かつ、血盟主で自クランが城主
-						clan.getCastleId() != 0) {
+				if (isCrown() && getId() == clan.getLeaderId() && clan.getCastleId() != 0) { // プリンスまたはプリンセス、かつ、血盟主で自クランが城主
 					sendPackets(new S_CastleMaster(clan.getCastleId(), getId()));
 				}
 			}
@@ -688,8 +682,7 @@ public class L1PcInstance extends L1Character {
 	/**
 	 * 指定されたプレイヤー群にログアウトしたことを通知する
 	 * 
-	 * @param playersList
-	 *            通知するプレイヤーの配列
+	 * @param playersList 通知するプレイヤーの配列
 	 */
 	private void notifyPlayersLogout(List<L1PcInstance> playersArray) {
 		for (L1PcInstance player : playersArray) {
@@ -1079,8 +1072,7 @@ public class L1PcInstance extends L1Character {
 	public void receiveDamage(L1Character attacker, double damage, boolean isMagicDamage) { // 攻撃でＨＰを減らすときはここを使用
 		if (getCurrentHp() > 0 && !isDead()) {
 			if (attacker != this) {
-				if (!(attacker instanceof L1EffectInstance) && !knownsObject(attacker)
-						&& attacker.getMapId() == this.getMapId()) {
+				if (!(attacker instanceof L1EffectInstance) && !knownsObject(attacker) && attacker.getMapId() == this.getMapId()) {
 					attacker.onPerceive(this);
 				}
 			}
@@ -1267,8 +1259,7 @@ public class L1PcInstance extends L1Character {
 
 			// キャンセレーションをエフェクトなしでかける
 			SkillUse skilluse = new SkillUse();
-			skilluse.handleCommands(L1PcInstance.this, SKILL_CANCEL_MAGIC, getId(), getX(), getY(), null, 0,
-					Base.SKILL_TYPE[1]);
+			skilluse.handleCommands(L1PcInstance.this, SKILL_CANCEL_MAGIC, getId(), getX(), getY(), null, 0, Base.SKILL_TYPE[1]);
 
 			// シャドウ系變身中に死亡するとクライアントが落ちるため暫定對應
 			if (tempchargfx == 5727 || tempchargfx == 5730 || tempchargfx == 5733 || tempchargfx == 5736) {
@@ -1482,8 +1473,7 @@ public class L1PcInstance extends L1Character {
 			L1ItemInstance item = getInventory().CaoPenalty();
 
 			if (item != null) {
-				getInventory().tradeItem(item, item.isStackable() ? item.getCount() : 1,
-						L1World.getInstance().getInventory(getX(), getY(), getMapId()));
+				getInventory().tradeItem(item, item.isStackable() ? item.getCount() : 1, L1World.getInstance().getInventory(getX(), getY(), getMapId()));
 				sendPackets(new S_ServerMessage(SystemMessageId.$638, item.getLogName()));
 			} else {
 			}
@@ -1498,8 +1488,7 @@ public class L1PcInstance extends L1Character {
 				int warType = war.GetWarType();
 				boolean isInWar = war.CheckClanInWar(getClanname());
 				boolean isAttackClan = war.CheckAttackClan(getClanname());
-				if (getId() == clan.getLeaderId() && // 血盟主で攻擊側で攻城戰中
-						warType == 1 && isInWar && isAttackClan) {
+				if (getId() == clan.getLeaderId() && warType == 1 && isInWar && isAttackClan) { // 血盟主で攻擊側で攻城戰中
 					String enemyClanName = war.GetEnemyClanName(getClanname());
 					if (enemyClanName != null) {
 						war.CeaseWar(getClanname(), enemyClanName); // 終結
@@ -1549,8 +1538,7 @@ public class L1PcInstance extends L1Character {
 				sameWar = war.CheckClanInSameWar(getClanname(), attacker.getClanname());
 			}
 
-			if (getId() == clan.getLeaderId() && // 血盟主で模擬戰中
-					warType == 2 && isInWar == true) {
+			if (getId() == clan.getLeaderId() && warType == 2 && isInWar == true) { // 血盟主で模擬戰中
 				enemyClanName = war.GetEnemyClanName(getClanname());
 				if (enemyClanName != null) {
 					war.CeaseWar(getClanname(), enemyClanName); // 終結
@@ -1617,7 +1605,6 @@ public class L1PcInstance extends L1Character {
 	private int _originalEr = 0; // ● オリジナルDEX ER補正
 
 	public int getOriginalEr() {
-
 		return _originalEr;
 	}
 
@@ -2332,7 +2319,10 @@ public class L1PcInstance extends L1Character {
 	}
 
 	public boolean isHaste() {
-		return (hasSkillEffect(STATUS_HASTE) || hasSkillEffect(SKILL_HASTE) || hasSkillEffect(SKILL_GREATER_HASTE) || getMoveSpeed() == 1);
+		return (hasSkillEffect(STATUS_HASTE)
+				|| hasSkillEffect(SKILL_HASTE)
+				|| hasSkillEffect(SKILL_GREATER_HASTE)
+				|| getMoveSpeed() == 1);
 	}
 
 	public boolean isCrazy() {
@@ -2394,17 +2384,13 @@ public class L1PcInstance extends L1Character {
 			}
 		}
 
-		double dh = (getCurrentHp() * 1.00) / (getMaxHp() * 1.00); // 取得升級前的體力
-																	// (百分比)
-		double dm = (getCurrentMp() * 1.00) / (getMaxMp() * 1.00); // 取得升級前的魔力
-																	// (百分比)
+		double dh = (getCurrentHp() * 1.00) / (getMaxHp() * 1.00); // 取得升級前的體力 (百分比)
+		double dm = (getCurrentMp() * 1.00) / (getMaxMp() * 1.00); // 取得升級前的魔力 (百分比)
 
 		for (int i = 0; i < gap; i++) {
 			/*
-			short randomHp = CalcStat.calcStatHp(getType(), getBaseMaxHp(),
-					getBaseCon(), getOriginalHpup());
-			short randomMp = CalcStat.calcStatMp(getType(), getBaseMaxMp(),
-					getBaseWis(), getOriginalMpup());
+			short randomHp = CalcStat.calcStatHp(getType(), getBaseMaxHp(), getBaseCon(), getOriginalHpup());
+			short randomMp = CalcStat.calcStatMp(getType(), getBaseMaxMp(), getBaseWis(), getOriginalMpup());
 			*/
 			short randomHp = (short) _classFeature.calclvUpHp(getCon());
 			short randomMp = (short) _classFeature.calclvUpMp(getWis());
@@ -2682,8 +2668,7 @@ public class L1PcInstance extends L1Character {
 	/**
 	 * プレイヤーの最終PK時間を設定する。
 	 * 
-	 * @param time
-	 *            最終PK時間（Timestamp型） 解除する場合はnullを代入
+	 * @param time 最終PK時間（Timestamp型） 解除する場合はnullを代入
 	 */
 	public void setLastPk(Timestamp time) {
 		_lastPk = time;

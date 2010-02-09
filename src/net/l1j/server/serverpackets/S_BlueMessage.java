@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_BlueMessage extends ServerBasePacket {
-
 	private static final String _S__18_BLUEMESSAGE = "[S] S_BlueMessage";
 
 	private byte[] _byte = null;
@@ -38,8 +37,7 @@ public class S_BlueMessage extends ServerBasePacket {
 		buildPacket(type, msg1, msg2, msg3, 3);
 	}
 
-	private void buildPacket(int type, String msg1, String msg2, String msg3,
-			int check) {
+	private void buildPacket(int type, String msg1, String msg2, String msg3, int check) {
 		writeC(Opcodes.S_OPCODE_BLUEMESSAGE);
 		writeH(type);
 		if (check == 1) {

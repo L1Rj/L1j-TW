@@ -16,16 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_Resurrection extends ServerBasePacket {
+	private static final String _S__FF_RESURRECTION = "[S] S_Resurrection";
 
 	public S_Resurrection(L1PcInstance target, L1PcInstance use, int type) {
 		writeC(Opcodes.S_OPCODE_RESURRECTION);
@@ -42,8 +39,6 @@ public class S_Resurrection extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return "[S] S_Resurrection";
+		return _S__FF_RESURRECTION;
 	}
-
-	private static final String _S__FF_RESURRECTION = "[S] S_Resurrection";
 }

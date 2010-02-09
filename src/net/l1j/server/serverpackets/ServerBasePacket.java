@@ -26,8 +26,7 @@ import java.util.logging.Logger;
 
 import net.l1j.Config; // 5.06
 
-public abstract class ServerBasePacket
-{
+public abstract class ServerBasePacket {
 	private static Logger _log = Logger.getLogger(ServerBasePacket.class.getName());
 
 	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
@@ -35,36 +34,32 @@ public abstract class ServerBasePacket
 
 	ByteArrayOutputStream _bao = new ByteArrayOutputStream();
 
-	protected ServerBasePacket()
-	{
+	protected ServerBasePacket() {
 	}
 
 	// 取得長度陣列 (以後會使用)
-	public byte[] getLength()
-	{
+	public byte[] getLength() {
 		byte[] data = new byte[0x02];
 		int Length = _bao.size() + data.length;
 		data[0] = (byte) (Length & 0xFF);
 		data[1] = (byte) (Length >> 8 & 0xFF);
 		return data;
 	}
-	
+
 	// 寫入一個布林至暫存器中
-	protected void writeB(boolean b)
-	{
+	protected void writeB(boolean b) {
 		// true = 1, false = 0
 		_bao.write(b ? 1 : 0);
 	}
-	
+
 	// 寫入24位元的數值 [不帶正負號]
-	protected void write24(int value)
-	{
+	protected void write24(int value) {
 		// 最小值 0, 最大值 16777215
 		_bao.write(value & 0xff);
 		_bao.write(value >> 8 & 0xff);
 		_bao.write(value >> 16 & 0xff);
 	}
-	
+
 	protected void writeD(int value) {
 		_bao.write(value & 0xff);
 		_bao.write(value >> 8 & 0xff);
@@ -112,30 +107,24 @@ public abstract class ServerBasePacket
 
 		_bao.write(0);
 	}
-	
+
 	// 將字串轉為 16位元的字元
-	protected void writeChar(String s)
-	{
-		if (s != null)
-		{
+	protected void writeChar(String s) {
+		if (s != null) {
 			char[] cs = s.toCharArray();
-			
+
 			for (char c : cs)
 				writeH(c);
 		}
-		
+
 		writeH(0x0000); // 結束語句
 	}
 
-	protected void writeByte(byte[] text)
-	{
-		try
-		{
+	protected void writeByte(byte[] text) {
+		try {
 			if (text != null)
 				_bao.write(text);
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
 	}

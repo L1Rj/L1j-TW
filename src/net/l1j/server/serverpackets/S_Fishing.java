@@ -16,20 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_Fishing extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_Fishing.class.getName());
 	private static final String S_FISHING = "[S] S_Fishing";
+
 	private byte[] _byte = null;
 
 	public S_Fishing() {

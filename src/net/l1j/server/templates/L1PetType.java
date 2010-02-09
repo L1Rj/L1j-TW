@@ -33,7 +33,7 @@ public class L1PetType {
 	private final IntRange _hpUpRange;
 
 	private final IntRange _mpUpRange;
-	
+
 	private final int _evolvItemId;
 
 	private final int _npcIdForEvolving;
@@ -42,9 +42,7 @@ public class L1PetType {
 
 	private final int _defyMsgId;
 
-	public L1PetType(int baseNpcId, String name, int itemIdForTaming,
-			IntRange hpUpRange, IntRange mpUpRange, int evolvItemId, int npcIdForEvolving,
-			int msgIds[], int defyMsgId) {
+	public L1PetType(int baseNpcId, String name, int itemIdForTaming, IntRange hpUpRange, IntRange mpUpRange, int evolvItemId, int npcIdForEvolving, int msgIds[], int defyMsgId) {
 		_baseNpcId = baseNpcId;
 		_baseNpcTemplate = NpcTable.getInstance().getTemplate(baseNpcId);
 		_name = name;
@@ -86,9 +84,9 @@ public class L1PetType {
 	}
 
 	public int getEvolvItemId() {
-        return _evolvItemId;
-    }
-	
+		return _evolvItemId;
+	}
+
 	public int getNpcIdForEvolving() {
 		return _npcIdForEvolving;
 	}

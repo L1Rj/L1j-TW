@@ -16,26 +16,18 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1DoorInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_Door extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_Door.class.getName());
 	private static final String S_DOOR = "[S] S_Door";
+
 	private byte[] _byte = null;
 
 	public S_Door(L1DoorInstance door) {
-		buildPacket(door.getEntranceX(), door.getEntranceY(), door
-				.getDirection(), door.getPassable());
+		buildPacket(door.getEntranceX(), door.getEntranceY(), door.getDirection(), door.getPassable());
 	}
 
 	public S_Door(int x, int y, int direction, int passable) {
@@ -49,7 +41,6 @@ public class S_Door extends ServerBasePacket {
 		writeC(direction); // ドアの方向 0: ／ 1: ＼
 		writeC(passable);
 	}
-
 
 	@Override
 	public byte[] getContent() {

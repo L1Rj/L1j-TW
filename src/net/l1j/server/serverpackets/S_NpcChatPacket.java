@@ -22,31 +22,27 @@ import static net.l1j.server.Opcodes.S_OPCODE_NPCSHOUT;
 
 import net.l1j.server.model.L1Character;
 
-public class S_NpcChatPacket extends ServerBasePacket
-{	
-	public S_NpcChatPacket(L1Character cha, String chat, int type)
-	{
-		switch (type)
-		{
+public class S_NpcChatPacket extends ServerBasePacket {
+	public S_NpcChatPacket(L1Character cha, String chat, int type) {
+		switch (type) {
 			case 0: // normal chat
-			writeC(S_OPCODE_NPCSHOUT);
-			writeC(type); // Color
-			writeD(cha.getId());
-			writeS(cha.getName() + ": " + chat);
+				writeC(S_OPCODE_NPCSHOUT);
+				writeC(type); // Color
+				writeD(cha.getId());
+				writeS(cha.getName() + ": " + chat);
 			break;
-			
+
 			case 2: // shout
-			writeC(S_OPCODE_NPCSHOUT);
-			writeC(type); // Color
-			writeD(cha.getId());
-			writeS(cha.getName() + ": " + chat);
+				writeC(S_OPCODE_NPCSHOUT);
+				writeC(type); // Color
+				writeD(cha.getId());
+				writeS(cha.getName() + ": " + chat);
 			break;
 		}
 	}
 
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

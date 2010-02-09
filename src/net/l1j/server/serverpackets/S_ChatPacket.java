@@ -21,11 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_ChatPacket extends ServerBasePacket {
-
 	private static final String _S__1F_NORMALCHATPACK = "[S] S_ChatPacket";
 
 	private byte[] _byte = null;
@@ -100,8 +96,8 @@ public class S_ChatPacket extends ServerBasePacket {
 		writeC(9);
 		writeS("-> (" + targetname + ") " + chat);
 	}
-	
-	public S_ChatPacket(String from , String chat) {
+
+	public S_ChatPacket(String from, String chat) {
 		writeC(Opcodes.S_OPCODE_WHISPERCHAT);
 		writeS(from);
 		writeS(chat);

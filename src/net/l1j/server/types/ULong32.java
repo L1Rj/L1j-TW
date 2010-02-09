@@ -29,33 +29,28 @@ public class ULong32 {
 	/**
 	 * Converts a 8 bit char buffer to a 32 bit unsigned long.
 	 * 
-	 * @param buff
-	 *            the buffer to convert
+	 * @param buff the buffer to convert
 	 * @return long unsigned long value stored as a long
 	 */
 	public static long fromArray(char[] buff) {
-		return fromLong64(((buff[3] & 0xFF) << 24) | ((buff[2] & 0xFF) << 16)
-				| ((buff[1] & 0xFF) << 8) | (buff[0] & 0xFF));
+		return fromLong64(((buff[3] & 0xFF) << 24) | ((buff[2] & 0xFF) << 16) | ((buff[1] & 0xFF) << 8) | (buff[0] & 0xFF));
 	}
 
 	/**
 	 * Converts a 8 bit byte buffer to a 32 bit unsigned long.
 	 * 
-	 * @param buff
-	 *            the buffer to convert
+	 * @param buff the buffer to convert
 	 * @return long unsigned long value stored as a long
 	 */
 	public static long fromArray(byte[] buff) {
-		return fromLong64(((buff[3] & 0xFF) << 24) | ((buff[2] & 0xFF) << 16)
-				| ((buff[1] & 0xFF) << 8) | (buff[0] & 0xFF));
+		return fromLong64(((buff[3] & 0xFF) << 24) | ((buff[2] & 0xFF) << 16) | ((buff[1] & 0xFF) << 8) | (buff[0] & 0xFF));
 	}
 
 	/**
 	 * Converts a 64 bit, java's standard, long to a 32 bit unsigned long. Chops
 	 * away the high 32 bits
 	 * 
-	 * @param l
-	 *            the long value to convert
+	 * @param l the long value to convert
 	 * @return long unsigned long value stored as a long
 	 */
 	public static long fromLong64(long l) {
@@ -65,8 +60,7 @@ public class ULong32 {
 	/**
 	 * Converts a 32 bit, java's standard, int to a 32 bit unsigned long.
 	 * 
-	 * @param i
-	 *            the int value to convert
+	 * @param i the int value to convert
 	 * @return long unsigned long value stored as a long
 	 */
 	public static long fromInt32(int i) {
@@ -76,10 +70,8 @@ public class ULong32 {
 	/**
 	 * Adds two 32 bit unsigned/signed long values
 	 * 
-	 * @param l1
-	 *            the addee
-	 * @param l2
-	 *            to be added
+	 * @param l1 the addee
+	 * @param l2 to be added
 	 * @return long unsigned long value stored as a long
 	 */
 	public static long add(long l1, long l2) {
@@ -89,10 +81,8 @@ public class ULong32 {
 	/**
 	 * Subtracts two 32 bit unsigned/signed long values
 	 * 
-	 * @param l1
-	 *            the subtractee
-	 * @param l2
-	 *            to be subtracted
+	 * @param l1 the subtractee
+	 * @param l2 to be subtracted
 	 * @return long unsigned long value stored as a long
 	 */
 	public static long sub(long l1, long l2) {

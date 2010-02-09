@@ -16,11 +16,9 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.datatables.ShopTable;
@@ -32,14 +30,7 @@ import net.l1j.server.model.shop.L1AssessedItem;
 import net.l1j.server.model.shop.L1Shop;
 import net.l1j.server.serverpackets.S_NoSell;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket, S_SystemMessage
-
 public class S_ShopBuyList extends ServerBasePacket {
-
-	private static Logger _log = Logger
-			.getLogger(S_ShopBuyList.class.getName());
-
 	private static final String S_SHOP_BUY_LIST = "[S] S_ShopBuyList";
 
 	public S_ShopBuyList(int objid, L1PcInstance pc) {
@@ -55,8 +46,7 @@ public class S_ShopBuyList extends ServerBasePacket {
 			return;
 		}
 
-		List<L1AssessedItem> assessedItems = shop
-				.assessItems(pc.getInventory());
+		List<L1AssessedItem> assessedItems = shop.assessItems(pc.getInventory());
 		if (assessedItems.isEmpty()) {
 			pc.sendPackets(new S_NoSell(npc));
 			return;

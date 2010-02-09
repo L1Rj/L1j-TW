@@ -16,22 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket, S_OtherCharPacks
-
 public class S_OtherCharPacks extends ServerBasePacket {
-
 	private static final String S_OTHER_CHAR_PACKS = "[S] S_OtherCharPacks";
-	private static Logger _log = Logger.getLogger(S_OtherCharPacks.class
-			.getName());
 
 	private static final short STATUS_POISON = 1;
 	private static final short STATUS_INVISIBLE = 2;
@@ -43,13 +34,13 @@ public class S_OtherCharPacks extends ServerBasePacket {
 	private static final short STATUS_GHOST = 128;
 
 	private byte[] _byte = null;
-	
+
 	public S_OtherCharPacks(L1PcInstance pc, boolean isFindInvis) {
 		buildPacket(pc, isFindInvis);
 	}
 
 	public S_OtherCharPacks(L1PcInstance pc) {
-		
+
 		buildPacket(pc, false);
 	}
 
@@ -133,5 +124,4 @@ public class S_OtherCharPacks extends ServerBasePacket {
 	public String getType() {
 		return S_OTHER_CHAR_PACKS;
 	}
-
 }

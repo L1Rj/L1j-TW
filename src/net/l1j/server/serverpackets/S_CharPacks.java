@@ -16,19 +16,12 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
-public class S_CharPacks extends ServerBasePacket
-{
-	public S_CharPacks(String name, String clanName, int type, int sex,
-			int lawful, int hp, int mp, int ac, int lv, int str, int dex,
-			int con, int wis, int cha, int intel, int accessLevel) {
+public class S_CharPacks extends ServerBasePacket {
+	public S_CharPacks(String name, String clanName, int type, int sex, int lawful, int hp, int mp, int ac, int lv, int str, int dex, int con, int wis, int cha, int intel, int accessLevel) {
 		writeC(Opcodes.S_OPCODE_CHARLIST);
 		writeS(name);
 		writeS(clanName);
@@ -49,8 +42,7 @@ public class S_CharPacks extends ServerBasePacket
 	}
 
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

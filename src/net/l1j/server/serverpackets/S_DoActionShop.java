@@ -20,10 +20,8 @@ package net.l1j.server.serverpackets;
 
 import static net.l1j.server.Opcodes.S_OPCODE_DOACTIONGFX;
 
-public class S_DoActionShop extends ServerBasePacket
-{
-	public S_DoActionShop(int object, int gfxid, byte[] message)
-	{
+public class S_DoActionShop extends ServerBasePacket {
+	public S_DoActionShop(int object, int gfxid, byte[] message) {
 		writeC(S_OPCODE_DOACTIONGFX);
 		writeD(object);
 		writeC(gfxid);
@@ -31,8 +29,7 @@ public class S_DoActionShop extends ServerBasePacket
 	}
 
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

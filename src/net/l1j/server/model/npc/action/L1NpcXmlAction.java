@@ -47,8 +47,7 @@ public abstract class L1NpcXmlAction implements L1NpcAction {
 		_npcIds = parseNpcIds(element.getAttribute("NpcId"));
 		_level = parseLevel(element);
 		_questId = L1NpcXmlParser.parseQuestId(element.getAttribute("QuestId"));
-		_questStep = L1NpcXmlParser.parseQuestStep(element
-				.getAttribute("QuestStep"));
+		_questStep = L1NpcXmlParser.parseQuestStep(element.getAttribute("QuestStep"));
 
 		_classes = parseClasses(element);
 	}
@@ -136,8 +135,7 @@ public abstract class L1NpcXmlAction implements L1NpcAction {
 		return pc.getQuest().get_step(_questId) == _questStep;
 	}
 
-	public boolean acceptsRequest(String actionName, L1PcInstance pc,
-			L1Object obj) {
+	public boolean acceptsRequest(String actionName, L1PcInstance pc, L1Object obj) {
 		if (!acceptsNpcId(obj)) {
 			return false;
 		}
@@ -156,11 +154,9 @@ public abstract class L1NpcXmlAction implements L1NpcAction {
 		return true;
 	}
 
-	public abstract L1NpcHtml execute(String actionName, L1PcInstance pc,
-			L1Object obj, byte args[]);
+	public abstract L1NpcHtml execute(String actionName, L1PcInstance pc, L1Object obj, byte args[]);
 
-	public L1NpcHtml executeWithAmount(String actionName, L1PcInstance pc,
-			L1Object obj, int amount) {
+	public L1NpcHtml executeWithAmount(String actionName, L1PcInstance pc, L1Object obj, int amount) {
 		return null;
 	}
 }

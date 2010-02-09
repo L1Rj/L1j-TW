@@ -16,21 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket, S_NPCPack
-
 public class S_PetPack extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_PetPack.class.getName());
 	private static final String S_PET_PACK = "[S] S_PetPack";
 
 	private static final short STATUS_POISON = 1;
@@ -49,10 +41,10 @@ public class S_PetPack extends ServerBasePacket {
 	}
 
 	private void buildPacket(L1PetInstance pet, L1PcInstance pc) {
-		/*int addbyte = 0;
-		int addbyte1 = 1;
-		int addbyte2 = 13;
-		int setting = 4;*/
+		/*
+		 * int addbyte = 0; int addbyte1 = 1; int addbyte2 = 13; int setting =
+		 * 4;
+		 */
 
 		writeC(Opcodes.S_OPCODE_CHARPACK);
 		writeH(pet.getX());
@@ -105,5 +97,4 @@ public class S_PetPack extends ServerBasePacket {
 	public String getType() {
 		return S_PET_PACK;
 	}
-
 }

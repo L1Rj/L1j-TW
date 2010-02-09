@@ -54,8 +54,7 @@ public class L1ShopSellOrderList {
 	}
 
 	public void add(int itemObjectId, int count) {
-		L1AssessedItem assessedItem = _shop.assessItem(_pc.getInventory()
-				.getItem(itemObjectId));
+		L1AssessedItem assessedItem = _shop.assessItem(_pc.getInventory().getItem(itemObjectId));
 		if (assessedItem == null) {
 			/*
 			 * 買取リストに無いアイテムが指定された。 不正パケの可能性。

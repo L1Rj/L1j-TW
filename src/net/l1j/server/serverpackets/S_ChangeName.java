@@ -16,20 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_ChangeName extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_ChangeName.class.getName());
 	private static final String S_CHANGE_NAME = "[S] S_ChangeName";
+
 	private byte[] _byte = null;
 
 	public S_ChangeName(int objectId, String name) {

@@ -16,31 +16,21 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_UseArrowSkill extends ServerBasePacket {
-
 	private static final String S_USE_ARROW_SKILL = "[S] S_UseArrowSkill";
-	private static Logger _log = Logger.getLogger(S_UseArrowSkill.class
-			.getName());
 
 	private static AtomicInteger _sequentialNumber = new AtomicInteger(0);
 
 	private byte[] _byte = null;
 
-	public S_UseArrowSkill(L1Character cha, int targetobj, int spellgfx,
-			int x, int y, boolean isHit) {
-
+	public S_UseArrowSkill(L1Character cha, int targetobj, int spellgfx, int x, int y, boolean isHit) {
 		int aid = 1;
 		// オークアーチャーのみ變更
 		if (cha.getTempCharGfx() == 3860) {
@@ -91,5 +81,4 @@ public class S_UseArrowSkill extends ServerBasePacket {
 	public String getType() {
 		return S_USE_ARROW_SKILL;
 	}
-
 }

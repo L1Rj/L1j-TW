@@ -16,11 +16,9 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 import javolution.util.FastTable;
 
@@ -28,13 +26,9 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.datatables.MailTable;
 import net.l1j.server.templates.L1Mail;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_Mail extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_WhoAmount.class.getName());
 	private static final String S_MAIL = "[S] S_Mail";
+
 	private byte[] _byte = null;
 
 /**

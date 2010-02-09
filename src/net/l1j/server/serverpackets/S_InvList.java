@@ -14,22 +14,14 @@
  * 
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_InvList extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_InvList.class.getName());
-
 	private static final String S_INV_LIST = "[S] S_InvList";
 
 	/**

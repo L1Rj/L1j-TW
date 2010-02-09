@@ -38,14 +38,13 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.types.Point;
 
 public class L1MonsterTrap extends L1Trap {
-	private static Logger _log = Logger
-			.getLogger(L1MonsterTrap.class.getName());
+	private static Logger _log = Logger.getLogger(L1MonsterTrap.class.getName());
 
 	private final int _npcId;
 	private final int _count;
 
 	private L1Npc _npcTemp = null; // パフォーマンスのためにキャッシュ
-	private Constructor _constructor = null; // パフォーマンスのためにキャッシュ
+	private Constructor<?> _constructor = null; // パフォーマンスのためにキャッシュ
 
 	public L1MonsterTrap(TrapStorage storage) {
 		super(storage);
@@ -75,10 +74,8 @@ public class L1MonsterTrap extends L1Trap {
 		return result;
 	}
 
-	private Constructor getConstructor(L1Npc npc) throws ClassNotFoundException {
-		return Class.forName(
-				"net.l1j.server.model.instance." + npc.getImpl()
-						+ "Instance").getConstructors()[0];
+	private Constructor<?> getConstructor(L1Npc npc) throws ClassNotFoundException {
+		return Class.forName("net.l1j.server.model.instance." + npc.getImpl() + "Instance").getConstructors()[0];
 	}
 
 	private L1NpcInstance createNpc() throws Exception {
@@ -89,8 +86,7 @@ public class L1MonsterTrap extends L1Trap {
 			_constructor = getConstructor(_npcTemp);
 		}
 
-		return (L1NpcInstance) _constructor
-				.newInstance(new Object[] { _npcTemp });
+		return (L1NpcInstance) _constructor.newInstance(new Object[] { _npcTemp });
 	}
 
 	private void spawn(L1Location loc) throws Exception {

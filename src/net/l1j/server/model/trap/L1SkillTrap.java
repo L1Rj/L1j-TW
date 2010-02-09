@@ -1,4 +1,5 @@
-/* This program is free software; you can redistribute it and/or modify
+/*
+ * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
@@ -38,8 +39,6 @@ public class L1SkillTrap extends L1Trap {
 	public void onTrod(L1PcInstance trodFrom, L1Object trapObj) {
 		sendEffect(trapObj);
 
-		new SkillUse().handleCommands(trodFrom, _skillId, trodFrom.getId(), trodFrom.getX(),
-				trodFrom.getY(), null, _skillTimeSeconds, Base.SKILL_TYPE[4]);
+		new SkillUse().handleCommands(trodFrom, _skillId, trodFrom.getId(), trodFrom.getX(), trodFrom.getY(), null, _skillTimeSeconds, Base.SKILL_TYPE[4]);
 	}
-
 }

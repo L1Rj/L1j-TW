@@ -23,7 +23,6 @@ import net.l1j.server.model.L1Location;
 import net.l1j.server.types.Point;
 
 public class S_EffectLocation extends ServerBasePacket {
-
 	private byte[] _byte = null;
 
 	/**

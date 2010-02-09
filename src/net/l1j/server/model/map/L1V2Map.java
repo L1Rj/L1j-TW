@@ -42,10 +42,10 @@ public class L1V2Map extends L1Map {
 	private boolean _isRecallPets;
 	private boolean _isUsableItem;
 	private boolean _isUsableSkill;
+
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
 	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
 	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
-
 
 	/**
 	 * Mobなどの通行不可能になるオブジェクトがタイル上に存在するかを示すビットフラグ
@@ -60,11 +60,7 @@ public class L1V2Map extends L1Map {
 		return _map[offset(x, y)] & (~BITFLAG_IS_IMPASSABLE);
 	}
 
-	public L1V2Map(int id, byte map[], int xLoc, int yLoc, int width,
-			int height, boolean underwater, boolean markable,
-			boolean teleportable, boolean escapable, boolean useResurrection,
-			boolean usePainwand, boolean enabledDeathPenalty, boolean takePets,
-			boolean recallPets, boolean usableItem, boolean usableSkill) {
+	public L1V2Map(int id, byte map[], int xLoc, int yLoc, int width, int height, boolean underwater, boolean markable, boolean teleportable, boolean escapable, boolean useResurrection, boolean usePainwand, boolean enabledDeathPenalty, boolean takePets, boolean recallPets, boolean usableItem, boolean usableSkill) {
 		_id = id;
 		_map = map;
 		_xLoc = xLoc;
@@ -172,8 +168,7 @@ public class L1V2Map extends L1Map {
 
 	@Override
 	public boolean isInMap(int x, int y) {
-		return (_xLoc <= x && x < _xLoc + _width && _yLoc <= y && y < _yLoc
-				+ _height);
+		return (_xLoc <= x && x < _xLoc + _width && _yLoc <= y && y < _yLoc + _height);
 	}
 
 	@Override
@@ -327,15 +322,13 @@ public class L1V2Map extends L1Map {
 				}
 			} else { // 2マス分以上の幅があるドア
 				if (door.getDirection() == 0) { // ／向き
-					for (int doorX = leftEdgeLocation;
-							doorX <= rightEdgeLocation; doorX++) {
+					for (int doorX = leftEdgeLocation; doorX <= rightEdgeLocation; doorX++) {
 						if (x == doorX && y == door.getY()) {
 							return true;
 						}
 					}
 				} else { // ＼向き
-					for (int doorY = leftEdgeLocation;
-							doorY <= rightEdgeLocation; doorY++) {
+					for (int doorY = leftEdgeLocation; doorY <= rightEdgeLocation; doorY++) {
 						if (x == door.getX() && y == doorY) {
 							return true;
 						}
@@ -349,7 +342,6 @@ public class L1V2Map extends L1Map {
 	@Override
 	public String toString(Point pt) {
 		int tile = getOriginalTile(pt.getX(), pt.getY());
-
 		return (tile & 0xFF) + " " + ((tile >> 8) & 0xFF);
 	}
 }

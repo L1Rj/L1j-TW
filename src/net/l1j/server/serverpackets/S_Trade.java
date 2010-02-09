@@ -16,15 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_Trade extends ServerBasePacket {
+	private static final String _S__77_TRADE = "[S] S_Trade";
+
 	public S_Trade(String name) {
 		writeC(Opcodes.S_OPCODE_TRADE);
 		writeS(name);
@@ -37,8 +35,6 @@ public class S_Trade extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return "[S] S_Trade";
+		return _S__77_TRADE;
 	}
-
-	private static final String _S__77_TRADE = "[S] S_Trade";
 }

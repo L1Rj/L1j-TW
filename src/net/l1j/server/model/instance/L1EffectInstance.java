@@ -19,7 +19,6 @@
 package net.l1j.server.model.instance;
 
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Logger;
 
 import net.l1j.server.ActionCodes;
 import net.l1j.server.WarTimeController;
@@ -44,11 +43,10 @@ import static net.l1j.server.skills.SkillId.*;
 public class L1EffectInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(L1EffectInstance.class.getName());
-
 	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private ScheduledFuture<?> _effectFuture;
+
 	private static final int FW_DAMAGE_INTERVAL = 1000;
 	private static final int CUBE_INTERVAL = 500; // キューブ範囲内に居るキャラクターをチェックする間隔
 	private static final int CUBE_TIME = 8000; // 効果時間8秒?

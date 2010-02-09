@@ -19,7 +19,6 @@
 package net.l1j.server.serverpackets;
 
 public class S_CantMove extends ServerBasePacket {
-
 	private static final String S_CANT_MOVE = "[S] S_CantMove";
 
 	private byte[] _byte = null;
@@ -27,7 +26,7 @@ public class S_CantMove extends ServerBasePacket {
 	public S_CantMove() {
 /*
 		writeC(Opcodes.S_OPCODE_CANTMOVEBEFORETELE);
-//		writeC(Opcodes.S_OPCODE_CANTMOVE);
+		writeC(Opcodes.S_OPCODE_CANTMOVE);
 */
 	}
 

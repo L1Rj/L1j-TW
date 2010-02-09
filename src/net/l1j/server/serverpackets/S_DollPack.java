@@ -16,22 +16,15 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1DollInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket , S_DollPack
-
 public class S_DollPack extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_DollPack.class.getName());
 	private static final String S_DOLLPACK = "[S] S_DollPack";
+
 	private byte[] _byte = null;
 
 	public S_DollPack(L1DollInstance pet, L1PcInstance player) {
@@ -72,7 +65,6 @@ public class S_DollPack extends ServerBasePacket {
 		if (_byte == null) {
 			_byte = _bao.toByteArray();
 		}
-
 		return _byte;
 	}
 
@@ -80,5 +72,4 @@ public class S_DollPack extends ServerBasePacket {
 	public String getType() {
 		return S_DOLLPACK;
 	}
-
 }

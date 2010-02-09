@@ -16,7 +16,6 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import static net.l1j.server.Opcodes.S_OPCODE_ADDSKILL;
@@ -24,44 +23,37 @@ import static net.l1j.server.Opcodes.S_OPCODE_DELSKILL;
 
 import net.l1j.server.templates.L1Skills;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
-public class S_SkillList extends ServerBasePacket
-{
+public class S_SkillList extends ServerBasePacket {
 	/*
 	 * [Length:40] S -> C
 	 * 0000    4C 20 FF FF 37 00 00 00 00 00 00 00 00 00 00 00    L ..7...........
 	 * 0010    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
 	 * 0020    00 00 00 2E EF 67 33 87                            .....g3.
 	 */
-	public S_SkillList(boolean Insert, L1Skills... skills)
-	{
+	public S_SkillList(boolean Insert, L1Skills... skills) {
 		if (Insert)
 			writeC(S_OPCODE_ADDSKILL);
 		else
 			writeC(S_OPCODE_DELSKILL);
-		
+
 		int[] SkillList = new int[0x20];
-		
+
 		writeC(SkillList.length);
-		
-		for (L1Skills skill : skills)
-		{
+
+		for (L1Skills skill : skills) {
 			int level = skill.getSkillLevel() - 1;
-			
+
 			SkillList[level] |= skill.getId();
 		}
-		
+
 		for (int i : SkillList)
 			writeC(i);
-		
+
 		writeC(0x00); // 區分用的數值
 	}
 
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

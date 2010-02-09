@@ -18,14 +18,10 @@
  */
 package net.l1j.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.Opcodes;
 
 public class S_Bookmarks extends ServerBasePacket {
 	private static final String _S__1F_S_Bookmarks = "[S] S_Bookmarks";
-
-	private static Logger _log = Logger.getLogger(S_Bookmarks.class.getName());
 
 	private byte[] _byte = null;
 

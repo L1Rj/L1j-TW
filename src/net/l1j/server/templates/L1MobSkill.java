@@ -196,8 +196,7 @@ public class L1MobSkill implements Cloneable {
 	public boolean isTriggerDistance(int idx, int distance) {
 		int triggerRange = getTriggerRange(idx);
 
-		if ((triggerRange < 0 && distance <= Math.abs(triggerRange))
-				|| (triggerRange > 0 && distance >= triggerRange)) {
+		if ((triggerRange < 0 && distance <= Math.abs(triggerRange)) || (triggerRange > 0 && distance >= triggerRange)) {
 			return true;
 		}
 		return false;

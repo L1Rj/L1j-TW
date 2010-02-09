@@ -20,9 +20,6 @@ package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_MapID extends ServerBasePacket {
 
 	public S_MapID(int mapid, boolean isUnderwater) {

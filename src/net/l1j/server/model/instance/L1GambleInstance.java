@@ -44,8 +44,7 @@ public class L1GambleInstance extends L1Character {
 	}
 
 	/**
-	 * @param order
-	 *            the order to set
+	 * @param order the order to set
 	 */
 	public void setOrder(int order) {
 		Order = order;
@@ -59,8 +58,7 @@ public class L1GambleInstance extends L1Character {
 	}
 
 	/**
-	 * @param babyName
-	 *            the babyName to set
+	 * @param babyName the babyName to set
 	 */
 	public void setBabyName(String babyName) {
 		BabyName = babyName;

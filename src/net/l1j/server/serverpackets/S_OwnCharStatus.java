@@ -16,22 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.gametime.L1GameTimeClock;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_OwnCharStatus extends ServerBasePacket {
-	private static Logger _log = Logger.getLogger(S_OwnCharStatus.class
-			.getName());
-
 	private static final String S_OWB_CHAR_STATUS = "[S] S_OwnCharStatus";
 
 	private byte[] _byte = null;

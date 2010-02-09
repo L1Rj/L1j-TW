@@ -20,7 +20,6 @@ package net.l1j.server.model.instance;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Logger;
 
 import net.l1j.server.datatables.NPCTalkDataTable;
 import net.l1j.server.datatables.TownTable;
@@ -41,11 +40,6 @@ import net.l1j.server.serverpackets.S_ChangeHeading;
 public class L1MerchantInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(L1MerchantInstance.class.getName());
-
-	/**
-	 * @param template
-	 */
 	public L1MerchantInstance(L1Npc template) {
 		super(template);
 	}

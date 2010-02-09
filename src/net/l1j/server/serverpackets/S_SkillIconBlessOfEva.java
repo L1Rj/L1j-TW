@@ -16,13 +16,9 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
-
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
 
 public class S_SkillIconBlessOfEva extends ServerBasePacket {
 

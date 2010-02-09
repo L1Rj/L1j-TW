@@ -34,8 +34,7 @@ public class S_RetrieveElfList extends ServerBasePacket {
 				writeD(objid);
 				writeH(size);
 				writeC(9); // エルフ倉庫
-				for (Object itemObject : pc.getDwarfForElfInventory()
-						.getItems()) {
+				for (Object itemObject : pc.getDwarfForElfInventory().getItems()) {
 					L1ItemInstance item = (L1ItemInstance) itemObject;
 					writeD(item.getId());
 					writeC(0);
@@ -55,5 +54,4 @@ public class S_RetrieveElfList extends ServerBasePacket {
 	public byte[] getContent() throws IOException {
 		return getBytes();
 	}
-
 }

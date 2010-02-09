@@ -21,7 +21,6 @@ package net.l1j.server.model.instance;
 import java.sql.Timestamp;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Logger;
 
 import net.l1j.server.datatables.NpcTable;
 import net.l1j.server.datatables.PetTable;
@@ -40,12 +39,7 @@ import net.l1j.server.utils.BinaryOutputStream;
 
 import static net.l1j.server.skills.SkillId.*;
 
-// Referenced classes of package net.l1j.server.model:
-// L1Object, L1PcInstance
-
 public class L1ItemInstance extends L1Object {
-	private static Logger _log = Logger.getLogger(L1ItemInstance.class.getName());
-
 	private static final long serialVersionUID = 1L;
 
 	private int _count;
@@ -107,8 +101,7 @@ public class L1ItemInstance extends L1Object {
 	/**
 	 * アイテムが確認(鑑定)濟みであるかを設定する。
 	 * 
-	 * @param identified
-	 *            確認濟みならtrue、未確認ならfalse。
+	 * @param identified 確認濟みならtrue、未確認ならfalse。
 	 */
 	public void setIdentified(boolean identified) {
 		_isIdentified = identified;
@@ -130,8 +123,7 @@ public class L1ItemInstance extends L1Object {
 	/**
 	 * アイテムの個數を設定する。
 	 * 
-	 * @param count
-	 *            アイテムの個數
+	 * @param count アイテムの個數
 	 */
 	public void setCount(int count) {
 		_count = count;
@@ -149,8 +141,7 @@ public class L1ItemInstance extends L1Object {
 	/**
 	 * アイテムが裝備されているかを設定する。
 	 * 
-	 * @param equipped
-	 *            アイテムが裝備されていればtrue,裝備されていなければfalse。
+	 * @param equipped アイテムが裝備されていればtrue,裝備されていなければfalse。
 	 */
 	public void setEquipped(boolean equipped) {
 		_isEquipped = equipped;
@@ -259,7 +250,6 @@ public class L1ItemInstance extends L1Object {
 			mr += getEnchantLevel();
 		}
 		if (getItemId() == 20056 || getItemId() == 120056 || getItemId() == 220056 || getItemId() == 21535) {
-
 			mr += getEnchantLevel() * 2;
 		}
 		return mr;
@@ -540,8 +530,7 @@ public class L1ItemInstance extends L1Object {
 			if (pet != null) {
 				L1Npc npc = NpcTable.getInstance().getTemplate(pet.get_npcid());
 				// name.append("[Lv." + pet.get_level() + " " + npc.get_nameid() + "]");
-				name.append("[Lv." + pet.get_level() + " " + pet.get_name() + "]HP" + pet.get_hp() + " "
-						+ npc.get_nameid());
+				name.append("[Lv." + pet.get_level() + " " + pet.get_name() + "]HP" + pet.get_hp() + " " + npc.get_nameid());
 			}
 		}
 

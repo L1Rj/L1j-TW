@@ -71,10 +71,10 @@ public class L1BookMark {
 
 	public static void addBookmark(L1PcInstance pc, String s) {
 		// クライアント側でチェックされるため不要
-//		if (s.length() > 12) {
-//			pc.sendPackets(new S_ServerMessage(204));
-//			return;
-//		}
+		//		if (s.length() > 12) {
+		//			pc.sendPackets(new S_ServerMessage(204));
+		//			return;
+		//		}
 
 		if (!pc.getMap().isMarkable()) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$214));

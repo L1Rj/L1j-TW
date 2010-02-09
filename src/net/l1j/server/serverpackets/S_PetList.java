@@ -16,11 +16,9 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javolution.util.FastTable;
 
@@ -29,13 +27,9 @@ import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_PetList extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_PetList.class.getName());
 	private static final String S_PETLIST = "[S] S_PetList";
+
 	private byte[] _byte = null;
 
 	public S_PetList(int npcObjId, L1PcInstance pc) {
@@ -46,8 +40,7 @@ public class S_PetList extends ServerBasePacket {
 		List<L1ItemInstance> amuletList = new FastTable<L1ItemInstance>();
 		for (Object itemObject : pc.getInventory().getItems()) {
 			L1ItemInstance item = (L1ItemInstance) itemObject;
-			if (item.getItem().getItemId() == 40314
-					|| item.getItem().getItemId() == 40316) {
+			if (item.getItem().getItemId() == 40314 || item.getItem().getItemId() == 40316) {
 				if (!isWithdraw(pc, item)) {
 					amuletList.add(item);
 				}

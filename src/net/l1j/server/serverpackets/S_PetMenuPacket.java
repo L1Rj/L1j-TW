@@ -24,7 +24,6 @@ import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
 
 public class S_PetMenuPacket extends ServerBasePacket {
-
 	private byte[] _byte = null;
 
 	public S_PetMenuPacket(L1NpcInstance npc, int exppercet) {
@@ -41,20 +40,20 @@ public class S_PetMenuPacket extends ServerBasePacket {
 			writeC(0x00);
 			writeH(10);
 			switch (pet.getCurrentPetStatus()) {
-			case 1:
-				writeS("$469"); // 攻擊態勢
+				case 1:
+					writeS("$469"); // 攻擊態勢
 				break;
-			case 2:
-				writeS("$470"); // 防御態勢
+				case 2:
+					writeS("$470"); // 防御態勢
 				break;
-			case 3:
-				writeS("$471"); // 休憩
+				case 3:
+					writeS("$471"); // 休憩
 				break;
-			case 5:
-				writeS("$472"); // 警戒
+				case 5:
+					writeS("$472"); // 警戒
 				break;
-			default:
-				writeS("$471"); // 休憩
+				default:
+					writeS("$471"); // 休憩
 				break;
 			}
 			writeS(Integer.toString(pet.getCurrentHp())); // 現在のＨＰ
@@ -84,20 +83,20 @@ public class S_PetMenuPacket extends ServerBasePacket {
 			writeC(0x00);
 			writeH(6); // 渡す引數文字の數の模樣
 			switch (summon.get_currentPetStatus()) {
-			case 1:
-				writeS("$469"); // 攻擊態勢
+				case 1:
+					writeS("$469"); // 攻擊態勢
 				break;
-			case 2:
-				writeS("$470"); // 防御態勢
+				case 2:
+					writeS("$470"); // 防御態勢
 				break;
-			case 3:
-				writeS("$471"); // 休憩
+				case 3:
+					writeS("$471"); // 休憩
 				break;
-			case 5:
-				writeS("$472"); // 警戒
+				case 5:
+					writeS("$472"); // 警戒
 				break;
-			default:
-				writeS("$471"); // 休憩
+				default:
+					writeS("$471"); // 休憩
 				break;
 			}
 			writeS(Integer.toString(summon.getCurrentHp())); // 現在のＨＰ

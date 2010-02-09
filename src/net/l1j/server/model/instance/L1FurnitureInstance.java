@@ -18,16 +18,12 @@
  */
 package net.l1j.server.model.instance;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.model.L1World;
 import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.templates.L1Npc;
 
 public class L1FurnitureInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
-
-	private static Logger _log = Logger.getLogger(L1FurnitureInstance.class.getName());
 
 	private int _itemObjId;
 

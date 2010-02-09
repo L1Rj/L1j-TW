@@ -16,21 +16,14 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
 
 public class S_DropItem extends ServerBasePacket {
-
 	private static final String _S__OB_DropItem = "[S] S_DropItem";
-	private static Logger _log = Logger.getLogger(S_DropItem.class.getName());
 
 	private byte[] _byte = null;
 
@@ -65,15 +58,10 @@ public class S_DropItem extends ServerBasePacket {
 			int itemId = item.getItem().getItemId();
 			int isId = item.isIdentified() ? 1 : 0;
 			if (itemId == 20383 && isId == 1) { // 騎馬用ヘルム
-				writeS(item.getItem().getName() + " [" + item
-						.getChargeCount() + "]");
-			} else if ((itemId == 40006 || itemId == 40007
-					|| itemId == 40008 || itemId == 40009
-					|| itemId == 140006 || itemId == 140008) && isId == 1) { // ワンド類
-				writeS(item.getItem().getName() + " (" + item
-						.getChargeCount() + ")");
-			} else if (item.getItem().getLightRange() != 0 && item
-					.isNowLighting()) {
+				writeS(item.getItem().getName() + " [" + item.getChargeCount() + "]");
+			} else if ((itemId == 40006 || itemId == 40007 || itemId == 40008 || itemId == 40009 || itemId == 140006 || itemId == 140008) && isId == 1) { // ワンド類
+				writeS(item.getItem().getName() + " (" + item.getChargeCount() + ")");
+			} else if (item.getItem().getLightRange() != 0 && item.isNowLighting()) {
 				writeS(item.getItem().getName() + " ($10)");
 			} else {
 				writeS(item.getItem().getName());
@@ -105,5 +93,4 @@ public class S_DropItem extends ServerBasePacket {
 	public String getType() {
 		return _S__OB_DropItem;
 	}
-
 }

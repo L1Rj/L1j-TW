@@ -18,15 +18,10 @@
  */
 package net.l1j.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.Opcodes;
 
 public class S_WhoAmount extends ServerBasePacket {
-	
 	private static final String S_WHO_AMOUNT = "[S] S_WhoAmount";
-	private static Logger _log = Logger
-			.getLogger(S_WhoAmount.class.getName());
 
 	public S_WhoAmount(String amount) {
 		writeC(Opcodes.S_OPCODE_SERVERMSG);
@@ -39,7 +34,7 @@ public class S_WhoAmount extends ServerBasePacket {
 	public byte[] getContent() {
 		return getBytes();
 	}
-	
+
 	@Override
 	public String getType() {
 		return S_WHO_AMOUNT;

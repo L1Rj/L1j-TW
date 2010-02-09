@@ -18,8 +18,6 @@
  */
 package net.l1j.server.model.instance;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ActionCodes;
 import net.l1j.server.datatables.NPCTalkDataTable;
 import net.l1j.server.model.L1Attack;
@@ -38,8 +36,6 @@ import static net.l1j.server.skills.SkillId.*;
 
 public class L1GuardInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
-
-	private static Logger _log = Logger.getLogger(L1GuardInstance.class.getName());
 
 	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 

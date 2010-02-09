@@ -16,16 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_Strup extends ServerBasePacket {
+	private static final String _S__25_S_Strup = "[S] S_Strup";
 
 	public S_Strup(L1PcInstance pc, int type, int time) {
 		writeC(Opcodes.S_OPCODE_STRUP);
@@ -43,8 +40,6 @@ public class S_Strup extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return "[S] S_Strup";
+		return _S__25_S_Strup;
 	}
-
-	private static final String _S__25_S_Strup = "[S] S_Strup";
 }

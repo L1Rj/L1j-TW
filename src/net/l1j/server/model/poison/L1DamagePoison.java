@@ -34,8 +34,7 @@ public class L1DamagePoison extends L1Poison {
 	private final int _damageSpan;
 	private final int _damage;
 
-	private L1DamagePoison(L1Character attacker, L1Character cha,
-			int damageSpan, int damage) {
+	private L1DamagePoison(L1Character attacker, L1Character cha, int damageSpan, int damage) {
 		_attacker = attacker;
 		_target = cha;
 		_damageSpan = damageSpan;
@@ -76,8 +75,7 @@ public class L1DamagePoison extends L1Poison {
 	}
 
 	boolean isDamageTarget(L1Character cha) {
-		return (cha instanceof L1PcInstance)
-				|| (cha instanceof L1MonsterInstance);
+		return (cha instanceof L1PcInstance) || (cha instanceof L1MonsterInstance);
 	}
 
 	private void doInfection() {
@@ -90,8 +88,7 @@ public class L1DamagePoison extends L1Poison {
 		}
 	}
 
-	public static boolean doInfection(L1Character attacker, L1Character cha,
-			int damageSpan, int damage) {
+	public static boolean doInfection(L1Character attacker, L1Character cha, int damageSpan, int damage) {
 		if (!isValidTarget(cha)) {
 			return false;
 		}

@@ -21,7 +21,6 @@ package net.l1j.server.model.instance;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Logger;
 
 import net.l1j.server.ActionCodes;
 import net.l1j.server.IdFactory;
@@ -47,8 +46,6 @@ import static net.l1j.server.skills.SkillId.*;
 public class L1SummonInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(L1SummonInstance.class.getName());
-
 	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 	private ScheduledFuture<?> _summonFuture;
 	private static final long SUMMON_TIME = 3600000L;
@@ -64,8 +61,7 @@ public class L1SummonInstance extends L1NpcInstance {
 			return true;
 		} else if (_currentPetStatus == 4) {
 			// ● 配備の場合
-			if (_master != null && _master.getMapId() == getMapId()
-					&& getLocation().getTileLineDistance(_master.getLocation()) < 5) {
+			if (_master != null && _master.getMapId() == getMapId() && getLocation().getTileLineDistance(_master.getLocation()) < 5) {
 				int dir = targetReverseDirection(_master.getX(), _master.getY());
 				dir = checkObject(getX(), getY(), getMapId(), dir);
 				setDirectionMove(dir);
@@ -128,8 +124,7 @@ public class L1SummonInstance extends L1NpcInstance {
 		super(template);
 		setId(IdFactory.getInstance().nextId());
 
-		_summonFuture = _threadPool.schedule(
-				new SummonTimer(), SUMMON_TIME);
+		_summonFuture = _threadPool.schedule(new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);
 		setX(RandomArrayList.getInc(5, master.getX() - 2)); // master.getX() + StaticFinalList.getRang2());
@@ -259,8 +254,7 @@ public class L1SummonInstance extends L1NpcInstance {
 			L1Inventory targetInventory = _master.getInventory();
 			List<L1ItemInstance> items = _inventory.getItems();
 			for (L1ItemInstance item : items) {
-				if (_master.getInventory().checkAddItem( // 容量重量確認及びメッセージ送信
-						item, item.getCount()) == L1Inventory.OK) {
+				if (_master.getInventory().checkAddItem(item, item.getCount()) == L1Inventory.OK) { // 容量重量確認及びメッセージ送信
 					_inventory.tradeItem(item, item.getCount(), targetInventory);
 					((L1PcInstance) _master).sendPackets(new S_ServerMessage(SystemMessageId.$143, getName(), item.getLogName()));
 				} else { // 持てないので足元に落とす
@@ -286,8 +280,7 @@ public class L1SummonInstance extends L1NpcInstance {
 			L1Inventory targetInventory = _master.getInventory();
 			List<L1ItemInstance> items = _inventory.getItems();
 			for (L1ItemInstance item : items) {
-				if (_master.getInventory().checkAddItem( // 容量重量確認及びメッセージ送信
-						item, item.getCount()) == L1Inventory.OK) {
+				if (_master.getInventory().checkAddItem(item, item.getCount()) == L1Inventory.OK) { // 容量重量確認及びメッセージ送信
 					_inventory.tradeItem(item, item.getCount(), targetInventory);
 					((L1PcInstance) _master).sendPackets(new S_ServerMessage(SystemMessageId.$143, getName(), item.getLogName()));
 				} else { // 持てないので足元に落とす

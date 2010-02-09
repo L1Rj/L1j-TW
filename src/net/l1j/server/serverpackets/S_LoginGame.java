@@ -20,10 +20,8 @@ package net.l1j.server.serverpackets;
 
 import static net.l1j.server.Opcodes.S_OPCODE_UNKNOWN1;
 
-public class S_LoginGame extends ServerBasePacket
-{
-	public S_LoginGame()
-	{
+public class S_LoginGame extends ServerBasePacket {
+	public S_LoginGame() {
 		writeC(S_OPCODE_UNKNOWN1);
 		writeC(0x03);
 		writeC(0x00);
@@ -35,8 +33,7 @@ public class S_LoginGame extends ServerBasePacket
 	}
 
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

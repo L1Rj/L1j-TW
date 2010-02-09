@@ -59,5 +59,4 @@ public class S_RetrieveList extends ServerBasePacket {
 	public byte[] getContent() throws IOException {
 		return getBytes();
 	}
-
 }

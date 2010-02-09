@@ -42,6 +42,7 @@ public abstract class PcMonitor implements Runnable {
 
 	/**
 	 * 指定されたパラメータでL1PcInstanceに対するモニターを作成する。
+	 * 
 	 * @param oId {@link L1PcInstance#getId()}で取得できるオブジェクトID
 	 */
 	public PcMonitor(int oId) {
@@ -59,6 +60,7 @@ public abstract class PcMonitor implements Runnable {
 
 	/**
 	 * タスク実行時の処理
+	 * 
 	 * @param pc モニター対象のPC
 	 */
 	public abstract void execTask(L1PcInstance pc);

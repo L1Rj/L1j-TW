@@ -19,9 +19,6 @@
 package net.l1j.server.templates;
 
 public class L1EtcItem extends L1Item {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public L1EtcItem() {
@@ -42,7 +39,7 @@ public class L1EtcItem extends L1Item {
 	private int _delay_effect;
 
 	private int _maxChargeCount;
-	
+
 	private boolean _isCanSeal; // ● 封印スクロールで封印可能
 
 	@Override
@@ -115,6 +112,7 @@ public class L1EtcItem extends L1Item {
 	public int getMaxChargeCount() {
 		return _maxChargeCount;
 	}
+
 	@Override
 	public boolean isCanSeal() {
 		return _isCanSeal;

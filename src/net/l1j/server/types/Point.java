@@ -71,8 +71,7 @@ public class Point {
 	/**
 	 * 指定された向きにこの座標をひとつ進める。
 	 * 
-	 * @param heading
-	 *            向き(0~7)
+	 * @param heading 向き(0~7)
 	 */
 	public void forward(int heading) {
 		_x += HEADING_TABLE_X[heading];
@@ -82,8 +81,7 @@ public class Point {
 	/**
 	 * 指定された向きと逆方向にこの座標をひとつ進める。
 	 * 
-	 * @param heading
-	 *            向き(0~7)
+	 * @param heading 向き(0~7)
 	 */
 	public void backward(int heading) {
 		_x -= HEADING_TABLE_X[heading];
@@ -93,8 +91,7 @@ public class Point {
 	/**
 	 * 指定された座標への直線距離を返す。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
+	 * @param pt 座標を保持するPointオブジェクト
 	 * @return 座標までの直線距離
 	 */
 	public double getLineDistance(Point pt) {
@@ -106,20 +103,17 @@ public class Point {
 	/**
 	 * 指定された座標までの直線タイル數を返す。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
+	 * @param pt 座標を保持するPointオブジェクト
 	 * @return 指定された座標までの直線タイル數。
 	 */
 	public int getTileLineDistance(Point pt) {
-		return Math.max(Math.abs(pt.getX() - getX()), Math.abs(pt.getY()
-				- getY()));
+		return Math.max(Math.abs(pt.getX() - getX()), Math.abs(pt.getY() - getY()));
 	}
 
 	/**
 	 * 指定された座標までのタイル數を返す。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
+	 * @param pt 座標を保持するPointオブジェクト
 	 * @return 指定された座標までのタイル數。
 	 */
 	public int getTileDistance(Point pt) {
@@ -130,12 +124,10 @@ public class Point {
 	 * 指定された座標が畫面內に見えるかを返す プレイヤーの座標を(0,0)とすれば見える範圍の座標は
 	 * 左上(2,-15)右上(15,-2)左下(-15,2)右下(-2,15)となる。 チャット欄に隱れて見えない部分も畫面內に含まれる。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
+	 * @param pt 座標を保持するPointオブジェクト
 	 * @return 指定された座標が畫面內に見える場合はtrue。そうでない場合はfalse。
 	 */
-	public boolean isInScreen(Point pt)
-	{
+	public boolean isInScreen(Point pt) {
 		int dist = this.getTileDistance(pt);
 
 		if (dist > 17) {
@@ -147,8 +139,7 @@ public class Point {
 			// プレイヤーの座標を(15, 15)とした場合に(0, 0)にあたる座標からの距離で判斷
 			// Point pointZero = new Point(this.getX() - 15, this.getY() - 15);
 			// int dist2 = pointZero.getTileDistance(pt);
-			int dist2 = Math.abs(pt.getX() - (this.getX() - 15))
-					+ Math.abs(pt.getY() - (this.getY() - 15));
+			int dist2 = Math.abs(pt.getX() - (this.getX() - 15)) + Math.abs(pt.getY() - (this.getY() - 15));
 			if (17 <= dist2 && dist2 <= 43) {
 				return true;
 			}
@@ -159,8 +150,7 @@ public class Point {
 	/**
 	 * 指定された座標と同じ座標かを返す。
 	 * 
-	 * @param pt
-	 *            座標を保持するPointオブジェクト
+	 * @param pt 座標を保持するPointオブジェクト
 	 * @return 指定された座標と同じ座標か。
 	 */
 	public boolean isSamePoint(Point pt) {

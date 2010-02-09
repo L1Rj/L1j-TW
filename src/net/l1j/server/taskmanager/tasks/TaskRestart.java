@@ -23,14 +23,12 @@ import net.l1j.server.taskmanager.TaskManager.ExecutedTask;
 
 /**
  * @author Layane
- * 
  */
 public final class TaskRestart extends Task {
 	public static String NAME = "restart";
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see net.l1j.server.tasks.Task#getName()
 	 */
 	@Override
@@ -40,14 +38,13 @@ public final class TaskRestart extends Task {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see net.l1j.server.tasks.Task#onTimeElapsed(net.l1j.server.tasks.TaskManager.ExecutedTask)
+	 * @see
+	 * net.l1j.server.tasks.Task#onTimeElapsed(net.l1j.server.tasks.TaskManager
+	 * .ExecutedTask)
 	 */
 	@Override
 	public void onTimeElapsed(ExecutedTask task) {
-		Shutdown handler = new Shutdown(Integer.valueOf(task.getParams()[2]),
-				true);
+		Shutdown handler = new Shutdown(Integer.valueOf(task.getParams()[2]), true);
 		handler.start();
 	}
-
 }

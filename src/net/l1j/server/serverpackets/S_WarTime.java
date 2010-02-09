@@ -16,21 +16,15 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import java.util.Calendar;
-import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_WarTime extends ServerBasePacket {
-	private static Logger _log = Logger.getLogger(S_WarTime.class.getName());
-	private static final String S_WAR_TIME = "[S] S_WarTime";	
+	private static final String S_WAR_TIME = "[S] S_WarTime";
 
 	public S_WarTime(Calendar cal) {
 		// 設定 1997/01/01 17:00 為時間基準點

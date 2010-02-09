@@ -16,15 +16,12 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_Liquor extends ServerBasePacket {
+	private static final String _S__19_LIQUOR = "[S] S_Liquor";
 
 	public S_Liquor(int objecId) {
 		writeC(Opcodes.S_OPCODE_LIQUOR);
@@ -39,8 +36,6 @@ public class S_Liquor extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return "[S] S_Liquor";
+		return _S__19_LIQUOR;
 	}
-
-	private static final String _S__19_LIQUOR = "[S] S_Liquor";
 }

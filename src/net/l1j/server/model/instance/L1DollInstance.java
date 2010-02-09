@@ -19,20 +19,20 @@
 package net.l1j.server.model.instance;
 
 import java.util.Arrays;
-import java.util.Map;// 魔法娃娃命中與弓箭
+import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Logger;
 
-import static net.l1j.server.ActionCodes.*; // 魔法娃娃閒置動作
 import net.l1j.server.IdFactory;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.serverpackets.S_DoActionGFX;// 魔法娃娃閒置動作
+import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_DollPack;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.utils.RandomArrayList;
 import net.l1j.thread.GeneralThreadPool;
+
+import static net.l1j.server.ActionCodes.*;
 
 public class L1DollInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
@@ -56,7 +56,6 @@ public class L1DollInstance extends L1NpcInstance {
 	public static final int DOLLTYPE_PRINCESS = 14; // 魔法娃娃：公主
 	public static final int DOLL_TIME = 1800000;
 
-	private static Logger _log = Logger.getLogger(L1DollInstance.class.getName());
 	private ScheduledFuture<?> _dollFuture;
 	private int _dollType;
 	private int _itemObjId;

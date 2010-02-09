@@ -61,8 +61,7 @@ class CharStatusCommand implements TelnetCommand {
 			return new TelnetCommandResult(CMD_INTERNAL_ERROR, "ObjectId " + id + " not found");
 		}
 		if (!(obj instanceof L1Character)) {
-			return new TelnetCommandResult(CMD_INTERNAL_ERROR, "ObjectId " + id
-					+ " is not a character");
+			return new TelnetCommandResult(CMD_INTERNAL_ERROR, "ObjectId " + id + " is not a character");
 		}
 		L1Character cha = (L1Character) obj;
 		StringBuilder result = new StringBuilder();
@@ -89,8 +88,7 @@ class GlobalChatCommand implements TelnetCommand {
 		pc.getLocation().set(-1, -1, 0);
 		ChatLogTable.getInstance().storeChat(pc, null, text, 3);
 
-		L1World.getInstance().broadcastPacketToAll(
-				new S_ChatPacket(pc, text, Opcodes.S_OPCODE_GLOBALCHAT, (byte) 3));
+		L1World.getInstance().broadcastPacketToAll(new S_ChatPacket(pc, text, Opcodes.S_OPCODE_GLOBALCHAT, (byte) 3));
 		return new TelnetCommandResult(CMD_OK, "");
 	}
 }

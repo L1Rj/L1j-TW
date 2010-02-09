@@ -16,23 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_MoveCharPacket extends ServerBasePacket {
-
 	private static final String _S__1F_MOVECHARPACKET = "[S] S_MoveCharPacket";
-
-	private static Logger _log = Logger.getLogger(S_MoveCharPacket.class
-			.getName());
 
 	private byte[] _byte = null;
 
@@ -42,7 +32,7 @@ public class S_MoveCharPacket extends ServerBasePacket {
 		// if(cha instanceof L1PcInstance)
 		// {
 
-		if (cha.getHeading() == 0) {	// 4.14 Start
+		if (cha.getHeading() == 0) { // 4.14 Start
 			y++;
 		} else if (cha.getHeading() == 1) {
 			x--;
@@ -62,7 +52,7 @@ public class S_MoveCharPacket extends ServerBasePacket {
 		} else if (cha.getHeading() == 7) {
 			x++;
 			y++;
-		}	// 4.14 End
+		} // 4.14 End
 
 		writeC(Opcodes.S_OPCODE_MOVEOBJECT);
 		writeD(cha.getId());

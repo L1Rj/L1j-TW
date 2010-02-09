@@ -18,8 +18,6 @@
  */
 package net.l1j.server.model.instance;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ActionCodes;
 import net.l1j.server.WarTimeController;
 import net.l1j.server.model.L1Attack;
@@ -38,8 +36,6 @@ import net.l1j.thread.GeneralThreadPool;
 
 public class L1TowerInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
-
-	private static Logger _log = Logger.getLogger(L1TowerInstance.class.getName());
 
 	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
@@ -231,8 +227,7 @@ public class L1TowerInstance extends L1NpcInstance {
 	}
 
 	public boolean isSubTower() {
-		return (getNpcTemplate().get_npcId() == 81190 || getNpcTemplate().get_npcId() == 81191
-				|| getNpcTemplate().get_npcId() == 81192 || getNpcTemplate().get_npcId() == 81193);
+		return (getNpcTemplate().get_npcId() == 81190 || getNpcTemplate().get_npcId() == 81191 || getNpcTemplate().get_npcId() == 81192 || getNpcTemplate().get_npcId() == 81193);
 	}
 
 }

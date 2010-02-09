@@ -58,6 +58,7 @@ public class L1V1Map extends L1Map {
 	private boolean _isUsableItem;
 
 	private boolean _isUsableSkill;
+
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
 	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
 	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
@@ -73,11 +74,7 @@ public class L1V1Map extends L1Map {
 	protected L1V1Map() {
 	}
 
-	public L1V1Map(int mapId, byte map[][], int worldTopLeftX,
-			int worldTopLeftY, boolean underwater, boolean markable,
-			boolean teleportable, boolean escapable, boolean useResurrection,
-			boolean usePainwand, boolean enabledDeathPenalty, boolean takePets,
-			boolean recallPets, boolean usableItem, boolean usableSkill) {
+	public L1V1Map(int mapId, byte map[][], int worldTopLeftX, int worldTopLeftY, boolean underwater, boolean markable, boolean teleportable, boolean escapable, boolean useResurrection, boolean usePainwand, boolean enabledDeathPenalty, boolean takePets, boolean recallPets, boolean usableItem, boolean usableSkill) {
 		_mapId = mapId;
 		_map = map;
 		_worldTopLeftX = worldTopLeftX;
@@ -189,12 +186,10 @@ public class L1V1Map extends L1Map {
 	@Override
 	public boolean isInMap(int x, int y) {
 		// フィールドの茶色エリアの判定
-		if (_mapId == 4
-				&& (x < 32520 || y < 32070 || (y < 32190 && x < 33950))) {
+		if (_mapId == 4 && (x < 32520 || y < 32070 || (y < 32190 && x < 33950))) {
 			return false;
 		} else {
-			return (_worldTopLeftX <= x && x <= _worldBottomRightX
-					&& _worldTopLeftY <= y && y <= _worldBottomRightY);
+			return (_worldTopLeftX <= x && x <= _worldBottomRightX && _worldTopLeftY <= y && y <= _worldBottomRightY);
 		}
 	}
 

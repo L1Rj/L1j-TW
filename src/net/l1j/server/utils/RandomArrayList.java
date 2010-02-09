@@ -21,6 +21,7 @@ package net.l1j.server.utils;
 public class RandomArrayList {
 	/** 泛用型隨機矩陣，所使用的指標 */
 	private static int listint = 0;
+
 	/** 新型泛用型，適用Int的正數範圍 */
 	private static double[] ArrayDouble = new double[32767];
 
@@ -48,6 +49,7 @@ public class RandomArrayList {
 	public static int getInt(int rang) {
 		return (int) (ArrayDouble[getlistint()] * rang);
 	}
+
 	public static int getInt(double rang) {
 		return (int) (ArrayDouble[getlistint()] * rang);
 	}
@@ -64,6 +66,7 @@ public class RandomArrayList {
 	public static int getInc(int rang, int increase) {
 		return getInt(rang) + increase;
 	}
+
 	public static int getInc(double rang, int increase) {
 		return getInt(rang) + increase;
 	}

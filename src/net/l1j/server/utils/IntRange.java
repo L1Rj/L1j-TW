@@ -43,8 +43,7 @@ public class IntRange {
 	/**
 	 * 數值iが、範圍內にあるかを返す。
 	 * 
-	 * @param i
-	 *            數值
+	 * @param i 數值
 	 * @return 範圍內であればtrue
 	 */
 	public boolean includes(int i) {
@@ -58,8 +57,7 @@ public class IntRange {
 	/**
 	 * 數值iを、この範圍內に丸める。
 	 * 
-	 * @param i
-	 *            數值
+	 * @param i 數值
 	 * @return 丸められた值
 	 */
 	public int ensure(int i) {

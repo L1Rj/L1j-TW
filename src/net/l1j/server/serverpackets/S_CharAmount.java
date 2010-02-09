@@ -23,10 +23,8 @@ import net.l1j.server.Account;
 import net.l1j.server.ClientThread;
 import net.l1j.server.Opcodes;
 
-public class S_CharAmount extends ServerBasePacket
-{
-	public S_CharAmount(int value, ClientThread client)
-	{
+public class S_CharAmount extends ServerBasePacket {
+	public S_CharAmount(int value, ClientThread client) {
 		Account account = Account.load(client.getAccountName());
 		int characterSlot = account.getCharacterSlot();
 		int maxAmount = Config.DEFAULT_CHARACTER_SLOT + characterSlot;
@@ -35,10 +33,9 @@ public class S_CharAmount extends ServerBasePacket
 		writeC(value);
 		writeC(maxAmount); // max amount
 	}
-	
+
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

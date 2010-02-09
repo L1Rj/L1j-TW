@@ -16,21 +16,12 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1SignboardInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket, S_SignboardPack
-
 public class S_SignboardPack extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_SignboardPack.class
-			.getName());
 	private static final String S_SIGNBOARD_PACK = "[S] S_SignboardPack";
 
 	private static final short STATUS_POISON = 1;
@@ -80,20 +71,20 @@ public class S_SignboardPack extends ServerBasePacket {
 	private int getDirection(int heading) {
 		int dir = 0;
 		switch (heading) {
-		case 2:
-			dir = 1;
+			case 2:
+				dir = 1;
 			break;
-		case 3:
-			dir = 2;
+			case 3:
+				dir = 2;
 			break;
-		case 4:
-			dir = 3;
+			case 4:
+				dir = 3;
 			break;
-		case 6:
-			dir = 4;
+			case 6:
+				dir = 4;
 			break;
-		case 7:
-			dir = 5;
+			case 7:
+				dir = 5;
 			break;
 		}
 		return dir;

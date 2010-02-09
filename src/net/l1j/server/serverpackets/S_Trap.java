@@ -6,8 +6,8 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1TrapInstance;
 
 public class S_Trap extends ServerBasePacket {
-	public S_Trap(L1TrapInstance trap, String name) {
 
+	public S_Trap(L1TrapInstance trap, String name) {
 		writeC(Opcodes.S_OPCODE_DROPITEM);
 		writeH(trap.getX());
 		writeH(trap.getY());

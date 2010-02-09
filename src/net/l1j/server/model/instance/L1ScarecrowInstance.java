@@ -18,8 +18,6 @@
  */
 package net.l1j.server.model.instance;
 
-import java.util.logging.Logger;
-
 import javolution.util.FastTable;
 
 import net.l1j.server.model.L1Attack;
@@ -28,10 +26,7 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.utils.CalcExp;
 
 public class L1ScarecrowInstance extends L1NpcInstance {
-
 	private static final long serialVersionUID = 1L;
-
-	private static Logger _log = Logger.getLogger(L1ScarecrowInstance.class.getName());
 
 	public L1ScarecrowInstance(L1Npc template) {
 		super(template);

@@ -43,18 +43,15 @@ public class L1NpcXmlParser {
 		return result;
 	}
 
-	public static Element getFirstChildElementByTagName(Element element,
-			String tagName) {
-		IterableElementList list = new IterableElementList(element
-				.getElementsByTagName(tagName));
+	public static Element getFirstChildElementByTagName(Element element, String tagName) {
+		IterableElementList list = new IterableElementList(element.getElementsByTagName(tagName));
 		for (Element elem : list) {
 			return elem;
 		}
 		return null;
 	}
 
-	public static int getIntAttribute(Element element, String name,
-			int defaultValue) {
+	public static int getIntAttribute(Element element, String name, int defaultValue) {
 		int result = defaultValue;
 		try {
 			result = Integer.valueOf(element.getAttribute(name));
@@ -63,8 +60,7 @@ public class L1NpcXmlParser {
 		return result;
 	}
 
-	public static boolean getBoolAttribute(Element element, String name,
-			boolean defaultValue) {
+	public static boolean getBoolAttribute(Element element, String name, boolean defaultValue) {
 		boolean result = defaultValue;
 		String value = element.getAttribute(name);
 		if (!value.equals("")) {
@@ -97,6 +93,7 @@ public class L1NpcXmlParser {
 		_questIds.put("moonoflongbow", L1Quest.QUEST_MOONOFLONGBOW);
 		_questIds.put("Generalhamelofresentment", L1Quest.QUEST_GENERALHAMELOFRESENTMENT);//哈濛任務
 	}
+
 	public static int parseQuestId(String questId) {
 		if (questId.equals("")) {
 			return -1;

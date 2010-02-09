@@ -16,66 +16,53 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Logger;
 
 import net.l1j.server.ActionCodes;
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillId;
+
 import static net.l1j.server.skills.SkillId.*;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_UseAttackSkill extends ServerBasePacket {
-
 	private static final String S_USE_ATTACK_SKILL = "[S] S_UseAttackSkill";
-	private static Logger _log = Logger.getLogger(S_UseAttackSkill.class
-			.getName());
 
 	private static AtomicInteger _sequentialNumber = new AtomicInteger(0);
 
 	private byte[] _byte = null;
 
-// public S_UseAttackSkill(L1Character caster, L1Character target,
-// int spellgfx, boolean motion) {
-// Point pt = target.getLocation();
-// buildPacket(caster, target.getId(), spellgfx, pt.getX(), pt.getY(),
-// ActionCodes.ACTION_SkillAttack, 6, motion);
-// }
+	// public S_UseAttackSkill(L1Character caster, L1Character target,
+	// int spellgfx, boolean motion) {
+	// Point pt = target.getLocation();
+	// buildPacket(caster, target.getId(), spellgfx, pt.getX(), pt.getY(),
+	// ActionCodes.ACTION_SkillAttack, 6, motion);
+	// }
 
-// public S_UseAttackSkill(L1Character cha, int targetobj, int spellgfx,
-// int x, int y) {
-// buildPacket(cha, targetobj, spellgfx, x, y,
-// ActionCodes.ACTION_SkillAttack, 6, true);
-// }
+	// public S_UseAttackSkill(L1Character cha, int targetobj, int spellgfx,
+	// int x, int y) {
+	// buildPacket(cha, targetobj, spellgfx, x, y,
+	// ActionCodes.ACTION_SkillAttack, 6, true);
+	// }
 
-	public S_UseAttackSkill(L1Character cha, int targetobj, int spellgfx,
-			int x, int y, int actionId) {
+	public S_UseAttackSkill(L1Character cha, int targetobj, int spellgfx, int x, int y, int actionId) {
 		buildPacket(cha, targetobj, spellgfx, x, y, actionId, 6, true);
 	}
 
-	public S_UseAttackSkill(L1Character cha, int targetobj, int spellgfx,
-			int x, int y, int actionId, boolean motion) {
+	public S_UseAttackSkill(L1Character cha, int targetobj, int spellgfx, int x, int y, int actionId, boolean motion) {
 		buildPacket(cha, targetobj, spellgfx, x, y, actionId, 0, motion);
 	}
 
-	public S_UseAttackSkill(L1Character cha, int targetobj, int spellgfx,
-			int x, int y, int actionId, int isHit) {
+	public S_UseAttackSkill(L1Character cha, int targetobj, int spellgfx, int x, int y, int actionId, int isHit) {
 		buildPacket(cha, targetobj, spellgfx, x, y, actionId, isHit, true);
 	}
 
-	private void buildPacket(L1Character cha, int targetobj, int spellgfx,
-			int x, int y, int actionId, int isHit, boolean withCastMotion) {
+	private void buildPacket(L1Character cha, int targetobj, int spellgfx, int x, int y, int actionId, int isHit, boolean withCastMotion) {
 		if (cha instanceof L1PcInstance) {
 			// シャドウ系變身中に攻擊魔法を使用するとクライアントが落ちるため暫定對應
-			if (cha.hasSkillEffect(SKILL_POLYMORPH)
-					&& actionId == ActionCodes.ACTION_SkillAttack) {
+			if (cha.hasSkillEffect(SKILL_POLYMORPH) && actionId == ActionCodes.ACTION_SkillAttack) {
 				int tempchargfx = cha.getTempCharGfx();
 				if (tempchargfx == 5727 || tempchargfx == 5730) {
 					actionId = ActionCodes.ACTION_SkillBuff;
@@ -163,5 +150,4 @@ public class S_UseAttackSkill extends ServerBasePacket {
 	public String getType() {
 		return S_USE_ATTACK_SKILL;
 	}
-
 }

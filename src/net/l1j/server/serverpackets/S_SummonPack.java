@@ -16,22 +16,14 @@ isExsistMaster * This program is free software; you can redistribute it and/or m
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket, S_SummonPack
-
 public class S_SummonPack extends ServerBasePacket {
-
 	private static final String _S__1F_SUMMONPACK = "[S] S_SummonPack";
-	private static Logger _log = Logger.getLogger(S_SummonPack.class.getName());
 
 	private static final int STATUS_POISON = 1;
 	private static final int STATUS_INVISIBLE = 2;
@@ -48,13 +40,11 @@ public class S_SummonPack extends ServerBasePacket {
 		buildPacket(pet, pc, true);
 	}
 
-	public S_SummonPack(L1SummonInstance pet, L1PcInstance pc,
-			boolean isCheckMaster) {
+	public S_SummonPack(L1SummonInstance pet, L1PcInstance pc, boolean isCheckMaster) {
 		buildPacket(pet, pc, isCheckMaster);
 	}
 
-	private void buildPacket(L1SummonInstance pet, L1PcInstance pc,
-			boolean isCheckMaster) {
+	private void buildPacket(L1SummonInstance pet, L1PcInstance pc, boolean isCheckMaster) {
 		writeC(Opcodes.S_OPCODE_CHARPACK);
 		writeH(pet.getX());
 		writeH(pet.getY());
@@ -84,10 +74,8 @@ public class S_SummonPack extends ServerBasePacket {
 		}
 		writeC(0); // ??
 		// HPのパーセント
-		if (pet.getMaster() != null
-				&& pet.getMaster().getId() == pc.getId()) {
-			int percent = pet.getMaxHp() != 0 ? 100 * pet.getCurrentHp()
-					/ pet.getMaxHp() : 100;
+		if (pet.getMaster() != null && pet.getMaster().getId() == pc.getId()) {
+			int percent = pet.getMaxHp() != 0 ? 100 * pet.getCurrentHp() / pet.getMaxHp() : 100;
 			writeC(percent);
 		} else {
 			writeC(0xFF);
@@ -104,7 +92,6 @@ public class S_SummonPack extends ServerBasePacket {
 		if (_byte == null) {
 			_byte = _bao.toByteArray();
 		}
-
 		return _byte;
 	}
 
@@ -112,5 +99,4 @@ public class S_SummonPack extends ServerBasePacket {
 	public String getType() {
 		return _S__1F_SUMMONPACK;
 	}
-
 }

@@ -196,10 +196,6 @@ package net.l1j.server.utils;
  * @author fordfrog
  */
 public final class StringUtil {
-
-	private StringUtil() {
-	}
-
 	/**
 	 * Concatenates strings.
 	 * 
@@ -213,7 +209,6 @@ public final class StringUtil {
 		for (final String string : strings) {
 			sbString.append(string);
 		}
-
 		return sbString.toString();
 	}
 
@@ -234,7 +229,6 @@ public final class StringUtil {
 		for (final String string : strings) {
 			sbString.append(string);
 		}
-
 		return sbString;
 	}
 
@@ -263,12 +257,12 @@ public final class StringUtil {
 		int length = 0;
 
 		for (final String string : strings) {
-			if (string == null)
+			if (string == null) {
 				length += 4;
-			else
+			} else {
 				length += string.length();
+			}
 		}
-
 		return length;
 	}
 }

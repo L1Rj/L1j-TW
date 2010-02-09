@@ -16,21 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_TrueTarget extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_TrueTarget.class.
-			getName());
 	private static final String S_TRUETARGET = "[S] S_TrueTarget";
+
 	private byte[] _byte = null;
 
 	public S_TrueTarget(int targetId, int objectId, String message) {

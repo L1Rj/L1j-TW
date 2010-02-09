@@ -37,6 +37,6 @@ public class S_ShowSummonList extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return "[S] S_ShowSummonList";
+		return S_ShowSummonList;
 	}
 }

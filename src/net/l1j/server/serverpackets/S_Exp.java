@@ -18,19 +18,15 @@
  */
 package net.l1j.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_Exp extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_Exp.class.getName());
-
 	private static final String S_EXP = "[S] S_Exp";
 
 	/**
 	 * レベルと經驗值データを送る。
+	 * 
 	 * @param pc - PC
 	 */
 	public S_Exp(L1PcInstance pc) {
@@ -38,12 +34,12 @@ public class S_Exp extends ServerBasePacket {
 		writeC(pc.getLevel());
 		writeD(pc.getExp());
 
-//		writeC(Opcodes.S_OPCODE_EXP);
-//		writeC(0x39);// level
-//		writeD(_objid);// ??
-//		writeC(0x0A);// ??
-//		writeH(getexp);// min exp
-//		writeH(getexpreward);// max exp
+		//		writeC(Opcodes.S_OPCODE_EXP);
+		//		writeC(0x39);// level
+		//		writeD(_objid);// ??
+		//		writeC(0x0A);// ??
+		//		writeH(getexp);// min exp
+		//		writeH(getexpreward);// max exp
 	}
 
 	@Override

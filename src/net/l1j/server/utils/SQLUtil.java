@@ -21,7 +21,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLUtil {
-
 	public static void close(ResultSet rs, PreparedStatement pstm, Connection con) {
 		close(rs);
 		close(pstm);

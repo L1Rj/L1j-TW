@@ -20,7 +20,6 @@ package net.l1j.server.model.instance;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Logger;
 
 import net.l1j.server.datatables.NpcTable;
 import net.l1j.server.model.L1Attack;
@@ -31,8 +30,6 @@ import net.l1j.server.templates.L1Npc;
 
 public class L1QuestInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
-
-	private static Logger _log = Logger.getLogger(L1QuestInstance.class.getName());
 
 	private L1QuestInstance _npc = this;
 
@@ -177,5 +174,4 @@ public class L1QuestInstance extends L1NpcInstance {
 			setRest(false);
 		}
 	}
-
 }

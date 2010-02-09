@@ -16,23 +16,18 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
 public class S_Poison extends ServerBasePacket {
+	private static final String S_POISON = "[S] S_Poison";
 
 	/**
 	 * キャラクターの外見を毒状態へ変更する際に送信するパケットを構築する
 	 * 
-	 * @param objId
-	 *            外見を変えるキャラクターのID
-	 * @param type
-	 *            外見のタイプ 0 = 通常色, 1 = 緑色, 2 = 灰色
+	 * @param objId 外見を変えるキャラクターのID
+	 * @param type 外見のタイプ 0 = 通常色, 1 = 緑色, 2 = 灰色
 	 */
 	public S_Poison(int objId, int type) {
 		writeC(Opcodes.S_OPCODE_POISON);
@@ -61,6 +56,4 @@ public class S_Poison extends ServerBasePacket {
 	public String getType() {
 		return S_POISON;
 	}
-
-	private static final String S_POISON = "[S] S_Poison";
 }

@@ -50,16 +50,13 @@ public class L1NpcTeleportAction extends L1NpcXmlAction {
 	}
 
 	@Override
-	public L1NpcHtml execute(String actionName, L1PcInstance pc, L1Object obj,
-			byte[] args) {
+	public L1NpcHtml execute(String actionName, L1PcInstance pc, L1Object obj, byte[] args) {
 		if (!pc.getInventory().checkItem(ItemId.ADENA, _price)) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$337, "$4"));
 			return L1NpcHtml.HTML_CLOSE;
 		}
 		pc.getInventory().consumeItem(ItemId.ADENA, _price);
-		L1Teleport.teleport(pc, _loc.getX(), _loc.getY(), (short) _loc
-				.getMapId(), _heading, _effect);
+		L1Teleport.teleport(pc, _loc.getX(), _loc.getY(), (short) _loc.getMapId(), _heading, _effect);
 		return null;
 	}
-
 }

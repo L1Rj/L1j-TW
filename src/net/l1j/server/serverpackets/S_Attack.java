@@ -5,10 +5,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;;
 
-public class S_Attack extends ServerBasePacket
-{
+public class S_Attack extends ServerBasePacket {
 	private static AtomicInteger aInteger = new AtomicInteger(0);
-	
+
 	/*
 	 * [Length:32] S -> C [S_Attack.java] <Skills>
 	 * 0000    18 12 4A 17 49 01 C2 24 00 00 16 02 D1 9F 49 01    ..J.I..$......I.
@@ -29,8 +28,7 @@ public class S_Attack extends ServerBasePacket
 	 * data2, 輸出動畫 (無動畫 設為-1)
 	 * data3, 特殊效果
 	 */
-	public S_Attack(L1Character src, L1Character dst, int[] data)
-	{
+	public S_Attack(L1Character src, L1Character dst, int[] data) {
 		writeC(Opcodes.S_OPCODE_ATTACKPACKET); // 封包位址
 		writeC(data[0]); // 來源物件之攻擊動作
 		writeD(src.getId()); // 來源物件編號
@@ -41,12 +39,11 @@ public class S_Attack extends ServerBasePacket
 		writeD(0x00000000); // 區分用的數值
 		writeC(data[3]); // 來源物件之輸出特別效果 [0x00,無效果 0x02,爪痕 0x04,雙擊 0x08,鏡反射]
 	}
-	
-	private void ShowGfx(L1Character src, L1Character dst, int outGfx)
-	{
+
+	private void ShowGfx(L1Character src, L1Character dst, int outGfx) {
 		if (outGfx == -1)
 			return;
-		
+
 		writeD(aInteger.incrementAndGet());
 		writeH(outGfx);
 		writeC(0x7F);
@@ -57,8 +54,7 @@ public class S_Attack extends ServerBasePacket
 	}
 
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

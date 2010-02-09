@@ -29,26 +29,21 @@ import javolution.util.FastMap;
 import org.w3c.dom.Element;
 
 public class L1NpcActionFactory {
-	private static Logger _log = Logger.getLogger(L1NpcActionFactory.class
-			.getName());
+	private static Logger _log = Logger.getLogger(L1NpcActionFactory.class.getName());
+
 	private static Map<String, Constructor<L1NpcAction>> _actions = new FastMap<String, Constructor<L1NpcAction>>();
 
-	private static Constructor<L1NpcAction> loadConstructor(Class c)
-			throws NoSuchMethodException {
+	private static Constructor<L1NpcAction> loadConstructor(Class c) throws NoSuchMethodException {
 		return c.getConstructor(new Class[] { Element.class });
 	}
 
 	static {
 		try {
 			_actions.put("Action", loadConstructor(L1NpcListedAction.class));
-			_actions
-					.put("MakeItem", loadConstructor(L1NpcMakeItemAction.class));
-			_actions
-					.put("ShowHtml", loadConstructor(L1NpcShowHtmlAction.class));
-			_actions
-					.put("SetQuest", loadConstructor(L1NpcSetQuestAction.class));
-			_actions
-					.put("Teleport", loadConstructor(L1NpcTeleportAction.class));
+			_actions.put("MakeItem", loadConstructor(L1NpcMakeItemAction.class));
+			_actions.put("ShowHtml", loadConstructor(L1NpcShowHtmlAction.class));
+			_actions.put("SetQuest", loadConstructor(L1NpcSetQuestAction.class));
+			_actions.put("Teleport", loadConstructor(L1NpcTeleportAction.class));
 		} catch (NoSuchMethodException e) {
 			_log.log(Level.SEVERE, "載入NpcAction 失敗", e);
 		}

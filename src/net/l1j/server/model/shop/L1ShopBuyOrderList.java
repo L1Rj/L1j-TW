@@ -19,7 +19,6 @@
 package net.l1j.server.model.shop;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javolution.util.FastTable;
 
@@ -46,9 +45,6 @@ class L1ShopBuyOrder {
 }
 
 public class L1ShopBuyOrderList {
-	private static Logger _log = Logger.getLogger(L1ShopBuyOrder.class
-			.getName());
-
 	private final L1Shop _shop;
 	private final List<L1ShopBuyOrder> _list = new FastTable<L1ShopBuyOrder>();
 	private final L1TaxCalculator _taxCalc;
@@ -80,12 +76,10 @@ public class L1ShopBuyOrderList {
 		}
 		_totalPrice += price * count;
 		_totalPriceTaxIncluded += _taxCalc.layTax(price) * count;
-		_totalWeight += shopItem.getItem().getWeight() * count
-				* shopItem.getPackCount();
+		_totalWeight += shopItem.getItem().getWeight() * count * shopItem.getPackCount();
 
 		if (shopItem.getItem().isStackable()) {
-			_list.add(new L1ShopBuyOrder(shopItem, count
-					* shopItem.getPackCount()));
+			_list.add(new L1ShopBuyOrder(shopItem, count * shopItem.getPackCount()));
 			return;
 		}
 

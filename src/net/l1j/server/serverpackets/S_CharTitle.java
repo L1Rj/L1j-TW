@@ -20,21 +20,15 @@ package net.l1j.server.serverpackets;
 
 import static net.l1j.server.Opcodes.S_OPCODE_CHARTITLE;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
-public class S_CharTitle extends ServerBasePacket
-{
-	public S_CharTitle(int objid, String title)
-	{
+public class S_CharTitle extends ServerBasePacket {
+	public S_CharTitle(int objid, String title) {
 		writeC(S_OPCODE_CHARTITLE);
 		writeD(objid);
 		writeS(title);
 	}
 
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

@@ -30,8 +30,7 @@ public class L1MobGroup {
 	private final List<L1NpcCount> _minions = Lists.newArrayList();
 	private final boolean _isRemoveGroupIfLeaderDie;
 
-	public L1MobGroup(int id, int leaderId, List<L1NpcCount> minions,
-			boolean isRemoveGroupIfLeaderDie) {
+	public L1MobGroup(int id, int leaderId, List<L1NpcCount> minions, boolean isRemoveGroupIfLeaderDie) {
 		_id = id;
 		_leaderId = leaderId;
 		_minions.addAll(minions); // 參照コピーの方が速いが、不變性が保証できない

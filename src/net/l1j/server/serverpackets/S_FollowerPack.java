@@ -16,22 +16,13 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
-
-import java.util.logging.Logger;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1FollowerInstance;
 
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket, S_NPCPack
-
 public class S_FollowerPack extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_FollowerPack.class
-			.getName());
 	private static final String S_FOLLOWER_PACK = "[S] S_FollowerPack";
 
 	private static final short STATUS_POISON = 1;
@@ -83,7 +74,6 @@ public class S_FollowerPack extends ServerBasePacket {
 		if (_byte == null) {
 			_byte = _bao.toByteArray();
 		}
-
 		return _byte;
 	}
 
@@ -91,5 +81,4 @@ public class S_FollowerPack extends ServerBasePacket {
 	public String getType() {
 		return S_FOLLOWER_PACK;
 	}
-
 }

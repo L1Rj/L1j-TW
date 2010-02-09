@@ -77,10 +77,8 @@ public class Rectangle {
 	/**
 	 * 指定された點(x, y)が、このRectangleの範圍內にあるかを判定する。
 	 * 
-	 * @param x
-	 *            判定する點のX座標
-	 * @param y
-	 *            判定する點のY座標
+	 * @param x 判定する點のX座標
+	 * @param y 判定する點のY座標
 	 * @return 點(x, y)がこのRectangleの範圍內にある場合、true。
 	 */
 	public boolean contains(int x, int y) {
@@ -90,8 +88,7 @@ public class Rectangle {
 	/**
 	 * 指定されたPointが、このRectangleの範圍內にあるかを判定する。
 	 * 
-	 * @param pt
-	 *            判定するPoint
+	 * @param pt 判定するPoint
 	 * @return ptがこのRectangleの範圍內にある場合、true。
 	 */
 	public boolean contains(Point pt) {

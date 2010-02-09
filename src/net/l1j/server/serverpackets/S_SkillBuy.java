@@ -16,42 +16,34 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-
 package net.l1j.server.serverpackets;
 
 import static net.l1j.server.Opcodes.S_OPCODE_SKILLBUY;
 import net.l1j.server.clientpackets.C_SkillBuyOK;
 import net.l1j.server.model.instance.L1PcInstance;
 
-
-// Referenced classes of package net.l1j.server.serverpackets:
-// ServerBasePacket
-
-public class S_SkillBuy extends ServerBasePacket
-{
-	public S_SkillBuy(int objid, L1PcInstance Pc)
-	{
+public class S_SkillBuy extends ServerBasePacket {
+	public S_SkillBuy(int objid, L1PcInstance Pc) {
 		int SkillAmount = 0;
-		
+
 		for (int i = 0; i < 24; i++)
 			if (!C_SkillBuyOK.SpellCheck(Pc, i + 1))
 				SkillAmount++;
-		
+
 		writeC(S_OPCODE_SKILLBUY);
 		writeD(0x00000064);
 		writeH(SkillAmount);
-		
+
 		for (int i = 0; i < 24; i++)
 			if (!C_SkillBuyOK.SpellCheck(Pc, i + 1))
 				writeD(i);
-		
+
 		if (SkillAmount == 0)
 			writeD(objid);
 	}
-	
+
 	@Override
-	public byte[] getContent()
-	{
+	public byte[] getContent() {
 		return getBytes();
 	}
 }

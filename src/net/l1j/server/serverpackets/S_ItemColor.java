@@ -18,17 +18,11 @@
  */
 package net.l1j.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class S_ItemColor extends ServerBasePacket {
-
 	private static final String S_ITEM_COLOR = "[S] S_ItemColor";
-
-	private static Logger _log = Logger.getLogger(S_ItemColor.class
-			.getName());
 
 	/**
 	 * アイテムの色を變更する。祝福‧咒い狀態が變化した時などに送る
@@ -57,5 +51,4 @@ public class S_ItemColor extends ServerBasePacket {
 	public String getType() {
 		return S_ITEM_COLOR;
 	}
-
 }

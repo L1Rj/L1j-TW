@@ -23,8 +23,7 @@ public class UChar8 {
 	 * Converts a 32 bit unsigned/signed long array to a 8 bit unsigned char
 	 * array.
 	 * 
-	 * @param buff
-	 *            the array to convert
+	 * @param buff the array to convert
 	 * @return char[] an 8 bit unsigned char array
 	 */
 	public static char[] fromArray(long[] buff) {
@@ -43,8 +42,7 @@ public class UChar8 {
 	/**
 	 * Converts an 8 bit unsigned byte array to an 8 bit unsigned char array.
 	 * 
-	 * @param buff
-	 *            the array to convert
+	 * @param buff the array to convert
 	 * @return char[] an 8 bit unsigned char array
 	 */
 	public static char[] fromArray(byte[] buff) {
@@ -60,8 +58,7 @@ public class UChar8 {
 	/**
 	 * Converts an 8 bit unsigned byte array to an 8 bit unsigned char array.
 	 * 
-	 * @param buff
-	 *            the array to convert length the array size
+	 * @param buff the array to convert length the array size
 	 * @return char[] an 8 bit unsigned char array
 	 */
 	public static char[] fromArray(byte[] buff, int length) {
@@ -77,8 +74,7 @@ public class UChar8 {
 	/**
 	 * Converts an 8 bit unsigned byte to an 8 bit unsigned char.
 	 * 
-	 * @param b
-	 *            the byte value to convert
+	 * @param b the byte value to convert
 	 * @return char an 8 bit unsigned char
 	 */
 	public static char fromUByte8(byte b) {
@@ -88,8 +84,7 @@ public class UChar8 {
 	/**
 	 * Converts a 32 bit unsigned long to an 8 bit unsigned char.
 	 * 
-	 * @param l
-	 *            the long value to convert
+	 * @param l the long value to convert
 	 * @return char an 8 bit unsigned char
 	 */
 	public static char[] fromULong32(long l) {

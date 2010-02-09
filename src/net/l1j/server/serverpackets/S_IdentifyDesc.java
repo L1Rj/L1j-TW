@@ -18,15 +18,10 @@
  */
 package net.l1j.server.serverpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class S_IdentifyDesc extends ServerBasePacket {
-
-	private static Logger _log = Logger.getLogger(S_IdentifyDesc.class.getName());
-
 	private byte[] _byte = null;
 
 	/**
@@ -54,10 +49,8 @@ public class S_IdentifyDesc extends ServerBasePacket {
 			writeH(134); // \f1%0：小さなモンスター打擊%1 大きなモンスター打擊%2
 			writeC(3);
 			writeS(name.toString());
-			writeS(item.getItem().getDmgSmall()
-					+ "+" + item.getEnchantLevel());
-			writeS(item.getItem().getDmgLarge()
-					+ "+" + item.getEnchantLevel());
+			writeS(item.getItem().getDmgSmall() + "+" + item.getEnchantLevel());
+			writeS(item.getItem().getDmgLarge() + "+" + item.getEnchantLevel());
 
 		} else if (item.getItem().getType2() == 2) { // armor
 			if (item.getItem().getItemId() == 20383) { // 騎馬用ヘルム
@@ -69,8 +62,7 @@ public class S_IdentifyDesc extends ServerBasePacket {
 				writeH(135); // \f1%0：防御力%1 防御具
 				writeC(2);
 				writeS(name.toString());
-				writeS(Math.abs(item.getItem().get_ac())
-						+ "+" + item.getEnchantLevel());
+				writeS(Math.abs(item.getItem().get_ac()) + "+" + item.getEnchantLevel());
 			}
 
 		} else if (item.getItem().getType2() == 0) { // etcitem

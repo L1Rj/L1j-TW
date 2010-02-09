@@ -18,9 +18,8 @@
  */
 package net.l1j.server.model.instance;
 
-import java.util.logging.Logger;
-
 import java.lang.reflect.Constructor;
+
 import net.l1j.server.IdFactory;
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.datatables.NpcTable;
@@ -39,8 +38,6 @@ import net.l1j.server.templates.L1Npc;
 
 public class L1FollowerInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
-
-	private static Logger _log = Logger.getLogger(L1FollowerInstance.class.getName());
 
 	@Override
 	public boolean noTarget() {
@@ -237,9 +234,7 @@ public class L1FollowerInstance extends L1NpcInstance {
 			L1NpcInstance mob = null;
 			try {
 				String implementationName = l1npc.getImpl();
-				Constructor _constructor = Class.forName(
-						(new StringBuilder()).append("net.l1j.server.model.instance.").append(implementationName)
-								.append("Instance").toString()).getConstructors()[0];
+				Constructor<?> _constructor = Class.forName("net.l1j.server.model.instance." + implementationName + "Instance").getConstructors()[0];
 				mob = (L1NpcInstance) _constructor.newInstance(new Object[] { l1npc });
 				mob.setId(IdFactory.getInstance().nextId());
 				mob.setX(X);
@@ -260,5 +255,4 @@ public class L1FollowerInstance extends L1NpcInstance {
 			}
 		}
 	}
-
 }

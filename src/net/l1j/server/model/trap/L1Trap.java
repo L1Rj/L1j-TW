@@ -53,11 +53,9 @@ public abstract class L1Trap {
 		if (getGfxId() == 0) {
 			return;
 		}
-		S_EffectLocation effect = new S_EffectLocation(trapObj.getLocation(),
-				getGfxId());
+		S_EffectLocation effect = new S_EffectLocation(trapObj.getLocation(), getGfxId());
 
-		for (L1PcInstance pc : L1World.getInstance()
-				.getRecognizePlayer(trapObj)) {
+		for (L1PcInstance pc : L1World.getInstance().getRecognizePlayer(trapObj)) {
 			pc.sendPackets(effect);
 		}
 	}

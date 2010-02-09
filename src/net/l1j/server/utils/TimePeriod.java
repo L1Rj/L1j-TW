@@ -19,13 +19,10 @@
 package net.l1j.server.utils;
 
 import java.sql.Time;
-import java.util.logging.Logger;
 
 import net.l1j.server.model.gametime.L1GameTime;
 
 public class TimePeriod {
-	private static Logger _log = Logger.getLogger(TimePeriod.class.getName());
-
 	private final Time _timeStart;
 	private final Time _timeEnd;
 
@@ -49,7 +46,6 @@ public class TimePeriod {
 		 * timeEnd~timeStart(06:00~18:00)の範圍內でなければ、
 		 * timeStart~timeEnd(18:00~06:00)の範圍內と見なせる
 		 */
-		return _timeStart.after(_timeEnd) ? !includes(time, _timeEnd, _timeStart) : includes(time,
-				_timeStart, _timeEnd);
+		return _timeStart.after(_timeEnd) ? !includes(time, _timeEnd, _timeStart) : includes(time, _timeStart, _timeEnd);
 	}
 }

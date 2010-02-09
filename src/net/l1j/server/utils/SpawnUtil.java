@@ -48,8 +48,7 @@ public class SpawnUtil {
 					//+ (int) (Math.random() * randomRange) - (int) (Math.random() * randomRange));
 					npc.setY(RandomArrayList.getInc(randomRange * 2 + 1, pc.getY() - randomRange));
 					//+ (int) (Math.random() * randomRange)- (int) (Math.random() * randomRange));
-					if (npc.getMap().isInMap(npc.getLocation())
-							&& npc.getMap().isPassable(npc.getLocation())) {
+					if (npc.getMap().isInMap(npc.getLocation()) && npc.getMap().isPassable(npc.getLocation())) {
 						break;
 					}
 					Thread.sleep(1);
