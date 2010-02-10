@@ -30,6 +30,8 @@ import javolution.util.FastTable;
 
 import net.l1j.Config;
 import net.l1j.server.WorldMap;
+import net.l1j.server.model.instance.L1MerchantInstance;
+import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
@@ -43,7 +45,8 @@ public class L1World {
 	private static Logger _log = Logger.getLogger(L1World.class.getName());
 
 	private final ConcurrentHashMap<String, L1PcInstance> _allPlayers;
-	private final ConcurrentHashMap<Integer, L1NpcInstance> _allNpcs;
+	private final ConcurrentHashMap<Integer, L1MerchantInstance> _allMerchants;
+	private final ConcurrentHashMap<Integer, L1MonsterInstance> _allMonsters;
 	private final ConcurrentHashMap<Integer, L1PetInstance> _allPets;
 	private final ConcurrentHashMap<Integer, L1SummonInstance> _allSummons;
 	private final ConcurrentHashMap<Integer, L1Object> _allObjects;
@@ -60,7 +63,8 @@ public class L1World {
 
 	private L1World() {
 		_allPlayers = new ConcurrentHashMap<String, L1PcInstance>(); // 全てのプレイヤー
-		_allNpcs = new ConcurrentHashMap<Integer, L1NpcInstance>(); // 全てのNPC
+		_allMerchants = new ConcurrentHashMap<Integer, L1MerchantInstance>(); // 全てのNPC
+		_allMonsters = new ConcurrentHashMap<Integer, L1MonsterInstance>(); // 全てのNPC
 		_allPets = new ConcurrentHashMap<Integer, L1PetInstance>(); // 全てのペット
 		_allSummons = new ConcurrentHashMap<Integer, L1SummonInstance>(); // 全てのサモンモンスター
 		_allObjects = new ConcurrentHashMap<Integer, L1Object>(); // 全てのオブジェクト(L1ItemInstance入り、L1Inventoryはなし)
@@ -92,8 +96,11 @@ public class L1World {
 		if (object instanceof L1PcInstance) {
 			_allPlayers.put(((L1PcInstance) object).getName(), (L1PcInstance) object);
 		}
-		if (object instanceof L1NpcInstance) {
-			_allNpcs.put(((L1NpcInstance) object).getNpcTemplate().get_npcId(), (L1NpcInstance) object);
+		if (object instanceof L1MerchantInstance) {
+			_allMerchants.put(((L1MerchantInstance) object).getNpcTemplate().get_npcId(), (L1MerchantInstance) object);
+		}
+		if (object instanceof L1MonsterInstance) {
+			_allMonsters.put(((L1MonsterInstance) object).getNpcTemplate().get_npcId(), (L1MonsterInstance) object);
 		}
 		if (object instanceof L1PetInstance) {
 			_allPets.put(object.getId(), (L1PetInstance) object);
@@ -112,8 +119,11 @@ public class L1World {
 		if (object instanceof L1PcInstance) {
 			_allPlayers.remove(((L1PcInstance) object).getName());
 		}
-		if (object instanceof L1NpcInstance) {
-			_allNpcs.remove(((L1NpcInstance) object).getNpcTemplate().get_npcId());
+		if (object instanceof L1MerchantInstance) {
+			_allMerchants.remove(((L1MerchantInstance) object).getNpcTemplate().get_npcId());
+		}
+		if (object instanceof L1MonsterInstance) {
+			_allMonsters.remove(((L1MonsterInstance) object).getNpcTemplate().get_npcId());
 		}
 		if (object instanceof L1PetInstance) {
 			_allPets.remove(object.getId());
@@ -121,10 +131,6 @@ public class L1World {
 		if (object instanceof L1SummonInstance) {
 			_allSummons.remove(object.getId());
 		}
-	}
-
-	public L1NpcInstance findNpc(int npcId) {
-		return _allNpcs.get(npcId);
 	}
 
 	public L1Object findObject(int objId) {
@@ -559,14 +565,25 @@ public class L1World {
 	}
 
 	/**
-	 * <font color=#827B00>傳回NPC的總數</font>
+	 * <font color=#827B00>傳回商人的總數</font>
 	 * 
-	 * @return L1NpcInstance[]
+	 * @return L1MerchantInstance[]
 	 */
-	public L1NpcInstance[] getWorldNpcs() {
-		L1NpcInstance[] npc = new L1NpcInstance[_allNpcs.size()];
-		L1NpcInstance[] allNpc = _allNpcs.values().toArray(npc);
-		return allNpc;
+	public L1MerchantInstance[] getWorldMerchants() {
+		L1MerchantInstance[] merchant = new L1MerchantInstance[_allMerchants.size()];
+		L1MerchantInstance[] allMerchant = _allMerchants.values().toArray(merchant);
+		return allMerchant;
+	}
+
+	/**
+	 * <font color=#827B00>傳回怪物的總數</font>
+	 * 
+	 * @return L1MonsterInstance[]
+	 */
+	public L1MonsterInstance[] getWorldMonsters() {
+		L1MonsterInstance[] monster = new L1MonsterInstance[_allMonsters.size()];
+		L1MonsterInstance[] allMonster = _allMonsters.values().toArray(monster);
+		return allMonster;
 	}
 
 	/**

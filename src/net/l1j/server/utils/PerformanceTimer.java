@@ -19,26 +19,22 @@
 package net.l1j.server.utils;
 
 public class PerformanceTimer {
-
 	/**
-	 * <font color=#00800>開始執行時間</font>
+	 * <font color=#00800>執行時間</font>
 	 */
-	private static long _begin = System.currentTimeMillis();
+	private long _begin = System.currentTimeMillis();
 
 	/**
 	 * <font color=#00800>重設執行時間</font>
 	 */
-	public static void reset() {
+	public void reset() {
 		_begin = System.currentTimeMillis();
 	}
 
 	/**
-	 * <font color=#00800>傳回執行時間</font>
-	 * 
-	 * @return
+	 * @return <font color=#00800>執行時間</font>
 	 */
-	public static long get() {
+	public long get() {
 		return System.currentTimeMillis() - _begin;
 	}
-
 }

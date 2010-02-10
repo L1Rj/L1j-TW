@@ -16,7 +16,6 @@ package net.l1j.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -33,7 +32,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
-import net.l1j.gui.memory.MemoryMonitor;
+import net.l1j.gui.images.ImagesTable;
 
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
@@ -79,6 +78,7 @@ public class ServerManager extends JFrame {
 	}
 
 	public ServerManager() {
+		setIconImage(ImagesTable.getImage("servermanager.ico"));
 		setTitle("L1J-Naruto Server Manager");
 		setTheme("DarkGrey");
 		setResizable(false);
@@ -114,7 +114,6 @@ public class ServerManager extends JFrame {
 
 		textAreaSystem = new JTextArea();
 		textAreaSystem.setEditable(false);
-		textAreaSystem.setFont(new Font("Arial Unicode MS", Font.PLAIN, 10));
 		scrollPaneSystem.setViewportView(textAreaSystem);
 
 		panelMemory = MemoryMonitor.getInstance();
