@@ -24,7 +24,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import static net.l1j.server.skills.SkillId.*;
 
 public class S_SPMR extends ServerBasePacket {
-	private static final String S_SPMR = "[S] S_S_SPMR";
+	private static final String S_SPMR = "[S] S_SPMR";
 
 	private byte[] _byte = null;
 

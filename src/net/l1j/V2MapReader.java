@@ -39,12 +39,11 @@ import net.l1j.server.utils.FileUtil;
  * テキストマップ(v2maps/\d*.txt)を讀み⑸む（テスト用).
  */
 public class V2MapReader extends MapReader {
-
-	/** マップホルダー. */
+	/** 地圖目錄 */
 	private static final String MAP_DIR = "./v2maps/";
 
 	/**
-	 * 全マップIDのリストを返す.
+	 * 傳回全部地圖編號的清單
 	 * 
 	 * @return FastTable
 	 */
@@ -90,7 +89,7 @@ public class V2MapReader extends MapReader {
 	/**
 	 * 指定のマップ番號のキャッシュマップを讀み⑸む.
 	 * 
-	 * @param mapId マップ番號
+	 * @param mapId 地圖編號
 	 * @return L1Map
 	 * @throws IOException
 	 */
@@ -98,14 +97,14 @@ public class V2MapReader extends MapReader {
 	public L1Map read(final int mapId) throws IOException {
 		File file = new File(MAP_DIR + mapId + ".md");
 		if (!file.exists()) {
-			throw new FileNotFoundException("MapId: " + mapId);
+			throw new FileNotFoundException("地圖編號: " + mapId);
 		}
 
 		BinaryInputStream in = new BinaryInputStream(new BufferedInputStream(new InflaterInputStream(new FileInputStream(file))));
 
 		int id = in.readInt();
 		if (mapId != id) {
-			throw new FileNotFoundException("MapId: " + mapId);
+			throw new FileNotFoundException("地圖編號: " + mapId);
 		}
 
 		int xLoc = in.readInt();

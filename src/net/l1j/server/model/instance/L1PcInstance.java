@@ -70,6 +70,7 @@ import net.l1j.server.model.classes.L1ClassFeature;
 import net.l1j.server.model.gametime.L1GameTimeCarrier;
 import net.l1j.server.skills.SkillUse;
 import net.l1j.server.serverpackets.S_BlueMessage;
+import net.l1j.server.serverpackets.S_BonusStats;
 import net.l1j.server.serverpackets.S_CastleMaster;
 import net.l1j.server.serverpackets.S_ChangeShape;
 import net.l1j.server.serverpackets.S_CharVisualUpdate;
@@ -91,7 +92,6 @@ import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillIconGFX;
 import net.l1j.server.serverpackets.S_SystemMessage;
-import net.l1j.server.serverpackets.S_bonusstats;
 import net.l1j.server.serverpackets.ServerBasePacket;
 import net.l1j.server.templates.L1BookMark;
 import net.l1j.server.templates.L1Item;
@@ -2422,7 +2422,7 @@ public class L1PcInstance extends L1Character {
 		// ボーナスステータス
 		if (getLevel() >= 51 && getLevel() - 50 > getBonusStats()) {
 			if ((getBaseStr() + getBaseDex() + getBaseCon() + getBaseInt() + getBaseWis() + getBaseCha()) < 210) {
-				sendPackets(new S_bonusstats(getId(), 1));
+				sendPackets(new S_BonusStats(getId(), 1));
 			}
 		}
 		sendPackets(new S_OwnCharStatus(this));

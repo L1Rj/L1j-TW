@@ -16,23 +16,36 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package net.l1j.server.clientpackets;
+package net.l1j.server.serverpackets;
 
-import net.l1j.server.ClientThread;
+import net.l1j.server.Opcodes;
 
-public class C_KeepALIVE extends ClientBasePacket {
-	private static final String C_KEEP_ALIVE = "[C] C_KeepALIVE";
+public class S_BonusStats extends ServerBasePacket {
+	private static final String S_BONUSSTATS = "[S] S_BonusStats";
 
-	public C_KeepALIVE(byte decrypt[], ClientThread client) {
-		super(decrypt);
+	private byte[] _byte = null;
 
-		// XXX:GameTimeを送信（3バイトのデータを送って來ているのでそれを何かに利用しないといけないかもしれない）
-		// L1PcInstance pc = client.getActiveChar();
-		// pc.sendPackets(new S_GameTime());
+	public S_BonusStats(int i, int j) {
+		buildPacket(i, j);
+	}
+
+	private void buildPacket(int i, int j) {
+		writeC(Opcodes.S_OPCODE_SHOWHTML);
+		writeD(i);
+		writeS("RaiseAttr");
+	}
+
+	@Override
+	public byte[] getContent() {
+		if (_byte == null) {
+			_byte = getBytes();
+		}
+
+		return _byte;
 	}
 
 	@Override
 	public String getType() {
-		return C_KEEP_ALIVE;
+		return S_BONUSSTATS;
 	}
 }

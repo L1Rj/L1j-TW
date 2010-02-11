@@ -38,7 +38,18 @@ public class S_CharPacks extends ServerBasePacket {
 		writeC(wis);
 		writeC(cha);
 		writeC(intel);
-		writeC(0);
+
+		// is Administrator
+		// 0 = false
+		// 1 = true , can't attack
+		// > 1 true , can't attack
+		// can use Public GameMaster Command
+/*		if (accessLevel == 200) {
+			writeC(1);
+		} else {
+			writeC(0);
+		}
+*/		writeC(0);
 	}
 
 	@Override

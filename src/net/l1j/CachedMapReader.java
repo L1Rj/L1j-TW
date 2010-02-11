@@ -38,18 +38,17 @@ import net.l1j.server.model.map.L1V1Map;
 import net.l1j.server.utils.FileUtil;
 
 /**
- * テキストマップをキャッシングして讀み⑸み時間を短縮する.
+ * 處理文字地圖縮短讀取時間
  */
 public class CachedMapReader extends MapReader {
+	/** 文字地圖目錄 */
+	private static final String MAP_DIR = "./map/";
 
-	/** テキストマップホルダー. */
-	private static final String MAP_DIR = "./maps/";
-
-	/** キャッシングするマップホルダー. */
-	private static final String CACHE_DIR = "./data/mapcache/";
+	/** 快取地圖目錄 */
+	private static final String CACHE_DIR = "./map/cache/";
 
 	/**
-	 * 全マップIDのリストを返す.
+	 * 傳回全部地圖編號的清單
 	 * 
 	 * @return FastTable
 	 */
@@ -78,9 +77,9 @@ public class CachedMapReader extends MapReader {
 	}
 
 	/**
-	 * 指定のマップ番號のテキストマップをキャッシュマップに變更する.
+	 * 把指定地圖編號的文字地圖改為快取地圖
 	 * 
-	 * @param mapId マップ番號
+	 * @param mapId 地圖編號
 	 * @return L1V1Map
 	 * @throws IOException
 	 */
@@ -92,7 +91,7 @@ public class CachedMapReader extends MapReader {
 
 		L1V1Map map = (L1V1Map) new TextMapReader().read(mapId);
 
-		DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(CACHE_DIR + mapId + ".map")));
+		DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(CACHE_DIR + mapId + ".tmp")));
 
 		out.writeInt(map.getId());
 		out.writeInt(map.getX());
@@ -112,20 +111,20 @@ public class CachedMapReader extends MapReader {
 	}
 
 	/**
-	 * 指定のマップ番號のキャッシュマップを讀み⑸む.
+	 * 讀取指定地圖編號的快取地圖
 	 * 
-	 * @param mapId マップ番號
+	 * @param mapId 地圖編號
 	 * @return L1Map
 	 * @throws IOException
 	 */
 	@Override
 	public L1Map read(final int mapId) throws IOException {
-		File file = new File(CACHE_DIR + mapId + ".map");
+		File file = new File(CACHE_DIR + mapId + ".tmp");
 		if (!file.exists()) {
 			return cacheMap(mapId);
 		}
 
-		DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(CACHE_DIR + mapId + ".map")));
+		DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(CACHE_DIR + mapId + ".tmp")));
 
 		int id = in.readInt();
 		if (mapId != id) {
@@ -159,7 +158,7 @@ public class CachedMapReader extends MapReader {
 	}
 
 	/**
-	 * 全てのテキストマップを讀み⑸む.
+	 * 讀取全部的文字地圖
 	 * 
 	 * @return Map
 	 * @throws IOException

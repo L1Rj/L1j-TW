@@ -38,33 +38,33 @@ import net.l1j.server.model.map.L1V1Map;
  * テキストマップ(maps/\d*.txt)を読み込む.
  */
 public class TextMapReader extends MapReader {
-	/** メッセージログ用. */
+	/** 訊息記錄 */
 	private static Logger _log = Logger.getLogger(TextMapReader.class.getName());
 
-	/** マップホルダー. */
-	private static final String MAP_DIR = "./maps/";
+	/** 文字地圖目錄 */
+	private static final String MAP_DIR = "./map/";
 
-	/** MAP_INFO用 マップ番号位置. */
+	/** MAP_INFO 地圖編號位置 */
 	public static final int MAPINFO_MAP_NO = 0;
 
-	/** MAP_INFO用 開始X座標の位置. */
+	/** MAP_INFO X座標開始位置 */
 	public static final int MAPINFO_START_X = 1;
 
-	/** MAP_INFO用 最終X座標の位置. */
+	/** MAP_INFO X座標結束位置 */
 	public static final int MAPINFO_END_X = 2;
 
-	/** MAP_INFO用 開始Y座標の位置. */
+	/** MAP_INFO Y座標開始位置 */
 	public static final int MAPINFO_START_Y = 3;
 
-	/** MAP_INFO用 開始Y座標の位置. */
+	/** MAP_INFO Y座標結束位置 */
 	public static final int MAPINFO_END_Y = 4;
 
 	/**
-	 * 指定のマップ番号のテキストマップを読み込む.
+	 * 讀取指定地圖編號的文字地圖
 	 * 
-	 * @param mapId マップ番号
-	 * @param xSize X座標のサイズ
-	 * @param ySize Y座標のサイズ
+	 * @param mapId 地圖編號
+	 * @param xSize X座標的大小
+	 * @param ySize Y座標的大小
 	 * @return byte[][]
 	 * @throws IOException
 	 */
@@ -76,7 +76,7 @@ public class TextMapReader extends MapReader {
 		String line;
 		while ((line = in.readLine()) != null) {
 			if (line.trim().length() == 0 || line.startsWith("#")) {
-				continue; // 空行とコメントをスキップ
+				continue; // 忽略空行和註解
 			}
 
 			int x = 0;
@@ -94,9 +94,9 @@ public class TextMapReader extends MapReader {
 	}
 
 	/**
-	 * 指定のマップ番号のテキストマップを読み込む.
+	 * 讀取指定地圖編號的文字地圖
 	 * 
-	 * @param id マップ番号
+	 * @param id 地圖編號
 	 * @return L1Map
 	 * @throws IOException
 	 */
@@ -108,9 +108,8 @@ public class TextMapReader extends MapReader {
 			int ySize = info[MAPINFO_END_Y] - info[MAPINFO_START_Y] + 1;
 
 			if (mapId == id) {
-				L1V1Map map = new L1V1Map((short) mapId, this.read(mapId,
-						xSize, ySize), info[MAPINFO_START_X],
-						info[MAPINFO_START_Y],
+				L1V1Map map = new L1V1Map((short) mapId, this.read(mapId, xSize, ySize),
+						info[MAPINFO_START_X], info[MAPINFO_START_Y],
 						MapsTable.getInstance().isUnderwater(mapId),
 						MapsTable.getInstance().isMarkable(mapId),
 						MapsTable.getInstance().isTeleportable(mapId),
@@ -125,11 +124,11 @@ public class TextMapReader extends MapReader {
 				return map;
 			}
 		}
-		throw new FileNotFoundException("MapId: " + id);
+		throw new FileNotFoundException("地圖編號: " + id);
 	}
 
 	/**
-	 * 全てのテキストマップを読み込む.
+	 * 讀取全部的文字地圖
 	 * 
 	 * @return Map
 	 * @throws IOException
@@ -144,9 +143,8 @@ public class TextMapReader extends MapReader {
 			int ySize = info[MAPINFO_END_Y] - info[MAPINFO_START_Y] + 1;
 
 			try {
-				L1V1Map map = new L1V1Map((short) mapId, this.read(mapId,
-						xSize, ySize), info[MAPINFO_START_X],
-						info[MAPINFO_START_Y],
+				L1V1Map map = new L1V1Map((short) mapId, this.read(mapId, xSize, ySize),
+						info[MAPINFO_START_X], info[MAPINFO_START_Y],
 						MapsTable.getInstance().isUnderwater(mapId),
 						MapsTable.getInstance().isMarkable(mapId),
 						MapsTable.getInstance().isTeleportable(mapId),

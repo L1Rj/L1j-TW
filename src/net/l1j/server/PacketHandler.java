@@ -95,7 +95,7 @@ public class PacketHandler {
 				new C_DeleteChar(abyte0, _client);
 			break;
 			case C_OPCODE_KEEPALIVE:
-				new C_KeepALIVE(abyte0, _client);
+				new C_KeepAlive(abyte0, _client);
 			break;
 			case C_OPCODE_ATTR:
 				new C_Attr(abyte0, _client);

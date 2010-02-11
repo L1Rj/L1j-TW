@@ -46,6 +46,7 @@ import net.l1j.server.model.instance.L1SummonInstance;
 import net.l1j.server.skills.SkillUse;
 import net.l1j.server.serverpackets.S_ActiveSpells;
 import net.l1j.server.serverpackets.S_AddSkill;
+import net.l1j.server.serverpackets.S_BonusStats;
 import net.l1j.server.serverpackets.S_Bookmarks;
 import net.l1j.server.serverpackets.S_CharacterConfig;
 import net.l1j.server.serverpackets.S_InvList;
@@ -62,7 +63,6 @@ import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.serverpackets.S_SummonPack;
 import net.l1j.server.serverpackets.S_War;
 import net.l1j.server.serverpackets.S_Weather;
-import net.l1j.server.serverpackets.S_bonusstats;
 import net.l1j.server.templates.L1BookMark;
 import net.l1j.server.templates.L1GetBackRestart;
 import net.l1j.server.templates.L1Skills;
@@ -402,7 +402,7 @@ public class C_LoginToServer extends ClientBasePacket {
 
 		if (pc.getLevel() >= 51 && pc.getLevel() - 50 > pc.getBonusStats()) {
 			if ((pc.getBaseStr() + pc.getBaseDex() + pc.getBaseCon() + pc.getBaseInt() + pc.getBaseWis() + pc.getBaseCha()) < 210) {
-				pc.sendPackets(new S_bonusstats(pc.getId(), 1));
+				pc.sendPackets(new S_BonusStats(pc.getId(), 1));
 			}
 		}
 
