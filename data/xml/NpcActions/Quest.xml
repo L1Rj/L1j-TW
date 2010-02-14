@@ -706,11 +706,11 @@
 			<ShowHtml HtmlId=""/>
 		</Succeed>
 	</MakeItem>
-	　　<!--カルマクエスト / 選ばれなかった者(バフォメット)-->
-	　　<MakeItem Name="request mcodr2" Class="PWEKDRI" NpcId="46094" AmountInputable="false" QuestId="desire" QuestStep="1">
-	　　　　<Item Amount="1" ItemId="41136"/>
-	　　　　<Material Amount="1" ItemId="41133"/>
-	　　　　<Succeed>
+	<!--カルマクエスト / 選ばれなかった者(バフォメット)-->
+	<MakeItem Name="request mcodr2" Class="PWEKDRI" NpcId="46094" AmountInputable="false" QuestId="desire" QuestStep="1">
+		<Item Amount="1" ItemId="41136"/>
+		<Material Amount="1" ItemId="41133"/>
+		<Succeed>
 			<ShowHtml HtmlId=""/>
 		</Succeed>
 	</MakeItem>
