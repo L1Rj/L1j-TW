@@ -724,32 +724,32 @@
 	</MakeItem>
 	<!--新手任務 / 隱藏之谷的雷克曼 -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50113" AmountInputable="false" QuestId="toscroll" QuestStep="0">
-		<Item Amount="1" ItemId="35"/> <!--象牙塔單手劍 -->
-		<Item Amount="1" ItemId="48"/> <!--象牙塔雙手劍 -->
-		<Item Amount="1" ItemId="147"/><!--象牙塔斧頭 -->
-		<Item Amount="1" ItemId="105"/><!--象牙塔長矛 -->
-		<Item Amount="1" ItemId="175"/><!--象牙塔弓 -->
-		<Item Amount="1" ItemId="174"/><!--象牙塔石弓 -->
-		<Item Amount="1" ItemId="120"/><!--象牙塔魔杖 -->
-		<Item Amount="1" ItemId="73"/> <!--象牙塔雙刀 -->
-		<Item Amount="1" ItemId="156"/><!--象牙塔鋼爪 -->
-		<Item Amount="1" ItemId="20028"/><!--象牙塔皮頭盔 -->
-		<Item Amount="1" ItemId="20126"/><!--象牙塔皮盔甲 -->
-		<Item Amount="1" ItemId="20206"/><!--象牙塔皮涼鞋 -->
-		<Item Amount="1" ItemId="20173"/><!--象牙塔皮手套 -->
-		<Item Amount="1" ItemId="20232"/><!--象牙塔皮盾牌 -->
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="10" ItemId="40030"/><!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="35"/>		<!--象牙塔單手劍 -->
+		<Item Amount="1" ItemId="48"/>		<!--象牙塔雙手劍 -->
+		<Item Amount="1" ItemId="147"/>		<!--象牙塔斧頭 -->
+		<Item Amount="1" ItemId="105"/>		<!--象牙塔長矛 -->
+		<Item Amount="1" ItemId="175"/>		<!--象牙塔弓 -->
+		<Item Amount="1" ItemId="174"/>		<!--象牙塔石弓 -->
+		<Item Amount="1" ItemId="120"/>		<!--象牙塔魔杖 -->
+		<Item Amount="1" ItemId="73"/>		<!--象牙塔雙刀 -->
+		<Item Amount="1" ItemId="156"/>		<!--象牙塔鋼爪 -->
+		<Item Amount="1" ItemId="20028"/>	<!--象牙塔皮頭盔 -->
+		<Item Amount="1" ItemId="20126"/>	<!--象牙塔皮盔甲 -->
+		<Item Amount="1" ItemId="20206"/>	<!--象牙塔皮涼鞋 -->
+		<Item Amount="1" ItemId="20173"/>	<!--象牙塔皮手套 -->
+		<Item Amount="1" ItemId="20232"/>	<!--象牙塔皮盾牌 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="10" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
 		<Item Amount="1000" ItemId="40743"/><!--箭 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="10" ItemId="40085"/><!--說話之島指定傳送卷軸 -->
-		<Item Amount="1" ItemId="40384"/><!--地圖:隱藏之谷 -->
-		<Item Amount="5" ItemId="40082"/><!--指定傳送卷軸(歌唱之島) -->
-		<Item Amount="100" ItemId="40308"/><!--金幣 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="10" ItemId="40085"/>	<!--說話之島指定傳送卷軸 -->
+		<Item Amount="1" ItemId="40384"/>	<!--地圖:隱藏之谷 -->
+		<Item Amount="5" ItemId="40082"/>	<!--指定傳送卷軸(歌唱之島) -->
+		<Item Amount="100" ItemId="40308"/>	<!--金幣 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -759,32 +759,32 @@
 	</MakeItem>
 	<!--新手任務 / 歌唱之島的賽利安 -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50112" AmountInputable="false" QuestId="toscroll" QuestStep="0">
-		<Item Amount="1" ItemId="35"/> <!--象牙塔單手劍 -->
-		<Item Amount="1" ItemId="48"/> <!--象牙塔雙手劍 -->
-		<Item Amount="1" ItemId="147"/><!--象牙塔斧頭 -->
-		<Item Amount="1" ItemId="105"/><!--象牙塔長矛 -->
-		<Item Amount="1" ItemId="175"/><!--象牙塔弓 -->
-		<Item Amount="1" ItemId="174"/><!--象牙塔石弓 -->
-		<Item Amount="1" ItemId="120"/><!--象牙塔魔杖 -->
-		<Item Amount="1" ItemId="73"/> <!--象牙塔雙刀 -->
-		<Item Amount="1" ItemId="156"/><!--象牙塔鋼爪 -->
-		<Item Amount="1" ItemId="20028"/><!--象牙塔皮頭盔 -->
-		<Item Amount="1" ItemId="20126"/><!--象牙塔皮盔甲 -->
-		<Item Amount="1" ItemId="20206"/><!--象牙塔皮涼鞋 -->
-		<Item Amount="1" ItemId="20173"/><!--象牙塔皮手套 -->
-		<Item Amount="1" ItemId="20232"/><!--象牙塔皮盾牌 -->
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="35"/>		<!--象牙塔單手劍 -->
+		<Item Amount="1" ItemId="48"/>		<!--象牙塔雙手劍 -->
+		<Item Amount="1" ItemId="147"/>		<!--象牙塔斧頭 -->
+		<Item Amount="1" ItemId="105"/>		<!--象牙塔長矛 -->
+		<Item Amount="1" ItemId="175"/>		<!--象牙塔弓 -->
+		<Item Amount="1" ItemId="174"/>		<!--象牙塔石弓 -->
+		<Item Amount="1" ItemId="120"/>		<!--象牙塔魔杖 -->
+		<Item Amount="1" ItemId="73"/>		<!--象牙塔雙刀 -->
+		<Item Amount="1" ItemId="156"/>		<!--象牙塔鋼爪 -->
+		<Item Amount="1" ItemId="20028"/>	<!--象牙塔皮頭盔 -->
+		<Item Amount="1" ItemId="20126"/>	<!--象牙塔皮盔甲 -->
+		<Item Amount="1" ItemId="20206"/>	<!--象牙塔皮涼鞋 -->
+		<Item Amount="1" ItemId="20173"/>	<!--象牙塔皮手套 -->
+		<Item Amount="1" ItemId="20232"/>	<!--象牙塔皮盾牌 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
 		<Item Amount="1000" ItemId="40743"/><!--箭 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="10" ItemId="40085"/><!--說話之島指定傳送卷軸 -->
-		<Item Amount="1" ItemId="40383"/><!--地圖:歌唱之島 -->
-		<Item Amount="5" ItemId="40101"/><!--指定傳送卷軸(歌唱之島) -->
-		<Item Amount="100" ItemId="40308"/><!--金幣 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="10" ItemId="40085"/>	<!--說話之島指定傳送卷軸 -->
+		<Item Amount="1" ItemId="40383"/>	<!--地圖:歌唱之島 -->
+		<Item Amount="5" ItemId="40101"/>	<!--指定傳送卷軸(歌唱之島) -->
+		<Item Amount="100" ItemId="40308"/>	<!--金幣 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -794,14 +794,14 @@
 	</MakeItem>
 	<!--新手任務 / 說話島的莉莉  -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50111" AmountInputable="false" QuestId="toscroll" QuestStep="1">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="10" ItemId="40080"/><!--古魯丁村莊指定傳卷軸 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="10" ItemId="40080"/>	<!--古魯丁村莊指定傳卷軸 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -811,14 +811,14 @@
 	</MakeItem>
 	<!--新手任務 / 古魯丁村莊的奇溫 -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50116" AmountInputable="false" QuestId="toscroll" QuestStep="2">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="10" ItemId="40122"/><!--肯特村莊指定傳卷軸 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="10" ItemId="40122"/>	<!--肯特村莊指定傳卷軸 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -828,14 +828,14 @@
 	</MakeItem>
 	<!--新手任務 / 肯特村莊的希利亞 -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50117" AmountInputable="false" QuestId="toscroll" QuestStep="3">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="10" ItemId="40115"/><!--風木村莊指定傳卷軸 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="10" ItemId="40115"/>	<!--風木村莊指定傳卷軸 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -845,14 +845,14 @@
 	</MakeItem>
 	<!--新手任務  / 風木村莊的奧西利亞-->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50119" AmountInputable="false" QuestId="toscroll" QuestStep="4">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="20" ItemId="40125"/><!--燃柳村莊指定傳卷軸 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="20" ItemId="40125"/>	<!--燃柳村莊指定傳卷軸 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -862,14 +862,14 @@
 	</MakeItem>
 	<!--新手任務  / 燃柳村莊的胡尼 -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50121" AmountInputable="false" QuestId="toscroll" QuestStep="5">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="20" ItemId="40114"/><!--妖森指定傳卷軸 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="20" ItemId="40114"/>	<!--妖森指定傳卷軸 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -879,15 +879,15 @@
 	</MakeItem>
 	<!--新手任務  / 妖森的齊柯  -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50114" AmountInputable="false" QuestId="toscroll" QuestStep="6">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="20" ItemId="40117"/><!--銀騎士村莊指定傳卷軸 -->
-		<Item Amount="1" ItemId="20282"/><!--象牙塔戒指 -->		
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="20" ItemId="40117"/>	<!--銀騎士村莊指定傳卷軸 -->
+		<Item Amount="1" ItemId="20282"/>	<!--象牙塔戒指 -->		
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -897,14 +897,14 @@
 	</MakeItem>
 	<!--新手任務  / 銀騎士村的賀伯-->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50120" AmountInputable="false" QuestId="toscroll" QuestStep="7">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="20" ItemId="40081"/><!--奇岩村莊指定傳卷軸 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="20" ItemId="40081"/>	<!--奇岩村莊指定傳卷軸 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -914,14 +914,14 @@
 	</MakeItem>
 	<!--新手任務  / 奇岩村的托克 -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50122" AmountInputable="false" QuestId="toscroll" QuestStep="8">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="20" ItemId="40123"/><!--海音村莊指定傳卷軸 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="20" ItemId="40123"/>	<!--海音村莊指定傳卷軸 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -931,14 +931,14 @@
 	</MakeItem>
 	<!--新手任務  / 海音村的迦利溫 -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50123" AmountInputable="false" QuestId="toscroll" QuestStep="9">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="20" ItemId="40103"/><!--歐瑞村莊指定傳卷軸 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="20" ItemId="40103"/>	<!--歐瑞村莊指定傳卷軸 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -948,14 +948,14 @@
 	</MakeItem>
 	<!--新手任務  / 歐瑞村的吉伯特 -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50125" AmountInputable="false" QuestId="toscroll" QuestStep="10">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="20" ItemId="40116"/><!--歐瑞村莊指定傳卷軸 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="20" ItemId="40116"/>	<!--歐瑞村莊指定傳卷軸 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -965,14 +965,14 @@
 	</MakeItem>
 	<!--新手任務  / 威頓村的波利卡 -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50124" AmountInputable="false" QuestId="toscroll" QuestStep="11">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="20" ItemId="40102"/><!--歐瑞村莊指定傳卷軸 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="20" ItemId="40102"/>	<!--歐瑞村莊指定傳卷軸 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -982,14 +982,14 @@
 	</MakeItem>
 	<!--新手任務  / 亞丁村的傑瑞 -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50126" AmountInputable="false" QuestId="toscroll" QuestStep="12">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="20" ItemId="41425"/><!--沉默洞窟指定傳卷軸 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="20" ItemId="41425"/>	<!--沉默洞窟指定傳卷軸 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>
@@ -999,14 +999,14 @@
 	</MakeItem>
 	<!--新手任務  / 沉默洞穴的傑瑞 -->
 	<MakeItem Name="0" Class="PWEKDRI" NpcId="50115" AmountInputable="false" QuestId="toscroll" QuestStep="13">
-		<Item Amount="10" ItemId="40029"/><!--象牙塔治癒藥水 -->
-		<Item Amount="1" ItemId="40030"/><!--象牙塔自我加速藥水 -->
-		<Item Amount="1" ItemId="40099"/><!--象牙塔瞬間移動卷軸 -->
-		<Item Amount="1" ItemId="40095"/><!--象牙塔傳送回家的卷軸 -->
-		<Item Amount="1" ItemId="40098"/><!--象牙塔鑑定卷軸 -->
-		<Item Amount="1" ItemId="40097"/><!--象牙塔解除詛咒的卷軸 -->
-		<Item Amount="1" ItemId="40096"/><!--象牙塔變形卷軸 -->
-		<Item Amount="1" ItemId="20082"/><!--象牙塔ㄒ恤 -->
+		<Item Amount="10" ItemId="40029"/>	<!--象牙塔治癒藥水 -->
+		<Item Amount="1" ItemId="40030"/>	<!--象牙塔自我加速藥水 -->
+		<Item Amount="1" ItemId="40099"/>	<!--象牙塔瞬間移動卷軸 -->
+		<Item Amount="1" ItemId="40095"/>	<!--象牙塔傳送回家的卷軸 -->
+		<Item Amount="1" ItemId="40098"/>	<!--象牙塔鑑定卷軸 -->
+		<Item Amount="1" ItemId="40097"/>	<!--象牙塔解除詛咒的卷軸 -->
+		<Item Amount="1" ItemId="40096"/>	<!--象牙塔變形卷軸 -->
+		<Item Amount="1" ItemId="20082"/>	<!--象牙塔ㄒ恤 -->
 		<Item Amount="1" ItemId="40641"/>
 		<Material Amount="1" ItemId="40641"/>
 		<Succeed>

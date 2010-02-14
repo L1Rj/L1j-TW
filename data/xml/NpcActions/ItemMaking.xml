@@ -3222,7 +3222,8 @@
 				<ShowHtml HtmlId="altar8"/>
 			</Fail>
 		</MakeItem>
-	</Action><Action Name="H" NpcId="80094">
+	</Action>
+	<Action Name="H" NpcId="80094">
 		<MakeItem>
 			<Item Amount="1" ItemId="41326"/>
 			<Material Amount="1" ItemId="41328"/>
