@@ -1,0 +1,17 @@
+*.jar
+*.java
+*.js
+*.7z
+*.zip
+
+.svn
+_svn
+
+web
+
+lib
+
+db\InnoDB
+db\MyISAM
+db\tips
+db\*.txt
