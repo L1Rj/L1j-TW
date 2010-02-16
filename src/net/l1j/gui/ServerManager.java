@@ -16,6 +16,7 @@ package net.l1j.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -25,10 +26,13 @@ import java.io.PrintStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
@@ -37,6 +41,11 @@ import net.l1j.gui.images.ImagesTable;
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
 
+/**
+ * L1J-TW 伺服器管理器
+ * 
+ * @author impreza8837
+ */
 public class ServerManager extends JFrame {
 	private static final long serialVersionUID = 1L;
 
@@ -49,10 +58,22 @@ public class ServerManager extends JFrame {
 	private NimRODTheme themeNimROD;
 	private NimRODLookAndFeel lookNimROD;
 
-	private JPanel contentPane;
+	private JLayeredPane layeredPanel;
+	private JPanel contentPanel;
 
-	private JLayeredPane layeredPane;
+	private JTabbedPane tabbedPanelList;
 
+	public static DefaultListModel listModelPlayer;
+	private JScrollPane scrollPanelPlayer;
+	private JList listPlayer;
+
+//	public static DefaultListModel listModelIp;
+//	private JScrollPane scrollPanelIp;
+//	private JList listIp;
+
+	private JTabbedPane tabbedPanelMessage;
+
+	private JScrollPane scrollPanelSystem;
 	private JTextArea textAreaSystem;
 
 	private JPanel panelMemory;
@@ -78,49 +99,98 @@ public class ServerManager extends JFrame {
 	}
 
 	public ServerManager() {
+		initComponents();
+	}
+
+	private void initComponents() {
 		setIconImage(ImagesTable.getImage("servermanager.ico"));
-		setTitle("L1J-Naruto Server Manager");
+		setTitle("L1J-TW Server Manager");
 		setTheme("DarkGrey");
 		setResizable(false);
-//		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 557, 272);
+		setBounds(0, 0, 680, 300);
 		setLocationRelativeTo(null);
 		setVisible(false);
 
-		RedirectPrintStream();
-
-		contentPane = new JPanel();
-		contentPane.setBorder(null);
-		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.addMouseListener(new MouseAdapter() {
+		contentPanel = new JPanel();
+		contentPanel.setBorder(null);
+		contentPanel.setLayout(new BorderLayout(0, 0));
+		contentPanel.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				panelMousePressed(evt);
 			}
 		});
-		contentPane.addMouseMotionListener(new MouseMotionAdapter() {
+		contentPanel.addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent evt) {
 				panelMouseDragged(evt);
 			}
 		});
-		setContentPane(contentPane);
+		setContentPane(contentPanel);
 
-		layeredPane = new JLayeredPane();
-		contentPane.add(layeredPane, BorderLayout.CENTER);
+		layeredPanel = new JLayeredPane();
+		contentPanel.add(layeredPanel, BorderLayout.CENTER);
 
-		JScrollPane scrollPaneSystem = new JScrollPane();
-		scrollPaneSystem.setBounds(10, 11, 410, 225);
-		layeredPane.add(scrollPaneSystem);
+		tabbedPanelList = new JTabbedPane();
+		tabbedPanelList.setAutoscrolls(true);
+		tabbedPanelList.setBounds(10, 11, 154, 253);
+		layeredPanel.add(tabbedPanelList);
+
+		listModelPlayer = new DefaultListModel();
+
+		listPlayer = new JList(listModelPlayer);
+
+		scrollPanelPlayer = new JScrollPane();
+		scrollPanelPlayer.setViewportView(listPlayer);
+		tabbedPanelList.add(scrollPanelPlayer, "玩家");
+
+//		listModelIp = new DefaultListModel();
+//
+//		listIp = new JList(listModelIp);
+//
+//		scrollPanelIp = new JScrollPane();
+//		scrollPanelIp.setViewportView(listIp);
+//		tabbedPanelList.add(scrollPanelIp, "連線");
+
+		tabbedPanelMessage = new JTabbedPane();
+		tabbedPanelMessage.setAutoscrolls(true);
+		tabbedPanelMessage.setBounds(174, 11, 370, 253);
+		layeredPanel.add(tabbedPanelMessage);
 
 		textAreaSystem = new JTextArea();
+		textAreaSystem.setFont(new Font(null, Font.PLAIN, 11));
 		textAreaSystem.setEditable(false);
-		scrollPaneSystem.setViewportView(textAreaSystem);
+
+		scrollPanelSystem = new JScrollPane();
+		scrollPanelSystem.setViewportView(textAreaSystem);
+		tabbedPanelMessage.add(scrollPanelSystem, "系統");
 
 		panelMemory = MemoryMonitor.getInstance();
-		layeredPane.add(panelMemory);
+		panelMemory.setBounds(554, 35, 110, 225);
+		layeredPanel.add(panelMemory);
 	}
 
-	private void RedirectPrintStream() {
+	private void panelMousePressed(MouseEvent evt) {
+		mousePointX = evt.getX();
+		mousePointY = evt.getY();
+	}
+
+	private void panelMouseDragged(MouseEvent evt) {
+		setLocation(getX() - (mousePointX - evt.getX()), getY() - (mousePointY - evt.getY()));
+	}
+
+	private void setTheme(String theme) {
+		themeNimROD = new NimRODTheme("./data/theme/" + theme + ".theme");
+		lookNimROD = new NimRODLookAndFeel();
+
+		NimRODLookAndFeel.setCurrentTheme(themeNimROD);
+		try {
+			UIManager.setLookAndFeel(lookNimROD);
+		} catch (Exception e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		}
+	}
+
+	public void setPrintStream() {
 		OutputStream output = new OutputStream() {
 			@Override
 			public void write(int b) throws IOException {
@@ -147,26 +217,5 @@ public class ServerManager extends JFrame {
 		PrintStream print = new PrintStream(output);
 		System.setOut(print);
 		System.setErr(print);
-	}
-
-	private void panelMousePressed(MouseEvent evt) {
-		mousePointX = evt.getX();
-		mousePointY = evt.getY();
-	}
-
-	private void panelMouseDragged(MouseEvent evt) {
-		setLocation(getX() - (mousePointX - evt.getX()), getY() - (mousePointY - evt.getY()));
-	}
-
-	private void setTheme(String theme) {
-		themeNimROD = new NimRODTheme("./data/theme/" + theme + ".theme");
-		lookNimROD = new NimRODLookAndFeel();
-
-		NimRODLookAndFeel.setCurrentTheme(themeNimROD);
-		try {
-			UIManager.setLookAndFeel(lookNimROD);
-		} catch (Exception e) {
-			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-		}
 	}
 }

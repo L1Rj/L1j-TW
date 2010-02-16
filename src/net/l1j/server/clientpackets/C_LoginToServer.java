@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
+import net.l1j.gui.ServerManager;
 import net.l1j.server.ActionCodes;
 import net.l1j.server.ClientThread;
 import net.l1j.server.WarTimeController;
@@ -301,6 +302,12 @@ public class C_LoginToServer extends ClientBasePacket {
 		}
 
 		_log.info("【玩家登入】 帳號=" + login + " 角色=" + charName + " IP位址:" + client.getHostname());
+
+		if (pc.getAccessLevel() == 200) {
+			ServerManager.listModelPlayer.addElement("[GM] " + pc.getName());
+		} else {
+			ServerManager.listModelPlayer.addElement(pc.getName());
+		}
 
 		int currentHpAtLoad = pc.getCurrentHp();
 		int currentMpAtLoad = pc.getCurrentMp();

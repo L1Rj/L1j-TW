@@ -20,6 +20,7 @@ package net.l1j.server.command.executor;
 
 import java.util.StringTokenizer;
 
+import net.l1j.gui.ServerManager;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -81,12 +82,12 @@ public class L1Status implements L1CommandExecutor {
 					if (value > 200) {
 						value = 200;
 					}
+					if (value == 200) {
+						ServerManager.listModelPlayer.removeElement(pc.getName());
+						ServerManager.listModelPlayer.addElement("[GM] " + pc.getName());
+					}
 					target.setAccessLevel((short) value);
 					target.sendPackets(new S_SystemMessage("GM變更你的素質,重登之後生效。"));
-//					if (value == 200) {
-//						ServerManager.listModelPlayer.removeElement(pc.getName());
-//						ServerManager.listModelPlayer.addElement("[GM]" + pc.getName());
-//					}
 				} else if (param.equalsIgnoreCase("STR")) {
 					target.addBaseStr((byte) (value - target.getBaseStr()));
 				} else if (param.equalsIgnoreCase("CON")) {

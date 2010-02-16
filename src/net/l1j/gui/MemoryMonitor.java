@@ -54,7 +54,6 @@ public class MemoryMonitor extends JPanel {
 	public static JPanel getInstance() {
 		if (_instance == null) {
 			_instance = MemoryMonitor.start();
-			_instance.setBounds(new Rectangle(430, 11, 110, 225));
 		}
 		return _instance;
 	}

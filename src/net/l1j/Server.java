@@ -57,10 +57,12 @@ import net.l1j.telnet.TelnetServer;
  */
 public class Server {
 	/** 用於訊息記錄 */
-	private static Logger _log = Logger.getLogger(Server.class.getName());
+	private static final Logger _log = Logger.getLogger(Server.class.getName());
 
 	/** 設定記錄檔案的資料夾 */
 	private static final String LOG_PROP = "./config/log.properties";
+
+	private static ServerManager serverManager = ServerManager.getInstance();
 
 	/**
 	 * 啟動伺服器
@@ -73,7 +75,8 @@ public class Server {
 			int index = 0;
 			while (index < args.length) {
 				if (args[index].equalsIgnoreCase("-gui") || args[index].equalsIgnoreCase("-g")) {
-					ServerManager.getInstance().setVisible(true);
+					serverManager.setPrintStream();
+					serverManager.setVisible(true);
 				} else {
 					System.out.println("無效的參數: " + args[index]);
 					System.out.println();

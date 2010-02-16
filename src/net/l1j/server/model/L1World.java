@@ -431,6 +431,10 @@ public class L1World {
 		return (vs != null) ? vs : (_allPlayerValues = Collections.unmodifiableCollection(_allPlayers.values()));
 	}
 
+	public L1PcInstance[] getAllPlayers2() {
+		return _allPlayers.values().toArray(new L1PcInstance[_allPlayers.size()]);
+	}
+
 	/**
 	 * ワールド內にいる指定された名前のプレイヤーを取得する。
 	 * 
