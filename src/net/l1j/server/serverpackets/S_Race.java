@@ -29,21 +29,9 @@ import net.l1j.server.model.instance.L1PcInstance;
  * GameEnd		離開賽跑的畫面
  */
 public class S_Race extends ServerBasePacket {
-	private static final String Expand_S_Race = "[S] Expand_S_Race";
+	private static final String S_RACE = "[S] S_Race";
+
 	private byte[] _byte = null;
-
-	@Override
-	public byte[] getContent() {
-		if (_byte == null) {
-			_byte = getBytes();
-		}
-		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return Expand_S_Race;
-	}
 
 	public static final int GameStart = 0x40;
 	public static final int CountDown = 0x41;
@@ -87,5 +75,18 @@ public class S_Race extends ServerBasePacket {
 		writeC(Winner);
 		writeS(winnerName);
 		writeD(time * 1000);
+	}
+
+	@Override
+	public byte[] getContent() {
+		if (_byte == null) {
+			_byte = getBytes();
+		}
+		return _byte;
+	}
+
+	@Override
+	public String getType() {
+		return S_RACE;
 	}
 }

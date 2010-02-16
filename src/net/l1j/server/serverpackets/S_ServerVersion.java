@@ -26,8 +26,6 @@ public class S_ServerVersion extends ServerBasePacket {
 
 	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE;
 
-	private static long UP_TIME = ((System.currentTimeMillis() * 5) / 5000);
-
 	/*
 	 * main.Server -> main.Client [ opc.116 len.32 ] 0.050ms
 	 * ##########################################################################
@@ -68,7 +66,7 @@ public class S_ServerVersion extends ServerBasePacket {
 		// ↓ New 270Lin.bin
 		// ↓ isn't game time
 		// writeD(0x882a2cc6); // 2.70C
-		writeD((int) UP_TIME);
+		writeD(0x49c466ec);
 
 		writeC(0x00); // unknown
 		writeC(0x00); // unknown

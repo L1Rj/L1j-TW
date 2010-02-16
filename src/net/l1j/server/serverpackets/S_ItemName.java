@@ -22,6 +22,8 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class S_ItemName extends ServerBasePacket {
+	private static final String S_ITEM_NAME = "[S] S_ItemName";
+
 	public S_ItemName(L1ItemInstance item) {
 		writeC(Opcodes.S_OPCODE_ITEMNAME);
 		writeD(item.getId());
@@ -31,5 +33,10 @@ public class S_ItemName extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_ITEM_NAME;
 	}
 }

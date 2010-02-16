@@ -21,6 +21,8 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_ShowPolyList extends ServerBasePacket {
+	private static final String S_SHOW_POLY_LIST = "[S] S_ShowPolyList";
+
 	public S_ShowPolyList(int objid) {
 		writeC(Opcodes.S_OPCODE_SHOWHTML);
 		writeD(objid);
@@ -30,5 +32,10 @@ public class S_ShowPolyList extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_SHOW_POLY_LIST;
 	}
 }

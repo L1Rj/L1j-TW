@@ -22,6 +22,8 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_ActiveSpells extends ServerBasePacket {
+	private static final String S_ABILITY = "[S] S_Ability";
+
 	// [Length:72] S -> C
 	// 0000    77 14 00 00 00 00 00 00 00 00 00 00 00 00 00 00    w...............
 	// 0010    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
@@ -148,5 +150,10 @@ public class S_ActiveSpells extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_ABILITY;
 	}
 }

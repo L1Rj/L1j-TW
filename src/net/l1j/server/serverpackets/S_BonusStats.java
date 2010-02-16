@@ -21,7 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_BonusStats extends ServerBasePacket {
-	private static final String S_BONUSSTATS = "[S] S_BonusStats";
+	private static final String S_BONUS_STATS = "[S] S_BonusStats";
 
 	private byte[] _byte = null;
 
@@ -40,12 +40,11 @@ public class S_BonusStats extends ServerBasePacket {
 		if (_byte == null) {
 			_byte = getBytes();
 		}
-
 		return _byte;
 	}
 
 	@Override
 	public String getType() {
-		return S_BONUSSTATS;
+		return S_BONUS_STATS;
 	}
 }

@@ -27,6 +27,8 @@ import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_FixWeaponList extends ServerBasePacket {
+	private static final String S_FIX_WEAPON_LIST = "[S] S_FixWeaponList";
+
 	private final static int Fix_InitPrice = 0x000000C8; // 初始價格
 
 	// 維護價格等於 初始價格 x 損壞程度 = 真正價格 (此值還未被加入到 CONFIG 中給使用者利用)
@@ -61,5 +63,10 @@ public class S_FixWeaponList extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_FIX_WEAPON_LIST;
 	}
 }

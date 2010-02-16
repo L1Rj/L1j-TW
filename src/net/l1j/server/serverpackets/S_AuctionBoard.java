@@ -31,7 +31,7 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.utils.SQLUtil;
 
 public class S_AuctionBoard extends ServerBasePacket {
-	private static final String S_AUCTIONBOARD = "[S] S_AuctionBoard";
+	private static final String S_AUCTION_BOARD = "[S] S_AuctionBoard";
 
 	private static Logger _log = Logger.getLogger(S_AuctionBoard.class.getName());
 
@@ -140,6 +140,6 @@ public class S_AuctionBoard extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return S_AUCTIONBOARD;
+		return S_AUCTION_BOARD;
 	}
 }

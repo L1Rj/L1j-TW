@@ -24,6 +24,8 @@ import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
 
 public class S_PetMenuPacket extends ServerBasePacket {
+	private static final String S_PET_MENU_PACKET = "[S] S_PetMenuPacket";
+
 	private byte[] _byte = null;
 
 	public S_PetMenuPacket(L1NpcInstance npc, int exppercet) {
@@ -115,7 +117,11 @@ public class S_PetMenuPacket extends ServerBasePacket {
 		if (_byte == null) {
 			_byte = _bao.toByteArray();
 		}
-
 		return _byte;
+	}
+
+	@Override
+	public String getType() {
+		return S_PET_MENU_PACKET;
 	}
 }

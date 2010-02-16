@@ -22,7 +22,7 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
 
 public class S_MoveCharPacket extends ServerBasePacket {
-	private static final String _S__1F_MOVECHARPACKET = "[S] S_MoveCharPacket";
+	private static final String S_MOVE_CHAR_PACKET = "[S] S_MoveCharPacket";
 
 	private byte[] _byte = null;
 
@@ -73,6 +73,6 @@ public class S_MoveCharPacket extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__1F_MOVECHARPACKET;
+		return S_MOVE_CHAR_PACKET;
 	}
 }

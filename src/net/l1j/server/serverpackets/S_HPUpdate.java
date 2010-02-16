@@ -23,6 +23,8 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.utils.IntRange;
 
 public class S_HPUpdate extends ServerBasePacket {
+	private static final String S_HP_UPDATE = "[S] S_HPUpdate";
+
 	private static final IntRange hpRange = new IntRange(1, 32767);
 
 	public S_HPUpdate(int currentHp, int maxHp) {
@@ -44,5 +46,10 @@ public class S_HPUpdate extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_HP_UPDATE;
 	}
 }

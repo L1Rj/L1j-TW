@@ -23,7 +23,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1DollInstance;
 
 public class S_DollPack extends ServerBasePacket {
-	private static final String S_DOLLPACK = "[S] S_DollPack";
+	private static final String S_DOLL_PACK = "[S] S_DollPack";
 
 	private byte[] _byte = null;
 
@@ -70,6 +70,6 @@ public class S_DollPack extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return S_DOLLPACK;
+		return S_DOLL_PACK;
 	}
 }

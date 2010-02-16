@@ -22,6 +22,8 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
 
 public class S_ChangeHeading extends ServerBasePacket {
+	private static final String S_CHANGE_HEADING = "[S] S_ChangeHeading";
+
 	private byte[] _byte = null;
 
 	public S_ChangeHeading(L1Character cha) {
@@ -44,6 +46,6 @@ public class S_ChangeHeading extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return "[S] S_ChangeHeading";
+		return S_CHANGE_HEADING;
 	}
 }

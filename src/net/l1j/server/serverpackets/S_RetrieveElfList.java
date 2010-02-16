@@ -26,6 +26,8 @@ import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_RetrieveElfList extends ServerBasePacket {
+	private static final String S_RETRIEVE_ELF_LIST = "[S] S_RetrieveElfList";
+
 	public S_RetrieveElfList(int objid, L1PcInstance pc) {
 		if (pc.getInventory().getSize() < 180) {
 			int size = pc.getDwarfForElfInventory().getSize();
@@ -53,5 +55,10 @@ public class S_RetrieveElfList extends ServerBasePacket {
 	@Override
 	public byte[] getContent() throws IOException {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_RETRIEVE_ELF_LIST;
 	}
 }

@@ -21,7 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_CurseBlind extends ServerBasePacket {
-	private static final String S_CurseBlind = "[S] S_CurseBlind";
+	private static final String S_CURSE_BLIND = "[S] S_CurseBlind";
 
 	private byte[] _byte = null;
 
@@ -45,6 +45,6 @@ public class S_CurseBlind extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return S_CurseBlind;
+		return S_CURSE_BLIND;
 	}
 }

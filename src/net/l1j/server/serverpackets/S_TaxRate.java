@@ -21,7 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_TaxRate extends ServerBasePacket {
-	private static final String _S__66_TAXRATE = "[S] S_TaxRate";
+	private static final String S_TAX_RATE = "[S] S_TaxRate";
 
 	public S_TaxRate(int objecId) {
 		writeC(Opcodes.S_OPCODE_TAXRATE);
@@ -37,6 +37,6 @@ public class S_TaxRate extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__66_TAXRATE;
+		return S_TAX_RATE;
 	}
 }

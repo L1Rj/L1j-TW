@@ -21,6 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_SkillHaste extends ServerBasePacket {
+	private static final String S_SKILL_HASTE = "[S] S_SkillHaste";
 
 	public S_SkillHaste(int i, int j, int k) {
 		writeC(Opcodes.S_OPCODE_SKILLHASTE);
@@ -32,5 +33,10 @@ public class S_SkillHaste extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_SKILL_HASTE;
 	}
 }

@@ -24,6 +24,8 @@ import net.l1j.server.ClientThread;
 import net.l1j.server.Opcodes;
 
 public class S_CharAmount extends ServerBasePacket {
+	private static final String S_CHAR_AMOUNT = "[S] S_CharAmount";
+
 	public S_CharAmount(int value, ClientThread client) {
 		Account account = Account.load(client.getAccountName());
 		int characterSlot = account.getCharacterSlot();
@@ -37,5 +39,10 @@ public class S_CharAmount extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_CHAR_AMOUNT;
 	}
 }

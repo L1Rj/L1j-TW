@@ -4,6 +4,8 @@ import static net.l1j.server.Opcodes.S_OPCODE_CHARPACK;
 import net.l1j.server.model.L1Character;
 
 public class S_CreateObject extends ServerBasePacket {
+	private static final String S_CREATE_OBJECT = "[S] S_CreateObject";
+
 	public S_CreateObject(L1Character cha) {
 		writeC(S_OPCODE_CHARPACK);
 		writeH(cha.getX()); // 物件的X軸
@@ -36,5 +38,10 @@ public class S_CreateObject extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_CREATE_OBJECT;
 	}
 }

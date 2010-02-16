@@ -21,6 +21,8 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_CloseList extends ServerBasePacket {
+	private static final String S_CLOSE_LIST = "[S] S_CloseList";
+
 	public S_CloseList(int objid) {
 		writeC(Opcodes.S_OPCODE_SHOWHTML);
 		writeD(objid);
@@ -30,5 +32,10 @@ public class S_CloseList extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_CLOSE_LIST;
 	}
 }

@@ -19,6 +19,8 @@
 package net.l1j.server.serverpackets;
 
 public class S_Unknown2 extends ServerBasePacket {
+	private static final String S_UNKNOWN2 = "[S] S_Unknown2";
+
 	public S_Unknown2() {
 		//		writeC(Opcodes.S_OPCODE_UNKNOWN2);
 		//		writeC(0xFF);
@@ -29,5 +31,10 @@ public class S_Unknown2 extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_UNKNOWN2;
 	}
 }

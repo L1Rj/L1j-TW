@@ -21,7 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_Party extends ServerBasePacket {
-	private static final String _S_Party = "[S] S_Party";
+	private static final String S_PARTY = "[S] S_Party";
 
 	private byte[] _byte = null;
 
@@ -49,12 +49,11 @@ public class S_Party extends ServerBasePacket {
 		if (_byte == null) {
 			_byte = _bao.toByteArray();
 		}
-
 		return _byte;
 	}
 
 	@Override
 	public String getType() {
-		return _S_Party;
+		return S_PARTY;
 	}
 }

@@ -22,7 +22,7 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
 
 public class S_AttackMissPacket extends ServerBasePacket {
-	private static final String _S__OB_ATTACKMISSPACKET = "[S] S_AttackMissPacket";
+	private static final String S_ATTACK_MISS_PACKET = "[S] S_AttackMissPacket";
 
 	private byte[] _byte = null;
 
@@ -78,6 +78,6 @@ public class S_AttackMissPacket extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__OB_ATTACKMISSPACKET;
+		return S_ATTACK_MISS_PACKET;
 	}
 }

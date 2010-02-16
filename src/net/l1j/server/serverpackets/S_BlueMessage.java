@@ -21,7 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_BlueMessage extends ServerBasePacket {
-	private static final String _S__18_BLUEMESSAGE = "[S] S_BlueMessage";
+	private static final String S_BLUE_MESSAGE = "[S] S_BlueMessage";
 
 	private byte[] _byte = null;
 
@@ -69,6 +69,6 @@ public class S_BlueMessage extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__18_BLUEMESSAGE;
+		return S_BLUE_MESSAGE;
 	}
 }

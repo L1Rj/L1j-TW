@@ -21,7 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_TrueTarget extends ServerBasePacket {
-	private static final String S_TRUETARGET = "[S] S_TrueTarget";
+	private static final String S_TRUE_TARGET = "[S] S_TrueTarget";
 
 	private byte[] _byte = null;
 
@@ -46,6 +46,6 @@ public class S_TrueTarget extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return S_TRUETARGET;
+		return S_TRUE_TARGET;
 	}
 }

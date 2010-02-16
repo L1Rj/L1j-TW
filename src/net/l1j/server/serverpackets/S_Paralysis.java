@@ -21,7 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_Paralysis extends ServerBasePacket {
-	private static final String _S__2F_PARALYSIS = "[S] S_Paralysis";
+	private static final String S_PARALYSIS = "[S] S_Paralysis";
 
 	public static final byte TYPE_PARALYSIS = 1;
 
@@ -94,6 +94,6 @@ public class S_Paralysis extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__2F_PARALYSIS;
+		return S_PARALYSIS;
 	}
 }

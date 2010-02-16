@@ -21,6 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_SkillIconAura extends ServerBasePacket {
+	private static final String S_SKILL_ICON_AURA = "[S] S_SkillIconAura";
 
 	public S_SkillIconAura(int i, int j) {
 		writeC(Opcodes.S_OPCODE_SKILLICONGFX);
@@ -32,5 +33,10 @@ public class S_SkillIconAura extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_SKILL_ICON_AURA;
 	}
 }

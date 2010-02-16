@@ -26,7 +26,7 @@ import javolution.util.FastTable;
 import net.l1j.server.Opcodes;
 
 public class S_CommonNews extends ServerBasePacket {
-	private static final String _S__0B_COMMONNEWS = "[S] S_CommonNews";
+	private static final String S_COMMON_NEWS = "[S] S_CommonNews";
 
 	private FastTable<String> _announcements;
 
@@ -82,6 +82,6 @@ public class S_CommonNews extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__0B_COMMONNEWS;
+		return S_COMMON_NEWS;
 	}
 }

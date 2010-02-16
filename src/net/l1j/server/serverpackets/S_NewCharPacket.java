@@ -22,7 +22,7 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_NewCharPacket extends ServerBasePacket {
-	private static final String _S__25_NEWCHARPACK = "[S] New Char Packet";
+	private static final String S_NEW_CHAR_PACKET = "[S] S_NewCharPacket";
 
 	private byte[] _byte = null;
 
@@ -70,6 +70,6 @@ public class S_NewCharPacket extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__25_NEWCHARPACK;
+		return S_NEW_CHAR_PACKET;
 	}
 }

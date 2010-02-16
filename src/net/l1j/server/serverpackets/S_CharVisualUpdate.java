@@ -22,7 +22,7 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_CharVisualUpdate extends ServerBasePacket {
-	private static final String _S__0B_S_CharVisualUpdate = "[C] S_CharVisualUpdate";
+	private static final String S_CHAR_VISUAL_UPDATE = "[C] S_CharVisualUpdate";
 
 	private final L1PcInstance _cha;
 
@@ -41,6 +41,6 @@ public class S_CharVisualUpdate extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__0B_S_CharVisualUpdate;
+		return S_CHAR_VISUAL_UPDATE;
 	}
 }

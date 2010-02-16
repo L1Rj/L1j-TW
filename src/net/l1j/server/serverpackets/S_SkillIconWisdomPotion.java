@@ -21,6 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_SkillIconWisdomPotion extends ServerBasePacket {
+	private static final String S_SKILL_ICON_WISDOM_POTION = "[S] S_SkillIconWisdomPotion";
 
 	public S_SkillIconWisdomPotion(int time) {
 		writeC(Opcodes.S_OPCODE_SKILLICONGFX);
@@ -32,5 +33,10 @@ public class S_SkillIconWisdomPotion extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_SKILL_ICON_WISDOM_POTION;
 	}
 }

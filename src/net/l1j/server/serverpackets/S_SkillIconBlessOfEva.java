@@ -21,6 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_SkillIconBlessOfEva extends ServerBasePacket {
+	private static final String S_SKILL_ICON_BLESS_OF_EVA = "[S] S_SkillIconBlessOfEva";
 
 	public S_SkillIconBlessOfEva(int objectId, int time) {
 		writeC(Opcodes.S_OPCODE_BLESSOFEVA);
@@ -31,5 +32,10 @@ public class S_SkillIconBlessOfEva extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_SKILL_ICON_BLESS_OF_EVA;
 	}
 }

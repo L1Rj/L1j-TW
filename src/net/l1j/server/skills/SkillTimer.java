@@ -33,7 +33,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
 import net.l1j.server.serverpackets.S_CurseBlind;
-import net.l1j.server.serverpackets.S_Dexup;
+import net.l1j.server.serverpackets.S_DexUp;
 import net.l1j.server.serverpackets.S_HPUpdate;
 import net.l1j.server.serverpackets.S_MPUpdate;
 import net.l1j.server.serverpackets.S_OwnCharAttrDef;
@@ -50,7 +50,7 @@ import net.l1j.server.serverpackets.S_SkillIconBlessOfEva;
 import net.l1j.server.serverpackets.S_SkillIconShield;
 import net.l1j.server.serverpackets.S_SkillIconWindShackle;
 import net.l1j.server.serverpackets.S_SkillIconWisdomPotion;
-import net.l1j.server.serverpackets.S_Strup;
+import net.l1j.server.serverpackets.S_StrUp;
 import net.l1j.server.serverpackets.S_SystemMessage;//waja add 租旅館
 import net.l1j.server.templates.L1Skills;
 import net.l1j.thread.GeneralThreadPool;
@@ -166,13 +166,13 @@ class SkillStop {
 			cha.addDex((byte) -2);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_Dexup(pc, 2, 0));
+				pc.sendPackets(new S_DexUp(pc, 2, 0));
 			}
 		} else if (skillId == SKILL_DRESS_MIGHTY) { // ドレス マイティー
 			cha.addStr((byte) -2);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_Strup(pc, 2, 0));
+				pc.sendPackets(new S_StrUp(pc, 2, 0));
 			}
 		} else if (skillId == SKILL_SHADOW_FANG) { // シャドウ ファング
 			cha.addDmgup(-5);
@@ -283,13 +283,13 @@ class SkillStop {
 			cha.addStr((byte) -5);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_Strup(pc, 5, 0));
+				pc.sendPackets(new S_StrUp(pc, 5, 0));
 			}
 		} else if (skillId == SKILL_ENCHANT_DEXTERITY) { // フィジカル エンチャント：DEX
 			cha.addDex((byte) -5);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_Dexup(pc, 5, 0));
+				pc.sendPackets(new S_DexUp(pc, 5, 0));
 			}
 		} else if (skillId == SKILL_FIRE_WEAPON) { // ファイアー ウェポン
 			cha.addDmgup(-4);

@@ -21,6 +21,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_SkillIconWindShackle extends ServerBasePacket {
+	private static final String S_SKILL_ICON_WIND_SHACKLE = "[S] S_SkillIconWindShackle";
 
 	public S_SkillIconWindShackle(int objectId, int time) {
 		int buffTime = (time / 4); // なぜか4倍されるため4で割っておく
@@ -33,5 +34,10 @@ public class S_SkillIconWindShackle extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_SKILL_ICON_WIND_SHACKLE;
 	}
 }

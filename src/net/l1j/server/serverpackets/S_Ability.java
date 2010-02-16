@@ -21,6 +21,8 @@ package net.l1j.server.serverpackets;
 import static net.l1j.server.Opcodes.S_OPCODE_ABILITY;
 
 public class S_Ability extends ServerBasePacket {
+	private static final String S_ABILITY = "[S] S_Ability";
+
 	/*
 	 * type 已知代號 :
 	 * 1, ROTC
@@ -38,5 +40,10 @@ public class S_Ability extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_ABILITY;
 	}
 }

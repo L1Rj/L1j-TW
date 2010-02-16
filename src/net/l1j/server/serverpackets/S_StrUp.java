@@ -21,13 +21,14 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
-public class S_Dexup extends ServerBasePacket {
-	private static final String _S__25_S_Dexup = "[S] S_Dexup";
+public class S_StrUp extends ServerBasePacket {
+	private static final String S_STR_Up = "[S] S_StrUp";
 
-	public S_Dexup(L1PcInstance pc, int type, int time) {
-		writeC(Opcodes.S_OPCODE_DEXUP);
+	public S_StrUp(L1PcInstance pc, int type, int time) {
+		writeC(Opcodes.S_OPCODE_STRUP);
 		writeH(time);
-		writeC(pc.getDex());
+		writeC(pc.getStr());
+		writeC(pc.getInventory().getWeight240());
 		writeC(type);
 		writeD(0);
 	}
@@ -39,6 +40,6 @@ public class S_Dexup extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__25_S_Dexup;
+		return S_STR_Up;
 	}
 }

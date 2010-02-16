@@ -28,7 +28,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 
 public class S_PetList extends ServerBasePacket {
-	private static final String S_PETLIST = "[S] S_PetList";
+	private static final String S_PET_LIST = "[S] S_PetList";
 
 	private byte[] _byte = null;
 
@@ -80,6 +80,6 @@ public class S_PetList extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return S_PETLIST;
+		return S_PET_LIST;
 	}
 }

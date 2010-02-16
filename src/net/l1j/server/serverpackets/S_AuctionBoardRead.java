@@ -28,9 +28,10 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.utils.SQLUtil;
 
 public class S_AuctionBoardRead extends ServerBasePacket {
+	private static final String S_AUCTION_BOARD_READ = "[S] S_AuctionBoardRead";
+
 	private static Logger _log = Logger.getLogger(S_AuctionBoardRead.class.getName());
 
-	private static final String S_AUCTIONBOARDREAD = "[S] S_AuctionBoardRead";
 	private byte[] _byte = null;
 
 	public S_AuctionBoardRead(int objectId, String house_number) {
@@ -90,6 +91,6 @@ public class S_AuctionBoardRead extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return S_AUCTIONBOARDREAD;
+		return S_AUCTION_BOARD_READ;
 	}
 }

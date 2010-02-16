@@ -22,6 +22,8 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class S_IdentifyDesc extends ServerBasePacket {
+	private static final String S_IDENTIFY_DESC = "[S] S_IdentifyDesc";
+
 	private byte[] _byte = null;
 
 	/**
@@ -97,5 +99,10 @@ public class S_IdentifyDesc extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
+	}
+
+	@Override
+	public String getType() {
+		return S_IDENTIFY_DESC;
 	}
 }

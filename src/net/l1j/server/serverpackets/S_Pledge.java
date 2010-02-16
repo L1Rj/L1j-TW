@@ -22,7 +22,7 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_Pledge extends ServerBasePacket {
-	private static final String _S_Pledge = "[S] _S_Pledge";
+	private static final String S_PLEDGE = "[S] S_Pledge";
 
 	private byte[] _byte = null;
 
@@ -63,6 +63,6 @@ public class S_Pledge extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S_Pledge;
+		return S_PLEDGE;
 	}
 }

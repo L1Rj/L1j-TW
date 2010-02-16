@@ -32,7 +32,7 @@ import net.l1j.server.model.instance.L1PcInstance;
  * スキルアイコンや遮斷リストの表示など複數の用途に使われるパケットのクラス
  */
 public class S_PacketBox extends ServerBasePacket {
-	private static final String S_PACKETBOX = "[S] S_PacketBox";
+	private static final String S_PACKET_BOX = "[S] S_PacketBox";
 
 	private byte[] _byte = null;
 
@@ -360,12 +360,11 @@ public class S_PacketBox extends ServerBasePacket {
 		if (_byte == null) {
 			_byte = getBytes();
 		}
-
 		return _byte;
 	}
 
 	@Override
 	public String getType() {
-		return S_PACKETBOX;
+		return S_PACKET_BOX;
 	}
 }

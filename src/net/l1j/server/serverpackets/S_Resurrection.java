@@ -22,7 +22,7 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_Resurrection extends ServerBasePacket {
-	private static final String _S__FF_RESURRECTION = "[S] S_Resurrection";
+	private static final String S_RESURRECTION = "[S] S_Resurrection";
 
 	public S_Resurrection(L1PcInstance target, L1PcInstance use, int type) {
 		writeC(Opcodes.S_OPCODE_RESURRECTION);
@@ -39,6 +39,6 @@ public class S_Resurrection extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__FF_RESURRECTION;
+		return S_RESURRECTION;
 	}
 }

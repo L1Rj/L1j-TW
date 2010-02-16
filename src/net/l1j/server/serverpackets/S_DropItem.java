@@ -23,7 +23,7 @@ import net.l1j.server.model.instance.L1ItemInstance;
 
 
 public class S_DropItem extends ServerBasePacket {
-	private static final String _S__OB_DropItem = "[S] S_DropItem";
+	private static final String S_DROP_ITEM = "[S] S_DropItem";
 
 	private byte[] _byte = null;
 
@@ -91,6 +91,6 @@ public class S_DropItem extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__OB_DropItem;
+		return S_DROP_ITEM;
 	}
 }

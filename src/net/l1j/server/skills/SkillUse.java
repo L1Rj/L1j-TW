@@ -56,7 +56,7 @@ import net.l1j.server.serverpackets.S_CharVisualUpdate;
 import net.l1j.server.serverpackets.S_ChatPacket;
 import net.l1j.server.serverpackets.S_CurseBlind;
 import net.l1j.server.serverpackets.S_RemoveObject;
-import net.l1j.server.serverpackets.S_Dexup;
+import net.l1j.server.serverpackets.S_DexUp;
 import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_DoActionShop;
 import net.l1j.server.serverpackets.S_HPUpdate;
@@ -81,7 +81,7 @@ import net.l1j.server.serverpackets.S_SkillIconShield;
 import net.l1j.server.serverpackets.S_SkillIconWindShackle;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.serverpackets.S_Sound;
-import net.l1j.server.serverpackets.S_Strup;
+import net.l1j.server.serverpackets.S_StrUp;
 import net.l1j.server.serverpackets.S_TrueTarget;
 import net.l1j.server.serverpackets.S_UseAttackSkill;
 import net.l1j.server.templates.L1BookMark;
@@ -1239,9 +1239,9 @@ public class SkillUse {
 		} else if (_skillId == SKILL_SHADOW_ARMOR) { // シャドウ アーマー
 			pc.sendPackets(new S_SkillIconShield(3, _getBuffIconDuration));
 		} else if (_skillId == SKILL_DRESS_DEXTERITY) { // ドレス デクスタリティー
-			pc.sendPackets(new S_Dexup(pc, 2, _getBuffIconDuration));
+			pc.sendPackets(new S_DexUp(pc, 2, _getBuffIconDuration));
 		} else if (_skillId == SKILL_DRESS_MIGHTY) { // ドレス マイティー
-			pc.sendPackets(new S_Strup(pc, 2, _getBuffIconDuration));
+			pc.sendPackets(new S_StrUp(pc, 2, _getBuffIconDuration));
 		} else if (_skillId == SKILL_GLOWING_AURA) { // グローウィング オーラ
 			pc.sendPackets(new S_SkillIconAura(113, _getBuffIconDuration));
 		} else if (_skillId == SKILL_SHINING_AURA) { // シャイニング オーラ
@@ -1267,9 +1267,9 @@ public class SkillUse {
 		} else if (_skillId == SKILL_EARTH_SKIN) { // アース スキン
 			pc.sendPackets(new S_SkillIconShield(6, _getBuffIconDuration));
 		} else if (_skillId == SKILL_ENCHANT_MIGHTY) { // フィジカル エンチャント：STR
-			pc.sendPackets(new S_Strup(pc, 5, _getBuffIconDuration));
+			pc.sendPackets(new S_StrUp(pc, 5, _getBuffIconDuration));
 		} else if (_skillId == SKILL_ENCHANT_DEXTERITY) { // フィジカル エンチャント：DEX
-			pc.sendPackets(new S_Dexup(pc, 5, _getBuffIconDuration));
+			pc.sendPackets(new S_DexUp(pc, 5, _getBuffIconDuration));
 		} else if (_skillId == SKILL_HASTE || _skillId == SKILL_GREATER_HASTE) { // グレーターヘイスト
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 1,
 					_getBuffIconDuration));
@@ -2611,13 +2611,13 @@ public class SkillUse {
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.addDex((byte) 2);
 						pc
-								.sendPackets(new S_Dexup(pc, 2,
+								.sendPackets(new S_DexUp(pc, 2,
 										_getBuffIconDuration));
 					} else if (_skillId == SKILL_DRESS_MIGHTY) { // ドレス マイティー
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.addStr((byte) 2);
 						pc
-								.sendPackets(new S_Strup(pc, 2,
+								.sendPackets(new S_StrUp(pc, 2,
 										_getBuffIconDuration));
 					} else if (_skillId == SKILL_SHADOW_FANG) { // シャドウ ファング
 						L1PcInstance pc = (L1PcInstance) cha;
@@ -2733,13 +2733,13 @@ public class SkillUse {
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.addStr((byte) 5);
 						pc
-								.sendPackets(new S_Strup(pc, 5,
+								.sendPackets(new S_StrUp(pc, 5,
 										_getBuffIconDuration));
 					} else if (_skillId == SKILL_ENCHANT_DEXTERITY) { // フィジカルエンチャント：DEX
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.addDex((byte) 5);
 						pc
-								.sendPackets(new S_Dexup(pc, 5,
+								.sendPackets(new S_DexUp(pc, 5,
 										_getBuffIconDuration));
 					} else if (_skillId == SKILL_FIRE_WEAPON) { // ファイアー ウェポン
 						L1PcInstance pc = (L1PcInstance) cha;

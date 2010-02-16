@@ -22,7 +22,7 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_ChatPacket extends ServerBasePacket {
-	private static final String _S__1F_NORMALCHATPACK = "[S] S_ChatPacket";
+	private static final String S_CHAT_PACKET = "[S] S_ChatPacket";
 
 	private byte[] _byte = null;
 
@@ -113,6 +113,6 @@ public class S_ChatPacket extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__1F_NORMALCHATPACK;
+		return S_CHAT_PACKET;
 	}
 }

@@ -4,7 +4,7 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1MonsterInstance;
 
 public class S_MoveNpcPacket extends ServerBasePacket {
-	private static final String _S__1F_S_MOVENPCPACKET = "[S] S_MoveNpcPacket";
+	private static final String S_MOVE_NPC_PACKET = "[S] S_MoveNpcPacket";
 
 	public S_MoveNpcPacket(L1MonsterInstance npc, int x, int y, int heading) {
 		// npc.set_moving(true);
@@ -27,6 +27,6 @@ public class S_MoveNpcPacket extends ServerBasePacket {
 
 	@Override
 	public String getType() {
-		return _S__1F_S_MOVENPCPACKET;
+		return S_MOVE_NPC_PACKET;
 	}
 }

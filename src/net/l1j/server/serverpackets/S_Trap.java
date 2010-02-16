@@ -6,6 +6,7 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1TrapInstance;
 
 public class S_Trap extends ServerBasePacket {
+	private static final String S_TRAP = "[S] S_Trap";
 
 	public S_Trap(L1TrapInstance trap, String name) {
 		writeC(Opcodes.S_OPCODE_DROPITEM);
@@ -38,5 +39,10 @@ public class S_Trap extends ServerBasePacket {
 	@Override
 	public byte[] getContent() throws IOException {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_TRAP;
 	}
 }

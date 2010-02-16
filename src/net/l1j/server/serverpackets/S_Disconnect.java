@@ -21,6 +21,8 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_Disconnect extends ServerBasePacket {
+	private static final String S_DISCONNECT = "[S] S_Disconnect";
+
 	public S_Disconnect() {
 		int content = 500;
 
@@ -32,5 +34,10 @@ public class S_Disconnect extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
+	}
+
+	@Override
+	public String getType() {
+		return S_DISCONNECT;
 	}
 }
