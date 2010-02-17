@@ -676,26 +676,26 @@ public class L1NpcInstance extends L1Character {
 				if (mobGroupInfo == null || mobGroupInfo != null && mobGroupInfo.isLeader(this)) {
 					// 移動する予定の距離を移動し終えたら、新たに距離と方向を決める
 					// そうでないなら、移動する予定の距離をデクリメント
-					if (_randomMoveDistance == 0) { // 8.31 Start
-						try {
-							if (sleeptime_PT == 0) {
-								sleeptime_PT = RandomArrayList.getInc(15, 5);
-								_randomMoveDistance = RandomArrayList.getInc(5, 1);
-								_randomMoveDirection = RandomArrayList.getInt(8);
-							} else {
-								--sleeptime_PT;
-								Thread.sleep(200);
-							}
-						} catch (Exception exception) {
+					if (_randomMoveDistance == 0) {
+						if (sleeptime_PT == 0) {
+							_randomMoveDirection = RandomArrayList.getInt(8);
+							// 每行進 2~6 步距離，就會休息 0~7 次 等同下列說法
+							// 12.5% 機率不停： 直接朝新的方向行進
+							// 87.5% 機率休息： 休息方式改採NPC本身移動的間隔休息時間 1~7 次
+							sleeptime_PT = RandomArrayList.getInt(8);
+							_randomMoveDistance = RandomArrayList.getInc(6, 2);
+						} else {
+							sleeptime_PT--;
+							setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 						}
 					} else {
 						_randomMoveDistance--;
 						int dir = checkObject(getX(), getY(), getMapId(), _randomMoveDirection);
 						if (dir != -1) {
 							setDirectionMove(dir);
-							setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 						}
-					} // 8.31 End
+						setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
+					}
 				} else { // リーダーを追尾
 					L1NpcInstance leader = mobGroupInfo.getLeader();
 					if (getLocation().getTileLineDistance(leader.getLocation()) > 2) {
@@ -1387,8 +1387,8 @@ public class L1NpcInstance extends L1Character {
 	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	// 指定された方向に移動させる
-	public void setDirectionMove(int dir) { // 5.06 Start
-		if (dir >= 0) {
+	public void setDirectionMove(int dir) {
+		if (dir != -1) {
 			int nx = getX();
 			int ny = getY();
 			nx += HEADING_TABLE_X[dir];
@@ -1419,7 +1419,7 @@ public class L1NpcInstance extends L1Character {
 					teleport(getHomeX(), getHomeY(), getHeading());
 				}
 			}
-		} // 5.06 End
+		}
 	}
 
 	public int moveDirection(int x, int y) { // 目標點Ｘ 目標點Ｙ
@@ -1495,38 +1495,36 @@ public class L1NpcInstance extends L1Character {
 	// 目標の逆方向を返す
 	public int targetReverseDirection(int tx, int ty) { // 目標點Ｘ 目標點Ｙ
 		int heading = targetDirection(tx, ty);
-		heading += 4;// 5.06 Start
+		heading += 4;
 		return targetFace(heading);
-	}// 5.06 End
+	}
 
 	// ■■■■■■■■■■■■■ 轉向關連 ■■■■■■■■■■■
-	private static final byte FIND_HEADING_TABLE[] = { 0, 1, 6, 3, 4, 5, 2, 7 }; // 5.06
-																					// Start
+	private static final int FIND_HEADING_TABLE[] = { 0, 1, 6, 3, 4, 5, 2, 7 };
 
 	// 進みたい方向に障害物がないか確認、ある場合は前方斜め左右も確認後進める方向を返す
 	// ※從來あった處理に、バックできない仕樣を省いて、目標の反對（左右含む）には進まないようにしたもの
-	public static int checkObject(int x, int y, short m, int heading) { // 起點Ｘ
-																		// 起點Ｙ
+	public static int checkObject(int x, int y, short m, int heading) { // 起點Ｘ 起點Ｙ
 		// マップＩＤ
 		// 進行方向
-		L1Map map = L1WorldMap.getInstance().getMap(m); // 5.06 Start
+		L1Map map = L1WorldMap.getInstance().getMap(m);
 		if (map.isPassable(x, y, heading)) {
 			return heading;
-		} else { // 5.16 Start
+		} else {
 			for (byte i = 1; i < 7; i++) {
 				heading += FIND_HEADING_TABLE[i];
 				heading = targetFace(heading);
 				if (map.isPassable(x, y, heading)) {
 					return heading;
 				}
-			} // 5.06 End
+			}
 			return -1;
-		} // 5.16 End
+		}
 	}
 
 	// 目標までの最短經路の方向を返す
 	// ※目標を中心とした探索範圍のマップで探索
-	private int _serchCource(int x, int y) {// 目標點Ｘ 目標點Ｙ 5.06 Start
+	private int _serchCource(int x, int y) {// 目標點Ｘ 目標點Ｙ
 		int i;
 		int locCenter = courceRange + 1;
 		int diff_x = x - locCenter; // Ｘの實際のロケーションとの差
@@ -1609,13 +1607,13 @@ public class L1NpcInstance extends L1Character {
 			locBace = null;
 		}
 		return -1; // 目標までの經路がない場合
-	} // 5.06 End
+	}
 
-	private void _moveLocation(int[] ary, int heading) {// 4.26 Start
+	private void _moveLocation(int[] ary, int heading) {
 		ary[0] += HEADING_TABLE_X[heading];
 		ary[1] += HEADING_TABLE_Y[heading];
 		ary[2] = heading;
-	}// 4.26 End
+	}
 
 	// ■■■■■■■■■■■■ アイテム關連 ■■■■■■■■■■
 
@@ -1689,7 +1687,7 @@ public class L1NpcInstance extends L1Character {
 	public boolean nearTeleport(int nx, int ny) {
 		int tempx = 0;
 		int tempy = 0;
-		for (byte i = 1; i < 5; i++) {
+		for (byte i = 1; i < 3; i++) {
 			tempx = nx + RandomArrayList.getInc(7, -3);
 			tempy = ny + RandomArrayList.getInc(7, -3);
 			if (getMap().isPassable(tempx, tempy)) {

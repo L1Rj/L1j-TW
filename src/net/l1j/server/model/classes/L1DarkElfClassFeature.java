@@ -45,28 +45,14 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 		return 12;
 	}
 
+	private static final int[] DE_BaseStartMp = {
+		//	 0  1  2  3  4  5  6  7  8  9
+			 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,	 // baseWis =  0 ~  9
+			 3, 3, 4, 4, 4, 4, 5 };			 // baseWis = 10 ~ 16
 	@Override
 	public int InitMp(int BaseWis) {
-		switch (BaseWis) {
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-			case 10:
-				return 3; // 初始魔力3
-			case 12:
-			case 13:
-			case 14:
-			case 15: //  精神12~15
-				return 4;
-			default: // 精神16以上
-				return 5;
-		}
+		int temp_BaseWis = (BaseWis > 15) ? 16 : BaseWis;
+		return DE_BaseStartMp[temp_BaseWis];
 	}
 
 	@Override
@@ -125,7 +111,7 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 	public int calclvUpHp(int baseCon) {
 		short randomhp = 0;
 		int randomadd = RandomArrayList.getInc(5, -2);
-		byte playerbasecon = (byte) (baseCon / 2);
+		float playerbasecon = baseCon / 2;
 		randomhp += (short) (playerbasecon + randomadd + 2); // 初期值分追加 5 <-> 10
 
 		return randomhp;
@@ -134,28 +120,28 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 	/**
 	 * *_RandomMp ：根據職業的隨機範圍 *_BaseMp ：基本數值
 	 */
-	public static int[] DE_RandomMp = {
+	private static final int[] DE_RandomMp = {
 	//	 0  1  2  3  4  5  6  7  8  9
-	2, 2, 2, 2, 2, 2, 2, 2, 2, 3, // baseWis =  0 ~  9
-	2, 2, 3, 3, 3, 3, 3, 3, 4, 4, // baseWis = 10 ~ 19
-	4, 4, 4, 4, 5, 4, 4, 5, 5, 4, // baseWis = 20 ~ 29
-	4, 5, 5, 4, 4, 5 }; // baseWis = 30 ~ 35
-	public static int[] DE_BaseMp = {
+		 2, 2, 2, 2, 2, 2, 2, 2, 2, 3,	 // BaseWis =  0 ~  9
+		 2, 2, 3, 3, 3, 3, 3, 3, 4, 4,	 // BaseWis = 10 ~ 19
+		 4, 4, 4, 4, 5, 4, 4, 5, 5, 4,	 // BaseWis = 20 ~ 29
+		 4, 5, 5, 4, 4, 5 };			 // BaseWis = 30 ~ 35
+	private static final int[] DE_BaseMp = {
 	//	 0  1  2  3  4  5  6  7  8  9
-	0, 0, 0, 0, 0, 0, 0, 1, 1, 1, // baseWis =  0 ~  9
-	2, 2, 2, 2, 2, 3, 3, 3, 3, 3, // baseWis = 10 ~ 19
-	3, 4, 4, 4, 4, 5, 5, 5, 5, 6, // baseWis = 20 ~ 29
-	6, 6, 6, 7, 7, 7 }; // baseWis = 30 ~ 35
+		 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,	 // BaseWis =  0 ~  9
+		 2, 2, 2, 2, 2, 3, 3, 3, 3, 3,	 // BaseWis = 10 ~ 19
+		 3, 4, 4, 4, 4, 5, 5, 5, 5, 6,	 // BaseWis = 20 ~ 29
+		 6, 6, 6, 7, 7, 7 };			 // BaseWis = 30 ~ 35
 
 	/**
 	 * randommp：透過 *_RandomMp 與 *_BaseMp 組合出升級時增加的MP量
 	 */
 	@Override
-	public int calclvUpMp(int baseWis) {
+	public int calclvUpMp(int BaseWis) {
 		int randommp = 0;
 		// 當『精神』超過34時，一律當作35(受限矩陣大小)
-		int temp_baseWis = (baseWis > 34) ? 35 : baseWis;
-		randommp = RandomArrayList.getInc(DE_RandomMp[temp_baseWis], DE_BaseMp[temp_baseWis]);
+		int temp_BaseWis = (BaseWis > 34) ? 35 : BaseWis;
+		randommp = RandomArrayList.getInc(DE_RandomMp[temp_BaseWis], DE_BaseMp[temp_BaseWis]);
 		return (int) (randommp * 1.5);
 	}
 

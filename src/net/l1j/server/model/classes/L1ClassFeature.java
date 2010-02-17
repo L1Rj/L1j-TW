@@ -107,28 +107,28 @@ public abstract class L1ClassFeature {
 	/**
 	 * StatMr：敏捷點數 對應 防禦加成
 	 */
-	public static byte[] Dex2AC = {
-	//	 0  1  2  3  4  5  6  7  8  9
-	8, 8, 8, 8, 8, 8, 8, 8, 8, 8, // Dex =  0 ~  9
-	7, 7, 7, 6, 6, 6, 5, 5, 4 }; // Dex = 10 ~ 18
+	private static final byte[] Dex2AC = {
+		//	 0  1  2  3  4  5  6  7  8  9
+			 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,	 // Dex =  0 ~  9
+			 7, 7, 7, 6, 6, 6, 5, 5, 4 };	 // Dex = 10 ~ 18
 
 	/** 敏捷對防禦的加成 */
 	public int calcLvDex2AC(int level, int dex) {
 		// 當『敏捷』超過17時，一律當作18(受限矩陣大小)
 		int temp_dex = (dex > 17) ? 18 : dex;
 		int base_ac = 10;
-		base_ac -= (level / Dex2AC[temp_dex]);
+		base_ac -= (int) (level / Dex2AC[temp_dex]);
 		return base_ac;
 	}
 
 	/**
 	 * StatMr：精神點數 對應 魔防加成
 	 */
-	public static byte[] StatMr = {
-	//	 0  1  2  3  4  5  6  7  8  9
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // Wis =  0 ~  9
-	0, 0, 0, 0, 0, 3, 3, 6, 10, 15, // Wis = 10 ~ 19
-	21, 28, 37, 47, 50, 50 }; // Wis = 20 ~ 25
+	private static final byte[] StatMr = {
+		//	 0  1  2  3  4  5  6  7  8  9
+			 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	 // Wis =  0 ~  9
+			 0, 0, 0, 0, 0, 3, 3, 6,10,15,	 // Wis = 10 ~ 19
+			21,28,37,47,50,50 };			 // Wis = 20 ~ 25
 
 	/** 精神對魔防的加成 */
 	public byte calcStatMr(int wis) {
