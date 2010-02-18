@@ -2340,20 +2340,7 @@ public class C_NPCAction extends ClientBasePacket {
 				htmlid = "jpe0083";
 			}
 		}
-		// ルケイン(海賊島)
-		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71055) {
-			// アイテムを受け取る
-			if (s.equalsIgnoreCase("0")) {
-				L1ItemInstance item = pc.getInventory().storeItem(40701, 1); // 小さな宝の地図
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
-				pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 1);
-				htmlid = "lukein8";
-			} else if (s.equalsIgnoreCase("2")) {
-				htmlid = "lukein12";
-				pc.getQuest().set_step(L1Quest.QUEST_RESTA, 3);
-			}
-		}
-		// 小さな箱-1番目
+                // 小さな箱-1番目
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71063) {
 			if (s.equalsIgnoreCase("0")) {
 				materials = new int[] { 40701 }; // 小さな寶の地圖
@@ -2393,30 +2380,6 @@ public class C_NPCAction extends ClientBasePacket {
 					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 9); } else if (nb2 == 6) { // j地點
 					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 10); }*/
 				pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, RandomArrayList.getInc(6, 5));
-			}
-		}
-		// シミズ(海賊島)
-		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71056) {
-			// 息子を搜す
-			if (s.equalsIgnoreCase("a")) {
-				pc.getQuest().set_step(L1Quest.QUEST_SIMIZZ, 1);
-				htmlid = "SIMIZZ7";
-			} else if (s.equalsIgnoreCase("b")) {
-				if (pc.getInventory().checkItem(40661)
-						&& pc.getInventory().checkItem(40662)
-						&& pc.getInventory().checkItem(40663)) {
-					htmlid = "SIMIZZ8";
-					pc.getQuest().set_step(L1Quest.QUEST_SIMIZZ, 2);
-					materials = new int[] { 40661, 40662, 40663 };
-					counts = new int[] { 1, 1, 1 };
-					createitem = new int[] { 20044 };
-					createcount = new int[] { 1 };
-				} else {
-					htmlid = "SIMIZZ9";
-				}
-			} else if (s.equalsIgnoreCase("d")) {
-				htmlid = "SIMIZZ12";
-				pc.getQuest().set_step(L1Quest.QUEST_SIMIZZ, L1Quest.QUEST_END);
 			}
 		}
 		// ドイル(海賊島)
@@ -2516,9 +2479,8 @@ public class C_NPCAction extends ClientBasePacket {
 					L1Teleport.teleport(pc, 32746, 32807, (short) 484, 5, true);
 				}
 			}
-		}
 		// フランコ(海賊島)
-		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71089) {
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71089) {
 			// カミーラにあなたの潔白を証明しましょう
 			if (s.equalsIgnoreCase("a")) {
 				htmlid = "francu10";
@@ -3838,39 +3800,8 @@ public class C_NPCAction extends ClientBasePacket {
 			} else {
 				htmlid = "aras7";
 			}
-		}
-		// BAO提供  カミーラ(海賊島)
-		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71036) {
-			if (s.equalsIgnoreCase("a")) {
-				htmlid = "kamyla7";
-				pc.getQuest().set_step(L1Quest.QUEST_KAMYLA, 1);
-			} else if (s.equalsIgnoreCase("c")) {
-				htmlid = "kamyla10";
-				pc.getInventory().consumeItem(40644, 1);
-				pc.getQuest().set_step(L1Quest.QUEST_KAMYLA, 3);
-			} else if (s.equalsIgnoreCase("e")) {
-				htmlid = "kamyla13";
-				pc.getInventory().consumeItem(40630, 1);
-				pc.getQuest().set_step(L1Quest.QUEST_KAMYLA, 4);
-			} else if (s.equalsIgnoreCase("i")) {
-				htmlid = "kamyla25";
-			} else if (s.equalsIgnoreCase("b")) { // カーミラ（フランコの迷宮）
-				if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 1) {
-					L1Teleport.teleport(pc, 32679, 32742, (short) 482, 5, true);
-				}
-			} else if (s.equalsIgnoreCase("d")) { // カーミラ（ディエゴの閉ざされた牢）
-				if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 3) {
-					L1Teleport.teleport(pc, 32736, 32800, (short) 483, 5, true);
-				}
-			} else if (s.equalsIgnoreCase("f")) { // カーミラ（ホセ地下牢）
-				if ((pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 4)
-						|| (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 255)) {
-					L1Teleport.teleport(pc, 32746, 32807, (short) 484, 5, true);
-				}
-			}
-		}
 		// ルケイン(海賊島)
-		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71055) {
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71055) {
 			// アイテムを受け取る
 			if (s.equalsIgnoreCase("0")) {
 				final int[] item_ids = { 40701, };
@@ -3893,7 +3824,6 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 		}
-
 		// シミズ(海賊島)
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71056) {
 			// 息子を捜す
