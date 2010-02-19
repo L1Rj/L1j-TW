@@ -537,7 +537,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 
 	public static void doCrystalCave(int npcId) {
 		int[] npcId2 = { 46143, 46144, 46145, 46146, 46147, 46148, 46149, 46150, 46151, 46152 };
-		int[] doorId = { 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010 };
+		int[] doorId = {  5001,  5002,  5003,  5004,  5005,  5006,  5007,  5008,  5009,  5010 };
 
 		for (int i = 0; i < npcId2.length; i++) {
 			if (npcId == npcId2[i]) {

@@ -103,18 +103,23 @@ public class L1Attack {
 	}
 
 	private static final int[] strHit = {
-		-2, -2, -2, -2, -2, -2, -2, // 1～7まで
-		-2, -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, // 8～26まで
-		7, 7, 7, 8, 8, 8, 9, 9, 9, 10, 10, 10, 11, 11, 11, 12, 12, 12, // 27～44まで
-		13, 13, 13, 14, 14, 14, 15, 15, 15, 16, 16, 16, 17, 17, 17
-	}; // 45～59まで
+		//   0  1  2  3  4  5  6  7  8  9
+			-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,	 //  0 ~  9
+			-1, 0, 0, 1, 1, 2, 2, 3, 3, 4,	 // 10 ~ 19
+			 4, 5, 5, 5, 6, 6, 6, 7, 7, 7,	 // 20 ~ 29
+			 8, 8, 8, 9, 9, 9,10,10,10,11,	 // 30 ~ 39
+			11,11,12,12,12,13,13,13,14,14,	 // 40 ~ 49
+			14,15,15,15,16,16,16,17,17,17 }; // 50 ~ 59
 
 	private static final int[] dexHit = {
-		-2, -2, -2, -2, -2, -2, -1, -1, 0, 0, // 1～10まで
-		1, 1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, // 11～30まで
-		17, 18, 19, 19, 19, 20, 20, 20, 21, 21, 21, 22, 22, 22, 23, // 31～45まで
-		23, 23, 24, 24, 24, 25, 25, 25, 26, 26, 26, 27, 27, 27, 28
-	}; // 46～60まで
+		//   0  1  2  3  4  5  6  7  8  9
+			-2,-2,-2,-2,-2,-2,-2,-1,-1, 0,	 //  0 ~  9
+			 0, 1, 1, 2, 2, 3, 3, 4, 4, 5,	 // 10 ~ 19
+			 6, 7, 8, 9,10,11,12,13,14,15,	 // 20 ~ 29
+			16,17,18,19,19,19,20,20,20,21,	 // 30 ~ 39
+			21,21,22,22,22,23,23,23,24,24,	 // 40 ~ 49
+			24,25,25,25,26,26,26,27,27,27,	 // 50 ~ 59
+			28 }; // 60
 
 	private static final int[] strDmg = new int[128];
 
@@ -321,31 +326,18 @@ public class L1Attack {
 		_hitRate = _pc.getLevel();
 
 		if (_pc.getStr() > 59) {
-			_hitRate += strHit[58];
+			_hitRate += strHit[59];
 		} else {
-			_hitRate += strHit[_pc.getStr() - 1];
+			_hitRate += strHit[_pc.getStr()];
 		}
 
 		if (_pc.getDex() > 60) {
-			_hitRate += dexHit[59];
+			_hitRate += dexHit[60];
 		} else {
-			_hitRate += dexHit[_pc.getDex() - 1];
+			_hitRate += dexHit[_pc.getDex()];
 		}
 
-		if (_weaponType != 20 && _weaponType != 62) {
-			_hitRate += _weaponAddHit + _pc.getHitup() + _pc.getOriginalHitup() + (_weaponEnchant / 2);
-		} else {
-			_hitRate += _weaponAddHit + _pc.getBowHitup() + L1DollInstance.getBowHitAddByDoll(_pc) + _pc.getOriginalBowHitup() + (_weaponEnchant / 2); // 娃娃增加弓命中
-		}
-
-		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中
-			_hitRate += _pc.getHitModifierByArmor();
-		} else {
-			_hitRate += _pc.getBowHitModifierByArmor();
-		}
-
-		if (80 < _pc.getInventory().getWeight240()// 重量による命中補正
-				&& 120 >= _pc.getInventory().getWeight240()) {
+		if (80 < _pc.getInventory().getWeight240() && 120 >= _pc.getInventory().getWeight240()) { // 重量による命中補正
 			_hitRate -= 1;
 		} else if (121 <= _pc.getInventory().getWeight240() && 160 >= _pc.getInventory().getWeight240()) {
 			_hitRate -= 3;
@@ -353,19 +345,22 @@ public class L1Attack {
 			_hitRate -= 5;
 		}
 
-		if (_pc.hasSkillEffect(COOKING_2_0_N) || _pc.hasSkillEffect(COOKING_2_0_S)) { // 料理による追加命中
-			if (_weaponType != 20 && _weaponType != 62) {
-				_hitRate += 1;
+		if (_weaponType == 20 || _weaponType == 62) {
+			_hitRate += _weaponAddHit + _pc.getBowHitup() + L1DollInstance.getBowHitAddByDoll(_pc) + _pc.getOriginalBowHitup() + (_weaponEnchant / 2); // 娃娃增加弓命中
+			_hitRate += _pc.getBowHitModifierByArmor(); // 防具による追加命中
+
+			if (_pc.hasSkillEffect(COOKING_2_3_N) || _pc.hasSkillEffect(COOKING_2_3_S) || _pc.hasSkillEffect(COOKING_3_0_N) || _pc.hasSkillEffect(COOKING_3_0_S)) { // 料理による追加命中
+				_hitRate++; // _hitRate += 1;
 			}
-		}
-		if (_pc.hasSkillEffect(COOKING_3_2_N) || _pc.hasSkillEffect(COOKING_3_2_S)) { // 料理による追加命中
-			if (_weaponType != 20 && _weaponType != 62) {
+		} else {
+			_hitRate += _weaponAddHit + _pc.getHitup() + _pc.getOriginalHitup() + (_weaponEnchant / 2);
+			_hitRate += _pc.getHitModifierByArmor(); // 防具による追加命中
+
+			if (_pc.hasSkillEffect(COOKING_2_0_N) || _pc.hasSkillEffect(COOKING_2_0_S)) { // 料理による追加命中
+				_hitRate++; // _hitRate += 1;
+			}
+			if (_pc.hasSkillEffect(COOKING_3_2_N) || _pc.hasSkillEffect(COOKING_3_2_S)) { // 料理による追加命中
 				_hitRate += 2;
-			}
-		}
-		if (_pc.hasSkillEffect(COOKING_2_3_N) || _pc.hasSkillEffect(COOKING_2_3_S) || _pc.hasSkillEffect(COOKING_3_0_N) || _pc.hasSkillEffect(COOKING_3_0_S)) { // 料理による追加命中
-			if (_weaponType == 20 || _weaponType == 62) {
-				_hitRate += 1;
 			}
 		}
 
@@ -402,14 +397,14 @@ public class L1Attack {
 		int critical = _hitRate + 10;
 
 		if (attackerDice <= fumble) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		} else if (attackerDice >= critical) {
 			_hitRate = 100;
 		} else {
 			if (attackerDice > defenderDice) {
 				_hitRate = 100;
 			} else if (attackerDice <= defenderDice) {
-				_hitRate = 0;
+				return false; // 無法擊中。原本：_hitRate = 0;
 			}
 		}
 
@@ -418,19 +413,19 @@ public class L1Attack {
 		}
 
 		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
 		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
 		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
 		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
 		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
 		int rnd = RandomArrayList.getInc(100, 1);
 		if (_weaponType == 20 && _hitRate > rnd) { // 弓の場合、ヒットした場合でもERでの回避を再度行う。
@@ -447,27 +442,15 @@ public class L1Attack {
 		_hitRate = _pc.getLevel();
 
 		if (_pc.getStr() > 59) {
-			_hitRate += strHit[58];
+			_hitRate += strHit[59];
 		} else {
-			_hitRate += strHit[_pc.getStr() - 1];
+			_hitRate += strHit[_pc.getStr()];
 		}
 
 		if (_pc.getDex() > 60) {
-			_hitRate += dexHit[59];
+			_hitRate += dexHit[60];
 		} else {
-			_hitRate += dexHit[_pc.getDex() - 1];
-		}
-
-		if (_weaponType != 20 && _weaponType != 62) {
-			_hitRate += _weaponAddHit + _pc.getHitup() + _pc.getOriginalHitup() + (_weaponEnchant / 2);
-		} else {
-			_hitRate += _weaponAddHit + _pc.getBowHitup() + L1DollInstance.getBowHitAddByDoll(_pc) + _pc.getOriginalBowHitup() + (_weaponEnchant / 2); // 娃娃增加弓命中
-		}
-
-		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加命中
-			_hitRate += _pc.getHitModifierByArmor();
-		} else {
-			_hitRate += _pc.getBowHitModifierByArmor();
+			_hitRate += dexHit[_pc.getDex()];
 		}
 
 		_hitRate *= 5;
@@ -481,19 +464,22 @@ public class L1Attack {
 			_hitRate -= 5;
 		}
 
-		if (_pc.hasSkillEffect(COOKING_2_0_N) || _pc.hasSkillEffect(COOKING_2_0_S)) { // 料理による追加命中
-			if (_weaponType != 20 && _weaponType != 62) {
-				_hitRate += 1;
+		if (_weaponType == 20 || _weaponType == 62) {
+			_hitRate += _weaponAddHit + _pc.getBowHitup() + L1DollInstance.getBowHitAddByDoll(_pc) + _pc.getOriginalBowHitup() + (_weaponEnchant / 2); // 娃娃增加弓命中
+			_hitRate += _pc.getBowHitModifierByArmor(); // 防具による追加命中
+
+			if (_pc.hasSkillEffect(COOKING_2_3_N) || _pc.hasSkillEffect(COOKING_2_3_S) || _pc.hasSkillEffect(COOKING_3_0_N) || _pc.hasSkillEffect(COOKING_3_0_S)) { // 料理による追加命中
+				_hitRate++; // _hitRate += 1;
 			}
-		}
-		if (_pc.hasSkillEffect(COOKING_3_2_N) || _pc.hasSkillEffect(COOKING_3_2_S)) { // 料理による追加命中
-			if (_weaponType != 20 && _weaponType != 62) {
+		} else {
+			_hitRate += _weaponAddHit + _pc.getHitup() + _pc.getOriginalHitup() + (_weaponEnchant / 2);
+			_hitRate += _pc.getHitModifierByArmor(); // 防具による追加命中
+
+			if (_pc.hasSkillEffect(COOKING_2_0_N) || _pc.hasSkillEffect(COOKING_2_0_S)) { // 料理による追加命中
+				_hitRate++; // _hitRate += 1;
+			}
+			if (_pc.hasSkillEffect(COOKING_3_2_N) || _pc.hasSkillEffect(COOKING_3_2_S)) { // 料理による追加命中
 				_hitRate += 2;
-			}
-		}
-		if (_pc.hasSkillEffect(COOKING_2_3_N) || _pc.hasSkillEffect(COOKING_2_3_S) || _pc.hasSkillEffect(COOKING_3_0_N) || _pc.hasSkillEffect(COOKING_3_0_S)) { // 料理による追加命中
-			if (_weaponType == 20 || _weaponType == 62) {
-				_hitRate += 1;
 			}
 		}
 
@@ -517,14 +503,14 @@ public class L1Attack {
 		int critical = _hitRate + 10;
 
 		if (attackerDice <= fumble) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		} else if (attackerDice >= critical) {
 			_hitRate = 100;
 		} else {
 			if (attackerDice > defenderDice) {
 				_hitRate = 100;
 			} else if (attackerDice <= defenderDice) {
-				_hitRate = 0;
+				return false; // 無法擊中。原本：_hitRate = 0;
 			}
 		}
 
@@ -533,47 +519,41 @@ public class L1Attack {
 		}
 
 		int npcId = _targetNpc.getNpcTemplate().get_npcId();
-		if (npcId >= 45912 && npcId <= 45915 && !_pc.hasSkillEffect(STATUS_HOLY_WATER)) { // 恨みに滿ちたソルジャー＆ソルジャーゴースト
-			_hitRate = 0;
+		if (!_pc.hasSkillEffect(STATUS_HOLY_WATER)) { // 恨みに滿ちたソルジャー＆ソルジャーゴースト
+			if (npcId >= 45912 && npcId <= 45915) {
+				return false; // 無法擊中。原本：_hitRate = 0;
+			}
 		}
-		if (npcId == 45916 && !_pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) { // 恨みに滿ちたハメル將軍
-			_hitRate = 0;
+		if (!_pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) { // 恨みに滿ちたハメル將軍
+			if (npcId == 45916)
+				return false; // 無法擊中。原本：_hitRate = 0;
 		}
-		if (npcId == 45941 && !_pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) { // 咒われた巫女サエル
-			_hitRate = 0;
+		if (!_pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) { // 咒われた巫女サエル
+			if (npcId == 45941)
+				return false; // 無法擊中。原本：_hitRate = 0;
 		}
-		if (npcId == 45752 && !_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) { // バルログ(變身前)
-			_hitRate = 0;
+		if (!_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
+			if (npcId == 45752 || npcId == 45753) // バルログ(變身前) バルログ(變身後)
+				return false; // 無法擊中。原本：_hitRate = 0;
 		}
-		if (npcId == 45753 && !_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) { // バルログ(變身後)
-			_hitRate = 0;
+		if (!_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+			//	ヤヒ(變身前)	  ヤヒ(變身後)	    混沌			  死亡			    墮落
+			if (npcId == 45675 || npcId == 81082 || npcId == 45625 || npcId == 45674 || npcId == 45685)
+				return false; // 無法擊中。原本：_hitRate = 0;
 		}
-		if (npcId == 45675 && !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) { // ヤヒ(變身前)
-			_hitRate = 0;
-		}
-		if (npcId == 81082 && !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) { // ヤヒ(變身後)
-			_hitRate = 0;
-		}
-		if (npcId == 45625 && !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) { // 混沌
-			_hitRate = 0;
-		}
-		if (npcId == 45674 && !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) { // 死亡
-			_hitRate = 0;
-		}
-		if (npcId == 45685 && !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) { // 墮落
-			_hitRate = 0;
-		}
+
 		if (npcId >= 46068 && npcId <= 46091 && _pc.getTempCharGfx() == 6035) { // 欲望の洞窟側mob
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
-		if (npcId >= 46092 && npcId <= 46106 // 影の神殿側mob
-				&& _pc.getTempCharGfx() == 6034) {
-			_hitRate = 0;
+		if (npcId >= 46092 && npcId <= 46106 && _pc.getTempCharGfx() == 6034) { // 影の神殿側mob
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
+
 		// BAO提供 艾爾摩索夏依卡將軍的冤魂
 		if (npcId == 46163 && _weaponId != 274) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
+
 		// add end
 		int rnd = RandomArrayList.getInc(100, 1);
 
@@ -618,7 +598,7 @@ public class L1Attack {
 		int critical = _hitRate + 19;
 
 		if (attackerDice <= fumble) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		} else if (attackerDice >= critical) {
 			_hitRate = 100;
 		} else {
@@ -630,19 +610,19 @@ public class L1Attack {
 		}
 
 		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
 		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
 		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
 		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
 		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		}
 
 		int rnd = RandomArrayList.getInc(100, 1);
@@ -692,14 +672,14 @@ public class L1Attack {
 		int critical = _hitRate + 19;
 
 		if (attackerDice <= fumble) {
-			_hitRate = 0;
+			return false; // 無法擊中。原本：_hitRate = 0;
 		} else if (attackerDice >= critical) {
 			_hitRate = 100;
 		} else {
 			if (attackerDice > defenderDice) {
 				_hitRate = 100;
 			} else if (attackerDice <= defenderDice) {
-				_hitRate = 0;
+				return false; // 無法擊中。原本：_hitRate = 0;
 			}
 		}
 

@@ -555,7 +555,7 @@ public class L1NpcInstance extends L1Character {
 		}
 
 		// 拾うアイテム(のインベントリ)をランダムで選定
-		int pickupIndex = (int) (Math.random() * gInventorys.size());
+		int pickupIndex = RandomArrayList.getInt(gInventorys.size());
 		L1GroundInventory inventory = gInventorys.get(pickupIndex);
 		for (L1ItemInstance item : inventory.getItems()) {
 			if (getInventory().checkAddItem(item, item.getCount()) == L1Inventory.OK) { // 持てるならターゲットアイテムに加える
@@ -602,8 +602,9 @@ public class L1NpcInstance extends L1Character {
 	}
 
 	public static void shuffle(L1Object[] arr) {
+		int t = 0;
 		for (int i = arr.length - 1; i > 0; i--) {
-			int t = RandomArrayList.getInt(i); // 5.14
+			t = RandomArrayList.getInt(i); // 5.14
 
 			// 選ばれた值と交換する
 			L1Object tmp = arr[i];
@@ -1228,14 +1229,9 @@ public class L1NpcInstance extends L1Character {
 	// オブジェクトIDをSpawnTaskに渡し再利用する
 	// グループモンスターは複雜になるので再利用しない
 	public void onDecay(boolean isReuseId) {
-		int id = 0;
 		if (isReuseId) {
-			id = getId();
+			_spawn.executeSpawnTask(_spawnNumber, getId());
 		}
-		/*
-		 * else { // 5.16 Start id = 0; }
-		 */// 5.16 End
-		_spawn.executeSpawnTask(_spawnNumber, id);
 	}
 
 	@Override
@@ -1428,24 +1424,23 @@ public class L1NpcInstance extends L1Character {
 
 	// 目標までの距離に應じて最適と思われるルーチンで進む方向を返す
 	public int moveDirection(int x, int y, double d) { // 目標點Ｘ 目標點Ｙ 目標までの距離
-		int dir = 0;
-		if (hasSkillEffect(40) == true && d >= 2D) { // ダークネスが掛かっていて、距離が2以上の場合追跡終了
-			return -1;
-		} else if (d > 30D) { // 距離が激しく遠い場合は追跡終了
+		if ((hasSkillEffect(40) == true && d >= 2D) // 持有狀態魔法"黑闇之影" + 距離2以上 
+				|| (d > 30D)) { // 距離距離太遠
 			return -1;
 		} else if (d > courceRange) { // 距離が遠い場合は單純計算
-			dir = targetDirection(x, y);
+			int dir = targetDirection(x, y);
 			dir = checkObject(getX(), getY(), getMapId(), dir);
+			return dir;
 		} else { // 目標までの最短經路を探索
-			dir = _serchCource(x, y);
+			int dir = _serchCource(x, y);
 			if (dir == -1) { // 目標までの經路がなっかた場合はとりあえず近づいておく
 				dir = targetDirection(x, y);
 				if (!isExsistCharacterBetweenTarget(dir)) {
 					dir = checkObject(getX(), getY(), getMapId(), dir);
 				}
 			}
+			return dir;
 		}
-		return dir;
 	}
 
 	private boolean isExsistCharacterBetweenTarget(int dir) {
@@ -1456,11 +1451,11 @@ public class L1NpcInstance extends L1Character {
 			return false;
 		}
 
-		int targetX = getX();// 4.26 Start
+		int targetX = getX();
 		int targetY = getY();
 
 		targetX += HEADING_TABLE_X[dir];
-		targetY += HEADING_TABLE_Y[dir];// 4.26 End
+		targetY += HEADING_TABLE_Y[dir];
 
 		for (L1Object object : L1World.getInstance().getVisibleObjects(this, 1)) {
 			// PC, Summon, Petがいる場合
@@ -1487,9 +1482,9 @@ public class L1NpcInstance extends L1Character {
 	private static int targetFace(int heading) {
 		if (heading > 7) {
 			return heading % 8;
-		} else { // 5.16 Start
+		} else {
 			return heading;
-		} // 5.16 End
+		}
 	}
 
 	// 目標の逆方向を返す

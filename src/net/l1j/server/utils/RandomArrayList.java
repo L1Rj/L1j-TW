@@ -31,7 +31,7 @@ public class RandomArrayList {
 		}
 	}
 
-	public static int getlistint() {
+	private static int getlistint() {
 		if (listint < 32766)
 			return ++listint;
 		else

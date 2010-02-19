@@ -695,12 +695,10 @@ public class L1PcInstance extends L1Character {
 
 	public void logout() {
 		L1World world = L1World.getInstance();
-		if (getClanid() != 0) // クラン所屬
-		{
+		if (getClanid() != 0) { // クラン所屬
 			L1Clan clan = world.getClan(getClanname());
 			if (clan != null) {
-				if (clan.getWarehouseUsingChar() == getId()) // 自キャラがクラン倉庫使用中
-				{
+				if (clan.getWarehouseUsingChar() == getId()) { // 自キャラがクラン倉庫使用中
 					clan.setWarehouseUsingChar(0); // クラン倉庫のロックを解除
 				}
 			}
@@ -1351,22 +1349,23 @@ public class L1PcInstance extends L1Character {
 			// アライメント32000以上で0%、以降-1000每に0.4%
 			// アライメントが0未滿の場合は-1000每に0.8%
 			// アライメント-32000以下で最高51.2%のDROP率
-			int lostRate = (int) (((getLawful() + 32768D) / 1000D - 65D) * 6D);// 原值4D
+			int temp_Lawful = getLawful();
+			int lostRate = (int) (((temp_Lawful + 32768D) / 1000D - 65D) * 6D);// 原值4D
 			if (lostRate < 0) {
 				lostRate *= -1;
-				if (getLawful() < 0) {
+				if (temp_Lawful < 0) {
 					lostRate *= 4;// 原值2
 				}
 				int rnd = RandomArrayList.getInt(1000);
 				if (rnd <= lostRate) {
 					int count = 1;
-					if (getLawful() <= -20000) {// 原值30000
+					if (temp_Lawful <= -20000) {// 原值30000
 						count += RandomArrayList.getInt(5);
-					} else if (getLawful() <= -10000) {// 原值20000
+					} else if (temp_Lawful <= -10000) {// 原值20000
 						count += RandomArrayList.getInt(4);
-					} else if (getLawful() <= -5000) {// 原值10000
+					} else if (temp_Lawful <= -5000) {// 原值10000
 						count += RandomArrayList.getInt(3);
-					} else if (getLawful() < 0) {
+					} else if (temp_Lawful < 0) {
 						count += 1;
 					}
 					caoPenaltyResult(count);
@@ -1384,7 +1383,7 @@ public class L1PcInstance extends L1Character {
 				player = (L1PcInstance) lastAttacker;
 			}
 			if (player != null) {
-				if (getLawful() >= 0 && isPinkName() == false) {
+				if (temp_Lawful >= 0 && isPinkName() == false) {
 					boolean isChangePkCount = false;
 
 					boolean isChangePkCountForElf = false;// 妖精殺死同族 PK值另外計算
@@ -1516,7 +1515,6 @@ public class L1PcInstance extends L1Character {
 		}
 		L1PcInstance attacker = null;
 		String enemyClanName = null;
-		boolean sameWar = false;
 
 		if (lastAttacker instanceof L1PcInstance) {
 			attacker = (L1PcInstance) lastAttacker;
@@ -1534,6 +1532,7 @@ public class L1PcInstance extends L1Character {
 
 			int warType = war.GetWarType();
 			boolean isInWar = war.CheckClanInWar(getClanname());
+			boolean sameWar = false;
 			if (attacker != null && attacker.getClanid() != 0) { // lastAttackerがPC、サモン、ペットでクラン所屬中
 				sameWar = war.CheckClanInSameWar(getClanname(), attacker.getClanname());
 			}
@@ -1602,11 +1601,6 @@ public class L1PcInstance extends L1Character {
 		addExp(-exp);
 	}
 
-	private int _originalEr = 0; // ● オリジナルDEX ER補正
-
-	public int getOriginalEr() {
-		return _originalEr;
-	}
 
 	public int getEr() {
 		if (hasSkillEffect(SKILL_STRIKER_GALE)) {
@@ -1989,6 +1983,13 @@ public class L1PcInstance extends L1Character {
 	public int getOriginalBowHitup() {
 
 		return _originalHitup;
+	}
+
+	private int _originalEr = 0; // ● オリジナルDEX ER補正
+
+	public int getOriginalEr() {
+
+		return _originalEr;
 	}
 
 	private int _originalMr = 0; // ● オリジナルWIS 魔法防御
