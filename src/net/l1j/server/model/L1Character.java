@@ -272,6 +272,9 @@ public class L1Character extends L1Object {
 		return loc;
 	}
 
+	/** 角色方向-X */
+	private static final double[] tan_225 = { Math.tan(-22.5), Math.tan(22.5)};
+	private static final double[] tan_675 = { Math.tan(-62.5), Math.tan(62.5)};
 	/**
 	 * 指定された座標に對する方向を返す。
 	 * 
@@ -284,31 +287,16 @@ public class L1Character extends L1Object {
 		int dis_x = tx - getX(); // Ｘ方向の距離 >0 意謂正向軸
 		int dis_y = ty - getY(); // Ｙ方向の距離 <0 負向軸
 		if (dis_y != 0) {
-			double deff = Math.floor((dis_x / dis_y) * 2);
-			if (deff > -1 && deff < 1) {
-				if (dis_y > 0) {
-					return 4;
-				} else if (dis_y < 0) {
-					return 0;
-				}
-			} else if (deff >= 1 && deff <= 4) {
-				if (dis_y > 0) {
-					return 3;
-				} else {
-					return 7;
-				}
-			} else if (deff <= -1 && deff >= -4) {
-				if (dis_y > 0) {
-					return 5;
-				} else {
-					return 1;
-				}
+			double deff = (dis_x / dis_y);
+			if (deff > tan_225[0] && deff < tan_225[1]) {
+				return (dis_y > 0) ? 4 : 0;
+			} else if (deff > tan_675[0] && deff < tan_225[0]) {
+				return (dis_y > 0) ? 5 : 1;
+			} else if (deff > tan_225[1] && deff < tan_675[1]) {
+				return (dis_y > 0) ? 3 : 7;
 			}
-		} // deff = 1 <-> 2*tan(26.5) ; deff = 4 <-> 2*tan(63.5)
-		if (dis_x > 0) {
-			return 2;
-		} else if (dis_x < 0) {
-			return 6;
+		} else {
+			return (dis_x > 0) ? 2 : 6;
 		}
 		return getHeading(); // ここにはこない。はず
 	} // 4.15 End
@@ -321,10 +309,6 @@ public class L1Character extends L1Object {
 	 * @return 障害物が無ければtrue、あればfalseを返す。
 	 */
 	public boolean glanceCheck(int tx, int ty) {
-		// 4.15 Start
-		// int dis = getX();
-		// int dis = getY();
-		// 4.15 End
 		L1Map map = getMap();
 		int chx = getX();
 		int chy = getY();
