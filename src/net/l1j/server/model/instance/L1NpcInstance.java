@@ -684,7 +684,7 @@ public class L1NpcInstance extends L1Character {
 							// 12.5% 機率不停： 直接朝新的方向行進
 							// 87.5% 機率休息： 休息方式改採NPC本身移動的間隔休息時間 1~7 次
 							sleeptime_PT = RandomArrayList.getInt(8);
-							_randomMoveDistance = RandomArrayList.getInc(6, 2);
+							_randomMoveDistance = RandomArrayList.getInc(6, 3);
 						} else {
 							sleeptime_PT--;
 							setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
@@ -1517,9 +1517,11 @@ public class L1NpcInstance extends L1Character {
 		}
 	}
 
+	// 初期方向の設置
+	private static final int[] firstCource = { 2, 4, 6, 0, 1, 3, 5, 7 };
 	// 目標までの最短經路の方向を返す
 	// ※目標を中心とした探索範圍のマップで探索
-	private int _serchCource(int x, int y) {// 目標點Ｘ 目標點Ｙ
+	private int _serchCource(int x, int y) { // 目標點Ｘ 目標點Ｙ
 		int i;
 		int locCenter = courceRange + 1;
 		int diff_x = x - locCenter; // Ｘの實際のロケーションとの差
@@ -1529,7 +1531,7 @@ public class L1NpcInstance extends L1Character {
 		// 初期方向
 		int[] locNext = new int[4];
 		int[] locCopy;
-		// int[] dirFront = new int[5];
+		int[] dirFront = new int[5];
 		boolean serchMap[][] = new boolean[locCenter * 2 + 1][locCenter * 2 + 1];
 		FastList<int[]> queueSerch = new FastList<int[]>();
 
@@ -1541,29 +1543,21 @@ public class L1NpcInstance extends L1Character {
 			}
 		}
 
-		// 初期方向の設置
-		int _rndHeading = RandomArrayList.getInt(8);
-		for (i = 0; i < 5; i++) {
+		for (i = 0; i < 8; i++) {
 			System.arraycopy(locBace, 0, locNext, 0, 4);
-			_rndHeading = targetFace(_rndHeading + FIND_HEADING_TABLE[i]);
-			_moveLocation(locNext, _rndHeading); // _moveLocation(locNext,
-													// firstCource[i]);
+			_moveLocation(locNext, firstCource[i]);
 			if (locNext[0] - locCenter == 0 && locNext[1] - locCenter == 0) {
 				// 最短經路が見つかった場合:鄰
-				return _rndHeading; // return firstCource[i];
+				return firstCource[i];
 			}
 			if (serchMap[locNext[0]][locNext[1]]) {
-				int tmpX = locNext[0] + diff_x;
-				int tmpY = locNext[1] + diff_y;
-				boolean found = false;
-				tmpX -= HEADING_TABLE_X[_rndHeading];
-				tmpY -= HEADING_TABLE_X[_rndHeading];
-				found = getMap().isPassable(tmpX, tmpY, _rndHeading);
-				if (found) {// 移動經路があった場合
+				int tmpX = locNext[0] + diff_x - HEADING_TABLE_X[i];
+				int tmpY = locNext[1] + diff_y - HEADING_TABLE_Y[i];
+				if (getMap().isPassable(tmpX, tmpY, i)) {// 移動經路があった場合
 					locCopy = new int[4];
 					System.arraycopy(locNext, 0, locCopy, 0, 4);
-					locCopy[2] = _rndHeading; // locCopy[2] = firstCource[i];
-					locCopy[3] = _rndHeading; // locCopy[3] = firstCource[i];
+					locCopy[2] = firstCource[i];
+					locCopy[3] = firstCource[i];
 					queueSerch.add(locCopy);
 				}
 				serchMap[locNext[0]][locNext[1]] = false;
@@ -1574,26 +1568,20 @@ public class L1NpcInstance extends L1Character {
 		// 最短經路を探索
 		while (queueSerch.size() > 0) {
 			locBace = queueSerch.removeFirst();
-			for (i = 7; i == 0; i--) {
+			_getFront(dirFront, locBace[2]);
+			for (i = 4; i >= 0; i--) {
 				System.arraycopy(locBace, 0, locNext, 0, 4);
-				_rndHeading = targetFace(locBace[2] + FIND_HEADING_TABLE[i]); // 從這裡開始
-																				// _rndHeading
-																				// 不含隨機因子
-				_moveLocation(locNext, _rndHeading);
+				_moveLocation(locNext, dirFront[i]);
 				if (locNext[0] - locCenter == 0 && locNext[1] - locCenter == 0) {
 					return locNext[3];
 				}
 				if (serchMap[locNext[0]][locNext[1]]) {
-					int tmpX = locNext[0] + diff_x;
-					int tmpY = locNext[1] + diff_y;
-					tmpX -= HEADING_TABLE_X[_rndHeading];
-					tmpY -= HEADING_TABLE_X[_rndHeading];
-					boolean found = false;
-					found = getMap().isPassable(tmpX, tmpY, _rndHeading);
-					if (found) { // 移動經路があった場合
+					int tmpX = locNext[0] + diff_x - HEADING_TABLE_X[i];
+					int tmpY = locNext[1] + diff_y - HEADING_TABLE_Y[i];
+					if (getMap().isPassable(tmpX, tmpY, i)) {// 移動經路があった場合
 						locCopy = new int[4];
 						System.arraycopy(locNext, 0, locCopy, 0, 4);
-						locCopy[2] = _rndHeading;
+						locCopy[2] = dirFront[i];
 						queueSerch.add(locCopy);
 					}
 					serchMap[locNext[0]][locNext[1]] = false;
@@ -1608,6 +1596,14 @@ public class L1NpcInstance extends L1Character {
 		ary[0] += HEADING_TABLE_X[heading];
 		ary[1] += HEADING_TABLE_Y[heading];
 		ary[2] = heading;
+	}
+
+	private void _getFront(int[] ary, int dir) {
+		ary[4] = targetFace(dir + 2);
+		ary[3] = targetFace(dir + 6);
+		ary[2] = dir;
+		ary[1] = targetFace(dir + 7);
+		ary[0] = targetFace(dir + 1);
 	}
 
 	// ■■■■■■■■■■■■ アイテム關連 ■■■■■■■■■■
