@@ -322,6 +322,22 @@ public class L1Attack {
 	 * 最小命中率5% 最大命中率95%
 	 */
 	private boolean calcPcPcHit() {
+		// 不可能命中 直接回傳出去
+		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
+		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
+		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
 
 		_hitRate = _pc.getLevel();
 
@@ -399,10 +415,10 @@ public class L1Attack {
 		if (attackerDice <= fumble) {
 			return false; // 無法擊中。原本：_hitRate = 0;
 		} else if (attackerDice >= critical) {
-			_hitRate = 100;
+			return true; // 確定擊中。原本：_hitRate = 100;
 		} else {
 			if (attackerDice > defenderDice) {
-				_hitRate = 100;
+				return true; // 確定擊中。原本：_hitRate = 100;
 			} else if (attackerDice <= defenderDice) {
 				return false; // 無法擊中。原本：_hitRate = 0;
 			}
@@ -412,21 +428,6 @@ public class L1Attack {
 			_hitRate = 100; // キーリンクの命中率は100%
 		}
 
-		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
-			return false; // 無法擊中。原本：_hitRate = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
-			return false; // 無法擊中。原本：_hitRate = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
-			return false; // 無法擊中。原本：_hitRate = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
-			return false; // 無法擊中。原本：_hitRate = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
-			return false; // 無法擊中。原本：_hitRate = 0;
-		}
 		int rnd = RandomArrayList.getInc(100, 1);
 		if (_weaponType == 20 && _hitRate > rnd) { // 弓の場合、ヒットした場合でもERでの回避を再度行う。
 			return calcErEvasion();
@@ -437,6 +438,43 @@ public class L1Attack {
 
 	// ●●●● プレイヤー から ＮＰＣ への命中判定 ●●●●
 	private boolean calcPcNpcHit() {
+		// 無法擊中 直接回傳false
+		int npcId = _targetNpc.getNpcTemplate().get_npcId();
+		if (!_pc.hasSkillEffect(STATUS_HOLY_WATER)) { // 恨みに滿ちたソルジャー＆ソルジャーゴースト
+			if (npcId >= 45912 && npcId <= 45915) {
+				return false; // 無法擊中。原本：_hitRate = 0;
+			}
+		}
+		if (!_pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) { // 恨みに滿ちたハメル將軍
+			if (npcId == 45916)
+				return false; // 無法擊中。原本：_hitRate = 0;
+		}
+		if (!_pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) { // 咒われた巫女サエル
+			if (npcId == 45941)
+				return false; // 無法擊中。原本：_hitRate = 0;
+		}
+		if (!_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
+			if (npcId == 45752 || npcId == 45753) // バルログ(變身前) バルログ(變身後)
+				return false; // 無法擊中。原本：_hitRate = 0;
+		}
+		if (!_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+			//	ヤヒ(變身前)	  ヤヒ(變身後)	    混沌			  死亡			    墮落
+			if (npcId == 45675 || npcId == 81082 || npcId == 45625 || npcId == 45674 || npcId == 45685)
+				return false; // 無法擊中。原本：_hitRate = 0;
+		}
+
+		if (npcId >= 46068 && npcId <= 46091 && _pc.getTempCharGfx() == 6035) { // 欲望の洞窟側mob
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
+		if (npcId >= 46092 && npcId <= 46106 && _pc.getTempCharGfx() == 6034) { // 影の神殿側mob
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
+
+		// BAO提供 艾爾摩索夏依卡將軍的冤魂
+		if (npcId == 46163 && _weaponId != 274) {
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
+
 		// ＮＰＣへの命中率
 		// ＝（PCのLv＋クラス補正＋STR補正＋DEX補正＋武器補正＋DAIの枚數/2＋魔法補正）×5－{NPCのAC×（-5）}
 		_hitRate = _pc.getLevel();
@@ -505,54 +543,19 @@ public class L1Attack {
 		if (attackerDice <= fumble) {
 			return false; // 無法擊中。原本：_hitRate = 0;
 		} else if (attackerDice >= critical) {
-			_hitRate = 100;
+			return true; // 確定擊中。原本：_hitRate = 100;
 		} else {
 			if (attackerDice > defenderDice) {
-				_hitRate = 100;
+				return true; // 確定擊中。原本：_hitRate = 100;
 			} else if (attackerDice <= defenderDice) {
 				return false; // 無法擊中。原本：_hitRate = 0;
 			}
 		}
 
 		if (_weaponType2 == 17) {
-			_hitRate = 100; // キーリンクの命中率は100%
+			return true; // 確定擊中。原本：_hitRate = 100; // キーリンクの命中率は100%
 		}
 
-		int npcId = _targetNpc.getNpcTemplate().get_npcId();
-		if (!_pc.hasSkillEffect(STATUS_HOLY_WATER)) { // 恨みに滿ちたソルジャー＆ソルジャーゴースト
-			if (npcId >= 45912 && npcId <= 45915) {
-				return false; // 無法擊中。原本：_hitRate = 0;
-			}
-		}
-		if (!_pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) { // 恨みに滿ちたハメル將軍
-			if (npcId == 45916)
-				return false; // 無法擊中。原本：_hitRate = 0;
-		}
-		if (!_pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) { // 咒われた巫女サエル
-			if (npcId == 45941)
-				return false; // 無法擊中。原本：_hitRate = 0;
-		}
-		if (!_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
-			if (npcId == 45752 || npcId == 45753) // バルログ(變身前) バルログ(變身後)
-				return false; // 無法擊中。原本：_hitRate = 0;
-		}
-		if (!_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
-			//	ヤヒ(變身前)	  ヤヒ(變身後)	    混沌			  死亡			    墮落
-			if (npcId == 45675 || npcId == 81082 || npcId == 45625 || npcId == 45674 || npcId == 45685)
-				return false; // 無法擊中。原本：_hitRate = 0;
-		}
-
-		if (npcId >= 46068 && npcId <= 46091 && _pc.getTempCharGfx() == 6035) { // 欲望の洞窟側mob
-			return false; // 無法擊中。原本：_hitRate = 0;
-		}
-		if (npcId >= 46092 && npcId <= 46106 && _pc.getTempCharGfx() == 6034) { // 影の神殿側mob
-			return false; // 無法擊中。原本：_hitRate = 0;
-		}
-
-		// BAO提供 艾爾摩索夏依卡將軍的冤魂
-		if (npcId == 46163 && _weaponId != 274) {
-			return false; // 無法擊中。原本：_hitRate = 0;
-		}
 
 		// add end
 		int rnd = RandomArrayList.getInc(100, 1);
@@ -562,6 +565,23 @@ public class L1Attack {
 
 	// ●●●● ＮＰＣ から プレイヤー への命中判定 ●●●●
 	private boolean calcNpcPcHit() {
+		// 不可能命中 直接回傳出去
+		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
+		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
+		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
+		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
+			return false; // 無法擊中。原本：_hitRate = 0;
+		}
+
 		_hitRate += _npc.getLevel();
 
 		if (_npc instanceof L1PetInstance) { // ペットの武器による追加命中
@@ -600,29 +620,13 @@ public class L1Attack {
 		if (attackerDice <= fumble) {
 			return false; // 無法擊中。原本：_hitRate = 0;
 		} else if (attackerDice >= critical) {
-			_hitRate = 100;
+			return true; // 確定擊中。原本：_hitRate = 100;
 		} else {
 			if (attackerDice > defenderDice) {
-				_hitRate = 100;
+				return true; // 確定擊中。原本：_hitRate = 100;
 			} else if (attackerDice <= defenderDice) {
-				_hitRate = 0;
+				return false; // 無法擊中。原本：_hitRate = 0;
 			}
-		}
-
-		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
-			return false; // 無法擊中。原本：_hitRate = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
-			return false; // 無法擊中。原本：_hitRate = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
-			return false; // 無法擊中。原本：_hitRate = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
-			return false; // 無法擊中。原本：_hitRate = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
-			return false; // 無法擊中。原本：_hitRate = 0;
 		}
 
 		int rnd = RandomArrayList.getInc(100, 1);
@@ -674,10 +678,10 @@ public class L1Attack {
 		if (attackerDice <= fumble) {
 			return false; // 無法擊中。原本：_hitRate = 0;
 		} else if (attackerDice >= critical) {
-			_hitRate = 100;
+			return true; // 確定擊中。原本：_hitRate = 100;
 		} else {
 			if (attackerDice > defenderDice) {
-				_hitRate = 100;
+				return true; // 確定擊中。原本：_hitRate = 100;
 			} else if (attackerDice <= defenderDice) {
 				return false; // 無法擊中。原本：_hitRate = 0;
 			}

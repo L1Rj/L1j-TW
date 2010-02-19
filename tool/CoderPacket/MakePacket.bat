@@ -62,10 +62,12 @@ set Language_Action=Actions¡G
 goto Start
 
 :Select1
+title Building File about L1J-TW_ver.%Var%_FP.7z
 @%Disk%:\"Program Files"\7-Zip\7z.exe a -tzip ..\..\..\L1J-TW_ver.%Var%_FP.7z ..\..\* -r -x@Fullpack\Exclusion.lst -mx=9
 goto exit
 
 :Select2
+title Building File about  L1J-TW_ver.%Var%_NP.7z
 @%Disk%:\"Program Files"\7-Zip\7z.exe a -tzip ..\..\..\L1J-TW_ver.%Var%_NP.7z -r @normalpack\Pack.lst -x@normalpack\Exclusion.lst -mx=9
 goto exit
 
