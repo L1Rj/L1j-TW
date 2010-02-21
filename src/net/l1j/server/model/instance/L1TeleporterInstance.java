@@ -92,17 +92,21 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				break;
 				case 70853: // フェアリープリンセス
 					if (player.isElf()) { // エルフ
-						if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1) {
-							if (!player.getInventory().checkItem(40592)) { // 咒われた精靈書
-								if (RandomArrayList.getInc(100, 1) < 50) { // 50%でダークマールダンジョン
-									htmlid = "fairyp2";
-								} else { // ダークエルフダンジョン
-									htmlid = "fairyp1";
-								}
-							}
-						}
-					}
-				break;
+                                            if (!player.isElf()){
+                                                htmlid = "";
+                                            } else if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1) {
+                                                if (!player.getInventory().checkItem(40592)) { // 咒われた精靈書
+                                                    if (RandomArrayList.getInc(100, 1) < 50) { // 50%でダークマールダンジョン
+                                                        htmlid = "fairyp2";
+                                                    } else { // ダークエルフダンジョン
+                                                        htmlid = "fairyp1";
+                                                    }
+                                                }
+                                            } else if (player.isElf()) {
+                                                htmlid = "fairyp3";
+                                            }
+                                        }
+                                        break;
 				case 50031: // セピア
 					if (player.isElf()) { // エルフ
 						if (quest.get_step(L1Quest.QUEST_LEVEL45) == 2) {

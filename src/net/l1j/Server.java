@@ -62,8 +62,6 @@ public class Server {
 	/** 設定記錄檔案的資料夾 */
 	private static final String LOG_PROP = "./config/log.properties";
 
-	private static ServerManager serverManager = ServerManager.getInstance();
-
 	/**
 	 * 啟動伺服器
 	 * 
@@ -73,6 +71,7 @@ public class Server {
 	public static void main(String[] args) throws Exception {
 		if (args.length > 0) {
 			int index = 0;
+			ServerManager serverManager = ServerManager.getInstance();
 			while (index < args.length) {
 				if (args[index].equalsIgnoreCase("-gui") || args[index].equalsIgnoreCase("-g")) {
 					serverManager.setPrintStream();

@@ -20,7 +20,6 @@ package net.l1j.server.clientpackets;
 
 import java.util.logging.Logger;
 
-import net.l1j.gui.ServerManager;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_PacketBox;
@@ -41,12 +40,6 @@ public class C_NewCharSelect extends ClientBasePacket {
 				return;
 			}
 			ClientThread.quitGame(pc);
-
-			if (pc.getAccessLevel() == 200) {
-				ServerManager.listModelPlayer.removeElement("[GM] " + pc.getName());
-			} else {
-				ServerManager.listModelPlayer.removeElement(pc.getName());
-			}
 
 			synchronized (pc) {
 				pc.logout();
