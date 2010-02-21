@@ -48,28 +48,6 @@ public class L1PcInventory extends L1Inventory {
 
 	private static Logger _log = Logger.getLogger(L1PcInventory.class.getName());
 
-	// 飾品強化卷軸
-	public static final int COL_ALL = 0;//所有狀態儲存
-
-	public static final int COL_FIREMR = 137;
-
-	public static final int COL_WATERMR = 136;
-
-	public static final int COL_WINDMR = 135;
-
-	public static final int COL_EARTHMR = 134;
-
-	public static final int COL_ADDSP = 133;
-
-	public static final int COL_ADDHP = 132;
-
-	public static final int COL_ADDMP = 131;
-
-	public static final int COL_HPR = 130;
-
-	public static final int COL_MPR = 129;
-	//end add
-
 	private static final int MAX_SIZE = 180;
 
 	private final L1PcInstance _owner; // 所有者プレイヤー
@@ -296,61 +274,12 @@ public class L1PcInventory extends L1Inventory {
 			_owner.sendPackets(new S_ItemStatus(item));
 			column -= COL_DURABILITY;
 		}
-		// 飾品強化卷軸
-		if (column >= COL_FIREMR) {
-			_owner.sendPackets(new S_ItemStatus(item));
-			column -= COL_FIREMR;
-		}
-		if (column >= COL_WATERMR) {
-			_owner.sendPackets(new S_ItemStatus(item));
-			column -= COL_WATERMR;
-		}
-		if (column >= COL_EARTHMR) {
-			_owner.sendPackets(new S_ItemStatus(item));
-			column -= COL_EARTHMR;
-		}
-		if (column >= COL_WINDMR) {
-			_owner.sendPackets(new S_ItemStatus(item));
-			column -= COL_WINDMR;
-		}
-		if (column >= COL_ADDSP) {
-			_owner.sendPackets(new S_ItemStatus(item));
-			column -= COL_ADDSP;
-		}
-		if (column >= COL_ADDHP) {
-			_owner.sendPackets(new S_ItemStatus(item));
-			column -= COL_ADDHP;
-		}
-		if (column >= COL_ADDMP) {
-			_owner.sendPackets(new S_ItemStatus(item));
-			column -= COL_ADDMP;
-		}
-		if (column >= COL_HPR) {
-			_owner.sendPackets(new S_ItemStatus(item));
-			column -= COL_HPR;
-		}
-		if (column >= COL_MPR) {
-			_owner.sendPackets(new S_ItemStatus(item));
-			column -= COL_MPR;
-		}
-		//end add
 	}
 
 	//waja add
 	//更新所有狀態
 	public void updateAll(L1ItemInstance item, CharactersItemStorage storage) {
 		try {
-//			storage.updateItemAttribute(item); //屬性強化卷軸
-//			storage.updateItemAttributeLevel(item); //屬性強化捲軸
-			storage.updateFireMr(item);
-			storage.updateWaterMr(item);
-			storage.updateEarthMr(item);
-			storage.updateWindMr(item);
-			storage.updateaddSp(item);;
-			storage.updateaddHp(item);
-			storage.updateaddMp(item);
-			storage.updateHpr(item);
-			storage.updateMpr(item);
 //			storage.updateGetHp(item);//吸血武器
 //			storage.updateGetMp(item);//吸魔武器
 			storage.updateItemBless(item);
@@ -430,44 +359,6 @@ public class L1PcInventory extends L1Inventory {
 				storage.updateItemDurability(item);
 				column -= COL_DURABILITY;
 			}
-			// 飾品強化卷軸
-			if (column >= COL_FIREMR) {
-				storage.updateFireMr(item);
-				column -= COL_FIREMR;
-			}
-			if (column >= COL_WATERMR) {
-				storage.updateWaterMr(item);
-				column -= COL_WATERMR;
-			}
-			if (column >= COL_EARTHMR) {
-				storage.updateEarthMr(item);
-				column -= COL_EARTHMR;
-			}
-			if (column >= COL_WINDMR) {
-				storage.updateWindMr(item);
-				column -= COL_WINDMR;
-			}
-			if (column >= COL_ADDSP) {
-				storage.updateaddSp(item);;
-				column -= COL_ADDSP;
-			}
-			if (column >= COL_ADDHP) {
-				storage.updateaddHp(item);
-				column -= COL_ADDHP;
-			}
-			if (column >= COL_ADDMP) {
-				storage.updateaddMp(item);
-				column -= COL_ADDMP;
-			}
-			if (column >= COL_HPR) {
-				storage.updateHpr(item);
-				column -= COL_HPR;
-			}
-			if (column >= COL_MPR) {
-				storage.updateMpr(item);
-				column -= COL_MPR;
-			}
-			//add end
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
@@ -725,10 +616,7 @@ public class L1PcInventory extends L1Inventory {
 		for (Object itemObject : _items) {
 			L1ItemInstance item = (L1ItemInstance) itemObject;
 			if (item.isEquipped()) {
-				// 飾品強化卷軸
-//				hpr += item.getItem().get_addhpr();
-				hpr += item.getItem().get_addhpr() + item.getHpr();
-				//end add
+				hpr += item.getItem().get_addhpr() + item.getAddHpr(); //XXX
 			}
 		}
 		return hpr;
@@ -740,10 +628,7 @@ public class L1PcInventory extends L1Inventory {
 		for (Object itemObject : _items) {
 			L1ItemInstance item = (L1ItemInstance) itemObject;
 			if (item.isEquipped()) {
-				// 飾品強化卷軸
-//				mpr += item.getItem().get_addmpr();
-				mpr += item.getItem().get_addmpr() + item.getMpr();
-				//add end
+				mpr += item.getItem().get_addmpr() + item.getAddMpr(); //XXX;
 			}
 		}
 		return mpr;

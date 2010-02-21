@@ -29,6 +29,7 @@ import javolution.util.FastTable;
 
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.datatables.ItemTable;
+import net.l1j.server.items.actions.Enchant;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.storage.CharactersItemStorage;
 import net.l1j.server.templates.L1Item;
@@ -73,16 +74,10 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 				item.setBless(rs.getInt("bless"));
 				item.setAttrEnchantKind(rs.getInt("attr_enchant_kind"));
 				item.setAttrEnchantLevel(rs.getInt("attr_enchant_level"));
-				item.setFireMr(rs.getInt("firemr"));// 飾品強化卷軸
-				item.setWaterMr(rs.getInt("watermr"));// 飾品強化卷軸
-				item.setEarthMr(rs.getInt("earthmr"));// 飾品強化卷軸
-				item.setWindMr(rs.getInt("windmr"));// 飾品強化卷軸
-				item.setaddSp(rs.getInt("addsp"));// 飾品強化卷軸
-				item.setaddHp(rs.getInt("addhp"));// 飾品強化卷軸
-				item.setaddMp(rs.getInt("addmp"));// 飾品強化卷軸
-				item.setHpr(rs.getInt("hpr"));// 飾品強化卷軸
-				item.setMpr(rs.getInt("mpr"));// 飾品強化卷軸
 				item.getLastStatus().updateAll();
+				// XXX 飾品強化
+				item = Enchant.addDecorationAbility(item);
+				// END
 				items.add(item);
 			}
 		} catch (SQLException e) {
@@ -99,7 +94,7 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("INSERT INTO character_items SET id = ?, item_id = ?, char_id = ?, item_name = ?, count = ?, is_equipped = 0, enchantlvl = ?, is_id = ?, durability = ?, charge_count = ?, remaining_time = ?, last_used = ?, bless = ?, attr_enchant_kind = ?, attr_enchant_level = ?, firemr = ?, watermr = ?, earthmr = ?, windmr = ?, addsp = ?, addhp = ?, addmp = ?, hpr = ?, mpr = ?"); //waja change
+			pstm = con.prepareStatement("INSERT INTO character_items SET id = ?, item_id = ?, char_id = ?, item_name = ?, count = ?, is_equipped = 0, enchantlvl = ?, is_id = ?, durability = ?, charge_count = ?, remaining_time = ?, last_used = ?, bless = ?, attr_enchant_kind = ?, attr_enchant_level = ?");
 			pstm.setInt(1, item.getId());
 			pstm.setInt(2, item.getItem().getItemId());
 			pstm.setInt(3, objId);
@@ -114,15 +109,6 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 			pstm.setInt(12, item.getBless());
 			pstm.setInt(13, item.getAttrEnchantKind());
 			pstm.setInt(14, item.getAttrEnchantLevel());
-			pstm.setInt(15, item.getFireMr());// 飾品強化卷軸
-			pstm.setInt(16, item.getWaterMr());// 飾品強化卷軸
-			pstm.setInt(17, item.getEarthMr());// 飾品強化卷軸
-			pstm.setInt(18, item.getWindMr());// 飾品強化卷軸
-			pstm.setInt(19, item.getaddSp());// 飾品強化卷軸
-			pstm.setInt(20, item.getaddHp());// 飾品強化卷軸
-			pstm.setInt(21, item.getaddMp());// 飾品強化卷軸
-			pstm.setInt(22, item.getHpr());// 飾品強化卷軸
-			pstm.setInt(23, item.getMpr());// 飾品強化卷軸
 			pstm.execute();
 
 		} catch (SQLException e) {
@@ -219,62 +205,6 @@ public class MySqlCharactersItemStorage extends CharactersItemStorage {
 		executeUpdate(item.getId(), "UPDATE character_items SET attr_enchant_level = ? WHERE id = ?", item.getAttrEnchantLevel());
 		item.getLastStatus().updateAttrEnchantLevel();
 	}
-
-	//waja add 飾品強化卷軸
-	@Override
-	public void updateFireMr(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(), "UPDATE character_items SET firemr = ? WHERE id = ?", item.getFireMr());
-		item.getLastStatus().updateFireMr();
-	}
-
-	@Override
-	public void updateWaterMr(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(), "UPDATE character_items SET watermr = ? WHERE id = ?", item.getWaterMr());
-		item.getLastStatus().updateWaterMr();
-	}
-
-	@Override
-	public void updateEarthMr(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(), "UPDATE character_items SET earthmr = ? WHERE id = ?", item.getEarthMr());
-		item.getLastStatus().updateEarthMr();
-	}
-
-	@Override
-	public void updateWindMr(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(), "UPDATE character_items SET windmr = ? WHERE id = ?", item.getWindMr());
-		item.getLastStatus().updateWindMr();
-	}
-
-	@Override
-	public void updateaddSp(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(), "UPDATE character_items SET addsp = ? WHERE id = ?", item.getaddSp());
-		item.getLastStatus().updateSp();
-	}
-
-	@Override
-	public void updateaddHp(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(), "UPDATE character_items SET addhp = ? WHERE id = ?", item.getaddHp());
-		item.getLastStatus().updateaddHp();
-	}
-
-	@Override
-	public void updateaddMp(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(), "UPDATE character_items SET addmp = ? WHERE id = ?", item.getaddMp());
-		item.getLastStatus().updateaddMp();
-	}
-
-	@Override
-	public void updateHpr(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(), "UPDATE character_items SET hpr = ? WHERE id = ?", item.getHpr());
-		item.getLastStatus().updateHpr();
-	}
-
-	@Override
-	public void updateMpr(L1ItemInstance item) throws Exception {
-		executeUpdate(item.getId(), "UPDATE character_items SET mpr = ? WHERE id = ?", item.getMpr());
-		item.getLastStatus().updateMpr();
-	}
-	//add end
 
 	@Override
 	public int getItemCount(int objId) throws Exception {

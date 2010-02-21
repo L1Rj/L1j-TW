@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.datatables.ItemTable;
+import net.l1j.server.items.actions.Enchant;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1Item;
@@ -69,15 +70,9 @@ public class L1DwarfForElfInventory extends L1Inventory {
 				item.setBless(rs.getInt("bless"));
 				item.setAttrEnchantKind(rs.getInt("attr_enchant_kind"));
 				item.setAttrEnchantLevel(rs.getInt("attr_enchant_level"));
-				item.setFireMr(rs.getInt("firemr"));// 飾品強化卷軸
-				item.setWaterMr(rs.getInt("watermr"));// 飾品強化卷軸
-				item.setEarthMr(rs.getInt("earthmr"));// 飾品強化卷軸
-				item.setWindMr(rs.getInt("windmr"));// 飾品強化卷軸
-				item.setaddSp(rs.getInt("addsp"));// 飾品強化卷軸
-				item.setaddHp(rs.getInt("addhp"));// 飾品強化卷軸
-				item.setaddMp(rs.getInt("addmp"));// 飾品強化卷軸
-				item.setHpr(rs.getInt("hpr"));// 飾品強化卷軸
-				item.setMpr(rs.getInt("mpr"));// 飾品強化卷軸
+				// XXX 飾品強化
+				item = Enchant.addDecorationAbility(item);
+				// END
 
 				_items.add(item);
 				L1World.getInstance().storeObject(item);
@@ -97,7 +92,7 @@ public class L1DwarfForElfInventory extends L1Inventory {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("INSERT INTO character_elf_warehouse SET id = ?, account_name = ?, item_id = ?, item_name = ?, count = ?, is_equipped=0, enchantlvl = ?, is_id = ?, durability = ?, charge_count = ?, remaining_time = ?, last_used = ?, bless = ?, attr_enchant_kind = ?, attr_enchant_level = ?, firemr = ?, watermr = ?, earthmr = ?, windmr = ?, addsp = ?, addhp = ?, addmp = ?, hpr = ?, mpr = ?"); //waja change
+			pstm = con.prepareStatement("INSERT INTO character_elf_warehouse SET id = ?, account_name = ?, item_id = ?, item_name = ?, count = ?, is_equipped=0, enchantlvl = ?, is_id = ?, durability = ?, charge_count = ?, remaining_time = ?, last_used = ?, bless = ?, attr_enchant_kind = ?, attr_enchant_level = ?"); 
 			pstm.setInt(1, item.getId());
 			pstm.setString(2, _owner.getAccountName());
 			pstm.setInt(3, item.getItemId());
@@ -112,15 +107,6 @@ public class L1DwarfForElfInventory extends L1Inventory {
 			pstm.setInt(12, item.getBless());
 			pstm.setInt(13, item.getAttrEnchantKind());
 			pstm.setInt(14, item.getAttrEnchantLevel());
-			pstm.setInt(15, item.getFireMr());// 飾品強化卷軸
-			pstm.setInt(16, item.getWaterMr());// 飾品強化卷軸
-			pstm.setInt(17, item.getEarthMr());// 飾品強化卷軸
-			pstm.setInt(18, item.getWindMr());// 飾品強化卷軸
-			pstm.setInt(19, item.getaddSp());// 飾品強化卷軸
-			pstm.setInt(20, item.getaddHp());// 飾品強化卷軸
-			pstm.setInt(21, item.getaddMp());// 飾品強化卷軸
-			pstm.setInt(22, item.getHpr());// 飾品強化卷軸
-			pstm.setInt(23, item.getMpr());// 飾品強化卷軸
 
 			pstm.execute();
 		} catch (SQLException e) {

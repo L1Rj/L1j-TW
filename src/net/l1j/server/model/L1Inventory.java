@@ -31,6 +31,7 @@ import net.l1j.server.datatables.FurnitureSpawnTable;
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.datatables.LetterTable;
 import net.l1j.server.datatables.PetTable;
+import net.l1j.server.items.actions.Enchant;
 import net.l1j.server.model.instance.L1FurnitureInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.templates.L1Item;
@@ -193,6 +194,9 @@ public class L1Inventory extends L1Object {
 			item.setRemainingTime(item.getItem().getMaxUseTime());
 		}
 		item.setBless(item.getItem().getBless());
+		// XXX 飾品強化
+		item = Enchant.addDecorationAbility(item);
+		// END
 		_items.add(item);
 		insertItem(item);
 		return item;

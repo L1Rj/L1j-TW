@@ -237,6 +237,7 @@ public final class Config {
 	public static int ENCHANT_CHANCE_WEAPON;
 	public static int ENCHANT_CHANCE_ARMOR;
 	public static int ATTR_ENCHANT_CHANCE;
+	public static int DECORTION_ENCGANT_RATE;
 	public static double RATE_WEIGHT_LIMIT;
 	public static double RATE_WEIGHT_LIMIT_PET;
 	public static double RATE_SHOP_SELLING_PRICE;
@@ -542,6 +543,7 @@ public final class Config {
 			ENCHANT_CHANCE_WEAPON = Integer.parseInt(rateSettings.getProperty("EnchantChanceWeapon", "68"));
 			ENCHANT_CHANCE_ARMOR = Integer.parseInt(rateSettings.getProperty("EnchantChanceArmor", "52"));
 			ATTR_ENCHANT_CHANCE = Integer.parseInt(rateSettings.getProperty("AttrEnchantChance", "10"));
+			DECORTION_ENCGANT_RATE = Integer.parseInt(rateSettings.getProperty("DecorationEnchantRate", "10"));
 			RATE_WEIGHT_LIMIT = Double.parseDouble(rateSettings.getProperty("RateWeightLimit", "1"));
 			RATE_WEIGHT_LIMIT_PET = Double.parseDouble(rateSettings.getProperty("RateWeightLimitforPet", "1"));
 			RATE_SHOP_SELLING_PRICE = Double.parseDouble(rateSettings.getProperty("RateShopSellingPrice", "1.0"));
@@ -863,6 +865,8 @@ public final class Config {
 			ENCHANT_CHANCE_ARMOR = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("AttrEnchantChance")) {
 			ATTR_ENCHANT_CHANCE = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("DecorationEnchantRate")) {
+			DECORTION_ENCGANT_RATE = Integer.parseInt(pValue);	
 		} else if (pName.equalsIgnoreCase("RateWeightLimit")) {
 			RATE_WEIGHT_LIMIT = Byte.parseByte(pValue);
 		} else if (pName.equalsIgnoreCase("RateWeightLimitforPet")) {

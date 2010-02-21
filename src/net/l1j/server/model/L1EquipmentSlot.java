@@ -75,34 +75,26 @@ public class L1EquipmentSlot {
 	private void setArmor(L1ItemInstance armor) {
 		L1Item item = armor.getItem();
 		int itemId = armor.getItem().getItemId();
-
-		// 20090807 missu0524 提供 飾品ac移除
-//		_owner.addAc(item.get_ac() - armor.getEnchantLevel() - armor.getAcByMagic());
-
-		if (armor.getItem().getType() == 8 || armor.getItem().getType() == 9 || armor.getItem().getType() == 10 || armor.getItem().getType() == 12) {
-			_owner.addAc(item.get_ac() - armor.getAcByMagic());
-		} else {
-			_owner.addAc(item.get_ac() - armor.getEnchantLevel() - armor.getAcByMagic());
+		//XXX 飾品強化值防禦無效
+		int EnchantAc = armor.getEnchantLevel();
+		if (item.getType() >= 8 && item.getType() <= 12){
+			EnchantAc = 0;
 		}
-		// add end
+		/*_owner.addAc(item.get_ac() - armor.getEnchantLevel() - armor
+				.getAcByMagic());*/
+		_owner.addAc(item.get_ac() - EnchantAc - armor
+				.getAcByMagic());
+		//end
 		_owner.addDamageReductionByArmor(item.getDamageReduction());
 		_owner.addWeightReduction(item.getWeightReduction());
 		_owner.addHitModifierByArmor(item.getHitModifierByArmor());
 		_owner.addDmgModifierByArmor(item.getDmgModifierByArmor());
 		_owner.addBowHitModifierByArmor(item.getBowHitModifierByArmor());
 		_owner.addBowDmgModifierByArmor(item.getBowDmgModifierByArmor());
-		//add & change 飾品強化卷軸
-/*
-		_owner.addEarth(item.get_defense_earth());
-		_owner.addWind(item.get_defense_wind());
-		_owner.addWater(item.get_defense_water());
-		_owner.addFire(item.get_defense_fire());
-*/	
-		_owner.addEarth(item.get_defense_earth() + armor.getEarthMr());
-		_owner.addWind(item.get_defense_wind() + armor.getWindMr());
-		_owner.addWater(item.get_defense_water() + armor.getWaterMr());
-		_owner.addFire(item.get_defense_fire() + armor.getFireMr());
-		//add end
+		_owner.addEarth(item.get_defense_earth() + armor.getEarthDefense()); //XXX
+		_owner.addWind(item.get_defense_wind() + armor.getWindDefense());
+		_owner.addWater(item.get_defense_water() + armor.getWaterDefense());
+		_owner.addFire(item.get_defense_fire() + armor.getFireDefense());
 		_owner.addRegistStun(item.get_regist_stun());
 		_owner.addRegistStone(item.get_regist_stone());
 		_owner.addRegistSleep(item.get_regist_sleep());
@@ -171,34 +163,26 @@ public class L1EquipmentSlot {
 		L1Item item = armor.getItem();
 		int itemId = armor.getItem().getItemId();
 
-		// 20090807 missu0524 提供 飾品ac移除
-//		_owner.addAc(-(item.get_ac() - armor.getEnchantLevel() - armor.getAcByMagic()));
-
-		if (armor.getItem().getType() == 8 || armor.getItem().getType() == 9 || armor.getItem().getType() == 10 || armor.getItem().getType() == 12) {
-			_owner.addAc(-(item.get_ac() - armor.getAcByMagic()));
-		} else {
-			_owner.addAc(-(item.get_ac() - armor.getEnchantLevel() - armor.getAcByMagic()));
+		//XXX 飾品強化值防禦無效
+		int EnchantAc = armor.getEnchantLevel();
+		if (item.getType() >= 8 && item.getType() <= 12){
+			EnchantAc = 0;
 		}
-		// add end
-
+		/*_owner.addAc(-(item.get_ac() - armor.getEnchantLevel() - armor
+				.getAcByMagic()));*/
+		_owner.addAc(-(item.get_ac() - EnchantAc - armor
+				.getAcByMagic()));
+		//end
 		_owner.addDamageReductionByArmor(-item.getDamageReduction());
 		_owner.addWeightReduction(-item.getWeightReduction());
 		_owner.addHitModifierByArmor(-item.getHitModifierByArmor());
 		_owner.addDmgModifierByArmor(-item.getDmgModifierByArmor());
 		_owner.addBowHitModifierByArmor(-item.getBowHitModifierByArmor());
 		_owner.addBowDmgModifierByArmor(-item.getBowDmgModifierByArmor());
-		//add & chang 飾品強化卷軸
-/*
-		_owner.addEarth(-item.get_defense_earth());
-		_owner.addWind(-item.get_defense_wind());
-		_owner.addWater(-item.get_defense_water());
-		_owner.addFire(-item.get_defense_fire());
-*/		
-		_owner.addEarth(-item.get_defense_earth() - armor.getEarthMr());
-		_owner.addWind(-item.get_defense_wind() - armor.getWindMr());
-		_owner.addWater(-item.get_defense_water() - armor.getWaterMr());
-		_owner.addFire(-item.get_defense_fire() - armor.getFireMr());
-		//add end
+		_owner.addEarth(-item.get_defense_earth() - armor.getEarthDefense()); //XXX
+		_owner.addWind(-item.get_defense_wind()- armor.getWindDefense());
+		_owner.addWater(-item.get_defense_water()- armor.getWaterDefense());
+		_owner.addFire(-item.get_defense_fire()- armor.getFireDefense());
 		_owner.addRegistStun(-item.get_regist_stun());
 		_owner.addRegistStone(-item.get_regist_stone());
 		_owner.addRegistSleep(-item.get_regist_sleep());
@@ -229,22 +213,13 @@ public class L1EquipmentSlot {
 		if (item.getType2() == 0) {
 			return;
 		}
-		//add & chnage 飾品強化卷軸
-/*
-		if (item.get_addhp() != 0) {
-			_owner.addMaxHp(item.get_addhp());
+
+		if (item.get_addhp() != 0 || equipment.getAddHp() !=0) {
+			_owner.addMaxHp(item.get_addhp() + equipment.getAddHp()); //XXX
 		}
 		if (item.get_addmp() != 0) {
-			_owner.addMaxMp(item.get_addmp());
+			_owner.addMaxMp(item.get_addmp() + equipment.getAddMp());
 		}
-*/
-		if (item.get_addhp() != 0 || equipment.getaddHp() != 0) {
-			_owner.addMaxHp(item.get_addhp() + equipment.getaddHp());
-		}
-		if (item.get_addmp() != 0 || equipment.getaddMp() != 0) {
-			_owner.addMaxMp(item.get_addmp() + equipment.getaddMp());
-		}
-		//add end
 		_owner.addStr(item.get_addstr());
 		_owner.addCon(item.get_addcon());
 		_owner.addDex(item.get_adddex());
@@ -264,18 +239,12 @@ public class L1EquipmentSlot {
 			_owner.addMr(addMr);
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
-/*
-		if (item.get_addsp() != 0) {
-			_owner.addSp(item.get_addsp());
+		if (item.get_addsp() != 0
+				 || equipment.getAddSp() != 0) { //XXX
+			_owner.addSp(item.get_addsp()
+					+ equipment.getAddSp());
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
-*/
-		//add 飾品強化卷軸
-		if (item.get_addsp() != 0 || equipment.getaddSp() != 0) {
-			_owner.addSp(item.get_addsp() + equipment.getaddSp());
-			_owner.sendPackets(new S_SPMR(_owner));
-		}
-		//add end		
 
 		if (item.isHasteItem()) {
 			_owner.addHasteItemEquipped(1);
@@ -310,22 +279,12 @@ public class L1EquipmentSlot {
 			return;
 		}
 
-		//add & change 飾品強化卷軸
-/*
-		if (item.get_addhp() != 0) {
-			_owner.addMaxHp(-item.get_addhp());
+		if (item.get_addhp() != 0 || equipment.getAddHp() !=0) {
+			_owner.addMaxHp(-item.get_addhp() - equipment.getAddHp()); //XXX
 		}
 		if (item.get_addmp() != 0) {
-			_owner.addMaxMp(-item.get_addmp());
+			_owner.addMaxMp(-item.get_addmp() - equipment.getAddMp());
 		}
-*/
-		if (item.get_addhp() != 0 || equipment.getaddHp() != 0) {
-			_owner.addMaxHp(-(item.get_addhp() + equipment.getaddHp()));
-		}
-		if (item.get_addmp() != 0 || equipment.getaddMp() != 0) {
-			_owner.addMaxMp(-(item.get_addmp() + equipment.getaddMp()));
-		}
-		//add end
 		_owner.addStr((byte) -item.get_addstr());
 		_owner.addCon((byte) -item.get_addcon());
 		_owner.addDex((byte) -item.get_adddex());
@@ -345,15 +304,10 @@ public class L1EquipmentSlot {
 			_owner.addMr(addMr);
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
-/*
-		if (item.get_addsp() != 0) {
-			_owner.addSp(-item.get_addsp());
-			_owner.sendPackets(new S_SPMR(_owner));
-		}
-*/
-		//飾品強化卷軸
-		if (item.get_addsp() != 0 || equipment.getaddSp() != 0) {
-			_owner.addSp(-(item.get_addsp() + equipment.getaddSp()));
+		if (item.get_addsp() != 0
+				|| equipment.getAddSp() != 0) { // XXX
+			_owner.addSp(-item.get_addsp()
+					- equipment.getAddSp());
 			_owner.sendPackets(new S_SPMR(_owner));
 		}
 

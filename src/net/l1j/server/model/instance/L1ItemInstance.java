@@ -276,6 +276,91 @@ public class L1ItemInstance extends L1Object {
 			return Math.max(getCount() * getItem().getWeight() / 1000, 1);
 		}
 	}
+	
+	// XXX 飾品強化
+	private int _fireDefense = 0;
+	public void setFireDefense(int i){
+		_fireDefense = i;
+	}
+	public int getFireDefense(){
+		return _fireDefense;
+	}
+
+	private int _waterDefense = 0;
+	public void setWaterDefense(int i){
+		_waterDefense = i;
+	}
+	public int getWaterDefense(){
+		return _waterDefense;
+	}
+
+	private int _windDefense = 0;
+
+	public void setWindDefense(int i){
+		_windDefense = i;
+	}
+	public int getWindDefense(){
+		return _windDefense;
+	}
+
+	private int _earthDefense = 0;
+
+	public void setEarthDefense(int i){
+		_earthDefense = i;
+	}
+	public int getEarthDefense(){
+		return _earthDefense;
+	}
+
+	public void setAllElementDef(int i){
+		setFireDefense(i);
+		setWaterDefense(i);
+		setWindDefense(i);
+		setEarthDefense(i);
+	}
+
+	private int _addHp = 0;
+
+	public void setAddHp(int i){
+		_addHp = i;
+	}
+	public int getAddHp(){
+		return _addHp;
+	}
+
+	private int _addMp = 0;
+
+	public void setAddMp(int i){
+		_addMp = i;
+	}
+	public int getAddMp(){
+		return _addMp;
+	}
+
+	private int _addHpr = 0;
+	public void setAddHpr(int i){
+		_addHpr = i;
+	}
+	public int getAddHpr(){
+		return _addHpr;
+	}
+
+	private int _addMpr = 0;
+	public void setAddMpr(int i){
+		_addMpr = i;
+	}
+	public int getAddMpr(){
+		return _addHpr;
+	}
+
+	private int _addSp = 0;
+	public void setAddSp(int i){
+		_addSp = i;
+	}
+	public int getAddSp(){
+		return _addSp;
+	}
+	// END
 
 	/**
 	 * 前回DBへ保存した際のアイテムのステータスを格納するクラス
@@ -306,26 +391,6 @@ public class L1ItemInstance extends L1Object {
 
 		public int attrEnchantLevel;
 
-		// waja add 飾品強化卷軸
-		public int firemr;
-
-		public int watermr;
-
-		public int earthmr;
-
-		public int windmr;
-
-		public int addhp;
-
-		public int addmp;
-
-		public int hpr;
-
-		public int mpr;
-
-		public int addsp;
-		// waja add 飾品強化卷軸
-
 		public void updateAll() {
 			count = getCount();
 			itemId = getItemId();
@@ -339,17 +404,6 @@ public class L1ItemInstance extends L1Object {
 			bless = getBless();
 			attrEnchantKind = getAttrEnchantKind();
 			attrEnchantLevel = getAttrEnchantLevel();
-			// waja add 飾品強化卷軸
-			firemr = getFireMr();
-			watermr = getWaterMr();
-			earthmr = getEarthMr();
-			windmr = getWindMr();
-			addhp = getaddHp();
-			addmp = getaddMp();
-			addsp = getaddSp();
-			hpr = getHpr();
-			mpr = getMpr();
-			// waja add 飾品強化卷軸
 		}
 
 		public void updateCount() {
@@ -399,44 +453,6 @@ public class L1ItemInstance extends L1Object {
 		public void updateAttrEnchantLevel() {
 			attrEnchantLevel = getAttrEnchantLevel();
 		}
-
-		// waja add 飾品強化卷軸
-		public void updateFireMr() {
-			firemr = getFireMr();
-		}
-
-		public void updateWaterMr() {
-			watermr = getWaterMr();
-		}
-
-		public void updateEarthMr() {
-			earthmr = getEarthMr();
-		}
-
-		public void updateWindMr() {
-			windmr = getWindMr();
-		}
-
-		public void updateSp() {
-			addsp = getaddSp();
-		}
-
-		public void updateaddHp() {
-			addhp = getaddHp();
-		}
-
-		public void updateaddMp() {
-			addmp = getaddMp();
-		}
-
-		public void updateHpr() {
-			hpr = getHpr();
-		}
-
-		public void updateMpr() {
-			mpr = getMpr();
-		}
-		// waja add 飾品強化卷軸
 	}
 
 	public LastStatus getLastStatus() {
@@ -485,35 +501,6 @@ public class L1ItemInstance extends L1Object {
 		if (getAttrEnchantLevel() != _lastStatus.attrEnchantLevel) {
 			column += L1PcInventory.COL_ATTR_ENCHANT_LEVEL;
 		}
-		// waja add 飾品強化卷軸
-		if (getFireMr() != _lastStatus.firemr) {
-			column += L1PcInventory.COL_FIREMR;
-		}
-		if (getWaterMr() != _lastStatus.watermr) {
-			column += L1PcInventory.COL_WATERMR;
-		}
-		if (getEarthMr() != _lastStatus.earthmr) {
-			column += L1PcInventory.COL_EARTHMR;
-		}
-		if (getWindMr() != _lastStatus.windmr) {
-			column += L1PcInventory.COL_WINDMR;
-		}
-		if (getaddSp() != _lastStatus.addsp) {
-			column += L1PcInventory.COL_ADDSP;
-		}
-		if (getaddHp() != _lastStatus.addhp) {
-			column += L1PcInventory.COL_ADDHP;
-		}
-		if (getaddMp() != _lastStatus.addmp) {
-			column += L1PcInventory.COL_ADDMP;
-		}
-		if (getHpr() != _lastStatus.hpr) {
-			column += L1PcInventory.COL_HPR;
-		}
-		if (getMpr() != _lastStatus.mpr) {
-			column += L1PcInventory.COL_MPR;
-		}
-		// waja add 飾品強化卷軸
 		return column;
 	}
 
@@ -672,98 +659,6 @@ public class L1ItemInstance extends L1Object {
 	}
 	// waja add 裝備保護卷軸
 
-	// waja add 飾品強化卷軸
-	private int _FireMr = 0;
-
-	public int getFireMr() {
-		return _FireMr;
-	}
-
-	public void setFireMr(int i) {
-		_FireMr = i;
-	}
-
-	private int _WaterMr = 0;
-
-	public int getWaterMr() {
-		return _WaterMr;
-	}
-
-	public void setWaterMr(int i) {
-		_WaterMr = i;
-	}
-
-	private int _EarthMr = 0;
-
-	public int getEarthMr() {
-		return _EarthMr;
-	}
-
-	public void setEarthMr(int i) {
-		_EarthMr = i;
-	}
-
-	private int _WindMr = 0;
-
-	public int getWindMr() {
-		return _WindMr;
-	}
-
-	public void setWindMr(int i) {
-		_WindMr = i;
-	}
-
-	private int _Mpr = 0;
-
-	public int getMpr() {
-		return _Mpr;
-	}
-
-	public void setMpr(int i) {
-		_Mpr = i;
-	}
-
-	private int _Hpr = 0;
-
-	public int getHpr() {
-		return _Hpr;
-	}
-
-	public void setHpr(int i) {
-		_Hpr = i;
-	}
-
-	private int _addHp = 0;
-
-	public int getaddHp() {
-		return _addHp;
-	}
-
-	public void setaddHp(int i) {
-		_addHp = i;
-	}
-
-	private int _addMp = 0;
-
-	public int getaddMp() {
-		return _addMp;
-	}
-
-	public void setaddMp(int i) {
-		_addMp = i;
-	}
-
-	private int _addSp = 0;
-
-	public int getaddSp() {
-		return _addSp;
-	}
-
-	public void setaddSp(int i) {
-		_addSp = i;
-	}
-	// waja add 飾品強化卷軸
-
 	/**
 	 * アイテムの狀態からサーバーパケットで利用する形式のバイト列を生成し、返す。
 	 */
@@ -819,26 +714,16 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(getItem().getMaterial());
 				os.writeD(getWeight());
 			}
-			// 強化數
-			// waja add & change 飾品強化卷軸
-/* 原本寫法
-			if (getEnchantLevel() != 0) {
+			//XXX 飾品強化值防禦無效
+			if (getEnchantLevel() != 0
+					&& itemType2 == 2 && getItem().getType() >= 8 && getItem().getType() <= 12){
+				os.writeC(2);
+				os.writeC(0);
+			} else if (getEnchantLevel() != 0) {
 				os.writeC(2);
 				os.writeC(getEnchantLevel());
 			}
-*/
-			if (getEnchantLevel() != 0) {
-				os.writeC(2);
-				if (getItem().getType2() != 2) {
-					os.writeC(getEnchantLevel());
-				} else if (getItem().getType2() == 2 && getItem().getType() == 8 || getItem().getType() == 9
-						|| getItem().getType() == 10 || getItem().getType() == 12) {
-					os.writeC(0);
-				} else {
-					os.writeC(getEnchantLevel());
-				}
-			}
-			// waja add & change 飾品強化卷軸
+			//end
 			// 損傷度
 			if (get_durability() != 0) {
 				os.writeC(3);
@@ -929,74 +814,63 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(13);
 				os.writeC(getItem().get_addcha());
 			}
-
-			// ヘイスト
-			if (getItem().isHasteItem()) {
-				os.writeC(18);
-			}
-
-			//waja add & change 飾品強化卷軸
-/* 原本寫法
-			// 火の屬性
-			if (getItem().get_defense_fire() != 0) {
-				os.writeC(27);
-				os.writeC(getItem().get_defense_fire());
-			}
-			// 水の屬性
-			if (getItem().get_defense_water() != 0) {
-				os.writeC(28);
-				os.writeC(getItem().get_defense_water());
-			}
-			// 風の屬性
-			if (getItem().get_defense_wind() != 0) {
-				os.writeC(29);
-				os.writeC(getItem().get_defense_wind());
-			}
-			// 地の屬性
-			if (getItem().get_defense_earth() != 0) {
-				os.writeC(30);
-				os.writeC(getItem().get_defense_earth());
-			}
-*/
-			if (getItem().get_addhp() != 0 || getaddHp() != 0) {
+			// HP, MP
+			if (getItem().get_addhp() != 0
+					|| getAddHp() !=0) {
 				os.writeC(14);
-				os.writeH(getItem().get_addhp() + getaddHp());
+				os.writeH(getItem().get_addhp()
+						+ getAddHp());
 			}
-
-			if (getItem().get_addmp() != 0 || getaddMp() != 0) {
+			if (getItem().get_addmp() != 0
+					|| getAddMp() !=0) {
 				os.writeC(32);
-				os.writeC(getItem().get_addmp() + getaddMp());
+				os.writeC(getItem().get_addmp()
+						+ getAddMp());
 			}
-
-			if (getItem().get_addsp() != 0 || getaddSp() != 0) {
-				os.writeC(17);
-				os.writeC(getItem().get_addsp() + getaddSp());
-			}
-
 			// MR
 			if (getMr() != 0) {
 				os.writeC(15);
 				os.writeH(getMr());
 			}
-
-			if (getItem().get_defense_fire() != 0 || getFireMr() != 0) {
+			// SP(魔力)
+			if (getItem().get_addsp() != 0
+					|| getAddSp() !=0) {
+				os.writeC(17);
+				os.writeC(getItem().get_addsp()
+						+ getAddSp());
+			}
+			// ヘイスト
+			if (getItem().isHasteItem()) {
+				os.writeC(18);
+			}
+			// 火の属性
+			if (getItem().get_defense_fire() != 0
+					|| getFireDefense() != 0) {
 				os.writeC(27);
-				os.writeC(getItem().get_defense_fire() + getFireMr());
+				os.writeC(getItem().get_defense_fire()
+						+ getFireDefense());
 			}
-			if (getItem().get_defense_water() != 0 || getWaterMr() != 0) {
+			// 水の属性
+			if (getItem().get_defense_water() != 0
+					|| getWaterDefense() != 0) {
 				os.writeC(28);
-				os.writeC(getItem().get_defense_water() + getWaterMr());
+				os.writeC(getItem().get_defense_water()
+						+ getWaterDefense());
 			}
-			if (getItem().get_defense_wind() != 0 || getWindMr() != 0) {
+			// 風の属性
+			if (getItem().get_defense_wind() != 0
+					|| getWindDefense() != 0) {
 				os.writeC(29);
-				os.writeC(getItem().get_defense_wind() + getWindMr());
+				os.writeC(getItem().get_defense_wind()
+						+ getWindDefense());
 			}
-			if (getItem().get_defense_earth() != 0 || getEarthMr() != 0) {
+			// 地の属性
+			if (getItem().get_defense_earth() != 0
+					|| getEarthDefense() != 0) {
 				os.writeC(30);
-				os.writeC(getItem().get_defense_earth() + getEarthMr());
+				os.writeC(getItem().get_defense_earth()
+						+ getEarthDefense());
 			}
-			// waja add & change 飾品強化卷軸
-
 			// 凍結耐性
 			if (getItem().get_regist_freeze() != 0) {
 				os.writeC(15);
