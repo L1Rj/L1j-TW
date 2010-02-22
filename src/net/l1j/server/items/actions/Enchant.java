@@ -380,6 +380,8 @@ public class Enchant {
 		if(RandomArrayList.getInc(100, 1) <= succhance){
 
 			//item.setEnchantLevel(enchantLv + 1);
+			addDecorationAbility(item);
+			pc.sendPackets(new S_ItemStatus(item));
 			/*if(item.isEquipped()){
 				pc.addAc(-1);
 				pc.addEarth(1);
@@ -388,14 +390,12 @@ public class Enchant {
 				pc.addFire(1);
 				pc.addMaxHp(2);
 				pc.addMaxMp(1);
-				if(enchantLv >= 6 && enchantLv <=9){
+				if(enchantLv >= 5 && enchantLv <=9){
 					pc.addSp(1);
 					pc.sendPackets(new S_SPMR(pc));
-				}*/
-			addDecorationAbility(item);
-			pc.sendPackets(new S_ItemStatus(item));
+				}
 				pc.sendPackets(new S_OwnCharStatus(pc));
-			}
+			}*/
 
 			client.getActiveChar().getInventory().saveItem(item,
 					L1PcInventory.COL_ENCHANTLVL);
