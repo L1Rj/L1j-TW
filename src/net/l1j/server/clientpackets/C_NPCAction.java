@@ -251,23 +251,23 @@ public class C_NPCAction extends ClientBasePacket {
 			L1PolyRace.getInstance().enterGame(pc);
 //add 神女優莉絲
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91004) { // 神女優莉絲
-	            if (s.equalsIgnoreCase("0")) {
-	                if (pc.getInventory().checkItem(30002)) { // 檢查贖罪聖書
-	                    int allLawful = pc.getLawful() + 3000; // 正義值+3000
-	                    if (allLawful >= 32767) {
-	                        allLawful = 32767;
-	                    }
-	                    pc.setLawful(allLawful);
-	                    S_Lawful s_lawful = new S_Lawful(pc.getId(), pc.getLawful());
-	                    pc.sendPackets(s_lawful);
-	                    pc.broadcastPacket(s_lawful);
-	                    pc.getInventory().consumeItem(30002,1); // 刪除贖罪聖書
-	                    pc.save(); // DB儲存
-	                    htmlid = "yuris2"; // 完成對話
-	                } else {
-	                    htmlid = "yuris3"; // 贖罪聖書不足
-	                }
-	            }
+			if (s.equalsIgnoreCase("0")) {
+				if (pc.getInventory().checkItem(30002)) { // 檢查贖罪聖書
+					int allLawful = pc.getLawful() + 3000; // 正義值+3000
+					if (allLawful >= 32767) {
+						allLawful = 32767;
+					}
+					pc.setLawful(allLawful);
+					S_Lawful s_lawful = new S_Lawful(pc.getId(), pc.getLawful());
+					pc.sendPackets(s_lawful);
+					pc.broadcastPacket(s_lawful);
+					pc.getInventory().consumeItem(30002,1); // 刪除贖罪聖書
+					pc.save(); // DB儲存
+					htmlid = "yuris2"; // 完成對話
+				} else {
+					htmlid = "yuris3"; // 贖罪聖書不足
+				}
+			}
 //add end
 		} else if (s.equalsIgnoreCase("retrieve")) { // 「個人倉庫：アイテムを受け取る」
 			if (pc.getLevel() >= 5) {
