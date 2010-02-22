@@ -19,10 +19,10 @@
 package net.l1j.server.clientpackets;
 
 import net.l1j.Config;
+import net.l1j.log.LogCharacterChat;
 import net.l1j.server.ClientThread;
 import net.l1j.server.GMCommands;
 import net.l1j.server.Opcodes;
-import net.l1j.server.datatables.ChatLogTable;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
@@ -77,7 +77,7 @@ public class C_Chat extends ClientBasePacket {
 				return;
 			}
 
-			ChatLogTable.getInstance().storeChat(pc, null, chatText, chatType);
+			LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
 			S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_NORMALCHAT, (byte) 0);
 			if (!pc.getExcludingList().contains(pc.getName())) {
 				pc.sendPackets(s_chatpacket);
@@ -100,7 +100,7 @@ public class C_Chat extends ClientBasePacket {
 			if (pc.isGhost()) {
 				return;
 			}
-			ChatLogTable.getInstance().storeChat(pc, null, chatText, chatType);
+			LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
 			S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_NORMALCHAT, (byte) 2);
 			if (!pc.getExcludingList().contains(pc.getName())) {
 				pc.sendPackets(s_chatpacket);
@@ -129,7 +129,7 @@ public class C_Chat extends ClientBasePacket {
 				L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 				int rank = pc.getClanRank();
 				if (clan != null && (rank == L1Clan.CLAN_RANK_PUBLIC || rank == L1Clan.CLAN_RANK_GUARDIAN || rank == L1Clan.CLAN_RANK_PRINCE)) {
-					ChatLogTable.getInstance().storeChat(pc, null, chatText, chatType);
+					LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
 					S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_GLOBALCHAT, (byte) 4);
 					L1PcInstance[] clanMembers = clan.getOnlineClanMember();
 					for (L1PcInstance listner : clanMembers) {
@@ -141,7 +141,7 @@ public class C_Chat extends ClientBasePacket {
 			}
 		} else if (chatType == 11) { // パーティーチャット
 			if (pc.isInParty()) { // パーティー中
-				ChatLogTable.getInstance().storeChat(pc, null, chatText, chatType);
+				LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
 				S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_GLOBALCHAT, (byte) 11);
 				L1PcInstance[] partyMembers = pc.getParty().getMembers();
 				for (L1PcInstance listner : partyMembers) {
@@ -157,7 +157,7 @@ public class C_Chat extends ClientBasePacket {
 				L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 				int rank = pc.getClanRank();
 				if (clan != null && (rank == L1Clan.CLAN_RANK_GUARDIAN || rank == L1Clan.CLAN_RANK_PRINCE)) {
-					ChatLogTable.getInstance().storeChat(pc, null, chatText, chatType);
+					LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
 					S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_GLOBALCHAT, (byte) 13);
 					L1PcInstance[] clanMembers = clan.getOnlineClanMember();
 					for (L1PcInstance listner : clanMembers) {
@@ -170,7 +170,7 @@ public class C_Chat extends ClientBasePacket {
 			}
 		} else if (chatType == 14) { // チャットパーティー
 			if (pc.isInChatParty()) { // チャットパーティー中
-				ChatLogTable.getInstance().storeChat(pc, null, chatText, chatType);
+				LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
 				S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_NORMALCHAT, (byte) 14);
 				L1PcInstance[] partyMembers = pc.getChatParty().getMembers();
 				for (L1PcInstance listner : partyMembers) {
@@ -187,13 +187,13 @@ public class C_Chat extends ClientBasePacket {
 
 	private void chatWorld(L1PcInstance pc, String chatText, byte chatType) {
 		if (pc.isGm()) {
-			ChatLogTable.getInstance().storeChat(pc, null, chatText, chatType);
+			LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
 			L1World.getInstance().broadcastPacketToAll(new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_GLOBALCHAT, chatType));
 		} else if (pc.getLevel() >= Config.GLOBAL_CHAT_LEVEL) {
 			if (L1World.getInstance().isWorldChatElabled()) {
 				if (pc.get_food() >= 6) {
 					pc.set_food(pc.get_food() - 5);
-					ChatLogTable.getInstance().storeChat(pc, null, chatText, chatType);
+					LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
 					pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, pc.get_food()));
 					for (L1PcInstance listner : L1World.getInstance().getAllPlayers()) {
 						if (!listner.getExcludingList().contains(pc.getName())) {

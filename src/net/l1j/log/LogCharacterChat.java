@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package net.l1j.server.datatables;
+package net.l1j.log;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,8 +29,8 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.utils.SQLUtil;
 
-public class ChatLogTable {
-	private static Logger _log = Logger.getLogger(ChatLogTable.class.getName());
+public class LogCharacterChat {
+	private static Logger _log = Logger.getLogger(LogCharacterChat.class.getName());
 
 	/*
 	 * コード的にはHashMapを利用すべきだが、パフォーマンス上の問題があるかもしれない為、配列で妥協。
@@ -38,7 +38,7 @@ public class ChatLogTable {
 	 */
 	private final boolean[] loggingConfig = new boolean[15];
 
-	private ChatLogTable() {
+	private LogCharacterChat() {
 		loadConfig();
 	}
 
@@ -53,11 +53,11 @@ public class ChatLogTable {
 		loggingConfig[14] = Config.LOGGING_CHAT_CHAT_PARTY;
 	}
 
-	private static ChatLogTable _instance;
+	private static LogCharacterChat _instance;
 
-	public static ChatLogTable getInstance() {
+	public static LogCharacterChat getInstance() {
 		if (_instance == null) {
-			_instance = new ChatLogTable();
+			_instance = new LogCharacterChat();
 		}
 		return _instance;
 	}

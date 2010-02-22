@@ -23,6 +23,7 @@ import java.io.FileWriter;// add 給予NPC物品記錄 文件版
 import java.io.IOException;// add 給予NPC物品記錄 文件版
 import java.sql.Timestamp;// add 給予NPC物品記錄 文件版
 
+import net.l1j.log.LogDropItem;
 import net.l1j.server.ClientThread;
 import net.l1j.server.IdFactory;
 import net.l1j.server.datatables.ItemTable;
@@ -113,19 +114,8 @@ public class C_GiveItem extends ClientBasePacket {
 			return;
 		}
 
-// add 給予NPC物品記錄 文件版
-		giveitem("IP"
-				+ "(" + pc.getNetConnection().getIp() + ")"
-				+"玩家"
-				+ ":【" + pc.getName() + "】 "
-				+ "的"
-				+ "【+" + item.getEnchantLevel()
-				+ " " + item.getName() +
-				"(" + count + ")" + "】"
-				+ " 道具丟給NPC,"
-				+ "時間:" + "(" + new Timestamp(System.currentTimeMillis()) + ")。");
-
-//add end
+		LogDropItem ldi = new LogDropItem();
+		ldi.storeLogDropItem(pc, item, target.getNpcTemplate().get_name(), count);
 
 		item = inv.tradeItem(item, count, targetInv);
 		target.onGetItem(item);
@@ -144,18 +134,6 @@ public class C_GiveItem extends ClientBasePacket {
 			evolvePet(pc, target);
 		}
 	}
-
-	// add 給予NPC道具紀錄 文件版 寫入檔案
-	public static void giveitem(String info) {
-		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter("log/giveitem.log", true));
-			out.write(info + "\r\n");
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	//add end
 
 	private final static String receivableImpls[] = new String[] {
 		"L1Npc", // NPC

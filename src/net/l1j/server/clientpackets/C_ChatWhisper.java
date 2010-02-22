@@ -19,9 +19,9 @@
 package net.l1j.server.clientpackets;
 
 import net.l1j.Config;
+import net.l1j.log.LogCharacterChat;
 import net.l1j.server.ClientThread;
 import net.l1j.server.Opcodes;
-import net.l1j.server.datatables.ChatLogTable;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -68,7 +68,7 @@ public class C_ChatWhisper extends ClientBasePacket {
 			return;
 		}
 
-		ChatLogTable.getInstance().storeChat(whisperFrom, whisperTo, text, 1);
+		LogCharacterChat.getInstance().storeChat(whisperFrom, whisperTo, text, 1);
 		whisperFrom.sendPackets(new S_ChatPacket(whisperTo, text, Opcodes.S_OPCODE_GLOBALCHAT, (byte) 9));
 		whisperTo.sendPackets(new S_ChatPacket(whisperFrom, text, Opcodes.S_OPCODE_WHISPERCHAT, (byte) 16));
 	}

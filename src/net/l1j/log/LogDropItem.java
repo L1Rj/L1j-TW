@@ -34,12 +34,12 @@ import net.l1j.server.utils.SQLUtil;
 public class LogDropItem {
 	private static Logger _log = Logger.getLogger(LogDropItem.class.getName());
 
-	public void storeLogDropItem(L1PcInstance pc, L1ItemInstance item, int before_inven, int after_inven, int before_ground, int after_ground, int dropcount) {
+	public void storeLogDropItem(L1PcInstance pc, L1ItemInstance item, String target_name, int count) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
 			con = L1LogDataFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("INSERT INTO LogDropItem VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			pstm = con.prepareStatement("INSERT INTO LogDropItem VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 			Date time = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String fm = formatter.format(time.getTime());
@@ -51,11 +51,8 @@ public class LogDropItem {
 			pstm.setInt(6, item.getId());
 			pstm.setString(7, item.getItem().getName());
 			pstm.setInt(8, item.getEnchantLevel());
-			pstm.setInt(9, before_inven);
-			pstm.setInt(10, after_inven);
-			pstm.setInt(11, before_ground);
-			pstm.setInt(12, after_ground);
-			pstm.setInt(13, dropcount);
+			pstm.setString(9, target_name);
+			pstm.setInt(10, count);
 			pstm.execute();
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);

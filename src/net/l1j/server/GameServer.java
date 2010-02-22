@@ -26,9 +26,9 @@ import java.util.Collection;
 import java.util.logging.Logger;
 
 import net.l1j.Config;
+import net.l1j.log.LogCharacterChat;
 import net.l1j.server.datatables.CastleTable;
 import net.l1j.server.datatables.CharacterTable;
-import net.l1j.server.datatables.ChatLogTable;
 import net.l1j.server.datatables.ClanTable;
 import net.l1j.server.datatables.DoorSpawnTable;
 import net.l1j.server.datatables.DropTable;
@@ -131,7 +131,7 @@ public class GameServer extends Thread {
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
 
 		System.out.println("=================================================");
-		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1273 ========");
+		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1280 ========");
 		System.out.println("=================================================");
 		System.out.println(
 				"經驗值: " + (rateXp) + "倍\n\r" +
@@ -240,7 +240,7 @@ public class GameServer extends Thread {
 		DoorSpawnTable.getInstance();
 		GeneralThreadPool.getInstance();
 		L1NpcRegenerationTimer.getInstance();
-		ChatLogTable.getInstance();
+		LogCharacterChat.getInstance();
 		WeaponSkillTable.getInstance();
 		NpcActionTable.load();
 		GMCommandsConfig.load();

@@ -20,9 +20,9 @@ package net.l1j.telnet.command;
 
 import java.util.StringTokenizer;
 
+import net.l1j.log.LogCharacterChat;
 import net.l1j.server.GameServer;
 import net.l1j.server.Opcodes;
-import net.l1j.server.datatables.ChatLogTable;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
@@ -30,6 +30,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ChatPacket;
 import net.l1j.server.storage.mysql.MySqlCharacterStorage;
 import net.l1j.server.utils.IntRange;
+
 import static net.l1j.telnet.command.TelnetCommandResult.*;
 
 public interface TelnetCommand {
@@ -86,7 +87,7 @@ class GlobalChatCommand implements TelnetCommand {
 			return new TelnetCommandResult(CMD_INTERNAL_ERROR, "人物不存在。");
 		}
 		pc.getLocation().set(-1, -1, 0);
-		ChatLogTable.getInstance().storeChat(pc, null, text, 3);
+		LogCharacterChat.getInstance().storeChat(pc, null, text, 3);
 
 		L1World.getInstance().broadcastPacketToAll(new S_ChatPacket(pc, text, Opcodes.S_OPCODE_GLOBALCHAT, (byte) 3));
 		return new TelnetCommandResult(CMD_OK, "");

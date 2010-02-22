@@ -18,9 +18,6 @@
  */
 package net.l1j.server.model;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 import net.l1j.log.LogTradeAddItem;
@@ -102,18 +99,6 @@ public class L1Trade {
 			trading_partner.turnOnOffLight();
 		}
 	}
-
-	// waja add 交易紀錄 文件版 寫入檔案
-	public static void trade(String info) {
-		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter("log/trade.log", true));
-			out.write(info + "\r\n");
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	// add end
 
 	public void TradeCancel(L1PcInstance player) {
 		int cnt;
