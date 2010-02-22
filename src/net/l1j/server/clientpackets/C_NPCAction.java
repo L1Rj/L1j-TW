@@ -2340,7 +2340,7 @@ public class C_NPCAction extends ClientBasePacket {
 				htmlid = "jpe0083";
 			}
 		}
-                // 小さな箱-1番目
+		// 小さな箱-1番目
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71063) {
 			if (s.equalsIgnoreCase("0")) {
 				materials = new int[] { 40701 }; // 小さな寶の地圖
@@ -2479,8 +2479,9 @@ public class C_NPCAction extends ClientBasePacket {
 					L1Teleport.teleport(pc, 32746, 32807, (short) 484, 5, true);
 				}
 			}
+		}
 		// フランコ(海賊島)
-		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71089) {
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71089) {
 			// カミーラにあなたの潔白を証明しましょう
 			if (s.equalsIgnoreCase("a")) {
 				htmlid = "francu10";
@@ -3800,8 +3801,9 @@ public class C_NPCAction extends ClientBasePacket {
 			} else {
 				htmlid = "aras7";
 			}
+		}
 		// ルケイン(海賊島)
-		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71055) {
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71055) {
 			// アイテムを受け取る
 			if (s.equalsIgnoreCase("0")) {
 				final int[] item_ids = { 40701, };
@@ -4597,14 +4599,21 @@ public class C_NPCAction extends ClientBasePacket {
 		L1UltimateBattle ub = UBTable.getInstance().getUbForNpcId(npcId);
 		return ub.makeUbInfoStrings();
 	}
-
+									// 次元之門  (土)   (風)   (水)   (火)
+	private static final int[] PROTECTIONID = { 40909, 40912, 40910, 40911};
+	private static final int[] SEALID 		= { 40913, 40916, 40914, 40915};
+	private static final int[] LOCX 		= { 32773, 32757, 32830, 32835};
+	private static final int[] LOCY 		= { 32835, 32842, 32822, 32822};
+	private static final short[] MAPID 		= {   607,   606,   604,   605};
 	private String talkToDimensionDoor(L1PcInstance pc, L1NpcInstance npc, String s) {
 		String htmlid = "";
-		int protectionId = 0;
-		int sealId = 0;
-		int locX = 0;
-		int locY = 0;
-		short mapId = 0;
+		int T_Id = npc.getNpcTemplate().get_npcId() - 80059;
+		int protectionId = PROTECTIONID[T_Id];
+		int sealId = SEALID[T_Id];
+		int locX = LOCX[T_Id];
+		int locY = LOCY[T_Id];
+		short mapId = MAPID[T_Id];
+		/*
 		if (npc.getNpcTemplate().get_npcId() == 80059) { // 次元之門(土)
 			protectionId = 40909;
 			sealId = 40913;
@@ -4629,7 +4638,7 @@ public class C_NPCAction extends ClientBasePacket {
 			locX = 32835;
 			locY = 32822;
 			mapId = 605;
-		}
+		}*/
 
 		// 「中に入ってみる」「元素の支配者を近づけてみる」「通行証を使う」「通過する」
 		if (s.equalsIgnoreCase("a")) {

@@ -91,22 +91,20 @@ public class L1TeleporterInstance extends L1NpcInstance {
 					}
 				break;
 				case 70853: // フェアリープリンセス
-					if (player.isElf()) { // エルフ
-                                            if (!player.isElf()){
-                                                htmlid = "";
-                                            } else if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1) {
-                                                if (!player.getInventory().checkItem(40592)) { // 咒われた精靈書
-                                                    if (RandomArrayList.getInc(100, 1) < 50) { // 50%でダークマールダンジョン
-                                                        htmlid = "fairyp2";
-                                                    } else { // ダークエルフダンジョン
-                                                        htmlid = "fairyp1";
-                                                    }
-                                                }
-                                            } else if (player.isElf()) {
-                                                htmlid = "fairyp3";
-                                            }
-                                        }
-                                        break;
+					if (!player.isElf()){
+						htmlid = "";
+					} else if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1) {
+						if (!player.getInventory().checkItem(40592)) { // 咒われた精靈書
+							if (RandomArrayList.getInc(100, 1) < 50) { // 50%でダークマールダンジョン
+								htmlid = "fairyp2";
+							} else { // ダークエルフダンジョン
+								htmlid = "fairyp1";
+							}
+						}
+					} else if (player.isElf()) {
+						htmlid = "fairyp3";
+					}
+				break;
 				case 50031: // セピア
 					if (player.isElf()) { // エルフ
 						if (quest.get_step(L1Quest.QUEST_LEVEL45) == 2) {
@@ -281,11 +279,11 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				break;
 				// 20091213 貝希摩斯&希培莉亞傳師加狩獵區
 				case 80132: { // 魔法師-蒂卡菲兒
-                    price = new String[] { "50", "50", "50", "50", "120", "120", "180", "180", "180", "240", "240", "400", "400", "800", "7700" };
-                }
-                break;
-                case 80146: { // 魔法師-賽莉恩
-                    price = new String[] { "50", "50", "50", "120", "180", "180", "240", "240", "240", "300", "300", "500", "500", "900", "8000" };
+					price = new String[] { "50", "50", "50", "50", "120", "120", "180", "180", "180", "240", "240", "400", "400", "800", "7700" };
+				}
+				break;
+				case 80146: { // 魔法師-賽莉恩
+					price = new String[] { "50", "50", "50", "120", "180", "180", "240", "240", "240", "300", "300", "500", "500", "900", "8000" };
 				}
 				break;
 				default: {
