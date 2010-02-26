@@ -61,9 +61,9 @@ public class L1MerchantInstance extends L1NpcInstance {
 	}
 
 	//  -1是PC，其餘座標等同NPC的位置 所應具備的面向
-	private static final int[][] FACE_NPC_PC = {{4, 5, 6},
-												{3,-1, 7},
-												{2, 1, 0}};
+	private static final int[][] FACE_NPC_PC = {{5, 6, 7},
+												{4,-1, 0},
+												{3, 2, 1}};
 	@Override
 	public void onTalkAction(L1PcInstance player) {
 		int objid = getId();
@@ -83,11 +83,11 @@ public class L1MerchantInstance extends L1NpcInstance {
 
 		if (getNpcTemplate().getChangeHead()) {
 			if (pc_npcX > 0)
-				pc_npcX = 0;
+				pc_npcX = 2;
 			else if (pc_npcX == 0)
 				pc_npcX = 1;
 			else if (pc_npcX < 0)
-				pc_npcX = 2;
+				pc_npcX = 0;
 			if (pc_npcY > 0)
 				pc_npcY = 0;
 			else if (pc_npcY == 0)

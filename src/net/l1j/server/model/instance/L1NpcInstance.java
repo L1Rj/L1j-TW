@@ -1531,7 +1531,7 @@ public class L1NpcInstance extends L1Character {
 		// 初期方向
 		int[] locNext = new int[4];
 		int[] locCopy;
-		int[] dirFront = new int[5];
+		// int[] dirFront = new int[5];
 		boolean serchMap[][] = new boolean[locCenter * 2 + 1][locCenter * 2 + 1];
 		FastList<int[]> queueSerch = new FastList<int[]>();
 
@@ -1568,10 +1568,10 @@ public class L1NpcInstance extends L1Character {
 		// 最短經路を探索
 		while (queueSerch.size() > 0) {
 			locBace = queueSerch.removeFirst();
-			_getFront(dirFront, locBace[2]);
+			// _getFront(dirFront, locBace[2]);
 			for (i = 4; i >= 0; i--) {
 				System.arraycopy(locBace, 0, locNext, 0, 4);
-				_moveLocation(locNext, dirFront[i]);
+				_moveLocation(locNext, _GETFRONT[locBace[2]][i]);
 				if (locNext[0] - locCenter == 0 && locNext[1] - locCenter == 0) {
 					return locNext[3];
 				}
@@ -1581,7 +1581,7 @@ public class L1NpcInstance extends L1Character {
 					if (getMap().isPassable(tmpX, tmpY, i)) {// 移動經路があった場合
 						locCopy = new int[4];
 						System.arraycopy(locNext, 0, locCopy, 0, 4);
-						locCopy[2] = dirFront[i];
+						locCopy[2] = _GETFRONT[locBace[2]][i];
 						queueSerch.add(locCopy);
 					}
 					serchMap[locNext[0]][locNext[1]] = false;
@@ -1598,13 +1598,24 @@ public class L1NpcInstance extends L1Character {
 		ary[2] = heading;
 	}
 
-	private void _getFront(int[] ary, int dir) {
-		ary[4] = targetFace(dir + 2);
-		ary[3] = targetFace(dir + 6);
-		ary[2] = dir;
-		ary[1] = targetFace(dir + 7);
-		ary[0] = targetFace(dir + 1);
-	}
+	private static final int[][] _GETFRONT = {
+			{ 6, 2, 0, 1, 7},
+			{ 7, 2, 1, 0, 3},
+			{ 4, 0, 2, 3, 1},
+			{ 5, 4, 3, 2, 1},
+			{ 2, 3, 4, 5, 6},
+			{ 7, 6, 5, 4, 3},
+			{ 4, 5, 6, 7, 0},
+			{ 5, 0, 7, 6, 1}};
+	/**
+	 * private void _getFront(int[] ary, int dir) {
+	 * 	ary[4] = targetFace(dir + 2);
+	 * 	ary[3] = targetFace(dir + 6);
+	 * 	ary[2] = dir;
+	 * 	ary[1] = targetFace(dir + 7);
+	 * 	ary[0] = targetFace(dir + 1);
+	 * }
+	 */
 
 	// ■■■■■■■■■■■■ アイテム關連 ■■■■■■■■■■
 
@@ -1830,18 +1841,18 @@ public class L1NpcInstance extends L1Character {
 			case 0: // 通常
 			break;
 			case 1: // ヘイスト
-				sleepTime -= (sleepTime * 0.25);
+				sleepTime *= 0.75;
 			break;
 			case 2: // スロー
 				sleepTime *= 2;
 			break;
 		}
 		if (getBraveSpeed() == 1) {
-			sleepTime -= (sleepTime * 0.25);
+			sleepTime *= 0.75;
 		}
 		if (hasSkillEffect(SKILL_WIND_SHACKLE)) {
 			if (type == ATTACK_SPEED || type == MAGIC_SPEED) {
-				sleepTime += (sleepTime * 0.25);
+				sleepTime *= 1.25;
 			}
 		}
 		return sleepTime;
