@@ -291,52 +291,35 @@ public class C_ItemUSe extends ClientBasePacket {
 			}
 
 			L1ItemInstance l1iteminstance1 = pc.getInventory().getItem(l);
-			_log.finest("request item use (obj) = " + itemObjid + " action = " + l + " value = "
-					+ s);
+			_log.finest("request item use (obj) = " + itemObjid + " action = " + l + " value = " + s);
 			if (itemId == 40077 || itemId == SCROLL_OF_ENCHANT_WEAPON
 					|| itemId == SCROLL_OF_ENCHANT_QUEST_WEAPON || itemId == 40130
 					|| itemId == 140130 || itemId == B_SCROLL_OF_ENCHANT_WEAPON
 					|| itemId == C_SCROLL_OF_ENCHANT_WEAPON || itemId == 40128) { // 武器強化スクロール
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					return;
 				}
 
 				int safe_enchant = l1iteminstance1.getItem().get_safeenchant();
 				if (safe_enchant < 0) { // 安定值小於0不可強化
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					return;
 				}
 
 				int quest_weapon = l1iteminstance1.getItem().getItemId();
-				if (quest_weapon >= 246 && quest_weapon <= 249) { // 強化不可
-					if (itemId == SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
-					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
-						return;
-					}
+				if ((itemId == SCROLL_OF_ENCHANT_QUEST_WEAPON)
+						^ (quest_weapon >= 246 && quest_weapon <= 249)) { // 試煉卷軸 ^ 強化不可
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+					return;
 				}
-				if (itemId == SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
-					if (quest_weapon >= 246 && quest_weapon <= 249) { // 強化不可
-					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
-						return;
-					}
-				}
+
 				int weaponId = l1iteminstance1.getItem().getItemId();
-				if (weaponId == 36 || weaponId == 183 || weaponId >= 250 && weaponId <= 255) { // イリュージョン武器
-					if (itemId == 40128) { // イリュージョン武器強化スクロール
-					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
-						return;
-					}
-				}
-				if (itemId == 40128) { // イリュージョン武器強化スクロール
-					if (weaponId == 36 || weaponId == 183 || weaponId >= 250 && weaponId <= 255) { // イリュージョン武器
-					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
-						return;
-					}
+				// イリュージョン武器強化スクロール ^ イリュージョン武器
+				if ((itemId == 40128)
+						^ (weaponId == 36 || weaponId == 183 || weaponId >= 250 && weaponId <= 255)) {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+					return;
 				}
 
 				int enchant_level = l1iteminstance1.getEnchantLevel();
@@ -377,12 +360,12 @@ public class C_ItemUSe extends ClientBasePacket {
 				}
 			} else if (itemId == 41429 || itemId == 41430 || itemId == 41431 || itemId == 41432) { // 風水地火之武器強化卷軸
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					return;
 				}
 				int safeEnchant = l1iteminstance1.getItem().get_safeenchant();
 				if (safeEnchant < 0) { // 強化不可
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					return;
 				}
 				// 0:無属性 1:地 2:火 4:水 8:風
@@ -390,9 +373,10 @@ public class C_ItemUSe extends ClientBasePacket {
 				int oldAttrEnchantLevel = l1iteminstance1.getAttrEnchantLevel();
 
 				boolean isSameAttr = false; // スクロールと強化済みの属性が同一か
-				if (itemId == 41429 && oldAttrEnchantKind == 8 || itemId == 41430
-						&& oldAttrEnchantKind == 1 || itemId == 41431 && oldAttrEnchantKind == 4
-						|| itemId == 41432 && oldAttrEnchantKind == 2) { // 同じ属性
+				if ((itemId == 41429 && oldAttrEnchantKind == 8)
+						|| (itemId == 41430 && oldAttrEnchantKind == 1)
+						|| (itemId == 41431 && oldAttrEnchantKind == 4)
+						|| (itemId == 41432 && oldAttrEnchantKind == 2)) { // 同じ属性
 					isSameAttr = true;
 				}
 				if (isSameAttr && oldAttrEnchantLevel >= 3) {
@@ -455,13 +439,13 @@ public class C_ItemUSe extends ClientBasePacket {
 					|| itemId == 140129 || itemId == B_SCROLL_OF_ENCHANT_ARMOR
 					|| itemId == C_SCROLL_OF_ENCHANT_ARMOR || itemId == 40127) { // 防具強化スクロール
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					return;
 				}
 
 				int safe_enchant = ((L1Armor) l1iteminstance1.getItem()).get_safeenchant();
 				if (safe_enchant < 0) { // 強化不可
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					return;
 				}
 
@@ -469,14 +453,14 @@ public class C_ItemUSe extends ClientBasePacket {
 				if (armorId == 20161 || armorId >= 21035 && armorId <= 21038) { // イリュージョン防具
 					if (itemId == 40127) { // イリュージョン防具強化スクロール
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						return;
 					}
 				}
 				if (itemId == 40127) { // イリュージョン防具強化スクロール
 					if (armorId == 20161 || armorId >= 21035 && armorId <= 21038) { // イリュージョン防具
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						return;
 					}
 				}
@@ -782,14 +766,14 @@ public class C_ItemUSe extends ClientBasePacket {
 					if (pc.isKnight()) {
 						Potion.Brave(pc, itemId);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 49158) { // ユグドラの実
 					if (pc.isDragonKnight() || pc.isIllusionist()) {
 						Potion.Brave(pc, itemId);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40068 // エルヴン ワッフル
@@ -797,21 +781,21 @@ public class C_ItemUSe extends ClientBasePacket {
 					if (pc.isElf()) {
 						Potion.Brave(pc, itemId);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40031) { // イビル ブラッド
 					if (pc.isCrown()) {
 						Potion.Brave(pc, itemId);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40039) { // 紅酒
 					if (pc.isWizard()) {
 						Potion.Brave(pc, itemId);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						return;
 					}
 					if (pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)) {
@@ -829,7 +813,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					if (pc.isDarkelf()) {
 						Potion.Brave(pc, itemId);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						return;
 					}
 					if (pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)) {
@@ -899,7 +883,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					if (pc.isWizard()) {
 						Potion.Wisdom(pc, itemId);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == POTION_OF_BLINDNESS) { // オペイクポーション
@@ -945,7 +929,7 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$463, msg0));
 						}
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 49188) {// 索夏依卡靈魂之心
@@ -1026,7 +1010,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().removeItem(l1iteminstance1, 1);
 						pc.getInventory().removeItem(item, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId >= 41048 && 41055 >= itemId) {
 					// 糊付けされた航海日誌ページ：１～８ページ
@@ -1036,7 +1020,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().removeItem(l1iteminstance1, 1);
 						pc.getInventory().removeItem(item, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 41056 || itemId == 41057) {
 					// 糊付けされた航海日誌ページ：９，１０ページ
@@ -1046,7 +1030,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().removeItem(l1iteminstance1, 1);
 						pc.getInventory().removeItem(item, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40925) { // 淨化のポーション
 					int earingId = l1iteminstance1.getItem().getItemId();
@@ -1059,7 +1043,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().removeItem(l1iteminstance1, 1);
 						pc.getInventory().removeItem(item, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId >= 40926 && 40929 >= itemId) {
 					// ミステリアスポーション（１～４段階）
@@ -1091,10 +1075,10 @@ public class C_ItemUSe extends ClientBasePacket {
 								pc.getInventory().removeItem(item, 1);
 							}
 						} else {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						}
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId >= 40931 && 40942 >= itemId) {
 					// 加工された寶石類（サファイア‧ルビー‧エメラルド）
@@ -1136,10 +1120,10 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.getInventory().removeItem(l1iteminstance1, 1);
 							pc.getInventory().removeItem(item, 1);
 						} else {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						}
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId >= 40943 && 40958 >= itemId) {
 					// 加工されたダイアモンド（ウォータ‧アース‧ファイアー‧ウインド）
@@ -1210,10 +1194,10 @@ public class C_ItemUSe extends ClientBasePacket {
 								pc.getInventory().removeItem(item, 1);
 							}
 						} else {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						}
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 41029) { // 召喚球の欠片
 					int dantesId = l1iteminstance1.getItem().getItemId();
@@ -1226,7 +1210,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().removeItem(l1iteminstance1, 1);
 						pc.getInventory().removeItem(item, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40964) { // ダークマジックパウダー
 					int historybookId = l1iteminstance1.getItem().getItemId();
@@ -1239,7 +1223,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().removeItem(l1iteminstance1, 1);
 						pc.getInventory().removeItem(item, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40090 || itemId == 40091 || itemId == 40092 || itemId == 40093
 						|| itemId == 40094) { // ブランク スクロール(Lv1)～ブランク
@@ -1348,7 +1332,7 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.getInventory().consumeItem(41160, 1);
 						}
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40315) { // ペットの笛
 					pc.sendPackets(new S_Sound(437));
@@ -1380,7 +1364,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.broadcastPacket(new S_SkillSound(pc.getId(), gfxid));
 						pc.getInventory().consumeItem(40318, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40326) { // 3方向ルーレット
 					if (pc.getInventory().checkItem(40318, 1)) {
@@ -1389,7 +1373,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.broadcastPacket(new S_SkillSound(pc.getId(), gfxid));
 						pc.getInventory().consumeItem(40318, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40327) { // 4方向ルーレット
 					if (pc.getInventory().checkItem(40318, 1)) {
@@ -1398,7 +1382,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.broadcastPacket(new S_SkillSound(pc.getId(), gfxid));
 						pc.getInventory().consumeItem(40318, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40328) { // 6面ダイス
 					if (pc.getInventory().checkItem(40318, 1)) {
@@ -1407,7 +1391,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.broadcastPacket(new S_SkillSound(pc.getId(), gfxid));
 						pc.getInventory().consumeItem(40318, 1);
 					} else {
-						
+
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40089 || itemId == 140089) { // 復活捲軸、祝福的復活捲軸
@@ -1640,7 +1624,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						short mapid = 13;
 						L1Teleport.teleport(pc, 32815, 32810, mapid, 5, false);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40417) { // ソウルクリスタル
 					if ((pc.getX() >= 32665 && // 海賊島
@@ -1649,7 +1633,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						short mapid = 430;
 						L1Teleport.teleport(pc, 32922, 32812, mapid, 5, true);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40566) { // ミステリアス シェル
 					if (pc.isElf()
@@ -1669,12 +1653,12 @@ public class C_ItemUSe extends ClientBasePacket {
 							}
 						}
 						if (found) {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						} else {
 							SpawnUtil.spawn(pc, 45300, 0, 0); // 古代人の亡靈
 						}
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40557) { // 暗殺リスト(グルーディン)
 					if (pc.getX() == 32620 && pc.getY() == 32641 && pc.getMapId() == 4) {
@@ -1689,7 +1673,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 						SpawnUtil.spawn(pc, 45883, 0, 300000);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40563) { // 暗殺リスト(火田村)
 					if (pc.getX() == 32730 && pc.getY() == 32426 && pc.getMapId() == 4) {
@@ -1704,7 +1688,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 						SpawnUtil.spawn(pc, 45884, 0, 300000);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40561) { // 暗殺リスト(ケント)
 					if (pc.getX() == 33046 && pc.getY() == 32806 && pc.getMapId() == 4) {
@@ -1719,7 +1703,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 						SpawnUtil.spawn(pc, 45885, 0, 300000);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40560) { // 暗殺リスト(ウッドベック)
 					if (pc.getX() == 32580 && pc.getY() == 33260 && pc.getMapId() == 4) {
@@ -1734,7 +1718,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 						SpawnUtil.spawn(pc, 45886, 0, 300000);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40562) { // 暗殺リスト(ハイネ)
 					if (pc.getX() == 33447 && pc.getY() == 33476 && pc.getMapId() == 4) {
@@ -1749,7 +1733,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 						SpawnUtil.spawn(pc, 45887, 0, 300000);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40559) { // 暗殺リスト(アデン)
 					if (pc.getX() == 34215 && pc.getY() == 33195 && pc.getMapId() == 4) {
@@ -1764,7 +1748,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 						SpawnUtil.spawn(pc, 45888, 0, 300000);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40558) { // 暗殺リスト(ギラン)
 					if (pc.getX() == 33513 && pc.getY() == 32890 && pc.getMapId() == 4) {
@@ -1779,7 +1763,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 						SpawnUtil.spawn(pc, 45889, 0, 300000);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40572) { // アサシンの印
 					if (pc.getX() == 32778 && pc.getY() == 32738 && pc.getMapId() == 21) {
@@ -1797,7 +1781,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.broadcastPacket(s_attackPacket);
 						int chargeCount = item.getChargeCount();
 						if (chargeCount <= 0 && itemId != 40412) {
-							
+
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 							return;
 						}
@@ -1828,14 +1812,14 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.getInventory().removeItem(item, 1);
 						}
 					} else {
-						
+
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40007) { // エボニー ワンド
 					ItemAction.cancelAbsoluteBarrier(pc);
 					int chargeCount = item.getChargeCount();
 					if (chargeCount <= 0) {
-						
+
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						return;
 					}
@@ -1859,7 +1843,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						int chargeCount = item.getChargeCount();
 						if (chargeCount <= 0 && itemId != 40410 || pc.getTempCharGfx() == 6034
 								|| pc.getTempCharGfx() == 6035) {
-							
+
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 							return;
 						}
@@ -1875,7 +1859,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								pc.getInventory().removeItem(item, 1);
 							}
 						} else {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						}
 					}
 					// if (pc.getId() == target.getId()) { // ターゲットが自分
@@ -1921,14 +1905,12 @@ public class C_ItemUSe extends ClientBasePacket {
 						foodvolume2 = (short) (pc.get_food() + foodvolume1);
 						if (foodvolume2 <= 225) {
 							pc.set_food(foodvolume2);
-							pc
-									.sendPackets(new S_PacketBox(S_PacketBox.FOOD, (short) pc
-											.get_food()));
+							pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, (short) pc
+									.get_food()));
 						} else {
 							pc.set_food((short) 225);
-							pc
-									.sendPackets(new S_PacketBox(S_PacketBox.FOOD, (short) pc
-											.get_food()));
+							pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, (short) pc
+									.get_food()));
 						}
 					}
 					if (itemId == 40057) { // フローティングアイ肉
@@ -2022,7 +2004,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								((L1EtcItem) item.getItem()).get_locy(), ((L1EtcItem) item
 										.getItem()).get_mapid(), 5, true);
 					} else {
-						
+
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40616 || itemId == 40782 || itemId == 40783) { // 影の神殿3階の鍵
@@ -2032,7 +2014,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								((L1EtcItem) item.getItem()).get_locy(), ((L1EtcItem) item
 										.getItem()).get_mapid(), 5, true);
 					} else {
-						
+
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40692) { // 完成された宝の地図
@@ -2042,7 +2024,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								((L1EtcItem) item.getItem()).get_locy(), ((L1EtcItem) item
 										.getItem()).get_mapid(), 5, true);
 					} else {
-						
+
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 41146) { // ドロモンドの招待狀
@@ -2152,7 +2134,19 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 41356) { // パルームの資源リスト
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "rparum3"));
 				} else if (itemId == 40701) { // 小さな寶の地圖
-					if (pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) == 1) {
+					String[] Id_Return = {
+							"",
+							"firsttmap",	// pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) ==  1
+							"secondtmapa",	// pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) ==  2
+							"secondtmapb",	// pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) ==  3
+							"secondtmapc",	// pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) ==  4
+							"thirdtmapd",	// pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) ==  5
+							"thirdtmape",	// pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) ==  6
+							"thirdtmapf",	// pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) ==  7
+							"thirdtmapg",	// pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) ==  8
+							"thirdtmaph",	// pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) ==  9
+							"thirdtmapi"}	// pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) == 10
+					/*if (pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) == 1) {
 						pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "firsttmap"));
 					} else if (pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) == 2) {
 						pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "secondtmapa"));
@@ -2172,7 +2166,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "thirdtmaph"));
 					} else if (pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) == 10) {
 						pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "thirdtmapi"));
-					}
+					}*/
+					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), Id_Return[pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1)]));
 				} else if (itemId == 40663) { // 息子の手紙
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "sonsletter"));
 				} else if (itemId == 40630) { // ディエゴの古い日記
@@ -2232,7 +2227,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								((L1EtcItem) item.getItem()).get_locy(), ((L1EtcItem) item
 										.getItem()).get_mapid(), 5, true);
 					} else {
-						
+
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40700) { // シルバーフルート
@@ -2260,14 +2255,14 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 41121) { // カヘルの契約書
 					if (pc.getQuest().get_step(L1Quest.QUEST_SHADOWS) == L1Quest.QUEST_END
 							|| pc.getInventory().checkItem(41122, 1)) {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					} else {
 						ItemCreate.newItem(pc, 41122, 1);
 					}
 				} else if (itemId == 41130) { // 血痕の契約書
 					if (pc.getQuest().get_step(L1Quest.QUEST_DESIRE) == L1Quest.QUEST_END
 							|| pc.getInventory().checkItem(41131, 1)) {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					} else {
 						ItemCreate.newItem(pc, 41131, 1);
 					}
@@ -2284,11 +2279,13 @@ public class C_ItemUSe extends ClientBasePacket {
 					Fishing.start(pc, itemId, fishX, fishY);
 				} else if (itemId == 41245) { // 溶解劑
 					Resolvent.use(pc, l1iteminstance1, item);
-				} else if (itemId == 41248 || itemId == 41249 || itemId == 41250 || itemId == 49037
-						|| itemId == 49038 || itemId == 49039 || itemId == 31001 || itemId == 31002 // 魔法娃娃: 希爾黛絲 雪怪
-						|| itemId == 31003 || itemId == 31004 // 魔法娃娃: 蛇女 亞力安
-						|| itemId == 31005 || itemId == 31006 // 魔法娃娃: 木人  史巴托
-						|| itemId == 31007 || itemId == 31008 // 魔法娃娃: 巫妖 鐵門公會 魔法娃娃：雪怪
+				} else if (itemId == 41248 || itemId == 41249
+						|| itemId == 41250 || itemId == 49037
+						|| itemId == 49038 || itemId == 49039
+						|| itemId == 31001 || itemId == 31002 // 魔法娃娃: 希爾黛絲、雪怪
+						|| itemId == 31003 || itemId == 31004 // 魔法娃娃: 蛇女、亞力安
+						|| itemId == 31005 || itemId == 31006 // 魔法娃娃: 木人、史巴托
+						|| itemId == 31007 || itemId == 31008 // 魔法娃娃: 巫妖、鐵門公會 魔法娃娃：雪怪
 						|| itemId == 31009) { // 魔法娃娃: 公主
 					MagicDoll.Use(pc, itemId, itemObjid);
 				} else if (itemId >= 41255 && itemId <= 41259) { // 料理の本
@@ -2311,7 +2308,8 @@ public class C_ItemUSe extends ClientBasePacket {
 					L1EffectSpawn.getInstance().spawnEffect(81170, 600000, loc[0], loc[1],
 							pc.getMapId());
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId >= 41277 && itemId <= 41292 || itemId >= 49049 && itemId <= 49064
+				} else if (itemId >= 41277 && itemId <= 41292
+						|| itemId >= 49049 && itemId <= 49064
 						|| itemId >= 49244 && itemId <= 49259) { // 料理
 					L1Cooking.useCookingItem(pc, item);
 				} else if (itemId >= 41383 && itemId <= 41400) { // 家具
@@ -2326,7 +2324,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 41315) { // 聖水
 					if (pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						return;
 					}
 					if (pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) {
@@ -2339,7 +2337,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 41316) { // 神聖なミスリル パウダー
 					if (pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						return;
 					}
 					if (pc.hasSkillEffect(STATUS_HOLY_WATER)) {
@@ -2353,7 +2351,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 41354) { // 神聖なエヴァの水
 					if (pc.hasSkillEffect(STATUS_HOLY_WATER)
 							|| pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						return;
 					}
 					pc.setSkillEffect(STATUS_HOLY_WATER_OF_EVA, 900 * 1000);
@@ -2368,7 +2366,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().consumeItem(targetItemId, 1);
 						pc.getInventory().consumeItem(49092, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						return;
 					}
 				} else if (itemId == 49093) { // 下級オシリスの寶箱の欠片：上
@@ -2377,7 +2375,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().consumeItem(49094, 1);
 						ItemCreate.newItem(pc, 49095, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 49094) { // 下級オシリスの寶箱の欠片：下
 					if (pc.getInventory().checkItem(49093, 1)) {
@@ -2385,7 +2383,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().consumeItem(49094, 1);
 						ItemCreate.newItem(pc, 49095, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 49097) { // 上級オシリスの寶箱の欠片：上
 					if (pc.getInventory().checkItem(49098, 1)) {
@@ -2393,7 +2391,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().consumeItem(49098, 1);
 						ItemCreate.newItem(pc, 49099, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 49098) { // 上級オシリスの寶箱の欠片：下
 					if (pc.getInventory().checkItem(49097, 1)) {
@@ -2401,7 +2399,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.getInventory().consumeItem(49098, 1);
 						ItemCreate.newItem(pc, 49099, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 41426) { // 封印スクロール
 					L1ItemInstance lockItem = pc.getInventory().getItem(l);
@@ -2431,10 +2429,10 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.getInventory().saveItem(lockItem, L1PcInventory.COL_BLESS);
 							pc.getInventory().removeItem(item, 1);
 						} else {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						}
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 41427) { // 封印解除スクロール
 					L1ItemInstance lockItem = pc.getInventory().getItem(l);
@@ -2443,9 +2441,10 @@ public class C_ItemUSe extends ClientBasePacket {
 							&& lockItem.getItem().getType2() == 1
 							|| lockItem.getItem().getType2() == 2
 							|| lockItem.getItem().getType2() == 0
-							&& (lockItemId == 40314 || lockItemId == 40316 || lockItemId == 41248
-									|| lockItemId == 41249 || lockItemId == 41250
-									|| lockItemId == 49037 || lockItemId == 49038 || lockItemId == 49039)) {
+							&& (lockItemId == 40314 || lockItemId == 40316
+									|| lockItemId == 41248 || lockItemId == 41249
+									|| lockItemId == 41250 || lockItemId == 49037
+									|| lockItemId == 49038 || lockItemId == 49039)) {
 						if (lockItem.getBless() == 128 || lockItem.getBless() == 129
 								|| lockItem.getBless() == 130 || lockItem.getBless() == 131) {
 							int bless = 1;
@@ -2468,22 +2467,22 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.getInventory().saveItem(lockItem, L1PcInventory.COL_BLESS);
 							pc.getInventory().removeItem(item, 1);
 						} else {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						}
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 41428) { //太古的玉璽
 					if (pc != null && item != null) {
 						Account account = Account.load(pc.getAccountName());
 						if (account == null) {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 							return;
 						}
 						int characterSlot = account.getCharacterSlot();
 						int maxAmount = Config.DEFAULT_CHARACTER_SLOT + characterSlot;
 						if (maxAmount >= 8) {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 							return;
 						}
 						if (characterSlot < 0) {
