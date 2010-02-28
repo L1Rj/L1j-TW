@@ -50,7 +50,7 @@ public class L1DwarfInventory extends L1Inventory {
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("SELECT * FROM character_warehouse WHERE account_name = ?");
+			pstm = con.prepareStatement("SELECT * FROM character_warehouse WHERE account_name = ? order by item_id");
 			pstm.setString(1, _owner.getAccountName());
 
 			rs = pstm.executeQuery();
