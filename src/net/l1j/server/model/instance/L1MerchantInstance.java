@@ -60,10 +60,6 @@ public class L1MerchantInstance extends L1NpcInstance {
 		startAI();
 	}
 
-	//  -1是PC，其餘座標等同NPC的位置 所應具備的面向
-	private static final int[][] FACE_NPC_PC = {{5, 6, 7},
-												{4,-1, 0},
-												{3, 2, 1}};
 	@Override
 	public void onTalkAction(L1PcInstance player) {
 		int objid = getId();
@@ -74,27 +70,11 @@ public class L1MerchantInstance extends L1NpcInstance {
 		String htmlid = null;
 		String[] htmldata = null;
 
-		// int pcX = player.getX();
-		// int pcY = player.getY();
-		// int npcX = getX();
-		// int npcY = getY();
-		int pc_npcX = player.getX() - getX();
-		int pc_npcY = player.getY() - getY();
-
-		if (getNpcTemplate().getChangeHead()) {
-			if (pc_npcX > 0)
-				pc_npcX = 2;
-			else if (pc_npcX == 0)
-				pc_npcX = 1;
-			else if (pc_npcX < 0)
-				pc_npcX = 0;
-			if (pc_npcY > 0)
-				pc_npcY = 0;
-			else if (pc_npcY == 0)
-				pc_npcY = 1;
-			else if (pc_npcY < 0)
-				pc_npcY = 2;
-			/*if (pcX == npcX && pcY < npcY) {
+		int pcX = player.getX();
+		int pcY = player.getY();
+		int npcX = getX();
+		int npcY = getY();
+			if (pcX == npcX && pcY < npcY) {
 				setHeading(0);
 			} else if (pcX > npcX && pcY < npcY) {
 				setHeading(1);
@@ -110,7 +90,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				setHeading(6);
 			} else if (pcX < npcX && pcY < npcY) {
 				setHeading(7);
-			}*/
+			}
 			setHeading(FACE_NPC_PC[pc_npcX][pc_npcY]);
 			broadcastPacket(new S_ChangeHeading(this));
 			synchronized (this) {
