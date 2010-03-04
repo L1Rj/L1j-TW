@@ -91,7 +91,6 @@ public class L1MerchantInstance extends L1NpcInstance {
 			} else if (pcX < npcX && pcY < npcY) {
 				setHeading(7);
 			}
-			setHeading(FACE_NPC_PC[pc_npcX][pc_npcY]);
 			broadcastPacket(new S_ChangeHeading(this));
 			synchronized (this) {
 				if (_monitor != null) {
