@@ -74,6 +74,8 @@ public class L1MerchantInstance extends L1NpcInstance {
 		int pcY = player.getY();
 		int npcX = getX();
 		int npcY = getY();
+
+		if (getNpcTemplate().getChangeHead()) {
 			if (pcX == npcX && pcY < npcY) {
 				setHeading(0);
 			} else if (pcX > npcX && pcY < npcY) {
