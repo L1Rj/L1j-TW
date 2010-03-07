@@ -334,6 +334,7 @@ public class CalcExp {
 
 		double exppenalty = ExpTable.getPenaltyRate(pc.getLevel());
 		double foodBonus = 1.0;
+		double LevelBonus = 1.0;
 		if (pc.hasSkillEffect(COOKING_1_7_N) || pc.hasSkillEffect(SkillId.COOKING_1_7_S)) {
 			foodBonus = 1.01;
 		}
@@ -343,7 +344,57 @@ public class CalcExp {
 		if (pc.hasSkillEffect(SkillId.COOKING_3_7_N) || pc.hasSkillEffect(COOKING_3_7_S)) {
 			foodBonus = 1.03;
 		}
-		int add_exp = (int) (exp * exppenalty * Config.RATE_XP * foodBonus);
+// waja add 經驗值回饋獎勵系統 http://tw.lineage.gamania.com/events/20100209_preview_e3s/b5_2.htm
+		if ( pc.getLevel() == 49) {
+			LevelBonus = 1.15;
+		}
+		if ( pc.getLevel() == 50) {
+			LevelBonus = 1.14;
+		}
+		if ( pc.getLevel() == 51) {
+			LevelBonus = 1.13;
+		}
+		if ( pc.getLevel() == 52) {
+			LevelBonus = 1.12;
+		}
+		if ( pc.getLevel() == 53) {
+			LevelBonus = 1.11;
+		}
+		if ( pc.getLevel() == 54) {
+			LevelBonus = 1.10;
+		}
+		if ( pc.getLevel() == 55) {
+			LevelBonus = 1.09;
+		}
+		if ( pc.getLevel() == 56) {
+			LevelBonus = 1.08;
+		}
+		if ( pc.getLevel() == 57) {
+			LevelBonus = 1.07;
+		}
+		if ( pc.getLevel() == 58) {
+			LevelBonus = 1.06;
+		}
+		if ( pc.getLevel() == 59) {
+			LevelBonus = 1.05;
+		}
+		if ( pc.getLevel() == 60) {
+			LevelBonus = 1.04;
+		}
+		if ( pc.getLevel() == 61) {
+			LevelBonus = 1.03;
+		}
+		if ( pc.getLevel() == 62) {
+			LevelBonus = 1.02;
+		}
+		if ( pc.getLevel() == 63) {
+			LevelBonus = 1.01;
+		}
+		if ( pc.getLevel() == 64) {
+			LevelBonus = 1.01;
+		}
+// add end
+		int add_exp = (int) (exp * exppenalty * Config.RATE_XP * foodBonus * LevelBonus);
 		pc.addExp(add_exp);
 	}
 
