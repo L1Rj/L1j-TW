@@ -1051,7 +1051,6 @@ INSERT INTO `npcaction` VALUES ('81243', 'cold1', 'cold1', '', '');
 INSERT INTO `npcaction` VALUES ('81244', 'cold1', 'cold1', '', '');
 INSERT INTO `npcaction` VALUES ('81245', '', '', '', '');
 INSERT INTO `npcaction` VALUES ('81246', 'sharna1', 'sharna2', '', '');
-INSERT INTO `npcaction` VALUES ('91001', 'sciairen1', 'sciairen1', '', '');
 INSERT INTO `npcaction` VALUES ('91002', 'dufo', 'dufo', '', '');
 INSERT INTO `npcaction` VALUES ('91003', 'gr_mammon1', 'gr_mammon2', 'gr_mammon3', '');
 INSERT INTO `npcaction` VALUES ('200099', 'yuris1', 'yuris1', '', '');
