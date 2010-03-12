@@ -1179,7 +1179,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				}else if (player.isElf() && (player.getLawful() <= -501)) { // エルフ
 					htmlid = "luudielCE1";
 				} else if (player.isElf()) {
-					htmlid = "luudieE1";
+					htmlid = "luudielE1";
 				} else if (player.isDarkelf()) { // ダークエルフ
 					htmlid = "luudielM2";
 				} else if (player.isDragonKnight()) {
