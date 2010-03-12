@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <NpcActionList>
+	<!--パゴの薬 / パゴ-->
+	<Action Name="request ei014" NpcId="70005">
+	<MakeItem AmountInputable="false">
+		<Material Amount="1" ItemId="41225"/>
+		<Item Amount="1" ItemId="41226"/>
+		</MakeItem>
+	</Action>
+	<!--渓谷の印 / ルバー-->
+	<Action Name="request amulet of valley" NpcId="70506">
+		<MakeItem AmountInputable="false">
+			<Material Amount="1" ItemId="40653"/>
+			<Item Amount="1" ItemId="20243"/>
+		</MakeItem>
+	</Action>
+	<!--島の印 / ルバー-->
+	<Action Name="request amulet of island" NpcId="70506">
+		<MakeItem AmountInputable="false">
+			<Material Amount="1" ItemId="40613"/>
+			<Item Amount="1" ItemId="20259"/>
+		</MakeItem>
+	</Action>
+        <!--リンゴジュース / パルツ-->
+	<Action Name="request apple juice" NpcId="70519">
+		<MakeItem>
+			<Item Amount="1" ItemId="40028"/>
+			<Material Amount="1" ItemId="4"/>
+			<Material Amount="1" ItemId="20322"/>
+			<Material Amount="20" ItemId="40308"/>
+		</MakeItem>
+	</Action>
 	<!--マーブルの遺産1個->魔力の石 / 錬金術師-->
 	<Action Name="a" NpcId="70520">
 			<MakeItem AmountInputable="false">
@@ -330,14 +360,11 @@
 			<Item Amount="1" ItemId="40391"/>
 		</MakeItem>
 	</Action>
-	<!--研磨材 / ティミー-->
-	<Action Name="1" NpcId="71006">
+	<!--特製キャンディー/ 薬剤師イクシー-->
+	<Action Name="request ei005" NpcId="71001">
 		<MakeItem AmountInputable="false">
-			<Material Amount="1" ItemId="41209"/>
-			<Item Amount="1" ItemId="41210"/>
-			<Succeed>
-				<ShowHtml HtmlId="jpe0055"/>
-			</Succeed>
+			<Material Amount="1" ItemId="41211"/>
+			<Item Amount="1" ItemId="41212"/>
 		</MakeItem>
 	</Action>
 	<!--ハーブ / 鍛冶屋ロン-->
@@ -347,11 +374,14 @@
 			<Item Amount="1" ItemId="41211"/>
 		</MakeItem>
 	</Action>
-	<!--特製キャンディー/ 薬剤師イクシー-->
-	<Action Name="request ei005" NpcId="71001">
+	<!--研磨材 / ティミー-->
+	<Action Name="1" NpcId="71006">
 		<MakeItem AmountInputable="false">
-			<Material Amount="1" ItemId="41211"/>
-			<Item Amount="1" ItemId="41212"/>
+			<Material Amount="1" ItemId="41209"/>
+			<Item Amount="1" ItemId="41210"/>
+			<Succeed>
+				<ShowHtml HtmlId="jpe0055"/>
+			</Succeed>
 		</MakeItem>
 	</Action>
 	<!--シアンポーション / チコリー-->
@@ -374,6 +404,95 @@
 			<Succeed>
 				<ShowHtml HtmlId="jpe0065"/>
 			</Succeed>
+		</MakeItem>
+	</Action>
+	<!--ボーンアーマー / フェーダ-->
+	<Action Name="0" NpcId="71018">
+	<MakeItem AmountInputable="false">
+		<Material Amount="1" ItemId="41240"/>
+		<Item Amount="1" ItemId="20124"/>
+		<Succeed>
+			<ShowHtml HtmlId="jpe0135"/>
+		</Succeed>
+		</MakeItem>
+	</Action>
+	<!--骨細工師の袋 / 弟子ヴィート-->
+	<Action Name="0" NpcId="71019">
+		<MakeItem AmountInputable="false">
+			<Material Amount="1" ItemId="41239"/>
+			<Item Amount="1" ItemId="41241"/>
+		<Succeed>
+			<ShowHtml HtmlId="jpe0116"/>
+		</Succeed>
+		</MakeItem>
+	</Action>
+        <!--ジョンの届け物 / ジョン-->
+	<Action Name="0" NpcId="71020">
+		<MakeItem AmountInputable="false">
+			<Material Amount="1" ItemId="41231"/>
+			<Item Amount="1" ItemId="41232"/>
+		</MakeItem>
+	</Action>
+	<!--マッティーの手紙 / 骨細工師マッティー-->
+	<Action Name="request ei021" NpcId="71021">
+		<MakeItem AmountInputable="false">
+			<Material Amount="1" ItemId="41230"/>
+			<Item Amount="1" ItemId="41231"/>
+		</MakeItem>
+	</Action>
+	<!--ジーナンの手紙 / 骨細工師ジーナン-->
+	<Action Name="0" NpcId="71022">
+		<MakeItem AmountInputable="false">
+			<Material Amount="5" ItemId="41229"/>
+			<Item Amount="1" ItemId="41230"/>
+			<Succeed>
+				<ShowHtml HtmlId="jpe0154"/>
+			</Succeed>
+		</MakeItem>
+	</Action>
+	<!--材料表 / 骨細工師ケーイ-->
+	<Action Name="0" NpcId="71023">
+		<MakeItem AmountInputable="false">
+			<Material Amount="1" ItemId="41233"/>
+			<Material Amount="1" ItemId="41234"/>
+			<Item Amount="1" ItemId="41235"/>
+		<Succeed>
+			<ShowHtml HtmlId="jpe0146"/>
+		</Succeed>
+		</MakeItem>
+	</Action>
+	<!--ケーイの届け物 / 骨細工師ケーイ-->
+	<Action Name="1" NpcId="71023">
+		<MakeItem AmountInputable="false">
+			<Material Amount="1" ItemId="41235"/>
+			<Material Amount="3" ItemId="41236"/>
+			<Material Amount="3" ItemId="41237"/>
+			<Item Amount="1" ItemId="41238"/>
+		<Succeed>
+			<ShowHtml HtmlId="jpe0147"/>
+		</Succeed>
+		</MakeItem>
+	</Action>
+	<!--1000アデナ / ケスキン-->
+	<Action Name="1" NpcId="71025">
+	<MakeItem AmountInputable="false">
+		<Material Amount="1" ItemId="41226"/>
+		<Material Amount="1" ItemId="40653"/>
+		<Item Amount="1000" ItemId="40308"/>
+		<Succeed>
+			<ShowHtml HtmlId="jpe0085"/>
+		</Succeed>
+		</MakeItem>
+	</Action>
+	<!--1000アデナ / ケスキン-->
+	<Action Name="2" NpcId="71025">
+	<MakeItem AmountInputable="false">
+		<Material Amount="1" ItemId="41226"/>
+		<Material Amount="1" ItemId="40613"/>
+		<Item Amount="1000" ItemId="40308"/>
+		<Succeed>
+			<ShowHtml HtmlId="jpe0085"/>
+		</Succeed>
 		</MakeItem>
 	</Action>
 	<!--君主の袋 / 冒険者エータ-->
@@ -421,18 +540,11 @@
 			<Item Amount="1" ItemId="41221"/>
 		</MakeItem>
 	</Action>
-	<!--渓谷の印 / ルバー-->
-	<Action Name="request amulet of valley" NpcId="70506">
+	<!--象牙の塔のリング / ハーミット-->
+	<Action Name="request ring of oren tower" NpcId="71033">
 		<MakeItem AmountInputable="false">
-			<Material Amount="1" ItemId="40653"/>
-			<Item Amount="1" ItemId="20243"/>
-		</MakeItem>
-	</Action>
-	<!--島の印 / ルバー-->
-	<Action Name="request amulet of island" NpcId="70506">
-		<MakeItem AmountInputable="false">
-			<Material Amount="1" ItemId="40613"/>
-			<Item Amount="1" ItemId="20259"/>
+			<Material Amount="1" ItemId="41228"/>
+			<Item Amount="1" ItemId="20282"/>
 		</MakeItem>
 	</Action>
 	<!--ラビのお守り / ラビ-->
@@ -442,107 +554,66 @@
 			<Item Amount="1" ItemId="41228"/>
 		</MakeItem>
 	</Action>
-	<!--象牙の塔のリング / ハーミット-->
-	<Action Name="request ring of oren tower" NpcId="71033">
-		<MakeItem AmountInputable="false">
-			<Material Amount="1" ItemId="41228"/>
-			<Item Amount="1" ItemId="20282"/>
-		</MakeItem>
-	</Action>
-	<!--ジーナンの手紙 / 骨細工師ジーナン-->
-	<Action Name="0" NpcId="71022">
-		<MakeItem AmountInputable="false">
-			<Material Amount="5" ItemId="41229"/>
-			<Item Amount="1" ItemId="41230"/>
+	<!--オームの袋 / 坑夫オーム-->
+	<Action Name="request oum giftbag" NpcId="71146">
+		<MakeItem>
+			<Item Amount="1" ItemId="40687"/>
+			<Material Amount="1" ItemId="40527"/>
 			<Succeed>
-				<ShowHtml HtmlId="jpe0154"/>
+				<ShowHtml HtmlId="midoum3"/>
 			</Succeed>
 		</MakeItem>
 	</Action>
-	<!--マッティーの手紙 / 骨細工師マッティー-->
-	<Action Name="request ei021" NpcId="71021">
-		<MakeItem AmountInputable="false">
-			<Material Amount="1" ItemId="41230"/>
-			<Item Amount="1" ItemId="41231"/>
+	<!--ツルハシ / ダルフガーディン-->
+	<Action Name="request hoe" NpcId="71166">
+		<MakeItem>
+			<Item Amount="1" ItemId="40527"/>
+			<Material Amount="5" ItemId="40899"/>
+			<Material Amount="300" ItemId="40308"/>
 		</MakeItem>
 	</Action>
-	<!--ジョンの届け物 / ジョン-->
-	<Action Name="0" NpcId="71020">
-		<MakeItem AmountInputable="false">
-			<Material Amount="1" ItemId="41231"/>
-			<Item Amount="1" ItemId="41232"/>
+	<!--真冥王の防具秘法書 / 副官マールベス-->
+	<Action Name="request dantes manual" NpcId="71169">
+		<MakeItem>
+			<Item Amount="1" ItemId="40966"/>
+			<Material Amount="1" ItemId="41035"/>
 		</MakeItem>
 	</Action>
-	<!--材料表 / 骨細工師ケーイ-->
-	<Action Name="0" NpcId="71023">
-		<MakeItem AmountInputable="false">
-			<Material Amount="1" ItemId="41233"/>
-			<Material Amount="1" ItemId="41234"/>
-			<Item Amount="1" ItemId="41235"/>
-		<Succeed>
-			<ShowHtml HtmlId="jpe0146"/>
-		</Succeed>
+        <!--アップルジュース / エンデル-->
+	<Action Name="request apple juice" NpcId="71197">
+		<MakeItem>
+			<Item Amount="1" ItemId="40028"/>
+			<Material Amount="1" ItemId="40059"/>
+			<Material Amount="1" ItemId="40060"/>
+			<Material Amount="1" ItemId="40061"/>
+			<Material Amount="5" ItemId="40064"/>
 		</MakeItem>
 	</Action>
-	<!--ケーイの届け物 / 骨細工師ケーイ-->
-	<Action Name="1" NpcId="71023">
-		<MakeItem AmountInputable="false">
-			<Material Amount="1" ItemId="41235"/>
-			<Material Amount="3" ItemId="41236"/>
-			<Material Amount="3" ItemId="41237"/>
-			<Item Amount="1" ItemId="41238"/>
-		<Succeed>
-			<ShowHtml HtmlId="jpe0147"/>
-		</Succeed>
+	<!--修理されたイアリング / 釣りおばさん-->
+	<Action Name="request not_broken earring" NpcId="80081">
+		<MakeItem>
+			<Item Amount="1" ItemId="21049"/>
+			<Material Amount="1" ItemId="41305"/>
+			<Material Amount="1" ItemId="41303"/>
+			<Material Amount="1000" ItemId="40308"/>
 		</MakeItem>
 	</Action>
-	<!--骨細工師の袋 / 弟子ヴィート-->
-	<Action Name="0" NpcId="71019">
-		<MakeItem AmountInputable="false">
-			<Material Amount="1" ItemId="41239"/>
-			<Item Amount="1" ItemId="41241"/>
-		<Succeed>
-			<ShowHtml HtmlId="jpe0116"/>
-		</Succeed>
+	<!--修理されたリング / 釣りおばさん-->
+	<Action Name="request not_broken ring left" NpcId="80081">
+		<MakeItem>
+			<Item Amount="1" ItemId="21048"/>
+			<Material Amount="1" ItemId="41306"/>
+			<Material Amount="1" ItemId="41302"/>
+			<Material Amount="1000" ItemId="40308"/>
 		</MakeItem>
 	</Action>
-	<!--ボーンアーマー / フェーダ-->
-	<Action Name="0" NpcId="71018">
-	<MakeItem AmountInputable="false">
-		<Material Amount="1" ItemId="41240"/>
-		<Item Amount="1" ItemId="20124"/>
-		<Succeed>
-			<ShowHtml HtmlId="jpe0135"/>
-		</Succeed>
-		</MakeItem>
-	</Action>
-	<!--パゴの薬 / パゴ-->
-	<Action Name="request ei014" NpcId="70005">
-	<MakeItem AmountInputable="false">
-		<Material Amount="1" ItemId="41225"/>
-		<Item Amount="1" ItemId="41226"/>
-		</MakeItem>
-	</Action>
-	<!--1000アデナ / ケスキン-->
-	<Action Name="1" NpcId="71025">
-	<MakeItem AmountInputable="false">
-		<Material Amount="1" ItemId="41226"/>
-		<Material Amount="1" ItemId="40653"/>
-		<Item Amount="1000" ItemId="40308"/>
-		<Succeed>
-			<ShowHtml HtmlId="jpe0085"/>
-		</Succeed>
-		</MakeItem>
-	</Action>
-	<!--1000アデナ / ケスキン-->
-	<Action Name="2" NpcId="71025">
-	<MakeItem AmountInputable="false">
-		<Material Amount="1" ItemId="41226"/>
-		<Material Amount="1" ItemId="40613"/>
-		<Item Amount="1000" ItemId="40308"/>
-		<Succeed>
-			<ShowHtml HtmlId="jpe0085"/>
-		</Succeed>
+	<!--修理されたネックレス / 釣りおばさん-->
+	<Action Name="request not_broken amulet" NpcId="80081">
+		<MakeItem>
+			<Item Amount="1" ItemId="21050"/>
+			<Material Amount="1" ItemId="41307"/>
+			<Material Amount="1" ItemId="41301"/>
+			<Material Amount="1000" ItemId="40308"/>
 		</MakeItem>
 	</Action>
 	<!--料理の本：ステップ1 / シェフ ラフォンス-->
@@ -1014,58 +1085,6 @@
 			</Fail>
 		</MakeItem>
 	</Action>
-	<!--鉱物の袋 / 坑夫オーム-->
-	<Action Name="request mineral bag">
-		<MakeItem>
-			<Item Amount="1" ItemId="41002"/>
-			<Material Amount="1" ItemId="40614"/>
-		</MakeItem>
-	</Action>
-	<!--ツルハシ / ダルフガーディン-->
-	<Action Name="request hoe" NpcId="71166">
-		<MakeItem>
-			<Item Amount="1" ItemId="40527"/>
-			<Material Amount="5" ItemId="40899"/>
-			<Material Amount="300" ItemId="40308"/>
-		</MakeItem>
-	</Action>
-	<!--オームの袋 / 坑夫オーム-->
-	<Action Name="request oum giftbag" NpcId="71146">
-		<MakeItem>
-			<Item Amount="1" ItemId="40687"/>
-			<Material Amount="1" ItemId="40527"/>
-			<Succeed>
-				<ShowHtml HtmlId="midoum3"/>
-			</Succeed>
-		</MakeItem>
-	</Action>
-	<!--修理されたイアリング / 釣りおばさん-->
-	<Action Name="request not_broken earring" NpcId="80081">
-		<MakeItem>
-			<Item Amount="1" ItemId="21049"/>
-			<Material Amount="1" ItemId="41305"/>
-			<Material Amount="1" ItemId="41303"/>
-			<Material Amount="1000" ItemId="40308"/>
-		</MakeItem>
-	</Action>
-	<!--修理されたリング / 釣りおばさん-->
-	<Action Name="request not_broken ring left" NpcId="80081">
-		<MakeItem>
-			<Item Amount="1" ItemId="21048"/>
-			<Material Amount="1" ItemId="41306"/>
-			<Material Amount="1" ItemId="41302"/>
-			<Material Amount="1000" ItemId="40308"/>
-		</MakeItem>
-	</Action>
-	<!--修理されたネックレス / 釣りおばさん-->
-	<Action Name="request not_broken amulet" NpcId="80081">
-		<MakeItem>
-			<Item Amount="1" ItemId="21050"/>
-			<Material Amount="1" ItemId="41307"/>
-			<Material Amount="1" ItemId="41301"/>
-			<Material Amount="1000" ItemId="40308"/>
-		</MakeItem>
-	</Action>
 	<!--新生のベルト(水) / 特典アイテム管理人-->
 	<Action Name="a" NpcId="81200">
 		<MakeItem>
@@ -1136,30 +1155,12 @@
 			<Material Amount="1" ItemId="21074"/>
 		</MakeItem>
 	</Action>
-	<!--真冥王の防具秘法書 / 副官マールベス-->
-	<Action Name="request dantes manual" NpcId="71169">
+
+	<!--鉱物の袋 / 坑夫オーム-->
+	<Action Name="request mineral bag">
 		<MakeItem>
-			<Item Amount="1" ItemId="40966"/>
-			<Material Amount="1" ItemId="41035"/>
-		</MakeItem>
-	</Action>
-        <!--アップルジュース / エンデル-->
-	<Action Name="request apple juice" NpcId="71197">
-		<MakeItem>
-			<Item Amount="1" ItemId="40028"/>
-			<Material Amount="1" ItemId="40059"/>
-			<Material Amount="1" ItemId="40060"/>
-			<Material Amount="1" ItemId="40061"/>
-			<Material Amount="5" ItemId="40064"/>
-		</MakeItem>
-	</Action>
-        <!--リンゴジュース / パルツ-->
-	<Action Name="request apple juice" NpcId="70519">
-		<MakeItem>
-			<Item Amount="1" ItemId="40028"/>
-			<Material Amount="1" ItemId="4"/>
-			<Material Amount="1" ItemId="20322"/>
-			<Material Amount="20" ItemId="40308"/>
+			<Item Amount="1" ItemId="41002"/>
+			<Material Amount="1" ItemId="40614"/>
 		</MakeItem>
 	</Action>
 </NpcActionList>
