@@ -2,11 +2,11 @@
 <NpcActionList>
 	<!--マーブルの遺産1個->魔力の石 / 錬金術師-->
 	<Action Name="a" NpcId="70520">
-		<MakeItem AmountInputable="false">
+			<MakeItem AmountInputable="false">
 			<Material Amount="1" ItemId="40304"/>
 			<Material Amount="1000" ItemId="40308"/>
 			<Item Amount="20" ItemId="40318"/>
-		</MakeItem>
+                </MakeItem>
 	</Action>
 	<!--マーブルの遺産10個->魔力の石 / 錬金術師-->
 	<Action Name="b" NpcId="70520">
@@ -1141,6 +1141,25 @@
 		<MakeItem>
 			<Item Amount="1" ItemId="40966"/>
 			<Material Amount="1" ItemId="41035"/>
+		</MakeItem>
+	</Action>
+        <!--アップルジュース / エンデル-->
+	<Action Name="request apple juice" NpcId="71197">
+		<MakeItem>
+			<Item Amount="1" ItemId="40028"/>
+			<Material Amount="1" ItemId="40059"/>
+			<Material Amount="1" ItemId="40060"/>
+			<Material Amount="1" ItemId="40061"/>
+			<Material Amount="5" ItemId="40064"/>
+		</MakeItem>
+	</Action>
+        <!--リンゴジュース / パルツ-->
+	<Action Name="request apple juice" NpcId="70519">
+		<MakeItem>
+			<Item Amount="1" ItemId="40028"/>
+			<Material Amount="1" ItemId="4"/>
+			<Material Amount="1" ItemId="20322"/>
+			<Material Amount="20" ItemId="40308"/>
 		</MakeItem>
 	</Action>
 </NpcActionList>

@@ -1231,16 +1231,6 @@
 			<Material Amount="1" ItemId="40061"/>
 		</MakeItem>
 	</Action>
-	<!--リンゴジュース / パルツ-->
-	<Action Name="request apple juice">
-		<MakeItem>
-			<Item Amount="1" ItemId="40028"/>
-			<Material Amount="5" ItemId="40064"/>
-			<Material Amount="1" ItemId="40059"/>
-			<Material Amount="1" ItemId="40060"/>
-			<Material Amount="1" ItemId="40061"/>
-		</MakeItem>
-	</Action>
 	<!--カオスレザー(火) / バミュト-->
 	<Action Name="request red skin of curse">
 		<MakeItem>
@@ -2687,16 +2677,6 @@
 			<Material Amount="1" ItemId="40061"/>
 			<Material Amount="5" ItemId="40069"/>
 			<Item Amount="1" ItemId="40027"/>
-		</MakeItem>
-	</Action>
-	<!--アップルジュース / エンデル-->
-	<Action Name="request apple juice" NpcId="71197">
-		<MakeItem>
-			<Material Amount="1" ItemId="40059"/>
-			<Material Amount="1" ItemId="40060"/>
-			<Material Amount="1" ItemId="40061"/>
-			<Material Amount="5" ItemId="40064"/>
-			<Item Amount="1" ItemId="40028"/>
 		</MakeItem>
 	</Action>
 	<!--ペットマッチギフトボックス / メダル管理人-->
