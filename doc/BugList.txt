@@ -22,7 +22,8 @@
 19.血盟盟主 打/pledge 顯示血盟名單，下方血盟成員總名單只能顯示到36人，其他人ID都看不到。
 20.血盟守護騎士頻道(%) 顏色有誤，正確為"桃紅色"。
 21.王級怪物刷第一次之後超過設定時間不會重生(反王 克特 四色 黑長者 等等).
-
+22.血盟王族無法更改成員階級 /階級 成員ID 守護騎士  會顯示 沒有叫XX的人。
+23.伊娃神殿無城門.城門開關 可直接闖入海音內城.
 
 技能類:
 1.龍騎技能-奪命之雷 沒有束縛2秒的效果.
@@ -41,11 +42,10 @@ NPC類:
 9.部份娃娃無施法特效.
 10.現實時間12點整(中午與凌晨)往遺忘之島的船隻無法啟動.
 11.亞丁內城武器強化師與治療師無動作(對話檔錯誤?).
-13.底比斯傳送點不正確(開啟時間尚未完成).
-14.寵物的速度大概是正常的2倍/安全區寵物可以攻擊玩家.
-15.500個勇氣徽章換一個勝利徽章(奇岩競技場入場NPC),無法換取.
-16.盟屋租用後付款完成第二次顯示對話錯誤,應為無須付款而非第二次仍可付款.
-17.妖森里迪對話視窗空白.
+13.底比斯傳送點尚不夠正確(開啟時間尚未完成).
+14.寵物的速度大概是正常的2倍.
+15.盟屋租用後付款完成第二次顯示對話錯誤,應為無須付款而非第二次仍可付款.
+
 
 任務類:
 1.疲憊的蜥蜴人戰士可以持續產生並且不會消失.
@@ -55,16 +55,13 @@ NPC類:
 地圖傳點類:
 1.海音城：海音城內城到伊娃神殿沒有傳點(守門人與門)。
 2.無限大戰觀看模式結束時角色卡點.
-3.火龍窟/黃昏山脈 不可記點範圍過大.
 
 掉落道具類(尚未驗證):
 1.未掉落? 水元素守護者=神官法袍 風元素守護者=神官手套 火元素守護者=神官頭飾 地元素守護者=神官斗篷 闇元素守護者=黑暗腰帶
 2.污濁安特 污濁潘 污濁芮克妮 掉落道具錯誤?
 
 道具類:
-1.血光斗篷使用無所遁形即可現形(透視鏡資料為強力無所遁形).
-2.40010 治癒藥水 40011 橙色藥水 40012 白色藥水 鑑定前後名稱相同.
-3.道具缺
+1.道具缺
 神奇戰鬥盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&item=9121
 驚喜遊樂盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9122#item_detail
 中秋禮盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9720#item_detail
@@ -97,19 +94,9 @@ NPC類:
 異界鐵盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9596#item_detail
 兌換憑證 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9717#item_detail
 神秘徽章 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9785#item_detail
-
 媽祖祝福平安符 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9629#item_detail
 時空之泉 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9730#item_detail
 裂痕之泉 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9731#item_detail
-
-魔眼缺:
-地龍之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9663#item_detail
-水龍之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9664#item_detail
-風龍之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9665#item_detail
-火龍之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9666#item_detail
-誕生之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9667#item_detail
-形體之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9668#item_detail
-生命之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9669#item_detail
 
 傳送卷軸缺:
 精靈結晶 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=448#item_detail
@@ -163,4 +150,84 @@ NPC類:
 1. 亞丁城的城盟可以透過亞丁內城的「普若亞」(32870,32555)傳送至亞丁地下墓穴1樓。
 2. 亞丁地下墓穴4樓的「瑪雅的影子」(32798,33124)透過他可以傳送至傲慢之塔。
 3. 收集亞丁地下墓穴裡怪物所掉落的道具，可以向亞丁內城的卡拉(32884,32554)換取金幣。
-4. 在此處無法使用指定傳送術及瞬間移動卷軸。 
+4. 在此處無法使用指定傳送術及瞬間移動卷軸。
+
+3.2C 未實裝部份
+
+1.攻城戰時間目前固定為每星期日晚上20:00開始攻城,攻城區間為現實時間二小時(城主將無法再決定下一次的攻城時間).
+2.缺 槍矛/鎖鏈劍類變身 狂暴將軍 角色等級 52、55、60、65、70 級.
+3.殷海薩的祝福(休息系統). http://tw.lineage.gamania.com/events/20100209_preview_e3s/b5.htm
+   A. 角色達49級之後，受到殷海薩的魔力影響，將可啟動「殷海薩的祝福」系統。
+   B. 當「殷海薩的祝福」啟動期間，練功將可獲得「狩獵經驗值+額外經驗值」。
+   C.「殷海薩的祝福」％數會隨著狩獵時所得到的額外經驗值逐漸消耗，當消耗至0％時則不再獲得額外經驗值。
+   D. 當玩家處於安全地區或角色登出狀態時，「殷海薩的祝福」％數會慢慢恢復，最高可達200%。 
+4.獎勵任務. http://tw.lineage.gamania.com/events/20100209_preview_e3s/b5_3.htm
+   小遊戲每日可進入次數 死亡競賽 20 幽靈之家 20 寵物競速 20 寵物戰 20 無限大賽 3 紀錄於每日0點歸0.
+
+NPC缺:
+1.威頓村 班酷 (33729, 32506) 
+	 孵化淘氣龍和頑皮龍.
+2.威頓村 強韌的海斯：力量強化 (33711, 32525)
+	 細心的修樂：魅惑強化 (33704, 32523)
+	 頑強的歐浩：泉源強化 (33704, 32517)
+	 燦爛的艾咪：霸氣強化 (33708, 32517)
+	 古代地龍鱗盔甲 1個 安塔瑞斯之心 2個 高品質鑽石 3個 馬普勒之石 50個 金幣 100000個 製作 安塔瑞斯的xx
+	 古代風龍鱗盔甲 1個 林德拜爾之心 2個 高品質藍寶石 3個 沙哈之石 50個 金幣 100000個 製作 林德拜爾的xx
+	 古代水龍鱗盔甲 1個 法利昂之心 2個 高品質綠寶石 3個 伊娃之石 50個 金幣 100000個   製作 法利昂的xx
+	 古代火龍鱗盔甲 1個 巴拉卡斯之心 2個 高品質紅寶石 3個 帕格里奧之石 50個 金幣100000個 製作 巴拉卡斯的XX
+3.威頓村 米米 (33695, 32522) 解除魔眼封印或是混合魔眼力量.
+	 解封印:
+		受封印地龍之魔眼1個 金幣100000個 
+	 	受封印水龍之魔眼1個 金幣100000個 
+	 	受封印火龍之魔眼1個 金幣100000個 
+		受封印風龍之魔眼1個 金幣100000個 
+	 混合魔眼力量:
+		誕生之魔眼 地龍之魔眼1個 水龍之魔眼1個 金幣200000個 
+		形象之魔眼 誕生之魔眼1個 風龍之魔眼1個 金幣200000個 
+		生命之魔眼 形象之魔眼1個 火龍之魔眼1個 金幣200000個 
+4.威頓村 多魯嘉貝爾 (33692, 32519) 販售「多魯嘉之袋」。
+多魯嘉之袋一天(24小時)可以使用一次，總共可使用30次。(使用30次後自動消失)。
+5.威頓村 屠龍佈告欄 (33692, 32520) 取得龍之鑰匙後，可以張貼募集屠龍勇士的訊息。
+6.龍之門扉 點擊龍之鑰匙隨時可叫出(透過龍之門扉後可以進入到「安塔瑞斯洞穴入口」)。
+  龍之門扉開啟後只能存在2小時，最多只有32人能夠一起進入安塔瑞斯洞穴。
+7.安塔瑞斯洞穴 卡瑞 (32935, 32732) 對話後，可以獲得具有特殊魔法效果的「卡瑞的祝福」。 
+8.安塔瑞斯棲息地入口 帕利特 (32680, 32680) 倉庫管理員，可以存領倉庫中道具。
+9.安塔瑞斯棲息地入口 伊帕奇 (32684, 32663) 雜貨商，販賣藥水、卷軸等物品。
+10.隱匿的巨龍谷入口 威頓村莊(33726, 32506) 可以進入到隱匿的巨龍谷中的蒼空之谷及侏儒部落中。
+	A.同伺服器任一組人馬優先戰勝地龍-安塔瑞斯後，在威頓村莊將會出現「隱匿的巨龍谷入口」。
+	B.「隱匿的巨龍谷入口」將會存在現實24小時(依第一個戰勝地龍-安塔瑞斯的時間起算)。
+	C.隱匿的巨龍谷，在進入時有以下等級區分：Lv.30~Lv.51：侏儒部落 Lv.52以上：蒼空之谷
+11.奇岩廣場 魔法師 梅琳 (33429, 32824) 對話後，可以進入奇岩地監一樓。
+   奇岩地間相關資料:
+   變更進入奇岩地監的方式，將改由透過NPC對話後進行傳送。
+   地監傳入點地圖位置 http://tw.lineage.gamania.com/events/20100209_preview_e3s/images/b3_a3_02.jpg
+   「奇岩地監」內的奇岩強盜死亡後，將會變身為更強大的浮士德惡靈。
+   每日(現實24小時)僅能在「奇岩地監」裡逗留3小時，超過時間將會傳送回村莊裡。
+   如果擊敗奇岩地監的強盜首領克萊恩(4f)，將有機會獲得強盜的寶箱鑰匙，透過這把鑰匙，可以打開在奇岩地監3樓隱藏的寶物箱，從中獲得道具。
+
+怪物缺:
+1. http://tw.lineage.gamania.com/events/20100209_preview_e3s/b4.htm
+2. http://tw.lineage.gamania.com/events/20100209_preview_e3s/b4_2.htm
+3. http://tw.lineage.gamania.com/events/20100209_preview_e3s/b4_3.htm
+
+道具缺:
+
+寵物蛋:
+淘氣幼龍蛋
+頑皮幼龍蛋
+
+魔眼:
+地龍之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9663#item_detail
+使用後可以獲得特殊魔法效果。單次時效600秒，使用間隔1小時。物理攻擊迴避提升、石化耐性+3
+水龍之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9664#item_detail
+使用後可以獲得特殊魔法效果。單次時效600秒，使用間隔1小時。增加魔法傷害減免、寒冰耐性+3 
+風龍之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9665#item_detail
+使用後可以獲得特殊魔法效果。單次時效600秒，使用間隔1小時。增加魔法重擊率、睡眠耐性+3
+火龍之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9666#item_detail
+使用後可以獲得特殊魔法效果。單次時效600秒，使用間隔1小時。額外攻擊點數+2、昏迷耐性+3 
+誕生之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9667#item_detail
+使用後可以獲得特殊魔法效果。單次時效600秒，使用間隔1小時。物理攻擊迴避提升、增加魔法傷害減免、暗黑耐性+3 
+形體之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9668#item_detail
+使用後可以獲得特殊魔法效果。單次時效600秒，使用間隔1小時。物理攻擊迴避提升、增加魔法傷害減免、增加魔法重擊率、支撐耐性+3 
+生命之魔眼 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9669#item_detail
+使用後可以獲得特殊魔法效果。單次時效600秒，使用間隔1小時。物理攻擊迴避提升、增加魔法傷害減免、增加魔法重擊率、額外攻擊點數+2、降低中毒機率
