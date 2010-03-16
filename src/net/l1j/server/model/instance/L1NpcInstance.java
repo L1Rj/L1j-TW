@@ -59,6 +59,7 @@ import net.l1j.server.serverpackets.S_SkillHaste;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1NpcChat;
+import net.l1j.server.templates.L1Pet;
 import net.l1j.server.types.Base;
 import net.l1j.server.types.Point;
 import net.l1j.server.utils.RandomArrayList;
@@ -1459,7 +1460,7 @@ public class L1NpcInstance extends L1Character {
 
 		for (L1Object object : L1World.getInstance().getVisibleObjects(this, 1)) {
 			// PC, Summon, Petがいる場合
-			if (object instanceof L1PcInstance || object instanceof L1SummonInstance || object instanceof L1PetInstance) {
+			if (object instanceof L1PcInstance || object instanceof L1SummonInstance || object instanceof L1PetInstance ) {
 				L1Character cha = (L1Character) object;
 				// 進行方向に立ちふさがっている場合、ターゲットリストに加える
 				if (cha.getX() == targetX && cha.getY() == targetY && cha.getMapId() == getMapId()) {

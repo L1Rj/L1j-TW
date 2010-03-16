@@ -824,7 +824,7 @@ public class L1Attack {
 				L1DollInstance doll = (L1DollInstance) dollObject;
 				dmg += doll.getDamageByDoll();
 			}
-		// waja add 魔法娃娃增加 弓攻擊力
+		// 魔法娃娃增加 弓攻擊力
 		} else {
 			dmg += L1DollInstance.getBowDamageByDoll(_pc);
 		}
