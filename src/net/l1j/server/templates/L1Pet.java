@@ -114,13 +114,13 @@ public class L1Pet {
 	}
 
 //waja add 寵物飽食度
-	private int _food;
+	private static int _food;
 
-	public int get_food() {
+	public static int get_food() {
 		return _food;
 	}
 
-	public void set_food(int i) {
+	public static void set_food(int i) {
 		_food = i;
 	}
 //add end

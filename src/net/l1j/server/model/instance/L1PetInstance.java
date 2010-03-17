@@ -70,7 +70,7 @@ public class L1PetInstance extends L1NpcInstance {
 				_currentPetStatus = 3;
 				return true;
 			}
-		} else if (_currentPetStatus == 5) { // ● 警戒の場合はホームへ
+		} else if (_currentPetStatus == 5 && L1Pet.get_food() >= 10 ) { // ● 警戒の場合はホームへ
 			if (Math.abs(getHomeX() - getX()) > 1 || Math.abs(getHomeY() - getY()) > 1) {
 				int dir = moveDirection(getHomeX(), getHomeY());
 				if (dir == -1) { // ホームが離れすぎてたら現在地がホーム
@@ -81,7 +81,7 @@ public class L1PetInstance extends L1NpcInstance {
 					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 				}
 			}
-		} else if (_currentPetStatus == 7) { // ● ペットの笛で主人の元へ
+		} else if (_currentPetStatus == 7 && L1Pet.get_food() >= 10 ) { // ● ペットの笛で主人の元へ
 			if (_petMaster != null && _petMaster.getMapId() == getMapId() && getLocation().getTileLineDistance(_petMaster.getLocation()) <= 1) {
 				_currentPetStatus = 3;
 				return true;
@@ -95,7 +95,7 @@ public class L1PetInstance extends L1NpcInstance {
 			}
 			setDirectionMove(dir);
 			setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
-		} else if (_petMaster != null && _petMaster.getMapId() == getMapId()) { // ●
+		} else if (_petMaster != null && _petMaster.getMapId() == getMapId() && L1Pet.get_food() >= 10 ) { // ●
 			// 主人を追尾
 			if (getLocation().getTileLineDistance(_petMaster.getLocation()) > 2) {
 				int dir = moveDirection(_petMaster.getX(), _petMaster.getY());
@@ -134,6 +134,7 @@ public class L1PetInstance extends L1NpcInstance {
 		setExpPercent(ExpTable.getExpPercentage(l1pet.get_level(), l1pet.get_exp()));
 		setLawful(l1pet.get_lawful());
 		setTempLawful(l1pet.get_lawful());
+		L1Pet.get_food();
 
 		setMaster(master);
 		setX(RandomArrayList.getInc(5, master.getX() - 2)); // master.getX() + StaticFinalList.getRang2());
@@ -169,6 +170,7 @@ public class L1PetInstance extends L1NpcInstance {
 		setExpPercent(0);
 		setLawful(0);
 		setTempLawful(0);
+		L1Pet.set_food(20);
 
 		setMaster(master);
 		setX(target.getX());
@@ -224,6 +226,7 @@ public class L1PetInstance extends L1NpcInstance {
 			setStatus(ActionCodes.ACTION_Die);
 			setCurrentHp(0);
 			setExpPercent(getExpPercent() - 5);// 寵物死亡扣除經驗
+			L1Pet.set_food(20);//寵物死亡 飽食度降回20
 			_currentPetStatus = 3; // 寵物狀態改為停留
 			getMap().setPassable(getLocation(), true);
 			broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Die));
@@ -449,8 +452,8 @@ public class L1PetInstance extends L1NpcInstance {
 		if (status == 0) {
 			return;
 		}
-		if (status == 6) {
-			liberate(); // ペットの解放
+		if (status == 6 || L1Pet.get_food() == 0) {
+			liberate(); // 指令解放寵物&飽食度0時解散寵物
 		} else {
 			// 同じ主人のペットの狀態をすべて更新
 			Object[] petList = _petMaster.getPetList().values().toArray();
@@ -586,7 +589,7 @@ public class L1PetInstance extends L1NpcInstance {
 	public int getExpPercent() {
 		return _expPercent;
 	}
-
+	
 	private L1ItemInstance _weapon;
 
 	public void setWeapon(L1ItemInstance weapon) {
