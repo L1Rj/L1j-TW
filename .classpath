@@ -2,22 +2,22 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="lib/c3p0-0.9.1.2.jar" sourcepath="lib/src/c3p0-0.9.1.2-src.zip">
+	<classpathentry kind="lib" path="lib/c3p0-0.9.1.2.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="http://www.mchange.com/projects/c3p0/apidocs/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/javolution-5.4.3.jar" sourcepath="lib/src/javolution-5.4.3-src.zip">
+	<classpathentry kind="lib" path="lib/javolution-5.4.3.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="http://javolution.org/target/site/apidocs/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.12-bin.jar" sourcepath="lib/src/mysql-connector-java-5.1.12-bin-src.zip">
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.12-bin.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="http://dev.mysql.com/doc/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/nimrodlf-1.1a.jar" sourcepath="lib/src/nimrodlf-1.1a-src.zip"/>
-	<classpathentry kind="lib" path="lib/sqlitejdbc-v056.jar" sourcepath="lib/src/sqlitejdbc-v056-src.zip"/>
+	<classpathentry kind="lib" path="lib/nimrodlf-1.1a.jar"/>
+	<classpathentry kind="lib" path="lib/sqlitejdbc-v056.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
