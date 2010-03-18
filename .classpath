@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="lib/c3p0-0.9.1.2.jar" sourcepath="lib/src/c3p0-0.9.1.2-src.zip">
 		<attributes>
 			<attribute name="javadoc_location" value="http://www.mchange.com/projects/c3p0/apidocs/"/>
@@ -12,7 +12,7 @@
 			<attribute name="javadoc_location" value="http://javolution.org/target/site/apidocs/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.11-bin.jar" sourcepath="lib/src/mysql-connector-java-5.1.11-bin-src.zip">
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.12-bin.jar" sourcepath="lib/src/mysql-connector-java-5.1.12-bin-src.zip">
 		<attributes>
 			<attribute name="javadoc_location" value="http://dev.mysql.com/doc/"/>
 		</attributes>

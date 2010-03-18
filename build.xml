@@ -19,9 +19,7 @@
 		02111-1307, USA.
 
 		http://www.gnu.org/copyleft/gpl.html
-
 	</description>
-
 
 	<!-- Set Property -->
 	<property name="src.dir" value="src" />
@@ -33,16 +31,14 @@
 		<fileset dir="${lib.dir}">
 			<include name="c3p0-0.9.1.2.jar" />
 			<include name="javolution-5.4.3.jar" />
-			<include name="mysql-connector-java-5.1.11-bin.jar" />
+			<include name="mysql-connector-java-5.1.12-bin.jar" />
 			<include name="sqlitejdbc-v056.jar" />
 			<include name="nimrodlf-1.1a.jar" />
 		</fileset>
 	</path>
 
-
 	<!-- Set DefaultTarget -->
 	<target name="all" depends="clean,compile,jar,clean2" />
-
 
 	<!-- clean Target -->
 	<target name="clean">
@@ -52,9 +48,7 @@
 	<!-- Compile Target -->
 	<target name="compile">
 		<mkdir dir="${build.dir}" />
-		<javac destdir="${build.dir}"
-				optimize="on"
-				encoding="UTF-8">
+		<javac destdir="${build.dir}" optimize="on" encoding="UTF-8">
 			<src path="${src.dir}" />
 			<classpath refid="classpath" />
 		</javac>
@@ -69,5 +63,4 @@
 	<target name="clean2">
 		<delete dir="${build.dir}" />
 	</target>
-
 </project>
