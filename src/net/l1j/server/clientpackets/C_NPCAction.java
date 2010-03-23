@@ -484,11 +484,15 @@ public class C_NPCAction extends ClientBasePacket {
 			repairGate(pc);
 			htmlid = ""; // ウィンドウを消す
 		} else if (s.equalsIgnoreCase("encw")) { // 武器專門家 / 武器の強化魔法を受ける
+                        L1NpcInstance npc = (L1NpcInstance) obj;
 			if (pc.getWeapon() == null) {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 			} else {
 				for (L1ItemInstance item : pc.getInventory().getItems()) {
 					if (pc.getWeapon().equals(item)) {
+                                            if (npc.getNpcTemplate().get_npcId() == 70508) {
+                                                pc.getInventory().consumeItem(40308, 100);
+                                            }
 						SkillUse skilluse = new SkillUse();
 						skilluse.handleCommands(pc, SKILL_ENCHANT_WEAPON, item.getId(), 0, 0, null, 0, Base.SKILL_TYPE[2]);
 						break;
@@ -497,8 +501,12 @@ public class C_NPCAction extends ClientBasePacket {
 			}
 			htmlid = ""; // ウィンドウを消す
 		} else if (s.equalsIgnoreCase("enca")) { // 防具專門家 / 防具の強化魔法を受ける
+                        L1NpcInstance npc = (L1NpcInstance) obj;
 			L1ItemInstance item = pc.getInventory().getItemEquipped(2, 2);
 			if (item != null) {
+                                if (npc.getNpcTemplate().get_npcId() == 70509) {
+                                    pc.getInventory().consumeItem(40308, 100);
+                                }
 				SkillUse skilluse = new SkillUse();
 				skilluse.handleCommands(pc, SKILL_BLESSED_ARMOR, item.getId(), 0, 0, null, 0, Base.SKILL_TYPE[2]);
 			} else {
