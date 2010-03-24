@@ -308,7 +308,7 @@ public class NpcTable {
 		} finally {
 			SQLUtil.close(rs, pstm, con);
 		}
-		if (Config.ETCITEM_CUSTOM_TABLE) {
+		if (Config.NPC_CUSTOM_TABLE) {
 			try {
 				con = L1DatabaseFactory.getInstance().getConnection();
 				pstm = con.prepareStatement("SELECT DISTINCT(family) AS family FROM npc_custom WHERE NOT TRIM(family) =''");
