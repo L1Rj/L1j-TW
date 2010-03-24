@@ -61,9 +61,11 @@ public class PacketHandler {
 			case C_OPCODE_TRADEADDCANCEL:
 				new C_TradeCancel(abyte0, _client);
 			break;
+/* 3.2C移除城主修改攻城時間
 			case C_OPCODE_CHANGEWARTIME:
 				new C_ChangeWarTime(abyte0, _client);
 			break;
+*/
 			case C_OPCODE_BOOKMARK:
 				new C_AddBookmark(abyte0, _client);
 			break;

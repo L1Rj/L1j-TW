@@ -31,11 +31,11 @@ CREATE TABLE `castle` (
 -- ----------------------------
 -- Records of castle
 -- ----------------------------
-INSERT INTO `castle` VALUES ('1', '肯特城堡', '2007-10-03 22:00:00', '10', '0', 'false');
-INSERT INTO `castle` VALUES ('2', '妖魔城堡', '2007-10-04 22:00:00', '10', '0', 'false');
-INSERT INTO `castle` VALUES ('3', '風木之城', '2007-10-05 22:00:00', '10', '0', 'false');
-INSERT INTO `castle` VALUES ('4', '奇岩城堡', '2007-10-06 22:00:00', '10', '0', 'false');
-INSERT INTO `castle` VALUES ('5', '海音城堡', '2007-10-03 22:00:00', '10', '0', 'false');
-INSERT INTO `castle` VALUES ('6', '鐵門公會', '2007-10-04 22:00:00', '10', '0', 'false');
-INSERT INTO `castle` VALUES ('7', '亞丁城堡', '2007-10-05 22:00:00', '10', '0', 'false');
-INSERT INTO `castle` VALUES ('8', '狄亞得要塞', '2007-10-06 22:00:00', '10', '0', 'false');
+INSERT INTO `castle` VALUES ('1', '肯特城堡', '2010-03-21 20:00:00', '10', '0', 'false');
+INSERT INTO `castle` VALUES ('2', '妖魔城堡', '2010-03-21 20:00:00', '10', '0', 'false');
+INSERT INTO `castle` VALUES ('3', '風木之城', '2010-03-21 20:00:00', '10', '0', 'false');
+INSERT INTO `castle` VALUES ('4', '奇岩城堡', '2010-03-21 20:00:00', '10', '0', 'false');
+INSERT INTO `castle` VALUES ('5', '海音城堡', '2010-03-21 20:00:00', '10', '0', 'false');
+INSERT INTO `castle` VALUES ('6', '鐵門公會', '2010-03-21 20:00:00', '10', '0', 'false');
+INSERT INTO `castle` VALUES ('7', '亞丁城堡', '2010-03-21 20:00:00', '10', '0', 'false');
+INSERT INTO `castle` VALUES ('8', '狄亞得要塞', '2010-03-21 20:00:00', '10', '0', 'false');
