@@ -39,20 +39,18 @@ public class L1CheckPcItem {
 
 		if ((findWeapon() || findArmor()) && itemCount != 1) {
 			isCheat = true;
-		} else if (findEtcitem()) {
-			// 不可堆疊的道具同一格不等於1時設定為作弊
+		} else if (findEtcitem() || finditemspacially()) {
 			if (!isStackable && itemCount != 1) {
-				isCheat = true;
-				// 金幣大於20億以及金幣負值設定為作弊
+				isCheat = true; // 不可堆疊的道具同一格不等於1時設定為作弊
 			} else if (itemId == 40308 && (itemCount > 2000000000 || itemCount < 0)) {
-				isCheat = true;
-				// 可堆疊道具(金幣除外)堆疊超過十萬個以及堆疊負值設定為作弊
-			} else if (isStackable && itemId != 40308 && (itemCount > 100000 || itemCount < 0)) {
-				isCheat = true;
+				isCheat = true; // 金幣大於20億以及金幣負值設定為作弊
+			} else if (itemId == 41246 && (itemCount > 10000000 || itemCount < 0)) {
+				isCheat = true; // 魔法結晶體數量大於100萬以及數量負值設定為作弊
+			} else if (isStackable && ( itemId != 40308 || itemId != 41246) && (itemCount > 100000 || itemCount < 0)) {
+				isCheat = true; // 可堆疊道具(金幣與魔法結晶體除外)堆疊超過十萬個以及堆疊數量負值設定為作弊
 			}
 		}
-		if (isCheat) {
-			// 作弊成立則刪除道具
+		if (isCheat) { // 作弊成立則刪除道具
 			pc.getInventory().removeItem(item, itemCount);
 		}
 		return isCheat;
@@ -125,4 +123,28 @@ public class L1CheckPcItem {
 		}
 		return inEtcitem;
 	}
+	
+	private boolean finditemspacially() {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		boolean initemspacially = false;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT * FROM itemspacially WHERE item_id = ?");
+			pstm.setInt(1, itemId);
+			rs = pstm.executeQuery();
+			if (rs != null) {
+				if (rs.next()) {
+					initemspacially = true;
+					isStackable = rs.getInt("stackable") == 1 ? true : false;
+				}
+			}
+		} catch (Exception e) {
+		} finally {
+			SQLUtil.close(rs, pstm, con);
+		}
+		return initemspacially;
+	}
+
 }

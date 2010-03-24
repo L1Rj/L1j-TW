@@ -38,6 +38,7 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.templates.L1Armor;
 import net.l1j.server.templates.L1EtcItem;
+import net.l1j.server.templates.L1Itemspacially;
 import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1Weapon;
 import net.l1j.server.utils.SQLUtil;
@@ -51,7 +52,8 @@ public class ItemTable {
 	private static final Map<String, Integer> _weaponTypes = new FastMap<String, Integer>();
 	private static final Map<String, Integer> _weaponId = new FastMap<String, Integer>();
 	private static final Map<String, Integer> _materialTypes = new FastMap<String, Integer>();
-	private static final Map<String, Integer> _etcItemTypes = new FastMap<String, Integer>();
+	private static final Map<String, Integer> _ItemTypes = new FastMap<String, Integer>();
+	private static final Map<String, Integer> _ItemspaciallyTypes = new FastMap<String, Integer>();
 	private static final Map<String, Integer> _useTypes = new FastMap<String, Integer>();
 
 	private static ItemTable _instance;
@@ -59,27 +61,28 @@ public class ItemTable {
 	private L1Item _allTemplates[];
 
 	private final Map<Integer, L1EtcItem> _etcitems;
+	private final Map<Integer, L1Itemspacially> _itemspaciallys;
 	private final Map<Integer, L1Armor> _armors;
 	private final Map<Integer, L1Weapon> _weapons;
 
 	static {
-		_etcItemTypes.put("arrow", new Integer(0));
-		_etcItemTypes.put("wand", new Integer(1));
-		_etcItemTypes.put("light", new Integer(2));
-		_etcItemTypes.put("gem", new Integer(3));
-		_etcItemTypes.put("totem", new Integer(4));
-		_etcItemTypes.put("firecracker", new Integer(5));
-		_etcItemTypes.put("potion", new Integer(6));
-		_etcItemTypes.put("food", new Integer(7));
-		_etcItemTypes.put("scroll", new Integer(8));
-		_etcItemTypes.put("questitem", new Integer(9));
-		_etcItemTypes.put("spellbook", new Integer(10));
-		_etcItemTypes.put("petitem", new Integer(11));
-		_etcItemTypes.put("other", new Integer(12));
-		_etcItemTypes.put("material", new Integer(13));
-		_etcItemTypes.put("event", new Integer(14));
-		_etcItemTypes.put("sting", new Integer(20));
-		_etcItemTypes.put("treasure_box", new Integer(16));
+		_ItemTypes.put("arrow", new Integer(0));
+		_ItemTypes.put("wand", new Integer(1));
+		_ItemTypes.put("light", new Integer(2));
+		_ItemTypes.put("gem", new Integer(3));
+		_ItemTypes.put("totem", new Integer(4));
+		_ItemTypes.put("firecracker", new Integer(5));
+		_ItemTypes.put("potion", new Integer(6));
+		_ItemTypes.put("food", new Integer(7));
+		_ItemTypes.put("scroll", new Integer(8));
+		_ItemTypes.put("questitem", new Integer(9));
+		_ItemTypes.put("spellbook", new Integer(10));
+		_ItemTypes.put("petitem", new Integer(11));
+		_ItemTypes.put("other", new Integer(12));
+		_ItemTypes.put("material", new Integer(13));
+		_ItemTypes.put("event", new Integer(14));
+		_ItemTypes.put("sting", new Integer(20));
+		_ItemTypes.put("treasure_box", new Integer(16));
 
 		_useTypes.put("none", new Integer(-1)); // 使用不可能
 		_useTypes.put("normal", new Integer(0));
@@ -213,6 +216,7 @@ public class ItemTable {
 
 	private ItemTable() {
 		_etcitems = allEtcItem();
+		_itemspaciallys = allItemspacially();
 		_weapons = allWeapon();
 		_armors = allArmor();
 		buildFastLookupTable();
@@ -237,7 +241,7 @@ public class ItemTable {
 				item.setName(rs.getString("name"));
 				item.setUnidentifiedNameId(rs.getString("unidentified_name_id"));
 				item.setIdentifiedNameId(rs.getString("identified_name_id"));
-				item.setType((_etcItemTypes.get(rs.getString("item_type"))).intValue());
+				item.setType((_ItemTypes.get(rs.getString("item_type"))).intValue());
 				item.setUseType(_useTypes.get(rs.getString("use_type")).intValue());
 //				item.setType1(0); // 使わない
 				item.setType2(0);
@@ -285,7 +289,7 @@ public class ItemTable {
 					item.setName(rs.getString("name"));
 					item.setUnidentifiedNameId(rs.getString("unidentified_name_id"));
 					item.setIdentifiedNameId(rs.getString("identified_name_id"));
-					item.setType((_etcItemTypes.get(rs.getString("item_type"))).intValue());
+					item.setType((_ItemTypes.get(rs.getString("item_type"))).intValue());
 					item.setUseType(_useTypes.get(rs.getString("use_type")).intValue());
 //					item.setType1(0); // 使わない
 					item.setType2(0);
@@ -322,6 +326,65 @@ public class ItemTable {
 				SQLUtil.close(rs, pstm, con);
 			}
 		}
+		return result;
+	}
+	
+	private Map<Integer, L1Itemspacially> allItemspacially() {
+		Map<Integer, L1Itemspacially> result = new FastMap<Integer, L1Itemspacially>();
+
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		L1Itemspacially item = null;
+
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT * FROM itemspacially");
+			rs = pstm.executeQuery();
+
+			while (rs.next()) {
+				item = new L1Itemspacially();
+				item.setItemId(rs.getInt("item_id"));
+				item.setName(rs.getString("name"));
+				item.setUnidentifiedNameId(rs.getString("unidentified_name_id"));
+				item.setIdentifiedNameId(rs.getString("identified_name_id"));
+				item.setType((_ItemTypes.get(rs.getString("item_type"))).intValue());
+				item.setUseType(_useTypes.get(rs.getString("use_type")).intValue());
+//				item.setType1(0); // 使わない
+				item.setType2(0);
+				item.setMaterial((_materialTypes.get(rs.getString("material"))).intValue());
+				item.setWeight(rs.getInt("weight"));
+				item.setGfxId(rs.getInt("invgfx"));
+				item.setGroundGfxId(rs.getInt("grdgfx"));
+				item.setItemDescId(rs.getInt("itemdesc_id"));
+				item.setMinLevel(rs.getInt("min_lvl"));
+				item.setMaxLevel(rs.getInt("max_lvl"));
+				item.setBless(rs.getInt("bless"));
+				item.setTradable(rs.getInt("trade") == 0 ? true : false);
+				item.setCantDelete(rs.getInt("cant_delete") == 1 ? true : false);
+				item.setCanSeal(rs.getInt("can_seal") == 1 ? true : false);
+				item.setDmgSmall(rs.getInt("dmg_small"));
+				item.setDmgLarge(rs.getInt("dmg_large"));
+				item.set_stackable(rs.getInt("stackable") == 1 ? true : false);
+				item.setMaxChargeCount(rs.getInt("max_charge_count"));
+				item.set_locx(rs.getInt("locx"));
+				item.set_locy(rs.getInt("locy"));
+				item.set_mapid(rs.getShort("mapid"));
+				item.set_delayid(rs.getInt("delay_id"));
+				item.set_delaytime(rs.getInt("delay_time"));
+				item.set_delayEffect(rs.getInt("delay_effect"));
+				item.setFoodVolume(rs.getInt("survive_time"));
+				item.setToBeSavedAtOnce((rs.getInt("save_at_once") == 1) ? true : false);
+				result.put(new Integer(item.getItemId()), item);
+
+			}
+			}			catch (NullPointerException e) {
+				_log.log(Level.SEVERE, new StringBuilder().append(item.getName()).append("(" + item.getItemId() + ")").append("讀入失敗。").toString());
+			} catch (SQLException e) {
+				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			} finally {
+				SQLUtil.close(rs, pstm, con);
+			}
 		return result;
 	}
 
@@ -635,6 +698,13 @@ public class ItemTable {
 				highestId = item.getItemId();
 			}
 		}
+		
+		Collection<L1Itemspacially> itemspaciallys = _itemspaciallys.values();
+		for (L1EtcItem item : items) {
+			if (item.getItemId() > highestId) {
+				highestId = item.getItemId();
+			}
+		}
 
 		Collection<L1Weapon> weapons = _weapons.values();
 		for (L1Weapon weapon : weapons) {
@@ -655,6 +725,12 @@ public class ItemTable {
 		for (Iterator<Integer> iter = _etcitems.keySet().iterator(); iter.hasNext();) {
 			Integer id = iter.next();
 			L1EtcItem item = _etcitems.get(id);
+			_allTemplates[id.intValue()] = item;
+		}
+		
+		for (Iterator<Integer> iter = _itemspaciallys.keySet().iterator(); iter.hasNext();) {
+			Integer id = iter.next();
+			L1Itemspacially item = _itemspaciallys.get(id);
 			_allTemplates[id.intValue()] = item;
 		}
 

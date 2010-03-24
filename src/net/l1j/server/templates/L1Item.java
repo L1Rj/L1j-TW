@@ -596,6 +596,10 @@ public abstract class L1Item implements Serializable {
 	public boolean isCanSeal() {
 		return false;
 	}
+	
+	public int getsurvive_time() {
+		return 0;
+	}
 
 	// ■■■■■■ L1Weapon でオーバーライドする項目 ■■■■■■
 	public int getRange() {
@@ -694,5 +698,4 @@ public abstract class L1Item implements Serializable {
 	public int get_regist_blind() {
 		return 0;
 	}
-
 }
