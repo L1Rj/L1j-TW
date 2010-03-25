@@ -1595,75 +1595,106 @@
 	<!-- 瑪雅的影子 亞丁地下墓穴 --> 
 	<Action Name="1" NpcId="91005"> 
 		<Teleport X="33966" Y="33253" Map="4" Heading="5" Price="0"/> 
-	</Action> 
-    <MakeItem Name="a" NpcId="91005"> 
-        <Item Amount="0" ItemId="41158"/> 
-        <Material Amount="10" ItemId="41158"/> 
-        <Succeed> 
-		<Teleport X="32800" Y="32800" Map="110" Heading="5" Price="0"/> 
-        </Succeed> 
-    </MakeItem> 
-    <MakeItem Name="b" NpcId="91005"> 
-        <Item Amount="0" ItemId="41158"/> 
-        <Material Amount="20" ItemId="41158"/> 
-        <Succeed> 
-		<Teleport X="32800" Y="32800" Map="120" Heading="5" Price="0"/> 
-        </Succeed> 
-    </MakeItem> 
-    <MakeItem Name="c" NpcId="91005"> 
-        <Item Amount="0" ItemId="41158"/> 
-        <Material Amount="30" ItemId="41158"/> 
-        <Succeed> 
-		<Teleport X="32800" Y="32800" Map="130" Heading="5" Price="0"/> 
-        </Succeed> 
-    </MakeItem> 
-    <MakeItem Name="d" NpcId="91005"> 
-        <Item Amount="0" ItemId="41158"/> 
-        <Material Amount="40" ItemId="41158"/> 
-        <Succeed> 
-		<Teleport X="32800" Y="32800" Map="140" Heading="5" Price="0"/> 
-        </Succeed> 
-    </MakeItem> 
-    <MakeItem Name="e" NpcId="91005"> 
-        <Item Amount="0" ItemId="41158"/> 
-        <Material Amount="50" ItemId="41158"/> 
-        <Succeed> 
-		<Teleport X="32796" Y="32796" Map="150" Heading="5" Price="0"/> 
-        </Succeed> 
-    </MakeItem> 
-    <MakeItem Name="f" NpcId="91005"> 
-        <Item Amount="0" ItemId="41158"/> 
-        <Material Amount="60" ItemId="41158"/> 
-        <Succeed> 
-		<Teleport X="32720" Y="32821" Map="160" Heading="5" Price="0"/> 
-        </Succeed> 
-    </MakeItem> 
-    <MakeItem Name="g" NpcId="91005"> 
-        <Item Amount="0" ItemId="41158"/> 
-        <Material Amount="70" ItemId="41158"/> 
-        <Succeed> 
-		<Teleport X="32720" Y="32821" Map="170" Heading="5" Price="0"/> 
-        </Succeed> 
-    </MakeItem> 
-    <MakeItem Name="h" NpcId="91005"> 
-        <Item Amount="0" ItemId="41158"/> 
-        <Material Amount="80" ItemId="41158"/> 
-        <Succeed> 
-		<Teleport X="32724" Y="32822" Map="180" Heading="5" Price="0"/> 
-        </Succeed> 
-    </MakeItem> 
-    <MakeItem Name="i" NpcId="91005"> 
-        <Item Amount="0" ItemId="41158"/> 
-        <Material Amount="90" ItemId="41158"/> 
-        <Succeed> 
-		<Teleport X="32722" Y="32827" Map="190" Heading="5" Price="0"/> 
-        </Succeed> 
-    </MakeItem> 
-    <MakeItem Name="j" NpcId="91005"> 
-        <Item Amount="0" ItemId="41158"/> 
-        <Material Amount="100" ItemId="41158"/> 
-        <Succeed> 
-		<Teleport X="32731" Y="32856" Map="200" Heading="5" Price="0"/> 
-        </Succeed> 
-    </MakeItem> 
+	</Action>
+
+        <MakeItem AmountInputable="false" Name="a" NpcId="91005">
+            <Item Amount="0" ItemId="41158"/>
+            <Material Amount="10" ItemId="41158"/>
+            <Succeed>
+                <Teleport X="32800" Y="32800" Map="110" Heading="5" Price="0"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="adenshadow2"/>
+            </Fail>
+        </MakeItem>
+        <MakeItem AmountInputable="false" Name="b" NpcId="91005">
+            <Item Amount="0" ItemId="41158"/>
+            <Material Amount="20" ItemId="41158"/>
+            <Succeed>
+                <Teleport X="32800" Y="32800" Map="120" Heading="5" Price="0"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="adenshadow2"/>
+            </Fail>
+        </MakeItem>
+        <MakeItem AmountInputable="false" Name="c" NpcId="91005">
+            <Item Amount="0" ItemId="41158"/>
+            <Material Amount="30" ItemId="41158"/>
+            <Succeed>
+                <Teleport X="32800" Y="32800" Map="130" Heading="5" Price="0"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="adenshadow2"/>
+            </Fail>
+        </MakeItem>
+        <MakeItem AmountInputable="false" Name="d" NpcId="91005">
+            <Item Amount="0" ItemId="41158"/>
+            <Material Amount="40" ItemId="41158"/>
+            <Succeed>
+                <Teleport X="32800" Y="32800" Map="140" Heading="5" Price="0"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="adenshadow2"/>
+            </Fail>
+        </MakeItem>
+        <MakeItem AmountInputable="false" Name="e" NpcId="91005">
+            <Item Amount="0" ItemId="41158"/>
+            <Material Amount="50" ItemId="41158"/>
+            <Succeed>
+                <Teleport X="32796" Y="32796" Map="150" Heading="5" Price="0"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="adenshadow2"/>
+            </Fail>
+        </MakeItem>
+        <MakeItem AmountInputable="false" Name="f" NpcId="91005">
+            <Item Amount="0" ItemId="41158"/>
+            <Material Amount="60" ItemId="41158"/>
+            <Succeed>
+                <Teleport X="32720" Y="32821" Map="160" Heading="5" Price="0"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="adenshadow2"/>
+            </Fail>
+        </MakeItem>
+        <MakeItem AmountInputable="false" Name="g" NpcId="91005">
+            <Item Amount="0" ItemId="41158"/>
+            <Material Amount="70" ItemId="41158"/>
+            <Succeed>
+                <Teleport X="32720" Y="32821" Map="170" Heading="5" Price="0"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="adenshadow2"/>
+            </Fail>
+        </MakeItem>
+        <MakeItem AmountInputable="false" Name="h" NpcId="91005">
+            <Item Amount="0" ItemId="41158"/>
+            <Material Amount="80" ItemId="41158"/>
+            <Succeed>
+                <Teleport X="32724" Y="32822" Map="180" Heading="5" Price="0"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="adenshadow2"/>
+            </Fail>
+        </MakeItem>
+        <MakeItem AmountInputable="false" Name="i" NpcId="91005">
+            <Item Amount="0" ItemId="41158"/>
+            <Material Amount="90" ItemId="41158"/>
+            <Succeed>
+                <Teleport X="32722" Y="32827" Map="190" Heading="5" Price="0"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="adenshadow2"/>
+            </Fail>
+        </MakeItem>
+        <MakeItem AmountInputable="false" Name="j" NpcId="91005">
+            <Item Amount="0" ItemId="41158"/>
+            <Material Amount="100" ItemId="41158"/>
+            <Succeed>
+                <Teleport X="32731" Y="32856" Map="200" Heading="5" Price="0"/>
+            </Succeed>
+            <Fail>
+                <ShowHtml HtmlId="adenshadow2"/>
+            </Fail>
+        </MakeItem>
 </NpcActionList>
