@@ -13,4 +13,4 @@ Update npcaction Set npcid = '91004' Where normal_action = 'yuris1';
 INSERT INTO `npcaction` VALUES ('91005', 'adenshadow1', 'adenshadow1', '', '');
 
 /* spawnlist_npc 新增 瑪雅的影子 */
-INSERT INTO `spawnlist_npc` VALUES ('1310440', '瑪雅的影子', '1', '91005', '32800', '33074', '0', '0', '4', '0', '258', '0');
+INSERT INTO `spawnlist_npc` VALUES ('1310440', '瑪雅的影子', '1', '91005', '32798', '33124', '0', '0', '6', '0', '258', '0');
