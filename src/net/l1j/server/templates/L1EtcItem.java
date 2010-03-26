@@ -103,11 +103,11 @@ public class L1EtcItem extends L1Item {
 	public int get_delayEffect() {
 		return _delay_effect;
 	}
-
+/*
 	public void setMaxChargeCount(int i) {
 		_maxChargeCount = i;
 	}
-
+*/
 	@Override
 	public int getMaxChargeCount() {
 		return _maxChargeCount;

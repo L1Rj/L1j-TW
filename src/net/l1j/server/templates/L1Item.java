@@ -538,7 +538,7 @@ public abstract class L1Item implements Serializable {
 			return 14;
 		} else if (_itemId == 40004) { // マジックランタン
 			return 14;
-		} else if (_itemId == 40005) { // キャンドル
+		} else if (_itemId == 40005) { // 蠟燭
 			return 8;
 		} else {
 			return 0;
@@ -557,7 +557,7 @@ public abstract class L1Item implements Serializable {
 			return 12000;
 		} else if (_itemId == 40004) { // マジックランタン
 			return 0;
-		} else if (_itemId == 40005) { // キャンドル
+		} else if (_itemId == 40005) { // 蠟燭
 			return 12000;
 		} else {
 			return 0;
@@ -597,8 +597,15 @@ public abstract class L1Item implements Serializable {
 		return false;
 	}
 	
+	// ■■■■■■ itemspacially 項目 ■■■■■■
+	private int _survive_time = 0; // 道具存在時間
+
 	public int getsurvive_time() {
-		return 0;
+		return _survive_time;
+	}
+
+	public void setsurvive_time(int i) {
+		_survive_time = i;
 	}
 
 	// ■■■■■■ L1Weapon でオーバーライドする項目 ■■■■■■

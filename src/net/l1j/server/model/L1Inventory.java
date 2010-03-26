@@ -192,6 +192,7 @@ public class L1Inventory extends L1Object {
 			item.setRemainingTime(item.getItem().getLightFuel());
 		} else {
 			item.setRemainingTime(item.getItem().getMaxUseTime());
+			item.setSurvive_time(item.getItem().getsurvive_time());
 		}
 		item.setBless(item.getItem().getBless());
 		// XXX 飾品強化

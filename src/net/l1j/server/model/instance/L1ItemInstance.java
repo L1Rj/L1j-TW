@@ -28,6 +28,7 @@ import net.l1j.server.model.L1EquipmentTimer;
 import net.l1j.server.model.L1ItemOwnerTimer;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1PcInventory;
+import net.l1j.server.model.L1SurviveTimer;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.serverpackets.S_OwnCharStatus;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -58,7 +59,9 @@ public class L1ItemInstance extends L1Object {
 
 	private int _chargeCount;
 
-	private int _remainingTime;
+	private int _remainingTime; // 武器防具剩餘可裝備時間
+	
+	private int _Survive_time; // 道具存活時間
 
 	private Timestamp _lastUsed = null;
 
@@ -202,6 +205,14 @@ public class L1ItemInstance extends L1Object {
 
 	public void setRemainingTime(int i) {
 		_remainingTime = i;
+	}
+
+	public int getSurvive_time() {
+		return _Survive_time;
+	}
+	
+	public void setSurvive_time(int i) { // 道具存活時間
+		_Survive_time = i;
 	}
 
 	public void setLastUsed(Timestamp t) {
@@ -635,7 +646,7 @@ public class L1ItemInstance extends L1Object {
 			if (getItem().getItemId() == 20383) { // 軍馬頭盔
 				name.append(" (" + getChargeCount() + ")");
 			}
-			if (getItem().getMaxUseTime() > 0 && getItem().getType2() != 0) { // 武器防具で使用時間制限あり
+			if (getItem().getMaxUseTime() > 0 && getItem().getType2() != 0) { // 武器防具顯示使用剩餘時間
 				name.append(" (" + getRemainingTime() + ")");
 			}
 		}
@@ -1092,7 +1103,17 @@ public class L1ItemInstance extends L1Object {
 		L1ItemOwnerTimer timer = new L1ItemOwnerTimer(this, 10000);
 		timer.begin();
 	}
+//xxx 道具存活時間
+	private L1SurviveTimer _SurviveTimer;
 
+	public void survive_time(L1PcInstance pc) {
+		if (getSurvive_time() > 0) {
+			_SurviveTimer = new L1SurviveTimer(pc, this);
+			Timer timer = new Timer(true);
+			timer.scheduleAtFixedRate(_SurviveTimer, 1000, 1000);
+		}
+	}
+//end
 	private L1EquipmentTimer _equipmentTimer;
 
 	public void startEquipmentTimer(L1PcInstance pc) {

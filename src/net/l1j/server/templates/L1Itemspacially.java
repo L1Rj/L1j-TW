@@ -42,7 +42,7 @@ public class L1Itemspacially extends L1Item {
 
 	private boolean _isCanSeal; // ● 封印スクロールで封印可能
 	
-	private int _survive_time;
+	private int _survive_time; // 道具可存在時間
 
 	@Override
 	public boolean isStackable() {

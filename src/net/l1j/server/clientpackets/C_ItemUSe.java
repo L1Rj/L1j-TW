@@ -1822,7 +1822,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						 */
 						int rnd = RandomArrayList.getInt(mobArray.length);
 						SpawnUtil.spawn(pc, mobArray[rnd], 0, 300000);
-						if (itemId == 40006 || itemId == 140006) {//創杖
+						if (itemId == 40006 || itemId == 140006) {// 創杖
 							item.setChargeCount(item.getChargeCount() - 1);
 							pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
 						} else {

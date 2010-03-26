@@ -53,7 +53,6 @@ public class ItemTable {
 	private static final Map<String, Integer> _weaponId = new FastMap<String, Integer>();
 	private static final Map<String, Integer> _materialTypes = new FastMap<String, Integer>();
 	private static final Map<String, Integer> _ItemTypes = new FastMap<String, Integer>();
-	private static final Map<String, Integer> _ItemspaciallyTypes = new FastMap<String, Integer>();
 	private static final Map<String, Integer> _useTypes = new FastMap<String, Integer>();
 
 	private static ItemTable _instance;
@@ -259,7 +258,7 @@ public class ItemTable {
 				item.setDmgSmall(rs.getInt("dmg_small"));
 				item.setDmgLarge(rs.getInt("dmg_large"));
 				item.set_stackable(rs.getInt("stackable") == 1 ? true : false);
-				item.setMaxChargeCount(rs.getInt("max_charge_count"));
+//				item.setMaxChargeCount(rs.getInt("max_charge_count"));
 				item.set_locx(rs.getInt("locx"));
 				item.set_locy(rs.getInt("locy"));
 				item.set_mapid(rs.getShort("mapid"));
@@ -307,7 +306,7 @@ public class ItemTable {
 					item.setDmgSmall(rs.getInt("dmg_small"));
 					item.setDmgLarge(rs.getInt("dmg_large"));
 					item.set_stackable(rs.getInt("stackable") == 1 ? true : false);
-					item.setMaxChargeCount(rs.getInt("max_charge_count"));
+//					item.setMaxChargeCount(rs.getInt("max_charge_count"));
 					item.set_locx(rs.getInt("locx"));
 					item.set_locy(rs.getInt("locy"));
 					item.set_mapid(rs.getShort("mapid"));
@@ -335,7 +334,7 @@ public class ItemTable {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		L1Itemspacially item = null;
+		L1Itemspacially spaciallyitem = null;
 
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
@@ -343,43 +342,43 @@ public class ItemTable {
 			rs = pstm.executeQuery();
 
 			while (rs.next()) {
-				item = new L1Itemspacially();
-				item.setItemId(rs.getInt("item_id"));
-				item.setName(rs.getString("name"));
-				item.setUnidentifiedNameId(rs.getString("unidentified_name_id"));
-				item.setIdentifiedNameId(rs.getString("identified_name_id"));
-				item.setType((_ItemTypes.get(rs.getString("item_type"))).intValue());
-				item.setUseType(_useTypes.get(rs.getString("use_type")).intValue());
+				spaciallyitem = new L1Itemspacially();
+				spaciallyitem.setItemId(rs.getInt("item_id"));
+				spaciallyitem.setName(rs.getString("name"));
+				spaciallyitem.setUnidentifiedNameId(rs.getString("unidentified_name_id"));
+				spaciallyitem.setIdentifiedNameId(rs.getString("identified_name_id"));
+				spaciallyitem.setType((_ItemTypes.get(rs.getString("item_type"))).intValue());
+				spaciallyitem.setUseType(_useTypes.get(rs.getString("use_type")).intValue());
 //				item.setType1(0); // 使わない
-				item.setType2(0);
-				item.setMaterial((_materialTypes.get(rs.getString("material"))).intValue());
-				item.setWeight(rs.getInt("weight"));
-				item.setGfxId(rs.getInt("invgfx"));
-				item.setGroundGfxId(rs.getInt("grdgfx"));
-				item.setItemDescId(rs.getInt("itemdesc_id"));
-				item.setMinLevel(rs.getInt("min_lvl"));
-				item.setMaxLevel(rs.getInt("max_lvl"));
-				item.setBless(rs.getInt("bless"));
-				item.setTradable(rs.getInt("trade") == 0 ? true : false);
-				item.setCantDelete(rs.getInt("cant_delete") == 1 ? true : false);
-				item.setCanSeal(rs.getInt("can_seal") == 1 ? true : false);
-				item.setDmgSmall(rs.getInt("dmg_small"));
-				item.setDmgLarge(rs.getInt("dmg_large"));
-				item.set_stackable(rs.getInt("stackable") == 1 ? true : false);
-				item.setMaxChargeCount(rs.getInt("max_charge_count"));
-				item.set_locx(rs.getInt("locx"));
-				item.set_locy(rs.getInt("locy"));
-				item.set_mapid(rs.getShort("mapid"));
-				item.set_delayid(rs.getInt("delay_id"));
-				item.set_delaytime(rs.getInt("delay_time"));
-				item.set_delayEffect(rs.getInt("delay_effect"));
-				item.setFoodVolume(rs.getInt("survive_time"));
-				item.setToBeSavedAtOnce((rs.getInt("save_at_once") == 1) ? true : false);
-				result.put(new Integer(item.getItemId()), item);
+				spaciallyitem.setType2(0);
+				spaciallyitem.setMaterial((_materialTypes.get(rs.getString("material"))).intValue());
+				spaciallyitem.setWeight(rs.getInt("weight"));
+				spaciallyitem.setGfxId(rs.getInt("invgfx"));
+				spaciallyitem.setGroundGfxId(rs.getInt("grdgfx"));
+				spaciallyitem.setItemDescId(rs.getInt("itemdesc_id"));
+				spaciallyitem.setMinLevel(rs.getInt("min_lvl"));
+				spaciallyitem.setMaxLevel(rs.getInt("max_lvl"));
+				spaciallyitem.setBless(rs.getInt("bless"));
+				spaciallyitem.setTradable(rs.getInt("trade") == 0 ? true : false);
+				spaciallyitem.setCantDelete(rs.getInt("cant_delete") == 1 ? true : false);
+				spaciallyitem.setCanSeal(rs.getInt("can_seal") == 1 ? true : false);
+				spaciallyitem.setDmgSmall(rs.getInt("dmg_small"));
+				spaciallyitem.setDmgLarge(rs.getInt("dmg_large"));
+				spaciallyitem.set_stackable(rs.getInt("stackable") == 1 ? true : false);
+				spaciallyitem.setMaxChargeCount(rs.getInt("max_charge_count"));
+				spaciallyitem.set_locx(rs.getInt("locx"));
+				spaciallyitem.set_locy(rs.getInt("locy"));
+				spaciallyitem.set_mapid(rs.getShort("mapid"));
+				spaciallyitem.set_delayid(rs.getInt("delay_id"));
+				spaciallyitem.set_delaytime(rs.getInt("delay_time"));
+				spaciallyitem.set_delayEffect(rs.getInt("delay_effect"));
+				spaciallyitem.setsurvive_time(rs.getInt("survive_time"));
+				spaciallyitem.setToBeSavedAtOnce((rs.getInt("save_at_once") == 1) ? true : false);
+				result.put(new Integer(spaciallyitem.getItemId()), spaciallyitem);
 
 			}
 			}			catch (NullPointerException e) {
-				_log.log(Level.SEVERE, new StringBuilder().append(item.getName()).append("(" + item.getItemId() + ")").append("讀入失敗。").toString());
+				_log.log(Level.SEVERE, new StringBuilder().append(spaciallyitem.getName()).append("(" + spaciallyitem.getItemId() + ")").append("讀入失敗。").toString());
 			} catch (SQLException e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			} finally {
@@ -700,9 +699,9 @@ public class ItemTable {
 		}
 		
 		Collection<L1Itemspacially> itemspaciallys = _itemspaciallys.values();
-		for (L1EtcItem item : items) {
-			if (item.getItemId() > highestId) {
-				highestId = item.getItemId();
+		for (L1Itemspacially spaciallyitem : itemspaciallys) {
+			if (spaciallyitem.getItemId() > highestId) {
+				highestId = spaciallyitem.getItemId();
 			}
 		}
 
