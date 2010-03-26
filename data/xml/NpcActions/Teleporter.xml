@@ -1697,4 +1697,8 @@
                 <ShowHtml HtmlId="adenshadow2"/>
             </Fail>
         </MakeItem>
+	<!-- 神女普若亞 傳送亞丁隱藏宮殿 -->
+	<Action Name="teleport adencd" NpcId="91006">
+		<Teleport X="32660" Y="32800" Map="257" Heading="5" Price="1950"/>
+	</Action>
 </NpcActionList>
