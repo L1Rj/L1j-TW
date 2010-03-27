@@ -143,7 +143,10 @@
 		<Room Name="提卡爾神廟" LocX="33237" LocY="32771" MapId="783"/>
 		<Room Name="GMRoom" LocX="32737" LocY="32796" MapId="99"/>
 		<Room Name="GMShop" LocX="33079" LocY="33402" MapId="4"/>
-		
+		<!-- 測試地圖 -->
+		<Room Name="回憶之地" LocX="32744" LocY="32818" MapId="5166"/>
+		<Room Name="惡魔王之領土" LocX="32724" LocY="32800" MapId="5167"/>
+		<Room Name="奇怪的村落" LocX="32740" LocY="32869" MapId="613"/>
 		<!-- 未整理 -->
 <!--
 		<Room Name="SC" LocX="32738" LocY="32800" MapId="304"/>
