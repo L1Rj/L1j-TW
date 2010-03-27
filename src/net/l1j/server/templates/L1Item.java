@@ -278,8 +278,6 @@ public abstract class L1Item implements Serializable {
 		_dmgLarge = dmgLarge;
 	}
 
-	// ■■■■■■ L1EtcItem,L1Armor に共通する項目 ■■■■■■
-
 	// ■■■■■■ L1Weapon,L1Armor に共通する項目 ■■■■■■
 
 	private int _safeEnchant = 0; // ● ＯＥ安全圈
@@ -597,17 +595,6 @@ public abstract class L1Item implements Serializable {
 		return false;
 	}
 	
-	// ■■■■■■ itemspacially 項目 ■■■■■■
-	private int _survive_time = 0; // 道具存在時間
-
-	public int getsurvive_time() {
-		return _survive_time;
-	}
-
-	public void setsurvive_time(int i) {
-		_survive_time = i;
-	}
-
 	// ■■■■■■ L1Weapon でオーバーライドする項目 ■■■■■■
 	public int getRange() {
 		return 0;

@@ -179,6 +179,8 @@ public class L1PcInventory extends L1Inventory {
 	public static final int COL_BLESS = 512;
 
 	public static final int COL_REMAINING_TIME = 256;
+	
+	public static final int COL_SURVIVE_TIME = 256;
 
 	public static final int COL_CHARGE_COUNT = 128;
 
@@ -224,9 +226,13 @@ public class L1PcInventory extends L1Inventory {
 			_owner.sendPackets(new S_ItemColor(item));
 			column -= COL_BLESS;
 		}
-		if (column >= COL_REMAINING_TIME) { // 使用可能な殘り時間
+		if (column >= COL_REMAINING_TIME) { // 武器防具可使用剩餘時間
 			_owner.sendPackets(new S_ItemName(item));
 			column -= COL_REMAINING_TIME;
+		}
+		if (column >= COL_SURVIVE_TIME) { // 道具可使用剩餘時間
+			_owner.sendPackets(new S_ItemName(item));
+			column -= COL_SURVIVE_TIME;
 		}
 		if (column >= COL_CHARGE_COUNT) { // チャージ數
 			_owner.sendPackets(new S_ItemName(item));
@@ -323,9 +329,13 @@ public class L1PcInventory extends L1Inventory {
 				storage.updateItemBless(item);
 				column -= COL_BLESS;
 			}
-			if (column >= COL_REMAINING_TIME) { // 使用可能な殘り時間
+			if (column >= COL_REMAINING_TIME) { // 武器防具可使用剩餘時間
 				storage.updateItemRemainingTime(item);
 				column -= COL_REMAINING_TIME;
+			}
+			if (column >= COL_SURVIVE_TIME) { // 道具可使用剩餘時間
+				storage.updateItemRemainingTime(item);
+				column -= COL_SURVIVE_TIME;
 			}
 			if (column >= COL_CHARGE_COUNT) { // チャージ數
 				storage.updateItemChargeCount(item);

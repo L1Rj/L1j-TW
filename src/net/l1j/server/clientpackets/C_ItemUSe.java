@@ -96,7 +96,6 @@ import net.l1j.server.storage.CharactersItemStorage;
 import net.l1j.server.templates.L1Armor;
 import net.l1j.server.templates.L1BookMark;
 import net.l1j.server.templates.L1EtcItem;
-import net.l1j.server.templates.L1Itemspacially;
 import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1Skills;
 import net.l1j.server.types.Base;

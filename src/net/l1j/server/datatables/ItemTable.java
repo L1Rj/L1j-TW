@@ -38,7 +38,6 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.templates.L1Armor;
 import net.l1j.server.templates.L1EtcItem;
-import net.l1j.server.templates.L1Itemspacially;
 import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1Weapon;
 import net.l1j.server.utils.SQLUtil;
@@ -60,7 +59,6 @@ public class ItemTable {
 	private L1Item _allTemplates[];
 
 	private final Map<Integer, L1EtcItem> _etcitems;
-	private final Map<Integer, L1Itemspacially> _itemspaciallys;
 	private final Map<Integer, L1Armor> _armors;
 	private final Map<Integer, L1Weapon> _weapons;
 
@@ -215,7 +213,6 @@ public class ItemTable {
 
 	private ItemTable() {
 		_etcitems = allEtcItem();
-		_itemspaciallys = allItemspacially();
 		_weapons = allWeapon();
 		_armors = allArmor();
 		buildFastLookupTable();
@@ -328,65 +325,6 @@ public class ItemTable {
 		return result;
 	}
 	
-	private Map<Integer, L1Itemspacially> allItemspacially() {
-		Map<Integer, L1Itemspacially> result = new FastMap<Integer, L1Itemspacially>();
-
-		Connection con = null;
-		PreparedStatement pstm = null;
-		ResultSet rs = null;
-		L1Itemspacially spaciallyitem = null;
-
-		try {
-			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("SELECT * FROM itemspacially");
-			rs = pstm.executeQuery();
-
-			while (rs.next()) {
-				spaciallyitem = new L1Itemspacially();
-				spaciallyitem.setItemId(rs.getInt("item_id"));
-				spaciallyitem.setName(rs.getString("name"));
-				spaciallyitem.setUnidentifiedNameId(rs.getString("unidentified_name_id"));
-				spaciallyitem.setIdentifiedNameId(rs.getString("identified_name_id"));
-				spaciallyitem.setType((_ItemTypes.get(rs.getString("item_type"))).intValue());
-				spaciallyitem.setUseType(_useTypes.get(rs.getString("use_type")).intValue());
-//				item.setType1(0); // 使わない
-				spaciallyitem.setType2(0);
-				spaciallyitem.setMaterial((_materialTypes.get(rs.getString("material"))).intValue());
-				spaciallyitem.setWeight(rs.getInt("weight"));
-				spaciallyitem.setGfxId(rs.getInt("invgfx"));
-				spaciallyitem.setGroundGfxId(rs.getInt("grdgfx"));
-				spaciallyitem.setItemDescId(rs.getInt("itemdesc_id"));
-				spaciallyitem.setMinLevel(rs.getInt("min_lvl"));
-				spaciallyitem.setMaxLevel(rs.getInt("max_lvl"));
-				spaciallyitem.setBless(rs.getInt("bless"));
-				spaciallyitem.setTradable(rs.getInt("trade") == 0 ? true : false);
-				spaciallyitem.setCantDelete(rs.getInt("cant_delete") == 1 ? true : false);
-				spaciallyitem.setCanSeal(rs.getInt("can_seal") == 1 ? true : false);
-				spaciallyitem.setDmgSmall(rs.getInt("dmg_small"));
-				spaciallyitem.setDmgLarge(rs.getInt("dmg_large"));
-				spaciallyitem.set_stackable(rs.getInt("stackable") == 1 ? true : false);
-				spaciallyitem.setMaxChargeCount(rs.getInt("max_charge_count"));
-				spaciallyitem.set_locx(rs.getInt("locx"));
-				spaciallyitem.set_locy(rs.getInt("locy"));
-				spaciallyitem.set_mapid(rs.getShort("mapid"));
-				spaciallyitem.set_delayid(rs.getInt("delay_id"));
-				spaciallyitem.set_delaytime(rs.getInt("delay_time"));
-				spaciallyitem.set_delayEffect(rs.getInt("delay_effect"));
-				spaciallyitem.setsurvive_time(rs.getInt("survive_time"));
-				spaciallyitem.setToBeSavedAtOnce((rs.getInt("save_at_once") == 1) ? true : false);
-				result.put(new Integer(spaciallyitem.getItemId()), spaciallyitem);
-
-			}
-			}			catch (NullPointerException e) {
-				_log.log(Level.SEVERE, new StringBuilder().append(spaciallyitem.getName()).append("(" + spaciallyitem.getItemId() + ")").append("讀入失敗。").toString());
-			} catch (SQLException e) {
-				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			} finally {
-				SQLUtil.close(rs, pstm, con);
-			}
-		return result;
-	}
-
 	private Map<Integer, L1Weapon> allWeapon() {
 		Map<Integer, L1Weapon> result = new FastMap<Integer, L1Weapon>();
 
@@ -698,12 +636,6 @@ public class ItemTable {
 			}
 		}
 		
-		Collection<L1Itemspacially> itemspaciallys = _itemspaciallys.values();
-		for (L1Itemspacially spaciallyitem : itemspaciallys) {
-			if (spaciallyitem.getItemId() > highestId) {
-				highestId = spaciallyitem.getItemId();
-			}
-		}
 
 		Collection<L1Weapon> weapons = _weapons.values();
 		for (L1Weapon weapon : weapons) {
@@ -727,12 +659,6 @@ public class ItemTable {
 			_allTemplates[id.intValue()] = item;
 		}
 		
-		for (Iterator<Integer> iter = _itemspaciallys.keySet().iterator(); iter.hasNext();) {
-			Integer id = iter.next();
-			L1Itemspacially item = _itemspaciallys.get(id);
-			_allTemplates[id.intValue()] = item;
-		}
-
 		for (Iterator<Integer> iter = _weapons.keySet().iterator(); iter.hasNext();) {
 			Integer id = iter.next();
 			L1Weapon item = _weapons.get(id);

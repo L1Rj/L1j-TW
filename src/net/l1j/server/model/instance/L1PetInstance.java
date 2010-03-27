@@ -365,7 +365,7 @@ public class L1PetInstance extends L1NpcInstance {
 		}
 	}
 
-	// ペットの笛を使った
+	// 寵物笛使用
 	public void call() {
 		int id = _type.getMessageId(L1PetType.getMessageNumber(getLevel()));
 		if (id != 0) {

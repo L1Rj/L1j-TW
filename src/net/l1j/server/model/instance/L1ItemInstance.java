@@ -28,7 +28,6 @@ import net.l1j.server.model.L1EquipmentTimer;
 import net.l1j.server.model.L1ItemOwnerTimer;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1PcInventory;
-import net.l1j.server.model.L1SurviveTimer;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.serverpackets.S_OwnCharStatus;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -1103,17 +1102,7 @@ public class L1ItemInstance extends L1Object {
 		L1ItemOwnerTimer timer = new L1ItemOwnerTimer(this, 10000);
 		timer.begin();
 	}
-//xxx 道具存活時間
-	private L1SurviveTimer _SurviveTimer;
 
-	public void survive_time(L1PcInstance pc) {
-		if (getSurvive_time() > 0) {
-			_SurviveTimer = new L1SurviveTimer(pc, this);
-			Timer timer = new Timer(true);
-			timer.scheduleAtFixedRate(_SurviveTimer, 1000, 1000);
-		}
-	}
-//end
 	private L1EquipmentTimer _equipmentTimer;
 
 	public void startEquipmentTimer(L1PcInstance pc) {

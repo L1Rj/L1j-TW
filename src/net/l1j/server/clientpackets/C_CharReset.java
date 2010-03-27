@@ -75,7 +75,7 @@ public class C_CharReset extends ClientBasePacket {
 			int dex = readC();
 			int con = readC();
 			int cha = readC();
-			// waja add 檢查角色素質狀態 加入初始化判斷
+			// 檢查角色素質狀態 加入初始化判斷
 			int statusAmount = str + intel + wis + dex + con + cha;
 			if (statusAmount != 75) {
 				pc.sendPackets(new S_Disconnect());
