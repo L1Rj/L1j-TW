@@ -249,7 +249,6 @@ public class C_NPCAction extends ClientBasePacket {
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91002 // 寵物競速NPC的編號
 				&& s.equalsIgnoreCase("ent")) {
 			L1PolyRace.getInstance().enterGame(pc);
-//add 神女優莉絲
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91004) { // 神女優莉絲
 			if (s.equalsIgnoreCase("0")) {
 				if (pc.getInventory().checkItem(30002)) { // 檢查贖罪聖書
@@ -268,7 +267,6 @@ public class C_NPCAction extends ClientBasePacket {
 					htmlid = "yuris3"; // 贖罪聖書不足
 				}
 			}
-//add end
 		} else if (s.equalsIgnoreCase("retrieve")) { // 「個人倉庫：アイテムを受け取る」
 			if (pc.getLevel() >= 5) {
 				pc.sendPackets(new S_RetrieveList(objid, pc));
