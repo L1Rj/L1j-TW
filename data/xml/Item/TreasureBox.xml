@@ -1244,7 +1244,32 @@
 		<Item ItemId="49143" Count="2" Chance="3.3"/>	<!--結晶2-->
 		<Item ItemId="41251" Count="1" Chance="0.3"/>	<!--聖杯-->
 	</TreasureBox>
-	<!--驚喜箱-->
+		<!-- 多魯嘉之袋 缺 地龍之渴望的眼淚 水龍之渴望的眼淚 風龍之渴望的眼淚 火龍之渴望的眼淚 -->
+	<TreasureBox Type="RANDOM" ItemId="50500">
+		<Item ItemId="50501" Count="1" Chance="2"/>		<!-- 龍之鑰匙 -->
+		<Item ItemId="40524" Count="2" Chance="7"/>		<!-- 黑色血痕 -->
+		<Item ItemId="120322" Count="1" Chance="6"/>	<!-- 侏儒圓盾 -->
+		<Item ItemId="120323" Count="1" Chance="6"/>	<!-- 侏儒鐵盔 -->
+		<Item ItemId="120324" Count="1" Chance="6"/>	<!-- 侏儒斗篷 -->
+		<Item ItemId="100213" Count="1" Chance="6"/>	<!-- 小侏儒短劍 -->
+		<Item ItemId="100214" Count="1" Chance="6"/>	<!-- 侏儒鐵斧 39-->
+		<Item ItemId="40024" Count="20" Chance="5"/>	<!-- 古代終極體力恢復劑 -->
+		<Item ItemId="40023" Count="30" Chance="6"/>	<!-- 古代強力體力恢復劑 -->
+		<Item ItemId="40021" Count="20" Chance="6"/>	<!-- 濃縮終極體力恢復劑 -->
+		<Item ItemId="40020" Count="30" Chance="6"/>	<!-- 濃縮強力體力恢復劑 -->
+		<Item ItemId="40499" Count="20" Chance="10"/>	<!-- 蘑菇汁-->
+		<Item ItemId="40506" Count="20" Chance="6"/>	<!-- 安特的水果 -->
+		<Item ItemId="41263" Count="20" Chance="5"/>	<!-- 太陽花籽 -->
+		<Item ItemId="40015" Count="10" Chance="5"/>	<!-- 加速魔力回復藥水 49-->
+		<Item ItemId="41352" Count="1" Chance="2"/>		<!-- 神聖獨角獸之角 -->
+		<Item ItemId="40513" Count="1" Chance="2"/>		<!-- 食人巨魔的血 -->
+		<Item ItemId="40393" Count="1" Chance="2"/>		<!-- 火龍鱗 -->
+		<Item ItemId="40394" Count="1" Chance="2"/>		<!-- 風龍鱗 -->
+		<Item ItemId="40395" Count="1" Chance="2"/>		<!-- 水龍鱗 -->
+		<Item ItemId="40396" Count="1" Chance="2"/>		<!-- 地龍鱗 --12>
+	</TreasureBox>
+		<!-- 商城道具 -->
+		<!-- 驚喜箱 -->
 	<TreasureBox Type="RANDOM" ItemId="41416">
 		<Item ItemId="40014" Count="10" Chance="15"/>	<!--勇敢藥水-->
 		<Item ItemId="40031" Count="10" Chance="2"/>	<!--惡魔之血-->
@@ -1260,5 +1285,54 @@
 		<Item ItemId="50054" Count="10" Chance="5"/>	<!--魔法捲軸 (強力加速術)-->
 		<Item ItemId="50057" Count="10" Chance="5"/>	<!--魔法捲軸 (全部治癒術)-->
 		<Item ItemId="41254" Count="1" Chance="1"/>		<!--勝利的徽章-->
+	</TreasureBox>
+		<!-- 贖罪聖書包 -->
+	<TreasureBox Type="RANDOM" ItemId="30201">
+		<Item ItemId="30002" Count="10" Chance="100"/>	<!-- 贖罪聖書 -->
+	</TreasureBox>
+		<!-- 究極力量T恤箱子 -->
+	<TreasureBox Type="RANDOM" ItemId="30202">
+		<Item ItemId="21301" Count="1" Chance="90"/>	<!-- 究極力量T恤 -->
+		<Item ItemId="21310" Count="1" Chance="10"/>	<!-- 特製究極力量T恤 -->
+	</TreasureBox>
+		<!-- 究極敏捷T恤箱子 -->
+	<TreasureBox Type="RANDOM" ItemId="30203">
+		<Item ItemId="21302" Count="1" Chance="90"/>	<!-- 究極敏捷T恤 -->
+		<Item ItemId="21311" Count="1" Chance="10"/>	<!-- 特製究極敏捷T恤 -->
+	</TreasureBox>
+		<!-- 究極魅力T恤箱子 -->
+	<TreasureBox Type="RANDOM" ItemId="30204">
+		<Item ItemId="21303" Count="1" Chance="90"/>	<!-- 究極魅力T恤 -->
+		<Item ItemId="21312" Count="1" Chance="10"/>	<!-- 特製究極魅力T恤 -->
+	</TreasureBox>
+		<!-- 究極智力T恤箱子 -->
+	<TreasureBox Type="RANDOM" ItemId="30205">
+		<Item ItemId="21304" Count="1" Chance="90"/>	<!-- 究極智力T恤 -->
+		<Item ItemId="21313" Count="1" Chance="10"/>	<!-- 特製究極智力T恤 -->
+	</TreasureBox>
+		<!-- 究極體力T恤箱子 -->
+	<TreasureBox Type="RANDOM" ItemId="30206">
+		<Item ItemId="21305" Count="1" Chance="90"/>	<!-- 究極體力T恤 -->
+		<Item ItemId="21314" Count="1" Chance="10"/>	<!-- 特製究極體力T恤 -->
+	</TreasureBox>
+		<!-- 究極魔力T恤箱子 -->
+	<TreasureBox Type="RANDOM" ItemId="30207">
+		<Item ItemId="21306" Count="1" Chance="90"/>	<!-- 究極魔力T恤 -->
+		<Item ItemId="21315" Count="1" Chance="10"/>	<!-- 特製究極魔力T恤 -->
+	</TreasureBox>
+		<!-- 究極抗昏迷T恤箱子 -->
+	<TreasureBox Type="RANDOM" ItemId="30208">
+		<Item ItemId="21307" Count="1" Chance="90"/>	<!-- 究極抗昏迷T恤 -->
+		<Item ItemId="21316" Count="1" Chance="10"/>	<!-- 特製究極抗昏迷T恤 -->
+	</TreasureBox>
+		<!-- 究極抗支撐T恤箱子 -->
+	<TreasureBox Type="RANDOM" ItemId="30209">
+		<Item ItemId="21308" Count="1" Chance="90"/>	<!-- 究極抗支撐T恤 -->
+		<Item ItemId="21317" Count="1" Chance="10"/>	<!-- 特製究極抗支撐T恤 -->
+	</TreasureBox>		
+		<!-- 究極抗魔法T恤箱子 -->
+	<TreasureBox Type="RANDOM" ItemId="30210">
+		<Item ItemId="21309" Count="1" Chance="90"/>	<!-- 究極抗魔法T恤 -->
+		<Item ItemId="21318" Count="1" Chance="10"/>	<!-- 特製究極抗魔法T恤 -->
 	</TreasureBox>
 </TreasureBoxList>

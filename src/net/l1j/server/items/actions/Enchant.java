@@ -169,8 +169,8 @@ public class Enchant {
 		if (item.getItem().getType2() == 2) {
 			if (item.isEquipped()) {
 				pc.addAc(-i);
-				int i2 = item.getItem().getItemId();/* waja 註:21208-21211 林德拜爾的xx 魔防隨防禦力+1  */
-				if (i2 == 20011 || i2 == 20110 || i2 == 21108 || i2 == 120011 || i2 == 21208 || i2 == 21209 || i2 == 21210 || i2 == 21211) {
+				int i2 = item.getItem().getItemId();/* waja 註:21208-21211 林德拜爾的xx 21309究極抗魔法T恤 21318特製究極抗魔法T恤 魔防隨防禦力+1  */
+				if (i2 == 20011 || i2 == 20110 || i2 == 21108 || i2 == 120011 || i2 == 21208 || i2 == 21209 || i2 == 21210 || i2 == 21211 || i2 == 21309 || i2 == 21318) {
 
 					pc.addMr(i);
 					pc.sendPackets(new S_SPMR(pc));

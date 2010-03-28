@@ -74,7 +74,8 @@ NPC類:
 神奇戰鬥盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&item=9121
 驚喜遊樂盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9122#item_detail
 中秋禮盒 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9720#item_detail
-
+計算機 http://gametsg.yatta.com.tw/lineage/index.php?view=item&list=no&k1=item&item=4404
+由 奇岩 布萊斯 製作 材料需求: 鋼鐵塊x5 薄金屬板x1 金幣x1000
 
 以下組合包內容未知:
 力量組合包 http://gametsg.yatta.com.tw/lineage/index.php?view=item&k1=item&item=9459#item_detail
@@ -253,4 +254,5 @@ NPC缺:
 
 錯誤:
 1.四龍的力量/泉源/魅惑/霸氣 16種防具 (防具圖示尚未訂正 無降低中毒機率功能).
-2.奇岩地監地圖不符.
+2.奇岩地監地圖不符 1002龍之墓 1005安塔瑞斯洞穴 地圖不符.
+3.多魯嘉貝爾 gfxid未知 多魯嘉之袋 invgfx grdgfx 編號未知 龍之鑰匙 xxT恤箱子 7色染料箱 grdgfx 編號未知.

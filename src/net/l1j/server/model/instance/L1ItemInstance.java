@@ -255,8 +255,8 @@ public class L1ItemInstance extends L1Object {
 	}
 
 	public int getMr() {
-		int mr = _item.get_mdef();/* waja 註: 21208 - 21211 林德拜爾的xx 魔防隨防禦力增加1 */
-		if (getItemId() == 20011 || getItemId() == 20110 || getItemId() == 120011 || getItemId() == 21208 || getItemId() == 21209 || getItemId() == 21210 || getItemId() == 21211) {
+		int mr = _item.get_mdef();/* waja 註: 21208 - 21211 林德拜爾的xx 21309究極抗魔法T恤 21318特製究極抗魔法T恤 魔防隨防禦力增加1 */
+		if (getItemId() == 20011 || getItemId() == 20110 || getItemId() == 120011 || getItemId() == 21208 || getItemId() == 21209 || getItemId() == 21210 || getItemId() == 21211 || getItemId() == 21309 || getItemId() == 21318) {
 			mr += getEnchantLevel();
 		}
 		if (getItemId() == 20056 || getItemId() == 120056 || getItemId() == 220056 || getItemId() == 21535) {
