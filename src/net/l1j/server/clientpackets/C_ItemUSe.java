@@ -2473,7 +2473,10 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
-				} else if (itemId == 41428) { //太古的玉璽
+				} else if (itemId == 50501) { // 龍之鑰匙
+	                SpawnUtil.spawn(pc, 91051, 0, 120 * 60 * 1000);
+	                pc.getInventory().removeItem(item, 1);
+				} else if (itemId == 41428) { // 太古的玉璽
 					if (pc != null && item != null) {
 						Account account = Account.load(pc.getAccountName());
 						if (account == null) {
