@@ -303,7 +303,7 @@ public class ItemTable {
 					item.setDmgSmall(rs.getInt("dmg_small"));
 					item.setDmgLarge(rs.getInt("dmg_large"));
 					item.set_stackable(rs.getInt("stackable") == 1 ? true : false);
-//					item.setMaxChargeCount(rs.getInt("max_charge_count"));
+					item.setMaxChargeCount(rs.getInt("max_charge_count"));
 					item.set_locx(rs.getInt("locx"));
 					item.set_locy(rs.getInt("locy"));
 					item.set_mapid(rs.getShort("mapid"));
