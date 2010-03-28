@@ -1163,4 +1163,29 @@
 			<Material Amount="1" ItemId="40614"/>
 		</MakeItem>
 	</Action>
+        <Action Name="1" NpcId="91050">
+                <MakeItem AmountInputable="false">
+                        <Item Amount="0" ItemId="40308"/>
+                        <Material Amount="100" ItemId="40308"/>
+                        <Succeed>
+                            <ShowHtml HtmlId="veil9"/>
+                        </Succeed>
+                        <Fail>
+                            <ShowHtml HtmlId="veil11"/>
+                        </Fail>
+                </MakeItem>
+        </Action>
+        <Action Name="0" NpcId="91050">
+                <MakeItem AmountInputable="false">
+                        <Item Amount="1" ItemId="50500"/>
+                        <Material Amount="1000000" ItemId="40308"/>
+                        <Succeed>
+                            <ShowHtml HtmlId="veil7"/>
+                        </Succeed>
+                        <Fail>
+                            <ShowHtml HtmlId="veil4"/>
+                        </Fail>
+                </MakeItem>
+                
+        </Action>
 </NpcActionList>
