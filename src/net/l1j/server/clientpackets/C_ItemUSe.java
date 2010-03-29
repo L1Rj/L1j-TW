@@ -983,7 +983,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 					}
 				} else if (itemId == 50501) { // 龍之鑰匙
-                                    SpawnUtil.spawn(pc, 91051, 0, 14400000); // 120*60*1000 = 2小時
+                                    SpawnUtil.spawn(pc, 91051, 0, 7200000); // 120*60*1000 = 2小時
                                     pc.getInventory().removeItem(item, 1);
                                 
                                 } else if (itemId == 40097 || itemId == 40119 || itemId == 140119
