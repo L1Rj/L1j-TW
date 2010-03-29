@@ -18,6 +18,7 @@
 		<Room Name="說話島" LocX="32580" LocY="32931" MapId="0"/>
 		<Room Name="亞丁" LocX="33966" LocY="33253" MapId="4"/>
 		<Room Name="歐瑞" LocX="34061" LocY="32276" MapId="4"/>
+		<Room Name="威頓" LocX="33709" LocY="32500" MapId="4"/>
 		<Room Name="風木" LocX="32621" LocY="33169" MapId="4"/>
 		<Room Name="隱藏之谷" LocX="32671" LocY="32836" MapId="69"/>
 		<Room Name="妖森" LocX="33054" LocY="32323" MapId="4"/>
