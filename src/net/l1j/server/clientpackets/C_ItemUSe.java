@@ -982,7 +982,11 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						}
 					}
-				} else if (itemId == 40097 || itemId == 40119 || itemId == 140119
+				} else if (itemId == 50501) { // 龍之鑰匙
+                                    SpawnUtil.spawn(pc, 91051, 0, 120 * 60 * 1000);
+                                    pc.getInventory().removeItem(item, 1);
+                                
+                                } else if (itemId == 40097 || itemId == 40119 || itemId == 140119
 						|| itemId == 140329) { // 解咒スクロール、原住民のトーテム
 					for (L1ItemInstance eachItem : pc.getInventory().getItems()) {
 						if (eachItem.getItem().getBless() != 2) {
@@ -2473,10 +2477,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
-				} else if (itemId == 50501) { // 龍之鑰匙
-	                SpawnUtil.spawn(pc, 91051, 0, 120 * 60 * 1000);
-	                pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 41428) { // 太古的玉璽
+                                } else if (itemId == 41428) { // 太古的玉璽
 					if (pc != null && item != null) {
 						Account account = Account.load(pc.getAccountName());
 						if (account == null) {

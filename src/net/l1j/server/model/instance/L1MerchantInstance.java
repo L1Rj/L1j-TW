@@ -591,10 +591,15 @@ public class L1MerchantInstance extends L1NpcInstance {
 				if (time < 60 * 60 * 6 || time > 60 * 60 * 20) { // 20:00～6:00
 					htmlid = "shipEvI6";
 				}
-			} else if (npcid == 70087) { // セディア
+			}
+                         //沉默洞穴 NPC 賽帝亞
+                         //セディア
+                        else if (npcid == 70087) {
 				if (player.isDarkelf()) {
 					htmlid = "sedia";
-				}
+				} else {
+                                    htmlid = "sedia4";
+                                }
 			} else if (npcid == 70099) { // クーパー
 				if (!quest.isEnd(L1Quest.QUEST_OILSKINMANT)) {
 					if (player.getLevel() > 13) {
@@ -2691,7 +2696,13 @@ public class L1MerchantInstance extends L1NpcInstance {
 						}
 					}
 				}
-			}
+			} else if (npcid == 91050) {
+                            if (player.getInventory().checkItem(50500, 1)) {
+                                htmlid = "veil3";
+                            } else if (player.getInventory().checkItem(50501)) {
+                                htmlid = "veil8";
+                            }
+                        }
 			// html表示パケット送信
 			if (htmlid != null) { // htmlidが指定されている場合
 				if (htmldata != null) { // html指定がある場合は表示

@@ -1057,3 +1057,5 @@ INSERT INTO `npcaction` VALUES ('91004', 'yuris1', 'yuris1', '', '');
 INSERT INTO `npcaction` VALUES ('91005', 'adenshadow1', 'adenshadow1', '', '');
 INSERT INTO `npcaction` VALUES ('91006', 'adenflora1', 'adenflora1', 'adenflora2', '');
 INSERT INTO `npcaction` VALUES ('91007', 'amelia', 'amelia1', '', '');
+INSERT INTO `npcaction` VALUES ('91050', 'veil1', 'veil1', '', '');
+INSERT INTO `npcaction` VALUES ('91051', 'dragonsmap', 'dragonsmap', '', '');
