@@ -46,7 +46,7 @@ public class L1CheckPcItem {
 				isCheat = true; // 金幣大於20億以及金幣負值設定為作弊
 			} else if (itemId == 41246 && (itemCount > 10000000 || itemCount < 0)) {
 				isCheat = true; // 魔法結晶體數量大於100萬以及數量負值設定為作弊
-			} else if (isStackable && ( itemId != 40308 || itemId != 41246) && (itemCount > 100000 || itemCount < 0)) {
+			} else if (isStackable && ( itemId != 40308) && ( itemId != 41246) && (itemCount > 100000 || itemCount < 0)) {
 				isCheat = true; // 可堆疊道具(金幣與魔法結晶體除外)堆疊超過十萬個以及堆疊數量負值設定為作弊
 			}
 		}
