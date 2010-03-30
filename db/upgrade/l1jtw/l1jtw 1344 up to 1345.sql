@@ -1,6 +1,6 @@
 /* 20100329 l1jtw 參考透視鏡 修正 3.1C NPC 素質 & 編號變更 npc資料表缺 地水風火 四屬性攻擊傷害  */
 
-/* 3,1C 神廟 NPC 變更 */
+/* 3.1C 神廟 NPC 變更 */
 delete from npc where npcid = '95000' ;
 delete from npc where npcid = '95001' ;
 delete from npc where npcid = '95002' ;

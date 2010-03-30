@@ -1246,10 +1246,10 @@
 	</TreasureBox>
 		<!--多魯嘉之袋/缺地龍之渴望的眼淚/水龍之渴望的眼淚/風龍之渴望的眼淚/火龍之渴望的眼淚-->
 	<TreasureBox Type="RANDOM" ItemId="50500">
-		<Item ItemId="50501" Count="1" Chance="2"/>		<!--龍之鑰匙-->
-		<Item ItemId="40524" Count="2" Chance="7"/>		<!--黑色血痕-->
-		<Item ItemId="120322" Count="1" Chance="6"/>	<!--侏儒圓盾-->
-		<Item ItemId="120323" Count="1" Chance="6"/>	<!--侏儒鐵盔-->
+		<Item ItemId="50501" Count="1" Chance="3"/>		<!--龍之鑰匙-->
+		<Item ItemId="40524" Count="2" Chance="6"/>		<!--黑色血痕-->
+		<Item ItemId="120322" Count="1" Chance="5"/>	<!--侏儒圓盾-->
+		<Item ItemId="120323" Count="1" Chance="5"/>	<!--侏儒鐵盔-->
 		<Item ItemId="120324" Count="1" Chance="6"/>	<!--侏儒斗篷-->
 		<Item ItemId="100213" Count="1" Chance="6"/>	<!--小侏儒短劍 -->
 		<Item ItemId="100214" Count="1" Chance="6"/>	<!--侏儒鐵斧-->
@@ -1257,16 +1257,16 @@
 		<Item ItemId="40023" Count="30" Chance="6"/>	<!--古代強力體力恢復劑-->
 		<Item ItemId="40021" Count="20" Chance="6"/>	<!--濃縮終極體力恢復劑-->
 		<Item ItemId="40020" Count="30" Chance="6"/>	<!--濃縮強力體力恢復劑-->
-		<Item ItemId="40499" Count="20" Chance="10"/>	<!--蘑菇汁-->
+		<Item ItemId="40499" Count="20" Chance="6"/>	<!--蘑菇汁-->
 		<Item ItemId="40506" Count="20" Chance="6"/>	<!--安特的水果-->
 		<Item ItemId="41263" Count="20" Chance="5"/>	<!--太陽花籽-->
 		<Item ItemId="40015" Count="10" Chance="5"/>	<!--加速魔力回復藥水-->
-		<Item ItemId="41352" Count="1" Chance="2"/>		<!--神聖獨角獸之角-->
-		<Item ItemId="40513" Count="1" Chance="2"/>		<!--食人巨魔的血-->
-		<Item ItemId="40393" Count="1" Chance="2"/>		<!--火龍鱗-->
-		<Item ItemId="40394" Count="1" Chance="2"/>		<!--風龍鱗-->
-		<Item ItemId="40395" Count="1" Chance="2"/>		<!--水龍鱗-->
-		<Item ItemId="40396" Count="1" Chance="2"/>		<!--地龍鱗-->
+		<Item ItemId="41352" Count="1" Chance="3"/>		<!--神聖獨角獸之角-->
+		<Item ItemId="40513" Count="1" Chance="3"/>		<!--食人巨魔的血-->
+		<Item ItemId="40393" Count="1" Chance="3"/>		<!--火龍鱗-->
+		<Item ItemId="40394" Count="1" Chance="3"/>		<!--風龍鱗-->
+		<Item ItemId="40395" Count="1" Chance="3"/>		<!--水龍鱗-->
+		<Item ItemId="40396" Count="1" Chance="3"/>		<!--地龍鱗-->
 	</TreasureBox>
 		<!--商城道具-->
 		<!--驚喜箱-->
