@@ -348,6 +348,7 @@ public class L1ItemInstance extends L1Object {
 	}
 
 	private int _addHpr = 0;
+	
 	public void setAddHpr(int i){
 		_addHpr = i;
 	}
@@ -356,11 +357,21 @@ public class L1ItemInstance extends L1Object {
 	}
 
 	private int _addMpr = 0;
+	
 	public void setAddMpr(int i){
 		_addMpr = i;
 	}
 	public int getAddMpr(){
-		return _addHpr;
+		return _addMpr;
+	}
+	
+	private int _addMr = 0;
+	
+	public void setAddMr(int i){
+		_addMr = i;
+	}
+	public int getAddMr(){
+		return _addMr;
 	}
 
 	private int _addSp = 0;

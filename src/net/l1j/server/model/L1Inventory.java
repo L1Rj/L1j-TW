@@ -187,6 +187,9 @@ public class L1Inventory extends L1Object {
 		if (itemId == 20383) {
 			chargeCount = 50;
 		}
+                if (itemId == 50500) { // 多魯嘉之袋
+                        chargeCount = 30;
+                }
 		item.setChargeCount(chargeCount);
 		if (item.getItem().getType2() == 0 && item.getItem().getType() == 2) { // light系アイテム
 			item.setRemainingTime(item.getItem().getLightFuel());

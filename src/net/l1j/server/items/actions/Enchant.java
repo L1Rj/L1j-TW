@@ -463,7 +463,7 @@ public class Enchant {
 				if (itemId == middleclass[i]){
 					item.setAddHp(item.getAddHp() + enchantLv * 2);
 					if(enchantLv >= 6 && enchantLv <= 10){
-						item.setAddMpr(item.getAddMpr() + 1);
+						item.setAddMr(item.getAddMr() + 1);
 					}
 				}
 			}
