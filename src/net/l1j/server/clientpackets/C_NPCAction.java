@@ -3668,9 +3668,9 @@ public class C_NPCAction extends ClientBasePacket {
 			}
 		}
 
-		// ゾウのストーンゴーレム テーベ砂漠
+		// 底比斯沙漠 宙斯之石頭高崙
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71253) {
-			// 「歪みのコアを作る」
+			// 龜裂之核製作
 			if (s.equalsIgnoreCase("A")) {
 				if (pc.getInventory().checkItem(49101, 100)) {
 					materials = new int[] { 49101 };
@@ -3691,22 +3691,60 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 		}
-		// テーベ オシリス祭壇のキーパー
+		// 底比斯祭壇守門人
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71255) {
-			// 「テーベオシリス祭壇の鍵を持っているなら、オシリスの祭壇にお送りしましょう。」
+			// 持有鑰匙經由祭壇守門人傳送進入
 			if (s.equalsIgnoreCase("e")) {
-				if (pc.getInventory().checkItem(49242, 1)) { // 鍵のチェック(20人限定/時の歪みが現れてから2h30は未実装)
+				if (pc.getInventory().checkItem(49242, 1)) { // 底比斯歐西里斯祭壇鑰匙檢查(20人限定未實裝)
 					pc.getInventory().consumeItem(49242, 1);
 					L1Teleport.teleport(pc, 32735, 32831, (short) 782, 2, true);
 					htmlid = "";
 				} else {
 					htmlid = "tebegate3";
-					// 「上限人数に達している場合は」
+					// 人數上限已到達時顯示
 					// htmlid = "tebegate4";
 				}
 			}
 		}
-		// ?
+		// 庫庫爾坎 宙斯之石頭高崙
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 90520) {
+			// 龜裂之核製作
+			if (s.equalsIgnoreCase("A")) {
+				if (pc.getInventory().checkItem(49101, 100)) {
+					materials = new int[] { 49101 };
+					counts = new int[] { 100 };
+					createitem = new int[] { 49092 };
+					createcount = new int[] { 1 };
+					htmlid = "joegolem18";
+				} else {
+					htmlid = "joegolem19";
+				}
+			} else if (s.equalsIgnoreCase("B")) {
+				if (pc.getInventory().checkItem(49101, 1)) {
+					pc.getInventory().consumeItem(49101, 1);
+					L1Teleport.teleport(pc, 33966, 33253, (short) 4, 5, true);
+					htmlid = "";
+				} else {
+					htmlid = "joegolem20";
+				}
+			}
+		}
+		// 提卡爾神廟守門人
+		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 90521) {
+			// 持有鑰匙經由神廟守門人傳送進入
+			if (s.equalsIgnoreCase("e")) {
+				if (pc.getInventory().checkItem(49308, 1)) { // 檢查提卡爾庫庫爾坎祭壇鑰匙(人數限制未實裝)
+					pc.getInventory().consumeItem(49308, 1);
+					L1Teleport.teleport(pc, 32730, 32866, (short) 784, 2, true); // 傳送至庫庫爾坎祭壇
+					htmlid = "";
+				} else {
+					htmlid = "tikalgate3";
+					// 人數上限已到達時顯示
+					// htmlid = "tikalgate4";
+				}
+			}
+		}
+		// 瑪勒巴
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71258) {
 			if (pc.getInventory().checkItem(40665)) {
 				htmlid = "marba17";

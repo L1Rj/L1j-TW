@@ -1701,4 +1701,8 @@
 	<Action Name="teleport adencd" NpcId="91006">
 		<Teleport X="32660" Y="32800" Map="257" Heading="5" Price="1950"/>
 	</Action>
+	<!-- 魔法師梅琳 傳送奇岩地監-->
+	<Action Name="teleport giranD" NpcId="91065">
+		<Teleport X="32810" Y="32731" Map="53" Heading="6" Price="0"/>
+	</Action>
 </NpcActionList>

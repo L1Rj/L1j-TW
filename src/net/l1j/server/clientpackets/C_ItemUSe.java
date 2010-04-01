@@ -1793,7 +1793,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
-				} else if (itemId == 40006 || itemId == 40412 || itemId == 140006) {//祝福創杖
+				} else if (itemId == 40006 || itemId == 40412 || itemId == 140006) { // 40006 松木魔杖 創造怪物魔杖 40412 黑暗安特的樹枝
 					if (pc.getMap().isUsePainwand()) {
 						S_AttackPacket s_attackPacket = new S_AttackPacket(pc, 0,
 								ActionCodes.ACTION_Wand);
@@ -1824,8 +1824,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						 * バグベアー
 						 */
 						int rnd = RandomArrayList.getInt(mobArray.length);
-						SpawnUtil.spawn(pc, mobArray[rnd], 0, 300000);
-						if (itemId == 40006 || itemId == 140006) {// 創杖
+						SpawnUtil.spawn(pc, mobArray[rnd], 0, 60000); // 台版創杖怪物只有一分鐘
+						if (itemId == 40006 || itemId == 140006) {// 松木魔杖 創造怪物魔杖
 							item.setChargeCount(item.getChargeCount() - 1);
 							pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
 						} else {
@@ -2365,9 +2365,9 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 190));
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1140));
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 49092) { // 歪みのコア
+				} else if (itemId == 49092) { // 龜裂之核
 					int targetItemId = l1iteminstance1.getItem().getItemId();
-					if (targetItemId == 49095 || targetItemId == 49099) { // 閉ざされた寶箱
+					if (targetItemId == 49095 || targetItemId == 49099 || targetItemId == 49302 || targetItemId == 49306) { // 上鎖的歐西里斯寶箱&上鎖的庫庫爾坎寶箱
 						ItemCreate.newItem(pc, targetItemId + 1, 1);
 						pc.getInventory().consumeItem(targetItemId, 1);
 						pc.getInventory().consumeItem(49092, 1);
@@ -2375,7 +2375,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 						return;
 					}
-				} else if (itemId == 49093) { // 下級オシリスの寶箱の欠片：上
+				} else if (itemId == 49093) { // 歐西里斯初級寶箱碎片(上)
 					if (pc.getInventory().checkItem(49094, 1)) {
 						pc.getInventory().consumeItem(49093, 1);
 						pc.getInventory().consumeItem(49094, 1);
@@ -2383,7 +2383,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
-				} else if (itemId == 49094) { // 下級オシリスの寶箱の欠片：下
+				} else if (itemId == 49094) { // 歐西里斯初級寶箱碎片(下)
 					if (pc.getInventory().checkItem(49093, 1)) {
 						pc.getInventory().consumeItem(49093, 1);
 						pc.getInventory().consumeItem(49094, 1);
@@ -2391,7 +2391,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
-				} else if (itemId == 49097) { // 上級オシリスの寶箱の欠片：上
+				} else if (itemId == 49097) { // 歐西里斯高級寶箱碎片(上)
 					if (pc.getInventory().checkItem(49098, 1)) {
 						pc.getInventory().consumeItem(49097, 1);
 						pc.getInventory().consumeItem(49098, 1);
@@ -2399,11 +2399,43 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
-				} else if (itemId == 49098) { // 上級オシリスの寶箱の欠片：下
+				} else if (itemId == 49098) { // 歐西里斯高級寶箱碎片(下)
 					if (pc.getInventory().checkItem(49097, 1)) {
 						pc.getInventory().consumeItem(49097, 1);
 						pc.getInventory().consumeItem(49098, 1);
 						ItemCreate.newItem(pc, 49099, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					}
+				} else if (itemId == 49300) { // 庫庫爾坎初級寶箱碎片(上)
+					if (pc.getInventory().checkItem(49300, 1)) {
+						pc.getInventory().consumeItem(49300, 1);
+						pc.getInventory().consumeItem(49301, 1);
+						ItemCreate.newItem(pc, 49302, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					}
+				} else if (itemId == 49301) { // 庫庫爾坎初級寶箱碎片(下)
+					if (pc.getInventory().checkItem(49301, 1)) {
+						pc.getInventory().consumeItem(49301, 1);
+						pc.getInventory().consumeItem(49300, 1);
+						ItemCreate.newItem(pc, 49302, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					}
+				} else if (itemId == 49304) { // 庫庫爾坎高級寶箱碎片(上)
+					if (pc.getInventory().checkItem(49304, 1)) {
+						pc.getInventory().consumeItem(49304, 1);
+						pc.getInventory().consumeItem(49305, 1);
+						ItemCreate.newItem(pc, 49306, 1);
+					} else {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					}
+				} else if (itemId == 49305) { // 庫庫爾坎高級寶箱碎片(下)
+					if (pc.getInventory().checkItem(49305, 1)) {
+						pc.getInventory().consumeItem(49305, 1);
+						pc.getInventory().consumeItem(49304, 1);
+						ItemCreate.newItem(pc, 49306, 1);
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
@@ -2498,6 +2530,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						account.setCharacterSlot(characterSlot);
 						Account.updateCharacterSlot(account);
 						pc.getInventory().removeItem(item, 1);
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$1435)); // 角色欄位已擴充了，請至角色選擇畫面中確認跳過視窗頁面。
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
