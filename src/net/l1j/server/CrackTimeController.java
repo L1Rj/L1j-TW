@@ -16,6 +16,8 @@ package net.l1j.server;
 
 import java.lang.reflect.Constructor;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,52 +26,114 @@ import net.l1j.server.model.L1Location;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.thread.GeneralThreadPool;
 
 /**
  * 時空裂痕時間控制器
  */
-public class CrackTimeController implements Runnable {
+public class CrackTimeController extends TimerTask {
 	private static Logger _log = Logger.getLogger(CrackTimeController.class.getName());
+	
+	private Timer _timeHandler = new Timer(true);
+	
+	private static Random _random = new Random();
+	
+	private boolean _isOver = false;
+	
+	// 時空裂痕已開始時間(1/2秒)
+	private int _startTime = 0;
 
+	private static final int[][] _crack = {
+		{ 32639, 32876, 780 }, // 底比斯
+		{ 32794, 32751, 783 }  // 提卡爾
+	};
+	
 	private static final int[][] _crackLoc = {
 		{ 32728, 32709, 4 }, { 32848, 32639, 4 }, { 32852, 32705, 4 }, // 邪惡神殿
 		{ 32913, 33168, 4 }, { 32957, 33247, 4 }, { 32913, 33425, 4 }, // 沙漠綠洲
 		{ 34255, 33203, 4 }, { 34232, 33312, 4 }, { 34276, 33359, 4 }  // 黃昏山脈
 	};
-
-	private static Random _random = new Random();
-
-	public static CrackTimeController getInstance() {
-		return SingletonHolder._instance;
+	
+	private static CrackTimeController _instance;
+	
+	public static CrackTimeController getStart() {
+		if (_instance == null) {
+			_instance = new CrackTimeController();
+		}
+		return _instance;
+	}
+	
+	public void startCrackTime(){
+		CrackTimeController.getStart();
+	}
+	
+	private CrackTimeController() {
+		// 開始執行此時間軸
+		_timeHandler.schedule(this, 500, 500);
+		// 交由線程工廠 處理
+		GeneralThreadPool.getInstance().execute(this);
 	}
 
 	@Override
 	public void run() {
-//		try {
-//			while (true) {
-				checkCrackTime();
-//				Thread.sleep(1000);
-//			}
-//		} catch (Exception e) {
-//			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		// 時空裂痕結束
+		if (_isOver) {
+			try { // 廣播  時空裂痕已經消失了...
+				L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(SystemMessageId.$1468));
+				clear();
+				Thread.sleep(4*3600000); // 四小時一次
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		_startTime ++;
+//		switch (_startTime) {			
+//		case 60*2: // 時間軸開始1分鐘
+//			L1World.getInstance().broadcastServerMessage(SystemMessageId.$79);
+//			break;
+//		case 120*2: // 時空裂痕開啟
+//		break;
 //		}
+		//checkVictory();
+		int delaytime = ( 5 * 60 ) ; // 伺服器啟動五分鐘後啟動時空裂痕
+		int keeptime =( 3 * 3600 ); // 每次開啟 三 小時
+
+		if (_startTime == delaytime ) {
+			spawnCrack();
+			}
+
+		if (_startTime == keeptime ) { // 廣播 時空裂痕即將關閉...
+			L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(SystemMessageId.$1467));
+			}
+
+		if (_startTime >= ( keeptime + delaytime )) {
+			_isOver = true;
+		}
 	}
 
-	private void checkCrackTime() {
-		spawnCrack();
+	/**
+	 * 清空時空裂痕資訊(時空裂痕結束)
+	 */
+	private void clear() {
+		_startTime = 0;
+		_isOver = false;
 	}
 
 	private void spawnCrack() {
+		L1Location crack = null;
 		L1Location crack_loc = null;
-		int rnd = _random.nextInt(9);
-
-		crack_loc = new L1Location(_crackLoc[rnd][0], _crackLoc[rnd][1], _crackLoc[rnd][2]);
-		createCrack(32639, 32876, (short) 780, crack_loc.getX(), crack_loc.getY(), (short) crack_loc.getMapId());
-		createCrack(crack_loc.getX(), crack_loc.getY(), (short) crack_loc.getMapId(), 32639, 32876, (short) 780);
+		int rnd1 = _random.nextInt(2);
+		int rnd2 = _random.nextInt(9);
+		crack = new L1Location(_crack[rnd1][0], _crack[rnd1][1], _crack[rnd1][2]);
+		crack_loc = new L1Location(_crackLoc[rnd2][0], _crackLoc[rnd2][1], _crackLoc[rnd2][2]);
+		L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(SystemMessageId.$1469));
+		createCrack(crack.getX(), crack.getY(), (short) crack.getMapId(), crack_loc.getX(), crack_loc.getY(), (short) crack_loc.getMapId());
+		createCrack(crack_loc.getX(), crack_loc.getY(), (short) crack_loc.getMapId(), crack.getX(), crack.getY(), (short) crack.getMapId());
 	}
 
 	private void createCrack(int x, int y, short mapId, int to_x, int to_y, short to_mapId) {
@@ -103,7 +167,7 @@ public class CrackTimeController implements Runnable {
 		}
 	}
 
-	private class Teleport implements Runnable {
+	class Teleport implements Runnable {
 		private L1NpcInstance _npc = null;
 
 		private int _to_x = 0;
@@ -139,10 +203,5 @@ public class CrackTimeController implements Runnable {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			}
 		}
-	}
-
-	@SuppressWarnings("synthetic-access")
-	private static class SingletonHolder {
-		protected static final CrackTimeController _instance = new CrackTimeController();
 	}
 }

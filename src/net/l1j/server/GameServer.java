@@ -131,7 +131,7 @@ public class GameServer extends Thread {
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
 
 		System.out.println("=================================================");
-		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1345 ========");
+		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1360 ========");
 		System.out.println("=================================================");
 		System.out.println(
 				"經驗值: " + (rateXp) + "倍\n\r" +
@@ -203,7 +203,7 @@ public class GameServer extends Thread {
 		LightTimeController lightTimeController = LightTimeController.getInstance();
 		_threadPool.execute(lightTimeController);
 		// 時空裂痕時間控制器
-		CrackTimeController crackTimeController = CrackTimeController.getInstance();
+		CrackTimeController crackTimeController = CrackTimeController.getStart();
 		_threadPool.execute(crackTimeController);
 
 		Announcements.getInstance();

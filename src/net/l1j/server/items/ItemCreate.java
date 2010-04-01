@@ -19,7 +19,8 @@
 package net.l1j.server.items;
 
 import net.l1j.server.datatables.ItemTable;
-import net.l1j.server.model.L1Inventory;
+// import net.l1j.server.model.L1Inventory;
+// import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
@@ -32,12 +33,12 @@ public class ItemCreate {
 		L1ItemInstance item = ItemTable.getInstance().createItem(item_id);
 		item.setCount(count);
 		if (item != null) {
-			if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) {
+//			if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) {
 				pc.getInventory().storeItem(item);
-			}/* else { // 持てない場合は地面に落とす 處理のキャンセルはしない（不正防止）
-				L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(
-						item);
-			} */
+//			} else { // 持てない場合は地面に落とす 處理のキャンセルはしない（不正防止）
+//				L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(
+//						item);
+//			}
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$403, item.getLogName()));
 			return true;
 		} else {
