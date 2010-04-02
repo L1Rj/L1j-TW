@@ -86,7 +86,7 @@ public class CrackTimeController extends TimerTask {
 			try { // 廣播  時空裂痕已經消失了...
 				L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(SystemMessageId.$1468));
 				clear();
-				Thread.sleep(4*3600000); // 四小時一次
+				Thread.sleep(4*360000000); // 四小時一次
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -100,8 +100,8 @@ public class CrackTimeController extends TimerTask {
 //		break;
 //		}
 		//checkVictory();
-		int delaytime = ( 5 * 60 ) ; // 伺服器啟動五分鐘後啟動時空裂痕
-		int keeptime =( 3 * 3600 ); // 每次開啟 三 小時
+		int delaytime = ( 5 * 600 ) ; // 伺服器啟動五分鐘後啟動時空裂痕
+		int keeptime =( 3 * 360000000 ); // 每次開啟 三 小時
 
 		if (_startTime == delaytime ) {
 			spawnCrack();
