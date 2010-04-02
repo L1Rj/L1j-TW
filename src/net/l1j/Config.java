@@ -34,7 +34,7 @@ public final class Config {
 	/** 除錯/發行模式 */
 	public static final boolean DEBUG = false;
 
-	/** 控制一般設定 */
+	/* 線程設定 */
 
 	public static int THREAD_P_EFFECTS;
 	public static int THREAD_P_GENERAL;
@@ -45,7 +45,23 @@ public final class Config {
 	public static int THREAD_P_TYPE_GENERAL;
 	public static int THREAD_P_SIZE_GENERAL;
 
-	/** 控制伺服器設定 */
+	/* 資料庫設定 */
+
+	public static String DATABASE_DRIVER;
+	public static String DATABASE_URL;
+	public static String DATABASE_LOGIN;
+	public static String DATABASE_PASSWORD;
+	public static int DATABASE_MAX_CONNECTIONS;
+	public static int DATABASE_MAX_IDLE_TIME;
+	public static boolean ARMOR_CUSTOM_TABLE;
+	public static boolean ARMORSETS_CUSTOM_TABLE;
+	public static boolean ETCITEM_CUSTOM_TABLE;
+	public static boolean WEAPON_CUSTOM_TABLE;
+	public static boolean NPC_CUSTOM_TABLE;
+	public static boolean DROPLIST_CUSTOM_TABLE;
+	public static boolean SHOP_CUSTOM_TABLE;
+
+	/* 伺服器設定 */
 
 	public static String GAME_SERVER_HOST_NAME;
 	public static int GAME_SERVER_PORT;
@@ -77,7 +93,7 @@ public final class Config {
 	public static boolean LOGGING_CHAT_WORLD;
 	public static boolean LOGGING_CHAT_CLAN;
 	public static boolean LOGGING_CHAT_PARTY;
-	public static boolean LOGGING_CHAT_COMBINED;
+	public static boolean LOGGING_CHAT_ALLIANCE;
 	public static boolean LOGGING_CHAT_CHAT_PARTY;
 	public static int AUTOSAVE_INTERVAL;
 	public static int AUTOSAVE_INTERVAL_INVENTORY;
@@ -91,23 +107,7 @@ public final class Config {
 	public static int LEVEL_DOWN_RANGE;
 	public static boolean SEND_PACKET_BEFORE_TELEPORT;
 
-	/** 控制資料庫設定 */
-
-	public static String DATABASE_DRIVER;
-	public static String DATABASE_URL;
-	public static String DATABASE_LOGIN;
-	public static String DATABASE_PASSWORD;
-	public static int DATABASE_MAX_CONNECTIONS;
-	public static int DATABASE_MAX_IDLE_TIME;
-	public static boolean ARMOR_CUSTOM_TABLE;
-	public static boolean ARMORSETS_CUSTOM_TABLE;
-	public static boolean ETCITEM_CUSTOM_TABLE;
-	public static boolean WEAPON_CUSTOM_TABLE;
-	public static boolean NPC_CUSTOM_TABLE;
-	public static boolean DROPLIST_CUSTOM_TABLE;
-	public static boolean SHOP_CUSTOM_TABLE;
-
-	/** 控制進階設定 */
+	/* 進階設定 */
 
 	public static short GLOBAL_CHAT_LEVEL;
 	public static short WHISPER_CHAT_LEVEL;
@@ -160,7 +160,7 @@ public final class Config {
 	/** 設定妖森道具掉落時間 */
 	public static int GDROPITEM_TIME;
 
-	/** 控制角色設定 */
+	/* 控制角色設定 */
 
 	public static int PRINCE_MAX_HP;
 	public static int PRINCE_MAX_MP;
@@ -227,7 +227,7 @@ public final class Config {
 	public static int LV98_EXP;
 	public static int LV99_EXP;
 
-	/** 控制倍率設定 */
+	/* 倍率設定 */
 
 	public static double RATE_XP;
 	public static double RATE_LA;
@@ -251,12 +251,12 @@ public final class Config {
 	public static int CREATE_CHANCE_ANCIENT_AMULET;
 	public static int CREATE_CHANCE_HISTORY_BOOK;
 
-	/** 一般設定檔 */
-	public static final String GENERAL_CONFIG_FILE = "./config/general.properties";
-	/** 伺服器設定檔 */
-	public static final String SERVER_CONFIG_FILE = "./config/server.properties";
+	/** 線程設定檔 */
+	public static final String THREAD_CONFIG_FILE = "./config/thread.properties";
 	/** 資料庫設定檔 */
 	public static final String DATABASE_CONFIG_FILE = "./config/database.properties";
+	/** 伺服器設定檔 */
+	public static final String SERVER_CONFIG_FILE = "./config/server.properties";
 	/** 進階設定檔 */
 	public static final String ALT_SETTINGS_FILE = "./config/altsettings.properties";
 	/** 角色設定檔 */
@@ -264,7 +264,7 @@ public final class Config {
 	/** 倍率設定檔 */
 	public static final String RATES_CONFIG_FILE = "./config/rates.properties";
 
-	/** 其他設定 */
+	/* 其他設定 */
 
 	// NPCから吸えるMP限界
 	public static final int MANA_DRAIN_LIMIT_PER_NPC = 40;
@@ -274,24 +274,50 @@ public final class Config {
 
 	public static void load() {
 		_log.info("正在讀取伺服器配置");
-		// general.properties
+
+		// thread.properties
 		try {
-			Properties generalSettings = new Properties();
-			InputStream is = new FileInputStream(new File(GENERAL_CONFIG_FILE));
-			generalSettings.load(is);
+			Properties threadSettings = new Properties();
+			InputStream is = new FileInputStream(new File(THREAD_CONFIG_FILE));
+			threadSettings.load(is);
 			is.close();
 
-			THREAD_P_EFFECTS = Integer.parseInt(generalSettings.getProperty("ThreadPoolSizeEffects", "10"));
-			THREAD_P_GENERAL = Integer.parseInt(generalSettings.getProperty("ThreadPoolSizeGeneral", "13"));
-			IO_PACKET_THREAD_CORE_SIZE = Integer.parseInt(generalSettings.getProperty("UrgentPacketThreadCoreSize", "2"));
-			GENERAL_PACKET_THREAD_CORE_SIZE = Integer.parseInt(generalSettings.getProperty("GeneralPacketThreadCoreSize", "4"));
-			GENERAL_THREAD_CORE_SIZE = Integer.parseInt(generalSettings.getProperty("GeneralThreadCoreSize", "4"));
-			AI_MAX_THREAD = Integer.parseInt(generalSettings.getProperty("AiMaxThread", "6"));
-			THREAD_P_TYPE_GENERAL = Integer.parseInt(generalSettings.getProperty("GeneralThreadPoolType", "0"), 10);
-			THREAD_P_SIZE_GENERAL = Integer.parseInt(generalSettings.getProperty("GeneralThreadPoolSize", "0"), 10);
+			THREAD_P_EFFECTS = Integer.parseInt(threadSettings.getProperty("ThreadPoolSizeEffects", "10"));
+			THREAD_P_GENERAL = Integer.parseInt(threadSettings.getProperty("ThreadPoolSizeGeneral", "13"));
+			IO_PACKET_THREAD_CORE_SIZE = Integer.parseInt(threadSettings.getProperty("UrgentPacketThreadCoreSize", "2"));
+			GENERAL_PACKET_THREAD_CORE_SIZE = Integer.parseInt(threadSettings.getProperty("GeneralPacketThreadCoreSize", "4"));
+			GENERAL_THREAD_CORE_SIZE = Integer.parseInt(threadSettings.getProperty("GeneralThreadCoreSize", "4"));
+			AI_MAX_THREAD = Integer.parseInt(threadSettings.getProperty("AiMaxThread", "6"));
+			THREAD_P_TYPE_GENERAL = Integer.parseInt(threadSettings.getProperty("GeneralThreadPoolType", "0"), 10);
+			THREAD_P_SIZE_GENERAL = Integer.parseInt(threadSettings.getProperty("GeneralThreadPoolSize", "0"), 10);
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			throw new Error("Failed to Load " + GENERAL_CONFIG_FILE + " File.");
+			throw new Error("Failed to Load " + THREAD_CONFIG_FILE + " File.");
+		}
+
+		// database.properties
+		try {
+			Properties databaseSettings = new Properties();
+			InputStream is = new FileInputStream(new File(DATABASE_CONFIG_FILE));
+			databaseSettings.load(is);
+			is.close();
+
+			DATABASE_DRIVER = databaseSettings.getProperty("Driver", "com.mysql.jdbc.Driver");
+			DATABASE_URL = databaseSettings.getProperty("URL", "jdbc:mysql://localhost/l1jdb?useUnicode=true&characterEncoding=utf8");
+			DATABASE_LOGIN = databaseSettings.getProperty("Login", "root");
+			DATABASE_PASSWORD = databaseSettings.getProperty("Password", "");
+			DATABASE_MAX_CONNECTIONS = Integer.parseInt(databaseSettings.getProperty("MaximumDbConnections", "10"));
+			DATABASE_MAX_IDLE_TIME = Integer.parseInt(databaseSettings.getProperty("MaximumDbIdleTime", "0"));
+			ARMOR_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("ArmorCustomTable", "false"));
+			ARMORSETS_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("ArmorSetsCustomTable", "false"));
+			ETCITEM_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("EtcItemCustomTable", "false"));
+			WEAPON_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("WeaponCustomTable", "false"));
+			NPC_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("NpcCustomTable", "false"));
+			DROPLIST_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("DropListCustomTable", "false"));
+			SHOP_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("ShopCustomTable", "false"));
+		} catch (Exception e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			throw new Error("Failed to Load " + DATABASE_CONFIG_FILE + " File.");
 		}
 
 		// server.properties
@@ -330,7 +356,7 @@ public final class Config {
 			LOGGING_CHAT_WORLD = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatWorld", "false"));
 			LOGGING_CHAT_CLAN = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatClan", "false"));
 			LOGGING_CHAT_PARTY = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatParty", "false"));
-			LOGGING_CHAT_COMBINED = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatCombined", "false"));
+			LOGGING_CHAT_ALLIANCE = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatAlliance", "false"));
 			LOGGING_CHAT_CHAT_PARTY = Boolean.parseBoolean(serverSettings.getProperty("LoggingChatChatParty", "false"));
 			AUTOSAVE_INTERVAL = Integer.parseInt(serverSettings.getProperty("AutosaveInterval", "1200"), 10);
 			AUTOSAVE_INTERVAL_INVENTORY = Integer.parseInt(serverSettings.getProperty("AutosaveIntervalOfInventory", "300"), 10);
@@ -346,31 +372,6 @@ public final class Config {
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + SERVER_CONFIG_FILE + " File.");
-		}
-
-		// database.properties
-		try {
-			Properties databaseSettings = new Properties();
-			InputStream is = new FileInputStream(new File(DATABASE_CONFIG_FILE));
-			databaseSettings.load(is);
-			is.close();
-
-			DATABASE_DRIVER = databaseSettings.getProperty("Driver", "com.mysql.jdbc.Driver");
-			DATABASE_URL = databaseSettings.getProperty("URL", "jdbc:mysql://localhost/l1jdb?useUnicode=true&characterEncoding=utf8");
-			DATABASE_LOGIN = databaseSettings.getProperty("Login", "root");
-			DATABASE_PASSWORD = databaseSettings.getProperty("Password", "");
-			DATABASE_MAX_CONNECTIONS = Integer.parseInt(databaseSettings.getProperty("MaximumDbConnections", "10"));
-			DATABASE_MAX_IDLE_TIME = Integer.parseInt(databaseSettings.getProperty("MaximumDbIdleTime", "0"));
-			ARMOR_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("ArmorCustomTable", "false"));
-			ARMORSETS_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("ArmorSetsCustomTable", "false"));
-			ETCITEM_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("EtcItemCustomTable", "false"));
-			WEAPON_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("WeaponCustomTable", "false"));
-			NPC_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("NpcCustomTable", "false"));
-			DROPLIST_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("DropListCustomTable", "false"));
-			SHOP_CUSTOM_TABLE = Boolean.parseBoolean(databaseSettings.getProperty("ShopCustomTable", "false"));
-		} catch (Exception e) {
-			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			throw new Error("Failed to Load " + DATABASE_CONFIG_FILE + " File.");
 		}
 
 		// altsettings.properties
@@ -574,7 +575,7 @@ public final class Config {
 	}
 
 	public static boolean setParameterValue(String pName, String pValue) {
-		// general.properties
+		// thread.properties
 		if (pName.equalsIgnoreCase("ThreadPoolSizeEffects")) {
 			THREAD_P_EFFECTS = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("ThreadPoolSizeGeneral")) {
@@ -591,6 +592,34 @@ public final class Config {
 			THREAD_P_TYPE_GENERAL = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("GeneralThreadPoolSize")) {
 			THREAD_P_SIZE_GENERAL = Integer.parseInt(pValue);
+		}
+		// database.properties
+		else if (pName.equalsIgnoreCase("Driver")) {
+			DATABASE_DRIVER = pValue;
+		} else if (pName.equalsIgnoreCase("URL")) {
+			DATABASE_URL = pValue;
+		} else if (pName.equalsIgnoreCase("Login")) {
+			DATABASE_LOGIN = pValue;
+		} else if (pName.equalsIgnoreCase("Password")) {
+			DATABASE_PASSWORD = pValue;
+		} else if (pName.equalsIgnoreCase("MaximumDbConnections")) {
+			DATABASE_MAX_CONNECTIONS = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("MaximumDbIdleTime")) {
+			DATABASE_MAX_IDLE_TIME = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("ArmorCustomTable")) {
+			ARMOR_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
+		} else if (pName.equalsIgnoreCase("ArmorSetsCustomTable")) {
+			ARMORSETS_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
+		} else if (pName.equalsIgnoreCase("EtcItemCustomTable")) {
+			ETCITEM_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
+		} else if (pName.equalsIgnoreCase("WeaponCustomTable")) {
+			WEAPON_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
+		} else if (pName.equalsIgnoreCase("NpcCustomTable")) {
+			NPC_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
+		} else if (pName.equalsIgnoreCase("DropListCustomTable")) {
+			DROPLIST_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
+		} else if (pName.equalsIgnoreCase("ShopCustomTable")) {
+			SHOP_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
 		}
 		// server.properties
 		else if (pName.equalsIgnoreCase("GameserverHostname")) {
@@ -625,34 +654,6 @@ public final class Config {
 			LEVEL_DOWN_RANGE = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("SendPacketBeforeTeleport")) {
 			SEND_PACKET_BEFORE_TELEPORT = Boolean.parseBoolean(pValue);
-		}
-		// database.properties
-		else if (pName.equalsIgnoreCase("Driver")) {
-			DATABASE_DRIVER = pValue;
-		} else if (pName.equalsIgnoreCase("URL")) {
-			DATABASE_URL = pValue;
-		} else if (pName.equalsIgnoreCase("Login")) {
-			DATABASE_LOGIN = pValue;
-		} else if (pName.equalsIgnoreCase("Password")) {
-			DATABASE_PASSWORD = pValue;
-		} else if (pName.equalsIgnoreCase("MaximumDbConnections")) {
-			DATABASE_MAX_CONNECTIONS = Integer.parseInt(pValue);
-		} else if (pName.equalsIgnoreCase("MaximumDbIdleTime")) {
-			DATABASE_MAX_IDLE_TIME = Integer.parseInt(pValue);
-		} else if (pName.equalsIgnoreCase("ArmorCustomTable")) {
-			ARMOR_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
-		} else if (pName.equalsIgnoreCase("ArmorSetsCustomTable")) {
-			ARMORSETS_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
-		} else if (pName.equalsIgnoreCase("EtcItemCustomTable")) {
-			ETCITEM_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
-		} else if (pName.equalsIgnoreCase("WeaponCustomTable")) {
-			WEAPON_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
-		} else if (pName.equalsIgnoreCase("NpcCustomTable")) {
-			NPC_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
-		} else if (pName.equalsIgnoreCase("DropListCustomTable")) {
-			DROPLIST_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
-		} else if (pName.equalsIgnoreCase("ShopCustomTable")) {
-			SHOP_CUSTOM_TABLE = Boolean.parseBoolean(pValue);
 		}
 		// altsettings.properties
 		else if (pName.equalsIgnoreCase("GlobalChatLevel")) {

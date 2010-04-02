@@ -19,7 +19,6 @@
 package net.l1j.server.clientpackets;
 
 import net.l1j.server.ClientThread;
-import net.l1j.log.LogTradeBugItem;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1Trade;
 import net.l1j.server.model.L1World;
@@ -40,14 +39,14 @@ public class C_TradeAddItem extends ClientBasePacket {
 		int itemid = readD();
 		int itemcount = readD();
 		L1PcInstance pc = client.getActiveChar();
-		L1PcInstance target = (L1PcInstance) L1World.getInstance().findObject(pc.getTradeID());
+//		L1PcInstance target = (L1PcInstance) L1World.getInstance().findObject(pc.getTradeID());
 		L1Trade trade = new L1Trade();
 		L1ItemInstance item = pc.getInventory().getItem(itemid);
 		L1CheckPcItem checkPcItem = new L1CheckPcItem();
 		boolean isCheat = checkPcItem.checkPcItem(item, pc);
 		if (isCheat) {
-			LogTradeBugItem ltbi = new LogTradeBugItem();
-			ltbi.storeLogTradeBugItem(pc, target, item);
+//			LogTradeBugItem ltbi = new LogTradeBugItem();
+//			ltbi.storeLogTradeBugItem(pc, target, item);
 			return;
 		}
 		if (!item.getItem().isTradable()) {
@@ -92,8 +91,8 @@ public class C_TradeAddItem extends ClientBasePacket {
 			return;
 		}
 		if (isCheat) {
-			LogTradeBugItem ltbi = new LogTradeBugItem();
-			ltbi.storeLogTradeBugItem(tradingPartner, pc, item);
+//			LogTradeBugItem ltbi = new LogTradeBugItem();
+//			ltbi.storeLogTradeBugItem(tradingPartner, pc, item);
 			return;
 		}
 

@@ -21,7 +21,6 @@ package net.l1j.server.clientpackets;
 import javolution.util.FastTable;
 
 import net.l1j.Config;
-import net.l1j.log.LogSpeedHack;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.AcceleratorChecker;
 import net.l1j.server.model.Dungeon;
@@ -38,9 +37,6 @@ import net.l1j.server.types.Base;
 
 import static net.l1j.server.model.instance.L1PcInstance.REGENSTATE_MOVE;
 import static net.l1j.server.skills.SkillId.*;
-
-//修正檔案 : net.l1j.server.clientpackets.C_MoveChar
-//修正者 : KIUSBT
 
 public class C_MoveChar extends ClientBasePacket {
 	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.10
@@ -77,8 +73,8 @@ public class C_MoveChar extends ClientBasePacket {
 		if (Config.CHECK_MOVE_INTERVAL) {
 			int result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.MOVE);
 			if (result == AcceleratorChecker.R_DISCONNECTED) {
-				LogSpeedHack lsh = new LogSpeedHack();
-				lsh.storeLogSpeedHack(pc);
+//				LogSpeedHack lsh = new LogSpeedHack();
+//				lsh.storeLogSpeedHack(pc);
 				return;
 			}
 		}

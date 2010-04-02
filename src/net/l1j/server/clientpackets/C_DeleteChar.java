@@ -18,7 +18,6 @@ import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
-import net.l1j.log.LogDeleteChar;
 import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
@@ -35,7 +34,7 @@ public class C_DeleteChar extends ClientBasePacket {
 		super(decrypt);
 
 		String name = readS();
-		String hostip = client.getHostname();
+//		String hostip = client.getHostname();
 
 		try {
 			L1PcInstance pc = CharacterTable.getInstance().restoreCharacter(name);
@@ -109,8 +108,8 @@ public class C_DeleteChar extends ClientBasePacket {
 					clan.delMemberName(name);
 				}
 			}
-			LogDeleteChar ldc = new LogDeleteChar();
-			ldc.storeLogDeleteChar(pc, hostip);
+//			LogDeleteChar ldc = new LogDeleteChar();
+//			ldc.storeLogDeleteChar(pc, hostip);
 			CharacterTable.getInstance().deleteCharacter(client.getAccountName(), name);
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);

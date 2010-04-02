@@ -30,12 +30,12 @@ public class FileLogFormatter extends Formatter {
 
 	private static final String TAB = "\t";
 
-	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss,SSS");
+	private SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	@Override
 	public String format(LogRecord record) {
 		return StringUtil.concat(
-				dateFormat.format(new Date(record.getMillis())),
+				dateFmt.format(new Date(record.getMillis())),
 				TAB,
 				record.getLevel().getName(),
 				TAB,

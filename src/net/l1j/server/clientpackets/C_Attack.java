@@ -20,7 +20,6 @@ package net.l1j.server.clientpackets;
 
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
-import net.l1j.log.LogSpeedHack;
 import net.l1j.server.model.AcceleratorChecker;
 import net.l1j.server.model.L1Attack;
 import net.l1j.server.model.L1Character;
@@ -80,8 +79,8 @@ public class C_Attack extends ClientBasePacket {
 			int result;
 			result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.ATTACK);
 			if (result == AcceleratorChecker.R_DISCONNECTED) {
-				LogSpeedHack lsh = new LogSpeedHack();
-				lsh.storeLogSpeedHack(pc);
+//				LogSpeedHack lsh = new LogSpeedHack();
+//				lsh.storeLogSpeedHack(pc);
 				return;
 			}
 		}

@@ -18,8 +18,16 @@
  */
 package net.l1j.server.clientpackets;
 
+import static net.l1j.server.skills.SkillId.SKILL_SILENCE;
+import static net.l1j.server.skills.SkillId.SKILL_AREA_OF_SILENCE;
+import static net.l1j.server.skills.SkillId.STATUS_POISON_SILENCE;
+import static net.l1j.server.skills.SkillId.STATUS_CHAT_PROHIBITED;
+
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+
 import net.l1j.Config;
-import net.l1j.log.LogCharacterChat;
 import net.l1j.server.ClientThread;
 import net.l1j.server.GMCommands;
 import net.l1j.server.Opcodes;
@@ -34,51 +42,73 @@ import net.l1j.server.serverpackets.S_NpcChatPacket;
 import net.l1j.server.serverpackets.S_PacketBox;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
-import static net.l1j.server.skills.SkillId.*;
-
 public class C_Chat extends ClientBasePacket {
 	private static final String C_CHAT = "[C] C_Chat";
 
-	public C_Chat(byte abyte0[], ClientThread clientthread) {
-		super(abyte0);
+	private static final int NORMAL = 0;
+	private static final int SHOUT = 2;
+	private static final int ALL = 3;
+	private static final int CLAN = 4;
+	private static final int PARTY = 11;
+	private static final int TRADE = 12;
+	private static final int ALLIANCE = 13;
+	private static final int CHATPARTY = 14;
 
-		L1PcInstance pc = clientthread.getActiveChar();
-		int chatType = readC();
-		String chatText = readS();
+	private static final String[] CHAT_NAMES = {
+		"一般",
+		"未知",
+		"大喊",
+		"全體",
+		"血盟",
+		"未知",
+		"未知",
+		"未知",
+		"未知",
+		"未知",
+		"未知",
+		"組隊",
+		"買賣",
+		"聯盟",
+		"聊天隊伍"
+	};
+
+	private static Logger _log = Logger.getLogger("chat");
+
+	public C_Chat(byte decrypt[], ClientThread client) {
+		super(decrypt);
+
+		int type = readC();
+		String text = readS();
+
+		L1PcInstance pc = client.getActiveChar();
 		if (pc.hasSkillEffect(SKILL_SILENCE) || pc.hasSkillEffect(SKILL_AREA_OF_SILENCE) || pc.hasSkillEffect(STATUS_POISON_SILENCE)) {
 			return;
 		}
-		if (pc.hasSkillEffect(1005)) { // チャット禁止中
+		if (pc.hasSkillEffect(STATUS_CHAT_PROHIBITED)) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$242));
 			return;
 		}
 
-		if (chatType == 0) { // 通常チャット
+		if (type == NORMAL) { // 一般頻道
 			if (pc.isGhost() && !(pc.isGm() || pc.isMonitor())) {
 				return;
 			}
-			// GMコマンド
 
-//			if (chatText.startsWith(".")) {//waja change & add
-				if (chatText.startsWith(".") && (pc.isGm())) {
-				String cmd = chatText.substring(1);
+			if (text.startsWith(".") && pc.isGm()) { // 遊戲管理員指令
+				String cmd = text.substring(1);
 				GMCommands.getInstance().handleCommands(pc, cmd);
 				return;
 			}
 
-			// トレードチャット
-			// 本來はchatType==12になるはずだが、行頭の$が送信されない
-			if (chatText.startsWith("$")) {
-				String text = chatText.substring(1);
-				chatWorld(pc, text, (byte) 12);
-				if (!pc.isGm()) {
-					pc.checkChatInterval();
-				}
-				return;
+			if (Config.LOGGING_CHAT_NORMAL) {
+				LogRecord record = new LogRecord(Level.INFO, text);
+				record.setLoggerName("chat");
+				record.setParameters(new Object[] { CHAT_NAMES[type], "[" + pc.getName() + "]" });
+
+				_log.log(record);
 			}
 
-			LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
-			S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_NORMALCHAT, (byte) 0);
+			S_ChatPacket s_chatpacket = new S_ChatPacket(pc, text, Opcodes.S_OPCODE_NORMALCHAT, (byte) NORMAL);
 			if (!pc.getExcludingList().contains(pc.getName())) {
 				pc.sendPackets(s_chatpacket);
 			}
@@ -92,16 +122,24 @@ public class C_Chat extends ClientBasePacket {
 				if (obj instanceof L1MonsterInstance) {
 					L1MonsterInstance mob = (L1MonsterInstance) obj;
 					if (mob.getNpcTemplate().is_doppel() && mob.getName().equals(pc.getName())) {
-						mob.broadcastPacket(new S_NpcChatPacket(mob, chatText, (byte) 0));
+						mob.broadcastPacket(new S_NpcChatPacket(mob, text, (byte) NORMAL));
 					}
 				}
 			}
-		} else if (chatType == 2) { // 叫び
+		} else if (type == SHOUT) { // 大喊頻道
 			if (pc.isGhost()) {
 				return;
 			}
-			LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
-			S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_NORMALCHAT, (byte) 2);
+
+			if (Config.LOGGING_CHAT_SHOUT) {
+				LogRecord record = new LogRecord(Level.INFO, text);
+				record.setLoggerName("chat");
+				record.setParameters(new Object[] { CHAT_NAMES[type], "[" + pc.getName() + "]" });
+
+				_log.log(record);
+			}
+
+			S_ChatPacket s_chatpacket = new S_ChatPacket(pc, text, Opcodes.S_OPCODE_NORMALCHAT, (byte) SHOUT);
 			if (!pc.getExcludingList().contains(pc.getName())) {
 				pc.sendPackets(s_chatpacket);
 			}
@@ -117,20 +155,66 @@ public class C_Chat extends ClientBasePacket {
 					L1MonsterInstance mob = (L1MonsterInstance) obj;
 					if (mob.getNpcTemplate().is_doppel() && mob.getName().equals(pc.getName())) {
 						for (L1PcInstance listner : L1World.getInstance().getVisiblePlayer(mob, 50)) {
-							listner.sendPackets(new S_NpcChatPacket(mob, chatText, (byte) 2));
+							listner.sendPackets(new S_NpcChatPacket(mob, text, (byte) SHOUT));
 						}
 					}
 				}
 			}
-		} else if (chatType == 3) { // 全体チャット
-			chatWorld(pc, chatText, (byte) chatType);
-		} else if (chatType == 4) { // 血盟チャット
+		} else if (type == ALL) { // 全體頻道
+			if (pc.isGm()) {
+				if (Config.LOGGING_CHAT_WORLD) {
+					LogRecord record = new LogRecord(Level.INFO, text);
+					record.setLoggerName("chat");
+					record.setParameters(new Object[] { CHAT_NAMES[type], "[" + pc.getName() + "]" });
+
+					_log.log(record);
+				}
+
+				L1World.getInstance().broadcastPacketToAll(new S_ChatPacket(pc, text, Opcodes.S_OPCODE_GLOBALCHAT, type));
+			} else if (pc.getLevel() >= Config.GLOBAL_CHAT_LEVEL) {
+				if (L1World.getInstance().isWorldChatElabled()) {
+					if (pc.get_food() >= 6) {
+						pc.set_food(pc.get_food() - 5);
+
+						if (Config.LOGGING_CHAT_WORLD) {
+							LogRecord record = new LogRecord(Level.INFO, text);
+							record.setLoggerName("chat");
+							record.setParameters(new Object[] { CHAT_NAMES[type], "[" + pc.getName() + "]" });
+
+							_log.log(record);
+						}
+
+						pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, pc.get_food()));
+						for (L1PcInstance listner : L1World.getInstance().getAllPlayers()) {
+							if (!listner.getExcludingList().contains(pc.getName())) {
+								if (listner.isShowWorldChat()) {
+									listner.sendPackets(new S_ChatPacket(pc, text, Opcodes.S_OPCODE_GLOBALCHAT, type));
+								}
+							}
+						}
+					} else {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$462));
+					}
+				} else {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$510));
+				}
+			} else {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$195, String.valueOf(Config.GLOBAL_CHAT_LEVEL)));
+			}
+		} else if (type == CLAN) { // 血盟頻道
 			if (pc.getClanid() != 0) { // クラン所屬中
 				L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 				int rank = pc.getClanRank();
 				if (clan != null && (rank == L1Clan.CLAN_RANK_PUBLIC || rank == L1Clan.CLAN_RANK_GUARDIAN || rank == L1Clan.CLAN_RANK_PRINCE)) {
-					LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
-					S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_GLOBALCHAT, (byte) 4);
+					if (Config.LOGGING_CHAT_CLAN) {
+						LogRecord record = new LogRecord(Level.INFO, text);
+						record.setLoggerName("chat");
+						record.setParameters(new Object[] { CHAT_NAMES[type], "[" + pc.getName() + "]" });
+
+						_log.log(record);
+					}
+
+					S_ChatPacket s_chatpacket = new S_ChatPacket(pc, text, Opcodes.S_OPCODE_GLOBALCHAT, (byte) CLAN);
 					L1PcInstance[] clanMembers = clan.getOnlineClanMember();
 					for (L1PcInstance listner : clanMembers) {
 						if (!listner.getExcludingList().contains(pc.getName())) {
@@ -139,10 +223,17 @@ public class C_Chat extends ClientBasePacket {
 					}
 				}
 			}
-		} else if (chatType == 11) { // パーティーチャット
+		} else if (type == PARTY) { // 組隊頻道
 			if (pc.isInParty()) { // パーティー中
-				LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
-				S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_GLOBALCHAT, (byte) 11);
+				if (Config.LOGGING_CHAT_PARTY) {
+					LogRecord record = new LogRecord(Level.INFO, text);
+					record.setLoggerName("chat");
+					record.setParameters(new Object[] { CHAT_NAMES[type], "[" + pc.getName() + "]" });
+
+					_log.log(record);
+				}
+
+				S_ChatPacket s_chatpacket = new S_ChatPacket(pc, text, Opcodes.S_OPCODE_GLOBALCHAT, (byte) PARTY);
 				L1PcInstance[] partyMembers = pc.getParty().getMembers();
 				for (L1PcInstance listner : partyMembers) {
 					if (!listner.getExcludingList().contains(pc.getName())) {
@@ -150,15 +241,61 @@ public class C_Chat extends ClientBasePacket {
 					}
 				}
 			}
-		} else if (chatType == 12) { // トレードチャット
-			chatWorld(pc, chatText, (byte) chatType);
-		} else if (chatType == 13) { // 連合チャット
+		} else if (type == TRADE) { // 買賣頻道
+			if (pc.isGm()) {
+				if (Config.LOGGING_CHAT_WORLD) {
+					LogRecord record = new LogRecord(Level.INFO, text);
+					record.setLoggerName("chat");
+					record.setParameters(new Object[] { CHAT_NAMES[type], "[" + pc.getName() + "]" });
+
+					_log.log(record);
+				}
+
+				L1World.getInstance().broadcastPacketToAll(new S_ChatPacket(pc, text, Opcodes.S_OPCODE_GLOBALCHAT, TRADE));
+			} else if (pc.getLevel() >= Config.GLOBAL_CHAT_LEVEL) {
+				if (L1World.getInstance().isWorldChatElabled()) {
+					if (pc.get_food() >= 6) {
+						pc.set_food(pc.get_food() - 5);
+
+						if (Config.LOGGING_CHAT_WORLD) {
+							LogRecord record = new LogRecord(Level.INFO, text);
+							record.setLoggerName("chat");
+							record.setParameters(new Object[] { CHAT_NAMES[type], "[" + pc.getName() + "]" });
+
+							_log.log(record);
+						}
+
+						pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, pc.get_food()));
+						for (L1PcInstance listner : L1World.getInstance().getAllPlayers()) {
+							if (!listner.getExcludingList().contains(pc.getName())) {
+								if (listner.isShowTradeChat()) {
+									listner.sendPackets(new S_ChatPacket(pc, text, Opcodes.S_OPCODE_GLOBALCHAT, TRADE));
+								}
+							}
+						}
+					} else {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$462));
+					}
+				} else {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$510));
+				}
+			} else {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$195, String.valueOf(Config.GLOBAL_CHAT_LEVEL)));
+			}
+		} else if (type == ALLIANCE) { // 聯盟頻道
 			if (pc.getClanid() != 0) { // クラン所屬中
 				L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 				int rank = pc.getClanRank();
 				if (clan != null && (rank == L1Clan.CLAN_RANK_GUARDIAN || rank == L1Clan.CLAN_RANK_PRINCE)) {
-					LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
-					S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_GLOBALCHAT, (byte) 13);
+					if (Config.LOGGING_CHAT_ALLIANCE) {
+						LogRecord record = new LogRecord(Level.INFO, text);
+						record.setLoggerName("chat");
+						record.setParameters(new Object[] { CHAT_NAMES[type], "[" + pc.getName() + "]" });
+
+						_log.log(record);
+					}
+
+					S_ChatPacket s_chatpacket = new S_ChatPacket(pc, text, Opcodes.S_OPCODE_GLOBALCHAT, (byte) ALLIANCE);
 					L1PcInstance[] clanMembers = clan.getOnlineClanMember();
 					for (L1PcInstance listner : clanMembers) {
 						int listnerRank = listner.getClanRank();
@@ -168,10 +305,17 @@ public class C_Chat extends ClientBasePacket {
 					}
 				}
 			}
-		} else if (chatType == 14) { // チャットパーティー
+		} else if (type == CHATPARTY) { // 聊天隊伍頻道
 			if (pc.isInChatParty()) { // チャットパーティー中
-				LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
-				S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_NORMALCHAT, (byte) 14);
+				if (Config.LOGGING_CHAT_CHAT_PARTY) {
+					LogRecord record = new LogRecord(Level.INFO, text);
+					record.setLoggerName("chat");
+					record.setParameters(new Object[] { CHAT_NAMES[type], "[" + pc.getName() + "]" });
+
+					_log.log(record);
+				}
+
+				S_ChatPacket s_chatpacket = new S_ChatPacket(pc, text, Opcodes.S_OPCODE_NORMALCHAT, (byte) CHATPARTY);
 				L1PcInstance[] partyMembers = pc.getChatParty().getMembers();
 				for (L1PcInstance listner : partyMembers) {
 					if (!listner.getExcludingList().contains(pc.getName())) {
@@ -180,38 +324,9 @@ public class C_Chat extends ClientBasePacket {
 				}
 			}
 		}
+
 		if (!pc.isGm()) {
 			pc.checkChatInterval();
-		}
-	}
-
-	private void chatWorld(L1PcInstance pc, String chatText, byte chatType) {
-		if (pc.isGm()) {
-			LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
-			L1World.getInstance().broadcastPacketToAll(new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_GLOBALCHAT, chatType));
-		} else if (pc.getLevel() >= Config.GLOBAL_CHAT_LEVEL) {
-			if (L1World.getInstance().isWorldChatElabled()) {
-				if (pc.get_food() >= 6) {
-					pc.set_food(pc.get_food() - 5);
-					LogCharacterChat.getInstance().storeChat(pc, null, chatText, chatType);
-					pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, pc.get_food()));
-					for (L1PcInstance listner : L1World.getInstance().getAllPlayers()) {
-						if (!listner.getExcludingList().contains(pc.getName())) {
-							if (listner.isShowTradeChat() && chatType == 12) {
-								listner.sendPackets(new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_GLOBALCHAT, chatType));
-							} else if (listner.isShowWorldChat() && chatType == 3) {
-								listner.sendPackets(new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_GLOBALCHAT, chatType));
-							}
-						}
-					}
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$462));
-				}
-			} else {
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$510));
-			}
-		} else {
-			pc.sendPackets(new S_ServerMessage(SystemMessageId.$195, String.valueOf(Config.GLOBAL_CHAT_LEVEL)));
 		}
 	}
 

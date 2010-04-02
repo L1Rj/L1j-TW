@@ -18,12 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.io.BufferedWriter;// add 給予NPC物品記錄 文件版
-import java.io.FileWriter;// add 給予NPC物品記錄 文件版
-import java.io.IOException;// add 給予NPC物品記錄 文件版
-import java.sql.Timestamp;// add 給予NPC物品記錄 文件版
-
-import net.l1j.log.LogDropItem;
 import net.l1j.server.ClientThread;
 import net.l1j.server.IdFactory;
 import net.l1j.server.datatables.ItemTable;
@@ -114,8 +108,8 @@ public class C_GiveItem extends ClientBasePacket {
 			return;
 		}
 
-		LogDropItem ldi = new LogDropItem();
-		ldi.storeLogDropItem(pc, item, target.getNpcTemplate().get_name(), count);
+//		LogDropItem ldi = new LogDropItem();
+//		ldi.storeLogDropItem(pc, item, target.getNpcTemplate().get_name(), count);
 
 		item = inv.tradeItem(item, count, targetInv);
 		target.onGetItem(item);

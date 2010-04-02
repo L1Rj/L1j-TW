@@ -42,10 +42,9 @@ public class ConsoleLogFormatter extends Formatter {
 				pw = new PrintWriter(sw);
 				record.getThrown().printStackTrace(pw);
 				StringUtil.append(output, sw.toString(), NEXT_LINE);
-			} catch (Exception ex) {
+			} catch (Exception e) {
 			} finally {
-				StreamUtil.close(pw);
-				StreamUtil.close(sw);
+				StreamUtil.close(pw, sw);
 			}
 		}
 		return output.toString();

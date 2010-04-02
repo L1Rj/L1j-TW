@@ -13,7 +13,6 @@
 package net.l1j.server.clientpackets;
 
 import net.l1j.server.ClientThread;
-import net.l1j.log.LogDropItem;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DollInstance;
@@ -78,8 +77,8 @@ public class C_DropItem extends ClientBasePacket {
 			pc.getInventory().tradeItem(item, count, L1World.getInstance().getInventory(x, y, pc.getMapId()));
 			pc.turnOnOffLight();
 
-			LogDropItem ldi = new LogDropItem();
-			ldi.storeLogDropItem(pc, item, "地上", count);
+//			LogDropItem ldi = new LogDropItem();
+//			ldi.storeLogDropItem(pc, item, "地上", count);
 		}
 	}
 

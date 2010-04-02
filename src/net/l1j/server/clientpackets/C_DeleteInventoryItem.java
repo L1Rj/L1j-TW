@@ -18,7 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import net.l1j.log.LogDeleteItem;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DollInstance;
@@ -77,8 +76,8 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, item.getItem().getName()));
 			return;
 		}
-		LogDeleteItem ldi = new LogDeleteItem();
-		ldi.storeLogDeleteItem(pc, item);
+//		LogDeleteItem ldi = new LogDeleteItem();
+//		ldi.storeLogDeleteItem(pc, item);
 		pc.getInventory().removeItem(item, item.getCount());
 		pc.turnOnOffLight();
 	}

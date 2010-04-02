@@ -31,7 +31,6 @@ import net.l1j.server.datatables.HouseTable;
 import net.l1j.server.datatables.NpcTable;
 import net.l1j.server.datatables.PetTable;
 import net.l1j.server.items.ItemId;
-import net.l1j.log.LogStatusUp;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1CastleLocation;
 import net.l1j.server.model.L1ChatParty;
@@ -480,14 +479,6 @@ public class C_Attr extends ClientBasePacket {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
 						}
 					}
-					int str = pc.getBaseStr();
-					int dex = pc.getBaseDex();
-					int con = pc.getBaseCon();
-					int Int = pc.getBaseInt();
-					int wis = pc.getBaseWis();
-					int cha = pc.getBaseCha();
-					LogStatusUp lsu = new LogStatusUp();
-					lsu.storeLogStatusUp(pc, str, dex, con, Int, wis, cha);
 				}
 			break;
 			// waja add 寵物競速 預約名單回應

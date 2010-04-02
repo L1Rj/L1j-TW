@@ -18,8 +18,11 @@
  */
 package net.l1j.server.clientpackets;
 
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+
 import net.l1j.Config;
-import net.l1j.log.LogCharacterChat;
 import net.l1j.server.ClientThread;
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1World;
@@ -31,11 +34,14 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 public class C_ChatWhisper extends ClientBasePacket {
 	private static final String C_CHAT_WHISPER = "[C] C_ChatWhisper";
 
-	public C_ChatWhisper(byte abyte0[], ClientThread client) throws Exception {
-		super(abyte0);
+	private static Logger _log = Logger.getLogger("chat");
+
+	public C_ChatWhisper(byte decrypt[], ClientThread client) throws Exception {
+		super(decrypt);
 
 		String targetName = readS();
 		String text = readS();
+
 		L1PcInstance whisperFrom = client.getActiveChar();
 		// チャット禁止中の場合
 		if (whisperFrom.hasSkillEffect(1005)) {
@@ -68,7 +74,14 @@ public class C_ChatWhisper extends ClientBasePacket {
 			return;
 		}
 
-		LogCharacterChat.getInstance().storeChat(whisperFrom, whisperTo, text, 1);
+		if (Config.LOGGING_CHAT_WHISPER) {
+			LogRecord record = new LogRecord(Level.INFO, text);
+			record.setLoggerName("chat");
+			record.setParameters(new Object[] { "密語", "[" + whisperFrom.getName() + " -> " + targetName + "]" });
+
+			_log.log(record);
+		}
+
 		whisperFrom.sendPackets(new S_ChatPacket(whisperTo, text, Opcodes.S_OPCODE_GLOBALCHAT, (byte) 9));
 		whisperTo.sendPackets(new S_ChatPacket(whisperFrom, text, Opcodes.S_OPCODE_WHISPERCHAT, (byte) 16));
 	}

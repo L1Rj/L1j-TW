@@ -18,11 +18,13 @@
  */
 package net.l1j.server.items.actions;
 
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
 import net.l1j.server.items.ItemId;
-import net.l1j.log.LogEnchantFail;
-import net.l1j.log.LogEnchantSuccess;
 import net.l1j.server.model.L1PcInventory;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
@@ -34,8 +36,9 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.utils.RandomArrayList;
 
 public class Enchant {
+	private static Logger _log = Logger.getLogger("enchant");
 
-	public static void success(L1PcInstance pc, L1ItemInstance item, ClientThread client, int i) {
+	public static void success(L1PcInstance pc, L1ItemInstance item, ClientThread client, int enchantLvl) {
 		item.setproctect(false);// 裝備保護卷軸
 
 		String s = "";
@@ -48,7 +51,7 @@ public class Enchant {
 		}
 		if (item.getItem().getType2() == 1) {
 			if (!item.isIdentified() || item.getEnchantLevel() == 0) {
-				switch (i) {
+				switch (enchantLvl) {
 					case -1:
 						s = s1;
 						sa = "$246";
@@ -71,7 +74,7 @@ public class Enchant {
 					break;
 				}
 			} else {
-				switch (i) {
+				switch (enchantLvl) {
 					case -1:
 						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
 						sa = "$246";
@@ -96,7 +99,7 @@ public class Enchant {
 			}
 		} else if (item.getItem().getType2() == 2) {
 			if (!item.isIdentified() || item.getEnchantLevel() == 0) {
-				switch (i) {
+				switch (enchantLvl) {
 					case -1:
 						s = s1;
 						sa = "$246";
@@ -119,7 +122,7 @@ public class Enchant {
 					break;
 				}
 			} else {
-				switch (i) {
+				switch (enchantLvl) {
 					case -1:
 						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
 						sa = "$246";
@@ -145,38 +148,44 @@ public class Enchant {
 		}
 		pc.sendPackets(new S_ServerMessage(SystemMessageId.$161, s, sa, sb));
 		int oldEnchantLvl = item.getEnchantLevel();
-		int newEnchantLvl = item.getEnchantLevel() + i;
+		int newEnchantLvl = item.getEnchantLevel() + enchantLvl;
 		int safe_enchant = item.getItem().get_safeenchant();
-		int enchantnum = oldEnchantLvl - newEnchantLvl;
 		item.setEnchantLevel(newEnchantLvl);
 		client.getActiveChar().getInventory().updateItem(item, L1PcInventory.COL_ENCHANTLVL);
 		if (newEnchantLvl > safe_enchant) {
 			client.getActiveChar().getInventory().saveItem(item, L1PcInventory.COL_ENCHANTLVL);
 		}
+
 		if (item.getItem().getType2() == 1 && Config.LOGGING_WEAPON_ENCHANT != 0) {
 			if (safe_enchant == 0 || newEnchantLvl >= Config.LOGGING_WEAPON_ENCHANT) {
-				LogEnchantSuccess les = new LogEnchantSuccess();
-				les.storeLogEnchantSuccess(pc, item, oldEnchantLvl, newEnchantLvl, enchantnum);
+				LogRecord record = new LogRecord(Level.INFO, "強化成功");
+				record.setLoggerName("enchant");
+				record.setParameters(new Object[] { pc.getId(), pc.getName(), item.getId(), item.getItem().getName(), oldEnchantLvl + " -> " + newEnchantLvl });
+
+				_log.log(record);
 			}
 		}
 		if (item.getItem().getType2() == 2 && Config.LOGGING_ARMOR_ENCHANT != 0) {
 			if (safe_enchant == 0 || newEnchantLvl >= Config.LOGGING_ARMOR_ENCHANT) {
-				LogEnchantSuccess les = new LogEnchantSuccess();
-				les.storeLogEnchantSuccess(pc, item, oldEnchantLvl, newEnchantLvl, enchantnum);
+				LogRecord record = new LogRecord(Level.INFO, "強化成功");
+				record.setLoggerName("enchant");
+				record.setParameters(new Object[] { pc.getId(), pc.getName(), item.getId(), item.getItem().getName(), oldEnchantLvl + " -> " + newEnchantLvl });
+
+				_log.log(record);
 			}
 		}
 
 		if (item.getItem().getType2() == 2) {
 			if (item.isEquipped()) {
-				pc.addAc(-i);
+				pc.addAc(-enchantLvl);
 				int i2 = item.getItem().getItemId();/* waja 註:21208-21211 林德拜爾的xx 21309究極抗魔法T恤 21318特製究極抗魔法T恤 魔防隨防禦力+1  */
 				if (i2 == 20011 || i2 == 20110 || i2 == 21108 || i2 == 120011 || i2 == 21208 || i2 == 21209 || i2 == 21210 || i2 == 21211 || i2 == 21309 || i2 == 21318) {
 
-					pc.addMr(i);
+					pc.addMr(enchantLvl);
 					pc.sendPackets(new S_SPMR(pc));
 				}
 				if (i2 == 20056 || i2 == 120056 || i2 == 220056 || i2 == 21535) { // 抗魔法斗篷 強化抗魔斗篷
-					pc.addMr(i * 2);
+					pc.addMr(enchantLvl * 2);
 					pc.sendPackets(new S_SPMR(pc));
 				}
 			}
@@ -217,10 +226,14 @@ public class Enchant {
 				s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(nameId).toString(); // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
 				sa = "$245";
 			}
+
 			if (Config.LOGGING_WEAPON_ENCHANT != 0) {
 				if (safe_enchant == 0 || enchantLvl >= Config.LOGGING_WEAPON_ENCHANT) {
-					LogEnchantFail lef = new LogEnchantFail();
-					lef.storeLogEnchantFail(pc, item);
+					LogRecord record = new LogRecord(Level.INFO, "強化失敗");
+					record.setLoggerName("enchant");
+					record.setParameters(new Object[] { pc.getId(), pc.getName(), item.getId(), item.getItem().getName(), safe_enchant + " : " + enchantLvl });
+
+					_log.log(record);
 				}
 			}
 		} else if (itemType == 2) { // 防具
@@ -234,10 +247,14 @@ public class Enchant {
 				s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(nameId).toString(); // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
 				sa = " $252";
 			}
+
 			if (Config.LOGGING_ARMOR_ENCHANT != 0) {
 				if (safe_enchant == 0 || enchantLvl >= Config.LOGGING_ARMOR_ENCHANT) {
-					LogEnchantFail lef = new LogEnchantFail();
-					lef.storeLogEnchantFail(pc, item);
+					LogRecord record = new LogRecord(Level.INFO, "強化失敗");
+					record.setLoggerName("enchant");
+					record.setParameters(new Object[] { pc.getId(), pc.getName(), item.getId(), item.getItem().getName(), safe_enchant + " : " + enchantLvl });
+
+					_log.log(record);
 				}
 			}
 		}

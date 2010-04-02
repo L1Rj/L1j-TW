@@ -48,7 +48,6 @@ import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.gui.ServerManager;
-import net.l1j.log.BackUpLog;
 import net.l1j.server.GameServer;
 import net.l1j.telnet.TelnetServer;
 
@@ -103,14 +102,12 @@ public class Server {
 
 		try {
 			Config.load();
-			BackUpLog.backup();
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			System.exit(0);
 		}
 
 		L1DatabaseFactory.getInstance();
-		L1LogDataFactory.getInstance();
 
 		GameServer.getInstance().initialize();
 		if (Config.TELNET_SERVER) {

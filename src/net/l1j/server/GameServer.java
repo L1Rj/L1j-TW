@@ -26,7 +26,6 @@ import java.util.Collection;
 import java.util.logging.Logger;
 
 import net.l1j.Config;
-import net.l1j.log.LogCharacterChat;
 import net.l1j.server.datatables.CastleTable;
 import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.datatables.ClanTable;
@@ -240,7 +239,6 @@ public class GameServer extends Thread {
 		DoorSpawnTable.getInstance();
 		GeneralThreadPool.getInstance();
 		L1NpcRegenerationTimer.getInstance();
-		LogCharacterChat.getInstance();
 		WeaponSkillTable.getInstance();
 		NpcActionTable.load();
 		GMCommandsConfig.load();
