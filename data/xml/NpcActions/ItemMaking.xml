@@ -3471,4 +3471,239 @@
 		<Item Amount="1" ItemId="20422"/>
 		</MakeItem>
 	</Action>
+	<!--強韌的海斯-->
+	<Action Name="request elite valakas plate armor" NpcId="91057">
+		<MakeItem>
+		<Material Amount="1" ItemId="20119"/>	<!--古代火龍鱗盔甲-->
+		<Material Amount="2" ItemId="40354"/>	<!--巴拉卡斯之心-->
+		<Material Amount="3" ItemId="40035"/>	<!--高品質紅寶石-->
+		<Material Amount="50" ItemId="40305"/>	<!--帕格里奧之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21212"/>		<!--巴拉卡斯的力量-->
+		</MakeItem>
+	</Action>
+	<Action Name="request elite fafurion plate armor" NpcId="91057">
+		<MakeItem>
+		<Material Amount="1" ItemId="20153"/>	<!--古代水龍鱗盔甲-->
+		<Material Amount="2" ItemId="40362"/>	<!--法利昂之心-->
+		<Material Amount="3" ItemId="40055"/>	<!--高品質綠寶石-->
+		<Material Amount="50" ItemId="40306"/>	<!--伊娃之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21204"/>		<!--法利昂的力量-->
+		</MakeItem>
+	</Action>
+	<Action Name="request elite lindvior plate armor" NpcId="91057">
+		<MakeItem>
+		<Material Amount="1" ItemId="20108"/>	<!--古代風龍鱗盔甲-->
+		<Material Amount="2" ItemId="40370"/>	<!--林德拜爾之心-->
+		<Material Amount="3" ItemId="40054"/>	<!--高品質藍寶石-->
+		<Material Amount="50" ItemId="40307"/>	<!--沙哈之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21208"/>		<!--林德拜爾的力量-->
+		</MakeItem>
+	</Action>
+	<Action Name="request elite antharas plate armor" NpcId="91057">
+		<MakeItem>
+		<Material Amount="1" ItemId="20130"/>	<!--古代地龍鱗盔甲-->
+		<Material Amount="2" ItemId="40346"/>	<!--安塔瑞斯之心-->
+		<Material Amount="3" ItemId="40052"/>	<!--高品質鑽石-->
+		<Material Amount="50" ItemId="40304"/>	<!--馬普勒之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21200"/>		<!--安塔瑞斯的力量-->
+		</MakeItem>
+	</Action>
+	<!--細心的修樂-->
+	<Action Name="request elite valakas robe" NpcId="91058">
+		<MakeItem>
+		<Material Amount="1" ItemId="20119"/>	<!--古代火龍鱗盔甲-->
+		<Material Amount="2" ItemId="40354"/>	<!--巴拉卡斯之心-->
+		<Material Amount="3" ItemId="40035"/>	<!--高品質紅寶石-->
+		<Material Amount="50" ItemId="40305"/>	<!--帕格里奧之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21213"/>		<!--巴拉卡斯的魅惑-->
+		</MakeItem>
+	</Action>
+	<Action Name="request elite fafurion robe" NpcId="91058">
+		<MakeItem>
+		<Material Amount="1" ItemId="20153"/>	<!--古代水龍鱗盔甲-->
+		<Material Amount="2" ItemId="40362"/>	<!--法利昂之心-->
+		<Material Amount="3" ItemId="40055"/>	<!--高品質綠寶石-->
+		<Material Amount="50" ItemId="40306"/>	<!--伊娃之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21205"/>		<!--法利昂的魅惑-->
+		</MakeItem>
+	</Action>
+	<Action Name="request elite lindvior robe" NpcId="91058">
+		<MakeItem>
+		<Material Amount="1" ItemId="20108"/>	<!--古代風龍鱗盔甲-->
+		<Material Amount="2" ItemId="40370"/>	<!--林德拜爾之心-->
+		<Material Amount="3" ItemId="40054"/>	<!--高品質藍寶石-->
+		<Material Amount="50" ItemId="40307"/>	<!--沙哈之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21209"/>		<!--林德拜爾的魅惑-->
+		</MakeItem>
+	</Action>
+	<Action Name="request elite antharas robe" NpcId="91058">
+		<MakeItem>
+		<Material Amount="1" ItemId="20130"/>	<!--古代地龍鱗盔甲-->
+		<Material Amount="2" ItemId="40346"/>	<!--安塔瑞斯之心-->
+		<Material Amount="3" ItemId="40052"/>	<!--高品質鑽石-->
+		<Material Amount="50" ItemId="40304"/>	<!--馬普勒之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21201"/>		<!--安塔瑞斯的魅惑-->
+		</MakeItem>
+	</Action>
+	<!--頑強的歐浩-->
+	<Action Name="request elite valakas robe" NpcId="91059">
+		<MakeItem>
+		<Material Amount="1" ItemId="20119"/>	<!--古代火龍鱗盔甲-->
+		<Material Amount="2" ItemId="40354"/>	<!--巴拉卡斯之心-->
+		<Material Amount="3" ItemId="40035"/>	<!--高品質紅寶石-->
+		<Material Amount="50" ItemId="40305"/>	<!--帕格里奧之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21214"/>		<!--巴拉卡斯的泉源-->
+		</MakeItem>
+	</Action>
+	<Action Name="request elite fafurion robe" NpcId="91059">
+		<MakeItem>
+		<Material Amount="1" ItemId="20153"/>	<!--古代水龍鱗盔甲-->
+		<Material Amount="2" ItemId="40362"/>	<!--法利昂之心-->
+		<Material Amount="3" ItemId="40055"/>	<!--高品質綠寶石-->
+		<Material Amount="50" ItemId="40306"/>	<!--伊娃之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21206"/>		<!--法利昂的泉源-->
+		</MakeItem>
+	</Action>
+	<Action Name="request elite lindvior robe" NpcId="91059">
+		<MakeItem>
+		<Material Amount="1" ItemId="20108"/>	<!--古代風龍鱗盔甲-->
+		<Material Amount="2" ItemId="40370"/>	<!--林德拜爾之心-->
+		<Material Amount="3" ItemId="40054"/>	<!--高品質藍寶石-->
+		<Material Amount="50" ItemId="40307"/>	<!--沙哈之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21210"/>		<!--林德拜爾的泉源-->
+		</MakeItem>
+	</Action>
+	<Action Name="request elite antharas robe" NpcId="91059">
+		<MakeItem>
+		<Material Amount="1" ItemId="20130"/>	<!--古代地龍鱗盔甲-->
+		<Material Amount="2" ItemId="40346"/>	<!--安塔瑞斯之心-->
+		<Material Amount="3" ItemId="40052"/>	<!--高品質鑽石-->
+		<Material Amount="50" ItemId="40304"/>	<!--馬普勒之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21202"/>		<!--安塔瑞斯的泉源-->
+		</MakeItem>
+	</Action>
+	<!--燦爛的艾咪-->
+	<Action Name="request elite valakas robe" NpcId="91059">
+		<MakeItem>
+		<Material Amount="1" ItemId="20119"/>	<!--古代火龍鱗盔甲-->
+		<Material Amount="2" ItemId="40354"/>	<!--巴拉卡斯之心-->
+		<Material Amount="3" ItemId="40035"/>	<!--高品質紅寶石-->
+		<Material Amount="50" ItemId="40305"/>	<!--帕格里奧之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21215"/>		<!--巴拉卡斯的霸氣-->
+		</MakeItem>
+	</Action>
+	<Action Name="request elite fafurion robe" NpcId="91059">
+		<MakeItem>
+		<Material Amount="1" ItemId="20153"/>	<!--古代水龍鱗盔甲-->
+		<Material Amount="2" ItemId="40362"/>	<!--法利昂之心-->
+		<Material Amount="3" ItemId="40055"/>	<!--高品質綠寶石-->
+		<Material Amount="50" ItemId="40306"/>	<!--伊娃之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21207"/>		<!--法利昂的霸氣-->
+		</MakeItem>
+	</Action>
+	<Action Name="request elite lindvior robe" NpcId="91059">
+		<MakeItem>
+		<Material Amount="1" ItemId="20108"/>	<!--古代風龍鱗盔甲-->
+		<Material Amount="2" ItemId="40370"/>	<!--林德拜爾之心-->
+		<Material Amount="3" ItemId="40054"/>	<!--高品質藍寶石-->
+		<Material Amount="50" ItemId="40307"/>	<!--沙哈之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21211"/>		<!--林德拜爾的霸氣-->
+		</MakeItem>
+	</Action>
+	<Action Name="request elite antharas robe" NpcId="91059">
+		<MakeItem>
+		<Material Amount="1" ItemId="20130"/>	<!--古代地龍鱗盔甲-->
+		<Material Amount="2" ItemId="40346"/>	<!--安塔瑞斯之心-->
+		<Material Amount="3" ItemId="40052"/>	<!--高品質鑽石-->
+		<Material Amount="50" ItemId="40304"/>	<!--馬普勒之石-->
+		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+		<Item Amount="1" ItemId="21203"/>		<!--安塔瑞斯的霸氣-->
+		</MakeItem>
+	</Action>
+	<!--米米 魔眼解封印與混合-->
+	<Action Name="a" NpcId="91061">
+		<MakeItem>
+			<Material Amount="1" ItemId="50504"/>		<!--受封印地龍之魔眼-->
+			<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+			<Item Amount="1" ItemId="50508"/>			<!--地龍之魔眼-->
+		</MakeItem>
+	</Action>
+	<Action Name="b" NpcId="91061">
+		<MakeItem>
+			<Material Amount="1" ItemId="50505"/>		<!--受封印水龍之魔眼-->
+			<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+			<Item Amount="1" ItemId="50509"/>			<!--水龍之魔眼-->
+		</MakeItem>
+	</Action>
+	<Action Name="c" NpcId="91061">
+		<MakeItem>
+			<Material Amount="1" ItemId="50506"/>		<!--受封印風龍之魔眼-->
+			<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+			<Item Amount="1" ItemId="50510"/>			<!--風龍之魔眼-->
+		</MakeItem>
+	</Action>
+	<Action Name="d" NpcId="91061">
+		<MakeItem>
+			<Material Amount="1" ItemId="50507"/>		<!--受封印火龍之魔眼-->
+			<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
+			<Item Amount="1" ItemId="50511"/>			<!--火龍之魔眼-->
+		</MakeItem>
+	</Action>
+	<Action Name="e" NpcId="91061">
+		<MakeItem>
+			<Material Amount="1" ItemId="50508"/>		<!--水龍之魔眼-->
+			<Material Amount="1" ItemId="50509"/>		<!--地龍之魔眼-->
+			<Material Amount="200000" ItemId="40308"/>	<!--金幣-->
+			<Item Amount="1" ItemId="50512"/>			<!--誕生之魔眼-->
+			<Succeed>
+				<ShowHtml HtmlId=""/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="sherme5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="f" NpcId="91061">
+		<MakeItem>
+			<Material Amount="1" ItemId="50512"/>		<!--誕生之魔眼-->
+			<Material Amount="1" ItemId="50510"/>		<!--風龍之魔眼-->
+			<Material Amount="200000" ItemId="40308"/>	<!--金幣-->
+			<Item Amount="1" ItemId="50513"/>			<!--形象之魔眼-->
+			<Succeed>
+				<ShowHtml HtmlId=""/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="sherme5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
+	<Action Name="f" NpcId="91061">
+		<MakeItem>
+			<Material Amount="1" ItemId="50513"/>		<!--形象之魔眼-->
+			<Material Amount="1" ItemId="50511"/>		<!--火龍之魔眼-->
+			<Material Amount="200000" ItemId="40308"/>	<!--金幣-->
+			<Item Amount="1" ItemId="50514"/>			<!--生命之魔眼-->
+			<Succeed>
+				<ShowHtml HtmlId=""/>
+			</Succeed>
+			<Fail>
+				<ShowHtml HtmlId="sherme5"/>
+			</Fail>
+		</MakeItem>
+	</Action>
 </NpcActionList>
