@@ -12,6 +12,11 @@
  */
 package net.l1j.server.clientpackets;
 
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+
+import net.l1j.Config;
 import net.l1j.server.ActionCodes;
 import net.l1j.server.ClientThread;
 import net.l1j.server.items.ItemId;
@@ -26,6 +31,8 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_PickUpItem extends ClientBasePacket {
 	private static final String C_PICK_UP_ITEM = "[C] C_PickUpItem";
+
+	private static final Logger _log = Logger.getLogger("item");
 
 	public C_PickUpItem(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
@@ -74,32 +81,16 @@ public class C_PickUpItem extends ClientBasePacket {
 			}
 			if (pc.getInventory().checkAddItem(item, pickupCount) == L1Inventory.OK) { // 容量重量確認及びメッセージ送信
 				if (item.getX() != 0 && item.getY() != 0) { // ワールドマップ上のアイテム
-//					L1ItemInstance pcitem = pc.getInventory().getItem(objectId);
-//					int before_inven = 0;
-//					if (item.isStackable()) {
-//						before_inven = pc.getInventory().countItems(item.getItem().getItemId());
-//					} else {
-//						if (pcitem != null) {
-//							before_inven = pcitem.getCount();
-//						}
-//					}
-//					int brfore_ground = groundInventory.getItem(objectId).getCount();
 					groundInventory.tradeItem(item, pickupCount, pc.getInventory());
 					pc.turnOnOffLight();
 
-//					int after_inven = 0;
-//					if (item.isStackable()) {
-//						after_inven = pc.getInventory().countItems(item.getItem().getItemId());
-//					} else {
-//						after_inven = pc.getInventory().getItem(objectId).getCount();
-//					}
-//					L1ItemInstance gditem = groundInventory.getItem(objectId);
-//					int after_ground = 0;
-//					if (gditem != null) {
-//						after_ground = groundInventory.getItem(objectId).getCount();
-//					}
-//					LogPickUpItem lpui = new LogPickUpItem();
-//					lpui.storeLogPickUpItem(pc, item, before_inven, after_inven, brfore_ground, after_ground, pickupCount);
+					if (Config.LOGGING_ITEM_PICKUP) {
+						LogRecord record = new LogRecord(Level.INFO, "<拾取>");
+						record.setLoggerName("item");
+						record.setParameters(new Object[] { pc, item });
+						_log.log(record);
+					}
+
 					pc.sendPackets(new S_AttackPacket(pc, objectId, ActionCodes.ACTION_Pickup));
 					if (!pc.isGmInvis()) {
 						pc.broadcastPacket(new S_AttackPacket(pc, objectId, ActionCodes.ACTION_Pickup));

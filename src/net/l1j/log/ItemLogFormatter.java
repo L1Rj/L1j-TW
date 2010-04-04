@@ -20,6 +20,7 @@ import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
 import net.l1j.server.model.instance.L1ItemInstance;
+import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.utils.StringUtil;
 
@@ -43,6 +44,9 @@ public class ItemLogFormatter extends Formatter {
 			if (p instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) p;
 				StringUtil.append(output, pc.getName(), " [" + String.valueOf(pc.getId()) + "]");
+			} else if (p instanceof L1NpcInstance) {
+				L1NpcInstance npc = (L1NpcInstance) p;
+				StringUtil.append(output, "=> " + npc.getNpcTemplate().get_name(), " [" + String.valueOf(npc.getId()) + "]");
 			} else if (p instanceof L1ItemInstance) {
 				L1ItemInstance item = (L1ItemInstance) p;
 				StringUtil.append(output, (item.getEnchantLevel() > 0 ? "+" : ""), String.valueOf(item.getEnchantLevel()), " ");

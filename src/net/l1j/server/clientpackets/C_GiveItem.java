@@ -18,6 +18,11 @@
  */
 package net.l1j.server.clientpackets;
 
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+
+import net.l1j.Config;
 import net.l1j.server.ClientThread;
 import net.l1j.server.IdFactory;
 import net.l1j.server.datatables.ItemTable;
@@ -41,6 +46,8 @@ import net.l1j.server.utils.RandomArrayList;
 
 public class C_GiveItem extends ClientBasePacket {
 	private static final String C_GIVE_ITEM = "[C] C_GiveItem";
+
+	private static final Logger _log = Logger.getLogger("item");
 
 	private static ItemTable IT = ItemTable.getInstance();
 
@@ -108,8 +115,12 @@ public class C_GiveItem extends ClientBasePacket {
 			return;
 		}
 
-//		LogDropItem ldi = new LogDropItem();
-//		ldi.storeLogDropItem(pc, item, target.getNpcTemplate().get_name(), count);
+		if (Config.LOGGING_ITEM_GIVE) {
+			LogRecord record = new LogRecord(Level.INFO, "<給予>");
+			record.setLoggerName("item");
+			record.setParameters(new Object[] { pc, target, item });
+			_log.log(record);
+		}
 
 		item = inv.tradeItem(item, count, targetInv);
 		target.onGetItem(item);

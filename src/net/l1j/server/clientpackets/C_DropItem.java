@@ -12,6 +12,11 @@
  */
 package net.l1j.server.clientpackets;
 
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+
+import net.l1j.Config;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
@@ -23,6 +28,8 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_DropItem extends ClientBasePacket {
 	private static final String C_DROP_ITEM = "[C] C_DropItem";
+
+	private static final Logger _log = Logger.getLogger("item");
 
 	public C_DropItem(byte[] decrypt, ClientThread client) throws Exception {
 		super(decrypt);
@@ -77,8 +84,12 @@ public class C_DropItem extends ClientBasePacket {
 			pc.getInventory().tradeItem(item, count, L1World.getInstance().getInventory(x, y, pc.getMapId()));
 			pc.turnOnOffLight();
 
-//			LogDropItem ldi = new LogDropItem();
-//			ldi.storeLogDropItem(pc, item, "地上", count);
+			if (Config.LOGGING_ITEM_DROP) {
+				LogRecord record = new LogRecord(Level.INFO, "<掉落>");
+				record.setLoggerName("item");
+				record.setParameters(new Object[] { pc, item });
+				_log.log(record);
+			}
 		}
 	}
 
