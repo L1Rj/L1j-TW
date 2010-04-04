@@ -3471,6 +3471,16 @@
 		<Item Amount="1" ItemId="20422"/>
 		</MakeItem>
 	</Action>
+	<!--二手商人-->
+        <Action Name="rollko1" NpcId="70020">
+            <ShowHtml HtmlId="rollko1"/>
+        </Action>
+        <Action Name="jode1" NpcId="70056">
+            <ShowHtml HtmlId="jode1"/>
+        </Action>
+        <Action Name="franko1" NpcId="70068">
+            <ShowHtml HtmlId="franko1"/>
+        </Action>
 	<!--強韌的海斯-->
 	<Action Name="request elite valakas plate armor" NpcId="91057">
 		<MakeItem>
