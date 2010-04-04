@@ -37,7 +37,7 @@ import static net.l1j.server.skills.SkillId.SKILL_POLYMORPH;
 
 public class Poly {
 
-	/** 變身作用動作 */
+	/** 變形作用動作 */
 	public static void Action(L1PcInstance attacker, L1Character cha) {
 		boolean isSameClan = false;
 		if (cha instanceof L1PcInstance) {
@@ -57,7 +57,7 @@ public class Poly {
 		int[] polyArray = {
 				29, 945, 947, 979, 1037, 1039, 3860, 3861, 3862, 3863, 3864,
 				3865, 3904, 3906, 95, 146, 2374, 2376, 2377, 2378, 3866, 3867,
-				3868, 3869, 3870, 3871, 3872, 3873, 3874, 3875, 3876
+				3868, 3869, 3870, 3871, 3872, 3873, 3874, 3875, 3876 ,
 		};
 
 		int pid = RandomArrayList.getInt(polyArray.length);
@@ -73,7 +73,7 @@ public class Poly {
 
 			if (pc.getInventory().checkEquipped(20281)) {
 				pc.sendPackets(new S_ShowPolyList(pc.getId()));
-				if (!pc.isShapeChange()) {//變身判斷
+				if (!pc.isShapeChange()) { // 變形判斷
 					pc.setShapeChange(true);
 				}
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$966));
@@ -102,7 +102,7 @@ public class Poly {
 		}
 	}
 
-	/** 變身藥水動作 */
+	/** 變形藥水動作 */
 	public static void Potion(L1PcInstance pc, int itemId) {
 		int polyId = 0;
 		if (itemId == 41143) { // ラバーボーンヘッド変身ポーション
@@ -311,7 +311,7 @@ public class Poly {
 		L1PolyMorph.doPoly(pc, polyId, 1800, L1PolyMorph.MORPH_BY_ITEMMAGIC);
 	}
 
-	/** 變身卷軸動作 */
+	/** 變形卷軸動作 */
 	public static boolean Scroll(L1PcInstance pc, int item_id, String s) {
 		int awakeSkillId = pc.getAwakeSkillId();
 		if (awakeSkillId == SKILL_AWAKEN_ANTHARAS || awakeSkillId == SKILL_AWAKEN_FAFURION || awakeSkillId == SKILL_AWAKEN_VALAKAS) {
@@ -320,9 +320,9 @@ public class Poly {
 		}
 
 		int time = 0;
-		if (item_id == 40088 || item_id == 40096) { // 變身スクロール、象牙の塔の變身スクロール
+		if (item_id == 40088 || item_id == 40096) { // 變形卷軸、象牙塔變形卷軸
 			time = 1800;
-		} else if (item_id == 140088) { // 祝福された變身スクロール
+		} else if (item_id == 140088) { // 祝福變形卷軸
 			time = 2100;
 		}
 
@@ -346,7 +346,7 @@ public class Poly {
 		}
 	}
 
-	/** 變身鱗片動作 */
+	/** 變形鱗片動作 */
 	public static void Scale(L1PcInstance pc, int itemId) {
 		int polyId = 0;
 		if (itemId == 41154) { // 闇の鱗

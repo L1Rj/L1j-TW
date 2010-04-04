@@ -2679,6 +2679,16 @@
 			<Item Amount="1" ItemId="40027"/>
 		</MakeItem>
 	</Action>
+	<!--帕勒特 製作蘋果汁-->
+	<Action Name="request apple juice" NpcId="70722">
+		<MakeItem>
+			<Material Amount="1" ItemId="40059"/>	<!--蛋-->
+			<Material Amount="1" ItemId="40060"/>	<!--胡蘿蔔-->
+			<Material Amount="1" ItemId="40061"/>	<!--檸檬-->
+			<Material Amount="5" ItemId="40064"/>	<!--蘋果-->
+			<Item Amount="1" ItemId="40027"/>
+		</MakeItem>
+	</Action>
 	<!--ペットマッチギフトボックス / メダル管理人-->
 	<Action Name="request new surprise bag" NpcId="80089">
 		<MakeItem>
@@ -3471,22 +3481,12 @@
 		<Item Amount="1" ItemId="20422"/>
 		</MakeItem>
 	</Action>
-	<!--二手商人-->
-        <Action Name="rollko1" NpcId="70020">
-            <ShowHtml HtmlId="rollko1"/>
-        </Action>
-        <Action Name="jode1" NpcId="70056">
-            <ShowHtml HtmlId="jode1"/>
-        </Action>
-        <Action Name="franko1" NpcId="70068">
-            <ShowHtml HtmlId="franko1"/>
-        </Action>
 	<!--強韌的海斯-->
 	<Action Name="request elite valakas plate armor" NpcId="91057">
 		<MakeItem>
 		<Material Amount="1" ItemId="20119"/>	<!--古代火龍鱗盔甲-->
 		<Material Amount="2" ItemId="40354"/>	<!--巴拉卡斯之心-->
-		<Material Amount="3" ItemId="40035"/>	<!--高品質紅寶石-->
+		<Material Amount="3" ItemId="40053"/>	<!--高品質紅寶石-->
 		<Material Amount="50" ItemId="40305"/>	<!--帕格里奧之石-->
 		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
 		<Item Amount="1" ItemId="21212"/>		<!--巴拉卡斯的力量-->
@@ -3527,7 +3527,7 @@
 		<MakeItem>
 		<Material Amount="1" ItemId="20119"/>	<!--古代火龍鱗盔甲-->
 		<Material Amount="2" ItemId="40354"/>	<!--巴拉卡斯之心-->
-		<Material Amount="3" ItemId="40035"/>	<!--高品質紅寶石-->
+		<Material Amount="3" ItemId="40053"/>	<!--高品質紅寶石-->
 		<Material Amount="50" ItemId="40305"/>	<!--帕格里奧之石-->
 		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
 		<Item Amount="1" ItemId="21213"/>		<!--巴拉卡斯的魅惑-->
@@ -3568,7 +3568,7 @@
 		<MakeItem>
 		<Material Amount="1" ItemId="20119"/>	<!--古代火龍鱗盔甲-->
 		<Material Amount="2" ItemId="40354"/>	<!--巴拉卡斯之心-->
-		<Material Amount="3" ItemId="40035"/>	<!--高品質紅寶石-->
+		<Material Amount="3" ItemId="40053"/>	<!--高品質紅寶石-->
 		<Material Amount="50" ItemId="40305"/>	<!--帕格里奧之石-->
 		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
 		<Item Amount="1" ItemId="21214"/>		<!--巴拉卡斯的泉源-->
@@ -3605,17 +3605,17 @@
 		</MakeItem>
 	</Action>
 	<!--燦爛的艾咪-->
-	<Action Name="request elite valakas robe" NpcId="91059">
+	<Action Name="request elite valakas robe" NpcId="91060">
 		<MakeItem>
 		<Material Amount="1" ItemId="20119"/>	<!--古代火龍鱗盔甲-->
 		<Material Amount="2" ItemId="40354"/>	<!--巴拉卡斯之心-->
-		<Material Amount="3" ItemId="40035"/>	<!--高品質紅寶石-->
+		<Material Amount="3" ItemId="40053"/>	<!--高品質紅寶石-->
 		<Material Amount="50" ItemId="40305"/>	<!--帕格里奧之石-->
 		<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
 		<Item Amount="1" ItemId="21215"/>		<!--巴拉卡斯的霸氣-->
 		</MakeItem>
 	</Action>
-	<Action Name="request elite fafurion robe" NpcId="91059">
+	<Action Name="request elite fafurion robe" NpcId="91060">
 		<MakeItem>
 		<Material Amount="1" ItemId="20153"/>	<!--古代水龍鱗盔甲-->
 		<Material Amount="2" ItemId="40362"/>	<!--法利昂之心-->
@@ -3625,7 +3625,7 @@
 		<Item Amount="1" ItemId="21207"/>		<!--法利昂的霸氣-->
 		</MakeItem>
 	</Action>
-	<Action Name="request elite lindvior robe" NpcId="91059">
+	<Action Name="request elite lindvior robe" NpcId="91060">
 		<MakeItem>
 		<Material Amount="1" ItemId="20108"/>	<!--古代風龍鱗盔甲-->
 		<Material Amount="2" ItemId="40370"/>	<!--林德拜爾之心-->
@@ -3635,7 +3635,7 @@
 		<Item Amount="1" ItemId="21211"/>		<!--林德拜爾的霸氣-->
 		</MakeItem>
 	</Action>
-	<Action Name="request elite antharas robe" NpcId="91059">
+	<Action Name="request elite antharas robe" NpcId="91060">
 		<MakeItem>
 		<Material Amount="1" ItemId="20130"/>	<!--古代地龍鱗盔甲-->
 		<Material Amount="2" ItemId="40346"/>	<!--安塔瑞斯之心-->
