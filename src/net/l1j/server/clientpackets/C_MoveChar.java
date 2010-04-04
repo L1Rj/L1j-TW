@@ -18,6 +18,10 @@
  */
 package net.l1j.server.clientpackets;
 
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+
 import javolution.util.FastTable;
 
 import net.l1j.Config;
@@ -39,6 +43,8 @@ import static net.l1j.server.model.instance.L1PcInstance.REGENSTATE_MOVE;
 import static net.l1j.server.skills.SkillId.*;
 
 public class C_MoveChar extends ClientBasePacket {
+	private static Logger _log = Logger.getLogger("speedhack");
+
 	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.10
 
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
@@ -73,8 +79,12 @@ public class C_MoveChar extends ClientBasePacket {
 		if (Config.CHECK_MOVE_INTERVAL) {
 			int result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.MOVE);
 			if (result == AcceleratorChecker.R_DISCONNECTED) {
-//				LogSpeedHack lsh = new LogSpeedHack();
-//				lsh.storeLogSpeedHack(pc);
+				if (Config.LOGGING_SPEED_HACK) {
+					LogRecord record = new LogRecord(Level.INFO, "<走路>");
+					record.setLoggerName("speedhack");
+					record.setParameters(new Object[] { pc });
+					_log.log(record);
+				}
 				return;
 			}
 		}

@@ -18,6 +18,10 @@
  */
 package net.l1j.server.clientpackets;
 
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.AcceleratorChecker;
@@ -36,6 +40,8 @@ import static net.l1j.server.skills.SkillId.SKILL_MEDITATION;
 
 public class C_Attack extends ClientBasePacket {
 	private static final String C_ATTACK = "[C] C_Attack";
+
+	private static Logger _log = Logger.getLogger("speedhack");
 
 	public C_Attack(byte[] decrypt, ClientThread client) {
 		super(decrypt);
@@ -79,8 +85,12 @@ public class C_Attack extends ClientBasePacket {
 			int result;
 			result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.ATTACK);
 			if (result == AcceleratorChecker.R_DISCONNECTED) {
-//				LogSpeedHack lsh = new LogSpeedHack();
-//				lsh.storeLogSpeedHack(pc);
+				if (Config.LOGGING_SPEED_HACK) {
+					LogRecord record = new LogRecord(Level.INFO, "<攻擊>");
+					record.setLoggerName("speedhack");
+					record.setParameters(new Object[] { pc });
+					_log.log(record);
+				}
 				return;
 			}
 		}

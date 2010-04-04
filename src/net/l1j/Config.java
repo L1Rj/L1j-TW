@@ -139,6 +139,7 @@ public final class Config {
 	public static boolean LOGGING_ITEM_DROP;
 	public static boolean LOGGING_ITEM_GIVE;
 	public static boolean LOGGING_ITEM_PICKUP;
+	public static boolean LOGGING_SPEED_HACK;
 
 	//--------------------------------------------------
 	// 進階設定
@@ -408,9 +409,10 @@ public final class Config {
 				LOGGING_CHAT_CHAT_PARTY = Boolean.parseBoolean(generalSettings.getProperty("LoggingChatChatParty", "false"));
 				LOGGING_ITEM_ENCHANT = Boolean.parseBoolean(generalSettings.getProperty("LoggingItemEnchant", "false"));
 				LOGGING_ITEM_DELETE = Boolean.parseBoolean(generalSettings.getProperty("LoggingItemDelete", "false"));
-				LOGGING_ITEM_DROP = Boolean.parseBoolean(generalSettings.getProperty("LoggingItemGive", "false"));
-				LOGGING_ITEM_GIVE = Boolean.parseBoolean(generalSettings.getProperty("LoggingItemDrop", "false"));
+				LOGGING_ITEM_DROP = Boolean.parseBoolean(generalSettings.getProperty("LoggingItemDrop", "false"));
+				LOGGING_ITEM_GIVE = Boolean.parseBoolean(generalSettings.getProperty("LoggingItemGive", "false"));
 				LOGGING_ITEM_PICKUP = Boolean.parseBoolean(generalSettings.getProperty("LoggingItemPickUp", "false"));
+				LOGGING_SPEED_HACK = Boolean.parseBoolean(generalSettings.getProperty("LoggingSpeedHack", "false"));
 			} catch (Exception e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 				throw new Error("Failed to Load " + GENERAL_SETTINGS_FILE + " File.");
