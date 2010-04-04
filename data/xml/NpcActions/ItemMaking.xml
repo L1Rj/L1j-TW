@@ -3564,7 +3564,7 @@
 		</MakeItem>
 	</Action>
 	<!--頑強的歐浩-->
-	<Action Name="request elite valakas robe" NpcId="91059">
+	<Action Name="request elite valakas leather armor" NpcId="91059">
 		<MakeItem>
 		<Material Amount="1" ItemId="20119"/>	<!--古代火龍鱗盔甲-->
 		<Material Amount="2" ItemId="40354"/>	<!--巴拉卡斯之心-->
@@ -3574,7 +3574,7 @@
 		<Item Amount="1" ItemId="21214"/>		<!--巴拉卡斯的泉源-->
 		</MakeItem>
 	</Action>
-	<Action Name="request elite fafurion robe" NpcId="91059">
+	<Action Name="request elite fafurion leather armor" NpcId="91059">
 		<MakeItem>
 		<Material Amount="1" ItemId="20153"/>	<!--古代水龍鱗盔甲-->
 		<Material Amount="2" ItemId="40362"/>	<!--法利昂之心-->
@@ -3584,7 +3584,7 @@
 		<Item Amount="1" ItemId="21206"/>		<!--法利昂的泉源-->
 		</MakeItem>
 	</Action>
-	<Action Name="request elite lindvior robe" NpcId="91059">
+	<Action Name="request elite lindvior leather armor" NpcId="91059">
 		<MakeItem>
 		<Material Amount="1" ItemId="20108"/>	<!--古代風龍鱗盔甲-->
 		<Material Amount="2" ItemId="40370"/>	<!--林德拜爾之心-->
@@ -3594,7 +3594,7 @@
 		<Item Amount="1" ItemId="21210"/>		<!--林德拜爾的泉源-->
 		</MakeItem>
 	</Action>
-	<Action Name="request elite antharas robe" NpcId="91059">
+	<Action Name="request elite antharas leather armor" NpcId="91059">
 		<MakeItem>
 		<Material Amount="1" ItemId="20130"/>	<!--古代地龍鱗盔甲-->
 		<Material Amount="2" ItemId="40346"/>	<!--安塔瑞斯之心-->
@@ -3605,7 +3605,7 @@
 		</MakeItem>
 	</Action>
 	<!--燦爛的艾咪-->
-	<Action Name="request elite valakas robe" NpcId="91060">
+	<Action Name="request elite valakas scale armor" NpcId="91060">
 		<MakeItem>
 		<Material Amount="1" ItemId="20119"/>	<!--古代火龍鱗盔甲-->
 		<Material Amount="2" ItemId="40354"/>	<!--巴拉卡斯之心-->
@@ -3625,7 +3625,7 @@
 		<Item Amount="1" ItemId="21207"/>		<!--法利昂的霸氣-->
 		</MakeItem>
 	</Action>
-	<Action Name="request elite lindvior robe" NpcId="91060">
+	<Action Name="request elite lindvior scale armor" NpcId="91060">
 		<MakeItem>
 		<Material Amount="1" ItemId="20108"/>	<!--古代風龍鱗盔甲-->
 		<Material Amount="2" ItemId="40370"/>	<!--林德拜爾之心-->
@@ -3635,7 +3635,7 @@
 		<Item Amount="1" ItemId="21211"/>		<!--林德拜爾的霸氣-->
 		</MakeItem>
 	</Action>
-	<Action Name="request elite antharas robe" NpcId="91060">
+	<Action Name="request elite antharas scale armor" NpcId="91060">
 		<MakeItem>
 		<Material Amount="1" ItemId="20130"/>	<!--古代地龍鱗盔甲-->
 		<Material Amount="2" ItemId="40346"/>	<!--安塔瑞斯之心-->
