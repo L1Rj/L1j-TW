@@ -2686,7 +2686,7 @@
 			<Material Amount="1" ItemId="40060"/>	<!--胡蘿蔔-->
 			<Material Amount="1" ItemId="40061"/>	<!--檸檬-->
 			<Material Amount="5" ItemId="40064"/>	<!--蘋果-->
-			<Item Amount="1" ItemId="40027"/>
+			<Item Amount="1" ItemId="40028"/>
 		</MakeItem>
 	</Action>
 	<!--ペットマッチギフトボックス / メダル管理人-->
