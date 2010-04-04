@@ -23,7 +23,7 @@ import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.utils.StringUtil;
 
-public class EnchantLogFormatter extends Formatter {
+public class ItemLogFormatter extends Formatter {
 	private static final String NEXT_LINE = "\r\n";
 
 	private SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -31,9 +31,9 @@ public class EnchantLogFormatter extends Formatter {
 	@Override
 	public String format(LogRecord record) {
 		final Object[] params = record.getParameters();
-		final StringBuilder output = StringUtil.startAppend(30 + record.getMessage().length() + (params == null ? 0 : params.length * 10), "[", dateFmt.format(new Date(record.getMillis())), "] ", record.getMessage());
+		final StringBuilder output = StringUtil.startAppend(30 + record.getMessage().length() + params.length * 50, "[", dateFmt.format(new Date(record.getMillis())), "] ", record.getMessage());
 
-		for (Object p : params) {
+		for (Object p : record.getParameters()) {
 			if (p == null) {
 				continue;
 			}
@@ -45,8 +45,9 @@ public class EnchantLogFormatter extends Formatter {
 				StringUtil.append(output, pc.getName(), " [" + String.valueOf(pc.getId()) + "]");
 			} else if (p instanceof L1ItemInstance) {
 				L1ItemInstance item = (L1ItemInstance) p;
-				StringUtil.append(output, item.getItem().getName());
-				StringUtil.append(output, " [", String.valueOf(item.getId()), "]");
+				StringUtil.append(output, (item.getEnchantLevel() > 0 ? "+" : ""), String.valueOf(item.getEnchantLevel()), " ");
+				StringUtil.append(output, item.getItem().getName(), "(", String.valueOf(item.getCount()), ")");
+				StringUtil.append(output, " [" + String.valueOf(item.getId()) + "]");
 			} else {
 				StringUtil.append(output, p.toString());
 			}

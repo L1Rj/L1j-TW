@@ -149,30 +149,19 @@ public class Enchant {
 		pc.sendPackets(new S_ServerMessage(SystemMessageId.$161, s, sa, sb));
 		int oldEnchantLvl = item.getEnchantLevel();
 		int newEnchantLvl = item.getEnchantLevel() + enchantLvl;
-		int safe_enchant = item.getItem().get_safeenchant();
+		int safeEnchantLvl = item.getItem().get_safeenchant();
 		item.setEnchantLevel(newEnchantLvl);
 		client.getActiveChar().getInventory().updateItem(item, L1PcInventory.COL_ENCHANTLVL);
-		if (newEnchantLvl > safe_enchant) {
+		if (newEnchantLvl > safeEnchantLvl) {
 			client.getActiveChar().getInventory().saveItem(item, L1PcInventory.COL_ENCHANTLVL);
 		}
 
-		if (item.getItem().getType2() == 1 && Config.LOGGING_WEAPON_ENCHANT != 0) {
-			if (safe_enchant == 0 || newEnchantLvl >= Config.LOGGING_WEAPON_ENCHANT) {
-				LogRecord record = new LogRecord(Level.INFO, "強化成功");
-				record.setLoggerName("enchant");
-				record.setParameters(new Object[] { pc.getId(), pc.getName(), item.getId(), item.getItem().getName(), oldEnchantLvl + " -> " + newEnchantLvl });
+		if (Config.LOGGING_ITEM_ENCHANT) {
+			LogRecord record = new LogRecord(Level.INFO, "<成功>");
+			record.setLoggerName("enchant");
+			record.setParameters(new Object[] { pc, item, (oldEnchantLvl > 0 ? "+" : "") + oldEnchantLvl + " => " + (newEnchantLvl > 0 ? "+" : "") + newEnchantLvl });
 
-				_log.log(record);
-			}
-		}
-		if (item.getItem().getType2() == 2 && Config.LOGGING_ARMOR_ENCHANT != 0) {
-			if (safe_enchant == 0 || newEnchantLvl >= Config.LOGGING_ARMOR_ENCHANT) {
-				LogRecord record = new LogRecord(Level.INFO, "強化成功");
-				record.setLoggerName("enchant");
-				record.setParameters(new Object[] { pc.getId(), pc.getName(), item.getId(), item.getItem().getName(), oldEnchantLvl + " -> " + newEnchantLvl });
-
-				_log.log(record);
-			}
+			_log.log(record);
 		}
 
 		if (item.getItem().getType2() == 2) {
@@ -213,7 +202,7 @@ public class Enchant {
 		String nameId = item.getName();
 		String pm = "";
 		int enchantLvl = item.getEnchantLevel();
-		int safe_enchant = item.getItem().get_safeenchant();
+		int safeEnchantLvl = item.getItem().get_safeenchant();
 
 		if (itemType == 1) { // 武器
 			if (!item.isIdentified() || item.getEnchantLevel() == 0) {
@@ -226,16 +215,6 @@ public class Enchant {
 				s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(nameId).toString(); // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
 				sa = "$245";
 			}
-
-			if (Config.LOGGING_WEAPON_ENCHANT != 0) {
-				if (safe_enchant == 0 || enchantLvl >= Config.LOGGING_WEAPON_ENCHANT) {
-					LogRecord record = new LogRecord(Level.INFO, "強化失敗");
-					record.setLoggerName("enchant");
-					record.setParameters(new Object[] { pc.getId(), pc.getName(), item.getId(), item.getItem().getName(), safe_enchant + " : " + enchantLvl });
-
-					_log.log(record);
-				}
-			}
 		} else if (itemType == 2) { // 防具
 			if (!item.isIdentified() || item.getEnchantLevel() == 0) {
 				s = nameId; // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
@@ -247,17 +226,16 @@ public class Enchant {
 				s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(nameId).toString(); // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
 				sa = " $252";
 			}
-
-			if (Config.LOGGING_ARMOR_ENCHANT != 0) {
-				if (safe_enchant == 0 || enchantLvl >= Config.LOGGING_ARMOR_ENCHANT) {
-					LogRecord record = new LogRecord(Level.INFO, "強化失敗");
-					record.setLoggerName("enchant");
-					record.setParameters(new Object[] { pc.getId(), pc.getName(), item.getId(), item.getItem().getName(), safe_enchant + " : " + enchantLvl });
-
-					_log.log(record);
-				}
-			}
 		}
+
+		if (Config.LOGGING_ITEM_ENCHANT) {
+			LogRecord record = new LogRecord(Level.INFO, "<失敗>");
+			record.setLoggerName("enchant");
+			record.setParameters(new Object[] { pc, item, (enchantLvl > 0 ? "+" : "") + enchantLvl + " // " + (safeEnchantLvl > 0 ? "+" : "") + safeEnchantLvl });
+
+			_log.log(record);
+		}
+
 		pc.sendPackets(new S_ServerMessage(SystemMessageId.$164, s, sa));
 		pc.getInventory().removeItem(item, item.getCount());
 	}

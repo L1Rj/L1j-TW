@@ -18,6 +18,11 @@
  */
 package net.l1j.server.clientpackets;
 
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+
+import net.l1j.Config;
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DollInstance;
@@ -29,10 +34,13 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 public class C_DeleteInventoryItem extends ClientBasePacket {
 	private static final String C_DELETE_INVENTORY_ITEM = "[C] C_DeleteInventoryItem";
 
+	private static final Logger _log = Logger.getLogger("item");
+
 	public C_DeleteInventoryItem(byte[] decrypt, ClientThread client) {
 		super(decrypt);
 
 		int itemObjectId = readD();
+
 		L1PcInstance pc = client.getActiveChar();
 		L1ItemInstance item = pc.getInventory().getItem(itemObjectId);
 
@@ -76,8 +84,14 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, item.getItem().getName()));
 			return;
 		}
-//		LogDeleteItem ldi = new LogDeleteItem();
-//		ldi.storeLogDeleteItem(pc, item);
+
+		if (Config.LOGGING_ITEM_DELETE) {
+			LogRecord record = new LogRecord(Level.INFO, "<刪除>");
+			record.setLoggerName("item");
+			record.setParameters(new Object[] { pc, item });
+			_log.log(record);
+		}
+
 		pc.getInventory().removeItem(item, item.getCount());
 		pc.turnOnOffLight();
 	}

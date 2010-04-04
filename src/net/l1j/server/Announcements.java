@@ -73,7 +73,7 @@ public class Announcements {
 					i++;
 				}
 			}
-			if (Config.DEBUG) {
+			if (Config.DEBUG_MODE) {
 				_log.config("Announcements: Loaded " + i + " Announcements.");
 			}
 		} catch (IOException e) {

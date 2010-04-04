@@ -55,21 +55,21 @@ public class C_Chat extends ClientBasePacket {
 	private static final int CHATPARTY = 14;
 
 	private static final String[] CHAT_NAMES = {
-		"一般",
-		"未知",
-		"大喊",
-		"全體",
-		"血盟",
-		"未知",
-		"未知",
-		"未知",
-		"未知",
-		"未知",
-		"未知",
-		"組隊",
-		"買賣",
-		"聯盟",
-		"聊天隊伍"
+		"<一般>",
+		"<未知>",
+		"<大喊>",
+		"<全體>",
+		"<血盟>",
+		"<未知>",
+		"<未知>",
+		"<未知>",
+		"<未知>",
+		"<未知>",
+		"<未知>",
+		"<組隊>",
+		"<買賣>",
+		"<聯盟>",
+		"<聊天隊伍>"
 	};
 
 	private static Logger _log = Logger.getLogger("chat");

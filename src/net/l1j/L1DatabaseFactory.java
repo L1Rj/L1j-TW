@@ -87,17 +87,17 @@ public class L1DatabaseFactory {
 			/* Test the connection */
 			_source.getConnection().close();
 
-			if (Config.DEBUG) {
+			if (Config.DEBUG_MODE) {
 				_log.fine("Database Connection Working");
 			}
 		} catch (SQLException x) {
-			if (Config.DEBUG) {
+			if (Config.DEBUG_MODE) {
 				_log.fine("Database Connection FAILED");
 			}
 			// re-throw the exception
 			throw x;
 		} catch (Exception e) {
-			if (Config.DEBUG) {
+			if (Config.DEBUG_MODE) {
 				_log.fine("Database Connection FAILED");
 			}
 			throw new SQLException("could not init DB connection:" + e);

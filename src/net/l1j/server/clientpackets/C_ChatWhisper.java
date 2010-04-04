@@ -77,7 +77,7 @@ public class C_ChatWhisper extends ClientBasePacket {
 		if (Config.LOGGING_CHAT_WHISPER) {
 			LogRecord record = new LogRecord(Level.INFO, text);
 			record.setLoggerName("chat");
-			record.setParameters(new Object[] { "密語", "[" + whisperFrom.getName() + " -> " + targetName + "]" });
+			record.setParameters(new Object[] { "<密語>", "[" + whisperFrom.getName() + " -> " + targetName + "]" });
 
 			_log.log(record);
 		}
