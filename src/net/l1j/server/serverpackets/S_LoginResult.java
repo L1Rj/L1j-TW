@@ -45,11 +45,8 @@ public class S_LoginResult extends ServerBasePacket {
 
 	private byte[] _byte = null;
 
-	public S_LoginResult(int reason) {
-		buildPacket(reason);
-	}
-
-	private void buildPacket(int reason) {
+	public S_LoginResult(int reason)
+	{
 		writeC(Opcodes.S_OPCODE_LOGINRESULT);
 		writeC(reason);
 		writeD(0x00000000);

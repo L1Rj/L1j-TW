@@ -30,6 +30,8 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import net.l1j.server.serverpackets.S_Initialize;
+
 import net.l1j.server.datatables.CharBuffTable;
 import net.l1j.server.encryptions.ClientIdExistsException;
 import net.l1j.server.encryptions.LineageEncryption;
@@ -71,16 +73,6 @@ public class ClientThread implements Runnable, PacketOutput {
 	private Socket _csocket;
 	private int _loginStatus;
 
-	private static final byte[] FIRST_PACKET = { // 3.0
-		(byte) 0xec, (byte) 0x64, (byte) 0x3e, (byte) 0x0d,
-		(byte) 0xc0, (byte) 0x82, (byte) 0x00, (byte) 0x00,
-		(byte) 0x02, (byte) 0x08, (byte) 0x00 };
-
-	//private static final byte[] FIRST_PACKET = { // 3.1
-	//	(byte) 0x77, (byte) 0x10, (byte) 0xd9, (byte) 0x7d,
-	//	(byte) 0xd2, (byte) 0xda, (byte) 0x4c, (byte) 0x78,
-	//	(byte) 0xa0, (byte) 0x00, (byte) 0x01 };
-
 	/**
 	 * for Test
 	 */
@@ -88,18 +80,24 @@ public class ClientThread implements Runnable, PacketOutput {
 	}
 
 	public ClientThread(Socket socket) throws IOException {
+		/* Socket 初始化 */
 		_csocket = socket;
+//		_csocket.setSoTimeout(CheckTime);
+//		_csocket.setTcpNoDelay(NoDelay);
+//		_csocket.setReceiveBufferSize(Size);
+//		_csocket.setSendBufferSize(Size);
+		/* I/O 初始化 */
+		_in = socket.getInputStream();
+		_out = new BufferedOutputStream(socket.getOutputStream());
+		/* 其他 初始化 */
 		_ip = socket.getInetAddress().getHostAddress();
+		_handler = new PacketHandler(this);
 
 		if (HOSTNAME_LOOKUPS) {
 			_hostname = socket.getInetAddress().getHostName();
 		} else {
 			_hostname = _ip;
 		}
-
-		_in = socket.getInputStream();
-		_out = new BufferedOutputStream(socket.getOutputStream());
-		_handler = new PacketHandler(this);
 	}
 
 	public String getIp() {
@@ -183,36 +181,35 @@ public class ClientThread implements Runnable, PacketOutput {
 		_log.info("客戶端 (" + _hostname + ") 連線開始。");
 		System.out.println("記憶體使用量: " + SystemUtil.getUsedMemoryMB() + "MB");
 		System.out.println("等待客戶端連線中...");
-
 		Socket socket = _csocket;
 
 		AutoResponse response = new AutoResponse();
 		_threadPool.execute(response);
-
 		ClientThreadObserver observer = new ClientThreadObserver(AUTOMATIC_KICK * 60 * 1000); // 自动切断までの时间（单位:ms）
 
 		// クライアントスレッドの监视
 		if (AUTOMATIC_KICK > 0)
 			observer.start();
 
-		try {
-			long seed = 0x7c98bdfa; // 不一定要更換這個Seed [無版本限制]
-			byte Bogus = (byte) (FIRST_PACKET.length + 7);
-			_out.write(Bogus & 0xFF);
-			_out.write(Bogus >> 8 & 0xFF);
-			_out.write(Opcodes.S_OPCODE_INITPACKET); // 主要是更改的地方在這
-			_out.write((byte) (seed & 0xFF));
-			_out.write((byte) (seed >> 8 & 0xFF));
-			_out.write((byte) (seed >> 16 & 0xFF));
-			_out.write((byte) (seed >> 24 & 0xFF));
-			_out.write(FIRST_PACKET);
-			_out.flush();
-
-			try {
-				_clkey = LineageEncryption.initKeys(socket, seed);
-			} catch (ClientIdExistsException e) {
+		try
+		{
+			S_Initialize init;
+			
+			try
+			{
+				init = new S_Initialize();
+				sendPacket(init);
+				_clkey = LineageEncryption.initKeys(socket, init.getCipherKey());
 			}
-
+			catch (ClientIdExistsException e1)
+			{
+				// do nothing
+			}
+			finally
+			{
+				init = null;
+			}
+		
 			while (true) {
 				doAutoSave();
 
@@ -374,24 +371,26 @@ public class ClientThread implements Runnable, PacketOutput {
 	}
 
 	@Override
-	public void sendPacket(ServerBasePacket packet) {
+	public void sendPacket(ServerBasePacket packet)
+	{
 		// 判斷資料封包是否為空
-		if (packet == null) {
+		if (packet == null)
+		{
 			return;
 		}
 
-		synchronized (this) {
-			try {
+		synchronized (this)
+		{
+			try
+			{
 				byte[] abyte0 = packet.getContent();
-				char ac[] = new char[abyte0.length];
-				ac = UChar8.fromArray(abyte0);
-				ac = LineageEncryption.encrypt(ac, _clkey);
-				abyte0 = UByte8.fromArray(ac);
-				int j = abyte0.length + 2;
-
-				_out.write(j & 0xff);
-				_out.write(j >> 8 & 0xff);
-				_out.write(abyte0);
+				char ac[] = UChar8.fromArray(abyte0);
+				
+				if (_clkey != null)
+					ac = LineageEncryption.encrypt(ac, _clkey);
+				
+				_out.write(packet.getLength());
+				_out.write(UByte8.fromArray(ac));
 				_out.flush();
 			} catch (Exception e) {
 			}
