@@ -12,10 +12,9 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.l1j.gui.config;
+package net.l1j.gui.swing;
 
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -36,18 +35,18 @@ import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
-import java.awt.Color;
 
 /**
  * @author KenM
  */
-public class ConfigIPTextField extends JPanel implements FocusListener {
+public class JIPTextField extends JPanel implements FocusListener {
 	private static final long serialVersionUID = 1L;
 
 	private JTextField[] _textFields;
+
 	private List<FocusListener> _focusListeners;
 
-	public ConfigIPTextField(String textIp) {
+	public JIPTextField(String textIp) {
 		super.addFocusListener(this);
 
 		initIPTextField(textIp);
@@ -57,14 +56,14 @@ public class ConfigIPTextField extends JPanel implements FocusListener {
 		}
 	}
 
-	public ConfigIPTextField() {
+	public JIPTextField() {
 		this("...");
 	}
 
 	/**
 	 * @param value
 	 */
-	public ConfigIPTextField(Inet4Address value) {
+	public JIPTextField(Inet4Address value) {
 		this(value.getHostAddress());
 	}
 
@@ -76,8 +75,6 @@ public class ConfigIPTextField extends JPanel implements FocusListener {
 		};
 
 		this.setLayout(new GridBagLayout());
-		this.setBackground(new Color(28, 28, 28));
-
 		_textFields = new JTextField[4];
 
 		GridBagConstraints cons = new GridBagConstraints();
@@ -93,8 +90,6 @@ public class ConfigIPTextField extends JPanel implements FocusListener {
 			String str = parts[i];
 			if (i > 0) {
 				JLabel dot = new JLabel(".");
-				dot.setForeground(new Color(255, 255, 255));
-				dot.setFont(new Font(null, Font.BOLD, 11));
 				cons.weightx = 0;
 				add(dot, cons);
 				cons.gridx++;
@@ -105,10 +100,8 @@ public class ConfigIPTextField extends JPanel implements FocusListener {
 				previous.setNext(_textFields[i]);
 			}
 			previous = maxDoc;
-			//cons.weightx = 1;
+			// ic.weightx = 1;
 			add(_textFields[i], cons);
-			_textFields[i].setForeground(new Color(255, 255, 255));
-			_textFields[i].setFont(new Font(null, Font.BOLD, 11));
 			_textFields[i].addActionListener(nextfocusaction);
 			cons.gridx++;
 		}
@@ -214,13 +207,10 @@ public class ConfigIPTextField extends JPanel implements FocusListener {
 	}
 
 	public class MaxLengthDocument extends PlainDocument {
-
-		/**
-		 * Comment for <code>serialVersionUID</code>
-		 */
 		private static final long serialVersionUID = 1L;
 
 		private int _max;
+
 		private JTextField _next;
 
 		public MaxLengthDocument(int maxLength) {

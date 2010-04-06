@@ -47,7 +47,6 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import net.l1j.Config;
-import net.l1j.gui.ServerManager;
 import net.l1j.server.GameServer;
 import net.l1j.telnet.TelnetServer;
 
@@ -68,26 +67,6 @@ public class Server {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		if (args.length > 0) {
-			int index = 0;
-			ServerManager serverManager = ServerManager.getInstance();
-			while (index < args.length) {
-				if (args[index].equalsIgnoreCase("-gui") || args[index].equalsIgnoreCase("-g")) {
-					serverManager.setPrintStream();
-					serverManager.setVisible(true);
-				} else {
-					System.out.println("無效的參數: " + args[index]);
-					System.out.println();
-					System.out.println("java net.l1j.Server [args]");
-					System.out.println();
-					System.out.println("參數的用法: ");
-					System.out.println(" -gui 顯示伺服器管理面板");
-					return;
-				}
-				index++;
-			}
-		}
-
 		File logFolder = new File("log");
 		logFolder.mkdir();
 

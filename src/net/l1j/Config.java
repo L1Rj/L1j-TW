@@ -140,6 +140,8 @@ public final class Config {
 	public static boolean LOGGING_ITEM_GIVE;
 	public static boolean LOGGING_ITEM_PICKUP;
 	public static boolean LOGGING_SPEED_HACK;
+	public static boolean LOGGING_CHARACTER_CREATE;
+	public static boolean LOGGING_CHARACTER_DELETE;
 
 	//--------------------------------------------------
 	// 進階設定
@@ -413,6 +415,8 @@ public final class Config {
 				LOGGING_ITEM_GIVE = Boolean.parseBoolean(generalSettings.getProperty("LoggingItemGive", "false"));
 				LOGGING_ITEM_PICKUP = Boolean.parseBoolean(generalSettings.getProperty("LoggingItemPickUp", "false"));
 				LOGGING_SPEED_HACK = Boolean.parseBoolean(generalSettings.getProperty("LoggingSpeedHack", "false"));
+				LOGGING_CHARACTER_CREATE = Boolean.parseBoolean(generalSettings.getProperty("LoggingCharacterCreate", "false"));
+				LOGGING_CHARACTER_DELETE = Boolean.parseBoolean(generalSettings.getProperty("LoggingCharacterDelete", "false"));
 			} catch (Exception e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 				throw new Error("Failed to Load " + GENERAL_SETTINGS_FILE + " File.");

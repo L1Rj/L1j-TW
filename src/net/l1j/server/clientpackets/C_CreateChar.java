@@ -19,6 +19,8 @@
 package net.l1j.server.clientpackets;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 import net.l1j.Config;
@@ -39,7 +41,7 @@ import net.l1j.server.templates.L1Skills;
 public class C_CreateChar extends ClientBasePacket {
 	private static final String C_CREATE_CHAR = "[C] C_CreateChar";
 
-	private static Logger _log = Logger.getLogger(C_CreateChar.class.getName());
+	private static Logger _log = Logger.getLogger("character");
 
 	private L1ClassFeature classFeature = null;
 
@@ -63,14 +65,12 @@ public class C_CreateChar extends ClientBasePacket {
 		}
 
 		if (CharacterTable.doesCharNameExist(name)) {
-			_log.fine("角色名稱: " + pc.getName() + " 已存在. 建立角色失敗.");
 			S_CharCreateStatus s_charcreatestatus1 = new S_CharCreateStatus(S_CharCreateStatus.REASON_ALREADY_EXSISTS);
 			client.sendPacket(s_charcreatestatus1);
 			return;
 		}
 
 		if (client.getAccount().countCharacters() >= maxAmount) {
-			_log.fine("帳號: " + client.getAccountName() + " " + maxAmount + "超過可建立角色數量。");
 			S_CharCreateStatus s_charcreatestatus1 = new S_CharCreateStatus(S_CharCreateStatus.REASON_WRONG_AMOUNT);
 			client.sendPacket(s_charcreatestatus1);
 			return;
@@ -108,14 +108,12 @@ public class C_CreateChar extends ClientBasePacket {
 		int statusAmount = pc.getDex() + pc.getCha() + pc.getCon() + pc.getInt() + pc.getStr() + pc.getWis();
 
 		if (statusAmount != 75 || statusError) {
-			_log.finest("Character have wrong value");
 			System.out.println("Character have wrong value");
 			S_CharCreateStatus s_charcreatestatus3 = new S_CharCreateStatus(S_CharCreateStatus.REASON_WRONG_AMOUNT);
 			client.sendPacket(s_charcreatestatus3);
 			return;
 		}
 
-		_log.fine("charname: " + pc.getName() + " classId: " + pc.getClassId());
 		S_CharCreateStatus s_charcreatestatus2 = new S_CharCreateStatus(S_CharCreateStatus.REASON_OK);
 		client.sendPacket(s_charcreatestatus2);
 		initNewChar(client, pc);
@@ -177,6 +175,14 @@ public class C_CreateChar extends ClientBasePacket {
 		}
 		Beginner.getInstance().GiveItem(pc);
 		pc.setAccountName(client.getAccountName());
+
+		if (Config.LOGGING_CHARACTER_CREATE) {
+			LogRecord record = new LogRecord(Level.INFO, "<創造>");
+			record.setLoggerName("character");
+			record.setParameters(new Object[] { client.getIp(), pc });
+			_log.log(record);
+		}
+
 		CharacterTable.getInstance().storeNewCharacter(pc);
 		S_NewCharPacket s_newcharpacket = new S_NewCharPacket(pc);
 		client.sendPacket(s_newcharpacket);

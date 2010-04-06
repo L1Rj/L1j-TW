@@ -32,7 +32,6 @@
 			<include name="c3p0-0.9.1.2.jar" />
 			<include name="javolution-5.4.3.jar" />
 			<include name="mysql-connector-java-5.1.12-bin.jar" />
-			<include name="nimrodlf-1.1a.jar" />
 		</fileset>
 	</path>
 
