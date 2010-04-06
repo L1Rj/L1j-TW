@@ -92,7 +92,7 @@ public class ServerConfig extends JFrame implements ActionListener {
 
 	public ServerConfig() {
 		this.setIconImage(ImageTable.getIcon("config.ico"));
-		this.setTitle("L1J-Naruto Server Config");
+		this.setTitle("L1J-TW Server Config");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(750, 500);
 		this.setLocationRelativeTo(null);
