@@ -1,5 +1,11 @@
 以下為目前仍有的錯誤訊息紀錄
 
+20100406
+HpRegenerationByDoll.java 『娃娃回血效果』異常 。 _pc.get_food() : 225isOverWeight(_pc) : false_pc.getCurrentHp() : 71    5
+
+
+以下為舊紀錄 僅供參考
+------------------------------------------------------------------------------------------------------------------
 2009/11/26
 java.lang.IllegalStateException: Task already scheduled or cancelled
         at java.util.Timer.sched(Timer.java:358)
@@ -90,9 +96,6 @@ java.sql.SQLException: database locked
         at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
         at java.lang.Thread.run(Thread.java:619)
-
-
--------------------- 以下為舊訊息 僅供參考 --------------------------------------------------------------------------------
 
 20090808
 HpRegenerationByDoll.java 『娃娃回血效果』異常 。 _pc.get_food() : 225isOverWeight(_pc) : false_pc.getCurrentHp() : 1741
