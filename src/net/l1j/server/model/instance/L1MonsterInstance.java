@@ -98,11 +98,9 @@ public class L1MonsterInstance extends L1NpcInstance {
 			} else if (getHiddenStatus() == HIDDEN_STATUS_FLY) {
 				perceivedFrom.sendPackets(new S_DoActionGFX(getId(), ActionCodes.ACTION_Moveup));
 			}
-			// waja add 吉爾塔斯反擊屏障
 			else if (getHiddenStatus() == HIDDEN_STATUS_COUNTER_BARRIER) { // 吉爾塔斯反擊屏障
 				perceivedFrom.sendPackets(new S_DoActionGFX(getId(), ActionCodes.ACTION_SwordWalk));
 			}
-			// add end
 			perceivedFrom.sendPackets(new S_NPCPack(this));
 			onNpcAI(); // モンスターのＡＩを開始
 			if (getBraveSpeed() == 1) { // ちゃんとした方法がわからない
@@ -141,7 +139,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 					break;
 				}
 			}
-			if (getNpcId() == 45215) {// 長者 僅搜尋正義值負值玩家
+			if (getNpcId() == 45215) { // 長者 僅搜尋正義值負值玩家
 				if (pc.getLawful() <= -1) {
 					targetPlayer = pc;
 					break;
@@ -326,10 +324,10 @@ public class L1MonsterInstance extends L1NpcInstance {
 				L1PcInstance player = (L1PcInstance) attacker;
 				player.setPetTarget(this);
 
-				if (getNpcTemplate().get_npcId() == 45681 // リンドビオル
-						|| getNpcTemplate().get_npcId() == 45682 // アンタラス
-						|| getNpcTemplate().get_npcId() == 45683 // パプリオン
-						|| getNpcTemplate().get_npcId() == 45684) // ヴァラカス
+				if (getNpcTemplate().get_npcId() == 45681 // 舊風龍 - 林德拜爾
+						|| getNpcTemplate().get_npcId() == 45682 // 舊地龍 - 安塔瑞斯
+						|| getNpcTemplate().get_npcId() == 45683 // 舊水龍 - 法利昂
+						|| getNpcTemplate().get_npcId() == 45684) // 舊火龍 - 巴拉卡斯
 				{
 					recall(player);
 				}
@@ -608,7 +606,18 @@ public class L1MonsterInstance extends L1NpcInstance {
 					broadcastPacket(new S_NPCPack(this));
 				}
 			}
-		} else if (npcid == 45682) { // アンタラス
+		} else if (npcid == 45682) { // 舊地龍 - 安塔瑞斯
+			if (getMaxHp() / 3 > getCurrentHp()) {
+				int rnd = RandomArrayList.getInc(10, 1);
+				if (3 > rnd) {
+					allTargetClear();
+					setHiddenStatus(HIDDEN_STATUS_SINK);
+					broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_AntharasHide));
+					setStatus(20);
+					broadcastPacket(new S_NPCPack(this));
+				}
+			}
+		} else if (npcid == 91202) { // 地龍 - 安塔瑞斯Lv3 91200 91201 91202
 			if (getMaxHp() / 3 > getCurrentHp()) {
 				int rnd = RandomArrayList.getInc(10, 1);
 				if (3 > rnd) {
@@ -663,22 +672,19 @@ public class L1MonsterInstance extends L1NpcInstance {
 				}
 			}
 		}
-		// TODO 吉爾塔斯反擊屏障
-		else if (npcid == 81163) {
+		else if (npcid == 81163) { // 吉爾塔斯反擊屏障
 			if (getMaxHp() / 6 > getCurrentHp())
-			// {
-			// int rnd = RandomArrayList.getInc(10, 1);
-			// if (9 > rnd)
 			{
+				int rnd = RandomArrayList.getInc(10, 1);
+				if (3 > rnd) {
 				allTargetClear();
 				setHiddenStatus(HIDDEN_STATUS_COUNTER_BARRIER);
 				broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_SwordWalk));
 				setStatus(4);
 				broadcastPacket(new S_NPCPack(this));
-				// }
+				}
 			}
 		}
-		// add end
 	}
 
 	public void initHide() {
@@ -714,7 +720,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 			setHiddenStatus(HIDDEN_STATUS_FLY);
 			setStatus(0);
 			setState(1); // 空中類型的怪物 在天上設2, 在地上設1
-		} else if (npcid == 45681) { // リンドビオル
+		} else if (npcid == 45681) { // 風龍 - 林德拜爾
 			setHiddenStatus(HIDDEN_STATUS_FLY);
 			setStatus(11);
 			setState(1); // 空中類型的怪物 在天上設2, 在地上設1

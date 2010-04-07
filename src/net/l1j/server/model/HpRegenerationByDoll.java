@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.skills.SkillId;
 import net.l1j.server.serverpackets.S_SkillSound; //娃娃回血效果
+import static net.l1j.server.skills.SkillId.SKILL_ADDITIONAL_FIRE;
+import static net.l1j.server.skills.SkillId.SKILL_EXOTIC_VITALIZE;
 
 public class HpRegenerationByDoll extends TimerTask {
 	private static Logger _log = Logger.getLogger(HpRegenerationByDoll.class
@@ -30,7 +32,7 @@ public class HpRegenerationByDoll extends TimerTask {
 		}
 	}
 
-	public void regenHp() {
+/*	public void regenHp() {
 		int newHp = _pc.getCurrentHp();
 		if (newHp <= 0) {
 			newHp = 0;
@@ -43,12 +45,29 @@ public class HpRegenerationByDoll extends TimerTask {
 			System.out.println("HpRegenerationByDoll.java 『娃娃回血效果』異常 。 _pc.get_food() : " + _pc.get_food() + "isOverWeight(_pc) : " + isOverWeight(_pc) + "_pc.getCurrentHp() : " + _pc.getCurrentHp());
 		}
 	}
-
+*/
+	public void regenHp() {
+		int newHp = _pc.getCurrentHp() + 40;
+		if (newHp < 0) {
+			newHp = 0;
+		_pc.sendPackets(new S_SkillSound(_pc.getId(), 6321));
+		_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 6321));
+		_pc.setCurrentHp(newHp);
+		}
+	}
+/*
 	private boolean isOverWeight(L1PcInstance pc) {
-		if (pc.hasSkillEffect(SkillId.SKILL_EXOTIC_VITALIZE)
-				|| pc.hasSkillEffect(SkillId.SKILL_ADDITIONAL_FIRE)) {
+		// エキゾチックバイタライズ狀態、アディショナルファイアー狀態か
+		// ゴールデンウィング裝備時であれば、重量オーバーでは無いとみなす。
+		if (pc.hasSkillEffect(SKILL_EXOTIC_VITALIZE)
+				|| pc.hasSkillEffect(SKILL_ADDITIONAL_FIRE)) {
 			return false;
 		}
-		return (14 < pc.getInventory().getWeight240()) ? true : false;
+		if (pc.getInventory().checkEquipped(20049)) {
+			return false;
+		}
+
+		return (120 <= pc.getInventory().getWeight240()) ? true : false;
 	}
+*/
 	}

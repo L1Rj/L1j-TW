@@ -332,8 +332,6 @@ public class Opcodes {
 
 	public static final int S_OPCODE_OWNCHARSTATUS = 59;
 
-	public static final int S_OPCODE_EXP = 95;
-	
 	public static final int C_OPCODE_REPORTPLAYER = 96;
 
 	public static final int S_OPCODE_DEPOSIT = 60;
@@ -401,6 +399,8 @@ public class Opcodes {
 	public static final int S_OPCODE_BOARD = 93;
 
 	public static final int S_OPCODE_WAR = 94;
+	
+	public static final int S_OPCODE_EXP = 95;
 	
 	/** 材料不足 (何侖) */
 	public static final int G_S_MaterialShortage = 95;

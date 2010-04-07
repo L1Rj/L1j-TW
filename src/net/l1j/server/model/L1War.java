@@ -167,8 +167,8 @@ public class L1War {
 				}
 			}
 		}
-
-		if ((type == 2 || type == 3) && attack_clan_num == 1) { // 降伏、終結で攻擊側クランが一つ
+// waja 註: 原本為 == 1 造成三血盟同時攻城時 第二次失敗方被傳出後無法宣戰
+		if ((type == 2 || type == 3) && attack_clan_num >= 1) { // 降伏、終結で攻擊側クランが一つ
 			_isWarTimerDelete = true;
 			delete();
 		}

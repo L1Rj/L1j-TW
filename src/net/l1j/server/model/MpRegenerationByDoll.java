@@ -19,6 +19,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.serverpackets.S_SkillSound;
+import net.l1j.server.serverpackets.S_SkillSound; //娃娃回血效果
+import static net.l1j.server.skills.SkillId.SKILL_ADDITIONAL_FIRE;
+import static net.l1j.server.skills.SkillId.SKILL_EXOTIC_VITALIZE;
 
 public class MpRegenerationByDoll extends TimerTask {
 	private static Logger _log = Logger.getLogger(MpRegenerationByDoll.class.getName());
@@ -46,6 +50,8 @@ public class MpRegenerationByDoll extends TimerTask {
 		if (newMp < 0) {
 			newMp = 0;
 		}
+		_pc.sendPackets(new S_SkillSound(_pc.getId(), 6321)); // 動畫編號未確定
+		_pc.broadcastPacket(new S_SkillSound(_pc.getId(), 6321)); // 動畫編號未確定
 		_pc.setCurrentMp(newMp);
 	}
 }
