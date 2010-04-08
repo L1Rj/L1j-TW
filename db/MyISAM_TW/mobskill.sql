@@ -1,3 +1,34 @@
+#----------------------------
+# Table structure for mobskill
+#----------------------------
+CREATE TABLE `mobskill` (
+  `mobid` int(10) unsigned NOT NULL DEFAULT '0',
+  `actNo` int(10) unsigned NOT NULL DEFAULT '0',
+  `mobname` varchar(45) NOT NULL DEFAULT '',
+  `Type` int(10) unsigned NOT NULL DEFAULT '0',
+  `TriRnd` int(10) unsigned NOT NULL DEFAULT '0',
+  `TriHp` int(10) unsigned NOT NULL DEFAULT '0',
+  `TriCompanionHp` int(10) unsigned NOT NULL DEFAULT '0',
+  `TriRange` int(10) NOT NULL DEFAULT '0',
+  `TriCount` int(10) NOT NULL DEFAULT '0',
+  `ChangeTarget` int(10) unsigned NOT NULL DEFAULT '0',
+  `Range` int(10) unsigned NOT NULL DEFAULT '0',
+  `AreaWidth` int(10) unsigned NOT NULL DEFAULT '0',
+  `AreaHeight` int(10) unsigned NOT NULL DEFAULT '0',
+  `Leverage` int(10) unsigned NOT NULL DEFAULT '0',
+  `SkillId` int(10) unsigned NOT NULL DEFAULT '0',
+  `Gfxid` int(10) unsigned NOT NULL DEFAULT '0',
+  `ActId` int(10) unsigned NOT NULL DEFAULT '0',
+  `SummonId` int(10) unsigned NOT NULL DEFAULT '0',
+  `SummonMin` int(10) NOT NULL DEFAULT '0',
+  `SummonMax` int(10) NOT NULL DEFAULT '0',
+  `PolyId` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`mobid`,`actNo`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+#----------------------------
+# Records for table mobskill
+#----------------------------
 INSERT INTO `mobskill` VALUES (45008, 0, '哥布林-act30', 1, 40, 0, 0, -1, 0, 0, 1, 0, 0, 5, 0, 0, 30, 0, 0, 0, 0);
 INSERT INTO `mobskill` VALUES (45008, 1, '哥布林-act01', 1, 100, 0, 0, -1, 0, 0, 1, 0, 0, 5, 0, 0, 1, 0, 0, 0, 0);
 INSERT INTO `mobskill` VALUES (45009, 0, '妖魔-act01', 1, 100, 0, 0, -1, 0, 0, 1, 0, 0, 5, 0, 0, 1, 0, 0, 0, 0);
