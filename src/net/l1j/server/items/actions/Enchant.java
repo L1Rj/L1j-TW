@@ -159,7 +159,7 @@ public class Enchant {
 		if (Config.LOGGING_ITEM_ENCHANT) {
 			LogRecord record = new LogRecord(Level.INFO, "<成功>");
 			record.setLoggerName("enchant");
-			record.setParameters(new Object[] { pc, item, (oldEnchantLvl > 0 ? "+" : "") + oldEnchantLvl + " => " + (newEnchantLvl > 0 ? "+" : "") + newEnchantLvl });
+			record.setParameters(new Object[] { pc, item, (oldEnchantLvl >= 0 ? "+" : "") + oldEnchantLvl + " => " + (newEnchantLvl > 0 ? "+" : "") + newEnchantLvl });
 
 			_log.log(record);
 		}
@@ -231,7 +231,7 @@ public class Enchant {
 		if (Config.LOGGING_ITEM_ENCHANT) {
 			LogRecord record = new LogRecord(Level.INFO, "<失敗>");
 			record.setLoggerName("enchant");
-			record.setParameters(new Object[] { pc, item, (enchantLvl > 0 ? "+" : "") + enchantLvl + " // " + (safeEnchantLvl > 0 ? "+" : "") + safeEnchantLvl });
+			record.setParameters(new Object[] { pc, item, (enchantLvl >= 0 ? "+" : "") + enchantLvl + " // " + (safeEnchantLvl > 0 ? "+" : "") + safeEnchantLvl });
 
 			_log.log(record);
 		}

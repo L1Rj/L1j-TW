@@ -126,22 +126,44 @@ public final class Config {
 
 	/** 除錯模式 */
 	public static boolean DEBUG_MODE;
+	/** 記錄一般頻道訊息 */
 	public static boolean LOGGING_CHAT_NORMAL;
+	/** 記錄密語頻道訊息 */
 	public static boolean LOGGING_CHAT_WHISPER;
+	/** 記錄大喊頻道訊息 */
 	public static boolean LOGGING_CHAT_SHOUT;
+	/** 記錄廣播頻道訊息 */
 	public static boolean LOGGING_CHAT_WORLD;
+	/** 記錄血盟頻道訊息 */
 	public static boolean LOGGING_CHAT_CLAN;
+	/** 記錄組隊頻道訊息 */
 	public static boolean LOGGING_CHAT_PARTY;
+	/** 記錄聯盟頻道訊息 */
 	public static boolean LOGGING_CHAT_ALLIANCE;
+	/** 記錄聊天隊伍頻道訊息 */
 	public static boolean LOGGING_CHAT_CHAT_PARTY;
+	/** 記錄武器/防具強化訊息 */
 	public static boolean LOGGING_ITEM_ENCHANT;
+	/** 記錄物品刪除訊息 */
 	public static boolean LOGGING_ITEM_DELETE;
+	/** 記錄物品掉落訊息 */
 	public static boolean LOGGING_ITEM_DROP;
+	/** 記錄物品給予訊息 */
 	public static boolean LOGGING_ITEM_GIVE;
+	/** 記錄物品拾取訊息 */
 	public static boolean LOGGING_ITEM_PICKUP;
+	/** 記錄加速外掛訊息 */
 	public static boolean LOGGING_SPEED_HACK;
+	/** 記錄角色創造訊息 */
 	public static boolean LOGGING_CHARACTER_CREATE;
+	/** 記錄角色刪除訊息 */
 	public static boolean LOGGING_CHARACTER_DELETE;
+	/** 記錄個人倉庫訊息 */
+	public static boolean LOGGING_WAREHOUSE_PERSONAL;
+	/** 記錄血盟倉庫訊息 */
+	public static boolean LOGGING_WAREHOUSE_CLAN;
+	/** 記錄妖精倉庫訊息 */
+	public static boolean LOGGING_WAREHOUSE_ELF;
 
 	//--------------------------------------------------
 	// 進階設定
@@ -417,6 +439,9 @@ public final class Config {
 				LOGGING_SPEED_HACK = Boolean.parseBoolean(generalSettings.getProperty("LoggingSpeedHack", "false"));
 				LOGGING_CHARACTER_CREATE = Boolean.parseBoolean(generalSettings.getProperty("LoggingCharacterCreate", "false"));
 				LOGGING_CHARACTER_DELETE = Boolean.parseBoolean(generalSettings.getProperty("LoggingCharacterDelete", "false"));
+				LOGGING_WAREHOUSE_PERSONAL = Boolean.parseBoolean(generalSettings.getProperty("LoggingWarehousePersonal", "false"));
+				LOGGING_WAREHOUSE_CLAN = Boolean.parseBoolean(generalSettings.getProperty("LoggingWarehouseClan", "false"));
+				LOGGING_WAREHOUSE_ELF = Boolean.parseBoolean(generalSettings.getProperty("LoggingWarehouseElf", "false"));
 			} catch (Exception e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 				throw new Error("Failed to Load " + GENERAL_SETTINGS_FILE + " File.");

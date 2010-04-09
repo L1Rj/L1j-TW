@@ -18,8 +18,13 @@
  */
 package net.l1j.server.clientpackets;
 
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+
 import javolution.util.FastTable;
 
+import net.l1j.Config;
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.ShopTable;
 import net.l1j.server.items.ItemId;
@@ -43,14 +48,17 @@ import net.l1j.server.templates.L1PrivateShopSellList;
 public class C_Result extends ClientBasePacket {
 	private static final String C_RESULT = "[C] C_Result";
 
-	public C_Result(byte abyte0[], ClientThread clientthread) throws Exception {
-		super(abyte0);
+	private static Logger _log = Logger.getLogger("warehouse");
+
+	public C_Result(byte decrypt[], ClientThread client) throws Exception {
+		super(decrypt);
+
 		int npcObjectId = readD();
 		int resultType = readC();
 		int size = readC();
 		int unknown = readC();
 
-		L1PcInstance pc = clientthread.getActiveChar();
+		L1PcInstance pc = client.getActiveChar();
 		int level = pc.getLevel();
 
 		int npcId = 0;
@@ -96,8 +104,6 @@ public class C_Result extends ClientBasePacket {
 				count = readD();
 				L1Object object = pc.getInventory().getItem(objectId);
 				L1ItemInstance item = (L1ItemInstance) object;
-//				int item_count_before = item.getCount();
-//				int item_count_after = 0;
 				if (!item.getItem().isTradable()) {
 					tradable = false;
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, item.getItem().getName()));
@@ -129,14 +135,15 @@ public class C_Result extends ClientBasePacket {
 					break;
 				}
 				if (tradable) {
+					if (Config.LOGGING_WAREHOUSE_PERSONAL) {
+						LogRecord record = new LogRecord(Level.INFO, "<個人倉庫-存放>");
+						record.setLoggerName("warehouse");
+						record.setParameters(new Object[] { pc, item, count });
+						_log.log(record);
+					}
+
 					pc.getInventory().tradeItem(objectId, count, pc.getDwarfInventory());
 					pc.turnOnOffLight();
-//					L1ItemInstance pcitem = pc.getInventory().getItem(objectId);
-//					if (pcitem != null) {
-//						item_count_after = pcitem.getCount();
-//					}
-//					LogDwarfIn ldi = new LogDwarfIn();
-//					ldi.storeLogDwarfIn(pc, item, item_count_before, item_count_after, count);
 				}
 			}
 		} else if (resultType == 3 && size != 0 && npcImpl.equalsIgnoreCase("L1Dwarf") && level >= 5) { // 自分の倉庫から取り出し
@@ -146,17 +153,16 @@ public class C_Result extends ClientBasePacket {
 				objectId = readD();
 				count = readD();
 				item = pc.getDwarfInventory().getItem(objectId);
-//				int item_count_before = item.getCount();
-//				int item_count_after = 0;
 				if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) { // 容量重量確認及びメッセージ送信
 					if (pc.getInventory().consumeItem(ItemId.ADENA, 30)) {
+						if (Config.LOGGING_WAREHOUSE_PERSONAL) {
+							LogRecord record = new LogRecord(Level.INFO, "<個人倉庫-領取>");
+							record.setLoggerName("warehouse");
+							record.setParameters(new Object[] { pc, item, count });
+							_log.log(record);
+						}
+
 						pc.getDwarfInventory().tradeItem(item, count, pc.getInventory());
-//						L1ItemInstance dwitem = pc.getDwarfInventory().getItem(objectId);
-//						if (dwitem != null) {
-//							item_count_after = dwitem.getCount();
-//						}
-//						LogDwarfOut ldo = new LogDwarfOut();
-//						ldo.storeLogDwarfOut(pc, item, item_count_before, item_count_after, count);
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$189));
 						break;
@@ -176,8 +182,6 @@ public class C_Result extends ClientBasePacket {
 					L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 					L1Object object = pc.getInventory().getItem(objectId);
 					L1ItemInstance item = (L1ItemInstance) object;
-//					int item_count_before = item.getCount();
-//					int item_count_after = 0;
 					if (clan != null) {
 						if (!item.getItem().isTradable()) {
 							tradable = false;
@@ -214,14 +218,15 @@ public class C_Result extends ClientBasePacket {
 							break;
 						}
 						if (tradable) {
+							if (Config.LOGGING_WAREHOUSE_CLAN) {
+								LogRecord record = new LogRecord(Level.INFO, "<血盟倉庫-存放>");
+								record.setLoggerName("warehouse");
+								record.setParameters(new Object[] { pc, item, count });
+								_log.log(record);
+							}
+
 							pc.getInventory().tradeItem(objectId, count, clan.getDwarfForClanInventory());
 							pc.turnOnOffLight();
-//							L1ItemInstance pcitem = pc.getInventory().getItem(objectId);
-//							if (pcitem != null) {
-//								item_count_after = pcitem.getCount();
-//							}
-//							LogClanDwarfIn lcdi = new LogClanDwarfIn();
-//							lcdi.storeLogClanDwarfIn(pc, item, item_count_before, item_count_after, count);
 						}
 					}
 				}
@@ -238,17 +243,16 @@ public class C_Result extends ClientBasePacket {
 					objectId = readD();
 					count = readD();
 					item = clan.getDwarfForClanInventory().getItem(objectId);
-//					int item_count_before = item.getCount();
-//					int item_count_after = 0;
 					if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) { // 容量重量確認及びメッセージ送信
 						if (pc.getInventory().consumeItem(ItemId.ADENA, 30)) {
+							if (Config.LOGGING_WAREHOUSE_CLAN) {
+								LogRecord record = new LogRecord(Level.INFO, "<血盟倉庫-領取>");
+								record.setLoggerName("warehouse");
+								record.setParameters(new Object[] { pc, item, count });
+								_log.log(record);
+							}
+
 							clan.getDwarfForClanInventory().tradeItem(item, count, pc.getInventory());
-//							L1ItemInstance dwitem = clan.getDwarfForClanInventory().getItem(objectId);
-//							if (dwitem != null) {
-//								item_count_after = dwitem.getCount();
-//							}
-//							LogClanDwarfOut lcdo = new LogClanDwarfOut();
-//							lcdo.storeLogClanDwarfOut(pc, item, item_count_before, item_count_after, count);
 						} else {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$189));
 							break;
@@ -273,8 +277,6 @@ public class C_Result extends ClientBasePacket {
 				count = readD();
 				L1Object object = pc.getInventory().getItem(objectId);
 				L1ItemInstance item = (L1ItemInstance) object;
-//				int item_count_before = item.getCount();
-//				int item_count_after = 0;
 				if (!item.getItem().isTradable()) {
 					tradable = false;
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, item.getItem().getName()));
@@ -306,14 +308,15 @@ public class C_Result extends ClientBasePacket {
 					break;
 				}
 				if (tradable) {
+					if (Config.LOGGING_WAREHOUSE_ELF) {
+						LogRecord record = new LogRecord(Level.INFO, "<妖精倉庫-存放>");
+						record.setLoggerName("warehouse");
+						record.setParameters(new Object[] { pc, item, count });
+						_log.log(record);
+					}
+
 					pc.getInventory().tradeItem(objectId, count, pc.getDwarfForElfInventory());
 					pc.turnOnOffLight();
-//					L1ItemInstance pcitem = pc.getInventory().getItem(objectId);
-//					if (pcitem != null) {
-//						item_count_after = pcitem.getCount();
-//					}
-//					LogElfDwarfIn ledi = new LogElfDwarfIn();
-//					ledi.storeLogElfDwarfIn(pc, item, item_count_before, item_count_after, count);
 				}
 			}
 		} else if (resultType == 9 && size != 0 && npcImpl.equalsIgnoreCase("L1Dwarf") && level >= 5 && pc.isElf()) { // 自分のエルフ倉庫から取り出し
@@ -323,17 +326,16 @@ public class C_Result extends ClientBasePacket {
 				objectId = readD();
 				count = readD();
 				item = pc.getDwarfForElfInventory().getItem(objectId);
-//				int item_count_before = item.getCount();
-//				int item_count_after = 0;
 				if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) { // 容量重量確認及びメッセージ送信
 					if (pc.getInventory().consumeItem(40494, 2)) { // 軍網??
+						if (Config.LOGGING_WAREHOUSE_ELF) {
+							LogRecord record = new LogRecord(Level.INFO, "<妖精倉庫-領取>");
+							record.setLoggerName("warehouse");
+							record.setParameters(new Object[] { pc, item, count });
+							_log.log(record);
+						}
+
 						pc.getDwarfForElfInventory().tradeItem(item, count, pc.getInventory());
-//						L1ItemInstance pcitem = pc.getDwarfForElfInventory().getItem(objectId);
-//						if (pcitem != null) {
-//							item_count_after = pcitem.getCount();
-//						}
-//						LogElfDwarfOut ledo = new LogElfDwarfOut();
-//						ledo.storeLogElfDwarfOut(pc, item, item_count_before, item_count_after, count);
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$337, "$767"));
 						break;

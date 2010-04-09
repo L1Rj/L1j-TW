@@ -81,7 +81,6 @@ public class GameServer extends Thread {
 
 	private ServerSocket _serverSocket;
 
-	// private Logins _logins;
 	private LoginController _loginController;
 
 	@Override
@@ -130,7 +129,7 @@ public class GameServer extends Thread {
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
 
 		System.out.println("=================================================");
-		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1384 ========");
+		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1387 ========");
 		System.out.println("=================================================");
 		System.out.println(
 				"經驗值: " + (rateXp) + "倍\n\r" +
@@ -256,10 +255,10 @@ public class GameServer extends Thread {
 			InetAddress inetaddress = InetAddress.getByName(serverHost);
 			inetaddress.getHostAddress();
 			_serverSocket = new ServerSocket(serverPort, 50, inetaddress);
-			System.out.println("建立預設伺服器Port");
+			System.out.println("正在建立伺服器端口");
 		} else {
 			_serverSocket = new ServerSocket(serverPort);
-			System.out.println("建立自訂伺服器Port");
+			System.out.println("正在建立伺服器端口");
 		}
 
 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
