@@ -4,8 +4,8 @@ REM # 執行這個編譯程式之前您必須先安裝好java #
 REM # 請記得先設定好下面的兩個您所放置檔案的路徑 #
 REM # 路徑中請勿含有中文 #
 
-set antpath="E:\test\l1j-tw\l1jtw_quick_build\apache-ant-1.8.0\bin"
-set l1jtwpath="E:\test\l1j-tw"
+set antpath="E:\l1j-tw\tool\l1jtw_quick_build\apache-ant-1.8.0\bin"
+set l1jtwpath="E:\l1j-tw"
 
 REM #############################
 
@@ -25,14 +25,14 @@ echo. 然後您才能編譯您的伺服器...
 echo.
 echo.
 echo 您可以選擇功能:
-echo * build = compile L1jtw Server
-echo * clean = clean L1jtw Server
-echo * quit   = exit the program
+echo * build = 編譯 L1jtw Server
+echo * clean = 清理 L1jtw Server
+echo * quit   = 離開這個程序
 echo.
 
 :askfirst
 set promptfirst=x
-set /p promptfirst=Please make a Choice: 
+set /p promptfirst=請輸入您想做的動作: 
 if /i %promptfirst%==build goto build
 if /i %promptfirst%==clean goto cls
 if /i %promptfirst%==quit goto end
