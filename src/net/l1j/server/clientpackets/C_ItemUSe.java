@@ -302,6 +302,12 @@ public class C_ItemUSe extends ClientBasePacket {
 					return;
 				}
 
+				if (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)
+				{ // 已封印裝備不可強化
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					return;
+				}
+				
 				int safe_enchant = l1iteminstance1.getItem().get_safeenchant();
 				if (safe_enchant < 0) { // 安定值小於0不可強化
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
@@ -449,12 +455,24 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				}
 			} else if (itemId == 49148) { // 飾品強化卷軸
+				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2) 
+				{ // 已封印飾品不可強化
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					return;
+				} else {
 					Enchant.doDecorationEnchant(pc, l1iteminstance1, client);
 					pc.getInventory().removeItem(item, 1);
+				}
 			} else if (itemId == 40078 || itemId == SCROLL_OF_ENCHANT_ARMOR || itemId == 40129
 					|| itemId == 140129 || itemId == B_SCROLL_OF_ENCHANT_ARMOR
 					|| itemId == C_SCROLL_OF_ENCHANT_ARMOR || itemId == 40127) { // 防具強化スクロール
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2) {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					return;
+				}
+				
+				if (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)
+				{ // 已封印防具不可強化
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					return;
 				}
@@ -467,13 +485,13 @@ public class C_ItemUSe extends ClientBasePacket {
 
 				int armorId = l1iteminstance1.getItem().getItemId();
 				if (armorId == 20161 || armorId >= 21035 && armorId <= 21038) { // イリュージョン防具
-					if (itemId == 40127) { // イリュージョン防具強化スクロール
+					if (itemId == 40127) { // 對盔甲施法的幻象卷軸
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 						return;
 					}
 				}
-				if (itemId == 40127) { // イリュージョン防具強化スクロール
+				if (itemId == 40127) { // 對盔甲施法的幻象卷軸
 					if (armorId == 20161 || armorId >= 21035 && armorId <= 21038) { // イリュージョン防具
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 

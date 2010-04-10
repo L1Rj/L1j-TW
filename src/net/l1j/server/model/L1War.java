@@ -167,7 +167,7 @@ public class L1War {
 				}
 			}
 		}
-// waja 註: 原本為 == 1 造成三血盟同時攻城時 第二次失敗方被傳出後無法宣戰
+// waja 註: 原本為 == 1 造成三血盟同時攻城時 第二次失敗方被傳出後無法宣戰 此處修正並不正確 僅為臨時處理 判斷式應為正常
 		if ((type == 2 || type == 3) && attack_clan_num >= 1) { // 降伏、終結で攻擊側クランが一つ
 			_isWarTimerDelete = true;
 			delete();
