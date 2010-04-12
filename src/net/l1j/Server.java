@@ -44,8 +44,11 @@ public class Server {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		File logFolder = new File("log");
-		logFolder.mkdir();
+		File javaLogFolder = new File("./log");
+		javaLogFolder.mkdir();
+
+		File gameLogFolder = new File("./log/game");
+		gameLogFolder.mkdir();
 
 		try {
 			InputStream is = new BufferedInputStream(new FileInputStream(LOG_PROP));
