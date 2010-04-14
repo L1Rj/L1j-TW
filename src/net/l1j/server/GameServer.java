@@ -70,6 +70,7 @@ import net.l1j.server.model.trap.L1WorldTraps;
 import net.l1j.server.utils.DeadLockDetector;
 import net.l1j.server.utils.RandomArrayList;
 import net.l1j.server.utils.SystemUtil;
+import net.l1j.server.utils.L1jtwInfos;
 import net.l1j.thread.GeneralThreadPool;
 
 public class GameServer extends Thread {
@@ -127,26 +128,32 @@ public class GameServer extends Thread {
 		double rateDropAdena = Config.RATE_DROP_ADENA;
 		int chatLvl = Config.GLOBAL_CHAT_LEVEL;
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
-
+		
 		System.out.println("=================================================");
-		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1394 ========");
+		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1398 ========");
+		System.out.println("=================================================");
+		
+		L1jtwInfos.printAllInfos();
+
+		System.out.println("                                                 ");
+		System.out.println("=================================================");
+		System.out.println("                L1j-TW 伺服器設定值                               ");
 		System.out.println("=================================================");
 		System.out.println(
-				"經驗值: " + (rateXp) + "倍\n\r" +
-				"正義值: " + (rateLA) + "倍\n\r" +
-				"友好度: " + (rateKarma) + "倍\n\r" +
-				"物品掉落: " + (rateDropItems) + "倍\n\r" +
-				"金幣掉落: " + (rateDropAdena) + "倍\n\r" +
-				"廣播等級: " + (chatLvl) + "級\n\r" +
-				"玩家限數: " + (maxOnlineUsers) + "人");
+				"           經驗值: " + (rateXp) + "倍\n\r" +
+				"           正義值: " + (rateLA) + "倍\n\r" +
+				"           友好度: " + (rateKarma) + "倍\n\r" +
+				"           物品掉落: " + (rateDropItems) + "倍\n\r" +
+				"           金幣掉落: " + (rateDropAdena) + "倍\n\r" +
+				"           廣播等級: " + (chatLvl) + "級\n\r" +
+				"           登入限制: " + (maxOnlineUsers) + "人");
 		if (Config.ALT_NONPVP) {
-			System.out.println("玩家 PK 系統: 開啟");
+			System.out.println("           PK 系統: 開啟");
 		} else {
-			System.out.println("玩家 PK 系統: 關閉");
+			System.out.println("           PK 系統: 關閉");
 		}
 		System.out.println("=================================================");
-		System.out.println("                                  For All User...");
-		System.out.println("=================================================");
+		System.out.println("                                                 ");
 
 		if (Config.DEADLOCK_DETECTOR) {
 			_deadDetectThread = new DeadLockDetector();

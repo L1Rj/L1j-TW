@@ -71,6 +71,7 @@ public interface SkillTimer {
  * XXX 2008/02/13 vala 本來、このクラスはあるべきではないが暫定處置。
  */
 class SkillStop {
+	@SuppressWarnings("unused")
 	private static Logger _log = Logger.getLogger(SkillStop.class.getName());
 
 	public static void stopSkill(L1Character cha, int skillId) {
@@ -550,6 +551,7 @@ class SkillStop {
 			cha.setBraveSpeed(0);
 		} else if (skillId == STATUS_RIBRAVE) { // 生命之樹果實
 			if (cha instanceof L1PcInstance) {
+				@SuppressWarnings("unused")
 				L1PcInstance pc = (L1PcInstance) cha;
 				// XXX 消除生命之樹果實圖案標示的方式仍未知
 			}
@@ -838,6 +840,7 @@ class SkillTimerThreadImpl extends Thread implements SkillTimer {
 		SkillStop.stopSkill(_cha, _skillId);
 	}
 
+	@SuppressWarnings("deprecation")
 	public void kill() {
 		if (Thread.currentThread().getId() == super.getId()) {
 			return; // 呼び出し元スレッドが自分であれば止めない

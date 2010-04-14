@@ -37,8 +37,8 @@ public class L1Present implements L1CommandExecutor {
 			StringTokenizer st = new StringTokenizer(arg);
 			String account = st.nextToken();
 			int itemid = Integer.parseInt(st.nextToken(), 10);
-			int enchant = Integer.parseInt(st.nextToken(), 10);
 			int count = Integer.parseInt(st.nextToken(), 10);
+			int enchant = Integer.parseInt(st.nextToken(), 10);
 
 			L1Item temp = ItemTable.getInstance().getTemplate(itemid);
 			if (temp == null) {
@@ -46,10 +46,11 @@ public class L1Present implements L1CommandExecutor {
 				return;
 			}
 
-			L1DwarfInventory.present(account, itemid, enchant, count);
-			pc.sendPackets(new S_SystemMessage(temp.getIdentifiedNameId() + " " + count + "個 已送出。", true));
-		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 角色名稱 道具編號 增強等級 數量（角色名稱使用*則為全體）。"));
+			L1DwarfInventory.present(account, itemid, count, enchant);
+			pc.sendPackets(new S_SystemMessage("道具編號("+ itemid+"),名稱("+temp.getIdentifiedNameId()+
+					"),已送到("+account+")的倉庫了。", true));	
+			} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 角色名稱 道具編號 數量 增強等級 （角色名稱使用*則為全體）。"));
 		}
 	}
 }
