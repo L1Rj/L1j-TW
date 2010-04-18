@@ -331,13 +331,13 @@ public class C_ItemUSe extends ClientBasePacket {
 				}
 				int weaponId = l1iteminstance1.getItem().getItemId();
 				if (weaponId == 36 || weaponId == 183 || weaponId >= 250 && weaponId <= 255) { // イリュージョン武器
-					if (itemId == 40128|| (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)) { // 對武器施法的幻象卷軸
+					if (itemId == 40128) { // 對武器施法的幻象卷軸
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 						return;
 					}
 				}
-				if (itemId == 40128 || (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)) { // 對武器施法的幻象卷軸
+				if (itemId == 40128) { // 對武器施法的幻象卷軸
 					if (weaponId == 36 || weaponId == 183 || weaponId >= 250 && weaponId <= 255) { // イリュージョン武器
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
@@ -347,7 +347,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 				int enchant_level = l1iteminstance1.getEnchantLevel();
 
-				if (itemId == C_SCROLL_OF_ENCHANT_WEAPON || (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)) { // c-dai
+				if (itemId == C_SCROLL_OF_ENCHANT_WEAPON) { // c-dai
 					pc.getInventory().removeItem(item, 1);
 					if (enchant_level < -6) {
 						// -7以上はできない。
@@ -381,9 +381,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						Enchant.failure(pc, l1iteminstance1, client);
 					}
 				}
-
-			} else if (itemId == 41429 || itemId == 41430 || itemId == 41431 || itemId == 41432 || (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)) {
-				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1) {// 風水地火之武器強化卷軸
+			} else if (itemId == 41429 || itemId == 41430 || itemId == 41431 || itemId == 41432) { // 風水地火之武器強化卷軸
+				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					return;
 				}
