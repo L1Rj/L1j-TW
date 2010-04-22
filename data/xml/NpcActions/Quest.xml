@@ -1108,13 +1108,13 @@
 		</Succeed>
 	</MakeItem>
 	<!--二手商人-->
-        <Action Name="rollko1" NpcId="70020">
-            <ShowHtml HtmlId="rollko1"/>
-        </Action>
-        <Action Name="jode1" NpcId="70056">
-            <ShowHtml HtmlId="jode1"/>
-        </Action>
-        <Action Name="franko1" NpcId="70068">
-            <ShowHtml HtmlId="franko1"/>
-        </Action>
+	<Action Name="rollko1" NpcId="70020">
+		<ShowHtml HtmlId="rollko1"/>
+	</Action>
+	<Action Name="jode1" NpcId="70056">
+		<ShowHtml HtmlId="jode1"/>
+	</Action>
+	<Action Name="franko1" NpcId="70068">
+		<ShowHtml HtmlId="franko1"/>
+	</Action>
 </NpcActionList>

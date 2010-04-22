@@ -42,111 +42,23 @@ public class Enchant {
 		item.setproctect(false);// 裝備保護卷軸
 
 		String s = "";
-		String sa = "";
-		String sb = "";
+		String[] sa = {"", "$246", "$245", "$245", "$245"};
+		String[] sb = {"", "$247", "$247", "$248", "$248"};
 		String s1 = item.getName();
 		String pm = "";
 		if (item.getEnchantLevel() > 0) {
 			pm = "+";
 		}
-		if (item.getItem().getType2() == 1) {
+
+		if (item.getItem().getType2() == 1 || item.getItem().getType2() == 2) {
 			if (!item.isIdentified() || item.getEnchantLevel() == 0) {
-				switch (enchantLvl) {
-					case -1:
-						s = s1;
-						sa = "$246";
-						sb = "$247";
-					break;
-					case 1: // '\001'
-						s = s1;
-						sa = "$245";
-						sb = "$247";
-					break;
-					case 2: // '\002'
-						s = s1;
-						sa = "$245";
-						sb = "$248";
-					break;
-					case 3: // '\003'
-						s = s1;
-						sa = "$245";
-						sb = "$248";
-					break;
-				}
+				s = s1;
 			} else {
-				switch (enchantLvl) {
-					case -1:
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
-						sa = "$246";
-						sb = "$247";
-					break;
-					case 1: // '\001'
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
-						sa = "$245";
-						sb = "$247";
-					break;
-					case 2: // '\002'
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
-						sa = "$245";
-						sb = "$248";
-					break;
-					case 3: // '\003'
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
-						sa = "$245";
-						sb = "$248";
-					break;
-				}
-			}
-		} else if (item.getItem().getType2() == 2) {
-			if (!item.isIdentified() || item.getEnchantLevel() == 0) {
-				switch (enchantLvl) {
-					case -1:
-						s = s1;
-						sa = "$246";
-						sb = "$247";
-					break;
-					case 1: // '\001'
-						s = s1;
-						sa = "$252";
-						sb = "$247 ";
-					break;
-					case 2: // '\002'
-						s = s1;
-						sa = "$252";
-						sb = "$248 ";
-					break;
-					case 3: // '\003'
-						s = s1;
-						sa = "$252";
-						sb = "$248 ";
-					break;
-				}
-			} else {
-				switch (enchantLvl) {
-					case -1:
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
-						sa = "$246";
-						sb = "$247";
-					break;
-					case 1: // '\001'
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
-						sa = "$252";
-						sb = "$247 ";
-					break;
-					case 2: // '\002'
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
-						sa = "$252";
-						sb = "$248 ";
-					break;
-					case 3: // '\003'
-						s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
-						sa = "$252";
-						sb = "$248 ";
-					break;
-				}
+				s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(s1).toString(); // \f1%0が%2%1光ります。
 			}
 		}
-		pc.sendPackets(new S_ServerMessage(SystemMessageId.$161, s, sa, sb));
+
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$161, s, sa[enchantLvl], sb[enchantLvl]));
 		int oldEnchantLvl = item.getEnchantLevel();
 		int newEnchantLvl = item.getEnchantLevel() + enchantLvl;
 		int safeEnchantLvl = item.getItem().get_safeenchant();
@@ -197,34 +109,21 @@ public class Enchant {
 		}
 
 		String s = "";
-		String sa = "";
+		String[] sa = {"", "$245", "$252"};
 		int itemType = item.getItem().getType2();
 		String nameId = item.getName();
 		String pm = "";
 		int enchantLvl = item.getEnchantLevel();
 		int safeEnchantLvl = item.getItem().get_safeenchant();
 
-		if (itemType == 1) { // 武器
+		if (itemType == 1 || itemType == 2) { // 武器 防具
 			if (!item.isIdentified() || item.getEnchantLevel() == 0) {
 				s = nameId; // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
-				sa = "$245";
 			} else {
 				if (item.getEnchantLevel() > 0) {
 					pm = "+";
 				}
 				s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(nameId).toString(); // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
-				sa = "$245";
-			}
-		} else if (itemType == 2) { // 防具
-			if (!item.isIdentified() || item.getEnchantLevel() == 0) {
-				s = nameId; // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
-				sa = " $252";
-			} else {
-				if (item.getEnchantLevel() > 0) {
-					pm = "+";
-				}
-				s = (new StringBuilder()).append(pm + item.getEnchantLevel()).append(" ").append(nameId).toString(); // \f1%0が強烈に%1光ったあと、蒸發してなくなります。
-				sa = " $252";
 			}
 		}
 
@@ -236,106 +135,42 @@ public class Enchant {
 			_log.log(record);
 		}
 
-		pc.sendPackets(new S_ServerMessage(SystemMessageId.$164, s, sa));
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$164, s, sa[itemType]));
 		pc.getInventory().removeItem(item, item.getCount());
 	}
 
 	private static int chance(L1ItemInstance l1iteminstance) {
-		byte byte0 = 0;
+						/*   0  1  2  3  4  5  6  7  8  9  10*/
+		byte[][] byte0 = {  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+							{50,33,25,25,25,20,33,33,33,25,20},
+							{50,33,25,25,25,20,17,14,12,11, 0}};
 		int i = l1iteminstance.getEnchantLevel();
-		if (l1iteminstance.getItem().getType2() == 1) {
-			switch (i) {
-				case 0: // '\0'
-					byte0 = 50;
-				break;
-				case 1: // '\001'
-					byte0 = 33;
-				break;
-				case 2: // '\002'
-					byte0 = 25;
-				break;
-				case 3: // '\003'
-					byte0 = 25;
-				break;
-				case 4: // '\004'
-					byte0 = 25;
-				break;
-				case 5: // '\005'
-					byte0 = 20;
-				break;
-				case 6: // '\006'
-					byte0 = 33;
-				break;
-				case 7: // '\007'
-					byte0 = 33;
-				break;
-				case 8: // '\b'
-					byte0 = 33;
-				break;
-				case 9: // '\t'
-					byte0 = 25;
-				break;
-				case 10: // '\n'
-					byte0 = 20;
-				break;
-			}
-		} else if (l1iteminstance.getItem().getType2() == 2) {
-			switch (i) {
-				case 0: // '\0'
-					byte0 = 50;
-				break;
-				case 1: // '\001'
-					byte0 = 33;
-				break;
-				case 2: // '\002'
-					byte0 = 25;
-				break;
-				case 3: // '\003'
-					byte0 = 25;
-				break;
-				case 4: // '\004'
-					byte0 = 25;
-				break;
-				case 5: // '\005'
-					byte0 = 20;
-				break;
-				case 6: // '\006'
-					byte0 = 17;
-				break;
-				case 7: // '\007'
-					byte0 = 14;
-				break;
-				case 8: // '\b'
-					byte0 = 12;
-				break;
-				case 9: // '\t'
-					byte0 = 11;
-				break;
-			}
-		}
-		return byte0;
+		int index = l1iteminstance.getItem().getType2();
+
+		return byte0[index][i];
 	}
 
 	public static int randomLevel(L1ItemInstance item, int itemId) {
 		if (itemId == ItemId.B_SCROLL_OF_ENCHANT_ARMOR || itemId == ItemId.B_SCROLL_OF_ENCHANT_WEAPON || itemId == 140129 || itemId == 140130) {
 			if (item.getEnchantLevel() <= 2) {
-				int j = RandomArrayList.getInc(100, 1);
-				if (j < 33) {
+				/*int j = RandomArrayList.getInc(100, 1);
+				if (j < 33) { // 這範圍擁有 32%機率
 					return 1;
-				} else if (j < 77) {
+				} else if (j < 77) { // 這範圍擁有 43%機率
 					return 2;
-				} else if (j < 100) {
+				} else if (j < 100) { // 這範圍擁有 22%機率，總機率99%。
 					return 3;
-				}
-			} else if (item.getEnchantLevel() >= 3 && item.getEnchantLevel() <= 5) {
-				int j = RandomArrayList.getInc(100, 1);
-				if (j < 50) {
+				}*/ // 2010/04/20 前使用
+				return RandomArrayList.getInc(3, 1); // 2010/04/20 暫時取代原有code (並非最佳解 只是特例解)
+			} else if (item.getEnchantLevel() <= 5) { // 原始 } else if (item.getEnchantLevel() >= 3 && item.getEnchantLevel() <= 5) {
+				/*int j = RandomArrayList.getInc(100, 1);
+				if (j < 50) { // 這範圍擁有 49%機率
 					return 2;
-				} else {
+				} else { // 這範圍擁有 51%機率
 					return 1;
-				}
-			}
-			{
+				}*/ // 2010/04/20 前使用
+				return RandomArrayList.getInc(2, 1); // 2010/04/20 暫時取代原有code (並非最佳解 只是特例解)
+			} else { // 正常情況下不會使用到這裡
 				return 1;
 			}
 		}
@@ -406,7 +241,7 @@ public class Enchant {
 
 	//飾品強化卷軸-在item物件產生時 依照強化度給予屬性
 	public static L1ItemInstance addDecorationAbility(L1ItemInstance item){
-		if(item.getItem().getType2() == 2 && item.getItem().getType() >= 8 
+		if(item.getItem().getType2() == 2 && item.getItem().getType() >= 8
 				&& item.getItem().getType() <= 12){
 			int itemId = item.getItemId();
 			int enchantLv = item.getEnchantLevel();

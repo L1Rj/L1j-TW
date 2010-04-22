@@ -413,13 +413,17 @@ public class L1Attack {
 		int critical = _hitRate + 10;
 
 		if (attackerDice <= fumble) {
+			_hitRate = 0;
 			return false; // 無法擊中。原本：_hitRate = 0;
 		} else if (attackerDice >= critical) {
+			_hitRate = 100;
 			return true; // 確定擊中。原本：_hitRate = 100;
 		} else {
 			if (attackerDice > defenderDice) {
+				_hitRate = 100;
 				return true; // 確定擊中。原本：_hitRate = 100;
 			} else if (attackerDice <= defenderDice) {
+				_hitRate = 0;
 				return false; // 無法擊中。原本：_hitRate = 0;
 			}
 		}
@@ -541,13 +545,17 @@ public class L1Attack {
 		int critical = _hitRate + 10;
 
 		if (attackerDice <= fumble) {
+			_hitRate = 0;
 			return false; // 無法擊中。原本：_hitRate = 0;
 		} else if (attackerDice >= critical) {
+			_hitRate = 100;
 			return true; // 確定擊中。原本：_hitRate = 100;
 		} else {
 			if (attackerDice > defenderDice) {
+				_hitRate = 100;
 				return true; // 確定擊中。原本：_hitRate = 100;
 			} else if (attackerDice <= defenderDice) {
+				_hitRate = 0;
 				return false; // 無法擊中。原本：_hitRate = 0;
 			}
 		}
@@ -555,7 +563,6 @@ public class L1Attack {
 		if (_weaponType2 == 17) {
 			return true; // 確定擊中。原本：_hitRate = 100; // キーリンクの命中率は100%
 		}
-
 
 		// add end
 		int rnd = RandomArrayList.getInc(100, 1);
@@ -618,13 +625,17 @@ public class L1Attack {
 		int critical = _hitRate + 19;
 
 		if (attackerDice <= fumble) {
+			_hitRate = 0;
 			return false; // 無法擊中。原本：_hitRate = 0;
 		} else if (attackerDice >= critical) {
+			_hitRate = 100;
 			return true; // 確定擊中。原本：_hitRate = 100;
 		} else {
 			if (attackerDice > defenderDice) {
+				_hitRate = 100;
 				return true; // 確定擊中。原本：_hitRate = 100;
 			} else if (attackerDice <= defenderDice) {
+				_hitRate = 0;
 				return false; // 無法擊中。原本：_hitRate = 0;
 			}
 		}
@@ -676,13 +687,17 @@ public class L1Attack {
 		int critical = _hitRate + 19;
 
 		if (attackerDice <= fumble) {
+			_hitRate = 0;
 			return false; // 無法擊中。原本：_hitRate = 0;
 		} else if (attackerDice >= critical) {
+			_hitRate = 100;
 			return true; // 確定擊中。原本：_hitRate = 100;
 		} else {
 			if (attackerDice > defenderDice) {
+				_hitRate = 100;
 				return true; // 確定擊中。原本：_hitRate = 100;
 			} else if (attackerDice <= defenderDice) {
+				_hitRate = 0;
 				return false; // 無法擊中。原本：_hitRate = 0;
 			}
 		}
@@ -729,7 +744,7 @@ public class L1Attack {
 		} else if (_weaponType == 0) { // 素手
 			weaponDamage = 0;
 		} else {
-			weaponDamage = RandomArrayList.getInc(weaponMaxDamage, 1); // getArrayshortList((short) weaponMaxDamage) + 1;
+			weaponDamage = RandomArrayList.getInc(weaponMaxDamage, 1);
 		}
 		if (_pc.hasSkillEffect(SKILL_SOUL_OF_FLAME)) {
 			if (_weaponType != 20 && _weaponType != 62) {
