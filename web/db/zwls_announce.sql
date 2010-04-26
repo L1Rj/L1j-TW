@@ -24,7 +24,7 @@ CREATE TABLE `zwls_announce` (
   `oktime` datetime default NULL,
   `okip` varchar(255) default NULL,
   PRIMARY KEY  (`no`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 

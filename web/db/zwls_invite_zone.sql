@@ -17,7 +17,7 @@ CREATE TABLE `zwls_invite_zone` (
   `code` int(10) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY  (`no`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 

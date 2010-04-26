@@ -26,7 +26,7 @@ CREATE TABLE `user_register` (
   `loginip` varchar(255) default NULL,
   `username` varchar(255) character set utf8 NOT NULL,
   PRIMARY KEY  (`serial`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 

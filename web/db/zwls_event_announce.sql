@@ -26,7 +26,7 @@ CREATE TABLE `zwls_event_announce` (
   `oktime` datetime default NULL,
   `okip` varchar(255) default NULL,
   PRIMARY KEY  (`no`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 

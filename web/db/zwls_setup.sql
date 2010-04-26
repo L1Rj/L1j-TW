@@ -16,7 +16,7 @@ CREATE TABLE `zwls_setup` (
   `type` varchar(255) NOT NULL,
   `setup` int(10) NOT NULL,
   PRIMARY KEY  (`no`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 

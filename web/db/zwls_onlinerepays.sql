@@ -29,7 +29,7 @@ CREATE TABLE `zwls_onlinerepays` (
   `masterip` varchar(255) default NULL,
   `masterread` int(10) NOT NULL default '0',
   PRIMARY KEY  (`no`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 

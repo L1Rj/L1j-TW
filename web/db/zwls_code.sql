@@ -18,7 +18,7 @@ CREATE TABLE `zwls_code` (
   `time` datetime NOT NULL,
   `ip` varchar(255) NOT NULL,
   PRIMARY KEY  (`no`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 

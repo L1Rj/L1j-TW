@@ -70,3 +70,16 @@ skill_time	如果前面skill_id對應的那個魔法的type是1的話,這裡就�
 effect_id	魔法效果所用圖檔。
 effect_target	魔法效果所用圖檔 顯示的目標,0=對方身上,1=自己身上。
 attr		角色施法動作。
+
+
+資料庫格式 MyIsam 與 Innodb 之差異簡介(註:Innodb不支援全文檢索):
+原始來源 : http://www.student.tw/db/showthread.php?t=174156
+
+MyISAM是比較普通常用的SE(Storage Engine, 接下來簡稱SE), 與其他SE一樣都忽略了FK的限制, 屬於non-transactional safe的SE.
+至於InnoDB, 則實做了FK的限制, 包含on update, on delete等restriction. 因此, 建立/設計資料庫的時候, InnoDB是屬於最嚴謹的SE, 
+任何違反資料庫原則的設計都會導致錯誤. 因此, InnoDB是唯一被列入Transactional Safe的SE.
+
+此外, 像是我們平常備份資料庫, 若沒有採用InnoDB, 大可直接備份MySQL資料夾底下的data, c/p就可以帶去另外一台MySQL, 
+但是InnoDB的SE, 就必須透過phpMyAdmin以類似dump的方式(mysqldump)來輸出資料庫的table and data.
+InnoDB這種SE最常的需求在銀行交易系統, 金流系統以及需要不能出錯的資料表(Table)中.
+通常都會搭配begin trans, commit, rollback等指令來完成整體的保護.

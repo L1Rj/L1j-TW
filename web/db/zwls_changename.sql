@@ -19,7 +19,7 @@ CREATE TABLE `zwls_changename` (
   `newname` varchar(255) NOT NULL,
   `time` datetime NOT NULL,
   PRIMARY KEY  (`no`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 

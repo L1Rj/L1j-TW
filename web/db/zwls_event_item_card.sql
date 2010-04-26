@@ -29,7 +29,7 @@ CREATE TABLE `zwls_event_item_card` (
   `oktime` datetime default NULL,
   `okip` varchar(255) default NULL,
   PRIMARY KEY  (`no`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 

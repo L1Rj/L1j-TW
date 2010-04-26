@@ -21,7 +21,7 @@ CREATE TABLE `zwls_accounts_trade` (
   `buytime` datetime default NULL,
   `tradestatus` int(10) NOT NULL,
   PRIMARY KEY  (`no`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 

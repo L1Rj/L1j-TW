@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `zwls_item_list` (
   `stoptime` datetime DEFAULT NULL,
   `itemhelp` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=633 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=633 ;
 
 --
 -- 列出以下資料庫的數據： `zwls_item_list`

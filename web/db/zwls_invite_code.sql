@@ -19,7 +19,7 @@ CREATE TABLE `zwls_invite_code` (
   `time` datetime default NULL,
   `time2` datetime default NULL,
   PRIMARY KEY  (`invitecode`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 

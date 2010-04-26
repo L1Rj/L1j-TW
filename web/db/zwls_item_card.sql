@@ -24,7 +24,7 @@ CREATE TABLE `zwls_item_card` (
   `time` datetime default NULL,
   `time2` datetime default NULL,
   PRIMARY KEY  (`password`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
