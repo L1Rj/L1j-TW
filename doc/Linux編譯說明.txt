@@ -1,0 +1,16 @@
+Fedora 編譯l1jtw方式說明(其他linux亦類似):
+
+1.先安裝同步跟編譯需要的檔案
+yum install subversion java-1.6.0* ant unzip
+
+2.指定專案位置與同步目錄(請找適當位置輸入指令,目錄會產生在該位置,請不要參雜有中文目錄)
+svn co http://l1j-tw.googlecode.com/svn/ l1jtw
+
+3.同步檔案
+cd l1jtw
+svn up
+
+4.編譯 l1jtw
+ant
+
+5.完成.

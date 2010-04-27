@@ -81,3 +81,12 @@ MyISAM是比較普通常用的SE(Storage Engine, 接下來簡稱SE), 與其他SE
 但是InnoDB的SE, 就必須透過phpMyAdmin以類似dump的方式(mysqldump)來輸出資料庫的table and data.
 InnoDB這種SE最常的需求在銀行交易系統, 金流系統以及需要不能出錯的資料表(Table)中.
 通常都會搭配begin trans, commit, rollback等指令來完成整體的保護.
+
+InnoDB 設定參考(無明顯延遲出現則無需變更):
+Windows 修改 my.ini Linux 修改 /etc/my.cnf
+
+較大暫存設定:
+[myInnoDB]
+set-variable = innodb_buffer_pool_size=1024M
+set-variable = innodb_additional_mem_pool_size=10M
+innodb_flush_log_at_trx_commit=1
