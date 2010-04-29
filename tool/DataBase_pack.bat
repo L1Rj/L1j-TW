@@ -60,7 +60,7 @@ set Language_title1=-------------------------------
 set Language_title2=Output In One File System Of DB
 set Language_title3=-------------------------------
 set Language_choose1= 》1. MyISAM Files         [l1jdb_jp.sql]
-set Language_choose2= 》2. MyISAM_TW Files      [l1jdb_tw.sql + l1jdb_tw_custom.sql]
+set Language_choose2= 》2. InnoDB_TW Files      [l1jdb_tw.sql + l1jdb_tw_custom.sql]
 set Language_choose3= 》3. All In Default Files [l1jdb_jp.sql + l1jdb_tw.sql]
 set Language_choose4= 》9. Exit
 set Language_Action=Actions：
@@ -77,14 +77,14 @@ goto Start
 
 #	打包台版
 :Select2
-copy ..\db\MyISAM_TW\*.sql l1jdb_tw.sql
-copy ..\db\MyISAM_TW\Custom\*.sql l1jdb_tw_custom.sql
+copy ..\db\InnoDB_TW\*.sql l1jdb_tw.sql
+copy ..\db\InnoDB_TW\Custom\*.sql l1jdb_tw_custom.sql
 goto Start
 
 #	分類打包
 :Select3
 copy ..\db\MyISAM\*.sql l1jdb_jp.sql
-copy ..\db\MyISAM_TW\*.sql l1jdb_tw.sql
+copy ..\db\InnoDB_TW\*.sql l1jdb_tw.sql
 goto Start
 
 #	離開
