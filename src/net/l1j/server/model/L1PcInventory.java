@@ -23,11 +23,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.l1j.Config;
-import net.l1j.server.items.ItemId;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
+import net.l1j.server.model.item.ItemId;
 import net.l1j.server.serverpackets.S_AddItem;
 import net.l1j.server.serverpackets.S_CharVisualUpdate;
 import net.l1j.server.serverpackets.S_DeleteInventoryItem;
@@ -41,7 +41,7 @@ import net.l1j.server.serverpackets.S_PacketBox;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.storage.CharactersItemStorage;
 import net.l1j.server.templates.L1Item;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
 public class L1PcInventory extends L1Inventory {
 	private static final long serialVersionUID = 1L;

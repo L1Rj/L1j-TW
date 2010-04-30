@@ -32,7 +32,7 @@ import net.l1j.server.IdFactory;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1FurnitureInstance;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class FurnitureSpawnTable {
 	private static Logger _log = Logger.getLogger(FurnitureSpawnTable.class.getName());

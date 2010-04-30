@@ -23,7 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.l1j.MapReader;
-import net.l1j.server.utils.PerformanceTimer;
+import net.l1j.util.PerformanceTimer;
 
 public class L1WorldMap {
 	private static Logger _log = Logger.getLogger(L1WorldMap.class.getName());

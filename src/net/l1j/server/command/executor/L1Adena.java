@@ -20,9 +20,9 @@ package net.l1j.server.command.executor;
 
 import java.util.StringTokenizer;
 
-import net.l1j.server.items.ItemId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.model.item.ItemId;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1Adena implements L1CommandExecutor {

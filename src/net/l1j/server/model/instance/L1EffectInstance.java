@@ -38,7 +38,7 @@ import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.thread.GeneralThreadPool;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1EffectInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;

@@ -31,7 +31,7 @@ import javolution.util.FastMap;
 
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.templates.L1SpawnTime;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class SpawnTimeTable {
 	private static Logger _log = Logger.getLogger(SpawnTimeTable.class.getName());

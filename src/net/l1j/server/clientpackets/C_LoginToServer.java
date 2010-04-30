@@ -43,7 +43,7 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
-import net.l1j.server.skills.SkillUse;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.serverpackets.S_ActiveSpells;
 import net.l1j.server.serverpackets.S_AddSkill;
 import net.l1j.server.serverpackets.S_BonusStats;
@@ -67,9 +67,9 @@ import net.l1j.server.templates.L1BookMark;
 import net.l1j.server.templates.L1GetBackRestart;
 import net.l1j.server.templates.L1Skills;
 import net.l1j.server.types.Base;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 /*
  * 官方的 Class 送出的封包 [備註:這些封包是官方最新的, 舊版請勿使用該封包位址.. 只可參考內容]

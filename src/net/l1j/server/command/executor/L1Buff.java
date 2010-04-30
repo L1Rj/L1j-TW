@@ -26,7 +26,7 @@ import javolution.util.FastTable;
 import net.l1j.server.datatables.SkillsTable;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillUse;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.templates.L1Skills;
 import net.l1j.server.types.Base;

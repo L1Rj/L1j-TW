@@ -27,7 +27,7 @@ import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.templates.L1MobGroup;
 import net.l1j.server.templates.L1NpcCount;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
 public class L1MobGroupSpawn {
 	private static final Logger _log = Logger.getLogger(L1MobGroupSpawn.class.getName());

@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.IdFactory;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 // Referenced classes of package net.l1j.server.model:
 // L1PcInstance

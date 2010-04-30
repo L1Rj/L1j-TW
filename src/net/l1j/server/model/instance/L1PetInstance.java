@@ -42,9 +42,9 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1Pet;
 import net.l1j.server.templates.L1PetItem;
 import net.l1j.server.templates.L1PetType;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1PetInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;

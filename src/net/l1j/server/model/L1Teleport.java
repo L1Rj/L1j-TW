@@ -25,7 +25,7 @@ import net.l1j.server.model.map.L1Map;
 import net.l1j.server.serverpackets.S_Paralysis;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.serverpackets.S_Teleport;
-import net.l1j.server.utils.Teleportation;
+import net.l1j.util.Teleportation;
 
 public class L1Teleport {
 	// 順番にteleport(白), change position e(青), ad mass teleport e(赤), call clan(綠)

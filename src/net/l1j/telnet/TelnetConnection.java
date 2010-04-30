@@ -25,7 +25,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-import net.l1j.server.utils.StreamUtil;
+import net.l1j.util.StreamUtil;
 import net.l1j.telnet.command.TelnetCommandExecutor;
 import net.l1j.telnet.command.TelnetCommandResult;
 

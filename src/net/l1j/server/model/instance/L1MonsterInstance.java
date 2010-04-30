@@ -18,7 +18,7 @@
  */
 package net.l1j.server.model.instance;
 
-import static net.l1j.server.skills.SkillId.SKILL_FOG_OF_SLEEPING;
+import static net.l1j.server.model.skill.SkillId.*;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,8 +46,8 @@ import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillBrave;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.CalcExp;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.CalcExp;
+import net.l1j.util.RandomArrayList;
 import net.l1j.thread.GeneralThreadPool;
 
 public class L1MonsterInstance extends L1NpcInstance {

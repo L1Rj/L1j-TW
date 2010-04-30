@@ -30,7 +30,7 @@ import javolution.util.FastMap;
 
 import net.l1j.L1DatabaseFactory;
 import static net.l1j.server.ActionCodes.*;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class SprTable {
 	private static Logger _log = Logger.getLogger(SprTable.class.getName());

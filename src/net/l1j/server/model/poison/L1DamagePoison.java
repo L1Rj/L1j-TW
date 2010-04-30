@@ -23,7 +23,7 @@ import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.thread.GeneralThreadPool;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1DamagePoison extends L1Poison {
 	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();

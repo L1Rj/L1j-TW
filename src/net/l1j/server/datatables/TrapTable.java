@@ -33,7 +33,7 @@ import javolution.util.FastMap;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.trap.L1Trap;
 import net.l1j.server.storage.TrapStorage;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class TrapTable {
 	private static Logger _log = Logger.getLogger(TrapTable.class.getName());

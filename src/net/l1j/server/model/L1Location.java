@@ -21,7 +21,7 @@ package net.l1j.server.model;
 import net.l1j.server.model.map.L1Map;
 import net.l1j.server.model.map.L1WorldMap;
 import net.l1j.server.types.Point;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
 public class L1Location extends Point {
 	protected L1Map _map = L1Map.newNull();

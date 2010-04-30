@@ -30,7 +30,7 @@ import javolution.util.FastTable;
 
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.templates.L1Command;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class L1Commands {
 	private static Logger _log = Logger.getLogger(L1Commands.class.getName());

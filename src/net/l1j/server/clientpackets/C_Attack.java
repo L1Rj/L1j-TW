@@ -35,8 +35,8 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 import static net.l1j.server.model.instance.L1PcInstance.REGENSTATE_ATTACK;
-import static net.l1j.server.skills.SkillId.SKILL_ABSOLUTE_BARRIER;
-import static net.l1j.server.skills.SkillId.SKILL_MEDITATION;
+import static net.l1j.server.model.skill.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class C_Attack extends ClientBasePacket {
 	private static final String C_ATTACK = "[C] C_Attack";

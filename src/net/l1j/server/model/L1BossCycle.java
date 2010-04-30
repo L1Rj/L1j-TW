@@ -36,8 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javolution.util.FastMap;
 
 import net.l1j.server.datatables.BossSpawnTable;
-import net.l1j.server.utils.PerformanceTimer;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.PerformanceTimer;
+import net.l1j.util.RandomArrayList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class L1BossCycle {

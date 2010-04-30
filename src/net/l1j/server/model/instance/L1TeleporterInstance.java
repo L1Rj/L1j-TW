@@ -29,7 +29,7 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.npc.L1NpcHtml;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 import net.l1j.thread.GeneralThreadPool;
 
 public class L1TeleporterInstance extends L1NpcInstance {

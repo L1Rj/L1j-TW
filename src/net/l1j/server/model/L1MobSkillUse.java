@@ -40,7 +40,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
-import net.l1j.server.skills.SkillUse;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_NPCPack;
 import net.l1j.server.serverpackets.S_SkillSound;
@@ -48,7 +48,7 @@ import net.l1j.server.templates.L1MobSkill;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1Skills;
 import net.l1j.server.types.Base;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
 public class L1MobSkillUse {
 	private static Logger _log = Logger.getLogger(L1MobSkillUse.class.getName());

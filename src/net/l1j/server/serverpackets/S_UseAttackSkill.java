@@ -25,7 +25,7 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.instance.L1PcInstance;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class S_UseAttackSkill extends ServerBasePacket {
 	private static final String S_USE_ATTACK_SKILL = "[S] S_UseAttackSkill";

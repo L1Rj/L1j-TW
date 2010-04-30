@@ -21,7 +21,7 @@ import java.util.logging.LogRecord;
 
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.utils.StringUtil;
+import net.l1j.util.StringUtil;
 
 public class EnchantLogFormatter extends Formatter {
 	private static final String NEXT_LINE = "\r\n";

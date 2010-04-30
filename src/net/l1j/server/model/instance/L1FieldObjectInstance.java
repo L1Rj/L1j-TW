@@ -24,13 +24,13 @@ import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
-import net.l1j.server.skills.SkillUse;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.types.Base;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1FieldObjectInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;

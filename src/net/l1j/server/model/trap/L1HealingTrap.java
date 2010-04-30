@@ -21,7 +21,7 @@ package net.l1j.server.model.trap;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.storage.TrapStorage;
-import net.l1j.server.utils.Dice;
+import net.l1j.util.Dice;
 
 public class L1HealingTrap extends L1Trap {
 	private final Dice _dice;

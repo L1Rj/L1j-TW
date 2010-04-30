@@ -34,7 +34,7 @@ import javolution.util.FastMap;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.taskmanager.tasks.TaskRestart;
 import net.l1j.server.taskmanager.tasks.TaskShutdown;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 import net.l1j.thread.ThreadPoolManager;
 
 /**

@@ -34,7 +34,7 @@ import net.l1j.server.model.map.L1WorldMap;
 import net.l1j.server.storage.CharacterStorage;
 import net.l1j.server.storage.mysql.MySqlCharacterStorage;
 import net.l1j.server.templates.L1CharName;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class CharacterTable {
 	private static Logger _log = Logger.getLogger(CharacterTable.class.getName());

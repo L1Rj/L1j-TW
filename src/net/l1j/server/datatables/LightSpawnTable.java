@@ -32,7 +32,7 @@ import net.l1j.server.IdFactory;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1FieldObjectInstance;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class LightSpawnTable {
 	private static Logger _log = Logger.getLogger(LightSpawnTable.class.getName());

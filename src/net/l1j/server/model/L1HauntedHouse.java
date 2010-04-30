@@ -27,11 +27,11 @@ import net.l1j.server.model.L1Object;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DoorInstance;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillUse;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.types.Base;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1HauntedHouse {
 	private final FastTable<L1PcInstance> _members = new FastTable<L1PcInstance>();

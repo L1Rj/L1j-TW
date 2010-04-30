@@ -35,7 +35,7 @@ import net.l1j.server.model.gametime.L1GameTime;
 import net.l1j.server.model.gametime.L1GameTimeAdapter;
 import net.l1j.server.model.gametime.L1GameTimeClock;
 import net.l1j.server.serverpackets.S_PacketBox;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class HomeTownTimeController {
 	private static Logger _log = Logger.getLogger(HomeTownTimeController.class.getName());

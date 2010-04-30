@@ -34,7 +34,7 @@ import net.l1j.server.serverpackets.S_CloseList;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillIconGFX;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1PolyMorph {
 	private static Logger _log = Logger.getLogger(L1PolyMorph.class.getName());

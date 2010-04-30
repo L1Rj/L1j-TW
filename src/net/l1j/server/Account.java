@@ -32,7 +32,7 @@ import java.util.logging.Logger;
 import net.l1j.Base64;
 import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 /**
  * ログインの為の樣々なインターフェースを提供する.

@@ -23,7 +23,7 @@ import javolution.util.FastTable;
 import net.l1j.server.model.L1Attack;
 import net.l1j.server.serverpackets.S_ChangeHeading;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.CalcExp;
+import net.l1j.util.CalcExp;
 
 public class L1ScarecrowInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;

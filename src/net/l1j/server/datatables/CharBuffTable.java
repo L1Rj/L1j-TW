@@ -26,8 +26,8 @@ import java.util.logging.Logger;
 
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.utils.SQLUtil;
-import static net.l1j.server.skills.SkillId.*;
+import net.l1j.util.SQLUtil;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class CharBuffTable {
 	private static Logger _log = Logger.getLogger(CharBuffTable.class.getName());

@@ -20,7 +20,7 @@ package net.l1j.server.model.classes;
 
 import net.l1j.Config;
 import net.l1j.server.model.id.L1ClassId;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
 class L1WizardClassFeature extends L1ClassFeature {
 

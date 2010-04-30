@@ -31,7 +31,7 @@ import javolution.util.FastMap;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.templates.L1Pet;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class PetTable {
 	private static Logger _log = Logger.getLogger(PetTable.class.getName());

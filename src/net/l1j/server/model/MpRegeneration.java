@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.types.Point;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class MpRegeneration extends TimerTask {
 	private static Logger _log = Logger.getLogger(MpRegeneration.class.getName());

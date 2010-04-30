@@ -32,8 +32,8 @@ import javolution.util.FastSet;
 
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.templates.L1PetType;
-import net.l1j.server.utils.IntRange;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.IntRange;
+import net.l1j.util.SQLUtil;
 
 public class PetTypeTable {
 	private static Logger _log = Logger.getLogger(PetTypeTable.class.getName());

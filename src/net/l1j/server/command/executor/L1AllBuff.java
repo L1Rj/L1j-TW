@@ -25,14 +25,14 @@ import net.l1j.server.model.L1PolyMorph;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillUse;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.templates.L1Skills;
 import net.l1j.server.types.Base;
-import net.l1j.server.utils.BuffUtil;
+import net.l1j.util.BuffUtil;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1AllBuff implements L1CommandExecutor {
 	public static L1CommandExecutor getInstance() {

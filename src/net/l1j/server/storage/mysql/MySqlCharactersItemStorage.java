@@ -29,11 +29,11 @@ import javolution.util.FastTable;
 
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.datatables.ItemTable;
-import net.l1j.server.items.actions.Enchant;
 import net.l1j.server.model.instance.L1ItemInstance;
+import net.l1j.server.model.item.action.Enchant;
 import net.l1j.server.storage.CharactersItemStorage;
 import net.l1j.server.templates.L1Item;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class MySqlCharactersItemStorage extends CharactersItemStorage {
 	private static final Logger _log = Logger.getLogger(MySqlCharactersItemStorage.class.getName());

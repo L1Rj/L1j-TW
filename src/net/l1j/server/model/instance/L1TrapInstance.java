@@ -28,9 +28,9 @@ import net.l1j.server.model.trap.L1Trap;
 import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_Trap;
 import net.l1j.server.types.Point;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1TrapInstance extends L1Object {
 	private static final long serialVersionUID = 1L;

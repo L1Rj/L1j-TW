@@ -21,13 +21,13 @@ package net.l1j.server.clientpackets;
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.CastleTable;
 import net.l1j.server.datatables.ItemTable;
-import net.l1j.server.items.ItemId;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.model.item.ItemId;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Castle;
 

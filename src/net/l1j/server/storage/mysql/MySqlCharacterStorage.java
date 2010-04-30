@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.storage.CharacterStorage;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class MySqlCharacterStorage implements CharacterStorage {
 	private static Logger _log = Logger.getLogger(MySqlCharacterStorage.class.getName());

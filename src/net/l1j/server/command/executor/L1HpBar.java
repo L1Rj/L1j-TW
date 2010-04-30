@@ -26,7 +26,7 @@ import net.l1j.server.model.instance.L1SummonInstance;
 import net.l1j.server.serverpackets.S_HPMeter;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
-import static net.l1j.server.skills.SkillId.GMSTATUS_HPBAR;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1HpBar implements L1CommandExecutor {
 	public static L1CommandExecutor getInstance() {

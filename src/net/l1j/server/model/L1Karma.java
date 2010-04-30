@@ -18,7 +18,7 @@
  */
 package net.l1j.server.model;
 
-import net.l1j.server.utils.IntRange;
+import net.l1j.util.IntRange;
 
 public class L1Karma {
 	private static final int[] KARMA_POINT = { 10000, 20000, 100000, 500000, 1500000, 3000000, 5000000, 10000000, 15500000 };

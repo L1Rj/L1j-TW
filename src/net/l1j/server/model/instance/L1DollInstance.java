@@ -29,7 +29,7 @@ import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_DollPack;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 import net.l1j.thread.GeneralThreadPool;
 
 import static net.l1j.server.ActionCodes.*;

@@ -23,7 +23,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
-import static net.l1j.server.skills.SkillId.GMSTATUS_FINDINVIS;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1FindInvis implements L1CommandExecutor {
 	public static L1CommandExecutor getInstance() {

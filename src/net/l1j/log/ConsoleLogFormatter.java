@@ -23,8 +23,8 @@ import java.io.StringWriter;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-import net.l1j.server.utils.StreamUtil;
-import net.l1j.server.utils.StringUtil;
+import net.l1j.util.StreamUtil;
+import net.l1j.util.StringUtil;
 
 public class ConsoleLogFormatter extends Formatter {
 	private static final String NEXT_LINE = "\r\n";

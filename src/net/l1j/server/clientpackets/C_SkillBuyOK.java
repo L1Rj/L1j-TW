@@ -22,9 +22,9 @@ import javolution.util.FastTable;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.SkillsTable;
-import net.l1j.server.items.ItemId;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.model.item.ItemId;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillList;
 import net.l1j.server.templates.L1Skills;

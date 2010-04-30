@@ -28,7 +28,7 @@ import javolution.util.FastTable;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1NpcInstance;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class S_AuctionBoard extends ServerBasePacket {
 	private static final String S_AUCTION_BOARD = "[S] S_AuctionBoard";

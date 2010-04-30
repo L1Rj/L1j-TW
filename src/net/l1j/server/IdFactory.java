@@ -26,7 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.l1j.L1DatabaseFactory;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class IdFactory {
 	private static Logger _log = Logger.getLogger(IdFactory.class.getName());

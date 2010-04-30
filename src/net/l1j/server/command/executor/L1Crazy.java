@@ -20,7 +20,7 @@ package net.l1j.server.command.executor;
 
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
-import net.l1j.server.utils.BuffUtil;
+import net.l1j.util.BuffUtil;
 
 public class L1Crazy implements L1CommandExecutor {
 	public static L1CommandExecutor getInstance() {

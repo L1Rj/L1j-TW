@@ -38,6 +38,7 @@ import net.l1j.server.datatables.ExpTable;
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.model.id.L1ClassId;
 import net.l1j.server.model.id.SystemMessageId;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.model.AcceleratorChecker;
 import net.l1j.server.model.HpRegeneration;
 import net.l1j.server.model.L1Attack;
@@ -68,7 +69,6 @@ import net.l1j.server.model.MpRegenerationByDoll;
 import net.l1j.server.model.HpRegenerationByDoll;
 import net.l1j.server.model.classes.L1ClassFeature;
 import net.l1j.server.model.gametime.L1GameTimeCarrier;
-import net.l1j.server.skills.SkillUse;
 import net.l1j.server.serverpackets.S_BlueMessage;
 import net.l1j.server.serverpackets.S_BonusStats;
 import net.l1j.server.serverpackets.S_CastleMaster;
@@ -98,7 +98,7 @@ import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1PrivateShopBuyList;
 import net.l1j.server.templates.L1PrivateShopSellList;
 import net.l1j.server.types.Base;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 import net.l1j.thread.GeneralThreadPool;
 import net.l1j.thread.PcExpMonitor;
 import net.l1j.thread.PcFrameMonitor;
@@ -106,7 +106,7 @@ import net.l1j.thread.PcGhostMonitor;
 import net.l1j.thread.PcHellMonitor;
 import net.l1j.thread.PcInvisMonitor;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1PcInstance extends L1Character {
 	private static final long serialVersionUID = 1L;

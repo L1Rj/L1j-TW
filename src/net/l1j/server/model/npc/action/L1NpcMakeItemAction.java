@@ -37,7 +37,7 @@ import net.l1j.server.model.npc.L1NpcHtml;
 import net.l1j.server.serverpackets.S_HowManyMake;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Item;
-import net.l1j.server.utils.IterableElementList;
+import net.l1j.util.IterableElementList;
 
 public class L1NpcMakeItemAction extends L1NpcXmlAction {
 	private final List<L1ObjectAmount<Integer>> _materials = new FastTable<L1ObjectAmount<Integer>>();

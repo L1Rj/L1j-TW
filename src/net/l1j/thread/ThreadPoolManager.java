@@ -30,7 +30,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.l1j.Config;
-import net.l1j.server.utils.StringUtil;
+import net.l1j.util.StringUtil;
 
 /**
  * <p>

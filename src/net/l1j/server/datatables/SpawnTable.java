@@ -34,9 +34,9 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.L1Spawn;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.NumberUtil;
-import net.l1j.server.utils.PerformanceTimer;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.NumberUtil;
+import net.l1j.util.PerformanceTimer;
+import net.l1j.util.SQLUtil;
 
 public class SpawnTable {
 	private static Logger _log = Logger.getLogger(SpawnTable.class.getName());

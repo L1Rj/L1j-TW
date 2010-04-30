@@ -28,7 +28,7 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ChatPacket;
 import net.l1j.server.storage.mysql.MySqlCharacterStorage;
-import net.l1j.server.utils.IntRange;
+import net.l1j.util.IntRange;
 
 import static net.l1j.telnet.command.TelnetCommandResult.*;
 

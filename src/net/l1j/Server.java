@@ -14,7 +14,6 @@
  */
 package net.l1j;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,39 +25,38 @@ import java.util.logging.Logger;
 import net.l1j.Config;
 import net.l1j.server.GameServer;
 import net.l1j.telnet.TelnetServer;
+import net.l1j.util.StreamUtil;
 
 /**
  * 啟動 L1J-TW 伺服器
  */
 public class Server {
-	/** 用於訊息記錄 */
 	private static final Logger _log = Logger.getLogger(Server.class.getName());
 
-	/** 設定記錄檔案的資料夾 */
-	private static final String LOG_PROP = "./config/log.properties";
-
-	/**
-	 * 啟動伺服器
-	 * 
-	 * @param args 命令匯流排參數
-	 * @throws Exception
-	 */
 	public static void main(String[] args) throws Exception {
-		File javaLogFolder = new File("./log");
-		javaLogFolder.mkdir();
+		// Local Constants
+		final String LOG_FOLDER = "log";
+		final String LOG_NAME = "./config/log.properties";
 
-		File gameLogFolder = new File("./log/game");
-		gameLogFolder.mkdir();
+		/*** Main ***/
+		// Create log folder
+		File logFolder = new File(LOG_FOLDER);
+		logFolder.mkdir();
 
+		// Create input stream for log file -- or store file data into memory
+		InputStream is = null;
 		try {
-			InputStream is = new BufferedInputStream(new FileInputStream(LOG_PROP));
+			is = new FileInputStream(new File(LOG_NAME));
 			LogManager.getLogManager().readConfiguration(is);
 			is.close();
 		} catch (IOException e) {
-			_log.log(Level.SEVERE, "Failed to Load " + LOG_PROP + " File.", e);
+			_log.log(Level.SEVERE, "Failed to Load " + LOG_NAME + " File.", e);
 			System.exit(0);
+		} finally {
+			StreamUtil.close(is);
 		}
 
+		// Load Config
 		try {
 			Config.load();
 		} catch (Exception e) {
@@ -66,6 +64,7 @@ public class Server {
 			System.exit(0);
 		}
 
+		// Prepare Database
 		L1DatabaseFactory.getInstance();
 
 		GameServer.getInstance().initialize();

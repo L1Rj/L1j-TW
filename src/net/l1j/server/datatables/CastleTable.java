@@ -34,7 +34,7 @@ import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.WarTimeController;
 import net.l1j.server.templates.L1Castle;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class CastleTable {
 	private static Logger _log = Logger.getLogger(CastleTable.class.getName());

@@ -25,7 +25,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1ArmorSets;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public abstract class L1ArmorSet {
 	public abstract void giveEffect(L1PcInstance pc);

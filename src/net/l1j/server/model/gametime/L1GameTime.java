@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import net.l1j.server.utils.IntRange;
+import net.l1j.util.IntRange;
 
 public class L1GameTime {
 	// 2003年7月3日 12:00(UTC)が1月1日00:00

@@ -27,7 +27,7 @@ import net.l1j.server.datatables.NpcTable;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.SpawnUtil;
+import net.l1j.util.SpawnUtil;
 
 public class L1SpawnCmd implements L1CommandExecutor {
 	private static Logger _log = Logger.getLogger(L1SpawnCmd.class.getName());

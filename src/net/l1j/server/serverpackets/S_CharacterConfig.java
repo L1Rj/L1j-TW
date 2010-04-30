@@ -28,7 +28,7 @@ import java.util.logging.Level;
 
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.Opcodes;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class S_CharacterConfig extends ServerBasePacket {
 	private static final String S_CHARACTER_CONFIG = "[S] S_CharacterConfig";

@@ -29,7 +29,7 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
-import net.l1j.server.skills.SkillUse;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_EffectLocation;
 import net.l1j.server.serverpackets.S_Paralysis;
@@ -38,9 +38,9 @@ import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.serverpackets.S_UseAttackSkill;
 import net.l1j.server.templates.L1Skills;
 import net.l1j.server.types.Base;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1WeaponSkill {
 	private int _weaponId;

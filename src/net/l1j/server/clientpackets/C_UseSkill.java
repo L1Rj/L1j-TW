@@ -30,11 +30,11 @@ import net.l1j.server.model.AcceleratorChecker;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillUse;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.types.Base;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class C_UseSkill extends ClientBasePacket {
 	private static final String C_USE_SKILL = "[C] C_UseSkill";

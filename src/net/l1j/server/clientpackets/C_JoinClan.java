@@ -25,7 +25,7 @@ import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Message_YN;
 import net.l1j.server.serverpackets.S_ServerMessage;
-import net.l1j.server.utils.FaceToFace;
+import net.l1j.util.FaceToFace;
 
 public class C_JoinClan extends ClientBasePacket {
 	private static final String C_JOIN_CLAN = "[C] C_JoinClan";

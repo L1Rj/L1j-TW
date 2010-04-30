@@ -39,7 +39,7 @@ import net.l1j.server.model.gametime.L1GameTimeClock;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1SpawnTime;
 import net.l1j.server.types.Point;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 import net.l1j.thread.GeneralThreadPool;
 
 public class L1Spawn extends L1GameTimeAdapter {

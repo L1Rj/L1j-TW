@@ -31,17 +31,17 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.map.L1Map;
 import net.l1j.server.model.poison.L1Poison;
-import net.l1j.server.skills.SkillTimer;
-import net.l1j.server.skills.SkillTimerCreator;
+import net.l1j.server.model.skill.SkillTimer;
+import net.l1j.server.model.skill.SkillTimerCreator;
 import net.l1j.server.serverpackets.S_Light;
 import net.l1j.server.serverpackets.S_Poison;
 import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.ServerBasePacket;
 import net.l1j.server.types.Base;
 import net.l1j.server.types.Point;
-import net.l1j.server.utils.IntRange;
+import net.l1j.util.IntRange;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1Character extends L1Object {
 	private static final long serialVersionUID = 1L;

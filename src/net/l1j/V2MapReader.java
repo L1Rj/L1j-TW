@@ -32,8 +32,8 @@ import javolution.util.FastTable;
 import net.l1j.server.datatables.MapsTable;
 import net.l1j.server.model.map.L1Map;
 import net.l1j.server.model.map.L1V2Map;
-import net.l1j.server.utils.BinaryInputStream;
-import net.l1j.server.utils.FileUtil;
+import net.l1j.util.BinaryInputStream;
+import net.l1j.util.FileUtil;
 
 /**
  * テキストマップ(v2maps/\d*.txt)を讀み⑸む（テスト用).

@@ -34,7 +34,7 @@ import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class NpcTable {
 	private static Logger _log = Logger.getLogger(NpcTable.class.getName());

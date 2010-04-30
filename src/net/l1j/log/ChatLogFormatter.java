@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-import net.l1j.server.utils.StringUtil;
+import net.l1j.util.StringUtil;
 
 public class ChatLogFormatter extends Formatter {
 	private static final String NEXT_LINE = "\r\n";

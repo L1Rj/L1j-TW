@@ -30,7 +30,7 @@ import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Bookmarks;
 import net.l1j.server.serverpackets.S_ServerMessage;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class L1BookMark {
 	private static Logger _log = Logger.getLogger(L1BookMark.class.getName());

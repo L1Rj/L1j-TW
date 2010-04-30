@@ -26,8 +26,8 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.l1j.server.utils.IntRange;
-import net.l1j.server.utils.StreamUtil;
+import net.l1j.util.IntRange;
+import net.l1j.util.StreamUtil;
 
 public final class Config {
 	private static final Logger _log = Logger.getLogger(Config.class.getName());

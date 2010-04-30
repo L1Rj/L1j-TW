@@ -18,10 +18,10 @@
  */
 package net.l1j.server.clientpackets;
 
-import static net.l1j.server.skills.SkillId.SKILL_SILENCE;
-import static net.l1j.server.skills.SkillId.SKILL_AREA_OF_SILENCE;
-import static net.l1j.server.skills.SkillId.STATUS_POISON_SILENCE;
-import static net.l1j.server.skills.SkillId.STATUS_CHAT_PROHIBITED;
+import static net.l1j.server.model.skill.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 import java.util.logging.Level;
 import java.util.logging.LogRecord;

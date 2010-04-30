@@ -34,8 +34,8 @@ import net.l1j.server.model.L1Object;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.npc.action.L1NpcAction;
 import net.l1j.server.model.npc.action.L1NpcXmlParser;
-import net.l1j.server.utils.FileUtil;
-import net.l1j.server.utils.PerformanceTimer;
+import net.l1j.util.FileUtil;
+import net.l1j.util.PerformanceTimer;
 
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;

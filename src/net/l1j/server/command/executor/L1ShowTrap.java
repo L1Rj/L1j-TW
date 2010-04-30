@@ -24,7 +24,7 @@ import net.l1j.server.model.instance.L1TrapInstance;
 import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
-import static net.l1j.server.skills.SkillId.GMSTATUS_SHOWTRAPS;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1ShowTrap implements L1CommandExecutor {
 	public static L1CommandExecutor getInstance() {

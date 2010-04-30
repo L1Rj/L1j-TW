@@ -34,7 +34,7 @@ import net.l1j.server.IdFactory;
 import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class ClanTable {
 	private static Logger _log = Logger.getLogger(ClanTable.class.getName());

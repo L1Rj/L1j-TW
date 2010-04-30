@@ -20,7 +20,7 @@ package net.l1j.server.model.trap;
 
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillUse;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.storage.TrapStorage;
 import net.l1j.server.types.Base;
 

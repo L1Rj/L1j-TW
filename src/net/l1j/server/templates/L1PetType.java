@@ -19,7 +19,7 @@
 package net.l1j.server.templates;
 
 import net.l1j.server.datatables.NpcTable;
-import net.l1j.server.utils.IntRange;
+import net.l1j.util.IntRange;
 
 public class L1PetType {
 	private final int _baseNpcId;

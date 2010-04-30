@@ -33,7 +33,6 @@ import javolution.util.FastTable;
 
 import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
-import net.l1j.server.items.ItemId;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1Quest;
@@ -44,9 +43,10 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
+import net.l1j.server.model.item.ItemId;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Drop;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class DropTable {
 	private static Logger _log = Logger.getLogger(DropTable.class.getName());

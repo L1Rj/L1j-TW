@@ -35,7 +35,7 @@ import javolution.util.FastTable;
 import net.l1j.server.datatables.MapsTable;
 import net.l1j.server.model.map.L1Map;
 import net.l1j.server.model.map.L1V1Map;
-import net.l1j.server.utils.FileUtil;
+import net.l1j.util.FileUtil;
 
 /**
  * 處理文字地圖縮短讀取時間

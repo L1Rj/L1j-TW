@@ -34,7 +34,7 @@ import net.l1j.Config;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
-import net.l1j.server.utils.StreamUtil;
+import net.l1j.util.StreamUtil;
 
 public class Announcements {
 	private static Logger _log = Logger.getLogger(Announcements.class.getName());

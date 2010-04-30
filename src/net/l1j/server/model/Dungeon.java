@@ -32,15 +32,11 @@ import javolution.util.FastMap;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.gametime.L1GameTimeClock;
-import net.l1j.server.skills.SkillId;
-import net.l1j.server.utils.SQLUtil;
-import static net.l1j.server.skills.SkillId.*;
+import net.l1j.util.SQLUtil;
 
-// Referenced classes of package net.l1j.server.model:
-// L1Teleport, L1PcInstance
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class Dungeon {
-
 	private static Logger _log = Logger.getLogger(Dungeon.class.getName());
 
 	private static Dungeon _instance = null;

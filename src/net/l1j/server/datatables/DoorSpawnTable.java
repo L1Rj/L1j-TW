@@ -34,7 +34,7 @@ import net.l1j.server.IdFactory;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1DoorInstance;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class DoorSpawnTable {
 	private static Logger _log = Logger.getLogger(DoorSpawnTable.class.getName());

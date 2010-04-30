@@ -36,7 +36,6 @@ import net.l1j.server.datatables.PolyTable;
 import net.l1j.server.datatables.SkillsTable;
 import net.l1j.server.datatables.TownTable;
 import net.l1j.server.datatables.UBTable;
-import net.l1j.server.items.ItemId;
 import net.l1j.server.model.L1CastleLocation;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1Clan;
@@ -62,9 +61,10 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
+import net.l1j.server.model.item.ItemId;
 import net.l1j.server.model.npc.L1NpcHtml;
 import net.l1j.server.model.npc.action.L1NpcAction;
-import net.l1j.server.skills.SkillUse;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.serverpackets.S_ApplyAuction;
 import net.l1j.server.serverpackets.S_AuctionBoardRead;
 import net.l1j.server.serverpackets.S_CharReset;
@@ -99,9 +99,9 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1Skills;
 import net.l1j.server.templates.L1Town;
 import net.l1j.server.types.Base;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class C_NPCAction extends ClientBasePacket {
 	private static final String C_NPC_ACTION = "[C] C_NPCAction";

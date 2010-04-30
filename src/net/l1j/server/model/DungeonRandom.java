@@ -22,23 +22,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javolution.util.FastMap;
-//import java.util.Random;
-import static net.l1j.server.skills.SkillId.*;
-
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillId;
-import net.l1j.server.utils.RandomArrayList;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.RandomArrayList;
+import net.l1j.util.SQLUtil;
 
-// Referenced classes of package net.l1j.server.model:
-// L1Teleport, L1PcInstance
+import javolution.util.FastMap;
+
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class DungeonRandom {
 

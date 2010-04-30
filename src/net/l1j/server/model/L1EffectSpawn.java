@@ -30,7 +30,7 @@ import net.l1j.server.model.map.L1WorldMap;
 import net.l1j.server.serverpackets.S_NPCPack;
 import net.l1j.server.templates.L1Npc;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1EffectSpawn {
 	private static final Logger _log = Logger.getLogger(L1EffectSpawn.class.getName());

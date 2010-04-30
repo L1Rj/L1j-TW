@@ -27,7 +27,7 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillIconGFX;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
-import static net.l1j.server.skills.SkillId.STATUS_CHAT_PROHIBITED;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1ChatNG implements L1CommandExecutor {
 	public static L1CommandExecutor getInstance() {

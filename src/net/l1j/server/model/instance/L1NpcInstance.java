@@ -49,7 +49,7 @@ import net.l1j.server.model.L1Spawn;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.map.L1Map;
 import net.l1j.server.model.map.L1WorldMap;
-import net.l1j.server.skills.SkillUse;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.serverpackets.S_ChangeShape;
 import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_DoActionGFX;
@@ -61,12 +61,12 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1NpcChat;
 import net.l1j.server.types.Base;
 import net.l1j.server.types.Point;
-import net.l1j.server.utils.RandomArrayList;
-import net.l1j.server.utils.TimerPool;
+import net.l1j.util.RandomArrayList;
+import net.l1j.util.TimerPool;
 import net.l1j.thread.GeneralThreadPool;
 
-import static net.l1j.server.items.ItemId.*;
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.item.ItemId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1NpcInstance extends L1Character {
 	private static final long serialVersionUID = 1L;

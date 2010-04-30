@@ -20,12 +20,12 @@ package net.l1j.server.model.npc.action;
 
 import org.w3c.dom.Element;
 
-import net.l1j.server.items.ItemId;
 import net.l1j.server.model.L1Location;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.model.item.ItemId;
 import net.l1j.server.model.npc.L1NpcHtml;
 import net.l1j.server.serverpackets.S_ServerMessage;
 

@@ -18,6 +18,7 @@
  */
 package net.l1j.server;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -54,7 +55,6 @@ import net.l1j.server.datatables.SpawnTable;
 import net.l1j.server.datatables.SprTable;
 import net.l1j.server.datatables.UBSpawnTable;
 import net.l1j.server.datatables.WeaponSkillTable;
-import net.l1j.server.items.TreasureBox;
 import net.l1j.server.model.Dungeon;
 import net.l1j.server.model.ElementalStoneGenerator;
 import net.l1j.server.model.Getback;
@@ -64,14 +64,16 @@ import net.l1j.server.model.L1DeleteItemOnGround;
 import net.l1j.server.model.L1NpcRegenerationTimer;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.model.item.TreasureBox;
 import net.l1j.server.model.gametime.L1GameTimeClock;
 import net.l1j.server.model.map.L1WorldMap;
 import net.l1j.server.model.trap.L1WorldTraps;
-import net.l1j.server.utils.DeadLockDetector;
-import net.l1j.server.utils.RandomArrayList;
-import net.l1j.server.utils.SystemUtil;
-import net.l1j.server.utils.L1jtwInfos;
 import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
+import net.l1j.util.DeadLockDetector;
+import net.l1j.util.InfoUtil;
+import net.l1j.util.RandomArrayList;
+import net.l1j.util.SystemUtil;
 
 public class GameServer extends Thread {
 	private static Logger _log = Logger.getLogger(GameServer.class.getName());
@@ -133,7 +135,7 @@ public class GameServer extends Thread {
 		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1398 ========");
 		System.out.println("=================================================");
 		
-		L1jtwInfos.printAllInfos();
+		InfoUtil.printAllInfos();
 
 		System.out.println("                                                 ");
 		System.out.println("=================================================");
@@ -155,26 +157,22 @@ public class GameServer extends Thread {
 		System.out.println("=================================================");
 		System.out.println("                                                 ");
 
-		if (Config.DEADLOCK_DETECTOR) {
-			_deadDetectThread = new DeadLockDetector();
-			_deadDetectThread.setDaemon(true);
-			_deadDetectThread.start();
-		} else {
-			_deadDetectThread = null;
-		}
-
 		// 產生隨機陣列
 		RandomArrayList.setArrayList();
 
 		IdFactory.getInstance();
+		ThreadPoolManager.getInstance();
+
+		new File("./log/game").mkdirs();
+
+		// 天堂遊戲時間日曆
+		L1GameTimeClock.init();
 		L1WorldMap.getInstance();
 
 		// 讀取所有角色名稱
 		CharacterTable.getInstance().loadAllCharName();
 		// 清除角色上線狀態
 		CharacterTable.clearOnlineStatus();
-		// 天堂遊戲時間日曆
-		L1GameTimeClock.init();
 
 		// 遊戲帳號驗證控制器
 		_loginController = LoginController.getInstance();
@@ -258,19 +256,30 @@ public class GameServer extends Thread {
 		NpcChatTable.getInstance();
 		MailTable.getInstance();
 
-		if (!"*".equals(serverHost)) {
-			InetAddress inetaddress = InetAddress.getByName(serverHost);
-			inetaddress.getHostAddress();
-			_serverSocket = new ServerSocket(serverPort, 50, inetaddress);
-			System.out.println("正在開啟伺服器連接埠");
+		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
+
+		if (Config.DEADLOCK_DETECTOR) {
+			_deadDetectThread = new DeadLockDetector();
+			_deadDetectThread.setDaemon(true);
+			_deadDetectThread.start();
 		} else {
-			_serverSocket = new ServerSocket(serverPort);
-			System.out.println("正在開啟伺服器連接埠");
+			_deadDetectThread = null;
 		}
 
-		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
-		System.out.println("伺服器已啟動完畢");
 		System.gc();
+
+		InetAddress inetAddress = null;
+		if (!serverHost.equals("*")) {
+			inetAddress = InetAddress.getByName(serverHost);
+			inetAddress.getHostAddress();
+			_serverSocket = new ServerSocket(serverPort, 50, inetAddress);
+			System.out.println("正在建立伺服器連接埠");
+		} else {
+			_serverSocket = new ServerSocket(serverPort);
+			System.out.println("正在建立伺服器連接埠");
+		}
+
+		System.out.println("伺服器已啟動完畢");
 
 		this.start();
 	}

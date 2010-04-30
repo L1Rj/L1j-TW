@@ -19,13 +19,13 @@ import java.util.logging.Logger;
 import net.l1j.Config;
 import net.l1j.server.ActionCodes;
 import net.l1j.server.ClientThread;
-import net.l1j.server.items.ItemId;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.model.item.ItemId;
 import net.l1j.server.serverpackets.S_AttackPacket;
 import net.l1j.server.serverpackets.S_ServerMessage;
 

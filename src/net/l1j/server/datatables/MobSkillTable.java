@@ -30,7 +30,7 @@ import javolution.util.FastMap;
 
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.templates.L1MobSkill;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class MobSkillTable {
 	private static Logger _log = Logger.getLogger(MobSkillTable.class.getName());

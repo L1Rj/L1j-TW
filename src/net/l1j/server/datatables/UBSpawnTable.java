@@ -32,7 +32,7 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.L1UbPattern;
 import net.l1j.server.model.L1UbSpawn;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class UBSpawnTable {
 	private static Logger _log = Logger.getLogger(UBSpawnTable.class.getName());

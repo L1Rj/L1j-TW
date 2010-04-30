@@ -25,10 +25,10 @@ import java.util.logging.Logger;
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.BoardTable;
-import net.l1j.server.items.ItemId;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.model.item.ItemId;
 
 public class C_BoardWrite extends ClientBasePacket {
 	private static final String C_BOARD_WRITE = "[C] C_BoardWrite";

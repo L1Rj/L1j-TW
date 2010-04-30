@@ -22,19 +22,16 @@ package net.l1j.server.model;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Random;
 
 import net.l1j.server.model.instance.L1EffectInstance;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillId;
 import net.l1j.server.types.Point;
-import net.l1j.server.utils.RandomArrayList;
-import static net.l1j.server.skills.SkillId.*;
+import net.l1j.util.RandomArrayList;
+
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class HpRegeneration extends TimerTask {
-
-	private static Logger _log = Logger.getLogger(HpRegeneration.class
-			.getName());
+	private static Logger _log = Logger.getLogger(HpRegeneration.class.getName());
 
 	private final L1PcInstance _pc;
 

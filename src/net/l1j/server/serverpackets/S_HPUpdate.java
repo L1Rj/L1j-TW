@@ -20,7 +20,7 @@ package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.utils.IntRange;
+import net.l1j.util.IntRange;
 
 public class S_HPUpdate extends ServerBasePacket {
 	private static final String S_HP_UPDATE = "[S] S_HPUpdate";

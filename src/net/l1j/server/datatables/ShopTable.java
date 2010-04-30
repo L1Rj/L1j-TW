@@ -35,7 +35,7 @@ import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.shop.L1Shop;
 import net.l1j.server.templates.L1ShopItem;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class ShopTable {
 	private static final long serialVersionUID = 1L;

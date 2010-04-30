@@ -25,7 +25,7 @@ import javolution.util.FastMap;
 import javolution.util.FastTable;
 
 import net.l1j.server.model.L1Quest;
-import net.l1j.server.utils.IterableElementList;
+import net.l1j.util.IterableElementList;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;

@@ -32,8 +32,8 @@ import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DoorInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillId;
-import net.l1j.server.skills.SkillUse;
+import net.l1j.server.model.skill.SkillId;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.serverpackets.S_Race;
 import net.l1j.server.serverpackets.S_EffectLocation;
 import net.l1j.server.serverpackets.S_Message_YN;
@@ -42,7 +42,7 @@ import net.l1j.server.serverpackets.S_SkillBrave;
 import net.l1j.server.serverpackets.S_SkillHaste;
 import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.types.Base;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
 public class L1PolyRace {
 

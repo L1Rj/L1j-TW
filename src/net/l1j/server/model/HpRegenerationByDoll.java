@@ -5,14 +5,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.skills.SkillId;
-import net.l1j.server.serverpackets.S_SkillSound; //娃娃回血效果
-import static net.l1j.server.skills.SkillId.SKILL_ADDITIONAL_FIRE;
-import static net.l1j.server.skills.SkillId.SKILL_EXOTIC_VITALIZE;
+import net.l1j.server.serverpackets.S_SkillSound;
 
 public class HpRegenerationByDoll extends TimerTask {
-	private static Logger _log = Logger.getLogger(HpRegenerationByDoll.class
-			.getName());
+	private static Logger _log = Logger.getLogger(HpRegenerationByDoll.class.getName());
 
 	private final L1PcInstance _pc;
 

@@ -40,7 +40,7 @@ import net.l1j.server.templates.L1Armor;
 import net.l1j.server.templates.L1EtcItem;
 import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1Weapon;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class ItemTable {
 	private static final long serialVersionUID = 1L;

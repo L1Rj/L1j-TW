@@ -23,7 +23,7 @@ import java.util.StringTokenizer;
 import net.l1j.server.datatables.ExpTable;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
-import net.l1j.server.utils.IntRange;
+import net.l1j.util.IntRange;
 
 public class L1Level implements L1CommandExecutor {
 	public static L1CommandExecutor getInstance() {

@@ -30,7 +30,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_Paralysis;
 import net.l1j.thread.GeneralThreadPool;
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1Cube extends TimerTask {
 	private static Logger _log = Logger.getLogger(L1Cube.class.getName());

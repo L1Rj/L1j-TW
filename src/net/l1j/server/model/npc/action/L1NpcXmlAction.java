@@ -31,7 +31,7 @@ import net.l1j.server.model.L1Object;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.npc.L1NpcHtml;
-import net.l1j.server.utils.IntRange;
+import net.l1j.util.IntRange;
 
 public abstract class L1NpcXmlAction implements L1NpcAction {
 	private String _name;

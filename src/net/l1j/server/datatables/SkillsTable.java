@@ -31,7 +31,7 @@ import javolution.util.FastMap;
 
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.templates.L1Skills;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;

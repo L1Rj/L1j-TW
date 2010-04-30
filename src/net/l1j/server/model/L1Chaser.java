@@ -29,9 +29,9 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_EffectLocation;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 import net.l1j.thread.GeneralThreadPool;
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1Chaser extends TimerTask {
 	private static Logger _log = Logger.getLogger(L1Chaser.class.getName());

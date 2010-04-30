@@ -35,9 +35,9 @@ import net.l1j.server.templates.L1Armor;
 import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1Pet;
-import net.l1j.server.utils.BinaryOutputStream;
+import net.l1j.util.BinaryOutputStream;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1ItemInstance extends L1Object {
 	private static final long serialVersionUID = 1L;

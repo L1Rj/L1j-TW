@@ -28,7 +28,7 @@ import net.l1j.server.serverpackets.S_HPUpdate;
 import net.l1j.server.serverpackets.S_OwnCharAttrDef;
 import net.l1j.server.serverpackets.S_OwnCharStatus;
 import net.l1j.server.serverpackets.S_SPMR;
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1Awake {
 	private static final Logger _log = Logger.getLogger(L1Awake.class.getName());

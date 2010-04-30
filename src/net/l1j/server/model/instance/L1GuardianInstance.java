@@ -42,11 +42,11 @@ import net.l1j.server.serverpackets.S_NPCTalkReturn;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.CalcExp;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.CalcExp;
+import net.l1j.util.RandomArrayList;
 import net.l1j.thread.GeneralThreadPool;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1GuardianInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;

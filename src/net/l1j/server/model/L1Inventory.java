@@ -31,11 +31,11 @@ import net.l1j.server.datatables.FurnitureSpawnTable;
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.datatables.LetterTable;
 import net.l1j.server.datatables.PetTable;
-import net.l1j.server.items.actions.Enchant;
 import net.l1j.server.model.instance.L1FurnitureInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
+import net.l1j.server.model.item.action.Enchant;
 import net.l1j.server.templates.L1Item;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
 public class L1Inventory extends L1Object {
 	private static final long serialVersionUID = 1L;

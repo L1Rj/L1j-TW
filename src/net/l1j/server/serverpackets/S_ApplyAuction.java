@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.Opcodes;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class S_ApplyAuction extends ServerBasePacket {
 	private static final String S_APPLY_AUCTION = "[S] S_ApplyAuction";

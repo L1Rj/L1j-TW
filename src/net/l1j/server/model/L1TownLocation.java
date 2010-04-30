@@ -21,7 +21,7 @@ package net.l1j.server.model;
 import net.l1j.server.datatables.TownTable;
 import net.l1j.server.templates.L1Town;
 import net.l1j.server.types.Point;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
 public class L1TownLocation {
 	// town_id

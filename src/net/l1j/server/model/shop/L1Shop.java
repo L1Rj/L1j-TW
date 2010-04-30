@@ -26,7 +26,6 @@ import net.l1j.Config;
 import net.l1j.server.datatables.CastleTable;
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.datatables.TownTable;
-import net.l1j.server.items.ItemId;
 import net.l1j.server.model.L1CastleLocation;
 import net.l1j.server.model.L1PcInventory;
 import net.l1j.server.model.L1TaxCalculator;
@@ -35,12 +34,13 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.model.item.ItemId;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Castle;
 import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1ShopItem;
-import net.l1j.server.utils.IntRange;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.IntRange;
+import net.l1j.util.RandomArrayList;
 
 public class L1Shop {
 	private final int _npcId;

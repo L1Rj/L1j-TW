@@ -36,15 +36,15 @@ import net.l1j.server.ActionCodes;
 import net.l1j.server.WorldMap;
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.datatables.UBSpawnTable;
-import net.l1j.server.items.ItemId;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.model.item.ItemId;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Item;
-import net.l1j.server.utils.IntRange;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.IntRange;
+import net.l1j.util.RandomArrayList;
 import net.l1j.thread.GeneralThreadPool;
 
 public class L1UltimateBattle {

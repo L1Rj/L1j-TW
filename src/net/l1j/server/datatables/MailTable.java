@@ -35,7 +35,7 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.server.IdFactory;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1Mail;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class MailTable {
 	private static Logger _log = Logger.getLogger(MailTable.class.getName());

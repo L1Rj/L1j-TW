@@ -36,7 +36,7 @@ import net.l1j.server.serverpackets.S_SkillBrave;
 import net.l1j.server.serverpackets.S_SkillHaste;
 import net.l1j.server.templates.L1Item;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1EquipmentSlot {
 	private static Logger _log = Logger.getLogger(L1EquipmentSlot.class.getName());

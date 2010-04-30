@@ -25,7 +25,7 @@ import net.l1j.server.serverpackets.S_Paralysis;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.thread.GeneralThreadPool;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 /*
  * L1ParalysisPoisonと被るコードが多い。特にタイマー。何とか共通化したいが難しい。

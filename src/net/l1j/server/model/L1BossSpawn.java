@@ -24,7 +24,7 @@ import java.util.Calendar;
 
 import net.l1j.Config;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 import net.l1j.thread.GeneralThreadPool;
 
 public class L1BossSpawn extends L1Spawn {

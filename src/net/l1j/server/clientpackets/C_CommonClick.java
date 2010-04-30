@@ -34,7 +34,7 @@ import net.l1j.server.model.L1Clan;
 import net.l1j.server.model.L1World;
 import net.l1j.server.serverpackets.S_CharAmount;
 import net.l1j.server.serverpackets.S_CharPacks;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class C_CommonClick {
 	private static final String C_COMMON_CLICK = "[C] C_CommonClick";

@@ -28,7 +28,7 @@ import net.l1j.server.model.gametime.L1GameTime;
 import net.l1j.server.model.gametime.L1GameTimeAdapter;
 import net.l1j.server.model.gametime.L1GameTimeClock;
 import net.l1j.server.templates.L1Castle;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
 public class L1CastleLocation {
 	// castle_id

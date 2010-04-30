@@ -26,7 +26,7 @@ import org.w3c.dom.NodeList;
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.npc.L1NpcHtml;
-import net.l1j.server.utils.IterableElementList;
+import net.l1j.util.IterableElementList;
 
 public class L1NpcShowHtmlAction extends L1NpcXmlAction {
 	private final String _htmlId;

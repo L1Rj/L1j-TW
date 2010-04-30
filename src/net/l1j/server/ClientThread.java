@@ -52,8 +52,8 @@ import net.l1j.server.serverpackets.S_SummonPack;
 import net.l1j.server.serverpackets.ServerBasePacket;
 import net.l1j.server.types.UByte8;
 import net.l1j.server.types.UChar8;
-import net.l1j.server.utils.StreamUtil;
-import net.l1j.server.utils.SystemUtil;
+import net.l1j.util.StreamUtil;
+import net.l1j.util.SystemUtil;
 import net.l1j.thread.GeneralThreadPool;
 
 import static net.l1j.Config.*;

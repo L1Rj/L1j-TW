@@ -40,7 +40,7 @@ import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.types.Base;
 
 import static net.l1j.server.model.instance.L1PcInstance.REGENSTATE_MOVE;
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class C_MoveChar extends ClientBasePacket {
 	private static Logger _log = Logger.getLogger("speedhack");

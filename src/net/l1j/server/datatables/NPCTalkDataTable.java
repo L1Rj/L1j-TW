@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 import javolution.util.FastMap;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.model.L1NpcTalkData;
-import net.l1j.server.utils.SQLUtil;
+import net.l1j.util.SQLUtil;
 
 public class NPCTalkDataTable {
 	private static Logger _log = Logger.getLogger(NPCTalkDataTable.class.getName());

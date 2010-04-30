@@ -21,7 +21,7 @@ package net.l1j.server.model.poison;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.id.SystemMessageId;
 
-import static net.l1j.server.skills.SkillId.*;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1SilencePoison extends L1Poison {
 	private final L1Character _target;

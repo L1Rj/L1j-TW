@@ -38,7 +38,7 @@ import org.xml.sax.SAXException;
 
 import net.l1j.server.model.L1Location;
 import net.l1j.server.templates.L1ItemSetItem;
-import net.l1j.server.utils.IterableElementList;
+import net.l1j.util.IterableElementList;
 
 public class GMCommandsConfig {
 	private static Logger _log = Logger.getLogger(GMCommandsConfig.class.getName());

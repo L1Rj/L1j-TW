@@ -22,7 +22,7 @@ package net.l1j.server.templates;
 import java.util.Collections;
 import java.util.List;
 
-import net.l1j.server.utils.collections.Lists;
+import net.l1j.util.collection.Lists;
 
 public class L1MobGroup {
 	private final int _id;

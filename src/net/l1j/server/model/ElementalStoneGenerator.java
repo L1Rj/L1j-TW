@@ -12,7 +12,7 @@ import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.map.L1Map;
 import net.l1j.server.model.map.L1WorldMap;
 import net.l1j.server.types.Point;
-import net.l1j.server.utils.RandomArrayList;
+import net.l1j.util.RandomArrayList;
 
 public class ElementalStoneGenerator implements Runnable {
 

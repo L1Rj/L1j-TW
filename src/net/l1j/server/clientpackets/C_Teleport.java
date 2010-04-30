@@ -20,7 +20,7 @@ package net.l1j.server.clientpackets;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.utils.Teleportation;
+import net.l1j.util.Teleportation;
 
 public class C_Teleport extends ClientBasePacket {
 	private static final String C_TELEPORT = "[C] C_Teleport";

@@ -32,8 +32,8 @@ import javolution.util.FastMap;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.server.templates.L1MobGroup;
 import net.l1j.server.templates.L1NpcCount;
-import net.l1j.server.utils.SQLUtil;
-import net.l1j.server.utils.collections.Lists;
+import net.l1j.util.SQLUtil;
+import net.l1j.util.collection.Lists;
 
 public class MobGroupTable {
 	private static Logger _log = Logger.getLogger(MobGroupTable.class.getName());
