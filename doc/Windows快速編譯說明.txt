@@ -1,0 +1,16 @@
+Windows 快速編譯L1JTW方式說明:
+
+1.先安裝同步原始碼需要的檔案
+ a. 由 TortoiseSVN 網站 ( http://tortoisesvn.net/downloads ) 取得 TortoiseSVN 並安裝(網站下方為語言包 亦可一併安裝).
+ b. 自訂名稱製作一個目錄 例如 d:\L1JTW (請勿包含中文路徑 例如 桌面).
+ c. 在目錄上按右鍵 選 TortoiseSVN 選SVN取出 輸入 L1JTW SVN 網址 http://l1j-tw.googlecode.com/svn/ 按下確定後開始同步.
+
+2.安裝快速編譯原始碼需要的檔案
+ a. 下載並安裝 JAVA JDK http://java.sun.com/javase/downloads/index.jsp .
+ b. 設定JAVA路徑 (網路上已有極多JAVA編譯環境設定的教學文章 例如 http://ah11851152n.pixnet.net/blog/post/21719076 ).
+
+3.進入快速編譯工具目錄並開始快速編譯.
+ a.編輯修改 d:\L1JTW\tool\l1jtw_quick_build.bat 以便符合自己的路徑設定.
+ b.執行 l1jtw_quick_build.bat 即可開始編譯.
+
+5.完成.
