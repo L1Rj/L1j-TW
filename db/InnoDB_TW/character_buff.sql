@@ -24,7 +24,7 @@ CREATE TABLE `character_buff` (
   `remaining_time` int(10) NOT NULL DEFAULT '0',
   `poly_id` int(10) DEFAULT '0',
   PRIMARY KEY (`char_obj_id`,`skill_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 10240 kB; MyISAM free: 10240 kB';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of character_buff

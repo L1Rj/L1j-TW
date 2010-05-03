@@ -41,7 +41,7 @@ CREATE TABLE `spawnlist_boss` (
   `spawn_type` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `percentage` tinyint(3) unsigned NOT NULL DEFAULT '100',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of spawnlist_boss

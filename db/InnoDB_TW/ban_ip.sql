@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS `ban_ip`;
 CREATE TABLE `ban_ip` (
   `ip` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`ip`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 3072 kB';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ban_ip

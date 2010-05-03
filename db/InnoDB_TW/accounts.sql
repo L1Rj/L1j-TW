@@ -28,7 +28,7 @@ CREATE TABLE `accounts` (
   `banned` int(11) unsigned NOT NULL DEFAULT '0',
   `character_slot` int(2) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`login`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 3072 kB';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of accounts

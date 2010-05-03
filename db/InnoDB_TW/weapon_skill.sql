@@ -32,7 +32,7 @@ CREATE TABLE `weapon_skill` (
   `arrow_type` int(11) unsigned NOT NULL DEFAULT '0',
   `attr` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`weapon_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=508 DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 10240 kB';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weapon_skill

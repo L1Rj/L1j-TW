@@ -34,7 +34,7 @@ CREATE TABLE `petitem` (
   `add_sp` int(10) NOT NULL DEFAULT '0',
   `m_def` int(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40767 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of petitem

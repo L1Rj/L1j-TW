@@ -28,7 +28,7 @@ CREATE TABLE `polymorphs` (
   `isSkillUse` int(11) DEFAULT NULL,
   `cause` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6895 DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 10240 kB';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of polymorphs

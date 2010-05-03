@@ -51,7 +51,7 @@ CREATE TABLE `skills` (
   `sysmsgID_stop` int(10) unsigned NOT NULL DEFAULT '0',
   `sysmsgID_fail` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`skill_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10146 DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 10240 kB; MyISAM free: 10240 kB';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of skills

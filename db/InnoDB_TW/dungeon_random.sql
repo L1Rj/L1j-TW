@@ -40,7 +40,7 @@ CREATE TABLE `dungeon_random` (
   `new_heading` int(10) NOT NULL DEFAULT '1',
   `note` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`src_x`,`src_y`,`src_mapid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 8192 kB';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dungeon_random

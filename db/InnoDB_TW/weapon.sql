@@ -65,7 +65,7 @@ CREATE TABLE `weapon` (
   `cant_delete` int(2) unsigned NOT NULL DEFAULT '0',
   `max_use_time` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=200172 DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 26624 kB; MyISAM free: 26624 kB; MyISAM free: 3';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weapon

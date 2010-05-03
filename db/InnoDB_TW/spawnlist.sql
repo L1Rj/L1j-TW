@@ -41,7 +41,7 @@ CREATE TABLE `spawnlist` (
   `rest` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `near_spawn` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=801500992 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of spawnlist

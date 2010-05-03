@@ -40,7 +40,7 @@ CREATE TABLE `armor_set` (
   `defense_fire` int(2) NOT NULL DEFAULT '0',
   `defense_earth` int(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 10240 kB';
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of armor_set

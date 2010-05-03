@@ -25,7 +25,7 @@ CREATE TABLE `spawnlist_light` (
   `locy` int(10) unsigned NOT NULL DEFAULT '0',
   `mapid` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=175 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of spawnlist_light

@@ -27,7 +27,7 @@ CREATE TABLE `character_skills` (
   `activetimeleft` int(10) DEFAULT NULL,
   PRIMARY KEY (`char_obj_id`,`skill_id`),
   KEY `key_id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='MyISAM free: 10240 kB; MyISAM free: 10240 kB';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of character_skills

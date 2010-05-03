@@ -29,7 +29,7 @@ CREATE TABLE `spawnlist_ub` (
   `spawn_delay` int(10) unsigned NOT NULL DEFAULT '0',
   `seal_count` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1120 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of spawnlist_ub

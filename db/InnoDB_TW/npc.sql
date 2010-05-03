@@ -84,7 +84,7 @@ CREATE TABLE `npc` (
   `change_head` int(1) NOT NULL DEFAULT '0',
   `cant_resurrect` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`npcid`)
-) ENGINE=InnoDB AUTO_INCREMENT=91101 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of npc
