@@ -208,7 +208,7 @@ public class C_CreateChar extends ClientBasePacket {
 	/** 檢查是否無效名稱 */
 	private static boolean isInvalidName(String name) {
 		// 檢查角色名稱、長度、禁止的名稱
-		if (isAlphaNumeric(name) && (3 <= name.length()) && !BanNameTable.getInstance().isBannedName(name)) {
+		if (isAlphaNumeric(name) && (2 <= name.length()) && !BanNameTable.getInstance().isBannedName(name)) {
 			return false;
 		}
 		return true;
