@@ -97,7 +97,7 @@ public abstract class L1Item implements Serializable {
 	 *         1:sword, 2:dagger, 3:tohandsword, 4:bow, 5:spear, 6:blunt,
 	 *         7:staff, 8:throwingknife, 9:arrow, 10:gauntlet, 11:claw,
 	 *         12:edoryu, 13:singlebow, 14:singlespear, 15:tohandblunt,
-	 *         16:tohandstaff, 17:kiringku 18chainsword
+	 *         16:tohandstaff, 17:kiringku, 18:chainsword
 	 *         </p>
 	 *         <p>
 	 *         [armor]<br>
