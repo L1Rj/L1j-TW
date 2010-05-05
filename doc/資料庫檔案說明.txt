@@ -1,0 +1,69 @@
+db\InnoDB_TW 目錄中各資料庫檔案說明
+
+accounts.sql			帳號
+area.sql			地圖區域
+armor.sql			防具
+armor_set.sql			套裝設定
+ban_ip.sql			禁止登入IP列表
+ban_name.sql			禁止使用的角色名稱
+beginner.sql			角色啟始時給予的道具
+board.sql			公告欄
+board_auction.sql		公告欄
+castle.sql			城堡
+characters.sql			角色各項素質
+character_buddys.sql		角色好友列表
+character_buff.sql		角色附加狀態
+character_config.sql		
+character_elf_warehouse.sql	角色妖精倉庫
+character_items.sql		角色身上的道具
+character_quests.sql		角色的任務
+character_skills.sql		角色技能
+character_teleport.sql		角色記憶座標
+character_warehouse.sql		角色的倉庫
+clan_data.sql			血盟資訊
+clan_warehouse.sql		血盟倉庫
+commands.sql			GM指令
+connection_test_table.sql	
+droplist.sql			道具掉落列表
+drop_item.sql			
+dungeon.sql			傳送點
+dungeon_random.sql		隨機傳送點
+etcitem.sql			道具資料
+getback.sql			登入時回到哪個地圖
+getback_restart.sql		重新開始時回到哪個地圖
+global_tasks.sql		
+house.sql			小屋
+letter.sql			
+mail.sql			信件
+mapids.sql			地圖編號
+mobgroup.sql			怪物群組
+mobskill.sql			怪物技能
+npc.sql				NPC設定
+npcaction.sql			NPC動作
+npcchat.sql			NPC對話
+petitem.sql			寵物道具
+pets.sql			寵物
+pettypes.sql			寵物型態
+polymorphs.sql			變身設定
+resolvent.sql			道具分解設定
+shop.sql			商人設定
+skills.sql			技能設定
+spawnlist.sql			怪物分布
+spawnlist_boss.sql		BOSS怪物分布
+spawnlist_door.sql		門 分佈
+spawnlist_furniture.sql
+spawnlist_light.sql		燈光分佈
+spawnlist_npc.sql		NPC分佈
+spawnlist_time.sql		時間控制分佈怪物
+spawnlist_trap.sql		陷阱分佈
+spawnlist_ub.sql		無線大戰怪物分佈
+spr_action.sql			行動動作設定
+town.sql			各村村長
+trap.sql			陷阱設定
+ub_managers.sql			無限大戰管理員設定
+ub_settings.sql			無限大戰競技場設定
+ub_times.sql			無限大戰時間設定
+weapon.sql			武器
+weapon_skill.sql		武器附加技能設定
+
+db\InnoDB_TW\Custom 目錄為自訂裝備

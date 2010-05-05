@@ -1,9 +1,12 @@
 資料庫目錄內容說明:
+
 db\MyISAM		L1J日版資料庫
 db\InnoDB_TW		L1JTW台版資料庫
 db\InnoDB_TW\Custom	L1JTW台版自訂道具資料庫(可於設定檔 database.properties 設定是否讀取)
 db\upgrade		各版本升級資料庫(L1J 與 L1JTW)
 db\mobskill_test	怪物技能測試資料庫
+db\convert_engine_innodb.sql 資料庫引擎轉換為 Innodb
+db\convert_engine_myisam.sql 資料庫引擎轉換為 myisam
 
 
 mobskill 欄位說明
