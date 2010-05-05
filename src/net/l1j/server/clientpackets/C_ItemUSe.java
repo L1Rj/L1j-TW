@@ -2432,7 +2432,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 49300) { // 庫庫爾坎初級寶箱碎片(上)
-					if (pc.getInventory().checkItem(49300, 1)) {
+					if (pc.getInventory().checkItem(49301, 1)) {
 						pc.getInventory().consumeItem(49300, 1);
 						pc.getInventory().consumeItem(49301, 1);
 						ItemCreate.newItem(pc, 49302, 1);
@@ -2440,7 +2440,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 49301) { // 庫庫爾坎初級寶箱碎片(下)
-					if (pc.getInventory().checkItem(49301, 1)) {
+					if (pc.getInventory().checkItem(49300, 1)) {
 						pc.getInventory().consumeItem(49301, 1);
 						pc.getInventory().consumeItem(49300, 1);
 						ItemCreate.newItem(pc, 49302, 1);
@@ -2448,7 +2448,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 49304) { // 庫庫爾坎高級寶箱碎片(上)
-					if (pc.getInventory().checkItem(49304, 1)) {
+					if (pc.getInventory().checkItem(49305, 1)) {
 						pc.getInventory().consumeItem(49304, 1);
 						pc.getInventory().consumeItem(49305, 1);
 						ItemCreate.newItem(pc, 49306, 1);
@@ -2456,7 +2456,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 49305) { // 庫庫爾坎高級寶箱碎片(下)
-					if (pc.getInventory().checkItem(49305, 1)) {
+					if (pc.getInventory().checkItem(49304, 1)) {
 						pc.getInventory().consumeItem(49305, 1);
 						pc.getInventory().consumeItem(49304, 1);
 						ItemCreate.newItem(pc, 49306, 1);

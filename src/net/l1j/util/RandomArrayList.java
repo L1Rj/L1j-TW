@@ -25,7 +25,7 @@ public class RandomArrayList {
 	/** 新型泛用型，適用Int的正數範圍 */
 	private static double[] ArrayDouble = new double[32767];
 
-	public static void setArrayList() {
+	static {
 		for (listint = 0; listint < 32767; listint++) {
 			ArrayDouble[listint] = Math.random();
 		}

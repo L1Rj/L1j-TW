@@ -132,7 +132,7 @@ public class GameServer extends Thread {
 		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
 		
 		System.out.println("=================================================");
-		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1398 ========");
+		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1418 ========");
 		System.out.println("=================================================");
 		
 		InfoUtil.printAllInfos();
@@ -156,9 +156,6 @@ public class GameServer extends Thread {
 		}
 		System.out.println("=================================================");
 		System.out.println("                                                 ");
-
-		// 產生隨機陣列
-		RandomArrayList.setArrayList();
 
 		IdFactory.getInstance();
 		ThreadPoolManager.getInstance();
