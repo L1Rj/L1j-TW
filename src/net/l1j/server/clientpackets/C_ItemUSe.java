@@ -573,26 +573,26 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.getInventory().setSting(item.getItem().getItemId());
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$452, item.getLogName()));
 				} else if (item.getItem().getType() == 16) { // treasure_box
-                    TreasureBox box = TreasureBox.get(itemId);
-                    if (box != null) {
-                        if (box.open(pc)) {
-                            L1EtcItem temp = (L1EtcItem) item.getItem();
-                            if (item.getChargeCount() == 1) {
-                                pc.getInventory().removeItem(item.getId(), 1);
-                            }
-                            if (temp.get_delayEffect() > 0) {
-                                isDelayEffect = true;
-                            } else {
-                                pc.getInventory().removeItem(item.getId(), 1);
-                            }
-                        }
-                    }
-                    if (itemId == 50500) { // 多魯嘉之袋
-                        if (item.getChargeCount() >= 1) {
-                            item.setChargeCount(item.getChargeCount() - 1);
-                            pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
-                        }
-                    }
+					TreasureBox box = TreasureBox.get(itemId);
+					if (box != null) {
+						if (box.open(pc)) {
+							L1EtcItem temp = (L1EtcItem) item.getItem();
+							if (item.getChargeCount() == 1) {
+								pc.getInventory().removeItem(item.getId(), 1);
+							}
+							if (temp.get_delayEffect() > 0) {
+								isDelayEffect = true;
+							} else {
+								pc.getInventory().removeItem(item.getId(), 1);
+							}
+						}
+					}
+					if (itemId == 50500) { // 多魯嘉之袋
+						if (item.getChargeCount() >= 1) {
+							item.setChargeCount(item.getChargeCount() - 1);
+							pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
+						}
+					}
 				} else if (item.getItem().getType() == 2) { // light系アイテム
 					if (item.getRemainingTime() <= 0 && itemId != 40004) {
 						return;
@@ -1007,10 +1007,10 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 					}
 				} else if (itemId == 50501) { // 龍之鑰匙
-                                    SpawnUtil.spawn(pc, 91051, 0, 7200000); // 120*60*1000 = 2小時
-                                    pc.getInventory().removeItem(item, 1);
-                                
-                                } else if (itemId == 40097 || itemId == 40119 || itemId == 140119
+					SpawnUtil.spawn(pc, 91051, 0, 7200000); // 120*60*1000 = 2小時
+					pc.getInventory().removeItem(item, 1);
+				
+				} else if (itemId == 40097 || itemId == 40119 || itemId == 140119
 						|| itemId == 140329) { // 解咒スクロール、原住民のトーテム
 					for (L1ItemInstance eachItem : pc.getInventory().getItems()) {
 						if (eachItem.getItem().getBless() != 2) {
@@ -2533,7 +2533,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
-                                } else if (itemId == 41428) { // 太古的玉璽
+				} else if (itemId == 41428) { // 太古的玉璽
 					if (pc != null && item != null) {
 						Account account = Account.load(pc.getAccountName());
 						if (account == null) {

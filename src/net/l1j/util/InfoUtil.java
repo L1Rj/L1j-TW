@@ -36,7 +36,7 @@ public class InfoUtil {
 		DecimalFormat df2 = new DecimalFormat(" # 'KB'");
 
 		return new String[] {
-		    "+----",
+			"+----",
 			"| 記憶體使用資訊於 " + getRealTime().toString() + ":",
 			"|    |",
 			"| 允許使用記憶體:" + df2.format(max),
@@ -52,7 +52,7 @@ public class InfoUtil {
 
 	public static String[] getCPUInfo() {
 		return new String[] {
-		    "使用的中央處理器: " + Runtime.getRuntime().availableProcessors(),
+			"使用的中央處理器: " + Runtime.getRuntime().availableProcessors(),
 			"處理器識別碼: " + System.getenv("PROCESSOR_IDENTIFIER"),
 			"=================================================",
 		};
@@ -60,7 +60,7 @@ public class InfoUtil {
 
 	public static String[] getOSInfo() {
 		return new String[] {
-		    "作業系統: " + System.getProperty("os.name") + " Build: " + System.getProperty("os.version"),
+			"作業系統: " + System.getProperty("os.name") + " Build: " + System.getProperty("os.version"),
 			"作業系統位元版本: " + System.getProperty("os.arch"),
 			"=================================================",
 		};

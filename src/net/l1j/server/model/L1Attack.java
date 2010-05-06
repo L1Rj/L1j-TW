@@ -462,7 +462,7 @@ public class L1Attack {
 				return false; // 無法擊中。原本：_hitRate = 0;
 		}
 		if (!_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
-			//	ヤヒ(變身前)	  ヤヒ(變身後)	    混沌			  死亡			    墮落
+			//	ヤヒ(變身前)	  ヤヒ(變身後)		混沌			  死亡				墮落
 			if (npcId == 45675 || npcId == 81082 || npcId == 45625 || npcId == 45674 || npcId == 45685)
 				return false; // 無法擊中。原本：_hitRate = 0;
 		}

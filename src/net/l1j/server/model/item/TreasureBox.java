@@ -177,16 +177,16 @@ public class TreasureBox {
 	public boolean open(L1PcInstance pc) {
 		L1ItemInstance item = null;
 
-        // 容量確認
-        if (pc.getInventory().getSize() >= 175) {
-            pc.sendPackets(new S_ServerMessage(SystemMessageId.$263)); // 上述超過175或等於175樣時禁止開啟
-            return false;
-        }
-        // 重量確認
-        if ((pc.getInventory().getWeight() / pc.getMaxWeight() * 100) > 90) {
-            pc.sendPackets(new S_ServerMessage(SystemMessageId.$82)); // 負重大於90%時禁止開啟
-            return false;
-        }
+		// 容量確認
+		if (pc.getInventory().getSize() >= 175) {
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$263)); // 上述超過175或等於175樣時禁止開啟
+			return false;
+		}
+		// 重量確認
+		if ((pc.getInventory().getWeight() / pc.getMaxWeight() * 100) > 90) {
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$82)); // 負重大於90%時禁止開啟
+			return false;
+		}
 
 		if (getType().equals(TYPE.SPECIFIC)) {
 			// 出るアイテムが決まっているもの
