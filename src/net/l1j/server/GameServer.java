@@ -1,32 +1,33 @@
 /*
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * http://www.gnu.org/copyleft/gpl.html
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package net.l1j.server;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import net.l1j.Config;
+import net.l1j.L1DatabaseFactory;
 import net.l1j.server.datatables.CastleTable;
 import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.datatables.ClanTable;
@@ -68,23 +69,30 @@ import net.l1j.server.model.item.TreasureBox;
 import net.l1j.server.model.gametime.L1GameTimeClock;
 import net.l1j.server.model.map.L1WorldMap;
 import net.l1j.server.model.trap.L1WorldTraps;
+import net.l1j.telnet.TelnetServer;
 import net.l1j.thread.GeneralThreadPool;
 import net.l1j.thread.ThreadPoolManager;
 import net.l1j.util.DeadLockDetector;
 import net.l1j.util.InfoUtil;
-import net.l1j.util.RandomArrayList;
+import net.l1j.util.StreamUtil;
 import net.l1j.util.SystemUtil;
 
 public class GameServer extends Thread {
-	private static Logger _log = Logger.getLogger(GameServer.class.getName());
+	private static final Logger _log = Logger.getLogger(GameServer.class.getName());
 
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
+	private static GameServer _gameServer;
+	private static TelnetServer _telnetServer;
 
-	private DeadLockDetector _deadDetectThread;
+	private final DeadLockDetector _deadDetectThread;
+	private final ServerSocket _serverSocket;
 
-	private ServerSocket _serverSocket;
+	public DeadLockDetector getDeadLockDetectorThread() {
+		return _deadDetectThread;
+	}
 
-	private LoginController _loginController;
+	public static GameServer getInstance() {
+		return _gameServer;
+	}
 
 	@Override
 	public void run() {
@@ -99,38 +107,18 @@ public class GameServer extends Thread {
 					_log.info("banned IP(" + host + ")");
 				} else {
 					ClientThread client = new ClientThread(socket);
-					_threadPool.execute(client);
+					GeneralThreadPool.getInstance().execute(client);
 				}
 			} catch (IOException e) {
 			}
 		}
 	}
 
-	private static GameServer _instance;
-
-	private GameServer() {
+	public GameServer() throws Exception {
 		super("GameServer");
-	}
 
-	public static GameServer getInstance() {
-		if (_instance == null) {
-			_instance = new GameServer();
-		}
-		return _instance;
-	}
+		_gameServer = this;
 
-	public void initialize() throws Exception {
-		String serverHost = Config.GAME_SERVER_HOST_NAME;
-		int serverPort = Config.GAME_SERVER_PORT;
-
-		double rateXp = Config.RATE_XP;
-		double rateLA = Config.RATE_LA;
-		double rateKarma = Config.RATE_KARMA;
-		double rateDropItems = Config.RATE_DROP_ITEMS;
-		double rateDropAdena = Config.RATE_DROP_ADENA;
-		int chatLvl = Config.GLOBAL_CHAT_LEVEL;
-		int maxOnlineUsers = Config.MAX_ONLINE_USERS;
-		
 		System.out.println("=================================================");
 		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1418 ========");
 		System.out.println("=================================================");
@@ -139,16 +127,16 @@ public class GameServer extends Thread {
 
 		System.out.println("                                                 ");
 		System.out.println("=================================================");
-		System.out.println("                L1j-TW 伺服器設定值                               ");
+		System.out.println("                L1J-TW 伺服器設定值                               ");
 		System.out.println("=================================================");
 		System.out.println(
-				"           經驗值: " + (rateXp) + "倍\n\r" +
-				"           正義值: " + (rateLA) + "倍\n\r" +
-				"           友好度: " + (rateKarma) + "倍\n\r" +
-				"           物品掉落: " + (rateDropItems) + "倍\n\r" +
-				"           金幣掉落: " + (rateDropAdena) + "倍\n\r" +
-				"           廣播等級: " + (chatLvl) + "級\n\r" +
-				"           登入限制: " + (maxOnlineUsers) + "人");
+				"           經驗值: " + (Config.RATE_XP) + "倍\n\r" +
+				"           正義值: " + (Config.RATE_LA) + "倍\n\r" +
+				"           友好度: " + (Config.RATE_KARMA) + "倍\n\r" +
+				"           物品掉落: " + (Config.RATE_DROP_ITEMS) + "倍\n\r" +
+				"           金幣掉落: " + (Config.RATE_DROP_ADENA) + "倍\n\r" +
+				"           廣播等級: " + (Config.GLOBAL_CHAT_LEVEL) + "級\n\r" +
+				"           登入限制: " + (Config.MAX_ONLINE_USERS) + "人");
 		if (Config.ALT_NONPVP) {
 			System.out.println("           PK 系統: 開啟");
 		} else {
@@ -158,6 +146,7 @@ public class GameServer extends Thread {
 		System.out.println("                                                 ");
 
 		IdFactory.getInstance();
+		GeneralThreadPool.getInstance();
 		ThreadPoolManager.getInstance();
 
 		new File("./log/game").mkdirs();
@@ -172,39 +161,39 @@ public class GameServer extends Thread {
 		CharacterTable.clearOnlineStatus();
 
 		// 遊戲帳號驗證控制器
-		_loginController = LoginController.getInstance();
-		_loginController.setMaxAllowedOnlinePlayers(maxOnlineUsers);
+		LoginController.getInstance();
+		LoginController.getInstance().setMaxAllowedOnlinePlayers(Config.MAX_ONLINE_USERS);
 		// 無限大戰時間控制器
 		UbTimeController ubTimeContoroller = UbTimeController.getInstance();
-		_threadPool.execute(ubTimeContoroller);
+		GeneralThreadPool.getInstance().execute(ubTimeContoroller);
 		// 攻城戰爭時間控制器
 		WarTimeController warTimeController = WarTimeController.getInstance();
-		_threadPool.execute(warTimeController);
+		GeneralThreadPool.getInstance().execute(warTimeController);
 		// 妖精森林產生元素石
 		if (Config.ELEMENTAL_STONE_AMOUNT > 0) {
 			ElementalStoneGenerator elementalStoneGenerator = ElementalStoneGenerator.getInstance();
-			_threadPool.execute(elementalStoneGenerator);
+			GeneralThreadPool.getInstance().execute(elementalStoneGenerator);
 		}
 		// 村莊系統時間控制器
 		HomeTownTimeController.getInstance();
 		// 盟屋拍賣時間控制器
 		AuctionTimeController auctionTimeController = AuctionTimeController.getInstance();
-		_threadPool.execute(auctionTimeController);
+		GeneralThreadPool.getInstance().execute(auctionTimeController);
 		// 盟屋稅金時間控制器
 		HouseTaxTimeController houseTaxTimeController = HouseTaxTimeController.getInstance();
-		_threadPool.execute(houseTaxTimeController);
+		GeneralThreadPool.getInstance().execute(houseTaxTimeController);
 		// 釣魚系統時間控制器
 		FishingTimeController fishingTimeController = FishingTimeController.getInstance();
-		_threadPool.execute(fishingTimeController);
+		GeneralThreadPool.getInstance().execute(fishingTimeController);
 		// NPC 說話時間控制器
 		NpcChatTimeController npcChatTimeController = NpcChatTimeController.getInstance();
-		_threadPool.execute(npcChatTimeController);
+		GeneralThreadPool.getInstance().execute(npcChatTimeController);
 		// 光線變化時間控制器
 		LightTimeController lightTimeController = LightTimeController.getInstance();
-		_threadPool.execute(lightTimeController);
+		GeneralThreadPool.getInstance().execute(lightTimeController);
 		// 時空裂痕時間控制器
 		CrackTimeController crackTimeController = CrackTimeController.getStart();
-		_threadPool.execute(crackTimeController);
+		GeneralThreadPool.getInstance().execute(crackTimeController);
 
 		Announcements.getInstance();
 		NpcTable.getInstance();
@@ -238,7 +227,6 @@ public class GameServer extends Thread {
 		L1CastleLocation.setCastleTaxRate(); // これはCastleTable初期化後でなければいけない
 		GetBackRestartTable.getInstance();
 		DoorSpawnTable.getInstance();
-		GeneralThreadPool.getInstance();
 		L1NpcRegenerationTimer.getInstance();
 		WeaponSkillTable.getInstance();
 		NpcActionTable.load();
@@ -266,19 +254,55 @@ public class GameServer extends Thread {
 		System.gc();
 
 		InetAddress inetAddress = null;
-		if (!serverHost.equals("*")) {
-			inetAddress = InetAddress.getByName(serverHost);
+		if (!Config.GAME_SERVER_HOST_NAME.equals("*")) {
+			inetAddress = InetAddress.getByName(Config.GAME_SERVER_HOST_NAME);
 			inetAddress.getHostAddress();
-			_serverSocket = new ServerSocket(serverPort, 50, inetAddress);
+			_serverSocket = new ServerSocket(Config.GAME_SERVER_PORT, 50, inetAddress);
 			System.out.println("正在建立伺服器連接埠");
 		} else {
-			_serverSocket = new ServerSocket(serverPort);
+			_serverSocket = new ServerSocket(Config.GAME_SERVER_PORT);
 			System.out.println("正在建立伺服器連接埠");
 		}
 
 		System.out.println("伺服器已啟動完畢");
 
 		this.start();
+	}
+
+	public static void main(String[] args) throws Exception {
+		final String LOG_FOLDER = "log";
+		final String LOG_NAME = "./config/log.properties";
+
+		File logFolder = new File(LOG_FOLDER);
+		logFolder.mkdir();
+
+		InputStream is = null;
+		try {
+			is = new FileInputStream(new File(LOG_NAME));
+			LogManager.getLogManager().readConfiguration(is);
+			is.close();
+		} catch (IOException e) {
+			_log.log(Level.SEVERE, "Failed to Load " + LOG_NAME + " File.", e);
+			System.exit(0);
+		} finally {
+			StreamUtil.close(is);
+		}
+
+		try {
+			Config.load();
+		} catch (Exception e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			System.exit(0);
+		}
+
+		L1DatabaseFactory.getInstance();
+
+		_gameServer = new GameServer();
+
+		if (Config.TELNET_SERVER) {
+			_telnetServer = new TelnetServer();
+			_telnetServer.start();
+		}
 	}
 
 	/**
@@ -339,7 +363,7 @@ public class GameServer extends Thread {
 			return;
 		}
 		_shutdownThread = new ServerShutdownThread(secondsCount);
-		_threadPool.execute(_shutdownThread);
+		GeneralThreadPool.getInstance().execute(_shutdownThread);
 	}
 
 	public void shutdown() {
