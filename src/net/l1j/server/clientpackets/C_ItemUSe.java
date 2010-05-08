@@ -379,14 +379,14 @@ public class C_ItemUSe extends ClientBasePacket {
 						Enchant.failure(pc, l1iteminstance1, client);
 					}
 				}
-			} else if (itemId == 41429 || itemId == 41430 || itemId == 41431 || itemId == 41432) { // 風水地火之武器強化卷軸
+			} else if (itemId == 41429 || itemId == 41430 || itemId == 41431 || itemId == 41432) { // 地水火風之武器強化卷軸
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName(), "$245", "$247")); 
 					return;
 				}
 				int safeEnchant = l1iteminstance1.getItem().get_safeenchant();
-				if (safeEnchant < 0) { // 強化不可
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+				if (safeEnchant < 0) { // 安定值小於0不可強化
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName(), "$245", "$247"));
 					return;
 				}
 				// 0:無属性 1:地 2:火 4:水 8:風
@@ -400,27 +400,27 @@ public class C_ItemUSe extends ClientBasePacket {
 					isSameAttr = true;
 				}
 				if (isSameAttr && oldAttrEnchantLevel >= 3) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName(), "$245", "$247"));
 					return;
 				}
 
 				int rnd = RandomArrayList.getInc(100, 1);
 				if (Config.ATTR_ENCHANT_CHANCE >= rnd) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$161, l1iteminstance1.getLogName(), "$245", "$247"));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1410, l1iteminstance1.getLogName(), "$245", "$247"));
 					int newAttrEnchantKind = 0;
 					int newAttrEnchantLevel = 0;
-					if (isSameAttr) { // 同じ属性なら+1
+					if (isSameAttr) { // 同屬性時+1
 						newAttrEnchantLevel = oldAttrEnchantLevel + 1;
-					} else { // 異なる属性なら1
+					} else { // 不同屬性時=1
 						newAttrEnchantLevel = 1;
 					}
-					if (itemId == 41429) { // 風の武器強化スクロール
+					if (itemId == 41429) { // 風之武器強化卷軸
 						newAttrEnchantKind = 8;
-					} else if (itemId == 41430) { // 地の武器強化スクロール
+					} else if (itemId == 41430) { // 地之武器強化卷軸
 						newAttrEnchantKind = 1;
-					} else if (itemId == 41431) { // 水の武器強化スクロール
+					} else if (itemId == 41431) { // 水之武器強化卷軸
 						newAttrEnchantKind = 4;
-					} else if (itemId == 41432) { // 火の武器強化スクロール
+					} else if (itemId == 41432) { // 火之武器強化卷軸
 						newAttrEnchantKind = 2;
 					}
 					l1iteminstance1.setAttrEnchantKind(newAttrEnchantKind);
@@ -430,7 +430,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.getInventory().updateItem(l1iteminstance1, L1PcInventory.COL_ATTR_ENCHANT_LEVEL);
 					pc.getInventory().saveItem(l1iteminstance1, L1PcInventory.COL_ATTR_ENCHANT_LEVEL);
 				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName(), "$245", "$247"));
 				}
 				pc.getInventory().removeItem(item, 1);
 			} else if (itemId == 30001) { // 裝備保護卷軸
