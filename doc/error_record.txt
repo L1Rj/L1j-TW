@@ -1,8 +1,19 @@
 以下為目前仍有的錯誤訊息紀錄
 
-20100406
-HpRegenerationByDoll.java 『娃娃回血效果』異常 。 _pc.get_food() : 225isOverWeight(_pc) : false_pc.getCurrentHp() : 71    5
+20100507
 
+NpcAI發生例外的錯誤。
+java.lang.NullPointerException
+        at javolution.util.FastMap.remove(FastMap.java:733)
+        at net.l1j.server.model.L1HateList.remove(Unknown Source)
+        at net.l1j.server.model.instance.L1NpcInstance.tagertClear(Unknown Source)
+        at net.l1j.server.model.instance.L1NpcInstance.checkTarget(Unknown Source)
+        at net.l1j.server.model.instance.L1NpcInstance.AIProcess(Unknown Source)
+        at net.l1j.server.model.instance.L1NpcInstance.access$400(Unknown Source)
+        at net.l1j.server.model.instance.L1NpcInstance$NpcAIThreadImpl.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
 
 以下為舊紀錄 僅供參考
 ------------------------------------------------------------------------------------------------------------------
