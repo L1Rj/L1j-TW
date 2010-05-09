@@ -33,9 +33,8 @@ public final class Config {
 	private static final Logger _log = Logger.getLogger(Config.class.getName());
 
 	//--------------------------------------------------
-	// L1J 設定檔
+	// L1J-TW 設定檔
 	//--------------------------------------------------
-
 	/** 線程設定檔 */
 	public static final String THREAD_CONFIG_FILE = "./config/thread.properties";
 	/** 資料庫設定檔 */
@@ -50,11 +49,12 @@ public final class Config {
 	public static final String CHAR_SETTINGS_CONFIG_FILE = "./config/charsettings.properties";
 	/** 倍率設定檔 */
 	public static final String RATES_CONFIG_FILE = "./config/rates.properties";
+	/** 版本設定檔 */
+	public static final String VERSION_CONFIG_FILE = "./config/version.properties";
 
 	//--------------------------------------------------
 	// 線程設定
 	//--------------------------------------------------
-
 	public static int THREAD_P_EFFECTS;
 	public static int THREAD_P_GENERAL;
 	public static int GENERAL_PACKET_THREAD_CORE_SIZE;
@@ -67,7 +67,6 @@ public final class Config {
 	//--------------------------------------------------
 	// 資料庫設定
 	//--------------------------------------------------
-
 	public static String DATABASE_DRIVER;
 	public static String DATABASE_URL;
 	public static String DATABASE_LOGIN;
@@ -85,7 +84,6 @@ public final class Config {
 	//--------------------------------------------------
 	// 伺服器設定
 	//--------------------------------------------------
-
 	public static String GAME_SERVER_HOST_NAME;
 	public static int GAME_SERVER_PORT;
 	public static String PASSWORD_SALT;
@@ -123,9 +121,8 @@ public final class Config {
 	//--------------------------------------------------
 	// 一般設定
 	//--------------------------------------------------
-
 	/** 除錯模式 */
-	public static boolean DEBUG_MODE;
+	public static boolean DEBUG;
 	/** 記錄一般頻道訊息 */
 	public static boolean LOGGING_CHAT_NORMAL;
 	/** 記錄密語頻道訊息 */
@@ -168,7 +165,6 @@ public final class Config {
 	//--------------------------------------------------
 	// 進階設定
 	//--------------------------------------------------
-
 	public static short GLOBAL_CHAT_LEVEL;
 	public static short WHISPER_CHAT_LEVEL;
 	public static byte AUTO_LOOT;
@@ -223,7 +219,6 @@ public final class Config {
 	//--------------------------------------------------
 	// 角色設定
 	//--------------------------------------------------
-
 	public static int PRINCE_MAX_HP;
 	public static int PRINCE_MAX_MP;
 	public static int KNIGHT_MAX_HP;
@@ -292,7 +287,6 @@ public final class Config {
 	//--------------------------------------------------
 	// 倍率設定
 	//--------------------------------------------------
-
 	public static double RATE_XP;
 	public static double RATE_LA;
 	public static double RATE_KARMA;
@@ -316,13 +310,17 @@ public final class Config {
 	public static int CREATE_CHANCE_HISTORY_BOOK;
 
 	//--------------------------------------------------
+	// 版本設定
+	//--------------------------------------------------
+	public static String SERVER_CORE_VERSION;
+	public static String SERVER_BUILD_DATE;
+
+	//--------------------------------------------------
 	// 其他設定
 	//--------------------------------------------------
-
-	// NPCから吸えるMP限界
+	/** NPCから吸えるMP限界 */
 	public static final int MANA_DRAIN_LIMIT_PER_NPC = 40;
-
-	// 一回の攻擊で吸えるMP限界(SOM、鋼鐵SOM）
+	/** 一回の攻擊で吸えるMP限界(SOM、鋼鐵SOM） */
 	public static final int MANA_DRAIN_LIMIT_PER_SOM_ATTACK = 9;
 
 	public static void load() {
@@ -422,7 +420,7 @@ public final class Config {
 				is = new FileInputStream(new File(GENERAL_SETTINGS_FILE));
 				generalSettings.load(is);
 
-				DEBUG_MODE = Boolean.parseBoolean(generalSettings.getProperty("DebugMode", "false"));
+				DEBUG = Boolean.parseBoolean(generalSettings.getProperty("Debug", "false"));
 				LOGGING_CHAT_NORMAL = Boolean.parseBoolean(generalSettings.getProperty("LoggingChatNormal", "false"));
 				LOGGING_CHAT_WHISPER = Boolean.parseBoolean(generalSettings.getProperty("LoggingChatWhisper", "false"));
 				LOGGING_CHAT_SHOUT = Boolean.parseBoolean(generalSettings.getProperty("LoggingChatShout", "false"));
@@ -630,6 +628,19 @@ public final class Config {
 			} catch (Exception e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 				throw new Error("Failed to Load " + RATES_CONFIG_FILE + " File.");
+			}
+
+			// version.properties
+			try {
+				Properties versionSettings = new Properties();
+				is = new FileInputStream(new File(VERSION_CONFIG_FILE));
+				versionSettings.load(is);
+
+				SERVER_CORE_VERSION = versionSettings.getProperty("ServerCoreVersion", "None.");
+				SERVER_BUILD_DATE = versionSettings.getProperty("ServerBuildDate", "None.");
+			} catch (Exception e) {
+				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+				throw new Error("Failed to Load " + VERSION_CONFIG_FILE + " File.");
 			}
 		} finally {
 			StreamUtil.close(is);

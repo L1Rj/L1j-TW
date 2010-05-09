@@ -119,31 +119,23 @@ public class GameServer extends Thread {
 
 		_gameServer = this;
 
-		System.out.println("=================================================");
-		System.out.println("======== L1J-JP Rev2021 + L1J-TW Rev1418 ========");
-		System.out.println("=================================================");
-		
-		InfoUtil.printAllInfos();
-
-		System.out.println("                                                 ");
-		System.out.println("=================================================");
-		System.out.println("                L1J-TW 伺服器設定值                               ");
-		System.out.println("=================================================");
-		System.out.println(
-				"           經驗值: " + (Config.RATE_XP) + "倍\n\r" +
-				"           正義值: " + (Config.RATE_LA) + "倍\n\r" +
-				"           友好度: " + (Config.RATE_KARMA) + "倍\n\r" +
-				"           物品掉落: " + (Config.RATE_DROP_ITEMS) + "倍\n\r" +
-				"           金幣掉落: " + (Config.RATE_DROP_ADENA) + "倍\n\r" +
-				"           廣播等級: " + (Config.GLOBAL_CHAT_LEVEL) + "級\n\r" +
-				"           登入限制: " + (Config.MAX_ONLINE_USERS) + "人");
+		_log.info("");
+		_log.info("==================================================");
+		_log.info("==\tL1J-JP Rev 2021 + L1J-TW Rev " + Config.SERVER_CORE_VERSION + "\t==");
+		_log.info("==================================================");
+		_log.info("經驗值: " + (Config.RATE_XP) + "倍");
+		_log.info("正義值: " + (Config.RATE_LA) + "倍");
+		_log.info("友好度: " + (Config.RATE_KARMA) + "倍");
+		_log.info("物品掉落: " + (Config.RATE_DROP_ITEMS) + "倍");
+		_log.info("金幣掉落: " + (Config.RATE_DROP_ADENA) + "倍");
+		_log.info("廣播等級: " + (Config.GLOBAL_CHAT_LEVEL) + "級");
+		_log.info("玩家限數: " + (Config.MAX_ONLINE_USERS) + "人");
 		if (Config.ALT_NONPVP) {
-			System.out.println("           PK 系統: 開啟");
+			_log.info("ＰＫ系統: 開啟");
 		} else {
-			System.out.println("           PK 系統: 關閉");
+			_log.info("ＰＫ系統: 關閉");
 		}
-		System.out.println("=================================================");
-		System.out.println("                                                 ");
+		_log.info("==================================================");
 
 		IdFactory.getInstance();
 		GeneralThreadPool.getInstance();
@@ -258,13 +250,9 @@ public class GameServer extends Thread {
 			inetAddress = InetAddress.getByName(Config.GAME_SERVER_HOST_NAME);
 			inetAddress.getHostAddress();
 			_serverSocket = new ServerSocket(Config.GAME_SERVER_PORT, 50, inetAddress);
-			System.out.println("正在建立伺服器連接埠");
 		} else {
 			_serverSocket = new ServerSocket(Config.GAME_SERVER_PORT);
-			System.out.println("正在建立伺服器連接埠");
 		}
-
-		System.out.println("伺服器已啟動完畢");
 
 		this.start();
 	}
@@ -288,12 +276,11 @@ public class GameServer extends Thread {
 			StreamUtil.close(is);
 		}
 
-		try {
-			Config.load();
-		} catch (Exception e) {
-			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			System.exit(0);
+		if (Config.DEBUG) {
+			InfoUtil.printAllInfos();
 		}
+
+		Config.load();
 
 		L1DatabaseFactory.getInstance();
 

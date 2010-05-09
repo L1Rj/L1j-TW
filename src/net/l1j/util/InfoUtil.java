@@ -46,7 +46,7 @@ public class InfoUtil {
 			"|    |= 使用記憶體:" + df2.format(used) + df.format(used / max * 100),
 			"|    |= 未使用 (快取) 記憶體:" + df2.format(cached) + df.format(cached / max * 100),
 			"| 可用記憶體:" + df2.format(useable) + df.format(useable / max * 100),
-			"+----"
+			"+----\n\r"
 		};
 	}
 
@@ -54,7 +54,7 @@ public class InfoUtil {
 		return new String[] {
 			"使用的中央處理器: " + Runtime.getRuntime().availableProcessors(),
 			"處理器識別碼: " + System.getenv("PROCESSOR_IDENTIFIER"),
-			"=================================================",
+			"=================================================\n\r",
 		};
 	}
 
@@ -62,7 +62,7 @@ public class InfoUtil {
 		return new String[] {
 			"作業系統: " + System.getProperty("os.name") + " Build: " + System.getProperty("os.version"),
 			"作業系統位元版本: " + System.getProperty("os.arch"),
-			"=================================================",
+			"=================================================\n\r",
 		};
 	}
 
@@ -72,7 +72,7 @@ public class InfoUtil {
 			"Java Runtime 名稱: " + System.getProperty("java.runtime.name"),
 			"Java 版本: " + System.getProperty("java.version"),
 			"Java Class 版本: " + System.getProperty("java.class.version"),
-			"=================================================",
+			"=================================================\n\r",
 		};
 	}
 
@@ -84,7 +84,7 @@ public class InfoUtil {
 			"JVM 版本: " + System.getProperty("java.vm.version"),
 			"JVM 製作公司: " + System.getProperty("java.vm.vendor"),
 			"JVM 模式: " + System.getProperty("java.vm.info"),
-			"=================================================",
+			"=================================================\n\r",
 		};
 	}
 

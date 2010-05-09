@@ -31,7 +31,7 @@ public abstract class Task {
 	private static Logger _log = Logger.getLogger(Task.class.getName());
 
 	public void initializate() {
-		if (Config.DEBUG_MODE) {
+		if (Config.DEBUG) {
 			_log.info("Task" + getName() + " inializate");
 		}
 	}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="L1J-TW" default="all" basedir=".">
+<project name="L1J-TW" default="dist" basedir=".">
 	<description>
 		This script will build the L1J-TW server.
 
@@ -21,44 +21,74 @@
 		http://www.gnu.org/copyleft/gpl.html
 	</description>
 
-	<!-- Set Property -->
-	<property name="src.dir" value="src" />
-	<property name="lib.dir" value="lib" />
-	<property name="build.dir" value="build" />
-	<property name="jarfile" value="l1jserver.jar" />
+	<property name="src" value="src" />
+	<property name="lib" value="lib" />
+	<property name="build" value="build" />
 
 	<path id="classpath">
-		<fileset dir="${lib.dir}">
+		<fileset dir="${lib}">
 			<include name="c3p0-0.9.1.2.jar" />
 			<include name="javolution-5.5.1.jar" />
 			<include name="mysql-connector-java-5.1.12-bin.jar" />
 		</fileset>
 	</path>
 
-	<!-- Set DefaultTarget -->
-	<target name="all" depends="clean,compile,jar,clean2" />
-
-	<!-- clean Target -->
-	<target name="clean">
-		<delete dir="${build.dir}" />
+	<target name="verifyRequirements" description="Checks if the necessary requirements for building L1J-TW are fulfilled">
+		<available classname="javax.script.ScriptContext" property="JDK6.present" />
+		<fail unless="JDK6.present" message="JDK 6 or greater is required." />
 	</target>
 
-	<!-- Compile Target -->
-	<target name="compile">
-		<mkdir dir="${build.dir}" />
-		<javac destdir="${build.dir}" optimize="on" encoding="UTF-8">
-			<src path="${src.dir}" />
+	<target name="init" depends="clean, verifyRequirements" description="Create the output directories.">
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="compile" depends="version" description="Compile the source.">
+		<javac destdir="${build}" optimize="on" debug="on" source="1.6" target="1.6" nowarn="off">
+			<src path="${src}" />
 			<classpath refid="classpath" />
 		</javac>
 	</target>
 
-	<!-- jar Target -->
-	<target name="jar">
-		<jar manifest="${src.dir}/META-INF/MANIFEST.MF" basedir="${build.dir}" jarfile="${jarfile}" />
+	<target name="jar" depends="compile" description="Create the jar file">
+		<jar basedir="${build}" jarfile="l1jserver.jar" />
 	</target>
 
-	<!-- clean Target -->
-	<target name="clean2">
-		<delete dir="${build.dir}" />
+	<target name="dist" depends="jar">
+		<delete dir="${build}" />
+	</target>
+
+	<target name="version" depends="init" description="Create version.properties file">
+		<tstamp>
+			<format property="build.tstamp" pattern="yyyyMMdd_HHmm" />
+		</tstamp>
+		<exec dir="./tool/subversion/" executable="svnversion" outputproperty="l1j.revision" failifexecutionfails="false">
+			<arg line="./../../" />
+		</exec>
+		<concat destfile="./config/version.properties">#-------------------------------------------------------------
+# 版本配置
+#-------------------------------------------------------------
+
+#伺服器核心版本
+ServerCoreVersion = ${l1j.revision}
+
+#伺服器建置日期
+ServerBuildDate = ${build.tstamp}
+
+#最後更新訊息
+LatestInfo = 
+</concat>
+		<concat destfile="./config/version.properties" append="true">
+			<filelist dir="./.svn/" files="entries" />
+			<filterchain>
+				<headfilter lines="6" skip="6" />
+				<tokenfilter>
+					<ignoreblank />
+				</tokenfilter>
+			</filterchain>
+		</concat>
+	</target>
+
+	<target name="clean" description="Remove the output directories">
+		<delete dir="${build}" />
 	</target>
 </project>
