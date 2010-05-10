@@ -41,16 +41,22 @@ public class Enchant {
 	public static void success(L1PcInstance pc, L1ItemInstance item, ClientThread client, int enchantLvl) {
 		item.setproctect(false);// 裝備保護卷軸
 
+		int itemType = item.getItem().getType2();
 		String s = "";
-		String[] sa = {"", "$246", "$245", "$245", "$245"};
-		String[] sb = {"", "$247", "$247", "$248", "$248"};
+		String[][] sa = { {"", "", "", ""}
+						, {"$246", "", "$245", "$245", "$245"}
+						, {"$246", "", "$252", "$252", "$252"}};
+		String[][] sb = { {"", "", "", ""}
+						, {"$247", "", "$247", "$248", "$248"}
+						, {"$247", "", "$247", "$248", "$248"}};
+		String sa_temp = sa[itemType][enchantLvl + 1], sb_temp = sb[itemType][enchantLvl + 1];
 		String s1 = item.getName();
 		String pm = "";
 		if (item.getEnchantLevel() > 0) {
 			pm = "+";
 		}
 
-		if (item.getItem().getType2() == 1 || item.getItem().getType2() == 2) {
+		if (itemType == 1 || itemType == 2) {
 			if (!item.isIdentified() || item.getEnchantLevel() == 0) {
 				s = s1;
 			} else {
@@ -58,7 +64,7 @@ public class Enchant {
 			}
 		}
 
-		pc.sendPackets(new S_ServerMessage(SystemMessageId.$161, s, sa[enchantLvl], sb[enchantLvl]));
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$161, s, sa_temp, sb_temp));
 		int oldEnchantLvl = item.getEnchantLevel();
 		int newEnchantLvl = item.getEnchantLevel() + enchantLvl;
 		int safeEnchantLvl = item.getItem().get_safeenchant();
@@ -76,7 +82,7 @@ public class Enchant {
 			_log.log(record);
 		}
 
-		if (item.getItem().getType2() == 2) {
+		if (itemType == 2) {
 			if (item.isEquipped()) {
 				pc.addAc(-enchantLvl);
 				int i2 = item.getItem().getItemId();/* waja 註:21208-21211 林德拜爾的xx 21309究極抗魔法T恤 21318特製究極抗魔法T恤 魔防隨防禦力+1  */
@@ -140,7 +146,7 @@ public class Enchant {
 	}
 
 	private static int chance(L1ItemInstance l1iteminstance) {
-						/*   0  1  2  3  4  5  6  7  8  9  10*/
+						/*    0  1  2  3  4  5  6  7  8  9 10*/
 		byte[][] byte0 = {  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 							{50,33,25,25,25,20,33,33,33,25,20},
 							{50,33,25,25,25,20,17,14,12,11, 0}};
