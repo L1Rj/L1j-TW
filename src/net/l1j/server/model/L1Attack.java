@@ -1560,22 +1560,22 @@ public class L1Attack {
 	// Target: Npc
 	private boolean impossibleHitNPC() {
 		int npcId = _targetNpc.getNpcTemplate().get_npcId();
-		if (!_pc.hasSkillEffect(STATUS_HOLY_WATER)) {
+		if (_pc.hasSkillEffect(STATUS_HOLY_WATER)) { // 聖水狀態
 			// 恨みに滿ちたソルジャー＆ソルジャーゴースト
 			if (npcId >= 45912 && npcId <= 45915)
 				return true;
-		} else if (!_pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) { // 恨みに滿ちたハメル將軍
+		} else if (_pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) { // 恨みに滿ちたハメル將軍
 			if (npcId == 45916)
 				return true;
-		} else if (!_pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) {
+		} else if (_pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) { // 伊娃聖水狀態
 			// 咒われた巫女サエル
 			if (npcId == 45941)
 				return true;
-		} else if (!_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
+		} else if (_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) { // 擊敗炎魔的力量
 			// バルログ(變身前) バルログ(變身後)
 			if (npcId == 45752 || npcId == 45753)
 				return true;
-		} else if (!_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+		} else if (_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) { // 擊敗火焰之影的力量
 			//  ヤヒ(變身前)      ヤヒ(變身後)      混沌              死亡              墮落
 			if (npcId == 45675 || npcId == 81082 || npcId == 45625 || npcId == 45674 || npcId == 45685)
 				return true;
