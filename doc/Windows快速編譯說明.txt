@@ -14,3 +14,8 @@ Windows 快速編譯L1JTW方式說明:
  b.執行 l1jtw_quick_build.bat 即可開始編譯.
 
 5.完成.
+
+備註:
+問題:Rev 1428之後可能出現編譯失敗 Eclipse編譯卡在 VERSION 區段.
+問題:編譯出現 Execute failed: java.io.IOException: Cannot run program "svnversion": CreateProcess error=2, ????????? 錯誤.
+解答:將svnversion.exe 複製到系統路徑目錄中即可(ex: C:\Program Files\Java\JDK\bin 或是 windows\system32).
