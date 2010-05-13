@@ -2788,7 +2788,7 @@
 			<Material Amount="5" ItemId="40445"/>
 			<Material Amount="30" ItemId="40964"/>
 			<Material Amount="50" ItemId="40968"/>
-			<Material Amount="30" ItemId="40525"/>
+			<Material Amount="3" ItemId="40525"/>
 			<Material Amount="50" ItemId="40677"/>
 			<Material Amount="100" ItemId="40969"/>
 			<Item Amount="1" ItemId="20390"/>
