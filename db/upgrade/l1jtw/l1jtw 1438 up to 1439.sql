@@ -1,3 +1,2 @@
 /* 20100513 修正錯誤名字，更改為異界 奎斯特+座標錯誤修正 */
-Update mapdi Set locationname = '新試練' Where locationname = '異界 奎斯特';
-INSERT INTO `mapids` VALUES ('2004', '異界 奎斯特', '32704', '32895', '32768', '32895', '1', '1', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1');
+Update mapids Set locationname = '異界 奎斯特', endY = '32895' Where mapid = '2004';
