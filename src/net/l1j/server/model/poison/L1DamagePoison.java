@@ -21,13 +21,11 @@ package net.l1j.server.model.poison;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1DamagePoison extends L1Poison {
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
-
 	private Thread _timer;
 	private final L1Character _attacker;
 	private final L1Character _target;
@@ -84,7 +82,7 @@ public class L1DamagePoison extends L1Poison {
 
 		if (isDamageTarget(_target)) {
 			_timer = new NormalPoisonTimer();
-			_threadPool.execute(_timer); // 通常毒タイマー開始
+			ThreadPoolManager.getInstance().execute(_timer); // 通常毒タイマー開始
 		}
 	}
 

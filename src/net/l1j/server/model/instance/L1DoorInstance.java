@@ -27,12 +27,10 @@ import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_Door;
 import net.l1j.server.serverpackets.S_DoorPack;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 public class L1DoorInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	public static final int PASS = 0;
 	public static final int NOT_PASS = 1;
@@ -99,7 +97,7 @@ public class L1DoorInstance extends L1NpcInstance {
 				setDead(true);
 				setStatus(ActionCodes.ACTION_DoorDie);
 				Death death = new Death(attacker);
-				_threadPool.execute(death);
+				ThreadPoolManager.getInstance().execute(death);
 			}
 			if (newHp > 0) {
 				setCurrentHp(newHp);
@@ -139,7 +137,7 @@ public class L1DoorInstance extends L1NpcInstance {
 			setDead(true);
 			setStatus(ActionCodes.ACTION_DoorDie);
 			Death death = new Death(attacker);
-			_threadPool.execute(death);
+			ThreadPoolManager.getInstance().execute(death);
 		}
 	}
 

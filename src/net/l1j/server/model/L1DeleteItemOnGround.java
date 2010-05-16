@@ -26,12 +26,10 @@ import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 public class L1DeleteItemOnGround {
 	private static final Logger _log = Logger.getLogger(L1DeleteItemOnGround.class.getName());
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private DeleteTimer _deleteTimer;
 
@@ -66,7 +64,7 @@ public class L1DeleteItemOnGround {
 		}
 
 		_deleteTimer = new DeleteTimer();
-		_threadPool.execute(_deleteTimer); // タイマー開始
+		ThreadPoolManager.getInstance().execute(_deleteTimer); // タイマー開始
 	}
 
 	private void deleteItem() {

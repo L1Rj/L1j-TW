@@ -48,7 +48,7 @@ public class PcHellMonitor implements Runnable {
 							pc.endHell();
 						}
 					};
-					GeneralThreadPool.getInstance().execute(r);
+					ThreadPoolManager.getInstance().execute(r);
 				}
 				Thread.sleep(1000); // 延遲 1.000 毫秒
 			} catch (Exception e) {

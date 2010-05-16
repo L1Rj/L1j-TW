@@ -30,14 +30,12 @@ import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.types.Point;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1GuardInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	// ターゲットを探す
 	@Override
@@ -383,7 +381,7 @@ public class L1GuardInstance extends L1NpcInstance {
 				setDead(true);
 				setStatus(ActionCodes.ACTION_Die);
 				Death death = new Death(attacker);
-				_threadPool.execute(death);
+				ThreadPoolManager.getInstance().execute(death);
 			}
 			if (newHp > 0) {
 				setCurrentHp(newHp);
@@ -393,7 +391,7 @@ public class L1GuardInstance extends L1NpcInstance {
 			setDead(true);
 			setStatus(ActionCodes.ACTION_Die);
 			Death death = new Death(attacker);
-			_threadPool.execute(death);
+			ThreadPoolManager.getInstance().execute(death);
 		}
 	}
 

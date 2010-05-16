@@ -99,19 +99,17 @@ import net.l1j.server.templates.L1PrivateShopBuyList;
 import net.l1j.server.templates.L1PrivateShopSellList;
 import net.l1j.server.types.Base;
 import net.l1j.util.RandomArrayList;
-import net.l1j.thread.GeneralThreadPool;
 import net.l1j.thread.PcExpMonitor;
 import net.l1j.thread.PcFrameMonitor;
 import net.l1j.thread.PcGhostMonitor;
 import net.l1j.thread.PcHellMonitor;
 import net.l1j.thread.PcInvisMonitor;
+import net.l1j.thread.ThreadPoolManager;
 
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1PcInstance extends L1Character {
 	private static final long serialVersionUID = 1L;
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	public int getAc() {
 		return _ac + L1DollInstance.getAcByDoll(this);
@@ -1215,7 +1213,7 @@ public class L1PcInstance extends L1Character {
 			setDead(true);
 			setStatus(ActionCodes.ACTION_Die);
 		}
-		_threadPool.execute(new Death(lastAttacker));
+		ThreadPoolManager.getInstance().execute(new Death(lastAttacker));
 
 	}
 
@@ -2544,7 +2542,7 @@ public class L1PcInstance extends L1Character {
 		setGhostCanTalk(canTalk);
 		L1Teleport.teleport(this, locx, locy, mapid, 5, true);
 		if (sec > 0) {
-			_ghostMonitorFuture = _threadPool.pcSchedule(new PcGhostMonitor(getId()), sec * 1000);
+			_ghostMonitorFuture = ThreadPoolManager.getInstance().pcSchedule(new PcGhostMonitor(getId()), sec * 1000);
 		}
 	}
 

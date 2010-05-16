@@ -23,7 +23,7 @@ import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Paralysis;
 import net.l1j.server.serverpackets.S_ServerMessage;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 import static net.l1j.server.model.skill.SkillId.*;
 
@@ -36,7 +36,6 @@ public class L1CurseParalysis extends L1Paralysis {
 	private final int _time;
 
 	private Thread _timer;
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private class ParalysisDelayTimer extends Thread {
 		@Override
@@ -58,7 +57,7 @@ public class L1CurseParalysis extends L1Paralysis {
 			}
 			_target.setParalyzed(true);
 			_timer = new ParalysisTimer();
-			_threadPool.execute(_timer); // 麻痺タイマー開始
+			ThreadPoolManager.getInstance().execute(_timer); // 麻痺タイマー開始
 			if (isInterrupted()) {
 				_timer.interrupt();
 			}
@@ -104,7 +103,7 @@ public class L1CurseParalysis extends L1Paralysis {
 		_target.setPoisonEffect((byte) 2);
 
 		_timer = new ParalysisDelayTimer();
-		GeneralThreadPool.getInstance().execute(_timer);
+		ThreadPoolManager.getInstance().execute(_timer);
 	}
 
 	public static boolean curse(L1Character cha, int delay, int time) {

@@ -24,13 +24,11 @@ import java.util.Calendar;
 
 import net.l1j.Config;
 import net.l1j.server.templates.L1Npc;
+import net.l1j.thread.ThreadPoolManager;
 import net.l1j.util.RandomArrayList;
-import net.l1j.thread.GeneralThreadPool;
 
 public class L1BossSpawn extends L1Spawn {
 	private static Logger _log = Logger.getLogger(L1BossSpawn.class.getName());
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private class SpawnTask implements Runnable {
 		private int _spawnNumber;
@@ -141,7 +139,7 @@ public class L1BossSpawn extends L1Spawn {
 		_spawnCount = getAmount();
 		while (cnt < getAmount()) {
 			cnt++;
-			_threadPool.schedule(new SpawnTask(0, objectId), delay);
+			ThreadPoolManager.getInstance().schedule(new SpawnTask(0, objectId), delay);
 		}
 		_log.log(Level.FINE, toString());
 	}

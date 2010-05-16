@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 import net.l1j.server.datatables.SkillsTable;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1PolyMorph;
-import net.l1j.server.model.L1Teleport;//waja add 租旅館
+import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1NpcInstance;
@@ -51,9 +51,9 @@ import net.l1j.server.serverpackets.S_SkillIconShield;
 import net.l1j.server.serverpackets.S_SkillIconWindShackle;
 import net.l1j.server.serverpackets.S_SkillIconWisdomPotion;
 import net.l1j.server.serverpackets.S_StrUp;
-import net.l1j.server.serverpackets.S_SystemMessage;//waja add 租旅館
+import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.templates.L1Skills;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 import static net.l1j.server.model.skill.SkillId.*;
 
@@ -806,8 +806,6 @@ class SkillStop {
 }
 
 class SkillTimerThreadImpl extends Thread implements SkillTimer {
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
-
 	public SkillTimerThreadImpl(L1Character cha, int skillId, int timeMillis) {
 		_cha = cha;
 		_skillId = skillId;
@@ -832,7 +830,7 @@ class SkillTimerThreadImpl extends Thread implements SkillTimer {
 	}
 
 	public void begin() {
-		_threadPool.execute(this);
+		ThreadPoolManager.getInstance().execute(this);
 	}
 
 	public void end() {
@@ -857,8 +855,6 @@ class SkillTimerThreadImpl extends Thread implements SkillTimer {
 class SkillTimerTimerImpl implements SkillTimer, Runnable {
 	private static Logger _log = Logger.getLogger(SkillTimerTimerImpl.class.getName());
 
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
-
 	private ScheduledFuture<?> _future = null;
 
 	public SkillTimerTimerImpl(L1Character cha, int skillId, int timeMillis) {
@@ -879,7 +875,7 @@ class SkillTimerTimerImpl implements SkillTimer, Runnable {
 
 	@Override
 	public void begin() {
-		_future = _threadPool.scheduleAtFixedRate(this, 1000, 1000);
+		_future = ThreadPoolManager.getInstance().scheduleAtFixedRate(this, 1000, 1000);
 	}
 
 	@Override

@@ -1,20 +1,16 @@
 /*
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * http://www.gnu.org/copyleft/gpl.html
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package net.l1j;
 
@@ -23,14 +19,21 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import net.l1j.thread.ThreadPoolManager;
+
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class L1DatabaseFactory {
 	private static Logger _log = Logger.getLogger(L1DatabaseFactory.class.getName());
 
+	public static enum ProviderType {
+		MySql, MsSql
+	}
+
 	// =========================================================
 	// Data Field
 	private static L1DatabaseFactory _instance;
+	private ProviderType _providerType;
 	private ComboPooledDataSource _source;
 
 	// =========================================================
@@ -62,7 +65,7 @@ public class L1DatabaseFactory {
 			_source.setAutomaticTestTable("connection_test_table");
 			_source.setTestConnectionOnCheckin(false);
 
-			// testing OnCheckin used with IdleConnectionTestPeriod is faster than  testing on checkout
+			// testing OnCheckin used with IdleConnectionTestPeriod is faster than testing on checkout
 
 			_source.setIdleConnectionTestPeriod(3600); // test idle connection every 60 sec
 			_source.setMaxIdleTime(Config.DATABASE_MAX_IDLE_TIME); // 0 = idle connections never expire
@@ -70,7 +73,7 @@ public class L1DatabaseFactory {
 			// but I prefer to disconnect all connections not used
 			// for more than 1 hour
 
-			// enables statement caching,  there is a "semi-bug" in c3p0 0.9.0 but in 0.9.0.2 and later it's fixed
+			// enables statement caching, there is a "semi-bug" in c3p0 0.9.0 but in 0.9.0.2 and later it's fixed
 			_source.setMaxStatementsPerConnection(100);
 
 			_source.setBreakAfterAcquireFailure(false); // never fail if any way possible
@@ -90,18 +93,39 @@ public class L1DatabaseFactory {
 			if (Config.DEBUG) {
 				_log.fine("Database Connection Working");
 			}
-		} catch (SQLException x) {
+
+			if (Config.DATABASE_DRIVER.toLowerCase().contains("microsoft")) {
+				_providerType = ProviderType.MsSql;
+			} else {
+				_providerType = ProviderType.MySql;
+			}
+		} catch (SQLException e) {
 			if (Config.DEBUG) {
 				_log.fine("Database Connection FAILED");
 			}
 			// re-throw the exception
-			throw x;
+			throw e;
 		} catch (Exception e) {
 			if (Config.DEBUG) {
 				_log.fine("Database Connection FAILED");
 			}
 			throw new SQLException("could not init DB connection:" + e);
 		}
+	}
+
+	// =========================================================
+	// Method - Public
+	public final String prepQuerySelect(String[] fields, String tableName, String whereClause, boolean returnOnlyTopRecord) {
+		String msSqlTop1 = "";
+		String mySqlTop1 = "";
+		if (returnOnlyTopRecord) {
+			if (getProviderType() == ProviderType.MsSql)
+				msSqlTop1 = " Top 1 ";
+			if (getProviderType() == ProviderType.MySql)
+				mySqlTop1 = " Limit 1 ";
+		}
+		String query = "SELECT " + msSqlTop1 + safetyString(fields) + " FROM " + tableName + " WHERE " + whereClause + mySqlTop1;
+		return query;
 	}
 
 	public void shutdown() {
@@ -117,6 +141,40 @@ public class L1DatabaseFactory {
 		}
 	}
 
+	public final String safetyString(String... whatToCheck) {
+		// NOTE: Use brace as a safty precaution just incase name is a reserved word
+		final char braceLeft;
+		final char braceRight;
+
+		if (getProviderType() == ProviderType.MsSql) {
+			braceLeft = '[';
+			braceRight = ']';
+		} else {
+			braceLeft = '`';
+			braceRight = '`';
+		}
+
+		int length = 0;
+
+		for (String word : whatToCheck) {
+			length += word.length() + 4;
+		}
+
+		final StringBuilder sbResult = new StringBuilder(length);
+
+		for (String word : whatToCheck) {
+			if (sbResult.length() > 0) {
+				sbResult.append(", ");
+			}
+
+			sbResult.append(braceLeft);
+			sbResult.append(word);
+			sbResult.append(braceRight);
+		}
+
+		return sbResult.toString();
+	}
+
 	// =========================================================
 	// Property - Public
 	public static L1DatabaseFactory getInstance() throws SQLException {
@@ -128,17 +186,41 @@ public class L1DatabaseFactory {
 		return _instance;
 	}
 
-	public Connection getConnection() /*throws SQLException*/ {
+	public Connection getConnection() /* throws SQLException */ {
 		Connection con = null;
 
 		while (con == null) {
 			try {
 				con = _source.getConnection();
+				if (Server.serverMode == Server.MODE_GAMESERVER) {
+					ThreadPoolManager.getInstance().scheduleGeneral(new ConnectionCloser(con, new RuntimeException()), 60000);
+				}
 			} catch (SQLException e) {
 				_log.warning("L1DatabaseFactory: getConnection() failed, trying again " + e);
 			}
 		}
 		return con;
+	}
+
+	private class ConnectionCloser implements Runnable {
+		private Connection c;
+		private RuntimeException exp;
+
+		public ConnectionCloser(Connection con, RuntimeException e) {
+			c = con;
+			exp = e;
+		}
+
+		@Override
+		public void run() {
+			try {
+				if (!c.isClosed()) {
+					_log.log(Level.WARNING, "Unclosed connection! Trace: " + exp.getStackTrace()[1], exp);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public int getBusyConnectionCount() throws SQLException {
@@ -147,5 +229,9 @@ public class L1DatabaseFactory {
 
 	public int getIdleConnectionCount() throws SQLException {
 		return _source.getNumIdleConnectionsDefaultUser();
+	}
+
+	public final ProviderType getProviderType() {
+		return _providerType;
 	}
 }

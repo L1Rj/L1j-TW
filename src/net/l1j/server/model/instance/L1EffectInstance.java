@@ -36,14 +36,12 @@ import net.l1j.server.serverpackets.S_OwnCharAttrDef;
 import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1EffectInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private ScheduledFuture<?> _effectFuture;
 
@@ -56,12 +54,12 @@ public class L1EffectInstance extends L1NpcInstance {
 
 		int npcId = getNpcTemplate().get_npcId();
 		if (npcId == 81157) { // FW
-			_effectFuture = _threadPool.schedule(new FwDamageTimer(this), 0);
+			_effectFuture = ThreadPoolManager.getInstance().schedule(new FwDamageTimer(this), 0);
 		} else if (npcId == 80149 // キューブ[イグニション]
 				|| npcId == 80150 // キューブ[クエイク]
 				|| npcId == 80151 // キューブ[ショック]
 				|| npcId == 80152) { // キューブ[バランス]
-			_effectFuture = _threadPool.schedule(new CubeTimer(this), 0);
+			_effectFuture = ThreadPoolManager.getInstance().schedule(new CubeTimer(this), 0);
 		}
 	}
 

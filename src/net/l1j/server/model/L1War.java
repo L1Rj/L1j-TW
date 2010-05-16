@@ -30,12 +30,10 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_War;
 import net.l1j.server.templates.L1Castle;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 public class L1War {
 	private final FastTable<String> _attackClanList = new FastTable<String>();
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private String _param1 = null;
 	private String _param2 = null;
@@ -117,10 +115,10 @@ public class L1War {
 			}
 
 			CastleWarTimer castle_war_timer = new CastleWarTimer();
-			_threadPool.execute(castle_war_timer); // タイマー開始
+			ThreadPoolManager.getInstance().execute(castle_war_timer); // タイマー開始
 		} else if (war_type == 2) { // 模擬戰
 			SimWarTimer sim_war_timer = new SimWarTimer();
-			_threadPool.execute(sim_war_timer); // タイマー開始
+			ThreadPoolManager.getInstance().execute(sim_war_timer); // タイマー開始
 		}
 		L1World.getInstance().addWar(this); // 戰爭リストに追加
 	}

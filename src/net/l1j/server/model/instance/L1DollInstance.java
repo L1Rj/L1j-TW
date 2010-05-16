@@ -29,15 +29,13 @@ import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_DollPack;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.templates.L1Npc;
+import net.l1j.thread.ThreadPoolManager;
 import net.l1j.util.RandomArrayList;
-import net.l1j.thread.GeneralThreadPool;
 
 import static net.l1j.server.ActionCodes.*;
 
 public class L1DollInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	public static final int DOLLTYPE_BUGBEAR = 0; // 長老
 	public static final int DOLLTYPE_SUCCUBUS = 1; // 思克巴
@@ -111,7 +109,7 @@ public class L1DollInstance extends L1NpcInstance {
 
 		setDollType(dollType);
 		setItemObjId(itemObjId);
-		_dollFuture = _threadPool.schedule(new DollTimer(), DOLL_TIME);
+		_dollFuture = ThreadPoolManager.getInstance().schedule(new DollTimer(), DOLL_TIME);
 
 		setMaster(master);
 		setX(RandomArrayList.getInc(5, master.getX() - 2)); // master.getX() + RandomArrayList.getInt(2));

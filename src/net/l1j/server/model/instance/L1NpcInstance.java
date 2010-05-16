@@ -61,17 +61,15 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1NpcChat;
 import net.l1j.server.types.Base;
 import net.l1j.server.types.Point;
+import net.l1j.thread.ThreadPoolManager;
 import net.l1j.util.RandomArrayList;
 import net.l1j.util.TimerPool;
-import net.l1j.thread.GeneralThreadPool;
 
 import static net.l1j.server.model.item.ItemId.*;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1NpcInstance extends L1Character {
 	private static final long serialVersionUID = 1L;
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	public static final int MOVE_SPEED = 0;
 	public static final int ATTACK_SPEED = 1;
@@ -211,7 +209,7 @@ public class L1NpcInstance extends L1Character {
 	class NpcAIThreadImpl implements Runnable, NpcAI {
 		@Override
 		public void start() {
-			_threadPool.execute(NpcAIThreadImpl.this);
+			ThreadPoolManager.getInstance().execute(NpcAIThreadImpl.this);
 		}
 
 		@Override
@@ -1289,7 +1287,7 @@ public class L1NpcInstance extends L1Character {
 		_digestItems.put(new Integer(item.getId()), new Integer(getNpcTemplate().get_digestitem()));
 		if (!_digestItemRunning) {
 			DigestItemTimer digestItemTimer = new DigestItemTimer();
-			_threadPool.execute(digestItemTimer);
+			ThreadPoolManager.getInstance().execute(digestItemTimer);
 		}
 	}
 
@@ -1979,7 +1977,7 @@ public class L1NpcInstance extends L1Character {
 			return;
 		}
 		_deleteTask = new DeleteTimer(getId());
-		_future = _threadPool.schedule(_deleteTask, Config.NPC_DELETION_TIME * 1000);
+		_future = ThreadPoolManager.getInstance().schedule(_deleteTask, Config.NPC_DELETION_TIME * 1000);
 	}
 
 	protected static class DeleteTimer extends TimerTask {

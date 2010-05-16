@@ -19,11 +19,9 @@
 package net.l1j.server.model.skill;
 
 import net.l1j.server.model.L1Character;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 public class SkillDelay {
-	private static GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
-
 	private SkillDelay() {
 	}
 
@@ -48,6 +46,6 @@ public class SkillDelay {
 
 	public static void onSkillUse(L1Character cha, int time) {
 		cha.setSkillDelay(true);
-		_threadPool.schedule(new SkillDelayTimer(cha, time), time);
+		ThreadPoolManager.getInstance().schedule(new SkillDelayTimer(cha, time), time);
 	}
 }

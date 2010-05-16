@@ -21,7 +21,7 @@ package net.l1j.server;
 import java.util.logging.Logger;
 
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 /**
  * This class provides the functions for shutting down and restarting the server
@@ -151,7 +151,7 @@ public class Shutdown extends Thread {
 		// the main instance should only run for shutdown hook, so we start a
 		// new instance
 		_counterInstance = new Shutdown(seconds, restart);
-		GeneralThreadPool.getInstance().execute(_counterInstance);
+		ThreadPoolManager.getInstance().execute(_counterInstance);
 	}
 
 	/**
@@ -295,7 +295,7 @@ public class Shutdown extends Thread {
 			_counterInstance._abort();
 		}
 		_counterInstance = new Shutdown(seconds, restart);
-		GeneralThreadPool.getInstance().execute(_counterInstance);
+		ThreadPoolManager.getInstance().execute(_counterInstance);
 	}
 
 	/**

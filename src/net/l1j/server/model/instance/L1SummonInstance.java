@@ -38,15 +38,14 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.serverpackets.S_SummonPack;
 import net.l1j.server.templates.L1Npc;
+import net.l1j.thread.ThreadPoolManager;
 import net.l1j.util.RandomArrayList;
-import net.l1j.thread.GeneralThreadPool;
 
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1SummonInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 	private ScheduledFuture<?> _summonFuture;
 	private static final long SUMMON_TIME = 3600000L;
 	private int _currentPetStatus;
@@ -124,7 +123,7 @@ public class L1SummonInstance extends L1NpcInstance {
 		super(template);
 		setId(IdFactory.getInstance().nextId());
 
-		_summonFuture = _threadPool.schedule(new SummonTimer(), SUMMON_TIME);
+		_summonFuture = ThreadPoolManager.getInstance().schedule(new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);
 		setX(RandomArrayList.getInc(5, master.getX() - 2)); // master.getX() + StaticFinalList.getRang2());
@@ -180,7 +179,7 @@ public class L1SummonInstance extends L1NpcInstance {
 			setCurrentMpDirect(target.getCurrentMp());
 		}
 
-		_summonFuture = _threadPool.schedule(new SummonTimer(), SUMMON_TIME);
+		_summonFuture = ThreadPoolManager.getInstance().schedule(new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);
 		setX(target.getX());

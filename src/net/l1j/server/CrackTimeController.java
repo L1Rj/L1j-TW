@@ -31,7 +31,7 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 /**
  * 時空裂痕時間控制器
@@ -76,7 +76,7 @@ public class CrackTimeController extends TimerTask {
 		// 開始執行此時間軸
 		_timeHandler.schedule(this, 500, 500);
 		// 交由線程工廠 處理
-		GeneralThreadPool.getInstance().execute(this);
+		ThreadPoolManager.getInstance().execute(this);
 	}
 
 	@Override
@@ -161,7 +161,7 @@ public class CrackTimeController extends TimerTask {
 			L1World.getInstance().addVisibleObject(npc);
 
 			Teleport teleport = new Teleport(npc, to_x, to_y, to_mapId);
-			GeneralThreadPool.getInstance().execute(teleport);
+			ThreadPoolManager.getInstance().execute(teleport);
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}

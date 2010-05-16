@@ -23,12 +23,10 @@ import java.util.logging.Logger;
 import net.l1j.server.WarTimeController;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_PinkName;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 public class L1PinkName {
 	private static final Logger _log = Logger.getLogger(L1PinkName.class.getName());
-
-	private static GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	static class PinkNameTimer implements Runnable {
 		private L1PcInstance _attacker = null;
@@ -99,7 +97,7 @@ public class L1PinkName {
 					attacker.broadcastPacket(new S_PinkName(attacker.getId(), 180));
 				}
 				PinkNameTimer pink = new PinkNameTimer(attacker);
-				_threadPool.execute(pink);
+				ThreadPoolManager.getInstance().execute(pink);
 			}
 		}
 	}

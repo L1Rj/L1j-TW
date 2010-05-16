@@ -52,16 +52,14 @@ import net.l1j.server.serverpackets.S_SummonPack;
 import net.l1j.server.serverpackets.ServerBasePacket;
 import net.l1j.server.types.UByte8;
 import net.l1j.server.types.UChar8;
+import net.l1j.thread.ThreadPoolManager;
 import net.l1j.util.StreamUtil;
 import net.l1j.util.SystemUtil;
-import net.l1j.thread.GeneralThreadPool;
 
 import static net.l1j.Config.*;
 
 public class ClientThread implements Runnable, PacketOutput {
 	private static Logger _log = Logger.getLogger(ClientThread.class.getName());
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private InputStream _in;
 	private OutputStream _out;
@@ -184,7 +182,8 @@ public class ClientThread implements Runnable, PacketOutput {
 		Socket socket = _csocket;
 
 		AutoResponse response = new AutoResponse();
-		_threadPool.execute(response);
+		ThreadPoolManager.getInstance().execute(response);
+
 		ClientThreadObserver observer = new ClientThreadObserver(AUTOMATIC_KICK * 60 * 1000); // 自动切断までの时间（单位:ms）
 
 		// クライアントスレッドの监视

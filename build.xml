@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="L1J-TW" default="dist" basedir=".">
 	<description>
-		This script will build the L1J-TW server.
+		This script will build the L1J-TW Server.
 
 		This program is free software; you can redistribute it and/or modify
 		it under the terms of the GNU General Public License as published by
-		the Free Software Foundation; either version 2, or (at your option)
+		the Free Software Foundation; either version 3, or (at your option)
 		any later version.
 
 		This program is distributed in the hope that it will be useful,
 		but WITHOUT ANY WARRANTY; without even the implied warranty of
-		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 		GNU General Public License for more details.
 
 		You should have received a copy of the GNU General Public License
@@ -43,7 +43,7 @@
 	</target>
 
 	<target name="compile" depends="version" description="Compile the source.">
-		<javac destdir="${build}" optimize="on" debug="on" source="1.6" target="1.6" nowarn="off"  encoding="UTF-8">
+		<javac destdir="${build}" optimize="on" debug="on" source="1.6" target="1.6" nowarn="off" encoding="UTF-8">
 			<src path="${src}" />
 			<classpath refid="classpath" />
 		</javac>
@@ -59,17 +59,17 @@
 
 	<target name="version" depends="init" description="Create version.properties file">
 		<tstamp>
-			<format property="build.tstamp" pattern="yyyyMMdd_HHmm" />
+			<format property="build.tstamp" pattern="yyyy/MM/dd HH:mm" />
 		</tstamp>
-		<exec dir="./tool/subversion/" executable="svnversion" outputproperty="l1j.revision" failifexecutionfails="false">
-			<arg line="./../../" />
+		<exec dir="./tool/subversion/" executable="svnversion" outputproperty="l1j-tw.revision" failifexecutionfails="false">
+			<arg line="-n ./../../" />
 		</exec>
 		<concat destfile="./config/version.properties">#-------------------------------------------------------------
 # 版本配置
 #-------------------------------------------------------------
 
 #伺服器核心版本
-ServerCoreVersion = ${l1j.revision}
+ServerCoreVersion = ${l1j-tw.revision}
 
 #伺服器建置日期
 ServerBuildDate = ${build.tstamp}
@@ -78,7 +78,7 @@ ServerBuildDate = ${build.tstamp}
 LatestInfo = 
 </concat>
 		<concat destfile="./config/version.properties" append="true">
-			<filelist dir="./.svn/" files="entries" />
+			<filelist dir="${src}/../.svn/" files="entries" />
 			<filterchain>
 				<headfilter lines="6" skip="6" />
 				<tokenfilter>

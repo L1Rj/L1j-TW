@@ -29,15 +29,13 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.npc.L1NpcHtml;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
 import net.l1j.server.templates.L1Npc;
+import net.l1j.thread.ThreadPoolManager;
 import net.l1j.util.RandomArrayList;
-import net.l1j.thread.GeneralThreadPool;
 
 public class L1TeleporterInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
 	private static Logger _log = Logger.getLogger(L1TeleporterInstance.class.getName());
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private boolean _isNowDely = false;
 
@@ -494,12 +492,12 @@ public class L1TeleporterInstance extends L1NpcInstance {
 						L1Teleport.teleport(elf, 32878, 32980, (short) 2000, 6, true);
 						L1Teleport.teleport(wiz, 32876, 33003, (short) 2000, 0, true);
 						TeleportDelyTimer timer = new TeleportDelyTimer();
-						_threadPool.execute(timer);
+						ThreadPoolManager.getInstance().execute(timer);
 					}
 				} else if (action.equalsIgnoreCase("teleport barlog")) { // 古代人（Lv50クエスト古代の空間2F）
 					L1Teleport.teleport(player, 32755, 32844, (short) 2002, 5, true);
 					TeleportDelyTimer timer = new TeleportDelyTimer();
-					_threadPool.execute(timer);
+					ThreadPoolManager.getInstance().execute(timer);
 				}
 			} catch (Exception e) {
 			}

@@ -43,14 +43,12 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.item.ItemId;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Item;
+import net.l1j.thread.ThreadPoolManager;
 import net.l1j.util.IntRange;
 import net.l1j.util.RandomArrayList;
-import net.l1j.thread.GeneralThreadPool;
 
 public class L1UltimateBattle {
 	private static final Logger _log = Logger.getLogger(L1UltimateBattle.class.getName());
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private int _locX;
 	private int _locY;
@@ -336,7 +334,7 @@ public class L1UltimateBattle {
 		_pattern = random.nextInt(patternsMax) + 1; // 出現パターンを決める
 
 		UbThread ub = new UbThread();
-		_threadPool.execute(ub);
+		ThreadPoolManager.getInstance().execute(ub);
 	}
 
 	/**

@@ -42,9 +42,9 @@ import net.l1j.server.serverpackets.S_NPCTalkReturn;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1Npc;
+import net.l1j.thread.ThreadPoolManager;
 import net.l1j.util.CalcExp;
 import net.l1j.util.RandomArrayList;
-import net.l1j.thread.GeneralThreadPool;
 
 import static net.l1j.server.model.skill.SkillId.*;
 
@@ -52,8 +52,6 @@ public class L1GuardianInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
 	private static Logger _log = Logger.getLogger(L1GuardianInstance.class.getName());
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private int _configtime = Config.GDROPITEM_TIME; // 妖森守護神道具控制
 
@@ -359,7 +357,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 						setStatus(ActionCodes.ACTION_Die);
 						_lastattacker = attacker;
 						Death death = new Death();
-						_threadPool.execute(death);
+						ThreadPoolManager.getInstance().execute(death);
 					}
 					if (newHp > 0) {
 						setCurrentHp(newHp);
@@ -369,7 +367,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					setStatus(ActionCodes.ACTION_Die);
 					_lastattacker = attacker;
 					Death death = new Death();
-					_threadPool.execute(death);
+					ThreadPoolManager.getInstance().execute(death);
 				}
 			}
 		}
@@ -464,7 +462,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 
 	public void doGDropItem(int timer) { // 妖森守護神道具控制
 		GDropItemTask task = new GDropItemTask();
-		_threadPool.schedule(task, timer * 60000);
+		ThreadPoolManager.getInstance().schedule(task, timer * 60000);
 	}
 
 	private class GDropItemTask implements Runnable {

@@ -23,11 +23,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.serverpackets.S_ServerMessage;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 public class LoginController {
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
-
 	private Map<String, ClientThread> _accounts = new ConcurrentHashMap<String, ClientThread>();
 
 	private static LoginController _instance;
@@ -65,7 +63,7 @@ public class LoginController {
 			return;
 		}
 
-		_threadPool.execute(new Runnable() {
+		ThreadPoolManager.getInstance().execute(new Runnable() {
 			@Override
 			public void run() {
 				if (client.getActiveChar() != null) {

@@ -32,12 +32,10 @@ import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_NPCPack;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 public class L1TowerInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	public L1TowerInstance(L1Npc template) {
 		super(template);
@@ -140,7 +138,7 @@ public class L1TowerInstance extends L1NpcInstance {
 					_lastattacker = attacker;
 					_crackStatus = 0;
 					Death death = new Death();
-					_threadPool.execute(death);
+					ThreadPoolManager.getInstance().execute(death);
 					// Death(attacker);
 				}
 				if (newHp > 0) {
@@ -170,7 +168,7 @@ public class L1TowerInstance extends L1NpcInstance {
 				setStatus(ActionCodes.ACTION_TowerDie);
 				_lastattacker = attacker;
 				Death death = new Death();
-				_threadPool.execute(death);
+				ThreadPoolManager.getInstance().execute(death);
 				// Death(attacker);
 			}
 		}

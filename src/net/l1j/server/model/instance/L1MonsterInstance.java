@@ -46,16 +46,14 @@ import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillBrave;
 import net.l1j.server.templates.L1Npc;
+import net.l1j.thread.ThreadPoolManager;
 import net.l1j.util.CalcExp;
 import net.l1j.util.RandomArrayList;
-import net.l1j.thread.GeneralThreadPool;
 
 public class L1MonsterInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
 	private static Logger _log = Logger.getLogger(L1MonsterInstance.class.getName());
-
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	private boolean _storeDroped; // ドロップアイテムの讀⑸が完了したか
 
@@ -343,7 +341,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 					setStatus(ActionCodes.ACTION_Die);
 					openDoorWhenNpcDied(this);
 					Death death = new Death(attacker);
-					_threadPool.execute(death);
+					ThreadPoolManager.getInstance().execute(death);
 					// Death(attacker);
 				} else { // 變身するモンスター
 				// distributeExpDropKarma(attacker);
@@ -358,7 +356,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 			setDead(true);
 			setStatus(ActionCodes.ACTION_Die);
 			Death death = new Death(attacker);
-			_threadPool.execute(death);
+			ThreadPoolManager.getInstance().execute(death);
 			// Death(attacker);
 		}
 	}

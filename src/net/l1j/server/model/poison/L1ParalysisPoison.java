@@ -22,13 +22,11 @@ import net.l1j.server.model.L1Character;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Paralysis;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1ParalysisPoison extends L1Poison {
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
-
 	// 麻痺毒の性能一覽 猶予 持續 (參考值、未適用)
 	// グール 20 45
 	// アステ 10 60
@@ -62,7 +60,7 @@ public class L1ParalysisPoison extends L1Poison {
 				if (player.isDead() == false) {
 					player.sendPackets(new S_Paralysis((byte) 1, true)); // 麻痺狀態にする
 					_timer = new ParalysisTimer();
-					_threadPool.execute(_timer); // 麻痺タイマー開始
+					ThreadPoolManager.getInstance().execute(_timer); // 麻痺タイマー開始
 					if (isInterrupted()) {
 						_timer.interrupt();
 					}
@@ -115,7 +113,7 @@ public class L1ParalysisPoison extends L1Poison {
 
 		if (_target instanceof L1PcInstance) {
 			_timer = new ParalysisPoisonTimer();
-			_threadPool.execute(_timer);
+			ThreadPoolManager.getInstance().execute(_timer);
 		}
 	}
 

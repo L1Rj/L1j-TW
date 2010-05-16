@@ -35,6 +35,6 @@ public class PcGhostMonitor extends PcMonitor {
 				pc.endGhost();
 			}
 		};
-		GeneralThreadPool.getInstance().execute(r);
+		ThreadPoolManager.getInstance().execute(r);
 	}
 }

@@ -29,7 +29,8 @@ import net.l1j.server.model.instance.L1MonsterInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_Paralysis;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
+
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1Cube extends TimerTask {
@@ -40,7 +41,6 @@ public class L1Cube extends TimerTask {
 	private final L1Character _effect;
 	private final L1Character _cha;
 	private final int _skillId;
-	private GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
 
 	public L1Cube(L1Character effect, L1Character cha, int skillId) {
 		_effect = effect;
@@ -69,7 +69,7 @@ public class L1Cube extends TimerTask {
 	public void begin() {
 		// 効果時間が8秒のため、4秒毎のスキルの場合処理時間を考慮すると実際には1回しか効果が現れない
 		// よって開始時間を0.9秒後に設定しておく
-		_future = _threadPool.scheduleAtFixedRate(this, 900, 1000);
+		_future = ThreadPoolManager.getInstance().scheduleAtFixedRate(this, 900, 1000);
 	}
 
 	public void stop() {

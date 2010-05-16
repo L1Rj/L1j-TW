@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
+import net.l1j.Server;
 import net.l1j.server.datatables.CastleTable;
 import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.datatables.ClanTable;
@@ -70,7 +71,6 @@ import net.l1j.server.model.gametime.L1GameTimeClock;
 import net.l1j.server.model.map.L1WorldMap;
 import net.l1j.server.model.trap.L1WorldTraps;
 import net.l1j.telnet.TelnetServer;
-import net.l1j.thread.GeneralThreadPool;
 import net.l1j.thread.ThreadPoolManager;
 import net.l1j.util.DeadLockDetector;
 import net.l1j.util.InfoUtil;
@@ -107,7 +107,7 @@ public class GameServer extends Thread {
 					_log.info("banned IP(" + host + ")");
 				} else {
 					ClientThread client = new ClientThread(socket);
-					GeneralThreadPool.getInstance().execute(client);
+					ThreadPoolManager.getInstance().execute(client);
 				}
 			} catch (IOException e) {
 			}
@@ -138,7 +138,6 @@ public class GameServer extends Thread {
 		_log.info("==================================================");
 
 		IdFactory.getInstance();
-		GeneralThreadPool.getInstance();
 		ThreadPoolManager.getInstance();
 
 		new File("./log/game").mkdirs();
@@ -157,35 +156,35 @@ public class GameServer extends Thread {
 		LoginController.getInstance().setMaxAllowedOnlinePlayers(Config.MAX_ONLINE_USERS);
 		// 無限大戰時間控制器
 		UbTimeController ubTimeContoroller = UbTimeController.getInstance();
-		GeneralThreadPool.getInstance().execute(ubTimeContoroller);
+		ThreadPoolManager.getInstance().execute(ubTimeContoroller);
 		// 攻城戰爭時間控制器
 		WarTimeController warTimeController = WarTimeController.getInstance();
-		GeneralThreadPool.getInstance().execute(warTimeController);
+		ThreadPoolManager.getInstance().execute(warTimeController);
 		// 妖精森林產生元素石
 		if (Config.ELEMENTAL_STONE_AMOUNT > 0) {
 			ElementalStoneGenerator elementalStoneGenerator = ElementalStoneGenerator.getInstance();
-			GeneralThreadPool.getInstance().execute(elementalStoneGenerator);
+			ThreadPoolManager.getInstance().execute(elementalStoneGenerator);
 		}
 		// 村莊系統時間控制器
 		HomeTownTimeController.getInstance();
 		// 盟屋拍賣時間控制器
 		AuctionTimeController auctionTimeController = AuctionTimeController.getInstance();
-		GeneralThreadPool.getInstance().execute(auctionTimeController);
+		ThreadPoolManager.getInstance().execute(auctionTimeController);
 		// 盟屋稅金時間控制器
 		HouseTaxTimeController houseTaxTimeController = HouseTaxTimeController.getInstance();
-		GeneralThreadPool.getInstance().execute(houseTaxTimeController);
+		ThreadPoolManager.getInstance().execute(houseTaxTimeController);
 		// 釣魚系統時間控制器
 		FishingTimeController fishingTimeController = FishingTimeController.getInstance();
-		GeneralThreadPool.getInstance().execute(fishingTimeController);
+		ThreadPoolManager.getInstance().execute(fishingTimeController);
 		// NPC 說話時間控制器
 		NpcChatTimeController npcChatTimeController = NpcChatTimeController.getInstance();
-		GeneralThreadPool.getInstance().execute(npcChatTimeController);
+		ThreadPoolManager.getInstance().execute(npcChatTimeController);
 		// 光線變化時間控制器
 		LightTimeController lightTimeController = LightTimeController.getInstance();
-		GeneralThreadPool.getInstance().execute(lightTimeController);
+		ThreadPoolManager.getInstance().execute(lightTimeController);
 		// 時空裂痕時間控制器
 		CrackTimeController crackTimeController = CrackTimeController.getStart();
-		GeneralThreadPool.getInstance().execute(crackTimeController);
+		ThreadPoolManager.getInstance().execute(crackTimeController);
 
 		Announcements.getInstance();
 		NpcTable.getInstance();
@@ -258,6 +257,8 @@ public class GameServer extends Thread {
 	}
 
 	public static void main(String[] args) throws Exception {
+		Server.serverMode = Server.MODE_GAMESERVER;
+
 		final String LOG_FOLDER = "log";
 		final String LOG_NAME = "./config/log.properties";
 
@@ -350,7 +351,7 @@ public class GameServer extends Thread {
 			return;
 		}
 		_shutdownThread = new ServerShutdownThread(secondsCount);
-		GeneralThreadPool.getInstance().execute(_shutdownThread);
+		ThreadPoolManager.getInstance().execute(_shutdownThread);
 	}
 
 	public void shutdown() {

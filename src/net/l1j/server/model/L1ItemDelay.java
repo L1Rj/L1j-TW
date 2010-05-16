@@ -22,11 +22,9 @@ import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1EtcItem;
-import net.l1j.thread.GeneralThreadPool;
+import net.l1j.thread.ThreadPoolManager;
 
 public class L1ItemDelay {
-	private static GeneralThreadPool _threadPool = GeneralThreadPool.getInstance();
-
 	static class ItemDelayTimer implements Runnable {
 		private int _delayId;
 		private int _delayTime;
@@ -77,6 +75,6 @@ public class L1ItemDelay {
 		ItemDelayTimer timer = new ItemDelayTimer(pc, delayId, delayTime);
 
 		pc.addItemDelay(delayId, timer);
-		_threadPool.schedule(timer, delayTime);
+		ThreadPoolManager.getInstance().schedule(timer, delayTime);
 	}
 }
