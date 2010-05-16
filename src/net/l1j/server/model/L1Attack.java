@@ -1699,12 +1699,6 @@ public class L1Attack {
 	}
 	// Target: Npc
 	private void SkillsFixHitTargetNPC() {
-		if (_targetNpc.hasSkillEffect(SKILL_UNCANNY_DODGE)) // 暗影閃避
-			_hitRate -= 5;
-
-		if (_targetNpc.hasSkillEffect(SKILL_MIRROR_IMAGE)) // 鏡像
-			_hitRate -= 5;
-
 		if (_targetNpc.hasSkillEffect(SKILL_RESIST_FEAR)) // 恐懼無助
 			_hitRate += 5;
 	}
