@@ -361,15 +361,9 @@ public class L1Attack {
 		//		attackerDice += 5;
 		// }
 
-		int defenderDice = 0;
-
-		int defenderValue = (int) (_targetPc.getAc() * 1.5) * -1;
-
-		if (_targetPc.getAc() >= 0) {
-			defenderDice = 10 - _targetPc.getAc();
-		} else if (_targetPc.getAc() < 0) {
-			defenderDice = RandomArrayList.getInc(defenderValue, 10);
-		}
+		// 根據 防禦增減 命中
+		_hitRate += calcPcACfixHit(_targetPc.getAc());
+		_hitRate *= 5;
 
 		int rnd = RandomArrayList.getInc(100, 1);
 		if (_weaponType == 20 && _hitRate > rnd) { // 弓の場合、ヒットした場合でもERでの回避を再度行う。
@@ -398,9 +392,6 @@ public class L1Attack {
 				+ _weaponAddHit				// 武器 Fix hitRat
 				+ (_weaponEnchant / 2);		// 武捲 Fix hitRat
 
-		_hitRate *= 5;
-		_hitRate += _targetNpc.getAc() * 5;
-
 		// 根據 負重 修正命中
 		_hitRate -= WeightfixHit(_pc.getInventory().getWeight240());
 
@@ -410,10 +401,15 @@ public class L1Attack {
 		// 檢查 目標身上技能 修正命中
 		SkillsFixHitTargetNPC();
 
-		int defenderDice = 10 - _targetNpc.getAc();
+		// 根據 防禦增減 命中
+		_hitRate += calcNpcACfixHit(_targetNpc.getAc());
 
 		// add end
 		int rnd = RandomArrayList.getInc(100, 1);
+
+		// 天堂法則 僅提供 Target:NPC 有最高命中95%限制
+		if(_hitRate > 95)
+			_hitRate = 95;
 
 		return _hitRate >= rnd;
 	}
@@ -435,15 +431,9 @@ public class L1Attack {
 		// 檢查 目標身上技能 修正命中
 		SkillsFixHitTargetPC();
 
-		int defenderDice = 0;
-
-		int defenderValue = (_targetPc.getAc()) * -1;
-
-		if (_targetPc.getAc() >= 0) {
-			defenderDice = 10 - _targetPc.getAc();
-		} else if (_targetPc.getAc() < 0) {
-			defenderDice = RandomArrayList.getInc(defenderValue, 10);//原寫法  _random.nextInt(defenderValue) + 1;
-		}
+		// 根據 防禦增減 命中
+		_hitRate += calcPcACfixHit(_targetPc.getAc());
+		_hitRate *= 5;
 
 		int rnd = RandomArrayList.getInc(100, 1);
 
@@ -469,15 +459,9 @@ public class L1Attack {
 		// 檢查 目標身上技能 修正命中
 		SkillsFixHitTargetNPC();
 
-		int defenderDice = 0;
-
-		int defenderValue = (_targetNpc.getAc()) * -1;
-
-		if (_targetNpc.getAc() >= 0) {
-			defenderDice = 10 - _targetNpc.getAc();
-		} else if (_targetNpc.getAc() < 0) {
-			defenderDice = RandomArrayList.getInc(defenderValue, 10);
-		}
+		// 根據 防禦增減 命中
+		_hitRate += calcNpcACfixHit(_targetNpc.getAc());
+		_hitRate *= 5;
 
 		int rnd = RandomArrayList.getInc(100, 1);
 		return _hitRate >= rnd;
@@ -1076,13 +1060,6 @@ public class L1Attack {
 		return dmg;
 	}
 
-	// ●●●● プレイヤーのＡＣによるダメージ輕減 ●●●●
-	private int calcPcDefense() {
-		int ac = Math.max(0, 10 - _targetPc.getAc());
-		int acDefMax = _targetPc.getClassFeature().calcAcDefense(ac);
-		return RandomArrayList.getInt(acDefMax + 1);
-	}
-
 	// ●●●● ＮＰＣのダメージリダクションによる輕減 ●●●●
 	private int calcNpcDamageReduction() {
 		return _targetNpc.getNpcTemplate().get_damagereduction();
@@ -1537,7 +1514,18 @@ public class L1Attack {
 
 
 	/* ■■■■■■■■■■■■ 攻 擊 特殊狀態 vs 命中 ■■■■■■■■■■■■ */
-
+	/**
+	 * 根據天堂法則撰寫的防禦影響命中
+	 */
+	private int calcPcACfixHit(int ac) {
+		if(ac >= 0)
+			return ac;
+		else
+			return RandomArrayList.getInc(ac, -1);
+	}
+	private int calcNpcACfixHit(int ac) {
+		return ac;
+	}
 	/**
 	 * 特殊狀態檢查 命中可能
 	 * 若絕無可能命中，則回傳 true
@@ -1722,6 +1710,14 @@ public class L1Attack {
 	}
 
 	/* ■■■■■■■■■■■■ 攻 擊 特殊狀態 vs 傷害 ■■■■■■■■■■■■ */
+	/**
+	 *  プレイヤーのＡＣによるダメージ輕減
+	 */
+	private int calcPcDefense() {
+		int ac = Math.max(0, 10 - _targetPc.getAc());
+		int acDefMax = _targetPc.getClassFeature().calcAcDefense(ac);
+		return RandomArrayList.getInt(acDefMax + 1);
+	}
 
 	/**
 	 * 特殊狀態檢查 傷害可能
