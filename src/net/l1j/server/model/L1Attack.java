@@ -1535,6 +1535,7 @@ public class L1Attack {
 			_hitRate = 95;
 		else if(_hitRate < 5)
 			_hitRate = 5;
+		return _hitRate;
 	}
 	/**
 	 * 根據天堂法則撰寫的防禦影響命中
