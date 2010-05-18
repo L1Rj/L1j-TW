@@ -32,9 +32,7 @@
 39.怪物無四屬性資料.
 30.屬性加成傷害力計算不正確(NPC無屬性傷害資料).
 31.present 指令無效.
-32.角色對NPC命中未計算武器攻擊成功.(參考資料 http://tw.myblog.yahoo.com/wendly-lineage/article?mid=1&prev=-2&next=-2&page=1 )
-33.角色負重影響命中仍不正確 應該分為四段. ( http://tw.myblog.yahoo.com/wendly-lineage/article?mid=1&prev=-2&next=-2&page=1 )
-34.地圖仍未載入 630 631 632.
+32.地圖仍未載入 630 631 632.
 
 技能類:
 1.龍騎技能-奪命之雷 沒有束縛2秒的效果.
