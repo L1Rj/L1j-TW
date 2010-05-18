@@ -363,7 +363,11 @@ public class L1Attack {
 
 		// 根據 防禦增減 命中
 		_hitRate += calcPcACfixHit(_targetPc.getAc());
+		// 還原成百分等級
 		_hitRate *= 5;
+
+		// 天堂法則 有 上限95%下限5%
+		limitHit();
 
 		int rnd = RandomArrayList.getInc(100, 1);
 		if (_weaponType == 20 && _hitRate > rnd) { // 弓の場合、ヒットした場合でもERでの回避を再度行う。
@@ -403,13 +407,14 @@ public class L1Attack {
 
 		// 根據 防禦增減 命中
 		_hitRate += calcNpcACfixHit(_targetNpc.getAc());
+		// 還原成百分等級
+		_hitRate *= 5;
+
+		// 天堂法則 有 上限95%下限5%
+		limitHit();
 
 		// add end
 		int rnd = RandomArrayList.getInc(100, 1);
-
-		// 天堂法則 僅提供 Target:NPC 有最高命中95%限制
-		if(_hitRate > 95)
-			_hitRate = 95;
 
 		return _hitRate >= rnd;
 	}
@@ -433,7 +438,11 @@ public class L1Attack {
 
 		// 根據 防禦增減 命中
 		_hitRate += calcPcACfixHit(_targetPc.getAc());
+		// 還原成百分等級
 		_hitRate *= 5;
+
+		// 天堂法則 有 上限95%下限5%
+		limitHit();
 
 		int rnd = RandomArrayList.getInc(100, 1);
 
@@ -461,7 +470,11 @@ public class L1Attack {
 
 		// 根據 防禦增減 命中
 		_hitRate += calcNpcACfixHit(_targetNpc.getAc());
+		// 還原成百分等級
 		_hitRate *= 5;
+
+		// 天堂法則 有 上限95%下限5%
+		limitHit();
 
 		int rnd = RandomArrayList.getInc(100, 1);
 		return _hitRate >= rnd;
@@ -1514,6 +1527,15 @@ public class L1Attack {
 
 
 	/* ■■■■■■■■■■■■ 攻 擊 特殊狀態 vs 命中 ■■■■■■■■■■■■ */
+	/**
+	 * 根據天堂法則撰寫的 命中上下界
+	 */
+	private int limitHit() {
+		if(_hitRate > 95)
+			_hitRate = 95;
+		else if(_hitRate < 5)
+			_hitRate = 5;
+	}
 	/**
 	 * 根據天堂法則撰寫的防禦影響命中
 	 */
