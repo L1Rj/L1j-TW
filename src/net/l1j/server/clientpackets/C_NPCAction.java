@@ -2361,9 +2361,21 @@ public class C_NPCAction extends ClientBasePacket {
 					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 2); } else if (nb == 2) { // c地點
 					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 3); } else if (nb == 3) { // d地點
 					pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 4); }*/
-				pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, RandomArrayList.getInc(3, 1));
+				pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, RandomArrayList.getInc(3, 2));
 			}
 		}
+// waja add 20100521 hms 提供 刪除骷髏項鍊，任務無法重新開始
+		else if (pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) == L1Quest.QUEST_END) {
+		if (pc.getInventory().checkItem(20269)) {
+		htmlid = "lukein0";
+		} else {
+		pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 0);
+		pc.getQuest().set_step(L1Quest.QUEST_TBOX1, 0);
+		pc.getQuest().set_step(L1Quest.QUEST_TBOX2, 0);
+		pc.getQuest().set_step(L1Quest.QUEST_TBOX3, 0);
+			}
+		}
+//add end
 		// 小さな箱-2番目
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71064
 				|| ((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71065
