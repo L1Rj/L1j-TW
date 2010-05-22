@@ -44,6 +44,10 @@ public class L1Attack {
 	// Unused?
 	// private static Logger _log = Logger.getLogger(L1Attack.class.getName());
 
+	// lifetime fix HitRate
+	private int Hit_LowerBound = 5;
+	private int Hit_UpperBound = 95;
+
 	// KIUSBT 更改型態、並廢除 _calcType 該變數
 	private boolean PC_PC;
 	private boolean PC_NPC;
@@ -371,7 +375,7 @@ public class L1Attack {
 			return calcErEvasion();
 		}
 
-		// 天堂法則 有 上限95%下限5%
+		// 上界與下界 限制(By 天堂法則)
 		return limitHit() >= rnd;
 		// return _hitRate >= rnd;
 	}
@@ -412,7 +416,7 @@ public class L1Attack {
 		// add end
 		int rnd = RandomArrayList.getInc(100, 1);
 
-		// 天堂法則 有 上限95%下限5%
+		// 上界與下界 限制(By 天堂法則)
 		return limitHit() >= rnd;
 		// return _hitRate >= rnd;
 	}
@@ -439,16 +443,13 @@ public class L1Attack {
 		// 還原成百分等級
 		_hitRate *= 5;
 
-		// 天堂法則 有 上限95%下限5%
-		limitHit();
-
 		int rnd = RandomArrayList.getInc(100, 1);
 
 		// NPCの攻撃レンジが10以上の場合で、2以上離れている場合弓攻撃とみなす
 		if (_npc.getNpcTemplate().get_ranged() >= 10 && _hitRate > rnd && _npc.getTileLineDistance(_target) >= 2) {
 			return calcErEvasion();
 		}
-		// 天堂法則 有 上限95%下限5%
+		// 上界與下界 限制(By 天堂法則)
 		return limitHit() >= rnd;
 		// return _hitRate >= rnd;
 	}
@@ -458,15 +459,15 @@ public class L1Attack {
 		// 絕對無法命中條件
 		if(impossibleHitNPC())
 			return false;
-		_hitRate = _npc.getLevel();
+
+		_hitRate = _npc.getLevel()			// Level Fix hitRat
+				+ get_strHit(_npc.getStr())	// str因素 Fix hitRat
+				+ get_dexHit(_npc.getDex())	// dex因素 Fix hitRat
+				+ _npc.getHitup();			// 狀態影響
 
 		if (_npc instanceof L1PetInstance) { // ペットの武器による追加命中
 			_hitRate += ((L1PetInstance) _npc).getHitByWeapon();
 		}
-
-		// 根據 STR因素 + DEX因素 修正命中
-		_hitRate += get_strHit(_npc.getStr()) + get_dexHit(_npc.getDex());
-		_hitRate += _npc.getHitup();
 
 		// 檢查 目標身上技能 修正命中
 		SkillsFixHitTargetNPC();
@@ -477,7 +478,7 @@ public class L1Attack {
 		_hitRate *= 5;
 
 		int rnd = RandomArrayList.getInc(100, 1);
-		// 天堂法則 有 上限95%下限5%
+		// 上界與下界 限制(By 天堂法則)
 		return limitHit() >= rnd;
 		// return _hitRate >= rnd;
 	}
@@ -1101,7 +1102,7 @@ public class L1Attack {
 		return damage;
 	}
 
-	public static final int[] Damage_weaponAttrEnchantLevel = { 0, 1, 3, 5 };
+	private static final int[] Damage_weaponAttrEnchantLevel = { 0, 1, 3, 5 };
 
 	// ●●●● 武器の属性強化による追加ダメージ算出 ●●●●
 	private int calcAttrEnchantDmg() {
@@ -1534,10 +1535,10 @@ public class L1Attack {
 	 * 根據天堂法則撰寫的 命中上下界
 	 */
 	private int limitHit() {
-		if(_hitRate > 95)
-			return _hitRate = 95;
-		else if(_hitRate < 5)
-			return _hitRate = 5;
+		if(_hitRate > Hit_UpperBound)
+			return _hitRate = Hit_UpperBound;
+		else if(_hitRate < Hit_LowerBound)
+			return _hitRate = Hit_LowerBound;
 		else
 			return _hitRate;
 	}
@@ -1548,7 +1549,7 @@ public class L1Attack {
 		if(ac >= 0)
 			return ac;
 		else
-			return RandomArrayList.getInc(ac, -1);
+			return RandomArrayList.getInc((ac * 1.5), -1);
 	}
 	/**
 	 * 特殊狀態檢查 命中可能
@@ -1656,7 +1657,7 @@ public class L1Attack {
 					|| _pc.hasSkillEffect(COOKING_3_0_N) || _pc.hasSkillEffect(COOKING_3_0_S)) { // 料理による追加命中
 				_hitRate++;
 			}
-			/** 未完成檢查：尚未查看是否已經將效果記錄在 _pc.getBowHitup() 中
+			/** 未完成檢查：已經將效果記錄在 _pc.getBowHitup() 中
 			if (_targetPc.hasSkillEffect(SKILL_HOLY_WEAPON)) // 神聖武器
 				_hitRate += 1;
 			if (_targetPc.hasSkillEffect(SKILL_BLESS_WEAPON)) // 祝福魔法武器
@@ -1675,7 +1676,7 @@ public class L1Attack {
 			if (_pc.hasSkillEffect(COOKING_3_2_N) || _pc.hasSkillEffect(COOKING_3_2_S)) { // 料理による追加命中
 				_hitRate += 2;
 			}
-			/** 未完成檢查：尚未查看是否已經將效果記錄在 _pc.getHitup() 中
+			/** 未完成檢查：已經將效果記錄在 _pc.getHitup() 中
 			if (_targetPc.hasSkillEffect(SKILL_HOLY_WEAPON)) // 神聖武器
 				_hitRate += 1;
 			if (_targetPc.hasSkillEffect(SKILL_BLESS_WEAPON)) // 祝福魔法武器
@@ -1714,8 +1715,10 @@ public class L1Attack {
 	 */
 	// Target: Player
 	private void SkillsFixHitTargetPC() {
-		if (_targetPc.hasSkillEffect(SKILL_UNCANNY_DODGE)) // 暗影閃避
+		if (_targetPc.hasSkillEffect(SKILL_UNCANNY_DODGE)){ // 暗影閃避
 			_hitRate -= 5;
+			Hit_LowerBound = 0;
+		}
 
 		if (_targetPc.hasSkillEffect(SKILL_MIRROR_IMAGE)) // 鏡像
 			_hitRate -= 5;
