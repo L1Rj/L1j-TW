@@ -20,17 +20,16 @@ package net.l1j.server.serverpackets;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.l1j.Config; // 5.06
+import net.l1j.Config;
 
 public abstract class ServerBasePacket {
 	private static Logger _log = Logger.getLogger(ServerBasePacket.class.getName());
 
 	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
-	static final Random random = new Random(); // 填充物要用到的亂數
+	// static final Random random = new Random(); // 填充物要用到的亂數
 
 	ByteArrayOutputStream _bao = new ByteArrayOutputStream();
 

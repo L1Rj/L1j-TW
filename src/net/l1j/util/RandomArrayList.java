@@ -39,6 +39,14 @@ public class RandomArrayList {
 	}
 
 	/**
+	 * getByte(byte[] 容器) ：模仿Random.nextBytes(byte[]) 製作
+	 */
+	public static void getByte(byte[] arr) {
+		for(byte i = 0; i < arr.length; i++)
+			arr[i] = (byte) (ArrayDouble[getlistint()] * 128);
+	}
+
+	/**
 	 * getInt(int 數值) 隨機值的僞靜態，速度是nextInt(int 數值) 的數倍
 	 * 根據呼叫的數值傳回 靜態表內加工後的數值,並採共同指標來決定傳回的依據.
 	 * EX:getInt(92988) => 0~92987

@@ -43,7 +43,7 @@ public class S_Poison extends ServerBasePacket {
 			writeC(0);
 			writeC(1);
 		} else {
-			throw new IllegalArgumentException("不正な引数です。type = " + type);
+			throw new IllegalArgumentException("參數 type = " + type + " 無效");
 		}
 	}
 

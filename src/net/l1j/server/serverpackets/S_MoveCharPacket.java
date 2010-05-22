@@ -20,39 +20,20 @@ package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
+import net.l1j.server.types.Base;
 
 public class S_MoveCharPacket extends ServerBasePacket {
 	private static final String S_MOVE_CHAR_PACKET = "[S] S_MoveCharPacket";
 
 	private byte[] _byte = null;
 
-	public S_MoveCharPacket(L1Character cha) {
-		int x = cha.getX();
-		int y = cha.getY();
-		// if(cha instanceof L1PcInstance)
-		// {
+	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
+	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
-		if (cha.getHeading() == 0) { // 4.14 Start
-			y++;
-		} else if (cha.getHeading() == 1) {
-			x--;
-			y++;
-		} else if (cha.getHeading() == 2) {
-			x--;
-		} else if (cha.getHeading() == 3) {
-			x--;
-			y--;
-		} else if (cha.getHeading() == 4) {
-			y--;
-		} else if (cha.getHeading() == 5) {
-			x++;
-			y--;
-		} else if (cha.getHeading() == 6) {
-			x++;
-		} else if (cha.getHeading() == 7) {
-			x++;
-			y++;
-		} // 4.14 End
+	public S_MoveCharPacket(L1Character cha) {
+		int x = cha.getX() - HEADING_TABLE_X[cha.getHeading()];
+		int y = cha.getY() - HEADING_TABLE_Y[cha.getHeading()];
 
 		writeC(Opcodes.S_OPCODE_MOVEOBJECT);
 		writeD(cha.getId());

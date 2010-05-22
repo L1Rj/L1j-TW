@@ -20,6 +20,7 @@ package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.util.RandomArrayList;
 
 public class S_ActiveSpells extends ServerBasePacket {
 	private static final String S_ABILITY = "[S] S_Ability";
@@ -95,7 +96,7 @@ public class S_ActiveSpells extends ServerBasePacket {
 	public S_ActiveSpells(L1PcInstance pc, int offset) {
 		int[] UByte8 = new int[68];
 		byte[] randBox = new byte[2];
-		random.nextBytes(randBox);
+		RandomArrayList.getByte(randBox);
 
 		writeC(Opcodes.S_OPCODE_ACTIVESPELLS);
 		writeC(0x14);

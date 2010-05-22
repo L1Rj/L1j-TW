@@ -168,20 +168,11 @@ public class L1Clan {
 		return result;
 	}
 
+	private static final String[] RANKNAME = {"", "[見習]", "[一般]", "[守護騎士]", "[聯盟君主]"};
 	private String getRankString(L1PcInstance pc) {
 		String rank = "";
 		if (pc != null) {
-			if (pc.getClanRank() == CLAN_RANK_PROBATION) {
-				rank = "[見習]";
-			} else if (pc.getClanRank() == CLAN_RANK_PUBLIC) {
-				rank = "[一般]";
-			} else if (pc.getClanRank() == CLAN_RANK_GUARDIAN) {
-				rank = "[守護騎士]";
-			} else if (pc.getClanRank() == CLAN_RANK_PRINCE) {
-				rank = "[聯盟君主]";
-			} else {
-				rank = "";
-			}
+			rank = RANKNAME[pc.getClanRank()];
 		}
 		return rank;
 	}
