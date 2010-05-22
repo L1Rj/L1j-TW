@@ -1647,7 +1647,6 @@ public class L1Attack {
 	 */
 	private void WeaponfixHit() {
 		if (_weaponType == 20 || _weaponType == 62) {
-			System.out.println("_pc.getHitup() = " + _pc.getHitup());
 			_hitRate += _pc.getBowHitup()
 					+ L1DollInstance.getBowHitAddByDoll(_pc) // 娃娃增加弓命中
 					+ _pc.getOriginalBowHitup();
@@ -1665,7 +1664,6 @@ public class L1Attack {
 			if (_targetPc.hasSkillEffect(SKILL_GLOWING_AURA)) // 激勵士氣
 				_hitRate += 5;*/
 		} else {
-			System.out.println("_pc.getHitup() = " + _pc.getHitup());
 			_hitRate += _pc.getHitup()
 					+ _pc.getOriginalHitup();
 			_hitRate += _pc.getHitModifierByArmor(); // 防具による追加命中
