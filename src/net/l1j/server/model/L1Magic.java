@@ -1000,7 +1000,7 @@ public class L1Magic {
 			msg2 = "THp" + _targetNpc.getCurrentHp();
 		}
 
-		msg3 = damage + "与えた";
+		msg3 = damage + "傷害值";
 
 		if (_calcType == PC_PC || _calcType == PC_NPC) { // アタッカーがＰＣの場合
 			_pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, msg0, msg1, msg2, msg3, msg4));

@@ -362,19 +362,18 @@ public class L1Attack {
 		// }
 
 		// 根據 防禦增減 命中
-		_hitRate += calcPcACfixHit(_targetPc.getAc());
+		_hitRate += calcACfixHit(_targetPc.getAc());
 		// 還原成百分等級
 		_hitRate *= 5;
-
-		// 天堂法則 有 上限95%下限5%
-		limitHit();
 
 		int rnd = RandomArrayList.getInc(100, 1);
 		if (_weaponType == 20 && _hitRate > rnd) { // 弓の場合、ヒットした場合でもERでの回避を再度行う。
 			return calcErEvasion();
 		}
 
-		return _hitRate >= rnd;
+		// 天堂法則 有 上限95%下限5%
+		return limitHit() >= rnd;
+		// return _hitRate >= rnd;
 	}
 
 	// ●●●● プレイヤー から ＮＰＣ への命中判定 ●●●●
@@ -406,17 +405,16 @@ public class L1Attack {
 		SkillsFixHitTargetNPC();
 
 		// 根據 防禦增減 命中
-		_hitRate += calcNpcACfixHit(_targetNpc.getAc());
+		_hitRate += calcACfixHit(_targetNpc.getAc());
 		// 還原成百分等級
 		_hitRate *= 5;
-
-		// 天堂法則 有 上限95%下限5%
-		limitHit();
 
 		// add end
 		int rnd = RandomArrayList.getInc(100, 1);
 
-		return _hitRate >= rnd;
+		// 天堂法則 有 上限95%下限5%
+		return limitHit() >= rnd;
+		// return _hitRate >= rnd;
 	}
 
 	// ●●●● ＮＰＣ から プレイヤー への命中判定 ●●●●
@@ -437,7 +435,7 @@ public class L1Attack {
 		SkillsFixHitTargetPC();
 
 		// 根據 防禦增減 命中
-		_hitRate += calcPcACfixHit(_targetPc.getAc());
+		_hitRate += calcACfixHit(_targetPc.getAc());
 		// 還原成百分等級
 		_hitRate *= 5;
 
@@ -450,11 +448,16 @@ public class L1Attack {
 		if (_npc.getNpcTemplate().get_ranged() >= 10 && _hitRate > rnd && _npc.getTileLineDistance(_target) >= 2) {
 			return calcErEvasion();
 		}
-		return _hitRate >= rnd;
+		// 天堂法則 有 上限95%下限5%
+		return limitHit() >= rnd;
+		// return _hitRate >= rnd;
 	}
 
 	// ●●●● ＮＰＣ から ＮＰＣ への命中判定 ●●●●
 	private boolean calcNpcNpcHit() {
+		// 絕對無法命中條件
+		if(impossibleHitNPC())
+			return false;
 		_hitRate = _npc.getLevel();
 
 		if (_npc instanceof L1PetInstance) { // ペットの武器による追加命中
@@ -469,15 +472,14 @@ public class L1Attack {
 		SkillsFixHitTargetNPC();
 
 		// 根據 防禦增減 命中
-		_hitRate += calcNpcACfixHit(_targetNpc.getAc());
+		_hitRate += calcACfixHit(_targetNpc.getAc());
 		// 還原成百分等級
 		_hitRate *= 5;
 
-		// 天堂法則 有 上限95%下限5%
-		limitHit();
-
 		int rnd = RandomArrayList.getInc(100, 1);
-		return _hitRate >= rnd;
+		// 天堂法則 有 上限95%下限5%
+		return limitHit() >= rnd;
+		// return _hitRate >= rnd;
 	}
 
 	// ●●●● ＥＲによる回避判定 ●●●●
@@ -1526,28 +1528,27 @@ public class L1Attack {
 	}
 
 
+	// 以下均未完成正式部份
 	/* ■■■■■■■■■■■■ 攻 擊 特殊狀態 vs 命中 ■■■■■■■■■■■■ */
 	/**
 	 * 根據天堂法則撰寫的 命中上下界
 	 */
 	private int limitHit() {
 		if(_hitRate > 95)
-			_hitRate = 95;
+			return _hitRate = 95;
 		else if(_hitRate < 5)
-			_hitRate = 5;
-		return _hitRate;
+			return _hitRate = 5;
+		else
+			return _hitRate;
 	}
 	/**
 	 * 根據天堂法則撰寫的防禦影響命中
 	 */
-	private int calcPcACfixHit(int ac) {
+	private int calcACfixHit(int ac) {
 		if(ac >= 0)
 			return ac;
 		else
 			return RandomArrayList.getInc(ac, -1);
-	}
-	private int calcNpcACfixHit(int ac) {
-		return ac;
 	}
 	/**
 	 * 特殊狀態檢查 命中可能
@@ -1616,11 +1617,11 @@ public class L1Attack {
 	 * 傳回 影響值
 	 */
 	private int WeightfixHit(int Weight) {
-		if(Weight > 160)
+		if(Weight > 160) // 67%
 			return 5;
-		else if(Weight > 120)
+		else if(Weight > 120) // 50%
 			return 3;
-		else if(Weight > 80)
+		else if(Weight > 80) // 34%
 			return 1;
 		else
 			return 0;
@@ -1645,6 +1646,7 @@ public class L1Attack {
 	 */
 	private void WeaponfixHit() {
 		if (_weaponType == 20 || _weaponType == 62) {
+			System.out.println("_pc.getHitup() = " + _pc.getHitup());
 			_hitRate += _pc.getBowHitup()
 					+ L1DollInstance.getBowHitAddByDoll(_pc) // 娃娃增加弓命中
 					+ _pc.getOriginalBowHitup();
@@ -1662,6 +1664,7 @@ public class L1Attack {
 			if (_targetPc.hasSkillEffect(SKILL_GLOWING_AURA)) // 激勵士氣
 				_hitRate += 5;*/
 		} else {
+			System.out.println("_pc.getHitup() = " + _pc.getHitup());
 			_hitRate += _pc.getHitup()
 					+ _pc.getOriginalHitup();
 			_hitRate += _pc.getHitModifierByArmor(); // 防具による追加命中
