@@ -457,8 +457,8 @@ public class L1Attack {
 	// ●●●● ＮＰＣ から ＮＰＣ への命中判定 ●●●●
 	private boolean calcNpcNpcHit() {
 		// 絕對無法命中條件
-		if(impossibleHitNPC())
-			return false;
+		// if(impossibleHitNPC())
+		// 	return false;
 
 		_hitRate = _npc.getLevel()			// Level Fix hitRat
 				+ get_strHit(_npc.getStr())	// str因素 Fix hitRat
@@ -1713,7 +1713,7 @@ public class L1Attack {
 	 */
 	// Target: Player
 	private void SkillsFixHitTargetPC() {
-		if (_targetPc.hasSkillEffect(SKILL_UNCANNY_DODGE)){ // 暗影閃避
+		if (_targetPc.hasSkillEffect(SKILL_UNCANNY_DODGE)) { // 暗影閃避
 			_hitRate -= 5;
 			Hit_LowerBound = 0;
 		}
