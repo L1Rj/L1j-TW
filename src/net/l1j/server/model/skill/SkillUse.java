@@ -1094,6 +1094,11 @@ public class SkillUse {
 			// MPのオリジナルINT輕減
 			if (_player.getOriginalMagicConsumeReduction() > 0) {
 				_mpConsume -= _player.getOriginalMagicConsumeReduction();
+// 20100523 waja add hms fix code ( 智力減免2的王族騎士戴治盔初治不扣 mp )
+			if (_mpConsume <= 0) { // 智力減免後的最低耗魔量為1
+				_mpConsume = 1;
+				}
+// add end
 			}
 		}
 
