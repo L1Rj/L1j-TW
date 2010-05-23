@@ -214,6 +214,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			case 41432: // 火之武器強化卷軸
 			case 30001: // 裝備保護卷軸
 			case 49148: // 飾品強化卷軸
+			case 49188: // 索夏依卡靈魂之石
 				l = readD();
 			break;
 			case 40086: case 40099: case 40100: case 50005: case 140100:
@@ -972,12 +973,11 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 49188) {// 索夏依卡靈魂之心
-					if (l1iteminstance1.getItem().getType2() == 0
-							&& l1iteminstance1.getItem().getItemId() == 49186) {
-						pc.getInventory().consumeItem(49186, 1);
-						pc.getInventory().consumeItem(49188, 1);
-						pc.getInventory().storeItem(49189, 1);
+				} else if (itemId == 49188) { // 索夏依卡靈魂之石
+					if (l1iteminstance1.getItem().getItemId() == 49186) {
+						ItemCreate.newItem(pc, 49189, 1);
+						pc.getInventory().removeItem(l1iteminstance1, 1);
+						pc.getInventory().removeItem(item, 1);
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
@@ -1917,7 +1917,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					// }
 					// } else { // その他（NPCや他のクランのPC）
 					// }
-				} else if (itemId >= 40289 && itemId <= 40297) { // 傲慢の塔11~91階テレポートアミュレット
+				} else if (itemId >= 40289 && itemId <= 40297 || itemId == 49216) { // 傲慢之塔11~91樓傳送符 普洛凱爾的護身符
 					Teleport.amulet(pc, itemId, item);
 				} else if (itemId >= 40280 && itemId <= 40288) {
 					// 封印された傲慢の塔11～91階テレポートアミュレット
@@ -2624,6 +2624,27 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 						pc.getInventory().consumeItem(49222, 1);
 					}
+				} else if (itemId == 49227) { // 紅色之火碎片
+						if (pc.isDragonKnight() && pc.getMapId() == 2004) {
+							boolean found = false;
+							for (L1Object obj : L1World.getInstance().getObject()) {
+								if (obj instanceof L1MonsterInstance) {
+									L1MonsterInstance mob = (L1MonsterInstance) obj;
+									if (mob != null) {
+										if (mob.getNpcTemplate().get_npcId() == 46167) {
+											found = true;
+											break;
+										}
+									}
+								}
+							}
+							if (found) {
+								pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+							} else {
+								SpawnUtil.spawn(pc, 46167, 0, 0); // 召怪
+							}
+							pc.getInventory().consumeItem(49227, 1);
+						}
 				} else {
 					int locX = ((L1EtcItem) item.getItem()).get_locx();
 					int locY = ((L1EtcItem) item.getItem()).get_locy();

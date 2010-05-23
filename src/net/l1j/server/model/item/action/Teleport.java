@@ -49,6 +49,8 @@ public class Teleport {
 			if (pc.getX() >= 32706 && pc.getX() <= 32710 && pc.getY() >= 32909 && pc.getY() <= 32913 && pc.getMapId() == 190) {
 				isTeleport = true;
 			}
+		} else if (itemId == 49216) { // 普洛凱爾的護身符
+			isTeleport = true;
 		}
 
 		if (isTeleport) {

@@ -106,7 +106,7 @@ public class SpellBook {
 				itemId == 40247 && level >= 30 && pc.getElfAttr() == 1||
 				itemId == 40248 && level >= 40 && pc.getElfAttr() == 1||
 				itemId == 40249 && level >= 50 && pc.getElfAttr() == 1||
-				itemId == 40250 && level >= 50 && pc.getElfAttr() == 1||
+				itemId == 40250 && level >= 40 && pc.getElfAttr() == 1||
 				itemId == 40251 && level >= 50 && pc.getElfAttr() == 1||
 				itemId == 40252 && level >= 50 && pc.getElfAttr() == 1||
 				// 水屬性魔法
