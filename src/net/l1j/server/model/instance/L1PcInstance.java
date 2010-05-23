@@ -2393,10 +2393,10 @@ public class L1PcInstance extends L1Character {
 			*/
 			short randomHp = (short) _classFeature.calclvUpHp(getCon());
 			short randomMp = (short) _classFeature.calclvUpMp(getWis());
-			if (getMaxHp() + randomHp > _classFeature.MaxHp()) {
+			if (getBaseMaxHp() + randomHp > _classFeature.MaxHp()) {
 				randomHp = 0;
 			}
-			if (getMaxMp() + randomMp > _classFeature.MaxMp()) {
+			if (getBaseMaxMp() + randomMp > _classFeature.MaxMp()) {
 				randomMp = 0;
 			}
 			addBaseMaxHp(randomHp);
