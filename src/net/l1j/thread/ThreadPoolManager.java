@@ -77,11 +77,12 @@ public class ThreadPoolManager {
 	private Executor _executor;
 	private ScheduledExecutorService _scheduler;
 	private ScheduledExecutorService _pcScheduler;
-//	private ScheduledThreadPoolExecutor _effectsScheduledThreadPool;
+
+	private ScheduledThreadPoolExecutor _effectsScheduledThreadPool;
 	private ScheduledThreadPoolExecutor _generalScheduledThreadPool;
-//	private ScheduledThreadPoolExecutor _aiScheduledThreadPool;
-//	private ThreadPoolExecutor _generalPacketsThreadPool;
-//	private ThreadPoolExecutor _ioPacketsThreadPool;
+	private ScheduledThreadPoolExecutor _aiScheduledThreadPool;
+	private ThreadPoolExecutor _generalPacketsThreadPool;
+	private ThreadPoolExecutor _ioPacketsThreadPool;
 	private ThreadPoolExecutor _generalThreadPool;
 
 	/** temp workaround for VM issue */
@@ -103,12 +104,13 @@ public class ThreadPoolManager {
 		}
 		_scheduler = Executors.newScheduledThreadPool(SCHEDULED_CORE_POOL_SIZE, new PriorityThreadFactory("GerenalSTPool", Thread.NORM_PRIORITY));
 		_pcScheduler = Executors.newScheduledThreadPool(_pcSchedulerPoolSize, new PriorityThreadFactory("PcMonitorSTPool", Thread.NORM_PRIORITY));
-//		_effectsScheduledThreadPool = new ScheduledThreadPoolExecutor(Config.THREAD_P_EFFECTS, new PriorityThreadFactory("EffectsSTPool", Thread.NORM_PRIORITY));
+
+		_effectsScheduledThreadPool = new ScheduledThreadPoolExecutor(Config.THREAD_P_EFFECTS, new PriorityThreadFactory("EffectsSTPool", Thread.NORM_PRIORITY));
 		_generalScheduledThreadPool = new ScheduledThreadPoolExecutor(Config.THREAD_P_GENERAL, new PriorityThreadFactory("GeneralSTPool", Thread.NORM_PRIORITY));
-//		_ioPacketsThreadPool = new ThreadPoolExecutor(Config.IO_PACKET_THREAD_CORE_SIZE, Integer.MAX_VALUE, 5L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new PriorityThreadFactory("I/O Packet Pool", Thread.NORM_PRIORITY + 1));
-//		_generalPacketsThreadPool = new ThreadPoolExecutor(Config.GENERAL_PACKET_THREAD_CORE_SIZE, Config.GENERAL_PACKET_THREAD_CORE_SIZE + 2, 15L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new PriorityThreadFactory("Normal Packet Pool", Thread.NORM_PRIORITY + 1));
+		_ioPacketsThreadPool = new ThreadPoolExecutor(Config.IO_PACKET_THREAD_CORE_SIZE, Integer.MAX_VALUE, 5L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new PriorityThreadFactory("I/O Packet Pool", Thread.NORM_PRIORITY + 1));
+		_generalPacketsThreadPool = new ThreadPoolExecutor(Config.GENERAL_PACKET_THREAD_CORE_SIZE, Config.GENERAL_PACKET_THREAD_CORE_SIZE + 2, 15L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new PriorityThreadFactory("Normal Packet Pool", Thread.NORM_PRIORITY + 1));
 		_generalThreadPool = new ThreadPoolExecutor(Config.GENERAL_THREAD_CORE_SIZE, Config.GENERAL_THREAD_CORE_SIZE + 2, 5L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new PriorityThreadFactory("General Pool", Thread.NORM_PRIORITY));
-//		_aiScheduledThreadPool = new ScheduledThreadPoolExecutor(Config.AI_MAX_THREAD, new PriorityThreadFactory("AISTPool", Thread.NORM_PRIORITY));
+		_aiScheduledThreadPool = new ScheduledThreadPoolExecutor(Config.AI_MAX_THREAD, new PriorityThreadFactory("AISTPool", Thread.NORM_PRIORITY));
 	}
 
 	public static long validateDelay(long delay) {
@@ -152,7 +154,7 @@ public class ThreadPoolManager {
 		return _pcScheduler.scheduleAtFixedRate(r, initialDelay, period, TimeUnit.MILLISECONDS);
 	}
 
-/*	public ScheduledFuture<?> scheduleEffect(Runnable r, long delay) {
+	public ScheduledFuture<?> scheduleEffect(Runnable r, long delay) {
 		try {
 			delay = ThreadPoolManager.validateDelay(delay);
 			return _effectsScheduledThreadPool.schedule(r, delay, TimeUnit.MILLISECONDS);
@@ -174,7 +176,7 @@ public class ThreadPoolManager {
 	public boolean removeEffect(Runnable r) {
 		return _effectsScheduledThreadPool.remove(r);
 	}
-*/
+
 	public ScheduledFuture<?> scheduleGeneral(Runnable r, long delay) {
 		try {
 			delay = ThreadPoolManager.validateDelay(delay);
@@ -198,7 +200,7 @@ public class ThreadPoolManager {
 		return _generalScheduledThreadPool.remove(r);
 	}
 
-/*	public ScheduledFuture<?> scheduleAi(Runnable r, long delay) {
+	public ScheduledFuture<?> scheduleAi(Runnable r, long delay) {
 		try {
 			delay = ThreadPoolManager.validateDelay(delay);
 			return _aiScheduledThreadPool.schedule(r, delay, TimeUnit.MILLISECONDS);
@@ -216,7 +218,7 @@ public class ThreadPoolManager {
 			return null;
 		}
 	}
-*/
+
 	public void execute(Runnable r) {
 		if (_executor == null) {
 			Thread t = new Thread(r);
@@ -226,11 +228,15 @@ public class ThreadPoolManager {
 		}
 	}
 
-//	public void executePacket(ReceivablePacket<L2GameClient> pkt) {
+	public void execute(Thread t) {
+		t.start();
+	}
+
+//	public void executePacket(ReceivablePacket<L1GameClient> pkt) {
 //		_generalPacketsThreadPool.execute(pkt);
 //	}
 
-//	public void executeIOPacket(ReceivablePacket<L2GameClient> pkt) {
+//	public void executeIOPacket(ReceivablePacket<L1GameClient> pkt) {
 //		_ioPacketsThreadPool.execute(pkt);
 //	}
 
@@ -238,11 +244,11 @@ public class ThreadPoolManager {
 		_generalThreadPool.execute(r);
 	}
 
-//	public void executeAi(Runnable r) {
-//		_aiScheduledThreadPool.execute(r);
-//	}
+	public void executeAi(Runnable r) {
+		_aiScheduledThreadPool.execute(r);
+	}
 
-/*	public String[] getStats() {
+	public String[] getStats() {
 		return new String[] {
 				"STP:",
 				" + Effects:",
@@ -298,7 +304,7 @@ public class ThreadPoolManager {
 				" | -------"
 		};
 	}
-*/
+
 	private class PriorityThreadFactory implements ThreadFactory {
 		private int _prio;
 		private String _name;
@@ -327,15 +333,15 @@ public class ThreadPoolManager {
 	public void shutdown() {
 		_shutdown = true;
 		try {
-//			_effectsScheduledThreadPool.awaitTermination(1, TimeUnit.SECONDS);
+			_effectsScheduledThreadPool.awaitTermination(1, TimeUnit.SECONDS);
 			_generalScheduledThreadPool.awaitTermination(1, TimeUnit.SECONDS);
-//			_generalPacketsThreadPool.awaitTermination(1, TimeUnit.SECONDS);
-//			_ioPacketsThreadPool.awaitTermination(1, TimeUnit.SECONDS);
+			_generalPacketsThreadPool.awaitTermination(1, TimeUnit.SECONDS);
+			_ioPacketsThreadPool.awaitTermination(1, TimeUnit.SECONDS);
 			_generalThreadPool.awaitTermination(1, TimeUnit.SECONDS);
-//			_effectsScheduledThreadPool.shutdown();
+			_effectsScheduledThreadPool.shutdown();
 			_generalScheduledThreadPool.shutdown();
-//			_generalPacketsThreadPool.shutdown();
-//			_ioPacketsThreadPool.shutdown();
+			_generalPacketsThreadPool.shutdown();
+			_ioPacketsThreadPool.shutdown();
 			_generalThreadPool.shutdown();
 
 			_log.info("All ThreadPools are now stopped");
@@ -349,15 +355,15 @@ public class ThreadPoolManager {
 	}
 
 	public void purge() {
-//		_effectsScheduledThreadPool.purge();
+		_effectsScheduledThreadPool.purge();
 		_generalScheduledThreadPool.purge();
-//		_aiScheduledThreadPool.purge();
-//		_ioPacketsThreadPool.purge();
-//		_generalPacketsThreadPool.purge();
+		_aiScheduledThreadPool.purge();
+		_ioPacketsThreadPool.purge();
+		_generalPacketsThreadPool.purge();
 		_generalThreadPool.purge();
 	}
 
-/*	public String getPacketStats() {
+	public String getPacketStats() {
 		final StringBuilder sb = new StringBuilder(1000);
 		ThreadFactory tf = _generalPacketsThreadPool.getThreadFactory();
 		if (tf instanceof PriorityThreadFactory) {
@@ -409,7 +415,7 @@ public class ThreadPoolManager {
 
 		return sb.toString();
 	}
-*/
+
 	public String getGeneralStats() {
 		final StringBuilder sb = new StringBuilder(1000);
 		ThreadFactory tf = _generalThreadPool.getThreadFactory();
@@ -419,11 +425,16 @@ public class ThreadPoolManager {
 			int count = ptf.getGroup().activeCount();
 			Thread[] threads = new Thread[count + 2];
 			ptf.getGroup().enumerate(threads);
-			StringUtil.append(sb, "General Thread Pool:\r\n" + "Tasks in the queue: ", String.valueOf(_generalThreadPool.getQueue().size()), "\r\n" + "Showing threads stack trace:\r\n" + "There should be ", String.valueOf(count), " Threads\r\n");
+			StringUtil.append(sb,
+					"General Thread Pool:\r\n" +
+					"Tasks in the queue: ", String.valueOf(_generalThreadPool.getQueue().size()), "\r\n" +
+					"Showing threads stack trace:\r\n" +
+					"There should be ", String.valueOf(count), " Threads\r\n");
 
 			for (Thread t : threads) {
-				if (t == null)
+				if (t == null) {
 					continue;
+				}
 
 				StringUtil.append(sb, t.getName(), "\r\n");
 
