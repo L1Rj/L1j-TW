@@ -1,10 +1,10 @@
 /*
 MySQL Data Transfer
 Source Host: localhost
-Source Database: l1jdb_tw
+Source Database: l1jdb
 Target Host: localhost
-Target Database: l1jdb_tw
-Date: 2010/5/24 �U�� 05:16:11
+Target Database: l1jdb
+Date: 2010/5/25 �W�� 02:41:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -12,74 +12,74 @@ SET FOREIGN_KEY_CHECKS=0;
 -- Table structure for npc
 -- ----------------------------
 CREATE TABLE `npc` (
-  `npcid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL DEFAULT '',
-  `nameid` varchar(45) NOT NULL DEFAULT '',
-  `note` varchar(45) NOT NULL DEFAULT '',
-  `impl` varchar(45) NOT NULL DEFAULT '',
-  `gfxid` int(10) unsigned NOT NULL DEFAULT '0',
-  `lvl` int(10) unsigned NOT NULL DEFAULT '0',
-  `hp` int(10) unsigned NOT NULL DEFAULT '0',
-  `mp` int(10) unsigned NOT NULL DEFAULT '0',
-  `ac` int(10) NOT NULL DEFAULT '0',
-  `str` int(10) NOT NULL DEFAULT '0',
-  `con` int(10) NOT NULL DEFAULT '0',
-  `dex` int(10) NOT NULL DEFAULT '0',
-  `wis` int(10) NOT NULL DEFAULT '0',
-  `intel` int(10) NOT NULL DEFAULT '0',
-  `mr` int(10) NOT NULL DEFAULT '0',
-  `exp` int(10) unsigned NOT NULL DEFAULT '0',
-  `lawful` int(10) NOT NULL DEFAULT '0',
-  `size` varchar(10) NOT NULL DEFAULT '',
-  `weakAttr` int(10) NOT NULL DEFAULT '0',
-  `ranged` int(10) unsigned NOT NULL DEFAULT '0',
-  `tamable` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `passispeed` int(10) unsigned NOT NULL DEFAULT '0',
-  `atkspeed` int(10) unsigned NOT NULL DEFAULT '0',
-  `alt_atk_speed` int(10) unsigned NOT NULL DEFAULT '0',
-  `atk_magic_speed` int(10) unsigned NOT NULL DEFAULT '0',
-  `sub_magic_speed` int(10) unsigned NOT NULL DEFAULT '0',
-  `undead` int(10) unsigned NOT NULL DEFAULT '0',
-  `poison_atk` int(10) unsigned NOT NULL DEFAULT '0',
-  `paralysis_atk` int(10) unsigned NOT NULL DEFAULT '0',
-  `agro` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `agrososc` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `agrocoi` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `npcid` int(10) unsigned NOT NULL auto_increment,
+  `name` varchar(45) NOT NULL default '',
+  `nameid` varchar(45) NOT NULL default '',
+  `note` varchar(45) NOT NULL default '',
+  `impl` varchar(45) NOT NULL default '',
+  `gfxid` int(10) unsigned NOT NULL default '0',
+  `lvl` int(10) unsigned NOT NULL default '0',
+  `hp` int(10) unsigned NOT NULL default '0',
+  `mp` int(10) unsigned NOT NULL default '0',
+  `ac` int(10) NOT NULL default '0',
+  `str` int(10) NOT NULL default '0',
+  `con` int(10) NOT NULL default '0',
+  `dex` int(10) NOT NULL default '0',
+  `wis` int(10) NOT NULL default '0',
+  `intel` int(10) NOT NULL default '0',
+  `mr` int(10) NOT NULL default '0',
+  `exp` int(10) unsigned NOT NULL default '0',
+  `lawful` int(10) NOT NULL default '0',
+  `size` varchar(10) NOT NULL default '',
+  `weakAttr` int(10) NOT NULL default '0',
+  `ranged` int(10) unsigned NOT NULL default '0',
+  `tamable` tinyint(1) unsigned NOT NULL default '0',
+  `passispeed` int(10) unsigned NOT NULL default '0',
+  `atkspeed` int(10) unsigned NOT NULL default '0',
+  `alt_atk_speed` int(10) unsigned NOT NULL default '0',
+  `atk_magic_speed` int(10) unsigned NOT NULL default '0',
+  `sub_magic_speed` int(10) unsigned NOT NULL default '0',
+  `undead` int(10) unsigned NOT NULL default '0',
+  `poison_atk` int(10) unsigned NOT NULL default '0',
+  `paralysis_atk` int(10) unsigned NOT NULL default '0',
+  `agro` tinyint(1) unsigned NOT NULL default '0',
+  `agrososc` tinyint(1) unsigned NOT NULL default '0',
+  `agrocoi` tinyint(1) unsigned NOT NULL default '0',
   `spawnlist_door` int(10) NOT NULL,
   `count_map` int(10) NOT NULL,
-  `family` varchar(20) NOT NULL DEFAULT '',
-  `agrofamily` int(1) unsigned NOT NULL DEFAULT '0',
-  `agrogfxid1` int(10) NOT NULL DEFAULT '-1',
-  `agrogfxid2` int(10) NOT NULL DEFAULT '-1',
-  `picupitem` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `digestitem` int(1) unsigned NOT NULL DEFAULT '0',
-  `bravespeed` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `hprinterval` int(6) unsigned NOT NULL DEFAULT '0',
-  `hpr` int(5) unsigned NOT NULL DEFAULT '0',
-  `mprinterval` int(6) unsigned NOT NULL DEFAULT '0',
-  `mpr` int(5) unsigned NOT NULL DEFAULT '0',
-  `teleport` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `randomlevel` int(3) unsigned NOT NULL DEFAULT '0',
-  `randomhp` int(5) unsigned NOT NULL DEFAULT '0',
-  `randommp` int(5) unsigned NOT NULL DEFAULT '0',
-  `randomac` int(3) NOT NULL DEFAULT '0',
-  `randomexp` int(5) unsigned NOT NULL DEFAULT '0',
-  `randomlawful` int(5) NOT NULL DEFAULT '0',
-  `damage_reduction` int(5) unsigned NOT NULL DEFAULT '0',
-  `hard` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `doppel` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `IsTU` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ターンアンデットが効果あるか',
-  `IsErase` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'レースイマジックが効果あるか',
-  `bowActId` int(5) unsigned NOT NULL DEFAULT '0',
-  `karma` int(10) NOT NULL DEFAULT '0',
-  `transform_id` int(10) NOT NULL DEFAULT '-1',
-  `transform_gfxid` int(10) NOT NULL DEFAULT '0',
-  `light_size` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `amount_fixed` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `change_head` int(1) NOT NULL DEFAULT '0',
-  `cant_resurrect` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`npcid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `family` varchar(20) NOT NULL default '',
+  `agrofamily` int(1) unsigned NOT NULL default '0',
+  `agrogfxid1` int(10) NOT NULL default '-1',
+  `agrogfxid2` int(10) NOT NULL default '-1',
+  `picupitem` tinyint(1) unsigned NOT NULL default '0',
+  `digestitem` int(1) unsigned NOT NULL default '0',
+  `bravespeed` tinyint(1) unsigned NOT NULL default '0',
+  `hprinterval` int(6) unsigned NOT NULL default '0',
+  `hpr` int(5) unsigned NOT NULL default '0',
+  `mprinterval` int(6) unsigned NOT NULL default '0',
+  `mpr` int(5) unsigned NOT NULL default '0',
+  `teleport` tinyint(1) unsigned NOT NULL default '0',
+  `randomlevel` int(3) unsigned NOT NULL default '0',
+  `randomhp` int(5) unsigned NOT NULL default '0',
+  `randommp` int(5) unsigned NOT NULL default '0',
+  `randomac` int(3) NOT NULL default '0',
+  `randomexp` int(5) unsigned NOT NULL default '0',
+  `randomlawful` int(5) NOT NULL default '0',
+  `damage_reduction` int(5) unsigned NOT NULL default '0',
+  `hard` tinyint(1) unsigned NOT NULL default '0',
+  `doppel` tinyint(1) unsigned NOT NULL default '0',
+  `IsTU` tinyint(1) NOT NULL default '0' COMMENT 'ターンアンデットが効果あるか',
+  `IsErase` tinyint(1) NOT NULL default '0' COMMENT 'レースイマジックが効果あるか',
+  `bowActId` int(5) unsigned NOT NULL default '0',
+  `karma` int(10) NOT NULL default '0',
+  `transform_id` int(10) NOT NULL default '-1',
+  `transform_gfxid` int(10) NOT NULL default '0',
+  `light_size` tinyint(3) unsigned NOT NULL default '0',
+  `amount_fixed` tinyint(1) unsigned NOT NULL default '0',
+  `change_head` int(1) NOT NULL default '0',
+  `cant_resurrect` tinyint(1) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`npcid`)
+) ENGINE=InnoDB AUTO_INCREMENT=91238 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
@@ -2862,5 +2862,29 @@ INSERT INTO `npc` VALUES ('91208', '侏儒族工人', '$7768', '侏儒部落', '
 INSERT INTO `npc` VALUES ('91209', '侏儒族哨兵', '$7769', '侏儒部落', 'L1Monster', '1184', '38', '650', '15', '-40', '15', '13', '15', '9', '9', '70', '1445', '-20', 'small', '2', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', 'dwarf', '1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
 INSERT INTO `npc` VALUES ('91210', '侏儒族將軍', '$7770', '侏儒部落', 'L1Monster', '7335', '45', '700', '15', '-50', '15', '13', '15', '9', '9', '70', '2026', '-30', 'small', '2', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', 'dwarf', '1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
 INSERT INTO `npc` VALUES ('91211', '侏儒族魔法師', '$7771', '侏儒部落', 'L1Monster', '7362', '45', '700', '600', '-35', '15', '13', '15', '9', '9', '90', '2026', '-30', 'small', '2', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', 'dwarf', '1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
-INSERT INTO `npc` VALUES ('91212', '須曼', '$4735', '地底湖', 'L1Monster', '5767', '80', '12000', '5000', '-78', '125', '50', '24', '35', '40', '80', '6401', '-1000', 'large', '1', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '5000', '5000', '5000', '50', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '-1', '0', '0', '0', '0', '0');
-INSERT INTO `npc` VALUES ('91213', '騎士哈達', '$4736', '地底湖', 'L1Monster', '5802', '50', '800', '1000', '-78', '125', '50', '24', '35', '40', '40', '2501', '-200', 'large', '1', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '5000', '5000', '5000', '50', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91212', '須曼', '$4733', '地底湖', 'L1Monster', '5767', '80', '12000', '5000', '-78', '125', '50', '24', '35', '40', '80', '6401', '-1000', 'large', '1', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '5000', '5000', '5000', '50', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91213', '騎士哈達', '$4734', '地底湖', 'L1Monster', '5802', '50', '800', '1000', '-78', '125', '50', '24', '35', '40', '40', '2501', '-200', 'large', '1', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '5000', '5000', '5000', '50', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91214', '浮士德惡靈', '$7444', '浮士德惡靈 (錘) (1)', 'L1Monster', '5972', '45', '650', '50', '-40', '17', '18', '15', '12', '10', '90', '2026', '-65', 'small', '2', '1', '0', '1280', '1360', '1160', '1360', '1360', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91215', '浮士德惡靈', '$7444', '浮士德惡靈 (斧) (1)', 'L1Monster', '5969', '52', '650', '200', '-46', '17', '18', '15', '12', '10', '90', '2705', '-65', 'small', '2', '1', '0', '1280', '1360', '1160', '1360', '1360', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91216', '浮士德', '$7445', '浮士德(1)', 'L1Monster', '5979', '57', '2000', '400', '-60', '20', '20', '15', '12', '10', '90', '3250', '-65', 'small', '2', '2', '0', '1280', '1360', '1360', '1360', '1360', '0', '0', '0', '0', '1', '1', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91217', '浮士德惡靈', '$7444', '浮士德惡靈 (劍) (1)', 'L1Monster', '5977', '52', '650', '200', '-46', '20', '20', '15', '12', '10', '90', '2705', '-65', 'small', '2', '2', '0', '1280', '1360', '1360', '1360', '1360', '0', '0', '0', '0', '1', '1', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91218', '奇岩盜賊', '$7442', '奇岩盜賊 (錘)', 'L1Monster', '2443', '28', '100', '10', '-40', '19', '14', '12', '8', '10', '55', '0', '0', 'small', '0', '1', '0', '480', '1000', '1280', '1000', '1000', '0', '0', '0', '1', '1', '1', '0', '0', '', '1', '-1', '-1', '0', '0', '0', '5000', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '45318', '0', '0', '1', '0', '1');
+INSERT INTO `npc` VALUES ('91219', '奇岩盜賊', '$7442', '奇岩盜賊 (劍)', 'L1Monster', '2489', '32', '100', '10', '-45', '17', '15', '18', '11', '12', '40', '0', '0', 'small', '0', '1', '0', '960', '1080', '1120', '1080', '1080', '0', '0', '0', '1', '1', '1', '0', '0', 'bandit', '1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91220', '奇岩盜賊', '$7442', '奇岩盜賊 (斧)', 'L1Monster', '2516', '31', '100', '10', '-48', '18', '16', '18', '11', '10', '55', '0', '0', 'small', '0', '1', '0', '800', '1000', '1160', '1000', '1000', '0', '0', '0', '1', '1', '1', '0', '0', 'bandit', '1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91221', '奇岩盜賊', '$7442', '奇岩盜賊 (弓)', 'L1Monster', '2533', '28', '100', '10', '-40', '16', '13', '18', '10', '11', '55', '0', '0', 'small', '0', '10', '0', '800', '1000', '1120', '1000', '1000', '0', '0', '0', '1', '1', '1', '0', '0', 'bandit', '1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '66', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91222', '強盜首領克萊恩', '$7443', '強盜首領克萊恩 (1)', 'L1Monster', '2417', '35', '300', '10', '-60', '20', '20', '18', '12', '13', '60', '0', '0', 'small', '0', '1', '0', '960', '1160', '1080', '1160', '1160', '0', '0', '0', '1', '1', '1', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91223', '浮士德惡靈', '$7444', '浮士德惡靈 (錘) (2)', 'L1Monster', '5972', '45', '650', '200', '-40', '17', '18', '15', '12', '10', '40', '2026', '-65', 'small', '2', '1', '0', '1280', '1360', '1160', '1360', '1360', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91224', '浮士德惡靈', '$7444', '浮士德惡靈 (劍) (2)', 'L1Monster', '5977', '52', '650', '200', '-46', '20', '20', '15', '12', '10', '40', '2705', '-65', 'small', '2', '2', '0', '1280', '1360', '1360', '1360', '1360', '0', '0', '0', '0', '1', '1', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91225', '飢餓的盜賊囉嘍', '$7446', '飢餓的盜賊囉嘍 (弓)', 'L1Monster', '4531', '45', '400', '10', '-48', '12', '12', '18', '12', '12', '30', '2026', '-35', 'small', '0', '10', '0', '960', '1280', '1360', '1280', '1280', '0', '0', '0', '1', '1', '1', '0', '0', 'giran', '1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91226', '飢餓的盜賊囉嘍', '$7446', '飢餓的盜賊囉嘍 (矛)\r\n', 'L1Monster', '4519', '45', '450', '50', '-40', '16', '18', '12', '9', '8', '35', '2026', '-65', 'small', '0', '2', '0', '853', '960', '1000', '960', '960', '0', '0', '0', '1', '1', '1', '0', '0', 'giran', '1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91227', '亡魂死神', '亡魂死神', '亡魂死神', 'L1Monster', '1576', '50', '1700', '600', '-58', '12', '11', '11', '9', '13', '5', '2501', '-50', 'small', '2', '1', '1', '640', '2280', '2080', '2280', '2280', '1', '0', '0', '1', '1', '0', '0', '0', 'death', '1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91228', '強盜首領克萊恩', '$7443', '強盜首領克萊恩 (2)', 'L1Monster', '2417', '35', '3000', '10', '-60', '20', '20', '18', '12', '13', '60', '0', '-35', 'small', '0', '1', '0', '960', '1160', '1080', '1160', '1160', '0', '0', '0', '1', '1', '1', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91229', '浮士德惡靈', '$7444', '浮士德惡靈 (弓)\r\n', 'L1Monster', '5972', '45', '570', '250', '-40', '17', '18', '15', '12', '10', '90', '2026', '-65', 'small', '2', '1', '0', '1280', '1360', '1160', '1360', '1360', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91230', '浮士德惡靈', '$7444', '浮士德惡靈 (錘) (3)', 'L1Monster', '5972', '45', '650', '200', '-46', '17', '18', '15', '12', '10', '40', '2026', '-65', 'small', '2', '1', '0', '1280', '1360', '1160', '1360', '1360', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91231', '浮士德惡靈', '$7444', '浮士德惡靈 (劍) (3)', 'L1Monster', '5977', '52', '550', '200', '-46', '20', '20', '15', '12', '10', '38', '2705', '-65', 'small', '2', '2', '0', '1280', '1360', '1360', '1360', '1360', '0', '0', '0', '0', '1', '1', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91232', '浮士德惡靈', '$7444', '浮士德惡靈 (斧) (2)', 'L1Monster', '5969', '52', '570', '200', '-46', '17', '18', '15', '12', '10', '40', '2705', '-65', 'small', '2', '1', '0', '1280', '1360', '1160', '1360', '1360', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91233', '試煉靈魂', '試煉靈魂', '試煉靈魂', 'L1Monster', '2421', '56', '20000', '2000', '-63', '20', '20', '18', '18', '20', '90', '3137', '-80', 'large', '2', '1', '0', '960', '1880', '0', '1880', '1880', '0', '0', '0', '0', '1', '1', '0', '0', 'giant', '1', '-1', '-1', '0', '0', '0', '5000', '225', '5000', '225', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '-1', '0', '0', '1', '0', '1');
+INSERT INTO `npc` VALUES ('91234', '浮士德', '$7445', '浮士德(2)', 'L1Monster', '5979', '57', '4000', '200', '-60', '20', '20', '15', '12', '10', '90', '3250', '-65', 'small', '2', '2', '0', '1280', '1360', '1360', '1360', '1360', '0', '0', '0', '0', '1', '1', '0', '0', '', '0', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91235', '飢餓的囚犯', '$7447', '飢餓的囚犯 (1)', 'L1Monster', '5110', '45', '600', '50', '-40', '14', '16', '6', '5', '2', '90', '2026', '-65', 'small', '2', '1', '0', '2000', '1040', '1080', '1040', '1040', '1', '0', '0', '1', '0', '1', '0', '0', 'zombie', '1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '42', '430', '0', '-24', '1', '0', '0', '0', '0', '1', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91236', '飢餓的囚犯', '$7447', '飢餓的囚犯 (2)', 'L1Monster', '5112', '45', '630', '50', '-40', '14', '16', '6', '5', '2', '90', '2026', '-65', 'small', '2', '1', '0', '2000', '1040', '1120', '1040', '1040', '1', '0', '0', '1', '0', '1', '0', '0', 'zombie', '1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '42', '430', '0', '-24', '1', '0', '0', '0', '0', '1', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
+INSERT INTO `npc` VALUES ('91237', '飢餓的盜賊囉嘍', '$7446', '飢餓的盜賊囉嘍 (戟)', 'L1Monster', '4930', '45', '550', '50', '-40', '18', '14', '16', '12', '10', '30', '2026', '-65', 'small', '2', '2', '0', '960', '960', '1160', '960', '960', '1', '0', '0', '1', '1', '1', '0', '0', 'zombie', '1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '42', '480', '0', '-30', '1', '0', '0', '0', '0', '1', '1', '0', '0', '-1', '0', '0', '0', '0', '0');
