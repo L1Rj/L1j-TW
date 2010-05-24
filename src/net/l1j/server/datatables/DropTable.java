@@ -176,16 +176,20 @@ public class DropTable {
 
 			// ドロップ個數を設定
 			double amount = DropItemTable.getInstance().getDropAmount(itemId);
-			int min = (int) (drop.getMin() * amount);
-			int max = (int) (drop.getMax() * amount);
+			int min;
+			int max;
+			if(itemId == ItemId.ADENA) {
+				min = (int)(drop.getMin() * amount * adenarate);
+				max = (int)(drop.getMax() * amount * adenarate);
+			} else {
+				min = (int)(drop.getMin() * amount);
+				max = (int)(drop.getMax() * amount);
+			}
 
 			itemCount = min;
 			addCount = max - min + 1;
 			if (addCount > 1) {
 				itemCount += random.nextInt(addCount);
-			}
-			if (itemId == ItemId.ADENA) { // ドロップがアデナの場合はアデナレートを掛ける
-				itemCount *= adenarate;
 			}
 			if (itemCount < 0) {
 				itemCount = 0;
@@ -197,7 +201,6 @@ public class DropTable {
 			// アイテムの生成
 			item = ItemTable.getInstance().createItem(itemId);
 			item.setCount(itemCount);
-
 			// アイテム格納
 			inventory.storeItem(item);
 		}

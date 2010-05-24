@@ -1177,7 +1177,7 @@
         </Action>
         <Action Name="0" NpcId="91050">
                 <MakeItem AmountInputable="false">
-                        <Item Amount="1" ItemId="50500"/>
+                        <Item Amount="1" ItemId="49335"/>
                         <Material Amount="1000000" ItemId="40308"/>
                         <Succeed>
                             <ShowHtml HtmlId="veil7"/>

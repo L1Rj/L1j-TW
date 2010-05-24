@@ -282,28 +282,6 @@ public class L1PcInventory extends L1Inventory {
 		}
 	}
 
-	//waja add
-	//更新所有狀態
-	public void updateAll(L1ItemInstance item, CharactersItemStorage storage) {
-		try {
-//			storage.updateGetHp(item);//吸血武器
-//			storage.updateGetMp(item);//吸魔武器
-			storage.updateItemBless(item);
-			storage.updateItemRemainingTime(item);
-			storage.updateItemChargeCount(item);
-			storage.updateItemId(item);
-			storage.updateItemDelayEffect(item);
-			storage.updateItemCount(item);
-			storage.updateItemEquipped(item);
-			storage.updateItemEnchantLevel(item);
-			storage.updateItemIdentified(item);
-			storage.updateItemDurability(item);
-		} catch (Exception e) {
-			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-		}
-	}
-
-	//end add
 	/**
 	 * インベントリ內のアイテムの狀態をDBに保存する。
 	 * 

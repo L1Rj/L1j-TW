@@ -163,7 +163,6 @@ public class L1FollowerInstance extends L1NpcInstance {
 		L1Attack attack = new L1Attack(pc, this);
 		if (attack.calcHit()) {
 			attack.calcDamage();
-			attack.calcStaffOfMana();
 			attack.addPcPoisonAttack(pc, this);
 			attack.addChaserAttack();
 		}

@@ -37,7 +37,7 @@ public class L1PinkName {
 
 		@Override
 		public void run() {
-			for (int i = 0; i < 60; i++) { // 預設120秒太長 改為60秒
+			for (int i = 0; i < 180; i++) { // 預設120秒太長 改為60秒
 				try {
 					Thread.sleep(1000);
 				} catch (Exception exception) {

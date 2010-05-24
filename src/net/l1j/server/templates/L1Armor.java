@@ -34,6 +34,17 @@ public class L1Armor extends L1Item {
 	public void set_ac(int i) {
 		this._ac = i;
 	}
+	
+	private int _greater = 0; // ● 強度
+
+	public void setGreater(int i) {
+		_greater = i;
+	}
+
+	@Override
+	public int getGreater() {
+		return this._greater;
+	}
 
 	private int _damageReduction = 0; // ● ダメージ輕減
 

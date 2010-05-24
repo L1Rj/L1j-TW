@@ -126,6 +126,8 @@ public class NpcTable {
 				npc.set_agro(rs.getBoolean("agro"));
 				npc.set_agrososc(rs.getBoolean("agrososc"));
 				npc.set_agrocoi(rs.getBoolean("agrocoi"));
+				npc.setDoor(rs.getInt("spawnlist_door"));
+			    npc.setCountId(rs.getInt("count_map"));
 				Integer family = _familyTypes.get(rs.getString("family"));
 				if (family == null) {
 					npc.set_family(0);
@@ -215,6 +217,8 @@ public class NpcTable {
 					npc.set_agro(rs.getBoolean("agro"));
 					npc.set_agrososc(rs.getBoolean("agrososc"));
 					npc.set_agrocoi(rs.getBoolean("agrocoi"));
+					npc.setDoor(rs.getInt("spawnlist_door"));
+			   		npc.setCountId(rs.getInt("count_map"));
 					Integer family = _familyTypes.get(rs.getString("family"));
 					if (family == null) {
 						npc.set_family(0);

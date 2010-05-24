@@ -18,8 +18,6 @@
  */
 package net.l1j.server.model.item;
 
-import static net.l1j.server.model.skill.SkillId.*;
-
 import java.util.concurrent.ConcurrentHashMap;
 
 import net.l1j.server.datatables.NpcTable;
@@ -35,6 +33,8 @@ import net.l1j.server.serverpackets.S_SkillList;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1Pet;
 import net.l1j.server.templates.L1Skills;
+import net.l1j.util.RandomArrayList;
+import static net.l1j.server.model.skill.SkillId.*;
 
 public class ItemAction {
 	private static ConcurrentHashMap<Integer, Byte> SpellBook;
@@ -75,14 +75,15 @@ public class ItemAction {
 		SpellBook.put(45020, (byte) 21); /* 魔法書 (鎧甲護持),		鎧甲護持 */
 		SpellBook.put(45017, (byte) 22); /* 魔法書 (寒冰氣息),		寒冰氣息 */
 		SpellBook.put(45022, (byte) 23); /* 魔法書 (能量感測),		能量感測 */
+//		SpellBook.put(?????, (byte) 24); /* 魔法書 (???),		??? */
 		SpellBook.put(40170, (byte) 25); /* 魔法書 (燃燒的火球),	燃燒的火球 */
 		SpellBook.put(40171, (byte) 26); /* 魔法書 (通暢氣脈術),	通暢氣脈術 */
 		SpellBook.put(40172, (byte) 27); /* 魔法書 (壞物術),		壞物術 */
 		SpellBook.put(40173, (byte) 28); /* 魔法書 (吸血鬼之吻),	吸血鬼之吻 */
 		SpellBook.put(40174, (byte) 29); /* 魔法書 (緩速術),		緩速術 */
+		SpellBook.put(40177, (byte) 30); /* 魔法書 (岩牢),		岩牢 */
 		SpellBook.put(40175, (byte) 31); /* 魔法書 (魔法屏障),		魔法屏障 */
 		SpellBook.put(40176, (byte) 32); /* 魔法書 (冥想術),		冥想術 */
-		SpellBook.put(40177, (byte) 30); /* 魔法書 (岩牢),		岩牢 */
 		SpellBook.put(40178, (byte) 33); /* 魔法書 (木乃伊的詛咒),	木乃伊的詛咒 */
 		SpellBook.put(40179, (byte) 34); /* 魔法書 (極道落雷),		極道落雷 */
 		SpellBook.put(40180, (byte) 35); /* 魔法書 (高級治癒術),	高級治癒術 */
@@ -157,9 +158,9 @@ public class ItemAction {
 		SpellBook.put(40226, (byte) 113); /* 魔法書 (精準目標),	精準目標 */
 		SpellBook.put(40227, (byte) 114); /* 魔法書 (激勵士氣),	激勵士氣 */
 		SpellBook.put(40228, (byte) 116); /* 魔法書 (呼喚盟友),	呼喚盟友 */
-		SpellBook.put(40229, (byte) 115); /* 魔法書(鋼鐵士氣),	鋼鐵士氣 */
-		SpellBook.put(40230, (byte) 117); /* 魔法書(衝擊士氣),	衝擊士氣 */
-		SpellBook.put(40231, (byte) 118); /* 魔法書(援護盟友),	援護盟友 */
+		SpellBook.put(40229, (byte) 115); /* 魔法書 (鋼鐵士氣),	鋼鐵士氣 */
+		SpellBook.put(40230, (byte) 117); /* 魔法書 (衝擊士氣),	衝擊士氣 */
+		SpellBook.put(40231, (byte) 118); /* 魔法書 (援護盟友),	援護盟友 */
 		
 		SpellBook.put(40232, (byte) 129); /* 精靈水晶(魔法防禦),	魔法防禦 */
 		SpellBook.put(40233, (byte) 130); /* 精靈水晶(心靈轉換),	心靈轉換 */

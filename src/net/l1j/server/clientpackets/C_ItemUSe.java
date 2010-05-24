@@ -209,10 +209,10 @@ public class C_ItemUSe extends ClientBasePacket {
 			case 41427: // 解封印捲軸
 			case 40075: // 毀滅盔甲的捲軸
 			case 41429: // 風之武器強化卷軸
-			case 41430: // 地之武器強化卷軸
-			case 41431: // 水之武器強化卷軸
-			case 41432: // 火之武器強化卷軸
-			case 30001: // 裝備保護卷軸
+			case 49145: // 地之武器強化卷軸
+			case 49146: // 水之武器強化卷軸
+			case 49147: // 火之武器強化卷軸
+			case 49289: // 裝備保護卷軸
 			case 49148: // 飾品強化卷軸
 			case 49188: // 索夏依卡靈魂之石
 				l = readD();
@@ -380,7 +380,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						Enchant.failure(pc, l1iteminstance1, client);
 					}
 				}
-			} else if (itemId == 41429 || itemId == 41430 || itemId == 41431 || itemId == 41432) { // 地水火風之武器強化卷軸
+			} else if (itemId == 49144 || itemId == 49145 || itemId == 49146 || itemId == 49147) { // 風水地火之武器強化卷軸
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName(), "$245", "$247")); 
 					return;
@@ -395,9 +395,9 @@ public class C_ItemUSe extends ClientBasePacket {
 				int oldAttrEnchantLevel = l1iteminstance1.getAttrEnchantLevel();
 
 				boolean isSameAttr = false; // スクロールと強化済みの属性が同一か
-				if (itemId == 41429 && oldAttrEnchantKind == 8 || itemId == 41430
+				if (itemId == 49144 && oldAttrEnchantKind == 8 || itemId == 49145
 						&& oldAttrEnchantKind == 1 || itemId == 41431 && oldAttrEnchantKind == 4
-						|| itemId == 41432 && oldAttrEnchantKind == 2) { // 同じ属性
+						|| itemId == 49147 && oldAttrEnchantKind == 2) { // 同じ属性
 					isSameAttr = true;
 				}
 				if (isSameAttr && oldAttrEnchantLevel >= 3) {
@@ -415,13 +415,13 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else { // 不同屬性時=1
 						newAttrEnchantLevel = 1;
 					}
-					if (itemId == 41429) { // 風之武器強化卷軸
+					if (itemId == 49144) { // 風の武器強化スクロール
 						newAttrEnchantKind = 8;
-					} else if (itemId == 41430) { // 地之武器強化卷軸
+					} else if (itemId == 49145) { // 地の武器強化スクロール
 						newAttrEnchantKind = 1;
-					} else if (itemId == 41431) { // 水之武器強化卷軸
+					} else if (itemId == 49146) { // 水の武器強化スクロール
 						newAttrEnchantKind = 4;
-					} else if (itemId == 41432) { // 火之武器強化卷軸
+					} else if (itemId == 49147) { // 火の武器強化スクロール
 						newAttrEnchantKind = 2;
 					}
 					l1iteminstance1.setAttrEnchantKind(newAttrEnchantKind);
@@ -434,7 +434,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName(), "$245", "$247"));
 				}
 				pc.getInventory().removeItem(item, 1);
-			} else if (itemId == 30001) { // 裝備保護卷軸
+			} else if (itemId == 49289) { // 裝備保護卷軸
 				if (l1iteminstance1 != null) {
 					if (l1iteminstance1.getItem().get_safeenchant() <= -1) {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$1309));
@@ -588,7 +588,7 @@ public class C_ItemUSe extends ClientBasePacket {
 							}
 						}
 					}
-					if (itemId == 50500) { // 多魯嘉之袋
+					if (itemId == 49335) { // 多魯嘉之袋
 						if (item.getChargeCount() >= 1) {
 							item.setChargeCount(item.getChargeCount() - 1);
 							pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
@@ -882,8 +882,8 @@ public class C_ItemUSe extends ClientBasePacket {
 					Potion.Brave(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 49138) { // 巧克力蛋糕
-					Potion.Brave(pc, itemId);
-					pc.getInventory().removeItem(item, 1);
+					//Potion.Brave(pc, itemId);
+					//pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40066 || itemId == 41413) { // お餅、月餅
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$338, "$1084"));
 					pc.setCurrentMp(pc.getCurrentMp() + RandomArrayList.getInc(6, 7)); // (0~5) + 7
@@ -1006,7 +1006,7 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						}
 					}
-				} else if (itemId == 50501) { // 龍之鑰匙
+				} else if (itemId == 49336) { // 龍之鑰匙
 					SpawnUtil.spawn(pc, 91051, 0, 7200000); // 120*60*1000 = 2小時
 					pc.getInventory().removeItem(item, 1);
 				
@@ -2312,12 +2312,10 @@ public class C_ItemUSe extends ClientBasePacket {
 					Fishing.start(pc, itemId, fishX, fishY);
 				} else if (itemId == 41245) { // 溶解劑
 					Resolvent.use(pc, l1iteminstance1, item);
-				} else if (itemId == 41248 || itemId == 41249 || itemId == 41250 || itemId == 49037
-						|| itemId == 49038 || itemId == 49039 || itemId == 31001 || itemId == 31002 // 魔法娃娃: 希爾黛絲 雪怪
-						|| itemId == 31003 || itemId == 31004 // 魔法娃娃: 蛇女 亞力安
-						|| itemId == 31005 || itemId == 31006 // 魔法娃娃: 木人  史巴托
-						|| itemId == 31007 || itemId == 31008 // 魔法娃娃: 巫妖 鐵門公會 魔法娃娃：雪怪
-						|| itemId == 31009) { // 魔法娃娃: 公主
+				} else if (itemId == 41248 || itemId == 41249 
+						|| itemId == 41250 || itemId == 49037
+						|| itemId == 49038 || itemId == 49039 
+						|| (itemId >= 49310 && itemId <= 49325)) {
 					MagicDoll.Use(pc, itemId, itemObjid);
 				} else if (itemId >= 41255 && itemId <= 41259) { // 料理の本
 					if (cookStatus == 0) {
@@ -2391,7 +2389,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 49092) { // 龜裂之核
 					int targetItemId = l1iteminstance1.getItem().getItemId();
-					if (targetItemId == 49095 || targetItemId == 49099 || targetItemId == 49302 || targetItemId == 49306) { // 上鎖的歐西里斯寶箱&上鎖的庫庫爾坎寶箱
+					if (targetItemId == 49095 || targetItemId == 49099 || targetItemId == 49302 || targetItemId == 49332) { // 上鎖的歐西里斯寶箱&上鎖的庫庫爾坎寶箱
 						ItemCreate.newItem(pc, targetItemId + 1, 1);
 						pc.getInventory().consumeItem(targetItemId, 1);
 						pc.getInventory().consumeItem(49092, 1);
@@ -2431,35 +2429,35 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
-				} else if (itemId == 49300) { // 庫庫爾坎初級寶箱碎片(上)
-					if (pc.getInventory().checkItem(49301, 1)) {
-						pc.getInventory().consumeItem(49300, 1);
-						pc.getInventory().consumeItem(49301, 1);
-						ItemCreate.newItem(pc, 49302, 1);
+				} else if (itemId == 49326) { // 庫庫爾坎初級寶箱碎片(上)
+					if (pc.getInventory().checkItem(49327, 1)) {
+						pc.getInventory().consumeItem(49326, 1);
+						pc.getInventory().consumeItem(49327, 1);
+						ItemCreate.newItem(pc, 49328, 1);
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
-				} else if (itemId == 49301) { // 庫庫爾坎初級寶箱碎片(下)
-					if (pc.getInventory().checkItem(49300, 1)) {
-						pc.getInventory().consumeItem(49301, 1);
-						pc.getInventory().consumeItem(49300, 1);
-						ItemCreate.newItem(pc, 49302, 1);
+				} else if (itemId == 49327) { // 庫庫爾坎初級寶箱碎片(下)
+					if (pc.getInventory().checkItem(49326, 1)) {
+						pc.getInventory().consumeItem(49327, 1);
+						pc.getInventory().consumeItem(49326, 1);
+						ItemCreate.newItem(pc, 49328, 1);
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
-				} else if (itemId == 49304) { // 庫庫爾坎高級寶箱碎片(上)
-					if (pc.getInventory().checkItem(49305, 1)) {
-						pc.getInventory().consumeItem(49304, 1);
-						pc.getInventory().consumeItem(49305, 1);
-						ItemCreate.newItem(pc, 49306, 1);
+				} else if (itemId == 49330) { // 庫庫爾坎高級寶箱碎片(上)
+					if (pc.getInventory().checkItem(49331, 1)) {
+						pc.getInventory().consumeItem(49330, 1);
+						pc.getInventory().consumeItem(49331, 1);
+						ItemCreate.newItem(pc, 49332, 1);
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
-				} else if (itemId == 49305) { // 庫庫爾坎高級寶箱碎片(下)
-					if (pc.getInventory().checkItem(49304, 1)) {
-						pc.getInventory().consumeItem(49305, 1);
-						pc.getInventory().consumeItem(49304, 1);
-						ItemCreate.newItem(pc, 49306, 1);
+				} else if (itemId == 49331) { // 庫庫爾坎高級寶箱碎片(下)
+					if (pc.getInventory().checkItem(49330, 1)) {
+						pc.getInventory().consumeItem(49331, 1);
+						pc.getInventory().consumeItem(49330, 1);
+						ItemCreate.newItem(pc, 49332, 1);
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}

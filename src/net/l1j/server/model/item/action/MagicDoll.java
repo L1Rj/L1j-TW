@@ -73,32 +73,32 @@ public class MagicDoll {
 			} else if (itemId == 49039) {
 				npcId = 80131;
 				dollType = L1DollInstance.DOLLTYPE_GOLEM;
-			} else if (itemId == 31001) {// 魔法娃娃：希爾黛絲
-				npcId = 90001;
+			} else if (itemId == 49310) {
+				npcId = 80153;
 				dollType = L1DollInstance.DOLLTYPE_SEADANCER;
-			} else if (itemId == 31002) {// 魔法娃娃：雪怪
-				npcId = 90002;
+			} else if (itemId == 49311) {
+				npcId = 80154;
 				dollType = L1DollInstance.DOLLTYPE_SNOWMAN;
-			} else if (itemId == 31003) {// 魔法娃娃：蛇女
-				npcId = 90003;
+			} else if (itemId == 49312) {
+				npcId = 80155;
 				dollType = L1DollInstance.DOLLTYPE_SERPENTWOMAN;
-			} else if (itemId == 31004) {// 魔法娃娃：亞力安
-				npcId = 90004;
+			} else if (itemId == 49313) {
+				npcId = 80156;
 				dollType = L1DollInstance.DOLLTYPE_COCKATRICE;
-			} else if (itemId == 31005) { // 魔法娃娃：木人
-				npcId = 90005;
+			} else if (itemId == 49314) {
+				npcId = 80157;
 				dollType = L1DollInstance.DOLLTYPE_SCARECROW;
-			} else if (itemId == 31006) { // 魔法娃娃：史巴托
-				npcId = 90006;
+			} else if (itemId == 49315) {
+				npcId = 80158;
 				dollType = L1DollInstance.DOLLTYPE_SPARTOI;
-			} else if (itemId == 31007) { // 魔法娃娃：巫妖
-				npcId = 90007;
+			} else if (itemId == 49316) {
+				npcId = 80159;
 				dollType = L1DollInstance.DOLLTYPE_LICH;
-			} else if (itemId == 31008) { // 鐵門公會 魔法娃娃：雪怪
-				npcId = 90008;
+			} else if (itemId == 49317) {
+				npcId = 80160;
 				dollType = L1DollInstance.DOLLTYPE_IRONGATES_SNOWMAN;
-			} else if (itemId == 31009) { // 魔法娃娃：公主
-				npcId = 90009;
+			} else if (itemId == 49318) {
+				npcId = 80161;
 				dollType = L1DollInstance.DOLLTYPE_PRINCESS;
 			}
 			L1Npc template = NpcTable.getInstance().getTemplate(npcId);

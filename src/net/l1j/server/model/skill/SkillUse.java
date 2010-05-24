@@ -1755,14 +1755,6 @@ public class SkillUse {
 				} else if (_skillId == SKILL_CURE_POISON) {
 					cha.curePoison();
 				} else if (_skillId == SKILL_REMOVE_CURSE) {
-//特殊狀態下狀態無法使用技能補血&聖光
-					if (cha.hasSkillEffect(STATUS_CURSE_PARALYZED) //木乃尹
-							||cha.hasSkillEffect(SKILL_STUN_SHOCK) //衝擊之暈
-							||cha.hasSkillEffect(SKILL_FOG_OF_SLEEPING) //沉睡之霧
-							||cha.hasSkillEffect(SKILL_ICE_LANCE)){ //冰矛圍籬
-						_player.sendPackets(new S_ServerMessage(SystemMessageId.$285));
-						return;
-					}
 					cha.curePoison();
 					if (cha.hasSkillEffect(STATUS_CURSE_PARALYZING)
 							|| cha.hasSkillEffect(STATUS_CURSE_PARALYZED)) {
@@ -1776,8 +1768,7 @@ public class SkillUse {
 							if (L1World.getInstance().getVisiblePlayer(pc,
 									0).size() > 0) {
 								for (L1PcInstance visiblePc : L1World
-										.getInstance().getVisiblePlayer(pc,
- 0)) {
+										.getInstance().getVisiblePlayer(pc, 0)) {
 									if (!visiblePc.isDead()) {
 										_player.sendPackets(new S_ServerMessage(SystemMessageId.$592));
 										return;
@@ -1950,18 +1941,7 @@ public class SkillUse {
 						|| _skillId == SKILL_HEAL_PLEDGE || _skillId == SKILL_NATURES_TOUCH
 						|| _skillId == SKILL_NATURES_BLESSING)
 						&& (_user instanceof L1PcInstance)) {
-//特殊狀態中則無法施展回復系法術
-					if (cha.hasSkillEffect(STATUS_CURSE_PARALYZED) //木乃伊
-							||cha.hasSkillEffect(SKILL_STUN_SHOCK) //衝擊之暈
-							||cha.hasSkillEffect(SKILL_FOG_OF_SLEEPING) //沉睡之霧
-							||cha.hasSkillEffect(SKILL_ICE_LANCE)){ //冰矛圍籬
-						_player.sendPackets(new S_ServerMessage(SystemMessageId.$285));
-						return;
-					} else if (_user instanceof L1PcInstance) {
-						cha.removeSkillEffect(SKILL_WATER_LIFE);
-					}
-					//cha.removeSkillEffect(WATER_LIFE);
-//add end
+					cha.removeSkillEffect(SKILL_WATER_LIFE);
 				}
 				// ★★★ 攻擊系スキル ★★★
 				// チルタッチ、バンパイアリックタッチ

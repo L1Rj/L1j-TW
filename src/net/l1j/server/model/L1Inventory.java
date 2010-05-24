@@ -187,7 +187,7 @@ public class L1Inventory extends L1Object {
 		if (itemId == 20383) {
 			chargeCount = 50;
 		}
-		if (itemId == 50500) { // 多魯嘉之袋
+		if (itemId == 49335) { // 多魯嘉之袋
 			chargeCount = 30;
 		}
 		item.setChargeCount(chargeCount);

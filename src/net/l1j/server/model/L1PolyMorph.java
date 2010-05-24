@@ -58,9 +58,9 @@ public class L1PolyMorph {
 
 	private static final int BOW_EQUIP = 256; // ガントレット含む
 
-	private static final int KIRINGKU_EQUIP = 128;// waja change 原值為 512
+	private static final int KIRINGKU_EQUIP = 512;
 
-	private static final int CHAINSWORD_EQUIP = 16;// waja change 原值為 1024
+	private static final int CHAINSWORD_EQUIP= 1024;
 
 	// armor equip bit
 	private static final int HELM_EQUIP = 1;

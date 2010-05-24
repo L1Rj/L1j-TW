@@ -405,7 +405,7 @@ public class L1Magic {
 
 			probability = probability * getLeverage() / 10;
 
-			//??INT??
+			//オリジナルINTによる魔法命中
 			if (_calcType == PC_PC || _calcType == PC_NPC) {
 				probability += 2 * _pc.getOriginalMagicHit();
 			}

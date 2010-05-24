@@ -251,7 +251,7 @@ public class C_NPCAction extends ClientBasePacket {
 			L1PolyRace.getInstance().enterGame(pc);
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91004) { // 神女優莉絲
 			if (s.equalsIgnoreCase("0")) {
-				if (pc.getInventory().checkItem(30002)) { // 檢查贖罪聖書
+				if (pc.getInventory().checkItem(49290)) { // 檢查贖罪聖書
 					int allLawful = pc.getLawful() + 3000; // 正義值+3000
 					if (allLawful >= 32767) {
 						allLawful = 32767;
@@ -260,7 +260,7 @@ public class C_NPCAction extends ClientBasePacket {
 					S_Lawful s_lawful = new S_Lawful(pc.getId(), pc.getLawful());
 					pc.sendPackets(s_lawful);
 					pc.broadcastPacket(s_lawful);
-					pc.getInventory().consumeItem(30002,1); // 刪除贖罪聖書
+					pc.getInventory().consumeItem(49290,1); // 刪除贖罪聖書
 					pc.save(); // DB儲存
 					htmlid = "yuris2"; // 完成對話
 				} else {
@@ -1074,79 +1074,8 @@ public class C_NPCAction extends ClientBasePacket {
 				} else {
 					htmlid = "";
 				}
-			}
-//示愛任務-奇岩-愛瑪伊
-		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71181) {
-			if (s.equalsIgnoreCase("A")) {
-				if (pc.getInventory().checkItem(41093, 1)) {
-					pc.getInventory().consumeItem(41093, 1);
-					pc.getInventory().storeItem(41451, 1);
-					htmlid = "my5";
-				} else {
-					htmlid = "my4";
-				}
-			} else if (s.equalsIgnoreCase("B")) {
-				if (pc.getInventory().checkItem(41094, 1)) {
-					pc.getInventory().consumeItem(41094, 1);
-					pc.getInventory().storeItem(41452, 1);
-					htmlid = "my6";
-				} else {
-					htmlid = "my4";
-				}
-			} else if (s.equalsIgnoreCase("C")) {
-				if (pc.getInventory().checkItem(41095, 1)) {
-					pc.getInventory().consumeItem(41095, 1);
-					pc.getInventory().storeItem(41453, 1);
-					htmlid = "my7";
-				} else {
-					htmlid = "my4";
-				}
-			} else if (s.equalsIgnoreCase("D")) {
-				if (pc.getInventory().checkItem(41096, 1)) {
-					pc.getInventory().consumeItem(41096, 1);
-					pc.getInventory().storeItem(41454, 1);
-					htmlid = "my8";
-				} else {
-					htmlid = "my4";
-				}
-			}
-//示愛任務-奇岩-伊森
-		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71182) {
-			if (s.equalsIgnoreCase("A")) {
-				if (pc.getInventory().checkItem(41098, 1)) {
-					pc.getInventory().consumeItem(41098, 1);
-					pc.getInventory().storeItem(41456, 1);
-					htmlid = "sm5";
-				} else {
-					htmlid = "sm4";
-				}
-			} else if (s.equalsIgnoreCase("B")) {
-				if (pc.getInventory().checkItem(41099, 1)) {
-					pc.getInventory().consumeItem(41099, 1);
-					pc.getInventory().storeItem(41457, 1);
-					htmlid = "sm6";
-				} else {
-					htmlid = "sm4";
-				}
-			} else if (s.equalsIgnoreCase("C")) {
-				if (pc.getInventory().checkItem(41100, 1)) {
-					pc.getInventory().consumeItem(41100, 1);
-					pc.getInventory().storeItem(41458, 1);
-					htmlid = "sm7";
-				} else {
-					htmlid = "sm4";
-				}
-			} else if (s.equalsIgnoreCase("D")) {
-				if (pc.getInventory().checkItem(41101, 1)) {
-					pc.getInventory().consumeItem(41101, 1);
-					pc.getInventory().storeItem(41459, 1);
-					htmlid = "sm8";
-				} else {
-					htmlid = "sm4";
-				}
-			}
-//發光的古老項鍊-奇岩-迪艾司
-			else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71179) {
+			//發光的古老項鍊-奇岩-迪艾司
+			} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71179) {
 				int createitemrnd = RandomArrayList.getInc(100, 1);
 				if (s.equalsIgnoreCase("A")) {
 					if (!(pc.getInventory().checkItem(49028, 1)
@@ -1186,7 +1115,7 @@ public class C_NPCAction extends ClientBasePacket {
 					}
 				}
 			}
-//奇岩-發光的古老項鍊-路武基
+		//奇岩-發光的古老項鍊-路武基
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71181) {
 			if (s.equalsIgnoreCase("A")) {
 				if (pc.getInventory().checkItem(41093, 1)) {
@@ -3745,8 +3674,8 @@ public class C_NPCAction extends ClientBasePacket {
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 90521) {
 			// 持有鑰匙經由神廟守門人傳送進入
 			if (s.equalsIgnoreCase("e")) {
-				if (pc.getInventory().checkItem(49308, 1)) { // 檢查提卡爾庫庫爾坎祭壇鑰匙(人數限制未實裝)
-					pc.getInventory().consumeItem(49308, 1);
+				if (pc.getInventory().checkItem(49334, 1)) { // 檢查提卡爾庫庫爾坎祭壇鑰匙(人數限制未實裝)
+					pc.getInventory().consumeItem(49334, 1);
 					L1Teleport.teleport(pc, 32730, 32866, (short) 784, 2, true); // 傳送至庫庫爾坎祭壇
 					htmlid = "";
 				} else {
