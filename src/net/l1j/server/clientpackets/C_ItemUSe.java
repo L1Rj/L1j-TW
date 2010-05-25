@@ -208,7 +208,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			case 41426: // 封印捲軸
 			case 41427: // 解封印捲軸
 			case 40075: // 毀滅盔甲的捲軸
-			case 41429: // 風之武器強化卷軸
+			case 49144: // 風之武器強化卷軸
 			case 49145: // 地之武器強化卷軸
 			case 49146: // 水之武器強化卷軸
 			case 49147: // 火之武器強化卷軸
@@ -396,7 +396,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 				boolean isSameAttr = false; // スクロールと強化済みの属性が同一か
 				if (itemId == 49144 && oldAttrEnchantKind == 8 || itemId == 49145
-						&& oldAttrEnchantKind == 1 || itemId == 41431 && oldAttrEnchantKind == 4
+						&& oldAttrEnchantKind == 1 || itemId == 49146 && oldAttrEnchantKind == 4
 						|| itemId == 49147 && oldAttrEnchantKind == 2) { // 同じ属性
 					isSameAttr = true;
 				}
