@@ -11,6 +11,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for spawnlist
 -- ----------------------------
+DROP TABLE IF EXISTS `spawnlist`;
 CREATE TABLE `spawnlist` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `location` varchar(45) NOT NULL default '',

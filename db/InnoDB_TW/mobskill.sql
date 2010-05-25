@@ -11,6 +11,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for mobskill
 -- ----------------------------
+DROP TABLE IF EXISTS `mobskill`;
 CREATE TABLE `mobskill` (
   `mobid` int(10) unsigned NOT NULL default '0',
   `actNo` int(10) unsigned NOT NULL default '0',

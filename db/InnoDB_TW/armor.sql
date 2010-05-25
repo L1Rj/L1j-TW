@@ -11,6 +11,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for armor
 -- ----------------------------
+DROP TABLE IF EXISTS `armor`;
 CREATE TABLE `armor` (
   `item_id` int(5) NOT NULL DEFAULT '0',
   `name` varchar(70) DEFAULT 'NULL',

@@ -11,6 +11,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for shop
 -- ----------------------------
+DROP TABLE IF EXISTS `shop`;
 CREATE TABLE `shop` (
   `npc_id` int(10) unsigned NOT NULL DEFAULT '0',
   `item_id` int(10) unsigned NOT NULL DEFAULT '0',

@@ -11,6 +11,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for npc
 -- ----------------------------
+DROP TABLE IF EXISTS `npc`;
 CREATE TABLE `npc` (
   `npcid` int(10) unsigned NOT NULL auto_increment,
   `name` varchar(45) NOT NULL default '',
