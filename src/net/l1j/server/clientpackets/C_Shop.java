@@ -69,7 +69,7 @@ public class C_Shop extends ClientBasePacket {
 				checkItem = pc.getInventory().getItem(sellObjectId);
 				if (!checkItem.getItem().isTradable()) {
 					tradable = false;
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "不可交易。"));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "$941。")); // 此為無法交易的道具。
 				}
 				Object[] petlist = pc.getPetList().values().toArray();
 				for (Object petObject : petlist) {
@@ -77,7 +77,7 @@ public class C_Shop extends ClientBasePacket {
 						L1PetInstance pet = (L1PetInstance) petObject;
 						if (checkItem.getId() == pet.getItemObjId()) {
 							tradable = false;
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "不可交易。"));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "$941。"));
 							break;
 						}
 					}
@@ -88,7 +88,7 @@ public class C_Shop extends ClientBasePacket {
 						L1DollInstance doll = (L1DollInstance) dollObject;
 						if (checkItem.getId() == doll.getItemObjId()) {
 							tradable = false;
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "不可交易。"));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "$941。"));
 							break;
 						}
 					}
@@ -111,7 +111,7 @@ public class C_Shop extends ClientBasePacket {
 				checkItem = pc.getInventory().getItem(buyObjectId);
 				if (!checkItem.getItem().isTradable()) {
 					tradable = false;
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "不可交易。"));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "$941。"));
 				}
 				if (checkItem.getBless() >= 128) { // 封印的裝備
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$210, checkItem.getItem().getName()));
@@ -124,7 +124,7 @@ public class C_Shop extends ClientBasePacket {
 						L1PetInstance pet = (L1PetInstance) petObject;
 						if (checkItem.getId() == pet.getItemObjId()) {
 							tradable = false;
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "不可交易。"));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "$941。"));
 							break;
 						}
 					}
@@ -135,7 +135,7 @@ public class C_Shop extends ClientBasePacket {
 						L1DollInstance doll = (L1DollInstance) dollObject;
 						if (checkItem.getId() == doll.getItemObjId()) {
 							tradable = false;
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "不可交易。"));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, checkItem.getItem().getName(), "$943。"));
 							break;
 						}
 					}

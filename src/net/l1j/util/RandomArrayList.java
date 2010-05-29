@@ -38,11 +38,13 @@ public class RandomArrayList {
 			return listint = 0;
 	}
 
+	private static int LEN = 0;
 	/**
 	 * getByte(byte[] 容器) ：模仿Random.nextBytes(byte[]) 製作
 	 */
 	public static void getByte(byte[] arr) {
-		for(byte i = 0; i < arr.length; i++)
+		LEN = arr.length;
+		for(int i = 0; i < LEN; i++)
 			arr[i] = (byte) (ArrayDouble[getlistint()] * 128);
 	}
 

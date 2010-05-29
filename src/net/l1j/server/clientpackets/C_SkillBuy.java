@@ -45,9 +45,9 @@ public class C_SkillBuy extends ClientBasePacket {
 			npc = (L1NpcInstance) obj;
 
 			if (npc.getNpcId() == 70003 || // 希莉斯
-			npc.getNpcId() == 70009 || // 吉倫
-			npc.getNpcId() == 70080 || // 何侖 (待修正)
-			npc.getNpcId() == 70087) { // 賽帝亞
+					npc.getNpcId() == 70009 || // 吉倫
+					npc.getNpcId() == 70080 || // 何侖 (待修正)
+					npc.getNpcId() == 70087) { // 賽帝亞
 				pc.sendPackets(new S_SkillBuy(NpcId, pc));
 			}
 		}
