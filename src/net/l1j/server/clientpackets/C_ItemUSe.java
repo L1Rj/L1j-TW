@@ -2389,7 +2389,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 49092) { // 龜裂之核
 					int targetItemId = l1iteminstance1.getItem().getItemId();
-					if (targetItemId == 49095 || targetItemId == 49099 || targetItemId == 49302 || targetItemId == 49332) { // 上鎖的歐西里斯寶箱&上鎖的庫庫爾坎寶箱
+					if (targetItemId == 49095 || targetItemId == 49099 || targetItemId == 49328 || targetItemId == 49332) { // 上鎖的歐西里斯寶箱&上鎖的庫庫爾坎寶箱
 						ItemCreate.newItem(pc, targetItemId + 1, 1);
 						pc.getInventory().consumeItem(targetItemId, 1);
 						pc.getInventory().consumeItem(49092, 1);
