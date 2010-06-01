@@ -3648,38 +3648,38 @@
 	<!--米米 魔眼解封印與混合-->
 	<Action Name="a" NpcId="91061">
 		<MakeItem>
-			<Material Amount="1" ItemId="49339"/>		<!--受封印地龍之魔眼-->
+			<Material Amount="1" ItemId="50504"/>		<!--受封印地龍之魔眼-->
 			<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
-			<Item Amount="1" ItemId="49343"/>			<!--地龍之魔眼-->
+			<Item Amount="1" ItemId="50508"/>			<!--地龍之魔眼-->
 		</MakeItem>
 	</Action>
 	<Action Name="b" NpcId="91061">
 		<MakeItem>
-			<Material Amount="1" ItemId="49340"/>		<!--受封印水龍之魔眼-->
+			<Material Amount="1" ItemId="50505"/>		<!--受封印水龍之魔眼-->
 			<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
-			<Item Amount="1" ItemId="49344"/>			<!--水龍之魔眼-->
+			<Item Amount="1" ItemId="50509"/>			<!--水龍之魔眼-->
 		</MakeItem>
 	</Action>
 	<Action Name="c" NpcId="91061">
 		<MakeItem>
-			<Material Amount="1" ItemId="49341"/>		<!--受封印風龍之魔眼-->
+			<Material Amount="1" ItemId="50506"/>		<!--受封印風龍之魔眼-->
 			<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
-			<Item Amount="1" ItemId="49345"/>			<!--風龍之魔眼-->
+			<Item Amount="1" ItemId="50510"/>			<!--風龍之魔眼-->
 		</MakeItem>
 	</Action>
 	<Action Name="d" NpcId="91061">
 		<MakeItem>
-			<Material Amount="1" ItemId="49342"/>		<!--受封印火龍之魔眼-->
+			<Material Amount="1" ItemId="50507"/>		<!--受封印火龍之魔眼-->
 			<Material Amount="100000" ItemId="40308"/>	<!--金幣-->
-			<Item Amount="1" ItemId="49346"/>			<!--火龍之魔眼-->
+			<Item Amount="1" ItemId="50511"/>			<!--火龍之魔眼-->
 		</MakeItem>
 	</Action>
 	<Action Name="e" NpcId="91061">
 		<MakeItem>
-			<Material Amount="1" ItemId="49343"/>		<!--水龍之魔眼-->
-			<Material Amount="1" ItemId="49344"/>		<!--地龍之魔眼-->
+			<Material Amount="1" ItemId="50508"/>		<!--水龍之魔眼-->
+			<Material Amount="1" ItemId="50509"/>		<!--地龍之魔眼-->
 			<Material Amount="200000" ItemId="40308"/>	<!--金幣-->
-			<Item Amount="1" ItemId="49347"/>			<!--誕生之魔眼-->
+			<Item Amount="1" ItemId="50512"/>			<!--誕生之魔眼-->
 			<Succeed>
 				<ShowHtml HtmlId=""/>
 			</Succeed>
@@ -3690,10 +3690,10 @@
 	</Action>
 	<Action Name="f" NpcId="91061">
 		<MakeItem>
-			<Material Amount="1" ItemId="49347"/>		<!--誕生之魔眼-->
-			<Material Amount="1" ItemId="49345"/>		<!--風龍之魔眼-->
+			<Material Amount="1" ItemId="50512"/>		<!--誕生之魔眼-->
+			<Material Amount="1" ItemId="50510"/>		<!--風龍之魔眼-->
 			<Material Amount="200000" ItemId="40308"/>	<!--金幣-->
-			<Item Amount="1" ItemId="49348"/>			<!--形象之魔眼-->
+			<Item Amount="1" ItemId="50513"/>			<!--形象之魔眼-->
 			<Succeed>
 				<ShowHtml HtmlId=""/>
 			</Succeed>
@@ -3704,10 +3704,10 @@
 	</Action>
 	<Action Name="f" NpcId="91061">
 		<MakeItem>
-			<Material Amount="1" ItemId="49348"/>		<!--形象之魔眼-->
-			<Material Amount="1" ItemId="49346"/>		<!--火龍之魔眼-->
+			<Material Amount="1" ItemId="50513"/>		<!--形象之魔眼-->
+			<Material Amount="1" ItemId="50511"/>		<!--火龍之魔眼-->
 			<Material Amount="200000" ItemId="40308"/>	<!--金幣-->
-			<Item Amount="1" ItemId="49349"/>			<!--生命之魔眼-->
+			<Item Amount="1" ItemId="50514"/>			<!--生命之魔眼-->
 			<Succeed>
 				<ShowHtml HtmlId=""/>
 			</Succeed>

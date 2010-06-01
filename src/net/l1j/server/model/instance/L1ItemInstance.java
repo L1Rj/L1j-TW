@@ -849,11 +849,9 @@ public class L1ItemInstance extends L1Object {
 						+ getAddMp());
 			}
 			// MR
-			if (getMr() != 0
-					|| getAddMr() !=0) {
+			if (getMr() != 0) {
 				os.writeC(15);
-				os.writeH(getMr()
-						+ getAddMr());
+				os.writeH(getMr());
 			}
 			// SP(魔力)
 			if (getItem().get_addsp() != 0

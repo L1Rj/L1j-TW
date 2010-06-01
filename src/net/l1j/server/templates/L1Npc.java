@@ -663,24 +663,7 @@ public class L1Npc extends L1Object implements Cloneable {
 	public void setChangeHead(boolean changeHead) {
 		_changeHead = changeHead;
 	}
-	
-    private int doorId;
-	public void setDoor(int doorId){
-		this.doorId = doorId;
-	}
-	
-	public int getDoor(){
-		return doorId;
-	}
-	
-	private int countId;
-	public void setCountId(int countId){
-		this.countId = countId;
-	}
-	
-	public int getCountId(){
-		return countId;
-	}
+
 	private boolean _isCantResurrect;
 
 	public boolean isCantResurrect() {

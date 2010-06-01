@@ -378,10 +378,15 @@ public class L1PolyRace {
 		int time = 15;
 		int objectId = pc.getId();
 		//競速專用 -超級加速
-		pc.setSkillEffect(SkillId.STATUS_BRAVE2, time * 1000);
 		pc.sendPackets(new S_SkillBrave(objectId, 5, time));
-		pc.broadcastPacket(new S_SkillBrave(objectId, 5, time));
+		pc.setSkillEffect(SkillId.STATUS_BRAVE, time * 1000);
+		pc.setSkillEffect(SkillId.STATUS_BRAVE2, time * 1000);
 		pc.setBraveSpeed(1);
+		/**
+		 * XXX 注意!加速效果必須給同畫面的人知道 否則會造成錯位!!! pc.broadcastPacket(new
+		 * S_SkillBrave(objectId, 5, time))!!!
+		 */
+		pc.broadcastPacket(new S_SkillBrave(objectId, 5, time));
 
 		pc.sendPackets(new S_SkillHaste(objectId, 1, time * 10));
 		pc.setSkillEffect(SkillId.STATUS_HASTE, time * 10 * 1000);

@@ -360,6 +360,11 @@ public class L1Attack {
 		// 檢查 目標身上技能 修正命中
 		SkillsFixHitTargetPC();
 
+		// XXX フィアーの成功確率が不明なため未実装
+		// if (_targetPc.hasSkillEffect(RESIST_FEAR)) {
+		//		attackerDice += 5;
+		// }
+
 		// 根據 防禦增減 命中
 		_hitRate += calcACfixHit(_targetPc.getAc());
 		// 還原成百分等級

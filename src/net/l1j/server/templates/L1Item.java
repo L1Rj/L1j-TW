@@ -628,10 +628,6 @@ public abstract class L1Item implements Serializable {
 	public int get_ac() {
 		return 0;
 	}
-	
-	public int getGreater() {
-		return 0;
-	}
 
 	public int getDamageReduction() {
 		return 0;
