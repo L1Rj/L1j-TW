@@ -9797,3 +9797,31 @@ INSERT INTO `droplist` VALUES ('90519', '49306', '1', '1', '100000');	/* ªN¥±¹p®
 INSERT INTO `droplist` VALUES ('90519', '21542', '1', '1', '30000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ´£¥dº¸ªN¥±¹p®w¦y¤ú */
 INSERT INTO `droplist` VALUES ('90519', '21543', '1', '1', '30000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ´£¥dº¸ªN¥±¹p®w¤§²´ */
 /* 3.1C ¯«¼q©Çª«±¼¸¨¹D¨ã µ²§ô */
+INSERT INTO `droplist` VALUES ('91214', '146', '1', '1', '50000');
+INSERT INTO `droplist` VALUES ('91214', '40308', '50', '200', '1000000');
+INSERT INTO `droplist` VALUES ('91215', '143', '1', '1', '100000');
+INSERT INTO `droplist` VALUES ('91215', '145', '1', '1', '50000');
+INSERT INTO `droplist` VALUES ('91215', '148', '1', '1', '10000');
+INSERT INTO `droplist` VALUES ('91215', '40308', '50', '200', '1000000');
+INSERT INTO `droplist` VALUES ('91216', '50531', '1', '1', '300000');
+INSERT INTO `droplist` VALUES ('91217', '32', '1', '1', '100000');
+INSERT INTO `droplist` VALUES ('91217', '37', '1', '1', '50000');
+INSERT INTO `droplist` VALUES ('91217', '40308', '50', '200', '1000000');
+INSERT INTO `droplist` VALUES ('91223', '146', '1', '1', '50000');
+INSERT INTO `droplist` VALUES ('91223', '40308', '50', '200', '1000000');
+INSERT INTO `droplist` VALUES ('91224', '32', '1', '1', '100000');
+INSERT INTO `droplist` VALUES ('91224', '37', '1', '1', '50000');
+INSERT INTO `droplist` VALUES ('91224', '40308', '50', '200', '1000000');
+INSERT INTO `droplist` VALUES ('91229', '169', '1', '1', '10000');
+INSERT INTO `droplist` VALUES ('91229', '173', '1', '1', '100000');
+INSERT INTO `droplist` VALUES ('91229', '20191', '1', '1', '50000');
+INSERT INTO `droplist` VALUES ('91229', '40308', '50', '200', '1000000');
+INSERT INTO `droplist` VALUES ('91230', '146', '1', '1', '50000');
+INSERT INTO `droplist` VALUES ('91230', '40308', '50', '200', '1000000');
+INSERT INTO `droplist` VALUES ('91231', '32', '1', '1', '100000');
+INSERT INTO `droplist` VALUES ('91231', '37', '1', '1', '50000');
+INSERT INTO `droplist` VALUES ('91232', '143', '1', '1', '100000');
+INSERT INTO `droplist` VALUES ('91232', '145', '1', '1', '50000');
+INSERT INTO `droplist` VALUES ('91232', '148', '1', '1', '10000');
+INSERT INTO `droplist` VALUES ('91232', '40308', '50', '200', '1000000');
+/* 3.2C ©_©¥¦a¶¡©Çª«±¼¹D¨ã µ²§ô */
