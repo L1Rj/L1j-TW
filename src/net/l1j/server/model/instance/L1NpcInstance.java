@@ -1687,7 +1687,7 @@ public class L1NpcInstance extends L1Character {
 	public boolean nearTeleport(int nx, int ny) {
 		int tempx = 0;
 		int tempy = 0;
-		for (byte i = 1; i < 3; i++) {
+		for (int i = 1; i < 3; i++) {
 			tempx = nx + RandomArrayList.getInc(7, -3);
 			tempy = ny + RandomArrayList.getInc(7, -3);
 			if (getMap().isPassable(tempx, tempy)) {

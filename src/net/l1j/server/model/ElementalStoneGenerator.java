@@ -1,6 +1,5 @@
 package net.l1j.server.model;
 
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,7 +30,6 @@ public class ElementalStoneGenerator implements Runnable {
 
 	private FastTable<L1GroundInventory> _itemList = new FastTable<L1GroundInventory>(
 			MAX_COUNT);
-	//private Random _random = new Random();
 
 	private static ElementalStoneGenerator _instance = null;
 
@@ -76,7 +74,7 @@ public class ElementalStoneGenerator implements Runnable {
 	 * 拾われた石をリストから削除する。
 	 */
 	private void removeItemsPickedUp() {
-		for (short i = 0; i < _itemList.size(); i++) {
+		for (int i = 0; i < _itemList.size(); i++) {
 			L1GroundInventory gInventory = _itemList.get(i);
 			if (!gInventory.checkItem(ELEMENTAL_STONE_ID)) {
 				_itemList.remove(i);

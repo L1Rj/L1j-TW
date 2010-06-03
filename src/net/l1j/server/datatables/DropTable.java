@@ -24,7 +24,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,10 +45,15 @@ import net.l1j.server.model.instance.L1SummonInstance;
 import net.l1j.server.model.item.ItemId;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Drop;
+import net.l1j.server.types.Base;
+import net.l1j.util.RandomArrayList;
 import net.l1j.util.SQLUtil;
 
 public class DropTable {
 	private static Logger _log = Logger.getLogger(DropTable.class.getName());
+	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
+	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	private static DropTable _instance;
 
@@ -157,7 +161,6 @@ public class DropTable {
 		int addCount;
 		int randomChance;
 		L1ItemInstance item;
-		Random random = new Random();
 
 		for (L1Drop drop : dropList) {
 			// ドロップアイテムの取得
@@ -167,7 +170,7 @@ public class DropTable {
 			}
 
 			// ドロップチャンス判定
-			randomChance = random.nextInt(0xf4240) + 1;
+			randomChance = RandomArrayList.getInc(0xf4240, 1);
 			double rateOfMapId = MapsTable.getInstance().getDropRate(npc.getMapId());
 			double rateOfItem = DropItemTable.getInstance().getDropRate(itemId);
 			if (droprate == 0 || drop.getChance() * droprate * rateOfMapId * rateOfItem < randomChance) {
@@ -182,7 +185,7 @@ public class DropTable {
 			itemCount = min;
 			addCount = max - min + 1;
 			if (addCount > 1) {
-				itemCount += random.nextInt(addCount);
+				itemCount += RandomArrayList.getInt(addCount);
 			}
 			if (itemId == ItemId.ADENA) { // ドロップがアデナの場合はアデナレートを掛ける
 				itemCount *= adenarate;
@@ -234,7 +237,6 @@ public class DropTable {
 		L1Inventory targetInventory = null;
 		L1PcInstance player;
 		L1PcInstance[] partyMember;
-		Random random = new Random();
 		int randomInt;
 		int chanceHate;
 		int itemId;
@@ -247,7 +249,7 @@ public class DropTable {
 			}
 
 			if (((Config.AUTO_LOOT != 0) || itemId == ItemId.ADENA) && totalHate > 0) { // オートルーティングかアデナで取得者がいる場合
-				randomInt = random.nextInt(totalHate);
+				randomInt = RandomArrayList.getInt(totalHate);
 				chanceHate = 0;
 				for (int j = hateList.size() - 1; j >= 0; j--) {
 					chanceHate += (Integer) hateList.get(j);
@@ -306,43 +308,11 @@ public class DropTable {
 						y = 0;
 						break;
 					}
-					randomInt = random.nextInt(dirList.size());
+					randomInt = RandomArrayList.getInt(dirList.size());
 					dir = dirList.get(randomInt);
 					dirList.remove(randomInt);
-					switch (dir) {
-						case 0:
-							x = 0;
-							y = -1;
-						break;
-						case 1:
-							x = 1;
-							y = -1;
-						break;
-						case 2:
-							x = 1;
-							y = 0;
-						break;
-						case 3:
-							x = 1;
-							y = 1;
-						break;
-						case 4:
-							x = 0;
-							y = 1;
-						break;
-						case 5:
-							x = -1;
-							y = 1;
-						break;
-						case 6:
-							x = -1;
-							y = 0;
-						break;
-						case 7:
-							x = -1;
-							y = -1;
-						break;
-					}
+					x = HEADING_TABLE_X[dir];
+					y = HEADING_TABLE_Y[dir];
 				} while (!npc.getMap().isPassable(npc.getX(), npc.getY(), dir));
 				targetInventory = L1World.getInstance().getInventory(npc.getX() + x, npc.getY() + y, npc.getMapId());
 				isGround = true;

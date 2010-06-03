@@ -18,7 +18,7 @@
  */
 package net.l1j.util;
 
-import java.util.Random;
+import net.l1j.util.RandomArrayList;
 
 public class NumberUtil {
 	/**
@@ -33,7 +33,7 @@ public class NumberUtil {
 		if (percentage == 0) {
 			return 0; // 意謂 失敗
 		} else {
-			int r = new Random().nextInt(100);
+			int r = RandomArrayList.getInt(100);
 			if (r < percentage) {
 				return 1; // 意謂 有過機率條件
 			} else {

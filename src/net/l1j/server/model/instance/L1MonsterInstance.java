@@ -393,7 +393,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 			return;
 		}
 		if (getLocation().getTileLineDistance(pc.getLocation()) > 4) {
-			for (byte count = 0; count < 10; count++) {
+			for (int count = 0; count < 10; count++) {
 				L1Location newLoc = getLocation().randomLocation(3, 4, false);
 				if (glanceCheck(newLoc.getX(), newLoc.getY())) {
 					L1Teleport.teleport(pc, newLoc.getX(), newLoc.getY(), getMapId(), 5, true);

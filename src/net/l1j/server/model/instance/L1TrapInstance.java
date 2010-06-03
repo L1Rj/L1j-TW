@@ -71,7 +71,7 @@ public class L1TrapInstance extends L1Object {
 			return;
 		}
 
-		for (byte i = 0; i < 50; i++) {
+		for (int i = 0; i < 50; i++) {
 			int rndX = RandomArrayList.getInt(_rndPt.getX()) * WorR_Way[RandomArrayList.getInt(2)]; // 1/2の確率でマイナスにする
 			int rndY = RandomArrayList.getInt(_rndPt.getY()) * WorR_Way[RandomArrayList.getInt(2)];
 

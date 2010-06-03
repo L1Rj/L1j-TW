@@ -22,7 +22,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,8 +36,6 @@ import net.l1j.util.SQLUtil;
 public class Getback {
 
 	private static Logger _log = Logger.getLogger(Getback.class.getName());
-
-	//private static Random _random = new Random();
 
 	private static FastMap<Integer, FastTable<Getback>> _getback = new FastMap<Integer, FastTable<Getback>>();
 

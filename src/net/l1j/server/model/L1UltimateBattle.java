@@ -20,7 +20,6 @@ package net.l1j.server.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Random;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TimeZone;
@@ -82,7 +81,6 @@ public class L1UltimateBattle {
 	private int _mpr;
 
 	private static int BEFORE_MINUTE = 5; // 5分前から入場開始
-	private static Random random = new Random();
 
 	private Set<Integer> _managers = new FastSet<Integer>();
 	private SortedSet<Integer> _ubTimes = new TreeSet<Integer>();
@@ -306,9 +304,6 @@ public class L1UltimateBattle {
 				}
 
 				for (L1PcInstance pc : getMembersArray()) { // コロシアム內に居るPCを外へ出す
-					//Random random = new Random();
-					//int rndx = random.nextInt(4);
-					//int rndy = random.nextInt(4);
 					int locx = RandomArrayList.getInc(4, 33503);
 					int locy = RandomArrayList.getInc(4, 32764);
 					short mapid = 4;
@@ -331,7 +326,7 @@ public class L1UltimateBattle {
 	 */
 	public void start() {
 		int patternsMax = UBSpawnTable.getInstance().getMaxPattern(_ubId);
-		_pattern = random.nextInt(patternsMax) + 1; // 出現パターンを決める
+		_pattern = RandomArrayList.getInc(patternsMax, 1); // 出現パターンを決める
 
 		UbThread ub = new UbThread();
 		ThreadPoolManager.getInstance().execute(ub);

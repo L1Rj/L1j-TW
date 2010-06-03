@@ -22,7 +22,7 @@ package net.l1j.server.serverpackets;
 import static net.l1j.server.Opcodes.S_OPCODE_INITPACKET;
 import static net.l1j.server.types.ULong32.fromLong64;
 
-import java.util.Random;
+import net.l1j.util.RandomArrayList;
 
 /**
  * @author USER
@@ -35,7 +35,7 @@ public class S_Initialize extends ServerBasePacket
 	
 	public S_Initialize()
 	{
-		new Random().nextBytes(bs);
+		RandomArrayList.getByte(bs);
 		
 		writeC(S_OPCODE_INITPACKET);
 		writeByte(bs);

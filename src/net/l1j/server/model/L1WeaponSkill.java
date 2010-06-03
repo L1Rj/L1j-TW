@@ -268,7 +268,7 @@ public class L1WeaponSkill {
 			value = 14;
 		}
 
-		for (byte i = 0; i < diceCount; i++) {
+		for (int i = 0; i < diceCount; i++) {
 			kiringkuDamage += RandomArrayList.getInc(dice, 1);
 		}
 		kiringkuDamage += value;

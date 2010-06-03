@@ -313,7 +313,7 @@ public class L1Character extends L1Object {
 		int chx = getX();
 		int chy = getY();
 		int arw = 0;
-		for (byte i = 0; i < 15; i++) {
+		for (int i = 0; i < 15; i++) {
 			if ((chx == tx && chy == ty) || (chx + 1 == tx && chy - 1 == ty)
 					|| (chx + 1 == tx && chy == ty)
 					|| (chx + 1 == tx && chy + 1 == ty)

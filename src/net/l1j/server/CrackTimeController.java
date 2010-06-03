@@ -15,7 +15,6 @@
 package net.l1j.server;
 
 import java.lang.reflect.Constructor;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -32,6 +31,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.thread.ThreadPoolManager;
+import net.l1j.util.RandomArrayList;
 
 /**
  * 時空裂痕時間控制器
@@ -40,8 +40,6 @@ public class CrackTimeController extends TimerTask {
 	private static Logger _log = Logger.getLogger(CrackTimeController.class.getName());
 	
 	private Timer _timeHandler = new Timer(true);
-	
-	private static Random _random = new Random();
 	
 	private boolean _isOver = false;
 	
@@ -127,8 +125,8 @@ public class CrackTimeController extends TimerTask {
 	private void spawnCrack() {
 		L1Location crack = null;
 		L1Location crack_loc = null;
-		int rnd1 = _random.nextInt(2);
-		int rnd2 = _random.nextInt(9);
+		int rnd1 = RandomArrayList.getInt(2);
+		int rnd2 = RandomArrayList.getInt(9);
 		crack = new L1Location(_crack[rnd1][0], _crack[rnd1][1], _crack[rnd1][2]);
 		crack_loc = new L1Location(_crackLoc[rnd2][0], _crackLoc[rnd2][1], _crackLoc[rnd2][2]);
 		L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(SystemMessageId.$1469));

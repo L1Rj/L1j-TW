@@ -22,7 +22,6 @@ import java.lang.reflect.Constructor;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,8 +57,6 @@ public class L1MobSkillUse {
 	private L1NpcInstance _attacker = null;
 
 	private L1Character _target = null;
-
-	private Random _rnd = new Random();
 
 	private int _sleepTime = 0;
 
@@ -184,7 +181,7 @@ public class L1MobSkillUse {
 
 //		if (skillSizeCounter != 0) {
 		if (skillSizeCounter > 0 && skillSizeCounter < skills.length) {
-			int num = _rnd.nextInt(skillSizeCounter);
+			int num = RandomArrayList.getInt(skillSizeCounter);
 			if (useSkill(skills[num])) { // スキル使用
 				return true;
 			}
@@ -230,7 +227,7 @@ public class L1MobSkillUse {
 			return false;
 		}
 
-		count = _rnd.nextInt(max) + min;
+		count = RandomArrayList.getInc(max, min);
 		mobspawn(summonId, count);
 
 		// 魔方陣の表示
