@@ -31,9 +31,6 @@ import net.l1j.server.templates.L1Skills;
 import net.l1j.util.RandomArrayList;
 
 import static net.l1j.server.model.skill.SkillId.*;
-import static net.l1j.server.model.skill.SkillId.*;
-import static net.l1j.server.model.skill.SkillId.*;
-import static net.l1j.server.model.skill.SkillId.*;
 
 public class Poly {
 

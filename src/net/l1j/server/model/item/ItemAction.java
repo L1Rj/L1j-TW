@@ -157,9 +157,9 @@ public class ItemAction {
 		SpellBook.put(40226, (byte) 113); /* 魔法書 (精準目標),	精準目標 */
 		SpellBook.put(40227, (byte) 114); /* 魔法書 (激勵士氣),	激勵士氣 */
 		SpellBook.put(40228, (byte) 116); /* 魔法書 (呼喚盟友),	呼喚盟友 */
-		SpellBook.put(40229, (byte) 115); /* 魔法書(鋼鐵士氣),	鋼鐵士氣 */
-		SpellBook.put(40230, (byte) 117); /* 魔法書(衝擊士氣),	衝擊士氣 */
-		SpellBook.put(40231, (byte) 118); /* 魔法書(援護盟友),	援護盟友 */
+		SpellBook.put(40229, (byte) 115); /* 魔法書 (鋼鐵士氣),	鋼鐵士氣 */
+		SpellBook.put(40230, (byte) 117); /* 魔法書 (衝擊士氣),	衝擊士氣 */
+		SpellBook.put(40231, (byte) 118); /* 魔法書 (援護盟友),	援護盟友 */
 		
 		SpellBook.put(40232, (byte) 129); /* 精靈水晶(魔法防禦),	魔法防禦 */
 		SpellBook.put(40233, (byte) 130); /* 精靈水晶(心靈轉換),	心靈轉換 */

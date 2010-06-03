@@ -217,7 +217,7 @@ public class L1EquipmentSlot {
 		if (item.get_addhp() != 0 || equipment.getAddHp() !=0) {
 			_owner.addMaxHp(item.get_addhp() + equipment.getAddHp()); //XXX
 		}
-		if (item.get_addmp() != 0) {
+		if (item.get_addmp() != 0 || equipment.getAddMp() !=0) {
 			_owner.addMaxMp(item.get_addmp() + equipment.getAddMp());
 		}
 		_owner.addStr(item.get_addstr());
@@ -231,7 +231,7 @@ public class L1EquipmentSlot {
 		_owner.addCha(item.get_addcha());
 
 		int addMr = 0;
-		addMr += equipment.getMr();
+		addMr += equipment.getMr() + equipment.getAddMr();
 		if (item.getItemId() == 20236 && _owner.isElf()) {
 			addMr += 5;
 		}
@@ -282,7 +282,7 @@ public class L1EquipmentSlot {
 		if (item.get_addhp() != 0 || equipment.getAddHp() !=0) {
 			_owner.addMaxHp(-item.get_addhp() - equipment.getAddHp()); //XXX
 		}
-		if (item.get_addmp() != 0) {
+		if (item.get_addmp() != 0 || equipment.getAddMp() !=0) {
 			_owner.addMaxMp(-item.get_addmp() - equipment.getAddMp());
 		}
 		_owner.addStr((byte) -item.get_addstr());
@@ -296,7 +296,7 @@ public class L1EquipmentSlot {
 		_owner.addCha((byte) -item.get_addcha());
 
 		int addMr = 0;
-		addMr -= equipment.getMr();
+		addMr -= (equipment.getMr() + equipment.getAddMr());
 		if (item.getItemId() == 20236 && _owner.isElf()) {
 			addMr -= 5;
 		}

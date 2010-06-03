@@ -658,7 +658,7 @@ public class L1UltimateBattle {
 			classesBuff.append("龍騎士 ");
 		}
 		if (_enterIllusionist) {
-			classesBuff.append("幻術師 ");
+			classesBuff.append("幻術士 ");
 		}
 		String classes = classesBuff.toString().trim();
 		// 性別
