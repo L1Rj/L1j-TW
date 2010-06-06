@@ -9825,3 +9825,4 @@ INSERT INTO `droplist` VALUES ('91232', '145', '1', '1', '50000');
 INSERT INTO `droplist` VALUES ('91232', '148', '1', '1', '10000');
 INSERT INTO `droplist` VALUES ('91232', '40308', '50', '200', '1000000');
 /* 3.2C 奇岩地間怪物掉道具 結束 */
+INSERT INTO `droplist` VALUES ('45640', '41352', '1', '1', '10000');
