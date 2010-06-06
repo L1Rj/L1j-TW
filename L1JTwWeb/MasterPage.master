@@ -1,0 +1,62 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title><%=ConfigurationManager.AppSettings.Get("WebName")%></title>
+    <link href="CSS/Style.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </ajaxToolkit:ToolkitScriptManager>
+        <div style="text-align:center">
+            <table border="1" cellpadding="0" cellspacing="0" width="1000px">
+                <tr>
+                    <td colspan="2" align="left" valign="top" style="width:100%">
+                        <asp:Panel ID="pnlTopShow" runat="server">
+                            <asp:ImageButton ID="imgbtnLogo" runat="server" 
+                                ImageUrl="~/Images/lineagedbnk4.jpg" PostBackUrl="~/Default.aspx" />
+                        </asp:Panel>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <ucMenu:Menu ID="Menu1" runat="server" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" valign="top" style="width:20%; height:500px">
+                        <asp:Panel ID="pnlLeftShow" runat="server" Width="100%">
+                            <ucLogin:Login ID="Login1" runat="server" />
+                        </asp:Panel>
+                    </td>
+                    <td align="center" valign="top">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" summary="排版表格">
+                            <tr>
+                                <td style="text-align:center; vertical-align:top">
+                                     <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            
+                                    </asp:ContentPlaceHolder>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center" valign="top" style="width:100%">
+                        <asp:Panel ID="pnlBottomShow" runat="server" width="100%">
+                        </asp:Panel>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>

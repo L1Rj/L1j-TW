@@ -1,0 +1,36 @@
+﻿body
+{
+	background-color: #FFFFFF;
+	font-size:medium;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+	margin: 0px;
+}
+img{
+	border: 0px;
+}
+
+/***收合面版***/
+.collapsePanelHeader
+{
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+/************ MaskedEdit Related Styles ***********************/
+.MaskedEditFocus
+{
+    background-color: #ffffcc;
+    color: #000000;
+}
+.MaskedEditMessage
+{
+	color: #ff0000;
+	font-weight: bold;
+}
+.MaskedEditError
+{
+    background-color: #ffcccc;
+}

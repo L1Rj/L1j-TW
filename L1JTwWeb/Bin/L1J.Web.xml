@@ -1,0 +1,385 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+L1J.Web
+</name>
+</assembly>
+<members>
+<member name="P:L1J.Web.WebControls.TBValidateCode.ValidateCodeUrl">
+	<summary>
+ 圖形驗證碼產生頁面網址。
+ </summary>
+</member><member name="M:L1J.Web.WebControls.TBValidateCode.ValidateCode(System.String)">
+	<summary>
+ 檢查輸入驗證碼是否正確。
+ </summary>
+	<param name="Code">輸入驗證碼。</param>
+	<returns>驗證成功傳回 True，反之傳回 False。</returns>
+</member><member name="P:L1J.Web.WebControls.TBTextBox.FormViewModeState">
+	<summary>
+ 依 FormViewMode 來設定控制項狀態。
+ </summary>
+</member><member name="M:L1J.Web.WebControls.TBTextBox.DoControlStatus(L1J.Web.WebCommon.EControlState)">
+	<summary>
+ 處理控制項狀態。
+ </summary>
+	<param name="ControlStatus">控制項狀態。</param>
+</member><member name="M:L1J.Web.WebControls.TBTextBox.DoFormViewModeStatus">
+	<summary>
+ 依 FormView 的模式來處理控制項狀態。
+ </summary>
+</member><member name="M:L1J.Web.WebControls.TBTextBox.OnPreRender(System.EventArgs)">
+	<summary>
+ 覆寫。引發 PreRender 事件。
+ </summary>
+</member><member name="T:L1J.Web.WebControls.TBTextBox">
+	<summary>
+ 文字框控制項。
+ </summary>
+</member><member name="P:L1J.Web.WebControls.TBLinkButton.ValidateCodeUrl">
+	<summary>
+ 圖形驗證碼產生頁面網址。
+ </summary>
+</member><member name="M:L1J.Web.WebControls.TBLinkButton.Render(System.Web.UI.HtmlTextWriter)">
+	<summary>
+ 覆寫 Render 方法。
+ </summary>
+</member><member name="F:L1J.Web.WebCommon.Category.Data">
+	<summary>
+ 資料。
+ </summary>
+</member><member name="F:L1J.Web.WebCommon.Category.Appearance">
+	<summary>
+ 外觀。
+ </summary>
+</member><member name="F:L1J.Web.WebCommon.Category.Behavior">
+	<summary>
+ 行為。
+ </summary>
+</member><member name="F:L1J.Web.WebCommon.Category.Layout">
+	<summary>
+ 配置。
+ </summary>
+</member><member name="F:L1J.Web.WebCommon.Category.Action">
+	<summary>
+ 動作。
+ </summary>
+</member><member name="T:L1J.Web.WebCommon.Category">
+	<summary>
+ 屬性視窗的屬性分類常數。
+ </summary>
+</member><member name="F:L1J.Web.WebCommon.EControlState.NotSet">
+	<summary>
+ 不設定。
+ </summary>
+</member><member name="F:L1J.Web.WebCommon.EControlState.Enable">
+	<summary>
+ 啟用。
+ </summary>
+</member><member name="F:L1J.Web.WebCommon.EControlState.Disable">
+	<summary>
+ 不啟用。
+ </summary>
+</member><member name="F:L1J.Web.WebCommon.EControlState.Hide">
+	<summary>
+ 隱藏。
+ </summary>
+</member><member name="T:L1J.Web.WebCommon.EControlState">
+	<summary>
+ 控制項狀態列舉。
+ </summary>
+</member><member name="F:L1J.Web.WebCommon.PageEvent.PageCommand">
+	<summary>
+ 頁面命令事件。
+ </summary>
+</member><member name="T:L1J.Web.WebCommon.PageEvent">
+	<summary>
+ 頁面事件常數類別。
+ </summary>
+</member><member name="T:L1J.Web.WebCommon.EButtonAction">
+	<summary>
+ 按鈕的動作。
+ </summary>
+</member><member name="P:L1J.Web.TBFormViewModeState.InsertMode">
+	<summary>
+ 在新增模式(FormViewMode=Insert)的控制項狀態。
+ </summary>
+</member><member name="P:L1J.Web.TBFormViewModeState.EditMode">
+	<summary>
+ 在編輯模式(FormViewMode=Edit)的控制項狀態。
+ </summary>
+</member><member name="P:L1J.Web.TBFormViewModeState.BrowseMode">
+	<summary>
+ 在瀏覽模式(FormViewMode=ReadOnly)的控制項狀態。
+ </summary>
+</member><member name="T:L1J.Web.TBFormViewModeState">
+	<summary>
+ 依 FormViewMode 來設定控制項狀態。
+ </summary>
+</member><member name="M:L1J.Web.LibFunc.IsNothingOrDBNull(System.Object)">
+	<summary>
+ 判斷傳入值是否為 Nothing 或 DBNull。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCStr(System.Object,System.String)">
+	<summary>
+ 轉型為 String，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCStr(System.Object)">
+	<summary>
+ 轉型為 String，若傳入值為 Nothing 或 DBNull 則傳回空字串。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCBool(System.Object,System.Boolean)">
+	<summary>
+ 轉型為 Boolean，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefalutValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCBool(System.Object)">
+	<summary>
+ 轉型為 Boolean，若傳入值為 Nothing 或 DBNull 則傳回 False。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCByte(System.Object,System.Byte)">
+	<summary>
+ 轉型為 Byte，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCByte(System.Object)">
+	<summary>
+ 轉型為 Byte，若傳入值為 Nothing 或 DBNull 則傳回 0。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCChar(System.Object,System.Char)">
+	<summary>
+ 轉型為 Char，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCChar(System.Object)">
+	<summary>
+ 轉型為 Char，若傳入值為 Nothing 或 DBNull 則傳回 Char.MinValue。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCDate(System.Object,System.DateTime)">
+	<summary>
+ 轉型為 Date，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCDate(System.Object)">
+	<summary>
+ 轉型為 Date，若傳入值為 Nothing 或 DBNull 則傳回 Date.MinValue。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCDbl(System.Object,System.Double)">
+	<summary>
+ 轉型為 Double，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCDbl(System.Object)">
+	<summary>
+ 轉型為 Double，若傳入值為 Nothing 或 DBNull 則傳回 0。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCDec(System.Object,System.Decimal)">
+	<summary>
+ 轉型為 Decimal，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCDec(System.Object)">
+	<summary>
+ 轉型為 Decimal，若傳入值為 Nothing 或 DBNull 則傳回 0。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCInt(System.Object,System.Int32)">
+	<summary>
+ 轉型為 Integer，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCInt(System.Object)">
+	<summary>
+ 轉型為 Integer，若傳入值為 Nothing 或 DBNull 則傳回 0。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCLng(System.Object,System.Int64)">
+	<summary>
+ 轉型為 Long，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCLng(System.Object)">
+	<summary>
+ 轉型為 Long，若傳入值為 Nothing 或 DBNull 則傳回 0。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCSByte(System.Object,System.SByte)">
+	<summary>
+ 轉型為 SByte，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCSByte(System.Object)">
+	<summary>
+ 轉型為 SByte，若傳入值為 Nothing 或 DBNull 則傳回 0。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCShort(System.Object,System.Int16)">
+	<summary>
+ 轉型為 Short，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCShort(System.Object)">
+	<summary>
+ 轉型為 Short，若傳入值為 Nothing 或 DBNull 則傳回 0。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCSng(System.Object,System.Single)">
+	<summary>
+ 轉型為 Single，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCSng(System.Object)">
+	<summary>
+ 轉型為 Single，若傳入值為 Nothing 或 DBNull 則傳回 0。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCUInt(System.Object,System.UInt32)">
+	<summary>
+ 轉型為 Single，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCUInt(System.Object)">
+	<summary>
+ 轉型為 Single，若傳入值為 Nothing 或 DBNull 則傳回 0。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCULng(System.Object,System.UInt64)">
+	<summary>
+ 轉型為 ULong，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCULng(System.Object)">
+	<summary>
+ 轉型為 ULong，若傳入值為 Nothing 或 DBNull 則傳回 0。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCUShort(System.Object,System.UInt16)">
+	<summary>
+ 轉型為 UShort，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCUShort(System.Object)">
+	<summary>
+ 轉型為 UShort，若傳入值為 Nothing 或 DBNull 則傳回 0。
+ </summary>
+	<param name="Value">傳入值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCObj(System.Object,System.Object)">
+	<summary>
+ 轉型為 UShort，若傳入值為 Nothing 或 DBNull 則傳回預設值。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="DefaultValue">預設值。</param>
+</member><member name="M:L1J.Web.LibFunc.CCEnum(System.String,System.Type)">
+	<summary>
+ 將字串轉型為列舉型別。
+ </summary>
+	<param name="Value">傳入值。</param>
+	<param name="Type">列舉型別。</param>
+</member><member name="M:L1J.Web.LibFunc.StrIsEmpty(System.String)">
+	<summary>
+ 字串是否為 Nothing 或 Empty。
+ </summary>
+	<param name="Value">傳入字串。</param>
+</member><member name="M:L1J.Web.LibFunc.StrIsEmpty(System.String,System.Boolean)">
+	<summary>
+ 字串是否為 Nothing 或 Empty。
+ </summary>
+	<param name="Value">傳入字串。</param>
+	<param name="IsTrim">是否去除左右空白。</param>
+</member><member name="M:L1J.Web.LibFunc.StrIsNotEmpty(System.String)">
+	<summary>
+ 字串是否不為 Nothing 或 Empty。
+ </summary>
+	<param name="Value">傳入字串。</param>
+</member><member name="M:L1J.Web.LibFunc.StrIsNotEmpty(System.String,System.Boolean)">
+	<summary>
+ 字串是否不為 Nothing 或 Empty。
+ </summary>
+	<param name="Value">傳入字串。</param>
+	<param name="IsTrim">是否去除左右空白。</param>
+</member><member name="M:L1J.Web.LibFunc.SameText(System.String,System.String)">
+	<summary>
+ 判斷二字串是否相同(不區分大小寫)。
+ </summary>
+	<param name="S1">第一個字串。</param>
+	<param name="S2">第二個字串。</param>
+</member><member name="M:L1J.Web.LibFunc.StrReplace(System.String,System.String,System.String)">
+	<summary>
+ 字串取代。
+ </summary>
+	<param name="Expression">原始字串。</param>
+	<param name="Find">搜尋的子字串。</param>
+	<param name="Replacement">取代的子字串。</param>
+</member><member name="M:L1J.Web.LibFunc.IsInstanceOfType(System.Type,System.Object)">
+	<summary>
+ 判斷變數是否具有指定型別。
+ </summary>
+	<param name="Type">型別。</param>
+	<param name="Value">變數。</param>
+</member><member name="M:L1J.Web.LibFunc.SetPropertyValue(System.Object,System.String,System.Object)">
+	<summary>
+ 設定物件的屬性值。
+ </summary>
+	<param name="Component">屬性值將要設定的物件。</param>
+	<param name="PropertyName">屬性名稱。</param>
+	<param name="Value">新值。</param>
+</member><member name="M:L1J.Web.LibFunc.GetPropertyValue(System.Object,System.String)">
+	<summary>
+ 取得物件的屬性值。
+ </summary>
+	<param name="Component">具有要擷取屬性的物件。</param>
+	<param name="PropertyName">屬性名稱。</param>
+</member><member name="M:L1J.Web.LibFunc.CheckPropertyValue(System.Object,System.String,System.Object)">
+	<summary>
+ 檢查物件的屬性值是否符合。
+ </summary>
+	<param name="Component">具有要擷取屬性的物件。</param>
+	<param name="PropertyName">屬性名稱。</param>
+	<param name="PropertyValue">欲判斷的屬性值。</param>
+</member><member name="M:L1J.Web.LibFunc.GetTypeCodeForType(System.Type)">
+	<summary>
+ 依資料型別轉為對應的型別列舉。
+ </summary>
+	<param name="type">資料型別。</param>
+</member><member name="M:L1J.Web.LibFunc.IsEmpty(System.String)">
+	<summary>
+ 判斷字串是否為空字串。
+ </summary>
+	<param name="Value">字串。</param>
+</member><member name="M:L1J.Web.LibFunc.IsEmpty(System.String,System.Boolean)">
+	<summary>
+ 判斷字串是否為空字串。
+ </summary>
+	<param name="Value">字串。</param>
+	<param name="IsTrim">是否去除存右空白。</param>
+</member><member name="T:L1J.Web.LibFunc">
+	<summary>
+ 共用函式庫。
+ </summary>
+</member>
+</members>
+</doc>
