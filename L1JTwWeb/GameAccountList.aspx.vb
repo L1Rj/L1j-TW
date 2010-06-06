@@ -81,7 +81,7 @@ Partial Class GameAccountList
     End Sub
 
     Protected Sub dvCharacters_DataBound(ByVal sender As Object, ByVal e As System.EventArgs) Handles dvCharacters.DataBound
-        If dvCharacters.Rows.Count > 0 Then
+        If dvCharacters.Rows.Count > 1 Then
             Dim tmpType As String = dvCharacters.Rows(2).Cells(1).Text
             Dim tmpSex As String = dvCharacters.Rows(3).Cells(1).Text
 

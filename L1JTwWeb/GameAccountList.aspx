@@ -123,7 +123,7 @@
                                     <asp:DetailsView ID="dvCharacters" runat="server" Width="524px" 
                                         BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" 
                                         CellPadding="4" ForeColor="Black" 
-                                        AutoGenerateRows="False">
+                                        AutoGenerateRows="False" EmptyDataText="未尚建立角色">
                                         <FooterStyle BackColor="#CCCC99" />
                                         <RowStyle BackColor="#F7F7DE" />
                                         <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
