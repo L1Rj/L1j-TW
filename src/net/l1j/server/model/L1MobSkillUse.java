@@ -119,6 +119,13 @@ public class L1MobSkillUse {
 			return false;
 		}
 
+		int[] skills = null;
+		int skillSizeCounter = 0;
+		int skillSize = getMobSkillTemplate().getSkillSize();
+		if (skillSize >= 0) {
+			skills = new int[skillSize];
+		}
+
 		int i = 0;
 		for (i = 0; i < getMobSkillTemplate().getSkillSize() && getMobSkillTemplate().getType(i) != L1MobSkill.TYPE_NONE; i++) {
 			// changeTargetが設定されている場合、ターゲットの入れ替え
@@ -180,11 +187,15 @@ public class L1MobSkillUse {
 		}
 
 //		if (skillSizeCounter != 0) {
-		if (skillSizeCounter > 0 && skillSizeCounter < skills.length) {
+//		if (skillSizeCounter > 0 && skillSizeCounter < skills.length) {
+//			int num = RandomArrayList.getInt(skillSizeCounter);
+//			if (useSkill(skills[num])) { // スキル使用
+//				return true;
+//			}
+		if (skillSizeCounter != 0) {
 			int num = RandomArrayList.getInt(skillSizeCounter);
-			if (useSkill(skills[num])) { // スキル使用
-				return true;
-			}
+			useSkill(skills[num]); // 怪物技能施展
+			return true;
 		}
 
 		return false;

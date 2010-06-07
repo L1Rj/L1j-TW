@@ -25,6 +25,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.item.ItemAction;
 import net.l1j.server.model.item.ItemId;
 import net.l1j.server.serverpackets.S_CurseBlind;
+import net.l1j.server.serverpackets.S_PacketBox;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillBrave;
 import net.l1j.server.serverpackets.S_SkillHaste;
@@ -267,19 +268,15 @@ public class Potion {
 
 		int time = 0;
 		if (item_id == 40015 || item_id == 40736) { // ブルーポーション、智慧貨幣
-			time = 600;
+                        time = 600;
 		} else if (item_id == 140015) { // 祝福されたブルー ポーション
-			time = 700;
+                        time = 700;
 		} else {
 			return;
 		}
-
-		pc.sendPackets(new S_SkillIconGFX(34, time));
-		pc.sendPackets(new S_SkillSound(pc.getId(), 190));
+		pc.sendPackets(new S_PacketBox(S_PacketBox.ICON_BLUEPOTION, time));
 		pc.broadcastPacket(new S_SkillSound(pc.getId(), 190));
-
 		pc.setSkillEffect(STATUS_BLUE_POTION, time * 1000);
-
 		pc.sendPackets(new S_ServerMessage(SystemMessageId.$1007));
 	}
 

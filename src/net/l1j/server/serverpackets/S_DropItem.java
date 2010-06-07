@@ -52,8 +52,18 @@ public class S_DropItem extends ServerBasePacket {
 		writeD(item.getCount());
 		writeC(0);
 		writeC(0);
-		if (item.getCount() > 1) {
-			writeS(item.getItem().getName() + " (" + item.getCount() + ")");
+		if (!item.isIdentified()) {
+                    if (item.getCount() > 1) {
+                        writeS(item.getItem().getUnidentifiedNameId() + " (" + item.getCount() + ")");
+                    } else {
+                        writeS(item.getItem().getUnidentifiedNameId());
+                    }
+                } else if (item.isIdentified() && item.getCount() > 1) {
+                    if (item.getCount() > 1) {
+                        writeS(item.getItem().getIdentifiedNameId() + "(" + item.getCount() + ")");
+                    } else {
+                        writeS(item.getItem().getIdentifiedNameId());
+                    }
 		} else {
 			int itemId = item.getItem().getItemId();
 			int isId = item.isIdentified() ? 1 : 0;

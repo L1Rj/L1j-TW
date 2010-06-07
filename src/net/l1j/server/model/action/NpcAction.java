@@ -39,14 +39,14 @@ public class NpcAction {
 
 	private int defaultAttack = -1; // 一般攻擊
 	private int SpecialAttack = -1; // 特殊攻擊
-	private int ARange = -1; // 攻擊之範圍
-	private int SARange = -1; // 特殊攻擊之範圍
+	private int ARange = -1;        // 攻擊之範圍
+	private int SARange = -1;       // 特殊攻擊之範圍
 
 	public void Load(L1NpcInstance npc) {
 		L1Npc temp = npc.getNpcTemplate();
 		setARange(temp.get_ranged());
-		npc.setStatus(0); // 移動為空手移動
-		setDefaultAttack(temp.get_ranged() > 2 ? 21 : 1); // 弓類
+		npc.setStatus(0);           // 移動為空手移動
+		setDefaultAttack(temp.get_ranged() > 2 ? 21 : 1);  // 弓類
 		setDefaultAttack(temp.get_ranged() == 2 ? 25 : 1); // 矛類
 		npc.setStatus(getDefaultAttack() == 21 ? 20 : npc.getStatus()); // 移動改為拿著弓移動
 		npc.setStatus(getDefaultAttack() == 25 ? 24 : npc.getStatus()); // 移動改為拿著矛移動
@@ -114,7 +114,7 @@ public class NpcAction {
 
 			// 深淵弓箭手
 			case 45502:
-				setDefaultAttack(0x1E); // 預設值攻擊為 0x1E
+				setDefaultAttack(0x1E); // 預設值攻擊為 0x1E(拉弓)
 				setSpecialAttack(0x01); // 預設值特殊攻擊為 0x01
 				setARange(temp.get_ranged());
 				setSARange(0x01);
