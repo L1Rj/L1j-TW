@@ -163,7 +163,7 @@ Partial Class GameInfo_ItemSearch
     End Function
 
     Private Function Chance(ByVal _chance As String) As String
-        Dim tmpchance As String = CStr(Math.Round(CSng(_chance) / 10000, 2)) & "%"
+        Dim tmpchance As String = CStr(Math.Round(CSng(_chance) / 10000, 6)) & "%"
         Return tmpchance
     End Function
 End Class
