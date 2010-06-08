@@ -39,17 +39,17 @@ public class NpcAction {
 
 	private int defaultAttack = -1; // 一般攻擊
 	private int SpecialAttack = -1; // 特殊攻擊
-	private int ARange = -1;        // 攻擊之範圍
-	private int SARange = -1;       // 特殊攻擊之範圍
+	private int ARange        = -1; // 攻擊之範圍
+	private int SARange       = -1; // 特殊攻擊之範圍
 
 	public void Load(L1NpcInstance npc) {
 		L1Npc temp = npc.getNpcTemplate();
 		setARange(temp.get_ranged());
 		npc.setStatus(0);           // 移動為空手移動
-		setDefaultAttack(temp.get_ranged() > 2 ? 21 : 1);  // 弓類
-		setDefaultAttack(temp.get_ranged() == 2 ? 25 : 1); // 矛類
-		npc.setStatus(getDefaultAttack() == 21 ? 20 : npc.getStatus()); // 移動改為拿著弓移動
-		npc.setStatus(getDefaultAttack() == 25 ? 24 : npc.getStatus()); // 移動改為拿著矛移動
+		npc.setStatus(temp.get_ranged() >  2 ? 20 : npc.getStatus()); // 移動改為拿著弓移動
+		npc.setStatus(temp.get_ranged() == 2 ? 24 : npc.getStatus()); // 移動改為拿著矛移動
+		//setDefaultAttack(temp.get_ranged() >  2 ? 21 : 1); // 弓類
+		//setDefaultAttack(temp.get_ranged() == 2 ? 25 : 1); // 矛類
 
 		switch (temp.get_npcId()) {
 			// 飛行系列的怪物修正
@@ -60,14 +60,14 @@ public class NpcAction {
 			case 45321: // 格利芬 (一般)
 			case 45445: // 格利芬 (遺忘之島)
 				npc.setStatus(0); // 空手休息
-				npc.setState(1); // 空中類型的怪物 在天上設2, 在地上設1
+				npc.setState(1);  // 空中類型的怪物 在天上設2, 在地上設1
 			break;
 
 			// 妖魔鬥士系列
 			case 45082:
 			case 45120:
 			case 45759:
-				npc.setStatus(0x04); // 設定NPC初始狀態
+				npc.setStatus(0x04);    // 設定NPC初始狀態
 				setDefaultAttack(0x05); // 預設值為 0x05
 				setSpecialAttack(0x1E); // 預設值為 0x1E
 				setARange(temp.get_ranged());
