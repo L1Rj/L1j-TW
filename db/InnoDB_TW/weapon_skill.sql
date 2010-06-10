@@ -47,5 +47,5 @@ INSERT INTO `weapon_skill` VALUES ('205', '熾炎天使弓', '5', '8', '0', '0',
 INSERT INTO `weapon_skill` VALUES ('256', '萬聖節南瓜長劍(韓)', '8', '35', '25', '0', '0', '0', '2750', '0', '0', '1');
 INSERT INTO `weapon_skill` VALUES ('257', '萬聖節南瓜長劍(日)', '8', '35', '25', '0', '0', '0', '2750', '0', '0', '1');
 INSERT INTO `weapon_skill` VALUES ('258', '終極萬聖節南瓜長劍', '8', '35', '25', '0', '0', '0', '2750', '0', '0', '1');
-INSERT INTO `weapon_skill` VALUES ('506', '天雷劍', '8', '35', '25', '0', '0', '0', '34', '0', '0', '0');
-INSERT INTO `weapon_skill` VALUES ('507', '玄冰弓', '8', '35', '25', '2', '0', '0', '22', '0', '1', '0');
+INSERT INTO `weapon_skill` VALUES ('506', '天雷劍', '8', '35', '25', '0', '0', '0', '10', '0', '0', '0');
+INSERT INTO `weapon_skill` VALUES ('507', '玄冰弓', '8', '35', '25', '2', '0', '0', '1804', '0', '1', '0');
