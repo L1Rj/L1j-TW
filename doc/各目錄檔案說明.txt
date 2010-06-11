@@ -18,7 +18,9 @@ log\					紀錄檔存放目錄
 map\					伺服器地圖檔 (為降低SVN流量請自行解壓縮)
 src\					伺服器原始碼
 tool\					伺服器工具
-web\					網站(註冊等功能)
+website\php\				php網站(註冊等功能)
+website\asp\L1JTwWeb\			asp網站(註冊等功能)
+upgrade\				版本更新檔案
 
 tool目錄類內容說明:
 DataBase_pack.bat			資料庫檔案打包工具 可將資料庫打包成單一檔案方便匯入.
