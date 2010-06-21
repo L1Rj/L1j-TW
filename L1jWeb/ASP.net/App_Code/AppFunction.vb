@@ -208,4 +208,59 @@ Public Class AppFunction
         Return "0"
     End Function
 
+    Public Sub Authority_Menu(ByVal _loginuser As LoginUser, ByRef myTR As TableRow)
+        Select Case _loginuser.Access_Level
+            Case Is >= 200
+                '管理者選單
+                'GetMemberMenu(myTR)
+                GetAdminMenu(myTR)
+            Case 100 To 199
+                '會員選單
+                'GetMemberMenu(myTR)
+            Case "Normal"
+                '一般選單(未註冊者)
+        End Select
+    End Sub
+
+#Region "管理者選單"
+    '---加入管理者選單---
+    '使用權限-管理者
+    '會員清單功能表設定
+    Public Sub GetAdminMenu(ByRef myTR As TableRow)
+        '---分格線---
+        'Dim myTC1 As New TableCell()
+        'myTC1.Text = "&nbsp;|&nbsp;"
+        'myTR.Cells.Add(myTC1)
+        '---系統管理---
+        Dim menuSys As New Menu()
+        Dim myTC2 As New TableCell()
+        '參數1:MenuID；參數2：啟始選項ID
+        menuSys.ID = "menuSys"
+        'menuAdmin.SkinID = "MainNav"
+        menuSys.SkinID = "PinkMenu"
+        'menuAdmin.SkinID = "SampleMenuVertical"
+        'menuAdmin.SkinID = "SampleMenuHorizontal"
+        menuSys.Orientation = Orientation.Horizontal
+        menuSys.StaticDisplayLevels = 1
+        menuSys.MaximumDynamicDisplayLevels = 1
+        myTC2.VerticalAlign = VerticalAlign.Middle
+        BindMenu(menuSys, 90000, True)
+        myTC2.Controls.Add(menuSys)
+        myTR.Cells.Add(myTC2)
+
+        '---帳號管理---
+        Dim menuAccount As New Menu()
+        Dim myTC3 As New TableCell()
+        menuAccount.ID = "menuAccount"
+        menuAccount.SkinID = "PinkMenu"
+        menuAccount.Orientation = Orientation.Horizontal
+        menuAccount.StaticDisplayLevels = 1
+        menuAccount.MaximumDynamicDisplayLevels = 1
+        myTC3.VerticalAlign = VerticalAlign.Middle
+        BindMenu(menuAccount, 90100, True)
+        myTC3.Controls.Add(menuAccount)
+        myTR.Cells.Add(myTC3)
+    End Sub
+#End Region
+
 End Class
