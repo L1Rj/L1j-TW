@@ -148,5 +148,31 @@ VALUES
 INSERT INTO web_sitemap
   (ID, Title, Descrition, Url, Roles, Parent)
 VALUES
-  (90000, "後台管理(未開放)", "後台管理", "NULL", "*", 1);
+  (90000, "系統管理", "系統管理", "NULL", "*", 1);
+
+INSERT INTO web_sitemap
+  (ID, Title, Descrition, Url, Roles, Parent)
+VALUES
+  (90001, "遊戲公告管理", "遊戲公告管理", "~/Announce/AnnounceManager.aspx", "NULL", 90000);
+
+INSERT INTO web_sitemap
+  (ID, Title, Descrition, Url, Roles, Parent)
+VALUES
+  (90002, "活動公告管理", "活動公告管理", "NULL", "NULL", 90000);
+
+INSERT INTO web_sitemap
+  (ID, Title, Descrition, Url, Roles, Parent)
+VALUES
+  (90003, "出生物品", "出生物品", "NULL", "NULL", 90000);
+
+INSERT INTO web_sitemap
+  (ID, Title, Descrition, Url, Roles, Parent)
+VALUES
+  (90100, "帳號管理", "帳號管理", "NULL", "*", 1);
+
+INSERT INTO web_sitemap
+  (ID, Title, Descrition, Url, Roles, Parent)
+VALUES
+  (90101, "帳號清單", "帳號清單", "NULL", "NULL", 90100);
+
 
