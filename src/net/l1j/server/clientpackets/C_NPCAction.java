@@ -3942,7 +3942,124 @@ public class C_NPCAction extends ClientBasePacket {
 				success_htmlid = "sharna3";
 				failure_htmlid = "sharna5";
 			}
-		}
+                } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91061) {
+                    if (s.equalsIgnoreCase("a")) {
+                        if (pc.getInventory().checkItem(50508)) {
+                            htmlid = "sherme0";
+                        } else if (pc.getInventory().checkItem(50504, 1) && pc.getInventory().checkItem(40308, 100000)) {
+                            materials = new int[] { 40308, 50504 };
+                            counts = new int[] { 100000, 1 };
+                            createitem = new int[] { 50508 };
+                            createcount = new int[] { 1 };
+                            htmlid = "";
+                        } else {
+                            htmlid = "sherme1";
+                        }
+                    } else if (s.equalsIgnoreCase("b")) {
+                        if (pc.getInventory().checkItem(50509)) {
+                            htmlid = "sherme0";
+                        } else if (pc.getInventory().checkItem(50505, 1) && pc.getInventory().checkItem(40308, 100000)) {
+                            materials = new int[] { 40308, 50505 };
+                            counts = new int[] { 100000, 1 };
+                            createitem = new int[] { 50509 };
+                            createcount = new int[] { 1 };
+                            htmlid = "";
+                        } else {
+                            htmlid = "sherme1";
+                        }
+                    } else if (s.equalsIgnoreCase("c")) {
+                        if (pc.getInventory().checkItem(50511)) {
+                            htmlid = "sherme0";
+                        } else if (pc.getInventory().checkItem(50507, 1) && pc.getInventory().checkItem(40308, 100000)) {
+                            materials = new int[] { 40308, 50507 };
+                            counts = new int[] { 100000, 1 };
+                            createitem = new int[] { 50511 };
+                            createcount = new int[] { 1 };
+                            htmlid = "";
+                        } else {
+                            htmlid = "sherme1";
+                        }
+                    } else if (s.equalsIgnoreCase("d")) {
+                        if (pc.getInventory().checkItem(50510)) {
+                            htmlid = "sherme0";
+                        } else if (pc.getInventory().checkItem(50506, 1) && pc.getInventory().checkItem(40308, 100000)) {
+                            materials = new int[] { 40308, 50506 };
+                            counts = new int[] { 100000, 1 };
+                            createitem = new int[] { 50510 };
+                            createcount = new int[] { 1 };
+                            htmlid = "";
+                        } else {
+                            htmlid = "sherme1";
+                        }
+                    } else if (s.equalsIgnoreCase("e")) {
+                        if (pc.getInventory().checkItem(50512)) {
+                            htmlid = "sherme0";
+                        } else if (pc.getInventory().checkItem(50508, 1)
+                                && pc.getInventory().checkItem(50509, 1)
+                                && pc.getInventory().checkItem(40308, 200000)) {
+                            int shermernd = RandomArrayList.getInc(100, 1);
+                            if (shermernd < 50) {
+                                materials = new int[] { 40308, 50508, 50509 };
+                                counts = new int[] { 200000, 1, 1 };
+                                createitem = new int[] { 50512 };
+                                createcount = new int[] { 1 };
+                                htmlid = "";
+                            } else {
+                                pc.getInventory().consumeItem(40308, 200000);
+                                pc.getInventory().consumeItem(50508, 1);
+                                pc.getInventory().consumeItem(50509, 1);
+                                htmlid = "sherme5";
+                            }
+                        } else {
+                            htmlid = "sherme1";
+                        }
+                    } else if (s.equalsIgnoreCase("f")) {
+                        if (pc.getInventory().checkItem(50513)) {
+                            htmlid = "sherme0";
+                        } else if (pc.getInventory().checkItem(50510, 1)
+                                && pc.getInventory().checkItem(50512, 1)
+                                && pc.getInventory().checkItem(40308, 200000)) {
+                            int shermernd = RandomArrayList.getInc(100, 1);
+                            if (shermernd < 50) {
+                                materials = new int[] { 40308, 50510, 50512 };
+                                counts = new int[] { 200000, 1, 1 };
+                                createitem = new int[] { 50513 };
+                                createcount = new int[] { 1 };
+                                htmlid = "";
+                            } else {
+                                pc.getInventory().consumeItem(40308, 200000);
+                                pc.getInventory().consumeItem(50510, 1);
+                                pc.getInventory().consumeItem(50512, 1);
+                                htmlid = "sherme5";
+                            }
+                        } else {
+                            htmlid = "sherme1";
+                        }
+                    } else if (s.equalsIgnoreCase("g")) {
+                        if (pc.getInventory().checkItem(50514)) {
+                            htmlid = "sherme0";
+                        } else if (pc.getInventory().checkItem(50511, 1)
+                                && pc.getInventory().checkItem(50513, 1)
+                                && pc.getInventory().checkItem(40308, 200000)) {
+                            int shermernd = RandomArrayList.getInc(100, 1);
+                            if (shermernd < 50) {
+                                materials = new int[] { 40308, 50511, 50513 };
+                                counts = new int[] { 200000, 1, 1 };
+                                createitem = new int[] { 50514 };
+                                createcount = new int[] { 1 };
+                                htmlid = "";
+                            } else {
+                                pc.getInventory().consumeItem(40308, 200000);
+                                pc.getInventory().consumeItem(50511, 1);
+                                pc.getInventory().consumeItem(50513, 1);
+                                htmlid = "sherme5";
+                            }
+                        } else {
+                            htmlid = "sherme1";
+                        }
+                    }
+
+                }
 
 		// else System.out.println("C_NpcAction: " + s);
 		if (htmlid != null && htmlid.equalsIgnoreCase("colos2")) {
@@ -4188,8 +4305,13 @@ public class C_NPCAction extends ClientBasePacket {
 						pcCha = 44;
 					}
 				}
-				charisma = pcCha + 6 - petcost;
-				summoncount = charisma / summoncost;
+                                if (summonid == 81240) {
+                                        charisma = pcCha - petcost;
+                                        summoncount = charisma / summoncost;
+                                } else {
+                                        charisma = pcCha + 6 - petcost;
+                                        summoncount = charisma / summoncost;
+                                }
 
 		L1Npc npcTemp = NpcTable.getInstance().getTemplate(summonid);
 		for (int cnt = 0; cnt < summoncount; cnt++) {

@@ -71,9 +71,9 @@ public class S_ChatPacket extends ServerBasePacket {
 			writeC(opcode);
 			writeC(type);
 			writeS("[" + pc.getName() + "] " + chat);
-		} else if (type == 13) { // 連合チャット
+		} else if (type == 13) { // 血盟守護騎士頻道
 			writeC(opcode);
-			writeC(type);
+			writeC(0x04);
 			writeS("{{" + pc.getName() + "}} " + chat);
 		} else if (type == 14) { // チャットパーティー
 			writeC(opcode);
