@@ -61,6 +61,7 @@ Partial Class UserControl_Login_Login
                 '切換登入顯示MutiView
                 mvLogin.ActiveViewIndex = 1
                 DisplayUserInfo(LoginUser)
+                Response.Redirect(FormsAuthentication.DefaultUrl)
             Else
                 lblMsg.Text = "帳號或密碼輸入錯誤！"
                 '切換登出顯示MutiView
@@ -80,7 +81,7 @@ Partial Class UserControl_Login_Login
     Protected Sub btnLogout_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnLogout.Click
         Session.RemoveAll()
         mvLogin.ActiveViewIndex = 0
-        Response.Redirect("~/Default.aspx")
+        Response.Redirect(FormsAuthentication.DefaultUrl)
     End Sub
 
     Private Sub DisplayUserInfo(ByVal LoginUser As LoginUser)
