@@ -662,6 +662,10 @@ public class SkillUse {
 							|| cha.hasSkillEffect(SKILL_BLIND_HIDING))) {
 				return true; // インビジかブラインドハイディング中
 			}
+			// 20100614 waja add 魔法相消術 安全區域不可使用
+			if (_skillId == SKILL_CANCEL_MAGIC && enemy.getZoneType() != 1) {
+				return true;
+			}
 			if (_player.getClanid() != 0 && enemy.getClanid() != 0) { // クラン所屬中
 				// 全戰爭リストを取得
 				for (L1War war : L1World.getInstance().getWarList()) {

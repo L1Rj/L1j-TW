@@ -62,8 +62,9 @@ public class L1AllBuff implements L1CommandExecutor {
 				return;
 			}
 
-			BuffUtil.haste(target, 3600 * 1000);
-			BuffUtil.brave(target, 3600 * 1000);
+			BuffUtil.haste(target, 32767 * 1000);
+			BuffUtil.brave(target, 32767 * 1000);
+			BuffUtil.crazy(target, 32767 * 1000);
 			L1PolyMorph.doPoly(target, 5641, 7200, L1PolyMorph.MORPH_BY_GM);
 			for (int i = 0; i < allBuffSkill.length; i++) {
 				L1Skills skill = SkillsTable.getInstance().getTemplate(allBuffSkill[i]);
