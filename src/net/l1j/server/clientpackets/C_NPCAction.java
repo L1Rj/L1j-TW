@@ -4256,10 +4256,9 @@ public class C_NPCAction extends ClientBasePacket {
 		// ドッペルゲンガーボス、クーガーにはペットボーナスが付かないので+6しておく
 		// summoncha_list = new int[] { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
 		// 8, 8, 8, 8, 8, 8, 8, 10, 10, 10, 12, 12, 12, 20, 42, 42, 50 };
-				summoncha_list = new int[] { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, // 28 ~
-																							// 44
-						8, 8, 8, 8, 8, 8, 10, 10, 10, 12, 12, 12, // 48 ~ 60
-						20, 36, 36, 44 }; // 64,68,72,72
+                summoncha_list = new int[] { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, // 28 ~ 44
+                                8, 8, 8, 8, 8, 8, 10, 10, 10, 12, 12, 12, // 48 ~ 60
+                                20, 36, 36, 44 }; // 64,68,72,72
 
 		// サモンの種類、必要Lv、ペットコストを得る
 		for (int loop = 0; loop < summonstr_list.length; loop++) {
@@ -4296,22 +4295,21 @@ public class C_NPCAction extends ClientBasePacket {
 					if (pcCha > 34) {
 						pcCha = 34;
 					}
+                                        charisma = pcCha + 6 - petcost;
+                                        summoncount = charisma / summoncost;
 				} else if (levelrange == 60) {
 					if (pcCha > 30) { // max count = 3
 						pcCha = 30;
 					}
+                                        charisma = pcCha + 6 - petcost;
+                                        summoncount = charisma / summoncost;
 				} else if (levelrange > 64) {
 					if (pcCha > 44) { // max count = 1
 						pcCha = 44;
 					}
-				}
-                                if (summonid == 81240) {
                                         charisma = pcCha - petcost;
                                         summoncount = charisma / summoncost;
-                                } else {
-                                        charisma = pcCha + 6 - petcost;
-                                        summoncount = charisma / summoncost;
-                                }
+				}
 
 		L1Npc npcTemp = NpcTable.getInstance().getTemplate(summonid);
 		for (int cnt = 0; cnt < summoncount; cnt++) {
