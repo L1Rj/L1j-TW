@@ -116,59 +116,59 @@
 			<Material Amount="5" ItemId="40323"/>
 		</MakeItem>
 	</Action>
-	<!--エンシェント グレートソード-->
+	<!--解封印 古老的巨劍-->
 	<Action Name="request ancient greatsword">
 		<MakeItem>
 			<Item Amount="1" ItemId="67"/>
-			<Material Amount="1" ItemId="17"/>
+			<Material Amount="1" ItemId="41553"/>
 			<Material Amount="1" ItemId="40076"/>
 		</MakeItem>
 	</Action>
-	<!--エンシェント ソード-->
+	<!--解封印 古老的劍-->
 	<Action Name="request ancient sword">
 		<MakeItem>
 			<Item Amount="1" ItemId="68"/>
-			<Material Amount="1" ItemId="18"/>
+			<Material Amount="1" ItemId="41552"/>
 			<Material Amount="1" ItemId="40076"/>
 		</MakeItem>
 	</Action>
-	<!--エンシェント ボーガン-->
+	<!--解封印 古老的弩槍-->
 	<Action Name="request ancient bowgun">
 		<MakeItem>
 			<Item Amount="1" ItemId="182"/>
-			<Material Amount="1" ItemId="167"/>
+			<Material Amount="1" ItemId="41551"/>
 			<Material Amount="1" ItemId="40076"/>
 		</MakeItem>
 	</Action>
-	<!--エンシェント プレートメイル-->
+	<!--解封印 古老的金屬盔甲-->
 	<Action Name="request ancient plate mail">
 		<MakeItem>
 			<Item Amount="1" ItemId="20095"/>
-			<Material Amount="1" ItemId="20143"/>
+			<Material Amount="1" ItemId="41556"/>
 			<Material Amount="1" ItemId="40076"/>
 		</MakeItem>
 	</Action>
-	<!--エンシェント レザーアーマー-->
+	<!--解封印 古老的皮盔甲-->
 	<Action Name="request ancient leather armor">
 		<MakeItem>
 			<Item Amount="1" ItemId="20092"/>
-			<Material Amount="1" ItemId="20140"/>
+			<Material Amount="1" ItemId="41555"/>
 			<Material Amount="1" ItemId="40076"/>
 		</MakeItem>
 	</Action>
-	<!--エンシェント ローブ-->
+	<!--解封印 古老的長袍-->
 	<Action Name="request ancient robe">
 		<MakeItem>
 			<Item Amount="1" ItemId="20093"/>
-			<Material Amount="1" ItemId="20141"/>
+			<Material Amount="1" ItemId="41557"/>
 			<Material Amount="1" ItemId="40076"/>
 		</MakeItem>
 	</Action>
-	<!--エンシェント スケイルメイル-->
+	<!--解封印 古老的鱗甲-->
 	<Action Name="request ancient scale mail">
 		<MakeItem>
 			<Item Amount="1" ItemId="20094"/>
-			<Material Amount="1" ItemId="20142"/>
+			<Material Amount="1" ItemId="41554"/>
 			<Material Amount="1" ItemId="40076"/>
 		</MakeItem>
 	</Action>
