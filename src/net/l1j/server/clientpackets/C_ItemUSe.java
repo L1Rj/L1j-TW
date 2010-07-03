@@ -173,10 +173,10 @@ public class C_ItemUSe extends ClientBasePacket {
 			case 40088: case 40096: case 140088:
 				s = readS();
 			break;
-			case SCROLL_OF_ENCHANT_ARMOR: case SCROLL_OF_ENCHANT_WEAPON: case SCROLL_OF_ENCHANT_QUEST_WEAPON:
+			case 40074: case 40087: case 40660:
 			case 40077: case 40078: case 40126: case 40098: case 40129: case 40130: case 140129: case 140130:
-			case B_SCROLL_OF_ENCHANT_ARMOR: case B_SCROLL_OF_ENCHANT_WEAPON:
-			case C_SCROLL_OF_ENCHANT_ARMOR: case C_SCROLL_OF_ENCHANT_WEAPON:
+			case 140074: case 140087:
+			case 240074: case 240087:
 			case 41029: // 召喚球の欠片
 			case 40317: case 41036: case 41245: case 40127: case 40128: case 41048: case 41049:
 			case 41050: // 糊付けされた航海日誌ページ
@@ -215,6 +215,13 @@ public class C_ItemUSe extends ClientBasePacket {
 			case 30001: // 裝備保護卷軸
 			case 49148: // 飾品強化卷軸
 			case 49188: // 索夏依卡靈魂之石
+                        case 50508:
+                        case 50509:
+                        case 50510:
+                        case 50511:
+                        case 50512:
+                        case 50513:
+                        case 50514:
 				l = readD();
 			break;
 			case 40086: case 40099: case 40100: case 50005: case 140100:
@@ -292,10 +299,10 @@ public class C_ItemUSe extends ClientBasePacket {
 			L1ItemInstance l1iteminstance1 = pc.getInventory().getItem(l);
 			_log.finest("request item use (obj) = " + itemObjid + " action = " + l + " value = "
 					+ s);
-			if (itemId == 40077 || itemId == SCROLL_OF_ENCHANT_WEAPON
-					|| itemId == SCROLL_OF_ENCHANT_QUEST_WEAPON || itemId == 40130
-					|| itemId == 140130 || itemId == B_SCROLL_OF_ENCHANT_WEAPON
-					|| itemId == C_SCROLL_OF_ENCHANT_WEAPON || itemId == 40128) { // 武器強化スクロール
+			if (itemId == 40077 || itemId == 40087
+					|| itemId == 40660 || itemId == 40130
+					|| itemId == 140130 || itemId == 140087
+					|| itemId == 240087 || itemId == 40128) { // 武器強化スクロール
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					return;
@@ -315,13 +322,13 @@ public class C_ItemUSe extends ClientBasePacket {
 
 				int quest_weapon = l1iteminstance1.getItem().getItemId();
 				if (quest_weapon >= 246 && quest_weapon <= 249) { // 強化不可
-					if (itemId == SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
+					if (itemId == 40660) { // 試練のスクロール
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 						return;
 					}
 				}
-				if (itemId == SCROLL_OF_ENCHANT_QUEST_WEAPON) { // 試練のスクロール
+				if (itemId == 40660) { // 試練のスクロール
 					if (quest_weapon >= 246 && quest_weapon <= 249) { // 強化不可
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
@@ -346,7 +353,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 				int enchant_level = l1iteminstance1.getEnchantLevel();
 
-				if (itemId == C_SCROLL_OF_ENCHANT_WEAPON) { // c-dai
+				if (itemId == 240087) { // c-dai
 					pc.getInventory().removeItem(item, 1);
 					if (enchant_level < -6) {
 						// -7以上はできない。
@@ -462,9 +469,9 @@ public class C_ItemUSe extends ClientBasePacket {
 					Enchant.doDecorationEnchant(pc, l1iteminstance1, client);
 					pc.getInventory().removeItem(item, 1);
 				}
-			} else if (itemId == 40078 || itemId == SCROLL_OF_ENCHANT_ARMOR || itemId == 40129
-					|| itemId == 140129 || itemId == B_SCROLL_OF_ENCHANT_ARMOR
-					|| itemId == C_SCROLL_OF_ENCHANT_ARMOR || itemId == 40127) { // 防具強化スクロール
+			} else if (itemId == 40078 || itemId == 40074 || itemId == 40129
+					|| itemId == 140129 || itemId == 140074
+					|| itemId == 240074 || itemId == 40127) { // 防具強化スクロール
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					return;
@@ -499,7 +506,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				}
 
 				int enchant_level = l1iteminstance1.getEnchantLevel();
-				if (itemId == C_SCROLL_OF_ENCHANT_ARMOR) { // c-zel
+				if (itemId == 240074) { // c-zel
 					pc.getInventory().removeItem(item, 1);
 					if (enchant_level < -6) {
 						// -7以上はできない。
@@ -694,22 +701,19 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$481));
 					}
-				} else if (itemId == POTION_OF_HEALING || itemId == CONDENSED_POTION_OF_HEALING
-						|| itemId == 40029) { // レッドポーション、濃縮体力回復劑、象牙の塔の体力回復劑
+				} else if (itemId == 40010|| itemId == 40019 || itemId == 40029) {
 					Potion.Healing(pc, 15, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40022) { // 古代の体力回復劑
+				} else if (itemId == 40022) {
 					Potion.Healing(pc, 20, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == POTION_OF_EXTRA_HEALING
-						|| itemId == CONDENSED_POTION_OF_EXTRA_HEALING) {
+				} else if (itemId == 40011 || itemId == 40020) {
 					Potion.Healing(pc, 45, 194);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40023) { // 古代強力體力恢復劑
+				} else if (itemId == 40023) {
 					Potion.Healing(pc, 30, 194);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == POTION_OF_GREATER_HEALING
-						|| itemId == CONDENSED_POTION_OF_GREATER_HEALING) {
+				} else if (itemId == 40012 || itemId == 40021) {
 					Potion.Healing(pc, 75, 197);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40024 || itemId == 49137) { // 古代終極體力恢復劑 鮮奶油蛋糕
@@ -731,17 +735,16 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 40734) { // 信賴貨幣
 					Potion.Healing(pc, 50, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == B_POTION_OF_HEALING) {
+				} else if (itemId == 140010) {
 					Potion.Healing(pc, 25, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == C_POTION_OF_HEALING) {
+				} else if (itemId == 240010) {
 					Potion.Healing(pc, 10, 189);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == B_POTION_OF_EXTRA_HEALING) { // 祝福されたオレンジ
-					// ポーション
+				} else if (itemId == 140011) {
 					Potion.Healing(pc, 55, 194);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == B_POTION_OF_GREATER_HEALING) { // 祝福されたクリアー
+				} else if (itemId == 140012) {
 					// ポーション
 					Potion.Healing(pc, 85, 197);
 					pc.getInventory().removeItem(item, 1);
@@ -779,31 +782,19 @@ public class C_ItemUSe extends ClientBasePacket {
 
 						pc.curePoison();
 					}
-				} else if (itemId == POTION_OF_HASTE_SELF || itemId == B_POTION_OF_HASTE_SELF
-						|| itemId == 40018 // 強化グリーン ポーション
-						|| itemId == 140018 // 祝福された強化グリーン ポーション
-
+				} else if (itemId == 40013 || itemId == 140013
+						|| itemId == 40018 || itemId == 140018 // 強化グリーン ポーション  祝福された強化グリーン ポーション
 						// 20080122 修改玩家可使用紅酒,威士忌 use won122 code 1/3
-						/*
-						|| itemId == 40039 // ワイン
-						|| itemId == 40040 // ウイスキー
-						 */
+						|| itemId == 40039 || itemId == 40040
 						// end
-						|| itemId == 40030 // 象牙の塔のヘイスト ポーション
-						|| itemId == 41338 // 祝福されたワイン
-						|| itemId == 41261 // おむすび
-						|| itemId == 41262 // 燒き鳥
-						|| itemId == 41268 // ピザのピース
-						|| itemId == 41269 // 燒きもろこし
-						|| itemId == 41271 // ポップコーン
-						|| itemId == 41272 // おでん
-						|| itemId == 41273 // ワッフル
-						|| itemId == 41342) { // メデューサの血
+						|| itemId == 40030 || itemId == 41338 // 象牙の塔のヘイスト ポーション  祝福されたワイン
+						|| itemId == 41261 || itemId == 41262 // おむすび  燒き鳥
+						|| itemId == 41268 || itemId == 41269 // ピザのピース  燒きもろこし
+						|| itemId == 41271 || itemId == 41272 // ポップコーン おでん
+						|| itemId == 41273 || itemId == 41342) { // ワッフル メデューサの血
 					Potion.Green(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == POTION_OF_EMOTION_BRAVERY // ブレイブポーション
-						|| itemId == B_POTION_OF_EMOTION_BRAVERY // 祝福されたブレイブポーション
-						|| itemId == 41415) { // 強化ブレイブポーション
+				} else if (itemId == 40014 || itemId == 140014 || itemId == 41415) {
 					if (pc.isKnight()) {
 						Potion.Brave(pc, itemId);
 					} else {
@@ -832,7 +823,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40039) { // 紅酒
+				/*
+                                } else if (itemId == 40039) { // 紅酒
 					if (pc.isWizard()) {
 						Potion.Brave(pc, itemId);
 					} else {
@@ -850,7 +842,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					Potion.Brave(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40040) { // 威士忌
+                                } else if (itemId == 40040) { // 威士忌
 					if (pc.isDarkelf()) {
 						Potion.Brave(pc, itemId);
 					} else {
@@ -868,8 +860,8 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					Potion.Brave(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40733) { // 名譽貨幣
-					// if (!pc.isDragonKnight() && !pc.isIllusionist()) {
+				*/
+                                } else if (itemId == 40733) { // 名譽貨幣
 					if (pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)) {
 						pc.removeSkillEffect(SKILL_MOVING_ACCELERATION);
 					}
@@ -911,28 +903,20 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 40032 || itemId == 40041 || itemId == 41344) { // エヴァの祝福、マーメイドの鱗、水の精粹
 					Potion.BlessOfEva(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == POTION_OF_MANA // ブルー ポーション
-						|| itemId == B_POTION_OF_MANA // 祝福されたブルー
-						// ポーション
-						|| itemId == 40736) { // 智慧貨幣
+				} else if (itemId == 40015 || itemId == 140015 || itemId == 40736) { // 智慧貨幣
 					Potion.Blue(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == POTION_OF_EMOTION_WISDOM // ウィズダム
-						// ポーション
-						|| itemId == B_POTION_OF_EMOTION_WISDOM) { // 祝福されたウィズダム
-					// ポーション
+				} else if (itemId == 40016 || itemId == 140016) {
 					if (pc.isWizard()) {
 						Potion.Wisdom(pc, itemId);
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == POTION_OF_BLINDNESS) { // オペイクポーション
+				} else if (itemId == 40025) {
 					Potion.Blind(pc);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40088 // 變形卷軸
-						|| itemId == 40096 // 象牙塔變形卷軸
-						|| itemId == 140088) { // 祝福變形卷軸
+				} else if (itemId == 40088 || itemId == 40096 || itemId == 140088) { // 變形卷軸 象牙塔變形卷軸 祝福變形卷軸
 					if (Poly.Scroll(pc, itemId, s)) {
 						pc.getInventory().removeItem(item, 1);
 					} else {
@@ -2645,7 +2629,14 @@ public class C_ItemUSe extends ClientBasePacket {
 							}
 							pc.getInventory().consumeItem(49227, 1);
 						}
-				} else {
+				} else if (itemId == 50508) {
+                                } else if (itemId == 50509) {
+                                } else if (itemId == 50510) {
+                                } else if (itemId == 50511) {
+                                } else if (itemId == 50512) {
+                                } else if (itemId == 50513) {
+                                } else if (itemId == 50514) {
+                                } else {
 					int locX = ((L1EtcItem) item.getItem()).get_locx();
 					int locY = ((L1EtcItem) item.getItem()).get_locy();
 					short mapId = ((L1EtcItem) item.getItem()).get_mapid();

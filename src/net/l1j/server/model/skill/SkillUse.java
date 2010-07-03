@@ -2484,14 +2484,18 @@ public class SkillUse {
 									pc.setSummonMonster(true);
 								}
 							} else {
-                                                                //summons = new int[] { 81083, 81084, 81085, 81086, 81087, 81088, 81089 };
-								summons = new int[] { 81210, 81213, 81216, 81219, 81222, 81225, 81228 };
+/*
+ * summons = new int[] { 81083, 81084, 81085, 81086, 81087, 81088, 81089 };
+ */
+								summons = new int[] { 81210, 81213, 81216,
+										81219, 81222, 81225, 81228 };
 								int summonid = 0;
-                                                                //int summoncost = 6;
+//								int summoncost = 6;
 								int summoncost = 8;
 								int levelRange = 32;
 								for (byte i = 0; i < summons.length; i++) { // 該當ＬＶ範圍檢索
-									if (level < levelRange || i == summons.length - 1) {
+									if (level < levelRange
+											|| i == summons.length - 1) {
 										summonid = summons[i];
 										break;
 									}
@@ -2499,21 +2503,25 @@ public class SkillUse {
 								}
 
 								int petcost = 0;
-								Object[] petlist = pc.getPetList().values().toArray();
+								Object[] petlist = pc.getPetList().values()
+										.toArray();
 								for (Object pet : petlist) {
 									// 現在のペットコスト
-									petcost += ((L1NpcInstance) pet).getPetcost();
+									petcost += ((L1NpcInstance) pet)
+											.getPetcost();
 								}
 								int pcCha = pc.getCha();
 								if (pcCha > 34) { // max count = 5
 									pcCha = 34;
 								}
-								int charisma = pcCha + 6 - petcost;
-                                                                // int charisma = pc.getCha() + 6 - petcost;
+								int charisma = pcCha + 6 - petcost; 
+// int charisma = pc.getCha() + 6 - petcost;
 								int summoncount = charisma / summoncost;
-								L1Npc npcTemp = NpcTable.getInstance().getTemplate(summonid);
+								L1Npc npcTemp = NpcTable.getInstance()
+										.getTemplate(summonid);
 								for (byte i = 0; i < summoncount; i++) {
-									L1SummonInstance summon = new L1SummonInstance(npcTemp, pc);
+									L1SummonInstance summon = new L1SummonInstance(
+											npcTemp, pc);
 									summon.setPetcost(summoncost);
 								}
 							}
@@ -2827,25 +2835,17 @@ public class SkillUse {
 								continue;
 							}
 						}
-					} else if (_skillId == SKILL_HOLY_WALK) {
+					} else if (_skillId == SKILL_HOLY_WALK
+                                                    || _skillId == SKILL_MOVING_ACCELERATION
+                                                    || _skillId == SKILL_WIND_WALK) {
 						L1PcInstance pc = (L1PcInstance) cha;
+                                                if (_skillId == SKILL_HOLY_WALK) {
+                                                    pc.sendPackets(new S_ServerMessage(SystemMessageId.$183));
+                                                }
 						pc.setBraveSpeed(4);
 						pc.sendPackets(new S_SkillBrave(pc.getId(), 4, _getBuffIconDuration));
 						pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
-                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$183));
-                                        } else if (_skillId == SKILL_WIND_WALK) {
-                                                L1PcInstance pc = (L1PcInstance) cha;
-						pc.setBraveSpeed(4);
-						pc.sendPackets(new S_SkillBrave(pc.getId(), 4, _getBuffIconDuration));
-						pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
-                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$709));
-                                        } else if (_skillId == SKILL_MOVING_ACCELERATION) {
-                                                L1PcInstance pc = (L1PcInstance) cha;
-						pc.setBraveSpeed(4);
-						pc.sendPackets(new S_SkillBrave(pc.getId(), 4, _getBuffIconDuration));
-						pc.broadcastPacket(new S_SkillBrave(pc.getId(), 4, 0));
-                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$817));
-                                        } else if (_skillId == SKILL_BLOODLUST) { // ブラッドラスト
+					} else if (_skillId == SKILL_BLOODLUST) { // ブラッドラスト
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.setBraveSpeed(6);
 						pc.sendPackets(new S_SkillBrave(pc.getId(), 6,

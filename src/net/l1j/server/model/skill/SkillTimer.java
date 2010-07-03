@@ -360,16 +360,20 @@ class SkillStop {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
-                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$185));
 			}
 		} else if (skillId == SKILL_HOLY_WALK || skillId == SKILL_MOVING_ACCELERATION || skillId == SKILL_WIND_WALK
 				|| skillId == SKILL_BLOODLUST) { // ホーリーウォーク、ムービングアクセレーション、ウィンドウォーク、ブラッドラスト
 			cha.setBraveSpeed(0);
 			if (cha instanceof L1PcInstance) {
-				L1PcInstance pc = (L1PcInstance) cha;
+                            L1PcInstance pc = (L1PcInstance) cha;
+                            if (skillId == SKILL_MOVING_ACCELERATION) {
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
                                 pc.sendPackets(new S_ServerMessage(SystemMessageId.$832));
+                            } else {
+				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+                            }
 			}
 		} else if (skillId == SKILL_ILLUSION_OGRE) { // イリュージョン：オーガ
 			if (cha instanceof L1PcInstance) {
@@ -563,7 +567,7 @@ class SkillStop {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
-                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$277));
+                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$185));
 			}
 			cha.setMoveSpeed(0);
 		} else if (skillId == STATUS_BLUE_POTION) { // ブルー ポーション
@@ -576,7 +580,7 @@ class SkillStop {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				cha.addSp(-2);
-				pc.sendPackets(new S_SkillIconWisdomPotion(0));
+				//pc.sendPackets(new S_SkillIconWisdomPotion(0));
                                 pc.sendPackets(new S_ServerMessage(SystemMessageId.$349));
 			}
 		} else if (skillId == STATUS_CHAT_PROHIBITED) { // チャット禁止

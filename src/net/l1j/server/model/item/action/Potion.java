@@ -68,27 +68,24 @@ public class Potion {
 		ItemAction.cancelAbsoluteBarrier(pc);
 
 		int time = 0;
-		if (itemId == ItemId.POTION_OF_HASTE_SELF) { // グリーン ポーション
+		if (itemId == 40013 || itemId == 40030) { //自我加速藥水 象牙塔自我加速藥水
 			time = 300;
-		} else if (itemId == ItemId.B_POTION_OF_HASTE_SELF) { // 祝福されたグリーン
-			// ポーション
-			time = 350;
-		} else if (itemId == 40018 || itemId == 41338 || itemId == 41342) { // 強化グリーンポーション、祝福されたワイン、メデューサの血
+                } else if (itemId == 40018 || itemId == 41342) { //強化 自我加速藥水、梅杜莎之血
 			time = 1800;
-		} else if (itemId == 140018) { // 祝福された強化グリーン ポーション
-			time = 2100;
-		} else if (itemId == 40039) { // ワイン
+		} else if (itemId == 40039) { //紅酒
 			time = 600;
-		} else if (itemId == 40040) { // ウイスキー
+		} else if (itemId == 40040) { //威士忌
 			time = 900;
-		} else if (itemId == 40030) { // 象牙の塔のヘイスト ポーション
-			time = 300;
-		} else if (itemId == 41261 || itemId == 41262 || itemId == 41268
-				|| itemId == 41269 || itemId == 41271 || itemId == 41272
-				|| itemId == 41273) {
+		} else if (itemId == 41261 || itemId == 41262 || itemId == 41268 || itemId == 41269
+                        || itemId == 41271 || itemId == 41272 || itemId == 41273) {
 			time = 30;
-		}
-
+                } else if (itemId == 41338) { //受祝福的葡萄酒
+                        time = 2250;
+                } else if (itemId == 140013) { //受祝福的自我加速藥水
+			time = 350;
+		} else if (itemId == 140018) { //受祝福的強化 自我加速藥水
+			time = 2100;
+                }
 		pc.sendPackets(new S_SkillSound(pc.getId(), 191));
 		pc.broadcastPacket(new S_SkillSound(pc.getId(), 191));
 		// XXX:ヘイストアイテム裝備時、醉った狀態が解除されるのか不明
@@ -98,35 +95,31 @@ public class Potion {
 		// 醉った狀態を解除
 		pc.setDrink(false);
 
-		// ヘイスト、グレーターヘイストとは重複しない
-		if (pc.hasSkillEffect(SKILL_HASTE)) {
-			pc.killSkillEffectTimer(SKILL_HASTE);
-			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
-			pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
-			pc.setMoveSpeed(0);
-		} else if (pc.hasSkillEffect(SKILL_GREATER_HASTE)) {
-			pc.killSkillEffectTimer(SKILL_GREATER_HASTE);
-			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
-			pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
-			pc.setMoveSpeed(0);
-		} else if (pc.hasSkillEffect(STATUS_HASTE)) {
-			pc.killSkillEffectTimer(STATUS_HASTE);
+		/* 已存在加速狀態消除 */
+		if (pc.hasSkillEffect(SKILL_HASTE)
+                        || pc.hasSkillEffect(SKILL_GREATER_HASTE)
+                        || pc.hasSkillEffect(STATUS_HASTE)) {
+                    if (pc.hasSkillEffect(SKILL_HASTE)) {
+                        pc.killSkillEffectTimer(SKILL_HASTE);
+                    } else if (pc.hasSkillEffect(SKILL_GREATER_HASTE)) {
+                        pc.killSkillEffectTimer(SKILL_GREATER_HASTE);
+                    } else if (pc.hasSkillEffect(STATUS_HASTE)) {
+                        pc.killSkillEffectTimer(STATUS_HASTE);
+                    }
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
 			pc.setMoveSpeed(0);
 		}
 
-		// スロー、マス スロー、エンタングル中はスロー狀態を解除するだけ
-		if (pc.hasSkillEffect(SKILL_SLOW)) { // スロー
-			pc.killSkillEffectTimer(SKILL_SLOW);
-			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
-			pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
-		} else if (pc.hasSkillEffect(SKILL_MASS_SLOW)) { // マス スロー
-			pc.killSkillEffectTimer(SKILL_MASS_SLOW);
-			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
-			pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
-		} else if (pc.hasSkillEffect(SKILL_ENTANGLE)) { // エンタングル
-			pc.killSkillEffectTimer(SKILL_ENTANGLE);
+		/* 抵消緩速魔法效果 緩速術 集體緩速術 地面障礙 */
+		if (pc.hasSkillEffect(SKILL_SLOW) || pc.hasSkillEffect(SKILL_MASS_SLOW) || pc.hasSkillEffect(SKILL_ENTANGLE)) {
+                    if (pc.hasSkillEffect(SKILL_SLOW)) {
+                        pc.killSkillEffectTimer(SKILL_SLOW);
+                    } else if (pc.hasSkillEffect(SKILL_MASS_SLOW)) {
+                        pc.killSkillEffectTimer(SKILL_MASS_SLOW);
+                    } else if (pc.hasSkillEffect(SKILL_ENTANGLE)) {
+                        pc.killSkillEffectTimer(SKILL_ENTANGLE);
+                    }
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 			pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
 		} else {
@@ -134,6 +127,7 @@ public class Potion {
 			pc.broadcastPacket(new S_SkillHaste(pc.getId(), 1, 0));
 			pc.setMoveSpeed(1);
 			pc.setSkillEffect(STATUS_HASTE, time * 1000);
+                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$184));
 		}
 	}
 
@@ -147,9 +141,9 @@ public class Potion {
 		ItemAction.cancelAbsoluteBarrier(pc);
 
 		int time = 0;
-		if (item_id == ItemId.POTION_OF_EMOTION_BRAVERY) { // ブレイブ ポーション
+		if (item_id == 40014) {
 			time = 300;
-		} else if (item_id == ItemId.B_POTION_OF_EMOTION_BRAVERY) { // 祝福されたブレイブポーション
+		} else if (item_id == 140014) {
 			time = 350;
 		} else if (item_id == 49158) { // ユグドラの実
 			time = 480;
@@ -193,48 +187,27 @@ public class Potion {
 			time = 600;
 		} else if (item_id == 40733) { // 名譽のコイン
 			time = 600;
-			// 20080122 修改玩家可使用紅酒,威士忌 use won122 code 3/3
-		} else if (item_id == 40039) { // ワイン
-			time = 180;
-		} else if (item_id == 40040) { // ウイスキー
-			time = 180;
-			// end
 			if (pc.hasSkillEffect(STATUS_ELFBRAVE)) { // エルヴンワッフルとは重複しない
 				pc.killSkillEffectTimer(STATUS_ELFBRAVE);
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.setBraveSpeed(0);
 			}
 			if (pc.hasSkillEffect(SKILL_HOLY_WALK)) { // ホーリーウォークとは重複しない
 				pc.killSkillEffectTimer(SKILL_HOLY_WALK);
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.setBraveSpeed(0);
 			}
 			if (pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)) { // ムービングアクセレーションとは重複しない
 				pc.killSkillEffectTimer(SKILL_MOVING_ACCELERATION);
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.setBraveSpeed(0);
 			}
 			if (pc.hasSkillEffect(SKILL_WIND_WALK)) { // ウィンドウォークとは重複しない
 				pc.killSkillEffectTimer(SKILL_WIND_WALK);
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.setBraveSpeed(0);
 			}
 			if (pc.hasSkillEffect(STATUS_RIBRAVE)) { // ユグドラの実とは重複しない
 				pc.killSkillEffectTimer(STATUS_RIBRAVE);
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.setBraveSpeed(0);
 			}
 			if (pc.hasSkillEffect(SKILL_BLOODLUST)) { // ブラッドラストとは重複しない
 				pc.killSkillEffectTimer(SKILL_BLOODLUST);
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.setBraveSpeed(0);
 			}
+                        pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+                        pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+                        pc.setBraveSpeed(0);
 		}
 
 		if (item_id == 40068 || item_id == 140068) { // エルヴン ワッフル
@@ -291,10 +264,10 @@ public class Potion {
 
 		int time = 0; // 時間は4の倍數にすること
 		if (item_id == ItemId.POTION_OF_EMOTION_WISDOM) { // ウィズダム ポーション
-			time = 300;
+			time = 40;
 		} else if (item_id == ItemId.B_POTION_OF_EMOTION_WISDOM) { // 祝福されたウィズダム
 			// ポーション
-			time = 360;
+			time = 40;
 		}
 
 		if (!pc.hasSkillEffect(STATUS_WISDOM_POTION)) {
@@ -304,7 +277,6 @@ public class Potion {
 		pc.sendPackets(new S_SkillIconWisdomPotion((time / 4)));
 		pc.sendPackets(new S_SkillSound(pc.getId(), 750));
 		pc.broadcastPacket(new S_SkillSound(pc.getId(), 750));
-
 		pc.setSkillEffect(STATUS_WISDOM_POTION, time * 1000);
 	}
 
@@ -339,6 +311,7 @@ public class Potion {
 		pc.sendPackets(new S_SkillSound(pc.getId(), 190));
 		pc.broadcastPacket(new S_SkillSound(pc.getId(), 190));
 		pc.setSkillEffect(STATUS_UNDERWATER_BREATH, time * 1000);
+                pc.sendPackets(new S_ServerMessage(SystemMessageId.$856));
 	}
 
 	/** 黑色藥水動作 */
@@ -359,6 +332,7 @@ public class Potion {
 
 		if (pc.hasSkillEffect(STATUS_FLOATING_EYE)) {
 			pc.sendPackets(new S_CurseBlind(2));
+                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$152));
 		} else {
 			pc.sendPackets(new S_CurseBlind(1));
 		}
