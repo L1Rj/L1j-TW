@@ -133,102 +133,89 @@ public class Potion {
 
 	/** 勇敢藥水動作 */
 	public static void Brave(L1PcInstance pc, int item_id) {
-		if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
-			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
-			return;
-		}
+            if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
+                pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
+                return;
+            }
 
-		ItemAction.cancelAbsoluteBarrier(pc);
-
-		int time = 0;
-		if (item_id == 40014) {
-			time = 300;
-		} else if (item_id == 140014) {
-			time = 350;
-		} else if (item_id == 49158) { // ユグドラの実
-			time = 480;
-			if (pc.hasSkillEffect(STATUS_BRAVE)) { // 名誉のコインとは重複しない
-				pc.killSkillEffectTimer(STATUS_BRAVE);
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.setBraveSpeed(0);
-			}
-		} else if (item_id == 41415) { // 強化ブレイブ ポーション
-			time = 1800;
-		} else if (item_id == 40068) { // エルヴン ワッフル
-			time = 600;
-			if (pc.hasSkillEffect(STATUS_BRAVE)) { // 名譽のコインとは重複しない
-				pc.killSkillEffectTimer(STATUS_BRAVE);
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.setBraveSpeed(0);
-			}
-			if (pc.hasSkillEffect(SKILL_WIND_WALK)) { // ウィンドウォークとは重複しない
-				pc.killSkillEffectTimer(SKILL_WIND_WALK);
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.setBraveSpeed(0);
-			}
-		} else if (item_id == 140068) { // 祝福されたエルヴン ワッフル
-			time = 700;
-			if (pc.hasSkillEffect(STATUS_BRAVE)) { // 名譽のコインとは重複しない
-				pc.killSkillEffectTimer(STATUS_BRAVE);
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.setBraveSpeed(0);
-			}
-			if (pc.hasSkillEffect(SKILL_WIND_WALK)) { // ウィンドウォークとは重複しない
-				pc.killSkillEffectTimer(SKILL_WIND_WALK);
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.setBraveSpeed(0);
-			}
-		} else if (item_id == 40031) { // イビル ブラッド
-			time = 600;
-		} else if (item_id == 40733) { // 名譽のコイン
-			time = 600;
-			if (pc.hasSkillEffect(STATUS_ELFBRAVE)) { // エルヴンワッフルとは重複しない
-				pc.killSkillEffectTimer(STATUS_ELFBRAVE);
-			}
-			if (pc.hasSkillEffect(SKILL_HOLY_WALK)) { // ホーリーウォークとは重複しない
-				pc.killSkillEffectTimer(SKILL_HOLY_WALK);
-			}
-			if (pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)) { // ムービングアクセレーションとは重複しない
-				pc.killSkillEffectTimer(SKILL_MOVING_ACCELERATION);
-			}
-			if (pc.hasSkillEffect(SKILL_WIND_WALK)) { // ウィンドウォークとは重複しない
-				pc.killSkillEffectTimer(SKILL_WIND_WALK);
-			}
-			if (pc.hasSkillEffect(STATUS_RIBRAVE)) { // ユグドラの実とは重複しない
-				pc.killSkillEffectTimer(STATUS_RIBRAVE);
-			}
-			if (pc.hasSkillEffect(SKILL_BLOODLUST)) { // ブラッドラストとは重複しない
-				pc.killSkillEffectTimer(SKILL_BLOODLUST);
-			}
-                        pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-                        pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-                        pc.setBraveSpeed(0);
-		}
-
-		if (item_id == 40068 || item_id == 140068) { // エルヴン ワッフル
-			pc.sendPackets(new S_SkillBrave(pc.getId(), 3, time));
-			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 3, 0));
-			pc.sendPackets(new S_SkillSound(pc.getId(), 751));
-			pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
-			pc.setSkillEffect(STATUS_ELFBRAVE, time * 1000);
-		} else if (item_id == 49158) { // ユグドラの実
-			pc.sendPackets(new S_SkillSound(pc.getId(), 7110));
-			pc.broadcastPacket(new S_SkillSound(pc.getId(), 7110));
-			pc.setSkillEffect(STATUS_RIBRAVE, time * 1000);
-		} else {
-			pc.sendPackets(new S_SkillBrave(pc.getId(), 1, time));
-			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 1, 0));
-			pc.sendPackets(new S_SkillSound(pc.getId(), 751));
-			pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
-			pc.setSkillEffect(STATUS_BRAVE, time * 1000);
-		}
-		pc.setBraveSpeed(1);
-	}
+            ItemAction.cancelAbsoluteBarrier(pc);
+            
+            int time = 0;
+            if (item_id == 40014) { // 勇敢藥水
+                time = 300;
+            } else if (item_id == 140014) { // 受祝福的勇敢藥水
+                time = 350;
+            } else if (item_id == 41415) { // 強化勇氣的藥水
+                time = 1800;
+            } else if (item_id == 40031) { // 惡魔之血
+                time = 600;
+            } else if (item_id == 40733) { // 名譽貨幣
+                time = 600;
+                if (pc.hasSkillEffect(STATUS_ELFBRAVE)) { // 精靈餅干
+                    pc.killSkillEffectTimer(STATUS_ELFBRAVE);
+                }
+                if (pc.hasSkillEffect(SKILL_HOLY_WALK)) { // 神聖疾走
+                    pc.killSkillEffectTimer(SKILL_HOLY_WALK);
+                }
+                if (pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)) { // 行走加速
+                    pc.killSkillEffectTimer(SKILL_MOVING_ACCELERATION);
+                }
+                if (pc.hasSkillEffect(SKILL_WIND_WALK)) { // 風之疾走
+                    pc.killSkillEffectTimer(SKILL_WIND_WALK);
+                }
+                if (pc.hasSkillEffect(STATUS_RIBRAVE)) { // 生命之樹果實
+                    pc.killSkillEffectTimer(STATUS_RIBRAVE);
+                }
+                if (pc.hasSkillEffect(SKILL_BLOODLUST)) { // ブラッドラストとは重複しない
+                    pc.killSkillEffectTimer(SKILL_BLOODLUST);
+                }
+                pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+                pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+                pc.setBraveSpeed(0);
+            }
+            /* 精靈餅干 & 受祝福的精靈餅干 */
+            if (item_id == 40068 || item_id == 140068) {
+                if (pc.hasSkillEffect(STATUS_BRAVE) || pc.hasSkillEffect(SKILL_WIND_WALK)) {
+                    if (pc.hasSkillEffect(STATUS_BRAVE)) {
+                        pc.killSkillEffectTimer(STATUS_BRAVE);
+                    } else if (pc.hasSkillEffect(SKILL_WIND_WALK)) {
+                        pc.killSkillEffectTimer(SKILL_WIND_WALK);
+                    }
+                    pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+                    pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+                    pc.setBraveSpeed(0);
+                }
+                if (item_id == 40068) {
+                    time = 600;
+                } else if (item_id == 140068) {
+                    time = 700;
+                }
+                pc.sendPackets(new S_SkillBrave(pc.getId(), 3, time));
+                pc.broadcastPacket(new S_SkillBrave(pc.getId(), 3, 0));
+                pc.sendPackets(new S_SkillSound(pc.getId(), 751));
+                pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
+                pc.setSkillEffect(STATUS_ELFBRAVE, time * 1000);
+            /* 生命之樹果實 */
+            } else if (item_id == 49158) {
+                time = 480;
+                if (pc.hasSkillEffect(STATUS_BRAVE)) { // 名誉のコインとは重複しない
+                    pc.killSkillEffectTimer(STATUS_BRAVE);
+                    pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+                    pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+                    pc.setBraveSpeed(0);
+                }
+                pc.sendPackets(new S_SkillSound(pc.getId(), 7110));
+                pc.broadcastPacket(new S_SkillSound(pc.getId(), 7110));
+                pc.setSkillEffect(STATUS_RIBRAVE, time * 1000);
+            } else {
+                pc.sendPackets(new S_SkillBrave(pc.getId(), 1, time));
+                pc.broadcastPacket(new S_SkillBrave(pc.getId(), 1, 0));
+                pc.sendPackets(new S_SkillSound(pc.getId(), 751));
+                pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
+                pc.setSkillEffect(STATUS_BRAVE, time * 1000);
+            }
+            pc.setBraveSpeed(1);
+        }
 
 	/** 加速魔力回復動作 */
 	public static void Blue(L1PcInstance pc, int item_id) {
@@ -264,10 +251,10 @@ public class Potion {
 
 		int time = 0; // 時間は4の倍數にすること
 		if (item_id == ItemId.POTION_OF_EMOTION_WISDOM) { // ウィズダム ポーション
-			time = 40;
+			time = 300;
 		} else if (item_id == ItemId.B_POTION_OF_EMOTION_WISDOM) { // 祝福されたウィズダム
 			// ポーション
-			time = 40;
+			time = 360;
 		}
 
 		if (!pc.hasSkillEffect(STATUS_WISDOM_POTION)) {
