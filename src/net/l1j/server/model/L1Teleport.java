@@ -25,6 +25,7 @@ import net.l1j.server.model.map.L1Map;
 import net.l1j.server.serverpackets.S_Paralysis;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.serverpackets.S_Teleport;
+import net.l1j.server.types.Base;
 import net.l1j.util.Teleportation;
 
 public class L1Teleport {
@@ -35,12 +36,13 @@ public class L1Teleport {
 
 	// テレポートスキルの種類
 	public static final int TELEPORT = 0;
-
 	public static final int CHANGE_POSITION = 1;
-
 	public static final int ADVANCED_MASS_TELEPORT = 2;
-
 	public static final int CALL_CLAN = 3;
+
+	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
+	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	public static void teleport(L1PcInstance pc, L1Location loc, int head, boolean effectable) {
 		teleport(pc, loc.getX(), loc.getY(), (short) loc.getMapId(), head, effectable, TELEPORT);
@@ -91,46 +93,12 @@ public class L1Teleport {
 	 * targetキャラクターのdistanceで指定したマス分前にテレポートする。指定されたマスがマップでない場合何もしない。
 	 */
 	public static void teleportToTargetFront(L1Character cha, L1Character target, int distance) {
-		int locX = target.getX();
-		int locY = target.getY();
 		int heading = target.getHeading();
+		// ターゲットの向きからテレポート先の座標を決める。
+		int locX = target.getX() + HEADING_TABLE_X[heading];
+		int locY = target.getY() + HEADING_TABLE_Y[heading];
 		L1Map map = target.getMap();
 		short mapId = target.getMapId();
-
-		// ターゲットの向きからテレポート先の座標を決める。
-		switch (heading) {
-			case 1:
-				locX += distance;
-				locY -= distance;
-			break;
-			case 2:
-				locX += distance;
-			break;
-			case 3:
-				locX += distance;
-				locY += distance;
-			break;
-			case 4:
-				locY += distance;
-			break;
-			case 5:
-				locX -= distance;
-				locY += distance;
-			break;
-			case 6:
-				locX -= distance;
-			break;
-			case 7:
-				locX -= distance;
-				locY -= distance;
-			break;
-			case 0:
-				locY -= distance;
-			break;
-			default:
-			break;
-
-		}
 
 		if (map.isPassable(locX, locY)) {
 			if (cha instanceof L1PcInstance) {

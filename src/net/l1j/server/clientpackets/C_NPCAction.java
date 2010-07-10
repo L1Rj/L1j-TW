@@ -2780,7 +2780,7 @@ public class C_NPCAction extends ClientBasePacket {
 				} else {
 					if (pc.getInventory().checkItem(41314)) { // 占星術師のお守り
 						pc.getInventory().consumeItem(41314, 1); // 占星術師のお守り
-						int html = RandomArrayList.getInc(9, 1); // (byte) (RandomArrayList.getArray9List() + 1);
+						int html = RandomArrayList.getInc(9, 1); // (RandomArrayList.getArray9List() + 1);
 						int PolyId = RandomArrayList.getInc(64, 6180); // 6180 + RandomArrayList.getArrayshortList((short) 64);
 						polyByKeplisha(client, PolyId);
 						switch (html) {

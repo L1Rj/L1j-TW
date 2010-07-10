@@ -870,7 +870,7 @@ public class L1Attack {
 		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER) {
 			// actionCounterBarrier();
 			// commitCounterBarrier();
-			// _pc.setHeading((byte)_pc.targetDirection(_targetX, _targetY)); // 向きのセット
+			// _pc.setHeading(_pc.targetDirection(_targetX, _targetY)); // 向きのセット
 			// _pc.sendPackets(new S_AttackMissPacket(_pc, _targetNpc));
 			// _pc.broadcastPacket(new S_AttackMissPacket(_pc, _targetNpc));
 			// _pc.sendPackets(new S_DoActionGFX(_pc.getId(),

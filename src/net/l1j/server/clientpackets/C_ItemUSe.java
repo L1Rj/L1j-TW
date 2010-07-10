@@ -635,7 +635,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.save(); // DBにキャラクター情報を書き⑸む
 				} else if (itemId == 40033) { // エリクサー:腕力
 					if (pc.getBaseStr() < 35 && pc.getElixirStats() < 5) {
-						pc.addBaseStr((byte) 1); // 素のSTR值に+1
+						pc.addBaseStr(1); // 素のSTR值に+1
 						pc.setElixirStats(pc.getElixirStats() + 1);
 						pc.getInventory().removeItem(item, 1);
 						pc.sendPackets(new S_OwnCharStatus2(pc));
@@ -646,7 +646,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40034) { // エリクサー:体力
 					if (pc.getBaseCon() < 35 && pc.getElixirStats() < 5) {
-						pc.addBaseCon((byte) 1); // 素のCON值に+1
+						pc.addBaseCon(1); // 素のCON值に+1
 						pc.setElixirStats(pc.getElixirStats() + 1);
 						pc.getInventory().removeItem(item, 1);
 						pc.sendPackets(new S_OwnCharStatus2(pc));
@@ -657,7 +657,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40035) { // エリクサー:機敏
 					if (pc.getBaseDex() < 35 && pc.getElixirStats() < 5) {
-						pc.addBaseDex((byte) 1); // 素のDEX值に+1
+						pc.addBaseDex(1); // 素のDEX值に+1
 						pc.resetBaseAc();
 						pc.setElixirStats(pc.getElixirStats() + 1);
 						pc.getInventory().removeItem(item, 1);
@@ -669,7 +669,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40036) { // エリクサー:知力
 					if (pc.getBaseInt() < 35 && pc.getElixirStats() < 5) {
-						pc.addBaseInt((byte) 1); // 素のINT值に+1
+						pc.addBaseInt(1); // 素のINT值に+1
 						pc.setElixirStats(pc.getElixirStats() + 1);
 						pc.getInventory().removeItem(item, 1);
 						pc.sendPackets(new S_OwnCharStatus2(pc));
@@ -680,7 +680,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40037) { // エリクサー:精神
 					if (pc.getBaseWis() < 35 && pc.getElixirStats() < 5) {
-						pc.addBaseWis((byte) 1); // 素のWIS值に+1
+						pc.addBaseWis(1); // 素のWIS值に+1
 						pc.resetBaseMr();
 						pc.setElixirStats(pc.getElixirStats() + 1);
 						pc.getInventory().removeItem(item, 1);
@@ -692,7 +692,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40038) { // エリクサー:魅力
 					if (pc.getBaseCha() < 35 && pc.getElixirStats() < 5) {
-						pc.addBaseCha((byte) 1); // 素のCHA值に+1
+						pc.addBaseCha(1); // 素のCHA值に+1
 						pc.setElixirStats(pc.getElixirStats() + 1);
 						pc.getInventory().removeItem(item, 1);
 						pc.sendPackets(new S_OwnCharStatus2(pc));

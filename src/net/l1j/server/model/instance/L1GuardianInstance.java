@@ -80,7 +80,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 			if (!pc.isInvisble() || getNpcTemplate().is_agrocoi()) { // インビジチェック
 				if (!pc.isElf()) { // エルフ以外
 					targetPlayer = pc;
-					wideBroadcastPacket(new S_NpcChatPacket(this, "$804", (byte) 2)); // 人類，如果你重視你的生命現在就快離開這神聖的地方。
+					wideBroadcastPacket(new S_NpcChatPacket(this, "$804", 2)); // 人類，如果你重視你的生命現在就快離開這神聖的地方。
 					break;
 				}
 

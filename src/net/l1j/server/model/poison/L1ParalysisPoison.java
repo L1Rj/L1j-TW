@@ -37,7 +37,7 @@ public class L1ParalysisPoison extends L1Poison {
 	private Thread _timer;
 	private final int _delay;
 	private final int _time;
-	private byte _effectId = 1;
+	private int _effectId = 1;
 
 	private class ParalysisPoisonTimer extends Thread {
 		@Override
@@ -53,12 +53,12 @@ public class L1ParalysisPoison extends L1Poison {
 
 			// エフェクトを綠から灰色へ
 			_effectId = 2;
-			_target.setPoisonEffect((byte) 2);
+			_target.setPoisonEffect(2);
 
 			if (_target instanceof L1PcInstance) {
 				L1PcInstance player = (L1PcInstance) _target;
 				if (player.isDead() == false) {
-					player.sendPackets(new S_Paralysis((byte) 1, true)); // 麻痺狀態にする
+					player.sendPackets(new S_Paralysis(1, true)); // 麻痺狀態にする
 					_timer = new ParalysisTimer();
 					ThreadPoolManager.getInstance().execute(_timer); // 麻痺タイマー開始
 					if (isInterrupted()) {
@@ -83,7 +83,7 @@ public class L1ParalysisPoison extends L1Poison {
 			if (_target instanceof L1PcInstance) {
 				L1PcInstance player = (L1PcInstance) _target;
 				if (!player.isDead()) {
-					player.sendPackets(new S_Paralysis((byte) 1, false)); // 麻痺狀態を解除する
+					player.sendPackets(new S_Paralysis(1, false)); // 麻痺狀態を解除する
 					cure(); // 解毒處理
 				}
 			}
@@ -109,7 +109,7 @@ public class L1ParalysisPoison extends L1Poison {
 
 	private void doInfection() {
 		sendMessageIfPlayer(_target, SystemMessageId.$212);
-		_target.setPoisonEffect((byte) 1);
+		_target.setPoisonEffect(1);
 
 		if (_target instanceof L1PcInstance) {
 			_timer = new ParalysisPoisonTimer();
@@ -128,7 +128,7 @@ public class L1ParalysisPoison extends L1Poison {
 			_timer.interrupt(); // 麻痺毒タイマー解除
 		}
 
-		_target.setPoisonEffect((byte) 0);
+		_target.setPoisonEffect(0);
 		_target.setPoison(null);
 	}
 }

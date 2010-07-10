@@ -413,7 +413,7 @@ public class C_Attr extends ClientBasePacket {
 					if (s.toLowerCase().equals("str".toLowerCase())) {
 						// if(l1pcinstance.get_str() < 255)
 						if (pc.getBaseStr() < 35) {
-							pc.addBaseStr((byte) 1); // 素のSTR值に+1
+							pc.addBaseStr(1); // 素のSTR值に+1
 							pc.setBonusStats(pc.getBonusStats() + 1);
 							pc.sendPackets(new S_OwnCharStatus2(pc));
 							pc.sendPackets(new S_CharVisualUpdate(pc));
@@ -424,7 +424,7 @@ public class C_Attr extends ClientBasePacket {
 					} else if (s.toLowerCase().equals("dex".toLowerCase())) {
 						// if(l1pcinstance.get_dex() < 255)
 						if (pc.getBaseDex() < 35) {
-							pc.addBaseDex((byte) 1); // 素のDEX值に+1
+							pc.addBaseDex(1); // 素のDEX值に+1
 							pc.resetBaseAc();
 							pc.setBonusStats(pc.getBonusStats() + 1);
 							pc.sendPackets(new S_OwnCharStatus2(pc));
@@ -436,7 +436,7 @@ public class C_Attr extends ClientBasePacket {
 					} else if (s.toLowerCase().equals("con".toLowerCase())) {
 						// if(l1pcinstance.get_con() < 255)
 						if (pc.getBaseCon() < 35) {
-							pc.addBaseCon((byte) 1); // 素のCON值に+1
+							pc.addBaseCon(1); // 素のCON值に+1
 							pc.setBonusStats(pc.getBonusStats() + 1);
 							pc.sendPackets(new S_OwnCharStatus2(pc));
 							pc.sendPackets(new S_CharVisualUpdate(pc));
@@ -447,7 +447,7 @@ public class C_Attr extends ClientBasePacket {
 					} else if (s.toLowerCase().equals("int".toLowerCase())) {
 						// if(l1pcinstance.get_int() < 255)
 						if (pc.getBaseInt() < 35) {
-							pc.addBaseInt((byte) 1); // 素のINT值に+1
+							pc.addBaseInt(1); // 素のINT值に+1
 							pc.setBonusStats(pc.getBonusStats() + 1);
 							pc.sendPackets(new S_OwnCharStatus2(pc));
 							pc.sendPackets(new S_CharVisualUpdate(pc));
@@ -458,7 +458,7 @@ public class C_Attr extends ClientBasePacket {
 					} else if (s.toLowerCase().equals("wis".toLowerCase())) {
 						// if(l1pcinstance.get_wis() < 255)
 						if (pc.getBaseWis() < 35) {
-							pc.addBaseWis((byte) 1); // 素のWIS值に+1
+							pc.addBaseWis(1); // 素のWIS值に+1
 							pc.resetBaseMr();
 							pc.setBonusStats(pc.getBonusStats() + 1);
 							pc.sendPackets(new S_OwnCharStatus2(pc));
@@ -470,7 +470,7 @@ public class C_Attr extends ClientBasePacket {
 					} else if (s.toLowerCase().equals("cha".toLowerCase())) {
 						// if(l1pcinstance.get_cha() < 255)
 						if (pc.getBaseCha() < 35) {
-							pc.addBaseCha((byte) 1); // 素のCHA值に+1
+							pc.addBaseCha(1); // 素のCHA值に+1
 							pc.setBonusStats(pc.getBonusStats() + 1);
 							pc.sendPackets(new S_OwnCharStatus2(pc));
 							pc.sendPackets(new S_CharVisualUpdate(pc));

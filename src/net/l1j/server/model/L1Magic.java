@@ -33,20 +33,23 @@ import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.templates.L1Skills;
+import net.l1j.server.types.Base;
 import net.l1j.util.RandomArrayList;
 
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1Magic {
-	private byte _calcType;
-
-	private final byte PC_PC = 1;
-
-	private final byte PC_NPC = 2;
-
-	private final byte NPC_PC = 3;
-
-	private final byte NPC_NPC = 4;
+	/**
+	private int _calcType;
+	private final int PC_PC = 1;
+	private final int PC_NPC = 2;
+	private final int NPC_PC = 3;
+	private final int NPC_NPC = 4;*/
+	private int _calcType;
+	private final static int PC_PC = Base.TARGET_TYPE[1];
+	private final static int PC_NPC = Base.TARGET_TYPE[2];
+	private final static int NPC_PC = Base.TARGET_TYPE[3];
+	private final static int NPC_NPC = Base.TARGET_TYPE[4];
 
 	private L1PcInstance _pc = null;
 
@@ -740,7 +743,7 @@ public class L1Magic {
 		}
 		// TODO 吉爾塔斯反擊屏障判斷
 		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER) {
-			// _pc.setHeading((byte)_pc.targetDirection(_targetX, _targetY)); // 向きのセット
+			// _pc.setHeading(_pc.targetDirection(_targetX, _targetY)); // 向きのセット
 			// _pc.sendPackets(new S_AttackMissPacket(_pc, _targetNpc));
 			// _pc.broadcastPacket(new S_AttackMissPacket(_pc, _targetNpc));
 			// _pc.sendPackets(new S_DoActionGFX(_pc.getId(),

@@ -79,12 +79,12 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.setName(name);
 		pc.setType(readC());
 		pc.set_sex(readC());
-		pc.addBaseStr((byte) readC());
-		pc.addBaseDex((byte) readC());
-		pc.addBaseCon((byte) readC());
-		pc.addBaseWis((byte) readC());
-		pc.addBaseCha((byte) readC());
-		pc.addBaseInt((byte) readC());
+		pc.addBaseStr(readC());
+		pc.addBaseDex(readC());
+		pc.addBaseCon(readC());
+		pc.addBaseWis(readC());
+		pc.addBaseCha(readC());
+		pc.addBaseInt(readC());
 		boolean statusError = false;
 
 		classFeature = L1ClassFeature.newClassFeature(pc.getType());

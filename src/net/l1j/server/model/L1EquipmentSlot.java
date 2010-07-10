@@ -285,15 +285,15 @@ public class L1EquipmentSlot {
 		if (item.get_addmp() != 0 || equipment.getAddMp() !=0) {
 			_owner.addMaxMp(-item.get_addmp() - equipment.getAddMp());
 		}
-		_owner.addStr((byte) -item.get_addstr());
-		_owner.addCon((byte) -item.get_addcon());
-		_owner.addDex((byte) -item.get_adddex());
-		_owner.addInt((byte) -item.get_addint());
-		_owner.addWis((byte) -item.get_addwis());
+		_owner.addStr(-item.get_addstr());
+		_owner.addCon(-item.get_addcon());
+		_owner.addDex(-item.get_adddex());
+		_owner.addInt(-item.get_addint());
+		_owner.addWis(-item.get_addwis());
 		if (item.get_addwis() != 0) {
 			_owner.resetBaseMr();
 		}
-		_owner.addCha((byte) -item.get_addcha());
+		_owner.addCha(-item.get_addcha());
 
 		int addMr = 0;
 		addMr -= (equipment.getMr() + equipment.getAddMr());

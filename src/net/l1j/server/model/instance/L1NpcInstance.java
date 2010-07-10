@@ -100,7 +100,7 @@ public class L1NpcInstance extends L1Character {
 	private boolean firstFound = true;
 
 	// 經路探索範圍（半徑） ※上げすぎ注意！！
-	public static byte courceRange = 18;
+	public static int courceRange = 18;
 
 	// 吸われたMP
 	private int _drainedMana = 0;
@@ -1504,7 +1504,7 @@ public class L1NpcInstance extends L1Character {
 		if (map.isPassable(x, y, heading)) {
 			return heading;
 		} else {
-			for (byte i = 1; i < 7; i++) {
+			for (int i = 1; i < 7; i++) {
 				heading += FIND_HEADING_TABLE[i];
 				heading = targetFace(heading);
 				if (map.isPassable(x, y, heading)) {

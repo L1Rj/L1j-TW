@@ -100,7 +100,6 @@ public class L1Chaser extends TimerTask {
 	}
 
 	public double getDamage(L1PcInstance pc, L1Character cha) {
-		// l1j 1952 版本
 		double dmg = 0;
 		int spByItem = pc.getSp() - pc.getTrueSp();
 		int intel = pc.getInt();

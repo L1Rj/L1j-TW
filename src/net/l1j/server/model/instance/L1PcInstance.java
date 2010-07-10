@@ -396,13 +396,13 @@ public class L1PcInstance extends L1Character {
 	}
 
 	private void sendVisualEffect() {
-		byte poisonId = 0;
+		int poisonId = 0;
 		if (getPoison() != null) { // 毒狀態
-			poisonId = (byte) getPoison().getEffectId();
+			poisonId = getPoison().getEffectId();
 		}
 		if (getParalysis() != null) { // 麻痺狀態
 			// 麻痺エフェクトを優先して送りたい為、poisonIdを上書き。
-			poisonId = (byte) getParalysis().getEffectId();
+			poisonId = getParalysis().getEffectId();
 		}
 		if (poisonId != 0) { // このifはいらないかもしれない
 			sendPackets(new S_Poison(getId(), poisonId));
@@ -1793,105 +1793,105 @@ public class L1PcInstance extends L1Character {
 		return _originalAc;
 	}
 
-	private byte _baseStr = 0; // ● ＳＴＲベース（1～127）
+	private int _baseStr = 0; // ● ＳＴＲベース（1～127）
 
-	public byte getBaseStr() {
+	public int getBaseStr() {
 		return _baseStr;
 	}
 
-	public void addBaseStr(byte i) {
+	public void addBaseStr(int i) {
 		i += _baseStr;
 		if (i >= 127) {
 			i = 127;
 		} else if (i < 1) {
 			i = 1;
 		}
-		addStr((byte) (i - _baseStr));
+		addStr(i - _baseStr);
 		_baseStr = i;
 	}
 
-	private byte _baseCon = 0; // ● ＣＯＮベース（1～127）
+	private int _baseCon = 0; // ● ＣＯＮベース（1～127）
 
-	public byte getBaseCon() {
+	public int getBaseCon() {
 		return _baseCon;
 	}
 
-	public void addBaseCon(byte i) {
+	public void addBaseCon(int i) {
 		i += _baseCon;
 		if (i >= 127) {
 			i = 127;
 		} else if (i < 1) {
 			i = 1;
 		}
-		addCon((byte) (i - _baseCon));
+		addCon(i - _baseCon);
 		_baseCon = i;
 	}
 
-	private byte _baseDex = 0; // ● ＤＥＸベース（1～127）
+	private int _baseDex = 0; // ● ＤＥＸベース（1～127）
 
-	public byte getBaseDex() {
+	public int getBaseDex() {
 		return _baseDex;
 	}
 
-	public void addBaseDex(byte i) {
+	public void addBaseDex(int i) {
 		i += _baseDex;
 		if (i >= 127) {
 			i = 127;
 		} else if (i < 1) {
 			i = 1;
 		}
-		addDex((byte) (i - _baseDex));
+		addDex(i - _baseDex);
 		_baseDex = i;
 	}
 
-	private byte _baseCha = 0; // ● ＣＨＡベース（1～127）
+	private int _baseCha = 0; // ● ＣＨＡベース（1～127）
 
-	public byte getBaseCha() {
+	public int getBaseCha() {
 		return _baseCha;
 	}
 
-	public void addBaseCha(byte i) {
+	public void addBaseCha(int i) {
 		i += _baseCha;
 		if (i >= 127) {
 			i = 127;
 		} else if (i < 1) {
 			i = 1;
 		}
-		addCha((byte) (i - _baseCha));
+		addCha(i - _baseCha);
 		_baseCha = i;
 	}
 
-	private byte _baseInt = 0; // ● ＩＮＴベース（1～127）
+	private int _baseInt = 0; // ● ＩＮＴベース（1～127）
 
-	public byte getBaseInt() {
+	public int getBaseInt() {
 		return _baseInt;
 	}
 
-	public void addBaseInt(byte i) {
+	public void addBaseInt(int i) {
 		i += _baseInt;
 		if (i >= 127) {
 			i = 127;
 		} else if (i < 1) {
 			i = 1;
 		}
-		addInt((byte) (i - _baseInt));
+		addInt(i - _baseInt);
 		_baseInt = i;
 	}
 
-	private byte _baseWis = 0; // ● ＷＩＳベース（1～127）
+	private int _baseWis = 0; // ● ＷＩＳベース（1～127）
 
-	public byte getBaseWis() {
+	public int getBaseWis() {
 		return _baseWis;
 	}
 
-	public void addBaseWis(byte i) {
+	public void addBaseWis(int i) {
 		i += _baseWis;
 		if (i >= 127) {
 			i = 127;
 		} else if (i < 1) {
 			i = 1;
 		}
-		addWis((byte) (i - _baseWis));
+		addWis(i - _baseWis);
 		_baseWis = i;
 	}
 
@@ -2430,12 +2430,12 @@ public class L1PcInstance extends L1Character {
 			switch (getMapId()) {
 				case 69:
 				case 86:
-					L1Teleport.teleport(this, 33080, 33392, (short) 4, (byte) 5, true); // <-銀騎士村の座標
+					L1Teleport.teleport(this, 33080, 33392, (short) 4, 5, true); // <-銀騎士村の座標
 				break;
 
 				case 68:
 				case 85:
-					L1Teleport.teleport(this, 32580, 32931, (short) 0, (byte) 5, true); // <-說話之島の座標
+					L1Teleport.teleport(this, 32580, 32931, (short) 0, 5, true); // <-說話之島の座標
 				break;
 			}
 		}
@@ -2607,8 +2607,7 @@ public class L1PcInstance extends L1Character {
 		}
 	}
 
-	@Override
-	public void setPoisonEffect(byte effectId) {
+	public void setPoisonEffect(int effectId) {
 		sendPackets(new S_Poison(getId(), effectId));
 
 		if (!isGmInvis() && !isGhost() && !isInvisble()) {
@@ -4010,7 +4009,7 @@ public class L1PcInstance extends L1Character {
 		_fightId = i;
 	}
 
-	private byte _chatCount = 0;
+	private int _chatCount = 0;
 
 	private long _oldChatTimeInMillis = 0L;
 

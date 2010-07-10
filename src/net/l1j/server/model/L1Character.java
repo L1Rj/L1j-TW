@@ -694,7 +694,7 @@ public class L1Character extends L1Object {
 	 * @param effectId
 	 * @see S_Poison#S_Poison(int, int)
 	 */
-	public void setPoisonEffect(byte effectId) {
+	public void setPoisonEffect(int effectId) {
 		broadcastPacket(new S_Poison(getId(), effectId));
 	}
 
@@ -871,96 +871,96 @@ public class L1Character extends L1Object {
 		setAc(_trueAc + i);
 	}
 
-	private byte _str = 0; // ● ＳＴＲ（1～127）
-	private short _trueStr = 0; // ● 本當のＳＴＲ
+	private int _str = 0; // ● ＳＴＲ（1～127）
+	private int _trueStr = 0; // ● 本當のＳＴＲ
 
-	public byte getStr() {
+	public int getStr() {
 		return _str;
 	}
 
 	public void setStr(int i) {
-		_trueStr = (short) i;
-		_str = (byte) IntRange.ensure(i, 1, 127);
+		_trueStr = i;
+		_str = IntRange.ensure(i, 1, 127);
 	}
 
 	public void addStr(int i) {
 		setStr(_trueStr + i);
 	}
 
-	private byte _con = 0; // ● ＣＯＮ（1～127）
-	private short _trueCon = 0; // ● 本當のＣＯＮ
+	private int _con = 0; // ● ＣＯＮ（1～127）
+	private int _trueCon = 0; // ● 本當のＣＯＮ
 
-	public byte getCon() {
+	public int getCon() {
 		return _con;
 	}
 
 	public void setCon(int i) {
-		_trueCon = (short) i;
-		_con = (byte) IntRange.ensure(i, 1, 127);
+		_trueCon = i;
+		_con = IntRange.ensure(i, 1, 127);
 	}
 
 	public void addCon(int i) {
 		setCon(_trueCon + i);
 	}
 
-	private byte _dex = 0; // ● ＤＥＸ（1～127）
-	private short _trueDex = 0; // ● 本當のＤＥＸ
+	private int _dex = 0; // ● ＤＥＸ（1～127）
+	private int _trueDex = 0; // ● 本當のＤＥＸ
 
-	public byte getDex() {
+	public int getDex() {
 		return _dex;
 	}
 
 	public void setDex(int i) {
-		_trueDex = (short) i;
-		_dex = (byte) IntRange.ensure(i, 1, 127);
+		_trueDex = i;
+		_dex = IntRange.ensure(i, 1, 127);
 	}
 
 	public void addDex(int i) {
 		setDex(_trueDex + i);
 	}
 
-	private byte _cha = 0; // ● ＣＨＡ（1～127）
-	private short _trueCha = 0; // ● 本當のＣＨＡ
+	private int _cha = 0; // ● ＣＨＡ（1～127）
+	private int _trueCha = 0; // ● 本當のＣＨＡ
 
-	public byte getCha() {
+	public int getCha() {
 		return _cha;
 	}
 
 	public void setCha(int i) {
-		_trueCha = (short) i;
-		_cha = (byte) IntRange.ensure(i, 1, 127);
+		_trueCha = i;
+		_cha = IntRange.ensure(i, 1, 127);
 	}
 
 	public void addCha(int i) {
 		setCha(_trueCha + i);
 	}
 
-	private byte _int = 0; // ● ＩＮＴ（1～127）
-	private short _trueInt = 0; // ● 本當のＩＮＴ
+	private int _int = 0; // ● ＩＮＴ（1～127）
+	private int _trueInt = 0; // ● 本當のＩＮＴ
 
-	public byte getInt() {
+	public int getInt() {
 		return _int;
 	}
 
 	public void setInt(int i) {
-		_trueInt = (short) i;
-		_int = (byte) IntRange.ensure(i, 1, 127);
+		_trueInt = i;
+		_int = IntRange.ensure(i, 1, 127);
 	}
 
 	public void addInt(int i) {
 		setInt(_trueInt + i);
 	}
 
-	private byte _wis = 0; // ● ＷＩＳ（1～127）
-	private short _trueWis = 0; // ● 本當のＷＩＳ
+	private int _wis = 0; // ● ＷＩＳ（1～127）
+	private int _trueWis = 0; // ● 本當のＷＩＳ
 
-	public byte getWis() {
+	public int getWis() {
 		return _wis;
 	}
 
 	public void setWis(int i) {
-		_trueWis = (short) i;
-		_wis = (byte) IntRange.ensure(i, 1, 127);
+		_trueWis = i;
+		_wis = IntRange.ensure(i, 1, 127);
 	}
 
 	public void addWis(int i) {

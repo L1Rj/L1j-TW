@@ -107,7 +107,7 @@ public abstract class L1ClassFeature {
 	/**
 	 * StatMr：敏捷點數 對應 防禦加成
 	 */
-	private static final byte[] Dex2AC = {
+	private static final int[] Dex2AC = {
 		//	 0  1  2  3  4  5  6  7  8  9
 			 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,	 // Dex =  0 ~  9
 			 7, 7, 7, 6, 6, 6, 5, 5, 4 };	 // Dex = 10 ~ 18
@@ -124,14 +124,14 @@ public abstract class L1ClassFeature {
 	/**
 	 * StatMr：精神點數 對應 魔防加成
 	 */
-	private static final byte[] StatMr = {
+	private static final int[] StatMr = {
 		//	 0  1  2  3  4  5  6  7  8  9
 			 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	 // Wis =  0 ~  9
 			 0, 0, 0, 0, 0, 3, 3, 6,10,15,	 // Wis = 10 ~ 19
 			21,28,37,47,50,50 };			 // Wis = 20 ~ 25
 
 	/** 精神對魔防的加成 */
-	public byte calcStatMr(int wis) {
+	public int calcStatMr(int wis) {
 		// 當『精神』超過24時，一律當作25(受限矩陣大小)
 		int temp_wis = (wis > 24) ? 25 : wis;
 		return StatMr[temp_wis];

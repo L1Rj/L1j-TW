@@ -164,13 +164,13 @@ class SkillStop {
 				pc.sendPackets(new S_SkillIconShield(3, 0));
 			}
 		} else if (skillId == SKILL_DRESS_DEXTERITY) { // ドレス デクスタリティー
-			cha.addDex((byte) -2);
+			cha.addDex(-2);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_DexUp(pc, 2, 0));
 			}
 		} else if (skillId == SKILL_DRESS_MIGHTY) { // ドレス マイティー
-			cha.addStr((byte) -2);
+			cha.addStr(-2);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_StrUp(pc, 2, 0));
@@ -194,7 +194,7 @@ class SkillStop {
 				pc.sendPackets(new S_SPMR(pc));
 			}
 		} else if (skillId == SKILL_CLEAR_MIND) { // クリアー マインド
-			cha.addWis((byte) -3);
+			cha.addWis(-3);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.resetBaseMr();
@@ -281,13 +281,13 @@ class SkillStop {
 				pc.sendPackets(new S_SkillIconShield(6, 0));
 			}
 		} else if (skillId == SKILL_ENCHANT_MIGHTY) { // フィジカル エンチャント：STR
-			cha.addStr((byte) -5);
+			cha.addStr(-5);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_StrUp(pc, 5, 0));
 			}
 		} else if (skillId == SKILL_ENCHANT_DEXTERITY) { // フィジカル エンチャント：DEX
-			cha.addDex((byte) -5);
+			cha.addDex(-5);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_DexUp(pc, 5, 0));
@@ -403,11 +403,11 @@ class SkillStop {
 		} else if (skillId == SKILL_INSIGHT) { // インサイト
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.addStr((byte) -1);
-				pc.addCon((byte) -1);
-				pc.addDex((byte) -1);
-				pc.addWis((byte) -1);
-				pc.addInt((byte) -1);
+				pc.addStr(-1);
+				pc.addCon(-1);
+				pc.addDex(-1);
+				pc.addWis(-1);
+				pc.addInt(-1);
 			}
 		}
 
@@ -420,8 +420,8 @@ class SkillStop {
 		} else if (skillId == SKILL_CURSE_PARALYZE) { // カーズ パラライズ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));
-				pc.broadcastPacket(new S_Poison(pc.getId(), (byte) 0));
+				pc.sendPackets(new S_Poison(pc.getId(), 0));
+				pc.broadcastPacket(new S_Poison(pc.getId(), 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_PARALYSIS, false));
 			}
 		} else if (skillId == SKILL_WEAKNESS) { // ウィークネス
@@ -441,25 +441,25 @@ class SkillStop {
 				|| skillId == SKILL_FREEZING_BREATH) { // フリージングブレス
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));
-				pc.broadcastPacket(new S_Poison(pc.getId(), (byte) 0));
+				pc.sendPackets(new S_Poison(pc.getId(), 0));
+				pc.broadcastPacket(new S_Poison(pc.getId(), 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, false));
 			} else if (cha instanceof L1MonsterInstance || cha instanceof L1SummonInstance
 					|| cha instanceof L1PetInstance) {
 				L1NpcInstance npc = (L1NpcInstance) cha;
-				npc.broadcastPacket(new S_Poison(npc.getId(), (byte) 0));
+				npc.broadcastPacket(new S_Poison(npc.getId(), 0));
 				npc.setParalyzed(false);
 			}
 		} else if (skillId == SKILL_EARTH_BIND) { // アースバインド
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_Poison(pc.getId(), (byte) 0));
-				pc.broadcastPacket(new S_Poison(pc.getId(), (byte) 0));
+				pc.sendPackets(new S_Poison(pc.getId(), 0));
+				pc.broadcastPacket(new S_Poison(pc.getId(), 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, false));
 			} else if (cha instanceof L1MonsterInstance || cha instanceof L1SummonInstance
 					|| cha instanceof L1PetInstance) {
 				L1NpcInstance npc = (L1NpcInstance) cha;
-				npc.broadcastPacket(new S_Poison(npc.getId(), (byte) 0));
+				npc.broadcastPacket(new S_Poison(npc.getId(), 0));
 				npc.setParalyzed(false);
 			}
 		} else if (skillId == SKILL_STUN_SHOCK) { // ショック スタン

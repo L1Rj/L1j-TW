@@ -25,41 +25,41 @@ import net.l1j.util.RandomArrayList;
 
 public class L1TownLocation {
 	// town_id
-	public static final byte TOWNID_TALKING_ISLAND = 1;
+	public static final int TOWNID_TALKING_ISLAND = 1;
 
-	public static final byte TOWNID_SILVER_KNIGHT_TOWN = 2;
+	public static final int TOWNID_SILVER_KNIGHT_TOWN = 2;
 
-	public static final byte TOWNID_GLUDIO = 3;
+	public static final int TOWNID_GLUDIO = 3;
 
-	public static final byte TOWNID_ORCISH_FOREST = 4;
+	public static final int TOWNID_ORCISH_FOREST = 4;
 
-	public static final byte TOWNID_WINDAWOOD = 5;
+	public static final int TOWNID_WINDAWOOD = 5;
 
-	public static final byte TOWNID_KENT = 6;
+	public static final int TOWNID_KENT = 6;
 
-	public static final byte TOWNID_GIRAN = 7;
+	public static final int TOWNID_GIRAN = 7;
 
-	public static final byte TOWNID_HEINE = 8;
+	public static final int TOWNID_HEINE = 8;
 
-	public static final byte TOWNID_WERLDAN = 9;
+	public static final int TOWNID_WERLDAN = 9;
 
-	public static final byte TOWNID_OREN = 10;
+	public static final int TOWNID_OREN = 10;
 
 	// 下記、町稅なし
 
-	public static final byte TOWNID_ELVEN_FOREST = 11;
+	public static final int TOWNID_ELVEN_FOREST = 11;
 
-	public static final byte TOWNID_ADEN = 12;
+	public static final int TOWNID_ADEN = 12;
 
-	public static final byte TOWNID_SILENT_CAVERN = 13;
+	public static final int TOWNID_SILENT_CAVERN = 13;
 
-	public static final byte TOWNID_OUM_DUNGEON = 14;
+	public static final int TOWNID_OUM_DUNGEON = 14;
 
-	public static final byte TOWNID_RESISTANCE = 15;
+	public static final int TOWNID_RESISTANCE = 15;
 
-	public static final byte TOWNID_PIRATE_ISLAND = 16;
+	public static final int TOWNID_PIRATE_ISLAND = 16;
 
-	public static final byte TOWNID_RECLUSE_VILLAGE = 17;
+	public static final int TOWNID_RECLUSE_VILLAGE = 17;
 
 	// 歸還ロケーション
 	private static final short GETBACK_MAP_TALKING_ISLAND = 0;

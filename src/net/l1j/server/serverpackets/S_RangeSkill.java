@@ -30,9 +30,9 @@ public class S_RangeSkill extends ServerBasePacket {
 
 	private byte[] _byte = null;
 
-	public static final byte TYPE_NODIR = 0;
+	public static final int TYPE_NODIR = 0;
 
-	public static final byte TYPE_DIR = 8;
+	public static final int TYPE_DIR = 8;
 
 	public S_RangeSkill(L1Character cha, L1Character[] target, int spellgfx, int actionId, int type) {
 		buildPacket(cha, target, spellgfx, actionId, type);

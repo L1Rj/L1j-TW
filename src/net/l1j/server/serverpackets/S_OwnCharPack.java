@@ -24,14 +24,14 @@ import net.l1j.server.model.instance.L1PcInstance;
 public class S_OwnCharPack extends ServerBasePacket {
 	private static final String S_OWN_CHAR_PACK = "[S] S_OwnCharPack";
 
-	private static final byte STATUS_POISON = 1;
-	private static final byte STATUS_INVISIBLE = 2;
-	private static final byte STATUS_PC = 4;
-	private static final byte STATUS_FREEZE = 8;
-	private static final byte STATUS_BRAVE = 16;
-	private static final byte STATUS_ELFBRAVE = 32;
-	private static final byte STATUS_FASTMOVABLE = 64;
-	private static final byte STATUS_GHOST = (byte) 128;
+	private static final int STATUS_POISON = 1;
+	private static final int STATUS_INVISIBLE = 2;
+	private static final int STATUS_PC = 4;
+	private static final int STATUS_FREEZE = 8;
+	private static final int STATUS_BRAVE = 16;
+	private static final int STATUS_ELFBRAVE = 32;
+	private static final int STATUS_FASTMOVABLE = 64;
+	private static final int STATUS_GHOST = 128;
 
 	private byte[] _byte = null;
 

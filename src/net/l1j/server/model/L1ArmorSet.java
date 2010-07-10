@@ -221,22 +221,22 @@ class StatBonusEffect implements L1ArmorSetEffect {
 
 	@Override
 	public void giveEffect(L1PcInstance pc) {
-		pc.addStr((byte) _str);
-		pc.addDex((byte) _dex);
-		pc.addCon((byte) _con);
-		pc.addWis((byte) _wis);
-		pc.addCha((byte) _cha);
-		pc.addInt((byte) _intl);
+		pc.addStr(_str);
+		pc.addDex(_dex);
+		pc.addCon(_con);
+		pc.addWis(_wis);
+		pc.addCha(_cha);
+		pc.addInt(_intl);
 	}
 
 	@Override
 	public void cancelEffect(L1PcInstance pc) {
-		pc.addStr((byte) -_str);
-		pc.addDex((byte) -_dex);
-		pc.addCon((byte) -_con);
-		pc.addWis((byte) -_wis);
-		pc.addCha((byte) -_cha);
-		pc.addInt((byte) -_intl);
+		pc.addStr(-_str);
+		pc.addDex(-_dex);
+		pc.addCon(-_con);
+		pc.addWis(-_wis);
+		pc.addCha(-_cha);
+		pc.addInt(-_intl);
 	}
 }
 

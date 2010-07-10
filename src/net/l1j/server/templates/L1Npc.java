@@ -109,53 +109,53 @@ public class L1Npc extends L1Object implements Cloneable {
 		_ac = i;
 	}
 
-	private byte _str;
+	private int _str;
 
-	public byte get_str() {
+	public int get_str() {
 		return _str;
 	}
 
-	public void set_str(byte i) {
+	public void set_str(int i) {
 		_str = i;
 	}
 
-	private byte _con;
+	private int _con;
 
-	public byte get_con() {
+	public int get_con() {
 		return _con;
 	}
 
-	public void set_con(byte i) {
+	public void set_con(int i) {
 		_con = i;
 	}
 
-	private byte _dex;
+	private int _dex;
 
-	public byte get_dex() {
+	public int get_dex() {
 		return _dex;
 	}
 
-	public void set_dex(byte i) {
+	public void set_dex(int i) {
 		_dex = i;
 	}
 
-	private byte _wis;
+	private int _wis;
 
-	public byte get_wis() {
+	public int get_wis() {
 		return _wis;
 	}
 
-	public void set_wis(byte i) {
+	public void set_wis(int i) {
 		_wis = i;
 	}
 
-	private byte _int;
+	private int _int;
 
-	public byte get_int() {
+	public int get_int() {
 		return _int;
 	}
 
-	public void set_int(byte i) {
+	public void set_int(int i) {
 		_int = i;
 	}
 

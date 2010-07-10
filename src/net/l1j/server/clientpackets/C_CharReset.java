@@ -97,42 +97,42 @@ public class C_CharReset extends ClientBasePacket {
 				}
 				setLevelUp(pc, 10);
 			} else if (type2 == 0x01) {
-				pc.addBaseStr((byte) 1);
+				pc.addBaseStr(1);
 				setLevelUp(pc, 1);
 			} else if (type2 == 0x02) {
-				pc.addBaseInt((byte) 1);
+				pc.addBaseInt(1);
 				setLevelUp(pc, 1);
 			} else if (type2 == 0x03) {
-				pc.addBaseWis((byte) 1);
+				pc.addBaseWis(1);
 				setLevelUp(pc, 1);
 			} else if (type2 == 0x04) {
-				pc.addBaseDex((byte) 1);
+				pc.addBaseDex(1);
 				setLevelUp(pc, 1);
 			} else if (type2 == 0x05) {
-				pc.addBaseCon((byte) 1);
+				pc.addBaseCon(1);
 				setLevelUp(pc, 1);
 			} else if (type2 == 0x06) {
-				pc.addBaseCha((byte) 1);
+				pc.addBaseCha(1);
 				setLevelUp(pc, 1);
 			} else if (type2 == 0x08) {
 				switch (readC()) {
 					case 1:
-						pc.addBaseStr((byte) 1);
+						pc.addBaseStr(1);
 					break;
 					case 2:
-						pc.addBaseInt((byte) 1);
+						pc.addBaseInt(1);
 					break;
 					case 3:
-						pc.addBaseWis((byte) 1);
+						pc.addBaseWis(1);
 					break;
 					case 4:
-						pc.addBaseDex((byte) 1);
+						pc.addBaseDex(1);
 					break;
 					case 5:
-						pc.addBaseCon((byte) 1);
+						pc.addBaseCon(1);
 					break;
 					case 6:
-						pc.addBaseCha((byte) 1);
+						pc.addBaseCha(1);
 					break;
 				}
 				if (pc.getElixirStats() > 0) {
@@ -142,12 +142,12 @@ public class C_CharReset extends ClientBasePacket {
 				saveNewCharStatus(pc);
 			}
 		} else if (stage == 0x03) {
-			pc.addBaseStr((byte) (readC() - pc.getBaseStr()));
-			pc.addBaseInt((byte) (readC() - pc.getBaseInt()));
-			pc.addBaseWis((byte) (readC() - pc.getBaseWis()));
-			pc.addBaseDex((byte) (readC() - pc.getBaseDex()));
-			pc.addBaseCon((byte) (readC() - pc.getBaseCon()));
-			pc.addBaseCha((byte) (readC() - pc.getBaseCha()));
+			pc.addBaseStr((readC() - pc.getBaseStr()));
+			pc.addBaseInt((readC() - pc.getBaseInt()));
+			pc.addBaseWis((readC() - pc.getBaseWis()));
+			pc.addBaseDex((readC() - pc.getBaseDex()));
+			pc.addBaseCon((readC() - pc.getBaseCon()));
+			pc.addBaseCha((readC() - pc.getBaseCha()));
 			saveNewCharStatus(pc);
 		}
 	}
@@ -188,12 +188,12 @@ public class C_CharReset extends ClientBasePacket {
 	private void initCharStatus(L1PcInstance pc, int hp, int mp, int str, int intel, int wis, int dex, int con, int cha) {
 		pc.addBaseMaxHp((short) (hp - pc.getBaseMaxHp()));
 		pc.addBaseMaxMp((short) (mp - pc.getBaseMaxMp()));
-		pc.addBaseStr((byte) (str - pc.getBaseStr()));
-		pc.addBaseInt((byte) (intel - pc.getBaseInt()));
-		pc.addBaseWis((byte) (wis - pc.getBaseWis()));
-		pc.addBaseDex((byte) (dex - pc.getBaseDex()));
-		pc.addBaseCon((byte) (con - pc.getBaseCon()));
-		pc.addBaseCha((byte) (cha - pc.getBaseCha()));
+		pc.addBaseStr((str - pc.getBaseStr()));
+		pc.addBaseInt((intel - pc.getBaseInt()));
+		pc.addBaseWis((wis - pc.getBaseWis()));
+		pc.addBaseDex((dex - pc.getBaseDex()));
+		pc.addBaseCon((con - pc.getBaseCon()));
+		pc.addBaseCha((cha - pc.getBaseCha()));
 		pc.addMr(0 - pc.getMr());
 		pc.addDmgup(0 - pc.getDmgup());
 		pc.addHitup(0 - pc.getHitup());

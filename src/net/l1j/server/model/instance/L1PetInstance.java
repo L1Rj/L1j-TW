@@ -369,7 +369,7 @@ public class L1PetInstance extends L1NpcInstance {
 	public void call() {
 		int id = _type.getMessageId(L1PetType.getMessageNumber(getLevel()));
 		if (id != 0) {
-			broadcastPacket(new S_NpcChatPacket(this, "$" + id, (byte) 0));
+			broadcastPacket(new S_NpcChatPacket(this, "$" + id, 0));
 		}
 
 		setCurrentPetStatus(7); // 主人の近くで休憩狀態
@@ -469,7 +469,7 @@ public class L1PetInstance extends L1NpcInstance {
 						L1PetType type = PetTypeTable.getInstance().get(pet.getNpcTemplate().get_npcId());
 						int id = type.getDefyMessageId();
 						if (id != 0) {
-							broadcastPacket(new S_NpcChatPacket(pet, "$" + id, (byte) 0));
+							broadcastPacket(new S_NpcChatPacket(pet, "$" + id, 0));
 						}
 					}
 				}
