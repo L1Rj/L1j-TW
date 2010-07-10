@@ -34,7 +34,6 @@ import net.l1j.Config;
 import net.l1j.server.ActionCodes;
 import net.l1j.server.datatables.NpcChatTable;
 import net.l1j.server.datatables.NpcTable;
-import net.l1j.server.model.action.NpcAction;
 import net.l1j.server.model.L1Attack;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1GroundInventory;
@@ -1053,9 +1052,6 @@ public class L1NpcInstance extends L1Character {
 
 		if (template != null)
 			setting_template(template);
-
-		setNpcAction(NpcAction.getAction(getGfxId())); // 取得NPC修正動作
-		getNpcAction().Load(this); // 更新目前動作
 	}
 
 	// 指定のテンプレートで各種值を初期化
@@ -1155,23 +1151,6 @@ public class L1NpcInstance extends L1Character {
 		setLightSize(template.getLightSize());
 
 		mobSkill = new L1MobSkillUse(this);
-	}
-
-	// KIUSBT 新增NPC動作
-	private NpcAction npcAction; // NPC 之動作
-
-	/**
-	 * @param npcAction the npcAction to set
-	 */
-	public void setNpcAction(NpcAction npcAction) {
-		this.npcAction = npcAction;
-	}
-
-	/**
-	 * @return the npcAction
-	 */
-	public NpcAction getNpcAction() {
-		return npcAction;
 	}
 
 	private int _passispeed;
@@ -1443,7 +1422,7 @@ public class L1NpcInstance extends L1Character {
 
 	// 目標までの距離に應じて最適と思われるルーチンで進む方向を返す
 	public int moveDirection(int x, int y, double d) { // 目標點Ｘ 目標點Ｙ 目標までの距離
-		if ((hasSkillEffect(40) == true && d >= 2D) // 持有狀態魔法"黑闇之影" + 距離2以上
+		if ((hasSkillEffect(40) == true && d >= 2D) // 持有狀態魔法"黑闇之影" + 距離2以上 
 				|| (d > 30D)) { // 距離距離太遠
 			return -1;
 		} else if (d > courceRange) { // 距離が遠い場合は單純計算

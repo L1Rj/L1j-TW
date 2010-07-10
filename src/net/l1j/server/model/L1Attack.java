@@ -21,7 +21,6 @@ package net.l1j.server.model;
 import net.l1j.Config;
 import net.l1j.server.ActionCodes;
 import net.l1j.server.WarTimeController;
-import net.l1j.server.model.action.NpcAction;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1DollInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
@@ -37,7 +36,6 @@ import net.l1j.server.serverpackets.S_Attack;
 import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SystemMessage;
-import net.l1j.server.types.Point;
 import net.l1j.util.RandomArrayList;
 
 import static net.l1j.server.model.skill.SkillId.*;
@@ -71,32 +69,28 @@ public class L1Attack {
 
 	private boolean _isHit;
 
-	private int _damage    = 0;
+	private int _damage = 0;
 	private int _drainMana = 0;
-	private int _drainHp   = 0;
-
-	private int _attckGrfxId       =  0;
-	private int _attckActId        =  1;
-	private int _attckSepcialActId =  1;
-	private int _attckBowActId     = -1;
-
+	private int _drainHp = 0;
+	private int _attckGrfxId = 0;
+	private int _attckActId = 0;
 
 	// 攻擊者がプレイヤーの場合の武器情報
 	private L1ItemInstance weapon;
 
-	private int _weaponId               = 0;
-	private int _weaponType             = 0;
-	private int _weaponType2            = 0;
-	private int _weaponAddHit           = 0;
-	private int _weaponAddDmg           = 0;
-	private int _weaponSmall            = 0;
-	private int _weaponLarge            = 0;
-	private int _weaponRange            = 1;
-	private int _weaponBless            = 1;
-	private int _weaponEnchant          = 0;
-	private int _weaponMaterial         = 0;
-	private int _weaponDoubleDmgChance  = 0;
-	private int _weaponAttrEnchantKind  = 0;
+	private int _weaponId = 0;
+	private int _weaponType = 0;
+	private int _weaponType2 = 0;
+	private int _weaponAddHit = 0;
+	private int _weaponAddDmg = 0;
+	private int _weaponSmall = 0;
+	private int _weaponLarge = 0;
+	private int _weaponRange = 1;
+	private int _weaponBless = 1;
+	private int _weaponEnchant = 0;
+	private int _weaponMaterial = 0;
+	private int _weaponDoubleDmgChance = 0;
+	private int _weaponAttrEnchantKind = 0;
 	private int _weaponAttrEnchantLevel = 0;
 
 	private L1ItemInstance _arrow = null;
@@ -209,44 +203,20 @@ public class L1Attack {
 		}
 	}
 
-
 	public void setActId(int actId) {
-		if(actId == 0)
-			_attckActId = -1;
-		else if(actId > 1)
-			_attckActId = actId;
+		_attckActId = actId;
 	}
 
 	public void setGfxId(int gfxId) {
-		if(gfxId > 0)
-			_attckGrfxId = gfxId;
+		_attckGrfxId = gfxId;
 	}
 
-	public void setSepcialActId(int SActId) {
-		if(SActId == 0)
-			_attckSepcialActId = -1;
-		else if(SActId > 1)
-			_attckSepcialActId = SActId;
-	}
-
-	public void setBowActId(int bowActId) {
-		if(bowActId > 0)
-			_attckBowActId = bowActId;
+	public int getActId() {
+		return _attckActId;
 	}
 
 	public int getGfxId() {
 		return _attckGrfxId;
-	}
-
-	public int getActId(boolean Flag) {
-		if(!Flag && RandomArrayList.getInt(3) == 0)
-			return _attckSepcialActId;
-		else
-			return _attckActId;
-	}
-
-	public int getBowActId() {
-		return _attckBowActId;
 	}
 
 	public L1Attack(L1Character attacker, L1Character target) {
@@ -1329,12 +1299,6 @@ public class L1Attack {
 		_pc.broadcastPacket(new S_Attack(_pc, _target, data)); // 對非自身送出
 	}
 
-
-	private NpcAction act = null;  // 取得NPC動作
-	// private int actGfxId;       // 取得動畫
-	private int Range;             // 取得怪物攻擊範圍
-	private int[] data    = null;  // 封包參數
-	boolean isLongRange   = false; // 定義長度距離
 	// ●●●● ＮＰＣの攻擊モーション送信 ●●●●
 	public void actionNpc() {
 		// 改變目前方向
@@ -1343,97 +1307,21 @@ public class L1Attack {
 		if (!_isHit)
 			_damage = 0;
 
-		act = _npc.getNpcAction();                                // 取得NPC動作
-		setActId(act.getDefaultAttack());                         // 取得攻擊動作
-		setSepcialActId(act.getSpecialAttack());                  // 取得特別動作
-		Range = _npc.getNpcTemplate().get_ranged();               // 取得怪物攻擊範圍
-		if(Range >= 2)
-			setBowActId( _npc.getNpcTemplate().getBowActId());    // 取得箭矢之動畫代碼
-		isLongRange = (_npc.getLocation().getTileLineDistance(
-				new Point(_target.getX(), _target.getY())) > 1);
+		int bowActId = _npc.getNpcTemplate().getBowActId(); // 取得箭矢之動畫代碼
+		int actId = 1; // 取得攻擊動作
+		int Range = _npc.getNpcTemplate().get_ranged(); // 取得怪物攻擊範圍
+		int[] data = null; // 封包參數
 
-		data = new int[] { getActId(isLongRange), _damage, getBowActId(), _SpecialEffect }; // 參數
+		bowActId = bowActId <= 0 ? -1 : bowActId;
 
+		// 弓箭手類型
+		if (Range > 2 && bowActId > 0)
+			actId = 21;
+		else
+			bowActId = -1;
+
+		data = new int[] { actId, _damage, bowActId, _SpecialEffect }; // 參數
 		_npc.broadcastPacket(new S_Attack(_npc, _target, data)); // 對非自身送出
-		/*
-		int _npcObjectId = _npc.getId();
-		int bowActId = 0;
-		int actId = 0;
-
-		_npc.setHeading(_npc.targetDirection(_targetX, _targetY)); // 向きのセット
-
-		// ターゲットとの距離が2以上あれば遠距離攻撃
-		boolean isLongRange = (_npc.getLocation().getTileLineDistance(
-				new Point(_targetX, _targetY)) > 1);
-		bowActId = _npc.getNpcTemplate().getBowActId();
-
-		if (getActId() > 0) {
-			actId = getActId();
-		} else {
-			actId = ActionCodes.ACTION_Attack;
-		}
-
-		// 距離が2以上、攻撃者の弓のアクションIDがある場合は遠攻撃
-		if (isLongRange && bowActId > 0) {
-			_npc.broadcastPacket(new S_UseArrowSkill(_npc, _targetId,
-					bowActId, _targetX, _targetY, _isHit));
-		} else {
-			if (_isHit) {
-				if (getGfxId() > 0) {
-					_npc.broadcastPacket(new S_UseAttackSkill(_target,
-							_npcObjectId, getGfxId(), _targetX,
-									_targetY, actId));
-					_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
-							_targetId, ActionCodes.ACTION_Damage), _npc);
-				} else {
-					_npc.broadcastPacket(new S_AttackPacketForNpc(_target,
-							_npcObjectId, actId));
-					_target.broadcastPacketExceptTargetSight(new S_DoActionGFX(
-							_targetId, ActionCodes.ACTION_Damage), _npc);
-				}
-			} else {
-				if (getGfxId() > 0) {
-					_npc.broadcastPacket(new S_UseAttackSkill(_target,
-							_npcObjectId, getGfxId(), _targetX, _targetY,
-							actId, 0));
-				} else {
-					_npc.broadcastPacket(new S_AttackMissPacket(_npc,
-							_targetId, actId));
-				}
-			}
-		}
-		*/
-
-		/*
-	//	NpcAction act = _npc.getNpcAction(); // 取得NPC動作
-	//	int bowActId = _npc.getNpcTemplate().getBowActId(); // 取得箭矢之動畫代碼
-	//	int actId = act.getDefaultAttack(); // 取得攻擊動作
-	//	int sActId = act.getSpecialAttack(); // 取得特別動作
-	//	int newRange = _npc.getTileLineDistance(_target); // 取得距離
-	//	int chance = new Random().nextInt(9) + 1; // 亂數數值
-	//	int[] data = null; // 封包參數
-	//
-	//	bowActId = bowActId <= 0 ? -1 : bowActId;
-	//
-	//	// 弓箭手類型
-	//	if (act.getARange() > 2) {
-	//		if (newRange <= 1 && sActId != -1) {
-	//			actId = chance <= 2 ?  actId : sActId;
-	//			bowActId = chance <= 2 ? bowActId : -1;
-	//		}
-	//	// 長矛手類型
-	//	} else if (act.getARange() == 2) {
-	//		if (newRange <= 1 && sActId != -1) {
-	//			actId = chance <= 2 ? sActId : actId;
-	//			bowActId = chance <= 2 ? -1 : bowActId;
-	//		}
-	//	} else {
-	//		if (newRange <= 1 && sActId != -1) {
-	//			actId = chance <= 2 ? sActId : actId;
-	//			bowActId = chance <= 2 ? -1 : bowActId;
-	//		}
-	//	}
-		*/
 	}
 
 	/* ■■■■■■■■■■■■■■■■■ 計算結果反映 ■■■■■■■■■■■■■■■■■ */
@@ -1474,14 +1362,14 @@ public class L1Attack {
 		// ターゲットがＰＣの場合
 		if (NPC_PC || PC_PC) {
 			msg4 = _targetPc.getName();
-			msg2 = (new StringBuilder()).append("HitR").append(_hitRate).append("% THP").append(_targetPc.getCurrentHp()).toString();
+			msg2 = "HitR" + _hitRate + "% THP" + _targetPc.getCurrentHp();
 		}
 		// ターゲットがＮＰＣの場合
 		else if (PC_NPC) {
 			msg4 = _targetNpc.getName();
 			msg2 = "Hit" + _hitRate + "% Hp" + _targetNpc.getCurrentHp();
 		}
-		msg3 = _isHit ? (new StringBuilder()).append(_damage).append("傷害值").toString() : "攻擊失敗";
+		msg3 = _isHit ? _damage + "傷害值" : "攻擊失敗";
 
 		// アタッカーがＰＣの場合
 		if (PC_PC || PC_NPC) {

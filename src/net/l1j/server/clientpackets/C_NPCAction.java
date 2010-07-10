@@ -2365,7 +2365,7 @@ public class C_NPCAction extends ClientBasePacket {
 			}
 		}
 // waja add 20100521 hms 提供 刪除骷髏項鍊，任務無法重新開始
-/*		else if (pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) == L1Quest.QUEST_END) {
+		else if (pc.getQuest().get_step(L1Quest.QUEST_LUKEIN1) == L1Quest.QUEST_END) {
 		if (pc.getInventory().checkItem(20269)) {
 		htmlid = "lukein0";
 		} else {
@@ -2374,7 +2374,7 @@ public class C_NPCAction extends ClientBasePacket {
 		pc.getQuest().set_step(L1Quest.QUEST_TBOX2, 0);
 		pc.getQuest().set_step(L1Quest.QUEST_TBOX3, 0);
 			}
-		} */
+		}
 //add end
 		// 小さな箱-2番目
 		else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71064
@@ -3942,7 +3942,7 @@ public class C_NPCAction extends ClientBasePacket {
 				success_htmlid = "sharna3";
 				failure_htmlid = "sharna5";
 			}
-                } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91061) {
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91061) {
                     if (s.equalsIgnoreCase("a")) {
                         if (pc.getInventory().checkItem(50508)) {
                             htmlid = "sherme0";
@@ -4058,9 +4058,8 @@ public class C_NPCAction extends ClientBasePacket {
                             htmlid = "sherme1";
                         }
                     }
-
                 }
-
+                /**/
 		// else System.out.println("C_NpcAction: " + s);
 		if (htmlid != null && htmlid.equalsIgnoreCase("colos2")) {
 			htmldata = makeUbInfoStrings(((L1NpcInstance) obj).getNpcTemplate()
@@ -4231,17 +4230,7 @@ public class C_NPCAction extends ClientBasePacket {
 		int summonid = 0;
 		int levelrange = 0;
 		int summoncost = 0;
-		/*
-		 * summonstr_list = new String[] { "7", "263", "8", "264", "9", "265",
-		 * "10", "266", "11", "267", "12", "268", "13", "269", "14", "270",
-		 * "526", "15", "271", "527", "17", "18" }; summonid_list = new int[] {
-		 * 81083, 81090, 81084, 81091, 81085, 81092, 81086, 81093, 81087, 81094,
-		 * 81088, 81095, 81089, 81096, 81097, 81098, 81099, 81100, 81101, 81102,
-		 * 81103, 81104 }; summonlvl_list = new int[] { 28, 28, 32, 32, 36, 36,
-		 * 40, 40, 44, 44, 48, 48, 52, 52, 56, 56, 56, 60, 60, 60, 68, 72 }; //
-		 * ??+6 summoncha_list = new int[] { 6,
-		 * 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 8, 8, 8, 8, 10, 10, 10, 36, 40 };
-		 */
+
 		summonstr_list = new String[] { "7", "263", "519", "8", "264", "520",
 				"9", "265", "521", "10", "266", "522", "11", "267", "523",
 				"12", "268", "524", "13", "269", "525", "14", "270", "526",
@@ -4253,12 +4242,10 @@ public class C_NPCAction extends ClientBasePacket {
 		summonlvl_list = new int[] { 28, 28, 28, 32, 32, 32, 36, 36, 36, 40,
 				40, 40, 44, 44, 44, 48, 48, 48, 52, 52, 52, 56, 56, 56, 60, 60,
 				60, 64, 68, 72, 72 };
-		// ドッペルゲンガーボス、クーガーにはペットボーナスが付かないので+6しておく
-		// summoncha_list = new int[] { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-		// 8, 8, 8, 8, 8, 8, 8, 10, 10, 10, 12, 12, 12, 20, 42, 42, 50 };
+
                 summoncha_list = new int[] { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, // 28 ~ 44
-                                8, 8, 8, 8, 8, 8, 10, 10, 10, 12, 12, 12, // 48 ~ 60
-                                20, 36, 36, 44 }; // 64,68,72,72
+						8, 8, 8, 8, 8, 8, 10, 10, 10, 12, 12, 12, // 48 ~ 60
+						20, 36, 36, 44 }; // 64,68,72,72
 
 		// サモンの種類、必要Lv、ペットコストを得る
 		for (int loop = 0; loop < summonstr_list.length; loop++) {
@@ -4288,29 +4275,46 @@ public class C_NPCAction extends ClientBasePacket {
 		 * charisma / summoncost;
 		 */
 				int pcCha = pc.getCha();
-				int charisma = 0;
+				int summcha = 0;
 				int summoncount = 0;
-				if (levelrange <= 56 // max count = 5
-						|| levelrange == 64) { // max count = 2
-					if (pcCha > 34) {
-						pcCha = 34;
-					}
-                                        charisma = pcCha + 6 - petcost;
-                                        summoncount = charisma / summoncost;
+				/* 2010 07 10 bao edit
+                                if (levelrange <= 56 // max count = 5
+                                        || levelrange == 64) { // max count = 2
+                                    if (pcCha > 34) {
+                                        pcCha = 34;
+                                    }
 				} else if (levelrange == 60) {
-					if (pcCha > 30) { // max count = 3
-						pcCha = 30;
-					}
-                                        charisma = pcCha + 6 - petcost;
-                                        summoncount = charisma / summoncost;
+                                    if (pcCha > 30) { // max count = 3
+                                        pcCha = 30;
+                                    }
 				} else if (levelrange > 64) {
-					if (pcCha > 44) { // max count = 1
-						pcCha = 44;
-					}
-                                        charisma = pcCha - petcost;
-                                        summoncount = charisma / summoncost;
-				}
-
+                                    if (pcCha > 44) { // max count = 1
+                                        pcCha = 44;
+                                    }
+                                }
+				summcha = pcCha + 6 - petcost;
+				summoncount = summcha / summoncost;
+                                */
+                                if (levelrange <= 56 // max count = 5
+                                        || levelrange == 64) { // max count = 2
+                                    if (pcCha > 34) {
+                                        pcCha = 34;
+                                    }
+                                    summcha = pcCha + 6 - petcost;
+                                    summoncount = summcha / summoncost;
+                                } else if (levelrange == 60) {
+                                    if (pcCha > 30) { // max count = 3
+                                        pcCha = 30;
+                                    }
+                                    summcha = pcCha + 6 - petcost;
+                                    summoncount = summcha / summoncost;
+                                } else if (levelrange > 64) {
+                                    if (pcCha > 44) { // max count = 1
+                                        pcCha = 44;
+                                    }
+                                    summcha = pcCha - petcost;
+                                    summoncount = summcha / summoncost;
+                                }
 		L1Npc npcTemp = NpcTable.getInstance().getTemplate(summonid);
 		for (int cnt = 0; cnt < summoncount; cnt++) {
 			L1SummonInstance summon = new L1SummonInstance(npcTemp, pc);
