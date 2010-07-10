@@ -1398,8 +1398,8 @@ public class L1NpcInstance extends L1Character {
 	}
 
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
+	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	// 指定された方向に移動させる
 	public void setDirectionMove(int dir) {

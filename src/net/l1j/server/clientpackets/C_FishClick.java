@@ -37,8 +37,8 @@ public class C_FishClick extends ClientBasePacket {
 	private static final String C_FISHCLICK = "[C] C_FishClick";
 
 	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
+	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	public C_FishClick(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);

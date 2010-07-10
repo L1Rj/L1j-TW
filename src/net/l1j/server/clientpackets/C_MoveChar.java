@@ -48,8 +48,8 @@ public class C_MoveChar extends ClientBasePacket {
 	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.10
 
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
+	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	// マップタイル調查用
 	private void sendMapTileLog(L1PcInstance pc) {

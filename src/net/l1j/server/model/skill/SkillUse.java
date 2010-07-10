@@ -124,17 +124,17 @@ public class SkillUse {
 	private L1NpcInstance _targetNpc = null;
 
 	private int _skillType = 0;
-	private static byte NORMAL = Base.SKILL_TYPE[0];
-	private static byte LOGIN = Base.SKILL_TYPE[1];
-	private static byte SPELLSC = Base.SKILL_TYPE[2];
-	private static byte NPCBUFF = Base.SKILL_TYPE[3];
-	private static byte GMBUFF = Base.SKILL_TYPE[4];
+	private static int NORMAL = Base.SKILL_TYPE[0];
+	private static int LOGIN = Base.SKILL_TYPE[1];
+	private static int SPELLSC = Base.SKILL_TYPE[2];
+	private static int NPCBUFF = Base.SKILL_TYPE[3];
+	private static int GMBUFF = Base.SKILL_TYPE[4];
 
 	private int _targetType;
-	private static byte PC_PC = Base.SKILL_TYPE[1];
-	private static byte PC_NPC = Base.SKILL_TYPE[2];
-	private static byte NPC_PC = Base.SKILL_TYPE[3];
-	private static byte NPC_NPC = Base.SKILL_TYPE[4];
+	private static int PC_PC = Base.TARGET_TYPE[1];
+	private static int PC_NPC = Base.TARGET_TYPE[2];
+	private static int NPC_PC = Base.TARGET_TYPE[3];
+	private static int NPC_NPC = Base.TARGET_TYPE[4];
 
 	private FastTable<TargetStatus> _targetList;
 

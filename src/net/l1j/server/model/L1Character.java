@@ -256,8 +256,8 @@ public class L1Character extends L1Object {
 	}
 
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
+	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	/**
 	 * キャラクターの正面の座標を返す。

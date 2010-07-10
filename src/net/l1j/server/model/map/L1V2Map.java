@@ -44,8 +44,8 @@ public class L1V2Map extends L1Map {
 	private boolean _isUsableSkill;
 
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
+	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	/**
 	 * Mobなどの通行不可能になるオブジェクトがタイル上に存在するかを示すビットフラグ

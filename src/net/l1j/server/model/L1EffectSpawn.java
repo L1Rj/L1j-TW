@@ -29,6 +29,7 @@ import net.l1j.server.model.map.L1Map;
 import net.l1j.server.model.map.L1WorldMap;
 import net.l1j.server.serverpackets.S_NPCPack;
 import net.l1j.server.templates.L1Npc;
+import net.l1j.server.types.Base;
 
 import static net.l1j.server.model.skill.SkillId.*;
 
@@ -106,6 +107,10 @@ public class L1EffectSpawn {
 		return effect;
 	}
 
+	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
+	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
+
 	public void doSpawnFireWall(L1Character cha, int targetX, int targetY) {
 		L1Npc firewall = NpcTable.getInstance().getTemplate(81157); // ファイアーウォール
 		int duration = SkillsTable.getInstance().getTemplate(SKILL_FIRE_WALL).getBuffDuration();
@@ -116,30 +121,9 @@ public class L1EffectSpawn {
 
 		L1Character base = cha;
 		for (int i = 0; i < 8; i++) {
-			int a = base.targetDirection(targetX, targetY);
-			int x = base.getX();
-			int y = base.getY();
-			if (a == 1) {
-				x++;
-				y--;
-			} else if (a == 2) {
-				x++;
-			} else if (a == 3) {
-				x++;
-				y++;
-			} else if (a == 4) {
-				y++;
-			} else if (a == 5) {
-				x--;
-				y++;
-			} else if (a == 6) {
-				x--;
-			} else if (a == 7) {
-				x--;
-				y--;
-			} else if (a == 0) {
-				y--;
-			}
+			int dir = base.targetDirection(targetX, targetY);
+			int x = base.getX() + HEADING_TABLE_X[dir];
+			int y = base.getY() + HEADING_TABLE_Y[dir];
 			if (!base.isAttackPosition(x, y, 1)) {
 				x = base.getX();
 				y = base.getY();

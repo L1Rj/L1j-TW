@@ -60,8 +60,8 @@ public class L1V1Map extends L1Map {
 	private boolean _isUsableSkill;
 
 	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
+	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	/*
 	 * マップ情報を1面で保持するために仕方なくビットフラグ。 可讀性が大きく下がるので良い子は真似しない。

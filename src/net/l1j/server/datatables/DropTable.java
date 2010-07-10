@@ -52,8 +52,8 @@ import net.l1j.util.SQLUtil;
 public class DropTable {
 	private static Logger _log = Logger.getLogger(DropTable.class.getName());
 	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
-	private static final byte HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final byte HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
+	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
+	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	private static DropTable _instance;
 
