@@ -28,6 +28,7 @@ CREATE TABLE `pets` (
   `mp` int(10) unsigned NOT NULL DEFAULT '0',
   `exp` int(10) unsigned NOT NULL DEFAULT '0',
   `lawful` int(10) unsigned NOT NULL DEFAULT '0',
+  `food` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`item_obj_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
