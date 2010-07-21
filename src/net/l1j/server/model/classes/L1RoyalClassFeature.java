@@ -109,10 +109,9 @@ class L1RoyalClassFeature extends L1ClassFeature {
 
 	@Override
 	public int calclvUpHp(int baseCon) {
-		short randomhp = 0;
+		int randomhp = 0;
 		int randomadd = RandomArrayList.getInc(5, -2);
-		float playerbasecon = baseCon / 2;
-		randomhp += (short) (playerbasecon + randomadd + 3); // 初期值分追加 5 <-> 11
+		randomhp += baseCon / 2 + randomadd + 3; // 初期值分追加 5 <-> 11
 
 		return randomhp;
 	}

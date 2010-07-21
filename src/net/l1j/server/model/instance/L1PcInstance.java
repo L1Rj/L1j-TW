@@ -115,41 +115,39 @@ public class L1PcInstance extends L1Character {
 		return _ac + L1DollInstance.getAcByDoll(this);
 	}
 
-	private short _hpr = 0;
-	private short _trueHpr = 0;
+	private int _hpr = 0;
+	private int _trueHpr = 0;
 
-	public short getHpr() {
+	public int getHpr() {
 		return _hpr;
 	}
 
 	public void addHpr(int i) {
 		_trueHpr += i;
-		_hpr = (short) Math.max(0, _trueHpr);
+		_hpr = (int) Math.max(0, _trueHpr);
 	}
 
-	private short _mpr = 0;
-	private short _trueMpr = 0;
+	private int _mpr = 0;
+	private int _trueMpr = 0;
 
-	public short getMpr() {
+	public int getMpr() {
 		return _mpr;
 	}
 
 	public void addMpr(int i) {
 		_trueMpr += i;
-		_mpr = (short) Math.max(0, _trueMpr);
+		_mpr = (int) Math.max(0, _trueMpr);
 	}
 
-	public short _originalHpr = 0; // ● オリジナルCON HPR
+	public int _originalHpr = 0; // ● オリジナルCON HPR
 
-	public short getOriginalHpr() {
-
+	public int getOriginalHpr() {
 		return _originalHpr;
 	}
 
-	public short _originalMpr = 0; // ● オリジナルWIS MPR
+	public int _originalMpr = 0; // ● オリジナルWIS MPR
 
-	public short getOriginalMpr() {
-
+	public int getOriginalMpr() {
 		return _originalMpr;
 	}
 
@@ -546,11 +544,11 @@ public class L1PcInstance extends L1Character {
 		_classFeature = L1ClassFeature.newClassFeature(i);
 	}
 
-	public short getAccessLevel() {
+	public int getAccessLevel() {
 		return _accessLevel;
 	}
 
-	public void setAccessLevel(short i) {
+	public void setAccessLevel(int i) {
 		_accessLevel = i;
 	}
 
@@ -1703,7 +1701,7 @@ public class L1PcInstance extends L1Character {
 	private boolean _gm;
 	private boolean _monitor;
 	private boolean _gmInvis;
-	private short _accessLevel;
+	private int _accessLevel;
 	private int _currentWeapon;
 	private final L1PcInventory _inventory;
 	private final L1DwarfInventory _dwarf;
@@ -1746,13 +1744,13 @@ public class L1PcInstance extends L1Character {
 		_accountName = s;
 	}
 
-	private short _baseMaxHp = 0; // ● ＭＡＸＨＰベース（1～32767）
+	private int _baseMaxHp = 0; // ● ＭＡＸＨＰベース（1～32767）
 
-	public short getBaseMaxHp() {
+	public int getBaseMaxHp() {
 		return _baseMaxHp;
 	}
 
-	public void addBaseMaxHp(short i) {
+	public void addBaseMaxHp(int i) {
 		i += _baseMaxHp;
 		if (i >= 32767) {
 			i = 32767;
@@ -1763,13 +1761,13 @@ public class L1PcInstance extends L1Character {
 		_baseMaxHp = i;
 	}
 
-	private short _baseMaxMp = 0; // ● ＭＡＸＭＰベース（0～32767）
+	private int _baseMaxMp = 0; // ● ＭＡＸＭＰベース（0～32767）
 
-	public short getBaseMaxMp() {
+	public int getBaseMaxMp() {
 		return _baseMaxMp;
 	}
 
-	public void addBaseMaxMp(short i) {
+	public void addBaseMaxMp(int i) {
 		i += _baseMaxMp;
 		if (i >= 32767) {
 			i = 32767;
@@ -2391,8 +2389,8 @@ public class L1PcInstance extends L1Character {
 			short randomHp = CalcStat.calcStatHp(getType(), getBaseMaxHp(), getBaseCon(), getOriginalHpup());
 			short randomMp = CalcStat.calcStatMp(getType(), getBaseMaxMp(), getBaseWis(), getOriginalMpup());
 			*/
-			short randomHp = (short) _classFeature.calclvUpHp(getCon());
-			short randomMp = (short) _classFeature.calclvUpMp(getWis());
+			int randomHp = _classFeature.calclvUpHp(getCon());
+			int randomMp = _classFeature.calclvUpMp(getWis());
 			if (getBaseMaxHp() + randomHp > _classFeature.MaxHp()) {
 				randomHp = 0;
 			}
@@ -2468,8 +2466,8 @@ public class L1PcInstance extends L1Character {
 			if (getBaseMaxMp() <= 20) {
 				randomMp = 0;
 			} // add end
-			addBaseMaxHp((short) -randomHp);
-			addBaseMaxMp((short) -randomMp);
+			addBaseMaxHp(-randomHp);
+			addBaseMaxMp(-randomMp);
 		}
 		resetBaseHitup();
 		resetBaseDmgup();

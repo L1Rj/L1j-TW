@@ -423,7 +423,7 @@ public class L1Character extends L1Object {
 	 * 將人身上特有的特殊狀態製成索引，降低 普通/魔法 攻擊時，需要一一比對身上技能的煩惱。
 	 */
 	public void addInvincibleEffect(int stautsId) {
-		if((_charStatus & STATUS_TYPE[stautsId]) == STATUS_TYPE[stautsId]) {
+		if((_charStatus ^ STATUS_TYPE[stautsId]) == STATUS_TYPE[stautsId]) {
 			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果已經擁有 ");
 		} else {
 			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果增加 ");
@@ -432,7 +432,7 @@ public class L1Character extends L1Object {
 	}
 
 	public void removeInvincibleEffect(int stautsId) {
-		if((_charStatus & STATUS_TYPE[stautsId]) == STATUS_TYPE[stautsId]) {
+		if((_charStatus ^ STATUS_TYPE[stautsId]) == STATUS_TYPE[stautsId]) {
 			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果消失 ");
 			_charStatus -= STATUS_TYPE[stautsId];
 		} else {
@@ -849,20 +849,20 @@ public class L1Character extends L1Object {
 		return _level;
 	}
 
-	public synchronized void setLevel(long level) {
-		_level = (int) level;
+	public synchronized void setLevel(int level) {
+		_level = level;
 	}
 
-	private short _maxHp = 0; // ● ＭＡＸＨＰ（1～32767）
+	private int _maxHp = 0; // ● ＭＡＸＨＰ（1～32767）
 	private int _trueMaxHp = 0; // ● 本當のＭＡＸＨＰ
 
-	public short getMaxHp() {
+	public int getMaxHp() {
 		return _maxHp;
 	}
 
 	public void setMaxHp(int hp) {
 		_trueMaxHp = hp;
-		_maxHp = (short) IntRange.ensure(_trueMaxHp, 1, 32767);
+		_maxHp = IntRange.ensure(_trueMaxHp, 1, 32767);
 		_currentHp = Math.min(_currentHp, _maxHp);
 	}
 
@@ -870,16 +870,16 @@ public class L1Character extends L1Object {
 		setMaxHp(_trueMaxHp + i);
 	}
 
-	private short _maxMp = 0; // ● ＭＡＸＭＰ（0～32767）
+	private int _maxMp = 0; // ● ＭＡＸＭＰ（0～32767）
 	private int _trueMaxMp = 0; // ● 本當のＭＡＸＭＰ
 
-	public short getMaxMp() {
+	public int getMaxMp() {
 		return _maxMp;
 	}
 
 	public void setMaxMp(int mp) {
 		_trueMaxMp = mp;
-		_maxMp = (short) IntRange.ensure(_trueMaxMp, 0, 32767);
+		_maxMp = IntRange.ensure(_trueMaxMp, 0, 32767);
 		_currentMp = Math.min(_currentMp, _maxMp);
 	}
 

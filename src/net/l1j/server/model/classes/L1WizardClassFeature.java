@@ -109,10 +109,9 @@ class L1WizardClassFeature extends L1ClassFeature {
 
 	@Override
 	public int calclvUpHp(int baseCon) {
-		short randomhp = 0;
+		int randomhp = 0;
 		int randomadd = RandomArrayList.getInc(5, -2);
-		float playerbasecon = baseCon / 2;
-		randomhp += (short) (playerbasecon + randomadd + 1); // 初期值分追加 3 <-> 7
+		randomhp += baseCon / 2 + randomadd + 1; // 初期值分追加 3 <-> 7
 
 		return randomhp;
 	}

@@ -408,7 +408,7 @@ public class L1Magic {
 
 			probability = probability * getLeverage() / 10;
 
-			//??INT??
+			//オリジナルINTによる魔法命中
 			if (_calcType == PC_PC || _calcType == PC_NPC) {
 				probability += 2 * _pc.getOriginalMagicHit();
 			}
@@ -504,12 +504,13 @@ public class L1Magic {
 	// ●●●● プレイヤー へのファイアーウォールの魔法ダメージ算出 ●●●●
 	public int calcPcFireWallDamage() {
 		int dmg = 0;
+		// 符合攻擊無效，則直接傳回
+		if(_targetPc.hasInvincibleEffect())
+			return dmg;
+
 		double attrDeffence = calcAttrResistance(L1Skills.ATTR_FIRE);
 		L1Skills l1skills = SkillsTable.getInstance().getTemplate(SKILL_FIRE_WALL);
 		dmg = (int) ((1.0 - attrDeffence) * l1skills.getDamageValue());
-
-		if(_targetPc.hasInvincibleEffect())
-			dmg = 0;
 
 		if (dmg < 0) {
 			dmg = 0;
@@ -521,12 +522,13 @@ public class L1Magic {
 	// ●●●● ＮＰＣ へのファイアーウォールの魔法ダメージ算出 ●●●●
 	public int calcNpcFireWallDamage() {
 		int dmg = 0;
+		// 符合攻擊無效，則直接傳回
+		if(_targetNpc.hasInvincibleEffect())
+			return dmg;
+
 		double attrDeffence = calcAttrResistance(L1Skills.ATTR_FIRE);
 		L1Skills l1skills = SkillsTable.getInstance().getTemplate(SKILL_FIRE_WALL);
 		dmg = (int) ((1.0 - attrDeffence) * l1skills.getDamageValue());
-
-		if(_targetNpc.hasInvincibleEffect())
-			dmg = 0;
 
 		if (dmg < 0) {
 			dmg = 0;
@@ -548,6 +550,9 @@ public class L1Magic {
 			dmg = calcMagicDiceDamage(skillId);
 			dmg = (dmg * getLeverage()) / 10;
 		}
+		// 符合攻擊無效，則直接傳回
+		if(_targetPc.hasInvincibleEffect())
+			return dmg = 0;
 
 		dmg -= _targetPc.getDamageReductionByArmor(); // 防具によるダメージ輕減
 
@@ -622,8 +627,6 @@ public class L1Magic {
 		if (_targetPc.hasSkillEffect(SKILL_IMMUNE_TO_HARM)) {
 			dmg /= 2;
 		}
-		if(_targetPc.hasInvincibleEffect())
-			dmg = 0;
 
 		if (_targetPc.hasSkillEffect(SKILL_COUNTER_MIRROR)) {
 			if (_calcType == PC_PC) {
@@ -673,6 +676,9 @@ public class L1Magic {
 			dmg = calcMagicDiceDamage(skillId);
 			dmg = (dmg * getLeverage()) / 10;
 		}
+		// 符合攻擊無效，則直接傳回
+		if(_targetNpc.hasInvincibleEffect())
+			return dmg = 0;
 
 		if (_calcType == PC_NPC) { // プレイヤーからペット、サモンに攻擊
 			boolean isNowWar = false;
@@ -693,9 +699,6 @@ public class L1Magic {
 			}
 		}
 
-		if(_targetNpc.hasInvincibleEffect())
-			dmg = 0;
-
 		// TODO 吉爾塔斯反擊屏障判斷
 		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER) {
 			// _pc.setHeading(_pc.targetDirection(_targetX, _targetY)); // 向きのセット
@@ -712,53 +715,29 @@ public class L1Magic {
 
 		if (_calcType == PC_NPC && _targetNpc != null) {
 			int npcId = _targetNpc.getNpcTemplate().get_npcId();
-			if (npcId >= 45912 && npcId <= 45915 // 恨みに滿ちたソルジャー＆ソルジャーゴースト
-					&& !_pc.hasSkillEffect(STATUS_HOLY_WATER)) {
-				dmg = 0;
+			if (!_pc.hasSkillEffect(STATUS_HOLY_WATER)) {
+				if (npcId >= 45912 && npcId <= 45915) // 恨みに滿ちたソルジャー＆ソルジャーゴースト
+					dmg = 0;
+			} else if (!_pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) {
+				if (npcId == 45916) // 恨みに滿ちたハメル將軍
+					dmg = 0;
+			} else if (!_pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) {
+				if (npcId == 45941) // 咒われた巫女サエル
+					dmg = 0;
+			} else if (!_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
+				if (npcId == 45752 || npcId == 45753 ) // バルログ(變身前) バルログ(變身後)
+					dmg = 0;
+			} else if (!_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+				// ヤヒ(變身前) ヤヒ(變身後) 混沌 死 墮落
+				if (npcId == 45675 || npcId == 81082 || npcId == 45625 || npcId == 45674 || npcId == 45685)
+					dmg = 0;
 			}
-			if (npcId == 45916 // 恨みに滿ちたハメル將軍
-					&& !_pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) {
-				dmg = 0;
-			}
-			if (npcId == 45941 // 咒われた巫女サエル
-					&& !_pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) {
-				dmg = 0;
-			}
-			if (npcId == 45752 // バルログ(變身前)
-					&& !_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
-				dmg = 0;
-			}
-			if (npcId == 45753 // バルログ(變身後)
-					&& !_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
-				dmg = 0;
-			}
-			if (npcId == 45675 // ヤヒ(變身前)
-					&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
-				dmg = 0;
-			}
-			if (npcId == 81082 // ヤヒ(變身後)
-					&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
-				dmg = 0;
-			}
-			if (npcId == 45625 // 混沌
-					&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
-				dmg = 0;
-			}
-			if (npcId == 45674 // 死
-					&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
-				dmg = 0;
-			}
-			if (npcId == 45685 // 墮落
-					&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
-				dmg = 0;
-			}
-			if (npcId >= 46068 && npcId <= 46091 // 欲望の洞窟側mob
-					&& _pc.getTempCharGfx() == 6035) {
-				dmg = 0;
-			}
-			if (npcId >= 46092 && npcId <= 46106 // 影の神殿側mob
-					&& _pc.getTempCharGfx() == 6034) {
-				dmg = 0;
+			if (_pc.getTempCharGfx() == 6035) {
+				if (npcId >= 46068 && npcId <= 46091) // 欲望の洞窟側mob
+					dmg = 0;
+			} else if (_pc.getTempCharGfx() == 6034) {
+				if (npcId >= 46092 && npcId <= 46106) // 影の神殿側mob
+					dmg = 0;
 			}
 		}
 
@@ -774,7 +753,7 @@ public class L1Magic {
 		int magicDamage = 0;
 		int charaIntelligence = 0;
 
-		for (short i = 0; i < diceCount; i++) {
+		for (int i = 0; i < diceCount; i++) {
 			magicDamage += RandomArrayList.getInc(dice, 1);
 		}
 		magicDamage += value;
@@ -843,7 +822,7 @@ public class L1Magic {
 		}
 
 		int diceCount = value + magicBonus;
-		for (short i = 0; i < diceCount; i++) {
+		for (int i = 0; i < diceCount; i++) {
 			magicDamage += RandomArrayList.getInc(dice, 1);
 		}
 

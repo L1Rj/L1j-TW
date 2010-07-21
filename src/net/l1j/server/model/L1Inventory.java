@@ -152,7 +152,7 @@ public class L1Inventory extends L1Object {
 
 		// スタックできないアイテムの場合
 		L1ItemInstance result = null;
-		for (short i = 0; i < count; i++) {
+		for (int i = 0; i < count; i++) {
 			L1ItemInstance item = new L1ItemInstance(temp, 1);
 			item.setId(IdFactory.getInstance().nextId());
 			L1World.getInstance().storeObject(item);
@@ -244,14 +244,14 @@ public class L1Inventory extends L1Object {
 		} else {
 			L1ItemInstance[] itemList = findItemsId(itemid);
 			if (itemList.length == count) {
-				for (short i = 0; i < count; i++) {
+				for (int i = 0; i < count; i++) {
 					removeItem(itemList[i], 1);
 				}
 				return true;
 			} else if (itemList.length > count) { // 指定個數より多く所持している場合
 				DataComparator dc = new DataComparator();
 				Arrays.sort(itemList, dc); // エンチャント順にソートし、エンチャント數の少ないものから消費させる
-				for (short i = 0; i < count; i++) {
+				for (int i = 0; i < count; i++) {
 					removeItem(itemList[i], 1);
 				}
 				return true;
@@ -543,14 +543,14 @@ public class L1Inventory extends L1Object {
 	public boolean checkItem(int[] ids) {
 		int len = ids.length;
 		int[] counts = new int[len];
-		for (short i = 0; i < len; i++) {
+		for (int i = 0; i < len; i++) {
 			counts[i] = 1;
 		}
 		return checkItem(ids, counts);
 	}
 
 	public boolean checkItem(int[] ids, int[] counts) {
-		for (short i = 0; i < ids.length; i++) {
+		for (int i = 0; i < ids.length; i++) {
 			if (!checkItem(ids[i], counts[i])) {
 				return false;
 			}
