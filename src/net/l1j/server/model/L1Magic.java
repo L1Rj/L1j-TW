@@ -508,21 +508,8 @@ public class L1Magic {
 		L1Skills l1skills = SkillsTable.getInstance().getTemplate(SKILL_FIRE_WALL);
 		dmg = (int) ((1.0 - attrDeffence) * l1skills.getDamageValue());
 
-		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
+		if(_targetPc.hasInvincibleEffect())
 			dmg = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
-			dmg = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
-			dmg = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
-			dmg = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
-			dmg = 0;
-		}
 
 		if (dmg < 0) {
 			dmg = 0;
@@ -538,18 +525,8 @@ public class L1Magic {
 		L1Skills l1skills = SkillsTable.getInstance().getTemplate(SKILL_FIRE_WALL);
 		dmg = (int) ((1.0 - attrDeffence) * l1skills.getDamageValue());
 
-		if (_targetNpc.hasSkillEffect(SKILL_ICE_LANCE)) {
+		if(_targetNpc.hasInvincibleEffect())
 			dmg = 0;
-		}
-		if (_targetNpc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
-			dmg = 0;
-		}
-		if (_targetNpc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
-			dmg = 0;
-		}
-		if (_targetNpc.hasSkillEffect(SKILL_EARTH_BIND)) {
-			dmg = 0;
-		}
 
 		if (dmg < 0) {
 			dmg = 0;
@@ -645,21 +622,8 @@ public class L1Magic {
 		if (_targetPc.hasSkillEffect(SKILL_IMMUNE_TO_HARM)) {
 			dmg /= 2;
 		}
-		if (_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
+		if(_targetPc.hasInvincibleEffect())
 			dmg = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) {
-			dmg = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
-			dmg = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
-			dmg = 0;
-		}
-		if (_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) {
-			dmg = 0;
-		}
 
 		if (_targetPc.hasSkillEffect(SKILL_COUNTER_MIRROR)) {
 			if (_calcType == PC_PC) {
@@ -729,18 +693,9 @@ public class L1Magic {
 			}
 		}
 
-		if (_targetNpc.hasSkillEffect(SKILL_ICE_LANCE)) {
+		if(_targetNpc.hasInvincibleEffect())
 			dmg = 0;
-		}
-		if (_targetNpc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) {
-			dmg = 0;
-		}
-		if (_targetNpc.hasSkillEffect(SKILL_FREEZING_BREATH)) {
-			dmg = 0;
-		}
-		if (_targetNpc.hasSkillEffect(SKILL_EARTH_BIND)) {
-			dmg = 0;
-		}
+
 		// TODO 吉爾塔斯反擊屏障判斷
 		if (_targetNpc.getHiddenStatus() == L1NpcInstance.HIDDEN_STATUS_COUNTER_BARRIER) {
 			// _pc.setHeading(_pc.targetDirection(_targetX, _targetY)); // 向きのセット

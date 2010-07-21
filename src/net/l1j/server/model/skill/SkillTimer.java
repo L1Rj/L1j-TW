@@ -365,15 +365,15 @@ class SkillStop {
 				|| skillId == SKILL_BLOODLUST) { // ホーリーウォーク、ムービングアクセレーション、ウィンドウォーク、ブラッドラスト
 			cha.setBraveSpeed(0);
 			if (cha instanceof L1PcInstance) {
-                            L1PcInstance pc = (L1PcInstance) cha;
-                            if (skillId == SKILL_MOVING_ACCELERATION) {
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$832));
-                            } else {
-				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
-				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
-                            }
+				L1PcInstance pc = (L1PcInstance) cha;
+				if (skillId == SKILL_MOVING_ACCELERATION) {
+					pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+					pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$832));
+				} else {
+					pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
+					pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
+				}
 			}
 		} else if (skillId == SKILL_ILLUSION_OGRE) { // イリュージョン：オーガ
 			if (cha instanceof L1PcInstance) {
@@ -436,29 +436,47 @@ class SkillStop {
 				pc.addDmgup(6);
 				pc.addAc(-12);
 			}
-		} else if (skillId == SKILL_ICE_LANCE // アイスランス
-				|| skillId == SKILL_FREEZING_BLIZZARD // フリージングブリザード
-				|| skillId == SKILL_FREEZING_BREATH) { // フリージングブレス
+		} else if (skillId == SKILL_ICE_LANCE // 冰矛圍籬 End 
+				|| skillId == SKILL_FREEZING_BLIZZARD // 冰雪颶風 End
+				|| skillId == SKILL_FREEZING_BREATH) { // 寒冰噴吐 End
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
+				//
+				if(skillId == SKILL_ICE_LANCE)
+					pc.removeInvincibleEffect(2);
+				else if(skillId == SKILL_FREEZING_BLIZZARD)
+					pc.removeInvincibleEffect(4);
+				else
+					pc.removeInvincibleEffect(5);
+				//
 				pc.sendPackets(new S_Poison(pc.getId(), 0));
 				pc.broadcastPacket(new S_Poison(pc.getId(), 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, false));
 			} else if (cha instanceof L1MonsterInstance || cha instanceof L1SummonInstance
 					|| cha instanceof L1PetInstance) {
 				L1NpcInstance npc = (L1NpcInstance) cha;
+				//
+				if(skillId == SKILL_ICE_LANCE)
+					npc.removeInvincibleEffect(2);
+				else if(skillId == SKILL_FREEZING_BLIZZARD)
+					npc.removeInvincibleEffect(4);
+				else
+					npc.removeInvincibleEffect(5);
+				//
 				npc.broadcastPacket(new S_Poison(npc.getId(), 0));
 				npc.setParalyzed(false);
 			}
-		} else if (skillId == SKILL_EARTH_BIND) { // アースバインド
+		} else if (skillId == SKILL_EARTH_BIND) { // 大地屏障 End
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
+				pc.removeInvincibleEffect(3);
 				pc.sendPackets(new S_Poison(pc.getId(), 0));
 				pc.broadcastPacket(new S_Poison(pc.getId(), 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, false));
 			} else if (cha instanceof L1MonsterInstance || cha instanceof L1SummonInstance
 					|| cha instanceof L1PetInstance) {
 				L1NpcInstance npc = (L1NpcInstance) cha;
+				npc.removeInvincibleEffect(3);
 				npc.broadcastPacket(new S_Poison(npc.getId(), 0));
 				npc.setParalyzed(false);
 			}
@@ -478,9 +496,10 @@ class SkillStop {
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_SLEEP, false));
 				pc.sendPackets(new S_OwnCharStatus(pc));
 			}
-		} else if (skillId == SKILL_ABSOLUTE_BARRIER) { // アブソルート バリア
+		} else if (skillId == SKILL_ABSOLUTE_BARRIER) { // 絕對屏障 End
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
+				pc.removeInvincibleEffect(1);
 				pc.startHpRegeneration();
 				pc.startMpRegeneration();
 				pc.startMpRegenerationByDoll();
@@ -581,7 +600,7 @@ class SkillStop {
 				L1PcInstance pc = (L1PcInstance) cha;
 				cha.addSp(-2);
 				//pc.sendPackets(new S_SkillIconWisdomPotion(0));
-                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$349));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$349));
 			}
 		} else if (skillId == STATUS_CHAT_PROHIBITED) { // チャット禁止
 			if (cha instanceof L1PcInstance) {

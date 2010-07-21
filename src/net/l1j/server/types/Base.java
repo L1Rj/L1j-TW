@@ -32,4 +32,11 @@ public class Base {
 	/** 目標類型: 0=NULL 1=PC_PC 2=PC_NPC 3=NPC_PC 4=NPC_NPC */
 	public static final int[] TARGET_TYPE = { 0, 1, 2, 3, 4 };
 
+	/** 緩存tan數值 */
+	public static final double[] TAN_225 = { Math.tan(-22.5), Math.tan(22.5) };
+	public static final double[] TAN_675 = { Math.tan(-62.5), Math.tan(62.5) };
+
+	/** 被攻擊類別: 0 = 正常 1 = 絕對屏障 2 = 冰矛圍籬 4 = 大地屏障 8 = 冰雪颶風 16 = 寒冰噴吐 */
+	public static final int[] STATUS_TYPE = { 0, 1, 2, 4, 8 };
+
 }

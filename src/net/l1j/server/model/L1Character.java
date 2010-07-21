@@ -272,9 +272,9 @@ public class L1Character extends L1Object {
 		return loc;
 	}
 
-	/** 角色方向-X */
-	private static final double[] tan_225 = { Math.tan(-22.5), Math.tan(22.5)};
-	private static final double[] tan_675 = { Math.tan(-62.5), Math.tan(62.5)};
+	/** 緩存tan數值 */
+	private static final double TAN_225[] = Base.TAN_225;
+	private static final double TAN_675[] = Base.TAN_675;
 	/**
 	 * 指定された座標に對する方向を返す。
 	 * 
@@ -283,23 +283,22 @@ public class L1Character extends L1Object {
 	 * @return 指定された座標に對する方向
 	 */
 	public int targetDirection(int tx, int ty) {
-		// 4.15 Start
 		int dis_x = tx - getX(); // Ｘ方向の距離 >0 意謂正向軸
 		int dis_y = ty - getY(); // Ｙ方向の距離 <0 負向軸
 		if (dis_y != 0) {
 			double deff = (dis_x / dis_y);
-			if (deff > tan_225[0] && deff < tan_225[1]) {
+			if (deff > TAN_225[0] && deff < TAN_225[1]) {
 				return (dis_y > 0) ? 4 : 0;
-			} else if (deff > tan_675[0] && deff < tan_225[0]) {
+			} else if (deff > TAN_675[0] && deff < TAN_225[0]) {
 				return (dis_y > 0) ? 5 : 1;
-			} else if (deff > tan_225[1] && deff < tan_675[1]) {
+			} else if (deff > TAN_225[1] && deff < TAN_675[1]) {
 				return (dis_y > 0) ? 3 : 7;
 			}
 		} else {
 			return (dis_x > 0) ? 2 : 6;
 		}
 		return getHeading(); // ここにはこない。はず
-	} // 4.15 End
+	}
 
 	/**
 	 * 指定された座標までの直線上に、障害物が存在*しないか*を返す。
@@ -415,9 +414,42 @@ public class L1Character extends L1Object {
 		return null;
 	}
 
+	private int _charStatus = 0;
+	private static final int STATUS_TYPE[] = Base.STATUS_TYPE;
+	// private static final String[] STATUSNAME = {"正常", "絕對屏障", "冰矛圍籬(凍)", "大地屏障", "冰雪颶風(凍)", "寒冰噴吐(凍)"};
+	/**
+	 * 特殊狀態速查
+	 *
+	 * 將人身上特有的特殊狀態製成索引，降低 普通/魔法 攻擊時，需要一一比對身上技能的煩惱。
+	 */
+	public void addInvincibleEffect(int stautsId) {
+		if((_charStatus & STATUS_TYPE[stautsId]) == STATUS_TYPE[stautsId]) {
+			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果已經擁有 ");
+		} else {
+			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果增加 ");
+			_charStatus += STATUS_TYPE[stautsId];
+		}
+	}
+
+	public void removeInvincibleEffect(int stautsId) {
+		if((_charStatus & STATUS_TYPE[stautsId]) == STATUS_TYPE[stautsId]) {
+			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果消失 ");
+			_charStatus -= STATUS_TYPE[stautsId];
+		} else {
+			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果未曾擁有 ");
+		}
+	}
+
+	public boolean hasInvincibleEffect() {
+		if(_charStatus == 0)
+			return false;
+		else
+			return true;
+	}
+
 	/**
 	 * キャラクターへ、新たにスキル效果を追加する。
-	 * 
+	 *
 	 * @param skillId 追加する效果のスキルID。
 	 * @param timeMillis 追加する效果の持續時間。無限の場合は0。
 	 */
@@ -596,7 +628,7 @@ public class L1Character extends L1Object {
 	/**
 	 * キャラクターのペットリストを返す。
 	 * 
-	 * @return 
+	 * @return
 	 *         キャラクターのペットリストを表す、HashMapオブジェクト。このオブジェクトのKeyはオブジェクトID、ValueはL1NpcInstance
 	 *         。
 	 */
@@ -781,7 +813,7 @@ public class L1Character extends L1Object {
 
 	/**
 	 * キャラクターから、認識しているオブジェクトを削除する。
-	 * 
+	 *
 	 * @param obj 削除するオブジェクト。
 	 */
 	public void removeKnownObject(L1Object obj) {
@@ -1415,7 +1447,7 @@ public class L1Character extends L1Object {
 
 	/**
 	 * キャラクターが保持しているカルマを返す。
-	 * 
+	 *
 	 * @return カルマ。
 	 */
 	public int getKarma() {
@@ -1424,7 +1456,7 @@ public class L1Character extends L1Object {
 
 	/**
 	 * キャラクターが保持するカルマを設定する。
-	 * 
+	 *
 	 * @param karma カルマ。
 	 */
 	public void setKarma(int karma) {

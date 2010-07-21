@@ -679,10 +679,8 @@ public class L1Attack {
 			_drainHp = 0; // ダメージ無しの場合は吸収による回復はしない
 		}
 		// 20090720 BAO提供 隱身被攻擊現形形
-		if (_isHit = true) {
-			if ((_pc.hasSkillEffect(SKILL_BLIND_HIDING) || _pc.hasSkillEffect(SKILL_INVISIBILITY))) {
-				_pc.delInvis();
-			}
+		if ((_pc.hasSkillEffect(SKILL_BLIND_HIDING) || _pc.hasSkillEffect(SKILL_INVISIBILITY))) {
+			_pc.delInvis();
 		}
 		//add end
 		return (int) dmg;
@@ -887,10 +885,8 @@ public class L1Attack {
 			_drainHp = 0; // ダメージ無しの場合は吸収による回復はしない
 		}
 		// 20090720 BAO提供 隱身被攻擊現形
-		if (_isHit = true) {
-			if ((_pc.hasSkillEffect(SKILL_BLIND_HIDING) || _pc.hasSkillEffect(SKILL_INVISIBILITY))) {
-				_pc.delInvis();
-			}
+		if ((_pc.hasSkillEffect(SKILL_BLIND_HIDING) || _pc.hasSkillEffect(SKILL_INVISIBILITY))) {
+			_pc.delInvis();
 		}
 		return (int) dmg;
 	}
@@ -995,10 +991,8 @@ public class L1Attack {
 
 		addNpcPoisonAttack(_npc, _targetPc);
 		// 20090720 BAO提供 隱身被攻擊現形
-		if (_isHit = true) {
-			if ((_targetPc.hasSkillEffect(SKILL_BLIND_HIDING) || _targetPc.hasSkillEffect(SKILL_INVISIBILITY))) {
-				_targetPc.delInvis();
-			}
+		if ((_targetPc.hasSkillEffect(SKILL_BLIND_HIDING) || _targetPc.hasSkillEffect(SKILL_INVISIBILITY))) {
+			_targetPc.delInvis();
 		}
 		// add end
 		return (int) dmg;
@@ -1388,15 +1382,15 @@ public class L1Attack {
 				if (_drainMana > _targetPc.getCurrentMp())
 					_drainMana = _targetPc.getCurrentMp();
 
-				short newMp = (short) (_targetPc.getCurrentMp() - _drainMana);
+				int newMp = _targetPc.getCurrentMp() - _drainMana;
 				_targetPc.setCurrentMp(newMp);
-				newMp = (short) (_pc.getCurrentMp() + _drainMana);
+				newMp = _pc.getCurrentMp() + _drainMana;
 				_pc.setCurrentMp(newMp);
 			}
 
 			// HP吸収による回復
 			if (_drainHp > 0) {
-				short newHp = (short) (_pc.getCurrentHp() + _drainHp);
+				int newHp = _pc.getCurrentHp() + _drainHp;
 				_pc.setCurrentHp(newHp);
 			}
 
@@ -1422,7 +1416,7 @@ public class L1Attack {
 
 			// HP吸収による回復
 			if (_drainHp > 0) {
-				short newHp = (short) (_pc.getCurrentHp() + _drainHp);
+				int newHp = _pc.getCurrentHp() + _drainHp;
 				_pc.setCurrentHp(newHp);
 			}
 
@@ -1557,21 +1551,13 @@ public class L1Attack {
 	 */
 	// Target: Player
 	private boolean impossibleHitPC() {
-		if(_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) // 絕對屏障
-			return true;
-		else if(_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) // 冰矛圍籬
-			return true;
-		else if(_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) // 大地屏障
-			return true;
-		else if(_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) // 冰雪颶風
-			return true;
-		else if(_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) // 寒冰噴吐
-			return true;
-		else
-			return false;
+		return _targetPc.hasInvincibleEffect();
 	}
 	// Target: Npc
 	private boolean impossibleHitNPC() {
+		if(_targetNpc.hasInvincibleEffect())
+			return true;
+
 		int npcId = _targetNpc.getNpcTemplate().get_npcId();
 		if (_pc.hasSkillEffect(STATUS_HOLY_WATER)) { // 聖水狀態
 			// 恨みに滿ちたソルジャー＆ソルジャーゴースト
