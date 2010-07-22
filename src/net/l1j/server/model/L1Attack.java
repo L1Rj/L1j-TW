@@ -337,7 +337,8 @@ public class L1Attack {
 	 * 最小命中率5% 最大命中率95%
 	 */
 	private boolean calcPcPcHit() {
-		if(impossibleHitPC())
+		// 特殊魔法效果 檢查
+		if(!possibleHitPC())
 			return false;
 
 		if (_weaponType == 58) { // 絕對命中
@@ -384,9 +385,10 @@ public class L1Attack {
 	private boolean calcPcNpcHit() {
 		// ＮＰＣへの命中率
 		// ＝（PCのLv＋クラス補正＋STR補正＋DEX補正＋武器補正＋DAIの枚數/2＋魔法補正）×5－{NPCのAC×（-5）}
-		// 絕對無法命中條件
-		if(impossibleHitNPC())
+		// 特殊魔法效果 檢查
+		if(!possibleHitNPC())
 			return false;
+
 		// 絕對    命中條件
 		if (_weaponType == 58) { // 絕對命中
 			_hitRate = 100;
@@ -423,8 +425,10 @@ public class L1Attack {
 
 	// ●●●● ＮＰＣ から プレイヤー への命中判定 ●●●●
 	private boolean calcNpcPcHit() {
-		if(impossibleHitPC())
+		// 特殊魔法效果 檢查
+		if(!possibleHitPC())
 			return false;
+
 		_hitRate = _npc.getLevel();
 
 		if (_npc instanceof L1PetInstance) { // ペットの武器による追加命中
@@ -456,8 +460,8 @@ public class L1Attack {
 
 	// ●●●● ＮＰＣ から ＮＰＣ への命中判定 ●●●●
 	private boolean calcNpcNpcHit() {
-		// 絕對無法命中條件
-		// if(impossibleHitNPC())
+		// 特殊魔法效果 檢查
+		// if(!possibleHitNPC())
 		// 	return false;
 
 		_hitRate = _npc.getLevel()			// Level Fix hitRat
@@ -1550,53 +1554,74 @@ public class L1Attack {
 	 * 若絕無可能命中，則回傳 true
 	 */
 	// Target: Player
-	private boolean impossibleHitPC() {
-		return _targetPc.hasInvincibleEffect();
+	private boolean possibleHitPC() {
+		if(_targetPc.hasInvincibleEffect())
+			return false;
+		else
+			return true;
 	}
 	// Target: Npc
-	private boolean impossibleHitNPC() {
+	private boolean possibleHitNPC() {
 		if(_targetNpc.hasInvincibleEffect())
-			return true;
+			return false;
 
 		int npcId = _targetNpc.getNpcTemplate().get_npcId();
-		if (_pc.hasSkillEffect(STATUS_HOLY_WATER)) { // 聖水狀態
-			// 恨みに滿ちたソルジャー＆ソルジャーゴースト
-			if (npcId >= 45912 && npcId <= 45915)
-				return true;
-		} else if (_pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) { // 恨みに滿ちたハメル將軍
-			if (npcId == 45916)
-				return true;
-		} else if (_pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) { // 伊娃聖水狀態
-			// 咒われた巫女サエル
-			if (npcId == 45941)
-				return true;
-		} else if (_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) { // 擊敗炎魔的力量
-			// バルログ(變身前) バルログ(變身後)
-			if (npcId == 45752 || npcId == 45753)
-				return true;
-		} else if (_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) { // 擊敗火焰之影的力量
-			//  ヤヒ(變身前)      ヤヒ(變身後)      混沌              死亡              墮落
-			if (npcId == 45675 || npcId == 81082 || npcId == 45625 || npcId == 45674 || npcId == 45685)
-				return true;
+		if (npcId >= 45912 && npcId <= 45915 // 恨みに滿ちたソルジャー＆ソルジャーゴースト
+				&& !_pc.hasSkillEffect(STATUS_HOLY_WATER)) {
+			return false;
 		}
-
-		if(_pc.getTempCharGfx() == 6035) {
-			// 欲望の洞窟側mob
-			if (npcId >= 46068 && npcId <= 46091)
-				return true;
-		} else if (_pc.getTempCharGfx() == 6034) {
-			// 影の神殿側mob
-			if (npcId >= 46092 && npcId <= 46106)
-				return true;
+		if (npcId == 45916 // 恨みに滿ちたハメル將軍
+				&& !_pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) {
+			return false;
+		}
+		if (npcId == 45941 // 咒われた巫女サエル
+				&& !_pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) {
+			return false;
+		}
+		if (npcId == 45752 // バルログ(變身前)
+				&& !_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
+			return false;
+		}
+		if (npcId == 45753 // バルログ(變身後)
+				&& !_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
+			return false;
+		}
+		if (npcId == 45675 // ヤヒ(變身前)
+				&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+			return false;
+		}
+		if (npcId == 81082 // ヤヒ(變身後)
+				&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+			return false;
+		}
+		if (npcId == 45625 // 混沌
+				&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+			return false;
+		}
+		if (npcId == 45674 // 死
+				&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+			return false;
+		}
+		if (npcId == 45685 // 墮落
+				&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+			return false;
+		}
+		if (npcId >= 46068 && npcId <= 46091 // 欲望の洞窟側mob
+				&& _pc.getTempCharGfx() == 6035) {
+			return false;
+		}
+		if (npcId >= 46092 && npcId <= 46106 // 影の神殿側mob
+				&& _pc.getTempCharGfx() == 6034) {
+			return false;
 		}
 
 		// BAO提供 艾爾摩索夏依卡將軍的冤魂
 		if(_weaponId != 274) {
 			if (npcId == 46163)
-				return true;
+				return false;
 		}
 
-		return false;
+		return true;
 	}
 
 	/**

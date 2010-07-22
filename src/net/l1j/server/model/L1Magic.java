@@ -715,29 +715,53 @@ public class L1Magic {
 
 		if (_calcType == PC_NPC && _targetNpc != null) {
 			int npcId = _targetNpc.getNpcTemplate().get_npcId();
-			if (!_pc.hasSkillEffect(STATUS_HOLY_WATER)) {
-				if (npcId >= 45912 && npcId <= 45915) // 恨みに滿ちたソルジャー＆ソルジャーゴースト
-					dmg = 0;
-			} else if (!_pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) {
-				if (npcId == 45916) // 恨みに滿ちたハメル將軍
-					dmg = 0;
-			} else if (!_pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) {
-				if (npcId == 45941) // 咒われた巫女サエル
-					dmg = 0;
-			} else if (!_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
-				if (npcId == 45752 || npcId == 45753 ) // バルログ(變身前) バルログ(變身後)
-					dmg = 0;
-			} else if (!_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
-				// ヤヒ(變身前) ヤヒ(變身後) 混沌 死 墮落
-				if (npcId == 45675 || npcId == 81082 || npcId == 45625 || npcId == 45674 || npcId == 45685)
-					dmg = 0;
+			if (npcId >= 45912 && npcId <= 45915 // 恨みに滿ちたソルジャー＆ソルジャーゴースト
+					&& !_pc.hasSkillEffect(STATUS_HOLY_WATER)) {
+				dmg = 0;
 			}
-			if (_pc.getTempCharGfx() == 6035) {
-				if (npcId >= 46068 && npcId <= 46091) // 欲望の洞窟側mob
-					dmg = 0;
-			} else if (_pc.getTempCharGfx() == 6034) {
-				if (npcId >= 46092 && npcId <= 46106) // 影の神殿側mob
-					dmg = 0;
+			if (npcId == 45916 // 恨みに滿ちたハメル將軍
+					&& !_pc.hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) {
+				dmg = 0;
+			}
+			if (npcId == 45941 // 咒われた巫女サエル
+					&& !_pc.hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) {
+				dmg = 0;
+			}
+			if (npcId == 45752 // バルログ(變身前)
+					&& !_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
+				dmg = 0;
+			}
+			if (npcId == 45753 // バルログ(變身後)
+					&& !_pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
+				dmg = 0;
+			}
+			if (npcId == 45675 // ヤヒ(變身前)
+					&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+				dmg = 0;
+			}
+			if (npcId == 81082 // ヤヒ(變身後)
+					&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+				dmg = 0;
+			}
+			if (npcId == 45625 // 混沌
+					&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+				dmg = 0;
+			}
+			if (npcId == 45674 // 死
+					&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+				dmg = 0;
+			}
+			if (npcId == 45685 // 墮落
+					&& !_pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
+				dmg = 0;
+			}
+			if (npcId >= 46068 && npcId <= 46091 // 欲望の洞窟側mob
+					&& _pc.getTempCharGfx() == 6035) {
+				dmg = 0;
+			}
+			if (npcId >= 46092 && npcId <= 46106 // 影の神殿側mob
+					&& _pc.getTempCharGfx() == 6034) {
+				dmg = 0;
 			}
 		}
 
