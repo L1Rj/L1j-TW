@@ -1757,30 +1757,16 @@ public class L1Attack {
 	 */
 	// Target: Player
 	private boolean possibilityDamagePC() {
-		if(_targetPc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) // 絕對屏障
+		if(_targetPc.hasInvincibleEffect())
 			return false;
-		else if(_targetPc.hasSkillEffect(SKILL_ICE_LANCE)) // 冰矛圍籬
-			return false;
-		else if(_targetPc.hasSkillEffect(SKILL_EARTH_BIND)) // 大地屏障
-			return false;
-		else if(_targetPc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) // 冰雪颶風
-			return false;
-		else if(_targetPc.hasSkillEffect(SKILL_FREEZING_BREATH)) // 寒冰噴吐
-			return false;
-		else // 狀態正常
+		else
 			return true;
 	}
 	// Target: Npc
 	private boolean possibilityDamageNPC() {
-		if(_targetNpc.hasSkillEffect(SKILL_ICE_LANCE)) // 冰矛圍籬
+		if(_targetNpc.hasInvincibleEffect())
 			return false;
-		else if(_targetNpc.hasSkillEffect(SKILL_EARTH_BIND)) // 大地屏障
-			return false;
-		else if(_targetNpc.hasSkillEffect(SKILL_FREEZING_BLIZZARD)) // 冰雪颶風
-			return false;
-		else if(_targetNpc.hasSkillEffect(SKILL_FREEZING_BREATH)) // 寒冰噴吐
-			return false;
-		else // 狀態正常
+		else
 			return true;
 	}
 
