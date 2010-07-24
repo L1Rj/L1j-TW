@@ -424,7 +424,7 @@ public class L1Character extends L1Object {
 	 */
 	public void addInvincibleEffect(int stautsId) {
 		if((_charStatus & STATUS_TYPE[stautsId]) == STATUS_TYPE[stautsId]) {
-			System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果已經擁有 ");
+			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果已經擁有 ");
 		} else {
 			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果增加 ");
 			_charStatus += STATUS_TYPE[stautsId];
@@ -436,7 +436,7 @@ public class L1Character extends L1Object {
 			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果解除 ");
 			_charStatus -= STATUS_TYPE[stautsId];
 		} else {
-			System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果未曾擁有 ");
+			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果未曾擁有 ");
 		}
 	}
 
