@@ -27,6 +27,7 @@ CREATE TABLE `accounts` (
   `host` varchar(255) NOT NULL DEFAULT '',
   `banned` int(11) unsigned NOT NULL DEFAULT '0',
   `character_slot` int(2) unsigned NOT NULL DEFAULT '0',
+  `online_status` int(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -150,6 +150,8 @@ public class GameServer extends Thread {
 		CharacterTable.getInstance().loadAllCharName();
 		// 清除角色上線狀態
 		CharacterTable.clearOnlineStatus();
+		// 清除帳號上線狀態
+		Account.resetOnlineStatus();
 
 		// 遊戲帳號驗證控制器
 		LoginController.getInstance();

@@ -177,8 +177,7 @@ public class ClientThread implements Runnable, PacketOutput {
 	@Override
 	public void run() {
 		_log.info("客戶端 (" + _hostname + ") 連線開始。");
-		System.out.println("記憶體使用量: " + SystemUtil.getUsedMemoryMB() + "MB");
-		System.out.println("等待客戶端連線中...");
+		CommandLogPrint();
 		Socket socket = _csocket;
 
 		AutoResponse response = new AutoResponse();
@@ -190,25 +189,20 @@ public class ClientThread implements Runnable, PacketOutput {
 		if (AUTOMATIC_KICK > 0)
 			observer.start();
 
-		try
-		{
+		try {
 			S_Initialize init;
-			
-			try
-			{
+
+			try {
 				init = new S_Initialize();
 				sendPacket(init);
 				_clkey = LineageEncryption.initKeys(socket, init.getCipherKey());
 			}
-			catch (ClientIdExistsException e1)
-			{
+			catch (ClientIdExistsException e1) {
 				// do nothing
-			}
-			finally
-			{
+			} finally {
 				init = null;
 			}
-		
+
 			while (true) {
 				doAutoSave();
 
@@ -275,11 +269,14 @@ public class ClientThread implements Runnable, PacketOutput {
 
 		if (_kick < 1) {
 			_log.info("客戶端 (" + _hostname + ") 連線結束。");
-			System.out.println("記憶體使用量: " + SystemUtil.getUsedMemoryMB() + "MB");
-			System.out.println("等待客戶端連線中...");
+			CommandLogPrint();
 		}
 
 		Thread.interrupted(); // 執行緒中止
+	}
+	private void CommandLogPrint() {
+			System.out.println("記憶體使用量: " + SystemUtil.getUsedMemoryMB() + "MB");
+			System.out.println("等待客戶端連線中...");
 	}
 
 	private int _kick = 0;
@@ -287,7 +284,9 @@ public class ClientThread implements Runnable, PacketOutput {
 	public void kick() {
 		sendPacket(new S_Disconnect());
 		_kick = 1;
-		StreamUtil.close(_out, _in);
+		offline();
+		setActiveChar(null);
+		setAccount(null);
 	}
 
 	// 自動回應程序
@@ -370,30 +369,31 @@ public class ClientThread implements Runnable, PacketOutput {
 	}
 
 	@Override
-	public void sendPacket(ServerBasePacket packet)
-	{
+	public void sendPacket(ServerBasePacket packet) {
 		// 判斷資料封包是否為空
-		if (packet == null)
-		{
+		if (packet == null) {
 			return;
 		}
 
-		synchronized (this)
-		{
-			try
-			{
+		synchronized (this) {
+			try {
 				byte[] abyte0 = packet.getContent();
 				char ac[] = UChar8.fromArray(abyte0);
-				
+
 				if (_clkey != null)
 					ac = LineageEncryption.encrypt(ac, _clkey);
-				
+
 				_out.write(packet.getLength());
 				_out.write(UByte8.fromArray(ac));
 				_out.flush();
 			} catch (Exception e) {
 			}
 		}
+	}
+
+	public void offline() {
+		_account.updateOnlineStatus(0);
+		StreamUtil.close(_out, _in);
 	}
 
 	public void close() throws IOException {

@@ -70,6 +70,9 @@ public class Account {
 
 	private static MessageDigest _md;
 
+	private boolean _onlineStatus = false;
+
+
 	/**
 	 * コンストラクタ.
 	 */
@@ -148,7 +151,7 @@ public class Account {
 			account._lastActive = new Timestamp(System.currentTimeMillis());
 
 			con = L1DatabaseFactory.getInstance().getConnection();
-			String sqlstr = "INSERT INTO accounts SET login=?,password=?,lastactive=?,access_level=?,ip=?,host=?,banned=?,character_slot=?";
+			String sqlstr = "INSERT INTO accounts SET login=?,password=?,lastactive=?,access_level=?,ip=?,host=?,banned=?,character_slot=?,online_status=?";
 			pstm = con.prepareStatement(sqlstr);
 			pstm.setString(1, account._name);
 			pstm.setString(2, account._password);
@@ -158,6 +161,7 @@ public class Account {
 			pstm.setString(6, account._host);
 			pstm.setInt(7, account._banned ? 1 : 0);
 			pstm.setInt(8, 0);
+			pstm.setInt(9, 0);
 			pstm.execute();
 			_log.info("created new account for " + name);
 
@@ -203,6 +207,7 @@ public class Account {
 			account._host = rs.getString("host");
 			account._banned = rs.getInt("banned") == 0 ? false : true;
 			account._characterSlot = rs.getInt("character_slot");
+			account._onlineStatus = rs.getInt("online_status") == 0 ? false : true;
 
 			_log.fine("account exists");
 		} catch (SQLException e) {
@@ -214,9 +219,51 @@ public class Account {
 		return account;
 	}
 
+	private static String[] STATUS = new String[]{"離線", "線上"};
 	/**
 	 * 最終ログイン日をDBに反映する.
-	 * 
+	 *
+	 * @param account 帳號
+	 */
+	public void updateOnlineStatus(final int status_id) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			String sqlstr = "UPDATE accounts SET online_status=? WHERE login = ? LIMIT 1";
+			pstm = con.prepareStatement(sqlstr);
+			pstm.setInt(1, status_id);
+			pstm.setString(2, _name);
+			pstm.execute();
+			_onlineStatus = status_id == 0 ? false : true;
+
+			_log.fine("update onlineStatus for " + _name);
+		} catch (Exception e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm, con);
+		}
+		System.out.println("帳號：" + _name + "， 【登入狀況】：" + STATUS[status_id]);
+	}
+
+	public static void resetOnlineStatus() {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			String sqlstr = "UPDATE accounts SET online_status=0 WHERE online_status=1";
+			pstm = con.prepareStatement(sqlstr);
+			pstm.execute();
+		} catch (Exception e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm, con);
+		}
+	}
+
+	/**
+	 * 最終ログイン日をDBに反映する.
+	 *
 	 * @param account 帳號
 	 */
 	public static void updateLastActive(final Account account, final String ip) {
@@ -225,7 +272,7 @@ public class Account {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			String sqlstr = "UPDATE accounts SET lastactive=?,ip=? WHERE login = ?";
+			String sqlstr = "UPDATE accounts SET lastactive=?,ip=? WHERE login=? LIMIT 1";
 			pstm = con.prepareStatement(sqlstr);
 			pstm.setTimestamp(1, ts);
 			pstm.setString(2, ip);
@@ -251,7 +298,7 @@ public class Account {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			String sqlstr = "UPDATE accounts SET character_slot=? WHERE login=?";
+			String sqlstr = "UPDATE accounts SET character_slot=? WHERE login=? LIMIT 1";
 			pstm = con.prepareStatement(sqlstr);
 			pstm.setInt(1, account.getCharacterSlot());
 			pstm.setString(2, account.getName());
@@ -303,7 +350,7 @@ public class Account {
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			String sqlstr = "UPDATE accounts SET banned=1 WHERE login=?";
+			String sqlstr = "UPDATE accounts SET banned=1, online_status=0 WHERE login=?";
 			pstm = con.prepareStatement(sqlstr);
 			pstm.setString(1, login);
 			pstm.execute();
@@ -312,6 +359,20 @@ public class Account {
 		} finally {
 			SQLUtil.close(pstm, con);
 		}
+	}
+
+	/**
+	 * 返回 帳號是否在使用中
+	 */
+	public static boolean getOnlineStatus(final Account account) {
+		return account._onlineStatus;
+	}
+
+	/**
+	 * 返回 帳號是否在使用中
+	 */
+	public boolean getOnlineStatus() {
+		return _onlineStatus;
 	}
 
 	/**

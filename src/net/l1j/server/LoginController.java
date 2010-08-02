@@ -99,6 +99,8 @@ public class LoginController {
 	public synchronized boolean logout(ClientThread client) {
 		if (client.getAccountName() == null) {
 			return false;
+		} else {
+			client.offline();
 		}
 		return _accounts.remove(client.getAccountName()) != null;
 	}

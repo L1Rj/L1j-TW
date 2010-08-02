@@ -267,12 +267,6 @@ public class C_LoginToServer extends ClientBasePacket {
 		String login = client.getAccountName();
 		String charName = readS();
 
-		if (client.getActiveChar() != null) {
-			_log.info("相同帳號 (" + client.getHostname() + ")因重覆連線而遭伺服器強制切斷連線。");
-			client.close();
-			return;
-		}
-
 		L1PcInstance pc = L1PcInstance.load(charName);
 		if (pc == null || !login.equals(pc.getAccountName())) {
 			_log.info("【無效請求】 帳號=" + login + " 角色=" + charName + " IP位址:" + client.getHostname());
@@ -281,11 +275,7 @@ public class C_LoginToServer extends ClientBasePacket {
 		}
 
 		if (pc != null) {// 限制同一角色無法同時登入
-			if (pc.getOnlineStatus() == 1) {
-				_log.info("【禁止同一角色同時登入伺服器】 角色名稱: " + charName + " 帳號: " + login + " IP位址:" + client.getHostname());
-				client.close();
-				return;
-			} else if (pc.isBanned() == true) {// 被鎖定角色無法登入
+			if (pc.isBanned() == true) {// 被鎖定角色無法登入
 				_log.info("【被鎖定角色登入】 帳號=" + login + " 角色=" + charName + " IP位址:" + client.getHostname());
 				client.kick(); // 狀態待修改
 				return;
