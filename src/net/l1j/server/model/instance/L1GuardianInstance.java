@@ -71,49 +71,46 @@ public class L1GuardianInstance extends L1NpcInstance {
 	@Override
 	public void searchTarget() {
 		// ターゲット檢索
-		L1PcInstance targetPlayer = null;
+            L1PcInstance targetPlayer = null;
+            for (L1PcInstance pc : L1World.getInstance().getVisiblePlayer(this)) {
+                if (pc.getCurrentHp() <= 0 || pc.isDead() || pc.isGm() || pc.isGhost()) {
+                    continue;
+                }
+                if (!pc.isInvisble() || getNpcTemplate().is_agrocoi()) { // インビジチェック
+                    if (!pc.isElf()) { // エルフ以外
+                        targetPlayer = pc;
+                        wideBroadcastPacket(new S_NpcChatPacket(this, "$804", 2)); // 人類，如果你重視你的生命現在就快離開這神聖的地方。
+                        break;
+                    } else if (pc.isElf() && pc.isWantedForElf()) { // PK ELF 妖精殺死同族
+                        wideBroadcastPacket(new S_NpcChatPacket(this, "$815", 2)); // 若殺害同族，必須以自己的生命贖罪。
+                        targetPlayer = pc;
+                        break;
+                    }
+                }
+            }
+            if (targetPlayer != null) {
+                _hateList.add(targetPlayer, 0);
+                _target = targetPlayer;
+            }
+        }
 
-		for (L1PcInstance pc : L1World.getInstance().getVisiblePlayer(this)) {
-			if (pc.getCurrentHp() <= 0 || pc.isDead() || pc.isGm() || pc.isGhost()) {
-				continue;
-			}
-			if (!pc.isInvisble() || getNpcTemplate().is_agrocoi()) { // インビジチェック
-				if (!pc.isElf()) { // エルフ以外
-					targetPlayer = pc;
-					wideBroadcastPacket(new S_NpcChatPacket(this, "$804", 2)); // 人類，如果你重視你的生命現在就快離開這神聖的地方。
-					break;
-				}
-
-				else if (pc.isElf() && pc.isWantedForElf()) { // PK ELF 妖精殺死同族
-					wideBroadcastPacket(new S_NpcChatPacket(this, "$815", 1)); // 若殺害同族，必須以自己的生命贖罪。
-					targetPlayer = pc;
-					break;
-				}
-			}
-		}
-		if (targetPlayer != null) {
-			_hateList.add(targetPlayer, 0);
-			_target = targetPlayer;
-		}
-	}
-
-	// リンクの設定
-	@Override
-	public void setLink(L1Character cha) {
-		if (cha != null && _hateList.isEmpty()) { // ターゲットがいない場合のみ追加
-			_hateList.add(cha, 0);
-			checkTarget();
-		}
-	}
-
-	@Override
-	public void onNpcAI() {
-		if (isAiRunning()) {
-			return;
-		}
-		setActived(false);
-		startAI();
-	}
+        // リンクの設定
+        @Override
+        public void setLink(L1Character cha) {
+            if (cha != null && _hateList.isEmpty()) { // ターゲットがいない場合のみ追加
+                _hateList.add(cha, 0);
+                checkTarget();
+            }
+        }
+        
+        @Override
+        public void onNpcAI() {
+            if (isAiRunning()) {
+                return;
+            }
+            setActived(false);
+            startAI();
+        }
 
 	// 跟NPC打材料需要的變數
 	private int chance; // 5.19 Start

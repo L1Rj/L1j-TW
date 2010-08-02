@@ -1185,10 +1185,6 @@
 	<Action Name="teleport dark-elf-dungen" NpcId="70853">
 		<Teleport X="32727" Y="32799" Map="209" Heading="5" Price="0"/>
 	</Action>
-	<!-- ドラゴンバレーダンジョン3階⇒セピアダンジョン -->
-	<Action Name="teleport sepia-dungen" NpcId="50031">
-		<Teleport X="32740" Y="32860" Map="302" Heading="5" Price="0"/>
-	</Action>
 	<!-- フランコ⇒カミーラの部屋 -->
 	<Action Name="b" NpcId="71089">
 		<Teleport X="32735" Y="32845" Map="481" Heading="5" Price="0"/>

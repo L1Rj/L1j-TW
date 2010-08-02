@@ -53,6 +53,9 @@
 			<SetQuest Id="Level45" Step="End"/>
 			<ShowHtml HtmlId="masha4"/>
 		</Succeed>
+                <Fail>
+                        <ShowHtml HtmlId=""/>
+                </Fail>
 	</MakeItem>
 
 	<!--君主Lv45クエスト / メグ-->

@@ -716,7 +716,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				|| npcid == 45445)// 格利芬 (遺忘之島)
 		{
 			setHiddenStatus(HIDDEN_STATUS_FLY);
-			setStatus(0);
+			setStatus(4);
 			setState(1); // 空中類型的怪物 在天上設2, 在地上設1
 		} else if (npcid == 45681) { // 風龍 - 林德拜爾
 			setHiddenStatus(HIDDEN_STATUS_FLY);
@@ -754,7 +754,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 					|| npcid == 45445)// 格利芬 (遺忘之島)
 			{
 				setHiddenStatus(HIDDEN_STATUS_FLY);
-				setStatus(0);
+				setStatus(4);
 				setState(1); // 空中類型的怪物 在天上設2, 在地上設1
 			} else if (npcid == 45681) // 風龍 - 林德拜爾
 			{

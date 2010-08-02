@@ -3464,23 +3464,6 @@
 			</Fail>
 		</MakeItem>
 	</Action>
-	<!--不起眼的古老項鍊-->
-	<Action Name="A" NpcId="71179">
-		<MakeItem>
-		<Material Amount="1" ItemId="41139"/>
-		<Material Amount="1" ItemId="49028"/>
-		<Material Amount="1" ItemId="49029"/>
-		<Material Amount="1" ItemId="49030"/>
-		<Item Amount="1" ItemId="41140"/>
-		</MakeItem>
-	</Action>
-	<Action Name="B" NpcId="71179">
-		<MakeItem>
-		<Material Amount="1" ItemId="41140"/>
-		<Material Amount="1" ItemId="49027"/>
-		<Item Amount="1" ItemId="20422"/>
-		</MakeItem>
-	</Action>
 	<!--強韌的海斯-->
 	<Action Name="request elite valakas plate armor" NpcId="91057">
 		<MakeItem>
