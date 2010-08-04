@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import java.util.TimeZone;
 
 import net.l1j.Config;
+import net.l1j.server.CrackTimeController;
 import net.l1j.server.ClientThread;
 import net.l1j.server.WarTimeController;
 import net.l1j.server.datatables.CastleTable;
@@ -2312,7 +2313,7 @@ public class C_NPCAction extends ClientBasePacket {
                             map782pccount++;
                         }
                     }
-                    if (map782pccount > 20) { // (20人限定未實裝) 人數上限已到達時顯示
+                    if (map782pccount >= 20) { // (20人限定未實裝) 人數上限已到達時顯示
                         htmlid = "tebegate4";
                     }
                     if (s.equalsIgnoreCase("e") && map782pccount <= 19) { // 持有鑰匙經由祭壇守門人傳送進入
@@ -3377,18 +3378,26 @@ public class C_NPCAction extends ClientBasePacket {
                         }
                     }
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 90521) { // 提卡爾神廟守門人
-                    /*
-                    if () { // (人數限制未實裝) 人數上限已到達時顯示
+                    int map784pccount = 0;
+                    for (L1PcInstance map784pc : L1World.getInstance().getAllPlayers()) {
+                        if (map784pc.getMapId() == 784) {
+                            map784pccount++;
+                        }
+                    }
+                    if (map784pccount >= 20) {
                         htmlid = "tikalgate4";
                     }
-                    */
-                    if (s.equalsIgnoreCase("e")) { // 持有鑰匙經由神廟守門人傳送進入
-                        if (pc.getInventory().checkItem(49308, 1)) { // 檢查提卡爾庫庫爾坎祭壇鑰匙
-                            pc.getInventory().consumeItem(49308, 1);
-                            L1Teleport.teleport(pc, 32730, 32866, (short) 784, 2, true); // 傳送至庫庫爾坎祭壇
-                            htmlid = "";
+                    if (s.equalsIgnoreCase("e") && map784pccount <= 19) {
+                        if (CrackTimeController.getStart().map784gateopen() == false) {
+                            htmlid = "tikalgate2";
                         } else {
-                            htmlid = "tikalgate3";
+                            if (pc.getInventory().checkItem(49308, 1)) {
+                                pc.getInventory().consumeItem(49308, 1);
+                                L1Teleport.teleport(pc, 32730, 32866, (short) 784, 2, true); // 傳送至庫庫爾坎祭壇
+                                htmlid = "";
+                            } else {
+                                htmlid = "tikalgate3";
+                            }
                         }
                     }
                 } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91002 // 寵物競速NPC的編號

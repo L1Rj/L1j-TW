@@ -90,6 +90,7 @@ public class CrackTimeController extends TimerTask {
 			}
 		}
 		_startTime ++;
+                _map784gatetime ++;
 //		switch (_startTime) {			
 //		case 60*2: // 時間軸開始1分鐘
 //			L1World.getInstance().broadcastServerMessage(SystemMessageId.$79);
@@ -100,7 +101,7 @@ public class CrackTimeController extends TimerTask {
 		//checkVictory();
 		int delaytime = ( 5 * 600 ) ; // 伺服器啟動五分鐘後啟動時空裂痕
 		int keeptime =( 3 * 360000000 ); // 每次開啟 三 小時
-
+                int map784gatetimer = (150 * 600); // 時空裂痕開啟150分鐘
 		if (_startTime == delaytime ) {
 			spawnCrack();
 			}
@@ -112,6 +113,10 @@ public class CrackTimeController extends TimerTask {
 		if (_startTime >= ( keeptime + delaytime )) {
 			_isOver = true;
 		}
+
+                if (_map784gatetime >= (delaytime + map784gatetimer)) {
+                        _map784gateopen = true;
+                }
 	}
 
 	/**
@@ -120,6 +125,9 @@ public class CrackTimeController extends TimerTask {
 	private void clear() {
 		_startTime = 0;
 		_isOver = false;
+                _map784gatetime = 0;
+                _map784gateopen = false;
+
 	}
 
 	private void spawnCrack() {
@@ -202,4 +210,16 @@ public class CrackTimeController extends TimerTask {
 			}
 		}
 	}
+
+        private int _map784gatetime = 0;
+
+        private boolean _map784gateopen = false;
+
+        public void setMap784getaopen(boolean map784gateopen) {
+                _map784gateopen = map784gateopen;
+        }
+
+        public boolean map784gateopen() {
+                return _map784gateopen;
+        }
 }
