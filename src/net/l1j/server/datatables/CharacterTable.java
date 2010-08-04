@@ -37,7 +37,7 @@ import net.l1j.server.templates.L1CharName;
 import net.l1j.util.SQLUtil;
 
 public class CharacterTable {
-	private static Logger _log = Logger.getLogger(CharacterTable.class.getName());
+	private final static Logger _log = Logger.getLogger(CharacterTable.class.getName());
 
 	private CharacterStorage _charStorage;
 

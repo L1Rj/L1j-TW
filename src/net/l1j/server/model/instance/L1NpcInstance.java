@@ -62,6 +62,7 @@ import net.l1j.server.templates.L1NpcChat;
 import net.l1j.server.types.Base;
 import net.l1j.server.types.Point;
 import net.l1j.thread.ThreadPoolManager;
+import net.l1j.util.MoveUtil;
 import net.l1j.util.RandomArrayList;
 import net.l1j.util.TimerPool;
 
@@ -86,7 +87,7 @@ public class L1NpcInstance extends L1Character {
 	public static final int CHAT_TIMING_HIDE = 2;
 	public static final int CHAT_TIMING_GAME_TIME = 3;
 
-	private static Logger _log = Logger.getLogger(L1NpcInstance.class.getName());
+	private final static Logger _log = Logger.getLogger(L1NpcInstance.class.getName());
 
 	private L1Npc _npcTemplate;
 	private L1Spawn _spawn;
@@ -1376,17 +1377,11 @@ public class L1NpcInstance extends L1Character {
 		// add end
 	}
 
-	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
-
 	// 指定された方向に移動させる
 	public void setDirectionMove(int dir) {
 		if (dir != -1) {
-			int nx = getX();
-			int ny = getY();
-			nx += HEADING_TABLE_X[dir];
-			ny += HEADING_TABLE_Y[dir];
+			int nx = MoveUtil.MoveLocX(getX(), dir);
+			int ny = MoveUtil.MoveLocY(getY(), dir);
 			setHeading(dir);
 
 			getMap().setPassable(getLocation(), true);
@@ -1449,11 +1444,8 @@ public class L1NpcInstance extends L1Character {
 			return false;
 		}
 
-		int targetX = getX();
-		int targetY = getY();
-
-		targetX += HEADING_TABLE_X[dir];
-		targetY += HEADING_TABLE_Y[dir];
+		int targetX = MoveUtil.MoveLocX(getX(), dir);
+		int targetY = MoveUtil.MoveLocY(getY(), dir);
 
 		for (L1Object object : L1World.getInstance().getVisibleObjects(this, 1)) {
 			// PC, Summon, Petがいる場合
@@ -1549,8 +1541,8 @@ public class L1NpcInstance extends L1Character {
 				return firstCource[i];
 			}
 			if (serchMap[locNext[0]][locNext[1]]) {
-				int tmpX = locNext[0] + diff_x - HEADING_TABLE_X[i];
-				int tmpY = locNext[1] + diff_y - HEADING_TABLE_Y[i];
+				int tmpX = locNext[0] + diff_x - MoveUtil.MoveX(i);
+				int tmpY = locNext[1] + diff_y - MoveUtil.MoveY(i);
 				if (getMap().isPassable(tmpX, tmpY, i)) {// 移動經路があった場合
 					locCopy = new int[4];
 					System.arraycopy(locNext, 0, locCopy, 0, 4);
@@ -1574,8 +1566,8 @@ public class L1NpcInstance extends L1Character {
 					return locNext[3];
 				}
 				if (serchMap[locNext[0]][locNext[1]]) {
-					int tmpX = locNext[0] + diff_x - HEADING_TABLE_X[i];
-					int tmpY = locNext[1] + diff_y - HEADING_TABLE_Y[i];
+					int tmpX = locNext[0] + diff_x - MoveUtil.MoveX(i);
+					int tmpY = locNext[1] + diff_y - MoveUtil.MoveY(i);
 					if (getMap().isPassable(tmpX, tmpY, i)) {// 移動經路があった場合
 						locCopy = new int[4];
 						System.arraycopy(locNext, 0, locCopy, 0, 4);
@@ -1591,9 +1583,8 @@ public class L1NpcInstance extends L1Character {
 	}
 
 	private void _moveLocation(int[] ary, int heading) {
-		ary[0] += HEADING_TABLE_X[heading];
-		ary[1] += HEADING_TABLE_Y[heading];
 		ary[2] = heading;
+		MoveUtil.MoveLoc(ary);
 	}
 
 	private static final int[][] _GETFRONT = {
@@ -1605,15 +1596,6 @@ public class L1NpcInstance extends L1Character {
 			{ 7, 6, 5, 4, 3},
 			{ 4, 5, 6, 7, 0},
 			{ 5, 0, 7, 6, 1}};
-	/**
-	 * private void _getFront(int[] ary, int dir) {
-	 * 	ary[4] = targetFace(dir + 2);
-	 * 	ary[3] = targetFace(dir + 6);
-	 * 	ary[2] = dir;
-	 * 	ary[1] = targetFace(dir + 7);
-	 * 	ary[0] = targetFace(dir + 1);
-	 * }
-	 */
 
 	// ■■■■■■■■■■■■ アイテム關連 ■■■■■■■■■■
 

@@ -3,17 +3,17 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
  * 02111-1307, USA.
- *
+ * 
  * http://www.gnu.org/copyleft/gpl.html
  */
 package net.l1j.server.model;
@@ -40,7 +40,7 @@ import net.l1j.server.serverpackets.ServerBasePacket;
 import net.l1j.server.types.Base;
 import net.l1j.server.types.Point;
 import net.l1j.util.IntRange;
-
+import net.l1j.util.MoveUtil;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1Character extends L1Object {
@@ -255,22 +255,17 @@ public class L1Character extends L1Object {
 		}
 	}
 
-	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
-
 	/**
 	 * キャラクターの正面の座標を返す。
 	 * 
 	 * @return 正面の座標
 	 */
 	public int[] getFrontLoc() {
-		int[] loc = new int[2];// 4.26 Start
-		int heading = getHeading();
-		loc[0] = getX() + HEADING_TABLE_X[heading];
-		loc[1] = getY() + HEADING_TABLE_Y[heading];// 4.26 End;;
+		int[] loc = {getX(), getY()};
+		MoveUtil.MoveLoc(loc, getHeading());
 		return loc;
 	}
+	
 
 	/** 緩存tan數值 */
 	private static final double TAN_225[] = Base.TAN_225;
@@ -416,28 +411,19 @@ public class L1Character extends L1Object {
 
 	private int _charStatus = 0;
 	private static final int STATUS_TYPE[] = Base.STATUS_TYPE;
-	// private static final String[] STATUSNAME = {"正常", "絕對屏障", "冰矛圍籬(凍)", "大地屏障", "冰雪颶風(凍)", "寒冰噴吐(凍)"};
 	/**
 	 * 特殊狀態速查
-	 *
+	 * 
 	 * 將人身上特有的特殊狀態製成索引，降低 普通/魔法 攻擊時，需要一一比對身上技能的煩惱。
 	 */
 	public void addInvincibleEffect(int stautsId) {
-		if((_charStatus & STATUS_TYPE[stautsId]) == STATUS_TYPE[stautsId]) {
-			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果已經擁有 ");
-		} else {
-			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果增加 ");
+		if((_charStatus & STATUS_TYPE[stautsId]) != STATUS_TYPE[stautsId])
 			_charStatus += STATUS_TYPE[stautsId];
-		}
 	}
 
 	public void removeInvincibleEffect(int stautsId) {
-		if((_charStatus & STATUS_TYPE[stautsId]) == STATUS_TYPE[stautsId]) {
-			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果解除 ");
+		if((_charStatus & STATUS_TYPE[stautsId]) == STATUS_TYPE[stautsId])
 			_charStatus -= STATUS_TYPE[stautsId];
-		} else {
-			// System.out.println(getName() + " 的 " + STATUSNAME[stautsId] + " 效果未曾擁有 ");
-		}
 	}
 
 	public boolean hasInvincibleEffect() {
@@ -453,7 +439,7 @@ public class L1Character extends L1Object {
 
 	/**
 	 * キャラクターへ、新たにスキル效果を追加する。
-	 *
+	 * 
 	 * @param skillId 追加する效果のスキルID。
 	 * @param timeMillis 追加する效果の持續時間。無限の場合は0。
 	 */
@@ -817,7 +803,7 @@ public class L1Character extends L1Object {
 
 	/**
 	 * キャラクターから、認識しているオブジェクトを削除する。
-	 *
+	 * 
 	 * @param obj 削除するオブジェクト。
 	 */
 	public void removeKnownObject(L1Object obj) {
@@ -1451,7 +1437,7 @@ public class L1Character extends L1Object {
 
 	/**
 	 * キャラクターが保持しているカルマを返す。
-	 *
+	 * 
 	 * @return カルマ。
 	 */
 	public int getKarma() {
@@ -1460,7 +1446,7 @@ public class L1Character extends L1Object {
 
 	/**
 	 * キャラクターが保持するカルマを設定する。
-	 *
+	 * 
 	 * @param karma カルマ。
 	 */
 	public void setKarma(int karma) {

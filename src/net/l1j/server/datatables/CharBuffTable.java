@@ -30,7 +30,7 @@ import net.l1j.util.SQLUtil;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class CharBuffTable {
-	private static Logger _log = Logger.getLogger(CharBuffTable.class.getName());
+	private final static Logger _log = Logger.getLogger(CharBuffTable.class.getName());
 
 	private static final int[] buffSkill = { 2, 67, // ライト、シェイプチェンジ
 			3, 99, 151, 159, 168, // シールド、シャドウアーマー、アーススキン、アースブレス、アイアンスキン

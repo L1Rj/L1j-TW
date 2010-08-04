@@ -27,7 +27,7 @@ import net.l1j.server.serverpackets.S_Disconnect;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1SKick implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1SKick.class.getName());
+	private final static Logger _log = Logger.getLogger(L1SKick.class.getName());
 
 	public static L1CommandExecutor getInstance() {
 		return new L1SKick();

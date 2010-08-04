@@ -37,19 +37,15 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.trap.L1WorldTraps;
 import net.l1j.server.serverpackets.S_MoveCharPacket;
 import net.l1j.server.serverpackets.S_SystemMessage;
-import net.l1j.server.types.Base;
+import net.l1j.util.MoveUtil;
 
 import static net.l1j.server.model.instance.L1PcInstance.REGENSTATE_MOVE;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class C_MoveChar extends ClientBasePacket {
-	private static Logger _log = Logger.getLogger("speedhack");
+	private final static Logger _log = Logger.getLogger("speedhack");
 
 	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.10
-
-	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	// マップタイル調查用
 	private void sendMapTileLog(L1PcInstance pc) {
@@ -106,8 +102,8 @@ public class C_MoveChar extends ClientBasePacket {
 			locy = pc.getY(); // Y軸座標
 		}
 
-		locx += HEADING_TABLE_X[heading];// 4.26 Start
-		locy += HEADING_TABLE_Y[heading];// 4.26 End
+		locx += MoveUtil.MoveX(heading);
+		locy += MoveUtil.MoveY(heading);
 
 		// waja add 測試禁止穿過物件
 		FastTable<L1Object> objs = L1World.getInstance().getVisibleObjects(pc, 1);

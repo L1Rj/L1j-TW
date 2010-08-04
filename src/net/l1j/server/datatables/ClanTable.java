@@ -37,7 +37,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.util.SQLUtil;
 
 public class ClanTable {
-	private static Logger _log = Logger.getLogger(ClanTable.class.getName());
+	private final static Logger _log = Logger.getLogger(ClanTable.class.getName());
 
 	private final FastMap<Integer, L1Clan> _clans = new FastMap<Integer, L1Clan>();
 

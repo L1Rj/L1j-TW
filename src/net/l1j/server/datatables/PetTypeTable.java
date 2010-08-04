@@ -36,7 +36,7 @@ import net.l1j.util.IntRange;
 import net.l1j.util.SQLUtil;
 
 public class PetTypeTable {
-	private static Logger _log = Logger.getLogger(PetTypeTable.class.getName());
+	private final static Logger _log = Logger.getLogger(PetTypeTable.class.getName());
 
 	private static PetTypeTable _instance;
 

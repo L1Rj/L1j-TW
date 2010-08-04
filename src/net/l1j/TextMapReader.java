@@ -39,7 +39,7 @@ import net.l1j.server.model.map.L1V1Map;
  */
 public class TextMapReader extends MapReader {
 	/** 訊息記錄 */
-	private static Logger _log = Logger.getLogger(TextMapReader.class.getName());
+	private final static Logger _log = Logger.getLogger(TextMapReader.class.getName());
 
 	/** 文字地圖目錄 */
 	private static final String MAP_DIR = "./map/";

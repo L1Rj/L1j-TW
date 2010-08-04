@@ -34,7 +34,7 @@ import net.l1j.server.templates.L1Pet;
 import net.l1j.util.SQLUtil;
 
 public class PetTable {
-	private static Logger _log = Logger.getLogger(PetTable.class.getName());
+	private final static Logger _log = Logger.getLogger(PetTable.class.getName());
 
 	private static PetTable _instance;
 

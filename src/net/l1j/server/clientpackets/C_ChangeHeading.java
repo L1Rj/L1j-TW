@@ -27,7 +27,7 @@ import net.l1j.server.serverpackets.S_ChangeHeading;
 public class C_ChangeHeading extends ClientBasePacket {
 	private static final String C_CHANGE_HEADING = "[C] C_ChangeHeading";
 
-	private static Logger _log = Logger.getLogger(C_ChangeHeading.class.getName());
+	private final static Logger _log = Logger.getLogger(C_ChangeHeading.class.getName());
 
 	public C_ChangeHeading(byte[] decrypt, ClientThread client) {
 		super(decrypt);

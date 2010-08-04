@@ -3,12 +3,12 @@
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -37,12 +37,12 @@ import net.l1j.util.RandomArrayList;
  * 時空裂痕時間控制器
  */
 public class CrackTimeController extends TimerTask {
-	private static Logger _log = Logger.getLogger(CrackTimeController.class.getName());
-	
+	private final static Logger _log = Logger.getLogger(CrackTimeController.class.getName());
+
 	private Timer _timeHandler = new Timer(true);
-	
+
 	private boolean _isOver = false;
-	
+
 	// 時空裂痕已開始時間(1/2秒)
 	private int _startTime = 0;
 
@@ -50,26 +50,26 @@ public class CrackTimeController extends TimerTask {
 		{ 32639, 32876, 780 }, // 底比斯
 		{ 32794, 32751, 783 }  // 提卡爾
 	};
-	
+
 	private static final int[][] _crackLoc = {
 		{ 32728, 32709, 4 }, { 32848, 32639, 4 }, { 32852, 32705, 4 }, // 邪惡神殿
 		{ 32913, 33168, 4 }, { 32957, 33247, 4 }, { 32913, 33425, 4 }, // 沙漠綠洲
 		{ 34255, 33203, 4 }, { 34232, 33312, 4 }, { 34276, 33359, 4 }  // 黃昏山脈
 	};
-	
+
 	private static CrackTimeController _instance;
-	
+
 	public static CrackTimeController getStart() {
 		if (_instance == null) {
 			_instance = new CrackTimeController();
 		}
 		return _instance;
 	}
-	
+
 	public void startCrackTime(){
 		CrackTimeController.getStart();
 	}
-	
+
 	private CrackTimeController() {
 		// 開始執行此時間軸
 		_timeHandler.schedule(this, 500, 500);
@@ -90,8 +90,8 @@ public class CrackTimeController extends TimerTask {
 			}
 		}
 		_startTime ++;
-                _map784gatetime ++;
-//		switch (_startTime) {			
+		_map784gatetime ++;
+//		switch (_startTime) {
 //		case 60*2: // 時間軸開始1分鐘
 //			L1World.getInstance().broadcastServerMessage(SystemMessageId.$79);
 //			break;
@@ -114,9 +114,9 @@ public class CrackTimeController extends TimerTask {
 			_isOver = true;
 		}
 
-                if (_map784gatetime >= (delaytime + map784gatetimer)) {
-                        _map784gateopen = true;
-                }
+		if (_map784gatetime >= (delaytime + map784gatetimer)) {
+				_map784gateopen = true;
+		}
 	}
 
 	/**
@@ -125,8 +125,8 @@ public class CrackTimeController extends TimerTask {
 	private void clear() {
 		_startTime = 0;
 		_isOver = false;
-                _map784gatetime = 0;
-                _map784gateopen = false;
+		_map784gatetime = 0;
+		_map784gateopen = false;
 
 	}
 
@@ -211,15 +211,15 @@ public class CrackTimeController extends TimerTask {
 		}
 	}
 
-        private int _map784gatetime = 0;
+	private int _map784gatetime = 0;
 
-        private boolean _map784gateopen = false;
+	private boolean _map784gateopen = false;
 
-        public void setMap784getaopen(boolean map784gateopen) {
-                _map784gateopen = map784gateopen;
-        }
+	public void setMap784getaopen(boolean map784gateopen) {
+			_map784gateopen = map784gateopen;
+	}
 
-        public boolean map784gateopen() {
-                return _map784gateopen;
-        }
+	public boolean map784gateopen() {
+			return _map784gateopen;
+	}
 }

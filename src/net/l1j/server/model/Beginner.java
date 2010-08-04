@@ -36,7 +36,7 @@ import net.l1j.util.SQLUtil;
 
 public class Beginner {
 
-	private static Logger _log = Logger.getLogger(Beginner.class.getName());
+	private final static Logger _log = Logger.getLogger(Beginner.class.getName());
 
 	private static Beginner _instance;
 

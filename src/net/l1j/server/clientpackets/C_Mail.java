@@ -37,7 +37,7 @@ import net.l1j.server.templates.L1Mail;
 public class C_Mail extends ClientBasePacket {
 	private static final String C_MAIL = "[C] C_Mail";
 
-	private static Logger _log = Logger.getLogger(C_Mail.class.getName());
+	private final static Logger _log = Logger.getLogger(C_Mail.class.getName());
 
 	private static int TYPE_NORMAL_MAIL = 0; // 一般
 	private static int TYPE_CLAN_MAIL = 1; // 血盟

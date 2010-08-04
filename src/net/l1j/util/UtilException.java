@@ -16,12 +16,20 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package net.l1j.server;
+package net.l1j.util;
 
-public class GameServerFullException extends Exception {
-	private static final long serialVersionUID = 1L;
-
-	public GameServerFullException() {
+public class UtilException extends RuntimeException {
+	/**
+	 * // ----------------------------------------------
+	 * // exception
+	 * // ----------------------------------------------
+	 * protected static UtilException err_ = new UtilException("");
+	 */
+	public UtilException() {
 		super();
+	}
+
+	public UtilException(String s) {
+		super(s);
 	}
 }

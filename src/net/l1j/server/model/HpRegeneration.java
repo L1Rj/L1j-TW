@@ -31,7 +31,7 @@ import net.l1j.util.RandomArrayList;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class HpRegeneration extends TimerTask {
-	private static Logger _log = Logger.getLogger(HpRegeneration.class.getName());
+	private final static Logger _log = Logger.getLogger(HpRegeneration.class.getName());
 
 	private final L1PcInstance _pc;
 
@@ -40,8 +40,6 @@ public class HpRegeneration extends TimerTask {
 	private int _regenPoint = 0;
 
 	private int _curPoint = 4;
-
-	//private static Random _random = new Random();
 
 	public HpRegeneration(L1PcInstance pc) {
 		_pc = pc;

@@ -45,15 +45,12 @@ import net.l1j.server.model.instance.L1SummonInstance;
 import net.l1j.server.model.item.ItemId;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Drop;
-import net.l1j.server.types.Base;
+import net.l1j.util.MoveUtil;
 import net.l1j.util.RandomArrayList;
 import net.l1j.util.SQLUtil;
 
 public class DropTable {
-	private static Logger _log = Logger.getLogger(DropTable.class.getName());
-	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
-	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
+	private final static Logger _log = Logger.getLogger(DropTable.class.getName());
 
 	private static DropTable _instance;
 
@@ -311,8 +308,8 @@ public class DropTable {
 					randomInt = RandomArrayList.getInt(dirList.size());
 					dir = dirList.get(randomInt);
 					dirList.remove(randomInt);
-					x = HEADING_TABLE_X[dir];
-					y = HEADING_TABLE_Y[dir];
+					x = MoveUtil.MoveX(dir);
+					y = MoveUtil.MoveY(dir);
 				} while (!npc.getMap().isPassable(npc.getX(), npc.getY(), dir));
 				targetInventory = L1World.getInstance().getInventory(npc.getX() + x, npc.getY() + y, npc.getMapId());
 				isGround = true;

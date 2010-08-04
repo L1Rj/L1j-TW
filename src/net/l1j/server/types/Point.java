@@ -19,9 +19,11 @@ package net.l1j.server.types;
 
 import java.util.logging.Logger;
 
+import net.l1j.util.MoveUtil;
+
 public class Point {
 
-	private static Logger _log = Logger.getLogger(Point.class.getName());
+	private final static Logger _log = Logger.getLogger(Point.class.getName());
 
 	protected int _x = 0;
 	protected int _y = 0;
@@ -65,18 +67,14 @@ public class Point {
 		_y = y;
 	}
 
-	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
-	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
-
 	/**
 	 * 指定された向きにこの座標をひとつ進める。
 	 * 
 	 * @param heading 向き(0~7)
 	 */
 	public void forward(int heading) {
-		_x += HEADING_TABLE_X[heading];
-		_y += HEADING_TABLE_Y[heading];
+		_x += MoveUtil.MoveX(heading);
+		_y += MoveUtil.MoveY(heading);
 	}
 
 	/**
@@ -85,8 +83,8 @@ public class Point {
 	 * @param heading 向き(0~7)
 	 */
 	public void backward(int heading) {
-		_x -= HEADING_TABLE_X[heading];
-		_y -= HEADING_TABLE_Y[heading];
+		_x -= MoveUtil.MoveX(heading);
+		_y -= MoveUtil.MoveY(heading);
 	}
 
 	/**

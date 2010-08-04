@@ -39,7 +39,7 @@ import static net.l1j.server.model.skill.SkillId.*;
 public class C_UseSkill extends ClientBasePacket {
 	private static final String C_USE_SKILL = "[C] C_UseSkill";
 
-	private static Logger _log = Logger.getLogger("speedhack");
+	private final static Logger _log = Logger.getLogger("speedhack");
 
 	public C_UseSkill(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);

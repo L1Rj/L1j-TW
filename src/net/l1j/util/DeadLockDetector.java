@@ -34,7 +34,7 @@ import net.l1j.server.GameServer;
  * @author -Nemesiss- L2M
  */
 public class DeadLockDetector extends Thread {
-	private static Logger _log = Logger.getLogger(DeadLockDetector.class.getName());
+	private final static Logger _log = Logger.getLogger(DeadLockDetector.class.getName());
 
 	private static final int _sleepTime = Config.DEADLOCK_CHECK_INTERVAL * 1000;
 

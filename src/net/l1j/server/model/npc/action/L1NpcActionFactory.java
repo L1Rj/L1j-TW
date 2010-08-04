@@ -29,7 +29,7 @@ import javolution.util.FastMap;
 import org.w3c.dom.Element;
 
 public class L1NpcActionFactory {
-	private static Logger _log = Logger.getLogger(L1NpcActionFactory.class.getName());
+	private final static Logger _log = Logger.getLogger(L1NpcActionFactory.class.getName());
 
 	private static Map<String, Constructor<L1NpcAction>> _actions = new FastMap<String, Constructor<L1NpcAction>>();
 

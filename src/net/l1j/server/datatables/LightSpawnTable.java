@@ -35,7 +35,7 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.util.SQLUtil;
 
 public class LightSpawnTable {
-	private static Logger _log = Logger.getLogger(LightSpawnTable.class.getName());
+	private final static Logger _log = Logger.getLogger(LightSpawnTable.class.getName());
 
 	private static LightSpawnTable _instance;
 

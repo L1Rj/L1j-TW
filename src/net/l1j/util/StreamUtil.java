@@ -24,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StreamUtil {
-	private static Logger _log = Logger.getLogger(StreamUtil.class.getName());
+	private final static Logger _log = Logger.getLogger(StreamUtil.class.getName());
 
 	public static void close(Closeable... closeables) {
 		for (Closeable c : closeables) {

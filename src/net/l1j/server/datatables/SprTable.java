@@ -33,7 +33,7 @@ import static net.l1j.server.ActionCodes.*;
 import net.l1j.util.SQLUtil;
 
 public class SprTable {
-	private static Logger _log = Logger.getLogger(SprTable.class.getName());
+	private final static Logger _log = Logger.getLogger(SprTable.class.getName());
 
 	private static class Spr {
 		private final FastMap<Integer, Integer> moveSpeed = new FastMap<Integer, Integer>();

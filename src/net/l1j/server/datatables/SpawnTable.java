@@ -39,7 +39,7 @@ import net.l1j.util.PerformanceTimer;
 import net.l1j.util.SQLUtil;
 
 public class SpawnTable {
-	private static Logger _log = Logger.getLogger(SpawnTable.class.getName());
+	private final static Logger _log = Logger.getLogger(SpawnTable.class.getName());
 
 	private static SpawnTable _instance;
 

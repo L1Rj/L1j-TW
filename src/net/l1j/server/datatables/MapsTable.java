@@ -33,7 +33,7 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.util.SQLUtil;
 
 public final class MapsTable {
-	private static Logger _log = Logger.getLogger(MapsTable.class.getName());
+	private final static Logger _log = Logger.getLogger(MapsTable.class.getName());
 
 	private class MapData {
 		public int startX = 0;

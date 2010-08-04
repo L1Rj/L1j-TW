@@ -39,7 +39,7 @@ public final class DropItemTable {
 		public double dropAmount = 1;
 	}
 
-	private static Logger _log = Logger.getLogger(DropItemTable.class.getName());
+	private final static Logger _log = Logger.getLogger(DropItemTable.class.getName());
 
 	private static DropItemTable _instance;
 

@@ -196,8 +196,7 @@ public class ClientThread implements Runnable, PacketOutput {
 				init = new S_Initialize();
 				sendPacket(init);
 				_clkey = LineageEncryption.initKeys(socket, init.getCipherKey());
-			}
-			catch (ClientIdExistsException e1) {
+			} catch (ClientIdExistsException e1) {
 				// do nothing
 			} finally {
 				init = null;
@@ -284,9 +283,15 @@ public class ClientThread implements Runnable, PacketOutput {
 	public void kick() {
 		sendPacket(new S_Disconnect());
 		_kick = 1;
-		offline();
-		setActiveChar(null);
-		setAccount(null);
+		StreamUtil.close(_out, _in);
+	}
+
+	public int getkick() {
+		return _kick;
+	}
+
+	public void setkick(int i) {
+		_kick = i;
 	}
 
 	// 自動回應程序

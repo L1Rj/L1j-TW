@@ -29,7 +29,7 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.util.SQLUtil;
 
 public class CharacterConfigTable {
-	private static Logger _log = Logger.getLogger(CharacterConfigTable.class.getName());
+	private final static Logger _log = Logger.getLogger(CharacterConfigTable.class.getName());
 
 	private static CharacterConfigTable _instance;
 

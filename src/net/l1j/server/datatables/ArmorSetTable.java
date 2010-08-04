@@ -33,7 +33,7 @@ import net.l1j.server.templates.L1ArmorSets;
 import net.l1j.util.SQLUtil;
 
 public class ArmorSetTable {
-	private static Logger _log = Logger.getLogger(ArmorSetTable.class.getName());
+	private final static Logger _log = Logger.getLogger(ArmorSetTable.class.getName());
 
 	private static ArmorSetTable _instance;
 

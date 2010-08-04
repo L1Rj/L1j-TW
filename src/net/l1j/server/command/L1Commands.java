@@ -33,7 +33,7 @@ import net.l1j.server.templates.L1Command;
 import net.l1j.util.SQLUtil;
 
 public class L1Commands {
-	private static Logger _log = Logger.getLogger(L1Commands.class.getName());
+	private final static Logger _log = Logger.getLogger(L1Commands.class.getName());
 
 	private static L1Command fromResultSet(ResultSet rs) throws SQLException {
 		return new L1Command(rs.getString("name"), rs.getInt("access_level"), rs.getString("class_name"));

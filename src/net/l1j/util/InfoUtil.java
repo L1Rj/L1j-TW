@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * @author lord_rex This class is for get/log system informations.
  */
 public class InfoUtil {
-	private static Logger _log = Logger.getLogger(InfoUtil.class.getName());
+	private final static Logger _log = Logger.getLogger(InfoUtil.class.getName());
 
 	public static String[] getMemoryInfo() {
 		double max = Runtime.getRuntime().maxMemory() / 1024; // maxMemory is the upper limit the jvm can use

@@ -39,7 +39,7 @@ import net.l1j.util.SQLUtil;
 public class C_CommonClick {
 	private static final String C_COMMON_CLICK = "[C] C_CommonClick";
 
-	private static Logger _log = Logger.getLogger(C_CommonClick.class.getName());
+	private final static Logger _log = Logger.getLogger(C_CommonClick.class.getName());
 
 	public C_CommonClick(ClientThread client) {
 		deleteCharacter(client); // 削除期限に達したキャラクターを削除する

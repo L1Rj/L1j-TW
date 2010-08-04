@@ -33,7 +33,7 @@ import net.l1j.server.templates.L1GetBackRestart;
 import net.l1j.util.SQLUtil;
 
 public class GetBackRestartTable {
-	private static Logger _log = Logger.getLogger(GetBackRestartTable.class.getName());
+	private final static Logger _log = Logger.getLogger(GetBackRestartTable.class.getName());
 
 	private static GetBackRestartTable _instance;
 

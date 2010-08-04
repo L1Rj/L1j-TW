@@ -32,7 +32,7 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 public class C_BanClan extends ClientBasePacket {
 	private static final String C_BAN_CLAN = "[C] C_BanClan";
 
-	private static Logger _log = Logger.getLogger(C_BanClan.class.getName());
+	private final static Logger _log = Logger.getLogger(C_BanClan.class.getName());
 
 	public C_BanClan(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);

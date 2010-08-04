@@ -20,26 +20,23 @@ package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
-import net.l1j.server.types.Base;
+import net.l1j.util.MoveUtil;
 
 public class S_MoveCharPacket extends ServerBasePacket {
 	private static final String S_MOVE_CHAR_PACKET = "[S] S_MoveCharPacket";
 
 	private byte[] _byte = null;
 
-	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
-
 	public S_MoveCharPacket(L1Character cha) {
-		int x = cha.getX() - HEADING_TABLE_X[cha.getHeading()];
-		int y = cha.getY() - HEADING_TABLE_Y[cha.getHeading()];
+		int heading = cha.getHeading();
+		int x = cha.getX() - MoveUtil.MoveX(heading);
+		int y = cha.getY() - MoveUtil.MoveY(heading);
 
 		writeC(Opcodes.S_OPCODE_MOVEOBJECT);
 		writeD(cha.getId());
 		writeH(x);
 		writeH(y);
-		writeC(cha.getHeading());
+		writeC(heading);
 		writeC(129);
 		writeD(0);
 	}

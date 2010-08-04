@@ -25,7 +25,7 @@ import net.l1j.server.model.map.L1Map;
 import net.l1j.server.serverpackets.S_Paralysis;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.serverpackets.S_Teleport;
-import net.l1j.server.types.Base;
+import net.l1j.util.MoveUtil;
 import net.l1j.util.Teleportation;
 
 public class L1Teleport {
@@ -39,10 +39,6 @@ public class L1Teleport {
 	public static final int CHANGE_POSITION = 1;
 	public static final int ADVANCED_MASS_TELEPORT = 2;
 	public static final int CALL_CLAN = 3;
-
-	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
-	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	public static void teleport(L1PcInstance pc, L1Location loc, int head, boolean effectable) {
 		teleport(pc, loc.getX(), loc.getY(), (short) loc.getMapId(), head, effectable, TELEPORT);
@@ -95,8 +91,8 @@ public class L1Teleport {
 	public static void teleportToTargetFront(L1Character cha, L1Character target, int distance) {
 		int heading = target.getHeading();
 		// ターゲットの向きからテレポート先の座標を決める。
-		int locX = target.getX() + HEADING_TABLE_X[heading];
-		int locY = target.getY() + HEADING_TABLE_Y[heading];
+		int locX = MoveUtil.MoveLocX(target.getX(), heading);
+		int locY = MoveUtil.MoveLocY(target.getY(), heading);
 		L1Map map = target.getMap();
 		short mapId = target.getMapId();
 

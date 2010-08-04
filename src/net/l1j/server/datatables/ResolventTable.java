@@ -33,7 +33,7 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.util.SQLUtil;
 
 public final class ResolventTable {
-	private static Logger _log = Logger.getLogger(ResolventTable.class.getName());
+	private final static Logger _log = Logger.getLogger(ResolventTable.class.getName());
 
 	private static ResolventTable _instance;
 

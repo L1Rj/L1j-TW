@@ -170,7 +170,6 @@ public class L1TownLocation {
 			new Point(32591, 32918), };
 
 	public static int[] getGetBackLoc(int town_id) { // town_idから歸還先の座標をランダムに返す
-		//Random random = new Random();
 		int[] loc = new int[3];
 
 		if (town_id == TOWNID_TALKING_ISLAND) { // TI

@@ -28,7 +28,7 @@ import net.l1j.server.ClientThread;
 public abstract class ClientBasePacket {
 	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE; // 5.06
 
-	private static Logger _log = Logger.getLogger(ClientBasePacket.class.getName());
+	private final static Logger _log = Logger.getLogger(ClientBasePacket.class.getName());
 
 	private byte _decrypt[];
 

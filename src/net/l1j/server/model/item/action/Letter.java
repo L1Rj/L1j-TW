@@ -39,7 +39,7 @@ import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.storage.CharactersItemStorage;
 
 public class Letter {
-	private static Logger _log = Logger.getLogger(Letter.class.getName());
+	private final static Logger _log = Logger.getLogger(Letter.class.getName());
 
 	public static boolean writeLetter(int itemId, L1PcInstance pc, int letterCode, String letterReceiver, byte[] letterText) {
 		int newItemId = 0;

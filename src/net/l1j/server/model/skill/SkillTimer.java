@@ -72,7 +72,7 @@ public interface SkillTimer {
  */
 class SkillStop {
 	@SuppressWarnings("unused")
-	private static Logger _log = Logger.getLogger(SkillStop.class.getName());
+	private final static Logger _log = Logger.getLogger(SkillStop.class.getName());
 
 	public static void stopSkill(L1Character cha, int skillId) {
 		if (skillId == SKILL_LIGHT) { // ライト
@@ -441,42 +441,42 @@ class SkillStop {
 				|| skillId == SKILL_FREEZING_BREATH) { // 寒冰噴吐 End
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				//
+
 				if(skillId == SKILL_ICE_LANCE)
-					pc.removeInvincibleEffect(2);
+					pc.removeInvincibleEffect(TRANSFORM_SKILL_ICE_LANCE);
 				else if(skillId == SKILL_FREEZING_BLIZZARD)
-					pc.removeInvincibleEffect(4);
+					pc.removeInvincibleEffect(TRANSFORM_SKILL_FREEZING_BLIZZARD);
 				else
-					pc.removeInvincibleEffect(5);
-				//
+					pc.removeInvincibleEffect(TRANSFORM_SKILL_FREEZING_BREATH);
+
 				pc.sendPackets(new S_Poison(pc.getId(), 0));
 				pc.broadcastPacket(new S_Poison(pc.getId(), 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, false));
 			} else if (cha instanceof L1MonsterInstance || cha instanceof L1SummonInstance
 					|| cha instanceof L1PetInstance) {
 				L1NpcInstance npc = (L1NpcInstance) cha;
-				//
+
 				if(skillId == SKILL_ICE_LANCE)
-					npc.removeInvincibleEffect(2);
+					npc.removeInvincibleEffect(TRANSFORM_SKILL_ICE_LANCE);
 				else if(skillId == SKILL_FREEZING_BLIZZARD)
-					npc.removeInvincibleEffect(4);
+					npc.removeInvincibleEffect(TRANSFORM_SKILL_FREEZING_BLIZZARD);
 				else
-					npc.removeInvincibleEffect(5);
-				//
+					npc.removeInvincibleEffect(TRANSFORM_SKILL_FREEZING_BREATH);
+
 				npc.broadcastPacket(new S_Poison(npc.getId(), 0));
 				npc.setParalyzed(false);
 			}
 		} else if (skillId == SKILL_EARTH_BIND) { // 大地屏障 End
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.removeInvincibleEffect(3);
+				pc.removeInvincibleEffect(TRANSFORM_SKILL_EARTH_BIND);
 				pc.sendPackets(new S_Poison(pc.getId(), 0));
 				pc.broadcastPacket(new S_Poison(pc.getId(), 0));
 				pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, false));
 			} else if (cha instanceof L1MonsterInstance || cha instanceof L1SummonInstance
 					|| cha instanceof L1PetInstance) {
 				L1NpcInstance npc = (L1NpcInstance) cha;
-				npc.removeInvincibleEffect(3);
+				npc.removeInvincibleEffect(TRANSFORM_SKILL_EARTH_BIND);
 				npc.broadcastPacket(new S_Poison(npc.getId(), 0));
 				npc.setParalyzed(false);
 			}
@@ -499,7 +499,7 @@ class SkillStop {
 		} else if (skillId == SKILL_ABSOLUTE_BARRIER) { // 絕對屏障 End
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.removeInvincibleEffect(1);
+				pc.removeInvincibleEffect(TRANSFORM_SKILL_ABSOLUTE_BARRIER);
 				pc.startHpRegeneration();
 				pc.startMpRegeneration();
 				pc.startMpRegenerationByDoll();
@@ -586,7 +586,7 @@ class SkillStop {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 				pc.broadcastPacket(new S_SkillHaste(pc.getId(), 0, 0));
-                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$185));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$185));
 			}
 			cha.setMoveSpeed(0);
 		} else if (skillId == STATUS_BLUE_POTION) { // ブルー ポーション
@@ -880,7 +880,7 @@ class SkillTimerThreadImpl extends Thread implements SkillTimer {
 }
 
 class SkillTimerTimerImpl implements SkillTimer, Runnable {
-	private static Logger _log = Logger.getLogger(SkillTimerTimerImpl.class.getName());
+	private final static Logger _log = Logger.getLogger(SkillTimerTimerImpl.class.getName());
 
 	private ScheduledFuture<?> _future = null;
 

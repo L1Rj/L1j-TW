@@ -37,7 +37,7 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.util.SQLUtil;
 
 public class DoorSpawnTable {
-	private static Logger _log = Logger.getLogger(DoorSpawnTable.class.getName());
+	private final static Logger _log = Logger.getLogger(DoorSpawnTable.class.getName());
 
 	private static DoorSpawnTable _instance;
 

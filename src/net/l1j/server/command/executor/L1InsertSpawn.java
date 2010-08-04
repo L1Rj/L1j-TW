@@ -31,7 +31,7 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.util.SpawnUtil;
 
 public class L1InsertSpawn implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1InsertSpawn.class.getName());
+	private final static Logger _log = Logger.getLogger(L1InsertSpawn.class.getName());
 
 	public static L1CommandExecutor getInstance() {
 		return new L1InsertSpawn();

@@ -47,7 +47,7 @@ import net.l1j.util.RandomArrayList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TreasureBox {
-	private static Logger _log = Logger.getLogger(TreasureBox.class.getName());
+	private final static Logger _log = Logger.getLogger(TreasureBox.class.getName());
 
 	private static final FastMap<Integer, TreasureBox> _dataMap = new FastMap<Integer, TreasureBox>();
 

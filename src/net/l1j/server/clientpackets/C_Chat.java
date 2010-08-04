@@ -72,7 +72,7 @@ public class C_Chat extends ClientBasePacket {
 		"<聊天隊伍>"
 	};
 
-	private static Logger _log = Logger.getLogger("chat");
+	private final static Logger _log = Logger.getLogger("chat");
 
 	public C_Chat(byte decrypt[], ClientThread client) {
 		super(decrypt);

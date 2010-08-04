@@ -29,7 +29,7 @@ import net.l1j.util.SQLUtil;
 public class S_ApplyAuction extends ServerBasePacket {
 	private static final String S_APPLY_AUCTION = "[S] S_ApplyAuction";
 
-	private static Logger _log = Logger.getLogger(S_ApplyAuction.class.getName());
+	private final static Logger _log = Logger.getLogger(S_ApplyAuction.class.getName());
 
 	private byte[] _byte = null;
 

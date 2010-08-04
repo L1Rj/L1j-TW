@@ -37,13 +37,11 @@ import static net.l1j.server.model.skill.SkillId.*;
 
 public class DungeonRandom {
 
-	private static Logger _log = Logger.getLogger(DungeonRandom.class.getName());
+	private final static Logger _log = Logger.getLogger(DungeonRandom.class.getName());
 
 	private static DungeonRandom _instance = null;
 
 	private static Map<String, NewDungeonRandom> _dungeonMap = new FastMap<String, NewDungeonRandom>();
-
-	//	private static Random _random = new Random();
 
 	public static DungeonRandom getInstance() {
 		if (_instance == null) {

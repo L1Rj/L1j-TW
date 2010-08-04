@@ -31,7 +31,7 @@ import net.l1j.server.storage.CharacterStorage;
 import net.l1j.util.SQLUtil;
 
 public class MySqlCharacterStorage implements CharacterStorage {
-	private static Logger _log = Logger.getLogger(MySqlCharacterStorage.class.getName());
+	private final static Logger _log = Logger.getLogger(MySqlCharacterStorage.class.getName());
 
 	@Override
 	public L1PcInstance loadCharacter(String charName) {

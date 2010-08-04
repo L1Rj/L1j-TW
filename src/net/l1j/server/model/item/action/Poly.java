@@ -45,7 +45,6 @@ public class Poly {
 		}
 		if (attacker.getId() != cha.getId() && !isSameClan) { // 自分以外と違うクラン
 			int probability = 3 * (attacker.getLevel() - cha.getLevel()) + 100 - cha.getMr();
-			//int rnd = RandomArrayList.getArray100List();
 			if (RandomArrayList.getInc(100, 1) > probability) {
 				return;
 			}

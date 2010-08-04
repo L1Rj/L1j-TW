@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 import net.l1j.thread.ThreadPoolManager;
 
 public class L1GameTimeClock {
-	private static Logger _log = Logger.getLogger(L1GameTimeClock.class.getName());
+	private final static Logger _log = Logger.getLogger(L1GameTimeClock.class.getName());
 
 	private static L1GameTimeClock _instance;
 	private volatile L1GameTime _currentTime = L1GameTime.fromSystemCurrentTime();

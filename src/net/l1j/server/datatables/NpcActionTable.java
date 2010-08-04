@@ -41,7 +41,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 public class NpcActionTable {
-	private static Logger _log = Logger.getLogger(NpcActionTable.class.getName());
+	private final static Logger _log = Logger.getLogger(NpcActionTable.class.getName());
 
 	private static NpcActionTable _instance;
 

@@ -33,7 +33,7 @@ import net.l1j.server.templates.L1MobSkill;
 import net.l1j.util.SQLUtil;
 
 public class MobSkillTable {
-	private static Logger _log = Logger.getLogger(MobSkillTable.class.getName());
+	private final static Logger _log = Logger.getLogger(MobSkillTable.class.getName());
 
 	private final boolean _initialized;
 

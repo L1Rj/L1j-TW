@@ -30,7 +30,7 @@ import net.l1j.util.SQLUtil;
 public class S_AuctionBoardRead extends ServerBasePacket {
 	private static final String S_AUCTION_BOARD_READ = "[S] S_AuctionBoardRead";
 
-	private static Logger _log = Logger.getLogger(S_AuctionBoardRead.class.getName());
+	private final static Logger _log = Logger.getLogger(S_AuctionBoardRead.class.getName());
 
 	private byte[] _byte = null;
 

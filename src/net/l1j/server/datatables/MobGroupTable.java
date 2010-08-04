@@ -36,7 +36,7 @@ import net.l1j.util.SQLUtil;
 import net.l1j.util.collection.Lists;
 
 public class MobGroupTable {
-	private static Logger _log = Logger.getLogger(MobGroupTable.class.getName());
+	private final static Logger _log = Logger.getLogger(MobGroupTable.class.getName());
 
 	private static MobGroupTable _instance;
 

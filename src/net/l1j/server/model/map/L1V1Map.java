@@ -21,8 +21,8 @@ package net.l1j.server.model.map;
 import net.l1j.server.ActionCodes;
 import net.l1j.server.datatables.DoorSpawnTable;
 import net.l1j.server.model.instance.L1DoorInstance;
-import net.l1j.server.types.Base;
 import net.l1j.server.types.Point;
+import net.l1j.util.MoveUtil;
 
 public class L1V1Map extends L1Map {
 	private int _mapId;
@@ -58,10 +58,6 @@ public class L1V1Map extends L1Map {
 	private boolean _isUsableItem;
 
 	private boolean _isUsableSkill;
-
-	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	/*
 	 * マップ情報を1面で保持するために仕方なくビットフラグ。 可讀性が大きく下がるので良い子は真似しない。
@@ -219,8 +215,8 @@ public class L1V1Map extends L1Map {
 		// 現在のタイル
 		int tile1 = accessTile(x, y);
 		// 移動予定のタイル
-		int NewX = x + HEADING_TABLE_X[heading];
-		int NewY = y + HEADING_TABLE_Y[heading];
+		int NewX = MoveUtil.MoveLocX(x, heading);
+		int NewY = MoveUtil.MoveLocY(y, heading);
 		int tile2 = accessTile(NewX, NewY);
 
 		if ((tile2 & BITFLAG_IS_IMPASSABLE) == BITFLAG_IS_IMPASSABLE) {
@@ -328,8 +324,8 @@ public class L1V1Map extends L1Map {
 		// 現在のタイル
 		int tile1 = accessTile(x, y);
 		// 移動予定の座標
-		int newX = x + HEADING_TABLE_X[heading];
-		int newY = y + HEADING_TABLE_Y[heading];
+		int newX = MoveUtil.MoveLocX(x, heading);
+		int newY = MoveUtil.MoveLocY(y, heading);
 		// 移動予定のタイル
 		int tile2 = accessTile(newX, newY);
 
@@ -337,11 +333,11 @@ public class L1V1Map extends L1Map {
 			return false;
 		}
 //		if (Config.ARROW_PASS_FLOWER_BED) {
-// if (tile2 == 0x00 || (tile2 & 0x10) == 0x10) { // 花壇
-//						if (tile2 == 0x00) { // 花壇
-//						return true;
-//							}
-//					}
+//			if (tile2 == 0x00 || (tile2 & 0x10) == 0x10) { // 花壇
+//				if (tile2 == 0x00) { // 花壇
+//					return true;
+//				}
+//			}
 
 		if (heading == 0) {
 			return (tile1 & 0x08) == 0x08;

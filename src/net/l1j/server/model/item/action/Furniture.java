@@ -39,7 +39,7 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Npc;
 
 public class Furniture {
-	private static Logger _log = Logger.getLogger(Furniture.class.getName());
+	private final static Logger _log = Logger.getLogger(Furniture.class.getName());
 
 	public static void add(L1PcInstance pc, int itemId, int itemObjectId) {
 		if (!L1HouseLocation.isInHouse(pc.getX(), pc.getY(), pc.getMapId())) {

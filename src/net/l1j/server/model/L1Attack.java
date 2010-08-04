@@ -42,7 +42,7 @@ import static net.l1j.server.model.skill.SkillId.*;
 
 public class L1Attack {
 	// Unused?
-	// private static Logger _log = Logger.getLogger(L1Attack.class.getName());
+	// private final static Logger _log = Logger.getLogger(L1Attack.class.getName());
 
 	// lifetime fix HitRate
 	private int Hit_LowerBound = 5;
@@ -92,9 +92,16 @@ public class L1Attack {
 	private int _weaponDoubleDmgChance = 0;
 	private int _weaponAttrEnchantKind = 0;
 	private int _weaponAttrEnchantLevel = 0;
+	
+	private int _arrowSmall = 0;
+	private int _arrowLarge = 0;
+	private int _stingSmall = 0;
+	private int _stingLarge = 0;
 
 	private L1ItemInstance _arrow = null;
 	private L1ItemInstance _sting = null;
+	
+	private boolean TargetSizeLarge = false;
 
 	private int _leverage = 10; // 1/10倍で表現する。
 
@@ -268,6 +275,14 @@ public class L1Attack {
 				_weaponAttrEnchantKind = weapon.getAttrEnchantKind();
 				_weaponAttrEnchantLevel = weapon.getAttrEnchantLevel();
 			}
+			if (_arrow != null) {
+				_arrowSmall = _arrow.getItem().getDmgSmall();
+				_arrowLarge = _arrow.getItem().getDmgLarge();
+			}
+			if (_sting != null) {
+				_stingSmall = _sting.getItem().getDmgSmall();
+				_stingLarge = _sting.getItem().getDmgLarge();
+			}
 			// ステータスによる追加ダメージ補正
 			if (_weaponType == 20) { // 弓の場合はＤＥＸ值參照
 				_statusDamage = dexDmg[_pc.getDex()];
@@ -341,50 +356,30 @@ public class L1Attack {
 		if(!possibleHitPC())
 			return false;
 
+		// 絕對    命中條件
 		if (_weaponType == 58) { // 絕對命中
 			_hitRate = 100;
 			return true;
 		}
 
-		_hitRate = _pc.getLevel()			// Level Fix hitRat
-				+ get_strHit(_pc.getStr())	// str因素 Fix hitRat
-				+ get_dexHit(_pc.getDex())	// dex因素 Fix hitRat
-				+ _weaponAddHit				// 武器 Fix hitRat
-				+ (_weaponEnchant / 2);		// 武捲 Fix hitRat
+		// 根據來源端 執行運算
+		calcPC_Hit();
 
-		// 根據 負重 修正命中
-		_hitRate -= WeightfixHit(_pc.getInventory().getWeight240());
-
-		// 根據武器 (近/遠 程攻擊類型) 修正命中
-		WeaponfixHit();
-
-		// 檢查 目標身上技能 修正命中
-		SkillsFixHitTargetPC();
-
-		// XXX フィアーの成功確率が不明なため未実装
-		// if (_targetPc.hasSkillEffect(RESIST_FEAR)) {
-		//		attackerDice += 5;
-		// }
-
-		// 根據 防禦增減 命中
-		_hitRate += calcACfixHit(_targetPc.getAc());
-		// 還原成百分等級
-		_hitRate *= 5;
+		// 根據目標端 執行運算
+		calc_PCHit();
 
 		int rnd = RandomArrayList.getInc(100, 1);
+
 		if (_weaponType == 20 && _hitRate > rnd) { // 弓の場合、ヒットした場合でもERでの回避を再度行う。
 			return calcErEvasion();
 		}
 
 		// 上界與下界 限制(By 天堂法則)
 		return limitHit() >= rnd;
-		// return _hitRate >= rnd;
 	}
 
 	// ●●●● プレイヤー から ＮＰＣ への命中判定 ●●●●
 	private boolean calcPcNpcHit() {
-		// ＮＰＣへの命中率
-		// ＝（PCのLv＋クラス補正＋STR補正＋DEX補正＋武器補正＋DAIの枚數/2＋魔法補正）×5－{NPCのAC×（-5）}
 		// 特殊魔法效果 檢查
 		if(!possibleHitNPC())
 			return false;
@@ -395,6 +390,67 @@ public class L1Attack {
 			return true;
 		}
 
+		// 根據來源端 執行運算
+		calcPC_Hit();
+
+		// 根據目標端 執行運算
+		calc_NPCHit();
+
+		// 上界與下界 限制(By 天堂法則)
+		return limitHit() >= RandomArrayList.getInc(100, 1);
+	}
+
+	// ●●●● ＮＰＣ から プレイヤー への命中判定 ●●●●
+	private boolean calcNpcPcHit() {
+		// 特殊魔法效果 檢查
+		if(!possibleHitPC())
+			return false;
+
+		// 根據來源端 執行運算
+		calcNPC_Hit();
+
+		// 根據目標端 執行運算
+		calc_PCHit();
+
+		int rnd = RandomArrayList.getInc(100, 1);
+
+		// NPCの攻撃レンジが10以上の場合で、2以上離れている場合弓攻撃とみなす
+		if (_npc.getNpcTemplate().get_ranged() >= 10 && _hitRate > rnd && _npc.getTileLineDistance(_target) >= 2) {
+			return calcErEvasion();
+		}
+
+		// 上界與下界 限制(By 天堂法則)
+		return limitHit() >= rnd;
+	}
+
+	// ●●●● ＮＰＣ から ＮＰＣ への命中判定 ●●●●
+	private boolean calcNpcNpcHit() {
+		// 特殊魔法效果 檢查
+		if(!possibleHitNPC())
+			return false;
+
+		// 根據來源端 執行運算
+		calcNPC_Hit();
+
+		// 根據目標端 執行運算
+		calc_NPCHit();
+
+		// 上界與下界 限制(By 天堂法則)
+		return limitHit() >= RandomArrayList.getInc(100, 1);
+	}
+
+	// ●●●● ＥＲによる回避判定 ●●●●
+	private boolean calcErEvasion() {
+		int er = _targetPc.getEr();
+
+		return er < RandomArrayList.getInc(100, 1);
+	}
+
+	/**
+	 * 針對攻擊端，做對應運算。
+	 */
+	// ●●●● Attack From：PC ●●●●
+	private void calcPC_Hit() {
 		_hitRate = _pc.getLevel()			// Level Fix hitRat
 				+ get_strHit(_pc.getStr())	// str因素 Fix hitRat
 				+ get_dexHit(_pc.getDex())	// dex因素 Fix hitRat
@@ -406,64 +462,10 @@ public class L1Attack {
 
 		// 根據武器 (近/遠 程攻擊類型) 修正命中
 		WeaponfixHit();
-
-		// 檢查 目標身上技能 修正命中
-		SkillsFixHitTargetNPC();
-
-		// 根據 防禦增減 命中
-		_hitRate += calcACfixHit(_targetNpc.getAc());
-		// 還原成百分等級
-		_hitRate *= 5;
-
-		// add end
-		int rnd = RandomArrayList.getInc(100, 1);
-
-		// 上界與下界 限制(By 天堂法則)
-		return limitHit() >= rnd;
-		// return _hitRate >= rnd;
 	}
 
-	// ●●●● ＮＰＣ から プレイヤー への命中判定 ●●●●
-	private boolean calcNpcPcHit() {
-		// 特殊魔法效果 檢查
-		if(!possibleHitPC())
-			return false;
-
-		_hitRate = _npc.getLevel();
-
-		if (_npc instanceof L1PetInstance) { // ペットの武器による追加命中
-			_hitRate += ((L1PetInstance) _npc).getHitByWeapon();
-		}
-
-		// 根據 STR因素 + DEX因素 修正命中
-		_hitRate += get_strHit(_npc.getStr()) + get_dexHit(_npc.getDex());
-		_hitRate += _npc.getHitup();
-
-		// 檢查 目標身上技能 修正命中
-		SkillsFixHitTargetPC();
-
-		// 根據 防禦增減 命中
-		_hitRate += calcACfixHit(_targetPc.getAc());
-		// 還原成百分等級
-		_hitRate *= 5;
-
-		int rnd = RandomArrayList.getInc(100, 1);
-
-		// NPCの攻撃レンジが10以上の場合で、2以上離れている場合弓攻撃とみなす
-		if (_npc.getNpcTemplate().get_ranged() >= 10 && _hitRate > rnd && _npc.getTileLineDistance(_target) >= 2) {
-			return calcErEvasion();
-		}
-		// 上界與下界 限制(By 天堂法則)
-		return limitHit() >= rnd;
-		// return _hitRate >= rnd;
-	}
-
-	// ●●●● ＮＰＣ から ＮＰＣ への命中判定 ●●●●
-	private boolean calcNpcNpcHit() {
-		// 特殊魔法效果 檢查
-		// if(!possibleHitNPC())
-		// 	return false;
-
+	// ●●●● Attack From：NPC ●●●●
+	private void calcNPC_Hit() {
 		_hitRate = _npc.getLevel()			// Level Fix hitRat
 				+ get_strHit(_npc.getStr())	// str因素 Fix hitRat
 				+ get_dexHit(_npc.getDex())	// dex因素 Fix hitRat
@@ -472,30 +474,46 @@ public class L1Attack {
 		if (_npc instanceof L1PetInstance) { // ペットの武器による追加命中
 			_hitRate += ((L1PetInstance) _npc).getHitByWeapon();
 		}
+	}
 
+	/**
+	 * 針對目標物，做對應運算。
+	 */
+	// ●●●● Target：PC ●●●●
+	private void calc_PCHit() {
 		// 檢查 目標身上技能 修正命中
-		SkillsFixHitTargetNPC();
+		if (_targetPc.hasSkillEffect(SKILL_UNCANNY_DODGE)) { // 暗影閃避
+			_hitRate -= 5;
+			Hit_LowerBound = 0;
+		}
+		if (_targetPc.hasSkillEffect(SKILL_MIRROR_IMAGE))    // 鏡像
+			_hitRate -= 5;
+		if (_targetPc.hasSkillEffect(SKILL_RESIST_FEAR))     // 恐懼無助
+			_hitRate += 5;
+		// SkillEffect End
+
+		// 根據 防禦增減 命中
+		_hitRate += calcACfixHit(_targetPc.getAc());
+
+		// 還原成百分等級
+		_hitRate *= 5;
+	}
+
+	// ●●●● Target：NPC ●●●●
+	private void calc_NPCHit() {
+		// 檢查 目標身上技能 修正命中
+		if (_targetNpc.hasSkillEffect(SKILL_RESIST_FEAR))    // 恐懼無助
+			_hitRate += 5;
+		// SkillEffect End
 
 		// 根據 防禦增減 命中
 		_hitRate += calcACfixHit(_targetNpc.getAc());
+
 		// 還原成百分等級
 		_hitRate *= 5;
-
-		int rnd = RandomArrayList.getInc(100, 1);
-		// 上界與下界 限制(By 天堂法則)
-		return limitHit() >= rnd;
-		// return _hitRate >= rnd;
 	}
 
-	// ●●●● ＥＲによる回避判定 ●●●●
-	private boolean calcErEvasion() {
-		int er = _targetPc.getEr();
-
-		int rnd = RandomArrayList.getInc(100, 1);
-		return er < rnd;
-	}
-
-	/* ■■■■■■■■■■■■■■■ ダメージ算出 ■■■■■■■■■■■■■■■ */
+	/* ■■■■■■■■■■■■■■■ 傷害計算 ■■■■■■■■■■■■■■■ */
 
 	public int calcDamage() {
 		if (PC_PC) {
@@ -507,7 +525,6 @@ public class L1Attack {
 		} else if (NPC_NPC) {
 			_damage = calcNpcNpcDamage();
 		}
-
 		return _damage;
 	}
 
@@ -516,8 +533,8 @@ public class L1Attack {
 		int weaponMaxDamage = _weaponSmall;
 		int weaponDamage = 0;
 		double dmg = 0D;
-		if(!possibilityDamagePC())
-			return 0;
+		// if(!possibilityDamagePC())
+		// 	return 0;
 
 		// 使用鋼爪之類的武器、並且有一定的機率會發揮攻擊最大化
 		if (_weaponType == 58 && RandomArrayList.getInc(100, 1) <= _weaponDoubleDmgChance) {
@@ -528,19 +545,20 @@ public class L1Attack {
 		} else if (_weaponType == 0) { // 素手
 			weaponDamage = 0;
 		} else {
-			weaponDamage = RandomArrayList.getInc(weaponMaxDamage, 1);
-		}
-		if (_pc.hasSkillEffect(SKILL_SOUL_OF_FLAME)) {
-			if (_weaponType != 20 && _weaponType != 62) {
+			if (_pc.hasSkillEffect(SKILL_SOUL_OF_FLAME)) {
 				weaponDamage = weaponMaxDamage;
+			} else {
+				weaponDamage = RandomArrayList.getInc(weaponMaxDamage, 1);
 			}
 		}
 
-		int weaponTotalDamage = weaponDamage + _weaponAddDmg + _weaponEnchant;
+		int weaponTotalDamage = weaponDamage
+				+ _weaponAddDmg
+				+ _weaponEnchant;
 
 		// 使用雙刀之類的武器、並且有一定的機率會發揮2倍攻擊
 		if (_weaponType == 54 && RandomArrayList.getInc(100, 1) <= _weaponDoubleDmgChance) {
-			weaponTotalDamage *= 0x02; // 攻擊*2倍
+			weaponTotalDamage <<= 1; // 攻擊*2倍
 			_SpecialEffect = 0x04; // 產生雙擊動畫
 		}
 
@@ -556,12 +574,6 @@ public class L1Attack {
 			weaponTotalDamage += calcDestruction(weaponTotalDamage);
 		}
 
-		if (_weaponType != 20 && _weaponType != 62) {
-			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup() + _pc.getOriginalDmgup();
-		} else {
-			dmg = weaponTotalDamage + _statusDamage + _pc.getBowDmgup() + _pc.getOriginalBowDmgup();
-		}
-
 		if (_weaponType == 20) { // 弓
 			if (_arrow != null) {
 				int add_dmg = 0;
@@ -575,12 +587,16 @@ public class L1Attack {
 				dmg += L1WeaponSkill.getAreaSkillWeaponDamage(_pc, _target, _weaponId);
 			}
 		} else if (_weaponType == 62) { // ガントトレット
-			int add_dmg;
-			add_dmg = _sting.getItem().getDmgSmall(); // 我記得都是小怪
-			if (add_dmg == 0) {
-				add_dmg = 1;
+			if (_arrow != null) {
+				int add_dmg;
+				add_dmg = _sting.getItem().getDmgSmall(); // 我記得都是小怪
+				if (add_dmg == 0) {
+					add_dmg = 1;
+				}
+				dmg += RandomArrayList.getInc(add_dmg, 1);
 			}
-			dmg += RandomArrayList.getInc(add_dmg, 1);
+		} else {
+			dmg += weaponTotalDamage;
 		}
 
 		dmg = calcBuffDamage(dmg);
@@ -610,34 +626,9 @@ public class L1Attack {
 			dmg += calcAttrEnchantDmg();
 		}
 
-		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加ダメージ
-			dmg += _pc.getDmgModifierByArmor();
-		} else {
-			dmg += _pc.getBowDmgModifierByArmor();
-		}
-
-		if (_weaponType != 20 && _weaponType != 62) {
-			Object[] dollList = _pc.getDollList().values().toArray(); // マジックドールによる追加ダメージ
-			for (Object dollObject : dollList) {
-				L1DollInstance doll = (L1DollInstance) dollObject;
-				dmg += doll.getDamageByDoll();
-			}
-		// 魔法娃娃增加 弓攻擊力
-		} else {
-			dmg += L1DollInstance.getBowDamageByDoll(_pc);
-		}
-		//add end
-
-		if (_pc.hasSkillEffect(COOKING_2_0_N) || _pc.hasSkillEffect(COOKING_2_0_S) || _pc.hasSkillEffect(COOKING_3_2_N) || _pc.hasSkillEffect(COOKING_3_2_S)) { // 料理による追加ダメージ
-			if (_weaponType != 20 && _weaponType != 62) {
-				dmg += 1;
-			}
-		}
-		if (_pc.hasSkillEffect(COOKING_2_3_N) || _pc.hasSkillEffect(COOKING_2_3_S) || _pc.hasSkillEffect(COOKING_3_0_N) || _pc.hasSkillEffect(COOKING_3_0_S)) { // 料理による追加ダメージ
-			if (_weaponType == 20 || _weaponType == 62) {
-				dmg += 1;
-			}
-		}
+		// 武器性質修正傷害大小
+		// (_weaponType == 20 or 62) vs (_weaponType != 20 and 62)
+		dmg = WeaponfixDamage(weaponTotalDamage);
 
 		dmg -= _targetPc.getDamageReductionByArmor(); // 防具によるダメージ輕減
 
@@ -646,35 +637,6 @@ public class L1Attack {
 			L1DollInstance doll = (L1DollInstance) dollObject;
 			dmg -= doll.getDamageReductionByDoll();
 		}
-
-		if (_targetPc.hasSkillEffect(COOKING_1_0_S) // 料理によるダメージ輕減
-				|| _targetPc.hasSkillEffect(COOKING_1_1_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_2_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_3_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_4_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_5_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_6_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_7_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_0_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_1_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_2_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_3_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_4_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_5_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_6_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_7_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_0_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_1_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_2_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_3_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_4_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_5_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_6_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {
-			dmg -= 5;
-		}
-		/*if (_targetPc.hasSkillEffect(COOKING_1_7_S)|| _targetPc.hasSkillEffect(COOKING_2_7_S)|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {dmg -= 5;}
-		*/ //檢查透視鏡資料後 發現該段程式碼 可以與上面合體
 
 		// 計算 目標身上技能對傷害的影響
 		dmg = skillsfixDamagePC(dmg);
@@ -694,18 +656,24 @@ public class L1Attack {
 	private int calcPcNpcDamage() {
 		int weaponMaxDamage = 0;
 		int weaponDamage = 0;
+		int weaponArrow = 0;
+		int weaponsting = 0;
 		double dmg = 0D;
-		if(!possibilityDamageNPC())
-			return 0;
+		// if(!possibilityDamageNPC())
+		// 	return 0;
 
 		if (_targetNpc.getNpcTemplate().get_size().equalsIgnoreCase("small") && _weaponSmall > 0) {
 			weaponMaxDamage = _weaponSmall;
+			weaponArrow = _arrowSmall;
+			weaponsting = _stingSmall;
 		} else if (_targetNpc.getNpcTemplate().get_size().equalsIgnoreCase("large") && _weaponLarge > 0) {
 			weaponMaxDamage = _weaponLarge;
+			weaponArrow = _arrowLarge;
+			weaponsting = _stingLarge;
 		}
 
 		// 使用鋼爪之類的武器、並且有一定的機率會發揮攻擊最大化
-		if (_weaponType == 58 && RandomArrayList.getInc(100, 1) <= _weaponDoubleDmgChance) { // クリティカルヒット
+		if (_weaponType == 58 && RandomArrayList.getInc(100, 1) <= _weaponDoubleDmgChance) {
 			weaponDamage = weaponMaxDamage; // 攻擊最大化
 			_SpecialEffect = 0x02; // 產生重擊動畫
 		} else if (_weaponType == 20 || _weaponType == 62) { // 弓、ガントトレット
@@ -713,25 +681,25 @@ public class L1Attack {
 		} else if (_weaponType == 0) { // 素手
 			weaponDamage = 0;
 		} else {
-			weaponDamage = RandomArrayList.getInc(weaponMaxDamage, 1);
-		}
-		if (_pc.hasSkillEffect(SKILL_SOUL_OF_FLAME)) {
-			if (_weaponType != 20 && _weaponType != 62) {
+			if (_pc.hasSkillEffect(SKILL_SOUL_OF_FLAME)) {
 				weaponDamage = weaponMaxDamage;
+			} else {
+				weaponDamage = RandomArrayList.getInc(weaponMaxDamage, 1);
 			}
 		}
 
-		int weaponTotalDamage = weaponDamage + _weaponAddDmg + _weaponEnchant;
-
-		weaponTotalDamage += calcMaterialBlessDmg(); // 銀祝福ダメージボーナス
+		int weaponTotalDamage = weaponDamage
+				+ _weaponAddDmg
+				+ _weaponEnchant;
 
 		// 使用雙刀之類的武器、並且有一定的機率會發揮2倍攻擊
 		if (_weaponType == 54 && RandomArrayList.getInc(100, 1) <= _weaponDoubleDmgChance) {
-			weaponTotalDamage *= 0x02; // 攻擊*2倍
+			weaponTotalDamage <<= 1; // 攻擊*2倍
 			_SpecialEffect = 0x04; // 產生雙擊動畫
 		}
 
-		weaponTotalDamage += calcAttrEnchantDmg(); // 属性強化ダメージボーナス
+		weaponTotalDamage += calcMaterialBlessDmg() // 銀祝福ダメージボーナス
+				+ calcAttrEnchantDmg(); // 属性強化ダメージボーナス
 
 		if (_pc.hasSkillEffect(SKILL_DOUBLE_BRAKE) && _weaponType == 54 || _weaponType == 58) {
 			if (RandomArrayList.getInt(3) == 0) {
@@ -743,19 +711,13 @@ public class L1Attack {
 			weaponTotalDamage += calcDestruction(weaponTotalDamage);
 		}
 
-		if (_weaponType != 20 && _weaponType != 62) {
-			dmg = weaponTotalDamage + _statusDamage + _pc.getDmgup() + _pc.getOriginalDmgup();
-		} else {
-			dmg = weaponTotalDamage + _statusDamage + _pc.getBowDmgup() + _pc.getOriginalBowDmgup();
-		}
-
 		if (_weaponType == 20) { // 弓
 			if (_arrow != null) {
 				int add_dmg = 0;
 				if (_targetNpc.getNpcTemplate().get_size().equalsIgnoreCase("large")) {
-					add_dmg = _arrow.getItem().getDmgLarge();
+					add_dmg = _arrowLarge;
 				} else {
-					add_dmg = _arrow.getItem().getDmgSmall();
+					add_dmg = _arrowSmall;
 				}
 				if (add_dmg == 0) {
 					add_dmg = 1;
@@ -772,9 +734,9 @@ public class L1Attack {
 		} else if (_weaponType == 62) { // ガントトレット
 			int add_dmg = 0;
 			if (_targetNpc.getNpcTemplate().get_size().equalsIgnoreCase("large")) {
-				add_dmg = _sting.getItem().getDmgLarge();
+				add_dmg = _stingLarge;
 			} else {
-				add_dmg = _sting.getItem().getDmgSmall();
+				add_dmg = _stingSmall;
 			}
 			if (add_dmg == 0) {
 				add_dmg = 1;
@@ -809,44 +771,13 @@ public class L1Attack {
 		}
 
 		if (_weaponType2 == 17) { // キーリンク
-			dmg = L1WeaponSkill.getKiringkuDamage(_pc, _target);
+			dmg = (int) L1WeaponSkill.getKiringkuDamage(_pc, _target);
 			dmg += calcAttrEnchantDmg();
 		}
 
-		if (_weaponType != 20 && _weaponType != 62) { // 防具による追加ダメージ
-			dmg += _pc.getDmgModifierByArmor();
-		} else {
-			dmg += _pc.getBowDmgModifierByArmor();
-		}
-
-		if (_weaponType != 20 && _weaponType != 62) {
-			Object[] dollList = _pc.getDollList().values().toArray(); // マジックドールによる追加ダメージ
-			for (Object dollObject : dollList) {
-				L1DollInstance doll = (L1DollInstance) dollObject;
-				dmg += doll.getDamageByDoll();
-			}
-		// 魔法娃娃增弓攻擊力
-		} else {
-			dmg += L1DollInstance.getBowDamageByDoll(_pc);
-		}
-		//add end
-
-		if (_pc.hasSkillEffect(COOKING_2_0_N) // 料理による追加ダメージ
-				|| _pc.hasSkillEffect(COOKING_2_0_S)
-				|| _pc.hasSkillEffect(COOKING_3_2_N)
-				|| _pc.hasSkillEffect(COOKING_3_2_S)) {
-			if (_weaponType != 20 && _weaponType != 62) {
-				dmg += 1;
-			}
-		}
-		if (_pc.hasSkillEffect(COOKING_2_3_N) // 料理による追加ダメージ
-				|| _pc.hasSkillEffect(COOKING_2_3_S)
-				|| _pc.hasSkillEffect(COOKING_3_0_N)
-				|| _pc.hasSkillEffect(COOKING_3_0_S)) {
-			if (_weaponType == 20 || _weaponType == 62) {
-				dmg += 1;
-			}
-		}
+		// 武器性質修正傷害大小
+		// (_weaponType == 20 or 62) vs (_weaponType != 20 and 62)
+		dmg = WeaponfixDamage(weaponTotalDamage);
 
 		dmg -= calcNpcDamageReduction();
 
@@ -898,9 +829,9 @@ public class L1Attack {
 	// ●●●● ＮＰＣ から プレイヤー へのダメージ算出 ●●●●
 	private int calcNpcPcDamage() {
 		int lvl = _npc.getLevel();
-		double dmg = 0D;
-		if(!possibilityDamagePC())
-			return 0;
+		double dmg = 0;
+		// if(!possibilityDamagePC())
+		// 	return 0;
 
 		/*
 		 * 傷害太強了
@@ -938,35 +869,6 @@ public class L1Attack {
 			L1DollInstance doll = (L1DollInstance) dollObject;
 			dmg -= doll.getDamageReductionByDoll();
 		}
-
-		if (_targetPc.hasSkillEffect(COOKING_1_0_S) // 料理によるダメージ輕減
-				|| _targetPc.hasSkillEffect(COOKING_1_1_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_2_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_3_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_4_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_5_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_6_S)
-				|| _targetPc.hasSkillEffect(COOKING_1_7_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_0_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_1_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_2_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_3_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_4_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_5_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_6_S)
-				|| _targetPc.hasSkillEffect(COOKING_2_7_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_0_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_1_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_2_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_3_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_4_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_5_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_6_S)
-				|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {
-			dmg -= 5;
-		}
-		/*if (_targetPc.hasSkillEffect(COOKING_1_7_S)|| _targetPc.hasSkillEffect(COOKING_2_7_S)|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {dmg -= 5;}
-		*/ //檢查透視鏡資料後 發現該段程式碼 可以與上面合體
 
 		// 計算 目標身上技能對傷害的影響
 		dmg = skillsfixDamagePC(dmg);
@@ -1006,8 +908,8 @@ public class L1Attack {
 	private int calcNpcNpcDamage() {
 		int lvl = _npc.getLevel();
 		double dmg = 0D;
-		if(!possibilityDamageNPC())
-			return 0;
+		// if(!possibilityDamageNPC())
+		// 	return 0;
 
 		if (_npc instanceof L1PetInstance) {
 			dmg = RandomArrayList.getInc(_npc.getNpcTemplate().get_level(), _npc.getStr() / 2 + 1);
@@ -1046,6 +948,42 @@ public class L1Attack {
 		return (int) dmg;
 	}
 
+	/**
+	 * 針對攻擊端，做對應運算。
+	 */
+	/*
+	// ●●●● Attack From：PC ●●●●
+	private double calcPC_Damge() {
+	// PC PC
+
+	// PC NPC
+	}
+
+	// ●●●● Attack From：NPC ●●●●
+	private double calcNPC_Damge() {
+	// NPC PC
+
+	// NPC NPC
+	}*/
+
+	/**
+	 * 針對目標物，做對應運算。
+	 */
+	/*
+	// ●●●● Target：PC ●●●●
+	private double calc_PCDamge() {
+	// PC  PC
+
+	// NPC PC
+	}
+
+	// ●●●● Target：NPC ●●●●
+	private double calc_NPCDamge() {
+	// PC  NPC
+
+	// NPC NPC
+	}*/
+	
 	// ●●●● プレイヤーのダメージ強化魔法 ●●●●
 	private double calcBuffDamage(double dmg) {
 		// 火武器、バーサーカーのダメージは1.5倍しない
@@ -1147,8 +1085,7 @@ public class L1Attack {
 			resistFloor *= -1;
 		}
 
-		double attrDeffence = resistFloor / 32.0;
-		double attrCoefficient = 1 - attrDeffence;
+		double attrCoefficient = 1.0 - resistFloor / 32.0;
 
 		damage *= attrCoefficient;
 
@@ -1550,19 +1487,24 @@ public class L1Attack {
 			return RandomArrayList.getInc((ac * 1.5), -1);
 	}
 	/**
-	 * 特殊狀態檢查 命中可能
-	 * 若絕無可能命中，則回傳 true
+	 * 特殊狀態檢查 打擊可能??
+	 * 若絕無可能造成命中目標，則回傳 true
 	 */
 	// Target: Player
+	private boolean possibleAttackPC() {
+		return !_targetPc.hasInvincibleEffect();
+	}
+	// Target: Npc
+	private boolean possibleAttackNPC() {
+		return !_targetNpc.hasInvincibleEffect();
+	}
+	// Target: Player
 	private boolean possibleHitPC() {
-		if(_targetPc.hasInvincibleEffect())
-			return false;
-		else
-			return true;
+		return possibleAttackPC();
 	}
 	// Target: Npc
 	private boolean possibleHitNPC() {
-		if(_targetNpc.hasInvincibleEffect())
+		if(!possibleAttackNPC())
 			return false;
 
 		int npcId = _targetNpc.getNpcTemplate().get_npcId();
@@ -1652,16 +1594,12 @@ public class L1Attack {
 	 * 雙手斧:11,		雙手杖:40
 	 * 奇古獸:58,		鎖鏈劍:24
 	 */
-	/**
-			if (_targetPc.hasSkillEffect()) //
-				_hitRate = ;
-	 */
 	private void WeaponfixHit() {
 		if (_weaponType == 20 || _weaponType == 62) {
 			_hitRate += _pc.getBowHitup()
 					+ L1DollInstance.getBowHitAddByDoll(_pc) // 娃娃增加弓命中
-					+ _pc.getOriginalBowHitup();
-			_hitRate += _pc.getBowHitModifierByArmor(); // 防具による追加命中
+					+ _pc.getOriginalBowHitup()
+					+ _pc.getBowHitModifierByArmor(); // 防具による追加命中
 
 			if (_pc.hasSkillEffect(COOKING_2_3_N) || _pc.hasSkillEffect(COOKING_2_3_S)
 					|| _pc.hasSkillEffect(COOKING_3_0_N) || _pc.hasSkillEffect(COOKING_3_0_S)) { // 料理による追加命中
@@ -1676,8 +1614,8 @@ public class L1Attack {
 				_hitRate += 5;*/
 		} else {
 			_hitRate += _pc.getHitup()
-					+ _pc.getOriginalHitup();
-			_hitRate += _pc.getHitModifierByArmor(); // 防具による追加命中
+					+ _pc.getOriginalHitup()
+					+ _pc.getHitModifierByArmor(); // 防具による追加命中
 
 			if (_pc.hasSkillEffect(COOKING_2_0_N) || _pc.hasSkillEffect(COOKING_2_0_S)) { // 料理による追加命中
 				_hitRate++;
@@ -1700,46 +1638,7 @@ public class L1Attack {
 				_hitRate += 5;*/
 		}
 	}
-	/**
-	 *
-	 *
-	 */
-	/** 尚未完成
-	private void foodfixHit() {
-		if(_weaponType == 20 || _weaponType == 62) {
-			if(_pc.hasSkillEffect(COOKING_2_3_N) || _pc.hasSkillEffect(COOKING_2_3_S)||
-					_pc.hasSkillEffect(COOKING_3_0_N) || _pc.hasSkillEffect(COOKING_3_0_S)) // 料理による追加命中
-				Rate++;
-		} else {
-			if(_pc.hasSkillEffect(COOKING_2_0_N) || _pc.hasSkillEffect(COOKING_2_0_S)) // 料理による追加命中
-				Rate++;
-			if(_pc.hasSkillEffect(COOKING_3_2_N) || _pc.hasSkillEffect(COOKING_3_2_S)) // 料理による追加命中
-				Rate += 2;
-		}
-	}*/
 
-	/**
-	 * 特殊狀態檢查 目標技能影響命中
-	 *
-	 */
-	// Target: Player
-	private void SkillsFixHitTargetPC() {
-		if (_targetPc.hasSkillEffect(SKILL_UNCANNY_DODGE)) { // 暗影閃避
-			_hitRate -= 5;
-			Hit_LowerBound = 0;
-		}
-
-		if (_targetPc.hasSkillEffect(SKILL_MIRROR_IMAGE)) // 鏡像
-			_hitRate -= 5;
-
-		if (_targetPc.hasSkillEffect(SKILL_RESIST_FEAR)) // 恐懼無助
-			_hitRate += 5;
-	}
-	// Target: Npc
-	private void SkillsFixHitTargetNPC() {
-		if (_targetNpc.hasSkillEffect(SKILL_RESIST_FEAR)) // 恐懼無助
-			_hitRate += 5;
-	}
 
 	/* ■■■■■■■■■■■■ 攻 擊 特殊狀態 vs 傷害 ■■■■■■■■■■■■ */
 	/**
@@ -1752,22 +1651,15 @@ public class L1Attack {
 	}
 
 	/**
-	 * 特殊狀態檢查 傷害可能
-	 * 若絕無可能造成傷害，則回傳 false
+	 * 特殊狀態檢查 傷害可能 若絕無可能造成傷害，則回傳 false
 	 */
 	// Target: Player
 	private boolean possibilityDamagePC() {
-		if(_targetPc.hasInvincibleEffect())
-			return false;
-		else
-			return true;
+		return possibleAttackPC();
 	}
 	// Target: Npc
 	private boolean possibilityDamageNPC() {
-		if(_targetNpc.hasInvincibleEffect())
-			return false;
-		else
-			return true;
+		return possibleAttackNPC();
 	}
 
 	// Target: Player
@@ -1775,9 +1667,9 @@ public class L1Attack {
 		if (_targetPc.hasSkillEffect(SKILL_REDUCTION_ARMOR)) {
 			int targetPcLvl = _targetPc.getLevel();
 			if (targetPcLvl < 50)
-				dmg -= 1; // (50 - 50) / 5 + 1
+				dmg -= 1.0; // (50 - 50) / 5 + 1
 			else
-				dmg -= (targetPcLvl - 50) / 5 + 1;
+				dmg -= (targetPcLvl - 50.0) / 5.0 + 1.0;
 		}
 		if (_targetPc.hasSkillEffect(SKILL_DRAGON_SKIN)) // 龍之護鎧
 			dmg -= 2;
@@ -1785,7 +1677,32 @@ public class L1Attack {
 			dmg -= 2;
 		if (_targetPc.hasSkillEffect(SKILL_IMMUNE_TO_HARM)) // 聖結界
 			dmg /= 2;
-
+		if (_targetPc.hasSkillEffect(COOKING_1_0_S) // 料理によるダメージ輕減
+				|| _targetPc.hasSkillEffect(COOKING_1_1_S)
+				|| _targetPc.hasSkillEffect(COOKING_1_2_S)
+				|| _targetPc.hasSkillEffect(COOKING_1_3_S)
+				|| _targetPc.hasSkillEffect(COOKING_1_4_S)
+				|| _targetPc.hasSkillEffect(COOKING_1_5_S)
+				|| _targetPc.hasSkillEffect(COOKING_1_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_1_7_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_0_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_1_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_2_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_3_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_4_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_5_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_2_7_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_0_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_1_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_2_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_3_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_4_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_5_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_6_S)
+				|| _targetPc.hasSkillEffect(COOKING_3_7_S)) {
+			dmg -= 5;
+		}
 		return dmg;
 	}
 	// Target: Npc
@@ -1793,4 +1710,55 @@ public class L1Attack {
 		return dmg;
 	}
 
+	private int WeaponfixDamage(int weaponTotalDamage) {
+		int fix_dmg = weaponTotalDamage + _statusDamage;
+		if (_weaponType != 20 && _weaponType != 62) { // 非弓 且 非手甲
+			// 基本傷害
+			fix_dmg += _pc.getDmgup() + _pc.getOriginalDmgup();
+			// 防具による追加ダメージ
+			fix_dmg += _pc.getDmgModifierByArmor();
+			// 魔法娃娃 增加近戰傷害
+			Object[] dollList = _pc.getDollList().values().toArray(); // マジックドールによる追加ダメージ
+			for (Object dollObject : dollList) {
+				L1DollInstance doll = (L1DollInstance) dollObject;
+				fix_dmg += doll.getDamageByDoll();
+			}
+			// 料理による追加ダメージ
+			if (_pc.hasSkillEffect(COOKING_2_0_N)
+					|| _pc.hasSkillEffect(COOKING_2_0_S)
+					|| _pc.hasSkillEffect(COOKING_3_2_N)
+					|| _pc.hasSkillEffect(COOKING_3_2_S)) {
+				fix_dmg += 1;
+			}
+		} else if (_weaponType == 20) { // 弓
+			// 基本傷害
+			fix_dmg += _pc.getBowDmgup() + _pc.getOriginalBowDmgup();
+			// 防具による追加ダメージ
+			fix_dmg += _pc.getBowDmgModifierByArmor();
+			// 魔法娃娃 增加遠距傷害
+			fix_dmg += L1DollInstance.getBowDamageByDoll(_pc);
+			// 料理による追加ダメージ
+			if (_pc.hasSkillEffect(COOKING_2_3_N)
+					|| _pc.hasSkillEffect(COOKING_2_3_S)
+					|| _pc.hasSkillEffect(COOKING_3_0_N)
+					|| _pc.hasSkillEffect(COOKING_3_0_S)) {
+				fix_dmg += 1;
+			}
+		} else if (_weaponType == 62) { // 手甲
+			// 基本傷害
+			fix_dmg += _pc.getBowDmgup() + _pc.getOriginalBowDmgup();
+			// 防具による追加ダメージ
+			fix_dmg += _pc.getBowDmgModifierByArmor();
+			// 魔法娃娃 增加遠距傷害
+			fix_dmg += L1DollInstance.getBowDamageByDoll(_pc);
+			// 料理による追加ダメージ
+			if (_pc.hasSkillEffect(COOKING_2_3_N)
+					|| _pc.hasSkillEffect(COOKING_2_3_S)
+					|| _pc.hasSkillEffect(COOKING_3_0_N)
+					|| _pc.hasSkillEffect(COOKING_3_0_S)) {
+				fix_dmg += 1;
+			}
+		}
+		return fix_dmg;
+	}
 }

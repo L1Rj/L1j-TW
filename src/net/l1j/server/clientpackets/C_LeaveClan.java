@@ -36,7 +36,7 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 public class C_LeaveClan extends ClientBasePacket {
 	private static final String C_LEAVE_CLAN = "[C] C_LeaveClan";
 
-	private static Logger _log = Logger.getLogger(C_LeaveClan.class.getName());
+	private final static Logger _log = Logger.getLogger(C_LeaveClan.class.getName());
 
 	public C_LeaveClan(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);

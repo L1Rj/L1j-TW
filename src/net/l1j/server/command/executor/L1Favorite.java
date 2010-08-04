@@ -31,7 +31,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1Favorite implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Favorite.class.getName());
+	private final static Logger _log = Logger.getLogger(L1Favorite.class.getName());
 
 	private static final Map<Integer, String> _faviCom = new FastMap<Integer, String>();
 

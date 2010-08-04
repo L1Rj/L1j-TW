@@ -40,7 +40,7 @@ import net.l1j.server.templates.L1AuctionBoard;
 import net.l1j.server.templates.L1House;
 
 public class AuctionTimeController implements Runnable {
-	private static Logger _log = Logger.getLogger(AuctionTimeController.class.getName());
+	private final static Logger _log = Logger.getLogger(AuctionTimeController.class.getName());
 
 	private static AuctionTimeController _instance;
 

@@ -29,7 +29,7 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class SpawnUtil {
-	private static Logger _log = Logger.getLogger(SpawnUtil.class.getName());
+	private final static Logger _log = Logger.getLogger(SpawnUtil.class.getName());
 
 	public static void spawn(L1PcInstance pc, int npcId, int randomRange, int timeMillisToDelete) {
 		try {

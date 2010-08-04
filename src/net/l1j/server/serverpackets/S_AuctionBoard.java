@@ -33,7 +33,7 @@ import net.l1j.util.SQLUtil;
 public class S_AuctionBoard extends ServerBasePacket {
 	private static final String S_AUCTION_BOARD = "[S] S_AuctionBoard";
 
-	private static Logger _log = Logger.getLogger(S_AuctionBoard.class.getName());
+	private final static Logger _log = Logger.getLogger(S_AuctionBoard.class.getName());
 
 	private byte[] _byte = null;
 

@@ -51,7 +51,7 @@ import static net.l1j.server.model.skill.SkillId.*;
 public class L1GuardianInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(L1GuardianInstance.class.getName());
+	private final static Logger _log = Logger.getLogger(L1GuardianInstance.class.getName());
 
 	private int _configtime = Config.GDROPITEM_TIME; // 妖森守護神道具控制
 

@@ -37,7 +37,7 @@ import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.util.StreamUtil;
 
 public class Announcements {
-	private static Logger _log = Logger.getLogger(Announcements.class.getName());
+	private final static Logger _log = Logger.getLogger(Announcements.class.getName());
 
 	private List<String> _messages = new FastList<String>();
 

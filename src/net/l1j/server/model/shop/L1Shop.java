@@ -284,7 +284,6 @@ public class L1Shop {
 			inv.storeItem(item);
 			if (_npcId == 70068 || _npcId == 70020) {
 				item.setIdentified(false);
-				//Random random = new Random();
 				int chance = RandomArrayList.getInc(100, 1);
 				if (chance <= 15) {
 					item.setEnchantLevel(-2);

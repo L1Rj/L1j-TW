@@ -15,7 +15,7 @@ import net.l1j.util.RandomArrayList;
 
 public class ElementalStoneGenerator implements Runnable {
 
-	private static Logger _log = Logger.getLogger(ElementalStoneGenerator.class
+	private final static Logger _log = Logger.getLogger(ElementalStoneGenerator.class
 			.getName());
 
 	private static final int ELVEN_FOREST_MAPID = 4;

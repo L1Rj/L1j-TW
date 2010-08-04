@@ -52,7 +52,6 @@ public class Fishing {
 					pc.broadcastPacket(new S_Fishing(pc.getId(), ActionCodes.ACTION_Fishing, fishX, fishY));
 					pc.setFishing(true);
 					long time = System.currentTimeMillis() + RandomArrayList.getInc(5, 10) * 1000;
-					// + 10000 + RandomArrayList.getArray5List() * 1000;
 					pc.setFishingTime(time);
 					FishingTimeController.getInstance().addMember(pc);
 				} else {

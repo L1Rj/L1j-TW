@@ -29,7 +29,7 @@ import net.l1j.server.serverpackets.S_DeleteCharOK;
 public class C_DeleteChar extends ClientBasePacket {
 	private static final String C_DELETE_CHAR = "[C] RequestDeleteChar";
 
-	private static Logger _log = Logger.getLogger("character");
+	private final static Logger _log = Logger.getLogger("character");
 
 	public C_DeleteChar(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);

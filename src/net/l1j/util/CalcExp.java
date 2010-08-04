@@ -43,7 +43,7 @@ import static net.l1j.server.model.skill.SkillId.*;
 public class CalcExp {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(CalcExp.class.getName());
+	private final static Logger _log = Logger.getLogger(CalcExp.class.getName());
 
 	public static final int MAX_EXP = ExpTable.getExpByLevel(100) - 1;
 

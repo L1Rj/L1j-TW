@@ -36,7 +36,7 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.util.RandomArrayList;
 
 public class Enchant {
-	private static Logger _log = Logger.getLogger("enchant");
+	private final static Logger _log = Logger.getLogger("enchant");
 
 	public static void success(L1PcInstance pc, L1ItemInstance item, ClientThread client, int enchantLvl) {
 		item.setproctect(false);// 裝備保護卷軸

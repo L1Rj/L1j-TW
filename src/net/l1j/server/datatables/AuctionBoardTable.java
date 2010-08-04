@@ -35,7 +35,7 @@ import net.l1j.server.templates.L1AuctionBoard;
 import net.l1j.util.SQLUtil;
 
 public class AuctionBoardTable {
-	private static Logger _log = Logger.getLogger(AuctionBoardTable.class.getName());
+	private final static Logger _log = Logger.getLogger(AuctionBoardTable.class.getName());
 
 	private static AuctionBoardTable _instance;
 

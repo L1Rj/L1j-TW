@@ -35,7 +35,7 @@ import net.l1j.util.RandomArrayList;
 public class L1TeleporterInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(L1TeleporterInstance.class.getName());
+	private final static Logger _log = Logger.getLogger(L1TeleporterInstance.class.getName());
 
 	private boolean _isNowDely = false;
 

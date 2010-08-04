@@ -35,7 +35,7 @@ import net.l1j.server.serverpackets.S_OwnCharStatus;
 public class C_CharReset extends ClientBasePacket {
 	private static final String C_CHAR_RESET = "[C] C_CharReset";
 
-	private static Logger _log = Logger.getLogger(C_CharReset.class.getName());
+	private final static Logger _log = Logger.getLogger(C_CharReset.class.getName());
 
 	private L1ClassFeature classFeature = null;
 

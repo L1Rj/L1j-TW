@@ -34,7 +34,7 @@ import net.l1j.server.templates.L1SpawnTime;
 import net.l1j.util.SQLUtil;
 
 public class SpawnTimeTable {
-	private static Logger _log = Logger.getLogger(SpawnTimeTable.class.getName());
+	private final static Logger _log = Logger.getLogger(SpawnTimeTable.class.getName());
 
 	private static SpawnTimeTable _instance;
 

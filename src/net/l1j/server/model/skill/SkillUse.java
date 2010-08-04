@@ -93,7 +93,7 @@ import net.l1j.util.RandomArrayList;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class SkillUse {
-	private static Logger _log = Logger.getLogger(SkillUse.class.getName());
+	private final static Logger _log = Logger.getLogger(SkillUse.class.getName());
 
 	private L1Skills _skill;
 	private int _skillId;
@@ -2061,12 +2061,12 @@ public class SkillUse {
 						L1EffectSpawn.getInstance().spawnEffect(81168, time, cha.getX(), cha.getY(), cha.getMapId());
 						if (cha instanceof L1PcInstance) {
 							L1PcInstance pc = (L1PcInstance) cha;
-							//
+
 							if(_skillId == SKILL_ICE_LANCE)
-								pc.addInvincibleEffect(2);
+								pc.addInvincibleEffect(TRANSFORM_SKILL_ICE_LANCE);
 							else
-								pc.addInvincibleEffect(4);
-							//
+								pc.addInvincibleEffect(TRANSFORM_SKILL_FREEZING_BLIZZARD);
+
 							pc.sendPackets(new S_Poison(pc.getId(), 2));
 							pc.broadcastPacket(new S_Poison(pc.getId(), 2));
 							pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, true));
@@ -2074,12 +2074,12 @@ public class SkillUse {
 								|| cha instanceof L1SummonInstance
 								|| cha instanceof L1PetInstance) {
 							L1NpcInstance npc = (L1NpcInstance) cha;
-							//
+
 							if(_skillId == SKILL_ICE_LANCE)
-								npc.addInvincibleEffect(2);
+								npc.addInvincibleEffect(TRANSFORM_SKILL_ICE_LANCE);
 							else
-								npc.addInvincibleEffect(4);
-							//
+								npc.addInvincibleEffect(TRANSFORM_SKILL_FREEZING_BLIZZARD);
+
 							npc.broadcastPacket(new S_Poison(npc.getId(), 2));
 							npc.setParalyzed(true);
 							npc.setParalysisTime(time);
@@ -2088,7 +2088,7 @@ public class SkillUse {
 				} else if (_skillId == SKILL_EARTH_BIND) { // 大地屏障 Start
 					if (cha instanceof L1PcInstance) {
 						L1PcInstance pc = (L1PcInstance) cha;
-						pc.addInvincibleEffect(3);
+						pc.addInvincibleEffect(TRANSFORM_SKILL_EARTH_BIND);
 						pc.sendPackets(new S_Poison(pc.getId(), 2));
 						pc.broadcastPacket(new S_Poison(pc.getId(), 2));
 						pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, true));
@@ -2096,7 +2096,7 @@ public class SkillUse {
 							|| cha instanceof L1SummonInstance
 							|| cha instanceof L1PetInstance) {
 						L1NpcInstance npc = (L1NpcInstance) cha;
-						npc.addInvincibleEffect(3);
+						npc.addInvincibleEffect(TRANSFORM_SKILL_EARTH_BIND);
 						npc.broadcastPacket(new S_Poison(npc.getId(), 2));
 						npc.setParalyzed(true);
 						npc.setParalysisTime(_skill.getBuffDuration() * 1000);
@@ -2558,7 +2558,7 @@ public class SkillUse {
 						}
 					} else if (_skillId == SKILL_ABSOLUTE_BARRIER) { // 絕對屏障 Start
 						L1PcInstance pc = (L1PcInstance) cha;
-						pc.addInvincibleEffect(1);
+						pc.addInvincibleEffect(TRANSFORM_SKILL_ABSOLUTE_BARRIER);
 						pc.stopHpRegeneration();
 						pc.stopMpRegeneration();
 						pc.stopMpRegenerationByDoll();

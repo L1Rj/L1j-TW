@@ -40,7 +40,7 @@ import net.l1j.util.SQLUtil;
 public class ShopTable {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(ShopTable.class.getName());
+	private final static Logger _log = Logger.getLogger(ShopTable.class.getName());
 
 	private static ShopTable _instance;
 

@@ -26,7 +26,7 @@ import net.l1j.server.model.map.L1WorldMap;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class L1Tile implements L1CommandExecutor {
-	private static Logger _log = Logger.getLogger(L1Tile.class.getName());
+	private final static Logger _log = Logger.getLogger(L1Tile.class.getName());
 
 	public static L1CommandExecutor getInstance() {
 		return new L1Tile();

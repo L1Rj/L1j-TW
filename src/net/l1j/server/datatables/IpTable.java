@@ -31,7 +31,7 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.util.SQLUtil;
 
 public class IpTable {
-	private static Logger _log = Logger.getLogger(IpTable.class.getName());
+	private final static Logger _log = Logger.getLogger(IpTable.class.getName());
 
 	private static FastTable<String> _banip;
 

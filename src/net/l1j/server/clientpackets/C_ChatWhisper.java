@@ -34,7 +34,7 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 public class C_ChatWhisper extends ClientBasePacket {
 	private static final String C_CHAT_WHISPER = "[C] C_ChatWhisper";
 
-	private static Logger _log = Logger.getLogger("chat");
+	private final static Logger _log = Logger.getLogger("chat");
 
 	public C_ChatWhisper(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);

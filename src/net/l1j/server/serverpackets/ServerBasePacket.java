@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 import net.l1j.Config;
 
 public abstract class ServerBasePacket {
-	private static Logger _log = Logger.getLogger(ServerBasePacket.class.getName());
+	private final static Logger _log = Logger.getLogger(ServerBasePacket.class.getName());
 
 	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
 	// static final Random random = new Random(); // 填充物要用到的亂數

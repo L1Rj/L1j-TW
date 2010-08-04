@@ -26,7 +26,7 @@ import net.l1j.MapReader;
 import net.l1j.util.PerformanceTimer;
 
 public class L1WorldMap {
-	private static Logger _log = Logger.getLogger(L1WorldMap.class.getName());
+	private final static Logger _log = Logger.getLogger(L1WorldMap.class.getName());
 
 	private static L1WorldMap _instance;
 	private Map<Integer, L1Map> _maps;

@@ -20,12 +20,6 @@ package net.l1j.server.types;
 
 public class Base {
 
-	/** 角色方向-X */
-	public static final int[] HEADING_TABLE_X = { 0, 1, 1, 1, 0, -1, -1, -1 };
-
-	/** 角色方向-Y */
-	public static final int[] HEADING_TABLE_Y = { -1, -1, 0, 1, 1, 1, 0, -1 };
-
 	/** 技能類型: 0=NORMAL 1=LOGIN 2=SPELLSC 3=NPCBUFF 4=GMBUFF */
 	public static final int[] SKILL_TYPE = { 0, 1, 2, 3, 4 };
 

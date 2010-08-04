@@ -8,7 +8,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SkillSound;
 
 public class HpRegenerationByDoll extends TimerTask {
-	private static Logger _log = Logger.getLogger(HpRegenerationByDoll.class.getName());
+	private final static Logger _log = Logger.getLogger(HpRegenerationByDoll.class.getName());
 
 	private final L1PcInstance _pc;
 

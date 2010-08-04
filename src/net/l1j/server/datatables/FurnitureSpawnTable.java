@@ -35,7 +35,7 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.util.SQLUtil;
 
 public class FurnitureSpawnTable {
-	private static Logger _log = Logger.getLogger(FurnitureSpawnTable.class.getName());
+	private final static Logger _log = Logger.getLogger(FurnitureSpawnTable.class.getName());
 
 	private static FurnitureSpawnTable _instance;
 

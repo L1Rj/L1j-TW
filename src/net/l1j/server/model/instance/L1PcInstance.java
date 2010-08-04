@@ -99,6 +99,7 @@ import net.l1j.server.templates.L1PrivateShopBuyList;
 import net.l1j.server.templates.L1PrivateShopSellList;
 import net.l1j.server.types.Base;
 import net.l1j.util.RandomArrayList;
+import net.l1j.util.SystemUtil;
 import net.l1j.thread.PcExpMonitor;
 import net.l1j.thread.PcFrameMonitor;
 import net.l1j.thread.PcGhostMonitor;
@@ -1030,7 +1031,7 @@ public class L1PcInstance extends L1Character {
 		if (player_mr >= rnd) {
 			damage /= 2;
 		}
-		receiveDamage(attacker, damage, false);
+		receiveDamage(attacker, damage, true);
 	}
 
 	public void receiveManaDamage(L1Character attacker, int mpDamage) { // 攻擊でＭＰを減らすときはここを使用
@@ -1061,7 +1062,7 @@ public class L1PcInstance extends L1Character {
 		}
 	}
 
-	public long _oldTime = 0; // 連続魔法ダメージの軽減に使用する
+	public double _oldTime = 0; // 連続魔法ダメージの軽減に使用する
 
 	public void receiveDamage(L1Character attacker, double damage, boolean isMagicDamage) { // 攻撃でＨＰを減らすときはここを使用
 		if (getCurrentHp() > 0 && !isDead()) {
@@ -1072,55 +1073,12 @@ public class L1PcInstance extends L1Character {
 			}
 
 			if (isMagicDamage == true) { // 連続魔法ダメージによる軽減
-				long nowTime = System.currentTimeMillis();
-				long interval = nowTime - _oldTime;
+				double nowTime = (double) System.currentTimeMillis();
+				double interval = (20D - (nowTime - _oldTime) / 100D) % 20D;
 
-				if (damage < 0) {
-					damage = damage;
-				} else {
-					if (2000 > interval && interval >= 1900) {
-						damage = (damage * (100 - (10 / 3))) / 100;
-					} else if (1900 > interval && interval >= 1800) {
-						damage = (damage * (100 - 2 * (10 / 3))) / 100;
-					} else if (1800 > interval && interval >= 1700) {
-						damage = (damage * (100 - 3 * (10 / 3))) / 100;
-					} else if (1700 > interval && interval >= 1600) {
-						damage = (damage * (100 - 4 * (10 / 3))) / 100;
-					} else if (1600 > interval && interval >= 1500) {
-						damage = (damage * (100 - 5 * (10 / 3))) / 100;
-					} else if (1500 > interval && interval >= 1400) {
-						damage = (damage * (100 - 6 * (10 / 3))) / 100;
-					} else if (1400 > interval && interval >= 1300) {
-						damage = (damage * (100 - 7 * (10 / 3))) / 100;
-					} else if (1300 > interval && interval >= 1200) {
-						damage = (damage * (100 - 8 * (10 / 3))) / 100;
-					} else if (1200 > interval && interval >= 1100) {
-						damage = (damage * (100 - 9 * (10 / 3))) / 100;
-					} else if (1100 > interval && interval >= 1000) {
-						damage = (damage * (100 - 10 * (10 / 3))) / 100;
-					} else if (1000 > interval && interval >= 900) {
-						damage = (damage * (100 - 11 * (10 / 3))) / 100;
-					} else if (900 > interval && interval >= 800) {
-						damage = (damage * (100 - 12 * (10 / 3))) / 100;
-					} else if (800 > interval && interval >= 700) {
-						damage = (damage * (100 - 13 * (10 / 3))) / 100;
-					} else if (700 > interval && interval >= 600) {
-						damage = (damage * (100 - 14 * (10 / 3))) / 100;
-					} else if (600 > interval && interval >= 500) {
-						damage = (damage * (100 - 15 * (10 / 3))) / 100;
-					} else if (500 > interval && interval >= 400) {
-						damage = (damage * (100 - 16 * (10 / 3))) / 100;
-					} else if (400 > interval && interval >= 300) {
-						damage = (damage * (100 - 17 * (10 / 3))) / 100;
-					} else if (300 > interval && interval >= 200) {
-						damage = (damage * (100 - 18 * (10 / 3))) / 100;
-					} else if (200 > interval && interval >= 100) {
-						damage = (damage * (100 - 19 * (10 / 3))) / 100;
-					} else if (100 > interval && interval >= 0) {
-						damage = (damage * (100 - 20 * (10 / 3))) / 100;
-					} else {
-						damage = damage;
-					}
+				if (damage > 0) {
+					if (interval > 0) 
+						damage *= (1D - interval / 30D);
 
 					if (damage < 1) {
 						damage = 0;
@@ -1168,11 +1126,11 @@ public class L1PcInstance extends L1Character {
 						L1PcInstance attackPc = (L1PcInstance) attacker;
 						attackPc.sendPackets(new S_DoActionGFX(attackPc.getId(), ActionCodes.ACTION_Damage));
 						attackPc.broadcastPacket(new S_DoActionGFX(attackPc.getId(), ActionCodes.ACTION_Damage));
-						attackPc.receiveDamage(this, (int) (nowDamage / 5), false);
+						attackPc.receiveDamage(this, nowDamage / 5, false);
 					} else if (attacker instanceof L1NpcInstance) {
 						L1NpcInstance attackNpc = (L1NpcInstance) attacker;
 						attackNpc.broadcastPacket(new S_DoActionGFX(attackNpc.getId(), ActionCodes.ACTION_Damage));
-						attackNpc.receiveDamage(this, (int) (nowDamage / 5));
+						attackNpc.receiveDamage(this, nowDamage / 5);
 					}
 				}
 			}
@@ -1676,7 +1634,7 @@ public class L1PcInstance extends L1Character {
 		return (getType() == L1ClassId.ILLUSIONIST || getClassId() == L1ClassId.ILLUSIONIST_MALE || getClassId() == L1ClassId.ILLUSIONIST_FEMALE);
 	}
 
-	private static Logger _log = Logger.getLogger(L1PcInstance.class.getName());
+	private final static Logger _log = Logger.getLogger(L1PcInstance.class.getName());
 	private ClientThread _netConnection;
 	private int _classId;
 	private int _type;
@@ -2442,8 +2400,8 @@ public class L1PcInstance extends L1Character {
 			 * CalcStat.calcStatMp(getType(), 0, getBaseWis(),
 			 * getOriginalMpup());
 			 */
-			short randomHp = (short) _classFeature.calclvUpHp(getCon());
-			short randomMp = (short) _classFeature.calclvUpMp(getWis());
+			int randomHp = _classFeature.calclvUpHp(getCon());
+			int randomMp = _classFeature.calclvUpMp(getWis());
 			if (getBaseMaxHp() <= 30) {// waja add 預防降級扣到HP/MP過低
 				randomHp = 0;
 			}

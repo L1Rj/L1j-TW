@@ -21,8 +21,8 @@ package net.l1j.server.model.map;
 import net.l1j.server.ActionCodes;
 import net.l1j.server.datatables.DoorSpawnTable;
 import net.l1j.server.model.instance.L1DoorInstance;
-import net.l1j.server.types.Base;
 import net.l1j.server.types.Point;
+import net.l1j.util.MoveUtil;
 
 public class L1V2Map extends L1Map {
 	private final int _id;
@@ -42,10 +42,6 @@ public class L1V2Map extends L1Map {
 	private boolean _isRecallPets;
 	private boolean _isUsableItem;
 	private boolean _isUsableSkill;
-
-	// ■■■■■■■■■■■■■ 移動關連 ■■■■■■■■■■■
-	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	/**
 	 * Mobなどの通行不可能になるオブジェクトがタイル上に存在するかを示すビットフラグ
@@ -140,8 +136,8 @@ public class L1V2Map extends L1Map {
 		}
 		int tile;
 		// 移動予定の座標
-		int newX = x + HEADING_TABLE_X[heading];
-		int newY = y + HEADING_TABLE_Y[heading];
+		int newX = MoveUtil.MoveLocX(x, heading);
+		int newY = MoveUtil.MoveLocY(y, heading);
 		tile = accessOriginalTile(newX, newY);
 
 		if (isExistDoor(newX, newY)) {
@@ -209,14 +205,14 @@ public class L1V2Map extends L1Map {
 			return false;
 		}
 		int tile;
-		tile = accessOriginalTile(x + HEADING_TABLE_X[heading], y + HEADING_TABLE_Y[heading]); // 5.10 End
+		tile = accessOriginalTile(MoveUtil.MoveLocX(x, heading), MoveUtil.MoveLocY(y, heading));
 
-		if (tile == 1 || tile == 9 || tile == 65 || tile == 69 || tile == 73) { // 5.20 Start
+		if (tile == 1 || tile == 9 || tile == 65 || tile == 69 || tile == 73) {
 			return false;
 		} else if (0 != (_map[offset(x, y)] & BITFLAG_IS_IMPASSABLE)) {
 			return false;
 		} else {
-			return true; // 5.20 End
+			return true;
 		}
 	}
 

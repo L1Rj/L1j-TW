@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 import net.l1j.util.TimePeriod;
 
 public class L1SpawnTime {
-	private static Logger _log = Logger.getLogger(L1SpawnTime.class.getName());
+	private final static Logger _log = Logger.getLogger(L1SpawnTime.class.getName());
 
 	private final int _spawnId;
 	private final Time _timeStart;

@@ -33,7 +33,7 @@ import net.l1j.server.model.L1WeaponSkill;
 import net.l1j.util.SQLUtil;
 
 public class WeaponSkillTable {
-	private static Logger _log = Logger.getLogger(WeaponSkillTable.class.getName());
+	private final static Logger _log = Logger.getLogger(WeaponSkillTable.class.getName());
 
 	private static WeaponSkillTable _instance;
 

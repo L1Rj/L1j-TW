@@ -35,7 +35,7 @@ import net.l1j.util.SQLUtil;
 
 public class Getback {
 
-	private static Logger _log = Logger.getLogger(Getback.class.getName());
+	private final static Logger _log = Logger.getLogger(Getback.class.getName());
 
 	private static FastMap<Integer, FastTable<Getback>> _getback = new FastMap<Integer, FastTable<Getback>>();
 

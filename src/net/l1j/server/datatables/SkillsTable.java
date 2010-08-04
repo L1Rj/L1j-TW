@@ -37,7 +37,7 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class SkillsTable {
-	private static Logger _log = Logger.getLogger(SkillsTable.class.getName());
+	private final static Logger _log = Logger.getLogger(SkillsTable.class.getName());
 
 	private static SkillsTable _instance;
 

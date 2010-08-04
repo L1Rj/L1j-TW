@@ -22,14 +22,16 @@ import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.Account;
-import net.l1j.server.AccountAlreadyLoginException;
 import net.l1j.server.ClientThread;
-import net.l1j.server.GameServerFullException;
 import net.l1j.server.LoginController;
+import net.l1j.server.ServerException;
 import net.l1j.server.serverpackets.S_CommonNews;
 import net.l1j.server.serverpackets.S_LoginResult;
 
 public class C_AuthLogin extends ClientBasePacket {
+
+	private static LoginController _login = LoginController.getInstance();
+
 	private static final String C_AUTH_LOGIN = "[C] C_AuthLogin";
 
 	private static Logger _log = Logger.getLogger(C_AuthLogin.class.getName());
@@ -48,56 +50,33 @@ public class C_AuthLogin extends ClientBasePacket {
 		if (!Config.ALLOW_2PC) {
 			for (ClientThread tempClient : LoginController.getInstance().getAllAccounts()) {
 				if (ip.equalsIgnoreCase(tempClient.getIp())) {
-					_log.info("拒絕一台電腦同時進行登入。來源=" + host);
+					_log.info("拒絕兩台電腦同時登入。帳號=" + accountName + " 來源=" + host);
 					client.sendPacket(new S_LoginResult(S_LoginResult.REASON_USER_OR_PASS_WRONG));
 					return;
 				}
 			}
 		}
 
-		synchronized(this) {
-			Account account = Account.load(accountName);
-
-			if (account == null) {
-				if (Config.AUTO_CREATE_ACCOUNTS) {
-					account = Account.create(accountName, password, ip, host);
-				} else {
-					_log.warning("account missing for user " + accountName);
-				}
-			}
-			if (account == null || !account.validatePassword(password)) {
-				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_USER_OR_PASS_WRONG));
-				return;
-			}
-
-			if (account.isBanned()) { // BANアカウント
-				_log.info("拒絕禁止列表(BAN List)中的帳號登入。帳號=" + accountName + " 來源=" + host);
-				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_USER_OR_PASS_WRONG));
-				return;
-			}
-
-			if (account.getOnlineStatus()) {
-				_log.info("帳號重複登入！ 帳號=" + accountName + " 來源=" + host);
-				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_ACCOUNT_IN_USE));
-				client.kick();
-				return;
+		Account account = Account.load(accountName);
+		if (account == null) {
+			if (Config.AUTO_CREATE_ACCOUNTS) {
+				account = Account.create(accountName, password, ip, host);
 			} else {
-				account.updateOnlineStatus(1);
+				_log.warning("account missing for user " + accountName);
 			}
+		}
+		if (account == null || !account.validatePassword(password)) {
+			client.sendPacket(new S_LoginResult(S_LoginResult.REASON_USER_OR_PASS_WRONG));
+			return;
+		}
 
+		synchronized(C_AuthLogin.class) {
 			try {
 				LoginController.getInstance().login(client, account);
-				Account.updateLastActive(account, ip);
-				client.setAccount(account);
 				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_LOGIN_OK));
 				client.sendPacket(new S_CommonNews());
-			} catch (GameServerFullException e) {
-				client.kick();
-				_log.info("因為登入人數到達上限(" + client.getHostname() + ")所以連線中斷。");
-				return;
-			} catch (AccountAlreadyLoginException e) {
-				client.kick();
-				_log.info("因為相同帳號同時登入(" + client.getHostname() + ")所以強制切斷連線。");
+			} catch (ServerException e) {
+				_log.info(e.getMessage() + "\n\r問題帳號:" + accountName + " 來源:" + host);
 				return;
 			}
 		}

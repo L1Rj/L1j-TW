@@ -38,7 +38,7 @@ import net.l1j.server.templates.L1House;
 import net.l1j.util.SQLUtil;
 
 public class HouseTable {
-	private static Logger _log = Logger.getLogger(HouseTable.class.getName());
+	private final static Logger _log = Logger.getLogger(HouseTable.class.getName());
 
 	private static HouseTable _instance;
 

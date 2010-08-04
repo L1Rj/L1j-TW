@@ -41,7 +41,7 @@ import net.l1j.server.templates.L1Skills;
 public class C_CreateChar extends ClientBasePacket {
 	private static final String C_CREATE_CHAR = "[C] C_CreateChar";
 
-	private static Logger _log = Logger.getLogger("character");
+	private final static Logger _log = Logger.getLogger("character");
 
 	private L1ClassFeature classFeature = null;
 

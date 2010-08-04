@@ -34,7 +34,7 @@ import net.l1j.server.templates.L1NpcChat;
 import net.l1j.util.SQLUtil;
 
 public class NpcChatTable {
-	private static Logger _log = Logger.getLogger(NpcChatTable.class.getName());
+	private final static Logger _log = Logger.getLogger(NpcChatTable.class.getName());
 
 	private static NpcChatTable _instance;
 

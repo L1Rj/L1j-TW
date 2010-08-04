@@ -30,15 +30,11 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.L1World;
 import net.l1j.server.serverpackets.S_CharVisualUpdate;
 import net.l1j.server.serverpackets.S_ServerMessage;
-import net.l1j.server.types.Base;
+import net.l1j.util.MoveUtil;
 import net.l1j.util.RandomArrayList;
 
 public class C_FishClick extends ClientBasePacket {
 	private static final String C_FISHCLICK = "[C] C_FishClick";
-
-	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
-	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
 
 	public C_FishClick(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -111,10 +107,8 @@ public class C_FishClick extends ClientBasePacket {
 		item.startItemOwnerTimer(pc);
 		int heading = pc.getHeading();
 		int[] Loc = { pc.getX(), pc.getY() };
-		int[] DropLoc = new int[2];
-
-		DropLoc[0] = Loc[0] - HEADING_TABLE_X[heading];
-		DropLoc[1] = Loc[1] - HEADING_TABLE_Y[heading];
+		int[] DropLoc = new int[] {Loc[0], Loc[1]};
+		MoveUtil.MoveLoc(DropLoc, heading);
 
 		if (pc.getMap().isPassable(DropLoc[0], DropLoc[1])) { // 掉落地點 屬於正常
 			L1World.getInstance().getInventory(DropLoc[0], DropLoc[1], pc.getMapId()).storeItem(item);

@@ -33,7 +33,7 @@ import net.l1j.server.templates.L1PetItem;
 import net.l1j.util.SQLUtil;
 
 public class PetItemTable {
-	private static Logger _log = Logger.getLogger(PetItemTable.class.getName());
+	private final static Logger _log = Logger.getLogger(PetItemTable.class.getName());
 
 	private static PetItemTable _instance;
 

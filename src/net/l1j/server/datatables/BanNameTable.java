@@ -31,7 +31,7 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.util.SQLUtil;
 
 public class BanNameTable {
-	private static Logger _log = Logger.getLogger(BanNameTable.class.getName());
+	private final static Logger _log = Logger.getLogger(BanNameTable.class.getName());
 
 	private static FastTable<String> _banName;
 

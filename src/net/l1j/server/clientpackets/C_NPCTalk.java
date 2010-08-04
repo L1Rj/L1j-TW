@@ -32,7 +32,7 @@ import net.l1j.server.serverpackets.S_NPCTalkReturn;
 public class C_NPCTalk extends ClientBasePacket {
 	private static final String C_NPC_TALK = "[C] C_NPCTalk";
 
-	private static Logger _log = Logger.getLogger(C_NPCTalk.class.getName());
+	private final static Logger _log = Logger.getLogger(C_NPCTalk.class.getName());
 
 	public C_NPCTalk(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);

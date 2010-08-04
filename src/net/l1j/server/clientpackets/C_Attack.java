@@ -41,7 +41,7 @@ import static net.l1j.server.model.skill.SkillId.*;
 public class C_Attack extends ClientBasePacket {
 	private static final String C_ATTACK = "[C] C_Attack";
 
-	private static Logger _log = Logger.getLogger("speedhack");
+	private final static Logger _log = Logger.getLogger("speedhack");
 
 	public C_Attack(byte[] decrypt, ClientThread client) {
 		super(decrypt);

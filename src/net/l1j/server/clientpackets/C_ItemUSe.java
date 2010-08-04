@@ -106,7 +106,7 @@ import static net.l1j.server.model.skill.SkillId.*;
 public class C_ItemUSe extends ClientBasePacket {
 	private static final String C_ITEM_USE = "[C] C_ItemUSe";
 
-	private static Logger _log = Logger.getLogger(C_ItemUSe.class.getName());
+	private final static Logger _log = Logger.getLogger(C_ItemUSe.class.getName());
 
 	private L1PcInstance pc;
 	private L1ItemInstance item;
@@ -215,13 +215,13 @@ public class C_ItemUSe extends ClientBasePacket {
 			case 30001: // 裝備保護卷軸
 			case 49148: // 飾品強化卷軸
 			case 49188: // 索夏依卡靈魂之石
-                        case 50508:
-                        case 50509:
-                        case 50510:
-                        case 50511:
-                        case 50512:
-                        case 50513:
-                        case 50514:
+			case 50508:
+			case 50509:
+			case 50510:
+			case 50511:
+			case 50512:
+			case 50513:
+			case 50514:
 				l = readD();
 			break;
 			case 40086: case 40099: case 40100: case 50005: case 140100:
@@ -824,7 +824,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					pc.getInventory().removeItem(item, 1);
 				/*
-                                } else if (itemId == 40039) { // 紅酒
+				} else if (itemId == 40039) { // 紅酒
 					if (pc.isWizard()) {
 						Potion.Brave(pc, itemId);
 					} else {
@@ -842,7 +842,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 					Potion.Brave(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-                                } else if (itemId == 40040) { // 威士忌
+				} else if (itemId == 40040) { // 威士忌
 					if (pc.isDarkelf()) {
 						Potion.Brave(pc, itemId);
 					} else {
@@ -861,7 +861,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					Potion.Brave(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
 				*/
-                                } else if (itemId == 40733) { // 名譽貨幣
+				} else if (itemId == 40733) { // 名譽貨幣
 					if (pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)) {
 						pc.removeSkillEffect(SKILL_MOVING_ACCELERATION);
 					}
@@ -910,7 +910,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					if (pc.isWizard()) {
 						Potion.Wisdom(pc, itemId);
 					} else {
-                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40025) {
@@ -2630,13 +2630,13 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.getInventory().consumeItem(49227, 1);
 						}
 				} else if (itemId == 50508) {
-                                } else if (itemId == 50509) {
-                                } else if (itemId == 50510) {
-                                } else if (itemId == 50511) {
-                                } else if (itemId == 50512) {
-                                } else if (itemId == 50513) {
-                                } else if (itemId == 50514) {
-                                } else {
+				} else if (itemId == 50509) {
+				} else if (itemId == 50510) {
+				} else if (itemId == 50511) {
+				} else if (itemId == 50512) {
+				} else if (itemId == 50513) {
+				} else if (itemId == 50514) {
+				} else {
 					int locX = ((L1EtcItem) item.getItem()).get_locx();
 					int locY = ((L1EtcItem) item.getItem()).get_locy();
 					short mapId = ((L1EtcItem) item.getItem()).get_mapid();

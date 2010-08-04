@@ -28,7 +28,7 @@ import net.l1j.server.model.L1NpcTalkData;
 import net.l1j.util.SQLUtil;
 
 public class NPCTalkDataTable {
-	private static Logger _log = Logger.getLogger(NPCTalkDataTable.class.getName());
+	private final static Logger _log = Logger.getLogger(NPCTalkDataTable.class.getName());
 
 	private static NPCTalkDataTable _instance;
 

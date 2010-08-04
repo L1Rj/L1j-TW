@@ -29,7 +29,7 @@ import net.l1j.util.SQLUtil;
 public class S_BoardRead extends ServerBasePacket {
 	private static final String S_BOARD_READ = "[C] S_BoardRead";
 
-	private static Logger _log = Logger.getLogger(S_BoardRead.class.getName());
+	private final static Logger _log = Logger.getLogger(S_BoardRead.class.getName());
 
 	private byte[] _byte = null;
 

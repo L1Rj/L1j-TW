@@ -38,7 +38,7 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.types.Point;
 
 public class L1MonsterTrap extends L1Trap {
-	private static Logger _log = Logger.getLogger(L1MonsterTrap.class.getName());
+	private final static Logger _log = Logger.getLogger(L1MonsterTrap.class.getName());
 
 	private final int _npcId;
 	private final int _count;

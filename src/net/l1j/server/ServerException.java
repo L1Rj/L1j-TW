@@ -18,10 +18,18 @@
  */
 package net.l1j.server;
 
-public class AccountAlreadyLoginException extends Exception {
-	private static final long serialVersionUID = 1L;
-
-	public AccountAlreadyLoginException() {
+public class ServerException extends RuntimeException {
+	/**
+	 * // ----------------------------------------------
+	 * // exception
+	 * // ----------------------------------------------
+	 * protected static ServerException err_ = new ServerException("");
+	 */
+	public ServerException() {
 		super();
+	}
+
+	public ServerException(String s) {
+		super(s);
 	}
 }

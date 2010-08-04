@@ -33,7 +33,7 @@ import net.l1j.server.model.item.ItemId;
 public class C_BoardWrite extends ClientBasePacket {
 	private static final String C_BOARD_WRITE = "[C] C_BoardWrite";
 
-	private static Logger _log = Logger.getLogger(C_BoardWrite.class.getName());
+	private final static Logger _log = Logger.getLogger(C_BoardWrite.class.getName());
 
 	public C_BoardWrite(byte decrypt[], ClientThread client) {
 		super(decrypt);

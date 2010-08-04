@@ -151,7 +151,7 @@ public class Account {
 			account._lastActive = new Timestamp(System.currentTimeMillis());
 
 			con = L1DatabaseFactory.getInstance().getConnection();
-			String sqlstr = "INSERT INTO accounts SET login=?,password=?,lastactive=?,access_level=?,ip=?,host=?,banned=?,character_slot=?,online_status=?";
+			String sqlstr = "INSERT INTO accounts SET login=?,password=?,lastactive=?,access_level=?,ip=?,host=?,banned=?,character_slot=?";
 			pstm = con.prepareStatement(sqlstr);
 			pstm.setString(1, account._name);
 			pstm.setString(2, account._password);
@@ -161,7 +161,6 @@ public class Account {
 			pstm.setString(6, account._host);
 			pstm.setInt(7, account._banned ? 1 : 0);
 			pstm.setInt(8, 0);
-			pstm.setInt(9, 0);
 			pstm.execute();
 			_log.info("created new account for " + name);
 
@@ -219,12 +218,31 @@ public class Account {
 		return account;
 	}
 
-	private static String[] STATUS = new String[]{"離線", "線上"};
-	/**
-	 * 最終ログイン日をDBに反映する.
-	 *
-	 * @param account 帳號
-	 */
+	public boolean getDBOnlineStatus() {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			String sqlstr = "SELECT online_status FROM accounts WHERE login=? LIMIT 1";
+			pstm = con.prepareStatement(sqlstr);
+			pstm.setString(1, _name);
+			rs = pstm.executeQuery();
+			if (!rs.next()) {
+				return true;
+			}
+			_onlineStatus = rs.getInt("online_status") == 0 ? false : true;
+
+			_log.fine("account exists");
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(rs, pstm, con);
+		}
+
+		return _onlineStatus;
+	}
+
 	public void updateOnlineStatus(final int status_id) {
 		Connection con = null;
 		PreparedStatement pstm = null;
@@ -243,7 +261,6 @@ public class Account {
 		} finally {
 			SQLUtil.close(pstm, con);
 		}
-		System.out.println("帳號：" + _name + "， 【登入狀況】：" + STATUS[status_id]);
 	}
 
 	public static void resetOnlineStatus() {
@@ -263,7 +280,7 @@ public class Account {
 
 	/**
 	 * 最終ログイン日をDBに反映する.
-	 *
+	 * 
 	 * @param account 帳號
 	 */
 	public static void updateLastActive(final Account account, final String ip) {
@@ -272,7 +289,7 @@ public class Account {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			String sqlstr = "UPDATE accounts SET lastactive=?,ip=? WHERE login=? LIMIT 1";
+			String sqlstr = "UPDATE accounts SET lastactive=?,ip=?,online_status=1 WHERE login=? LIMIT 1";
 			pstm = con.prepareStatement(sqlstr);
 			pstm.setTimestamp(1, ts);
 			pstm.setString(2, ip);

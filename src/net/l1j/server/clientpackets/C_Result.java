@@ -48,7 +48,7 @@ import net.l1j.server.templates.L1PrivateShopSellList;
 public class C_Result extends ClientBasePacket {
 	private static final String C_RESULT = "[C] C_Result";
 
-	private static Logger _log = Logger.getLogger("warehouse");
+	private final static Logger _log = Logger.getLogger("warehouse");
 
 	public C_Result(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);

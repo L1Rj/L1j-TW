@@ -572,8 +572,7 @@ public class SkillId {
 	public static final int COOKING_END = 3047;
 
 
-	// 其他
-	
+	/** 其他 */
 	public static final int STATUS_FREEZE = 10071;
 
 	public static final int CURSE_PARALYZE2 = 10101;
@@ -585,5 +584,12 @@ public class SkillId {
 //	public static final int STATUS_YOUAREACCLERATOR = 1026;
 
 	public static final int STATUS_BRAVE2 = 20001; // 寵物競速
+
+	// 特殊轉換 (持有者狀態：無敵)
+	public static final int TRANSFORM_SKILL_ABSOLUTE_BARRIER  = 1; // 絕對屏障
+	public static final int TRANSFORM_SKILL_ICE_LANCE         = 2; // 冰矛圍籬
+	public static final int TRANSFORM_SKILL_EARTH_BIND        = 3; // 大地屏障
+	public static final int TRANSFORM_SKILL_FREEZING_BLIZZARD = 4; // 冰雪颶風
+	public static final int TRANSFORM_SKILL_FREEZING_BREATH   = 5; // 寒冰噴吐
 
 }

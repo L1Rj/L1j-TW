@@ -35,7 +35,7 @@ import net.l1j.server.model.L1UltimateBattle;
 import net.l1j.util.SQLUtil;
 
 public class UBTable {
-	private static Logger _log = Logger.getLogger(UBTable.class.getName());
+	private final static Logger _log = Logger.getLogger(UBTable.class.getName());
 
 	private static UBTable _instance = new UBTable();
 

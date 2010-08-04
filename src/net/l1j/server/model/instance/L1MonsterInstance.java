@@ -53,7 +53,7 @@ import net.l1j.util.RandomArrayList;
 public class L1MonsterInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(L1MonsterInstance.class.getName());
+	private final static Logger _log = Logger.getLogger(L1MonsterInstance.class.getName());
 
 	private boolean _storeDroped; // ドロップアイテムの讀⑸が完了したか
 

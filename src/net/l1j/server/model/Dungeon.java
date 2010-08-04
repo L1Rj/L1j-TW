@@ -37,7 +37,7 @@ import net.l1j.util.SQLUtil;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class Dungeon {
-	private static Logger _log = Logger.getLogger(Dungeon.class.getName());
+	private final static Logger _log = Logger.getLogger(Dungeon.class.getName());
 
 	private static Dungeon _instance = null;
 

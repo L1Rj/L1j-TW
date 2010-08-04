@@ -59,7 +59,7 @@ import net.l1j.server.serverpackets.S_Trade;
 import net.l1j.server.templates.L1House;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1Pet;
-import net.l1j.server.types.Base;
+import net.l1j.util.MoveUtil;
 
 public class C_Attr extends ClientBasePacket {
 	private static final String C_ATTR = "[C] C_Attr";
@@ -585,10 +585,6 @@ public class C_Attr extends ClientBasePacket {
 		pc.broadcastPacket(new S_ChangeName(pet.getId(), name));
 	}
 
-	// ■■■■■■■■■■■■■ 面向關連 ■■■■■■■■■■■
-	private static final int HEADING_TABLE_X[] = Base.HEADING_TABLE_X;
-	private static final int HEADING_TABLE_Y[] = Base.HEADING_TABLE_Y;
-
 	private void callClan(L1PcInstance pc) {
 		L1PcInstance callClanPc = (L1PcInstance) L1World.getInstance().findObject(pc.getTempID());
 		pc.setTempID(0);
@@ -619,12 +615,10 @@ public class C_Attr extends ClientBasePacket {
 		}
 
 		L1Map map = callClanPc.getMap();
-		int locX = callClanPc.getX();
-		int locY = callClanPc.getY();
 		int heading = callClanPc.getCallClanHeading();
-		locX += HEADING_TABLE_X[heading];
-		locY += HEADING_TABLE_Y[heading];
-		heading = (heading + 4) % 4;
+		int locX = MoveUtil.MoveLocX(callClanPc.getX(), heading);
+		int locY = MoveUtil.MoveLocY(callClanPc.getY(), heading);
+		heading = (heading + 4) % 8;
 
 		boolean isExsistCharacter = false;
 		for (L1Object object : L1World.getInstance().getVisibleObjects(callClanPc, 1)) {

@@ -45,7 +45,7 @@ import net.l1j.util.SQLUtil;
 public class ItemTable {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(ItemTable.class.getName());
+	private final static Logger _log = Logger.getLogger(ItemTable.class.getName());
 
 	private static final Map<String, Integer> _armorTypes = new FastMap<String, Integer>();
 	private static final Map<String, Integer> _weaponTypes = new FastMap<String, Integer>();

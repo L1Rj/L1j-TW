@@ -33,7 +33,7 @@ import net.l1j.server.templates.L1Town;
 import net.l1j.util.SQLUtil;
 
 public class TownTable {
-	private static Logger _log = Logger.getLogger(TownTable.class.getName());
+	private final static Logger _log = Logger.getLogger(TownTable.class.getName());
 
 	private static TownTable _instance;
 

@@ -36,7 +36,7 @@ import net.l1j.server.storage.TrapStorage;
 import net.l1j.util.SQLUtil;
 
 public class TrapTable {
-	private static Logger _log = Logger.getLogger(TrapTable.class.getName());
+	private final static Logger _log = Logger.getLogger(TrapTable.class.getName());
 
 	private static TrapTable _instance;
 

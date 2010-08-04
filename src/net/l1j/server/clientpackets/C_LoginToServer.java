@@ -252,7 +252,7 @@ import static net.l1j.server.model.skill.SkillId.*;
  * 00D0	00 00 00 00 11 00 3C AE                            ......<.
  */
 public class C_LoginToServer extends ClientBasePacket {
-	private static Logger _log = Logger.getLogger(C_LoginToServer.class.getName());
+	private final static Logger _log = Logger.getLogger(C_LoginToServer.class.getName());
 
 	/**
 	 * [客戶端] 登入遊戲封包

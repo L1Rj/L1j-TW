@@ -34,7 +34,7 @@ import net.l1j.server.model.L1Buddy;
 import net.l1j.util.SQLUtil;
 
 public class BuddyTable {
-	private static Logger _log = Logger.getLogger(BuddyTable.class.getName());
+	private final static Logger _log = Logger.getLogger(BuddyTable.class.getName());
 
 	private static BuddyTable _instance;
 

@@ -30,7 +30,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 public class C_NPCTalkAction extends ClientBasePacket {
 	private static final String C_NPC_TALK_ACTION = "[C] C_NPCTalkAction";
 
-	private static Logger _log = Logger.getLogger(C_NPCTalkAction.class.getName());
+	private final static Logger _log = Logger.getLogger(C_NPCTalkAction.class.getName());
 
 	public C_NPCTalkAction(byte decrypt[], ClientThread client) throws FileNotFoundException, Exception {
 		super(decrypt);

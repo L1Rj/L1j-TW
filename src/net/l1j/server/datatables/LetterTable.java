@@ -29,7 +29,7 @@ import net.l1j.L1DatabaseFactory;
 import net.l1j.util.SQLUtil;
 
 public class LetterTable {
-	private static Logger _log = Logger.getLogger(LetterTable.class.getName());
+	private final static Logger _log = Logger.getLogger(LetterTable.class.getName());
 
 	private static LetterTable _instance;
 

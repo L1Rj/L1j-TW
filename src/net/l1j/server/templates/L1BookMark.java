@@ -33,7 +33,7 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.util.SQLUtil;
 
 public class L1BookMark {
-	private static Logger _log = Logger.getLogger(L1BookMark.class.getName());
+	private final static Logger _log = Logger.getLogger(L1BookMark.class.getName());
 
 	private int _charId;
 

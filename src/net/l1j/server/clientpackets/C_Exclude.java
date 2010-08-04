@@ -31,7 +31,7 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 public class C_Exclude extends ClientBasePacket {
 	private static final String C_EXCLUDE = "[C] C_Exclude";
 
-	private static Logger _log = Logger.getLogger(C_Exclude.class.getName());
+	private final static Logger _log = Logger.getLogger(C_Exclude.class.getName());
 
 	/**
 	 * C_1 /exclude コマンドを打った時に送られる

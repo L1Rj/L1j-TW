@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 public final class PropertyUtil extends Properties {
 	private static final long serialVersionUID = 1L;
 
-	private static Logger _log = Logger.getLogger(PropertyUtil.class.getName());
+	private final static Logger _log = Logger.getLogger(PropertyUtil.class.getName());
 
 	public PropertyUtil() {
 	}

@@ -33,7 +33,7 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 public class C_Title extends ClientBasePacket {
 	private static final String C_TITLE = "[C] C_Title";
 
-	private static Logger _log = Logger.getLogger(C_Title.class.getName());
+	private final static Logger _log = Logger.getLogger(C_Title.class.getName());
 
 	public C_Title(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);

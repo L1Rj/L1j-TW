@@ -103,7 +103,7 @@ public class L1Chaser extends TimerTask {
 		double dmg = 0;
 		int spByItem = pc.getSp() - pc.getTrueSp();
 		int intel = pc.getInt();
-		int charaIntelligence = pc.getInt() + spByItem - 12;
+		int charaIntelligence = intel + spByItem - 12;
 		double coefficientA = 1.0 + 3.0 / 32.0 * charaIntelligence;
 		if (coefficientA < 1) {
 			coefficientA = 1.0;

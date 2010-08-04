@@ -30,7 +30,7 @@ import net.l1j.server.serverpackets.S_Emblem;
 public class C_Emblem extends ClientBasePacket {
 	private static final String C_EMBLEM = "[C] C_Emblem";
 
-	private static Logger _log = Logger.getLogger(C_Emblem.class.getName());
+	private final static Logger _log = Logger.getLogger(C_Emblem.class.getName());
 
 	public C_Emblem(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);

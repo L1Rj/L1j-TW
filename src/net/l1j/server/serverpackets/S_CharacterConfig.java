@@ -33,7 +33,7 @@ import net.l1j.util.SQLUtil;
 public class S_CharacterConfig extends ServerBasePacket {
 	private static final String S_CHARACTER_CONFIG = "[S] S_CharacterConfig";
 
-	private static Logger _log = Logger.getLogger(S_CharacterConfig.class.getName());
+	private final static Logger _log = Logger.getLogger(S_CharacterConfig.class.getName());
 
 	private byte[] _byte = null;
 

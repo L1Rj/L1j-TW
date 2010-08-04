@@ -30,7 +30,7 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.util.SQLUtil;
 
 public class BoardTable {
-	private static Logger _log = Logger.getLogger(BoardTable.class.getName());
+	private final static Logger _log = Logger.getLogger(BoardTable.class.getName());
 
 	private static BoardTable _instance;
 

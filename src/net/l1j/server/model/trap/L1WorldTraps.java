@@ -41,7 +41,7 @@ import net.l1j.server.types.Point;
 import net.l1j.util.SQLUtil;
 
 public class L1WorldTraps {
-	private static Logger _log = Logger.getLogger(L1WorldTraps.class.getName());
+	private final static Logger _log = Logger.getLogger(L1WorldTraps.class.getName());
 
 	private List<L1TrapInstance> _allTraps = new FastTable<L1TrapInstance>();
 	private List<L1TrapInstance> _allBases = new FastTable<L1TrapInstance>();

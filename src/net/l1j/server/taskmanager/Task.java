@@ -28,7 +28,7 @@ import net.l1j.server.taskmanager.TaskManager.ExecutedTask;
  * @author Layane
  */
 public abstract class Task {
-	private static Logger _log = Logger.getLogger(Task.class.getName());
+	private final static Logger _log = Logger.getLogger(Task.class.getName());
 
 	public void initializate() {
 		if (Config.DEBUG) {

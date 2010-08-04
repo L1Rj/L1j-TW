@@ -393,10 +393,6 @@ public class L1Spawn extends L1GameTimeAdapter {
 						} else if (isRandomSpawn()) { // 座標のランダム值が指定されている場合
 							newlocx = getLocX() + RandomArrayList.getInt(getRandomx()) * WorR_Way[RandomArrayList.getInt(2)]; // 5.14 Start
 							newlocy = getLocY() + RandomArrayList.getInt(getRandomy()) * WorR_Way[RandomArrayList.getInt(2)]; // 5.14 End
-							// newlocx = getLocX() + RandomArrayList.getArrayshortList((short) 2 * getRandomx() + 1) - getRandomx(); // 5.14 Start 測試哪個好
-							// newlocy = getLocY() + RandomArrayList.getArrayshortList((short) 2 * getRandomy() + 1) - getRandomy(); // 5.14 End 測試哪個好
-							// newlocx = (getLocX() + ((int) (Math.random() * getRandomx()) - (int) (Math.random() * getRandomx())));
-							// newlocy = (getLocY() + ((int) (Math.random() * getRandomy()) - (int) (Math.random() * getRandomy())));
 						} else { // どちらも指定されていない場合
 							newlocx = getLocX();
 							newlocy = getLocY();
