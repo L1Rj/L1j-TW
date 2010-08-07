@@ -73,16 +73,10 @@ public class LoginController {
 				try {
 					if (client.getActiveChar() != null) {
 						client.getActiveChar().sendPackets(new S_ServerMessage(SystemMessageId.$357));
-						if(client.getkick() != 2) {
-							_log.info("保留 原使用端" + client.getHostname() + "的連線。 並解除第一道防護");
-							Thread.sleep(1000);
-							client.setkick(2);
-						} else {
-							_log.info("切斷 原使用端" + client.getHostname() + "的連線。");
-							client.kick();
-							Thread.sleep(1000);
-							logout(client);
-						}
+						_log.info("切斷 原使用端" + client.getHostname() + "的連線。");
+						client.kick(22);
+						logout(client);
+						Thread.sleep(1000);
 					}
 				} catch (Exception e) {
 				}
@@ -94,16 +88,10 @@ public class LoginController {
 	// ----------------------------------------------
 	// exception
 	// ----------------------------------------------
-	public final static ServerException err_GameServerIsFull = new ServerException("【警告】 GameServer 滿載。");
-	public final static ServerException err_AccountInUse = new ServerException("【警告】玩家試圖登入 使用中的帳號");
-	public final static ServerException err_AccountIsBanned = new ServerException("【警告】玩家試圖登入 鎖定中的帳號");
-	public final static ServerException err_AccountUnValid = new ServerException("【警告】玩家試圖登入 未驗證的帳號");
-
-	public boolean sendMSG(Account account) {
-		_log.info("【重複登入】帳號=" + account.getName() + "已經在使用中。");
-		kickClient(_accounts.get(account.getName()));
-		return account.getDBOnlineStatus();
-	}
+	public final static ServerException err_GameServerIsFull = new ServerException("【警告】 GameServer 滿載。       ");
+	public final static ServerException err_AccountInUse     = new ServerException("【警告】玩家試圖登入 使用中的帳號");
+	public final static ServerException err_AccountIsBanned  = new ServerException("【警告】玩家試圖登入 鎖定中的帳號");
+	public final static ServerException err_AccountUnValid   = new ServerException("【警告】玩家試圖登入 未驗證的帳號");
 
 	public void login(ClientThread client, Account account) throws ServerException {
 		// 檢查帳號是否遭到鎖定
@@ -126,12 +114,12 @@ public class LoginController {
 
 		// 檢查帳號是否已經在使用中
 		if (account.getOnlineStatus()) {
-			if (sendMSG(account)) { // 對方依舊在線
-				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_ACCOUNT_IN_USE));
-				throw err_AccountInUse;
-			} else {
-				_accounts.remove(account.getName());
-			}
+			_log.info("【重複登入】帳號=" + account.getName() + "已經在使用中。");
+			kickClient(_accounts.remove(account.getName()));
+			client.sendPacket(new S_LoginResult(S_LoginResult.REASON_ACCOUNT_IN_USE));
+			client.kick();
+			logout(client);
+			throw err_AccountInUse;
 		}
 
 		synchronized(LoginController.class) {

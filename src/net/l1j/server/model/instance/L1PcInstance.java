@@ -1234,94 +1234,94 @@ public class L1PcInstance extends L1Character {
 			if (lastAttacker != L1PcInstance.this) {
 				// セーフティーゾーン、コンバットゾーンで最後に殺したキャラが
 				// プレイヤーorペットだったら、ペナルティなし
-                            if (getZoneType() != 0) {
-                                L1PcInstance player = null;
-                                if (lastAttacker instanceof L1PcInstance) {
-                                    player = (L1PcInstance) lastAttacker;
-                                } else if (lastAttacker instanceof L1PetInstance) {
-                                    player = (L1PcInstance) ((L1PetInstance) lastAttacker).getMaster();
-                                } else if (lastAttacker instanceof L1SummonInstance) {
-                                    player = (L1PcInstance) ((L1SummonInstance) lastAttacker).getMaster();
-                                }
-                                if (player != null) {
-                                    // 戰爭中に戰爭エリアに居る場合は例外
-                                    if (!isInWarAreaAndWarTime(L1PcInstance.this, player)) {
-                                        return;
-                                    }
-                                }
-                            }
-                            boolean sim_ret = simWarResult(lastAttacker); // 模擬戰
-                            if (sim_ret == true) { // 模擬戰中ならペナルティなし
-                                return;
-                            }
-                        }
-                        
-                        if (!getMap().isEnabledDeathPenalty()) {
-                            return;
-                        }
+				if (getZoneType() != 0) {
+					L1PcInstance player = null;
+					if (lastAttacker instanceof L1PcInstance) {
+						player = (L1PcInstance) lastAttacker;
+					} else if (lastAttacker instanceof L1PetInstance) {
+						player = (L1PcInstance) ((L1PetInstance) lastAttacker).getMaster();
+					} else if (lastAttacker instanceof L1SummonInstance) {
+						player = (L1PcInstance) ((L1SummonInstance) lastAttacker).getMaster();
+					}
+					if (player != null) {
+						// 戰爭中に戰爭エリアに居る場合は例外
+						if (!isInWarAreaAndWarTime(L1PcInstance.this, player)) {
+							return;
+						}
+					}
+				}
+				boolean sim_ret = simWarResult(lastAttacker); // 模擬戰
+				if (sim_ret == true) { // 模擬戰中ならペナルティなし
+					return;
+				}
+			}
+			
+			if (!getMap().isEnabledDeathPenalty()) {
+				return;
+			}
 
 			// 決鬥中ならペナルティなし
-                        L1PcInstance fightPc = null;
-                        if (lastAttacker instanceof L1PcInstance) {
-                            fightPc = (L1PcInstance) lastAttacker;
-                        }
-                        if (fightPc != null) {
-                            if (getFightId() == fightPc.getId() && fightPc.getFightId() == getId()) { // 決鬥中
-                                setFightId(0);
-                                sendPackets(new S_PacketBox(S_PacketBox.MSG_DUEL, 0, 0));
-                                fightPc.setFightId(0);
-                                fightPc.sendPackets(new S_PacketBox(S_PacketBox.MSG_DUEL, 0, 0));
-                                return;
-                            }
-                        }
+			L1PcInstance fightPc = null;
+			if (lastAttacker instanceof L1PcInstance) {
+				fightPc = (L1PcInstance) lastAttacker;
+			}
+			if (fightPc != null) {
+				if (getFightId() == fightPc.getId() && fightPc.getFightId() == getId()) { // 決鬥中
+					setFightId(0);
+					sendPackets(new S_PacketBox(S_PacketBox.MSG_DUEL, 0, 0));
+					fightPc.setFightId(0);
+					fightPc.sendPackets(new S_PacketBox(S_PacketBox.MSG_DUEL, 0, 0));
+					return;
+				}
+			}
 			deathPenalty(); // EXPロスト
 			setGresValid(true); // EXPロストしたらG-RES有效
 
 			if (getExpRes() == 0) {
-                            setExpRes(1);
-                        }
+				setExpRes(1);
+			}
 
 			// ガードに殺された場合のみ、PKカウントを減らしガードに攻擊されなくなる
-                        if (lastAttacker instanceof L1GuardInstance) {
-                            if (get_PKcount() > 0) {
-                                set_PKcount(get_PKcount() - 1);
-                            }
-                            setLastPk(null);
-                        }
-                        
-                        if (lastAttacker instanceof L1GuardianInstance) {// 妖精殺死同族PK值另外計算
-                            if (getPkCountForElf() > 0) {
-                                setPkCountForElf(getPkCountForElf() - 1);
-                            }
-                            setLastPkForElf(null);
-                        }
+			if (lastAttacker instanceof L1GuardInstance) {
+				if (get_PKcount() > 0) {
+					set_PKcount(get_PKcount() - 1);
+				}
+				setLastPk(null);
+			}
+
+			if (lastAttacker instanceof L1GuardianInstance) {// 妖精殺死同族PK值另外計算
+				if (getPkCountForElf() > 0) {
+					setPkCountForElf(getPkCountForElf() - 1);
+				}
+				setLastPkForElf(null);
+			}
 
 			// 一定の確率でアイテムをDROP
 			// アライメント32000以上で0%、以降-1000每に0.4%
 			// アライメントが0未滿の場合は-1000每に0.8%
 			// アライメント-32000以下で最高51.2%のDROP率
-                        int temp_Lawful = getLawful();
-                        int lostRate = (int) (((temp_Lawful + 32768D) / 1000D - 65D) * 6D);// 原值4D
-                        if (lostRate < 0) {
-                            lostRate *= -1;
-                            if (temp_Lawful < 0) {
-                                lostRate *= 4;// 原值2
-                            }
-                            int rnd = RandomArrayList.getInt(1000);
-                            if (rnd <= lostRate) {
-                                int count = 1;
-                                if (temp_Lawful <= -20000) {// 原值30000
-                                    count += RandomArrayList.getInt(5);
-                                } else if (temp_Lawful <= -10000) {// 原值20000
-                                    count += RandomArrayList.getInt(4);
-                                } else if (temp_Lawful <= -5000) {// 原值10000
-                                    count += RandomArrayList.getInt(3);
-                                } else if (temp_Lawful < 0) {
-                                    count += 1;
-                                }
-                                caoPenaltyResult(count);
-                            }
-                        }
+			int temp_Lawful = getLawful();
+			int lostRate = (int) (((temp_Lawful + 32768D) / 1000D - 65D) * 6D);// 原值4D
+			if (lostRate < 0) {
+				lostRate *= -1;
+				if (temp_Lawful < 0) {
+					lostRate *= 4;// 原值2
+				}
+				int rnd = RandomArrayList.getInt(1000);
+				if (rnd <= lostRate) {
+					int count = 1;
+					if (temp_Lawful <= -20000) {// 原值30000
+						count += RandomArrayList.getInt(5);
+					} else if (temp_Lawful <= -10000) {// 原值20000
+						count += RandomArrayList.getInt(4);
+					} else if (temp_Lawful <= -5000) {// 原值10000
+						count += RandomArrayList.getInt(3);
+					} else if (temp_Lawful < 0) {
+						count += 1;
+					}
+					caoPenaltyResult(count);
+				}
+			}
 
 			boolean castle_ret = castleWarResult(); // 攻城戰
 			if (castle_ret == true) { // 攻城戰中で旗內なら赤ネームペナルティなし
@@ -1329,74 +1329,74 @@ public class L1PcInstance extends L1Character {
 			}
 
 			// 最後に殺したキャラがプレイヤーだったら、赤ネームにする
-                        L1PcInstance player = null;
-                        if (lastAttacker instanceof L1PcInstance) {
-                            player = (L1PcInstance) lastAttacker;
-                        }
-                        if (player != null) {
-                            if (temp_Lawful >= 0 && isPinkName() == false) {
-                                boolean isChangePkCount = false;
-                                boolean isChangePkCountForElf = false; // 妖精PK值計算
-                                if (player.getZoneType() == 0 && getZoneType() == 0) {
-                                    if (player.getLawful() == 32767) { //20090807 missu0524 正義值滿不會被警衛追殺
-                                        player.set_PKcount(player.get_PKcount() + 1);
-                                        isChangePkCount = true;
-                                        player.setLastPk(null);
-                                    }
-                                    if (player.getLawful() < 32767) {
-                                        player.set_PKcount(player.get_PKcount() + 1);
-                                        isChangePkCount = true;
-                                        player.setLastPk();
-                                    }
-                                    if (player.isElf() && isElf()) { // 妖精殺死同族PK值計算
-                                        player.setPkCountForElf(player.getPkCountForElf() + 1);
-                                        isChangePkCountForElf = true;
-                                        player.setLastPkForElf();
-                                    }
-                                }
-                                // アライメント處理
-                                // 公式の發表および各LVでのPKからつじつまの合うように變更
-                                // （PK側のLVに依存し、高LVほどリスクも高い）
-                                // 48あたりで-8kほど DKの時點で10k強
-                                // 60で約20k強 65で30k弱
+			L1PcInstance player = null;
+			if (lastAttacker instanceof L1PcInstance) {
+				player = (L1PcInstance) lastAttacker;
+			}
+			if (player != null) {
+				if (temp_Lawful >= 0 && isPinkName() == false) {
+					boolean isChangePkCount = false;
+					boolean isChangePkCountForElf = false; // 妖精PK值計算
+					if (player.getZoneType() == 0 && getZoneType() == 0) {
+						if (player.getLawful() == 32767) { //20090807 missu0524 正義值滿不會被警衛追殺
+							player.set_PKcount(player.get_PKcount() + 1);
+							isChangePkCount = true;
+							player.setLastPk(null);
+						}
+						if (player.getLawful() < 32767) {
+							player.set_PKcount(player.get_PKcount() + 1);
+							isChangePkCount = true;
+							player.setLastPk();
+						}
+						if (player.isElf() && isElf()) { // 妖精殺死同族PK值計算
+							player.setPkCountForElf(player.getPkCountForElf() + 1);
+							isChangePkCountForElf = true;
+							player.setLastPkForElf();
+						}
+					}
+					// アライメント處理
+					// 公式の發表および各LVでのPKからつじつまの合うように變更
+					// （PK側のLVに依存し、高LVほどリスクも高い）
+					// 48あたりで-8kほど DKの時點で10k強
+					// 60で約20k強 65で30k弱
 
-                                int lawful;
-                                if (player.getLevel() < 50) {
-                                    lawful = -1 * (int) ((Math.pow(player.getLevel(), 2) * 4));
-                                } else {
-                                    lawful = -1 * (int) ((Math.pow(player.getLevel(), 3) * 0.08));
-                                }
+					int lawful;
+					if (player.getLevel() < 50) {
+						lawful = -1 * (int) ((Math.pow(player.getLevel(), 2) * 4));
+					} else {
+						lawful = -1 * (int) ((Math.pow(player.getLevel(), 3) * 0.08));
+					}
 
-                                // もし(元々のアライメント-1000)が計算後より低い場合
-                                // 元々のアライメント-1000をアライメント值とする
-                                // （連續でPKしたときにほとんど值が變わらなかった記憶より）
-                                // これは上の式よりも自信度が低いうろ覺えですので
-                                // 明らかにこうならない！という場合は修正お願いします
-                                if ((player.getLawful() - 1000) < lawful) {
-                                    lawful = player.getLawful() - 500;
-                                }
-                                if (lawful <= -32768) {
-                                    lawful = -32768;
-                                }
-                                player.setLawful(lawful);
-                                S_Lawful s_lawful = new S_Lawful(player.getId(), player.getLawful());
-                                player.sendPackets(s_lawful);
-                                player.broadcastPacket(s_lawful);
-                                
-                                if (isChangePkCount && player.get_PKcount() >= 5 && player.get_PKcount() < 100) {
-                                    // あなたのPK回數が%0になりました。回數が%1になると地獄行きです。
-                                    player.sendPackets(new S_BlueMessage(551, String.valueOf(player.get_PKcount()), "100"));
-                                } else if (isChangePkCount && player.get_PKcount() >= 100) {// PK值大於100傳送地獄
-                                    player.beginHell(true);
-                                }
-                            } else {
-                                setPinkName(false);
-                            }
-                        }
-                        _pcDeleteTimer = new L1PcDeleteTimer(L1PcInstance.this);
-                        _pcDeleteTimer.begin();
-                }
-        }
+					// もし(元々のアライメント-1000)が計算後より低い場合
+					// 元々のアライメント-1000をアライメント值とする
+					// （連續でPKしたときにほとんど值が變わらなかった記憶より）
+					// これは上の式よりも自信度が低いうろ覺えですので
+					// 明らかにこうならない！という場合は修正お願いします
+					if ((player.getLawful() - 1000) < lawful) {
+						lawful = player.getLawful() - 500;
+					}
+					if (lawful <= -32768) {
+						lawful = -32768;
+					}
+					player.setLawful(lawful);
+					S_Lawful s_lawful = new S_Lawful(player.getId(), player.getLawful());
+					player.sendPackets(s_lawful);
+					player.broadcastPacket(s_lawful);
+					
+					if (isChangePkCount && player.get_PKcount() >= 5 && player.get_PKcount() < 100) {
+						// あなたのPK回數が%0になりました。回數が%1になると地獄行きです。
+						player.sendPackets(new S_BlueMessage(551, String.valueOf(player.get_PKcount()), "100"));
+					} else if (isChangePkCount && player.get_PKcount() >= 100) {// PK值大於100傳送地獄
+						player.beginHell(true);
+					}
+				} else {
+					setPinkName(false);
+				}
+			}
+			_pcDeleteTimer = new L1PcDeleteTimer(L1PcInstance.this);
+			_pcDeleteTimer.begin();
+	}
+}
 
 	public void stopPcDeleteTimer() {
 		if (_pcDeleteTimer != null) {

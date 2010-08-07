@@ -268,8 +268,8 @@ public class ClientThread implements Runnable, PacketOutput {
 
 		if (_kick < 1) {
 			_log.info("客戶端 (" + _hostname + ") 連線結束。");
-			CommandLogPrint();
 		}
+		CommandLogPrint();
 
 		Thread.interrupted(); // 執行緒中止
 	}
@@ -286,12 +286,10 @@ public class ClientThread implements Runnable, PacketOutput {
 		StreamUtil.close(_out, _in);
 	}
 
-	public int getkick() {
-		return _kick;
-	}
-
-	public void setkick(int i) {
-		_kick = i;
+	public void kick(int msgId) {
+		sendPacket(new S_Disconnect(msgId));
+		_kick = 1;
+		StreamUtil.close(_out, _in);
 	}
 
 	// 自動回應程序

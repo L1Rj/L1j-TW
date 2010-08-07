@@ -19,6 +19,8 @@
 package net.l1j.server;
 
 public class ServerException extends RuntimeException {
+
+	private static final long serialVersionUID = 1L;
 	/**
 	 * // ----------------------------------------------
 	 * // exception

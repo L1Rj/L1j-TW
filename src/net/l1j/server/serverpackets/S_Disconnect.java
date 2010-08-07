@@ -31,6 +31,17 @@ public class S_Disconnect extends ServerBasePacket {
 		writeD(0x00000000);
 	}
 
+	/**
+	 *   0~21, 連線中斷
+	 *     22, 有人以同樣的帳號登入，請注意，您的密碼可能已經外洩
+	 */
+
+	public S_Disconnect(int id) {
+		writeC(Opcodes.S_OPCODE_DISCONNECT);
+		writeC(id);
+		writeD(0x00000000);
+	}
+
 	@Override
 	public byte[] getContent() {
 		return getBytes();

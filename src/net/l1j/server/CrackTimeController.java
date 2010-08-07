@@ -101,7 +101,7 @@ public class CrackTimeController extends TimerTask {
 		//checkVictory();
 		int delaytime = ( 5 * 600 ) ; // 伺服器啟動五分鐘後啟動時空裂痕
 		int keeptime =( 3 * 360000000 ); // 每次開啟 三 小時
-                int map784gatetimer = (150 * 600); // 時空裂痕開啟150分鐘
+		int map784gatetimer = (150 * 600); // 時空裂痕開啟150分鐘
 		if (_startTime == delaytime ) {
 			spawnCrack();
 			}

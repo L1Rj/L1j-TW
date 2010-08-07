@@ -89,16 +89,16 @@ public class L1TeleporterInstance extends L1NpcInstance {
 					}
 				break;
 				case 70853: // フェアリープリンセス
-                                        int map213pccount = 0;
-                                        for (L1PcInstance map213pc : L1World.getInstance().getAllPlayers()) {
-                                            if (map213pc.getMapId()== 213) {
-                                                map213pccount++;
-                                            }
-                                        }
+					int map213pccount = 0;
+					for (L1PcInstance map213pc : L1World.getInstance().getAllPlayers()) {
+						if (map213pc.getMapId()== 213) {
+							map213pccount++;
+						}
+					}
 					if (!player.isElf()){
 						htmlid = "";
 					} else if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1
-                                                && map213pccount == 0) {
+							&& map213pccount == 0) {
 						if (!player.getInventory().checkItem(40592)) { // 咒われた精靈書
 							if (RandomArrayList.getInc(100, 1) < 50) { // 50%でダークマールダンジョン
 								htmlid = "fairyp2";
@@ -111,14 +111,14 @@ public class L1TeleporterInstance extends L1NpcInstance {
 					}
 				break;
 				case 50031:
-                                        if (player.isElf()) {
-                                            if (quest.get_step(L1Quest.QUEST_LEVEL45) == 2) {
-                                                if (!player.getInventory().checkItem(40602)) { // ブルーフルート
-                                                    htmlid = "sepia1";
-                                                }
-                                            }
-                                        }
-                                        break;
+					if (player.isElf()) {
+						if (quest.get_step(L1Quest.QUEST_LEVEL45) == 2) {
+							if (!player.getInventory().checkItem(40602)) { // ブルーフルート
+								htmlid = "sepia1";
+							}
+						}
+					}
+				break;
 				case 50043: // ラムダ
 					if (quest.get_step(L1Quest.QUEST_LEVEL50) == L1Quest.QUEST_END) {
 						htmlid = "ramuda2";
