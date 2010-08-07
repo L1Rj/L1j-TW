@@ -149,9 +149,10 @@ public class Account {
 			account._host = host;
 			account._banned = false;
 			account._lastActive = new Timestamp(System.currentTimeMillis());
+			account._onlineStatus = false;
 
 			con = L1DatabaseFactory.getInstance().getConnection();
-			String sqlstr = "INSERT INTO accounts SET login=?,password=?,lastactive=?,access_level=?,ip=?,host=?,banned=?,character_slot=?";
+			String sqlstr = "INSERT INTO accounts SET login=?,password=?,lastactive=?,access_level=?,ip=?,host=?,banned=?,character_slot=?,online_status=0";
 			pstm = con.prepareStatement(sqlstr);
 			pstm.setString(1, account._name);
 			pstm.setString(2, account._password);
@@ -161,6 +162,7 @@ public class Account {
 			pstm.setString(6, account._host);
 			pstm.setInt(7, account._banned ? 1 : 0);
 			pstm.setInt(8, 0);
+			pstm.setInt(9, account._onlineStatus ? 1 : 0);
 			pstm.execute();
 			_log.info("created new account for " + name);
 
