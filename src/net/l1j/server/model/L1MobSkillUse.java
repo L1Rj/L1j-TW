@@ -112,22 +112,16 @@ public class L1MobSkillUse {
 		}
 		_target = tg;
 
-		int type;
-		type = getMobSkillTemplate().getType(0);
+		int type = getMobSkillTemplate().getType(0);
 
 		if (type == L1MobSkill.TYPE_NONE) {
 			return false;
 		}
 
-		int[] skills = null;
-		int skillSizeCounter = 0;
 		int skillSize = getMobSkillTemplate().getSkillSize();
-		if (skillSize >= 0) {
-			skills = new int[skillSize];
-		}
 
 		int i = 0;
-		for (i = 0; i < getMobSkillTemplate().getSkillSize() && getMobSkillTemplate().getType(i) != L1MobSkill.TYPE_NONE; i++) {
+		for (i = 0; i < skillSize && getMobSkillTemplate().getType(i) != L1MobSkill.TYPE_NONE; i++) {
 			// changeTargetが設定されている場合、ターゲットの入れ替え
 			int changeType = getMobSkillTemplate().getChangeTarget(i);
 			if (changeType > 0) {
@@ -153,8 +147,7 @@ public class L1MobSkillUse {
 		}
 		_target = tg;
 
-		int type;
-		type = getMobSkillTemplate().getType(0);
+		int type = getMobSkillTemplate().getType(0);
 
 		if (type == L1MobSkill.TYPE_NONE) {
 			return false;
@@ -168,7 +161,7 @@ public class L1MobSkillUse {
 		}
 
 		int i = 0;
-		for (i = 0; i < getMobSkillTemplate().getSkillSize() && getMobSkillTemplate().getType(i) != L1MobSkill.TYPE_NONE; i++) {
+		for (i = 0; i < skillSize && getMobSkillTemplate().getType(i) != L1MobSkill.TYPE_NONE; i++) {
 			// changeTargetが設定されている場合、ターゲットの入れ替え
 			int changeType = getMobSkillTemplate().getChangeTarget(i);
 			if (changeType > 0) {
@@ -186,16 +179,11 @@ public class L1MobSkillUse {
 			}
 		}
 
-//		if (skillSizeCounter != 0) {
-//		if (skillSizeCounter > 0 && skillSizeCounter < skills.length) {
-//			int num = RandomArrayList.getInt(skillSizeCounter);
-//			if (useSkill(skills[num])) { // スキル使用
-//				return true;
-//			}
 		if (skillSizeCounter != 0) {
 			int num = RandomArrayList.getInt(skillSizeCounter);
-			useSkill(skills[num]); // 怪物技能施展
-			return true;
+			if (useSkill(skills[num])) { // 怪物技能施展
+				return true;
+			}
 		}
 
 		return false;
@@ -281,9 +269,9 @@ public class L1MobSkillUse {
 			switch (npcId) {
 				case 81082: // ヤヒの場合
 					pc.getInventory().takeoffEquip(945); // 牛のpolyIdで裝備を全部外す。
-				break;
+					break;
 				default:
-				break;
+					break;
 			}
 			L1PolyMorph.doPoly(pc, polyId, 1800, L1PolyMorph.MORPH_BY_NPC);
 
@@ -577,7 +565,7 @@ public class L1MobSkillUse {
 		switch (type) {
 			case L1MobSkill.CHANGE_TARGET_ME:
 				target = _attacker;
-			break;
+				break;
 			case L1MobSkill.CHANGE_TARGET_RANDOM:
 				// ターゲット候補の選定
 				List<L1Character> targetList = new FastTable<L1Character>();
@@ -622,10 +610,10 @@ public class L1MobSkillUse {
 					int targetIndex = RandomArrayList.getInt(randomSize) / 100;
 					target = targetList.get(targetIndex);
 				}
-			break;
+				break;
 			default:
 				target = _target;
-			break;
+				break;
 		}
 		return target;
 	}

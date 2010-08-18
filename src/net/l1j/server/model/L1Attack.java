@@ -1482,9 +1482,9 @@ public class L1Attack {
 	 */
 	private int calcACfixHit(int ac) {
 		if(ac >= 0)
-			return ac;
+			return ac - 10;
 		else
-			return RandomArrayList.getInc((ac * 1.5), -1);
+			return RandomArrayList.getInc((ac * 1.5), -10);
 	}
 	/**
 	 * 特殊狀態檢查 打擊可能??

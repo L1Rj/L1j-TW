@@ -50,8 +50,8 @@ public class C_AuthLogin extends ClientBasePacket {
 		if (!Config.ALLOW_2PC) {
 			for (ClientThread tempClient : LoginController.getInstance().getAllAccounts()) {
 				if (ip.equalsIgnoreCase(tempClient.getIp())) {
-					_log.info("拒絕兩台電腦同時登入。帳號=" + accountName + " 來源=" + host);
-					client.sendPacket(new S_LoginResult(S_LoginResult.REASON_USER_OR_PASS_WRONG));
+					_log.info("不允許同一個IP同時登入。來源=" + host);
+					client.sendPacket(new S_LoginResult(S_LoginResult.REASON_SAME_IP_LOGIN));
 					return;
 				}
 			}
@@ -62,23 +62,27 @@ public class C_AuthLogin extends ClientBasePacket {
 			if (Config.AUTO_CREATE_ACCOUNTS) {
 				account = Account.create(accountName, password, ip, host);
 			} else {
+				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_ACCESS_FAILED));
 				_log.warning("account missing for user " + accountName);
 			}
-		}
-		if (account == null || !account.validatePassword(password)) {
-			client.sendPacket(new S_LoginResult(S_LoginResult.REASON_USER_OR_PASS_WRONG));
-			return;
-		}
-
-		synchronized(C_AuthLogin.class) {
-			try {
-				LoginController.getInstance().login(client, account);
-				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_LOGIN_OK));
-				client.sendPacket(new S_CommonNews());
-			} catch (ServerException e) {
-				_log.info(e.getMessage() + "\n\r問題帳號:" + accountName + " 來源:" + host);
+		} else if (!account.validatePassword(password)) {
+			client.addWrongPassFrequency();
+			if (client.getWrongPassFrequency() > 1) { // 錯2次以上
+				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_PASS_WRONG_SECOND));
+				client.kick();
+			} else {
+				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_PASS_WRONG));
 				return;
 			}
+		}
+
+		try {
+			LoginController.getInstance().login(client, account);
+			client.sendPacket(new S_LoginResult(S_LoginResult.REASON_LOGIN_OK));
+			client.sendPacket(new S_CommonNews());
+		} catch (ServerException e) {
+			_log.info(e.getMessage() + "\n\r問題帳號:" + accountName + " 來源:" + host);
+			return;
 		}
 	}
 

@@ -69,7 +69,16 @@ public class ClientThread implements Runnable, PacketOutput {
 	private String _ip;
 	private String _hostname;
 	private Socket _csocket;
+	private int _wrong_pass_frequency = 0; // 紀錄密碼錯誤次數
 	private int _loginStatus;
+
+	public void addWrongPassFrequency() {
+		++_wrong_pass_frequency; // 密碼檢查錯誤次數
+	}
+
+	public int getWrongPassFrequency() {
+		return _wrong_pass_frequency;
+	}
 
 	/**
 	 * for Test

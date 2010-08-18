@@ -91,7 +91,7 @@ public class LoginController {
 	public final static ServerException err_GameServerIsFull = new ServerException("【警告】 GameServer 滿載。       ");
 	public final static ServerException err_AccountInUse     = new ServerException("【警告】玩家試圖登入 使用中的帳號");
 	public final static ServerException err_AccountIsBanned  = new ServerException("【警告】玩家試圖登入 鎖定中的帳號");
-	public final static ServerException err_AccountUnValid   = new ServerException("【警告】玩家試圖登入 未驗證的帳號");
+	public final static ServerException err_AccountUnValid   = new ServerException("【警告】玩家登入時 未通過密碼驗證");
 
 	public void login(ClientThread client, Account account) throws ServerException {
 		// 檢查帳號是否遭到鎖定
@@ -100,7 +100,7 @@ public class LoginController {
 			throw err_AccountIsBanned;
 		}
 
-		// 檢查帳號是否通過認證
+		// 檢查帳號是否通過密碼驗證
 		if (!account.isValid()) {
 			client.sendPacket(new S_LoginResult(S_LoginResult.REASON_ACCESS_FAILED));
 			throw err_AccountUnValid;
@@ -112,17 +112,16 @@ public class LoginController {
 			throw err_GameServerIsFull;
 		}
 
-		// 檢查帳號是否已經在使用中
-		if (account.getOnlineStatus()) {
-			_log.info("【重複登入】帳號=" + account.getName() + "已經在使用中。");
-			kickClient(_accounts.remove(account.getName()));
-			client.sendPacket(new S_LoginResult(S_LoginResult.REASON_ACCOUNT_IN_USE));
-			client.kick();
-			logout(client);
-			throw err_AccountInUse;
-		}
-
 		synchronized(LoginController.class) {
+			// 檢查帳號是否已經在使用中
+			if (account.getOnlineStatus()) {
+				_log.info("【重複登入】帳號=" + account.getName() + "已經在使用中。");
+				kickClient(_accounts.remove(account.getName()));
+				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_ACCOUNT_IN_USE));
+				// client.kick(); 這部分有爭議
+				throw err_AccountInUse;
+			}
+
 			client.setAccount(account);
 			account.updateLastActive(account, client.getIp());
 			_accounts.put(account.getName(), client);
