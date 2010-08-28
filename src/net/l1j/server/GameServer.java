@@ -279,11 +279,11 @@ public class GameServer extends Thread {
 			StreamUtil.close(is);
 		}
 
+		Config.load();
+
 		if (Config.DEBUG) {
 			InfoUtil.printAllInfos();
 		}
-
-		Config.load();
 
 		L1DatabaseFactory.getInstance();
 
