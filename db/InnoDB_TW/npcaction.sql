@@ -1061,14 +1061,14 @@ INSERT INTO `npcaction` VALUES ('91006', 'adenflora1', 'adenflora1', 'adenflora2
 INSERT INTO `npcaction` VALUES ('91007', 'amelia', 'amelia1', '', '');
 INSERT INTO `npcaction` VALUES ('91050', 'veil1', 'veil1', '', '');
 INSERT INTO `npcaction` VALUES ('91051', 'dragonsmap', 'dragonsmap', '', '');
-INSERT INTO `npcaction` VALUES ('91056', 'bankoo1', 'bankoo1', '', '');				/* ¯Z»Å */
-INSERT INTO `npcaction` VALUES ('91057', 'fivelviin1', 'fivelviin1', '', '');		/* ±j¶´ªº®ü´µ */
-INSERT INTO `npcaction` VALUES ('91058', 'fivelviin2', 'fivelviin2', '', '');		/* ²Ó¤ßªº­×¼Ö */
-INSERT INTO `npcaction` VALUES ('91059', 'fivelviin3', 'fivelviin3', '', '');		/* ¹x±jªº¼Ú¯E */
-INSERT INTO `npcaction` VALUES ('91060', 'fivelviin4', 'fivelviin4', '', '');		/* ÀéÄêªº¦ã«} */
-INSERT INTO `npcaction` VALUES ('91061', 'sherme2', 'sherme2', '', '');				/* ¦Ì¦Ì */
-INSERT INTO `npcaction` VALUES ('91062', 'grayknight1', 'grayknight1', '', '');		/* ¥d·ç */
-INSERT INTO `npcaction` VALUES ('91063', 'familyed', 'familyedl', 'pfamilyed', '');	/* ©¬§Q¯S */
-INSERT INTO `npcaction` VALUES ('91064', 'ilbakiel', 'ilbakiel', '', '');			/* ¥ì©¬©_ */
-INSERT INTO `npcaction` VALUES ('91065', 'merlin1', 'merlin1', 'merlin2', '');		/* Å]ªk®v ±öµY */
-INSERT INTO `npcaction` VALUES ('91066', 'dsecret1', 'dsecret2', 'dsecret3', '');	/* Áô°Îªº¥¨Às¨¦¤J¤f */
+INSERT INTO `npcaction` VALUES ('91056', 'bankoo1', 'bankoo1', '', '');				/* ç­é…· */
+INSERT INTO `npcaction` VALUES ('91057', 'fivelviin1', 'fivelviin1', '', '');		/* å¼·éŸŒçš„æµ·æ–¯ */
+INSERT INTO `npcaction` VALUES ('91058', 'fivelviin2', 'fivelviin2', '', '');		/* ç´°å¿ƒçš„ä¿®æ¨‚ */
+INSERT INTO `npcaction` VALUES ('91059', 'fivelviin3', 'fivelviin3', '', '');		/* é ‘å¼·çš„æ­æµ© */
+INSERT INTO `npcaction` VALUES ('91060', 'fivelviin4', 'fivelviin4', '', '');		/* ç‡¦çˆ›çš„è‰¾å’ª */
+INSERT INTO `npcaction` VALUES ('91061', 'sherme2', 'sherme2', '', '');				/* ç±³ç±³ */
+INSERT INTO `npcaction` VALUES ('91062', 'grayknight1', 'grayknight1', '', '');		/* å¡ç‘ */
+INSERT INTO `npcaction` VALUES ('91063', 'familyed', 'familyedl', 'pfamilyed', '');	/* å¸•åˆ©ç‰¹ */
+INSERT INTO `npcaction` VALUES ('91064', 'ilbakiel', 'ilbakiel', '', '');			/* ä¼Šå¸•å¥‡ */
+INSERT INTO `npcaction` VALUES ('91065', 'merlin1', 'merlin1', 'merlin2', '');		/* é­”æ³•å¸« æ¢…ç³ */
+INSERT INTO `npcaction` VALUES ('91066', 'dsecret1', 'dsecret2', 'dsecret3', '');	/* éš±åŒ¿çš„å·¨é¾è°·å…¥å£ */

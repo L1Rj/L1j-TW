@@ -9673,128 +9673,128 @@ INSERT INTO `droplist` VALUES ('45681', '40222', '1', '1', '1000');
 INSERT INTO `droplist` VALUES ('45682', '40222', '1', '1', '1000');
 INSERT INTO `droplist` VALUES ('45683', '40222', '1', '1', '1000');
 
-/* 3.1C ¯«¼q©Çª«±¼¸¨¹D¨ã */
-INSERT INTO `droplist` VALUES ('90500', '40056', '1', '1', '100000');	/* µU¤l ±¼¸¨ ¦× */
-INSERT INTO `droplist` VALUES ('90501', '40056', '1', '1', '100000');	/* ³D ±¼¸¨ ¦× */
-INSERT INTO `droplist` VALUES ('90502', '40020', '1', '1', '80000');	/* ¦ã®wªü¯÷¯S(³Q°Ê) ±¼¸¨ ¿@ÁY±j¤OÅé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90502', '40306', '1', '1', '40000');	/* ¦ã®wªü¯÷¯S(³Q°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90502', '49111', '1', '1', '30000');	/* ¦ã®wªü¯÷¯S(³Q°Ê) ±¼¸¨ ÀsÃM¤h®ÑªO(Ä±¿ô¡Gªk§Q©ù) */
-INSERT INTO `droplist` VALUES ('90502', '49101', '1', '1', '30000');	/* ¦ã®wªü¯÷¯S(³Q°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90502', '49300', '1', '1', '30000');	/* ¦ã®wªü¯÷¯S(³Q°Ê) ±¼¸¨ ®w®wº¸§¢ªì¯ÅÄ_½c¸H¤ù(¤W) */
-INSERT INTO `droplist` VALUES ('90503', '40020', '1', '1', '100000');	/* ¦ã®wªü¯÷¯S(¥D°Ê) ±¼¸¨ ¿@ÁY±j¤OÅé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90503', '40306', '1', '1', '60000');	/* ¦ã®wªü¯÷¯S(¥D°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90503', '49101', '1', '1', '50000');	/* ¦ã®wªü¯÷¯S(¥D°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90503', '49300', '1', '1', '50000');	/* ¦ã®wªü¯÷¯S(¥D°Ê) ±¼¸¨ ®w®wº¸§¢ªì¯ÅÄ_½c¸H¤ù(¤W) */
-INSERT INTO `droplist` VALUES ('90504', '40020', '1', '2', '100000');	/* ¦ã®w¤×¥d(³Q°Ê) ±¼¸¨ ¿@ÁY±j¤OÅé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90504', '40306', '1', '1', '60000');	/* ¦ã®w¤×¥d(³Q°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90504', '49101', '1', '1', '50000');	/* ¦ã®w¤×¥d(³Q°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90504', '49300', '1', '1', '50000');	/* ¦ã®w¤×¥d(³Q°Ê) ±¼¸¨ ®w®wº¸§¢ªì¯ÅÄ_½c¸H¤ù(¤W) */
-INSERT INTO `droplist` VALUES ('90505', '40020', '1', '2', '100000');	/* ¦ã®w¤×¥d(¥D°Ê) ±¼¸¨ ¿@ÁY±j¤OÅé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90505', '40306', '1', '1', '60000');	/* ¦ã®w¤×¥d(¥D°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90505', '49101', '1', '1', '50000');	/* ¦ã®w¤×¥d(¥D°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90505', '49301', '1', '1', '50000');	/* ¦ã®w¤×¥d(¥D°Ê) ±¼¸¨ ®w®wº¸§¢ªì¯ÅÄ_½c¸H¤ù(¤U) */
-INSERT INTO `droplist` VALUES ('90506', '40020', '1', '2', '100000');	/* ¦ã®w¥d¥ì©Ô(³Q°Ê) ±¼¸¨ ¿@ÁY±j¤OÅé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90506', '40306', '1', '1', '40000');	/* ¦ã®w¥d¥ì©Ô(³Q°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90506', '49106', '1', '1', '35000');	/* ¦ã®w¥d¥ì©Ô(³Q°Ê) ±¼¸¨ ÀsÃM¤h®ÑªO(Ä±¿ô¡G¦w¶ð·ç´µ) */
-INSERT INTO `droplist` VALUES ('90506', '49101', '1', '1', '35000');	/* ¦ã®w¥d¥ì©Ô(³Q°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90506', '49300', '1', '1', '35000');	/* ¦ã®w¥d¥ì©Ô(³Q°Ê) ±¼¸¨ ®w®wº¸§¢ªì¯ÅÄ_½c¸H¤ù(¤W) */
-INSERT INTO `droplist` VALUES ('90507', '40020', '1', '2', '100000');	/* ¦ã®w¥d¥ì©Ô(¥D°Ê) ±¼¸¨ ¿@ÁY±j¤OÅé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90507', '40306', '1', '1', '40000');	/* ¦ã®w¥d¥ì©Ô(¥D°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90507', '49106', '1', '1', '35000');	/* ¦ã®w¥d¥ì©Ô(¥D°Ê) ±¼¸¨ ÀsÃM¤h®ÑªO(Ä±¿ô¡G¦w¶ð·ç´µ) */
-INSERT INTO `droplist` VALUES ('90507', '49101', '1', '1', '35000');	/* ¦ã®w¥d¥ì©Ô(¥D°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90507', '49301', '1', '1', '35000');	/* ¦ã®w¥d¥ì©Ô(¥D°Ê) ±¼¸¨ ®w®wº¸§¢ªì¯ÅÄ_½c¸H¤ù(¤U) */
-INSERT INTO `droplist` VALUES ('90508', '40020', '1', '3', '150000');	/* ¦ã®w¤Ú©Ô(³Q°Ê) ±¼¸¨ ¿@ÁY±j¤OÅé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90508', '40306', '1', '2', '50000');	/* ¦ã®w¤Ú©Ô(³Q°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90508', '49101', '1', '1', '40000');	/* ¦ã®w¤Ú©Ô(³Q°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90508', '49300', '1', '1', '40000');	/* ¦ã®w¤Ú©Ô(³Q°Ê) ±¼¸¨ ®w®wº¸§¢ªì¯ÅÄ_½c¸H¤ù(¤W) */
-INSERT INTO `droplist` VALUES ('90509', '40020', '1', '3', '150000');	/* ¦ã®w¤Ú©Ô(¥D°Ê) ±¼¸¨ ¿@ÁY±j¤OÅé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90509', '40306', '1', '2', '50000');	/* ¦ã®w¤Ú©Ô(¥D°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90509', '49126', '1', '1', '40000');	/* ¦ã®w¤Ú©Ô(¥D°Ê) ±¼¸¨ °O¾Ð¤ô´¹(¥ß¤è¡G¦aµõ) */
-INSERT INTO `droplist` VALUES ('90509', '49101', '1', '1', '40000');	/* ¦ã®w¤Ú©Ô(¥D°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90509', '49301', '1', '1', '40000');	/* ¦ã®w¤Ú©Ô(¥D°Ê) ±¼¸¨ ®w®wº¸§¢ªì¯ÅÄ_½c¸H¤ù(¤U) */
-INSERT INTO `droplist` VALUES ('90510', '40020', '1', '3', '180000');	/* ¦ã®w¦ã¦«(³Q°Ê) ±¼¸¨ ¿@ÁY±j¤OÅé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90510', '40306', '1', '2', '60000');	/* ¦ã®w¦ã¦«(³Q°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90510', '49110', '1', '1', '50000');	/* ¦ã®w¦ã¦«(¥D°Ê) ±¼¸¨ ÀsÃM¤h®ÑªO(½ÄÀ»¤§½§) */
-INSERT INTO `droplist` VALUES ('90510', '49101', '1', '1', '50000');	/* ¦ã®w¦ã¦«(³Q°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90510', '49300', '1', '1', '50000');	/* ¦ã®w¦ã¦«(³Q°Ê) ±¼¸¨ ®w®wº¸§¢ªì¯ÅÄ_½c¸H¤ù(¤W) */
-INSERT INTO `droplist` VALUES ('90511', '40020', '1', '3', '180000');	/* ¦ã®w¦ã¦«(¥D°Ê) ±¼¸¨ ¿@ÁY±j¤OÅé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90511', '40306', '1', '2', '600000');	/* ¦ã®w¦ã¦«(¥D°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90511', '49110', '1', '1', '50000');	/* ¦ã®w¦ã¦«(¥D°Ê) ±¼¸¨ ÀsÃM¤h®ÑªO(½ÄÀ»¤§½§) */
-INSERT INTO `droplist` VALUES ('90511', '49101', '1', '1', '50000');	/* ¦ã®w¦ã¦«(¥D°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90511', '49301', '1', '1', '50000');	/* ¦ã®w¦ã¦«(¥D°Ê) ±¼¸¨ ®w®wº¸§¢ªì¯ÅÄ_½c¸H¤ù(¤U) */
-INSERT INTO `droplist` VALUES ('90512', '40021', '1', '3', '100000');	/* ÂÄ¼wªd°¸(³Q°Ê) ±¼¸¨ ¿@ÁY²×·¥Åé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90512', '40306', '1', '2', '80000');	/* ÂÄ¼wªd°¸(³Q°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90512', '49101', '1', '1', '60000');	/* ÂÄ¼wªd°¸(³Q°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90512', '49304', '1', '1', '30000');	/* ÂÄ¼wªd°¸(³Q°Ê) ±¼¸¨ ®w®wº¸§¢°ª¯ÅÄ_½c¸H¤ù(¤W) */
-INSERT INTO `droplist` VALUES ('90512', '49308', '1', '1', '10000');	/* ÂÄ¼wªd°¸(¥D°Ê) ±¼¸¨ ´£¥dº¸®w®wº¸§¢²½¾ÂÆ_°Í */
-INSERT INTO `droplist` VALUES ('90513', '40021', '1', '3', '100000');	/* ÂÄ¼wªd°¸(¥D°Ê) ±¼¸¨ ¿@ÁY²×·¥Åé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90513', '40306', '1', '2', '80000');	/* ÂÄ¼wªd°¸(¥D°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90513', '49101', '1', '1', '60000');	/* ÂÄ¼wªd°¸(¥D°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90513', '49305', '1', '1', '30000');	/* ÂÄ¼wªd°¸(¥D°Ê) ±¼¸¨ ®w®wº¸°ªªì¯ÅÄ_½c¸H¤ù(¤U) */
-INSERT INTO `droplist` VALUES ('90513', '49308', '1', '1', '10000');	/* ÂÄ¼wªd°¸(¥D°Ê) ±¼¸¨ ´£¥dº¸®w®wº¸§¢²½¾ÂÆ_°Í */
-INSERT INTO `droplist` VALUES ('90514', '40021', '1', '1', '120000');	/* ÂÄ¼w¥q¥d(³Q°Ê) ±¼¸¨ ¿@ÁY²×·¥Åé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90514', '40306', '1', '2', '80000');	/* ÂÄ¼w¥q¥d(³Q°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90514', '49101', '1', '1', '60000');	/* ÂÄ¼w¥q¥d(³Q°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90514', '49304', '1', '1', '30000');	/* ÂÄ¼w¥q¥d(³Q°Ê) ±¼¸¨ ®w®wº¸§¢°ª¯ÅÄ_½c¸H¤ù(¤W) */
-INSERT INTO `droplist` VALUES ('90514', '49308', '1', '1', '10000');	/* ÂÄ¼w¥q¥d(¥D°Ê) ±¼¸¨ ´£¥dº¸®w®wº¸§¢²½¾ÂÆ_°Í */
-INSERT INTO `droplist` VALUES ('90515', '40021', '1', '3', '120000');	/* ÂÄ¼w¥q¥d(¥D°Ê) ±¼¸¨ ¿@ÁY²×·¥Åé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90515', '40306', '1', '2', '80000');	/* ÂÄ¼w¥q¥d(¥D°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90515', '49101', '1', '1', '60000');	/* ÂÄ¼w¥q¥d(¥D°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90515', '49305', '1', '1', '30000');	/* ÂÄ¼w¥q¥d(¥D°Ê) ±¼¸¨ ®w®wº¸°ªªì¯ÅÄ_½c¸H¤ù(¤U) */
-INSERT INTO `droplist` VALUES ('90515', '49308', '1', '1', '10000');	/* ÂÄ¼w¥q¥d(¥D°Ê) ±¼¸¨ ´£¥dº¸®w®wº¸§¢²½¾ÂÆ_°Í */
-INSERT INTO `droplist` VALUES ('90516', '40021', '1', '1', '120000');	/* ÂÄ¼w´£¼Ú(³Q°Ê) ±¼¸¨ ¿@ÁY²×·¥Åé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90516', '40306', '1', '2', '80000');	/* ÂÄ¼w´£¼Ú(³Q°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90516', '49113', '1', '1', '30000');	/* ÂÄ¼w´£¼Ú(³Q°Ê) ±¼¸¨ ÀsÃM¤h®ÑªO(¹Ü©R¤§¹p) */
-INSERT INTO `droplist` VALUES ('90516', '49101', '1', '1', '60000');	/* ÂÄ¼w´£¼Ú(³Q°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90516', '49304', '1', '1', '30000');	/* ÂÄ¼w´£¼Ú(³Q°Ê) ±¼¸¨ ®w®wº¸§¢°ª¯ÅÄ_½c¸H¤ù(¤W) */
-INSERT INTO `droplist` VALUES ('90516', '49308', '1', '1', '10000');	/* ÂÄ¼w´£¼Ú(³Q°Ê) ±¼¸¨ ´£¥dº¸®w®wº¸§¢²½¾ÂÆ_°Í */
-INSERT INTO `droplist` VALUES ('90517', '40021', '1', '3', '120000');	/* ÂÄ¼w´£¼Ú(¥D°Ê) ±¼¸¨ ¿@ÁY²×·¥Åé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90517', '40306', '1', '2', '80000');	/* ÂÄ¼w´£¼Ú(¥D°Ê) ±¼¸¨ ¥ì«½¤§¥Û */
-INSERT INTO `droplist` VALUES ('90517', '49113', '1', '1', '30000');	/* ÂÄ¼w´£¼Ú(¥D°Ê) ±¼¸¨ ÀsÃM¤h®ÑªO(¹Ü©R¤§¹p) */
-INSERT INTO `droplist` VALUES ('90517', '49101', '1', '1', '60000');	/* ÂÄ¼w´£¼Ú(¥D°Ê) ±¼¸¨ ®ÉªÅµõ²ª¸H¤ù */
-INSERT INTO `droplist` VALUES ('90517', '49305', '1', '1', '30000');	/* ÂÄ¼w´£¼Ú(¥D°Ê) ±¼¸¨ ®w®wº¸°ªªì¯ÅÄ_½c¸H¤ù(¤U) */
-INSERT INTO `droplist` VALUES ('90517', '49308', '1', '1', '10000');	/* ÂÄ¼w´£¼Ú(¥D°Ê) ±¼¸¨ ´£¥dº¸®w®wº¸§¢²½¾ÂÆ_°Í */
-INSERT INTO `droplist` VALUES ('90518', '40024', '1', '5', '300000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ¥j¥N²×·¥Åé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90518', '140100', '1', '3', '250000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ¨ü¯¬ºÖªºÀþ¶¡²¾°Ê¨÷¶b */
-INSERT INTO `droplist` VALUES ('90518', '40087', '1', '5', '200000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ¹ïªZ¾¹¬Iªkªº¨÷¶b */
-INSERT INTO `droplist` VALUES ('90518', '140087', '1', '3', '80000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ¨ü¯¬ºÖªº¹ïªZ¾¹¬Iªkªº¨÷¶b */
-INSERT INTO `droplist` VALUES ('90518', '40074', '1', '1', '200000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ¹ï²¯¥Ò¬Iªkªº¨÷¶b  */
-INSERT INTO `droplist` VALUES ('90518', '140074', '1', '1', '80000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ¨ü¯¬ºÖªº¹ï²¯¥Ò¬Iªkªº¨÷¶b */
-INSERT INTO `droplist` VALUES ('90518', '20264', '1', '1', '80000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ¤O¶q¶µÁå */
-INSERT INTO `droplist` VALUES ('90518', '20256', '1', '1', '80000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ±Ó±¶¶µÁå */
-INSERT INTO `droplist` VALUES ('90518', '20268', '1', '1', '80000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ Åé½è¶µÁå */
-INSERT INTO `droplist` VALUES ('90518', '20266', '1', '1', '80000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ´¼¤O¶µÁå */
-INSERT INTO `droplist` VALUES ('90518', '20267', '1', '1', '80000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ºë¯«¶µÁå */
-INSERT INTO `droplist` VALUES ('90518', '20254', '1', '1', '80000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ¾y¤O¶µÁå */
-INSERT INTO `droplist` VALUES ('90518', '20284', '1', '1', '50000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ¥l³ê±±¨î§Ù«ü */
-INSERT INTO `droplist` VALUES ('90518', '20281', '1', '1', '50000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ÅÜ§Î±±¨î§Ù«ü */
-INSERT INTO `droplist` VALUES ('90518', '20288', '1', '1', '50000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ¶Ç°e±±¨î§Ù«ü */
-INSERT INTO `droplist` VALUES ('90518', '20303', '1', '1', '250000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ §ÜÅ]§Ù«ü */
-INSERT INTO `droplist` VALUES ('90518', '20280', '1', '1', '100000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ·ÀÅ]§Ù«ü */
-INSERT INTO `droplist` VALUES ('90518', '49092', '1', '1', '100000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ Àtµõ¤§®Ö */
-INSERT INTO `droplist` VALUES ('90518', '49306', '1', '1', '100000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ¤WÂêªº®w®wº¸§¢°ª¯ÅÄ_½c */
-INSERT INTO `droplist` VALUES ('90518', '21542', '1', '1', '30000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ´£¥dº¸ªN¥±¹p®w¦y¤ú */
-INSERT INTO `droplist` VALUES ('90518', '21543', '1', '1', '30000');	/* ªN¥±¹p®w(¶¯) ±¼¸¨ ´£¥dº¸ªN¥±¹p®w¤§²´ */
-INSERT INTO `droplist` VALUES ('90519', '40024', '1', '5', '30000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ¥j¥N²×·¥Åé¤O«ì´_¾¯ */
-INSERT INTO `droplist` VALUES ('90519', '140100', '1', '3', '25000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ¨ü¯¬ºÖªºÀþ¶¡²¾°Ê¨÷¶b */
-INSERT INTO `droplist` VALUES ('90519', '40087', '1', '5', '20000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ¹ïªZ¾¹¬Iªkªº¨÷¶b */
-INSERT INTO `droplist` VALUES ('90519', '140087', '1', '3', '80000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ¨ü¯¬ºÖªº¹ïªZ¾¹¬Iªkªº¨÷¶b */
-INSERT INTO `droplist` VALUES ('90519', '40074', '1', '1', '200000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ¹ï²¯¥Ò¬Iªkªº¨÷¶b  */
-INSERT INTO `droplist` VALUES ('90519', '140074', '1', '1', '80000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ¨ü¯¬ºÖªº¹ï²¯¥Ò¬Iªkªº¨÷¶b */
-INSERT INTO `droplist` VALUES ('90519', '20264', '1', '1', '80000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ¤O¶q¶µÁå */
-INSERT INTO `droplist` VALUES ('90519', '20256', '1', '1', '80000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ±Ó±¶¶µÁå */
-INSERT INTO `droplist` VALUES ('90519', '20268', '1', '1', '80000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ Åé½è¶µÁå */
-INSERT INTO `droplist` VALUES ('90519', '20266', '1', '1', '80000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ´¼¤O¶µÁå */
-INSERT INTO `droplist` VALUES ('90519', '20267', '1', '1', '80000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ºë¯«¶µÁå */
-INSERT INTO `droplist` VALUES ('90519', '20254', '1', '1', '80000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ¾y¤O¶µÁå */
-INSERT INTO `droplist` VALUES ('90519', '20284', '1', '1', '50000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ¥l³ê±±¨î§Ù«ü */
-INSERT INTO `droplist` VALUES ('90519', '20281', '1', '1', '50000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ÅÜ§Î±±¨î§Ù«ü */
-INSERT INTO `droplist` VALUES ('90519', '20288', '1', '1', '50000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ¶Ç°e±±¨î§Ù«ü */
-INSERT INTO `droplist` VALUES ('90519', '20303', '1', '1', '250000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ §ÜÅ]§Ù«ü */
-INSERT INTO `droplist` VALUES ('90519', '20280', '1', '1', '100000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ·ÀÅ]§Ù«ü */
-INSERT INTO `droplist` VALUES ('90519', '49092', '1', '1', '100000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ Àtµõ¤§®Ö */
-INSERT INTO `droplist` VALUES ('90519', '49306', '1', '1', '100000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ¤WÂêªº®w®wº¸§¢°ª¯ÅÄ_½c */
-INSERT INTO `droplist` VALUES ('90519', '21542', '1', '1', '30000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ´£¥dº¸ªN¥±¹p®w¦y¤ú */
-INSERT INTO `droplist` VALUES ('90519', '21543', '1', '1', '30000');	/* ªN¥±¹p®w(»Û) ±¼¸¨ ´£¥dº¸ªN¥±¹p®w¤§²´ */
-/* 3.1C ¯«¼q©Çª«±¼¸¨¹D¨ã µ²§ô */
+/* 3.1C ç¥žå»Ÿæ€ªç‰©æŽ‰è½é“å…· */
+INSERT INTO `droplist` VALUES ('90500', '40056', '1', '1', '100000');	/* çŒ´å­ æŽ‰è½ è‚‰ */
+INSERT INTO `droplist` VALUES ('90501', '40056', '1', '1', '100000');	/* è›‡ æŽ‰è½ è‚‰ */
+INSERT INTO `droplist` VALUES ('90502', '40020', '1', '1', '80000');	/* è‰¾åº«é˜¿èŒ²ç‰¹(è¢«å‹•) æŽ‰è½ æ¿ƒç¸®å¼·åŠ›é«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90502', '40306', '1', '1', '40000');	/* è‰¾åº«é˜¿èŒ²ç‰¹(è¢«å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90502', '49111', '1', '1', '30000');	/* è‰¾åº«é˜¿èŒ²ç‰¹(è¢«å‹•) æŽ‰è½ é¾é¨Žå£«æ›¸æ¿(è¦ºé†’ï¼šæ³•åˆ©æ˜‚) */
+INSERT INTO `droplist` VALUES ('90502', '49101', '1', '1', '30000');	/* è‰¾åº«é˜¿èŒ²ç‰¹(è¢«å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90502', '49300', '1', '1', '30000');	/* è‰¾åº«é˜¿èŒ²ç‰¹(è¢«å‹•) æŽ‰è½ åº«åº«çˆ¾åŽåˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸Š) */
+INSERT INTO `droplist` VALUES ('90503', '40020', '1', '1', '100000');	/* è‰¾åº«é˜¿èŒ²ç‰¹(ä¸»å‹•) æŽ‰è½ æ¿ƒç¸®å¼·åŠ›é«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90503', '40306', '1', '1', '60000');	/* è‰¾åº«é˜¿èŒ²ç‰¹(ä¸»å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90503', '49101', '1', '1', '50000');	/* è‰¾åº«é˜¿èŒ²ç‰¹(ä¸»å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90503', '49300', '1', '1', '50000');	/* è‰¾åº«é˜¿èŒ²ç‰¹(ä¸»å‹•) æŽ‰è½ åº«åº«çˆ¾åŽåˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸Š) */
+INSERT INTO `droplist` VALUES ('90504', '40020', '1', '2', '100000');	/* è‰¾åº«å°¤å¡(è¢«å‹•) æŽ‰è½ æ¿ƒç¸®å¼·åŠ›é«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90504', '40306', '1', '1', '60000');	/* è‰¾åº«å°¤å¡(è¢«å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90504', '49101', '1', '1', '50000');	/* è‰¾åº«å°¤å¡(è¢«å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90504', '49300', '1', '1', '50000');	/* è‰¾åº«å°¤å¡(è¢«å‹•) æŽ‰è½ åº«åº«çˆ¾åŽåˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸Š) */
+INSERT INTO `droplist` VALUES ('90505', '40020', '1', '2', '100000');	/* è‰¾åº«å°¤å¡(ä¸»å‹•) æŽ‰è½ æ¿ƒç¸®å¼·åŠ›é«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90505', '40306', '1', '1', '60000');	/* è‰¾åº«å°¤å¡(ä¸»å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90505', '49101', '1', '1', '50000');	/* è‰¾åº«å°¤å¡(ä¸»å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90505', '49301', '1', '1', '50000');	/* è‰¾åº«å°¤å¡(ä¸»å‹•) æŽ‰è½ åº«åº«çˆ¾åŽåˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸‹) */
+INSERT INTO `droplist` VALUES ('90506', '40020', '1', '2', '100000');	/* è‰¾åº«å¡ä¼Šæ‹‰(è¢«å‹•) æŽ‰è½ æ¿ƒç¸®å¼·åŠ›é«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90506', '40306', '1', '1', '40000');	/* è‰¾åº«å¡ä¼Šæ‹‰(è¢«å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90506', '49106', '1', '1', '35000');	/* è‰¾åº«å¡ä¼Šæ‹‰(è¢«å‹•) æŽ‰è½ é¾é¨Žå£«æ›¸æ¿(è¦ºé†’ï¼šå®‰å¡”ç‘žæ–¯) */
+INSERT INTO `droplist` VALUES ('90506', '49101', '1', '1', '35000');	/* è‰¾åº«å¡ä¼Šæ‹‰(è¢«å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90506', '49300', '1', '1', '35000');	/* è‰¾åº«å¡ä¼Šæ‹‰(è¢«å‹•) æŽ‰è½ åº«åº«çˆ¾åŽåˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸Š) */
+INSERT INTO `droplist` VALUES ('90507', '40020', '1', '2', '100000');	/* è‰¾åº«å¡ä¼Šæ‹‰(ä¸»å‹•) æŽ‰è½ æ¿ƒç¸®å¼·åŠ›é«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90507', '40306', '1', '1', '40000');	/* è‰¾åº«å¡ä¼Šæ‹‰(ä¸»å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90507', '49106', '1', '1', '35000');	/* è‰¾åº«å¡ä¼Šæ‹‰(ä¸»å‹•) æŽ‰è½ é¾é¨Žå£«æ›¸æ¿(è¦ºé†’ï¼šå®‰å¡”ç‘žæ–¯) */
+INSERT INTO `droplist` VALUES ('90507', '49101', '1', '1', '35000');	/* è‰¾åº«å¡ä¼Šæ‹‰(ä¸»å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90507', '49301', '1', '1', '35000');	/* è‰¾åº«å¡ä¼Šæ‹‰(ä¸»å‹•) æŽ‰è½ åº«åº«çˆ¾åŽåˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸‹) */
+INSERT INTO `droplist` VALUES ('90508', '40020', '1', '3', '150000');	/* è‰¾åº«å·´æ‹‰(è¢«å‹•) æŽ‰è½ æ¿ƒç¸®å¼·åŠ›é«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90508', '40306', '1', '2', '50000');	/* è‰¾åº«å·´æ‹‰(è¢«å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90508', '49101', '1', '1', '40000');	/* è‰¾åº«å·´æ‹‰(è¢«å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90508', '49300', '1', '1', '40000');	/* è‰¾åº«å·´æ‹‰(è¢«å‹•) æŽ‰è½ åº«åº«çˆ¾åŽåˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸Š) */
+INSERT INTO `droplist` VALUES ('90509', '40020', '1', '3', '150000');	/* è‰¾åº«å·´æ‹‰(ä¸»å‹•) æŽ‰è½ æ¿ƒç¸®å¼·åŠ›é«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90509', '40306', '1', '2', '50000');	/* è‰¾åº«å·´æ‹‰(ä¸»å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90509', '49126', '1', '1', '40000');	/* è‰¾åº«å·´æ‹‰(ä¸»å‹•) æŽ‰è½ è¨˜æ†¶æ°´æ™¶(ç«‹æ–¹ï¼šåœ°è£‚) */
+INSERT INTO `droplist` VALUES ('90509', '49101', '1', '1', '40000');	/* è‰¾åº«å·´æ‹‰(ä¸»å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90509', '49301', '1', '1', '40000');	/* è‰¾åº«å·´æ‹‰(ä¸»å‹•) æŽ‰è½ åº«åº«çˆ¾åŽåˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸‹) */
+INSERT INTO `droplist` VALUES ('90510', '40020', '1', '3', '180000');	/* è‰¾åº«è‰¾æ‰˜(è¢«å‹•) æŽ‰è½ æ¿ƒç¸®å¼·åŠ›é«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90510', '40306', '1', '2', '60000');	/* è‰¾åº«è‰¾æ‰˜(è¢«å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90510', '49110', '1', '1', '50000');	/* è‰¾åº«è‰¾æ‰˜(ä¸»å‹•) æŽ‰è½ é¾é¨Žå£«æ›¸æ¿(è¡æ“Šä¹‹è†š) */
+INSERT INTO `droplist` VALUES ('90510', '49101', '1', '1', '50000');	/* è‰¾åº«è‰¾æ‰˜(è¢«å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90510', '49300', '1', '1', '50000');	/* è‰¾åº«è‰¾æ‰˜(è¢«å‹•) æŽ‰è½ åº«åº«çˆ¾åŽåˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸Š) */
+INSERT INTO `droplist` VALUES ('90511', '40020', '1', '3', '180000');	/* è‰¾åº«è‰¾æ‰˜(ä¸»å‹•) æŽ‰è½ æ¿ƒç¸®å¼·åŠ›é«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90511', '40306', '1', '2', '600000');	/* è‰¾åº«è‰¾æ‰˜(ä¸»å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90511', '49110', '1', '1', '50000');	/* è‰¾åº«è‰¾æ‰˜(ä¸»å‹•) æŽ‰è½ é¾é¨Žå£«æ›¸æ¿(è¡æ“Šä¹‹è†š) */
+INSERT INTO `droplist` VALUES ('90511', '49101', '1', '1', '50000');	/* è‰¾åº«è‰¾æ‰˜(ä¸»å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90511', '49301', '1', '1', '50000');	/* è‰¾åº«è‰¾æ‰˜(ä¸»å‹•) æŽ‰è½ åº«åº«çˆ¾åŽåˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸‹) */
+INSERT INTO `droplist` VALUES ('90512', '40021', '1', '3', '100000');	/* è–©å¾·æ³¥å¶(è¢«å‹•) æŽ‰è½ æ¿ƒç¸®çµ‚æ¥µé«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90512', '40306', '1', '2', '80000');	/* è–©å¾·æ³¥å¶(è¢«å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90512', '49101', '1', '1', '60000');	/* è–©å¾·æ³¥å¶(è¢«å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90512', '49304', '1', '1', '30000');	/* è–©å¾·æ³¥å¶(è¢«å‹•) æŽ‰è½ åº«åº«çˆ¾åŽé«˜ç´šå¯¶ç®±ç¢Žç‰‡(ä¸Š) */
+INSERT INTO `droplist` VALUES ('90512', '49308', '1', '1', '10000');	/* è–©å¾·æ³¥å¶(ä¸»å‹•) æŽ‰è½ æå¡çˆ¾åº«åº«çˆ¾åŽç¥­å£‡é‘°åŒ™ */
+INSERT INTO `droplist` VALUES ('90513', '40021', '1', '3', '100000');	/* è–©å¾·æ³¥å¶(ä¸»å‹•) æŽ‰è½ æ¿ƒç¸®çµ‚æ¥µé«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90513', '40306', '1', '2', '80000');	/* è–©å¾·æ³¥å¶(ä¸»å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90513', '49101', '1', '1', '60000');	/* è–©å¾·æ³¥å¶(ä¸»å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90513', '49305', '1', '1', '30000');	/* è–©å¾·æ³¥å¶(ä¸»å‹•) æŽ‰è½ åº«åº«çˆ¾é«˜åˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸‹) */
+INSERT INTO `droplist` VALUES ('90513', '49308', '1', '1', '10000');	/* è–©å¾·æ³¥å¶(ä¸»å‹•) æŽ‰è½ æå¡çˆ¾åº«åº«çˆ¾åŽç¥­å£‡é‘°åŒ™ */
+INSERT INTO `droplist` VALUES ('90514', '40021', '1', '1', '120000');	/* è–©å¾·å¸å¡(è¢«å‹•) æŽ‰è½ æ¿ƒç¸®çµ‚æ¥µé«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90514', '40306', '1', '2', '80000');	/* è–©å¾·å¸å¡(è¢«å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90514', '49101', '1', '1', '60000');	/* è–©å¾·å¸å¡(è¢«å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90514', '49304', '1', '1', '30000');	/* è–©å¾·å¸å¡(è¢«å‹•) æŽ‰è½ åº«åº«çˆ¾åŽé«˜ç´šå¯¶ç®±ç¢Žç‰‡(ä¸Š) */
+INSERT INTO `droplist` VALUES ('90514', '49308', '1', '1', '10000');	/* è–©å¾·å¸å¡(ä¸»å‹•) æŽ‰è½ æå¡çˆ¾åº«åº«çˆ¾åŽç¥­å£‡é‘°åŒ™ */
+INSERT INTO `droplist` VALUES ('90515', '40021', '1', '3', '120000');	/* è–©å¾·å¸å¡(ä¸»å‹•) æŽ‰è½ æ¿ƒç¸®çµ‚æ¥µé«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90515', '40306', '1', '2', '80000');	/* è–©å¾·å¸å¡(ä¸»å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90515', '49101', '1', '1', '60000');	/* è–©å¾·å¸å¡(ä¸»å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90515', '49305', '1', '1', '30000');	/* è–©å¾·å¸å¡(ä¸»å‹•) æŽ‰è½ åº«åº«çˆ¾é«˜åˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸‹) */
+INSERT INTO `droplist` VALUES ('90515', '49308', '1', '1', '10000');	/* è–©å¾·å¸å¡(ä¸»å‹•) æŽ‰è½ æå¡çˆ¾åº«åº«çˆ¾åŽç¥­å£‡é‘°åŒ™ */
+INSERT INTO `droplist` VALUES ('90516', '40021', '1', '1', '120000');	/* è–©å¾·ææ­(è¢«å‹•) æŽ‰è½ æ¿ƒç¸®çµ‚æ¥µé«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90516', '40306', '1', '2', '80000');	/* è–©å¾·ææ­(è¢«å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90516', '49113', '1', '1', '30000');	/* è–©å¾·ææ­(è¢«å‹•) æŽ‰è½ é¾é¨Žå£«æ›¸æ¿(å¥ªå‘½ä¹‹é›·) */
+INSERT INTO `droplist` VALUES ('90516', '49101', '1', '1', '60000');	/* è–©å¾·ææ­(è¢«å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90516', '49304', '1', '1', '30000');	/* è–©å¾·ææ­(è¢«å‹•) æŽ‰è½ åº«åº«çˆ¾åŽé«˜ç´šå¯¶ç®±ç¢Žç‰‡(ä¸Š) */
+INSERT INTO `droplist` VALUES ('90516', '49308', '1', '1', '10000');	/* è–©å¾·ææ­(è¢«å‹•) æŽ‰è½ æå¡çˆ¾åº«åº«çˆ¾åŽç¥­å£‡é‘°åŒ™ */
+INSERT INTO `droplist` VALUES ('90517', '40021', '1', '3', '120000');	/* è–©å¾·ææ­(ä¸»å‹•) æŽ‰è½ æ¿ƒç¸®çµ‚æ¥µé«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90517', '40306', '1', '2', '80000');	/* è–©å¾·ææ­(ä¸»å‹•) æŽ‰è½ ä¼Šå¨ƒä¹‹çŸ³ */
+INSERT INTO `droplist` VALUES ('90517', '49113', '1', '1', '30000');	/* è–©å¾·ææ­(ä¸»å‹•) æŽ‰è½ é¾é¨Žå£«æ›¸æ¿(å¥ªå‘½ä¹‹é›·) */
+INSERT INTO `droplist` VALUES ('90517', '49101', '1', '1', '60000');	/* è–©å¾·ææ­(ä¸»å‹•) æŽ‰è½ æ™‚ç©ºè£‚ç—•ç¢Žç‰‡ */
+INSERT INTO `droplist` VALUES ('90517', '49305', '1', '1', '30000');	/* è–©å¾·ææ­(ä¸»å‹•) æŽ‰è½ åº«åº«çˆ¾é«˜åˆç´šå¯¶ç®±ç¢Žç‰‡(ä¸‹) */
+INSERT INTO `droplist` VALUES ('90517', '49308', '1', '1', '10000');	/* è–©å¾·ææ­(ä¸»å‹•) æŽ‰è½ æå¡çˆ¾åº«åº«çˆ¾åŽç¥­å£‡é‘°åŒ™ */
+INSERT INTO `droplist` VALUES ('90518', '40024', '1', '5', '300000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ å¤ä»£çµ‚æ¥µé«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90518', '140100', '1', '3', '250000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ å—ç¥ç¦çš„çž¬é–“ç§»å‹•å·è»¸ */
+INSERT INTO `droplist` VALUES ('90518', '40087', '1', '5', '200000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ å°æ­¦å™¨æ–½æ³•çš„å·è»¸ */
+INSERT INTO `droplist` VALUES ('90518', '140087', '1', '3', '80000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ å—ç¥ç¦çš„å°æ­¦å™¨æ–½æ³•çš„å·è»¸ */
+INSERT INTO `droplist` VALUES ('90518', '40074', '1', '1', '200000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ å°ç›”ç”²æ–½æ³•çš„å·è»¸  */
+INSERT INTO `droplist` VALUES ('90518', '140074', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ å—ç¥ç¦çš„å°ç›”ç”²æ–½æ³•çš„å·è»¸ */
+INSERT INTO `droplist` VALUES ('90518', '20264', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ åŠ›é‡é …éŠ */
+INSERT INTO `droplist` VALUES ('90518', '20256', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ æ•æ·é …éŠ */
+INSERT INTO `droplist` VALUES ('90518', '20268', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ é«”è³ªé …éŠ */
+INSERT INTO `droplist` VALUES ('90518', '20266', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ æ™ºåŠ›é …éŠ */
+INSERT INTO `droplist` VALUES ('90518', '20267', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ ç²¾ç¥žé …éŠ */
+INSERT INTO `droplist` VALUES ('90518', '20254', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ é­…åŠ›é …éŠ */
+INSERT INTO `droplist` VALUES ('90518', '20284', '1', '1', '50000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ å¬å–šæŽ§åˆ¶æˆ’æŒ‡ */
+INSERT INTO `droplist` VALUES ('90518', '20281', '1', '1', '50000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ è®Šå½¢æŽ§åˆ¶æˆ’æŒ‡ */
+INSERT INTO `droplist` VALUES ('90518', '20288', '1', '1', '50000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ å‚³é€æŽ§åˆ¶æˆ’æŒ‡ */
+INSERT INTO `droplist` VALUES ('90518', '20303', '1', '1', '250000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ æŠ—é­”æˆ’æŒ‡ */
+INSERT INTO `droplist` VALUES ('90518', '20280', '1', '1', '100000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ æ»…é­”æˆ’æŒ‡ */
+INSERT INTO `droplist` VALUES ('90518', '49092', '1', '1', '100000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ é¾œè£‚ä¹‹æ ¸ */
+INSERT INTO `droplist` VALUES ('90518', '49306', '1', '1', '100000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ ä¸ŠéŽ–çš„åº«åº«çˆ¾åŽé«˜ç´šå¯¶ç®± */
+INSERT INTO `droplist` VALUES ('90518', '21542', '1', '1', '30000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ æå¡çˆ¾æ°å¼—é›·åº«å°–ç‰™ */
+INSERT INTO `droplist` VALUES ('90518', '21543', '1', '1', '30000');	/* æ°å¼—é›·åº«(é›„) æŽ‰è½ æå¡çˆ¾æ°å¼—é›·åº«ä¹‹çœ¼ */
+INSERT INTO `droplist` VALUES ('90519', '40024', '1', '5', '30000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ å¤ä»£çµ‚æ¥µé«”åŠ›æ¢å¾©åŠ‘ */
+INSERT INTO `droplist` VALUES ('90519', '140100', '1', '3', '25000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ å—ç¥ç¦çš„çž¬é–“ç§»å‹•å·è»¸ */
+INSERT INTO `droplist` VALUES ('90519', '40087', '1', '5', '20000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ å°æ­¦å™¨æ–½æ³•çš„å·è»¸ */
+INSERT INTO `droplist` VALUES ('90519', '140087', '1', '3', '80000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ å—ç¥ç¦çš„å°æ­¦å™¨æ–½æ³•çš„å·è»¸ */
+INSERT INTO `droplist` VALUES ('90519', '40074', '1', '1', '200000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ å°ç›”ç”²æ–½æ³•çš„å·è»¸  */
+INSERT INTO `droplist` VALUES ('90519', '140074', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ å—ç¥ç¦çš„å°ç›”ç”²æ–½æ³•çš„å·è»¸ */
+INSERT INTO `droplist` VALUES ('90519', '20264', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ åŠ›é‡é …éŠ */
+INSERT INTO `droplist` VALUES ('90519', '20256', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ æ•æ·é …éŠ */
+INSERT INTO `droplist` VALUES ('90519', '20268', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ é«”è³ªé …éŠ */
+INSERT INTO `droplist` VALUES ('90519', '20266', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ æ™ºåŠ›é …éŠ */
+INSERT INTO `droplist` VALUES ('90519', '20267', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ ç²¾ç¥žé …éŠ */
+INSERT INTO `droplist` VALUES ('90519', '20254', '1', '1', '80000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ é­…åŠ›é …éŠ */
+INSERT INTO `droplist` VALUES ('90519', '20284', '1', '1', '50000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ å¬å–šæŽ§åˆ¶æˆ’æŒ‡ */
+INSERT INTO `droplist` VALUES ('90519', '20281', '1', '1', '50000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ è®Šå½¢æŽ§åˆ¶æˆ’æŒ‡ */
+INSERT INTO `droplist` VALUES ('90519', '20288', '1', '1', '50000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ å‚³é€æŽ§åˆ¶æˆ’æŒ‡ */
+INSERT INTO `droplist` VALUES ('90519', '20303', '1', '1', '250000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ æŠ—é­”æˆ’æŒ‡ */
+INSERT INTO `droplist` VALUES ('90519', '20280', '1', '1', '100000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ æ»…é­”æˆ’æŒ‡ */
+INSERT INTO `droplist` VALUES ('90519', '49092', '1', '1', '100000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ é¾œè£‚ä¹‹æ ¸ */
+INSERT INTO `droplist` VALUES ('90519', '49306', '1', '1', '100000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ ä¸ŠéŽ–çš„åº«åº«çˆ¾åŽé«˜ç´šå¯¶ç®± */
+INSERT INTO `droplist` VALUES ('90519', '21542', '1', '1', '30000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ æå¡çˆ¾æ°å¼—é›·åº«å°–ç‰™ */
+INSERT INTO `droplist` VALUES ('90519', '21543', '1', '1', '30000');	/* æ°å¼—é›·åº«(é›Œ) æŽ‰è½ æå¡çˆ¾æ°å¼—é›·åº«ä¹‹çœ¼ */
+/* 3.1C ç¥žå»Ÿæ€ªç‰©æŽ‰è½é“å…· çµæŸ */
 INSERT INTO `droplist` VALUES ('45640', '41352', '1', '1', '10000');
