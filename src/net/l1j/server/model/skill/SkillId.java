@@ -448,8 +448,14 @@ public class SkillId {
 
 	public static final int STATUS_CUBE_BALANCE = 1025;
 
+        public static final int STATUS_WEAKNESS_EXPOSURE_LV1 = 1026;
+
+        public static final int STATUS_WEAKNESS_EXPOSURE_LV2 = 1027;
+
+        public static final int STATUS_WEAKNESS_EXPOSURE_LV3 = 1028;
+
 	/** 輔助狀態結尾 */
-	public static final int STATUS_END = 1025;
+	public static final int STATUS_END = 1028;
 
 	/** 遊戲管理員輔助狀態開頭 */
 	public static final int GMSTATUS_BEGIN = 2000;

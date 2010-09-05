@@ -34,6 +34,7 @@ import net.l1j.server.model.poison.L1ParalysisPoison;
 import net.l1j.server.model.poison.L1SilencePoison;
 import net.l1j.server.serverpackets.S_Attack;
 import net.l1j.server.serverpackets.S_DoActionGFX;
+import net.l1j.server.serverpackets.S_SkillIconGFX;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.util.RandomArrayList;
@@ -536,6 +537,28 @@ public class L1Attack {
 		// if(!possibilityDamagePC())
 		// 	return 0;
 
+                /* 弱點曝光 */
+                if (_weaponType2 == 18 && RandomArrayList.getInc(100, 1) <= 28) {
+                        if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1)) {
+                                _pc.killSkillEffectTimer(STATUS_WEAKNESS_EXPOSURE_LV1);
+                                _pc.removeSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1);
+                                _pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2, 15000);
+                                _pc.sendPackets(new S_SkillIconGFX(75, 2));
+                                weaponDamage += 6;
+                        } else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2)) {
+                                _pc.killSkillEffectTimer(STATUS_WEAKNESS_EXPOSURE_LV2);
+                                _pc.removeSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2);
+                                _pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3, 15000);
+                                _pc.sendPackets(new S_SkillIconGFX(75, 3));
+                                weaponDamage += 9;
+                        } else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3)) {
+
+                        } else {
+                                _pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1, 15000);
+                                _pc.sendPackets(new S_SkillIconGFX(75, 1));
+                                weaponDamage += 3;
+                        }
+                }
 		// 使用鋼爪之類的武器、並且有一定的機率會發揮攻擊最大化
 		if (_weaponType == 58 && RandomArrayList.getInc(100, 1) <= _weaponDoubleDmgChance) {
 			weaponDamage = weaponMaxDamage; // 攻擊最大化
@@ -671,6 +694,29 @@ public class L1Attack {
 			weaponArrow = _arrowLarge;
 			weaponsting = _stingLarge;
 		}
+
+                /* 弱點曝光 */
+                if (_weaponType2 == 18 && RandomArrayList.getInc(100, 1) <= 28) {
+                        if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1)) {
+                                _pc.killSkillEffectTimer(STATUS_WEAKNESS_EXPOSURE_LV1);
+                                _pc.removeSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1);
+                                _pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2, 15000);
+                                _pc.sendPackets(new S_SkillIconGFX(75, 2));
+                                weaponDamage += 6;
+                        } else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2)) {
+                                _pc.killSkillEffectTimer(STATUS_WEAKNESS_EXPOSURE_LV2);
+                                _pc.removeSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2);
+                                _pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3, 15000);
+                                _pc.sendPackets(new S_SkillIconGFX(75, 3));
+                                weaponDamage += 9;
+                        } else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3)) {
+
+                        } else {
+                                _pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1, 15000);
+                                _pc.sendPackets(new S_SkillIconGFX(75, 1));
+                                weaponDamage += 3;
+                        }
+                }
 
 		// 使用鋼爪之類的武器、並且有一定的機率會發揮攻擊最大化
 		if (_weaponType == 58 && RandomArrayList.getInc(100, 1) <= _weaponDoubleDmgChance) {
@@ -1482,9 +1528,9 @@ public class L1Attack {
 	 */
 	private int calcACfixHit(int ac) {
 		if(ac >= 0)
-			return ac - 10;
+			return ac;
 		else
-			return RandomArrayList.getInc((ac * 1.5), -10);
+			return RandomArrayList.getInc((ac * 1.5), -1);
 	}
 	/**
 	 * 特殊狀態檢查 打擊可能??

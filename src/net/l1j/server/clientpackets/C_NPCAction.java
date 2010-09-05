@@ -200,773 +200,7 @@ public class C_NPCAction extends ClientBasePacket {
 		/*
 		 * アクション個別處理
 		 */
-		if (s.equalsIgnoreCase("buy")) {
-			L1NpcInstance npc = (L1NpcInstance) obj;
-			// "sell"のみ表示されるはずのNPCをチェックする。
-			if (isNpcSellOnly(npc)) {
-				return;
-			}
-			// 販賣リスト表示
-			pc.sendPackets(new S_ShopSellList(objid));
-		} else if (s.equalsIgnoreCase("sell")) {
-			int npcid = ((L1NpcInstance) obj).getNpcTemplate().get_npcId();
-			if (npcid == 70523 || npcid == 70805) { // ラダー or ジュリー
-				htmlid = "ladar2";
-			} else if (npcid == 70537 || npcid == 70807) { // ファーリン or フィン
-				htmlid = "farlin2";
-			} else if (npcid == 70525 || npcid == 70804) { // ライアン or ジョエル
-				htmlid = "lien2";
-			} else if (npcid == 50501 || npcid == 50502 || npcid == 50503 || npcid == 50504 || npcid == 50505
-					|| npcid == 50506 || npcid == 50507 || npcid == 50508 || npcid == 50509 || npcid == 50510
-					|| npcid == 50511 || npcid == 50512 || npcid == 50513 || npcid == 50514 || npcid == 50515
-					|| npcid == 50516 || npcid == 50517 || npcid == 50518 || npcid == 50519 || npcid == 50520
-					|| npcid == 50521 || npcid == 50522 || npcid == 50523 || npcid == 50524 || npcid == 50525
-					|| npcid == 50526 || npcid == 50527 || npcid == 50528 || npcid == 50529 || npcid == 50530
-					|| npcid == 50531 || npcid == 50532 || npcid == 50533 || npcid == 50534 || npcid == 50535
-					|| npcid == 50536 || npcid == 50537 || npcid == 50538 || npcid == 50539 || npcid == 50540
-					|| npcid == 50541 || npcid == 50542 || npcid == 50543 || npcid == 50544 || npcid == 50545
-					|| npcid == 50614 || npcid == 50615 || npcid == 50616 || npcid == 50617 || npcid == 50618
-					|| npcid == 50619 || npcid == 50620 || npcid == 50621 || npcid == 50622 || npcid == 50623
-					|| npcid == 50624 || npcid == 50626 || npcid == 50627 || npcid == 50628 || npcid == 50629
-					|| npcid == 50630 || npcid == 50631) { // アジトのNPC
-				String sellHouseMessage = sellHouse(pc, objid, npcid);
-				if (sellHouseMessage != null) {
-					htmlid = sellHouseMessage;
-				}
-			} else { // 一般商人
-				// 買い取りリスト表示
-				pc.sendPackets(new S_ShopBuyList(objid, pc));
-			}
-		} else if (s.equalsIgnoreCase("retrieve")) { // 倉庫
-			if (pc.getLevel() >= 5) {
-				pc.sendPackets(new S_RetrieveList(objid, pc));
-			}
-		} else if (s.equalsIgnoreCase("retrieve-elven")) { // 精靈倉庫
-			if (pc.getLevel() >= 5 && pc.isElf()) {
-				pc.sendPackets(new S_RetrieveElfList(objid, pc));
-			}
-		} else if (s.equalsIgnoreCase("retrieve-pledge")) { // 血盟倉庫
-			if (pc.getLevel() >= 5) {
-				if (pc.getClanid() == 0) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$208));
-					return;
-				}
-				int rank = pc.getClanRank();
-				if (rank != L1Clan.CLAN_RANK_PUBLIC && rank != L1Clan.CLAN_RANK_GUARDIAN && rank != L1Clan.CLAN_RANK_PRINCE) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$728));
-					return;
-				}
-				if (rank != L1Clan.CLAN_RANK_PRINCE && pc.getTitle().equalsIgnoreCase("")) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$728));
-					return;
-				}
-				pc.sendPackets(new S_RetrievePledgeList(objid, pc));
-			}
-		} else if (s.equalsIgnoreCase("get")) {
-			L1NpcInstance npc = (L1NpcInstance) obj;
-			int npcId = npc.getNpcTemplate().get_npcId();
-			// クーパー or ダンハム
-			if (npcId == 70099 || npcId == 70796) {
-				L1ItemInstance item = pc.getInventory().storeItem(20081, 1); // オイルスキンマント
-				String npcName = npc.getNpcTemplate().get_name();
-				String itemName = item.getItem().getName();
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
-				pc.getQuest().set_end(L1Quest.QUEST_OILSKINMANT);
-				htmlid = "";
-			}
-			// タウンマスター：報酬をもらう
-			else if (npcId == 70528 || npcId == 70546 || npcId == 70567
-					|| npcId == 70594 || npcId == 70654 || npcId == 70748
-					|| npcId == 70774 || npcId == 70799 || npcId == 70815
-					|| npcId == 70860) {
-				if (pc.getHomeTownId() > 0) {
-				} else {
-				}
-			}
-		} else if (s.equalsIgnoreCase("fix")) { // 武器を修理する
-		//waja change 旅館租借
-		/*
-		} else if (s.equalsIgnoreCase("room")) { // 部屋を借りる
-
-		} else if (s.equalsIgnoreCase("hall")
-				&& obj instanceof L1MerchantInstance) { // ホールを借りる
-		} else if (s.equalsIgnoreCase("return")) { // 部屋‧ホールを返す
-
-		} else if (s.equalsIgnoreCase("enter")) { // 部屋‧ホールに入る
-		*/
-		} else if (s.equalsIgnoreCase("room")) { //租房間
-			if (pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911)
-					|| pc.hasSkillEffect(1912) || pc.hasSkillEffect(1913)
-					|| pc.hasSkillEffect(1914)) { //已租過
-				htmlid = "inn5";
-			} else {
-				if (pc.hasSkillEffect(1915)) { //租完旅館30分鐘內不得再租
-					htmlid = "inn6";
-				} else {
-					if (pc.getInventory().checkItem(40308, 1000)) {
-						materials = new int[] { 40308 };
-						counts = new int[] { 1000 };
-						createitem = new int[] { 40312 };
-						createcount = new int[] { 1 };
-						pc.setSkillEffect(1910, 14100 * 1000); //開始計算3小時55分
-						htmlid = "inn4";
-					} else {
-						htmlid = "inn3";
-					}
-				}
-			}
-		} else if (s.equalsIgnoreCase("hall") && obj instanceof L1MerchantInstance) {
-			
-		} else if (s.equalsIgnoreCase("return")) { // 退租 還20%
-			if (pc.getInventory().checkItem(40312,1) &&
-					(pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911) || pc.hasSkillEffect(1912)
-					|| pc.hasSkillEffect(1913) || pc.hasSkillEffect(1914))) {
-				if (pc.hasSkillEffect(1910)) {
-					pc.killSkillEffectTimer(1910);
-				}
-				if (pc.hasSkillEffect(1911)) {
-					pc.killSkillEffectTimer(1911);
-				}
-				if (pc.hasSkillEffect(1912)) {
-					pc.killSkillEffectTimer(1912);
-				}
-				if (pc.hasSkillEffect(1913)) {
-					pc.killSkillEffectTimer(1913);
-				}
-				if (pc.hasSkillEffect(1914)) {
-					pc.killSkillEffectTimer(1914);
-				}
-				pc.setSkillEffect(1915, 60 * 1000);//退租1分鐘內無法再租
-				materials = new int[] { 40312 };
-				counts = new int[] { 1 };
-				createitem = new int[] { 40308 };
-				createcount = new int[] { 200 };
-				htmlid = "inn20";
-			}
-		} else if (s.equalsIgnoreCase("enter")) { // 進房間
-			L1NpcInstance npc = (L1NpcInstance) obj;
-			int npcId = npc.getNpcTemplate().get_npcId();
-			if (pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911) || pc.hasSkillEffect(1912)
-					|| pc.hasSkillEffect(1913) || pc.hasSkillEffect(1914)) { //有租房間才能進入
-				switch (npcId) {
-					case 70012://說話島 瑟琳娜
-						L1Teleport.teleport(pc, 32744, 32803, (short) 16384, 4, true);
-						//L1Teleport.teleport(pc, 32744, 32808, (short) 16896, 4, true); //會議室
-						break;
-					case 70031://奇岩 瑪理
-						L1Teleport.teleport(pc, 32744, 32803, (short) 18432, 4, true);
-						break;
-					case 70070://風木 維萊莎
-						L1Teleport.teleport(pc, 32744, 32803, (short) 20480, 4, true);
-						break;
-					case 70084://海音 伊莉
-						L1Teleport.teleport(pc, 32744, 32803, (short) 22528, 4, true);
-						break;
-					case 70075://銀騎士村莊 米蘭德
-						L1Teleport.teleport(pc, 32744, 32803, (short) 21504, 4, true);
-						break;
-					case 70065://歐瑞 小安安
-						L1Teleport.teleport(pc, 32744, 32803, (short) 19456, 4, true);
-						break;
-					case 70054://亞丁 史斌 不確定房間地圖編號隨便塞一個
-						L1Teleport.teleport(pc, 32744, 32808, (short) 16896, 4, true);
-						break;
-				}
-			}//change end
-		} else if (s.equalsIgnoreCase("openigate")) { // ゲートキーパー / 城門を開ける
-			L1NpcInstance npc = (L1NpcInstance) obj;
-			openCloseGate(pc, npc.getNpcTemplate().get_npcId(), true);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("closeigate")) { // ゲートキーパー / 城門を閉める
-			L1NpcInstance npc = (L1NpcInstance) obj;
-			openCloseGate(pc, npc.getNpcTemplate().get_npcId(), false);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("askwartime")) { // 近衛兵 / 次の攻城戰いの時間をたずねる
-			L1NpcInstance npc = (L1NpcInstance) obj;
-			if (npc.getNpcTemplate().get_npcId() == 60514) { // ケント城近衛兵
-				htmldata = makeWarTimeStrings(L1CastleLocation.KENT_CASTLE_ID);
-				htmlid = "ktguard7";
-			} else if (npc.getNpcTemplate().get_npcId() == 60560) { // オーク近衛兵
-				htmldata = makeWarTimeStrings(L1CastleLocation.OT_CASTLE_ID);
-				htmlid = "orcguard7";
-			} else if (npc.getNpcTemplate().get_npcId() == 60552) { // ウィンダウッド城近衛兵
-				htmldata = makeWarTimeStrings(L1CastleLocation.WW_CASTLE_ID);
-				htmlid = "wdguard7";
-			} else if (npc.getNpcTemplate().get_npcId() == 60524 || // ギラン街入り口近衛兵(弓)
-					npc.getNpcTemplate().get_npcId() == 60525 || // ギラン街入り口近衛兵
-					npc.getNpcTemplate().get_npcId() == 60529) { // ギラン城近衛兵
-				htmldata = makeWarTimeStrings(L1CastleLocation.GIRAN_CASTLE_ID);
-				htmlid = "grguard7";
-			} else if (npc.getNpcTemplate().get_npcId() == 70857) { // ハイネ城ハイネガード
-				htmldata = makeWarTimeStrings(L1CastleLocation.HEINE_CASTLE_ID);
-				htmlid = "heguard7";
-			} else if (npc.getNpcTemplate().get_npcId() == 60530 || // ドワーフ城ドワーフガード
-					npc.getNpcTemplate().get_npcId() == 60531) {
-				htmldata = makeWarTimeStrings(L1CastleLocation.DOWA_CASTLE_ID);
-				htmlid = "dcguard7";
-			} else if (npc.getNpcTemplate().get_npcId() == 60533 || // アデン城 ガード
-					npc.getNpcTemplate().get_npcId() == 60534) {
-				htmldata = makeWarTimeStrings(L1CastleLocation.ADEN_CASTLE_ID);
-				htmlid = "adguard7";
-			} else if (npc.getNpcTemplate().get_npcId() == 81156) { // アデン偵察兵（ディアド要塞）
-				htmldata = makeWarTimeStrings(L1CastleLocation.DIAD_CASTLE_ID);
-				htmlid = "dfguard3";
-			}
-		} else if (s.equalsIgnoreCase("inex")) { // 收入/支出の報告を受ける
-			// 暫定的に公金をチャットウィンドウに表示させる。
-			// メッセージは適當。
-			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
-			if (clan != null) {
-				int castle_id = clan.getCastleId();
-				if (castle_id != 0) { // 城主クラン
-					L1Castle l1castle = CastleTable.getInstance().getCastleTable(castle_id);
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$309, l1castle.getName(), String.valueOf(l1castle.getPublicMoney())));
-					htmlid = "";
-				}
-			}
-		} else if (s.equalsIgnoreCase("tax")) { // 稅率を調節する
-			pc.sendPackets(new S_TaxRate(pc.getId()));
-		} else if (s.equalsIgnoreCase("withdrawal")) { // 資金を引き出す
-			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
-			if (clan != null) {
-				int castle_id = clan.getCastleId();
-				if (castle_id != 0) { // 城主クラン
-					L1Castle l1castle = CastleTable.getInstance().getCastleTable(castle_id);
-					pc.sendPackets(new S_Drawal(pc.getId(), l1castle.getPublicMoney()));
-				}
-			}
-		} else if (s.equalsIgnoreCase("cdeposit")) { // 資金を入金する
-			pc.sendPackets(new S_Deposit(pc.getId()));
-		} else if (s.equalsIgnoreCase("employ")) { // 傭兵の雇用
-
-		} else if (s.equalsIgnoreCase("arrange")) { // 雇用した傭兵の配置
-
-		} else if (s.equalsIgnoreCase("castlegate")) { // 城門を管理する
-			repairGate(pc);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("encw")) { // 武器專門家 / 武器の強化魔法を受ける
-			L1NpcInstance npc = (L1NpcInstance) obj;
-			if (pc.getWeapon() == null) {
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
-			} else {
-				for (L1ItemInstance item : pc.getInventory().getItems()) {
-					if (pc.getWeapon().equals(item)) {
-						if (npc.getNpcTemplate().get_npcId() == 70508) {
-							pc.getInventory().consumeItem(40308, 100);
-						}
-						SkillUse skilluse = new SkillUse();
-						skilluse.handleCommands(pc, SKILL_ENCHANT_WEAPON, item.getId(), 0, 0, null, 0, Base.SKILL_TYPE[2]);
-						break;
-					}
-				}
-			}
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("enca")) { // 防具專門家 / 防具の強化魔法を受ける
-			L1NpcInstance npc = (L1NpcInstance) obj;
-			L1ItemInstance item = pc.getInventory().getItemEquipped(2, 2);
-			if (item != null) {
-				if (npc.getNpcTemplate().get_npcId() == 70509) {
-					pc.getInventory().consumeItem(40308, 100);
-				}
-				SkillUse skilluse = new SkillUse();
-				skilluse.handleCommands(pc, SKILL_BLESSED_ARMOR, item.getId(), 0, 0, null, 0, Base.SKILL_TYPE[2]);
-			} else {
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
-			}
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("depositnpc")) { // 「動物を預ける」
-			Object[] petList = pc.getPetList().values().toArray();
-			for (Object petObject : petList) {
-				if (petObject instanceof L1PetInstance) { // ペット
-					L1PetInstance pet = (L1PetInstance) petObject;
-					pet.Npccollect();
-					pc.getPetList().remove(pet.getId());
-					pet.deleteMe();
-				}
-			}
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("withdrawnpc")) { // 「動物を受け取る」
-			pc.sendPackets(new S_PetList(objid, pc));
-		} else if (s.equalsIgnoreCase("changename")) { // 「名前を決める」
-			pc.setTempID(objid); // ペットのオブジェクトIDを保存しておく
-			pc.sendPackets(new S_Message_YN(SystemMessageId.$325, ""));
-		} else if (s.equalsIgnoreCase("attackchr")) {
-			if (obj instanceof L1Character) {
-				L1Character cha = (L1Character) obj;
-				pc.sendPackets(new S_SelectTarget(cha.getId()));
-			}
-		} else if (s.equalsIgnoreCase("select")) { // 競賣揭示板のリストをクリック
-			pc.sendPackets(new S_AuctionBoardRead(objid, s2));
-		} else if (s.equalsIgnoreCase("map")) { // アジトの位置を確かめる
-			pc.sendPackets(new S_HouseMap(objid, s2));
-		} else if (s.equalsIgnoreCase("apply")) { // 競賣に參加する
-			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
-			if (clan != null) {
-				if (pc.isCrown() && pc.getId() == clan.getLeaderId()) { // 君主、かつ、血盟主
-					if (pc.getLevel() >= 15) {
-						if (clan.getHouseId() == 0) {
-							pc.sendPackets(new S_ApplyAuction(objid, s2));
-						} else {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$521));
-							htmlid = "";
-						}
-					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$519));
-						htmlid = "";
-					}
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$518));
-					htmlid = "";
-				}
-			} else {
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$518));
-				htmlid = "";
-			}
-		} else if (s.equalsIgnoreCase("open") // ドアを開ける
-				|| s.equalsIgnoreCase("close")) { // ドアを閉める
-			L1NpcInstance npc = (L1NpcInstance) obj;
-			openCloseDoor(pc, npc, s);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("expel")) { // 外部の人間を追い出す
-			L1NpcInstance npc = (L1NpcInstance) obj;
-			expelOtherClan(pc, npc.getNpcTemplate().get_npcId());
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("pay")) { // 稅金を納める
-			L1NpcInstance npc = (L1NpcInstance) obj;
-			htmldata = makeHouseTaxStrings(pc, npc);
-			htmlid = "agpay";
-		} else if (s.equalsIgnoreCase("payfee")) { // 稅金を納める
-			L1NpcInstance npc = (L1NpcInstance) obj;
-			payFee(pc, npc);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("name")) { // 家の名前を決める
-			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
-			if (clan != null) {
-				int houseId = clan.getHouseId();
-				if (houseId != 0) {
-					L1House house = HouseTable.getInstance().getHouseTable(houseId);
-					int keeperId = house.getKeeperId();
-					L1NpcInstance npc = (L1NpcInstance) obj;
-					if (npc.getNpcTemplate().get_npcId() == keeperId) {
-						pc.setTempID(houseId); // アジトIDを保存しておく
-						pc.sendPackets(new S_Message_YN(SystemMessageId.$512, ""));
-					}
-				}
-			}
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("rem")) { // 家の中の家具をすべて取り除く
-		} else if (s.equalsIgnoreCase("tel0") // テレポートする(倉庫)
-				|| s.equalsIgnoreCase("tel1") // テレポートする(ペット保管所)
-				|| s.equalsIgnoreCase("tel2") // テレポートする(贖罪の使者)
-				|| s.equalsIgnoreCase("tel3")) { // テレポートする(ギラン市場)
-			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
-			if (clan != null) {
-				int houseId = clan.getHouseId();
-				if (houseId != 0) {
-					L1House house = HouseTable.getInstance().getHouseTable(houseId);
-					int keeperId = house.getKeeperId();
-					L1NpcInstance npc = (L1NpcInstance) obj;
-					if (npc.getNpcTemplate().get_npcId() == keeperId) {
-						int[] loc = new int[3];
-						if (s.equalsIgnoreCase("tel0")) {
-							loc = L1HouseLocation.getHouseTeleportLoc(houseId, 0);
-						} else if (s.equalsIgnoreCase("tel1")) {
-							loc = L1HouseLocation.getHouseTeleportLoc(houseId, 1);
-						} else if (s.equalsIgnoreCase("tel2")) {
-							loc = L1HouseLocation.getHouseTeleportLoc(houseId, 2);
-						} else if (s.equalsIgnoreCase("tel3")) {
-							loc = L1HouseLocation.getHouseTeleportLoc(houseId, 3);
-						}
-						L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2], 5, true);
-					}
-				}
-			}
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("upgrade")) { // 地下アジトを作る
-			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
-			if (clan != null) {
-				int houseId = clan.getHouseId();
-				if (houseId != 0) {
-					L1House house = HouseTable.getInstance().getHouseTable(houseId);
-					int keeperId = house.getKeeperId();
-					L1NpcInstance npc = (L1NpcInstance) obj;
-					if (npc.getNpcTemplate().get_npcId() == keeperId) {
-						if (pc.isCrown() && pc.getId() == clan.getLeaderId()) { // 君主、かつ、血盟主
-							if (house.isPurchaseBasement()) {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$1135));
-							} else {
-						if (pc.getInventory().consumeItem(ItemId.ADENA, 5000000)) {
-							house.setPurchaseBasement(true);
-							HouseTable.getInstance().updateHouse(house); // DBに書き⑸み
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$1099));
-						} else {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$189));
-						}
-							}
-						} else {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$518));
-						}
-					}
-				}
-			}
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("hall") && obj instanceof L1HousekeeperInstance) { // 地下アジトにテレポートする
-			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
-			if (clan != null) {
-				int houseId = clan.getHouseId();
-				if (houseId != 0) {
-					L1House house = HouseTable.getInstance().getHouseTable(houseId);
-					int keeperId = house.getKeeperId();
-					L1NpcInstance npc = (L1NpcInstance) obj;
-					if (npc.getNpcTemplate().get_npcId() == keeperId) {
-						if (house.isPurchaseBasement()) {
-							int[] loc = new int[3];
-							loc = L1HouseLocation.getBasementLoc(houseId);
-							L1Teleport.teleport(pc, loc[0], loc[1], (short) (loc[2]), 5, true);
-						} else {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$1098));
-						}
-					}
-				}
-			}
-			htmlid = "";
-				} else if (s.equalsIgnoreCase("fire")) { // 精靈屬性:火
-			if (pc.isElf()) {
-				if (pc.getElfAttr() != 0) {
-					return;
-				}
-				pc.setElfAttr(2); // 2.火屬性
-				pc.save();
-				pc.sendPackets(new S_SkillIconGFX(15, 1)); // 体の隅々に火の精靈力が染みこんできます。
-				htmlid = "";
-			}
-		} else if (s.equalsIgnoreCase("water")) { // 精靈屬性:水
-			if (pc.isElf()) {
-				if (pc.getElfAttr() != 0) {
-					return;
-				}
-				pc.setElfAttr(4);  // 4.水屬性
-				pc.save();
-				pc.sendPackets(new S_SkillIconGFX(15, 2)); // 体の隅々に水の精靈力が染みこんできます。
-				htmlid = "";
-			}
-		} else if (s.equalsIgnoreCase("air")) {  // 精靈屬性:風
-			if (pc.isElf()) {
-				if (pc.getElfAttr() != 0) {
-					return;
-				}
-				pc.setElfAttr(8); // 8.風屬性
-				pc.save();
-				pc.sendPackets(new S_SkillIconGFX(15, 3)); // 体の隅々に風の精靈力が染みこんできます。
-				htmlid = "";
-			}
-		} else if (s.equalsIgnoreCase("earth")) {  // 精靈屬性:地
-			if (pc.isElf()) {
-				if (pc.getElfAttr() != 0) {
-					return;
-				}
-				pc.setElfAttr(1); // 1.地屬性
-				pc.save();
-				pc.sendPackets(new S_SkillIconGFX(15, 4)); // 体の隅々に地の精靈力が染みこんできます。
-				htmlid = "";
-			}
-		} else if (s.equalsIgnoreCase("init")) { //屬性消除
-			if (pc.isElf()) {
-				if (pc.getElfAttr() == 0) {
-					return;
-				}
-				for (int cnt = 129; cnt <= 176; cnt++) { // 全エルフ魔法をチェック
-					L1Skills l1skills1 = SkillsTable.getInstance().getTemplate(cnt);
-					int skill_attr = l1skills1.getAttr();
-					if (skill_attr != 0) {
-						SkillsTable.getInstance().spellLost(pc.getId(), l1skills1.getSkillId());
-					}
-				}
-				// エレメンタルプロテクションによって上昇している屬性防御をリセット
-				if (pc.hasSkillEffect(SKILL_PROTECTION_FROM_ELEMENTAL)) {
-					pc.removeSkillEffect(SKILL_PROTECTION_FROM_ELEMENTAL);
-				}
-				pc.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-						0, 0, 0, 0, 0, 0, 0, 248, 252, 252, 255, 0, 0, 0, 0, 0, 0)); // 無屬性魔法以外のエルフ魔法を魔法ウィンドウから削除する
-				pc.setElfAttr(0);
-				pc.save();
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$678));
-				htmlid = "";
-			}
-		} else if (s.equalsIgnoreCase("exp")) { // 「經驗值を回復する」
-			if (pc.getExpRes() == 1) {
-				int cost = 0;
-				int level = pc.getLevel();
-				int lawful = pc.getLawful();
-				if (level < 45) {
-					cost = level * level * 100;
-				} else {
-					cost = level * level * 200;
-				}
-				if (lawful >= 0) {
-					cost = (cost / 2);
-				}
-				pc.sendPackets(new S_Message_YN(SystemMessageId.$738, String.valueOf(cost)));
-			} else {
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$739));
-				htmlid = "";
-			}
-		} else if (s.equalsIgnoreCase("pk")) { // 「贖罪する」
-			if (pc.getLawful() < 30000) {
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$559));
-			} else if (pc.get_PKcount() < 5) {
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$560));
-			} else {
-				if (pc.getInventory().consumeItem(ItemId.ADENA, 700000)) {
-					pc.set_PKcount(pc.get_PKcount() - 5);
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$561, String.valueOf(pc.get_PKcount())));
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$189));
-				}
-			}
-			// ウィンドウを消す
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("ent")) {
-			// 「お化け屋敷に入る」
-			// 「アルティメット バトルに參加する」または
-			// 「觀覽モードで鬥技場に入る」
-			// 「ステータス再分配」
-			int npcId = ((L1NpcInstance) obj).getNpcId();
-			if (npcId == 80085 || npcId == 80086 || npcId == 80087) {
-				htmlid = enterHauntedHouse(pc);
-			} else if (npcId == 80088) {
-				htmlid = enterPetMatch(pc, Integer.valueOf(s2));
-			} else if (npcId == 50038 || npcId == 50042 || npcId == 50029 || npcId == 50019 || npcId == 50062) { // 副管理人の場合は觀戰
-				htmlid = watchUb(pc, npcId);
-			} else if (npcId == 71251) { // ロロ
-				if (!pc.getInventory().checkItem(49142)) { // 希望のロウソク
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1290));
-					return;
-				}
-				SkillUse skilluse = new SkillUse();
-				skilluse.handleCommands(pc, SKILL_CANCEL_MAGIC, pc.getId(), pc.getX(), pc.getY(), null, 0, Base.SKILL_TYPE[1]);
-				pc.getInventory().takeoffEquip(945); // 牛のpolyIdで裝備を全部外す。
-				L1Teleport.teleport(pc, 32737, 32789, (short) 997, 4, false);
-				int initStatusPoint = 75 + pc.getElixirStats();
-				int pcStatusPoint = pc.getBaseStr() + pc.getBaseInt() + pc.getBaseWis() + pc.getBaseDex() + pc.getBaseCon() + pc.getBaseCha();
-				if (pc.getLevel() > 50) {
-					pcStatusPoint += (pc.getLevel() - 50 - pc.getBonusStats());
-				}
-				int diff = pcStatusPoint - initStatusPoint;
-				/**
-				 * 目前點數 - 初始點數 = 人物應有等級 - 50 -> 人物應有等級 = 50 + (目前點數 - 初始點數)
-				 */
-				int maxLevel = 1;
-				if (diff > 0) {
-					maxLevel = Math.min(50 + diff, 99); // 最高到99級:不支援轉生
-				} else {
-					maxLevel = pc.getLevel();
-				}
-				pc.setTempMaxLevel(maxLevel);
-				pc.setTempLevel(1);
-				pc.setInCharReset(true);
-				pc.sendPackets(new S_CharReset(pc));
-			} else {
-				htmlid = enterUb(pc, npcId);
-			}
-		} else if (s.equalsIgnoreCase("par")) { // UB關連「アルティメット バトルに參加する」 副管理人經由
-			htmlid = enterUb(pc, ((L1NpcInstance) obj).getNpcId());
-		} else if (s.equalsIgnoreCase("info")) { // 「情報を確認する」「競技情報を確認する」
-			int npcId = ((L1NpcInstance) obj).getNpcId();
-			if (npcId == 80085 || npcId == 80086 || npcId == 80087) {
-			} else {
-				htmlid = "colos2";
-			}
-		} else if (s.equalsIgnoreCase("sco")) { // UB關連「高得點者一覽を確認する」
-			htmldata = new String[10];
-			htmlid = "colos3";
-		} else if (s.equalsIgnoreCase("haste")) { // ヘイスト師
-			L1NpcInstance l1npcinstance = (L1NpcInstance) obj;
-			int npcid = l1npcinstance.getNpcTemplate().get_npcId();
-			if (npcid == 70514) {
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$183));
-				pc.sendPackets(new S_SkillHaste(pc.getId(), 1, 1600));
-				pc.broadcastPacket(new S_SkillHaste(pc.getId(), 1, 0));
-				pc.sendPackets(new S_SkillSound(pc.getId(), 755));
-				pc.broadcastPacket(new S_SkillSound(pc.getId(), 755));
-				pc.setMoveSpeed(1);
-				pc.setSkillEffect(STATUS_HASTE, 1600 * 1000);
-				htmlid = "";
-			}
-				} else if (s.equalsIgnoreCase("skeleton nbmorph")) { // 變身專門家
-			poly(client, 2374);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("lycanthrope nbmorph")) {
-			poly(client, 3874);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("shelob nbmorph")) {
-			poly(client, 95);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("ghoul nbmorph")) {
-			poly(client, 3873);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("ghast nbmorph")) {
-			poly(client, 3875);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("atuba orc nbmorph")) {
-			poly(client, 3868);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("skeleton axeman nbmorph")) {
-			poly(client, 2376);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("troll nbmorph")) {
-			poly(client, 3878);
-			htmlid = "";
-		} else if (s.equalsIgnoreCase("contract1")) {
-			pc.getQuest().set_step(L1Quest.QUEST_LYRA, 1);
-			htmlid = "lyraev2";
-		} else if (s.equalsIgnoreCase("contract1yes") // ライラ Yes
-				|| s.equalsIgnoreCase("contract1no")) { // ライラ No
-			if (s.equalsIgnoreCase("contract1yes")) {
-				htmlid = "lyraev5";
-			} else if (s.equalsIgnoreCase("contract1no")) {
-				pc.getQuest().set_step(L1Quest.QUEST_LYRA, 0);
-				htmlid = "lyraev4";
-			}
-			int totem = 0;
-			if (pc.getInventory().checkItem(40131)
-					|| pc.getInventory().checkItem(40132)
-					|| pc.getInventory().checkItem(40133)
-					|| pc.getInventory().checkItem(40134)
-					|| pc.getInventory().checkItem(40135)) {
-				totem++;
-			}
-			if (totem != 0) {
-				materials = new int[totem];
-				counts = new int[totem];
-				createitem = new int[totem];
-				createcount = new int[totem];
-				totem = 0;
-				if (pc.getInventory().checkItem(40131)) {
-					L1ItemInstance l1iteminstance = pc.getInventory().findItemId(40131);
-					int i1 = l1iteminstance.getCount();
-					counts[totem] = i1;
-					createitem[totem] = ItemId.ADENA;
-					materials[totem] = 40131;
-					createcount[totem] = i1 * 50;
-					totem++;
-				}
-				if (pc.getInventory().checkItem(40132)) {
-					L1ItemInstance l1iteminstance = pc.getInventory().findItemId(40132);
-					int i1 = l1iteminstance.getCount();
-					counts[totem] = i1;
-					createitem[totem] = ItemId.ADENA;
-					materials[totem] = 40132;
-					createcount[totem] = i1 * 100;
-					totem++;
-				}
-				if (pc.getInventory().checkItem(40133)) {
-					L1ItemInstance l1iteminstance = pc.getInventory().findItemId(40133);
-					int i1 = l1iteminstance.getCount();
-					counts[totem] = i1;
-					createitem[totem] = ItemId.ADENA;
-					materials[totem] = 40133;
-					createcount[totem] = i1 * 50;
-					totem++;
-				}
-				if (pc.getInventory().checkItem(40134)) {
-					L1ItemInstance l1iteminstance = pc.getInventory().findItemId(40134);
-					int i1 = l1iteminstance.getCount();
-					counts[totem] = i1;
-					createitem[totem] = ItemId.ADENA;
-					materials[totem] = 40134;
-					createcount[totem] = i1 * 30;
-					totem++;
-				}
-				if (pc.getInventory().checkItem(40135)) {
-					L1ItemInstance l1iteminstance = pc.getInventory().findItemId(40135);
-					int i1 = l1iteminstance.getCount();
-					counts[totem] = i1;
-					createitem[totem] = ItemId.ADENA;
-					materials[totem] = 40135;
-					createcount[totem] = i1 * 200;
-					totem++;
-				}
-			}
-		} else if (s.equalsIgnoreCase("pandora6")
-				|| s.equalsIgnoreCase("cold6")
-				|| s.equalsIgnoreCase("balsim3")
-				|| s.equalsIgnoreCase("mellin3")
-				|| s.equalsIgnoreCase("glen3")) { // 最近の物價について  パンドラ、コルド、バルシム、メリン、グレン
-			htmlid = s;
-			int npcid = ((L1NpcInstance) obj).getNpcTemplate().get_npcId();
-			int taxRatesCastle = L1CastleLocation.getCastleTaxRateByNpcId(npcid);
-			htmldata = new String[] { String.valueOf(taxRatesCastle) };
-		} else if (s.equalsIgnoreCase("set")) { // タウンマスター（この村の住民に登錄する）
-			if (obj instanceof L1NpcInstance) {
-				int npcid = ((L1NpcInstance) obj).getNpcTemplate().get_npcId();
-				int town_id = L1TownLocation.getTownIdByNpcid(npcid);
-				if (town_id >= 1 && town_id <= 10) {
-					if (pc.getHomeTownId() == -1) {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$759));
-						htmlid = "";
-					} else if (pc.getHomeTownId() > 0) { // 既に登錄してる
-						if (pc.getHomeTownId() != town_id) {
-							L1Town town = TownTable.getInstance().getTownTable(pc.getHomeTownId());
-							if (town != null) {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$758, town.get_name()));
-							}
-							htmlid = "";
-						} else { // ありえない？
-							htmlid = "";
-						}
-					} else if (pc.getHomeTownId() == 0) { // 登錄
-						if (pc.getLevel() < 10) {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$757));
-							htmlid = "";
-						} else {
-							int level = pc.getLevel();
-							int cost = level * level * 10;
-							if (pc.getInventory().consumeItem(ItemId.ADENA, cost)) {
-						pc.setHomeTownId(town_id);
-						pc.setContribution(0); // 念のため
-						pc.save();
-							} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$337, "$4"));
-							}
-							htmlid = "";
-						}
-					}
-				}
-			}
-		} else if (s.equalsIgnoreCase("clear")) { // 村民登錄取消
-			if (obj instanceof L1NpcInstance) {
-				int npcid = ((L1NpcInstance) obj).getNpcTemplate().get_npcId();
-				int town_id = L1TownLocation.getTownIdByNpcid(npcid);
-				if (town_id > 0) {
-					if (pc.getHomeTownId() > 0) {
-						if (pc.getHomeTownId() == town_id) {
-							pc.setHomeTownId(-1);
-							pc.setContribution(0); // 貢獻度クリア
-							pc.save();
-						} else { // \f1あなたは他の村の住民です。
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$756));
-						}
-					}
-					htmlid = "";
-				}
-			}
-		} else if (s.equalsIgnoreCase("ask")) { // 村長是誰
-			if (obj instanceof L1NpcInstance) {
-				int npcid = ((L1NpcInstance) obj).getNpcTemplate().get_npcId();
-				int town_id = L1TownLocation.getTownIdByNpcid(npcid);
-				if (town_id >= 1 && town_id <= 10) {
-					L1Town town = TownTable.getInstance().getTownTable(town_id);
-					String leader = town.get_leader_name();
-					if (leader != null && leader.length() != 0) {
-						htmlid = "owner";
-						htmldata = new String[] { leader };
-					} else {
-						htmlid = "noowner";
-					}
-				}
-			}
-		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 50031) {
+                 if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 50031) {
 			if (s.equalsIgnoreCase("teleport sepia-dungen")) {
 				int map302pccount = 0;
 				for (L1PcInstance map302pc : L1World.getInstance().getAllPlayers()) {
@@ -1008,7 +242,7 @@ public class C_NPCAction extends ClientBasePacket {
 					int town_id = L1TownLocation.getTownIdByNpcid(npcid);
 				}
 			} else if (s.equalsIgnoreCase("t")) { // タウンアドバイザー（稅率變更）
-				
+
 			} else if (s.equalsIgnoreCase("c")) { // タウンアドバイザー（報酬をもらう）
 
 			}
@@ -1349,7 +583,7 @@ public class C_NPCAction extends ClientBasePacket {
 						pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 4); }*/
 				pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, RandomArrayList.getInc(3, 2));
 			}
-		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71064 
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71064
 				|| ((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71065
 				|| ((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71066) { // 小さな箱-2番目
 			if (s.equalsIgnoreCase("0")) {
@@ -1444,7 +678,7 @@ public class C_NPCAction extends ClientBasePacket {
 					if (sc > 0) {
 						pc.getInventory().consumeItem(40660, sc);
 					} else {
-						
+
 					}
 					pc.getInventory().consumeItem(246, 1);
 					pc.getInventory().consumeItem(247, 1);
@@ -1980,7 +1214,7 @@ public class C_NPCAction extends ClientBasePacket {
 				htmlid = "";
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71178) { //奇岩-發光的古老項鍊-路武基
-			
+
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71179) { //發光的古老項鍊-奇岩-迪艾司
 			int createitemrnd = RandomArrayList.getInc(100, 1);
 			if (s.equalsIgnoreCase("A")) {
@@ -3537,14 +2771,779 @@ public class C_NPCAction extends ClientBasePacket {
 					htmlid = "sherme1";
 				}
 			}
-				}//狩獵場NPC對話
-				/**/
-		// else System.out.println("C_NpcAction: " + s);
-				if (htmlid != null && htmlid.equalsIgnoreCase("colos2")) {
-			htmldata = makeUbInfoStrings(((L1NpcInstance) obj).getNpcTemplate().get_npcId());
+                } else if (s.equalsIgnoreCase("buy")) {
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			// "sell"のみ表示されるはずのNPCをチェックする。
+			if (isNpcSellOnly(npc)) {
+				return;
+			}
+			// 販賣リスト表示
+			pc.sendPackets(new S_ShopSellList(objid));
+		} else if (s.equalsIgnoreCase("sell")) {
+			int npcid = ((L1NpcInstance) obj).getNpcTemplate().get_npcId();
+			if (npcid == 70523 || npcid == 70805) { // ラダー or ジュリー
+				htmlid = "ladar2";
+			} else if (npcid == 70537 || npcid == 70807) { // ファーリン or フィン
+				htmlid = "farlin2";
+			} else if (npcid == 70525 || npcid == 70804) { // ライアン or ジョエル
+				htmlid = "lien2";
+			} else if (npcid == 50501 || npcid == 50502 || npcid == 50503 || npcid == 50504 || npcid == 50505
+					|| npcid == 50506 || npcid == 50507 || npcid == 50508 || npcid == 50509 || npcid == 50510
+					|| npcid == 50511 || npcid == 50512 || npcid == 50513 || npcid == 50514 || npcid == 50515
+					|| npcid == 50516 || npcid == 50517 || npcid == 50518 || npcid == 50519 || npcid == 50520
+					|| npcid == 50521 || npcid == 50522 || npcid == 50523 || npcid == 50524 || npcid == 50525
+					|| npcid == 50526 || npcid == 50527 || npcid == 50528 || npcid == 50529 || npcid == 50530
+					|| npcid == 50531 || npcid == 50532 || npcid == 50533 || npcid == 50534 || npcid == 50535
+					|| npcid == 50536 || npcid == 50537 || npcid == 50538 || npcid == 50539 || npcid == 50540
+					|| npcid == 50541 || npcid == 50542 || npcid == 50543 || npcid == 50544 || npcid == 50545
+					|| npcid == 50614 || npcid == 50615 || npcid == 50616 || npcid == 50617 || npcid == 50618
+					|| npcid == 50619 || npcid == 50620 || npcid == 50621 || npcid == 50622 || npcid == 50623
+					|| npcid == 50624 || npcid == 50626 || npcid == 50627 || npcid == 50628 || npcid == 50629
+					|| npcid == 50630 || npcid == 50631) { // アジトのNPC
+				String sellHouseMessage = sellHouse(pc, objid, npcid);
+				if (sellHouseMessage != null) {
+					htmlid = sellHouseMessage;
 				}
-				if (createitem != null) { // アイテム精製
-			boolean isCreate = true;
+			} else { // 一般商人
+				// 買い取りリスト表示
+				pc.sendPackets(new S_ShopBuyList(objid, pc));
+			}
+		} else if (s.equalsIgnoreCase("retrieve")) { // 倉庫
+			if (pc.getLevel() >= 5) {
+				pc.sendPackets(new S_RetrieveList(objid, pc));
+			}
+		} else if (s.equalsIgnoreCase("retrieve-elven")) { // 精靈倉庫
+			if (pc.getLevel() >= 5 && pc.isElf()) {
+				pc.sendPackets(new S_RetrieveElfList(objid, pc));
+			}
+		} else if (s.equalsIgnoreCase("retrieve-pledge")) { // 血盟倉庫
+			if (pc.getLevel() >= 5) {
+				if (pc.getClanid() == 0) {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$208));
+					return;
+				}
+				int rank = pc.getClanRank();
+				if (rank != L1Clan.CLAN_RANK_PUBLIC && rank != L1Clan.CLAN_RANK_GUARDIAN && rank != L1Clan.CLAN_RANK_PRINCE) {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$728));
+					return;
+				}
+				if (rank != L1Clan.CLAN_RANK_PRINCE && pc.getTitle().equalsIgnoreCase("")) {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$728));
+					return;
+				}
+				pc.sendPackets(new S_RetrievePledgeList(objid, pc));
+			}
+		} else if (s.equalsIgnoreCase("get")) {
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			int npcId = npc.getNpcTemplate().get_npcId();
+			// クーパー or ダンハム
+			if (npcId == 70099 || npcId == 70796) {
+				L1ItemInstance item = pc.getInventory().storeItem(20081, 1); // オイルスキンマント
+				String npcName = npc.getNpcTemplate().get_name();
+				String itemName = item.getItem().getName();
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				pc.getQuest().set_end(L1Quest.QUEST_OILSKINMANT);
+				htmlid = "";
+			}
+			// タウンマスター：報酬をもらう
+			else if (npcId == 70528 || npcId == 70546 || npcId == 70567
+					|| npcId == 70594 || npcId == 70654 || npcId == 70748
+					|| npcId == 70774 || npcId == 70799 || npcId == 70815
+					|| npcId == 70860) {
+				if (pc.getHomeTownId() > 0) {
+				} else {
+				}
+			}
+		} else if (s.equalsIgnoreCase("fix")) { // 武器を修理する
+		//waja change 旅館租借
+		/*
+		} else if (s.equalsIgnoreCase("room")) { // 部屋を借りる
+
+		} else if (s.equalsIgnoreCase("hall")
+				&& obj instanceof L1MerchantInstance) { // ホールを借りる
+		} else if (s.equalsIgnoreCase("return")) { // 部屋‧ホールを返す
+
+		} else if (s.equalsIgnoreCase("enter")) { // 部屋‧ホールに入る
+		*/
+		} else if (s.equalsIgnoreCase("room")) { //租房間
+			if (pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911)
+					|| pc.hasSkillEffect(1912) || pc.hasSkillEffect(1913)
+					|| pc.hasSkillEffect(1914)) { //已租過
+				htmlid = "inn5";
+			} else {
+				if (pc.hasSkillEffect(1915)) { //租完旅館30分鐘內不得再租
+					htmlid = "inn6";
+				} else {
+					if (pc.getInventory().checkItem(40308, 1000)) {
+						materials = new int[] { 40308 };
+						counts = new int[] { 1000 };
+						createitem = new int[] { 40312 };
+						createcount = new int[] { 1 };
+						pc.setSkillEffect(1910, 14100 * 1000); //開始計算3小時55分
+						htmlid = "inn4";
+					} else {
+						htmlid = "inn3";
+					}
+				}
+			}
+		} else if (s.equalsIgnoreCase("hall") && obj instanceof L1MerchantInstance) {
+			
+		} else if (s.equalsIgnoreCase("return")) { // 退租 還20%
+			if (pc.getInventory().checkItem(40312,1) &&
+					(pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911) || pc.hasSkillEffect(1912)
+					|| pc.hasSkillEffect(1913) || pc.hasSkillEffect(1914))) {
+				if (pc.hasSkillEffect(1910)) {
+					pc.killSkillEffectTimer(1910);
+				}
+				if (pc.hasSkillEffect(1911)) {
+					pc.killSkillEffectTimer(1911);
+				}
+				if (pc.hasSkillEffect(1912)) {
+					pc.killSkillEffectTimer(1912);
+				}
+				if (pc.hasSkillEffect(1913)) {
+					pc.killSkillEffectTimer(1913);
+				}
+				if (pc.hasSkillEffect(1914)) {
+					pc.killSkillEffectTimer(1914);
+				}
+				pc.setSkillEffect(1915, 60 * 1000);//退租1分鐘內無法再租
+				materials = new int[] { 40312 };
+				counts = new int[] { 1 };
+				createitem = new int[] { 40308 };
+				createcount = new int[] { 200 };
+				htmlid = "inn20";
+			}
+		} else if (s.equalsIgnoreCase("enter")) { // 進房間
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			int npcId = npc.getNpcTemplate().get_npcId();
+			if (pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911) || pc.hasSkillEffect(1912)
+					|| pc.hasSkillEffect(1913) || pc.hasSkillEffect(1914)) { //有租房間才能進入
+				switch (npcId) {
+					case 70012://說話島 瑟琳娜
+						L1Teleport.teleport(pc, 32744, 32803, (short) 16384, 4, true);
+						//L1Teleport.teleport(pc, 32744, 32808, (short) 16896, 4, true); //會議室
+						break;
+					case 70031://奇岩 瑪理
+						L1Teleport.teleport(pc, 32744, 32803, (short) 18432, 4, true);
+						break;
+					case 70070://風木 維萊莎
+						L1Teleport.teleport(pc, 32744, 32803, (short) 20480, 4, true);
+						break;
+					case 70084://海音 伊莉
+						L1Teleport.teleport(pc, 32744, 32803, (short) 22528, 4, true);
+						break;
+					case 70075://銀騎士村莊 米蘭德
+						L1Teleport.teleport(pc, 32744, 32803, (short) 21504, 4, true);
+						break;
+					case 70065://歐瑞 小安安
+						L1Teleport.teleport(pc, 32744, 32803, (short) 19456, 4, true);
+						break;
+					case 70054://亞丁 史斌 不確定房間地圖編號隨便塞一個
+						L1Teleport.teleport(pc, 32744, 32808, (short) 16896, 4, true);
+						break;
+				}
+			}//change end
+		} else if (s.equalsIgnoreCase("openigate")) { // ゲートキーパー / 城門を開ける
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			openCloseGate(pc, npc.getNpcTemplate().get_npcId(), true);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("closeigate")) { // ゲートキーパー / 城門を閉める
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			openCloseGate(pc, npc.getNpcTemplate().get_npcId(), false);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("askwartime")) { // 近衛兵 / 次の攻城戰いの時間をたずねる
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			if (npc.getNpcTemplate().get_npcId() == 60514) { // ケント城近衛兵
+				htmldata = makeWarTimeStrings(L1CastleLocation.KENT_CASTLE_ID);
+				htmlid = "ktguard7";
+			} else if (npc.getNpcTemplate().get_npcId() == 60560) { // オーク近衛兵
+				htmldata = makeWarTimeStrings(L1CastleLocation.OT_CASTLE_ID);
+				htmlid = "orcguard7";
+			} else if (npc.getNpcTemplate().get_npcId() == 60552) { // ウィンダウッド城近衛兵
+				htmldata = makeWarTimeStrings(L1CastleLocation.WW_CASTLE_ID);
+				htmlid = "wdguard7";
+			} else if (npc.getNpcTemplate().get_npcId() == 60524 || // ギラン街入り口近衛兵(弓)
+					npc.getNpcTemplate().get_npcId() == 60525 || // ギラン街入り口近衛兵
+					npc.getNpcTemplate().get_npcId() == 60529) { // ギラン城近衛兵
+				htmldata = makeWarTimeStrings(L1CastleLocation.GIRAN_CASTLE_ID);
+				htmlid = "grguard7";
+			} else if (npc.getNpcTemplate().get_npcId() == 70857) { // ハイネ城ハイネガード
+				htmldata = makeWarTimeStrings(L1CastleLocation.HEINE_CASTLE_ID);
+				htmlid = "heguard7";
+			} else if (npc.getNpcTemplate().get_npcId() == 60530 || // ドワーフ城ドワーフガード
+					npc.getNpcTemplate().get_npcId() == 60531) {
+				htmldata = makeWarTimeStrings(L1CastleLocation.DOWA_CASTLE_ID);
+				htmlid = "dcguard7";
+			} else if (npc.getNpcTemplate().get_npcId() == 60533 || // アデン城 ガード
+					npc.getNpcTemplate().get_npcId() == 60534) {
+				htmldata = makeWarTimeStrings(L1CastleLocation.ADEN_CASTLE_ID);
+				htmlid = "adguard7";
+			} else if (npc.getNpcTemplate().get_npcId() == 81156) { // アデン偵察兵（ディアド要塞）
+				htmldata = makeWarTimeStrings(L1CastleLocation.DIAD_CASTLE_ID);
+				htmlid = "dfguard3";
+			}
+		} else if (s.equalsIgnoreCase("inex")) { // 收入/支出の報告を受ける
+			// 暫定的に公金をチャットウィンドウに表示させる。
+			// メッセージは適當。
+			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
+			if (clan != null) {
+				int castle_id = clan.getCastleId();
+				if (castle_id != 0) { // 城主クラン
+					L1Castle l1castle = CastleTable.getInstance().getCastleTable(castle_id);
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$309, l1castle.getName(), String.valueOf(l1castle.getPublicMoney())));
+					htmlid = "";
+				}
+			}
+		} else if (s.equalsIgnoreCase("tax")) { // 稅率を調節する
+			pc.sendPackets(new S_TaxRate(pc.getId()));
+		} else if (s.equalsIgnoreCase("withdrawal")) { // 資金を引き出す
+			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
+			if (clan != null) {
+				int castle_id = clan.getCastleId();
+				if (castle_id != 0) { // 城主クラン
+					L1Castle l1castle = CastleTable.getInstance().getCastleTable(castle_id);
+					pc.sendPackets(new S_Drawal(pc.getId(), l1castle.getPublicMoney()));
+				}
+			}
+		} else if (s.equalsIgnoreCase("cdeposit")) { // 資金を入金する
+			pc.sendPackets(new S_Deposit(pc.getId()));
+		} else if (s.equalsIgnoreCase("employ")) { // 傭兵の雇用
+
+		} else if (s.equalsIgnoreCase("arrange")) { // 雇用した傭兵の配置
+
+		} else if (s.equalsIgnoreCase("castlegate")) { // 城門を管理する
+			repairGate(pc);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("encw")) { // 武器專門家 / 武器の強化魔法を受ける
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			if (pc.getWeapon() == null) {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+			} else {
+				for (L1ItemInstance item : pc.getInventory().getItems()) {
+					if (pc.getWeapon().equals(item)) {
+						if (npc.getNpcTemplate().get_npcId() == 70508) {
+							pc.getInventory().consumeItem(40308, 100);
+						}
+						SkillUse skilluse = new SkillUse();
+						skilluse.handleCommands(pc, SKILL_ENCHANT_WEAPON, item.getId(), 0, 0, null, 0, Base.SKILL_TYPE[2]);
+						break;
+					}
+				}
+			}
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("enca")) { // 防具專門家 / 防具の強化魔法を受ける
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			L1ItemInstance item = pc.getInventory().getItemEquipped(2, 2);
+			if (item != null) {
+				if (npc.getNpcTemplate().get_npcId() == 70509) {
+					pc.getInventory().consumeItem(40308, 100);
+				}
+				SkillUse skilluse = new SkillUse();
+				skilluse.handleCommands(pc, SKILL_BLESSED_ARMOR, item.getId(), 0, 0, null, 0, Base.SKILL_TYPE[2]);
+			} else {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+			}
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("depositnpc")) { // 「動物を預ける」
+			Object[] petList = pc.getPetList().values().toArray();
+			for (Object petObject : petList) {
+				if (petObject instanceof L1PetInstance) { // ペット
+					L1PetInstance pet = (L1PetInstance) petObject;
+					pet.Npccollect();
+					pc.getPetList().remove(pet.getId());
+					pet.deleteMe();
+				}
+			}
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("withdrawnpc")) { // 「動物を受け取る」
+			pc.sendPackets(new S_PetList(objid, pc));
+		} else if (s.equalsIgnoreCase("changename")) { // 「名前を決める」
+			pc.setTempID(objid); // ペットのオブジェクトIDを保存しておく
+			pc.sendPackets(new S_Message_YN(SystemMessageId.$325, ""));
+		} else if (s.equalsIgnoreCase("attackchr")) {
+			if (obj instanceof L1Character) {
+				L1Character cha = (L1Character) obj;
+				pc.sendPackets(new S_SelectTarget(cha.getId()));
+			}
+		} else if (s.equalsIgnoreCase("select")) { // 競賣揭示板のリストをクリック
+			pc.sendPackets(new S_AuctionBoardRead(objid, s2));
+		} else if (s.equalsIgnoreCase("map")) { // アジトの位置を確かめる
+			pc.sendPackets(new S_HouseMap(objid, s2));
+		} else if (s.equalsIgnoreCase("apply")) { // 競賣に參加する
+			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
+			if (clan != null) {
+				if (pc.isCrown() && pc.getId() == clan.getLeaderId()) { // 君主、かつ、血盟主
+					if (pc.getLevel() >= 15) {
+						if (clan.getHouseId() == 0) {
+							pc.sendPackets(new S_ApplyAuction(objid, s2));
+						} else {
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$521));
+							htmlid = "";
+						}
+					} else {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$519));
+						htmlid = "";
+					}
+				} else {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$518));
+					htmlid = "";
+				}
+			} else {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$518));
+				htmlid = "";
+			}
+		} else if (s.equalsIgnoreCase("open") // ドアを開ける
+				|| s.equalsIgnoreCase("close")) { // ドアを閉める
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			openCloseDoor(pc, npc, s);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("expel")) { // 外部の人間を追い出す
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			expelOtherClan(pc, npc.getNpcTemplate().get_npcId());
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("pay")) { // 稅金を納める
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			htmldata = makeHouseTaxStrings(pc, npc);
+			htmlid = "agpay";
+		} else if (s.equalsIgnoreCase("payfee")) { // 稅金を納める
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			payFee(pc, npc);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("name")) { // 家の名前を決める
+			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
+			if (clan != null) {
+				int houseId = clan.getHouseId();
+				if (houseId != 0) {
+					L1House house = HouseTable.getInstance().getHouseTable(houseId);
+					int keeperId = house.getKeeperId();
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcTemplate().get_npcId() == keeperId) {
+						pc.setTempID(houseId); // アジトIDを保存しておく
+						pc.sendPackets(new S_Message_YN(SystemMessageId.$512, ""));
+					}
+				}
+			}
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("rem")) { // 家の中の家具をすべて取り除く
+		} else if (s.equalsIgnoreCase("tel0") // テレポートする(倉庫)
+				|| s.equalsIgnoreCase("tel1") // テレポートする(ペット保管所)
+				|| s.equalsIgnoreCase("tel2") // テレポートする(贖罪の使者)
+				|| s.equalsIgnoreCase("tel3")) { // テレポートする(ギラン市場)
+			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
+			if (clan != null) {
+				int houseId = clan.getHouseId();
+				if (houseId != 0) {
+					L1House house = HouseTable.getInstance().getHouseTable(houseId);
+					int keeperId = house.getKeeperId();
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcTemplate().get_npcId() == keeperId) {
+						int[] loc = new int[3];
+						if (s.equalsIgnoreCase("tel0")) {
+							loc = L1HouseLocation.getHouseTeleportLoc(houseId, 0);
+						} else if (s.equalsIgnoreCase("tel1")) {
+							loc = L1HouseLocation.getHouseTeleportLoc(houseId, 1);
+						} else if (s.equalsIgnoreCase("tel2")) {
+							loc = L1HouseLocation.getHouseTeleportLoc(houseId, 2);
+						} else if (s.equalsIgnoreCase("tel3")) {
+							loc = L1HouseLocation.getHouseTeleportLoc(houseId, 3);
+						}
+						L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2], 5, true);
+					}
+				}
+			}
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("upgrade")) { // 地下アジトを作る
+			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
+			if (clan != null) {
+				int houseId = clan.getHouseId();
+				if (houseId != 0) {
+					L1House house = HouseTable.getInstance().getHouseTable(houseId);
+					int keeperId = house.getKeeperId();
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcTemplate().get_npcId() == keeperId) {
+						if (pc.isCrown() && pc.getId() == clan.getLeaderId()) { // 君主、かつ、血盟主
+							if (house.isPurchaseBasement()) {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$1135));
+							} else {
+						if (pc.getInventory().consumeItem(ItemId.ADENA, 5000000)) {
+							house.setPurchaseBasement(true);
+							HouseTable.getInstance().updateHouse(house); // DBに書き⑸み
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$1099));
+						} else {
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$189));
+						}
+							}
+						} else {
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$518));
+						}
+					}
+				}
+			}
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("hall") && obj instanceof L1HousekeeperInstance) { // 地下アジトにテレポートする
+			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
+			if (clan != null) {
+				int houseId = clan.getHouseId();
+				if (houseId != 0) {
+					L1House house = HouseTable.getInstance().getHouseTable(houseId);
+					int keeperId = house.getKeeperId();
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcTemplate().get_npcId() == keeperId) {
+						if (house.isPurchaseBasement()) {
+							int[] loc = new int[3];
+							loc = L1HouseLocation.getBasementLoc(houseId);
+							L1Teleport.teleport(pc, loc[0], loc[1], (short) (loc[2]), 5, true);
+						} else {
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$1098));
+						}
+					}
+				}
+			}
+			htmlid = "";
+				} else if (s.equalsIgnoreCase("fire")) { // 精靈屬性:火
+			if (pc.isElf()) {
+				if (pc.getElfAttr() != 0) {
+					return;
+				}
+				pc.setElfAttr(2); // 2.火屬性
+				pc.save();
+				pc.sendPackets(new S_SkillIconGFX(15, 1)); // 体の隅々に火の精靈力が染みこんできます。
+				htmlid = "";
+			}
+		} else if (s.equalsIgnoreCase("water")) { // 精靈屬性:水
+			if (pc.isElf()) {
+				if (pc.getElfAttr() != 0) {
+					return;
+				}
+				pc.setElfAttr(4);  // 4.水屬性
+				pc.save();
+				pc.sendPackets(new S_SkillIconGFX(15, 2)); // 体の隅々に水の精靈力が染みこんできます。
+				htmlid = "";
+			}
+		} else if (s.equalsIgnoreCase("air")) {  // 精靈屬性:風
+			if (pc.isElf()) {
+				if (pc.getElfAttr() != 0) {
+					return;
+				}
+				pc.setElfAttr(8); // 8.風屬性
+				pc.save();
+				pc.sendPackets(new S_SkillIconGFX(15, 3)); // 体の隅々に風の精靈力が染みこんできます。
+				htmlid = "";
+			}
+		} else if (s.equalsIgnoreCase("earth")) {  // 精靈屬性:地
+			if (pc.isElf()) {
+				if (pc.getElfAttr() != 0) {
+					return;
+				}
+				pc.setElfAttr(1); // 1.地屬性
+				pc.save();
+				pc.sendPackets(new S_SkillIconGFX(15, 4)); // 体の隅々に地の精靈力が染みこんできます。
+				htmlid = "";
+			}
+		} else if (s.equalsIgnoreCase("init")) { //屬性消除
+			if (pc.isElf()) {
+				if (pc.getElfAttr() == 0) {
+					return;
+				}
+				for (int cnt = 129; cnt <= 176; cnt++) { // 全エルフ魔法をチェック
+					L1Skills l1skills1 = SkillsTable.getInstance().getTemplate(cnt);
+					int skill_attr = l1skills1.getAttr();
+					if (skill_attr != 0) {
+						SkillsTable.getInstance().spellLost(pc.getId(), l1skills1.getSkillId());
+					}
+				}
+				// エレメンタルプロテクションによって上昇している屬性防御をリセット
+				if (pc.hasSkillEffect(SKILL_PROTECTION_FROM_ELEMENTAL)) {
+					pc.removeSkillEffect(SKILL_PROTECTION_FROM_ELEMENTAL);
+				}
+				pc.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0, 0, 0, 248, 252, 252, 255, 0, 0, 0, 0, 0, 0)); // 無屬性魔法以外のエルフ魔法を魔法ウィンドウから削除する
+				pc.setElfAttr(0);
+				pc.save();
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$678));
+				htmlid = "";
+			}
+		} else if (s.equalsIgnoreCase("exp")) { // 「經驗值を回復する」
+			if (pc.getExpRes() == 1) {
+				int cost = 0;
+				int level = pc.getLevel();
+				int lawful = pc.getLawful();
+				if (level < 45) {
+					cost = level * level * 100;
+				} else {
+					cost = level * level * 200;
+				}
+				if (lawful >= 0) {
+					cost = (cost / 2);
+				}
+				pc.sendPackets(new S_Message_YN(SystemMessageId.$738, String.valueOf(cost)));
+			} else {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$739));
+				htmlid = "";
+			}
+		} else if (s.equalsIgnoreCase("pk")) { // 「贖罪する」
+			if (pc.getLawful() < 30000) {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$559));
+			} else if (pc.get_PKcount() < 5) {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$560));
+			} else {
+				if (pc.getInventory().consumeItem(ItemId.ADENA, 700000)) {
+					pc.set_PKcount(pc.get_PKcount() - 5);
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$561, String.valueOf(pc.get_PKcount())));
+				} else {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$189));
+				}
+			}
+			// ウィンドウを消す
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("ent")) {
+			// 「お化け屋敷に入る」
+			// 「アルティメット バトルに參加する」または
+			// 「觀覽モードで鬥技場に入る」
+			// 「ステータス再分配」
+			int npcId = ((L1NpcInstance) obj).getNpcId();
+			if (npcId == 80085 || npcId == 80086 || npcId == 80087) {
+				htmlid = enterHauntedHouse(pc);
+			} else if (npcId == 80088) {
+				htmlid = enterPetMatch(pc, Integer.valueOf(s2));
+			} else if (npcId == 50038 || npcId == 50042 || npcId == 50029 || npcId == 50019 || npcId == 50062) { // 副管理人の場合は觀戰
+				htmlid = watchUb(pc, npcId);
+			} else if (npcId == 71251) { // ロロ
+				if (!pc.getInventory().checkItem(49142)) { // 希望のロウソク
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1290));
+					return;
+				}
+				SkillUse skilluse = new SkillUse();
+				skilluse.handleCommands(pc, SKILL_CANCEL_MAGIC, pc.getId(), pc.getX(), pc.getY(), null, 0, Base.SKILL_TYPE[1]);
+				pc.getInventory().takeoffEquip(945); // 牛のpolyIdで裝備を全部外す。
+				L1Teleport.teleport(pc, 32737, 32789, (short) 997, 4, false);
+				int initStatusPoint = 75 + pc.getElixirStats();
+				int pcStatusPoint = pc.getBaseStr() + pc.getBaseInt() + pc.getBaseWis() + pc.getBaseDex() + pc.getBaseCon() + pc.getBaseCha();
+				if (pc.getLevel() > 50) {
+					pcStatusPoint += (pc.getLevel() - 50 - pc.getBonusStats());
+				}
+				int diff = pcStatusPoint - initStatusPoint;
+				/**
+				 * 目前點數 - 初始點數 = 人物應有等級 - 50 -> 人物應有等級 = 50 + (目前點數 - 初始點數)
+				 */
+				int maxLevel = 1;
+				if (diff > 0) {
+					maxLevel = Math.min(50 + diff, 99); // 最高到99級:不支援轉生
+				} else {
+					maxLevel = pc.getLevel();
+				}
+				pc.setTempMaxLevel(maxLevel);
+				pc.setTempLevel(1);
+				pc.setInCharReset(true);
+				pc.sendPackets(new S_CharReset(pc));
+			} else {
+				htmlid = enterUb(pc, npcId);
+			}
+		} else if (s.equalsIgnoreCase("par")) { // UB關連「アルティメット バトルに參加する」 副管理人經由
+			htmlid = enterUb(pc, ((L1NpcInstance) obj).getNpcId());
+		} else if (s.equalsIgnoreCase("info")) { // 「情報を確認する」「競技情報を確認する」
+			int npcId = ((L1NpcInstance) obj).getNpcId();
+			if (npcId == 80085 || npcId == 80086 || npcId == 80087) {
+			} else {
+				htmlid = "colos2";
+			}
+		} else if (s.equalsIgnoreCase("sco")) { // UB關連「高得點者一覽を確認する」
+			htmldata = new String[10];
+			htmlid = "colos3";
+		} else if (s.equalsIgnoreCase("haste")) { // ヘイスト師
+			L1NpcInstance l1npcinstance = (L1NpcInstance) obj;
+			int npcid = l1npcinstance.getNpcTemplate().get_npcId();
+			if (npcid == 70514) {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$183));
+				pc.sendPackets(new S_SkillHaste(pc.getId(), 1, 1600));
+				pc.broadcastPacket(new S_SkillHaste(pc.getId(), 1, 0));
+				pc.sendPackets(new S_SkillSound(pc.getId(), 755));
+				pc.broadcastPacket(new S_SkillSound(pc.getId(), 755));
+				pc.setMoveSpeed(1);
+				pc.setSkillEffect(STATUS_HASTE, 1600 * 1000);
+				htmlid = "";
+			}
+				} else if (s.equalsIgnoreCase("skeleton nbmorph")) { // 變身專門家
+			poly(client, 2374);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("lycanthrope nbmorph")) {
+			poly(client, 3874);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("shelob nbmorph")) {
+			poly(client, 95);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("ghoul nbmorph")) {
+			poly(client, 3873);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("ghast nbmorph")) {
+			poly(client, 3875);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("atuba orc nbmorph")) {
+			poly(client, 3868);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("skeleton axeman nbmorph")) {
+			poly(client, 2376);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("troll nbmorph")) {
+			poly(client, 3878);
+			htmlid = "";
+		} else if (s.equalsIgnoreCase("contract1")) {
+			pc.getQuest().set_step(L1Quest.QUEST_LYRA, 1);
+			htmlid = "lyraev2";
+		} else if (s.equalsIgnoreCase("contract1yes") // ライラ Yes
+				|| s.equalsIgnoreCase("contract1no")) { // ライラ No
+			if (s.equalsIgnoreCase("contract1yes")) {
+				htmlid = "lyraev5";
+			} else if (s.equalsIgnoreCase("contract1no")) {
+				pc.getQuest().set_step(L1Quest.QUEST_LYRA, 0);
+				htmlid = "lyraev4";
+			}
+			int totem = 0;
+			if (pc.getInventory().checkItem(40131)
+					|| pc.getInventory().checkItem(40132)
+					|| pc.getInventory().checkItem(40133)
+					|| pc.getInventory().checkItem(40134)
+					|| pc.getInventory().checkItem(40135)) {
+				totem++;
+			}
+			if (totem != 0) {
+				materials = new int[totem];
+				counts = new int[totem];
+				createitem = new int[totem];
+				createcount = new int[totem];
+				totem = 0;
+				if (pc.getInventory().checkItem(40131)) {
+					L1ItemInstance l1iteminstance = pc.getInventory().findItemId(40131);
+					int i1 = l1iteminstance.getCount();
+					counts[totem] = i1;
+					createitem[totem] = ItemId.ADENA;
+					materials[totem] = 40131;
+					createcount[totem] = i1 * 50;
+					totem++;
+				}
+				if (pc.getInventory().checkItem(40132)) {
+					L1ItemInstance l1iteminstance = pc.getInventory().findItemId(40132);
+					int i1 = l1iteminstance.getCount();
+					counts[totem] = i1;
+					createitem[totem] = ItemId.ADENA;
+					materials[totem] = 40132;
+					createcount[totem] = i1 * 100;
+					totem++;
+				}
+				if (pc.getInventory().checkItem(40133)) {
+					L1ItemInstance l1iteminstance = pc.getInventory().findItemId(40133);
+					int i1 = l1iteminstance.getCount();
+					counts[totem] = i1;
+					createitem[totem] = ItemId.ADENA;
+					materials[totem] = 40133;
+					createcount[totem] = i1 * 50;
+					totem++;
+				}
+				if (pc.getInventory().checkItem(40134)) {
+					L1ItemInstance l1iteminstance = pc.getInventory().findItemId(40134);
+					int i1 = l1iteminstance.getCount();
+					counts[totem] = i1;
+					createitem[totem] = ItemId.ADENA;
+					materials[totem] = 40134;
+					createcount[totem] = i1 * 30;
+					totem++;
+				}
+				if (pc.getInventory().checkItem(40135)) {
+					L1ItemInstance l1iteminstance = pc.getInventory().findItemId(40135);
+					int i1 = l1iteminstance.getCount();
+					counts[totem] = i1;
+					createitem[totem] = ItemId.ADENA;
+					materials[totem] = 40135;
+					createcount[totem] = i1 * 200;
+					totem++;
+				}
+			}
+		} else if (s.equalsIgnoreCase("pandora6")
+				|| s.equalsIgnoreCase("cold6")
+				|| s.equalsIgnoreCase("balsim3")
+				|| s.equalsIgnoreCase("mellin3")
+				|| s.equalsIgnoreCase("glen3")) { // 最近の物價について  パンドラ、コルド、バルシム、メリン、グレン
+			htmlid = s;
+			int npcid = ((L1NpcInstance) obj).getNpcTemplate().get_npcId();
+			int taxRatesCastle = L1CastleLocation.getCastleTaxRateByNpcId(npcid);
+			htmldata = new String[] { String.valueOf(taxRatesCastle) };
+		} else if (s.equalsIgnoreCase("set")) { // タウンマスター（この村の住民に登錄する）
+			if (obj instanceof L1NpcInstance) {
+				int npcid = ((L1NpcInstance) obj).getNpcTemplate().get_npcId();
+				int town_id = L1TownLocation.getTownIdByNpcid(npcid);
+				if (town_id >= 1 && town_id <= 10) {
+					if (pc.getHomeTownId() == -1) {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$759));
+						htmlid = "";
+					} else if (pc.getHomeTownId() > 0) { // 既に登錄してる
+						if (pc.getHomeTownId() != town_id) {
+							L1Town town = TownTable.getInstance().getTownTable(pc.getHomeTownId());
+							if (town != null) {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$758, town.get_name()));
+							}
+							htmlid = "";
+						} else { // ありえない？
+							htmlid = "";
+						}
+					} else if (pc.getHomeTownId() == 0) { // 登錄
+						if (pc.getLevel() < 10) {
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$757));
+							htmlid = "";
+						} else {
+							int level = pc.getLevel();
+							int cost = level * level * 10;
+							if (pc.getInventory().consumeItem(ItemId.ADENA, cost)) {
+						pc.setHomeTownId(town_id);
+						pc.setContribution(0); // 念のため
+						pc.save();
+							} else {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$337, "$4"));
+							}
+							htmlid = "";
+						}
+					}
+				}
+			}
+		} else if (s.equalsIgnoreCase("clear")) { // 村民登錄取消
+			if (obj instanceof L1NpcInstance) {
+				int npcid = ((L1NpcInstance) obj).getNpcTemplate().get_npcId();
+				int town_id = L1TownLocation.getTownIdByNpcid(npcid);
+				if (town_id > 0) {
+					if (pc.getHomeTownId() > 0) {
+						if (pc.getHomeTownId() == town_id) {
+							pc.setHomeTownId(-1);
+							pc.setContribution(0); // 貢獻度クリア
+							pc.save();
+						} else { // \f1あなたは他の村の住民です。
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$756));
+						}
+					}
+					htmlid = "";
+				}
+			}
+		} else if (s.equalsIgnoreCase("ask")) { // 村長是誰
+			if (obj instanceof L1NpcInstance) {
+				int npcid = ((L1NpcInstance) obj).getNpcTemplate().get_npcId();
+				int town_id = L1TownLocation.getTownIdByNpcid(npcid);
+				if (town_id >= 1 && town_id <= 10) {
+					L1Town town = TownTable.getInstance().getTownTable(town_id);
+					String leader = town.get_leader_name();
+					if (leader != null && leader.length() != 0) {
+						htmlid = "owner";
+						htmldata = new String[] { leader };
+					} else {
+						htmlid = "noowner";
+					}
+				}
+			}
+		}
+		// else System.out.println("C_NpcAction: " + s);
+                if (htmlid != null && htmlid.equalsIgnoreCase("colos2")) {
+                        htmldata = makeUbInfoStrings(((L1NpcInstance) obj).getNpcTemplate().get_npcId());
+                }
+                if (createitem != null) { // アイテム精製
+                        boolean isCreate = true;
 			for (int j = 0; j < materials.length; j++) {
 				if (!pc.getInventory().checkItemNotEquipped(materials[j], counts[j])) {
 					L1Item temp = ItemTable.getInstance().getTemplate(materials[j]);
