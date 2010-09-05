@@ -42,57 +42,9 @@ public class FaceToFace {
 			int targetY = target.getY();
 			int targetHeading = target.getHeading();
 
-			if (pcHeading == 0 && pcX == targetX && pcY == (targetY + 1)) {
-				if (targetHeading == 4) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 1 && pcX == (targetX - 1) && pcY == (targetY + 1)) {
-				if (targetHeading == 5) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 2 && pcX == (targetX - 1) && pcY == targetY) {
-				if (targetHeading == 6) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 3 && pcX == (targetX - 1) && pcY == (targetY - 1)) {
-				if (targetHeading == 7) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 4 && pcX == targetX && pcY == (targetY - 1)) {
-				if (targetHeading == 0) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 5 && pcX == (targetX + 1) && pcY == (targetY - 1)) {
-				if (targetHeading == 1) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 6 && pcX == (targetX + 1) && pcY == targetY) {
-				if (targetHeading == 2) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 7 && pcX == (targetX + 1) && pcY == (targetY + 1)) {
-				if (targetHeading == 3) {
+			if (MoveUtil.MoveLocX(pcX, pcHeading) == targetX
+					&& MoveUtil.MoveLocY(pcY, pcHeading) == targetY) {
+				if ((pcHeading ^ 0x04) == targetHeading) {
 					return target;
 				} else {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));

@@ -49,9 +49,7 @@ public class ElementalStoneGenerator implements Runnable {
 	 * 指定された位置に石を置けるかを返す。
 	 */
 	private boolean canPut(L1Location loc) {
-		_dummy.setMap(loc.getMap());
-		_dummy.setX(loc.getX());
-		_dummy.setY(loc.getY());
+		_dummy.setLocation(loc);
 
 		// 可視範圍のプレイヤーチェック
 		if (L1World.getInstance().getVisiblePlayer(_dummy).size() > 0) {
@@ -100,8 +98,7 @@ public class ElementalStoneGenerator implements Runnable {
 	@Override
 	public void run() {
 		try {
-			L1Map map = L1WorldMap.getInstance().getMap(
-					(short) ELVEN_FOREST_MAPID);
+			L1Map map = L1WorldMap.getInstance().getMap(ELVEN_FOREST_MAPID);
 			while (true) {
 				removeItemsPickedUp();
 

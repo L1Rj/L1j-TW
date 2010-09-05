@@ -55,7 +55,7 @@ public class C_Drawal extends ClientBasePacket {
 					if (pc.getInventory().checkAddItem(item, j) == L1Inventory.OK) {
 						pc.getInventory().storeItem(ItemId.ADENA, j);
 					} else {
-						L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(ItemId.ADENA, j);
+						L1World.getInstance().getInventory(pc.getLocation()).storeItem(ItemId.ADENA, j);
 					}
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, "$457", "$4" + " (" + j + ")"));
 				}

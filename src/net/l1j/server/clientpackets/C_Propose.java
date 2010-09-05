@@ -52,11 +52,14 @@ public class C_Propose extends ClientBasePacket {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$661));
 					return;
 				}
-				if (pc.getX() >= 33974 && pc.getX() <= 33976
-						&& pc.getY() >= 33362 && pc.getY() <= 33365
-						&& pc.getMapId() == 4 && target.getX() >= 33974
-						&& target.getX() <= 33976 && target.getY() >= 33362
-						&& target.getY() <= 33365 && target.getMapId() == 4) {
+				// if (pc.getX() >= 33974 && pc.getX() <= 33976
+				// 		&& pc.getY() >= 33362 && pc.getY() <= 33365
+				// 		&& pc.getMapId() == 4
+				if (pc.getLocation().isInMapRange(33974, 33976, 33362, 33365, 4)
+				// 		&& target.getX() >= 33974 && target.getX() <= 33976
+				// 		&& target.getY() >= 33362 && target.getY() <= 33365
+				// 		&& target.getMapId() == 4) {
+						&& target.getLocation().isInMapRange(33974, 33976, 33362, 33365, 4)) {
 					target.setTempID(pc.getId()); // 相手のオブジェクトIDを保存しておく
 					target.sendPackets(new S_Message_YN(SystemMessageId.$654, pc.getName()));
 				}

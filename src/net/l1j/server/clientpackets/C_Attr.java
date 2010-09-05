@@ -30,6 +30,11 @@ import net.l1j.server.datatables.ClanTable;
 import net.l1j.server.datatables.HouseTable;
 import net.l1j.server.datatables.NpcTable;
 import net.l1j.server.datatables.PetTable;
+import net.l1j.server.model.id.SystemMessageId;
+import net.l1j.server.model.instance.L1ItemInstance;
+import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.model.instance.L1PetInstance;
+import net.l1j.server.model.item.ItemId;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1CastleLocation;
 import net.l1j.server.model.L1ChatParty;
@@ -41,11 +46,6 @@ import net.l1j.server.model.L1Quest;
 import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.L1War;
 import net.l1j.server.model.L1World;
-import net.l1j.server.model.id.SystemMessageId;
-import net.l1j.server.model.instance.L1ItemInstance;
-import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.model.instance.L1PetInstance;
-import net.l1j.server.model.item.ItemId;
 import net.l1j.server.model.map.L1Map;
 import net.l1j.server.serverpackets.S_ChangeName;
 import net.l1j.server.serverpackets.S_CharTitle;
@@ -608,7 +608,7 @@ public class C_Attr extends ClientBasePacket {
 				isInWarArea = false; // 戰爭時間中は旗內でも使用可能
 			}
 		}
-		short mapId = callClanPc.getMapId();
+		int mapId = callClanPc.getMapId();
 		if (mapId != 0 && mapId != 4 && mapId != 304 || isInWarArea) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$547));
 			return;
@@ -618,13 +618,14 @@ public class C_Attr extends ClientBasePacket {
 		int heading = callClanPc.getCallClanHeading();
 		int locX = MoveUtil.MoveLocX(callClanPc.getX(), heading);
 		int locY = MoveUtil.MoveLocY(callClanPc.getY(), heading);
-		heading = (heading + 4) % 8;
+		heading ^= 0x04;
 
 		boolean isExsistCharacter = false;
 		for (L1Object object : L1World.getInstance().getVisibleObjects(callClanPc, 1)) {
 			if (object instanceof L1Character) {
 				L1Character cha = (L1Character) object;
-				if (cha.getX() == locX && cha.getY() == locY && cha.getMapId() == mapId) {
+				//if (cha.getX() == locX && cha.getY() == locY && cha.getMapId() == mapId) {
+				if (cha.getLocation().equals(locX, locY, mapId)) {
 					isExsistCharacter = true;
 					break;
 				}

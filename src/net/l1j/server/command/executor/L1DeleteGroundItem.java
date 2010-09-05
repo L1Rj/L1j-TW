@@ -46,7 +46,7 @@ public class L1DeleteGroundItem implements L1CommandExecutor {
 
 				FastTable<L1PcInstance> players = L1World.getInstance().getVisiblePlayer(item, 0);
 				if (0 == players.size()) {
-					L1Inventory groundInventory = L1World.getInstance().getInventory(item.getX(), item.getY(), item.getMapId());
+					L1Inventory groundInventory = L1World.getInstance().getInventory(item.getLocation());
 					int itemId = item.getItem().getItemId();
 					if (itemId == 40314 || itemId == 40316) { // ペットのアミュレット
 						PetTable.getInstance().deletePet(item.getId());

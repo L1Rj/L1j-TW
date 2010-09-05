@@ -79,11 +79,8 @@ public class DoorSpawnTable {
 
 					door.setDoorId(rs.getInt(1));
 					door.setGfxId(rs.getInt(3));
-					door.setX(rs.getInt(4));
-					door.setY(rs.getInt(5));
-					door.setMap((short) rs.getInt(6));
-					door.setHomeX(rs.getInt(4));
-					door.setHomeY(rs.getInt(5));
+					door.set(rs.getInt(4), rs.getInt(5), rs.getInt(6));
+					door.setHome(rs.getInt(4), rs.getInt(5));
 					door.setDirection(rs.getInt(7));
 					door.setLeftEdgeLocation(rs.getInt(8));
 					door.setRightEdgeLocation(rs.getInt(9));

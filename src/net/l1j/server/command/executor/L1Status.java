@@ -55,20 +55,20 @@ public class L1Status implements L1CommandExecutor {
 
 			// -- not use DB --
 			if (param.equalsIgnoreCase("AC")) {
-				target.addAc((byte) (value - target.getAc()));
+				target.addAc(value - target.getAc());
 			} else if (param.equalsIgnoreCase("MR")) {
-				target.addMr((short) (value - target.getMr()));
+				target.addMr(value - target.getMr());
 			} else if (param.equalsIgnoreCase("HIT")) {
-				target.addHitup((short) (value - target.getHitup()));
+				target.addHitup(value - target.getHitup());
 			} else if (param.equalsIgnoreCase("DMG")) {
-				target.addDmgup((short) (value - target.getDmgup()));
+				target.addDmgup(value - target.getDmgup());
 				// -- use DB --
 			} else {
 				if (param.equalsIgnoreCase("HP")) {
-					target.addBaseMaxHp((short) (value - target.getBaseMaxHp()));
+					target.addBaseMaxHp(value - target.getBaseMaxHp());
 					target.setCurrentHpDirect(target.getMaxHp());
 				} else if (param.equalsIgnoreCase("MP")) {
-					target.addBaseMaxMp((short) (value - target.getBaseMaxMp()));
+					target.addBaseMaxMp(value - target.getBaseMaxMp());
 					target.setCurrentMpDirect(target.getMaxMp());
 				} else if (param.equalsIgnoreCase("LAWFUL")) {
 					target.setLawful(value);
@@ -81,20 +81,20 @@ public class L1Status implements L1CommandExecutor {
 					if (value > 200) {
 						value = 200;
 					}
-					target.setAccessLevel((short) value);
+					target.setAccessLevel(value);
 					target.sendPackets(new S_SystemMessage("GM變更你的素質,重登之後生效。"));
 				} else if (param.equalsIgnoreCase("STR")) {
-					target.addBaseStr((byte) (value - target.getBaseStr()));
+					target.addBaseStr(value - target.getBaseStr());
 				} else if (param.equalsIgnoreCase("CON")) {
-					target.addBaseCon((byte) (value - target.getBaseCon()));
+					target.addBaseCon(value - target.getBaseCon());
 				} else if (param.equalsIgnoreCase("DEX")) {
-					target.addBaseDex((byte) (value - target.getBaseDex()));
+					target.addBaseDex(value - target.getBaseDex());
 				} else if (param.equalsIgnoreCase("INT")) {
-					target.addBaseInt((byte) (value - target.getBaseInt()));
+					target.addBaseInt(value - target.getBaseInt());
 				} else if (param.equalsIgnoreCase("WIS")) {
-					target.addBaseWis((byte) (value - target.getBaseWis()));
+					target.addBaseWis(value - target.getBaseWis());
 				} else if (param.equalsIgnoreCase("CHA")) {
-					target.addBaseCha((byte) (value - target.getBaseCha()));
+					target.addBaseCha(value - target.getBaseCha());
 				} else {
 					pc.sendPackets(new S_SystemMessage("角色素質 " + param + " 未知。"));
 					return;

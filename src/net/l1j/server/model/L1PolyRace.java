@@ -113,7 +113,7 @@ public class L1PolyRace {
 		}
 
 		addPlayerList(pc);
-		L1Teleport.teleport(pc, 32768, 32849, (short) 5143, 6, true);
+		L1Teleport.teleport(pc, 32768, 32849, 5143, 6, true);
 	}
 
 	private FastTable<L1PcInstance> orderList = new FastTable<L1PcInstance>();
@@ -227,7 +227,7 @@ public class L1PolyRace {
 			pc.sendPackets(new S_Race(S_Race.GameEnd));
 			pc.setLap(1);
 			pc.setLapCheck(0);
-			L1Teleport.teleport(pc, 32616, 32782, (short) 4, 5, true);
+			L1Teleport.teleport(pc, 32616, 32782, 4, 5, true);
 			removeSkillEffect(pc);
 		}
 		setDoorClose(true);
@@ -256,7 +256,7 @@ public class L1PolyRace {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1255));
 		} else { //YES
 			addPlayerList(pc);
-			L1Teleport.teleport(pc, 32768, 32849, (short) 5143, 6, true);
+			L1Teleport.teleport(pc, 32768, 32849, 5143, 6, true);
 			removeSkillEffect(pc);
 			removeOrderList(pc);
 			pc.setInOrderList(false);

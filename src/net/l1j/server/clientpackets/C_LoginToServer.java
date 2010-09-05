@@ -319,9 +319,9 @@ public class C_LoginToServer extends ClientBasePacket {
 		L1GetBackRestart[] gbrList = gbrTable.getGetBackRestartTableList();
 		for (L1GetBackRestart gbr : gbrList) {
 			if (pc.getMapId() == gbr.getArea()) {
-				pc.setX(gbr.getLocX());
-				pc.setY(gbr.getLocY());
-				pc.setMap(gbr.getMapId());
+				pc.set(gbr.getLocX()
+						, gbr.getLocY()
+						, gbr.getMapId());
 				break;
 			}
 		}
@@ -334,26 +334,14 @@ public class C_LoginToServer extends ClientBasePacket {
 				if (clan != null) {
 					if (clan.getCastleId() != castle_id) {
 						// 城主クランではない
-						int[] loc = new int[3];
-						loc = L1CastleLocation.getGetBackLoc(castle_id);
-						pc.setX(loc[0]);
-						pc.setY(loc[1]);
-						pc.setMap((short) loc[2]);
+						pc.set(L1CastleLocation.getGetBackLoc(castle_id));
 					}
 				} else {
 					// クランに所屬して居ない場合は歸還
-					int[] loc = new int[3];
-					loc = L1CastleLocation.getGetBackLoc(castle_id);
-					pc.setX(loc[0]);
-					pc.setY(loc[1]);
-					pc.setMap((short) loc[2]);
+					pc.set(L1CastleLocation.getGetBackLoc(castle_id));
 				}
 			} else {
-				int[] loc = new int[3];
-				loc = L1CastleLocation.getGetBackLoc(castle_id);
-				pc.setX(loc[0]);
-				pc.setY(loc[1]);
-				pc.setMap((short) loc[2]);
+				pc.set(L1CastleLocation.getGetBackLoc(castle_id));
 			}
 		}
 
@@ -498,7 +486,7 @@ public class C_LoginToServer extends ClientBasePacket {
 				bookmark.setName(rs.getString("name"));
 				bookmark.setLocX(rs.getInt("locx"));
 				bookmark.setLocY(rs.getInt("locy"));
-				bookmark.setMapId(rs.getShort("mapid"));
+				bookmark.setMapId(rs.getInt("mapid"));
 				S_Bookmarks s_bookmarks = new S_Bookmarks(bookmark.getName(), bookmark.getMapId(), bookmark.getId());
 				pc.addBookMark(bookmark);
 				pc.sendPackets(s_bookmarks);

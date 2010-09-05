@@ -65,8 +65,8 @@ public class L1WorldMap {
 	 * @param mapId マップID
 	 * @return マップ情報を保持する、L1Mapオブジェクト。
 	 */
-	public L1Map getMap(short mapId) {
-		L1Map map = _maps.get((int) mapId);
+	public L1Map getMap(int mapId) {
+		L1Map map = _maps.get(mapId);
 		if (map == null) { // マップ情報が無い
 			map = L1Map.newNull(); // 何もしないMapを返す。
 		}

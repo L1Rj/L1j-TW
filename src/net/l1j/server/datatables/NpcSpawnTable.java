@@ -120,7 +120,7 @@ public class NpcSpawnTable {
 					l1spawn.setLocY2(0);
 					l1spawn.setHeading(rs.getInt("heading"));
 					l1spawn.setMinRespawnDelay(rs.getInt("respawn_delay"));
-					l1spawn.setMapId(rs.getShort("mapid"));
+					l1spawn.setMapId(rs.getInt("mapid"));
 					l1spawn.setMovementDistance(rs.getInt("movement_distance"));
 					l1spawn.setName(l1npc.get_name());
 					l1spawn.init();

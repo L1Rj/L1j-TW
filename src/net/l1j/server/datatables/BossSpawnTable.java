@@ -69,7 +69,7 @@ public class BossSpawnTable {
 					spawnDat.setLocX2(rs.getInt("locx2"));
 					spawnDat.setLocY2(rs.getInt("locy2"));
 					spawnDat.setHeading(rs.getInt("heading"));
-					spawnDat.setMapId(rs.getShort("mapid"));
+					spawnDat.setMapId(rs.getInt("mapid"));
 					spawnDat.setRespawnScreen(rs.getBoolean("respawn_screen"));
 					spawnDat.setMovementDistance(rs.getInt("movement_distance"));
 					spawnDat.setRest(rs.getBoolean("rest"));

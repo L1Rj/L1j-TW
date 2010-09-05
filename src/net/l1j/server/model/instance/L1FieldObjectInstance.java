@@ -79,7 +79,7 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 					}
 					SkillUse skilluse = new SkillUse();
 					skilluse.handleCommands(pc, SKILL_CANCEL_MAGIC, pc.getId(), pc.getX(), pc.getY(), null, 0, Base.SKILL_TYPE[1]);
-					L1Teleport.teleport(pc, 32624, 32813, (short) 4, 5, true);
+					L1Teleport.teleport(pc, 32624, 32813, 4, 5, true);
 				}
 			}
 		}

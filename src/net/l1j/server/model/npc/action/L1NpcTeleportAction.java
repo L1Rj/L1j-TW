@@ -56,7 +56,7 @@ public class L1NpcTeleportAction extends L1NpcXmlAction {
 			return L1NpcHtml.HTML_CLOSE;
 		}
 		pc.getInventory().consumeItem(ItemId.ADENA, _price);
-		L1Teleport.teleport(pc, _loc.getX(), _loc.getY(), (short) _loc.getMapId(), _heading, _effect);
+		L1Teleport.teleport(pc, _loc, _heading, _effect);
 		return null;
 	}
 }

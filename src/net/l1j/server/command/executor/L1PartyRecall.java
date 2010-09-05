@@ -43,7 +43,7 @@ public class L1PartyRecall implements L1CommandExecutor {
 			if (party != null) {
 				int x = pc.getX();
 				int y = pc.getY() + 2;
-				short map = pc.getMapId();
+				int map = pc.getMapId();
 				L1PcInstance[] players = party.getMembers();
 				for (L1PcInstance pc2 : players) {
 					try {

@@ -40,7 +40,7 @@ public class L1MapArea extends Rectangle {
 	public L1MapArea(int left, int top, int right, int bottom, int mapId) {
 		super(left, top, right, bottom);
 
-		_map = L1WorldMap.getInstance().getMap((short) mapId);
+		_map = L1WorldMap.getInstance().getMap(mapId);
 	}
 
 	public boolean contains(L1Location loc) {

@@ -60,11 +60,11 @@ public class L1EffectSpawn {
 	 * @param mapId 設置するマップのID
 	 * @return 生成されたエフェクトオブジェクト
 	 */
-	public L1EffectInstance spawnEffect(int npcId, int time, int locX, int locY, short mapId) {
+	public L1EffectInstance spawnEffect(int npcId, int time, int locX, int locY, int mapId) {
 		return spawnEffect(npcId, time, locX, locY, mapId, null, 0);
 	}
 
-	public L1EffectInstance spawnEffect(int npcId, int time, int locX, int locY, short mapId, L1PcInstance user, int skiiId) {
+	public L1EffectInstance spawnEffect(int npcId, int time, int locX, int locY, int mapId, L1PcInstance user, int skiiId) {
 		L1Npc template = NpcTable.getInstance().getTemplate(npcId);
 		L1EffectInstance effect = null;
 
@@ -81,12 +81,9 @@ public class L1EffectSpawn {
 
 			effect.setId(IdFactory.getInstance().nextId());
 			effect.setGfxId(template.get_gfxid());
-			effect.setX(locX);
-			effect.setY(locY);
-			effect.setHomeX(locX);
-			effect.setHomeY(locY);
+			effect.set(locX, locY, mapId);
+			effect.setHome(locX, locY);
 			effect.setHeading(0);
-			effect.setMap(mapId);
 			effect.setUser(user);
 			effect.setSkillId(skiiId);
 			L1World.getInstance().storeObject(effect);

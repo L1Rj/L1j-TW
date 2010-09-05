@@ -57,9 +57,7 @@ public class C_Restart extends ClientBasePacket {
 		pc.setDead(false); // 設定為未死亡狀態
 		pc.removeAllKnownObjects(); // 清除畫面內已知的角色
 		pc.broadcastPacket(new S_RemoveObject(pc)); // 自身 對 其他玩家 送出 移除物件封包
-		pc.setX(loc[0]);
-		pc.setY(loc[1]);
-		pc.setMap((short) loc[2]);
+		pc.set(loc);
 		L1World.getInstance().moveVisibleObject(pc, loc[2]);
 
 		// 判斷角色目前是否在 隱藏之谷 或 歌唱之島

@@ -37,7 +37,7 @@ public class L1Tile implements L1CommandExecutor {
 		try {
 			int locX = pc.getX();
 			int locY = pc.getY();
-			short mapId = pc.getMapId();
+			int mapId = pc.getMapId();
 			int tile0 = L1WorldMap.getInstance().getMap(mapId).getOriginalTile(locX, locY - 1);
 			int tile1 = L1WorldMap.getInstance().getMap(mapId).getOriginalTile(locX + 1, locY - 1);
 			int tile2 = L1WorldMap.getInstance().getMap(mapId).getOriginalTile(locX + 1, locY);

@@ -129,7 +129,7 @@ public class C_War extends ClientBasePacket {
 			int castle_id = enemyClan.getCastleId();
 			if (WarTimeController.getInstance().isNowWar(castle_id)) { // 戰爭時間內
 				L1PcInstance clanMember[] = clan.getOnlineClanMember();
-				for (short k = 0; k < clanMember.length; k++) {
+				for (int k = 0; k < clanMember.length; k++) {
 					if (L1CastleLocation.checkInWarArea(castle_id, clanMember[k])) {
 						player.sendPackets(new S_ServerMessage(SystemMessageId.$477));
 						return;

@@ -63,7 +63,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 	private int _heading;
 	private int _minRespawnDelay;
 	private int _maxRespawnDelay;
-	private short _mapid;
+	private int _mapid;
 	private boolean _respaenScreen;
 	private int _movementDistance;
 	private boolean _rest;
@@ -102,11 +102,11 @@ public class L1Spawn extends L1GameTimeAdapter {
 		_name = name;
 	}
 
-	public short getMapId() {
+	public int getMapId() {
 		return _mapid;
 	}
 
-	public void setMapId(short _mapid) {
+	public void setMapId(int _mapid) {
 		this._mapid = _mapid;
 	}
 
@@ -346,9 +346,9 @@ public class L1Spawn extends L1GameTimeAdapter {
 
 			int npcId = mob.getNpcTemplate().get_npcId();
 			if (npcId == 45488 && getMapId() == 9) { // カスパー
-				mob.setMap((short) (getMapId() + RandomArrayList.getInt(2)));
+				mob.setMap(getMapId() + RandomArrayList.getInt(2));
 			} else if (npcId == 45601 && getMapId() == 11) { // デスナイト
-				mob.setMap((short) (getMapId() + RandomArrayList.getInt(3)));
+				mob.setMap(getMapId() + RandomArrayList.getInt(3));
 			} else {
 				mob.setMap(getMapId());
 			}
@@ -398,10 +398,8 @@ public class L1Spawn extends L1GameTimeAdapter {
 							newlocy = getLocY();
 						}
 				}
-				mob.setX(newlocx);
-				mob.setHomeX(newlocx);
-				mob.setY(newlocy);
-				mob.setHomeY(newlocy);
+				mob.set(newlocx, newlocy);
+				mob.setHome(newlocx, newlocy);
 
 				if (mob.getMap().isInMap(mob.getLocation()) && mob.getMap().isPassable(mob.getLocation())) {
 					if (mob instanceof L1MonsterInstance) {
@@ -440,7 +438,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 			if (npcId == 45573 && mob.getMapId() == 2) { // バフォメット
 				for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 					if (pc.getMapId() == 2) {
-						L1Teleport.teleport(pc, 32664, 32797, (short) 2, 0, true);
+						L1Teleport.teleport(pc, 32664, 32797, 2, 0, true);
 					}
 				}
 			}
@@ -448,7 +446,7 @@ public class L1Spawn extends L1GameTimeAdapter {
 			if (npcId == 46142 && mob.getMapId() == 73 || npcId == 46141 && mob.getMapId() == 74) {
 				for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 					if (pc.getMapId() >= 72 && pc.getMapId() <= 74) {
-						L1Teleport.teleport(pc, 32840, 32833, (short) 72, pc.getHeading(), true);
+						L1Teleport.teleport(pc, 32840, 32833, 72, pc.getHeading(), true);
 					}
 				}
 			}

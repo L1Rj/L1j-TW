@@ -88,15 +88,13 @@ public class L1MobGroupSpawn {
 			mob.setMovementDistance(leader.getMovementDistance());
 			mob.setRest(leader.isRest());
 
-			mob.setX(leader.getX() + RandomArrayList.getInc(5, -2));
-			mob.setY(leader.getY() + RandomArrayList.getInc(5, -2));
+			mob.set(leader.getX() + RandomArrayList.getInc(5, -2)
+					, leader.getY() + RandomArrayList.getInc(5, -2));
 			// マップ外、障害物上、畫面內沸き不可で畫面內にPCがいる場合、リーダーと同じ座標
 			if (!canSpawn(mob)) {
-				mob.setX(leader.getX());
-				mob.setY(leader.getY());
+				mob.set(leader.getX(), leader.getY());
 			}
-			mob.setHomeX(mob.getX());
-			mob.setHomeY(mob.getY());
+			mob.setHome(mob.getX(), mob.getY());
 
 			if (mob instanceof L1MonsterInstance) {
 				((L1MonsterInstance) mob).initHideForMinion(leader);

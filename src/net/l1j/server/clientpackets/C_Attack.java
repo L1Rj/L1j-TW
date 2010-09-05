@@ -113,8 +113,7 @@ public class C_Attack extends ClientBasePacket {
 		} else { // 對空攻擊
 			L1Character cha = new L1Character();
 			cha.setId(targetId);
-			cha.setX(x);
-			cha.setY(y);
+			cha.set(x, y);
 			L1Attack atk = new L1Attack(pc, cha);
 			atk.actionPc();
 		}

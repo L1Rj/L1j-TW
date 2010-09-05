@@ -49,7 +49,7 @@ public class Teleportation {
 
 		int x = pc.getTeleportX();
 		int y = pc.getTeleportY();
-		short mapId = pc.getTeleportMapId();
+		int mapId = pc.getTeleportMapId();
 		int head = pc.getTeleportHeading();
 
 		// テレポート先が不正であれば元の座標へ(GMは除く)
@@ -71,7 +71,7 @@ public class Teleportation {
 		}
 
 		L1World.getInstance().moveVisibleObject(pc, mapId);
-		pc.setLocation(x, y, mapId);
+		pc.set(x, y, mapId);
 		pc.setHeading(head);
 		pc.sendPackets(new S_MapID(pc.getMapId(), pc.getMap().isUnderwater()));
 
@@ -260,13 +260,11 @@ public class Teleportation {
 		}
 	}
 
-	private static void teleport(L1NpcInstance npc, int x, int y, short map, int head) {
+	private static void teleport(L1NpcInstance npc, int x, int y, int map, int head) {
 		L1World.getInstance().moveVisibleObject(npc, map);
 
 		L1WorldMap.getInstance().getMap(npc.getMapId()).setPassable(npc.getX(), npc.getY(), true);
-		npc.setX(x);
-		npc.setY(y);
-		npc.setMap(map);
+		npc.set(x, y, map);
 		npc.setHeading(head);
 		L1WorldMap.getInstance().getMap(npc.getMapId()).setPassable(npc.getX(), npc.getY(), false);
 	}

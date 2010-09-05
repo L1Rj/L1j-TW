@@ -42,7 +42,7 @@ public class Furniture {
 	private final static Logger _log = Logger.getLogger(Furniture.class.getName());
 
 	public static void add(L1PcInstance pc, int itemId, int itemObjectId) {
-		if (!L1HouseLocation.isInHouse(pc.getX(), pc.getY(), pc.getMapId())) {
+		if (!L1HouseLocation.isInHouse(pc.getLocation())) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$563));
 			return;
 		}
@@ -112,16 +112,12 @@ public class Furniture {
 						Object aobj[] = { l1npc };
 						furniture = (L1FurnitureInstance) constructor.newInstance(aobj);
 						furniture.setId(IdFactory.getInstance().nextId());
-						furniture.setMap(pc.getMapId());
 						if (pc.getHeading() == 0) {
-							furniture.setX(pc.getX());
-							furniture.setY(pc.getY() - 1);
+							furniture.set(pc.getX(), pc.getY() - 1, pc.getMapId());
 						} else if (pc.getHeading() == 2) {
-							furniture.setX(pc.getX() + 1);
-							furniture.setY(pc.getY());
+							furniture.set(pc.getX() + 1,pc.getY(), pc.getMapId());
 						}
-						furniture.setHomeX(furniture.getX());
-						furniture.setHomeY(furniture.getY());
+						furniture.setHome(furniture.getX(), furniture.getY());
 						furniture.setHeading(0);
 						furniture.setItemObjId(itemObjectId);
 

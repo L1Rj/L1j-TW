@@ -114,8 +114,8 @@ public class C_MoveChar extends ClientBasePacket {
 			&& ((L1PcInstance) obj).isDead()) { // 死亡
 				continue;
 			}
-			if (obj.getX() == locx// pc.getX()
-					&& obj.getY() == locy// pc.getY()
+			if (obj.getX() == locx // pc.getX()
+					&& obj.getY() == locy // pc.getY()
 					&& ((obj instanceof L1PcInstance)) && !pc.isGmInvis()// GM角色不回溯
 					&& !pc.isGm()) { // GM角色不回溯
 				pc.getMap().setPassable(pc.getLocation(), false);

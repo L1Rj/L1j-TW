@@ -258,7 +258,7 @@ public class ItemTable {
 				item.setMaxChargeCount(rs.getInt("max_charge_count"));
 				item.set_locx(rs.getInt("locx"));
 				item.set_locy(rs.getInt("locy"));
-				item.set_mapid(rs.getShort("mapid"));
+				item.set_mapid(rs.getInt("mapid"));
 				item.set_delayid(rs.getInt("delay_id"));
 				item.set_delaytime(rs.getInt("delay_time"));
 				item.set_delayEffect(rs.getInt("delay_effect"));
@@ -306,7 +306,7 @@ public class ItemTable {
 					item.setMaxChargeCount(rs.getInt("max_charge_count"));
 					item.set_locx(rs.getInt("locx"));
 					item.set_locy(rs.getInt("locy"));
-					item.set_mapid(rs.getShort("mapid"));
+					item.set_mapid(rs.getInt("mapid"));
 					item.set_delayid(rs.getInt("delay_id"));
 					item.set_delaytime(rs.getInt("delay_time"));
 					item.set_delayEffect(rs.getInt("delay_effect"));

@@ -51,11 +51,10 @@ public class L1GfxId implements L1CommandExecutor {
 					npc.setGfxId(gfxid + i);
 					npc.setTempCharGfx(0);
 					npc.setNameId("");
-					npc.setMap(pc.getMapId());
-					npc.setX(pc.getX() + i * 2);
-					npc.setY(pc.getY() + i * 2);
-					npc.setHomeX(npc.getX());
-					npc.setHomeY(npc.getY());
+					npc.set(pc.getX() + i * 2
+							, pc.getY() + i * 2
+							, pc.getMapId());
+					npc.setHome(npc.getX(), npc.getY());
 					npc.setHeading(4);
 
 					L1World.getInstance().storeObject(npc);

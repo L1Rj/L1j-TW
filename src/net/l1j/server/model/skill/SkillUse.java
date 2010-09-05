@@ -2301,7 +2301,7 @@ public class SkillUse {
 							if (pc.getMap().isEscapable() || pc.isGm()) {
 								int newX = bookm.getLocX();
 								int newY = bookm.getLocY();
-								short mapId = bookm.getMapId();
+								int mapId = bookm.getMapId();
 
 								if (_skillId == SKILL_MASS_TELEPORT) { // マステレポート
 									List<L1PcInstance> clanMember = L1World.getInstance().getVisiblePlayer(pc);
@@ -2315,15 +2315,12 @@ public class SkillUse {
 								}
 								L1Teleport.teleport(pc, newX, newY, mapId, 5, true);
 							} else { // テレポート不可マップへの移動制限
-								L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(), pc.getHeading(), false);
+								L1Teleport.teleport(pc, pc.getLocation(), pc.getHeading(), false);
 								pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 							}
 						} else { // ブックマークが取得出來なかった、あるいは「任意の場所」を選擇した場合の處理
 							if (pc.getMap().isTeleportable() || pc.isGm()) {
 								L1Location newLocation = pc.getLocation().randomLocation(200, true);
-								int newX = newLocation.getX();
-								int newY = newLocation.getY();
-								short mapId = (short) newLocation.getMapId();
 
 								if (_skillId == SKILL_MASS_TELEPORT) { // マステレポート
 									List<L1PcInstance> clanMember = L1World.getInstance().getVisiblePlayer(pc);
@@ -2331,24 +2328,24 @@ public class SkillUse {
 										if (pc.getLocation().getTileLineDistance(member.getLocation()) <= 3
 												&& member.getClanid() == pc.getClanid()
 												&& pc.getClanid() != 0 && member.getId() != pc.getId()) {
-											L1Teleport.teleport(member, newX, newY, mapId, 5, true);
+											L1Teleport.teleport(member, newLocation, 5, true);
 										}
 									}
 								}
-								L1Teleport.teleport(pc, newX, newY, mapId, 5, true);
+								L1Teleport.teleport(pc, newLocation, 5, true);
 							} else {
 								pc.sendPackets(new S_ServerMessage(SystemMessageId.$276));
-								L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(), pc.getHeading(), false);
+								L1Teleport.teleport(pc, pc.getLocation(), pc.getHeading(), false);
 							}
 						}
 					} else if (_skillId == SKILL_TELEPORT_TO_MATHER) { // テレポート トゥ
 						// マザー
 						L1PcInstance pc = (L1PcInstance) cha;
 						if (pc.getMap().isEscapable() || pc.isGm()) {
-							L1Teleport.teleport(pc, 33051, 32337, (short) 4, 5, true);
+							L1Teleport.teleport(pc, 33051, 32337, 4, 5, true);
 						} else {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$647));
-							L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(), pc.getHeading(), false);
+							L1Teleport.teleport(pc, pc.getLocation(), pc.getHeading(), false);
 						}
 					} else if (_skillId == SKILL_CALL_PLEDGE_MEMBER) { // コールクラン
 						L1PcInstance pc = (L1PcInstance) cha;
@@ -2363,21 +2360,20 @@ public class SkillUse {
 								.getInstance().findObject(_targetID);
 						if (clanPc != null) {
 							if (pc.getMap().isEscapable() || pc.isGm()) {
-								boolean castle_area = L1CastleLocation.checkInAllWarArea(
+								boolean castle_area = L1CastleLocation.checkInAllWarArea(clanPc.getLocation());
 								// いずれかの城エリア
-								clanPc.getX(), clanPc.getY(), clanPc.getMapId());
 								if ((clanPc.getMapId() == 0
 										|| clanPc.getMapId() == 4 || clanPc
 										.getMapId() == 304)
 										&& castle_area == false) {
-									L1Teleport.teleport(pc, clanPc.getX(), clanPc.getY(), clanPc.getMapId(), 5, true);
+									L1Teleport.teleport(pc, clanPc.getLocation(), 5, true);
 								} else {
 									//pc.sendPackets(new S_ServerMessage(547));
 									pc.sendPackets(new S_ServerMessage(SystemMessageId.$166, "你的盟友在你無法傳送前往的地區"));
 								}
 							} else {
 								pc.sendPackets(new S_ServerMessage(SystemMessageId.$647));
-								L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(), pc.getHeading(), false);
+								L1Teleport.teleport(pc, pc.getLocation(), pc.getHeading(), false);
 							}
 						}
 					} else if (_skillId == SKILL_CREATE_MAGICAL_WEAPON) { // クリエイト

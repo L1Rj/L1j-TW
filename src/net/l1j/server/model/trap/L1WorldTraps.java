@@ -76,13 +76,8 @@ public class L1WorldTraps {
 			while (rs.next()) {
 				int trapId = rs.getInt("trapId");
 				L1Trap trapTemp = TrapTable.getInstance().getTemplate(trapId);
-				L1Location loc = new L1Location();
-				loc.setMap(rs.getInt("mapId"));
-				loc.setX(rs.getInt("locX"));
-				loc.setY(rs.getInt("locY"));
-				Point rndPt = new Point();
-				rndPt.setX(rs.getInt("locRndX"));
-				rndPt.setY(rs.getInt("locRndY"));
+				L1Location loc = new L1Location(rs.getInt("locX"), rs.getInt("locY"), rs.getInt("mapId"));
+				Point rndPt = new Point(rs.getInt("locRndX"), rs.getInt("locRndY"));
 				int count = rs.getInt("count");
 				int span = rs.getInt("span");
 

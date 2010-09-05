@@ -138,11 +138,11 @@ public class CrackTimeController extends TimerTask {
 		crack = new L1Location(_crack[rnd1][0], _crack[rnd1][1], _crack[rnd1][2]);
 		crack_loc = new L1Location(_crackLoc[rnd2][0], _crackLoc[rnd2][1], _crackLoc[rnd2][2]);
 		L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(SystemMessageId.$1469));
-		createCrack(crack.getX(), crack.getY(), (short) crack.getMapId(), crack_loc.getX(), crack_loc.getY(), (short) crack_loc.getMapId());
-		createCrack(crack_loc.getX(), crack_loc.getY(), (short) crack_loc.getMapId(), crack.getX(), crack.getY(), (short) crack.getMapId());
+		createCrack(crack.getX(), crack.getY(), crack.getMapId(), crack_loc.getX(), crack_loc.getY(), crack_loc.getMapId());
+		createCrack(crack_loc.getX(), crack_loc.getY(), crack_loc.getMapId(), crack.getX(), crack.getY(), crack.getMapId());
 	}
 
-	private void createCrack(int x, int y, short mapId, int to_x, int to_y, short to_mapId) {
+	private void createCrack(int x, int y, int mapId, int to_x, int to_y, int to_mapId) {
 		try {
 			L1Npc l1npc = NpcTable.getInstance().getTemplate(71254);
 
@@ -156,11 +156,8 @@ public class CrackTimeController extends TimerTask {
 			L1NpcInstance npc = (L1NpcInstance) constructor.newInstance(aobj);
 
 			npc.setId(IdFactory.getInstance().nextId());
-			npc.setX(x);
-			npc.setY(y);
-			npc.setMap(mapId);
-			npc.setHomeX(npc.getX());
-			npc.setHomeY(npc.getY());
+			npc.set(x, y, mapId);
+			npc.setHome(npc.getX(), npc.getY());
 			npc.setHeading(0);
 
 			L1World.getInstance().storeObject(npc);
@@ -178,9 +175,9 @@ public class CrackTimeController extends TimerTask {
 
 		private int _to_x = 0;
 		private int _to_y = 0;
-		private short _to_mapId = 0;
+		private int _to_mapId = 0;
 
-		public Teleport(L1NpcInstance npc, int to_x, int to_y, short to_mapId) {
+		public Teleport(L1NpcInstance npc, int to_x, int to_y, int to_mapId) {
 			_npc = npc;
 			_to_x = to_x;
 			_to_y = to_y;
@@ -200,7 +197,7 @@ public class CrackTimeController extends TimerTask {
 							L1PcInstance target = (L1PcInstance) obj;
 							L1Location tmp_loc = new L1Location(_to_x, _to_y, _to_mapId);
 							L1Location rnd_loc = tmp_loc.randomLocation(1, 5, false);
-							L1Teleport.teleport(target, rnd_loc.getX(), rnd_loc.getY(), (short) rnd_loc.getMapId(), target.getHeading(), true);
+							L1Teleport.teleport(target, rnd_loc, target.getHeading(), true);
 						}
 					}
 					Thread.sleep(1000);

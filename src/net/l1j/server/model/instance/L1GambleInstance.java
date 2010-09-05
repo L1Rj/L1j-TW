@@ -40,7 +40,7 @@ public class L1GambleInstance extends L1Character {
 		setBabyName("$" + CurrentName); // 設定肥肥的名稱
 		setName("#" + getOrder() + " " + getBabyName()); // 設定名稱
 		setLawful(-5); // 設定肥肥正義值
-		setMap((short) 0x0004); // 設定肥肥出生的地圖
+		setMap(0x0004); // 設定肥肥出生的地圖
 	}
 
 	/**

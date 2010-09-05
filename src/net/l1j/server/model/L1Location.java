@@ -31,7 +31,9 @@ public class L1Location extends Point {
 	}
 
 	public L1Location(L1Location loc) {
-		this(loc._x, loc._y, loc._map);
+		_x = loc._x;
+		_y = loc._y;
+		_map = loc._map;
 	}
 
 	public L1Location(int x, int y, int mapId) {
@@ -40,7 +42,8 @@ public class L1Location extends Point {
 	}
 
 	public L1Location(int x, int y, L1Map map) {
-		super(x, y);
+		_x = x;
+		_y = y;
 		_map = map;
 	}
 
@@ -55,18 +58,20 @@ public class L1Location extends Point {
 	}
 
 	public void set(L1Location loc) {
-		_map = loc._map;
 		_x = loc._x;
 		_y = loc._y;
+		_map = loc._map;
 	}
 
 	public void set(int x, int y, int mapId) {
-		set(x, y);
+		_x = x;
+		_y = y;
 		setMap(mapId);
 	}
 
 	public void set(int x, int y, L1Map map) {
-		set(x, y);
+		_x = x;
+		_y = y;
 		_map = map;
 	}
 
@@ -93,7 +98,11 @@ public class L1Location extends Point {
 	}
 
 	public void setMap(int mapId) {
-		_map = L1WorldMap.getInstance().getMap((short) mapId);
+		_map = L1WorldMap.getInstance().getMap(mapId);
+	}
+
+	public boolean isInMapRange(int minX, int maxX, int minY, int maxY, int mapId) {
+		return isInRange(minX, maxX, minY, maxY) && (mapId == getMapId());
 	}
 
 	@Override
@@ -103,6 +112,10 @@ public class L1Location extends Point {
 		}
 		L1Location loc = (L1Location) obj;
 		return (this.getMap() == loc.getMap()) && (this.getX() == loc.getX()) && (this.getY() == loc.getY());
+	}
+
+	public boolean equals(int x, int y, int mapid) {
+		return (this.getMapId() == mapid) && (this.getX() == x) && (this.getY() == y);
 	}
 
 	@Override
@@ -166,7 +179,7 @@ public class L1Location extends Point {
 		int newY = 0;
 		int locX = baseLocation.getX();
 		int locY = baseLocation.getY();
-		short mapId = (short) baseLocation.getMapId();
+		int mapId = baseLocation.getMapId();
 		L1Map map = baseLocation.getMap();
 
 		newLocation.setMap(map);
@@ -196,8 +209,8 @@ public class L1Location extends Point {
 			locY2 = mapY2;
 		}
 
-		int diffX = locX2 - locX1; // x方向
-		int diffY = locY2 - locY1; // y方向
+		int diffX = locX2 - locX1 + 1; // x方向
+		int diffY = locY2 - locY1 + 1; // y方向
 
 		int trial = 0;
 		// 試行回數を範圍最小值によってあげる為の計算
@@ -212,8 +225,8 @@ public class L1Location extends Point {
 			}
 			trial++;
 
-			newX = RandomArrayList.getInc(diffX + 1, locX1); // locX1 + L1Location._random.nextInt(diffX + 1);
-			newY = RandomArrayList.getInc(diffY + 1, locY1); // locY1 + L1Location._random.nextInt(diffY + 1);
+			newX = RandomArrayList.getInc(diffX, locX1); // locX1 + L1Location._random.nextInt(diffX + 1);
+			newY = RandomArrayList.getInc(diffY, locY1); // locY1 + L1Location._random.nextInt(diffY + 1);
 
 			newLocation.set(newX, newY);
 

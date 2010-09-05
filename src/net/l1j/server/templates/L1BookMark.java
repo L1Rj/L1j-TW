@@ -45,7 +45,7 @@ public class L1BookMark {
 
 	private int _locY;
 
-	private short _mapId;
+	private int _mapId;
 
 	public L1BookMark() {
 	}
@@ -160,11 +160,11 @@ public class L1BookMark {
 		_locY = i;
 	}
 
-	public short getMapId() {
+	public int getMapId() {
 		return _mapId;
 	}
 
-	public void setMapId(short i) {
+	public void setMapId(int i) {
 		_mapId = i;
 	}
 }

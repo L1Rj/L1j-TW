@@ -27,6 +27,7 @@ import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.model.L1Location;
 import net.l1j.server.model.L1World;
 import net.l1j.server.serverpackets.S_CharVisualUpdate;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -106,14 +107,13 @@ public class C_FishClick extends ClientBasePacket {
 		L1ItemInstance item = ItemTable.getInstance().createItem(itemId);
 		item.startItemOwnerTimer(pc);
 		int heading = pc.getHeading();
-		int[] Loc = { pc.getX(), pc.getY() };
-		int[] DropLoc = new int[] {Loc[0], Loc[1]};
-		MoveUtil.MoveLoc(DropLoc, heading);
+		L1Location _tempLoc = pc.getLocation();
+		MoveUtil.MoveLoc(_tempLoc, heading);
 
-		if (pc.getMap().isPassable(DropLoc[0], DropLoc[1])) { // 掉落地點 屬於正常
-			L1World.getInstance().getInventory(DropLoc[0], DropLoc[1], pc.getMapId()).storeItem(item);
+		if (pc.getMap().isPassable(_tempLoc)) { // 掉落地點 屬於正常
+			L1World.getInstance().getInventory(_tempLoc).storeItem(item);
 		} else { // 掉落地點 屬於非正常
-			L1World.getInstance().getInventory(Loc[0], Loc[1], pc.getMapId()).storeItem(item);
+			L1World.getInstance().getInventory(pc.getLocation()).storeItem(item);
 		}
 		pc.sendPackets(new S_ServerMessage(SystemMessageId.$1185, message));
 	}

@@ -18,19 +18,25 @@
  */
 package net.l1j.util;
 
+import net.l1j.server.model.L1Location;
+
 public class MoveUtil {
 
 	private static final int[] HEADING_TABLE_X = { 0, 1, 1, 1, 0, -1, -1, -1 }; /** 角色方向-X */
 	private static final int[] HEADING_TABLE_Y = { -1, -1, 0, 1, 1, 1, 0, -1 }; /** 角色方向-Y */
 
-	public static void MoveLoc(int[] loc, final int heading) {
-		loc[0] += MoveX(heading);
-		loc[1] += MoveY(heading);
+	public static void MoveLoc(int[] loc) {
+		loc[0] += HEADING_TABLE_X[loc[2]];
+		loc[1] += HEADING_TABLE_Y[loc[2]];
 	}
 
-	public static void MoveLoc(int[] loc) {
-		loc[0] += MoveX(loc[2]);
-		loc[1] += MoveY(loc[2]);
+	public static void MoveLoc(int[] loc, final int heading) {
+		loc[0] += HEADING_TABLE_X[heading];
+		loc[1] += HEADING_TABLE_Y[heading];
+	}
+
+	public static void MoveLoc(L1Location loc, final int heading) {
+		loc.add(HEADING_TABLE_X[heading], HEADING_TABLE_Y[heading]);
 	}
 
 	public static int MoveX(final int heading) {
@@ -38,7 +44,7 @@ public class MoveUtil {
 	}
 
 	public static int MoveLocX(final int x, final int heading) {
-		return x + MoveX(heading);
+		return x + HEADING_TABLE_X[heading];
 	}
 
 	public static int MoveY(final int heading) {
@@ -46,7 +52,7 @@ public class MoveUtil {
 	}
 
 	public static int MoveLocY(final int y, final int heading) {
-		return y + MoveY(heading);
+		return y + HEADING_TABLE_Y[heading];
 	}
 
 }

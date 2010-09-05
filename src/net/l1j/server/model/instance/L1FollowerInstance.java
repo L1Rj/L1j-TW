@@ -67,8 +67,10 @@ public class L1FollowerInstance extends L1NpcInstance {
 						&& getNpcTemplate().get_npcId() == 71062) { // カミット
 					if (getLocation().getTileLineDistance(_master.getLocation()) < 3) {
 						L1PcInstance pc = (L1PcInstance) _master;
-						if ((pc.getX() >= 32448 && pc.getX() <= 32452) // カドモス周邊座標
-								&& (pc.getY() >= 33048 && pc.getY() <= 33052) && (pc.getMapId() == 440)) {
+						// if ((pc.getX() >= 32448 && pc.getX() <= 32452)
+						//		&& (pc.getY() >= 33048 && pc.getY() <= 33052)
+						//		&& (pc.getMapId() == 440)) { // カドモス周邊座標
+						if (pc.getLocation().isInMapRange(32448, 32452, 33048, 33052, 440)) { // カドモス周邊座標
 							setParalyzed(true);
 							if (!pc.getInventory().checkItem(40711)) {
 								createNewItem(pc, 40711, 1);
@@ -83,8 +85,10 @@ public class L1FollowerInstance extends L1NpcInstance {
 					// 疲れ果てたリザードマンファイター
 					if (getLocation().getTileLineDistance(_master.getLocation()) < 3) {
 						L1PcInstance pc = (L1PcInstance) _master;
-						if ((pc.getX() >= 32731 && pc.getX() <= 32735) // リザードマン長老周邊座標
-								&& (pc.getY() >= 32854 && pc.getY() <= 32858) && (pc.getMapId() == 480)) {
+						// if ((pc.getX() >= 32731 && pc.getX() <= 32735)
+						//		&& (pc.getY() >= 32854 && pc.getY() <= 32858)
+						//		&& (pc.getMapId() == 480)) { // リザードマン長老周邊座標
+						if (pc.getLocation().isInMapRange(32731, 32735, 32854, 32858, 480)) { // リザードマン長老周邊座標
 							setParalyzed(true);
 							if (!pc.getInventory().checkItem(40633)) {
 								createNewItem(pc, 40633, 1);
@@ -98,8 +102,10 @@ public class L1FollowerInstance extends L1NpcInstance {
 						&& getNpcTemplate().get_npcId() == 70957) { // ロイ
 					if (getLocation().getTileLineDistance(_master.getLocation()) < 3) {
 						L1PcInstance pc = (L1PcInstance) _master;
-						if ((pc.getX() >= 32917 && pc.getX() <= 32921) // バッシュ周邊座標
-								&& (pc.getY() >= 32974 && pc.getY() <= 32978) && (pc.getMapId() == 410)) {
+						// if ((pc.getX() >= 32917 && pc.getX() <= 32921)
+						//		&& (pc.getY() >= 32974 && pc.getY() <= 32978)
+						//		&& (pc.getMapId() == 410)) { // バッシュ周邊座標
+						if (pc.getLocation().isInMapRange(32917, 32921, 32974, 32978, 410)) { // バッシュ周邊座標
 							setParalyzed(true);
 							createNewItem(pc, 41003, 1);
 							pc.getQuest().set_step(L1Quest.QUEST_ROI, 0);
@@ -132,9 +138,7 @@ public class L1FollowerInstance extends L1NpcInstance {
 		setId(IdFactory.getInstance().nextId());
 
 		setMaster(master);
-		setX(target.getX());
-		setY(target.getY());
-		setMap(target.getMapId());
+		setLocation(target.getLocation());
 		setHeading(target.getHeading());
 		setLightSize(target.getLightSize());
 
@@ -222,13 +226,13 @@ public class L1FollowerInstance extends L1NpcInstance {
 			if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) {
 				pc.getInventory().storeItem(item);
 			} else {
-				L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(item);
+				L1World.getInstance().getInventory(pc.getLocation()).storeItem(item);
 			}
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$403, item.getLogName()));
 		}
 	}
 
-	public void spawn(int npcId, int X, int Y, int H, short Map) {
+	public void spawn(int npcId, int X, int Y, int H, int Map) {
 		L1Npc l1npc = NpcTable.getInstance().getTemplate(npcId);
 		if (l1npc != null) {
 			L1NpcInstance mob = null;
@@ -237,11 +241,8 @@ public class L1FollowerInstance extends L1NpcInstance {
 				Constructor<?> _constructor = Class.forName("net.l1j.server.model.instance." + implementationName + "Instance").getConstructors()[0];
 				mob = (L1NpcInstance) _constructor.newInstance(new Object[] { l1npc });
 				mob.setId(IdFactory.getInstance().nextId());
-				mob.setX(X);
-				mob.setY(Y);
-				mob.setHomeX(X);
-				mob.setHomeY(Y);
-				mob.setMap(Map);
+				mob.set(X, Y, Map);
+				mob.setHome(X, Y);
 				mob.setHeading(H);
 				L1World.getInstance().storeObject(mob);
 				L1World.getInstance().addVisibleObject(mob);

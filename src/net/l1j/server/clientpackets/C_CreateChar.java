@@ -121,16 +121,13 @@ public class C_CreateChar extends ClientBasePacket {
 
 	private static void initNewChar(ClientThread client, L1PcInstance pc) throws IOException, Exception {
 		L1ClassFeature classFeature = L1ClassFeature.newClassFeature(pc.getType());
-		short initHp = (short)classFeature.InitHp();
-		short initMp = (short)classFeature.InitMp(pc.getWis());
+		int initHp = classFeature.InitHp();
+		int initMp = classFeature.InitMp(pc.getWis());
 		int initLucky = classFeature.InitLucky();
-		int [] spawn = classFeature.InitSpawn(pc.getType());
 
 		pc.setId(IdFactory.getInstance().nextId());
 		pc.setClassId(classFeature.InitSex(pc.get_sex()));
-		pc.setX(spawn[0]);
-		pc.setY(spawn[1]);
-		pc.setMap((short)spawn[2]);
+		pc.set(classFeature.InitSpawn(pc.getType()));
 		pc.setHeading(5);
 		pc.setLawful(0);
 		pc.addBaseMaxHp(initHp);
@@ -143,14 +140,14 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.setClanid(0);
 		pc.setClanRank(0);
 		pc.set_food(40);
-		pc.setAccessLevel((short) 0);
+		pc.setAccessLevel(0);
 		pc.setGm(false);
 		pc.setMonitor(false);
 		pc.setGmInvis(false);
 		pc.setExp(0);
 		pc.setHighLevel(0);
 		pc.setStatus(0);
-		pc.setAccessLevel((short) 0);
+		pc.setAccessLevel(0);
 		pc.setClanname("");
 		pc.setBonusStats(0);
 		pc.setElixirStats(0);

@@ -112,9 +112,9 @@ public class L1DollInstance extends L1NpcInstance {
 		_dollFuture = ThreadPoolManager.getInstance().schedule(new DollTimer(), DOLL_TIME);
 
 		setMaster(master);
-		setX(RandomArrayList.getInc(5, master.getX() - 2)); // master.getX() + RandomArrayList.getInt(2));
-		setY(RandomArrayList.getInc(5, master.getY() - 2)); // master.getY() + RandomArrayList.getInt(2));
-		setMap(master.getMapId());
+		set(RandomArrayList.getInc(5, master.getX() - 2)
+				, RandomArrayList.getInc(5, master.getY() - 2)
+				, master.getMapId());
 		setHeading(RandomArrayList.getInt(8));
 		setLightSize(template.getLightSize());
 

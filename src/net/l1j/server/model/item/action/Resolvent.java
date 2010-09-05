@@ -68,7 +68,7 @@ public class Resolvent {
 				pc.getInventory().storeItem(crystal);
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$403, crystal.getLogName()));
 			} else { // 持てない場合は地面に落とす 處理のキャンセルはしない（不正防止）
-				L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(crystal);
+				L1World.getInstance().getInventory(pc.getLocation()).storeItem(crystal);
 			}
 		}
 		pc.getInventory().removeItem(item, 1);

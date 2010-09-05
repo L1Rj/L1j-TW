@@ -177,9 +177,7 @@ public class L1Inventory extends L1Object {
 				return findItem;
 			}
 		}
-		item.setX(getX());
-		item.setY(getY());
-		item.setMap(getMapId());
+		item.setLocation(getLocation());
 		int chargeCount = item.getItem().getMaxChargeCount();
 		if (itemId == 40006 || itemId == 40007 || itemId == 40008 || itemId == 140006 || itemId == 140008 || itemId == 41401) {
 			chargeCount -= RandomArrayList.getInt(5);
@@ -215,9 +213,7 @@ public class L1Inventory extends L1Object {
 				return findItem;
 			}
 		}
-		item.setX(getX());
-		item.setY(getY());
-		item.setMap(getMapId());
+		item.setLocation(getLocation());
 		_items.add(item);
 		insertItem(item);
 		return item;

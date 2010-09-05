@@ -47,7 +47,7 @@ public class L1WarSpawn {
 		L1Npc l1npc = NpcTable.getInstance().getTemplate(npcId); // ガーディアンタワー
 		int[] loc = new int[3];
 		loc = L1CastleLocation.getTowerLoc(castleId);
-		SpawnWarObject(l1npc, loc[0], loc[1], (short) (loc[2]));
+		SpawnWarObject(l1npc, loc[0], loc[1], loc[2]);
 		if (castleId == L1CastleLocation.ADEN_CASTLE_ID) {
 			spawnSubTower();
 		}
@@ -59,7 +59,7 @@ public class L1WarSpawn {
 		for (int i = 1; i <= 4; i++) {
 			l1npc = NpcTable.getInstance().getTemplate(81189 + i); // サブタワー
 			loc = L1CastleLocation.getSubTowerLoc(i);
-			SpawnWarObject(l1npc, loc[0], loc[1], (short) (loc[2]));
+			SpawnWarObject(l1npc, loc[0], loc[1], loc[2]);
 		}
 	}
 
@@ -67,7 +67,7 @@ public class L1WarSpawn {
 		L1Npc l1npc = NpcTable.getInstance().getTemplate(81125); // クラウン
 		int[] loc = new int[3];
 		loc = L1CastleLocation.getTowerLoc(castleId);
-		SpawnWarObject(l1npc, loc[0], loc[1], (short) (loc[2]));
+		SpawnWarObject(l1npc, loc[0], loc[1], loc[2]);
 	}
 
 	public void SpawnFlag(int castleId) {
@@ -80,7 +80,7 @@ public class L1WarSpawn {
 		int locx2 = loc[1];
 		int locy1 = loc[2];
 		int locy2 = loc[3];
-		short mapid = (short) loc[4];
+		int mapid = loc[4];
 
 		for (x = locx1, y = locy1; x <= locx2; x += 8) {
 			SpawnWarObject(l1npc, x, y, mapid);
@@ -96,7 +96,7 @@ public class L1WarSpawn {
 		}
 	}
 
-	private void SpawnWarObject(L1Npc l1npc, int locx, int locy, short mapid) {
+	private void SpawnWarObject(L1Npc l1npc, int locx, int locy, int mapid) {
 		try {
 			if (l1npc != null) {
 				String s = l1npc.getImpl();
@@ -104,12 +104,9 @@ public class L1WarSpawn {
 				Object aobj[] = { l1npc };
 				L1NpcInstance npc = (L1NpcInstance) _constructor.newInstance(aobj);
 				npc.setId(IdFactory.getInstance().nextId());
-				npc.setX(locx);
-				npc.setY(locy);
-				npc.setHomeX(locx);
-				npc.setHomeY(locy);
+				npc.set(locx, locy, mapid);
+				npc.setHome(locx, locy);
 				npc.setHeading(0);
-				npc.setMap(mapid);
 				L1World.getInstance().storeObject(npc);
 				L1World.getInstance().addVisibleObject(npc);
 
