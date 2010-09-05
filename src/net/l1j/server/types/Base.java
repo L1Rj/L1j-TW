@@ -30,7 +30,4 @@ public class Base {
 	public static final double[] TAN_225 = { Math.tan(-22.5), Math.tan(22.5) };
 	public static final double[] TAN_675 = { Math.tan(-62.5), Math.tan(62.5) };
 
-	/** 被攻擊類別: 0=正常 1=絕對屏障 2=冰矛圍籬 4=大地屏障 8=冰雪颶風 16=寒冰噴吐 */
-	public static final int[] STATUS_TYPE = { 0, 1, 2, 4, 8, 16 };
-
 }

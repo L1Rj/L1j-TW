@@ -410,20 +410,19 @@ public class L1Character extends L1Object {
 	}
 
 	private int _charStatus = 0;
-	private static final int STATUS_TYPE[] = Base.STATUS_TYPE;
 	/**
 	 * 特殊狀態速查
 	 * 
 	 * 將人身上特有的特殊狀態製成索引，降低 普通/魔法 攻擊時，需要一一比對身上技能的煩惱。
 	 */
 	public void addInvincibleEffect(int stautsId) {
-		if((_charStatus & STATUS_TYPE[stautsId]) != STATUS_TYPE[stautsId])
-			_charStatus += STATUS_TYPE[stautsId];
+		if((_charStatus & stautsId) != stautsId)
+			_charStatus ^= stautsId;
 	}
 
 	public void removeInvincibleEffect(int stautsId) {
-		if((_charStatus & STATUS_TYPE[stautsId]) == STATUS_TYPE[stautsId])
-			_charStatus -= STATUS_TYPE[stautsId];
+		if((_charStatus & stautsId) == stautsId)
+			_charStatus ^= stautsId;
 	}
 
 	public boolean hasInvincibleEffect() {
