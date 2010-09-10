@@ -200,7 +200,7 @@ public class C_NPCAction extends ClientBasePacket {
 		/*
 		 * アクション個別處理
 		 */
-		if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 50031) {
+                 if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 50031) {
 			if (s.equalsIgnoreCase("teleport sepia-dungen")) {
 				int map302pccount = 0;
 				for (L1PcInstance map302pc : L1World.getInstance().getAllPlayers()) {
@@ -214,12 +214,12 @@ public class C_NPCAction extends ClientBasePacket {
 						&& map302pccount >= 1) {
 					htmlid = "sepia3";
 				} else {
-					L1Teleport.teleport(pc, 32740, 32860, 302, 5, true);
+					L1Teleport.teleport(pc, 32740, 32860, (short) 302, 5, true);
 				}
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 70512) { // 治療師（歌う島の中：ＨＰのみ回復）
 			if (s.equalsIgnoreCase("0") || s.equalsIgnoreCase("fullheal")) { // 治療を受ける("fullheal"でリクエストが來ることはあるのか？)
-				int hp = RandomArrayList.getInc(21, 70);
+				int hp = RandomArrayList.getInc(21, 70); // getArrayshortList((short) 21) + 70;
 				pc.setCurrentHp(pc.getCurrentHp() + hp);
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$77));
 				pc.sendPackets(new S_SkillSound(pc.getId(), 830));
@@ -362,16 +362,16 @@ public class C_NPCAction extends ClientBasePacket {
 				htmlid = "kamyla25";
 			} else if (s.equalsIgnoreCase("b")) { // カーミラ（フランコの迷宮）
 				if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 1) {
-					L1Teleport.teleport(pc, 32679, 32742, 482, 5, true);
+					L1Teleport.teleport(pc, 32679, 32742, (short) 482, 5, true);
 				}
 			} else if (s.equalsIgnoreCase("d")) { // カーミラ（ディエゴの閉ざされた牢）
 				if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 3) {
-					L1Teleport.teleport(pc, 32736, 32800, 483, 5, true);
+					L1Teleport.teleport(pc, 32736, 32800, (short) 483, 5, true);
 				}
 			} else if (s.equalsIgnoreCase("f")) { // カーミラ（ホセ地下牢）
 				if (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 4
 						|| (pc.getQuest().get_step(L1Quest.QUEST_KAMYLA) == 255)) {
-					L1Teleport.teleport(pc, 32746, 32807, 484, 5, true);
+					L1Teleport.teleport(pc, 32746, 32807, (short) 484, 5, true);
 				}
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71037) { // 治療師（訓練場：HPMP回復）
@@ -663,7 +663,7 @@ public class C_NPCAction extends ClientBasePacket {
 					pc.getInventory().consumeItem(249, 1);
 					pc.getInventory().consumeItem(40620, 1);
 					pc.getQuest().set_step(L1Quest.QUEST_CRYSTAL, 2);
-					L1Teleport.teleport(pc, 32801, 32895, 483, 4, true);
+					L1Teleport.teleport(pc, 32801, 32895, (short) 483, 4, true);
 				}
 			} else if (s.equalsIgnoreCase("c")) {
 				if (pc.getInventory().checkEquipped(246)
@@ -686,7 +686,7 @@ public class C_NPCAction extends ClientBasePacket {
 					pc.getInventory().consumeItem(249, 1);
 					pc.getInventory().consumeItem(40620, 1);
 					pc.getQuest().set_step(L1Quest.QUEST_CRYSTAL, 0);
-					L1Teleport.teleport(pc, 32736, 32800, 483, 4, true);
+					L1Teleport.teleport(pc, 32736, 32800, (short) 483, 4, true);
 				}
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71091) { // 試練のクリスタル2(海賊島)
@@ -694,7 +694,7 @@ public class C_NPCAction extends ClientBasePacket {
 				htmlid = "";
 				pc.getInventory().consumeItem(40654, 1);
 				pc.getQuest().set_step(L1Quest.QUEST_CRYSTAL, L1Quest.QUEST_END);
-				L1Teleport.teleport(pc, 32744, 32927, 483, 4, true);
+				L1Teleport.teleport(pc, 32744, 32927, (short) 483, 4, true);
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71119) { // アタロゼ
 			if (s.equalsIgnoreCase("request las history book")) { // 「ラスタバドの歷史書1章から8章まで全部渡す」
@@ -1201,7 +1201,7 @@ public class C_NPCAction extends ClientBasePacket {
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71168) { // 真冥王 ダンテス
 			if (s.equalsIgnoreCase("a")) { // 「異界の魔物がいる場所へ送ってください」
 				if (pc.getInventory().checkItem(41028, 1)) {
-					L1Teleport.teleport(pc, 32648, 32921, 535, 6, true);
+					L1Teleport.teleport(pc, 32648, 32921, (short) 535, 6, true);
 					pc.getInventory().consumeItem(41028, 1);
 				}
 			}
@@ -1534,7 +1534,7 @@ public class C_NPCAction extends ClientBasePacket {
 			} else if (s.equalsIgnoreCase("B")) {
 				if (pc.getInventory().checkItem(49101, 1)) {
 					pc.getInventory().consumeItem(49101, 1);
-					L1Teleport.teleport(pc, 33966, 33253, 4, 5, true);
+					L1Teleport.teleport(pc, 33966, 33253, (short) 4, 5, true);
 					htmlid = "";
 				} else {
 					htmlid = "joegolem20";
@@ -1553,7 +1553,7 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("e") && map782pccount <= 19) { // 持有鑰匙經由祭壇守門人傳送進入
 				if (pc.getInventory().checkItem(49242, 1)) { // 底比斯歐西里斯祭壇鑰匙檢查
 					pc.getInventory().consumeItem(49242, 1);
-					L1Teleport.teleport(pc, 32735, 32831, 782, 2, true);
+					L1Teleport.teleport(pc, 32735, 32831, (short) 782, 2, true);
 					htmlid = "";
 				} else {
 					htmlid = "tebegate3";
@@ -1811,7 +1811,7 @@ public class C_NPCAction extends ClientBasePacket {
 						|| pc.getInventory().checkItem(40616)) { // 影の神殿3階の鍵
 					htmlid = "";
 				} else {
-					L1Teleport.teleport(pc, 32683, 32895, 608, 5, true);
+					L1Teleport.teleport(pc, 32683, 32895, (short) 608, 5, true);
 				}
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80052) { // ヤヒの軍師
@@ -1901,7 +1901,7 @@ public class C_NPCAction extends ClientBasePacket {
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80063) { // 次元の扉(バルログの部屋)
 			if (s.equalsIgnoreCase("a")) { // 「中に入る」
 				if (pc.getInventory().checkItem(40921)) { // 元素の支配者
-					L1Teleport.teleport(pc, 32674, 32832, 603, 2, true);
+					L1Teleport.teleport(pc, 32674, 32832, (short) 603, 2, true);
 				} else {
 					htmlid = "gpass02";
 				}
@@ -1955,7 +1955,7 @@ public class C_NPCAction extends ClientBasePacket {
 						|| pc.getInventory().checkItem(40921)) { // 元素の支配者
 					htmlid = "";
 				} else {
-					L1Teleport.teleport(pc, 32674, 32832, 602, 2, true);
+					L1Teleport.teleport(pc, 32674, 32832, (short) 602, 2, true);
 				}
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80066) { // 搖らめく者
@@ -2149,8 +2149,8 @@ public class C_NPCAction extends ClientBasePacket {
 				} else {
 					if (pc.getInventory().checkItem(41314)) { // 占星術師のお守り
 						pc.getInventory().consumeItem(41314, 1); // 占星術師のお守り
-						int html = RandomArrayList.getInc(9, 1);
-						int PolyId = RandomArrayList.getInc(64, 6180);
+						int html = RandomArrayList.getInc(9, 1); // (RandomArrayList.getArray9List() + 1);
+						int PolyId = RandomArrayList.getInc(64, 6180); // 6180 + RandomArrayList.getArrayshortList((short) 64);
 						polyByKeplisha(client, PolyId);
 						switch (html) {
 							case 1:
@@ -2207,7 +2207,7 @@ public class C_NPCAction extends ClientBasePacket {
 					createitem = new int[] { 41293 };
 					createcount = new int[] { 1 };
 					L1PolyMorph.undoPoly(pc);
-					L1Teleport.teleport(pc, 32815, 32809, 5124, 6, true);
+					L1Teleport.teleport(pc, 32815, 32809, (short) 5124, 6, true);
 				} else {
 					htmlid = "fk_in_0";
 				}
@@ -2218,7 +2218,7 @@ public class C_NPCAction extends ClientBasePacket {
 					createitem = new int[] { 41294 };
 					createcount = new int[] { 1 };
 					L1PolyMorph.undoPoly(pc);
-					L1Teleport.teleport(pc, 32815, 32809, 5124, 6, true);
+					L1Teleport.teleport(pc, 32815, 32809, (short) 5124, 6, true);
 				} else {
 					htmlid = "fk_in_0";
 				}
@@ -2228,9 +2228,9 @@ public class C_NPCAction extends ClientBasePacket {
 				if (!pc.getInventory().checkItem(41293, 1) && !pc.getInventory().checkItem(41294, 1)) {
 					htmlid = "fk_out_0";
 				} else if (pc.getInventory().consumeItem(41293, 1)) {
-					L1Teleport.teleport(pc, 32613, 32781, 4, 4, true);
+					L1Teleport.teleport(pc, 32613, 32781, (short) 4, 4, true);
 				} else if (pc.getInventory().consumeItem(41294, 1)) {
-					L1Teleport.teleport(pc, 32613, 32781, 4, 4, true);
+					L1Teleport.teleport(pc, 32613, 32781, (short) 4, 4, true);
 				}
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80084) { // 怪しいオーク商人 パルーム
@@ -2605,7 +2605,7 @@ public class C_NPCAction extends ClientBasePacket {
 			} else if (s.equalsIgnoreCase("B")) {
 				if (pc.getInventory().checkItem(49101, 1)) {
 					pc.getInventory().consumeItem(49101, 1);
-					L1Teleport.teleport(pc, 33966, 33253, 4, 5, true);
+					L1Teleport.teleport(pc, 33966, 33253, (short) 4, 5, true);
 					htmlid = "";
 				} else {
 					htmlid = "joegolem20";
@@ -2627,7 +2627,7 @@ public class C_NPCAction extends ClientBasePacket {
 				} else {
 					if (pc.getInventory().checkItem(49308, 1)) {
 						pc.getInventory().consumeItem(49308, 1);
-						L1Teleport.teleport(pc, 32730, 32866, 784, 2, true); // 傳送至庫庫爾坎祭壇
+						L1Teleport.teleport(pc, 32730, 32866, (short) 784, 2, true); // 傳送至庫庫爾坎祭壇
 						htmlid = "";
 					} else {
 						htmlid = "tikalgate3";
@@ -2771,7 +2771,7 @@ public class C_NPCAction extends ClientBasePacket {
 					htmlid = "sherme1";
 				}
 			}
-		} else if (s.equalsIgnoreCase("buy")) {
+                } else if (s.equalsIgnoreCase("buy")) {
 			L1NpcInstance npc = (L1NpcInstance) obj;
 			// "sell"のみ表示されるはずのNPCをチェックする。
 			if (isNpcSellOnly(npc)) {
@@ -3539,11 +3539,11 @@ public class C_NPCAction extends ClientBasePacket {
 			}
 		}
 		// else System.out.println("C_NpcAction: " + s);
-		if (htmlid != null && htmlid.equalsIgnoreCase("colos2")) {
-			htmldata = makeUbInfoStrings(((L1NpcInstance) obj).getNpcTemplate().get_npcId());
-		}
-		if (createitem != null) { // アイテム精製
-			boolean isCreate = true;
+                if (htmlid != null && htmlid.equalsIgnoreCase("colos2")) {
+                        htmldata = makeUbInfoStrings(((L1NpcInstance) obj).getNpcTemplate().get_npcId());
+                }
+                if (createitem != null) { // アイテム精製
+                        boolean isCreate = true;
 			for (int j = 0; j < materials.length; j++) {
 				if (!pc.getInventory().checkItemNotEquipped(materials[j], counts[j])) {
 					L1Item temp = ItemTable.getInstance().getTemplate(materials[j]);
@@ -3632,7 +3632,8 @@ public class C_NPCAction extends ClientBasePacket {
 		if (pc.getInventory().consumeItem(ItemId.ADENA, 100)) {
 			try {
 				pc.save();
-				pc.beginGhost(loc.getX(), loc.getY(), loc.getMapId(), true);
+				pc.beginGhost(loc.getX(), loc.getY(), (short) loc.getMapId(),
+						true);
 			} catch (Exception e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			}
@@ -3656,7 +3657,7 @@ public class C_NPCAction extends ClientBasePacket {
 
 		ub.addMember(pc); // メンバーに追加
 		L1Location loc = ub.getLocation().randomLocation(10, false);
-		L1Teleport.teleport(pc, loc, 5, true);
+		L1Teleport.teleport(pc, loc.getX(), loc.getY(), ub.getMapId(), 5, true);
 		return "";
 	}
 
@@ -3671,7 +3672,7 @@ public class C_NPCAction extends ClientBasePacket {
 		}
 
 		L1HauntedHouse.getInstance().addMember(pc); // メンバーに追加
-		L1Teleport.teleport(pc, 32722, 32830, 5140, 2, true);
+		L1Teleport.teleport(pc, 32722, 32830, (short) 5140, 2, true);
 		return "";
 	}
 
@@ -4035,11 +4036,13 @@ public class C_NPCAction extends ClientBasePacket {
 		for (L1Object object : L1World.getInstance().getObject()) {
 			if (object instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) object;
-				if (L1HouseLocation.isInHouseLoc(houseId, pc.getLocation())
+				if (L1HouseLocation.isInHouseLoc(houseId, pc.getX(), pc.getY(),
+						pc.getMapId())
 						&& clanPc.getClanid() != pc.getClanid()) {
 					loc = L1HouseLocation.getHouseTeleportLoc(houseId, 0);
 					if (pc != null) {
-						L1Teleport.teleport(pc, loc[0], loc[1], loc[2], 5, true);
+						L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2],
+								5, true);
 					}
 				}
 			}
@@ -4244,10 +4247,10 @@ public class C_NPCAction extends ClientBasePacket {
 	}
 									// 次元之門  (土)   (風)   (水)   (火)
 	private static final int[] PROTECTIONID = { 40909, 40912, 40910, 40911};
-	private static final int[] SEALID		= { 40913, 40916, 40914, 40915};
-	private static final int[] LOCX			= { 32773, 32757, 32830, 32835};
-	private static final int[] LOCY			= { 32835, 32842, 32822, 32822};
-	private static final int[] MAPID		= {   607,   606,   604,   605};
+	private static final int[] SEALID 		= { 40913, 40916, 40914, 40915};
+	private static final int[] LOCX 		= { 32773, 32757, 32830, 32835};
+	private static final int[] LOCY 		= { 32835, 32842, 32822, 32822};
+	private static final short[] MAPID 		= {   607,   606,   604,   605};
 	private String talkToDimensionDoor(L1PcInstance pc, L1NpcInstance npc, String s) {
 		String htmlid = "";
 		int T_Id = npc.getNpcTemplate().get_npcId() - 80059;
@@ -4255,7 +4258,7 @@ public class C_NPCAction extends ClientBasePacket {
 		int sealId = SEALID[T_Id];
 		int locX = LOCX[T_Id];
 		int locY = LOCY[T_Id];
-		int mapId = MAPID[T_Id];
+		short mapId = MAPID[T_Id];
 		/*
 		if (npc.getNpcTemplate().get_npcId() == 80059) { // 次元之門(土)
 			protectionId = 40909;

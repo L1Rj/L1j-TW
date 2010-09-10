@@ -982,10 +982,9 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					} else {
 						if (pc.getInventory().checkItem(274)
-								// && (pc.getX() >= 32612 && pc.getX() <= 32619)
-								// && (pc.getY() >= 32666 && pc.getY() <= 32673)
-								// && (pc.getMapId() == 4)) {
-								&& pc.getLocation().isInMapRange(32612, 32619, 32666, 32673, 4)) {
+								&& (pc.getX() >= 32612 && pc.getX() <= 32619)
+								&& (pc.getY() >= 32666 && pc.getY() <= 32673)
+								&& (pc.getMapId() == 4)) {
 							SpawnUtil.spawn(pc, 46163, 0, 0);
 						} else {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
@@ -1497,7 +1496,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 40079 || itemId == 40095) { // 帰還スクロール
 					if (pc.getMap().isEscapable() || pc.isGm()) {
 						int[] loc = Getback.GetBack_Location(pc, true);
-						L1Teleport.teleport(pc, loc[0], loc[1], loc[2], 5, true);
+						L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2], 5, true);
 						pc.getInventory().removeItem(item, 1);
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$647));
@@ -1521,7 +1520,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								loc = L1CastleLocation.getCastleLoc(castle_id);
 								int locx = loc[0];
 								int locy = loc[1];
-								int mapid = loc[2];
+								short mapid = (short) (loc[2]);
 								L1Teleport.teleport(pc, locx, locy, mapid, 5, true);
 								pc.getInventory().removeItem(item, 1);
 							} else {
@@ -1533,7 +1532,7 @@ public class C_ItemUSe extends ClientBasePacket {
 								loc = L1HouseLocation.getHouseLoc(house_id);
 								int locx = loc[0];
 								int locy = loc[1];
-								int mapid = loc[2];
+								short mapid = (short) (loc[2]);
 								L1Teleport.teleport(pc, locx, locy, mapid, 5, true);
 								pc.getInventory().removeItem(item, 1);
 							} else {
@@ -1544,12 +1543,12 @@ public class C_ItemUSe extends ClientBasePacket {
 								int[] loc = L1TownLocation.getGetBackLoc(pc.getHomeTownId());
 								int locx = loc[0];
 								int locy = loc[1];
-								int mapid = loc[2];
+								short mapid = (short) (loc[2]);
 								L1Teleport.teleport(pc, locx, locy, mapid, 5, true);
 								pc.getInventory().removeItem(item, 1);
 							} else {
 								int[] loc = Getback.GetBack_Location(pc, true);
-								L1Teleport.teleport(pc, loc[0], loc[1], loc[2], 5, true);
+								L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2], 5, true);
 								pc.getInventory().removeItem(item, 1);
 							}
 						}
@@ -1564,7 +1563,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						if (pc.getMap().isEscapable() || pc.isGm()) {
 							int newX = bookm.getLocX();
 							int newY = bookm.getLocY();
-							int mapId = bookm.getMapId();
+							short mapId = bookm.getMapId();
 
 							if (itemId == 40086) { // マステレポートスクロール
 								for (L1PcInstance member : L1World.getInstance().getVisiblePlayer(
@@ -1579,7 +1578,8 @@ public class C_ItemUSe extends ClientBasePacket {
 							L1Teleport.teleport(pc, newX, newY, mapId, 5, true);
 							pc.getInventory().removeItem(item, 1);
 						} else {
-							L1Teleport.teleport(pc, pc.getLocation(), pc.getHeading(), false);
+							L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(), pc
+									.getHeading(), false);
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 						}
 					} else {
@@ -1587,7 +1587,7 @@ public class C_ItemUSe extends ClientBasePacket {
 							L1Location newLocation = pc.getLocation().randomLocation(200, true);
 							int newX = newLocation.getX();
 							int newY = newLocation.getY();
-							int mapId = newLocation.getMapId();
+							short mapId = (short) newLocation.getMapId();
 
 							if (itemId == 40086) { // マステレポートスクロール
 								for (L1PcInstance member : L1World.getInstance().getVisiblePlayer(
@@ -1602,13 +1602,14 @@ public class C_ItemUSe extends ClientBasePacket {
 							L1Teleport.teleport(pc, newX, newY, mapId, 5, true);
 							pc.getInventory().removeItem(item, 1);
 						} else {
-							L1Teleport.teleport(pc, pc.getLocation(), pc.getHeading(), false);
+							L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(), pc
+									.getHeading(), false);
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$276));
 						}
 					}
 					ItemAction.cancelAbsoluteBarrier(pc);
 				} else if (itemId == 240100) { // 咒われたテレポートスクロール(オリジナルアイテム)
-					L1Teleport.teleport(pc, pc.getLocation(), pc.getHeading(),
+					L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(), pc.getHeading(),
 							true);
 					pc.getInventory().removeItem(item, 1);
 					ItemAction.cancelAbsoluteBarrier(pc);
@@ -1629,11 +1630,14 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 
 					if (partner_stat) {
-						boolean castle_area = L1CastleLocation.checkInAllWarArea(partner.getLocation());
+						boolean castle_area = L1CastleLocation.checkInAllWarArea(
 						// いずれかの城エリア
-						if ((partner.getMapId() == 0 || partner.getMapId() == 4 || partner.getMapId() == 304)
+								partner.getX(), partner.getY(), partner.getMapId());
+						if ((partner.getMapId() == 0 || partner.getMapId() == 4 || partner
+								.getMapId() == 304)
 								&& castle_area == false) {
-							L1Teleport.teleport(pc, partner.getLocation(), 5, true);
+							L1Teleport.teleport(pc, partner.getX(), partner.getY(), partner
+									.getMapId(), 5, true);
 						} else {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$547));
 						}
@@ -1642,32 +1646,28 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40555) { // 秘密の部屋のキー
 					if (pc.isKnight()
-							// && (pc.getX() >= 32806 && pc.getX() <= 32814)
-							// && (pc.getY() >= 32798 && pc.getY() <= 32807)
-							// && pc.getMapId() == 13) { // オリム部屋
-							&& pc.getLocation().isInMapRange(32806, 32814, 32798, 32807, 13)) { // オリム部屋
-						int mapid = 13;
+							&& (pc.getX() >= 32806 && // オリム部屋
+							pc.getX() <= 32814) && (pc.getY() >= 32798 && pc.getY() <= 32807)
+							&& pc.getMapId() == 13) {
+						short mapid = 13;
 						L1Teleport.teleport(pc, 32815, 32810, mapid, 5, false);
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 40417) { // ソウルクリスタル
-					// if ((pc.getX() >= 32665 && pc.getX() <= 32674)
-					//		&& (pc.getY() >= 32976 && pc.getY() <= 32985)
-					//		&& pc.getMapId() == 440) { // 海賊島
-					if (pc.getLocation().isInMapRange(32665, 32674, 32976, 32985, 440)) { // 海賊島
-						int mapid = 430;
+					if ((pc.getX() >= 32665 && // 海賊島
+							pc.getX() <= 32674)
+							&& (pc.getY() >= 32976 && pc.getY() <= 32985) && pc.getMapId() == 440) {
+						short mapid = 430;
 						L1Teleport.teleport(pc, 32922, 32812, mapid, 5, true);
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 40566) { // ミステリアス シェル
 					if (pc.isElf()
-							// && (pc.getX() >= 33971 && pc.getX() <= 33975)
-							// && (pc.getY() >= 32324 && pc.getY() <= 32328)
-							// && pc.getMapId() == 4 // 象牙の塔の村の南にある魔方陣の座標
-							&& pc.getLocation().isInMapRange(33971, 33975, 32324, 32328, 4) // 象牙の塔の村の南にある魔方陣の座標
-							&& !pc.getInventory().checkItem(40548)) { // 亡靈の袋
+							&& (pc.getX() >= 33971 && // 象牙の塔の村の南にある魔方陣の座標
+							pc.getX() <= 33975) && (pc.getY() >= 32324 && pc.getY() <= 32328)
+							&& pc.getMapId() == 4 && !pc.getInventory().checkItem(40548)) { // 亡靈の袋
 						boolean found = false;
 						for (L1Object obj : L1World.getInstance().getObject()) {
 							if (obj instanceof L1MonsterInstance) {
@@ -1689,8 +1689,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 40557) { // 暗殺リスト(グルーディン)
-					// if (pc.getX() == 32620 && pc.getY() == 32641 && pc.getMapId() == 4) {
-					if (pc.getLocation().equals(32620, 32641, 4)) {
+					if (pc.getX() == 32620 && pc.getY() == 32641 && pc.getMapId() == 4) {
 						for (L1Object object : L1World.getInstance().getObject()) {
 							if (object instanceof L1NpcInstance) {
 								L1NpcInstance npc = (L1NpcInstance) object;
@@ -1705,8 +1704,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 40563) { // 暗殺リスト(火田村)
-					// if (pc.getX() == 32730 && pc.getY() == 32426 && pc.getMapId() == 4) {
-					if (pc.getLocation().equals(32730, 32426, 4)) {
+					if (pc.getX() == 32730 && pc.getY() == 32426 && pc.getMapId() == 4) {
 						for (L1Object object : L1World.getInstance().getObject()) {
 							if (object instanceof L1NpcInstance) {
 								L1NpcInstance npc = (L1NpcInstance) object;
@@ -1721,8 +1719,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 40561) { // 暗殺リスト(ケント)
-					// if (pc.getX() == 33046 && pc.getY() == 32806 && pc.getMapId() == 4) {
-					if (pc.getLocation().equals(33046, 32806, 4)) {
+					if (pc.getX() == 33046 && pc.getY() == 32806 && pc.getMapId() == 4) {
 						for (L1Object object : L1World.getInstance().getObject()) {
 							if (object instanceof L1NpcInstance) {
 								L1NpcInstance npc = (L1NpcInstance) object;
@@ -1737,8 +1734,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 40560) { // 暗殺リスト(ウッドベック)
-					// if (pc.getX() == 32580 && pc.getY() == 33260 && pc.getMapId() == 4) {
-					if (pc.getLocation().equals(32580, 33260, 4)) {
+					if (pc.getX() == 32580 && pc.getY() == 33260 && pc.getMapId() == 4) {
 						for (L1Object object : L1World.getInstance().getObject()) {
 							if (object instanceof L1NpcInstance) {
 								L1NpcInstance npc = (L1NpcInstance) object;
@@ -1753,8 +1749,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 40562) { // 暗殺リスト(ハイネ)
-					// if (pc.getX() == 33447 && pc.getY() == 33476 && pc.getMapId() == 4) {
-					if (pc.getLocation().equals(33447, 33476, 4)) {
+					if (pc.getX() == 33447 && pc.getY() == 33476 && pc.getMapId() == 4) {
 						for (L1Object object : L1World.getInstance().getObject()) {
 							if (object instanceof L1NpcInstance) {
 								L1NpcInstance npc = (L1NpcInstance) object;
@@ -1769,8 +1764,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 40559) { // 暗殺リスト(アデン)
-					// if (pc.getX() == 34215 && pc.getY() == 33195 && pc.getMapId() == 4) {
-					if (pc.getLocation().equals(34215, 33195, 4)) {
+					if (pc.getX() == 34215 && pc.getY() == 33195 && pc.getMapId() == 4) {
 						for (L1Object object : L1World.getInstance().getObject()) {
 							if (object instanceof L1NpcInstance) {
 								L1NpcInstance npc = (L1NpcInstance) object;
@@ -1785,8 +1779,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 40558) { // 暗殺リスト(ギラン)
-					// if (pc.getX() == 33513 && pc.getY() == 32890 && pc.getMapId() == 4) {
-					if (pc.getLocation().equals(33513, 32890, 4)) {
+					if (pc.getX() == 33513 && pc.getY() == 32890 && pc.getMapId() == 4) {
 						for (L1Object object : L1World.getInstance().getObject()) {
 							if (object instanceof L1NpcInstance) {
 								L1NpcInstance npc = (L1NpcInstance) object;
@@ -1801,12 +1794,10 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 				} else if (itemId == 40572) { // アサシンの印
-					// if (pc.getX() == 32778 && pc.getY() == 32738 && pc.getMapId() == 21) {
-					if (pc.getLocation().equals(32778, 32738, 21)) {
-						L1Teleport.teleport(pc, 32781, 32728, 21, 5, true);
-					// } else if (pc.getX() == 32781 && pc.getY() == 32728 && pc.getMapId() == 21) {
-					} else if (pc.getLocation().equals(32781, 32728, 21)) {
-						L1Teleport.teleport(pc, 32778, 32738, 21, 5, true);
+					if (pc.getX() == 32778 && pc.getY() == 32738 && pc.getMapId() == 21) {
+						L1Teleport.teleport(pc, 32781, 32728, (short) 21, 5, true);
+					} else if (pc.getX() == 32781 && pc.getY() == 32728 && pc.getMapId() == 21) {
+						L1Teleport.teleport(pc, 32778, 32738, (short) 21, 5, true);
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
@@ -1931,21 +1922,25 @@ public class C_ItemUSe extends ClientBasePacket {
 						|| itemId == 49045 || itemId == 49046 || itemId == 49047) {
 					pc.getInventory().removeItem(item, 1);
 					// XXX 食べ物每の滿腹度(100單位で變動)
-					int foodvolume1 = item.getItem().getFoodVolume() / 10;
-					int foodvolume2 = 0;
+					short foodvolume1 = (short) (item.getItem().getFoodVolume() / 10);
+					short foodvolume2 = 0;
 					if (foodvolume1 <= 0) {
 						foodvolume1 = 5;
 					}
 					if (pc.get_food() >= 225) {
-						pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, pc.get_food()));
+						pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, (short) pc.get_food()));
 					} else {
-						foodvolume2 = pc.get_food() + foodvolume1;
+						foodvolume2 = (short) (pc.get_food() + foodvolume1);
 						if (foodvolume2 <= 225) {
 							pc.set_food(foodvolume2);
-							pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, pc.get_food()));
+							pc
+									.sendPackets(new S_PacketBox(S_PacketBox.FOOD, (short) pc
+											.get_food()));
 						} else {
-							pc.set_food(225);
-							pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, pc.get_food()));
+							pc.set_food((short) 225);
+							pc
+									.sendPackets(new S_PacketBox(S_PacketBox.FOOD, (short) pc
+											.get_food()));
 						}
 					}
 					if (itemId == 40057) { // フローティングアイ肉
@@ -2033,10 +2028,8 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.broadcastPacket(s_skillsound);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40615) { // 影の神殿2階の鍵
-					// if ((pc.getX() >= 32701 && pc.getX() <= 32705)
-					// 		&& (pc.getY() >= 32894 && pc.getY() <= 32898)
-					// 		&& pc.getMapId() == 522) { // 影の神殿1F
-					if (pc.getLocation().isInMapRange(32701, 32705, 32894, 32898, 522)) { // 影の神殿1F
+					if ((pc.getX() >= 32701 && pc.getX() <= 32705)
+							&& (pc.getY() >= 32894 && pc.getY() <= 32898) && pc.getMapId() == 522) { // 影の神殿1F
 						L1Teleport.teleport(pc, ((L1EtcItem) item.getItem()).get_locx(),
 								((L1EtcItem) item.getItem()).get_locy(), ((L1EtcItem) item
 										.getItem()).get_mapid(), 5, true);
@@ -2045,10 +2038,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40616 || itemId == 40782 || itemId == 40783) { // 影の神殿3階の鍵
-					// if ((pc.getX() >= 32698 && pc.getX() <= 32702)
-					// 		&& (pc.getY() >= 32894 && pc.getY() <= 32898)
-					// 		&& pc.getMapId() == 523) { // 影の神殿2階
-					if (pc.getLocation().isInMapRange(32698, 32702, 32894, 32898, 523)) { // 影の神殿2階
+					if ((pc.getX() >= 32698 && pc.getX() <= 32702)
+							&& (pc.getY() >= 32894 && pc.getY() <= 32898) && pc.getMapId() == 523) { // 影の神殿2階
 						L1Teleport.teleport(pc, ((L1EtcItem) item.getItem()).get_locx(),
 								((L1EtcItem) item.getItem()).get_locy(), ((L1EtcItem) item
 										.getItem()).get_mapid(), 5, true);
@@ -2057,10 +2048,8 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40692) { // 完成された宝の地図
-					// if ((pc.getX() >= 32856 && pc.getX() <= 32858)
-					// 		&& (pc.getY() >= 32857 && pc.getY() <= 32859)
-					// 		&& pc.getMapId() == 443) { // 海賊島のダンジョン３階
-					if (pc.getLocation().isInMapRange(32856, 32858, 32857, 32859, 443)) { // 海賊島のダンジョン３階
+					if ((pc.getX() >= 32856 && pc.getX() <= 32858)
+							&& (pc.getY() >= 32857 && pc.getY() <= 32859) && pc.getMapId() == 443) { // 海賊島のダンジョン３階
 						L1Teleport.teleport(pc, ((L1EtcItem) item.getItem()).get_locx(),
 								((L1EtcItem) item.getItem()).get_locy(), ((L1EtcItem) item
 										.getItem()).get_mapid(), 5, true);
@@ -2249,10 +2238,8 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 41026) { // ラスタバド歷史書８章
 					pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "lashistory8"));
 				} else if (itemId == 41208) { // 散りゆく魂
-					// if ((pc.getX() >= 32844 && pc.getX() <= 32845)
-					// 		&& (pc.getY() >= 32693 && pc.getY() <= 32694)
-					// 		&& pc.getMapId() == 550) { // 船の墓場:地上層
-					if (pc.getLocation().isInMapRange(32844, 32845, 32693, 32694, 550)) { // 船の墓場:地上層
+					if ((pc.getX() >= 32844 && pc.getX() <= 32845)
+							&& (pc.getY() >= 32693 && pc.getY() <= 32694) && pc.getMapId() == 550) { // 船の墓場:地上層
 						L1Teleport.teleport(pc, ((L1EtcItem) item.getItem()).get_locx(),
 								((L1EtcItem) item.getItem()).get_locy(), ((L1EtcItem) item
 										.getItem()).get_mapid(), 5, true);
@@ -2263,10 +2250,8 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 40700) { // シルバーフルート
 					pc.sendPackets(new S_Sound(10));
 					pc.broadcastPacket(new S_Sound(10));
-					// if ((pc.getX() >= 32619 && pc.getX() <= 32623)
-					// 		&& (pc.getY() >= 33120 && pc.getY() <= 33124)
-					// 		&& pc.getMapId() == 440) { // 海賊島前半魔方陣座標
-					if (pc.getLocation().isInMapRange(32619, 32623, 33120, 33124, 440)) { // 海賊島前半魔方陣座標
+					if ((pc.getX() >= 32619 && pc.getX() <= 32623)
+							&& (pc.getY() >= 33120 && pc.getY() <= 33124) && pc.getMapId() == 440) { // 海賊島前半魔方陣座標
 						boolean found = false;
 						for (L1Object obj : L1World.getInstance().getObject()) {
 							if (obj instanceof L1MonsterInstance) {
@@ -2654,7 +2639,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else {
 					int locX = ((L1EtcItem) item.getItem()).get_locx();
 					int locY = ((L1EtcItem) item.getItem()).get_locy();
-					int mapId = ((L1EtcItem) item.getItem()).get_mapid();
+					short mapId = ((L1EtcItem) item.getItem()).get_mapid();
 					if (locX != 0 && locY != 0) { // 各種テレポートスクロール
 						if (pc.getMap().isEscapable() || pc.isGm()) {
 							L1Teleport.teleport(pc, locX, locY, mapId, pc.getHeading(), true);

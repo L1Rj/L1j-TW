@@ -35,8 +35,8 @@ public class L1Object implements Serializable {
 	 * 
 	 * @return マップID
 	 */
-	public int getMapId() {
-		return _loc.getMap().getId();
+	public short getMapId() {
+		return (short) _loc.getMap().getId();
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class L1Object implements Serializable {
 	 * 
 	 * @param mapId マップID
 	 */
-	public void setMap(int mapId) {
+	public void setMap(short mapId) {
 		_loc.setMap(L1WorldMap.getInstance().getMap(mapId));
 	}
 
@@ -95,6 +95,15 @@ public class L1Object implements Serializable {
 	}
 
 	/**
+	 * オブジェクトが存在する座標のX值を設定する
+	 * 
+	 * @param x 座標のX值
+	 */
+	public void setX(int x) {
+		_loc.setX(x);
+	}
+
+	/**
 	 * オブジェクトが存在する座標のY值を返す
 	 * 
 	 * @return 座標のY值
@@ -104,24 +113,12 @@ public class L1Object implements Serializable {
 	}
 
 	/**
-	 * オブジェクトが存在する座標の(X, Y)值を設定する
+	 * オブジェクトが存在する座標のY值を設定する
 	 * 
-	 * @param (x, y) 座標の(X, Y)值
+	 * @param y 座標のY值
 	 */
-	public void set(int x, int y) {
-		_loc.set(x, y);
-	}
-
-	public void set(int x, int y, int mapId) {
-		_loc.set(x, y, mapId);
-	}
-
-	public void set(int[] loc) {
-		_loc.set(loc[0], loc[1], loc[2]);
-	}
-
-	public void set(int[] loc, int mapId) {
-		_loc.set(loc[0], loc[1], mapId);
+	public void setY(int y) {
+		_loc.setY(y);
 	}
 
 	private L1Location _loc = new L1Location();
@@ -139,6 +136,12 @@ public class L1Object implements Serializable {
 		_loc.setX(loc.getX());
 		_loc.setY(loc.getY());
 		_loc.setMap(loc.getMapId());
+	}
+
+	public void setLocation(int x, int y, int mapid) {
+		_loc.setX(x);
+		_loc.setY(y);
+		_loc.setMap(mapid);
 	}
 
 	/**

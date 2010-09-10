@@ -58,16 +58,16 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			pc.setName(rs.getString("char_name"));
 			pc.setHighLevel(rs.getInt("HighLevel"));
 			pc.setExp(rs.getInt("Exp"));
-			pc.addBaseMaxHp(rs.getInt("MaxHp"));
-			int currentHp = rs.getInt("CurHp");
+			pc.addBaseMaxHp(rs.getShort("MaxHp"));
+			short currentHp = rs.getShort("CurHp");
 			if (currentHp < 1) {
 				currentHp = 1;
 			}
 			pc.setCurrentHpDirect(currentHp);
 			pc.setDead(false);
 			pc.setStatus(0);
-			pc.addBaseMaxMp(rs.getInt("MaxMp"));
-			pc.setCurrentMpDirect(rs.getInt("CurMp"));
+			pc.addBaseMaxMp(rs.getShort("MaxMp"));
+			pc.setCurrentMpDirect(rs.getShort("CurMp"));
 			pc.setLucky(rs.getInt("Lucky"));
 			pc.addBaseStr(rs.getByte("Str"));
 			pc.addBaseCon(rs.getByte("Con"));
@@ -90,10 +90,10 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			pc.setHeading(head);
 			/*
 			 * int locX = resultset.getInt("locX"); int locY =
-			 * resultset.getInt("locY"); int map =
-			 * resultset.getInt("MapID"); if (locX < 30000 || locX > 40000 ||
+			 * resultset.getInt("locY"); short map =
+			 * resultset.getShort("MapID"); if (locX < 30000 || locX > 40000 ||
 			 * locY < 30000 || locY > 40000) { locX = 32564; locY = 32955; } if
-			 * (map == 70) { locX = 32828; locY = 32848; } // 強制移動 int
+			 * (map == 70) { locX = 32828; locY = 32848; } // 強制移動 short
 			 * moveflag = Config.RANGE_RACE_RECOGNIT; if (moveflag != 1) {
 			 * Random random = new Random(); // 強制移動 int rndmap = 1 +
 			 * random.nextInt(5); switch (rndmap) { case 1: // skt locX = 33080;
@@ -110,9 +110,9 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			 * default: // skt locX = 33080; locY = 33392; map = 4; break; } }
 			 * pc.set_x(locX); pc.set_y(locY); pc.set_map(map);
 			 */
-			pc.set(rs.getInt("locX")
-					, rs.getInt("locY")
-					, rs.getInt("MapID"));
+			pc.setX(rs.getInt("locX"));
+			pc.setY(rs.getInt("locY"));
+			pc.setMap(rs.getShort("MapID"));
 			pc.set_food(rs.getInt("Food"));
 			pc.setLawful(rs.getInt("Lawful"));
 			pc.setTitle(rs.getString("Title"));
@@ -126,7 +126,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			pc.setPkCountForElf(rs.getInt("PkCountForElf"));
 			pc.setExpRes(rs.getInt("ExpRes"));
 			pc.setPartnerId(rs.getInt("PartnerID"));
-			pc.setAccessLevel(rs.getInt("AccessLevel"));
+			pc.setAccessLevel(rs.getShort("AccessLevel"));
 			if (pc.getAccessLevel() >= 150) { // waja change 設定Accessleve 150以上為GM
 				pc.setGm(true);
 				pc.setMonitor(false);

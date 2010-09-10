@@ -50,11 +50,10 @@ public class C_SelectList extends ClientBasePacket {
 			if (obj != null) {
 				if (obj instanceof L1NpcInstance) {
 					L1NpcInstance npc = (L1NpcInstance) obj;
-					// int difflocx = Math.abs(pc.getX() - npc.getX());
-					// int difflocy = Math.abs(pc.getY() - npc.getY());
+					int difflocx = Math.abs(pc.getX() - npc.getX());
+					int difflocy = Math.abs(pc.getY() - npc.getY());
 					// 3マス以上離れた場合アクション無效
-					// if (difflocx > 3 || difflocy > 3) {
-					if (pc.getLocation().getTileLineDistance(npc.getLocation()) > 3) {
+					if (difflocx > 3 || difflocy > 3) {
 						return;
 					}
 				}

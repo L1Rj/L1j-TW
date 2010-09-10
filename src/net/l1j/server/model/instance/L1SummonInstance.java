@@ -74,7 +74,8 @@ public class L1SummonInstance extends L1NpcInstance {
 			int dir = moveDirection(getHomeX(), getHomeY());
 			if (dir == -1) {
 				// ホームが離れすぎてたら現在地がホーム
-				setHome(getX(), getY());
+				setHomeX(getX());
+				setHomeY(getY());
 			} else {
 				setDirectionMove(dir);
 				setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
@@ -125,9 +126,9 @@ public class L1SummonInstance extends L1NpcInstance {
 		_summonFuture = ThreadPoolManager.getInstance().schedule(new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);
-		set(RandomArrayList.getInc(5, master.getX() - 2)
-				, RandomArrayList.getInc(5, master.getY() - 2)
-				, master.getMapId());
+		setX(RandomArrayList.getInc(5, master.getX() - 2)); // master.getX() + StaticFinalList.getRang2());
+		setY(RandomArrayList.getInc(5, master.getY() - 2)); // master.getY() + StaticFinalList.getRang2());
+		setMap(master.getMapId());
 		setHeading(RandomArrayList.getInt(8));
 		setLightSize(template.getLightSize());
 
@@ -181,7 +182,9 @@ public class L1SummonInstance extends L1NpcInstance {
 		_summonFuture = ThreadPoolManager.getInstance().schedule(new SummonTimer(), SUMMON_TIME);
 
 		setMaster(master);
-		setLocation(target.getLocation());
+		setX(target.getX());
+		setY(target.getY());
+		setMap(target.getMapId());
 		setHeading(target.getHeading());
 		setLightSize(target.getLightSize());
 		setPetcost(6);
@@ -254,7 +257,7 @@ public class L1SummonInstance extends L1NpcInstance {
 					_inventory.tradeItem(item, item.getCount(), targetInventory);
 					((L1PcInstance) _master).sendPackets(new S_ServerMessage(SystemMessageId.$143, getName(), item.getLogName()));
 				} else { // 持てないので足元に落とす
-					targetInventory = L1World.getInstance().getInventory(getLocation());
+					targetInventory = L1World.getInstance().getInventory(getX(), getY(), getMapId());
 					_inventory.tradeItem(item, item.getCount(), targetInventory);
 				}
 			}
@@ -280,7 +283,7 @@ public class L1SummonInstance extends L1NpcInstance {
 					_inventory.tradeItem(item, item.getCount(), targetInventory);
 					((L1PcInstance) _master).sendPackets(new S_ServerMessage(SystemMessageId.$143, getName(), item.getLogName()));
 				} else { // 持てないので足元に落とす
-					targetInventory = L1World.getInstance().getInventory(getLocation());
+					targetInventory = L1World.getInstance().getInventory(getX(), getY(), getMapId());
 					_inventory.tradeItem(item, item.getCount(), targetInventory);
 				}
 			}
@@ -313,7 +316,9 @@ public class L1SummonInstance extends L1NpcInstance {
 		L1MonsterInstance monster = new L1MonsterInstance(getNpcTemplate());
 		monster.setId(IdFactory.getInstance().nextId());
 
-		monster.setLocation(getLocation());
+		monster.setX(getX());
+		monster.setY(getY());
+		monster.setMap(getMapId());
 		monster.setHeading(getHeading());
 		monster.set_storeDroped(true);
 		monster.setInventory(getInventory());
@@ -507,7 +512,8 @@ public class L1SummonInstance extends L1NpcInstance {
 	public void set_currentPetStatus(int i) {
 		_currentPetStatus = i;
 		if (_currentPetStatus == 5) {
-			setHome(getX(), getY());
+			setHomeX(getX());
+			setHomeY(getY());
 		}
 
 		if (_currentPetStatus == 3) {

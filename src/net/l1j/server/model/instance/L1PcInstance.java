@@ -1410,7 +1410,7 @@ public class L1PcInstance extends L1Character {
 			L1ItemInstance item = getInventory().CaoPenalty();
 
 			if (item != null) {
-				getInventory().tradeItem(item, item.isStackable() ? item.getCount() : 1, L1World.getInstance().getInventory(getLocation()));
+				getInventory().tradeItem(item, item.isStackable() ? item.getCount() : 1, L1World.getInstance().getInventory(getX(), getY(), getMapId()));
 				sendPackets(new S_ServerMessage(SystemMessageId.$638, item.getLogName()));
 			} else {
 			}
@@ -2328,8 +2328,8 @@ public class L1PcInstance extends L1Character {
 
 		for (int i = 0; i < gap; i++) {
 			/*
-			int randomHp = CalcStat.calcStatHp(getType(), getBaseMaxHp(), getBaseCon(), getOriginalHpup());
-			int randomMp = CalcStat.calcStatMp(getType(), getBaseMaxMp(), getBaseWis(), getOriginalMpup());
+			short randomHp = CalcStat.calcStatHp(getType(), getBaseMaxHp(), getBaseCon(), getOriginalHpup());
+			short randomMp = CalcStat.calcStatMp(getType(), getBaseMaxMp(), getBaseWis(), getOriginalMpup());
 			*/
 			int randomHp = _classFeature.calclvUpHp(getCon());
 			int randomMp = _classFeature.calclvUpMp(getWis());
@@ -2370,21 +2370,21 @@ public class L1PcInstance extends L1Character {
 			switch (getMapId()) {
 				case 69:
 				case 86:
-					L1Teleport.teleport(this, 33080, 33392, 4, 5, true); // <-銀騎士村の座標
+					L1Teleport.teleport(this, 33080, 33392, (short) 4, 5, true); // <-銀騎士村の座標
 				break;
 
 				case 68:
 				case 85:
-					L1Teleport.teleport(this, 32580, 32931, 0, 5, true); // <-說話之島の座標
+					L1Teleport.teleport(this, 32580, 32931, (short) 0, 5, true); // <-說話之島の座標
 				break;
 			}
 		}
 
 		if (getLevel() >= 52) { // 指定レベル
 			if (getMapId() == 777) { // 見捨てられた者たちの地(影の神殿)
-				L1Teleport.teleport(this, 34043, 32184, 4, 5, true); // 象牙の塔前
+				L1Teleport.teleport(this, 34043, 32184, (short) 4, 5, true); // 象牙の塔前
 			} else if (getMapId() == 778 || getMapId() == 779) { // 見捨てられた者たちの地(欲望の洞窟)
-				L1Teleport.teleport(this, 32608, 33178, 4, 5, true); // WB
+				L1Teleport.teleport(this, 32608, 33178, (short) 4, 5, true); // WB
 			}
 		}
 	}
@@ -2395,8 +2395,8 @@ public class L1PcInstance extends L1Character {
 		for (int i = 0; i > gap; i--) {
 			// レベルダウン時はランダム值をそのままマイナスする為に、base值に0を設定
 			/*
-			 * int randomHp = CalcStat.calcStatHp(getType(), 0, getBaseCon(),
-			 * getOriginalHpup()); int randomMp =
+			 * short randomHp = CalcStat.calcStatHp(getType(), 0, getBaseCon(),
+			 * getOriginalHpup()); short randomMp =
 			 * CalcStat.calcStatMp(getType(), 0, getBaseWis(),
 			 * getOriginalMpup());
 			 */
@@ -2466,11 +2466,11 @@ public class L1PcInstance extends L1Character {
 		_isReserveGhost = flag;
 	}
 
-	public void beginGhost(int locx, int locy, int mapid, boolean canTalk) {
+	public void beginGhost(int locx, int locy, short mapid, boolean canTalk) {
 		beginGhost(locx, locy, mapid, canTalk, 0);
 	}
 
-	public void beginGhost(int locx, int locy, int mapid, boolean canTalk, int sec) {
+	public void beginGhost(int locx, int locy, short mapid, boolean canTalk, int sec) {
 		if (isGhost()) {
 			return;
 		}
@@ -2501,7 +2501,7 @@ public class L1PcInstance extends L1Character {
 
 	private int _ghostSaveLocX = 0;
 	private int _ghostSaveLocY = 0;
-	private int _ghostSaveMapId = 0;
+	private short _ghostSaveMapId = 0;
 	private int _ghostSaveHeading = 0;
 
 	private PcHellMonitor _hellMonitorFuture;
@@ -2511,7 +2511,7 @@ public class L1PcInstance extends L1Character {
 		if (getMapId() != 666) {
 			int locx = 32701;
 			int locy = 32777;
-			int mapid = 666;
+			short mapid = 666;
 			L1Teleport.teleport(this, locx, locy, mapid, 5, false);
 		}
 
@@ -2539,7 +2539,7 @@ public class L1PcInstance extends L1Character {
 		}
 		// 地獄から脫出したら火田村へ歸還させる。
 		int[] loc = L1TownLocation.getGetBackLoc(L1TownLocation.TOWNID_ORCISH_FOREST);
-		L1Teleport.teleport(this, loc[0], loc[1], loc[2], 5, true);
+		L1Teleport.teleport(this, loc[0], loc[1], (short) loc[2], 5, true);
 		try {
 			save();
 		} catch (Exception ignore) {
@@ -3879,13 +3879,13 @@ public class L1PcInstance extends L1Character {
 		_teleportY = i;
 	}
 
-	private int _teleportMapId = 0;
+	private short _teleportMapId = 0;
 
-	public int getTeleportMapId() {
+	public short getTeleportMapId() {
 		return _teleportMapId;
 	}
 
-	public void setTeleportMapId(int i) {
+	public void setTeleportMapId(short i) {
 		_teleportMapId = i;
 	}
 

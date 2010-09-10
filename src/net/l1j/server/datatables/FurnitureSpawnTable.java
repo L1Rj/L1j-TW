@@ -73,8 +73,11 @@ public class FurnitureSpawnTable {
 					furniture.setId(IdFactory.getInstance().nextId());
 
 					furniture.setItemObjId(rs.getInt(1));
-					furniture.set(rs.getInt(3), rs.getInt(4), rs.getInt(5));
-					furniture.setHome(furniture.getX(), furniture.getY());
+					furniture.setX(rs.getInt(3));
+					furniture.setY(rs.getInt(4));
+					furniture.setMap((short) rs.getInt(5));
+					furniture.setHomeX(furniture.getX());
+					furniture.setHomeY(furniture.getY());
 					furniture.setHeading(0);
 
 					L1World.getInstance().storeObject(furniture);

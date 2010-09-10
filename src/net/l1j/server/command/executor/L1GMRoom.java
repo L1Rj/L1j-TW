@@ -39,22 +39,22 @@ public class L1GMRoom implements L1CommandExecutor {
 			}
 
 			if (i == 1) {
-				L1Teleport.teleport(pc, 32737, 32796, 99, 5, false);
+				L1Teleport.teleport(pc, 32737, 32796, (short) 99, 5, false);
 			} else if (i == 2) {
-				L1Teleport.teleport(pc, 32731, 32785, 305, 5, false); // waja 修改位置
+				L1Teleport.teleport(pc, 32731, 32785, (short) 305, 5, false); // waja 修改位置
 			} else if (i == 3) {
-				L1Teleport.teleport(pc, 32644, 32955, 0, 5, false);
+				L1Teleport.teleport(pc, 32644, 32955, (short) 0, 5, false);
 			} else if (i == 4) {
-				L1Teleport.teleport(pc, 33429, 32814, 4, 5, false);
+				L1Teleport.teleport(pc, 33429, 32814, (short) 4, 5, false);
 			} else if (i == 5) {
-				L1Teleport.teleport(pc, 32894, 32535, 300, 5, false);
+				L1Teleport.teleport(pc, 32894, 32535, (short) 300, 5, false);
 			} else {
 				L1Location loc = GMCommandsConfig.ROOMS.get(arg.toLowerCase());
 				if (loc == null) {
 					pc.sendPackets(new S_SystemMessage(arg + " 尚未定義的房間"));
 					return;
 				}
-				L1Teleport.teleport(pc, loc, 5, false);
+				L1Teleport.teleport(pc, loc.getX(), loc.getY(), (short) loc.getMapId(), 5, false);
 			}
 		} catch (Exception exception) {
 			pc.sendPackets(new S_SystemMessage("請輸入 " + cmdName + " 1-5 或是 " + cmdName + " 已定義地區名稱。"));

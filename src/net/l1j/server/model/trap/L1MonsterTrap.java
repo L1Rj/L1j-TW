@@ -92,8 +92,9 @@ public class L1MonsterTrap extends L1Trap {
 	private void spawn(L1Location loc) throws Exception {
 		L1NpcInstance npc = createNpc();
 		npc.setId(IdFactory.getInstance().nextId());
-		npc.setLocation(loc);
-		npc.setHome(loc.getX(), loc.getY());
+		npc.getLocation().set(loc);
+		npc.setHomeX(loc.getX());
+		npc.setHomeY(loc.getY());
 		L1World.getInstance().storeObject(npc);
 		L1World.getInstance().addVisibleObject(npc);
 

@@ -42,7 +42,7 @@ public class C_Emblem extends ClientBasePacket {
 			FileOutputStream fos = null;
 			try {
 				fos = new FileOutputStream("emblem/" + emblem_file);
-				for (int cnt = 0; cnt < 384; cnt++) {
+				for (short cnt = 0; cnt < 384; cnt++) {
 					fos.write(readC());
 				}
 			} catch (Exception e) {

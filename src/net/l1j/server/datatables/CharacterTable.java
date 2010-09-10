@@ -100,7 +100,9 @@ public class CharacterTable {
 			L1Map map = L1WorldMap.getInstance().getMap(pc.getMapId());
 
 			if (!map.isInMap(pc.getX(), pc.getY())) {
-				pc.set(33087, 33396, 4);
+				pc.setX(33087);
+				pc.setY(33396);
+				pc.setMap((short) 4);
 			}
 
 			/*

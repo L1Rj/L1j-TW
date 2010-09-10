@@ -537,37 +537,30 @@ public class L1Attack {
 		// if(!possibilityDamagePC())
 		// 	return 0;
 
-		/* 弱點曝光 */
-		if (_weaponType2 == 18) {
-			// 一定機率強化
-			if (RandomArrayList.getInc(100, 1) <= 28) {
-				if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1)) {
-					_pc.killSkillEffectTimer(STATUS_WEAKNESS_EXPOSURE_LV1);
-					_pc.removeSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1);
-					_pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2, 15000);
-					_pc.sendPackets(new S_SkillIconGFX(75, 2));
-				} else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2)) {
-					_pc.killSkillEffectTimer(STATUS_WEAKNESS_EXPOSURE_LV2);
-					_pc.removeSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2);
-					_pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3, 15000);
-					_pc.sendPackets(new S_SkillIconGFX(75, 3));
-				} else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3)) {
+                /* 弱點曝光 */
+                if (_weaponType2 == 18 && RandomArrayList.getInc(100, 1) <= 28) {
+                        if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1)) {
+                                _pc.killSkillEffectTimer(STATUS_WEAKNESS_EXPOSURE_LV1);
+                                _pc.removeSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1);
+                                _pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2, 15000);
+                                _pc.sendPackets(new S_SkillIconGFX(75, 2));
+                                weaponDamage += 6;
+                        } else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2)) {
+                                _pc.killSkillEffectTimer(STATUS_WEAKNESS_EXPOSURE_LV2);
+                                _pc.removeSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2);
+                                _pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3, 15000);
+                                _pc.sendPackets(new S_SkillIconGFX(75, 3));
+                                weaponDamage += 9;
+                        } else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3)) {
 
-				} else {
-					_pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1, 15000);
-					_pc.sendPackets(new S_SkillIconGFX(75, 1));
-				}
-			}
-			// 額外增加攻擊力
-			if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1)) {
-				weaponDamage += 3;
-			} else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2)) {
-				weaponDamage += 6;
-			} else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3)) {
-				weaponDamage += 9;
-			}
+                        } else {
+                                _pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1, 15000);
+                                _pc.sendPackets(new S_SkillIconGFX(75, 1));
+                                weaponDamage += 3;
+                        }
+                }
 		// 使用鋼爪之類的武器、並且有一定的機率會發揮攻擊最大化
-		} else if (_weaponType == 58 && RandomArrayList.getInc(100, 1) <= _weaponDoubleDmgChance) {
+		if (_weaponType == 58 && RandomArrayList.getInc(100, 1) <= _weaponDoubleDmgChance) {
 			weaponDamage = weaponMaxDamage; // 攻擊最大化
 			_SpecialEffect = 0x02; // 產生重擊動畫
 		} else if (_weaponType == 20 || _weaponType == 62) { // 弓、ガントトレット
@@ -701,37 +694,32 @@ public class L1Attack {
 			weaponArrow = _arrowLarge;
 			weaponsting = _stingLarge;
 		}
-		/* 弱點曝光 */
-		if (_weaponType2 == 18) {
-			// 一定機率強化
-			if (RandomArrayList.getInc(100, 1) <= 28) {
-				if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1)) {
-					_pc.killSkillEffectTimer(STATUS_WEAKNESS_EXPOSURE_LV1);
-					_pc.removeSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1);
-					_pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2, 15000);
-					_pc.sendPackets(new S_SkillIconGFX(75, 2));
-				} else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2)) {
-					_pc.killSkillEffectTimer(STATUS_WEAKNESS_EXPOSURE_LV2);
-					_pc.removeSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2);
-					_pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3, 15000);
-					_pc.sendPackets(new S_SkillIconGFX(75, 3));
-				} else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3)) {
 
-				} else {
-					_pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1, 15000);
-					_pc.sendPackets(new S_SkillIconGFX(75, 1));
-				}
-			}
-			// 額外增加攻擊力
-			if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1)) {
-				weaponDamage += 3;
-			} else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2)) {
-				weaponDamage += 6;
-			} else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3)) {
-				weaponDamage += 9;
-			}
+                /* 弱點曝光 */
+                if (_weaponType2 == 18 && RandomArrayList.getInc(100, 1) <= 28) {
+                        if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1)) {
+                                _pc.killSkillEffectTimer(STATUS_WEAKNESS_EXPOSURE_LV1);
+                                _pc.removeSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1);
+                                _pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2, 15000);
+                                _pc.sendPackets(new S_SkillIconGFX(75, 2));
+                                weaponDamage += 6;
+                        } else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2)) {
+                                _pc.killSkillEffectTimer(STATUS_WEAKNESS_EXPOSURE_LV2);
+                                _pc.removeSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV2);
+                                _pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3, 15000);
+                                _pc.sendPackets(new S_SkillIconGFX(75, 3));
+                                weaponDamage += 9;
+                        } else if (_pc.hasSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV3)) {
+
+                        } else {
+                                _pc.setSkillEffect(STATUS_WEAKNESS_EXPOSURE_LV1, 15000);
+                                _pc.sendPackets(new S_SkillIconGFX(75, 1));
+                                weaponDamage += 3;
+                        }
+                }
+
 		// 使用鋼爪之類的武器、並且有一定的機率會發揮攻擊最大化
-		} else if (_weaponType == 58 && RandomArrayList.getInc(100, 1) <= _weaponDoubleDmgChance) {
+		if (_weaponType == 58 && RandomArrayList.getInc(100, 1) <= _weaponDoubleDmgChance) {
 			weaponDamage = weaponMaxDamage; // 攻擊最大化
 			_SpecialEffect = 0x02; // 產生重擊動畫
 		} else if (_weaponType == 20 || _weaponType == 62) { // 弓、ガントトレット
@@ -894,12 +882,12 @@ public class L1Attack {
 		/*
 		 * 傷害太強了
 		 * if (lvl < 10) {
-		 * dmg = RandomArrayList.getInt(lvl) + 10D + _npc.getStr() / 2 + 1;
+		 * dmg = RandomArrayList.getArrayshortList((short) lvl) + 10D + _npc.getStr() / 2 + 1;
 		 * } else {
-		 * dmg = RandomArrayList.getInt(lvl) + _npc.getStr() / 2 + 1;
+		 * dmg = RandomArrayList.getArrayshortList((short) lvl) + _npc.getStr() / 2 + 1;
 		 * }
 		 */
-		dmg = RandomArrayList.getInc(lvl, _npc.getStr() / 2 + 1); // getInt(lvl) + _npc.getStr() / 2 + 1;
+		dmg = RandomArrayList.getInc(lvl, _npc.getStr() / 2 + 1); // getArrayshortList((short) lvl) + _npc.getStr() / 2 + 1;
 
 		if (_npc instanceof L1PetInstance) {
 			dmg += (lvl / 16); // ペットはLV16每に追加打擊
@@ -1540,9 +1528,9 @@ public class L1Attack {
 	 */
 	private int calcACfixHit(int ac) {
 		if(ac >= 0)
-			return ac - 10;
+			return ac;
 		else
-			return RandomArrayList.getInc((ac * 1.5), -10);
+			return RandomArrayList.getInc((ac * 1.5), -1);
 	}
 	/**
 	 * 特殊狀態檢查 打擊可能??

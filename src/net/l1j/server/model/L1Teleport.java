@@ -41,40 +41,18 @@ public class L1Teleport {
 	public static final int CALL_CLAN = 3;
 
 	public static void teleport(L1PcInstance pc, L1Location loc, int head, boolean effectable) {
-		teleport(pc, loc, head, effectable, TELEPORT);
+		teleport(pc, loc.getX(), loc.getY(), (short) loc.getMapId(), head, effectable, TELEPORT);
 	}
 
 	public static void teleport(L1PcInstance pc, L1Location loc, int head, boolean effectable, int skillType) {
-		pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_TELEPORT_UNLOCK, false));
-
-		// エフェクトの表示
-		if (effectable && (skillType >= 0 && skillType <= EFFECT_SPR.length)) {
-			S_SkillSound packet = new S_SkillSound(pc.getId(), EFFECT_SPR[skillType]);
-			pc.sendPackets(packet);
-			pc.broadcastPacket(packet);
-
-			try {
-				Thread.sleep((int) (EFFECT_TIME[skillType] * 0.7));
-			} catch (Exception e) {
-			}
-		}
-
-		pc.setTeleportX(loc.getX());
-		pc.setTeleportY(loc.getY());
-		pc.setTeleportMapId(loc.getMapId());
-		pc.setTeleportHeading(head);
-		if (Config.SEND_PACKET_BEFORE_TELEPORT) {
-			pc.sendPackets(new S_Teleport(pc));
-		} else {
-			Teleportation.Teleportation(pc);
-		}
+		teleport(pc, loc.getX(), loc.getY(), (short) loc.getMapId(), head, effectable, skillType);
 	}
 
-	public static void teleport(L1PcInstance pc, int x, int y, int mapid, int head, boolean effectable) {
+	public static void teleport(L1PcInstance pc, int x, int y, short mapid, int head, boolean effectable) {
 		teleport(pc, x, y, mapid, head, effectable, TELEPORT);
 	}
 
-	public static void teleport(L1PcInstance pc, int x, int y, int mapId, int head, boolean effectable, int skillType) {
+	public static void teleport(L1PcInstance pc, int x, int y, short mapId, int head, boolean effectable, int skillType) {
 		pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_TELEPORT_UNLOCK, false));
 
 		// エフェクトの表示
@@ -116,7 +94,7 @@ public class L1Teleport {
 		int locX = MoveUtil.MoveLocX(target.getX(), heading);
 		int locY = MoveUtil.MoveLocY(target.getY(), heading);
 		L1Map map = target.getMap();
-		int mapId = target.getMapId();
+		short mapId = target.getMapId();
 
 		if (map.isPassable(locX, locY)) {
 			if (cha instanceof L1PcInstance) {
@@ -130,7 +108,10 @@ public class L1Teleport {
 	public static void randomTeleport(L1PcInstance pc, boolean effectable) {
 		// まだ本サーバのランテレ處理と違うところが結構あるような‧‧‧
 		L1Location newLocation = pc.getLocation().randomLocation(200, true);
+		int newX = newLocation.getX();
+		int newY = newLocation.getY();
+		short mapId = (short) newLocation.getMapId();
 
-		L1Teleport.teleport(pc, newLocation, 5, effectable);
+		L1Teleport.teleport(pc, newX, newY, mapId, 5, effectable);
 	}
 }

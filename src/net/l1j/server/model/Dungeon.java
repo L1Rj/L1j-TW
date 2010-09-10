@@ -116,7 +116,7 @@ public class Dungeon {
 					dungeonType = DungeonType.HOTEL;
 //add end
 				}
-				NewDungeon newDungeon = new NewDungeon(newX, newY, newMapId, heading, dungeonType);
+				NewDungeon newDungeon = new NewDungeon(newX, newY, (short) newMapId, heading, dungeonType);
 				if (_dungeonMap.containsKey(key)) {
 					_log.log(Level.WARNING, "相同的dungeon數值是關鍵。key=" + key); //google翻譯
 				}
@@ -132,11 +132,11 @@ public class Dungeon {
 	private static class NewDungeon {
 		int _newX;
 		int _newY;
-		int _newMapId;
+		short _newMapId;
 		int _heading;
 		DungeonType _dungeonType;
 
-		private NewDungeon(int newX, int newY, int newMapId, int heading, DungeonType dungeonType) {
+		private NewDungeon(int newX, int newY, short newMapId, int heading, DungeonType dungeonType) {
 			_newX = newX;
 			_newY = newY;
 			_newMapId = newMapId;
@@ -152,7 +152,7 @@ public class Dungeon {
 		String key = new StringBuilder().append(mapId).append(locX).append(locY).toString();
 		if (_dungeonMap.containsKey(key)) {
 			NewDungeon newDungeon = _dungeonMap.get(key);
-			int newMap = newDungeon._newMapId;
+			short newMap = newDungeon._newMapId;
 			int newX = newDungeon._newX;
 			int newY = newDungeon._newY;
 			int heading = newDungeon._heading;

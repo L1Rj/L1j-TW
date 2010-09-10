@@ -128,7 +128,7 @@ class SkillStop {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				if (pc.getMapId() == 99) {
-					L1Teleport.teleport(pc, 33442, 32797, 4, 4, true);
+					L1Teleport.teleport(pc, 33442, 32797, (short) 4, 4, true);
 				}
 				pc.getInventory().consumeItem(40312, 1);
 				pc.setSkillEffect(1915, 60 * 1000); //租完1分鐘內無法再租

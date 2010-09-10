@@ -67,26 +67,6 @@ public class Point {
 		_y = y;
 	}
 
-	public void set(int[] loc) {
-		_x = loc[1];
-		_y = loc[2];
-	}
-
-	public void add(int addX, int addY) {
-		_x += addX;
-		_y += addY;
-	}
-
-	/**
-	 * 檢查(X,Y)座標 是否個別符合 Min 與 Max 之間
-	 * 
-	 * @param (minX, maxX, minY, maxY)
-	 * @return boolean 
-	 */
-	public boolean isInRange(int minX, int maxX, int minY, int maxY) {
-		return  (minX <= _x && _x <= maxX) && (minY <= _y && _y <= maxY);
-	}
-
 	/**
 	 * 指定された向きにこの座標をひとつ進める。
 	 * 
@@ -164,6 +144,16 @@ public class Point {
 			}
 			return false;
 		}
+	}
+
+	/**
+	 * 指定された座標と同じ座標かを返す。
+	 * 
+	 * @param pt 座標を保持するPointオブジェクト
+	 * @return 指定された座標と同じ座標か。
+	 */
+	public boolean isSamePoint(Point pt) {
+		return (pt.getX() == getX() && pt.getY() == getY());
 	}
 
 	@Override

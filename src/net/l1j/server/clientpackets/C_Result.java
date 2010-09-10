@@ -67,11 +67,10 @@ public class C_Result extends ClientBasePacket {
 		boolean tradable = true;
 		L1Object findObject = L1World.getInstance().findObject(npcObjectId);
 		if (findObject != null) {
-			// int diffLocX = Math.abs(pc.getX() - findObject.getX());
-			// int diffLocY = Math.abs(pc.getY() - findObject.getY());
+			int diffLocX = Math.abs(pc.getX() - findObject.getX());
+			int diffLocY = Math.abs(pc.getY() - findObject.getY());
 			// 3マス以上離れた場合アクション無效
-			// if (diffLocX > 3 || diffLocY > 3) {
-			if (pc.getLocation().getTileLineDistance(findObject.getLocation()) > 3) {
+			if (diffLocX > 3 || diffLocY > 3) {
 				return;
 			}
 			if (findObject instanceof L1NpcInstance) {

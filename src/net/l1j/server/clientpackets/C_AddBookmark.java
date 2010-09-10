@@ -23,7 +23,6 @@ import net.l1j.server.model.L1CastleLocation;
 import net.l1j.server.model.L1HouseLocation;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.model.L1Location;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1BookMark;
 
@@ -41,21 +40,17 @@ public class C_AddBookmark extends ClientBasePacket {
 		}
 
 		if (pc.getMap().isMarkable() || pc.isGm()) {
-			L1Location _pcLoc = pc.getLocation();
 			//火龍谷
-			// if ((pc.getX() >= 33472 && pc.getX() <= 33855) && (pc.getY() >= 32191 && pc.getY() <= 32460) && pc.getMapId() == 4) {
-			if (_pcLoc.isInMapRange(33472, 33855, 32191, 32460, 4)) {
+			if ((pc.getX() >= 33472 && pc.getX() <= 33855) && (pc.getY() >= 32191 && pc.getY() <= 32460) && pc.getMapId() == 4) {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$214));
 			//黃昏山脈
-			// } else if ((pc.getX() >= 34225 && pc.getX() <= 34300) && (pc.getY() >= 33095 && pc.getY() <= 33280) && pc.getMapId() == 4) {
-			} else if (_pcLoc.isInMapRange(34225, 34300, 33095, 33280, 4)) {
+			} else if ((pc.getX() >= 34225 && pc.getX() <= 34300) && (pc.getY() >= 33095 && pc.getY() <= 33280) && pc.getMapId() == 4) {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$214));
 			//黃昏山脈
-			// } else if ((pc.getX() >= 34200 && pc.getX() <= 34300) && (pc.getY() >= 33280 && pc.getY() <= 33515) && pc.getMapId() == 4) {
-			} else if (_pcLoc.isInMapRange(34200, 34300, 33280, 33515, 4)) {
+			} else if ((pc.getX() >= 34200 && pc.getX() <= 34300) && (pc.getY() >= 33280 && pc.getY() <= 33515) && pc.getMapId() == 4) {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$214));
-			} else if ((L1CastleLocation.checkInAllWarArea(_pcLoc)
-					|| L1HouseLocation.isInHouse(_pcLoc)) && !pc.isGm()) {
+			} else if ((L1CastleLocation.checkInAllWarArea(pc.getX(), pc.getY(), pc.getMapId())
+					|| L1HouseLocation.isInHouse(pc.getX(), pc.getY(), pc.getMapId())) && !pc.isGm()) {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$214));
 			} else {
 				L1BookMark.addBookmark(pc, s);

@@ -70,8 +70,11 @@ public class LightSpawnTable {
 					L1FieldObjectInstance field = (L1FieldObjectInstance) constructor.newInstance(parameters);
 					field = (L1FieldObjectInstance) constructor.newInstance(parameters);
 					field.setId(IdFactory.getInstance().nextId());
-					field.set(rs.getInt("locx"), rs.getInt("locy"), rs.getInt("mapid"));
-					field.setHome(field.getX(), field.getY());
+					field.setX(rs.getInt("locx"));
+					field.setY(rs.getInt("locy"));
+					field.setMap((short) rs.getInt("mapid"));
+					field.setHomeX(field.getX());
+					field.setHomeY(field.getY());
 					field.setHeading(0);
 					field.setLightSize(l1npc.getLightSize());
 

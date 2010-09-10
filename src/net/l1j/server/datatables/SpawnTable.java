@@ -92,7 +92,7 @@ public class SpawnTable {
 					if (rs.getInt("count") == 0) {
 						continue;
 					}
-					double amount_rate = MapsTable.getInstance().getMonsterAmount(rs.getInt("mapid"));
+					double amount_rate = MapsTable.getInstance().getMonsterAmount(rs.getShort("mapid"));
 					count = calcCount(template1, rs.getInt("count"), amount_rate);
 					if (count == 0) {
 						continue;
@@ -113,7 +113,7 @@ public class SpawnTable {
 					spawnDat.setHeading(rs.getInt("heading"));
 					spawnDat.setMinRespawnDelay(rs.getInt("min_respawn_delay"));
 					spawnDat.setMaxRespawnDelay(rs.getInt("max_respawn_delay"));
-					spawnDat.setMapId(rs.getInt("mapid"));
+					spawnDat.setMapId(rs.getShort("mapid"));
 					spawnDat.setRespawnScreen(rs.getBoolean("respawn_screen"));
 					spawnDat.setMovementDistance(rs.getInt("movement_distance"));
 					spawnDat.setRest(rs.getBoolean("rest"));

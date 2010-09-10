@@ -63,13 +63,13 @@ public class L1GetBackRestart {
 		_locY = i;
 	}
 
-	private int _mapId;
+	private short _mapId;
 
-	public int getMapId() {
+	public short getMapId() {
 		return _mapId;
 	}
 
-	public void setMapId(int i) {
+	public void setMapId(short i) {
 		_mapId = i;
 	}
 

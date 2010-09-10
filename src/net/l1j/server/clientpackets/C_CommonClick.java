@@ -128,14 +128,14 @@ public class C_CommonClick {
 					lvl = 1;
 				}
 
-				int ac = rs.getInt("Ac");
-				int str = rs.getInt("Str");
-				int dex = rs.getInt("Dex");
-				int con = rs.getInt("Con");
-				int wis = rs.getInt("Wis");
-				int cha = rs.getInt("Cha");
-				int intel = rs.getInt("Intel");
-				int accessLevel = rs.getInt("AccessLevel");
+				int ac = rs.getByte("Ac");
+				int str = rs.getByte("Str");
+				int dex = rs.getByte("Dex");
+				int con = rs.getByte("Con");
+				int wis = rs.getByte("Wis");
+				int cha = rs.getByte("Cha");
+				int intel = rs.getByte("Intel");
+				int accessLevel = rs.getShort("AccessLevel");
 
 				S_CharPacks cpk = new S_CharPacks(name, clanname, type, sex, lawful, currenthp, currentmp, ac, lvl, str, dex, con, wis, cha, intel, accessLevel);
 

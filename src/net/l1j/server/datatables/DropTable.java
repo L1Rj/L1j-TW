@@ -269,7 +269,7 @@ public class DropTable {
 								player = (L1PcInstance) acquisitor;
 								L1ItemInstance l1iteminstance = player.getInventory().findItemId(ItemId.ADENA); // 所持アデナをチェック
 								if (l1iteminstance != null && l1iteminstance.getCount() > 2000000000) {
-									targetInventory = L1World.getInstance().getInventory(acquisitor.getLocation()); // 持てないので足元に落とす
+									targetInventory = L1World.getInstance().getInventory(acquisitor.getX(), acquisitor.getY(), acquisitor.getMapId()); // 持てないので足元に落とす
 									isGround = true;
 									player.sendPackets(new S_ServerMessage(SystemMessageId.$166, "持有金幣", "超過 2,000,000,000。"));
 								} else {
@@ -285,7 +285,7 @@ public class DropTable {
 								}
 							}
 						} else {
-							targetInventory = L1World.getInstance().getInventory(acquisitor.getLocation()); // 持てないので足元に落とす
+							targetInventory = L1World.getInstance().getInventory(acquisitor.getX(), acquisitor.getY(), acquisitor.getMapId()); // 持てないので足元に落とす
 							isGround = true;
 						}
 						break;

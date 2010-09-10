@@ -522,9 +522,14 @@ public class L1MobSkillUse {
 					mob = (L1NpcInstance) _constructor.newInstance(new Object[] { spawnmonster });
 					mob.setId(IdFactory.getInstance().nextId());
 					L1Location loc = _attacker.getLocation().randomLocation(8, false);
-					mob.setLocation(loc);
-					mob.setHome(loc.getX(), loc.getY());
-					mob.setHeading(RandomArrayList.getInt(8));
+					int heading = RandomArrayList.getInt(8);
+					mob.setX(loc.getX());
+					mob.setY(loc.getY());
+					mob.setHomeX(loc.getX());
+					mob.setHomeY(loc.getY());
+					short mapid = _attacker.getMapId();
+					mob.setMap(mapid);
+					mob.setHeading(heading);
 					L1World.getInstance().storeObject(mob);
 					L1World.getInstance().addVisibleObject(mob);
 					L1Object object = L1World.getInstance().findObject(mob.getId());

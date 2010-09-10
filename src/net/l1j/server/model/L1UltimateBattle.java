@@ -52,7 +52,7 @@ public class L1UltimateBattle {
 	private int _locX;
 	private int _locY;
 	private L1Location _location; // 中心點
-	private int _mapId;
+	private short _mapId;
 	private int _locX1;
 	private int _locY1;
 	private int _locX2;
@@ -306,7 +306,7 @@ public class L1UltimateBattle {
 				for (L1PcInstance pc : getMembersArray()) { // コロシアム內に居るPCを外へ出す
 					int locx = RandomArrayList.getInc(4, 33503);
 					int locy = RandomArrayList.getInc(4, 32764);
-					int mapid = 4;
+					short mapid = 4;
 					L1Teleport.teleport(pc, locx, locy, mapid, 5, true);
 					removeMember(pc);
 				}
@@ -413,11 +413,11 @@ public class L1UltimateBattle {
 		_ubId = id;
 	}
 
-	public int getMapId() {
+	public short getMapId() {
 		return _mapId;
 	}
 
-	public void setMapId(int mapId) {
+	public void setMapId(short mapId) {
 		this._mapId = mapId;
 	}
 

@@ -35,9 +35,9 @@ public class L1Move implements L1CommandExecutor {
 			StringTokenizer st = new StringTokenizer(arg);
 			int locx = Integer.parseInt(st.nextToken());
 			int locy = Integer.parseInt(st.nextToken());
-			int mapid;
+			short mapid;
 			if (st.hasMoreTokens()) {
-				mapid = Integer.parseInt(st.nextToken());
+				mapid = Short.parseShort(st.nextToken());
 			} else {
 				mapid = pc.getMapId();
 			}

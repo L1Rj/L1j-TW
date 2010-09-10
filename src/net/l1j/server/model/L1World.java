@@ -145,7 +145,7 @@ public class L1World {
 		return (vs != null) ? vs : (_allValues = Collections.unmodifiableCollection(_allObjects.values()));
 	}
 
-	public L1GroundInventory getInventory(int x, int y, int map) {
+	public L1GroundInventory getInventory(int x, int y, short map) {
 		int inventoryKey = ((x - 30000) * 10000 + (y - 30000)) * -1; // xyのマイナス值をインベントリキーとして使用
 
 		Object object = WorldMap.getMap(map).Get(inventoryKey);
@@ -158,15 +158,7 @@ public class L1World {
 	}
 
 	public L1GroundInventory getInventory(L1Location loc) {
-		int inventoryKey = ((loc.getX() - 30000) * 10000 + (loc.getY() - 30000)) * -1; // xyのマイナス值をインベントリキーとして使用
-
-		Object object = WorldMap.getMap(loc.getMapId()).Get(inventoryKey);
-
-		if (object == null) {
-			return new L1GroundInventory(inventoryKey, loc);
-		} else {
-			return (L1GroundInventory) object;
-		}
+		return getInventory(loc.getX(), loc.getY(), (short) loc.getMap().getId());
 	}
 
 	public void addVisibleObject(L1Object object) {
@@ -184,7 +176,7 @@ public class L1World {
 		}
 
 		WorldMap.getMap(object.getMapId()).Remove(object);
-		WorldMap.getMap(newMap).Add(object);
+		WorldMap.getMap((short) newMap).Add(object);
 	}
 
 	private ConcurrentHashMap<Integer, Integer> createLineMap(Point src, Point target) {
@@ -243,7 +235,7 @@ public class L1World {
 	public FastTable<L1Object> getVisibleLineObjects(L1Object src, L1Object target) {
 		ConcurrentHashMap<Integer, Integer> lineMap = createLineMap(src.getLocation(), target.getLocation());
 
-		int map = target.getMapId();
+		short map = target.getMapId();
 		FastTable<L1Object> result = new FastTable<L1Object>();
 
 		for (L1Object element : WorldMap.getMap(map).getObjects()) {
@@ -264,7 +256,7 @@ public class L1World {
 	public FastTable<L1Object> getVisibleBoxObjects(L1Object object, int heading, int width, int height) {
 		int x = object.getX();
 		int y = object.getY();
-		int map = object.getMapId();
+		short map = object.getMapId();
 		L1Location location = object.getLocation();
 		FastTable<L1Object> result = new FastTable<L1Object>();
 		int headingRotate[] = { 6, 7, 0, 1, 2, 3, 4, 5 };
@@ -277,7 +269,7 @@ public class L1World {
 			}
 
 			// 同じ座標に重なっている場合は範圍內とする
-			if (location.equals(element.getLocation())) {
+			if (location.isSamePoint(element.getLocation())) {
 				result.add(element);
 				continue;
 			}
@@ -315,7 +307,7 @@ public class L1World {
 		Point pt = object.getLocation();
 		FastTable<L1Object> result = new FastTable<L1Object>();
 
-		for (L1Object element : WorldMap.getMap(map.getId()).getObjects()) {
+		for (L1Object element : WorldMap.getMap((short) map.getId()).getObjects()) {
 			if (element.equals(object) || map != element.getMap()) {
 				continue;
 			}
@@ -325,7 +317,7 @@ public class L1World {
 					result.add(element);
 				}
 			} else if (radius == 0) {
-				if (pt.equals(element.getLocation())) {
+				if (pt.isSamePoint(element.getLocation())) {
 					result.add(element);
 				}
 			} else {
@@ -340,7 +332,7 @@ public class L1World {
 
 	public FastTable<L1Object> getVisiblePoint(L1Location loc, int radius) {
 		FastTable<L1Object> result = new FastTable<L1Object>();
-		int mapId = loc.getMapId();
+		short mapId = (short) loc.getMapId();
 
 		for (L1Object element : WorldMap.getMap(mapId).getObjects()) {
 			if (mapId != element.getMapId()) {
@@ -377,7 +369,7 @@ public class L1World {
 					result.add(element);
 				}
 			} else if (radius == 0) {
-				if (pt.equals(element.getLocation())) {
+				if (pt.isSamePoint(element.getLocation())) {
 					result.add(element);
 				}
 			} else {

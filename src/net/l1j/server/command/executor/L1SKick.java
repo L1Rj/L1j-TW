@@ -40,7 +40,9 @@ public class L1SKick implements L1CommandExecutor {
 			if (target != null) {
 				pc.sendPackets(new S_SystemMessage((new StringBuilder()).append(target.getName()).append("剔除角色。").toString()));
 				// SKTへ移動させる
-				target.set(33080, 33392, 4);
+				target.setX(33080);
+				target.setY(33392);
+				target.setMap((short) 4);
 				target.sendPackets(new S_Disconnect());
 				ClientThread targetClient = target.getNetConnection();
 				targetClient.kick();

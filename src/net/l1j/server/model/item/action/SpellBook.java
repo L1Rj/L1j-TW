@@ -22,7 +22,6 @@ import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.item.ItemAction;
-import net.l1j.server.model.L1Location;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.types.Point;
@@ -30,10 +29,11 @@ import net.l1j.server.types.Point;
 public class SpellBook {
 
 	private static boolean isLearnElfMagic(L1PcInstance pc) {
-		L1Location _pcLoc = pc.getLocation();
-		// if (pcX >= 32786 && pcX <= 32797 && pcY >= 32842 && pcY <= 32859 && pcMapId == 75 // 象牙の塔
-		if (_pcLoc.isInMapRange(32786, 32797, 32842, 32859, 75) // 象牙の塔
-				|| _pcLoc.isInScreen(new Point(33053, 32336)) && _pcLoc.getMapId() == 4) { // マザーツリー
+		int pcX = pc.getX();
+		int pcY = pc.getY();
+		int pcMapId = pc.getMapId();
+		if (pcX >= 32786 && pcX <= 32797 && pcY >= 32842 && pcY <= 32859 && pcMapId == 75 // 象牙の塔
+				|| pc.getLocation().isInScreen(new Point(33053, 32336)) && pcMapId == 4) { // マザーツリー
 			return true;
 		}
 		return false;
@@ -149,8 +149,10 @@ public class SpellBook {
 		int itemAttr = 0;
 		int locAttr = 0; // 0:其他地方 1:正義神殿 2:邪惡神殿
 		boolean isLawful = true;
+		int pcX = pc.getX();
+		int pcY = pc.getY();
+		int mapId = pc.getMapId();
 		int level = pc.getLevel();
-		L1Location _pcLoc = pc.getLocation();
 
 		if (itemId == 45000 || itemId == 45008 || itemId == 45018
 				|| itemId == 45021 || itemId == 40171
@@ -171,20 +173,15 @@ public class SpellBook {
 			itemAttr = 2;
 		}
 		// ロウフルテンプル
-		// if (pcX > 33116 && pcX < 33128 && pcY > 32930 && pcY < 32942 && mapId == 4
-		// 		|| pcX > 33135 && pcX < 33147 && pcY > 32235 && pcY < 32247 && mapId == 4
-		// 		|| pcX >= 32783 && pcX <= 32803 && pcY >= 32831 && pcY <= 32851 && mapId == 77) {
-		if (_pcLoc.isInMapRange(33116, 33128, 32930, 32942, 4)
-				|| _pcLoc.isInMapRange(33135, 33147, 32235, 32247, 4)
-				|| _pcLoc.isInMapRange(32783, 32803, 32831, 32851, 77)) {
+		if (pcX > 33116 && pcX < 33128 && pcY > 32930 && pcY < 32942 && mapId == 4
+				|| pcX > 33135 && pcX < 33147 && pcY > 32235 && pcY < 32247 && mapId == 4
+				|| pcX >= 32783 && pcX <= 32803 && pcY >= 32831 && pcY <= 32851 && mapId == 77) {
 			locAttr = 1;
 			isLawful = true;
 		}
 		// カオティックテンプル
-		// if (pcX > 32880 && pcX < 32892 && pcY > 32646 && pcY < 32658 && mapId == 4
-		// 		|| pcX > 32662 && pcX < 32674 && pcY > 32297 && pcY < 32309 && mapId == 4) {
-		if (_pcLoc.isInMapRange(32880, 32892, 32646, 32658, 4)
-				|| _pcLoc.isInMapRange(32662, 32674, 32297, 32309, 4)) {
+		if (pcX > 32880 && pcX < 32892 && pcY > 32646 && pcY < 32658 && mapId == 4
+				|| pcX > 32662 && pcX < 32674 && pcY > 32297 && pcY < 32309 && mapId == 4) {
 			locAttr = 2;
 			isLawful = false;
 		}

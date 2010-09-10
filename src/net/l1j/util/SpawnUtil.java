@@ -43,8 +43,10 @@ public class SpawnUtil {
 				int tryCount = 0;
 				do {
 					tryCount++;
-					npc.set(RandomArrayList.getInc(randomRange * 2 + 1, pc.getX() - randomRange)
-							, RandomArrayList.getInc(randomRange * 2 + 1, pc.getY() - randomRange));
+					npc.setX(RandomArrayList.getInc(randomRange * 2 + 1, pc.getX() - randomRange));
+					//+ (int) (Math.random() * randomRange) - (int) (Math.random() * randomRange));
+					npc.setY(RandomArrayList.getInc(randomRange * 2 + 1, pc.getY() - randomRange));
+					//+ (int) (Math.random() * randomRange)- (int) (Math.random() * randomRange));
 					if (npc.getMap().isInMap(npc.getLocation()) && npc.getMap().isPassable(npc.getLocation())) {
 						break;
 					}
@@ -57,7 +59,8 @@ public class SpawnUtil {
 				}
 			}
 
-			npc.setHome(npc.getX(), npc.getY());
+			npc.setHomeX(npc.getX());
+			npc.setHomeY(npc.getY());
 			npc.setHeading(pc.getHeading());
 
 			L1World.getInstance().storeObject(npc);

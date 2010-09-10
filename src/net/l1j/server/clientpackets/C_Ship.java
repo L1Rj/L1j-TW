@@ -50,7 +50,7 @@ public class C_Ship extends ClientBasePacket {
 			pc.getInventory().consumeItem(40302, 1);
 		}
 		pc.sendPackets(new S_OwnCharPack(pc));
-		L1Teleport.teleport(pc, locX, locY, shipMapId, 0, false);
+		L1Teleport.teleport(pc, locX, locY, (short) shipMapId, 0, false);
 	}
 
 	@Override

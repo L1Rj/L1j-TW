@@ -82,15 +82,11 @@ public class L1GroundInventory extends L1Inventory {
 		timer.cancel();
 	}
 
-	public L1GroundInventory(int objectId, int x, int y, int map) {
+	public L1GroundInventory(int objectId, int x, int y, short map) {
 		setId(objectId);
-		set(x, y, map);
-		L1World.getInstance().addVisibleObject(this);
-	}
-
-	public L1GroundInventory(int objectId, L1Location loc) {
-		setId(objectId);
-		setLocation(loc);
+		setX(x);
+		setY(y);
+		setMap(map);
 		L1World.getInstance().addVisibleObject(this);
 	}
 

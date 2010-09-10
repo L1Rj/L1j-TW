@@ -30,7 +30,7 @@ public class L1EtcItem extends L1Item {
 
 	private int _locy;
 
-	private int _mapid;
+	private short _mapid;
 
 	private int _delay_id;
 
@@ -69,12 +69,12 @@ public class L1EtcItem extends L1Item {
 		return _locy;
 	}
 
-	public void set_mapid(int mapid) {
+	public void set_mapid(short mapid) {
 		_mapid = mapid;
 	}
 
 	@Override
-	public int get_mapid() {
+	public short get_mapid() {
 		return _mapid;
 	}
 

@@ -575,7 +575,7 @@ public abstract class L1Item implements Serializable {
 		return 0;
 	}
 
-	public int get_mapid() {
+	public short get_mapid() {
 		return 0;
 	}
 

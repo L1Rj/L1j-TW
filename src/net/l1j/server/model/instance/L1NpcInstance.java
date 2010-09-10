@@ -285,7 +285,8 @@ public class L1NpcInstance extends L1Character {
 				}
 			} else {
 				// onTargetItem();
-				L1Inventory groundInventory = L1World.getInstance().getInventory(_targetItem.getLocation());
+				L1Inventory groundInventory = L1World.getInstance().getInventory(_targetItem.getX(),
+						_targetItem.getY(), _targetItem.getMapId());
 				if (groundInventory.checkItem(_targetItem.getItemId())) {
 					onTargetItem();
 				} else {
@@ -643,7 +644,8 @@ public class L1NpcInstance extends L1Character {
 
 	// アイテムを拾う
 	public void pickupTargetItem(L1ItemInstance targetItem) {
-		L1Inventory groundInventory = L1World.getInstance().getInventory(targetItem.getLocation());
+		L1Inventory groundInventory = L1World.getInstance().getInventory(targetItem.getX(), targetItem.getY(),
+				targetItem.getMapId());
 		L1ItemInstance item = groundInventory.tradeItem(targetItem, targetItem.getCount(), getInventory());
 		turnOnOffLight();
 		onGetItem(item);
@@ -1103,15 +1105,15 @@ public class L1NpcInstance extends L1Character {
 			setWis(template.get_wis());
 			setMr(template.get_mr());
 		} else {
-			setStr((int) Math.min(template.get_str() + diff, 127));
-			setCon((int) Math.min(template.get_con() + diff, 127));
-			setDex((int) Math.min(template.get_dex() + diff, 127));
-			setInt((int) Math.min(template.get_int() + diff, 127));
-			setWis((int) Math.min(template.get_wis() + diff, 127));
-			setMr((int) Math.min(template.get_mr() + diff, 127));
+			setStr((byte) Math.min(template.get_str() + diff, 127));
+			setCon((byte) Math.min(template.get_con() + diff, 127));
+			setDex((byte) Math.min(template.get_dex() + diff, 127));
+			setInt((byte) Math.min(template.get_int() + diff, 127));
+			setWis((byte) Math.min(template.get_wis() + diff, 127));
+			setMr((byte) Math.min(template.get_mr() + diff, 127));
 
-			addHitup((int) (diff * 2));
-			addDmgup((int) (diff * 2));
+			addHitup((int) diff * 2);
+			addDmgup((int) diff * 2);
 		}
 		setPassispeed(template.get_passispeed());
 		setAtkspeed(template.get_atkspeed());
@@ -1378,11 +1380,14 @@ public class L1NpcInstance extends L1Character {
 	// 指定された方向に移動させる
 	public void setDirectionMove(int dir) {
 		if (dir != -1) {
+			int nx = MoveUtil.MoveLocX(getX(), dir);
+			int ny = MoveUtil.MoveLocY(getY(), dir);
+			setHeading(dir);
 
 			getMap().setPassable(getLocation(), true);
 
-			MoveUtil.MoveLoc(getLocation(), dir);
-			setHeading(dir);
+			setX(nx);
+			setY(ny);
 
 			getMap().setPassable(getLocation(), false);
 
@@ -1399,8 +1404,7 @@ public class L1NpcInstance extends L1Character {
 			}
 			// 恨みに滿ちたソルジャーゴースト、恨みに滿ちたゴースト、恨みに滿ちたハメル將軍
 			if (getNpcTemplate().get_npcId() >= 45912 && getNpcTemplate().get_npcId() <= 45916) {
-				// if (getX() >= 32591 && getX() <= 32644 && getY() >= 32643 && getY() <= 32688 && getMapId() == 4) {
-				if (getLocation().isInMapRange(32591, 32644, 32643, 32688, 4)) {
+				if (getX() >= 32591 && getX() <= 32644 && getY() >= 32643 && getY() <= 32688 && getMapId() == 4) {
 					teleport(getHomeX(), getHomeY(), getHeading());
 				}
 			}
@@ -1448,8 +1452,7 @@ public class L1NpcInstance extends L1Character {
 			if (object instanceof L1PcInstance || object instanceof L1SummonInstance || object instanceof L1PetInstance) {
 				L1Character cha = (L1Character) object;
 				// 進行方向に立ちふさがっている場合、ターゲットリストに加える
-				// if (cha.getX() == targetX && cha.getY() == targetY && cha.getMapId() == getMapId()) {
-				if (cha.getLocation().equals(targetX, targetY, getMapId())) {
+				if (cha.getX() == targetX && cha.getY() == targetY && cha.getMapId() == getMapId()) {
 					if (object instanceof L1PcInstance) {
 						L1PcInstance pc = (L1PcInstance) object;
 						if (pc.isGhost()) { // UB觀戰中のPCは除く
@@ -1465,10 +1468,20 @@ public class L1NpcInstance extends L1Character {
 		return false;
 	}
 
+	// 面向是否可能
+	private static int targetFace(int heading) {
+		if (heading > 7) {
+			return heading % 8;
+		} else {
+			return heading;
+		}
+	}
+
 	// 目標の逆方向を返す
 	public int targetReverseDirection(int tx, int ty) { // 目標點Ｘ 目標點Ｙ
 		int heading = targetDirection(tx, ty);
-		return heading ^ 0x04;
+		heading += 4;
+		return targetFace(heading);
 	}
 
 	// ■■■■■■■■■■■■■ 轉向關連 ■■■■■■■■■■■
@@ -1476,7 +1489,7 @@ public class L1NpcInstance extends L1Character {
 
 	// 進みたい方向に障害物がないか確認、ある場合は前方斜め左右も確認後進める方向を返す
 	// ※從來あった處理に、バックできない仕樣を省いて、目標の反對（左右含む）には進まないようにしたもの
-	public static int checkObject(int x, int y, int m, int heading) { // 起點Ｘ 起點Ｙ
+	public static int checkObject(int x, int y, short m, int heading) { // 起點Ｘ 起點Ｙ
 		// マップＩＤ
 		// 進行方向
 		L1Map map = L1WorldMap.getInstance().getMap(m);
@@ -1485,7 +1498,7 @@ public class L1NpcInstance extends L1Character {
 		} else {
 			for (int i = 1; i < 7; i++) {
 				heading += FIND_HEADING_TABLE[i];
-				heading &= 0x07;
+				heading = targetFace(heading);
 				if (map.isPassable(x, y, heading)) {
 					return heading;
 				}
@@ -1675,7 +1688,8 @@ public class L1NpcInstance extends L1Character {
 			pc.sendPackets(new S_RemoveObject(this));
 			pc.removeKnownObject(this);
 		}
-		set(nx, ny);
+		setX(nx);
+		setY(ny);
 		setHeading(dir);
 	}
 
@@ -1726,20 +1740,18 @@ public class L1NpcInstance extends L1Character {
 		return _homeX;
 	}
 
+	public void setHomeX(int i) {
+		_homeX = i;
+	}
+
 	private int _homeY; // ● ホームポイントＹ（モンスターの戾る位置とかペットの警戒位置）
 
 	public int getHomeY() {
 		return _homeY;
 	}
 
-	public void setHome(int x, int y) {
-		_homeX = x;
-		_homeY = y;
-	}
-
-	public void setHome(int[] loc) {
-		_homeX = loc[0];
-		_homeY = loc[1];
+	public void setHomeY(int i) {
+		_homeY = i;
 	}
 
 	private boolean _reSpawn; // ● 再ポップするかどうか

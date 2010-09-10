@@ -438,7 +438,10 @@ public class ClientThread implements Runnable, PacketOutput {
 	public static void quitGame(L1PcInstance pc) {
 		// 死亡していたら街に戻し、空腹状态にする
 		if (pc.isDead()) {
-			pc.set(Getback.GetBack_Location(pc, true));
+			int[] loc = Getback.GetBack_Location(pc, true);
+			pc.setX(loc[0]);
+			pc.setY(loc[1]);
+			pc.setMap((short) loc[2]);
 			pc.setCurrentHp(pc.getLevel());
 			pc.set_food(40);
 		}

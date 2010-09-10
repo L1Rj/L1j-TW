@@ -81,13 +81,13 @@ public class L1DeleteItemOnGround {
 			if (item.getItem().getItemId() == 40515) { // 精靈の石
 				continue;
 			}
-			if (L1HouseLocation.isInHouse(item.getLocation())) { // アジト內
+			if (L1HouseLocation.isInHouse(item.getX(), item.getY(), item.getMapId())) { // アジト內
 				continue;
 			}
 
 			List<L1PcInstance> players = L1World.getInstance().getVisiblePlayer(item, Config.ALT_ITEM_DELETION_RANGE);
 			if (players.isEmpty()) { // 指定範圍內にプレイヤーが居なければ削除
-				L1Inventory groundInventory = L1World.getInstance().getInventory(item.getLocation());
+				L1Inventory groundInventory = L1World.getInstance().getInventory(item.getX(), item.getY(), item.getMapId());
 				groundInventory.removeItem(item);
 				numOfDeleted++;
 			}

@@ -126,8 +126,11 @@ public class L1UbSpawn implements Comparable<L1UbSpawn> {
 
 		mob.setId(IdFactory.getInstance().nextId());
 		mob.setHeading(5);
-		mob.setLocation(loc);
-		mob.setHome(loc.getX(), loc.getY());
+		mob.setX(loc.getX());
+		mob.setHomeX(loc.getX());
+		mob.setY(loc.getY());
+		mob.setHomeY(loc.getY());
+		mob.setMap((short) loc.getMapId());
 		mob.set_storeDroped(!(3 < getGroup()));
 		mob.setUbSealCount(getSealCount());
 		mob.setUbId(getUbId());

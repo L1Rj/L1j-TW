@@ -43,7 +43,7 @@ public class C_BanClan extends ClientBasePacket {
 		L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 		if (clan != null) {
 			String clanMemberName[] = clan.getAllMembers();
-			int i;
+			short i;
 			if (pc.isCrown() && pc.getId() == clan.getLeaderId()) { // 君主、かつ、血盟主
 				for (i = 0; i < clanMemberName.length; i++) {
 					if (pc.getName().toLowerCase().equals(s.toLowerCase())) { // 君主自身

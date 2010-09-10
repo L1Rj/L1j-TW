@@ -29,7 +29,7 @@ public class UByte8 {
 	public static byte[] fromArray(long[] buff) {
 		byte[] byteBuff = new byte[buff.length * 4];
 
-		for (int i = 0; i < buff.length; ++i) {
+		for (short i = 0; i < buff.length; ++i) {
 			byteBuff[(i * 4) + 0] = (byte) (buff[i] & 0xFF);
 			byteBuff[(i * 4) + 1] = (byte) ((buff[i] >> 8) & 0xFF);
 			byteBuff[(i * 4) + 2] = (byte) ((buff[i] >> 16) & 0xFF);
@@ -48,7 +48,7 @@ public class UByte8 {
 	public static byte[] fromArray(char[] buff) {
 		byte[] byteBuff = new byte[buff.length];
 
-		for (int i = 0; i < buff.length; ++i) {
+		for (short i = 0; i < buff.length; ++i) {
 			byteBuff[i] = (byte) (buff[i] & 0xFF);
 		}
 

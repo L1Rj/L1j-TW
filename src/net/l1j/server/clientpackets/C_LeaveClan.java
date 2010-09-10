@@ -52,6 +52,7 @@ public class C_LeaveClan extends ClientBasePacket {
 		L1Clan clan = L1World.getInstance().getClan(clan_name);
 		if (clan != null) {
 			String clan_member_name[] = clan.getAllMembers();
+			short i;
 			if (player.isCrown() && player.getId() == clan.getLeaderId()) { // プリンスまたはプリンセス、かつ、血盟主
 				int castleId = clan.getCastleId();
 				int houseId = clan.getHouseId();
@@ -66,7 +67,7 @@ public class C_LeaveClan extends ClientBasePacket {
 					}
 				}
 
-				for (int i = 0; i < clan_member_name.length; i++) { // クラン員のクラン情報をクリア
+				for (i = 0; i < clan_member_name.length; i++) { // クラン員のクラン情報をクリア
 					L1PcInstance online_pc = L1World.getInstance().getPlayer(clan_member_name[i]);
 					if (online_pc != null) { // オンライン中のクラン員
 						online_pc.setClanid(0);
@@ -96,7 +97,7 @@ public class C_LeaveClan extends ClientBasePacket {
 				ClanTable.getInstance().deleteClan(clan_name);
 			} else { // 血盟主以外
 				L1PcInstance clanMember[] = clan.getOnlineClanMember();
-				for (int i = 0; i < clanMember.length; i++) {
+				for (i = 0; i < clanMember.length; i++) {
 					clanMember[i].sendPackets(new S_ServerMessage(SystemMessageId.$178, player_name, clan_name));
 				}
 				if (clan.getWarehouseUsingChar() == player.getId()) { // 自キャラがクラン倉庫使用中
