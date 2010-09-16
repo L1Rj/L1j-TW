@@ -146,16 +146,6 @@ public class Point {
 		}
 	}
 
-	/**
-	 * 指定された座標と同じ座標かを返す。
-	 * 
-	 * @param pt 座標を保持するPointオブジェクト
-	 * @return 指定された座標と同じ座標か。
-	 */
-	public boolean isSamePoint(Point pt) {
-		return (pt.getX() == getX() && pt.getY() == getY());
-	}
-
 	@Override
 	public int hashCode() {
 		return 7 * getX() + getY();

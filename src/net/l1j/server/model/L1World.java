@@ -269,7 +269,7 @@ public class L1World {
 			}
 
 			// 同じ座標に重なっている場合は範圍內とする
-			if (location.isSamePoint(element.getLocation())) {
+			if (location.equals(element.getLocation())) {
 				result.add(element);
 				continue;
 			}
@@ -317,7 +317,7 @@ public class L1World {
 					result.add(element);
 				}
 			} else if (radius == 0) {
-				if (pt.isSamePoint(element.getLocation())) {
+				if (pt.equals(element.getLocation())) {
 					result.add(element);
 				}
 			} else {
@@ -369,7 +369,7 @@ public class L1World {
 					result.add(element);
 				}
 			} else if (radius == 0) {
-				if (pt.isSamePoint(element.getLocation())) {
+				if (pt.equals(element.getLocation())) {
 					result.add(element);
 				}
 			} else {
