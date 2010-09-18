@@ -209,6 +209,7 @@ public class Dungeon {
 				// 傳送後有兩秒時間無敵狀態。
 				pc.setSkillEffect(SKILL_ABSOLUTE_BARRIER, 2000);
 				pc.stopHpRegeneration();
+				pc.stopHpRegenerationByDoll();
 				pc.stopMpRegeneration();
 				pc.stopMpRegenerationByDoll();
 				L1Teleport.teleport(pc, newX, newY, newMap, heading, false);

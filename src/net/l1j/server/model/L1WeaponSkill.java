@@ -493,7 +493,7 @@ public class L1WeaponSkill {
 		if (cha.hasSkillEffect(STATUS_FREEZE)) {
 			return true;
 		}
-		if (cha.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
+		/*if (cha.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
 			return true;
 		}
 		if (cha.hasSkillEffect(SKILL_ICE_LANCE)) {
@@ -506,6 +506,9 @@ public class L1WeaponSkill {
 			return true;
 		}
 		if (cha.hasSkillEffect(SKILL_EARTH_BIND)) {
+			return true;
+		}*/
+		if (cha.hasInvincibleEffect()) {
 			return true;
 		}
 

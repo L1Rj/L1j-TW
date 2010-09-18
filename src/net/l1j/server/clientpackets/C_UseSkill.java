@@ -116,12 +116,9 @@ public class C_UseSkill extends ClientBasePacket {
 			}
 		}
 
-		if (pc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) { // アブソルート バリアの解除
-			pc.killSkillEffectTimer(SKILL_ABSOLUTE_BARRIER);
-			pc.startHpRegeneration();
-			pc.startMpRegeneration();
-			pc.startMpRegenerationByDoll();
-		}
+		/** 解除絕對屏障效果 */
+		pc.cancelAbsoluteBarrier(); // 解除絕對屏障效果
+
 		pc.killSkillEffectTimer(SKILL_MEDITATION);
 
 		try {

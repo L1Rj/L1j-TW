@@ -501,8 +501,10 @@ class SkillStop {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.removeInvincibleEffect(TRANSFORM_SKILL_ABSOLUTE_BARRIER);
 				pc.startHpRegeneration();
+				pc.startHpRegenerationByDoll();
 				pc.startMpRegeneration();
 				pc.startMpRegenerationByDoll();
+				pc.sendPackets(new S_SkillIconAura(SKILL_ABSOLUTE_BARRIER, 0));
 			}
 		} else if (skillId == SKILL_WIND_SHACKLE) { // ウィンド シャックル
 			if (cha instanceof L1PcInstance) {

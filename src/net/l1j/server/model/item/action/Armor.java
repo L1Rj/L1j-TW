@@ -74,8 +74,6 @@ public class Armor {
 				return;
 			}
 
-			ItemAction.cancelAbsoluteBarrier(activeChar); // アブソルート バリアの解除
-
 			pcInventory.setEquipped(armor, true);
 		} else if (armor.isEquipped()) { // 使用した防具を裝備していた場合（脫著を試みる）
 			if (armor.getItem().getBless() == 2) { // 咒われていた場合

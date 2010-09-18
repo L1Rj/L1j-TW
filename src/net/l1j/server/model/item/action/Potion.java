@@ -44,8 +44,6 @@ public class Potion {
 			return;
 		}
 
-		ItemAction.cancelAbsoluteBarrier(pc);
-
 		pc.sendPackets(new S_SkillSound(pc.getId(), gfxid));
 		pc.broadcastPacket(new S_SkillSound(pc.getId(), gfxid));
 		pc.sendPackets(new S_ServerMessage(SystemMessageId.$77));
@@ -62,8 +60,6 @@ public class Potion {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
 			return;
 		}
-
-		ItemAction.cancelAbsoluteBarrier(pc);
 
 		int time = 0;
 		if (itemId == 40013 || itemId == 40030) { //自我加速藥水 象牙塔自我加速藥水
@@ -136,8 +132,6 @@ public class Potion {
 			return;
 		}
 
-		ItemAction.cancelAbsoluteBarrier(pc);
-		
 		int time = 0;
 		if (item_id == 40014) { // 勇敢藥水
 			time = 300;
@@ -222,8 +216,6 @@ public class Potion {
 			return;
 		}
 
-		ItemAction.cancelAbsoluteBarrier(pc);
-
 		int time = 0;
 		if (item_id == 40015 || item_id == 40736) { // ブルーポーション、智慧貨幣
 			time = 600;
@@ -244,8 +236,6 @@ public class Potion {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
 			return;
 		}
-
-		ItemAction.cancelAbsoluteBarrier(pc);
 
 		int time = 0; // 時間は4の倍數にすること
 		if (item_id == ItemId.POTION_OF_EMOTION_WISDOM) { // ウィズダム ポーション
@@ -271,8 +261,6 @@ public class Potion {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
 			return;
 		}
-
-		ItemAction.cancelAbsoluteBarrier(pc);
 
 		int time = 0;
 		if (item_id == 40032) { // エヴァの祝福
@@ -305,8 +293,6 @@ public class Potion {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
 			return;
 		}
-
-		ItemAction.cancelAbsoluteBarrier(pc);
 
 		int time = 16;
 		if (pc.hasSkillEffect(SKILL_CURSE_BLIND)) {

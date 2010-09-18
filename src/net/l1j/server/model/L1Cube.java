@@ -83,7 +83,7 @@ public class L1Cube extends TimerTask {
 			if (_timeCounter % 4 != 0) {
 				return;
 			}
-			if (_cha.hasSkillEffect(STATUS_FREEZE)) {
+			/*if (_cha.hasSkillEffect(STATUS_FREEZE)) {
 				return;
 			}
 			if (_cha.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
@@ -99,6 +99,9 @@ public class L1Cube extends TimerTask {
 				return;
 			}
 			if (_cha.hasSkillEffect(SKILL_EARTH_BIND)) {
+				return;
+			}*/
+			if (_cha.hasInvincibleEffect()) {
 				return;
 			}
 
@@ -116,7 +119,7 @@ public class L1Cube extends TimerTask {
 			if (_timeCounter % 4 != 0) {
 				return;
 			}
-			if (_cha.hasSkillEffect(STATUS_FREEZE)) {
+			/*if (_cha.hasSkillEffect(STATUS_FREEZE)) {
 				return;
 			}
 			if (_cha.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
@@ -132,6 +135,9 @@ public class L1Cube extends TimerTask {
 				return;
 			}
 			if (_cha.hasSkillEffect(SKILL_EARTH_BIND)) {
+				return;
+			}*/
+			if (_cha.hasInvincibleEffect()) {
 				return;
 			}
 

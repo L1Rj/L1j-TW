@@ -95,13 +95,9 @@ public class C_Attack extends ClientBasePacket {
 			}
 		}
 
-		// 攻擊アクションがとれる場合の處理
-		if (pc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) { // アブソルート バリアの解除
-			pc.killSkillEffectTimer(SKILL_ABSOLUTE_BARRIER);
-			pc.startHpRegeneration();
-			pc.startMpRegeneration();
-			pc.startMpRegenerationByDoll();
-		}
+		/** 解除絕對屏障效果 */
+		// pc.cancelAbsoluteBarrier(); // 解除絕對屏障效果
+
 		pc.killSkillEffectTimer(SKILL_MEDITATION);
 
 		pc.delInvis(); // 透明狀態の解除

@@ -259,17 +259,6 @@ public class ItemAction {
 		src.sendPackets(new S_SkillList(true, skill)); // 將魔法插入魔法清單內
 	}
 
-	/** 解除絕對屏障效果 */
-	public static void cancelAbsoluteBarrier(L1PcInstance pc) {
-		if (pc.hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
-			pc.killSkillEffectTimer(SKILL_ABSOLUTE_BARRIER);
-			pc.startHpRegeneration();
-			pc.startHpRegenerationByDoll();
-			pc.startMpRegeneration();
-			pc.startMpRegenerationByDoll();
-		}
-	}
-
 	public static boolean withDrawPet(L1PcInstance pc, int itemObjectId) {
 		if (!pc.getMap().isTakePets()) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$563));

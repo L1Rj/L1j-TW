@@ -111,7 +111,7 @@ class L1KnightClassFeature extends L1ClassFeature {
 	public int calclvUpHp(int baseCon) {
 		int randomhp = 0;
 		int randomadd = RandomArrayList.getInc(5, -2);
-		randomhp += baseCon / 2 + randomadd + 6; // 初期值分追加 6 <-> 17
+		randomhp += baseCon * 5 / 6 + randomadd + 6; // 初期值分追加 6 <-> 17
 
 		return randomhp;
 	}

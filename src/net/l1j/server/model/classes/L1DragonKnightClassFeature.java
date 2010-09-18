@@ -111,7 +111,7 @@ class L1DragonKnightClassFeature extends L1ClassFeature {
 	public int calclvUpHp(int baseCon) {
 		int randomhp = 0;
 		int randomadd = RandomArrayList.getInc(5, -2);
-		randomhp += baseCon / 2 + randomadd + 5; // 初期值分追加 6 <-> 13
+		randomhp += baseCon * 5 / 6 + randomadd + 5; // 初期值分追加 6 <-> 13
 
 		return randomhp;
 	}

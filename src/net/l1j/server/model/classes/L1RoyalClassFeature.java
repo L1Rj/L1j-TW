@@ -111,7 +111,7 @@ class L1RoyalClassFeature extends L1ClassFeature {
 	public int calclvUpHp(int baseCon) {
 		int randomhp = 0;
 		int randomadd = RandomArrayList.getInc(5, -2);
-		randomhp += baseCon / 2 + randomadd + 3; // 初期值分追加 5 <-> 11
+		randomhp += baseCon * 5 / 6 + randomadd + 3; // 初期值分追加 5 <-> 11
 
 		return randomhp;
 	}

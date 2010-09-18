@@ -451,6 +451,13 @@ public class L1Character extends L1Object {
 		_skillEffect.put(skillId, timer);
 	}
 
+	/** 解除絕對屏障效果 */
+	public void cancelAbsoluteBarrier() {
+		if (hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
+			removeSkillEffect(SKILL_ABSOLUTE_BARRIER);
+		}
+	}
+
 	/**
 	 * キャラクターへ、スキル效果を設定する。<br>
 	 * 重複するスキルがない場合は、新たにスキル效果を追加する。<br>

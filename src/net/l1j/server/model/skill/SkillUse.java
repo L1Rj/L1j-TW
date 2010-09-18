@@ -2560,6 +2560,7 @@ public class SkillUse {
 						L1PcInstance pc = (L1PcInstance) cha;
 						pc.addInvincibleEffect(TRANSFORM_SKILL_ABSOLUTE_BARRIER);
 						pc.stopHpRegeneration();
+						pc.stopHpRegenerationByDoll();
 						pc.stopMpRegeneration();
 						pc.stopMpRegenerationByDoll();
 					}

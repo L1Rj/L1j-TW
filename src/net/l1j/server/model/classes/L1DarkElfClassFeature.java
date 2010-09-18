@@ -111,7 +111,7 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 	public int calclvUpHp(int baseCon) {
 		int randomhp = 0;
 		int randomadd = RandomArrayList.getInc(5, -2);
-		randomhp += baseCon / 2 + randomadd + 2; // 初期值分追加 5 <-> 10
+		randomhp += baseCon * 5 / 6 + randomadd + 2; // 初期值分追加 5 <-> 10
 
 		return randomhp;
 	}

@@ -44,8 +44,6 @@ public class Weapon {
 			}
 		}
 
-		ItemAction.cancelAbsoluteBarrier(activeChar); // アブソルート バリアの解除
-
 		if (activeChar.getWeapon() != null) { // 既に何かを裝備している場合、前の裝備をはずす
 			if (activeChar.getWeapon().getItem().getBless() == 2) { // 咒われていた場合
 				activeChar.sendPackets(new S_ServerMessage(SystemMessageId.$150));

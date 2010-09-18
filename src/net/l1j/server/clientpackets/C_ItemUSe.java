@@ -121,6 +121,8 @@ public class C_ItemUSe extends ClientBasePacket {
 			return;
 		}
 
+		pc.cancelAbsoluteBarrier(); // 解除絕對屏障效果
+
 		// 封鎖 LinHelp 無條件喝水功能
 		if (pc.isParalyzed() || pc.isSleeped() || pc.isFreeze() || pc.isStun()) {
 			return;
@@ -771,7 +773,6 @@ public class C_ItemUSe extends ClientBasePacket {
 					if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
 					} else {
-						ItemAction.cancelAbsoluteBarrier(pc);
 						pc.sendPackets(new S_SkillSound(pc.getId(), 192));
 						pc.broadcastPacket(new S_SkillSound(pc.getId(), 192));
 						if (itemId == POTION_OF_CURE_POISON) {
@@ -1328,7 +1329,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						// ターゲットがいない場合にhandleCommandsを送るとぬるぽになるためここでreturn
 						// handleCommandsのほうで判斷＆處理すべき部分かもしれない
 					}
-					ItemAction.cancelAbsoluteBarrier(pc);
 					int skillid = itemId - 50000;
 					SkillUse skilluse = new SkillUse();
 					skilluse.handleCommands(client.getActiveChar(), skillid, spellsc_objid,
@@ -1502,7 +1502,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$647));
 						// pc.sendPackets(new S_CharVisualUpdate(pc));
 					}
-					ItemAction.cancelAbsoluteBarrier(pc);
 				} else if (itemId == 40124) { // 血盟帰還スクロール
 					if (pc.getMap().isEscapable() || pc.isGm()) {
 						int castle_id = 0;
@@ -1555,7 +1554,6 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$647));
 					}
-					ItemAction.cancelAbsoluteBarrier(pc);
 				} else if (itemId == 140100 || itemId == 40100 || itemId == 40099 // 祝福されたテレポートスクロール、テレポートスクロール
 						|| itemId == 40086 || itemId == 50005) { // 50005 魔法卷軸 (指定傳送)
 					L1BookMark bookm = pc.getBookMark(btele);
@@ -1607,12 +1605,10 @@ public class C_ItemUSe extends ClientBasePacket {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$276));
 						}
 					}
-					ItemAction.cancelAbsoluteBarrier(pc);
 				} else if (itemId == 240100) { // 咒われたテレポートスクロール(オリジナルアイテム)
 					L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(), pc.getHeading(),
 							true);
 					pc.getInventory().removeItem(item, 1);
-					ItemAction.cancelAbsoluteBarrier(pc);
 				} else if (itemId >= 40901 && itemId <= 40908) { // 各種エンゲージリング
 					L1PcInstance partner = null;
 					boolean partner_stat = false;
@@ -1844,7 +1840,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
 				} else if (itemId == 40007) { // エボニー ワンド
-					ItemAction.cancelAbsoluteBarrier(pc);
 					int chargeCount = item.getChargeCount();
 					if (chargeCount <= 0) {
 						
@@ -1879,7 +1874,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						if (target != null) {
 							L1Character cha = (L1Character) target;
 							Poly.Action(pc, cha);
-							ItemAction.cancelAbsoluteBarrier(pc);
 							if (itemId == 40008 || itemId == 140008) {
 								item.setChargeCount(item.getChargeCount() - 1);
 								pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
@@ -2647,7 +2641,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						} else {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$647));
 						}
-						ItemAction.cancelAbsoluteBarrier(pc);
 					} else {
 						if (item.getCount() < 1) { // あり得ない？
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$329, item.getLogName()));
