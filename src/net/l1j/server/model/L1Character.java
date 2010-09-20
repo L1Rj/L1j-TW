@@ -415,18 +415,25 @@ public class L1Character extends L1Object {
 	 * 
 	 * 將人身上特有的特殊狀態製成索引，降低 普通/魔法 攻擊時，需要一一比對身上技能的煩惱。
 	 */
-	public void addInvincibleEffect(int stautsId) {
-		if((_charStatus & stautsId) != stautsId)
-			_charStatus ^= stautsId;
+	public void addInvincibleEffect(int statusId) {
+		if((_charStatus & statusId) != statusId)
+			_charStatus ^= statusId;
 	}
 
-	public void removeInvincibleEffect(int stautsId) {
-		if((_charStatus & stautsId) == stautsId)
-			_charStatus ^= stautsId;
+	public void removeInvincibleEffect(int statusId) {
+		if((_charStatus & statusId) == statusId)
+			_charStatus ^= statusId;
 	}
 
 	public boolean hasInvincibleEffect() {
 		if(_charStatus == 0)
+			return false;
+		else
+			return true;
+	}
+
+	public boolean hasInvincibleEffect(int statusId) {
+		if((_charStatus & statusId) != statusId)
 			return false;
 		else
 			return true;
@@ -453,7 +460,7 @@ public class L1Character extends L1Object {
 
 	/** 解除絕對屏障效果 */
 	public void cancelAbsoluteBarrier() {
-		if (hasSkillEffect(SKILL_ABSOLUTE_BARRIER)) {
+		if (hasInvincibleEffect(TRANSFORM_SKILL_ABSOLUTE_BARRIER)) {
 			removeSkillEffect(SKILL_ABSOLUTE_BARRIER);
 		}
 	}
@@ -1267,7 +1274,7 @@ public class L1Character extends L1Object {
 	private int _trueMr = 0; // ● 本當の魔法防御
 
 	public int getMr() {
-		if (hasSkillEffect(153) == true) {
+		if (hasSkillEffect(153)) {
 			return _mr / 4;
 		} else {
 			return _mr;

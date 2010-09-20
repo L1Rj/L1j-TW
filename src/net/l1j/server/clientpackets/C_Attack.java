@@ -96,7 +96,7 @@ public class C_Attack extends ClientBasePacket {
 		}
 
 		/** 解除絕對屏障效果 */
-		// pc.cancelAbsoluteBarrier(); // 解除絕對屏障效果
+		pc.cancelAbsoluteBarrier(); // 解除絕對屏障效果
 
 		pc.killSkillEffectTimer(SKILL_MEDITATION);
 
