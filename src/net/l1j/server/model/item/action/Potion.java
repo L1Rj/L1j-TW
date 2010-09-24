@@ -28,7 +28,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillBrave;
 import net.l1j.server.serverpackets.S_SkillHaste;
 import net.l1j.server.serverpackets.S_SkillIconBlessOfEva;
-import net.l1j.server.serverpackets.S_SkillIconGFX;
 import net.l1j.server.serverpackets.S_SkillIconWisdomPotion;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.util.RandomArrayList;

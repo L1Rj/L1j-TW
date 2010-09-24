@@ -26,21 +26,10 @@ public class S_NpcChatPacket extends ServerBasePacket {
 	private static final String S_NPC_CHAT_PACKET = "[S] S_NpcChatPacket";
 
 	public S_NpcChatPacket(L1Character cha, String chat, int type) {
-		switch (type) {
-			case 0: // normal chat
-				writeC(S_OPCODE_NPCSHOUT);
-				writeC(type); // Color
-				writeD(cha.getId());
-				writeS(cha.getName() + ": " + chat);
-			break;
-
-			case 2: // shout
-				writeC(S_OPCODE_NPCSHOUT);
-				writeC(type); // Color
-				writeD(cha.getId());
-				writeS(cha.getName() + ": " + chat);
-			break;
-		}
+		writeC(S_OPCODE_NPCSHOUT);
+		writeC(type); // Color ；0: // normal chat ；2: // shout
+		writeD(cha.getId());
+		writeS(cha.getName() + ": " + chat);
 	}
 
 	@Override

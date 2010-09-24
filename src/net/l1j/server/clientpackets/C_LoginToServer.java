@@ -519,131 +519,18 @@ public class C_LoginToServer extends ClientBasePacket {
 			pstm = con.prepareStatement("SELECT * FROM character_skills WHERE char_obj_id=?");
 			pstm.setInt(1, pc.getId());
 			rs = pstm.executeQuery();
-			int i = 0;
-			int lv1 = 0;
-			int lv2 = 0;
-			int lv3 = 0;
-			int lv4 = 0;
-			int lv5 = 0;
-			int lv6 = 0;
-			int lv7 = 0;
-			int lv8 = 0;
-			int lv9 = 0;
-			int lv10 = 0;
-			int lv11 = 0;
-			int lv12 = 0;
-			int lv13 = 0;
-			int lv14 = 0;
-			int lv15 = 0;
-			int lv16 = 0;
-			int lv17 = 0;
-			int lv18 = 0;
-			int lv19 = 0;
-			int lv20 = 0;
-			int lv21 = 0;
-			int lv22 = 0;
-			int lv23 = 0;
-			int lv24 = 0;
-			int lv25 = 0;
-			int lv26 = 0;
-			int lv27 = 0;
-			int lv28 = 0;
+			int lv[] = new int[29];
 			while (rs.next()) {
 				int skillId = rs.getInt("skill_id");
 				L1Skills l1skills = SkillsTable.getInstance().getTemplate(skillId);
-				if (l1skills.getSkillLevel() == 1) {
-					lv1 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 2) {
-					lv2 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 3) {
-					lv3 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 4) {
-					lv4 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 5) {
-					lv5 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 6) {
-					lv6 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 7) {
-					lv7 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 8) {
-					lv8 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 9) {
-					lv9 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 10) {
-					lv10 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 11) {
-					lv11 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 12) {
-					lv12 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 13) {
-					lv13 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 14) {
-					lv14 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 15) {
-					lv15 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 16) {
-					lv16 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 17) {
-					lv17 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 18) {
-					lv18 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 19) {
-					lv19 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 20) {
-					lv20 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 21) {
-					lv21 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 22) {
-					lv22 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 23) {
-					lv23 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 24) {
-					lv24 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 25) {
-					lv25 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 26) {
-					lv26 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 27) {
-					lv27 |= l1skills.getId();
-				}
-				if (l1skills.getSkillLevel() == 28) {
-					lv28 |= l1skills.getId();
-				}
-				i = lv1 + lv2 + lv3 + lv4 + lv5 + lv6 + lv7 + lv8 + lv9 + lv10
-						+ lv11 + lv12 + lv13 + lv14 + lv15 + lv16 + lv17 + lv18
-						+ lv19 + lv20 + lv21 + lv22 + lv23 + lv24 + lv25 + lv26 + lv27 + lv28;
+				lv[l1skills.getSkillLevel()] |= l1skills.getId();
+				lv[0]++;
 				pc.setSkillMastery(skillId); // 登入時紀錄學過的技能
 			}
-			if (i > 0) {
-				pc.sendPackets(new S_AddSkill(lv1, lv2, lv3, lv4, lv5, lv6,
-						lv7, lv8, lv9, lv10, lv11, lv12, lv13, lv14, lv15,
-						lv16, lv17, lv18, lv19, lv20, lv21, lv22, lv23, lv24, lv25, lv26, lv27, lv28));
+			if (lv[0] > 0) {
+				pc.sendPackets(new S_AddSkill(lv[1], lv[2], lv[3], lv[4], lv[5], lv[6],
+						lv[7], lv[8], lv[9], lv[10], lv[11], lv[12], lv[13], lv[14], lv[15],
+						lv[16], lv[17], lv[18], lv[19], lv[20], lv[21], lv[22], lv[23], lv[24], lv[25], lv[26], lv[27], lv[28]));
 				// _log.warning("ここたち來るのね＠直譯");
 			}
 		} catch (SQLException e) {
