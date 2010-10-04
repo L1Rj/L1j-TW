@@ -1001,20 +1001,35 @@ public class C_ItemUSe extends ClientBasePacket {
 						if (eachItem.getItem().getBless() != 2) {
 							continue;
 						}
-						if (!eachItem.isEquipped() && (itemId == 40119 || itemId == 40097)) {
+						if (!eachItem.isEquipped() && (itemId == 40097 || itemId == 40119 || itemId == 140119 | itemId == 140329)) {
 							// n解咒は裝備しているものしか解咒しない
 							continue;
 						}
+						
 						int id_normal = eachItem.getItemId() - 200000;
 						L1Item template = ItemTable.getInstance().getTemplate(id_normal);
 						if (template == null) {
 							continue;
 						}
 						if (pc.getInventory().checkItem(id_normal) && template.isStackable()) {
+							int bless = 1;
+							if (eachItem.getBless() == 2) {
+								bless = 1;
+								eachItem.setBless(bless);
+								pc.getInventory().updateItem(eachItem, L1PcInventory.COL_BLESS);
+								pc.getInventory().saveItem(eachItem, L1PcInventory.COL_BLESS);
+								pc.getInventory().storeItem(id_normal, eachItem.getBless());
+							}
 							pc.getInventory().storeItem(id_normal, eachItem.getCount());
 							pc.getInventory().removeItem(eachItem, eachItem.getCount());
 						} else {
 							eachItem.setItem(template);
+							if (eachItem.getBless() == 2) {
+								int bless = 1;
+								eachItem.setBless(bless);
+								pc.getInventory().updateItem(eachItem, L1PcInventory.COL_BLESS);
+								pc.getInventory().saveItem(eachItem, L1PcInventory.COL_BLESS);
+							}
 							pc.getInventory().updateItem(eachItem, L1PcInventory.COL_ITEMID);
 							pc.getInventory().saveItem(eachItem, L1PcInventory.COL_ITEMID);
 						}
