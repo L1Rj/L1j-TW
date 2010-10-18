@@ -105,7 +105,7 @@ public class SpellBook {
 				// 地屬性魔法
 				itemId == 40247 && level >= 30 && pc.getElfAttr() == 1||
 				itemId == 40248 && level >= 40 && pc.getElfAttr() == 1||
-				itemId == 40249 && level >= 50 && pc.getElfAttr() == 1||
+				itemId == 40249 && level >= 40 && pc.getElfAttr() == 1||
 				itemId == 40250 && level >= 40 && pc.getElfAttr() == 1||
 				itemId == 40251 && level >= 50 && pc.getElfAttr() == 1||
 				itemId == 40252 && level >= 50 && pc.getElfAttr() == 1||
@@ -113,7 +113,7 @@ public class SpellBook {
 				itemId == 40253 && level >= 30 && pc.getElfAttr() == 4||
 				itemId == 40254 && level >= 40 && pc.getElfAttr() == 4||
 				itemId == 40255 && level >= 50 && pc.getElfAttr() == 4||
-				itemId == 41151 && level >= 50 && pc.getElfAttr() == 4||
+				itemId == 41151 && level >= 40 && pc.getElfAttr() == 4||
 				itemId == 41152 && level >= 50 && pc.getElfAttr() == 4||
 				// 風屬性魔法
 				itemId == 40260 && level >= 30 && pc.getElfAttr() == 8||
