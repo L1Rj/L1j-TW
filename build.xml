@@ -43,7 +43,7 @@
 	</target>
 
 	<target name="compile" depends="version" description="Compile the source.">
-		<javac destdir="${build}" optimize="on" debug="on" source="1.6" target="1.6" nowarn="off" encoding="UTF-8">
+		<javac destdir="${build}" includeantruntime="on" optimize="on" debug="on" source="1.6" target="1.6" nowarn="off" encoding="UTF-8">
 			<src path="${src}" />
 			<classpath refid="classpath" />
 		</javac>
