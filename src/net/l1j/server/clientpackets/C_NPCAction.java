@@ -2713,7 +2713,8 @@ public class C_NPCAction extends ClientBasePacket {
 					htmlid = "yuris3"; // 贖罪聖書不足
 				}
 			}
-                } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91056) { // 班酷
+// todo 尚未測試 91056
+                } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91056) { // 班酷 
                         if (s.equalsIgnoreCase("buy 7")) {
                                 if (pc.getInventory().consumeItem(50502, 1)) {
                                         L1Pet pet = new L1Pet();

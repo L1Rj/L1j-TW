@@ -19,13 +19,14 @@ map\						伺服器地圖檔 (為降低SVN流量請自行解壓縮)
 src\						伺服器原始碼
 tool\						伺服器工具
 L1jWeb\PHP\					php網站(註冊等功能)
-L1jWeb\ASP.net\				asp網站(註冊等功能)
+L1jWeb\ASP.net\					asp網站(註冊等功能)
 upgrade\					版本更新檔案
 
 tool目錄類內容說明:
-DataBase_pack.bat							資料庫檔案打包工具 可將資料庫打包成單一檔案方便匯入.
-DataBase_installer.bat						簡易資料庫匯入工具(打包完成後匯入用).
+DataBase_pack.bat				資料庫檔案打包工具 可將資料庫打包成單一檔案方便匯入.
+DataBase_installer.bat				簡易資料庫匯入工具(打包完成後匯入用).
 l1jtw_quick_build\L1jtwQuickBuilder.bat		免用編譯軟體快速編譯l1jtw伺服器工具 使用前必須先安裝好java.
+l1jp_ppc					linage 封包分析程式
 
 DATA目錄內容說明:
 \data\badnames.txt							設定遊戲內不可命名的角色名稱
