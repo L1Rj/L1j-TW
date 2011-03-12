@@ -33,6 +33,7 @@ import net.l1j.server.datatables.HouseTable;
 import net.l1j.server.datatables.ItemTable;
 import net.l1j.server.datatables.NpcActionTable;
 import net.l1j.server.datatables.NpcTable;
+import net.l1j.server.datatables.PetTable;
 import net.l1j.server.datatables.PolyTable;
 import net.l1j.server.datatables.SkillsTable;
 import net.l1j.server.datatables.TownTable;
@@ -75,6 +76,7 @@ import net.l1j.server.serverpackets.S_Deposit;
 import net.l1j.server.serverpackets.S_Drawal;
 import net.l1j.server.serverpackets.S_HouseMap;
 import net.l1j.server.serverpackets.S_HPUpdate;
+import net.l1j.server.serverpackets.S_ItemName;
 import net.l1j.server.serverpackets.S_Lawful;// add 神女優莉絲(贖罪聖書)
 import net.l1j.server.serverpackets.S_MPUpdate;
 import net.l1j.server.serverpackets.S_Message_YN;
@@ -97,6 +99,7 @@ import net.l1j.server.templates.L1Castle;
 import net.l1j.server.templates.L1House;
 import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1Npc;
+import net.l1j.server.templates.L1Pet;
 import net.l1j.server.templates.L1Skills;
 import net.l1j.server.templates.L1Town;
 import net.l1j.server.types.Base;
@@ -200,7 +203,15 @@ public class C_NPCAction extends ClientBasePacket {
 		/*
 		 * アクション個別處理
 		 */
-                 if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 50031) {
+                 if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 50016) {
+                        if (s.equalsIgnoreCase("0")) {
+                                if (pc.getLevel() > 13) {
+                                        htmlid ="zeno1";
+                                } else { //3.0地圖69 ; 3.3地圖2005 位置需調整
+                                        L1Teleport.teleport(pc, 32703, 32873, (short) 69, 5, true);
+                                }
+                        }
+                 } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 50031) {
 			if (s.equalsIgnoreCase("teleport sepia-dungen")) {
 				int map302pccount = 0;
 				for (L1PcInstance map302pc : L1World.getInstance().getAllPlayers()) {
@@ -2200,6 +2211,8 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80082) { // 釣りっ子(IN)
+                        /** 3.0 **/
+                        /*
 			if (s.equalsIgnoreCase("L")) { // 「長くて重い釣り竿」
 				if (pc.getInventory().checkItem(ItemId.ADENA, 1000)) {
 					materials = new int[] { ItemId.ADENA };
@@ -2222,7 +2235,48 @@ public class C_NPCAction extends ClientBasePacket {
 				} else {
 					htmlid = "fk_in_0";
 				}
-			}
+                        }
+                        */
+                        /** 3.2 **/
+                        /*
+                        if (s.equalsIgnoreCase("a")) {
+                                htmlid = "fk_in_2";
+                        } else if (s.equalsIgnoreCase("teleport fishing-room1")) {
+                                if (pc.getInventory().checkItem(40308, 1000)) {
+                                        //人數已滿未實裝 htmlid = "fk_in_full";
+                                        pc.getInventory().consumeItem(40308, 1000);
+                                        L1PolyMorph.undoPoly(pc);
+					L1Teleport.teleport(pc, 32815, 32809, (short) 5124, 6, true);
+                                } else {
+                                        htmlid = "fk_in_ad";
+                                }
+                        } else if (s.equalsIgnoreCase("teleport fishing-room2")) {
+                                if (pc.getInventory().checkItem(40308, 1000)) {
+                                        //人數已滿未實裝 htmlid = "fk_in_full";
+                                        pc.getInventory().consumeItem(40308, 1000);
+                                        L1PolyMorph.undoPoly(pc);
+                                        //釣魚室2未實裝
+					L1Teleport.teleport(pc, 32815, 32809, (short) 5124, 6, true);
+                                } else {
+                                        htmlid = "fk_in_ad";
+                                }
+                        } else if (s.equalsIgnoreCase("teleport fishing-room3")) {
+                                if (pc.getInventory().checkItem(40308, 1000)) {
+                                        //人數已滿未實裝 htmlid = "fk_in_full";
+                                        pc.getInventory().consumeItem(40308, 1000);
+                                        L1PolyMorph.undoPoly(pc);
+                                        //釣魚室3未實裝
+					L1Teleport.teleport(pc, 32815, 32809, (short) 5124, 6, true);
+                                } else {
+                                        htmlid = "fk_in_ad";
+                                }
+                        }
+                        */
+                        /** 3.3 **/
+                        if (s.equalsIgnoreCase("a")) {
+                                L1PolyMorph.undoPoly(pc);
+                                L1Teleport.teleport(pc, 32736, 32811, (short) 5300, 6, true);
+                        }
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80083) { // 釣りっ子(OUT)
 			if (s.equalsIgnoreCase("O")) { // 「釣りを止めて外に出る」
 				if (!pc.getInventory().checkItem(41293, 1) && !pc.getInventory().checkItem(41294, 1)) {
@@ -2232,7 +2286,11 @@ public class C_NPCAction extends ClientBasePacket {
 				} else if (pc.getInventory().consumeItem(41294, 1)) {
 					L1Teleport.teleport(pc, 32613, 32781, (short) 4, 4, true);
 				}
-			}
+			} else if (s.equalsIgnoreCase("teleportURL")) {
+                                htmlid = "fk_out_0";
+                        } else if (s.equalsIgnoreCase("teleport fishing-out")) { //teleportURL
+                                L1Teleport.teleport(pc, 32613, 32781, (short) 4, 4, true);
+                        }
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80084) { // 怪しいオーク商人 パルーム
 			if (s.equalsIgnoreCase("q")) { // 「資源リストをもらう」
 				if (pc.getInventory().checkItem(41356, 1)) {
@@ -2655,6 +2713,47 @@ public class C_NPCAction extends ClientBasePacket {
 					htmlid = "yuris3"; // 贖罪聖書不足
 				}
 			}
+                } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91056) { // 班酷
+                        if (s.equalsIgnoreCase("buy 7")) {
+                                if (pc.getInventory().consumeItem(50502, 1)) {
+                                        L1Pet pet = new L1Pet();
+                                        pet.set_npcid(91150);
+                                        pet.set_name("淘氣龍");
+                                        pet.set_level(1);
+                                        pet.set_hp(40);
+                                        pet.set_mp(25);//以上為換到的寵物等級HP.MP
+                                        L1NpcInstance npc = (L1NpcInstance) obj;
+                                        String npcName = npc.getNpcTemplate().get_name();
+                                        //String itemName = item.getItem().getName();
+                                        L1ItemInstance petamu = pc.getInventory().storeItem(40314, 1);
+                                        if (petamu != null) {
+                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, "$4083"));
+                                                PetTable.getInstance().storeNewPet2(pet, petamu.getId() + 1, petamu.getId());
+                                                pc.sendPackets(new S_ItemName(petamu));
+                                        }
+                                } else {
+                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$337, "$7779"));
+                                }
+                        } else if (s.equalsIgnoreCase("buy 8")) {
+                                if (pc.getInventory().consumeItem(50503, 1)) {
+                                        L1Pet pet = new L1Pet();
+                                        pet.set_npcid(91151);
+                                        pet.set_name("頑皮龍");
+                                        pet.set_level(1);
+                                        pet.set_hp(40);
+                                        pet.set_mp(25); //以上為換到的寵物等級HP.MP
+                                        L1NpcInstance npc = (L1NpcInstance) obj;
+                                        String npcName = npc.getNpcTemplate().get_name();
+                                        L1ItemInstance petamu = pc.getInventory().storeItem(40314, 1);
+                                        if (petamu != null) {
+                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, "$4084"));
+                                                PetTable.getInstance().storeNewPet2(pet, petamu.getId() + 1, petamu.getId());
+                                                pc.sendPackets(new S_ItemName(petamu));
+                                        }
+                                } else {
+                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$337, "$7780"));
+                                }
+                        }
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91061) {
 			if (s.equalsIgnoreCase("a")) {
 				if (pc.getInventory().checkItem(50508)) {
