@@ -625,6 +625,12 @@
 			<Material Amount="1000" ItemId="40308"/>
 		</MakeItem>
 	</Action>
+	<Action Name="request scroll of enchant armor" NpcId="80081">
+                <MakeItem>
+                        <Item Amount="1" ItemId="40074"/>
+                        <Material Amount="15" ItemId="49309"/>
+                </MakeItem>
+	</Action>
 	<!--料理の本：ステップ1 / シェフ ラフォンス-->
 	<Action Name="A" NpcId="80091">
 		<MakeItem AmountInputable="false">
