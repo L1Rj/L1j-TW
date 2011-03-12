@@ -58,10 +58,12 @@ public class S_ServerVersion extends ServerBasePacket {
 		writeD(0x0000791A); // auth verion 2.70C
 		writeD(0x00009DD1); // npc verion 2.70C
 */
+                /*
 		writeD(0x000160c9); // server verion 3.0C
 		writeD(0x0001606a); // cache verion 3.0C
 		writeD(0x0000ee01); // auth verion 3.0C
 		writeD(0x00013cdb); // npc verion 3.0C 
+                */
 	
 /*		
 		writeD(0x00018778); // server verion 3.2C
@@ -69,15 +71,22 @@ public class S_ServerVersion extends ServerBasePacket {
 		writeD(0x0000ee01); // auth verion 3.2C
 		writeD(0x00016395); // npc verion 3.2C
 */
-		
+
+                /** 3.3
+                 * 48 00 02/ E9 45 9A 00/ A9 44 9A 00/ BA 6E CF 77/ 78 89 01 00/ C0 7B F0 4C/ 00 00 03
+                 */
+                writeD(0x009a45e9);
+                writeD(0x009a44a9);
+                writeD(0x77cf6eba);
+                writeD(0x00018978);
 		// ↓ unknown
 		// ↓ Old 270Lin.bin
 		// ↓ New 270Lin.bin
 		// ↓ isn't game time
 		// writeD(0x882a2cc6); // 2.70C
-		writeD(0x49c466ec); //3.0C
+		// writeD(0x49c466ec); //3.0C
 		// writeD(0x4b98bcc2); //3.2C
-
+                writeD(0x4cf07bc0);
 		writeC(0x00); // unknown
 		writeC(0x00); // unknown
 
