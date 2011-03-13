@@ -4,8 +4,8 @@ REM # 執行這個編譯程式之前您必須先安裝好java #
 REM # 請記得先設定好下面的兩個您所放置檔案的路徑 #
 REM # 路徑中請勿含有中文 #
 
-set antpath="E:\l1j-tw\tool\l1jtw_quick_build\apache-ant-1.8.2\bin"
-set l1jtwpath="E:\l1j-tw"
+set antpath="D:\Server\SVN\L1JTW\tool\l1jtw_quick_build\apache-ant-1.8.2\bin"
+set l1jtwpath="D:\Server\SVN\L1JTW"
 
 REM #############################
 

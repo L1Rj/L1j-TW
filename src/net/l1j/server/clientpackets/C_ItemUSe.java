@@ -217,6 +217,8 @@ public class C_ItemUSe extends ClientBasePacket {
 			case 30001: // 裝備保護卷軸
 			case 49148: // 飾品強化卷軸
 			case 49188: // 索夏依卡靈魂之石
+			case 49310:
+			case 49311:
 			case 50508:
 			case 50509:
 			case 50510:
@@ -471,10 +473,51 @@ public class C_ItemUSe extends ClientBasePacket {
 					Enchant.doDecorationEnchant(pc, l1iteminstance1, client);
 					pc.getInventory().removeItem(item, 1);
 				}
-			} else if (itemId == 40078 || itemId == 40074 || itemId == 40129
+/*
+			} else if (itemId == 49310) {
+				int armorId = l1iteminstance1.getItem().getItemId();
+				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2
+					// 象牙塔防具
+							|| l1iteminstance1.getItem().getItemId() == 20028
+							|| l1iteminstance1.getItem().getItemId() == 20082
+							|| l1iteminstance1.getItem().getItemId() == 20126
+							|| l1iteminstance1.getItem().getItemId() == 20173
+							|| l1iteminstance1.getItem().getItemId() == 20206
+							|| l1iteminstance1.getItem().getItemId() == 20232
+							|| l1iteminstance1.getItem().getItemId() == 21557
+					// 泡水防具
+							|| (armorId >= 21051 && armorId <= 21056)
+							) {
+				int safe_enchant = ((L1Armor) l1iteminstance1.getItem()).get_safeenchant();
+				if (safe_enchant < 4) { // 強化不可
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+					return;
+				} else {
+					pc.getInventory().removeItem(item, 1);
+					Enchant.success(pc, l1iteminstance1, client, Enchant.randomLevel(l1iteminstance1, itemId));
+						}
+				}
+*/
+                        } else if (itemId == 40078 || itemId == 40074 || itemId == 40129
 					|| itemId == 140129 || itemId == 140074
 					|| itemId == 240074 || itemId == 40127) { // 防具強化スクロール
-				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2) {
+				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2
+                                        // 象牙塔防具
+                                        || l1iteminstance1.getItem().getItemId() == 20028
+                                        || l1iteminstance1.getItem().getItemId() == 20082
+                                        || l1iteminstance1.getItem().getItemId() == 20126
+                                        || l1iteminstance1.getItem().getItemId() == 20173
+                                        || l1iteminstance1.getItem().getItemId() == 20206
+                                        || l1iteminstance1.getItem().getItemId() == 20232
+                                        || l1iteminstance1.getItem().getItemId() == 21557
+                                        // 泡水防具
+                                        || l1iteminstance1.getItem().getItemId() == 21051
+                                        || l1iteminstance1.getItem().getItemId() == 21052
+                                        || l1iteminstance1.getItem().getItemId() == 21053
+                                        || l1iteminstance1.getItem().getItemId() == 21054
+                                        || l1iteminstance1.getItem().getItemId() == 21055
+                                        || l1iteminstance1.getItem().getItemId() == 21056
+                                        ) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					return;
 				}
@@ -767,7 +810,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40858) { // liquor（酒）
 					pc.setDrink(true);
-					pc.sendPackets(new S_Liquor(pc.getId()));
+					pc.sendPackets(new S_Liquor(pc.getId(), 1));
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == POTION_OF_CURE_POISON || itemId == 40507) { // シアンポーション、エントの枝
 					if (pc.hasSkillEffect(71) == true) { // ディケイポーションの狀態
