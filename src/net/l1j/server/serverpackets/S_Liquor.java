@@ -23,10 +23,10 @@ import net.l1j.server.Opcodes;
 public class S_Liquor extends ServerBasePacket {
 	private static final String S_LIQUOR = "[S] S_Liquor";
 
-	public S_Liquor(int objecId) {
+	public S_Liquor(int objecId, int j) {
 		writeC(Opcodes.S_OPCODE_LIQUOR);
 		writeD(objecId);
-		writeC(1);
+		writeC(j);
 	}
 
 	@Override
