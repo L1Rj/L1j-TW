@@ -1920,7 +1920,7 @@ public class L1PcInstance extends L1Character {
 
 	public int getOriginalBowHitup() {
 
-		return _originalHitup;
+		return _originalBowHitup;
 	}
 
 	private int _originalEr = 0; // ● オリジナルDEX ER補正
