@@ -36,7 +36,7 @@ public class S_SkillIconAura extends ServerBasePacket {
 		writeC(0x16);
 		writeC(i);
 		writeH(j); //time
-		writeC(k); // 1:ª¢Å] 2¡G¤õµK¤§¼v
+		writeC(k); // 1:ç‚é­” 2ï¼šç«ç„°ä¹‹å½±
 	}
 
 	@Override
