@@ -454,8 +454,10 @@ public class SkillId {
 
         public static final int STATUS_WEAKNESS_EXPOSURE_LV3 = 1028;
 
+		public static final int STATUS_TRIPLES_SPEED = 1029;
+
 	/** 輔助狀態結尾 */
-	public static final int STATUS_END = 1028;
+	public static final int STATUS_END = 1030;
 
 	/** 遊戲管理員輔助狀態開頭 */
 	public static final int GMSTATUS_BEGIN = 2000;

@@ -301,30 +301,23 @@ public class C_ItemUSe extends ClientBasePacket {
 			}
 
 			L1ItemInstance l1iteminstance1 = pc.getInventory().getItem(l);
-			_log.finest("request item use (obj) = " + itemObjid + " action = " + l + " value = "
-					+ s);
-			if (itemId == 40077 || itemId == 40087
-					|| itemId == 40660 || itemId == 40130
-					|| itemId == 140130 || itemId == 140087
-					|| itemId == 240087 || itemId == 40128) { // 武器強化スクロール
-				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+			_log.finest("request item use (obj) = " + itemObjid + " action = " + l + " value = " + s);
+			if (itemId == 40077 || itemId == 40087 || itemId == 40660 || itemId == 40130
+                                || itemId == 40128 || itemId == 140130 || itemId == 140087 || itemId == 240087) {
+                                int quest_weapon = l1iteminstance1.getItem().getItemId();
+                                int safe_enchant = l1iteminstance1.getItem().get_safeenchant();
+                                int weaponId = l1iteminstance1.getItem().getItemId();
+                                if (weaponId == 7 || weaponId == 35 || weaponId == 48 || weaponId == 73 || weaponId == 105
+                                        || weaponId == 120 || weaponId == 147 || weaponId == 156 || weaponId == 174 || weaponId == 175 || weaponId == 224) {
+                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+					return;
+                                }
+				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1
+                                        || (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)
+                                        || (l1iteminstance1.getItem().get_safeenchant() < 0)) {
+                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					return;
 				}
-
-				if (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)
-				{ // 已封印裝備不可強化
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
-					return;
-				}
-				
-				int safe_enchant = l1iteminstance1.getItem().get_safeenchant();
-				if (safe_enchant < 0) { // 安定值小於0不可強化
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
-					return;
-				}
-
-				int quest_weapon = l1iteminstance1.getItem().getItemId();
 				if (quest_weapon >= 246 && quest_weapon <= 249) { // 強化不可
 					if (itemId == 40660) { // 試練のスクロール
 					} else {
@@ -339,7 +332,6 @@ public class C_ItemUSe extends ClientBasePacket {
 						return;
 					}
 				}
-				int weaponId = l1iteminstance1.getItem().getItemId();
 				if (weaponId == 36 || weaponId == 183 || weaponId >= 250 && weaponId <= 255) { // イリュージョン武器
 					if (itemId == 40128) { // 對武器施法的幻象卷軸
 					} else {
@@ -356,19 +348,16 @@ public class C_ItemUSe extends ClientBasePacket {
 				}
 
 				int enchant_level = l1iteminstance1.getEnchantLevel();
-
 				if (itemId == 240087) { // c-dai
 					pc.getInventory().removeItem(item, 1);
 					if (enchant_level < -6) {
-						// -7以上はできない。
 						Enchant.failure(pc, l1iteminstance1, client);
 					} else {
 						Enchant.success(pc, l1iteminstance1, client, -1);
 					}
 				} else if (enchant_level < safe_enchant) {
 					pc.getInventory().removeItem(item, 1);
-					Enchant.success(pc, l1iteminstance1, client, Enchant.randomLevel(
-							l1iteminstance1, itemId));
+					Enchant.success(pc, l1iteminstance1, client, Enchant.randomLevel(l1iteminstance1, itemId));
 				} else {
 					pc.getInventory().removeItem(item, 1);
 
@@ -391,6 +380,30 @@ public class C_ItemUSe extends ClientBasePacket {
 						Enchant.failure(pc, l1iteminstance1, client);
 					}
 				}
+                        } else if (itemId == 49311) {
+                                int weaponId = l1iteminstance1.getItem().getItemId();
+                                if (l1iteminstance1 == null
+                                        || l1iteminstance1.getItem().get_safeenchant() < 0
+                                        || l1iteminstance1.getItem().getType2() != 1
+                                        || (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)) {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+					return;
+				}
+                                if (weaponId == 7 || weaponId == 35 || weaponId == 48 || weaponId == 73 || weaponId == 105
+                                        || weaponId == 120 || weaponId == 147 || weaponId == 156 || weaponId == 174 || weaponId == 175 || weaponId == 224) {
+                                        int safe_enchant = l1iteminstance1.getItem().get_safeenchant();
+                                        int enchant_level = l1iteminstance1.getEnchantLevel();
+                                        if (enchant_level < safe_enchant) {
+                                                pc.getInventory().removeItem(item, 1);
+                                                Enchant.success(pc, l1iteminstance1, client, Enchant.randomLevel(l1iteminstance1, itemId));
+                                        } else {
+                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+                                                return;
+                                        }
+                                } else {
+                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+					return;
+                                }
 			} else if (itemId == 41429 || itemId == 41430 || itemId == 41431 || itemId == 41432) { // 地水火風之武器強化卷軸
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName(), "$245", "$247")); 
@@ -473,52 +486,59 @@ public class C_ItemUSe extends ClientBasePacket {
 					Enchant.doDecorationEnchant(pc, l1iteminstance1, client);
 					pc.getInventory().removeItem(item, 1);
 				}
-/*
 			} else if (itemId == 49310) {
-				int armorId = l1iteminstance1.getItem().getItemId();
-				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2
-					// 象牙塔防具
-							|| l1iteminstance1.getItem().getItemId() == 20028
-							|| l1iteminstance1.getItem().getItemId() == 20082
-							|| l1iteminstance1.getItem().getItemId() == 20126
-							|| l1iteminstance1.getItem().getItemId() == 20173
-							|| l1iteminstance1.getItem().getItemId() == 20206
-							|| l1iteminstance1.getItem().getItemId() == 20232
-							|| l1iteminstance1.getItem().getItemId() == 21557
-					// 泡水防具
-							|| (armorId >= 21051 && armorId <= 21056)
-							) {
+                                if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2) {
+                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+                                        return;
+			}
+		/* 象牙塔防具20028 ~ 21557 泡水防具 21051 ~ 21056 */
+				if (l1iteminstance1.getItem().getItemId() == 20028
+				|| l1iteminstance1.getItem().getItemId() == 20082
+				|| l1iteminstance1.getItem().getItemId() == 20126
+ 				|| l1iteminstance1.getItem().getItemId() == 20173
+				|| l1iteminstance1.getItem().getItemId() == 20206
+				|| l1iteminstance1.getItem().getItemId() == 20232
+				|| l1iteminstance1.getItem().getItemId() == 21557
+				|| l1iteminstance1.getItem().getItemId() == 21051
+				|| l1iteminstance1.getItem().getItemId() == 21052
+				|| l1iteminstance1.getItem().getItemId() == 21053
+				|| l1iteminstance1.getItem().getItemId() == 21054
+				|| l1iteminstance1.getItem().getItemId() == 21055
+				|| l1iteminstance1.getItem().getItemId() == 21056) {
+				int enchant_level = l1iteminstance1.getEnchantLevel();
 				int safe_enchant = ((L1Armor) l1iteminstance1.getItem()).get_safeenchant();
-				if (safe_enchant < 4) { // 強化不可
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
-					return;
-				} else {
-					pc.getInventory().removeItem(item, 1);
-					Enchant.success(pc, l1iteminstance1, client, Enchant.randomLevel(l1iteminstance1, itemId));
-						}
-				}
-*/
-                        } else if (itemId == 40078 || itemId == 40074 || itemId == 40129
-					|| itemId == 140129 || itemId == 140074
-					|| itemId == 240074 || itemId == 40127) { // 防具強化スクロール
-				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2
-                                        // 象牙塔防具
-                                        || l1iteminstance1.getItem().getItemId() == 20028
-                                        || l1iteminstance1.getItem().getItemId() == 20082
-                                        || l1iteminstance1.getItem().getItemId() == 20126
-                                        || l1iteminstance1.getItem().getItemId() == 20173
-                                        || l1iteminstance1.getItem().getItemId() == 20206
-                                        || l1iteminstance1.getItem().getItemId() == 20232
-                                        || l1iteminstance1.getItem().getItemId() == 21557
-                                        // 泡水防具
-                                        || l1iteminstance1.getItem().getItemId() == 21051
-                                        || l1iteminstance1.getItem().getItemId() == 21052
-                                        || l1iteminstance1.getItem().getItemId() == 21053
-                                        || l1iteminstance1.getItem().getItemId() == 21054
-                                        || l1iteminstance1.getItem().getItemId() == 21055
-                                        || l1iteminstance1.getItem().getItemId() == 21056
-                                        ) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
+			if (enchant_level < safe_enchant) {
+				Enchant.success(pc, l1iteminstance1, client, Enchant.randomLevel(l1iteminstance1, itemId));
+			} else {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+				return;
+					}
+				pc.getInventory().removeItem(item, 1);
+			} else {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+				return;
+					}
+			} else if (itemId == 40078 || itemId == 40074 || itemId == 40129
+				|| itemId == 140129 || itemId == 140074
+				|| itemId == 240074 || itemId == 40127) { // 防具強化スクロール
+			if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2
+			// 象牙塔防具
+				|| l1iteminstance1.getItem().getItemId() == 20028
+				|| l1iteminstance1.getItem().getItemId() == 20082
+				|| l1iteminstance1.getItem().getItemId() == 20126
+				|| l1iteminstance1.getItem().getItemId() == 20173
+				|| l1iteminstance1.getItem().getItemId() == 20206
+				|| l1iteminstance1.getItem().getItemId() == 20232
+				|| l1iteminstance1.getItem().getItemId() == 21557
+			// 泡水防具
+				|| l1iteminstance1.getItem().getItemId() == 21051
+				|| l1iteminstance1.getItem().getItemId() == 21052
+				|| l1iteminstance1.getItem().getItemId() == 21053
+				|| l1iteminstance1.getItem().getItemId() == 21054
+				|| l1iteminstance1.getItem().getItemId() == 21055
+				|| l1iteminstance1.getItem().getItemId() == 21056
+			) {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					return;
 				}
 				
@@ -918,7 +938,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					Potion.Brave(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 49138) { // 巧克力蛋糕
-					Potion.Brave(pc, itemId);
+					Potion.Triplesspeed(pc);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40066 || itemId == 41413) { // お餅、月餅
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$338, "$1084"));

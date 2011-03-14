@@ -23,11 +23,20 @@ import net.l1j.server.Opcodes;
 public class S_SkillIconAura extends ServerBasePacket {
 	private static final String S_SKILL_ICON_AURA = "[S] S_SkillIconAura";
 
+	public S_SkillIconAura(int i, int j, int k) {
+		buildPacket(i, j, k);
+	}
+
 	public S_SkillIconAura(int i, int j) {
+		buildPacket(i, j, 0);
+	}
+
+	private void buildPacket(int i, int j, int k) {
 		writeC(Opcodes.S_OPCODE_SKILLICONGFX);
 		writeC(0x16);
 		writeC(i);
-		writeH(j);
+		writeH(j); //time
+		writeC(k); // 1:ª¢Å] 2¡G¤õµK¤§¼v
 	}
 
 	@Override

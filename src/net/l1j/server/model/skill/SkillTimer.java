@@ -35,6 +35,7 @@ import net.l1j.server.model.instance.L1SummonInstance;
 import net.l1j.server.serverpackets.S_CurseBlind;
 import net.l1j.server.serverpackets.S_DexUp;
 import net.l1j.server.serverpackets.S_HPUpdate;
+import net.l1j.server.serverpackets.S_Liquor;
 import net.l1j.server.serverpackets.S_MPUpdate;
 import net.l1j.server.serverpackets.S_OwnCharAttrDef;
 import net.l1j.server.serverpackets.S_OwnCharStatus;
@@ -566,10 +567,8 @@ class SkillStop {
 		// pc.sendPackets(new S_SPMR(pc));
 		// }
 		} else if (skillId == STATUS_CUBE_BALANCE) { // キューブ[バランス]
-		}
-
-		// ****** アイテム關係
-		else if (skillId == STATUS_BRAVE || skillId == STATUS_ELFBRAVE) { // ブレイブポーション等
+		/* ITEM EFFECT */
+		} else if (skillId == STATUS_BRAVE || skillId == STATUS_ELFBRAVE) { // ブレイブポーション等
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
@@ -609,15 +608,17 @@ class SkillStop {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$288));
 			}
-		}
-
-		// ****** 毒關係
-		else if (skillId == STATUS_POISON) { // ダメージ毒
+		} else if (skillId == STATUS_TRIPLES_SPEED) {
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$185));
+				pc.sendPackets(new S_Liquor(pc.getId(), 0x00));
+			}
+		/* POISON */
+		} else if (skillId == STATUS_POISON) { // ダメージ毒
 			cha.curePoison();
-		}
-
-		// ****** 料理關係
-		else if (skillId == COOKING_1_0_N || skillId == COOKING_1_0_S) { // フローティングアイステーキ
+		/* COOKING */
+		} else if (skillId == COOKING_1_0_N || skillId == COOKING_1_0_S) { // フローティングアイステーキ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addWind(-10);
