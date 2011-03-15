@@ -24,7 +24,7 @@ public class S_LoginGame extends ServerBasePacket {
 	private static final String S_LOGIN_GAME = "[S] S_LoginGame";
 
 	public S_LoginGame() {
-		writeC(S_OPCODE_UNKNOWN1);
+		writeC(S_OPCODE_LOGINTOGAME);
 		writeC(0x03);
 		writeC(0x00);
 		writeC(0xF7);
