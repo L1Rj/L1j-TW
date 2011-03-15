@@ -35,7 +35,7 @@ import net.l1j.server.model.map.L1Map;
 import net.l1j.server.model.map.L1V1Map;
 
 /**
- * テキストマップ(maps/\d*.txt)を読み込む.
+ * 純文字地圖載入
  */
 public class TextMapReader extends MapReader {
 	/** 訊息記錄 */
@@ -166,8 +166,8 @@ public class TextMapReader extends MapReader {
 	}
 
 	/**
-	 * mapInfo：マップNo、マップサイズを保持している.
-	 * 1レコードが{mapNo,StartX,EndX,StartY,EndY}で構成されている.
+	 * mapInfo：地圖編號、保存地圖的大小.
+	 * 每一筆地圖紀錄由{mapNo,StartX,EndX,StartY,EndY}來建構.
 	 */
 	private static final int[][] MAP_INFO = {
 		{ 0, 32256, 32767, 32768, 33279 },
@@ -539,7 +539,7 @@ public class TextMapReader extends MapReader {
 		{ 1001, 32704, 32895, 32768, 32959 },
 		{ 1002, 32640, 33023, 32576, 32959 }, // 龍之墓
 		{ 1005, 32576, 32959, 32576, 32959 }, // 安塔瑞斯洞穴
-		{ 1011, 32576, 32959, 32576, 32959 }, // 水龍
+		{ 1011, 32576, 32959, 32576, 32959 }, // 法力昂洞穴
 		{ 2000, 32704, 32895, 32832, 33023 },
 		{ 2001, 32640, 32831, 32704, 32895 },
 		{ 2002, 32704, 32831, 32768, 32895 },
