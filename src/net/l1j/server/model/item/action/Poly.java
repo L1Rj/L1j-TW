@@ -20,6 +20,7 @@ package net.l1j.server.model.item.action;
 
 import net.l1j.server.datatables.PolyTable;
 import net.l1j.server.datatables.SkillsTable;
+import net.l1j.server.model.item.ItemId; // 20110317 waja測試
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1PolyMorph;
 import net.l1j.server.model.id.SystemMessageId;
@@ -319,6 +320,8 @@ public class Poly {
 			time = 1800;
 		} else if (item_id == 140088) { // 祝福變形卷軸
 			time = 2100;
+		} else if (item_id == ItemId.福利變形藥水) { // 福利變形藥水 ItemID 測試用中文
+			time = 7200; // 資料為 4800-7200秒 仍需改寫
 		}
 
 		L1PolyMorph poly = PolyTable.getInstance().getTemplate(s);

@@ -62,23 +62,25 @@ public class Potion {
 		}
 
 		int time = 0;
-		if (itemId == 40013 || itemId == 40030) { //自我加速藥水 象牙塔自我加速藥水
+		if (itemId == 40013 || itemId == 40030) { // 自我加速藥水 象牙塔自我加速藥水
 			time = 300;
-		} else if (itemId == 40018 || itemId == 41342) { //強化 自我加速藥水、梅杜莎之血
+		} else if (itemId == 40018 || itemId == 41342) { // 強化 自我加速藥水、梅杜莎之血
 			time = 1800;
-		} else if (itemId == 40039) { //紅酒
+		} else if (itemId == 40039) { // 紅酒
 			time = 600;
-		} else if (itemId == 40040) { //威士忌
+		} else if (itemId == 40040) { // 威士忌
 			time = 900;
 		} else if (itemId == 41261 || itemId == 41262 || itemId == 41268 || itemId == 41269
 				|| itemId == 41271 || itemId == 41272 || itemId == 41273) {
 			time = 30;
-		} else if (itemId == 41338) { //受祝福的葡萄酒
+		} else if (itemId == 41338) { // 受祝福的葡萄酒
 			time = 2250;
-		} else if (itemId == 140013) { //受祝福的自我加速藥水
+		} else if (itemId == 140013) { // 受祝福的自我加速藥水
 			time = 350;
-		} else if (itemId == 140018) { //受祝福的強化 自我加速藥水
+		} else if (itemId == 140018) { // 受祝福的強化 自我加速藥水
 			time = 2100;
+		} else if (itemId == 49501) { // 福利加速藥水
+			time = 1200;
 		}
 		pc.sendPackets(new S_SkillSound(pc.getId(), 191));
 		pc.broadcastPacket(new S_SkillSound(pc.getId(), 191));
@@ -143,6 +145,8 @@ public class Potion {
 			time = 600;
 		} else if (item_id == 40733) { // 名譽貨幣
 			time = 600;
+		} else if (item_id == 49504) { // 福利勇敢藥水
+			time = 1200;
 			if (pc.hasSkillEffect(STATUS_ELFBRAVE)) { // 精靈餅干
 				pc.killSkillEffectTimer(STATUS_ELFBRAVE);
 			}
@@ -165,8 +169,8 @@ public class Potion {
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		/* 精靈餅干 & 受祝福的精靈餅干 */
-		if (item_id == 40068 || item_id == 140068) {
+		/* 精靈餅乾 & 受祝福的精靈餅乾 福利森林藥水 */
+		if (item_id == 40068 || item_id == 140068 || item_id == 49503) {
 			if (pc.hasSkillEffect(STATUS_BRAVE) || pc.hasSkillEffect(SKILL_WIND_WALK)) {
 				if (pc.hasSkillEffect(STATUS_BRAVE)) {
 					pc.killSkillEffectTimer(STATUS_BRAVE);
@@ -181,6 +185,8 @@ public class Potion {
 				time = 600;
 			} else if (item_id == 140068) {
 				time = 700;
+			} else if (item_id == 49503) { // 福利森林藥水
+				time = 1920;
 			}
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 3, time));
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 3, 0));
@@ -217,10 +223,12 @@ public class Potion {
 		}
 
 		int time = 0;
-		if (item_id == 40015 || item_id == 40736) { // ブルーポーション、智慧貨幣
+		if (item_id == 40015 || item_id == 40736) { // 加速魔力回復藥水、智慧貨幣
 			time = 600;
-		} else if (item_id == 140015) { // 祝福されたブルー ポーション
+		} else if (item_id == 140015) { // 受祝福的加速魔力回復藥水
 			time = 700;
+		} else if (item_id == 49505) { // 福利藍色藥水
+			time = 2400;
 		} else {
 			return;
 		}
@@ -243,6 +251,8 @@ public class Potion {
 		} else if (item_id == ItemId.B_POTION_OF_EMOTION_WISDOM) { // 祝福されたウィズダム
 			// ポーション
 			time = 360;
+		} else if (item_id == 49506) { // 福利慎重藥水
+			time = 1000;
 		}
 
 		if (!pc.hasSkillEffect(STATUS_WISDOM_POTION)) {
@@ -269,6 +279,8 @@ public class Potion {
 			time = 300;
 		} else if (item_id == 41344) { // 水の精粹
 			time = 2100;
+		} else if (item_id == 49502) { // 福利呼吸藥水
+			time = 7200;
 		} else {
 			return;
 		}
@@ -276,8 +288,8 @@ public class Potion {
 		if (pc.hasSkillEffect(STATUS_UNDERWATER_BREATH)) {
 			int timeSec = pc.getSkillEffectTimeSec(STATUS_UNDERWATER_BREATH);
 			time += timeSec;
-			if (time > 3600) {
-				time = 3600;
+			if (time > 7200) {
+				time = 7200;
 			}
 		}
 		pc.sendPackets(new S_SkillIconBlessOfEva(pc.getId(), time));
@@ -311,7 +323,7 @@ public class Potion {
 		pc.setSkillEffect(SKILL_CURSE_BLIND, time * 1000);
 	}
 
-/* 三段式加速 */
+	/* 三段式加速 */
 	public static void Triplesspeed(L1PcInstance pc) {
 		if (pc.hasSkillEffect(SKILL_HASTE)
 		|| pc.hasSkillEffect(SKILL_GREATER_HASTE)

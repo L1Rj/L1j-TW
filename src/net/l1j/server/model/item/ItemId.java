@@ -79,4 +79,5 @@ public class ItemId {
 	public static final int SCROLL_OF_ENCHANT_QUEST_WEAPON = 40660;
 	/** 金幣 */
 	public static final int ADENA = 40308;
+	public static final int 福利變形藥水 = 49507;
 }
