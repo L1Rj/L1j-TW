@@ -3939,6 +3939,26 @@ public class L1PcInstance extends L1Character {
 		_isShowWorldChat = flag;
 	}
 
+	private boolean _isShowClanChat = true;
+
+	public boolean isShowClanChat() {
+		return _isShowClanChat;
+	}
+
+	public void setShowClanChat(boolean flag) {
+		_isShowClanChat = flag;
+	}
+
+	private boolean _isShowPartyChat = true;
+
+	public boolean isShowPartyChat() {
+		return _isShowClanChat;
+	}
+
+	public void setShowPartyChat(boolean flag) {
+		_isShowPartyChat = flag;
+	}
+
 	private int _fightId;
 
 	public int getFightId() {

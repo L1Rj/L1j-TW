@@ -22,12 +22,18 @@ import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.NpcActionTable;
+
 import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.npc.L1NpcHtml;
 import net.l1j.server.model.npc.action.L1NpcAction;
+import static net.l1j.server.model.skill.SkillId.*;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
+import net.l1j.server.model.id.SystemMessageId;
+import net.l1j.server.model.L1Teleport;
+import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_NPCTalk extends ClientBasePacket {
 	private static final String C_NPC_TALK = "[C] C_NPCTalk";
@@ -49,9 +55,25 @@ public class C_NPCTalk extends ClientBasePacket {
 				}
 				return;
 			}
-			obj.onTalkAction(pc);
+		if (obj instanceof L1NpcInstance) {
+			L1NpcInstance npc = (L1NpcInstance) obj;
+		int difflocx = Math.abs(pc.getX() - npc.getX());
+		int difflocy = Math.abs(pc.getY() - npc.getY());
+			if (npc.getNpcId() == 91051) {
+				if (difflocx > 1 || difflocy > 1) {
+		return;
+													}
+		if (pc.hasSkillEffect(STATUS_ANTHARAS_BLOODSTAINS)) {
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1626));
+			return;
 		} else {
-			_log.severe("找不到對應物件 objid=" + objid);
+		L1Teleport.teleport(pc, 32599, 32743, (short) 1005, 5, true);
+				}
+			}
+		}
+		obj.onTalkAction(pc);
+	} else {
+		_log.severe("找不到對應物件 objid=" + objid);
 		}
 	}
 
