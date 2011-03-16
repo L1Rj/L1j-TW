@@ -478,7 +478,6 @@ public class Opcodes {
 
 */
 // 3.3 ClientPacket 測試
-
         public static final int C_OPCODE_EXIT_GHOST = 0;
        
         public static final int C_OPCODE_RETURNTOLOGIN = 1;
@@ -681,11 +680,10 @@ public class Opcodes {
        
         public static final int C_OPCODE_CREATEPARTY = 130;
        
-       
-       
+//3.3 ServerPacket
         public static final int S_OPCODE_COMMONNEWS2 = 0;
         
-        public static final int S_OPCODE_USEMAP = 64;
+        public static final int S_OPCODE_USEMAP = 71;
         
         public static final int S_LETTER = 90;
        
