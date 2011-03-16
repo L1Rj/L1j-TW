@@ -35,7 +35,7 @@ public class S_AttackPacket extends ServerBasePacket {
 		writeC(type);
 		writeD(pc.getId());
 		writeD(objid);
-		writeC(0x01); // damage
+		writeH(0x01); // damage
 		writeC(pc.getHeading());
 		writeH(0x0000); // target x
 		writeH(0x0000); // target y
