@@ -846,7 +846,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 						pc.curePoison();
 					}
-				} else if (itemId == 40013 || itemId == 140013 || 49501 // 福利加速藥水
+				} else if (itemId == 40013 || itemId == 140013 || itemId == 49501 // 福利加速藥水
 						|| itemId == 40018 || itemId == 140018 // 強化グリーン ポーション  祝福された強化グリーン ポーション
 						// 20080122 修改玩家可使用紅酒,威士忌 use won122 code 1/3
 						|| itemId == 40039 || itemId == 40040
