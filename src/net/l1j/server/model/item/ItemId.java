@@ -79,5 +79,12 @@ public class ItemId {
 	public static final int SCROLL_OF_ENCHANT_QUEST_WEAPON = 40660;
 	/** 金幣 */
 	public static final int ADENA = 40308;
+/* 以下測試使用中文取代 */
+	public static final int 福利加速藥水 = 49501;
+	public static final int 福利呼吸藥水 = 49502;
+	public static final int 福利森林藥水 = 49503;
+	public static final int 福利勇敢藥水 = 49504;
+	public static final int 福利藍色藥水 = 49505;
+	public static final int 福利慎重藥水 = 49506;
 	public static final int 福利變形藥水 = 49507;
 }
