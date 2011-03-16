@@ -71,15 +71,17 @@ public class L1PcInventory extends L1Inventory {
 		return calcWeight240(getWeight());
 	}
 
-	// 240段階のウェイトを算出する
-	public int calcWeight240(int weight) {
-		int weight240 = 0;
+	// 242段階のウェイトを算出する
+	public int calcWeight240(int weight)
+	{
+		int weight240 = 0; // BUG修正:負重程度只能到達99%
+		
 		if (Config.RATE_WEIGHT_LIMIT != 0) {
 			double maxWeight = _owner.getMaxWeight();
 			if (weight > maxWeight) {
-				weight240 = 240;
+				weight240 = 242;
 			} else {
-				double wpTemp = (weight * 100 / maxWeight) * 240.00 / 100.00;
+				double wpTemp = (weight * 100 / maxWeight) * 242.00 / 100.00;
 				DecimalFormat df = new DecimalFormat("00.##");
 				df.format(wpTemp);
 				wpTemp = Math.round(wpTemp);
