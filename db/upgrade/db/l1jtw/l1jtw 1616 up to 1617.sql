@@ -1,0 +1,22 @@
+/* 20110316 l1jtw 道具修正 */
+Update etcitem Set invgfx = '3786' Where item_id = '50502';
+Update etcitem Set unidentified_name_id = '$7733' Where item_id = '49501';
+Update etcitem Set identified_name_id = '$7733' Where item_id = '49501';
+Update etcitem Set unidentified_name_id = '$7734' Where item_id = '49502';
+Update etcitem Set identified_name_id = '$7734' Where item_id = '49502';
+Update etcitem Set unidentified_name_id = '$7735' Where item_id = '49503';
+Update etcitem Set identified_name_id = '$7735' Where item_id = '49503';
+Update etcitem Set unidentified_name_id = '$7736' Where item_id = '49504';
+Update etcitem Set identified_name_id = '$7736' Where item_id = '49504';
+Update etcitem Set unidentified_name_id = '$7737' Where item_id = '49505';
+Update etcitem Set identified_name_id = '$7737' Where item_id = '49505';
+Update etcitem Set unidentified_name_id = '$7738' Where item_id = '49506';
+Update etcitem Set identified_name_id = '$7738' Where item_id = '49506';
+Update etcitem Set unidentified_name_id = '$7739' Where item_id = '49507';
+Update etcitem Set identified_name_id = '$7739' Where item_id = '49507';
+Update etcitem Set unidentified_name_id = '$8499 (A)' Where item_id = '49520';
+Update etcitem Set identified_name_id = '$8499 (A)' Where item_id = '49520';
+Update etcitem Set unidentified_name_id = '$8499 (B)' Where item_id = '49521';
+Update etcitem Set identified_name_id = '$8499 (B)' Where item_id = '49521';
+Update etcitem Set unidentified_name_id = '$8499 (C)' Where item_id = '49522';
+Update etcitem Set identified_name_id = '$8499 (C)' Where item_id = '49522';
