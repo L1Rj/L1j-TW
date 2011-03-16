@@ -20,7 +20,7 @@ package net.l1j.server.model.item.action;
 
 import net.l1j.server.datatables.PolyTable;
 import net.l1j.server.datatables.SkillsTable;
-import net.l1j.server.model.item.ItemId; // 20110317 waja測試
+import net.l1j.server.model.item.ItemId; // 20110317 載入ItemID對應編號
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1PolyMorph;
 import net.l1j.server.model.id.SystemMessageId;
@@ -316,11 +316,11 @@ public class Poly {
 		}
 
 		int time = 0;
-		if (item_id == 40088 || item_id == 40096) { // 變形卷軸、象牙塔變形卷軸
+		if ( item_id == ItemId.變形卷軸 || item_id == ItemId.祝福變形卷軸 ) {
 			time = 1800;
-		} else if (item_id == 140088) { // 祝福變形卷軸
+		} else if ( item_id == ItemId.象牙塔變形卷軸 ) {
 			time = 2100;
-		} else if (item_id == ItemId.福利變形藥水) { // 福利變形藥水 ItemID 測試用中文
+		} else if ( item_id == ItemId.福利變形藥水 ) {
 			time = 7200; // 資料為 4800-7200秒 仍需改寫
 		}
 
@@ -347,15 +347,15 @@ public class Poly {
 	/** 變形鱗片動作 */
 	public static void Scale(L1PcInstance pc, int itemId) {
 		int polyId = 0;
-		if (itemId == 41154) { // 闇の鱗
+		if ( itemId == ItemId.暗之鱗 ) {
 			polyId = 3101;
-		} else if (itemId == 41155) { // 烈火の鱗
+		} else if ( itemId == ItemId.火之鱗 ) {
 			polyId = 3126;
-		} else if (itemId == 41156) { // 背德者の鱗
+		} else if ( itemId == ItemId.叛之鱗 ) {
 			polyId = 3888;
-		} else if (itemId == 41157) { // 憎惡の鱗
+		} else if ( itemId == ItemId.恨之鱗 ) {
 			polyId = 3784;
-		} else if (itemId == 49220) { // オーク密使変身スクロール
+		} else if ( itemId == ItemId.妖魔密使變形卷軸 ) {
 			polyId = 6984;
 		}
 		L1PolyMorph.doPoly(pc, polyId, 600, L1PolyMorph.MORPH_BY_ITEMMAGIC);

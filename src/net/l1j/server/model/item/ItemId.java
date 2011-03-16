@@ -80,6 +80,17 @@ public class ItemId {
 	/** 金幣 */
 	public static final int ADENA = 40308;
 /* 以下測試使用中文取代 */
+// 變形道具
+	public static final int 變形卷軸 = 40088;
+	public static final int 祝福變形卷軸 = 140088;
+	public static final int 象牙塔變形卷軸 = 40096;
+	public static final int 暗之鱗 = 41154;
+	public static final int 火之鱗 = 41155;
+	public static final int 叛之鱗 = 41156;
+	public static final int 恨之鱗 = 41157;
+	public static final int 妖魔密使變形卷軸 = 49220;
+
+// 3.3C
 	public static final int 福利加速藥水 = 49501;
 	public static final int 福利呼吸藥水 = 49502;
 	public static final int 福利森林藥水 = 49503;

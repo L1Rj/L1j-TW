@@ -79,7 +79,7 @@ public class Potion {
 			time = 350;
 		} else if (itemId == 140018) { // 受祝福的強化 自我加速藥水
 			time = 2100;
-		} else if ( itemId == ItemId.福利加速藥水 ) { // 福利加速藥水
+		} else if ( itemId == ItemId.福利加速藥水 ) {
 			time = 1200;
 		}
 		pc.sendPackets(new S_SkillSound(pc.getId(), 191));
@@ -145,9 +145,9 @@ public class Potion {
 			time = 600;
 		} else if (item_id == 40733) { // 名譽貨幣
 			time = 600;
-		} else if ( item_id == ItemId.福利勇敢藥水 ) { // 福利勇敢藥水
+		} else if ( item_id == ItemId.福利勇敢藥水 ) {
 			time = 1200;
-			if (pc.hasSkillEffect(STATUS_ELFBRAVE)) { // 精靈餅干
+			if (pc.hasSkillEffect(STATUS_ELFBRAVE)) { // 精靈餅乾
 				pc.killSkillEffectTimer(STATUS_ELFBRAVE);
 			}
 			if (pc.hasSkillEffect(SKILL_HOLY_WALK)) { // 神聖疾走
@@ -169,7 +169,7 @@ public class Potion {
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		/* 精靈餅乾 & 受祝福的精靈餅乾 福利森林藥水 */
+		/* 精靈餅乾 & 受祝福的精靈餅乾 */
 		if (item_id == 40068 || item_id == 140068 || item_id == ItemId.福利森林藥水 ) {
 			if (pc.hasSkillEffect(STATUS_BRAVE) || pc.hasSkillEffect(SKILL_WIND_WALK)) {
 				if (pc.hasSkillEffect(STATUS_BRAVE)) {
@@ -185,7 +185,7 @@ public class Potion {
 				time = 600;
 			} else if (item_id == 140068) {
 				time = 700;
-			} else if ( item_id == ItemId.福利森林藥水 ) { // 福利森林藥水
+			} else if ( item_id == ItemId.福利森林藥水 ) {
 				time = 1920;
 			}
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 3, time));
@@ -227,7 +227,7 @@ public class Potion {
 			time = 600;
 		} else if (item_id == 140015) { // 受祝福的加速魔力回復藥水
 			time = 700;
-		} else if ( item_id == ItemId.福利藍色藥水 ) { // 福利藍色藥水
+		} else if ( item_id == ItemId.福利藍色藥水 ) {
 			time = 2400;
 		} else {
 			return;
@@ -251,7 +251,7 @@ public class Potion {
 		} else if (item_id == ItemId.B_POTION_OF_EMOTION_WISDOM) { // 祝福されたウィズダム
 			// ポーション
 			time = 360;
-		} else if ( item_id == ItemId.福利慎重藥水 ) { // 福利慎重藥水
+		} else if ( item_id == ItemId.福利慎重藥水 ) {
 			time = 1000;
 		}
 
@@ -279,7 +279,7 @@ public class Potion {
 			time = 300;
 		} else if (item_id == 41344) { // 水の精粹
 			time = 2100;
-		} else if ( item_id == ItemId.福利呼吸藥水 ) { // 福利呼吸藥水
+		} else if ( item_id == ItemId.福利呼吸藥水 ) {
 			time = 7200;
 		} else {
 			return;
