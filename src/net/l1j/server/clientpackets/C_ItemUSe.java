@@ -172,7 +172,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		int use_type = item.getItem().getUseType();
 
 		switch (itemId) {
-			case 40088: case 40096: case 140088:
+			case 40088: case 140088: case 40096: case 49507: // 變形卷軸 受祝福的變形卷軸 象牙塔變身卷軸 福利變形藥水
 				s = readS();
 			break;
 			case 40074: case 40087: case 40660:
@@ -846,7 +846,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 						pc.curePoison();
 					}
-				} else if (itemId == 40013 || itemId == 140013
+				} else if (itemId == 40013 || itemId == 140013 || 49501 // 福利加速藥水
 						|| itemId == 40018 || itemId == 140018 // 強化グリーン ポーション  祝福された強化グリーン ポーション
 						// 20080122 修改玩家可使用紅酒,威士忌 use won122 code 1/3
 						|| itemId == 40039 || itemId == 40040
@@ -858,7 +858,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						|| itemId == 41273 || itemId == 41342) { // ワッフル メデューサの血
 					Potion.Green(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40014 || itemId == 140014 || itemId == 41415) {
+				} else if (itemId == 40014 || itemId == 140014 || itemId == 41415 || itemId == 49504) { // 勇敢藥水 受祝福的勇敢藥水 強化勇氣的藥水 福利勇敢藥水
 					if (pc.isKnight()) {
 						Potion.Brave(pc, itemId);
 					} else {
@@ -872,8 +872,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					}
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40068 // エルヴン ワッフル
-						|| itemId == 140068) { // 祝福されたエルヴン ワッフル
+				} else if (itemId == 40068 || itemId == 140068 || itemId == 49503) { // 精靈餅乾 受祝福的精靈餅乾 福利森林藥水
 					if (pc.isElf()) {
 						Potion.Brave(pc, itemId);
 					} else {
@@ -964,13 +963,13 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$338, "$1084"));
 					pc.setCurrentMp(pc.getCurrentMp() + RandomArrayList.getInc(16, 5)); // (0~15) + 5
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40032 || itemId == 40041 || itemId == 41344) { // エヴァの祝福、マーメイドの鱗、水の精粹
+				} else if (itemId == 40032 || itemId == 40041 || itemId == 41344 || itemId == 49502) { // 伊娃的祝福、マーメイドの鱗、水の精粹 福利呼吸藥水
 					Potion.BlessOfEva(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40015 || itemId == 140015 || itemId == 40736) { // 智慧貨幣
+				} else if (itemId == 40015 || itemId == 140015 || itemId == 40736 || itemId == 49505) { // 藍色藥水 受祝福的藍色藥水 智慧貨幣 福利藍色藥水
 					Potion.Blue(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40016 || itemId == 140016) {
+				} else if (itemId == 40016 || itemId == 140016 || itemId == 49506) { // 慎重藥水 受祝福的慎重藥水 福利慎重藥水
 					if (pc.isWizard()) {
 						Potion.Wisdom(pc, itemId);
 					} else {
@@ -980,7 +979,7 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 40025) {
 					Potion.Blind(pc);
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40088 || itemId == 40096 || itemId == 140088) { // 變形卷軸 象牙塔變形卷軸 祝福變形卷軸
+				} else if (itemId == 40088 || itemId == 140088 || itemId == 40096 || itemId == 49507) { // 變形卷軸 祝福變形卷軸 象牙塔變形卷軸 福利變形藥水
 					if (Poly.Scroll(pc, itemId, s)) {
 						pc.getInventory().removeItem(item, 1);
 					} else {
