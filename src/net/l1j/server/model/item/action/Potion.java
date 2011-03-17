@@ -62,22 +62,22 @@ public class Potion {
 		}
 
 		int time = 0;
-		if (itemId == 40013 || itemId == 40030) { // 自我加速藥水 象牙塔自我加速藥水
+		if ( itemId == ItemId.自我加速藥水 || itemId == ItemId.象牙塔加速藥水 ) {
 			time = 300;
-		} else if (itemId == 40018 || itemId == 41342) { // 強化 自我加速藥水、梅杜莎之血
+		} else if ( itemId == ItemId.強化自我加速藥水 || itemId == ItemId.梅杜莎之血 ) {
 			time = 1800;
-		} else if (itemId == 40039) { // 紅酒
+		} else if ( itemId == ItemId.紅酒 ) {
 			time = 600;
-		} else if (itemId == 40040) { // 威士忌
+		} else if ( itemId == ItemId.威士忌 ) {
 			time = 900;
-		} else if (itemId == 41261 || itemId == 41262 || itemId == 41268 || itemId == 41269
-				|| itemId == 41271 || itemId == 41272 || itemId == 41273) {
+		} else if ( itemId == ItemId.飯糰 || itemId == ItemId.雞肉串燒 || itemId == ItemId.小比薩 || itemId == ItemId.烤玉米
+				|| itemId == ItemId.爆米花 || itemId == ItemId.甜不辣 || itemId == ItemId.鬆餅 ) {
 			time = 30;
-		} else if (itemId == 41338) { // 受祝福的葡萄酒
+		} else if ( itemId == ItemId.受祝福的葡萄酒 ) {
 			time = 2250;
-		} else if (itemId == 140013) { // 受祝福的自我加速藥水
+		} else if ( itemId == ItemId.祝福自我加速藥水 ) {
 			time = 350;
-		} else if (itemId == 140018) { // 受祝福的強化 自我加速藥水
+		} else if ( itemId == ItemId.祝福強化自我加速藥水 ) {
 			time = 2100;
 		} else if ( itemId == ItemId.福利加速藥水 ) {
 			time = 1200;
@@ -135,15 +135,15 @@ public class Potion {
 		}
 
 		int time = 0;
-		if (item_id == 40014) { // 勇敢藥水
+		if ( item_id == ItemId.勇敢藥水 ) {
 			time = 300;
-		} else if (item_id == 140014) { // 受祝福的勇敢藥水
+		} else if ( item_id == ItemId.祝福勇敢藥水 ) {
 			time = 350;
-		} else if (item_id == 41415) { // 強化勇氣的藥水
+		} else if ( item_id == ItemId.強化勇氣的藥水 ) {
 			time = 1800;
-		} else if (item_id == 40031) { // 惡魔之血
+		} else if ( item_id == ItemId.惡魔之血 ) {
 			time = 600;
-		} else if (item_id == 40733) { // 名譽貨幣
+		} else if ( item_id == ItemId.名譽貨幣 ) {
 			time = 600;
 		} else if ( item_id == ItemId.福利勇敢藥水 ) {
 			time = 1200;
@@ -169,8 +169,8 @@ public class Potion {
 			pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 			pc.setBraveSpeed(0);
 		}
-		/* 精靈餅乾 & 受祝福的精靈餅乾 */
-		if (item_id == 40068 || item_id == 140068 || item_id == ItemId.福利森林藥水 ) {
+		/* 精靈餅乾 & 祝福的精靈餅乾 */
+		if (item_id == ItemId.精靈餅乾 || item_id == ItemId.祝福的精靈餅乾 || item_id == ItemId.福利森林藥水 ) {
 			if (pc.hasSkillEffect(STATUS_BRAVE) || pc.hasSkillEffect(SKILL_WIND_WALK)) {
 				if (pc.hasSkillEffect(STATUS_BRAVE)) {
 					pc.killSkillEffectTimer(STATUS_BRAVE);
@@ -181,9 +181,9 @@ public class Potion {
 				pc.broadcastPacket(new S_SkillBrave(pc.getId(), 0, 0));
 				pc.setBraveSpeed(0);
 			}
-			if (item_id == 40068) {
+			if ( item_id == ItemId.精靈餅乾 ) {
 				time = 600;
-			} else if (item_id == 140068) {
+			} else if ( item_id == ItemId.祝福的精靈餅乾 ) {
 				time = 700;
 			} else if ( item_id == ItemId.福利森林藥水 ) {
 				time = 1920;
@@ -194,7 +194,7 @@ public class Potion {
 			pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
 			pc.setSkillEffect(STATUS_ELFBRAVE, time * 1000);
 		/* 生命之樹果實 */
-		} else if (item_id == 49158) {
+		} else if ( item_id == ItemId.生命之樹果實 ) {
 			time = 480;
 			if (pc.hasSkillEffect(STATUS_BRAVE)) { // 名誉のコインとは重複しない
 				pc.killSkillEffectTimer(STATUS_BRAVE);
@@ -223,9 +223,9 @@ public class Potion {
 		}
 
 		int time = 0;
-		if (item_id == 40015 || item_id == 40736) { // 加速魔力回復藥水、智慧貨幣
+		if ( item_id == ItemId.加速魔力回復藥水 || item_id == ItemId.智慧貨幣 ) {
 			time = 600;
-		} else if (item_id == 140015) { // 受祝福的加速魔力回復藥水
+		} else if ( item_id == ItemId.祝福加速魔力回復藥水 ) {
 			time = 700;
 		} else if ( item_id == ItemId.福利藍色藥水 ) {
 			time = 2400;
@@ -246,9 +246,9 @@ public class Potion {
 		}
 
 		int time = 0; // 時間は4の倍數にすること
-		if (item_id == ItemId.POTION_OF_EMOTION_WISDOM) { // ウィズダム ポーション
+		if (item_id == ItemId.慎重藥水 ) {
 			time = 300;
-		} else if (item_id == ItemId.B_POTION_OF_EMOTION_WISDOM) { // 祝福されたウィズダム
+		} else if (item_id == ItemId.祝福慎重藥水 ) {
 			// ポーション
 			time = 360;
 		} else if ( item_id == ItemId.福利慎重藥水 ) {
@@ -273,11 +273,11 @@ public class Potion {
 		}
 
 		int time = 0;
-		if (item_id == 40032) { // エヴァの祝福
+		if ( item_id == 伊娃的祝福 ) {
 			time = 1800;
-		} else if (item_id == 40041) { // マーメイドの鱗
+		} else if ( item_id == 人魚之鱗 ) {
 			time = 300;
-		} else if (item_id == 41344) { // 水の精粹
+		} else if ( item_id == ItemId.水中的水 ) {
 			time = 2100;
 		} else if ( item_id == ItemId.福利呼吸藥水 ) {
 			time = 7200;
