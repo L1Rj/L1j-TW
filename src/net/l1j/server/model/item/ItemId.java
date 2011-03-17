@@ -134,13 +134,13 @@ public class ItemId {
 	public static final int 海賊骷髏首領變身藥水 = 41143;
 	public static final int 海賊骷髏士兵變身藥水 = 41144;
 	public static final int 海賊骷髏刀手變身藥水 = 41145;
-	public static final int 夏納的變身卷軸(等級30) = 49149;
-	public static final int 夏納的變身卷軸(等級40) = 49150;
-	public static final int 夏納的變身卷軸(等級52) = 49151;
-	public static final int 夏納的變身卷軸(等級55) = 49152;
-	public static final int 夏納的變身卷軸(等級60) = 49153;
-	public static final int 夏納的變身卷軸(等級65) = 49154;
-	public static final int 夏納的變身卷軸(等級70) = 49155;
+	public static final int 夏納的變卷(等級30) = 49149;
+	public static final int 夏納的變卷(等級40) = 49150;
+	public static final int 夏納的變卷(等級52) = 49151;
+	public static final int 夏納的變卷(等級55) = 49152;
+	public static final int 夏納的變卷(等級60) = 49153;
+	public static final int 夏納的變卷(等級65) = 49154;
+	public static final int 夏納的變卷(等級70) = 49155;
 
 // 3.3C
 	public static final int 福利加速藥水 = 49501;
