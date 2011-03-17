@@ -1624,8 +1624,7 @@ public class L1NpcInstance extends L1Character {
 	public static final int USEITEM_HEAL = 0;
 	public static final int USEITEM_HASTE = 1;
 	public static int[] healPotions = { POTION_OF_GREATER_HEALING, POTION_OF_EXTRA_HEALING, POTION_OF_HEALING };
-	public static int[] haestPotions = { B_POTION_OF_GREATER_HASTE_SELF, POTION_OF_GREATER_HASTE_SELF,
-			B_POTION_OF_HASTE_SELF, POTION_OF_HASTE_SELF };
+	public static int[] haestPotions = { 祝福強化自我加速藥水, 強化自我加速藥水, 祝福自我加速藥水, 自我加速藥水 };
 
 	public void useItem(int type, int chance) { // 使用する種類 使用する可能性(％)
 		if (hasSkillEffect(71)) {
@@ -1651,13 +1650,13 @@ public class L1NpcInstance extends L1Character {
 			}
 
 			// 效果の長い順
-			if (getInventory().consumeItem(B_POTION_OF_GREATER_HASTE_SELF, 1)) {
+			if (getInventory().consumeItem( 祝福強化自我加速藥水, 1)) {
 				useHastePotion(2100);
-			} else if (getInventory().consumeItem(POTION_OF_GREATER_HASTE_SELF, 1)) {
+			} else if (getInventory().consumeItem( 強化自我加速藥水, 1)) {
 				useHastePotion(1800);
-			} else if (getInventory().consumeItem(B_POTION_OF_HASTE_SELF, 1)) {
+			} else if (getInventory().consumeItem( 祝福自我加速藥水, 1)) {
 				useHastePotion(350);
-			} else if (getInventory().consumeItem(POTION_OF_HASTE_SELF, 1)) {
+			} else if (getInventory().consumeItem( 自我加速藥水, 1)) {
 				useHastePotion(300);
 			}
 		}
@@ -2049,7 +2048,7 @@ public class L1NpcInstance extends L1Character {
 		}
 	}
 
-	// waja add 妖森守護神道具控制 by seroidv
+	// 妖森守護神道具控制 by seroidv
 	private boolean _isDropitems = false;
 
 	public boolean isDropitems() {
@@ -2069,5 +2068,4 @@ public class L1NpcInstance extends L1Character {
 	public void giveDropItems(boolean i) {
 		_forDropitems = i;
 	}
-	// add end
 }

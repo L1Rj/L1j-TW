@@ -273,9 +273,9 @@ public class Potion {
 		}
 
 		int time = 0;
-		if ( item_id == 伊娃的祝福 ) {
+		if ( item_id == ItemId.伊娃的祝福 ) {
 			time = 1800;
-		} else if ( item_id == 人魚之鱗 ) {
+		} else if ( item_id == ItemId.人魚之鱗 ) {
 			time = 300;
 		} else if ( item_id == ItemId.水中的水 ) {
 			time = 2100;
