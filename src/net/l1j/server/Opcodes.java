@@ -570,7 +570,7 @@ public class Opcodes {
        
         public static final int C_OPCODE_BOARDWRITE = 65;
        
-        public static final int C_OPCODE_BOARDBACK = 66;
+        public static final int C_OPCODE_BOARDNEXT = 66;
        
         public static final int C_OPCODE_FISHCLICK = 67;
        
@@ -684,7 +684,7 @@ public class Opcodes {
        
         public static final int C_OPCODE_CREATEPARTY = 130;
         
-//        public static final int C_OPCODE_BOARDBACK = 131; // 未知是否有使用
+        public static final int C_OPCODE_BOARDBACK = 131;
        
 //3.3 ServerPacket
         public static final int S_OPCODE_COMMONNEWS2 = 0;
