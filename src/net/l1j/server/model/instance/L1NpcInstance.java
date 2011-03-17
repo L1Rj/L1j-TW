@@ -1624,7 +1624,7 @@ public class L1NpcInstance extends L1Character {
 	public static final int USEITEM_HEAL = 0;
 	public static final int USEITEM_HASTE = 1;
 	public static int[] healPotions = { POTION_OF_GREATER_HEALING, POTION_OF_EXTRA_HEALING, POTION_OF_HEALING };
-	public static int[] haestPotions = { 祝福強化自我加速藥水, 強化自我加速藥水, 祝福自我加速藥水, 自我加速藥水 };
+	public static int[] haestPotions = { 祝福強化自我加速藥水, 強化自我加速藥水, 祝福自我加速藥水, 自我加速藥水 }; // 道具改採ItemID中文對應
 
 	public void useItem(int type, int chance) { // 使用する種類 使用する可能性(％)
 		if (hasSkillEffect(71)) {
