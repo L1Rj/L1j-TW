@@ -684,7 +684,7 @@ public class Opcodes {
        
         public static final int C_OPCODE_CREATEPARTY = 130;
         
-        public static final int C_OPCODE_BOARDBACK = 131; // 未知是否有使用
+//        public static final int C_OPCODE_BOARDBACK = 131; // 未知是否有使用
        
 //3.3 ServerPacket
         public static final int S_OPCODE_COMMONNEWS2 = 0;
