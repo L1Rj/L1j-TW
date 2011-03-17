@@ -848,9 +848,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					}
 				} else if (itemId == 40013 || itemId == 140013 || itemId == 49501 // 福利加速藥水
 						|| itemId == 40018 || itemId == 140018 // 強化グリーン ポーション  祝福された強化グリーン ポーション
-						// 20080122 修改玩家可使用紅酒,威士忌 use won122 code 1/3
 						|| itemId == 40039 || itemId == 40040
-						// end
 						|| itemId == 40030 || itemId == 41338 // 象牙の塔のヘイスト ポーション  祝福されたワイン
 						|| itemId == 41261 || itemId == 41262 // おむすび  燒き鳥
 						|| itemId == 41268 || itemId == 41269 // ピザのピース  燒きもろこし
@@ -937,7 +935,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					Potion.Brave(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 49138) { // 巧克力蛋糕
-                                        Potion.Triplesspeed(pc);
+					Potion.Triplesspeed(pc);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40066 || itemId == 41413) { // お餅、月餅
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$338, "$1084"));
@@ -963,7 +961,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$338, "$1084"));
 					pc.setCurrentMp(pc.getCurrentMp() + RandomArrayList.getInc(16, 5)); // (0~15) + 5
 					pc.getInventory().removeItem(item, 1);
-				} else if (itemId == 40032 || itemId == 40041 || itemId == 41344 || itemId == 49502) { // 伊娃的祝福、マーメイドの鱗、水の精粹 福利呼吸藥水
+				} else if (itemId == 40032 || itemId == 40041 || itemId == 41344 || itemId == 49502) { // 伊娃的祝福 人魚之鱗 水中的水 福利呼吸藥水
 					Potion.BlessOfEva(pc, itemId);
 					pc.getInventory().removeItem(item, 1);
 				} else if (itemId == 40015 || itemId == 140015 || itemId == 40736 || itemId == 49505) { // 藍色藥水 受祝福的藍色藥水 智慧貨幣 福利藍色藥水
@@ -1028,7 +1026,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					}
-				} else if (itemId == 49189) {//索夏依卡靈魂之笛
+				} else if (itemId == 49189) {// 索夏依卡靈魂之笛
 					boolean found = false;
 					for (L1Object obj : L1World.getInstance().getObject()) {
 						if (obj instanceof L1MonsterInstance) {
