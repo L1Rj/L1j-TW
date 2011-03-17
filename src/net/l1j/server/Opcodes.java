@@ -583,10 +583,12 @@ public class Opcodes {
         public static final int C_OPCODE_MOVECHAR = 73;
        
         public static final int C_OPCODE_ATTR = 74;
-       
-        public static final int C_OPCODE_BOARDDELETE = 75;
-       
-        public static final int C_OPCODE_EXCLUDE = 76;
+		
+		public static final int C_OPCODE_BOARDDELETE = 75;
+        
+		public static final int C_OPCODE_EXCLUDE = 76;
+		
+		public static final int C_OPCODE_DELEXCLUDE = 76; // 未知是否有使用
        
         public static final int C_OPCODE_CHATGLOBAL = 77;
        
@@ -677,16 +679,16 @@ public class Opcodes {
         public static final int C_OPCODE_DELETEINVENTORYITEM = 126;
 
         public static final int C_OPCODE_RESTART = 127;
+        
+        public static final int C_OPCODE_XCHANGESKILL = 128; // 何倫
        
         public static final int C_OPCODE_CREATEPARTY = 130;
+        
+        public static final int C_OPCODE_BOARDBACK = 131; // 未知是否有使用
        
 //3.3 ServerPacket
         public static final int S_OPCODE_COMMONNEWS2 = 0;
         
-        public static final int S_OPCODE_USEMAP = 71;
-        
-        public static final int S_LETTER = 90;
-       
 		public static final int S_OPCODE_BLESSOFEVA = 1;
        
         public static final int S_OPCODE_NPCSHOUT = 3;
@@ -713,7 +715,6 @@ public class Opcodes {
        
         public static final int S_OPCODE_INPUTAMOUNT = 14;
        
-
         public static final int S_OPCODE_SKILLSOUNDGFX = 15;
        
         public static final int S_OPCODE_IDENTIFYDESC = 16;
@@ -739,6 +740,8 @@ public class Opcodes {
         public static final int S_OPCODE_CHARPACK = 27;
        
         public static final int S_OPCODE_DROPITEM = 27;
+        
+        public static final int S_OPCODE_NEWMASTER = 28; // 未知是否有使用 mail box ? 拍賣管理員?
        
         public static final int S_OPCODE_SERVERMSG = 29;
        
@@ -757,6 +760,8 @@ public class Opcodes {
         public static final int S_OPCODE_EMBLEM = 39;
        
         public static final int S_OPCODE_ATTACKPACKET = 40;
+        
+        public static final int S_OPCODE_XCHANGESKILL = 41; // 何倫
        
         public static final int S_OPCODE_SPMR = 42;
        
@@ -795,8 +800,12 @@ public class Opcodes {
         public static final int S_OPCODE_BOOKMARKS = 59;
        
         public static final int S_OPCODE_INITPACKET = 60;
+        
+        public static final int S_OPCODE_PUTSOLDIER = 61;
        
         public static final int S_OPCODE_MOVEOBJECT = 62;
+        
+        public static final int G_S_PutSoldier = 63;
        
         public static final int S_OPCODE_TELEPORT = 64;
        
@@ -811,6 +820,8 @@ public class Opcodes {
         public static final int S_OPCODE_HPMETER = 69;
        
         public static final int S_OPCODE_ATTRIBUTE = 70;
+        
+        public static final int S_OPCODE_USEMAP = 71;
        
         public static final int S_OPCODE_SERVERVERSION = 72;
        
@@ -839,15 +850,21 @@ public class Opcodes {
         public static final int S_OPCODE_DELETEINVENTORYITEM = 83;
        
         public static final int S_OPCODE_RESTART = 84;
+        
+        public static final int S_OPCODE_PINGTIME = 85;
        
         public static final int S_OPCODE_DEPOSIT = 86;
+        
+        public static final int L_S_MessageWindow = 87;
        
         public static final int S_OPCODE_TRUETARGET = 88;
        
         public static final int S_OPCODE_HOUSEMAP = 89;
        
         public static final int S_OPCODE_CHARTITLE = 90;
-       
+        
+		public static final int S_LETTER = 90;
+		
         public static final int S_OPCODE_DEXUP = 92;
        
         public static final int S_OPCODE_CHANGEHEADING = 94;
@@ -903,4 +920,8 @@ public class Opcodes {
         public static final int S_OPCODE_WARTIME = 126;
        
         public static final int S_OPCODE_ITEMNAME = 127;
+        
+        public static final int G_S_DisposeShooter = 130; // 未知是否有使用
+        
+        public static final int S_OPCODE_SERVERSTAT = 131; // 未知是否有使用
 }
