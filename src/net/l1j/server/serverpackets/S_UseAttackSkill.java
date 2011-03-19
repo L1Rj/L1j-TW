@@ -43,8 +43,7 @@ public class S_UseAttackSkill extends ServerBasePacket {
 
 	// public S_UseAttackSkill(L1Character cha, int targetobj, int spellgfx,
 	// int x, int y) {
-	// buildPacket(cha, targetobj, spellgfx, x, y,
-	// ActionCodes.ACTION_SkillAttack, 6, true);
+	// buildPacket(cha, targetobj, spellgfx, x, y, ActionCodes.ACTION_SkillAttack, 6, true);
 	// }
 
 	public S_UseAttackSkill(L1Character cha, int targetobj, int spellgfx, int x, int y, int actionId) {
@@ -86,7 +85,7 @@ public class S_UseAttackSkill extends ServerBasePacket {
 		writeC(actionId);
 		writeD(withCastMotion ? cha.getId() : 0);
 		writeD(targetobj);
-		writeC(isHit);
+		writeH(isHit);
 		writeC(newheading);
 		writeD(_sequentialNumber.incrementAndGet()); // 番號がダブらないように送る。
 		writeH(spellgfx);
