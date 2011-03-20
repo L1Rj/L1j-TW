@@ -9838,3 +9838,60 @@ INSERT INTO `droplist` VALUES ('90519', '21542', '1', '1', '30000');	/* 杰弗�
 INSERT INTO `droplist` VALUES ('90519', '21543', '1', '1', '30000');	/* 杰弗雷庫(雌) 掉落 提卡爾杰弗雷庫之眼 */
 /* 3.1C 神廟怪物掉落道具 結束 */
 INSERT INTO `droplist` VALUES ('45640', '41352', '1', '1', '10000');
+
+/* 3.2C 怪物掉落道具 */
+INSERT INTO `droplist` VALUES ('91180', '40013', '1', '1', '35000'); /* 侏儒族工人  自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91180', '50524', '1', '1', '4000'); /* 侏儒族工人  侏儒蘑菇 */
+INSERT INTO `droplist` VALUES ('91180', '50525', '1', '1', '3000'); /* 侏儒族工人  侏儒符咒 */
+INSERT INTO `droplist` VALUES ('91180', '50526', '1', '1', '3000'); /* 侏儒族工人  古老水珍珠 */
+INSERT INTO `droplist` VALUES ('91180', '50527', '1', '1', '3000'); /* 侏儒族工人  古老白水晶 */
+INSERT INTO `droplist` VALUES ('91181', '40013', '1', '1', '35000'); /* 侏儒族哨兵  自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91181', '50524', '1', '1', '4000'); /* 侏儒族哨兵  侏儒蘑菇 */
+INSERT INTO `droplist` VALUES ('91181', '50525', '1', '1', '3000'); /* 侏儒族哨兵  侏儒符咒 */
+INSERT INTO `droplist` VALUES ('91181', '50526', '1', '1', '3000'); /* 侏儒族哨兵  古老水珍珠 */
+INSERT INTO `droplist` VALUES ('91181', '50527', '1', '1', '3000'); /* 侏儒族哨兵  古老白水晶 */
+INSERT INTO `droplist` VALUES ('91182', '40013', '1', '1', '35000'); /* 侏儒族魔法師  自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91182', '50524', '1', '1', '7000'); /* 侏儒族魔法師  侏儒蘑菇 */
+INSERT INTO `droplist` VALUES ('91182', '50525', '1', '1', '7000'); /* 侏儒族魔法師  侏儒符咒 */
+INSERT INTO `droplist` VALUES ('91182', '50526', '1', '1', '7000'); /* 侏儒族魔法師  古老水珍珠 */
+INSERT INTO `droplist` VALUES ('91182', '50527', '1', '1', '7000'); /* 侏儒族魔法師  古老白水晶 */
+INSERT INTO `droplist` VALUES ('91183', '40013', '1', '1', '35000'); /* 侏儒族將軍  自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91183', '50524', '1', '1', '8000'); /* 侏儒族將軍  侏儒蘑菇 */
+INSERT INTO `droplist` VALUES ('91183', '50525', '1', '1', '8000'); /* 侏儒族將軍  侏儒符咒 */
+INSERT INTO `droplist` VALUES ('91183', '50526', '1', '1', '8000'); /* 侏儒族將軍  古老水珍珠 */
+INSERT INTO `droplist` VALUES ('91183', '50527', '1', '1', '8000'); /* 侏儒族將軍  古老白水晶 */
+INSERT INTO `droplist` VALUES ('91165', '40013', '1', '1', '30000'); /* 骸龍  自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91165', '40393', '1', '1', '2000'); /* 骸龍  火龍鱗 */
+INSERT INTO `droplist` VALUES ('91165', '40394', '1', '1', '2000'); /* 骸龍  風龍鱗 */
+INSERT INTO `droplist` VALUES ('91165', '40395', '1', '1', '2000'); /* 骸龍  水龍鱗 */
+INSERT INTO `droplist` VALUES ('91165', '40396', '1', '1', '2000'); /* 骸龍  地龍鱗 */
+INSERT INTO `droplist` VALUES ('91165', '50520', '1', '1', '1000'); /* 骸龍  地龍之渴望的眼淚 */
+INSERT INTO `droplist` VALUES ('91165', '50521', '1', '1', '1000'); /* 骸龍  火龍之渴望的眼淚 */
+INSERT INTO `droplist` VALUES ('91165', '50522', '1', '1', '1000'); /* 骸龍  水龍之渴望的眼淚 */
+INSERT INTO `droplist` VALUES ('91165', '50523', '1', '1', '1000'); /* 骸龍  風龍之渴望的眼淚 */
+INSERT INTO `droplist` VALUES ('91155', '40466', '1', '1', '200'); /* 幼龍(紅)  龍之心 */
+INSERT INTO `droplist` VALUES ('91156', '40466', '1', '1', '200'); /* 幼龍(藍)  龍之心 */
+INSERT INTO `droplist` VALUES ('91157', '40013', '1', '1', '30000'); /* 泥龍(地) 自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91157', '40396', '1', '1', '2000'); /* 泥龍(地)  地龍鱗 */
+INSERT INTO `droplist` VALUES ('91157', '50520', '1', '1', '1000'); /* 泥龍(地)  地龍之渴望的眼淚 */
+INSERT INTO `droplist` VALUES ('91158', '40013', '1', '1', '30000'); /* 泥龍(火) 自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91158', '40395', '1', '1', '2000'); /* 泥龍(火)  火龍鱗 */
+INSERT INTO `droplist` VALUES ('91158', '50521', '1', '1', '1000'); /* 泥龍(火)  火龍之渴望的眼淚 */
+INSERT INTO `droplist` VALUES ('91159', '40013', '1', '1', '30000'); /* 泥龍(水) 自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91159', '40395', '1', '1', '2000'); /* 泥龍(水)  水龍鱗 */
+INSERT INTO `droplist` VALUES ('91159', '50522', '1', '1', '1000'); /* 泥龍(水)  水龍之渴望的眼淚 */
+INSERT INTO `droplist` VALUES ('91160', '40013', '1', '1', '30000'); /* 泥龍(風) 自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91160', '40394', '1', '1', '2000'); /* 泥龍(風)  風龍鱗 */
+INSERT INTO `droplist` VALUES ('91160', '50523', '1', '1', '1000'); /* 泥龍(風)  風龍之渴望的眼淚 */
+INSERT INTO `droplist` VALUES ('91161', '40013', '1', '1', '30000'); /* 荒龍(地) 自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91161', '40396', '1', '1', '2000'); /* 荒龍(地)  地龍鱗 */
+INSERT INTO `droplist` VALUES ('91161', '50520', '1', '1', '1000'); /* 荒龍(地)  地龍之渴望的眼淚 */
+INSERT INTO `droplist` VALUES ('91162', '40013', '1', '1', '30000'); /* 荒龍(火) 自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91162', '40395', '1', '1', '2000'); /* 荒龍(火)  火龍鱗 */
+INSERT INTO `droplist` VALUES ('91162', '50521', '1', '1', '1000'); /* 荒龍(火)  火龍之渴望的眼淚 */
+INSERT INTO `droplist` VALUES ('91163', '40013', '1', '1', '30000'); /* 荒龍(水) 自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91163', '40395', '1', '1', '2000'); /* 荒龍(水)  水龍鱗 */
+INSERT INTO `droplist` VALUES ('91163', '50522', '1', '1', '1000'); /* 荒龍(水)  水龍之渴望的眼淚 */
+INSERT INTO `droplist` VALUES ('91164', '40013', '1', '1', '30000'); /* 荒龍(風) 自我加速藥水 */
+INSERT INTO `droplist` VALUES ('91164', '40394', '1', '1', '2000'); /* 荒龍(風)  風龍鱗 */
+INSERT INTO `droplist` VALUES ('91164', '50523', '1', '1', '1000'); /* 荒龍(風)  風龍之渴望的眼淚 */
