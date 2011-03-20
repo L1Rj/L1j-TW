@@ -1272,7 +1272,7 @@ public class L1NpcInstance extends L1Character {
 			if (mobGroupInfo.removeMember(this) == 0) { // グループメンバー全滅
 				setMobGroupInfo(null);
 				if (isReSpawn()) {
-					onDecay(false);
+					onDecay(true);
 				}
 			}
 		}
