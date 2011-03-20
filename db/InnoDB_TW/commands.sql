@@ -142,3 +142,4 @@ INSERT INTO `commands` VALUES ('findinvis1', '200', 'L1FindInvis');
 INSERT INTO `commands` VALUES ('狂暴', '200', 'L1Crazy');
 INSERT INTO `commands` VALUES ('儲存', '200', 'L1Save');
 INSERT INTO `commands` VALUES ('系統', '200', 'L1System');
+INSERT INTO `commands` VALUES ('skillsound', '100', 'L1Skillsound');
