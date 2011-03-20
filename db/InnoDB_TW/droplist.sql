@@ -9673,6 +9673,46 @@ INSERT INTO `droplist` VALUES ('45681', '40222', '1', '1', '1000');
 INSERT INTO `droplist` VALUES ('45682', '40222', '1', '1', '1000');
 INSERT INTO `droplist` VALUES ('45683', '40222', '1', '1', '1000');
 
+/* 新手任務道具掉落 */
+INSERT INTO `droplist` VALUES ('45020', '49232', '1', '1', '25000'); /* 初級秘笈書 */
+INSERT INTO `droplist` VALUES ('45026', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45028', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45035', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45036', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45037', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45038', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45045', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45052', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45056', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45057', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45059', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45061', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45062', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45063', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45067', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45069', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45070', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45071', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45072', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45073', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45074', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45075', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45076', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45078', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45080', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45081', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45085', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45086', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45090', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45091', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45095', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45096', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45814', '49232', '1', '1', '25000');
+INSERT INTO `droplist` VALUES ('45113', '49236', '1', '1', '10000');  /* 弱化獨眼巨人 庫卡斯的證明 10% */
+INSERT INTO `droplist` VALUES ('45111', '49237', '1', '1', '10000'); /* 弱化飛龍 史塔利的證明 10% */
+INSERT INTO `droplist` VALUES ('46164', '49235', '1', '1', '30000'); /* 話島寶箱 克特的秘密 30% */
+/* end */
+
 /* 3.1C 神廟怪物掉落道具 */
 INSERT INTO `droplist` VALUES ('90500', '40056', '1', '1', '100000');	/* 猴子 掉落 肉 */
 INSERT INTO `droplist` VALUES ('90501', '40056', '1', '1', '100000');	/* 蛇 掉落 肉 */
