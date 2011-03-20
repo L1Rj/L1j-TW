@@ -64,10 +64,20 @@ public class C_NPCTalk extends ClientBasePacket {
 		return;
 													}
 		if (pc.hasSkillEffect(STATUS_ANTHARAS_BLOODSTAINS)) {
-			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1626));
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1626)); /** $1626 遊戲訊息: 龍之血痕已穿透全身，在血痕的氣味消失之前，無法再進入龍之門扉。 */
 			return;
 		} else {
+		int map1005pccounter = 0; // 初始化地圖人數
+		for (L1PcInstance map1005pcs : L1World.getInstance().getAllPlayers()) {
+		if (map1005pcs.getMapId()== 1005) {
+		map1005pccounter++;
+			}
+		}
+		if (map1005pccounter == 32) { // 四組隊伍 每組8人 四個分區地圖 總共32人
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$1536)); /** $1536 遊戲訊息: 人員已滿無法再入場了 */
+		} else {
 		L1Teleport.teleport(pc, 32599, 32743, (short) 1005, 5, true);
+					}
 				}
 			}
 		}
