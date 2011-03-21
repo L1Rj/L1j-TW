@@ -20,7 +20,7 @@
 		<Room Name="歐瑞" LocX="34061" LocY="32276" MapId="4"/>
 		<Room Name="威頓" LocX="33709" LocY="32500" MapId="4"/>
 		<Room Name="風木" LocX="32621" LocY="33169" MapId="4"/>
-		<Room Name="隱藏之谷" LocX="32671" LocY="32836" MapId="69"/>
+		<Room Name="隱藏之谷" LocX="32679" LocY="32866" MapId="2005"/>
 		<Room Name="妖森" LocX="33054" LocY="32323" MapId="4"/>
 		<Room Name="肯特" LocX="33050" LocY="32780" MapId="4"/>
 		<Room Name="海音" LocX="33612" LocY="33268" MapId="4"/>

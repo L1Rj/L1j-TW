@@ -26,7 +26,8 @@ class L1DragonKnightClassFeature extends L1ClassFeature {
 
 	@Override
 	public int[] InitSpawn(int type) {
-		int spawn[] = { 32714, 32877, 69 };
+//		int spawn[] = { 32714, 32877, 69 };
+		int spawn[] = { 32679, 32866, 2005 }; // 3.3C 統一改至新版隱藏之谷 舊寫法保留觀察後續變化
 		return spawn;
 	}
 

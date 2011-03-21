@@ -34,4 +34,15 @@ CREATE TABLE `beginner` (
 -- ----------------------------
 INSERT INTO `beginner` VALUES ('1', '40005', '1', '0', '0', '蠟燭', 'A');
 INSERT INTO `beginner` VALUES ('2', '40005', '1', '0', '0', '蠟燭', 'A');
-INSERT INTO `beginner` VALUES ('3', '40641', '1', '0', '0', '說話卷軸', 'A');
+INSERT INTO `beginner` VALUES ('3', '7', '1', '0', '0', '象牙塔短劍', 'A');
+INSERT INTO `beginner` VALUES ('4', '35', '1', '0', '0', '象牙塔單手劍', 'A');
+INSERT INTO `beginner` VALUES ('5', '48', '1', '0', '0', '象牙塔雙手劍', 'A');
+INSERT INTO `beginner` VALUES ('6', '73', '1', '0', '0', '象牙塔雙刀', 'A');
+INSERT INTO `beginner` VALUES ('7', '105', '1', '0', '0', '象牙塔長矛', 'A');
+INSERT INTO `beginner` VALUES ('8', '120', '1', '0', '0', '象牙塔魔杖', 'A');
+INSERT INTO `beginner` VALUES ('9', '147', '1', '0', '0', '象牙塔斧頭', 'A');
+INSERT INTO `beginner` VALUES ('10', '156', '1', '0', '0', '象牙塔鋼爪', 'A');
+INSERT INTO `beginner` VALUES ('11', '174', '1', '0', '0', '象牙塔石弓', 'A');
+INSERT INTO `beginner` VALUES ('12', '175', '1', '0', '0', '象牙塔長弓', 'A');
+INSERT INTO `beginner` VALUES ('13', '156', '1', '0', '0', '象牙塔鋼爪', 'A');
+
