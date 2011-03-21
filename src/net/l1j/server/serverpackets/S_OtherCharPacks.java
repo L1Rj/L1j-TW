@@ -32,6 +32,8 @@ public class S_OtherCharPacks extends ServerBasePacket {
 	private static final short STATUS_ELFBRAVE = 32;
 	private static final short STATUS_FASTMOVABLE = 64;
 	private static final short STATUS_GHOST = 128;
+        private static final short STATUS_EXPBLESS = 256;
+        private static final short STATUS_TRIPLES_SPEED = 512;
 
 	private byte[] _byte = null;
 
@@ -67,7 +69,9 @@ public class S_OtherCharPacks extends ServerBasePacket {
 		if (pc.isFastMovable()) {
 			status |= STATUS_FASTMOVABLE;
 		}
-
+                if (pc.isTriplesSpeed()) {
+                        status |= STATUS_TRIPLES_SPEED;
+                }
 		// int addbyte = 0;
 		// int addbyte1 = 1;
 

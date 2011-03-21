@@ -174,6 +174,13 @@ public class S_PacketBox extends ServerBasePacket {
 	/** 魚がかかったグラフィックが表示される */
 	public static final int FISHING = 55;
 
+        /* 經驗值加乘（殷海薩的祝福） */
+        public static final int EXPBLESS = 82;
+        /*
+         * writeC(0x52); // 殷海薩狀態圖示
+         * writeC(0); // %值為0 ~ 200
+         */
+
 	public S_PacketBox(int subCode) {
 		writeC(Opcodes.S_OPCODE_PACKETBOX);
 		writeC(subCode);
@@ -233,6 +240,9 @@ public class S_PacketBox extends ServerBasePacket {
 				writeC(0x01);
 				writeC(value); // level
 			break;
+                        case EXPBLESS:
+                                writeC(value); // %值為0 ~ 200
+                        break;
 			default:
 			break;
 		}
