@@ -199,6 +199,12 @@ public final class Config {
 	public static boolean SHOW_HP_BAR;
 	/** 設定妖森道具掉落時間 */
 	public static int GDROPITEM_TIME;
+	// 殷海薩的祝福
+	public static int RATE_AIN_TIME;
+	// 殷海薩的祝福
+	public static int RATE_AIN_OUTTIME;
+	// 殷海薩的祝福
+	public static int RATE_MAX_CHARGE_PERCENT;
 
 	// --------------------------------------------------
 	// 角色設定
@@ -502,6 +508,9 @@ public final class Config {
 					SKILL_CHECK = Boolean.parseBoolean(altSettings.getProperty("SkillCheck", "false"));
 					SHOW_HP_BAR = Boolean.parseBoolean(altSettings.getProperty("ShowHPBar", "false"));
 					GDROPITEM_TIME = Integer.parseInt(altSettings.getProperty("GDropItemTime", "10"));
+					RATE_AIN_TIME = Integer.parseInt(altSettings.getProperty("RateAinTime", "5"));
+					RATE_AIN_OUTTIME = Integer.parseInt(altSettings.getProperty("RateAinOutTime", "5"));
+					RATE_MAX_CHARGE_PERCENT = Integer.parseInt(altSettings.getProperty("RateMaxChargePercent", "200"));
 				} catch (Exception e) {
 					_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 					throw new Error("Failed to Load " + ALT_SETTINGS_FILE + " File.");

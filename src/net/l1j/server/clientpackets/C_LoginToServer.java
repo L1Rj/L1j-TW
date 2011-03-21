@@ -22,6 +22,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -381,6 +382,33 @@ public class C_LoginToServer extends ClientBasePacket {
 		skills(pc);
 		buff(client, pc);
 		pc.turnOnOffLight();
+		
+		// 殷海薩的祝福
+		int ainOutTime = Config.RATE_AIN_OUTTIME;
+		int ainMaxPercent = Config.RATE_MAX_CHARGE_PERCENT;
+		
+		if (pc.getLevel() >= 49) { // 49級以上 殷海薩的祝福紀錄
+			if(pc.getMap().isSafetyZone(pc.getLocation())){
+				pc.setAinZone(1);
+			} else {
+				pc.setAinZone(0);
+			}
+			
+			if (pc.getAinZone() == 1) {
+				Calendar cal = Calendar.getInstance();
+		        long startTime = (cal.getTimeInMillis() - pc.getLastActive().getTime()) / 60000;
+
+		        if (startTime >= ainOutTime) {
+		        	long outTime = startTime / ainOutTime;
+		        	long saveTime = outTime + pc.getAinPoint();
+		        	if (saveTime >=1 && saveTime <= ainMaxPercent) {
+		        		pc.setAinPoint((int)saveTime);
+		        	} else if (saveTime > ainMaxPercent) {
+		        		pc.setAinPoint(ainMaxPercent);
+		        	} 
+		        }
+			}
+		}
 
 		if (pc.getCurrentHp() > 0) {
 			pc.setDead(false);

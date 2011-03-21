@@ -32,10 +32,12 @@ import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
+import net.l1j.server.model.instance.L1ScarecrowInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
 import net.l1j.server.model.skill.SkillId;
 import net.l1j.server.serverpackets.S_PetPack;
 import net.l1j.server.serverpackets.S_ServerMessage;
+import net.l1j.server.serverpackets.S_SkillIconExp;
 import net.l1j.server.templates.L1Pet;
 
 import static net.l1j.server.model.skill.SkillId.*;
@@ -49,6 +51,8 @@ public class CalcExp {
 
 	private CalcExp() {
 	}
+	
+	private static L1NpcInstance _npc = null;
 
 	public static void calcExp(L1PcInstance l1pcinstance, int targetid, FastTable acquisitorList, FastTable hateList, int exp) {
 		int i = 0;
@@ -335,6 +339,9 @@ public class CalcExp {
 		double exppenalty = ExpTable.getPenaltyRate(pc.getLevel());
 		double foodBonus = 1.0;
 		double LevelBonus = 1.0;
+		double expposion = 1.0; // 經驗藥水
+		double ainBonus = 1.0; // 殷海薩的祝福
+		
 		if (pc.hasSkillEffect(COOKING_1_7_N) || pc.hasSkillEffect(SkillId.COOKING_1_7_S)) {
 			foodBonus = 1.01;
 		}
@@ -394,7 +401,20 @@ public class CalcExp {
 			LevelBonus = 1.01;
 		}
 // add end
-		int add_exp = (int) (exp * exppenalty * Config.RATE_XP * foodBonus * LevelBonus);
+// 經驗值藥水
+		if (pc.hasSkillEffect(SkillId.EXP_POTION)) {
+			expposion = 1.20;
+		}
+// 殷海薩的祝福 計算公式仍需驗證
+		if (pc.getAinPoint() > 0) {
+			if (!(_npc instanceof L1PetInstance || _npc instanceof L1SummonInstance || _npc instanceof L1ScarecrowInstance)) {// 木人 寵物 召喚 不計算加成
+				pc.setAinPoint(pc.getAinPoint() - 1);
+				pc.sendPackets(new S_SkillIconExp(pc.getAinPoint()));
+				ainBonus = 1.77; // 額外的經驗 77%
+			}
+		}
+//end
+		int add_exp = (int) (exp * exppenalty * Config.RATE_XP * foodBonus * LevelBonus * expposion * ainBonus );
 		pc.addExp(add_exp);
 	}
 

@@ -29,6 +29,7 @@ import java.util.logging.Logger;
 import net.l1j.Config;
 import net.l1j.L1DatabaseFactory;
 import net.l1j.Server;
+import net.l1j.server.AinTimeController;
 import net.l1j.server.datatables.CastleTable;
 import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.datatables.ClanTable;
@@ -187,7 +188,10 @@ public class GameServer extends Thread {
 		// 時空裂痕時間控制器
 		CrackTimeController crackTimeController = CrackTimeController.getStart();
 		ThreadPoolManager.getInstance().execute(crackTimeController);
-
+		// 殷海薩的祝福
+		AinTimeController ainTimeController = AinTimeController.getInstance();
+		ThreadPoolManager.getInstance().execute(ainTimeController);
+		
 		Announcements.getInstance();
 		NpcTable.getInstance();
 

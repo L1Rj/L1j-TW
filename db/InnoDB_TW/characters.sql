@@ -75,6 +75,9 @@ CREATE TABLE `characters` (
   `OriginalCha` int(3) NOT NULL DEFAULT '0',
   `OriginalInt` int(3) NOT NULL DEFAULT '0',
   `OriginalWis` int(3) NOT NULL DEFAULT '0',
+  `LastActive` datetime DEFAULT NULL,
+  `AinZone` int(10) DEFAULT NULL,
+  `AinPoint` int(10) DEFAULT NULL,
   PRIMARY KEY (`objid`),
   KEY `key_id` (`account_name`,`char_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -580,9 +580,10 @@ public class SkillId {
 	/** 食用料理狀態結尾 */
 	public static final int COOKING_END = 3047;
 
-
 	/** 其他 */
 	public static final int STATUS_FREEZE = 10071;
+	
+	public static final int EXP_POTION = 7013;   // 經驗藥水?
 
 	public static final int CURSE_PARALYZE2 = 10101;
 	/** 擊敗火焰之影的力量 */
