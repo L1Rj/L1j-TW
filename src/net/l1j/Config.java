@@ -508,8 +508,8 @@ public final class Config {
 					SKILL_CHECK = Boolean.parseBoolean(altSettings.getProperty("SkillCheck", "false"));
 					SHOW_HP_BAR = Boolean.parseBoolean(altSettings.getProperty("ShowHPBar", "false"));
 					GDROPITEM_TIME = Integer.parseInt(altSettings.getProperty("GDropItemTime", "10"));
-					RATE_AIN_TIME = Integer.parseInt(altSettings.getProperty("RateAinTime", "5"));
-					RATE_AIN_OUTTIME = Integer.parseInt(altSettings.getProperty("RateAinOutTime", "5"));
+					RATE_AIN_TIME = Integer.parseInt(altSettings.getProperty("RateAinTime", "15"));
+					RATE_AIN_OUTTIME = Integer.parseInt(altSettings.getProperty("RateAinOutTime", "15"));
 					RATE_MAX_CHARGE_PERCENT = Integer.parseInt(altSettings.getProperty("RateMaxChargePercent", "200"));
 				} catch (Exception e) {
 					_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -808,9 +808,14 @@ public final class Config {
 			DEFAULT_CHARACTER_SLOT = Integer.valueOf(pValue);
 		} else if (pName.equalsIgnoreCase("GDropItemTime")) {
 			GDROPITEM_TIME = Integer.parseInt(pValue);
-		}
+		} else if (pName.equalsIgnoreCase("RateAinTime")) {
+			RATE_AIN_TIME = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("RateAinOutTime")) {
+			RATE_AIN_OUTTIME = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("RateMaxChargePercent")) {
+			RATE_MAX_CHARGE_PERCENT = Integer.parseInt(pValue);
 		// charsettings.properties
-		else if (pName.equalsIgnoreCase("PrinceMaxHP")) {
+		} else if (pName.equalsIgnoreCase("PrinceMaxHP")) {
 			PRINCE_MAX_HP = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("PrinceMaxMP")) {
 			PRINCE_MAX_MP = Integer.parseInt(pValue);
