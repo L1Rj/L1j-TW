@@ -59,6 +59,7 @@ import net.l1j.server.serverpackets.S_SPMR;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillBrave;
 import net.l1j.server.serverpackets.S_SkillHaste;
+import net.l1j.server.serverpackets.S_SkillIconExp;
 import net.l1j.server.serverpackets.S_SkillIconGFX;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.serverpackets.S_SummonPack;
@@ -393,7 +394,11 @@ public class C_LoginToServer extends ClientBasePacket {
 			} else {
 				pc.setAinZone(0);
 			}
-			
+
+			if (pc.getAinPoint() >= 1) {
+				pc.sendPackets(new S_SkillIconExp(pc.getAinPoint())); // 角色 登入時點數大於1則送出
+			}
+
 			if (pc.getAinZone() == 1) {
 				Calendar cal = Calendar.getInstance();
 		        long startTime = (cal.getTimeInMillis() - pc.getLastActive().getTime()) / 60000;
