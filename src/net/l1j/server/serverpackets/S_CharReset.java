@@ -54,7 +54,7 @@ public class S_CharReset extends ServerBasePacket {
 	}
 
 	/**
-	 * 45及腰精進入崇志 [Server] opcode = 43 0000: 2b 01 0f 00 04 00 0a 2d 56法進入崇志
+	 * 45級妖精進入重置 [Server] opcode = 43 0000: 2b 01 0f 00 04 00 0a 2d 56級法師進入重置
 	 * [Server] opcode = 43 0000: 2b 01 0c 00 06 00 0a 38
 	 */
 	public S_CharReset(L1PcInstance pc) {
