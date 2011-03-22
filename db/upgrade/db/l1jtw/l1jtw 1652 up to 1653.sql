@@ -1,0 +1,19 @@
+/* 20110322 l1jtw 3.3C介面內建地圖 刪除所有商店販賣地圖 */
+DELETE FROM `shop` WHERE item_id = '40373';
+DELETE FROM `shop` WHERE item_id = '40374';
+DELETE FROM `shop` WHERE item_id = '40375';
+DELETE FROM `shop` WHERE item_id = '40376';
+DELETE FROM `shop` WHERE item_id = '40377';
+DELETE FROM `shop` WHERE item_id = '40378';
+DELETE FROM `shop` WHERE item_id = '40379';
+DELETE FROM `shop` WHERE item_id = '40380';
+DELETE FROM `shop` WHERE item_id = '40381';
+DELETE FROM `shop` WHERE item_id = '40382';
+DELETE FROM `shop` WHERE item_id = '40383';
+DELETE FROM `shop` WHERE item_id = '40384';
+DELETE FROM `shop` WHERE item_id = '40385';
+DELETE FROM `shop` WHERE item_id = '40386';
+DELETE FROM `shop` WHERE item_id = '40387';
+DELETE FROM `shop` WHERE item_id = '40388';
+DELETE FROM `shop` WHERE item_id = '40389';
+DELETE FROM `shop` WHERE item_id = '40390';
