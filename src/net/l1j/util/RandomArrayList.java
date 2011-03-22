@@ -20,22 +20,20 @@ package net.l1j.util;
 
 public class RandomArrayList {
 	/** 泛用型隨機矩陣，所使用的指標 */
-	private static int listint = 0;
+	private static int _nIndex = 0;
+	private static final int _nARRAYSIZE = 16383;
 
 	/** 新型泛用型，適用Int的正數範圍 */
-	private static double[] ArrayDouble = new double[32767];
+	private static double[] ArrayDouble = new double[_nARRAYSIZE + 1];
 
 	static {
-		for (listint = 0; listint < 32767; listint++) {
-			ArrayDouble[listint] = Math.random();
+		for (_nIndex = 0; _nIndex < _nARRAYSIZE; _nIndex++) {
+			ArrayDouble[_nIndex] = Math.random();
 		}
 	}
 
-	private static int getlistint() {
-		if (listint < 32766)
-			return ++listint;
-		else
-			return listint = 0;
+	private static int getIndex() {
+		return _nIndex = _nARRAYSIZE & ( ++_nIndex );
 	}
 
 	/**
@@ -49,7 +47,7 @@ public class RandomArrayList {
 	private static boolean haveNextGaussian = false;
 	private static double nextGaussian;
 	/**
-	 * getGaussian() ：回傳 高斯分配
+	 * getGaussian() ：return 高斯分配
 	 */
 	public static double getGaussian() {
 		if (haveNextGaussian) {
@@ -58,11 +56,11 @@ public class RandomArrayList {
 		} else {
 			double v1, v2, s;
 			do {
-				v1 = 2 * ArrayDouble[getlistint()] - 1;   // between -1.0 and 1.0
-				v2 = 2 * ArrayDouble[getlistint()] - 1;   // between -1.0 and 1.0
+				v1 = 2 * ArrayDouble[getIndex()] - 1;   // between -1.00 ~ 1.00
+				v2 = 2 * ArrayDouble[getIndex()] - 1;   // between -1.00 ~ 1.00
 				s = v1 * v1 + v2 * v2;
 			} while (s >= 1 || s == 0);
-			double multiplier = Math.sqrt(-2 * Math.log(s)/s);
+			double multiplier = Math.sqrt(-2 * Math.log(s) / s);
 			nextGaussian = v2 * multiplier;
 			haveNextGaussian = true;
 			return v1 * multiplier;
@@ -70,14 +68,14 @@ public class RandomArrayList {
 	}
 
 	/**
-	 * getValue() ：return between 0.0 and 1.0
+	 * getValue() ：return between 0.00 ~ 1.00
 	 */
 	private static double getValue() {
-		return ArrayDouble[getlistint()];
+		return ArrayDouble[getIndex()];
 	}
 
 	/**
-	 *
+	 * getValue(rang) ：return between 0.00 ~ rang
 	 */
 	private static double getValue(int rang) {
 		return getValue() * rang;
@@ -120,11 +118,11 @@ public class RandomArrayList {
 	 * @return 0 ~ (數值-1) + 輸出偏移值
 	 */
 	public static int getInc(int rang, int increase) {
-		return getInt(rang) + increase;
+		return (int) getValue(rang) + increase;
 	}
 
 	public static int getInc(double rang, int increase) {
-		return getInt(rang) + increase;
+		return (int) getValue(rang) + increase;
 	}
 
 	public static double getDc(int rang, int increase) {

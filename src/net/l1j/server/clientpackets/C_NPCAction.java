@@ -77,7 +77,7 @@ import net.l1j.server.serverpackets.S_Drawal;
 import net.l1j.server.serverpackets.S_HouseMap;
 import net.l1j.server.serverpackets.S_HPUpdate;
 import net.l1j.server.serverpackets.S_ItemName;
-import net.l1j.server.serverpackets.S_Lawful;// add 神女優莉絲(贖罪聖書)
+import net.l1j.server.serverpackets.S_Lawful;
 import net.l1j.server.serverpackets.S_MPUpdate;
 import net.l1j.server.serverpackets.S_Message_YN;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
@@ -92,7 +92,7 @@ import net.l1j.server.serverpackets.S_ShopBuyList;
 import net.l1j.server.serverpackets.S_ShopSellList;
 import net.l1j.server.serverpackets.S_SkillHaste;
 import net.l1j.server.serverpackets.S_SkillIconGFX;
-import net.l1j.server.serverpackets.S_SkillIconBlessOfEva;
+import net.l1j.server.serverpackets.S_SkillIconAura;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.serverpackets.S_TaxRate;
 import net.l1j.server.templates.L1Castle;
@@ -1825,13 +1825,13 @@ public class C_NPCAction extends ClientBasePacket {
 					L1Teleport.teleport(pc, 32683, 32895, (short) 608, 5, true);
 				}
 			}
-		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80052) { // ヤヒの軍師
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80052) { // 火焰之影的軍師
 			if (s.equalsIgnoreCase("a")) { // 私に力をくださいますよう‧‧‧
 				if (pc.hasSkillEffect(STATUS_CURSE_YAHEE)) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 				} else {
 					pc.setSkillEffect(STATUS_CURSE_BARLOG, 1020 * 1000);
-					pc.sendPackets(new S_SkillIconBlessOfEva(pc.getId(), 1020));
+					pc.sendPackets(new S_SkillIconAura(221, 1020, 2)); // 火焰之影的烙印-可攻擊魔族的力量
 					pc.sendPackets(new S_SkillSound(pc.getId(), 750));
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 750));
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1127));
@@ -2079,13 +2079,13 @@ public class C_NPCAction extends ClientBasePacket {
 					htmlid = htmlId;
 				}
 			}
-		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80073) { // バルログの軍師
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80073) { // 炎魔的軍師
 			if (s.equalsIgnoreCase("a")) { // 私に力をくださいますよう‧‧‧
 				if (pc.hasSkillEffect(STATUS_CURSE_BARLOG)) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 				} else {
 					pc.setSkillEffect(STATUS_CURSE_YAHEE, 1020 * 1000);
-					pc.sendPackets(new S_SkillIconBlessOfEva(pc.getId(), 1020));
+					pc.sendPackets(new S_SkillIconAura(221, 1020, 1)); // 炎魔的烙印-可攻擊魔族的力量
 					pc.sendPackets(new S_SkillSound(pc.getId(), 750));
 					pc.broadcastPacket(new S_SkillSound(pc.getId(), 750));
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1127));

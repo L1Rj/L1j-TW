@@ -448,15 +448,15 @@ public class SkillId {
 
 	public static final int STATUS_CUBE_BALANCE = 1025;
 
-        public static final int STATUS_WEAKNESS_EXPOSURE_LV1 = 1026;
+	public static final int STATUS_WEAKNESS_EXPOSURE_LV1 = 1026;
 
-        public static final int STATUS_WEAKNESS_EXPOSURE_LV2 = 1027;
+	public static final int STATUS_WEAKNESS_EXPOSURE_LV2 = 1027;
 
-        public static final int STATUS_WEAKNESS_EXPOSURE_LV3 = 1028;
+	public static final int STATUS_WEAKNESS_EXPOSURE_LV3 = 1028;
         
-        public static final int STATUS_TRIPLES_SPEED = 1029;
+	public static final int STATUS_TRIPLES_SPEED = 1029;
         
-        public static final int STATUS_ANTHARAS_BLOODSTAINS = 1030;
+	public static final int STATUS_ANTHARAS_BLOODSTAINS = 1030;
 	/** 輔助狀態結尾 */
 	public static final int STATUS_END = 1030;
 
