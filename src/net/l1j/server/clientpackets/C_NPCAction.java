@@ -38,6 +38,7 @@ import net.l1j.server.datatables.PolyTable;
 import net.l1j.server.datatables.SkillsTable;
 import net.l1j.server.datatables.TownTable;
 import net.l1j.server.datatables.UBTable;
+import net.l1j.server.GiranPrisonTimeController;
 import net.l1j.server.model.L1CastleLocation;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1Clan;
@@ -2713,48 +2714,54 @@ public class C_NPCAction extends ClientBasePacket {
 					htmlid = "yuris3"; // 贖罪聖書不足
 				}
 			}
+// 奇岩地監傳送師 梅林
+			} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91065) {
+				if (s.equalsIgnoreCase("teleportURL")) {
+				htmlid = "merlin2";
+				GiranPrisonTimeController.getInstance().addGiranPrison(pc);
+			}
 // todo 尚未測試 91056
-                } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91056) { // 班酷 
-                        if (s.equalsIgnoreCase("buy 7")) {
-                                if (pc.getInventory().consumeItem(50502, 1)) {
-                                        L1Pet pet = new L1Pet();
-                                        pet.set_npcid(91150);
-                                        pet.set_name("淘氣龍");
-                                        pet.set_level(1);
-                                        pet.set_hp(40);
-                                        pet.set_mp(25);//以上為換到的寵物等級HP.MP
-                                        L1NpcInstance npc = (L1NpcInstance) obj;
-                                        String npcName = npc.getNpcTemplate().get_name();
-                                        //String itemName = item.getItem().getName();
-                                        L1ItemInstance petamu = pc.getInventory().storeItem(40314, 1);
-                                        if (petamu != null) {
-                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, "$4083"));
-                                                PetTable.getInstance().storeNewPet2(pet, petamu.getId() + 1, petamu.getId());
-                                                pc.sendPackets(new S_ItemName(petamu));
-                                        }
-                                } else {
-                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$337, "$7779"));
-                                }
-                        } else if (s.equalsIgnoreCase("buy 8")) {
-                                if (pc.getInventory().consumeItem(50503, 1)) {
-                                        L1Pet pet = new L1Pet();
-                                        pet.set_npcid(91151);
-                                        pet.set_name("頑皮龍");
-                                        pet.set_level(1);
-                                        pet.set_hp(40);
-                                        pet.set_mp(25); //以上為換到的寵物等級HP.MP
-                                        L1NpcInstance npc = (L1NpcInstance) obj;
-                                        String npcName = npc.getNpcTemplate().get_name();
-                                        L1ItemInstance petamu = pc.getInventory().storeItem(40314, 1);
-                                        if (petamu != null) {
-                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, "$4084"));
-                                                PetTable.getInstance().storeNewPet2(pet, petamu.getId() + 1, petamu.getId());
-                                                pc.sendPackets(new S_ItemName(petamu));
-                                        }
-                                } else {
-                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$337, "$7780"));
-                                }
-                        }
+			} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91056) { // 班酷 
+				if (s.equalsIgnoreCase("buy 7")) {
+				if (pc.getInventory().consumeItem(50502, 1)) {
+					L1Pet pet = new L1Pet();
+					pet.set_npcid(91150);
+					pet.set_name("淘氣龍");
+					pet.set_level(1);
+					pet.set_hp(40);
+					pet.set_mp(25);//以上為換到的寵物等級HP.MP
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					String npcName = npc.getNpcTemplate().get_name();
+					//String itemName = item.getItem().getName();
+					L1ItemInstance petamu = pc.getInventory().storeItem(40314, 1);
+				if (petamu != null) {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, "$4083"));
+					PetTable.getInstance().storeNewPet2(pet, petamu.getId() + 1, petamu.getId());
+					pc.sendPackets(new S_ItemName(petamu));
+					}
+				} else {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$337, "$7779"));
+			}
+			} else if (s.equalsIgnoreCase("buy 8")) {
+				if (pc.getInventory().consumeItem(50503, 1)) {
+					L1Pet pet = new L1Pet();
+					pet.set_npcid(91151);
+					pet.set_name("頑皮龍");
+					pet.set_level(1);
+					pet.set_hp(40);
+					pet.set_mp(25); //以上為換到的寵物等級HP.MP
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					String npcName = npc.getNpcTemplate().get_name();
+					L1ItemInstance petamu = pc.getInventory().storeItem(40314, 1);
+					if (petamu != null) {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, "$4084"));
+						PetTable.getInstance().storeNewPet2(pet, petamu.getId() + 1, petamu.getId());
+						pc.sendPackets(new S_ItemName(petamu));
+					}
+			} else {
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$337, "$7780"));
+			}
+		}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91061) {
 			if (s.equalsIgnoreCase("a")) {
 				if (pc.getInventory().checkItem(50508)) {

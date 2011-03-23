@@ -205,6 +205,8 @@ public final class Config {
 	public static int RATE_AIN_OUTTIME;
 	// 殷海薩的祝福
 	public static int RATE_MAX_CHARGE_PERCENT;
+	// 奇岩地監時間設定
+	public static int GIRAN_PRISON_TIME;
 
 	// --------------------------------------------------
 	// 角色設定
@@ -511,6 +513,7 @@ public final class Config {
 					RATE_AIN_TIME = Integer.parseInt(altSettings.getProperty("RateAinTime", "15"));
 					RATE_AIN_OUTTIME = Integer.parseInt(altSettings.getProperty("RateAinOutTime", "15"));
 					RATE_MAX_CHARGE_PERCENT = Integer.parseInt(altSettings.getProperty("RateMaxChargePercent", "200"));
+					GIRAN_PRISON_TIME = Integer.parseInt(altSettings.getProperty("GiranPrisonTime", "180"));
 				} catch (Exception e) {
 					_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 					throw new Error("Failed to Load " + ALT_SETTINGS_FILE + " File.");
@@ -814,6 +817,9 @@ public final class Config {
 			RATE_AIN_OUTTIME = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("RateMaxChargePercent")) {
 			RATE_MAX_CHARGE_PERCENT = Integer.parseInt(pValue);
+		} else if (pName.equalsIgnoreCase("GiranPrisonTime")) {
+			GIRAN_PRISON_TIME = Integer.parseInt(pValue);
+
 		// charsettings.properties
 		} else if (pName.equalsIgnoreCase("PrinceMaxHP")) {
 			PRINCE_MAX_HP = Integer.parseInt(pValue);

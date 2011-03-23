@@ -16,6 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
+ /* 殷海薩的祝福 時間控制 */
 package net.l1j.server;
 
 import java.util.logging.Logger;
