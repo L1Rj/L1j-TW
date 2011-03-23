@@ -40,7 +40,7 @@ public class S_UseArrowSkill extends ServerBasePacket {
 		writeC(aid);
 		writeD(cha.getId());
 		writeD(targetobj);
-		writeH(isHit ? 6 : 0);
+		writeC(isHit ? 6 : 0);
 		writeC(cha.getHeading());
 		// writeD(0x12000000);
 		// writeD(246);
