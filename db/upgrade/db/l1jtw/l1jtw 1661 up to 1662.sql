@@ -6,7 +6,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for `npcaction`
 -- ----------------------------
-DROP TABLE IF EXISTS `npcaction`;
+DROP TABLE `npcaction`;
 CREATE TABLE `npcaction` (
   `npcid` int(10) unsigned NOT NULL DEFAULT '0',
   `normal_action` varchar(45) NOT NULL DEFAULT '',
@@ -1141,7 +1141,7 @@ INSERT INTO `spawnlist_npc` VALUES ('89761', '艾斯莫蘭達', '1', '50007', '3
 INSERT INTO `spawnlist_npc` VALUES ('89762', '小柯', '1', '50006', '32680', '32811', '0', '0', '6', '0', '2005', '0');
 
 /* 地圖返回點設定 */
+DELETE FROM `getback` WHERE area_mapid = '86';
 INSERT INTO `getback` VALUES ('0', '0', '0', '0', '86', '32780', '32877', '32675', '32869', '32689', '32864', '2005', '0', '0', '0', '1', '隱藏之谷地監');
 INSERT INTO `getback` VALUES ('0', '0', '0', '0', '2005', '32677', '32866', '32675', '32877', '32674', '32833', '2005', '0', '0', '0', '1', '隱藏之谷');
-
 /* 3.3C 隱藏之谷 結束*/
