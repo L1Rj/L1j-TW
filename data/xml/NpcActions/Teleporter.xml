@@ -1701,4 +1701,8 @@
 	<Action Name="teleport giranD" NpcId="91065">
 		<Teleport X="32810" Y="32731" Map="53" Heading="6" Price="0"/>
 	</Action>
+		<!-- 隱藏之谷-伊爾卓斯⇒傳送說話之島村莊 -->
+	<Action Name="teleport talking island-in" NpcId="50003">
+		<Teleport X="32575" Y="32945" Map="0" Heading="5" Price="0"/>
+	</Action>
 </NpcActionList>

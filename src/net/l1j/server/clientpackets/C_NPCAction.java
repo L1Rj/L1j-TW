@@ -209,7 +209,8 @@ public class C_NPCAction extends ClientBasePacket {
 				if (pc.getLevel() > 13) {
 					htmlid = "zeno1";
 				} else { //3.0地圖69 ; 3.3地圖2005 位置需調整
-					L1Teleport.teleport(pc, 32703, 32873, (short) 69, 5, true);
+//					L1Teleport.teleport(pc, 32703, 32873, (short) 69, 5, true);
+					L1Teleport.teleport(pc, 32685, 32870, (short) 2005, 5, true);
 				}
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 50031) {

@@ -38,6 +38,14 @@ public class C_Restart extends ClientBasePacket {
 
 		L1PcInstance pc = client.getActiveChar();
 
+		if (pc.getLevel() >= 49) { // 49級以上 殷海薩的祝福安全區域登出紀錄
+			if (pc.getMap().isSafetyZone(pc.getLocation())) {
+				pc.setAinZone(1);
+			} else {
+				pc.setAinZone(0);
+			}
+		}
+
 		// 判斷玩家是否未死亡
 		if (!pc.isDead()) {
 			return; // 中斷程序
@@ -46,20 +54,9 @@ public class C_Restart extends ClientBasePacket {
 		int[] loc = null;
 
 		if (pc.getHellTime() > 0) {
-			loc = new int[3];
-			loc[0] = 32701;
-			loc[1] = 32777;
-			loc[2] = 666;
+			loc = new int[] {32701, 32777, 666};
 		} else {
 			loc = Getback.GetBack_Location(pc, true);
-		}
-		
-		if (pc.getLevel() >= 49) { // 49級以上 殷海薩的祝福安全區域登出紀錄
-		if(pc.getMap().isSafetyZone(pc.getLocation())){
-			pc.setAinZone(1);
-		} else {
-			pc.setAinZone(0);
-			}
 		}
 
 		pc.setDead(false); // 設定為未死亡狀態
@@ -70,15 +67,14 @@ public class C_Restart extends ClientBasePacket {
 		pc.setMap((short) loc[2]);
 		L1World.getInstance().moveVisibleObject(pc, loc[2]);
 
-		// waja 20110322移除 未知是否有這功能
 		// 判斷角色目前是否在 隱藏之谷 或 歌唱之島
-//		if (pc.getMapId() == 68 || pc.getMapId() == 69) {
-//			pc.setCurrentHp(pc.getMaxHp()); // 將體力補滿
-//			pc.setCurrentMp(pc.getMaxMp()); // 將魔力補滿
-//			pc.sendPackets(new S_PacketBox(MSG_FEEL_GOOD)); // 中級治癒術之音效
-//		} else {
-//			pc.setCurrentHp(pc.getLevel());
-//		}
+		if ( pc.getMapId() == 2005 ) {
+			pc.setCurrentHp(pc.getMaxHp()); // 將體力補滿
+			pc.setCurrentMp(pc.getMaxMp()); // 將魔力補滿
+			pc.sendPackets(new S_PacketBox(MSG_FEEL_GOOD)); // 中級治癒術之音效
+		} else {
+			pc.setCurrentHp(pc.getLevel());
+		}
 
 		pc.set_food(40);
 		pc.setStatus(0);
