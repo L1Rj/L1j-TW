@@ -1417,7 +1417,7 @@ public class L1NpcInstance extends L1Character {
 
 	// 目標までの距離に應じて最適と思われるルーチンで進む方向を返す
 	public int moveDirection(int x, int y, double d) { // 目標點Ｘ 目標點Ｙ 目標までの距離
-		if ((hasSkillEffect(40) == true && d >= 2D) // 持有狀態魔法"黑闇之影" + 距離2以上 
+		if ((hasSkillEffect(40) == true && d >= 2D) // 持有狀態魔法"黑闇之影" + 距離2以上
 				|| (d > 30D)) { // 距離距離太遠
 			return -1;
 		} else if (d > courceRange) { // 距離が遠い場合は單純計算
@@ -1470,18 +1470,12 @@ public class L1NpcInstance extends L1Character {
 
 	// 面向是否可能
 	private static int targetFace(int heading) {
-		if (heading > 7) {
-			return heading % 8;
-		} else {
-			return heading;
-		}
+		return heading & 0x07;
 	}
 
 	// 目標の逆方向を返す
 	public int targetReverseDirection(int tx, int ty) { // 目標點Ｘ 目標點Ｙ
-		int heading = targetDirection(tx, ty);
-		heading += 4;
-		return targetFace(heading);
+		return targetFace(targetDirection(tx, ty) + 4);
 	}
 
 	// ■■■■■■■■■■■■■ 轉向關連 ■■■■■■■■■■■
@@ -1493,16 +1487,17 @@ public class L1NpcInstance extends L1Character {
 		// マップＩＤ
 		// 進行方向
 		L1Map map = L1WorldMap.getInstance().getMap(m);
+
 		if (map.isPassable(x, y, heading)) {
 			return heading;
 		} else {
 			for (int i = 1; i < 7; i++) {
-				heading += FIND_HEADING_TABLE[i];
-				heading = targetFace(heading);
+				heading = targetFace(heading + FIND_HEADING_TABLE[i]);
 				if (map.isPassable(x, y, heading)) {
 					return heading;
 				}
 			}
+
 			return -1;
 		}
 	}

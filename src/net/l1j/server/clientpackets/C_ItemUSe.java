@@ -303,19 +303,19 @@ public class C_ItemUSe extends ClientBasePacket {
 			L1ItemInstance l1iteminstance1 = pc.getInventory().getItem(l);
 			_log.finest("request item use (obj) = " + itemObjid + " action = " + l + " value = " + s);
 			if (itemId == 40077 || itemId == 40087 || itemId == 40660 || itemId == 40130
-                                || itemId == 40128 || itemId == 140130 || itemId == 140087 || itemId == 240087) {
-                                int quest_weapon = l1iteminstance1.getItem().getItemId();
-                                int safe_enchant = l1iteminstance1.getItem().get_safeenchant();
-                                int weaponId = l1iteminstance1.getItem().getItemId();
-                                if (weaponId == 7 || weaponId == 35 || weaponId == 48 || weaponId == 73 || weaponId == 105
-                                        || weaponId == 120 || weaponId == 147 || weaponId == 156 || weaponId == 174 || weaponId == 175 || weaponId == 224) {
-                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+					|| itemId == 40128 || itemId == 140130 || itemId == 140087 || itemId == 240087) {
+				int quest_weapon = l1iteminstance1.getItem().getItemId();
+				int safe_enchant = l1iteminstance1.getItem().get_safeenchant();
+				int weaponId = l1iteminstance1.getItem().getItemId();
+				if (weaponId == 7 || weaponId == 35 || weaponId == 48 || weaponId == 73 || weaponId == 105
+						|| weaponId == 120 || weaponId == 147 || weaponId == 156 || weaponId == 174 || weaponId == 175 || weaponId == 224) {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					return;
-                                }
+				}
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1
-                                        || (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)
-                                        || (l1iteminstance1.getItem().get_safeenchant() < 0)) {
-                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+						|| (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)
+						|| (l1iteminstance1.getItem().get_safeenchant() < 0)) {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					return;
 				}
 				if (quest_weapon >= 246 && quest_weapon <= 249) { // 強化不可
@@ -380,30 +380,30 @@ public class C_ItemUSe extends ClientBasePacket {
 						Enchant.failure(pc, l1iteminstance1, client);
 					}
 				}
-                        } else if (itemId == 49311) {
-                                int weaponId = l1iteminstance1.getItem().getItemId();
-                                if (l1iteminstance1 == null
-                                        || l1iteminstance1.getItem().get_safeenchant() < 0
-                                        || l1iteminstance1.getItem().getType2() != 1
-                                        || (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)) {
+			} else if (itemId == 49311) {
+				int weaponId = l1iteminstance1.getItem().getItemId();
+				if (l1iteminstance1 == null
+						|| l1iteminstance1.getItem().get_safeenchant() < 0
+						|| l1iteminstance1.getItem().getType2() != 1
+						|| (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131)) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					return;
 				}
-                                if (weaponId == 7 || weaponId == 35 || weaponId == 48 || weaponId == 73 || weaponId == 105
-                                        || weaponId == 120 || weaponId == 147 || weaponId == 156 || weaponId == 174 || weaponId == 175 || weaponId == 224) {
-                                        int safe_enchant = l1iteminstance1.getItem().get_safeenchant();
-                                        int enchant_level = l1iteminstance1.getEnchantLevel();
-                                        if (enchant_level < safe_enchant) {
-                                                pc.getInventory().removeItem(item, 1);
-                                                Enchant.success(pc, l1iteminstance1, client, Enchant.randomLevel(l1iteminstance1, itemId));
-                                        } else {
-                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
-                                                return;
-                                        }
-                                } else {
-                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+				if (weaponId == 7 || weaponId == 35 || weaponId == 48 || weaponId == 73 || weaponId == 105
+						|| weaponId == 120 || weaponId == 147 || weaponId == 156 || weaponId == 174 || weaponId == 175 || weaponId == 224) {
+					int safe_enchant = l1iteminstance1.getItem().get_safeenchant();
+					int enchant_level = l1iteminstance1.getEnchantLevel();
+					if (enchant_level < safe_enchant) {
+						pc.getInventory().removeItem(item, 1);
+						Enchant.success(pc, l1iteminstance1, client, Enchant.randomLevel(l1iteminstance1, itemId));
+					} else {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+						return;
+					}
+				} else {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 					return;
-                                }
+				}
 			} else if (itemId == 41429 || itemId == 41430 || itemId == 41431 || itemId == 41432) { // 地水火風之武器強化卷軸
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName(), "$245", "$247")); 
@@ -487,57 +487,57 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.getInventory().removeItem(item, 1);
 				}
 			} else if (itemId == 49310) {
-                                if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2) {
-                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
-                                        return;
-                                }
-                                /* 象牙塔防具20028 ~ 21557 泡水防具 21051 ~ 21056 */
-                                if (l1iteminstance1.getItem().getItemId() == 20028
-                                        || l1iteminstance1.getItem().getItemId() == 20082
-                                        || l1iteminstance1.getItem().getItemId() == 20126
-                                        || l1iteminstance1.getItem().getItemId() == 20173
-                                        || l1iteminstance1.getItem().getItemId() == 20206
-                                        || l1iteminstance1.getItem().getItemId() == 20232
-                                        || l1iteminstance1.getItem().getItemId() == 21557
-                                        || l1iteminstance1.getItem().getItemId() == 21051
-                                        || l1iteminstance1.getItem().getItemId() == 21052
-                                        || l1iteminstance1.getItem().getItemId() == 21053
-                                        || l1iteminstance1.getItem().getItemId() == 21054
-                                        || l1iteminstance1.getItem().getItemId() == 21055
-                                        || l1iteminstance1.getItem().getItemId() == 21056) {
-                                        int enchant_level = l1iteminstance1.getEnchantLevel();
-                                        int safe_enchant = ((L1Armor) l1iteminstance1.getItem()).get_safeenchant();
-                                        if (enchant_level < safe_enchant) {
-                                                Enchant.success(pc, l1iteminstance1, client, Enchant.randomLevel(l1iteminstance1, itemId));
-                                        } else {
-                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
-                                                return;
-                                        }
-                                        pc.getInventory().removeItem(item, 1);
-                                } else {
-                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
-                                        return;
-                                }
-                        } else if (itemId == 40078 || itemId == 40074 || itemId == 40129
+				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2) {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+					return;
+				}
+				/* 象牙塔防具20028 ~ 21557 泡水防具 21051 ~ 21056 */
+				if (l1iteminstance1.getItem().getItemId() == 20028
+						|| l1iteminstance1.getItem().getItemId() == 20082
+						|| l1iteminstance1.getItem().getItemId() == 20126
+						|| l1iteminstance1.getItem().getItemId() == 20173
+						|| l1iteminstance1.getItem().getItemId() == 20206
+						|| l1iteminstance1.getItem().getItemId() == 20232
+						|| l1iteminstance1.getItem().getItemId() == 21557
+						|| l1iteminstance1.getItem().getItemId() == 21051
+						|| l1iteminstance1.getItem().getItemId() == 21052
+						|| l1iteminstance1.getItem().getItemId() == 21053
+						|| l1iteminstance1.getItem().getItemId() == 21054
+						|| l1iteminstance1.getItem().getItemId() == 21055
+						|| l1iteminstance1.getItem().getItemId() == 21056) {
+					int enchant_level = l1iteminstance1.getEnchantLevel();
+					int safe_enchant = ((L1Armor) l1iteminstance1.getItem()).get_safeenchant();
+					if (enchant_level < safe_enchant) {
+						Enchant.success(pc, l1iteminstance1, client, Enchant.randomLevel(l1iteminstance1, itemId));
+					} else {
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+						return;
+					}
+					pc.getInventory().removeItem(item, 1);
+				} else {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+					return;
+				}
+			} else if (itemId == 40078 || itemId == 40074 || itemId == 40129
 					|| itemId == 140129 || itemId == 140074
 					|| itemId == 240074 || itemId == 40127) { // 防具強化スクロール
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2
-                                        // 象牙塔防具
-                                        || l1iteminstance1.getItem().getItemId() == 20028
-                                        || l1iteminstance1.getItem().getItemId() == 20082
-                                        || l1iteminstance1.getItem().getItemId() == 20126
-                                        || l1iteminstance1.getItem().getItemId() == 20173
-                                        || l1iteminstance1.getItem().getItemId() == 20206
-                                        || l1iteminstance1.getItem().getItemId() == 20232
-                                        || l1iteminstance1.getItem().getItemId() == 21557
-                                        // 泡水防具
-                                        || l1iteminstance1.getItem().getItemId() == 21051
-                                        || l1iteminstance1.getItem().getItemId() == 21052
-                                        || l1iteminstance1.getItem().getItemId() == 21053
-                                        || l1iteminstance1.getItem().getItemId() == 21054
-                                        || l1iteminstance1.getItem().getItemId() == 21055
-                                        || l1iteminstance1.getItem().getItemId() == 21056
-                                        ) {
+						// 象牙塔防具
+						|| l1iteminstance1.getItem().getItemId() == 20028
+						|| l1iteminstance1.getItem().getItemId() == 20082
+						|| l1iteminstance1.getItem().getItemId() == 20126
+						|| l1iteminstance1.getItem().getItemId() == 20173
+						|| l1iteminstance1.getItem().getItemId() == 20206
+						|| l1iteminstance1.getItem().getItemId() == 20232
+						|| l1iteminstance1.getItem().getItemId() == 21557
+						// 泡水防具
+						|| l1iteminstance1.getItem().getItemId() == 21051
+						|| l1iteminstance1.getItem().getItemId() == 21052
+						|| l1iteminstance1.getItem().getItemId() == 21053
+						|| l1iteminstance1.getItem().getItemId() == 21054
+						|| l1iteminstance1.getItem().getItemId() == 21055
+						|| l1iteminstance1.getItem().getItemId() == 21056
+						) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 					return;
 				}
@@ -1879,7 +1879,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						pc.broadcastPacket(s_attackPacket);
 						int chargeCount = item.getChargeCount();
 						if (chargeCount <= 0 && itemId != 40412) {
-                                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 							return;
 						}
 						int[] mobArray = { 45008, 45140, 45016, 45021, 45025, 45033, 45099, 45147,
@@ -1893,16 +1893,16 @@ public class C_ItemUSe extends ClientBasePacket {
 						 */
 						int rnd = RandomArrayList.getInt(mobArray.length);
 						if (itemId == 40006 || itemId == 140006) {// 創造怪物魔杖 台版只有一分鐘
-                                                        if (chargeCount == 1) {
-                                                                SpawnUtil.spawn(pc, mobArray[rnd], 0, 60000);
-                                                                item.setChargeCount(item.getChargeCount() - 1);
-                                                                pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
-                                                                pc.getInventory().removeItem(item, 1);
-                                                        } else if (chargeCount > 1){
-                                                                SpawnUtil.spawn(pc, mobArray[rnd], 0, 60000);
-                                                                item.setChargeCount(item.getChargeCount() - 1);
-                                                                pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
-                                                        }
+							if (chargeCount == 1) {
+								SpawnUtil.spawn(pc, mobArray[rnd], 0, 60000);
+								item.setChargeCount(item.getChargeCount() - 1);
+								pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
+								pc.getInventory().removeItem(item, 1);
+							} else if (chargeCount > 1){
+								SpawnUtil.spawn(pc, mobArray[rnd], 0, 60000);
+								item.setChargeCount(item.getChargeCount() - 1);
+								pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
+							}
 						} else {
 							pc.getInventory().removeItem(item, 1);
 						}
@@ -1913,63 +1913,63 @@ public class C_ItemUSe extends ClientBasePacket {
 				} else if (itemId == 40007) { // 閃電魔杖
 					int chargeCount = item.getChargeCount();
 					if (chargeCount <= 0) {
-                                                pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
-                                                return;
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+						return;
 					}
-                                        if (chargeCount == 1) {
-                                                L1Object target = L1World.getInstance().findObject(spellsc_objid);
-                                                pc.sendPackets(new S_UseAttackSkill(pc, spellsc_objid, 10, spellsc_x, spellsc_y, ActionCodes.ACTION_Wand));
-                                                pc.broadcastPacket(new S_UseAttackSkill(pc, spellsc_objid, 10, spellsc_x, spellsc_y, ActionCodes.ACTION_Wand));
-                                                if (target != null) {
-                                                        Wand.action(pc, target);
-                                                }
-                                                item.setChargeCount(item.getChargeCount() - 1);
-                                                pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
-                                                pc.getInventory().removeItem(item, 1);
-                                        } else if (chargeCount > 1){
-                                                L1Object target = L1World.getInstance().findObject(spellsc_objid);
-                                                pc.sendPackets(new S_UseAttackSkill(pc, spellsc_objid, 10, spellsc_x, spellsc_y, ActionCodes.ACTION_Wand));
-                                                pc.broadcastPacket(new S_UseAttackSkill(pc, spellsc_objid, 10, spellsc_x, spellsc_y, ActionCodes.ACTION_Wand));
-                                                if (target != null) {
-                                                        Wand.action(pc, target);
-                                                }
-                                                item.setChargeCount(item.getChargeCount() - 1);
-                                                pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
-                                        }
+					if (chargeCount == 1) {
+						L1Object target = L1World.getInstance().findObject(spellsc_objid);
+						pc.sendPackets(new S_UseAttackSkill(pc, spellsc_objid, 10, spellsc_x, spellsc_y, ActionCodes.ACTION_Wand));
+						pc.broadcastPacket(new S_UseAttackSkill(pc, spellsc_objid, 10, spellsc_x, spellsc_y, ActionCodes.ACTION_Wand));
+						if (target != null) {
+							Wand.action(pc, target);
+						}
+						item.setChargeCount(item.getChargeCount() - 1);
+						pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
+						pc.getInventory().removeItem(item, 1);
+					} else if (chargeCount > 1){
+						L1Object target = L1World.getInstance().findObject(spellsc_objid);
+						pc.sendPackets(new S_UseAttackSkill(pc, spellsc_objid, 10, spellsc_x, spellsc_y, ActionCodes.ACTION_Wand));
+						pc.broadcastPacket(new S_UseAttackSkill(pc, spellsc_objid, 10, spellsc_x, spellsc_y, ActionCodes.ACTION_Wand));
+						if (target != null) {
+							Wand.action(pc, target);
+						}
+						item.setChargeCount(item.getChargeCount() - 1);
+						pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
+					}
 				} else if (itemId == 40008 || itemId == 40410 || itemId == 140008) { // 變形魔杖 黑暗安特的樹皮 變形魔杖
 					if (pc.getMapId() == 63 || pc.getMapId() == 552 || pc.getMapId() == 555
-                                                || pc.getMapId() == 557 || pc.getMapId() == 558 || pc.getMapId() == 779) {
+							|| pc.getMapId() == 557 || pc.getMapId() == 558 || pc.getMapId() == 779) {
 						pc.sendPackets(new S_ServerMessage(SystemMessageId.$563));
 					} else {
 						pc.sendPackets(new S_AttackPacket(pc, 0, ActionCodes.ACTION_Wand));
 						pc.broadcastPacket(new S_AttackPacket(pc, 0, ActionCodes.ACTION_Wand));
 						int chargeCount = item.getChargeCount();
 						if (chargeCount <= 0 && itemId != 40410 || pc.getTempCharGfx() == 6034 || pc.getTempCharGfx() == 6035) {
-                                                        pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 							return;
 						}
 						L1Object target = L1World.getInstance().findObject(spellsc_objid);
 						if (target != null) {
-                                                        if (chargeCount == 1) {
-                                                                L1Character cha = (L1Character) target;
-                                                                Poly.Action(pc, cha);
-                                                                if (itemId == 40008 || itemId == 140008) { // 變形魔杖
-                                                                        item.setChargeCount(item.getChargeCount() - 1);
-                                                                        pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
-                                                                        pc.getInventory().removeItem(item, 1);
-                                                                } else {
-                                                                        pc.getInventory().removeItem(item, 1);
-                                                                }
-                                                        } else if (chargeCount > 1) {
-                                                                L1Character cha = (L1Character) target;
-                                                                Poly.Action(pc, cha);
-                                                                if (itemId == 40008 || itemId == 140008) { // 變形魔杖
-                                                                        item.setChargeCount(item.getChargeCount() - 1);
-                                                                        pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
-                                                                } else {
-                                                                        pc.getInventory().removeItem(item, 1);
-                                                                }
-                                                        }
+							if (chargeCount == 1) {
+								L1Character cha = (L1Character) target;
+								Poly.Action(pc, cha);
+								if (itemId == 40008 || itemId == 140008) { // 變形魔杖
+									item.setChargeCount(item.getChargeCount() - 1);
+									pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
+									pc.getInventory().removeItem(item, 1);
+								} else {
+									pc.getInventory().removeItem(item, 1);
+								}
+							} else if (chargeCount > 1) {
+								L1Character cha = (L1Character) target;
+								Poly.Action(pc, cha);
+								if (itemId == 40008 || itemId == 140008) { // 變形魔杖
+									item.setChargeCount(item.getChargeCount() - 1);
+									pc.getInventory().updateItem(item, L1PcInventory.COL_CHARGE_COUNT);
+								} else {
+									pc.getInventory().removeItem(item, 1);
+								}
+							}
 						} else {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$79)); 
 						}

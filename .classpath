@@ -12,7 +12,7 @@
 			<attribute name="javadoc_location" value="http://javolution.org/target/site/apidocs/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.12-bin.jar">
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.15-bin.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="http://dev.mysql.com/doc/"/>
 		</attributes>

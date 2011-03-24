@@ -453,9 +453,9 @@ public class SkillId {
 	public static final int STATUS_WEAKNESS_EXPOSURE_LV2 = 1027;
 
 	public static final int STATUS_WEAKNESS_EXPOSURE_LV3 = 1028;
-        
+
 	public static final int STATUS_TRIPLES_SPEED = 1029;
-        
+
 	public static final int STATUS_ANTHARAS_BLOODSTAINS = 1030;
 	/** 輔助狀態結尾 */
 	public static final int STATUS_END = 1030;
@@ -582,7 +582,7 @@ public class SkillId {
 
 	/** 其他 */
 	public static final int STATUS_FREEZE = 10071;
-	
+
 	public static final int EXP_POTION = 7013;   // 經驗藥水?
 
 	public static final int CURSE_PARALYZE2 = 10101;

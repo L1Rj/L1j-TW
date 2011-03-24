@@ -30,18 +30,18 @@ public class Fishing {
 
 	/** 開始釣魚 */
 	public static void start(L1PcInstance pc, int itemId, int fishX, int fishY) {
-		/*
-                if (pc.getMapId() != 5124 || fishX <= 32789 || fishX >= 32813 || fishY <= 32786 || fishY >= 32812) {
-			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1138));
-			return;
-		}
-                */
+		/**
+		 * if (pc.getMapId() != 5124 || fishX <= 32789 || fishX >= 32813 || fishY <= 32786 || fishY >= 32812) {
+		 * 	pc.sendPackets(new S_ServerMessage(SystemMessageId.$1138));
+		 * 	return;
+		 * }
+		 */
 
-                if (pc.getMapId() !=5300 || fishX <= 32704 || fishX >= 32832 || fishY <= 32767 || fishY >= 32895) {
+		if (pc.getMapId() !=5300 || fishX <= 32704 || fishX >= 32832 || fishY <= 32767 || fishY >= 32895) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1138));
 			return;
 		}
-                
+
 		int rodLength = 0;
 		if (itemId == 41293) {
 			rodLength = 5;

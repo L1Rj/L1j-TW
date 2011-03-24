@@ -29,7 +29,7 @@
 		<fileset dir="${lib}">
 			<include name="c3p0-0.9.1.2.jar" />
 			<include name="javolution-5.5.1.jar" />
-			<include name="mysql-connector-java-5.1.12-bin.jar" />
+			<include name="mysql-connector-java-5.1.15-bin.jar" />
 		</fileset>
 	</path>
 

@@ -401,17 +401,17 @@ public class C_LoginToServer extends ClientBasePacket {
 
 			if (pc.getAinZone() == 1) {
 				Calendar cal = Calendar.getInstance();
-		        long startTime = (cal.getTimeInMillis() - pc.getLastActive().getTime()) / 60000;
+				long startTime = (cal.getTimeInMillis() - pc.getLastActive().getTime()) / 60000;
 
-		        if (startTime >= ainOutTime) {
-		        	long outTime = startTime / ainOutTime;
-		        	long saveTime = outTime + pc.getAinPoint();
-		        	if (saveTime >=1 && saveTime <= ainMaxPercent) {
-		        		pc.setAinPoint((int)saveTime);
-		        	} else if (saveTime > ainMaxPercent) {
-		        		pc.setAinPoint(ainMaxPercent);
-		        	} 
-		        }
+				if (startTime >= ainOutTime) {
+					long outTime = startTime / ainOutTime;
+					long saveTime = outTime + pc.getAinPoint();
+					if (saveTime >=1 && saveTime <= ainMaxPercent) {
+						pc.setAinPoint((int)saveTime);
+					} else if (saveTime > ainMaxPercent) {
+						pc.setAinPoint(ainMaxPercent);
+					} 
+				}
 			}
 		}
 

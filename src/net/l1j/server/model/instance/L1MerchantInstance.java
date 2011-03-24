@@ -586,23 +586,23 @@ public class L1MerchantInstance extends L1NpcInstance {
 				} else if (player.isDarkelf()) { // ダークエルフ
 					htmlid = "gerengde1";
 				} else if (player.isDragonKnight()) {
-                                        htmlid = "gerengdk1";
-                                } else if (player.isIllusionist()) {
-                                        htmlid = "gerengi1";
-                                }
+					htmlid = "gerengdk1";
+				} else if (player.isIllusionist()) {
+					htmlid = "gerengi1";
+				}
 			} else if (npcid == 70011) { // 話せる島の船著き管理人
 				int time = L1GameTimeClock.getInstance().currentTime().getSeconds() % 86400;
 				if (time < 60 * 60 * 6 || time > 60 * 60 * 20) { // 20:00～6:00
 					htmlid = "shipEvI6";
 				}
-                        } else if (npcid == 70080) {
-                                if (player.isCrown()) {
-                                        htmlid = "horundk1";
-                                } else if (player.isKnight()) {
-                                        htmlid = "horunev2";
-                                } else if (player.isIllusionist()) {
-                                        htmlid = "horuni1";
-                                }
+			} else if (npcid == 70080) {
+				if (player.isCrown()) {
+					htmlid = "horundk1";
+				} else if (player.isKnight()) {
+					htmlid = "horunev2";
+				} else if (player.isIllusionist()) {
+					htmlid = "horuni1";
+				}
 			} else if (npcid == 70087) { //沉默洞穴 NPC 賽帝亞
 				if (player.isDarkelf()) {
 					htmlid = "sedia";
@@ -2488,10 +2488,10 @@ public class L1MerchantInstance extends L1NpcInstance {
 					}
 				}
 			} else if (npcid == 80082) { // 釣魚小童
-                                if (player.getLevel() < 15) {
-                                        htmlid = "fk_in_lv";
-                                }
-                        } else if (npcid == 80094) { //哈蒙任務
+				if (player.getLevel() < 15) {
+					htmlid = "fk_in_lv";
+				}
+			} else if (npcid == 80094) { //哈蒙任務
 				if (player.isIllusionist()) {
 					htmlid = "altar1";
 				} else if (!player.isIllusionist()) {

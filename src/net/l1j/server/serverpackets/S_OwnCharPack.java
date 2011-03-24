@@ -32,8 +32,8 @@ public class S_OwnCharPack extends ServerBasePacket {
 	private static final int STATUS_ELFBRAVE = 32;
 	private static final int STATUS_FASTMOVABLE = 64;
 	private static final int STATUS_GHOST = 128;
-        private static final int STATUS_EXPBLESS = 256;
-        private static final int STATUS_TRIPLES_SPEED = 512;
+	private static final int STATUS_EXPBLESS = 256;
+	private static final int STATUS_TRIPLES_SPEED = 512;
 
 	private byte[] _byte = null;
 
@@ -67,9 +67,9 @@ public class S_OwnCharPack extends ServerBasePacket {
 		if (pc.isGhost()) {
 			status |= STATUS_GHOST;
 		}
-                if (pc.isTriplesSpeed()) {
-                        status |= STATUS_TRIPLES_SPEED;
-                }
+		if (pc.isTriplesSpeed()) {
+			status |= STATUS_TRIPLES_SPEED;
+		}
 
 		// int addbyte = 0;
 		writeC(Opcodes.S_OPCODE_CHARPACK);

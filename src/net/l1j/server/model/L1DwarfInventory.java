@@ -255,8 +255,8 @@ public class L1DwarfInventory extends L1Inventory {
 					pstm.setInt(8, item.get_durability());
 					pstm.setInt(9, item.getChargeCount());
 					pstm.setInt(10, item.getRemainingTime());
-                                        pstm.setTimestamp(11, item.getLastUsed());
-                                        pstm.setInt(12, item.getBless());
+					pstm.setTimestamp(11, item.getLastUsed());
+					pstm.setInt(12, item.getBless());
 					pstm.execute();
 				} else {
 					L1ItemInstance item = null;
@@ -276,8 +276,8 @@ public class L1DwarfInventory extends L1Inventory {
 						pstm.setInt(8, item.get_durability());
 						pstm.setInt(9, item.getChargeCount());
 						pstm.setInt(10, item.getRemainingTime());
-                                                pstm.setTimestamp(11, item.getLastUsed());
-                                                pstm.setInt(12, item.getBless());
+						pstm.setTimestamp(11, item.getLastUsed());
+						pstm.setInt(12, item.getBless());
 						pstm.execute();
 					}
 				}

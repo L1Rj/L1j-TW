@@ -618,7 +618,7 @@ public class C_Attr extends ClientBasePacket {
 		int heading = callClanPc.getCallClanHeading();
 		int locX = MoveUtil.MoveLocX(callClanPc.getX(), heading);
 		int locY = MoveUtil.MoveLocY(callClanPc.getY(), heading);
-		heading = (heading + 4) % 8;
+		heading = (heading + 4) & 0x07;
 
 		boolean isExsistCharacter = false;
 		for (L1Object object : L1World.getInstance().getVisibleObjects(callClanPc, 1)) {

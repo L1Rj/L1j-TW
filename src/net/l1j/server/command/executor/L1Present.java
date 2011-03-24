@@ -37,7 +37,7 @@ public class L1Present implements L1CommandExecutor {
 			StringTokenizer st = new StringTokenizer(arg);
 			String account = st.nextToken();
 			int itemid = Integer.parseInt(st.nextToken(), 10);
-                        int enchant = Integer.parseInt(st.nextToken(), 10);
+			int enchant = Integer.parseInt(st.nextToken(), 10);
 			int count = Integer.parseInt(st.nextToken(), 10);
 
 			L1Item temp = ItemTable.getInstance().getTemplate(itemid);

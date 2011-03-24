@@ -73,16 +73,16 @@ public class GiranPrisonTimeController extends Thread {
 							if(pc == null) {
 								g.ismap = false;
 							} else if(pc.getMapId() < 53 || pc.getMapId() > 56) { // 檢測地圖編號
-		  		                g.ismap = false;
-		  		        	} else {
-		  		        		g.time++;
-		  		        		if(g.time == Config.GIRAN_PRISON_TIME) {
-		  		        			g.ismap = false;
-	  		        	            pc.sendPackets(new S_SystemMessage("\\\\d5d5*" + pc.getName() + "奇岩地監每日限制時間已使用完畢,將會傳送回村."));
-	  		        	            int[] loc = Getback.GetBack_Location(pc, true);
-	  							    L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2], 5, true);
-	  		        	        }
-		  		        	}
+								g.ismap = false;
+							} else {
+								g.time++;
+								if(g.time == Config.GIRAN_PRISON_TIME) {
+									g.ismap = false;
+									pc.sendPackets(new S_SystemMessage("\\\\d5d5*" + pc.getName() + "奇岩地監每日限制時間已使用完畢,將會傳送回村."));
+									int[] loc = Getback.GetBack_Location(pc, true);
+									L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2], 5, true);
+								}
+							}
 							pc = null;
 						}
 					}

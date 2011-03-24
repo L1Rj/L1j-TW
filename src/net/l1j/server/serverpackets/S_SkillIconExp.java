@@ -26,11 +26,11 @@ import net.l1j.server.Opcodes;
 public class S_SkillIconExp extends ServerBasePacket {
 
 	public S_SkillIconExp(int i){  // 殷海薩的祝福
-	    writeC(Opcodes.S_OPCODE_PACKETBOX);
-	    writeC(0x52);
-	    writeC(i);
+		writeC(Opcodes.S_OPCODE_PACKETBOX);
+		writeC(0x52);
+		writeC(i);
 	}
-	
+
 	@Override
 	public byte[] getContent() {
 		return getBytes();

@@ -38,18 +38,18 @@ public class L1Skillsound implements L1CommandExecutor {
 	@Override
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
 		try {
-                        /*
-			StringTokenizer tok = new StringTokenizer(arg);
-			String s = tok.nextToken();
-			int skillsound = Integer.parseInt(s);
-			//int actId = Integer.parseInt(st.nextToken(), 10);
-			pc.sendPackets(new S_SkillSound(pc.getId(), skillsound));
-                        */
-                        StringTokenizer st = new StringTokenizer(arg);
-                        int skillsound = Integer.parseInt(st.nextToken(), 10);
+			/**
+			 * StringTokenizer tok = new StringTokenizer(arg);
+			 * String s = tok.nextToken();
+			 * int skillsound = Integer.parseInt(s);
+			 * //int actId = Integer.parseInt(st.nextToken(), 10);
+			 * pc.sendPackets(new S_SkillSound(pc.getId(), skillsound));
+			 */
+			StringTokenizer st = new StringTokenizer(arg);
+			int skillsound = Integer.parseInt(st.nextToken(), 10);
 			int count = Integer.parseInt(st.nextToken(), 10);
 			for (int i = 0; i < count; i++) {
-                                pc.sendPackets(new S_SkillSound(pc.getId(), skillsound));
+				pc.sendPackets(new S_SkillSound(pc.getId(), skillsound));
 				//pc.sendPackets(new S_SkillBrave(pc.getId(), sprid, 20));
 				//pc.sendPackets(new S_SkillHaste(pc.getId(), sprid, 20));
 				//pc.sendPackets(new S_PacketBox(53, sprid, 100));
