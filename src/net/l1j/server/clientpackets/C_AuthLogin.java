@@ -59,14 +59,18 @@ public class C_AuthLogin extends ClientBasePacket {
 
 		Account account = Account.load(accountName);
 		if (account == null) {
+			_log.warning("【警告】使用者帳號：【" + accountName + "】 不存在。");
 			if (Config.AUTO_CREATE_ACCOUNTS) {
 				account = Account.create(accountName, password, ip, host);
 			} else {
 				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_ACCESS_FAILED));
-				_log.warning("account missing for user " + accountName);
 			}
-		} else if (!account.validatePassword(password)) {
+			return;
+		}
+
+		if (!account.validatePassword(password)) {
 			client.addWrongPassFrequency();
+			_log.info("【訊息】使用者帳號：【" + accountName + "】 未能通過密碼檢查" + client.getWrongPassFrequency()+ "次。");
 			if (client.getWrongPassFrequency() > 1) { // 錯2次以上
 				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_PASS_WRONG_SECOND));
 				client.kick();
@@ -81,7 +85,7 @@ public class C_AuthLogin extends ClientBasePacket {
 			client.sendPacket(new S_LoginResult(S_LoginResult.REASON_LOGIN_OK));
 			client.sendPacket(new S_CommonNews());
 		} catch (ServerException e) {
-			_log.info(e.getMessage() + "\n\r問題帳號:" + accountName + " 來源:" + host);
+			_log.info(e.getMessage() + "\n\r問題帳號：" + accountName + " 來源：" + host);
 			return;
 		}
 	}

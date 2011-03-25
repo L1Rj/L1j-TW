@@ -164,8 +164,9 @@ public class Account {
 			pstm.setInt(8, 0);
 			pstm.setInt(9, account._onlineStatus ? 1 : 0);
 			pstm.execute();
-			_log.info("created new account for " + name);
 
+			account._password = null; // 帳號建立完畢立即廢棄處理。
+			_log.info("【訊息】使用者帳號：【" + account._name + "】 完成建立。");
 			return account;
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -433,7 +434,7 @@ public class Account {
 		try {
 			_isValid = _password.equals(makeSHA256(Config.PASSWORD_SALT + rawPassword + makeMD5(_name)));
 			if (_isValid) {
-				_password = null; // 認証が成功した場合、パスワードを破棄する。
+				_password = null; // 認證成功的時候，立即廢棄處理。
 			} else { // 如果密碼不符合
 				_isValid = _password.equals(encodePassword(rawPassword));
 				if (_isValid) { // 如果密碼是舊的加密算法
