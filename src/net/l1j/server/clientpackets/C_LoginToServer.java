@@ -306,11 +306,12 @@ public class C_LoginToServer extends ClientBasePacket {
 		pc.setNetConnection(client);
 		pc.setPacketOutput(client);
 		client.setActiveChar(pc);
-		S_Charshowinit Charshowinit = new S_Charshowinit(pc); // 角色頁面初始能力
-		pc.sendPackets(Charshowinit); // 角色頁面初始能力
 
 		//add 角色登入時若幸運值為0則重新賦予新值
 		L1ClassFeature classFeature = L1ClassFeature.newClassFeature(pc.getType());
+		S_Charshowinit Charshowinit = new S_Charshowinit(pc, classFeature.InitPoints()); // 角色頁面初始能力
+		pc.sendPackets(Charshowinit); // 角色頁面初始能力
+
 		if (pc.getLucky() == 0) {
 			pc.setLucky(classFeature.InitLucky()); // 角色幸運值
 		}
