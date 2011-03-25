@@ -67,7 +67,7 @@ public class C_Restart extends ClientBasePacket {
 		pc.setMap((short) loc[2]);
 		L1World.getInstance().moveVisibleObject(pc, loc[2]);
 
-		// 判斷角色目前是否在 隱藏之谷 或 歌唱之島
+		// 判斷角色目前是否在 隱藏之谷
 		if ( pc.getMapId() == 2005 ) {
 			pc.setCurrentHp(pc.getMaxHp()); // 將體力補滿
 			pc.setCurrentMp(pc.getMaxMp()); // 將魔力補滿

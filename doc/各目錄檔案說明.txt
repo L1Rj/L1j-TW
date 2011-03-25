@@ -1,15 +1,15 @@
 主目錄檔案說明:
-l1jserver.jar				主程式
-ServerStart.bat				啟動批次檔
-ServerConfig.bat			伺服器設定工具批次檔
+l1jserver.jar					主程式
+ServerStart.bat					啟動批次檔
+ServerConfig.bat				伺服器設定工具批次檔
 ServerManager.bat			
-ServerStart.sh				Linux 啟動批次檔
+ServerStart.sh					Linux 啟動批次檔
 
 各目錄概略說明:
 bin\						主程式編譯完成java執行檔
 config\						伺服器主要設定
 data\						廣播/時間/npc控制設定
-db\							資料庫
+db\						資料庫
 doc\						說明文件
 emblem\						血盟盟徽存放目錄
 etc\						日版舊的部份說明與檔案
@@ -29,18 +29,18 @@ l1jtw_quick_build\L1jtwQuickBuilder.bat		免用編譯軟體快速編譯l1jtw伺�
 l1jp_ppc					linage 封包分析程式
 
 DATA目錄內容說明:
-\data\badnames.txt							設定遊戲內不可命名的角色名稱
-\data\announcements.txt						伺服器登入公告.
-\data\toall.txt								伺服器定時公告(客戶端登入後自動索取).
-\data\mapcache\								伺服器地圖快取暫存目錄.
-\data\xml\Cycle\BossCycle.xml				spawnlist_boss.sql內的Boss重生時間示範檔,無任何效果.
-\data\xml\Cycle\users\BossCycle.xml			控制spawnlist_boss.sql內的Boss重生時間.
-\data\xml\GmCommands\GMCommands.xml			配合GM指令用的文件檔、可自定義ItemSet(套裝)以及GmRoom指令.
-\data\xml\Item\TreasureBox.xml				控制寶箱/盒子/袋子類可開到道具種類與機率.
-\data\xml\NpcActions\ItemMaking.xml			控制NPC兌換物品.
-\data\xml\NpcActions\Quest.xml				定義任務流程.
+\data\badnames.txt				設定遊戲內不可命名的角色名稱
+\data\announcements.txt				伺服器登入公告.
+\data\toall.txt					伺服器定時公告(客戶端登入後自動索取).
+\data\mapcache\					伺服器地圖快取暫存目錄.
+\data\xml\Cycle\BossCycle.xml			spawnlist_boss.sql內的Boss重生時間示範檔,無任何效果.
+\data\xml\Cycle\users\BossCycle.xml		控制spawnlist_boss.sql內的Boss重生時間.
+\data\xml\GmCommands\GMCommands.xml		配合GM指令用的文件檔、可自定義ItemSet(套裝)以及GmRoom指令.
+\data\xml\Item\TreasureBox.xml			控制寶箱/盒子/袋子類可開到道具種類與機率.
+\data\xml\NpcActions\ItemMaking.xml		控制NPC兌換物品.
+\data\xml\NpcActions\Quest.xml			定義任務流程.
 \data\xml\NpcActions\SingleItemMaking.xml	同ItemMaking.xml，但可以指定NPC的HtmlId.
-\data\xml\NpcActions\Teleporter.xml			控制傳送NPC傳送點與費用.
+\data\xml\NpcActions\Teleporter.xml		控制傳送NPC傳送點與費用.
 
 XML設定解說
 --------------------------------------------------------------------------------------------------------------------------------
