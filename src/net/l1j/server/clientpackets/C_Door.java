@@ -73,22 +73,22 @@ public class C_Door extends ClientBasePacket {
 				CloseTimer closetimer = new CloseTimer(door);
 				closetimer.begin();
 			}
-// 安塔瑞斯地圖
-		} else if (door.getDoorId() == 6033) { // 安塔瑞斯攻略型第一門
+// 安塔瑞斯地圖門 尚未驗證動作與道具
+		} else if (door.getDoorId() == 6100) { // 安塔瑞斯攻略型第一門
 			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
             	return;
 				}
 			if (pc.getInventory().consumeItem(50528, 1)) { //喀瑪王之心
 				door.open();
 			}
-		} else if (door.getDoorId() == 6034) { // 安塔瑞斯攻略型第二門
+		} else if (door.getDoorId() == 6101) { // 安塔瑞斯攻略型第二門
 			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
 			return;
 			}
 			if (pc.getInventory().consumeItem(50529, 1)) { //喀瑪王之心
 				door.open();
 			}
-		} else if (door.getDoorId() == 6035) { // 安塔瑞斯攻略型第三門
+		} else if (door.getDoorId() == 6102) { // 安塔瑞斯攻略型第三門
 			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
            	 return;
 			}
@@ -98,7 +98,7 @@ public class C_Door extends ClientBasePacket {
 			if (pc.getInventory().consumeItem(50529, 1)) { //喀瑪王之心
           	  door.open();
 			}
-		} else if (door.getDoorId() == 6035) { // 安塔瑞斯攻略型第三門
+		} else if (door.getDoorId() == 6102) { // 安塔瑞斯攻略型第三門
 			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
 			return;
 			}
