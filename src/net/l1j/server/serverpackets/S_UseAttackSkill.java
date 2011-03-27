@@ -22,6 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import net.l1j.server.ActionCodes;
 import net.l1j.server.Opcodes;
+//import net.l1j.server.model.CalcFace; // Test
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.instance.L1PcInstance;
 

@@ -2547,12 +2547,12 @@ public class C_NPCAction extends ClientBasePacket {
 					}
 				}
 			}
-                } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80153) {
-                        if (pc.getLevel() <= 1 && pc.getLevel()  > 2) {
-                                pc.setLevel(2);
-                                htmlid = "tutor";
-                        }
-                } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81124) { // ジャック オ ランタン
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80153) {
+			if (pc.getLevel() <= 1 && pc.getLevel()  > 2) {
+				pc.setLevel(2);
+				htmlid = "tutor";
+			}
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81124) { // ジャック オ ランタン
 			if (s.equalsIgnoreCase("1")) {
 				poly(client, 4002);
 				htmlid = "";
@@ -2728,7 +2728,7 @@ public class C_NPCAction extends ClientBasePacket {
 				GiranPrisonTimeController.getInstance().addGiranPrison(pc);
 			}
 // todo 尚未測試 91056
-			} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91056) { // 班酷 
+			} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 91056) { // 班酷
 				if (s.equalsIgnoreCase("buy 7")) {
 				if (pc.getInventory().consumeItem(50502, 1)) {
 					L1Pet pet = new L1Pet();
@@ -2885,7 +2885,7 @@ public class C_NPCAction extends ClientBasePacket {
 					htmlid = "sherme1";
 				}
 			}
-                } else if (s.equalsIgnoreCase("buy")) {
+		} else if (s.equalsIgnoreCase("buy")) {
 			L1NpcInstance npc = (L1NpcInstance) obj;
 			// "sell"のみ表示されるはずのNPCをチェックする。
 			if (isNpcSellOnly(npc)) {
@@ -3001,7 +3001,7 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 		} else if (s.equalsIgnoreCase("hall") && obj instanceof L1MerchantInstance) {
-			
+
 		} else if (s.equalsIgnoreCase("return")) { // 退租 還20%
 			if (pc.getInventory().checkItem(40312,1) &&
 					(pc.hasSkillEffect(1910) || pc.hasSkillEffect(1911) || pc.hasSkillEffect(1912)
@@ -3169,10 +3169,10 @@ public class C_NPCAction extends ClientBasePacket {
 					pet.deleteMe();
 				}
 			}
-                        /* PETGUI OFF */
-                        if (pc.getPetList().isEmpty()) {
-                            pc.sendPackets(new S_PetGUI(0));
-                        }
+			/* PETGUI OFF */
+			if (pc.getPetList().isEmpty()) {
+				pc.sendPackets(new S_PetGUI(0));
+			}
 
 			htmlid = "";
 		} else if (s.equalsIgnoreCase("withdrawnpc")) { // 「動物を受け取る」
@@ -3685,7 +3685,7 @@ public class C_NPCAction extends ClientBasePacket {
 					}
 					create_weight += temp.getWeight() * createcount[k] / 1000;
 				}
-				
+
 				// 容量確認
 				if (pc.getInventory().getSize() + create_count > 180) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$263));
@@ -3726,7 +3726,7 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 				}
-				
+
 				if (htmlid != null) { // html指定がある場合は表示
 			pc.sendPackets(new S_NPCTalkReturn(objid, htmlid, htmldata));
 				}

@@ -620,10 +620,10 @@ public class L1Character extends L1Object {
 	 */
 	public void addPet(L1NpcInstance npc) {
 		_petlist.put(npc.getId(), npc);
-                //if (_petlist.size() <= 2) { //PETGUI ON
-                if (_petlist.size() <= 1) {
-                    senderPetGUI(npc, 1);
-                }
+		//if (_petlist.size() <= 2) { //PETGUI ON
+		if (_petlist.size() <= 1) {
+			senderPetGUI(npc, 1);
+		}
 	}
 
 	/**
@@ -633,30 +633,30 @@ public class L1Character extends L1Object {
 	 */
 	public void removePet(L1NpcInstance npc) {
 		_petlist.remove(npc.getId());
-                if (_petlist.isEmpty()) { //PETGUI OFF
-                    senderPetGUI(npc, 0);
-                }
+		if (_petlist.isEmpty()) { //PETGUI OFF
+			senderPetGUI(npc, 0);
+		}
 	}
-        
-        /* PETGUI */
-        public void senderPetGUI(L1NpcInstance npc, int type) {// type=  0 : off ,  1 : on
-            if (npc instanceof L1PetInstance) {
-                L1PetInstance pet = (L1PetInstance) npc;
-                L1Character cha = pet.getMaster();
-                if (cha instanceof L1PcInstance) {
-                    L1PcInstance pc = (L1PcInstance) cha;
-                    pc.sendPackets(new S_PetGUI(type)); // PETGUI
-                }
-            } else if (npc instanceof L1SummonInstance) {
-                L1SummonInstance summon = (L1SummonInstance) npc;
-                L1Character cha = summon.getMaster();
-                if (cha instanceof L1PcInstance) {
-                    L1PcInstance pc = (L1PcInstance) cha;
-                    pc.sendPackets(new S_PetGUI(type)); // PETGUI
-                }
-            }
-        }
-        
+
+	/* PETGUI */
+	public void senderPetGUI(L1NpcInstance npc, int type) {// type=  0 : off ,  1 : on
+		if (npc instanceof L1PetInstance) {
+			L1PetInstance pet = (L1PetInstance) npc;
+			L1Character cha = pet.getMaster();
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.sendPackets(new S_PetGUI(type)); // PETGUI
+			}
+		} else if (npc instanceof L1SummonInstance) {
+			L1SummonInstance summon = (L1SummonInstance) npc;
+			L1Character cha = summon.getMaster();
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.sendPackets(new S_PetGUI(type)); // PETGUI
+			}
+		}
+	}
+
 	/**
 	 * キャラクターのペットリストを返す。
 	 * @return

@@ -293,11 +293,11 @@ public class L1PetInstance extends L1NpcInstance {
 		monster.setCurrentHpDirect(getCurrentHp());
 		monster.setMaxMp(getMaxMp());
 		monster.setCurrentMpDirect(getCurrentMp());
-                /* PET GUI*/
+		/* PET GUI*/
 		_petMaster.getPetList().remove(getId());
-                if (_petMaster.getPetList().isEmpty()) {
-                    _petMaster.sendPackets(new S_PetGUI(0));
-                }
+		if (_petMaster.getPetList().isEmpty()) {
+			_petMaster.sendPackets(new S_PetGUI(0));
+		}
 		deleteMe();
 
 		// DBとPetTableから削除し、ペットアミュも破棄

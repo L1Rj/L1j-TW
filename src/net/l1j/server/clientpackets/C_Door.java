@@ -76,31 +76,31 @@ public class C_Door extends ClientBasePacket {
 // 安塔瑞斯地圖門 尚未驗證動作與道具
 		} else if (door.getDoorId() == 6100) { // 安塔瑞斯攻略型第一門
 			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
-            	return;
+				return;
 				}
 			if (pc.getInventory().consumeItem(50528, 1)) { //喀瑪王之心
 				door.open();
 			}
 		} else if (door.getDoorId() == 6101) { // 安塔瑞斯攻略型第二門
 			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
-			return;
+				return;
 			}
 			if (pc.getInventory().consumeItem(50529, 1)) { //喀瑪王之心
 				door.open();
 			}
 		} else if (door.getDoorId() == 6102) { // 安塔瑞斯攻略型第三門
 			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
-           	 return;
+				return;
 			}
 			if (pc.getInventory().consumeItem(50530, 1)) { //喀瑪王之心
 				door.open();
 			}
 			if (pc.getInventory().consumeItem(50529, 1)) { //喀瑪王之心
-          	  door.open();
+				door.open();
 			}
 		} else if (door.getDoorId() == 6102) { // 安塔瑞斯攻略型第三門
 			if (door.getOpenStatus() == ActionCodes.ACTION_Open) {
-			return;
+				return;
 			}
 			if (pc.getInventory().consumeItem(50530, 1)) { //喀瑪王之心
 				door.open();
