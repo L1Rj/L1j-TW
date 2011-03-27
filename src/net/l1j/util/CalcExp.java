@@ -351,7 +351,7 @@ public class CalcExp {
 		if (pc.hasSkillEffect(SkillId.COOKING_3_7_N) || pc.hasSkillEffect(COOKING_3_7_S)) {
 			foodBonus = 1.03;
 		}
-// waja add 經驗值回饋獎勵系統 http://tw.lineage.gamania.com/events/20100209_preview_e3s/b5_2.htm
+// 經驗值回饋獎勵系統 http://tw.lineage.gamania.com/events/20100209_preview_e3s/b5_2.htm
 		if ( pc.getLevel() == 49) {
 			LevelBonus = 1.15;
 		}

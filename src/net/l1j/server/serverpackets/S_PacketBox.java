@@ -174,12 +174,27 @@ public class S_PacketBox extends ServerBasePacket {
 	/** 魚がかかったグラフィックが表示される */
 	public static final int FISHING = 55;
 
-	/* 經驗值加乘（殷海薩的祝福） */
+	/* 經驗值加成（殷海薩的祝福） */
 	public static final int EXPBLESS = 82;
 	/**
 	 * writeC(0x52); // 殷海薩狀態圖示
 	 * writeC(0); // %值為0 ~ 200
 	 */
+
+        /* 龍之血痕 */
+        public static final int BLOODSTAINS = 100;
+
+        /* 龍之鑰 選單 */
+        public static final int DSKEY_MENU = 102 ;
+
+        /* 組隊 清單 */
+        public static final int PARTY_LIST = 105;
+
+        /* 委任 新的隊長 */
+        public static final int APPOINT_CAPTAIN = 106;
+
+        /* 座標位置情報 */
+        public static final int MAP_LOC_INFO = 111;
 
 	public S_PacketBox(int subCode) {
 		writeC(Opcodes.S_OPCODE_PACKETBOX);
@@ -247,7 +262,7 @@ public class S_PacketBox extends ServerBasePacket {
 			break;
 		}
 	}
-
+        
 	public S_PacketBox(int subCode, int type, int time) {
 		writeC(Opcodes.S_OPCODE_PACKETBOX);
 		writeC(subCode);
@@ -283,7 +298,11 @@ public class S_PacketBox extends ServerBasePacket {
 					writeC(0x87);
 				}
 			break;
-			case MSG_DUEL:
+			case BLOODSTAINS:
+                                writeC(type);
+                                writeH(time);
+                            break;
+                        case MSG_DUEL:
 				writeD(type); // 相手のオブジェクトID
 				writeD(time); // 自分のオブジェクトID
 			break;

@@ -113,7 +113,7 @@ public class L1Pet {
 		_lawful = i;
 	}
 
-//waja add 寵物飽食度
+// 寵物飽食度
 	private static int _food;
 
 	public static int get_food() {
@@ -123,5 +123,4 @@ public class L1Pet {
 	public static void set_food(int i) {
 		_food = i;
 	}
-//add end
 }
