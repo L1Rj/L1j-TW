@@ -83,6 +83,7 @@ import net.l1j.server.serverpackets.S_MPUpdate;
 import net.l1j.server.serverpackets.S_Message_YN;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
 import net.l1j.server.serverpackets.S_PetList;
+import net.l1j.server.serverpackets.S_PetGUI;
 import net.l1j.server.serverpackets.S_RetrieveList;
 import net.l1j.server.serverpackets.S_RetrieveElfList;
 import net.l1j.server.serverpackets.S_RetrievePledgeList;
@@ -2546,7 +2547,12 @@ public class C_NPCAction extends ClientBasePacket {
 					}
 				}
 			}
-				}  else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81124) { // ジャック オ ランタン
+                } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80153) {
+                        if (pc.getLevel() <= 1 && pc.getLevel()  > 2) {
+                                pc.setLevel(2);
+                                htmlid = "tutor";
+                        }
+                } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81124) { // ジャック オ ランタン
 			if (s.equalsIgnoreCase("1")) {
 				poly(client, 4002);
 				htmlid = "";
@@ -3140,7 +3146,7 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 			htmlid = "";
-		} else if (s.equalsIgnoreCase("enca")) { // 防具專門家 / 防具の強化魔法を受ける
+		} else if (s.equalsIgnoreCase("enca")) { // 防具專門家
 			L1NpcInstance npc = (L1NpcInstance) obj;
 			L1ItemInstance item = pc.getInventory().getItemEquipped(2, 2);
 			if (item != null) {
@@ -3153,7 +3159,7 @@ public class C_NPCAction extends ClientBasePacket {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 			}
 			htmlid = "";
-		} else if (s.equalsIgnoreCase("depositnpc")) { // 「動物を預ける」
+		} else if (s.equalsIgnoreCase("depositnpc")) {
 			Object[] petList = pc.getPetList().values().toArray();
 			for (Object petObject : petList) {
 				if (petObject instanceof L1PetInstance) { // ペット
@@ -3163,6 +3169,11 @@ public class C_NPCAction extends ClientBasePacket {
 					pet.deleteMe();
 				}
 			}
+                        /* PETGUI OFF */
+                        if (pc.getPetList().isEmpty()) {
+                            pc.sendPackets(new S_PetGUI(0));
+                        }
+
 			htmlid = "";
 		} else if (s.equalsIgnoreCase("withdrawnpc")) { // 「動物を受け取る」
 			pc.sendPackets(new S_PetList(objid, pc));

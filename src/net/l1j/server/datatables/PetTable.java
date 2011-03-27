@@ -149,7 +149,7 @@ public class PetTable {
 		pstm.setInt(7, l1pet.get_mp());
 		pstm.setInt(8, l1pet.get_exp());
 		pstm.setInt(9, l1pet.get_lawful());
-                pstm.setInt(10, l1pet.get_food());
+		pstm.setInt(10, l1pet.get_food());
 		pstm.execute();
 		} catch (Exception e) {
 		_log.log(Level.SEVERE, e.getLocalizedMessage(), e);

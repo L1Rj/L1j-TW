@@ -33,6 +33,7 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.serverpackets.S_DoActionGFX;
 import net.l1j.server.serverpackets.S_HPMeter;
+import net.l1j.server.serverpackets.S_PetGUI;
 import net.l1j.server.serverpackets.S_PetMenuPacket;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillSound;
@@ -303,6 +304,14 @@ public class L1SummonInstance extends L1NpcInstance {
 			broadcastPacket(new S_SkillSound(getId(), 169));
 		}
 		_master.getPetList().remove(getId());
+                /* PETGUI OFF */
+                if (_master.getPetList().isEmpty()) {
+                    L1PcInstance pc = (L1PcInstance) _master;
+                    if (pc instanceof L1PcInstance) {
+                        pc.sendPackets(new S_PetGUI(0));
+                    }
+                }
+
 		super.deleteMe();
 
 		if (_summonFuture != null) {
