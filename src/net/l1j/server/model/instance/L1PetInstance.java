@@ -32,11 +32,10 @@ import net.l1j.server.model.L1Character;
 import net.l1j.server.model.L1Inventory;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.id.SystemMessageId;
-import net.l1j.server.model.instance.L1SummonInstance;
 import net.l1j.server.serverpackets.S_DoActionGFX;
-import net.l1j.server.serverpackets.S_PetGUI;
 import net.l1j.server.serverpackets.S_HPMeter;
 import net.l1j.server.serverpackets.S_NpcChatPacket;
+import net.l1j.server.serverpackets.S_PetGUI;
 import net.l1j.server.serverpackets.S_PetMenuPacket;
 import net.l1j.server.serverpackets.S_PetPack;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -61,23 +60,18 @@ public class L1PetInstance extends L1NpcInstance {
 	@Override
 	public boolean noTarget() {
 		if (_currentPetStatus == 3) { // ● 休憩の場合
-                        System.out.println("_currentPetStatus == 3");
 			return true;
 		} else if (_currentPetStatus == 4) { // ● 配備の場合
-                        System.out.println("_currentPetStatus == 4");
 			if (_petMaster != null && _petMaster.getMapId() == getMapId() && getLocation().getTileLineDistance(_petMaster.getLocation()) < 5) {
-                                System.out.println("_currentPetStatus == 5");
 				int dir = targetReverseDirection(_petMaster.getX(), _petMaster.getY());
 				dir = checkObject(getX(), getY(), getMapId(), dir);
 				setDirectionMove(dir);
 				setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 			} else { // 主人を見失うか５マス以上はなれたら休憩狀態に
-                                System.out.println("_currentPetStatus == 3");
 				_currentPetStatus = 3;
 				return true;
 			}
 		} else if (_currentPetStatus == 5 && L1Pet.get_food() >= 10 ) { // ● 警戒の場合はホームへ
-                        System.out.println("_currentPetStatus == 5");
 			if (Math.abs(getHomeX() - getX()) > 1 || Math.abs(getHomeY() - getY()) > 1) {
 				int dir = moveDirection(getHomeX(), getHomeY());
 				if (dir == -1) { // ホームが離れすぎてたら現在地がホーム
@@ -89,9 +83,7 @@ public class L1PetInstance extends L1NpcInstance {
 				}
 			}
 		} else if (_currentPetStatus == 7 && L1Pet.get_food() >= 10 ) { // ● ペットの笛で主人の元へ
-                        System.out.println("_currentPetStatus == 7");
 			if (_petMaster != null && _petMaster.getMapId() == getMapId() && getLocation().getTileLineDistance(_petMaster.getLocation()) <= 1) {
-                                System.out.println("_currentPetStatus == 3");
 				_currentPetStatus = 3;
 				return true;
 			}
@@ -99,7 +91,6 @@ public class L1PetInstance extends L1NpcInstance {
 			int locy = _petMaster.getY() + RandomArrayList.getInc(5, -2); // 5.14
 			int dir = moveDirection(locx, locy);
 			if (dir == -1) { // 主人を見失うかはなれたらその場で休憩狀態に
-                                System.out.println("_currentPetStatus == 3");
 				_currentPetStatus = 3;
 				return true;
 			}
@@ -110,7 +101,6 @@ public class L1PetInstance extends L1NpcInstance {
 			if (getLocation().getTileLineDistance(_petMaster.getLocation()) > 2) {
 				int dir = moveDirection(_petMaster.getX(), _petMaster.getY());
 				if (dir == -1) { // 主人が離れすぎたら休憩狀態に
-                                        System.out.println("_currentPetStatus == 3");
 					_currentPetStatus = 3;
 					return true;
 				}
@@ -118,7 +108,6 @@ public class L1PetInstance extends L1NpcInstance {
 				setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 			}
 		} else { // ● 主人を見失ったら休憩狀態に
-                        System.out.println("_currentPetStatus == 3");
 			_currentPetStatus = 3;
 			return true;
 		}
@@ -239,7 +228,6 @@ public class L1PetInstance extends L1NpcInstance {
 			setCurrentHp(0);
 			setExpPercent(getExpPercent() - 5);// 寵物死亡扣除經驗
 			L1Pet.set_food(20);//寵物死亡 飽食度降回20
-                        System.out.println("_currentPetStatus == 3");
 			_currentPetStatus = 3; // 寵物狀態改為停留
 			getMap().setPassable(getLocation(), true);
 			broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Die));
@@ -290,7 +278,6 @@ public class L1PetInstance extends L1NpcInstance {
 
 	// 解放處理
 	public void liberate() {
-                System.out.println("解放狀態");
 		L1MonsterInstance monster = new L1MonsterInstance(getNpcTemplate());
 		monster.setId(IdFactory.getInstance().nextId());
 
@@ -306,13 +293,11 @@ public class L1PetInstance extends L1NpcInstance {
 		monster.setCurrentHpDirect(getCurrentHp());
 		monster.setMaxMp(getMaxMp());
 		monster.setCurrentMpDirect(getCurrentMp());
-
+                /* PET GUI*/
 		_petMaster.getPetList().remove(getId());
-                 /* PETGUI OFF */
                 if (_petMaster.getPetList().isEmpty()) {
                     _petMaster.sendPackets(new S_PetGUI(0));
                 }
-
 		deleteMe();
 
 		// DBとPetTableから削除し、ペットアミュも破棄
@@ -328,7 +313,6 @@ public class L1PetInstance extends L1NpcInstance {
 
 	// ペットの持ち物を收集
 	public void collect() {
-                System.out.println("收集狀態");
 		L1Inventory targetInventory = _petMaster.getInventory();
 		List<L1ItemInstance> items = _inventory.getItems();
 		int size = _inventory.getSize();
@@ -349,7 +333,6 @@ public class L1PetInstance extends L1NpcInstance {
 
 	// 寄放於npc時已裝備的物品直接給予主人
 	public void Npccollect() {
-                System.out.println("物品回歸主人");
 		L1Inventory targetInventory = _petMaster.getInventory();
 		List<L1ItemInstance> items = _inventory.getItems();
 		int size = _inventory.getSize();
@@ -376,7 +359,6 @@ public class L1PetInstance extends L1NpcInstance {
 
 	// リスタート時にDROPを地面に落とす
 	public void dropItem() {
-                System.out.println("地面物品收集");
 		L1Inventory targetInventory = L1World.getInstance().getInventory(getX(), getY(), getMapId());
 		List<L1ItemInstance> items = _inventory.getItems();
 		int size = _inventory.getSize();
@@ -389,7 +371,6 @@ public class L1PetInstance extends L1NpcInstance {
 
 	// 寵物笛使用
 	public void call() {
-                System.out.println("使用寵物笛");
 		int id = _type.getMessageId(L1PetType.getMessageNumber(getLevel()));
 		if (id != 0) {
 			broadcastPacket(new S_NpcChatPacket(this, "$" + id, 0));
@@ -476,8 +457,7 @@ public class L1PetInstance extends L1NpcInstance {
 			return;
 		}
 		if (status == 6 || L1Pet.get_food() == 0) {
-                        System.out.println("解散");
-                        liberate(); // 指令解放寵物&飽食度0時解散寵物
+			liberate(); // 指令解放寵物&飽食度0時解散寵物
 		} else {
 			// 同じ主人のペットの狀態をすべて更新
 			Object[] petList = _petMaster.getPetList().values().toArray();

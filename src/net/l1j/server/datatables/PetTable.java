@@ -121,7 +121,7 @@ public class PetTable {
 		}
 	}
 
-	public void storeNewPet2(L1Pet pet, int i, int itemobjid) { // 新增恐龍蛋
+	public void storeNewPet2(L1Pet pet, int i, int itemobjid) { // 由NPC取得寵物
 		L1Pet l1pet = new L1Pet();
 		l1pet.set_itemobjid(itemobjid);
 		l1pet.set_objid(i);
@@ -132,7 +132,7 @@ public class PetTable {
 		l1pet.set_mp(pet.get_mp());
 		l1pet.set_exp(750);
 		l1pet.set_lawful(0);
-                l1pet.set_food(20);//
+		l1pet.set_food(20);
 		_pets.put(new Integer(itemobjid), l1pet);
 
 		Connection con = null;
@@ -153,7 +153,6 @@ public class PetTable {
 		pstm.execute();
 		} catch (Exception e) {
 		_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-
 		} finally {
 		SQLUtil.close(pstm);
 		SQLUtil.close(con);
