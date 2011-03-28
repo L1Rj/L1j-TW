@@ -84,11 +84,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			pc.setGfxId(classId);
 			pc.set_sex(rs.getInt("Sex"));
 			pc.setType(rs.getInt("Type"));
-			int head = rs.getInt("Heading");
-			if (head > 7) {
-				head = 0;
-			}
-			pc.setHeading(head);
+			pc.setHeading(rs.getInt("Heading") & 0x07);
 			/*
 			 * int locX = resultset.getInt("locX"); int locY =
 			 * resultset.getInt("locY"); short map =

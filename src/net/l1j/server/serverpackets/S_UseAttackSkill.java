@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import net.l1j.server.ActionCodes;
 import net.l1j.server.Opcodes;
-//import net.l1j.server.model.CalcFace; // Test
+import net.l1j.server.model.basisfunction.FaceInto;
 import net.l1j.server.model.L1Character;
 import net.l1j.server.model.instance.L1PcInstance;
 
@@ -80,7 +80,8 @@ public class S_UseAttackSkill extends ServerBasePacket {
 			actionId = ActionCodes.ACTION_Attack;
 		}
 
-		int newheading = calcheading(cha.getX(), cha.getY(), x, y);
+		int newheading = FaceInto.getFace(cha.getX(), cha.getY(), cha.getHeading(), x, y);
+		// int newheading = calcheading(cha.getX(), cha.getY(), x, y);
 		cha.setHeading(newheading);
 		writeC(Opcodes.S_OPCODE_ATTACKPACKET);
 		writeC(actionId);
@@ -115,35 +116,6 @@ public class S_UseAttackSkill extends ServerBasePacket {
 		}
 
 		return _byte;
-	}
-
-	private static int calcheading(int myx, int myy, int tx, int ty) {
-		int newheading = 0;
-		if (tx > myx && ty > myy) {
-			newheading = 3;
-		}
-		if (tx < myx && ty < myy) {
-			newheading = 7;
-		}
-		if (tx > myx && ty == myy) {
-			newheading = 2;
-		}
-		if (tx < myx && ty == myy) {
-			newheading = 6;
-		}
-		if (tx == myx && ty < myy) {
-			newheading = 0;
-		}
-		if (tx == myx && ty > myy) {
-			newheading = 4;
-		}
-		if (tx < myx && ty > myy) {
-			newheading = 5;
-		}
-		if (tx > myx && ty < myy) {
-			newheading = 1;
-		}
-		return newheading;
 	}
 
 	@Override

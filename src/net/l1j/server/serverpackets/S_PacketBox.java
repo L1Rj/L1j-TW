@@ -181,20 +181,20 @@ public class S_PacketBox extends ServerBasePacket {
 	 * writeC(0); // %值為0 ~ 200
 	 */
 
-        /* 龍之血痕 */
-        public static final int BLOODSTAINS = 100;
+	/* 龍之血痕 */
+	public static final int BLOODSTAINS = 100;
 
-        /* 龍之鑰 選單 */
-        public static final int DSKEY_MENU = 102 ;
+	/* 龍之鑰 選單 */
+	public static final int DSKEY_MENU = 102 ;
 
-        /* 組隊 清單 */
-        public static final int PARTY_LIST = 105;
+	/* 組隊 清單 */
+	public static final int PARTY_LIST = 105;
 
-        /* 委任 新的隊長 */
-        public static final int APPOINT_CAPTAIN = 106;
+	/* 委任 新的隊長 */
+	public static final int APPOINT_CAPTAIN = 106;
 
-        /* 座標位置情報 */
-        public static final int MAP_LOC_INFO = 111;
+	/* 座標位置情報 */
+	public static final int MAP_LOC_INFO = 111;
 
 	public S_PacketBox(int subCode) {
 		writeC(Opcodes.S_OPCODE_PACKETBOX);
@@ -262,7 +262,7 @@ public class S_PacketBox extends ServerBasePacket {
 			break;
 		}
 	}
-        
+
 	public S_PacketBox(int subCode, int type, int time) {
 		writeC(Opcodes.S_OPCODE_PACKETBOX);
 		writeC(subCode);
@@ -299,10 +299,10 @@ public class S_PacketBox extends ServerBasePacket {
 				}
 			break;
 			case BLOODSTAINS:
-                                writeC(type);
-                                writeH(time);
-                            break;
-                        case MSG_DUEL:
+				writeC(type);
+				writeH(time);
+			break;
+			case MSG_DUEL:
 				writeD(type); // 相手のオブジェクトID
 				writeD(time); // 自分のオブジェクトID
 			break;

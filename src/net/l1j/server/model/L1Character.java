@@ -24,6 +24,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import javolution.util.FastMap;
 
+import net.l1j.server.model.basisfunction.FaceInto;
 import net.l1j.server.model.instance.L1DollInstance;
 import net.l1j.server.model.instance.L1FollowerInstance;
 import net.l1j.server.model.instance.L1ItemInstance;
@@ -268,11 +269,7 @@ public class L1Character extends L1Object {
 		MoveUtil.MoveLoc(loc, getHeading());
 		return loc;
 	}
-	
 
-	/** 緩存tan數值 */
-	private static final double TAN_225[] = Base.TAN_225;
-	private static final double TAN_675[] = Base.TAN_675;
 	/**
 	 * 指定された座標に對する方向を返す。
 	 * 
@@ -281,21 +278,8 @@ public class L1Character extends L1Object {
 	 * @return 指定された座標に對する方向
 	 */
 	public int targetDirection(int tx, int ty) {
-		int dis_x = tx - getX(); // Ｘ方向の距離 >0 意謂正向軸
-		int dis_y = ty - getY(); // Ｙ方向の距離 <0 負向軸
-		if (dis_y != 0) {
-			double deff = (dis_x / dis_y);
-			if (deff > TAN_225[0] && deff < TAN_225[1]) {
-				return (dis_y > 0) ? 4 : 0;
-			} else if (deff > TAN_675[0] && deff < TAN_225[0]) {
-				return (dis_y > 0) ? 5 : 1;
-			} else if (deff > TAN_225[1] && deff < TAN_675[1]) {
-				return (dis_y > 0) ? 3 : 7;
-			}
-		} else {
-			return (dis_x > 0) ? 2 : 6;
-		}
-		return getHeading(); // ここにはこない。はず
+		return FaceInto.getFace(getX(), getY(), getHeading(), tx ,ty);
+		// return getHeading(); // ここにはこない。はず
 	}
 
 	/**
@@ -311,69 +295,23 @@ public class L1Character extends L1Object {
 		int chy = getY();
 		int arw = 0;
 		for (int i = 0; i < 15; i++) {
-			if ((chx == tx && chy == ty) || (chx + 1 == tx && chy - 1 == ty)
-					|| (chx + 1 == tx && chy == ty)
-					|| (chx + 1 == tx && chy + 1 == ty)
-					|| (chx == tx && chy + 1 == ty)
-					|| (chx - 1 == tx && chy + 1 == ty)
-					|| (chx - 1 == tx && chy == ty)
-					|| (chx - 1 == tx && chy - 1 == ty)
-					|| (chx == tx && chy - 1 == ty)) {
+			int tempx = chx - tx, tempy = chy -ty;
+
+			if ((tempx * tempx + tempy * tempy) <= 2) // 使用畢氏定理 判斷鄰近1格的條件
 				break;
 
-			} else if (chx < tx && chy == ty) {
-				// if (!map.isArrowPassable(chx, chy, 2)) {
-				if (!map.isArrowPassable(chx, chy, targetDirection(tx, ty))) {
-					return false;
-				}
-				chx++;
-			} else if (chx == tx && chy < ty) {
-				// if (!map.isArrowPassable(chx, chy, 4)) {
-				if (!map.isArrowPassable(chx, chy, targetDirection(tx, ty))) {
-					return false;
-				}
-				chy++;
-			} else if (chx > tx && chy == ty) {
-				// if (!map.isArrowPassable(chx, chy, 6)) {
-				if (!map.isArrowPassable(chx, chy, targetDirection(tx, ty))) {
-					return false;
-				}
+			if (!map.isArrowPassable(chx, chy, targetDirection(tx, ty)))
+				return false;
+
+			if (tempx > 0)
 				chx--;
-			} else if (chx == tx && chy > ty) {
-				// if (!map.isArrowPassable(chx, chy, 0)) {
-				if (!map.isArrowPassable(chx, chy, targetDirection(tx, ty))) {
-					return false;
-				}
-				chy--;
-			} else if (chx < tx && chy > ty) {
-				// if (!map.isArrowPassable(chx, chy, 1)) {
-				if (!map.isArrowPassable(chx, chy, targetDirection(tx, ty))) {
-					return false;
-				}
+			else if (tempx < 0)
 				chx++;
+
+			if (tempy > 0)
 				chy--;
-			} else if (chx < tx && chy < ty) {
-				// if (!map.isArrowPassable(chx, chy, 3)) {
-				if (!map.isArrowPassable(chx, chy, targetDirection(tx, ty))) {
-					return false;
-				}
-				chx++;
+			else if (tempy < 0)
 				chy++;
-			} else if (chx > tx && chy < ty) {
-				// if (!map.isArrowPassable(chx, chy, 5)) {
-				if (!map.isArrowPassable(chx, chy, targetDirection(tx, ty))) {
-					return false;
-				}
-				chx--;
-				chy++;
-			} else if (chx > tx && chy > ty) {
-				// if (!map.isArrowPassable(chx, chy, 7)) {
-				if (!map.isArrowPassable(chx, chy, targetDirection(tx, ty))) {
-					return false;
-				}
-				chx--;
-				chy--;
-			}
 		}
 		if (arw == 0) {
 			return true;
