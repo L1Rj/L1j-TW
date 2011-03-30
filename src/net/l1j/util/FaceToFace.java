@@ -21,6 +21,7 @@ package net.l1j.util;
 import java.util.List;
 
 import net.l1j.server.model.L1World;
+import net.l1j.server.model.basisfunction.FaceInto;
 import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
@@ -41,7 +42,18 @@ public class FaceToFace {
 			int targetX = target.getX();
 			int targetY = target.getY();
 			int targetHeading = target.getHeading();
-
+			int tempX = targetX - pcX, tempY = targetY - pcY;
+			
+			if (tempX * tempX + tempY * tempY <= 2) {
+				if (FaceInto.getFace(targetX ,targetY, pcX, pcY) == targetHeading 
+						&& ((targetHeading + 0x04) & 0x07) == pcHeading) {
+					return target;
+				} else {
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
+					return null;
+				}
+			}
+			/**
 			if (pcHeading == 0 && pcX == targetX && pcY == (targetY + 1)) {
 				if (targetHeading == 4) {
 					return target;
@@ -98,7 +110,7 @@ public class FaceToFace {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
 					return null;
 				}
-			}
+			}*/
 		}
 		pc.sendPackets(new S_ServerMessage(SystemMessageId.$93)); // \f1你注視的地方沒有人。
 		return null;

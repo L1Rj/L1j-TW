@@ -42,10 +42,11 @@ public class FaceInto {
 		return heading;
 	}
 
-	public static int getFace(int myx, int myy, final int heading, int tx, int ty) {
-		int dis_x = tx - myx; // Ｘ方向の距離 >0 意謂正向軸
-		int dis_y = ty - myy; // Ｙ方向の距離 <0 負向軸
-		return _calcFace(dis_x, dis_y, heading);
+	public static int getFace(int myx, int myy, int tx, int ty) {
+		return _calcFace(tx - myx, ty - myy, 0);
+	}
 
+	public static int getFace(int myx, int myy, final int heading, int tx, int ty) {
+		return _calcFace(tx - myx, ty - myy, heading);
 	}
 }
