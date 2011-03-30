@@ -233,6 +233,7 @@ public class Potion {
 			return;
 		}
 		pc.sendPackets(new S_PacketBox(S_PacketBox.ICON_BLUEPOTION, time));
+		pc.sendPackets(new S_SkillSound(pc.getId(), 190));
 		pc.broadcastPacket(new S_SkillSound(pc.getId(), 190));
 		pc.setSkillEffect(STATUS_BLUE_POTION, time * 1000);
 		pc.sendPackets(new S_ServerMessage(SystemMessageId.$1007));
