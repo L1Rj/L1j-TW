@@ -24,29 +24,46 @@ public class FaceInto {
 
 	private static final double TAN_225[] = Base.TAN_225;
 	private static final double TAN_675[] = Base.TAN_675;
+	private static final int FACEARRAY[][] = {
+			{7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5},
+			{7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5},
+			{7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5},
+			{7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5},
+			{7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5},
+			{7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5},
+			{0, 0, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 4, 4},
+			{0, 0, 0, 0, 7, 7, 7, 7, 7, 6, 6, 6, 5, 5, 5, 5, 5, 4, 4, 4, 4},
+			{0, 0, 0, 0, 0, 0, 7, 7, 7, 7, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4},
+			{0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4},
+			{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+			{0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4},
+			{0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4},
+			{0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4},
+			{0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4, 4},
+			{1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3},
+			{1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3},
+			{1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3},
+			{1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3},
+			{1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3},
+			{1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3}};
+			
+	private static int fixLocSit(final int _nValue) {
+		if (_nValue > 20)
+			return 20;
+		else if (_nValue < 0)
+			return 0;
+		return _nValue;
+	}
 
 	private static int _calcFace(final int dis_x, final int dis_y, final int heading) {
-		if (dis_y != 0) {
-			double deff = (dis_x / dis_y);
-			if (deff > TAN_225[0] && deff < TAN_225[1]) {
-				return (dis_y > 0) ? 4 : 0;
-			} else if (deff > TAN_675[0] && deff < TAN_225[0]) {
-				return (dis_y > 0) ? 5 : 1;
-			} else if (deff > TAN_225[1] && deff < TAN_675[1]) {
-				return (dis_y > 0) ? 3 : 7;
-			}
-		} else {
-			if (dis_x != 0)
-				return (dis_x > 0) ? 2 : 6;
+		if ((dis_x | dis_y) != 10) {
+			return FACEARRAY[dis_x][dis_y];
 		}
 		return heading;
 	}
 
-	public static int getFace(int myx, int myy, int tx, int ty) {
-		return _calcFace(tx - myx, ty - myy, 0);
-	}
-
 	public static int getFace(int myx, int myy, final int heading, int tx, int ty) {
-		return _calcFace(tx - myx, ty - myy, heading);
+		int _dis_x = fixLocSit(tx - myx + 10), _dis_y = fixLocSit(ty - myy + 10);
+		return _calcFace(_dis_x, _dis_y, heading);
 	}
 }

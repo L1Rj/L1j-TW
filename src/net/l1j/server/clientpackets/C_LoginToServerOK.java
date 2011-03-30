@@ -65,19 +65,19 @@ public class C_LoginToServerOK extends ClientBasePacket {
 				pc.setShowTradeChat(true);
 			}
 		} else if (type == 9) { //血盟
-                        if (button == 0) { // open
-                            pc.setShowClanChat(true);
-                        } else if (button == 1) { // close
-                            pc.setShowClanChat(false);
-                        }
-                } else if (type == 10) { //組隊
-                        if (button == 0) { // close
-                            pc.setShowPartyChat(false);
-                        } else if (button == 1) { // open
-                            pc.setShowPartyChat(true);
-                        }
-                }
-        }
+			if (button == 0) { // open
+				pc.setShowClanChat(true);
+			} else if (button == 1) { // close
+				pc.setShowClanChat(false);
+			}
+		} else if (type == 10) { //組隊
+			if (button == 0) { // close
+				pc.setShowPartyChat(false);
+			} else if (button == 1) { // open
+				pc.setShowPartyChat(true);
+			}
+		}
+	}
 
 	@Override
 	public String getType() {

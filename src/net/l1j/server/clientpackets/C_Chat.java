@@ -218,9 +218,9 @@ public class C_Chat extends ClientBasePacket {
 					L1PcInstance[] clanMembers = clan.getOnlineClanMember();
 					for (L1PcInstance listner : clanMembers) {
 						if (!listner.getExcludingList().contains(pc.getName())) {
-                                                        if (listner.isShowClanChat() && type == CLAN) {
-                                                                listner.sendPackets(s_chatpacket);
-                                                        }
+							if (listner.isShowClanChat() && type == CLAN) {
+								listner.sendPackets(s_chatpacket);
+							}
 						}
 					}
 				}
@@ -239,10 +239,10 @@ public class C_Chat extends ClientBasePacket {
 				L1PcInstance[] partyMembers = pc.getParty().getMembers();
 				for (L1PcInstance listner : partyMembers) {
 					if (!listner.getExcludingList().contains(pc.getName())) {
-                                                if (listner.isShowPartyChat() && type == PARTY) {
-                                                        listner.sendPackets(s_chatpacket);
-                                                }
-                                        }
+						if (listner.isShowPartyChat() && type == PARTY) {
+							listner.sendPackets(s_chatpacket);
+						}
+					}
 				}
 			}
 		} else if (type == TRADE) { // 買賣頻道

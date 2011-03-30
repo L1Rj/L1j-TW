@@ -2833,6 +2833,16 @@ public class L1PcInstance extends L1Character {
 	public void setFishingTime(long i) {
 		_fishingTime = i;
 	}
+/**
+	private boolean _isAutoFishing = false;
+
+	public boolean isAutoFishing() {
+		return _isAutoFishing;
+	}
+
+	public void setAutoFishing(boolean flag) {
+		_isAutoFishing = flag;
+	}*/
 
 	private boolean _isFishing = false;
 

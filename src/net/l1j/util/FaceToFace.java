@@ -43,9 +43,9 @@ public class FaceToFace {
 			int targetY = target.getY();
 			int targetHeading = target.getHeading();
 			int tempX = targetX - pcX, tempY = targetY - pcY;
-			
+
 			if (tempX * tempX + tempY * tempY <= 2) {
-				if (FaceInto.getFace(targetX ,targetY, pcX, pcY) == targetHeading 
+				if (FaceInto.getFace(targetX ,targetY, targetHeading, pcX, pcY) == targetHeading 
 						&& ((targetHeading + 0x04) & 0x07) == pcHeading) {
 					return target;
 				} else {
@@ -53,64 +53,6 @@ public class FaceToFace {
 					return null;
 				}
 			}
-			/**
-			if (pcHeading == 0 && pcX == targetX && pcY == (targetY + 1)) {
-				if (targetHeading == 4) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 1 && pcX == (targetX - 1) && pcY == (targetY + 1)) {
-				if (targetHeading == 5) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 2 && pcX == (targetX - 1) && pcY == targetY) {
-				if (targetHeading == 6) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 3 && pcX == (targetX - 1) && pcY == (targetY - 1)) {
-				if (targetHeading == 7) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 4 && pcX == targetX && pcY == (targetY - 1)) {
-				if (targetHeading == 0) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 5 && pcX == (targetX + 1) && pcY == (targetY - 1)) {
-				if (targetHeading == 1) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 6 && pcX == (targetX + 1) && pcY == targetY) {
-				if (targetHeading == 2) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			} else if (pcHeading == 7 && pcX == (targetX + 1) && pcY == (targetY + 1)) {
-				if (targetHeading == 3) {
-					return target;
-				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$91, target.getName()));
-					return null;
-				}
-			}*/
 		}
 		pc.sendPackets(new S_ServerMessage(SystemMessageId.$93)); // \f1你注視的地方沒有人。
 		return null;
