@@ -293,7 +293,6 @@ public class L1Character extends L1Object {
 		L1Map map = getMap();
 		int chx = getX();
 		int chy = getY();
-		int arw = 0;
 		for (int i = 0; i < 15; i++) {
 			int tempx = chx - tx, tempy = chy -ty;
 
@@ -313,11 +312,7 @@ public class L1Character extends L1Object {
 			else if (tempy < 0)
 				chy++;
 		}
-		if (arw == 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return true;
 	}
 
 	/**
