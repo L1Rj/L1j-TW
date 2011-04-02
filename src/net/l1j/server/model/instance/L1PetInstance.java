@@ -231,6 +231,10 @@ public class L1PetInstance extends L1NpcInstance {
 			_currentPetStatus = 3; // 寵物狀態改為停留
 			getMap().setPassable(getLocation(), true);
 			broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Die));
+                        _petMaster.getPetList().remove(getId());
+                        if (_petMaster.getPetList().isEmpty()) {
+                                _petMaster.sendPackets(new S_PetGUI(0));
+                        }
 		}
 	}
 

@@ -72,76 +72,85 @@ public class NpcAction {
 				setSpecialAttack(0x1E); // 預設值為 0x1E
 				setARange(temp.get_ranged());
 				setSARange(temp.get_ranged());
-			break;
-
-			// 弓箭手系列
-			case 45191:
-			case 45220:
-			case 45272:
-			case 45475:
-			case 45898:
-			case 45905: // 黑暗妖精盜賊
-			case 45175:
-			case 45254:
-			case 45255:
-			case 45411:
-			case 45902:
-			case 45976:
-			case 45990: // 黑暗妖精警衛 (持十字弓)
-			case 45063:
-			case 45270:
-			case 45494: // 骷髏神射手
-			case 45019:
-			case 45050:
-			case 45118:
-			case 45122:
-			case 45123:
-			case 45124:
-			case 45129:
-			case 45291:
-			case 45532:
-			case 45758:
-			case 45765:
-			case 45790:
-			case 46023:
-			case 46029:
-			case 81070:
-			case 81227:
-				setSpecialAttack(0x1E); // 預設值為 0x1E
+                                break;
+                        /* BOW */
+                        case 45063: //1130
+                        case 45270:
+                        case 45494:
+                        case 45699:
+                        case 81227: //1832
+                                setDefaultAttack(0x01);
+                                setSpecialAttack(0x12);
 				setARange(temp.get_ranged());
 				setSARange(0x01);
-			break;
-
-			// 深淵弓箭手
-			case 45502:
-				setDefaultAttack(0x1E); // 預設值攻擊為 0x1E(拉弓)
-				setSpecialAttack(0x01); // 預設值特殊攻擊為 0x01
+                                break;
+                        case 45019://3860
+                        case 45050://3860
+                        case 45118://4463
+                        case 45122://1096
+			case 45123://1096
+			case 45124://1096
+			case 45129://1096
+                        case 45175://3402
+                        case 45191://3412
+                        case 45220://3412
+                        case 45254://3402
+                        case 45255://3402
+                        case 45272://3412
+                        case 45291://1832
+                        case 45411://3402
+                        case 45475://3412
+                        case 45532://1832
+                        case 45758://3860
+                        case 45765://1096
+                        case 45790://4463
+                        case 45898://3412
+                        case 45902://3402
+			case 45905://3412
+                        case 45976://3402
+                        case 45990://3402
+                        case 46023://4531
+                        case 81070://4463
+                                setDefaultAttack(0x01);
+                                setSpecialAttack(0x1e);
 				setARange(temp.get_ranged());
 				setSARange(0x01);
-			break;
-
-			// 黑暗妖精警衛 (矛)
+                                break;
+                        case 45767:
+                        case 46029:
+                            /* 弱化多羅、多羅 */
+			case 45069:
+			case 45186:
+			case 45280:
+			case 45477:
+                                setDefaultAttack(0x1e);
+                                setSpecialAttack(0x01);
+				setARange(temp.get_ranged());
+				setSARange(0x01);
+                                break;
+			/* 矛 */
 			case 45253:
 			case 45287:
 			case 45412:
 			case 45896:
 			case 45903:
 			case 45977:
-				// 弱化毆吉、毆吉
+                            /* 弱化毆吉、毆吉 */
 			case 45078:
 			case 45183:
 			case 45278:
-				// 弱化多羅、多羅
-			case 45069:
-			case 45186:
-			case 45280:
-			case 45477:
-				// 弱化鼠人、鼠人 (圖檔不正確, 等待更改)
+                            /* 鼠人 */
 			case 45052:
-			case 45192:
-			case 45809:
-			case 45924:
-				// 哥布林、哈伯哥布林
+                        case 45192:
+                        case 45502:
+                        case 45809:
+                        case 45924:
+                                setDefaultAttack(0x01);
+                                setSpecialAttack(0x1e);
+				setARange(temp.get_ranged());
+				setSARange(0x01);
+                                break;
+                                /* 哥布林、哈伯哥布林 */
 			case 45008:
 			case 45140:
 			case 45421:
@@ -152,17 +161,21 @@ public class NpcAction {
 			case 45881:
 			case 45882:
 			case 81210:
-				// 冰源狼人
-			case 45767:
-				// 黑騎士系列 (不包含 弱化黑騎士)
+                                setDefaultAttack(0x12);
+                                setSpecialAttack(0x01);
+				setARange(temp.get_ranged());
+				setSARange(0x01);
+                                break;
+                                /* BLACK KNIGHT */
 			case 45165:
 			case 45503:
 			case 60555:
+                        case 70791:
 			case 81066:
 			case 81067:
-			case 70791:
-			case 81115: // 變身專用?、黑騎士副隊長?
-				setSpecialAttack(0x1E); // 預設值特殊攻擊為 0x1E
+			case 81115:
+                                setDefaultAttack(0x19);
+				setSpecialAttack(0x1e);
 				setARange(temp.get_ranged());
 				setSARange(temp.get_ranged());
 			break;

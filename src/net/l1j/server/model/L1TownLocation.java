@@ -77,7 +77,7 @@ public class L1TownLocation {
 	private static final short GETBACK_MAP_GLUDIO = 4;
 	private static final Point[] GETBACK_LOC_GLUDIO = {
 			new Point(32601, 32757), new Point(32625, 32809),
-			new Point(32611, 32726), new Point(32612, 32781),
+			new Point(32609, 32728), new Point(32612, 32781),
 			new Point(32605, 32761), new Point(32614, 32739),
 			new Point(32612, 32775), };
 

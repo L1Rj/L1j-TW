@@ -25,15 +25,18 @@ public class S_PetGUI extends ServerBasePacket {
 
 	private byte[] _byte = null;
 
-	public S_PetGUI(int type) {
+        /*         
+         * 0000	79 0c 03 00 00 00 00 00 00 00 00 00 47 32 32 29    y...........G22)
+         *
+         * 0000	79 0c 00 00 00 00 00 00 00 00 00 00 4c 6b 3f 30    y...........Lk?0
+         */
+	public S_PetGUI(int value) {
 		writeC(Opcodes.S_OPCODE_PETGUI);
 		writeC(0x0c);
-		writeC(type);
-		writeC(0x00);
-		writeC(0x00);
-		writeC(0x00);
-		writeC(0x00);
-		writeC(0x00);
+		writeC(value); // 00:OFF or Die  03:Pet
+                writeC(0x00);
+                writeD(0x00000000);
+                writeD(0x00000000);
 	}
 
 	@Override

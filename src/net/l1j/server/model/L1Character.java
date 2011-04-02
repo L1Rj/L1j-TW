@@ -546,9 +546,22 @@ public class L1Character extends L1Object {
 	 */
 	public void addPet(L1NpcInstance npc) {
 		_petlist.put(npc.getId(), npc);
-		//if (_petlist.size() <= 2) { //PETGUI ON
-		if (_petlist.size() <= 1) {
-			senderPetGUI(npc, 1);
+			if (_petlist.size() <= 1) {
+			if (npc instanceof L1PetInstance) {
+				L1PetInstance pet = (L1PetInstance) npc;
+ 				L1Character cha = pet.getMaster();
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.sendPackets(new S_PetGUI(3));
+				}
+			} else if (npc instanceof L1SummonInstance) {
+				L1SummonInstance summon = (L1SummonInstance) npc;
+				L1Character cha = summon.getMaster();
+			if (cha instanceof L1PcInstance) {
+				L1PcInstance pc = (L1PcInstance) cha;
+				pc.sendPackets(new S_PetGUI(2)); // ??
+				}
+			}
 		}
 	}
 
@@ -565,20 +578,20 @@ public class L1Character extends L1Object {
 	}
 
 	/* PETGUI */
-	public void senderPetGUI(L1NpcInstance npc, int type) {// type=  0 : off ,  1 : on
+	public void senderPetGUI(L1NpcInstance npc, int value) {//value = 00:off , 01:?? , 02:?? , 03:pet
 		if (npc instanceof L1PetInstance) {
 			L1PetInstance pet = (L1PetInstance) npc;
 			L1Character cha = pet.getMaster();
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_PetGUI(type)); // PETGUI
+				pc.sendPackets(new S_PetGUI(value)); // 03
 			}
 		} else if (npc instanceof L1SummonInstance) {
 			L1SummonInstance summon = (L1SummonInstance) npc;
 			L1Character cha = summon.getMaster();
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_PetGUI(type)); // PETGUI
+				pc.sendPackets(new S_PetGUI(value)); // ??
 			}
 		}
 	}
