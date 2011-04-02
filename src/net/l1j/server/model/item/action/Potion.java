@@ -260,7 +260,7 @@ public class Potion {
 			pc.addSp(2);
 		}
 
-		pc.sendPackets(new S_SkillIconWisdomPotion((time / 4)));
+		pc.sendPackets(new S_SkillIconWisdomPotion(time / 4));
 		pc.sendPackets(new S_SkillSound(pc.getId(), 750));
 		pc.broadcastPacket(new S_SkillSound(pc.getId(), 750));
 		pc.setSkillEffect(STATUS_WISDOM_POTION, time * 1000);
@@ -327,18 +327,18 @@ public class Potion {
 	/* 三段式加速 */
 	public static void Triplesspeed(L1PcInstance pc) {
 		if (pc.hasSkillEffect(SKILL_HASTE)
-		|| pc.hasSkillEffect(SKILL_GREATER_HASTE)
-		|| pc.hasSkillEffect(STATUS_HASTE)) {
-		if (pc.hasSkillEffect(STATUS_BRAVE)
-		|| pc.hasSkillEffect(STATUS_ELFBRAVE)
-		|| pc.hasSkillEffect(SKILL_HOLY_WALK)
-		|| pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)
-		|| pc.hasSkillEffect(STATUS_RIBRAVE)
-		|| pc.hasSkillEffect(SKILL_WIND_WALK)){
-			pc.sendPackets(new S_Liquor(pc.getId(), 0x08));
-			pc.sendPackets(new S_SkillSound(pc.getId(), 751));
-			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1065));
-			pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
+				|| pc.hasSkillEffect(SKILL_GREATER_HASTE)
+				|| pc.hasSkillEffect(STATUS_HASTE)) {
+			if (pc.hasSkillEffect(STATUS_BRAVE)
+					|| pc.hasSkillEffect(STATUS_ELFBRAVE)
+					|| pc.hasSkillEffect(SKILL_HOLY_WALK)
+					|| pc.hasSkillEffect(SKILL_MOVING_ACCELERATION)
+					|| pc.hasSkillEffect(STATUS_RIBRAVE)
+					|| pc.hasSkillEffect(SKILL_WIND_WALK)){
+				pc.sendPackets(new S_Liquor(pc.getId(), 0x08));
+				pc.sendPackets(new S_SkillSound(pc.getId(), 751));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$1065));
+				pc.broadcastPacket(new S_SkillSound(pc.getId(), 751));
 			}
 		}
 	}

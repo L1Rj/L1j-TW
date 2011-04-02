@@ -279,7 +279,6 @@ public class L1Character extends L1Object {
 	 */
 	public int targetDirection(int tx, int ty) {
 		return FaceInto.getFace(getX(), getY(), getHeading(), tx ,ty);
-		// return getHeading(); // ここにはこない。はず
 	}
 
 	/**
@@ -294,23 +293,17 @@ public class L1Character extends L1Object {
 		int chx = getX();
 		int chy = getY();
 		for (int i = 0; i < 15; i++) {
-			int tempx = chx - tx, tempy = chy -ty;
+			int tempx = chx - tx, tempy = chy - ty;
 
 			if ((tempx * tempx + tempy * tempy) <= 2) // 使用畢氏定理 判斷鄰近1格的條件
 				break;
 
-			if (!map.isArrowPassable(chx, chy, targetDirection(tx, ty)))
+			int _dir = targetDirection(tx, ty);
+			if (!map.isArrowPassable(chx, chy, _dir))
 				return false;
 
-			if (tempx > 0)
-				chx--;
-			else if (tempx < 0)
-				chx++;
-
-			if (tempy > 0)
-				chy--;
-			else if (tempy < 0)
-				chy++;
+			chx += MoveUtil.MoveX(_dir);
+			chy += MoveUtil.MoveY(_dir);
 		}
 		return true;
 	}

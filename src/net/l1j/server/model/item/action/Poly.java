@@ -321,7 +321,7 @@ public class Poly {
 		} else if ( item_id == ItemId.象牙塔變形卷軸 ) {
 			time = 2100;
 		} else if ( item_id == ItemId.福利變形藥水 ) {
-			time = 7200; // 資料為 4800-7200秒 仍需改寫
+			time = RandomArrayList.getInc(24, 48) * 100; // 資料為 4800-7200秒 仍需改寫
 		}
 
 		L1PolyMorph poly = PolyTable.getInstance().getTemplate(s);
