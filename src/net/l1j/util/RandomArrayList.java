@@ -23,9 +23,9 @@ public class RandomArrayList {
 	private static final String _S_NAME = RandomArrayList.class.getName();
 
 	/** 設定 */
-	private static int _nREUSED = 0;                   // Case1 專屬變數
-	private static final double _nREUSEDTIMES = 1024D; // 限定每一組隨機值 的循環使用次數
-	private static final int _nSIZE = 0x7FFF;          // 建議：Case1:0x7FFF ; Case2:0xFFF
+	private static int _nREUSED = 0;               // Case1 專屬變數
+	private static final int _nREUSEDTIMES = 1024; // 限定每一組隨機值 的循環使用次數
+	private static final int _nSIZE = 0x7FFF;      // 建議：Case1:0x7FFF ; Case2:0xFFF
 
 	private static int _nIndex = 0;
 	private static double[] _nArray = new double[_nSIZE + 1];
