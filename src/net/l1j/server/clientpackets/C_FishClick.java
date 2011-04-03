@@ -36,13 +36,12 @@ import net.l1j.util.RandomArrayList;
 public class C_FishClick extends ClientBasePacket {
 	private static final String C_FISHCLICK = "[C] C_FishClick";
 
-	private static final int TOTAL_SIZE = 400;         // 釣魚的總樣本大小
+	private static final int TOTAL_SIZE = 400;   // 釣魚的總樣本大小
 	private static final int SUCCESS_SIZE = 170; // 釣魚成功的樣本
 	private static final int[] FISH_ID = new int[SUCCESS_SIZE];
 	private static final String[] FISH_NAME = new String[SUCCESS_SIZE];
 
 	static {
-		System.out.printf("FISH_ID、FISH_NAME");
 		for (int i = 0; i < SUCCESS_SIZE; i++) {
 			if (i < 50) {        // 12.5%
 				FISH_ID[i] = 41298;

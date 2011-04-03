@@ -19,20 +19,45 @@
 package net.l1j.util;
 
 public class RandomArrayList {
-	/** 泛用型隨機矩陣，所使用的指標 */
-	private static int _nIndex = 0;
+	/** For Test */
+	private static final String _S_NAME = RandomArrayList.class.getName();
 
-	/** 新型泛用型，適用Int的正數範圍 */
-	private static double[] _nArray = new double[0x7FFF + 1];
+	/** 設定 */
+	private static int _nREUSED = 0;                   // Case1 專屬變數
+	private static final double _nREUSEDTIMES = 1024D; // 限定每一組隨機值 的循環使用次數
+	private static final int _nSIZE = 0x7FFF;          // 建議：Case1:0x7FFF ; Case2:0xFFF
+
+	private static int _nIndex = 0;
+	private static double[] _nArray = new double[_nSIZE + 1];
 
 	static {
+		Builder();
+	}
+
+	private static void Builder() {
 		do {
 			_nArray[_nIndex] = Math.random();
 		} while(getIndex() != 0x00);
+		/** Case1
+		// 若使用 Case1 必須去除 " _nREUSED = 0D; " 的註解
+		// _nREUSED = 0D;
+		 */ // Case1
 	}
 
 	private static int getIndex() {
-		return _nIndex = 0x7FFF & ( ++_nIndex );
+		/** Case1
+		// Case1: 更逼真的隨著使用而改變隨機內容物
+		if (_nIndex++ == 0x0000)
+			if (_nREUSED++ > _nREUSEDTIMES)
+				Builder();
+
+		return _nIndex &= _nSIZE;
+		*/
+
+		// /** Case2
+		// Case2: 標準配備
+		return _nIndex = _nSIZE & ( ++_nIndex );
+		//  */ // Case2
 	}
 
 	/**
@@ -40,8 +65,8 @@ public class RandomArrayList {
 	 */
 	public static void getByte(byte[] arr) {
 		int _nLen_t = arr.length;
-		for(int i = 0; i < _nLen_t; i++)
-			arr[i] = (byte) (getValue() * 0x80);
+		while (_nLen_t != 0)
+			arr[--_nLen_t] = (byte) (getValue() * 0x80);
 	}
 
 	private static boolean haveNextGaussian = false;
@@ -82,19 +107,15 @@ public class RandomArrayList {
 	 * @param rang - Int類型
 	 * @return 0 ~ (數值-1)
 	 */
-	public static int getInt(int rang) {
+	public static int getInt(final int rang) {
 		return (int) (getValue() * rang);
 	}
 
-	public static int getInt(double rang) {
+	public static int getInt(final double rang) {
 		return (int) (getValue() * rang);
 	}
 
-	public static double getDouble() {
-		return getValue();
-	}
-
-	public static double getDouble(double rang) {
+	public static double getDouble(final double rang) {
 		return getValue() * rang;
 	}
 
@@ -107,19 +128,23 @@ public class RandomArrayList {
 	 * @param increase - 修正輸出結果的範圍
 	 * @return 0 ~ (數值-1) + 輸出偏移值
 	 */
-	public static int getInc(int rang, int increase) {
+	public static int getInc(final int rang, final int increase) {
 		return getInt(rang) + increase;
 	}
 
-	public static int getInc(double rang, int increase) {
+	public static int getInc(final double rang, final int increase) {
 		return getInt(rang) + increase;
-	}
-
-	public static double getDc(int rang, int increase) {
-		return getDouble(rang) + increase;
 	}
 
 	public static double getDc(double rang, int increase) {
 		return getDouble(rang) + increase;
+	}
+
+	public String toString() {
+		return new StringBuilder()
+				.append("\n  Class Name：").append(_S_NAME)
+				.append("; _nSIZE = ").append(_nSIZE)
+				.append("; reusede = ").append(_nArray[_nSIZE]).append("times")
+				.toString();
 	}
 }

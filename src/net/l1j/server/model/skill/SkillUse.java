@@ -683,8 +683,7 @@ public class SkillUse {
 			return false; // 攻擊スキルでPKモードじゃない場合
 		}
 
-		if (_user.glanceCheck(cha.getX(), cha.getY()) == false 
-				&& _skill.isThrough() == false) {
+		if (!_user.glanceCheck(cha.getX(), cha.getY()) && _skill.isThrough() == false) {
 			// エンチャント、復活スキルは障害物の判定をしない
 			if (!(_skill.getType() == L1Skills.TYPE_CHANGE
 					|| _skill.getType() == L1Skills.TYPE_RESTORE)) {

@@ -26,8 +26,4 @@ public class Base {
 	/** 目標類型: 0=NULL 1=PC_PC 2=PC_NPC 3=NPC_PC 4=NPC_NPC */
 	public static final int[] TARGET_TYPE = { 0, 1, 2, 3, 4 };
 
-	/** 緩存tan數值 */
-	public static final double[] TAN_225 = { Math.tan(-22.5), Math.tan(22.5) };
-	public static final double[] TAN_675 = { Math.tan(-62.5), Math.tan(62.5) };
-
 }

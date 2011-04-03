@@ -30,7 +30,7 @@ public class Wand {
 		if (user.getId() == target.getId()) {
 			return; // 自分自身に當てた
 		}
-		if (user.glanceCheck(target.getX(), target.getY()) == false) {
+		if (!user.glanceCheck(target.getX(), target.getY())) {
 			return; // 直線上に障害物がある
 		}
 

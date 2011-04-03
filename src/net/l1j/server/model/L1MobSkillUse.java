@@ -261,7 +261,7 @@ public class L1MobSkillUse {
 			if (pc.isGmInvis()) {
 				continue;
 			}
-			if (_attacker.glanceCheck(pc.getX(), pc.getY()) == false) {
+			if (!_attacker.glanceCheck(pc.getX(), pc.getY())) {
 				continue; // 射線が通らない
 			}
 

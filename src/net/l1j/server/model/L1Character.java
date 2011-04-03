@@ -54,7 +54,7 @@ public class L1Character extends L1Object {
 	private boolean _paralyzed;
 	private boolean _sleeped;
 	private L1PcInstance _petMaster;
-        
+
 	private final Map<Integer, L1NpcInstance> _petlist = new FastMap<Integer, L1NpcInstance>();
 	private final Map<Integer, L1DollInstance> _dolllist = new FastMap<Integer, L1DollInstance>();
 	private final Map<Integer, SkillTimer> _skillEffect = new FastMap<Integer, SkillTimer>();
