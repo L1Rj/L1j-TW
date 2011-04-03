@@ -39,8 +39,8 @@ public class RandomArrayList {
 			_nArray[_nIndex] = Math.random();
 		} while(getIndex() != 0x00);
 		/** Case1
-		// 若使用 Case1 必須去除 " _nREUSED = 0D; " 的註解
-		// _nREUSED = 0D;
+		// 若使用 Case1 必須去除 " _nREUSED = 0; " 的註解
+		// _nREUSED = 0;
 		 */ // Case1
 	}
 
