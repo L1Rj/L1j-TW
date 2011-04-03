@@ -53,7 +53,8 @@ public class L1Character extends L1Object {
 	private L1Poison _poison = null;
 	private boolean _paralyzed;
 	private boolean _sleeped;
-
+	private L1PcInstance _petMaster;
+        
 	private final Map<Integer, L1NpcInstance> _petlist = new FastMap<Integer, L1NpcInstance>();
 	private final Map<Integer, L1DollInstance> _dolllist = new FastMap<Integer, L1DollInstance>();
 	private final Map<Integer, SkillTimer> _skillEffect = new FastMap<Integer, SkillTimer>();
@@ -546,21 +547,12 @@ public class L1Character extends L1Object {
 	 */
 	public void addPet(L1NpcInstance npc) {
 		_petlist.put(npc.getId(), npc);
-			if (_petlist.size() <= 1) {
-			if (npc instanceof L1PetInstance) {
-				L1PetInstance pet = (L1PetInstance) npc;
- 				L1Character cha = pet.getMaster();
-			if (cha instanceof L1PcInstance) {
-				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_PetGUI(3));
-				}
-			} else if (npc instanceof L1SummonInstance) {
-				L1SummonInstance summon = (L1SummonInstance) npc;
-				L1Character cha = summon.getMaster();
-			if (cha instanceof L1PcInstance) {
-				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_PetGUI(2)); // ??
-				}
+		if (npc instanceof L1SummonInstance) {
+			L1SummonInstance summon = (L1SummonInstance) npc;
+			L1Character cha = summon.getMaster();
+		if (cha instanceof L1PcInstance) {
+			L1PcInstance pc = (L1PcInstance) cha;
+			pc.sendPackets(new S_PetGUI(1));
 			}
 		}
 	}
@@ -571,27 +563,20 @@ public class L1Character extends L1Object {
 	 * @param npc 削除するNpcを表す、L1NpcInstanceオブジェクト。
 	 */
 	public void removePet(L1NpcInstance npc) {
-		_petlist.remove(npc.getId());
-		if (_petlist.isEmpty()) { //PETGUI OFF
-			senderPetGUI(npc, 0);
-		}
-	}
-
-	/* PETGUI */
-	public void senderPetGUI(L1NpcInstance npc, int value) {//value = 00:off , 01:?? , 02:?? , 03:pet
+			_petlist.remove(npc.getId());
 		if (npc instanceof L1PetInstance) {
 			L1PetInstance pet = (L1PetInstance) npc;
 			L1Character cha = pet.getMaster();
-			if (cha instanceof L1PcInstance) {
-				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_PetGUI(value)); // 03
+		if (cha instanceof L1PcInstance) {
+			L1PcInstance pc = (L1PcInstance) cha;
+			pc.sendPackets(new S_PetGUI(0));
 			}
 		} else if (npc instanceof L1SummonInstance) {
 			L1SummonInstance summon = (L1SummonInstance) npc;
 			L1Character cha = summon.getMaster();
-			if (cha instanceof L1PcInstance) {
-				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_PetGUI(value)); // ??
+		if (cha instanceof L1PcInstance) {
+			L1PcInstance pc = (L1PcInstance) cha;
+			pc.sendPackets(new S_PetGUI(0));
 			}
 		}
 	}

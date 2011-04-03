@@ -152,6 +152,7 @@ public class L1PetInstance extends L1NpcInstance {
 			onPerceive(pc);
 		}
 		master.addPet(this);
+		_petMaster.sendPackets(new S_PetGUI(3));
 	}
 
 	// ペットをテイムした場合
@@ -193,6 +194,7 @@ public class L1PetInstance extends L1NpcInstance {
 		}
 
 		master.addPet(this);
+		//_petMaster.sendPackets(new S_PetGUI(3));
 		PetTable.getInstance().storeNewPet(target, getId(), itemid);
 	}
 
@@ -231,10 +233,7 @@ public class L1PetInstance extends L1NpcInstance {
 			_currentPetStatus = 3; // 寵物狀態改為停留
 			getMap().setPassable(getLocation(), true);
 			broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Die));
-                        _petMaster.getPetList().remove(getId());
-                        if (_petMaster.getPetList().isEmpty()) {
-                                _petMaster.sendPackets(new S_PetGUI(0));
-                        }
+                        _petMaster.sendPackets(new S_PetGUI(0));
 		}
 	}
 
@@ -297,11 +296,9 @@ public class L1PetInstance extends L1NpcInstance {
 		monster.setCurrentHpDirect(getCurrentHp());
 		monster.setMaxMp(getMaxMp());
 		monster.setCurrentMpDirect(getCurrentMp());
-		/* PET GUI*/
-		_petMaster.getPetList().remove(getId());
-		if (_petMaster.getPetList().isEmpty()) {
-			_petMaster.sendPackets(new S_PetGUI(0));
-		}
+                
+		_petMaster.sendPackets(new S_PetGUI(0));
+                
 		deleteMe();
 
 		// DBとPetTableから削除し、ペットアミュも破棄
