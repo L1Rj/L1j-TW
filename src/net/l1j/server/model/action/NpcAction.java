@@ -74,43 +74,43 @@ public class NpcAction {
 				setSARange(temp.get_ranged());
 				break;
 			/* BOW */
-			case 45063: //1130
+			case 45063:
 			case 45270:
 			case 45494:
 			case 45699:
-			case 81227: //1832
+			case 81227:
 				setDefaultAttack(0x01);
 				setSpecialAttack(0x12);
 				setARange(temp.get_ranged());
 				setSARange(0x01);
 				break;
-			case 45019://3860
-			case 45050://3860
-			case 45118://4463
-			case 45122://1096
-			case 45123://1096
-			case 45124://1096
-			case 45129://1096
-			case 45175://3402
-			case 45191://3412
-			case 45220://3412
-			case 45254://3402
-			case 45255://3402
-			case 45272://3412
-			case 45291://1832
-			case 45411://3402
-			case 45475://3412
-			case 45532://1832
-			case 45758://3860
-			case 45765://1096
-			case 45790://4463
-			case 45898://3412
-			case 45902://3402
-			case 45905://3412
-			case 45976://3402
-			case 45990://3402
-			case 46023://4531
-			case 81070://4463
+			case 45019:
+			case 45050:
+			case 45118:
+			case 45122:
+			case 45123:
+			case 45124:
+			case 45129:
+			case 45175:
+			case 45191:
+			case 45220:
+			case 45254:
+			case 45255:
+			case 45272:
+			case 45291:
+			case 45411:
+			case 45475:
+			case 45532:
+			case 45758:
+			case 45765:
+			case 45790:
+			case 45898:
+			case 45902:
+			case 45905:
+			case 45976:
+			case 45990:
+			case 46023:
+			case 81070:
 				setDefaultAttack(0x01);
 				setSpecialAttack(0x1e);
 				setARange(temp.get_ranged());

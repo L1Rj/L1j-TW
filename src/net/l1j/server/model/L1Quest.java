@@ -46,7 +46,6 @@ public class L1Quest {
 	public static final int QUEST_DOROMOND = 20;
 	public static final int QUEST_RUBA = 21;
 	public static final int QUEST_AREX = 22;
-
 	public static final int QUEST_LUKEIN1 = 23;
 	public static final int QUEST_TBOX1 = 24;
 	public static final int QUEST_TBOX2 = 25;
@@ -66,6 +65,7 @@ public class L1Quest {
 	public static final int QUEST_TOSCROLL = 39;
 	public static final int QUEST_MOONOFLONGBOW = 40;
 	public static final int QUEST_GENERALHAMELOFRESENTMENT = 41;//哈濛任務
+	public static final int QUEST_TUTOR = 42;
 
 	public static final int QUEST_END = 255; // 終了濟みクエストのステップ
 
@@ -159,4 +159,5 @@ public class L1Quest {
 		}
 		return false;
 	}
+
 }

@@ -1296,9 +1296,13 @@ public class L1Attack {
 
 		// 弓箭手類型
 		if (Range > 2 && bowActId > 0)
-			actId = 21;
-		else
-			bowActId = -1;
+			if (_npc.getTempCharGfx() == 3860) {
+				actId = 21;
+			} else {
+				actId = 1;
+			}
+			else
+				bowActId = -1;
 
 		data = new int[] { actId, _damage, bowActId, _SpecialEffect }; // 參數
 		_npc.broadcastPacket(new S_Attack(_npc, _target, data)); // 對非自身送出
