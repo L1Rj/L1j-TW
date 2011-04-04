@@ -153,6 +153,8 @@ public class L1PetInstance extends L1NpcInstance {
 		}
 		master.addPet(this);
 		_petMaster.sendPackets(new S_PetGUI(3));
+                _petMaster.setPetUI(true);
+
 	}
 
 	// ペットをテイムした場合
@@ -194,7 +196,8 @@ public class L1PetInstance extends L1NpcInstance {
 		}
 
 		master.addPet(this);
-		//_petMaster.sendPackets(new S_PetGUI(3));
+		_petMaster.sendPackets(new S_PetGUI(3));
+                _petMaster.setPetUI(true);
 		PetTable.getInstance().storeNewPet(target, getId(), itemid);
 	}
 
@@ -233,7 +236,7 @@ public class L1PetInstance extends L1NpcInstance {
 			_currentPetStatus = 3; // 寵物狀態改為停留
 			getMap().setPassable(getLocation(), true);
 			broadcastPacket(new S_DoActionGFX(getId(), ActionCodes.ACTION_Die));
-			_petMaster.sendPackets(new S_PetGUI(0));
+			//_petMaster.sendPackets(new S_PetGUI(0));
 		}
 	}
 
@@ -298,6 +301,7 @@ public class L1PetInstance extends L1NpcInstance {
 		monster.setCurrentMpDirect(getCurrentMp());
 
 		_petMaster.sendPackets(new S_PetGUI(0));
+                _petMaster.setPetUI(false);
 
 		deleteMe();
 

@@ -64,6 +64,7 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
+import net.l1j.server.model.instance.L1TeleporterInstance;
 import net.l1j.server.model.item.ItemId;
 import net.l1j.server.model.npc.L1NpcHtml;
 import net.l1j.server.model.npc.action.L1NpcAction;
@@ -147,15 +148,41 @@ public class C_NPCAction extends ClientBasePacket {
 		L1PcInstance pc = client.getActiveChar();
 		L1PcInstance target;
 		L1Object obj = L1World.getInstance().findObject(objid);
+
 		if (obj != null) {
-			if (obj instanceof L1NpcInstance) {
+                        if (obj instanceof L1NpcInstance) {
 				L1NpcInstance npc = (L1NpcInstance) obj;
 				int difflocx = Math.abs(pc.getX() - npc.getX());
 				int difflocy = Math.abs(pc.getY() - npc.getY());
-				if (difflocx > 3 || difflocy > 3) {
+                                if (pc.PetUI()) {
+                                        if (npc instanceof L1PetInstance) {
+                                                if (difflocx > 9 || difflocy > 9) {
+                                                    return;
+                                                }
+                                                npc.onFinalAction(pc, s);
+                                        } else if (npc instanceof L1SummonInstance) {
+                                                if (difflocx > 9 || difflocy > 9) {
+                                                    return;
+                                                }
+                                                npc.onFinalAction(pc, s);
+                                        } else if (npc instanceof L1MerchantInstance) {
+                                                if (difflocx > 3 || difflocy > 3) {
+                                                    return;
+                                                }
+                                                npc.onFinalAction(pc, s);
+                                        } else if (npc instanceof L1TeleporterInstance) {
+                                                if (difflocx > 3 || difflocy > 3) {
+                                                    return;
+                                                }
+                                                npc.onFinalAction(pc, s);
+                                        }
+                                }
+                                /*
+                                if (difflocx > 3 || difflocy > 3) {
 					return;
 				}
 				npc.onFinalAction(pc, s);
+                                */
 			} else if (obj instanceof L1PcInstance) {
 				target = (L1PcInstance) obj;
 				if (s.matches("[0-9]+")) {
@@ -2548,10 +2575,11 @@ public class C_NPCAction extends ClientBasePacket {
 				}
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80153) {
-			if (pc.getLevel() <= 1 && pc.getLevel()  > 2) {
-				pc.setLevel(2);
-				htmlid = "tutor";
-			}
+			L1NpcInstance npc = (L1NpcInstance) obj;
+			htmlid = getTalkTutor(pc, npc, s);
+                } else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80154) {
+                        L1NpcInstance npc = (L1NpcInstance) obj;
+			htmlid = getTalkAdmin(pc, npc, s);
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81124) { // ジャック オ ランタン
 			if (s.equalsIgnoreCase("1")) {
 				poly(client, 4002);
@@ -4520,6 +4548,133 @@ public class C_NPCAction extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1080));
 		}
 	}
+
+        private String getTalkTutor(L1PcInstance pc, L1NpcInstance npc, String s) {
+                String htmlid = "";
+                if (s.equalsIgnoreCase("A")) {
+                        if(pc.isCrown()) {
+                                if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+                                        htmlid = "tutorp1";
+                                } else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+                                } else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+                                } else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+                                } else {
+                                }
+                        }
+                } else if (s.equalsIgnoreCase("B")) {
+                        if (pc.isKnight()) {
+                                if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+                                        htmlid = "tutork1";
+                                } else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+                                } else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+                                } else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+                                } else {
+                                }
+                        }
+                } else if (s.equalsIgnoreCase("C")) {
+                        if (pc.isElf()) {
+                                if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+                                        htmlid = "tutore1";
+                                } else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+                                } else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+                                } else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+                                } else {
+                                }
+                        }
+                } else if (s.equalsIgnoreCase("D")) {
+                        if (pc.isWizard()) {
+                                if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+                                        htmlid = "tutorm1";
+                                } else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+                                } else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+                                } else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+                                } else {
+                                }
+                        }
+                } else if (s.equalsIgnoreCase("E")) {
+                        if (pc.isDarkelf()) {
+                                if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+                                        htmlid = "tutord1";
+                                } else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+                                } else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+                                } else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+                                } else {
+                                }
+                        }
+                } else if (s.equalsIgnoreCase("F")) {
+                        if (pc.isDragonKnight()) {
+                                if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+                                        htmlid = "tutordk1";
+                                } else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+                                } else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+                                } else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+                                } else {
+                                }
+                        }
+                } else if (s.equalsIgnoreCase("G")) {
+                        if (pc.isIllusionist()) {
+                                if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+                                        htmlid = "tutori1";
+                                } else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+                                } else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+                                } else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+                                } else {
+                                }
+                        }
+                } else if (s.equalsIgnoreCase("H")) {
+                        pc.getInventory().storeItem(40101, 1); // 指定傳送卷軸(隱藏之谷)
+                } else if (s.equalsIgnoreCase("J")) {
+                        pc.getInventory().storeItem(40101, 1);
+                } else if (s.equalsIgnoreCase("K")) {
+                        pc.getInventory().storeItem(40101, 1);
+                } else if (s.equalsIgnoreCase("L")) {
+                        pc.getInventory().storeItem(40101, 1);
+                } else if(s.equalsIgnoreCase("l")) {
+                        pc.getQuest().set_step(L1Quest.QUEST_TUTOR, 0);
+                        if (pc.isCrown()) {
+                                htmlid = "tutorp1";
+                        } else if (pc.isDarkelf()) {
+                                htmlid = "tutord1";
+                        } else if (pc.isDragonKnight()) {
+                                htmlid = "tutordk1";
+                        } else if (pc.isElf()) {
+                                htmlid = "tutore1";
+                        } else if (pc.isIllusionist()) {
+                                htmlid = "tutori1";
+                        } else if (pc.isKnight()) {
+                                htmlid = "tutork1";
+                        } else if (pc.isWizard()) {
+                                htmlid = "tutorm1";
+                        }
+                } else if (s.equalsIgnoreCase("M")) {
+                        pc.getInventory().storeItem(40101, 1);
+                } else if (s.equalsIgnoreCase("N")) {
+                        pc.getInventory().storeItem(40101, 1);
+                }
+                return htmlid;
+        }
+
+        private String getTalkAdmin(L1PcInstance pc, L1NpcInstance npc, String s) {
+                String htmlid = "";
+                if (s.equalsIgnoreCase("A")) {
+                    if (pc.getLevel() > 5) {
+                            htmlid = "";
+                    } else if (pc.getLevel() <= 5 && pc.getLevel() > 6){
+                            pc.setExp(1296);
+                            pc.getQuest().set_step(L1Quest.QUEST_TUTOR, 3);
+                            final int[] item_ids = { 20028, 20126, 20173, 20206, 20232, 40101, 40099, 40098, 40029, 40030,};
+                            final int[] item_amounts = { 1, 1, 1, 1, 1, 5, 30, 20, 50, 5,};
+                            for (int i = 0; i < item_ids.length; i++) {
+                                    L1ItemInstance item = pc.getInventory().storeItem(item_ids[i], item_amounts[i]);
+                                    pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getLogName()));
+                            }
+                            htmlid = "";
+                    } else {
+                            pc.getQuest().set_step(L1Quest.QUEST_TUTOR, 3);
+                    }
+                }
+                return htmlid;
+        }
 
 	// 判斷是否無道具施法(召戒清單、變身清單)
 	private boolean usePolyScroll(L1PcInstance pc, int itemId, String s) {

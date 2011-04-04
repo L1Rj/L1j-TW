@@ -1580,13 +1580,62 @@
 	<Action Name="teleport silveria-under" NpcId="80146">
 		<Teleport X="32561" Y="33460" Map="4" Heading="5" Price="550"/>
 	</Action>
+        <!--幻術師村莊 傳送狩獵區 -->
+	<Action Name="teleportURLA" NpcId="80146">
+		<ShowHtml HtmlId="sharial3"/>
+	</Action>
+        <!-- 新手導師 -->
+	<Action Name="H" NpcId="80153" LevelMin="5" LevelMax="13">
+		<Teleport X="32575" Y="32945" Map="0" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="I" NpcId="80153" LevelMin="5" LevelMax="7">
+		<Teleport X="32635" Y="33182" Map="0" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="J" NpcId="80153" LevelMin="8" LevelMax="13">
+		<Teleport X="32675" Y="32813" Map="2005" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="K" NpcId="80153" LevelMin="5" LevelMax="13">
+		<Teleport X="32563" Y="33083" Map="0" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="L" NpcId="80153" LevelMin="8" LevelMax="13">
+	</Action>
+	<Action Name="M" NpcId="80153" LevelMin="8" LevelMax="13">
+	</Action>
+	<Action Name="N" NpcId="80153" LevelMin="8" LevelMax="13">
+	</Action>
+	<Action Name="O" NpcId="80153" LevelMin="5" LevelMax="7">
+		<Teleport X="32605" Y="32837" Map="2005" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="P" NpcId="80153" LevelMin="5" LevelMax="7">
+		<Teleport X="32733" Y="32902" Map="2005" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="Q" NpcId="80153" LevelMin="8" LevelMax="13">
+		<Teleport X="32559" Y="32843" Map="2005" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="R" NpcId="80153" LevelMin="8" LevelMax="13">
+		<Teleport X="32677" Y="32982" Map="2005" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="S" NpcId="80153" LevelMin="8" LevelMax="13">
+		<Teleport X="32781" Y="32854" Map="2005" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="T" NpcId="80153" LevelMin="8" LevelMax="13">
+		<Teleport X="32674" Y="32739" Map="2005" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="U" NpcId="80153" LevelMin="8" LevelMax="13">
+		<Teleport X="32578" Y="32737" Map="2005" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="V" NpcId="80153" LevelMin="8" LevelMax="13">
+		<Teleport X="32542" Y="32996" Map="2005" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="W" NpcId="80153" LevelMin="8" LevelMax="13">
+		<Teleport X="32794" Y="32973" Map="2005" Heading="5" Price="0"/>
+	</Action>
+	<Action Name="X" NpcId="80153" LevelMin="8" LevelMax="13">
+		<Teleport X="32803" Y="32789" Map="2005" Heading="5" Price="0"/>
+	</Action>
 	<!-- 退休的侍從長－曼孟 傳送奇岩隱藏宮殿 -->
 	<Action Name="teleport grtel" NpcId="91003">
 		<Teleport X="32805" Y="32793" Map="248" Heading="5" Price="1950"/>
-	</Action>
-	<!--幻術師村莊 傳送狩獵區 -->
-	<Action Name="teleportURLA" NpcId="80146">
-		<ShowHtml HtmlId="sharial3"/>
 	</Action>
 	<!-- 瑪雅的影子 亞丁地下墓穴 --> 
 	<Action Name="1" NpcId="91005"> 
@@ -1703,6 +1752,6 @@
 	</Action>
 		<!-- 隱藏之谷-伊爾卓斯⇒傳送說話之島村莊 -->
 	<Action Name="teleport talking island-in" NpcId="50003">
-		<Teleport X="32575" Y="32945" Map="0" Heading="5" Price="0"/>
+		<Teleport X="32583" Y="32929" Map="0" Heading="5" Price="0"/>
 	</Action>
 </NpcActionList>

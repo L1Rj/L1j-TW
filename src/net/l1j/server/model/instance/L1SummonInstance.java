@@ -335,6 +335,13 @@ public class L1SummonInstance extends L1NpcInstance {
 		monster.setCurrentHpDirect(getCurrentHp());
 		monster.setCurrentMpDirect(getCurrentMp());
 		monster.setExp(0);
+                
+                if (_master.getPetList().isEmpty()) {
+			L1PcInstance pc = (L1PcInstance) _master;
+			if (pc instanceof L1PcInstance) {
+				pc.sendPackets(new S_PetGUI(0));
+			}
+		}
 
 		if (_master.getPetList().isEmpty()) {
 			L1PcInstance pc = (L1PcInstance) _master;
