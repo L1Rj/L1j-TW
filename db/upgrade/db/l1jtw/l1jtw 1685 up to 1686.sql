@@ -1,37 +1,20 @@
-/*
-Navicat MySQL Data Transfer
+/* 20110404 l1jtw 道具資料變更 */
 
-Source Server         : LocalHost
-Source Server Version : 50402
-Source Host           : localhost:3306
-Source Database       : l1jdb_tw
+/* 象牙塔瞬間移動卷軸 象牙塔傳送回家的卷軸 象牙塔鑑定卷軸 象牙塔解咒卷軸 象牙塔變身卷軸 象牙塔治癒藥水 象牙塔加速藥水 最高使用等級 45級 */
+Update etcitem Set max_lvl = '45' Where item_id= '40099';
+Update etcitem Set max_lvl = '45' Where item_id= '40095';
+Update etcitem Set max_lvl = '45' Where item_id= '40098';
+Update etcitem Set max_lvl = '45' Where item_id= '40097';
+Update etcitem Set max_lvl = '45' Where item_id= '40096';
+Update etcitem Set max_lvl = '45' Where item_id= '40029';
+Update etcitem Set max_lvl = '45' Where item_id= '40030';
 
-Target Server Type    : MYSQL
-Target Server Version : 50402
-File Encoding         : 65001
+/* 道具新增 象牙塔箭筒 象牙塔的箭 unidentified_name_id identified_name_id weight invgfx grdgfx itemdesc_id 資料不正確 箭筒功能未實裝 */
+INSERT INTO `etcitem` VALUES ('49550', '象牙塔箭筒', '象牙塔箭筒', '象牙塔箭筒', 'treasure_box', 'normal', 'leather', '60000', '1762', '4340', '1498', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '86400', '0', '1');
+INSERT INTO `etcitem` VALUES ('49551', '象牙塔的箭', '象牙塔的箭', '象牙塔的箭', 'arrow', 'normal', 'wood', '30', '7', '66', '0', '1', '0', '6', '5', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0');
 
-Date: 2009-10-13 13:07:14
-*/
-
-SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for `beginner`
--- ----------------------------
-DROP TABLE IF EXISTS `beginner`;
-CREATE TABLE `beginner` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `item_id` int(6) NOT NULL DEFAULT '0',
-  `count` int(10) NOT NULL DEFAULT '0',
-  `charge_count` int(10) NOT NULL DEFAULT '0',
-  `enchantlvl` int(6) NOT NULL DEFAULT '0',
-  `item_name` varchar(50) NOT NULL DEFAULT '',
-  `activate` char(1) NOT NULL DEFAULT 'A',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of beginner
--- ----------------------------
+/* sky88提供 新角色建立時道具 */
+DELETE FROM `beginner`;
 INSERT INTO `beginner` VALUES ('1', '40005', '1', '0', '0', '蠟燭', 'A');
 INSERT INTO `beginner` VALUES ('2', '40005', '1', '0', '0', '蠟燭', 'A');
 INSERT INTO `beginner` VALUES ('3', '40641', '1', '0', '0', '說話卷軸', 'A');
@@ -67,3 +50,7 @@ INSERT INTO `beginner` VALUES ('32', '147', '1', '0', '0', '象牙塔斧頭', 'I
 INSERT INTO `beginner` VALUES ('33', '174', '1', '0', '0', '象牙塔石弓', 'I');
 INSERT INTO `beginner` VALUES ('34', '224', '1', '0', '0', '象牙塔魔杖', 'I');
 INSERT INTO `beginner` VALUES ('35', '49550', '1', '0', '0', '象牙塔箭筒', 'I');
+
+/* sky88提供 武器資料修正 */
+Update weapon Set invgfx = '20' Where item_id= '172';
+Update weapon Set invgfx = '20' Where item_id= '175';
