@@ -14,10 +14,15 @@
  */
 package net.l1j.server;
 
+import java.util.logging.Logger;
+
 import net.l1j.server.clientpackets.*;
 import static net.l1j.server.Opcodes.*;
+import net.l1j.util.ByteArrayUtil;
 
 public class PacketHandler {
+	private static Logger _log = Logger.getLogger(PacketHandler.class.getName());
+
 	private final ClientThread _client;
 
 	public PacketHandler(ClientThread client) {
@@ -306,6 +311,13 @@ public class PacketHandler {
 			break;
 			case C_OPCODE_CLIENTREPORT: // 用戶端請求在線公告 By a0917009769
 				new C_ClientReport(abyte0, _client);
+			break;
+
+			/** 捕捉 */
+			default:
+				String s = Integer.toHexString(i);
+				_log.warning((new StringBuilder()).append("Opcode:").append(s).toString());
+				_log.warning(new ByteArrayUtil(abyte0).dumpToString());
 			break;
 		}
 	}

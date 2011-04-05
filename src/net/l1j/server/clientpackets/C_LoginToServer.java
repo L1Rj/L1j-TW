@@ -271,14 +271,14 @@ public class C_LoginToServer extends ClientBasePacket {
 		String charName = readS();
 
 		L1PcInstance pc = L1PcInstance.load(charName);
-		if (pc == null || !login.equals(pc.getAccountName())) {
+		if (pc == null || !login.equals(pc.getAccountName())) { // 非所屬帳號，則無法登入
 			_log.info("【無效請求】 帳號=" + login + " 角色=" + charName + " IP位址:" + client.getHostname());
 			client.close();
 			return;
 		}
 
-		if (pc != null) {// 限制同一角色無法同時登入
-			if (pc.isBanned() == true) {// 被鎖定角色無法登入
+		if (pc != null) {
+			if (pc.isBanned()) { // 被鎖定角色無法登入
 				_log.info("【被鎖定角色登入】 帳號=" + login + " 角色=" + charName + " IP位址:" + client.getHostname());
 				client.kick(); // 狀態待修改
 				return;
