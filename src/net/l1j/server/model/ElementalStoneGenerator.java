@@ -100,8 +100,7 @@ public class ElementalStoneGenerator implements Runnable {
 	@Override
 	public void run() {
 		try {
-			L1Map map = L1WorldMap.getInstance().getMap(
-					(short) ELVEN_FOREST_MAPID);
+			L1Map map = L1WorldMap.getInstance().getMap((short) ELVEN_FOREST_MAPID);
 			while (true) {
 				removeItemsPickedUp();
 

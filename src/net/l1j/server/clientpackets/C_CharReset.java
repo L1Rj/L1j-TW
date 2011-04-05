@@ -186,8 +186,8 @@ public class C_CharReset extends ClientBasePacket {
 	}
 
 	private void initCharStatus(L1PcInstance pc, int hp, int mp, int str, int intel, int wis, int dex, int con, int cha) {
-		pc.addBaseMaxHp((short) (hp - pc.getBaseMaxHp()));
-		pc.addBaseMaxMp((short) (mp - pc.getBaseMaxMp()));
+		pc.addBaseMaxHp(hp - pc.getBaseMaxHp());
+		pc.addBaseMaxMp(mp - pc.getBaseMaxMp());
 		pc.addBaseStr(str - pc.getBaseStr());
 		pc.addBaseInt(intel - pc.getBaseInt());
 		pc.addBaseWis(wis - pc.getBaseWis());
@@ -203,8 +203,8 @@ public class C_CharReset extends ClientBasePacket {
 		classFeature = L1ClassFeature.newClassFeature(pc.getType());
 		pc.setTempLevel(pc.getTempLevel() + addLv);
 		for (int i = 0; i < addLv; i++) {
-			short randomHp = (short) classFeature.calclvUpHp(pc.getCon());
-			short randomMp = (short) classFeature.calclvUpMp(pc.getWis());
+			int randomHp = classFeature.calclvUpHp(pc.getCon());
+			int randomMp = classFeature.calclvUpMp(pc.getWis());
 			if (pc.getMaxHp() + randomHp > classFeature.MaxHp()) {
 				randomHp = 0;
 			}

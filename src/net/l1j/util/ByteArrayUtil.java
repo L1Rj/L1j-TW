@@ -28,7 +28,7 @@ public class ByteArrayUtil {
 
 	public String getTerminatedString(int i) {
 		StringBuilder sb = new StringBuilder();
-		for (int j = i; j < _byteArray.length && _byteArray[j] != 0; j++) {
+		for (int j = i; j < _byteArray.length && _byteArray[j] != (byte) 0; j++) {
 			sb.append((char) _byteArray[j]);
 		}
 
@@ -37,9 +37,9 @@ public class ByteArrayUtil {
 
 	public String dumpToString() {
 		StringBuilder sb = new StringBuilder();
-		short j = 0;
-		for (short k = 0; k < _byteArray.length; k++) {
-			if (j % 16 == 0) {
+		int j = 0;
+		for (int k = 0; k < _byteArray.length; k++) {
+			if ((j & 0x0f) == 0) {
 				sb.append((new StringBuilder()).append(fillHex(k, 4)).append(": ").toString());
 			}
 			sb.append((new StringBuilder()).append(fillHex(_byteArray[k] & 0xff, 2)).append(" ").toString());
@@ -47,10 +47,10 @@ public class ByteArrayUtil {
 				continue;
 			}
 			sb.append("   ");
-			short i1 = (short) (k - 15);
-			for (short l1 = 0; l1 < 16; l1++) {
+			int i1 = k - 15;
+			for (int l1 = 0; l1 < 16; l1++) {
 				byte byte0 = _byteArray[i1++];
-				if (byte0 > 31 && byte0 < 128) {
+				if (byte0 > (byte) 31 && byte0 < (byte) 128) {
 					sb.append((char) byte0);
 				} else {
 					sb.append('.');
@@ -61,16 +61,16 @@ public class ByteArrayUtil {
 			j = 0;
 		}
 
-		short l = (short) (_byteArray.length % 16);
+		int l = _byteArray.length & 0x0f;
 		if (l > 0) {
-			for (short j1 = 0; j1 < 17 - l; j1++) {
+			for (int j1 = 0; j1 < 17 - l; j1++) {
 				sb.append("   ");
 			}
 
-			short k1 = (short) (_byteArray.length - l);
-			for (short i2 = 0; i2 < l; i2++) {
+			int k1 = _byteArray.length - l;
+			for (int i2 = 0; i2 < l; i2++) {
 				byte byte1 = _byteArray[k1++];
-				if (byte1 > 31 && byte1 < 128) {
+				if (byte1 > (byte) 31 && byte1 < (byte) 128) {
 					sb.append((char) byte1);
 				} else {
 					sb.append('.');

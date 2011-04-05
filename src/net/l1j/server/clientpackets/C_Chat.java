@@ -174,7 +174,7 @@ public class C_Chat extends ClientBasePacket {
 			} else if (pc.getLevel() >= Config.GLOBAL_CHAT_LEVEL) {
 				if (L1World.getInstance().isWorldChatElabled()) {
 					if (pc.get_food() >= 6) {
-						pc.set_food(pc.get_food() - 5);
+						pc.add_food(-5);
 
 						if (Config.LOGGING_CHAT_WORLD) {
 							LogRecord record = new LogRecord(Level.INFO, text);
@@ -259,7 +259,7 @@ public class C_Chat extends ClientBasePacket {
 			} else if (pc.getLevel() >= Config.GLOBAL_CHAT_LEVEL) {
 				if (L1World.getInstance().isWorldChatElabled()) {
 					if (pc.get_food() >= 6) {
-						pc.set_food(pc.get_food() - 5);
+						pc.add_food(-5);
 
 						if (Config.LOGGING_CHAT_WORLD) {
 							LogRecord record = new LogRecord(Level.INFO, text);

@@ -2149,6 +2149,15 @@ public class L1PcInstance extends L1Character {
 		_food = i;
 	}
 
+	public void add_food(int i) {
+		_food += i;
+		if (_food > 225) {
+			_food = 225;
+		} else if (_food < 1) {
+			_food = 1;
+		}
+	}
+
 	public L1EquipmentSlot getEquipSlot() {
 		return _equipSlot;
 	}

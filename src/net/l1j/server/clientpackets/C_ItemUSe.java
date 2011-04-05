@@ -2006,27 +2006,9 @@ public class C_ItemUSe extends ClientBasePacket {
 						|| itemId == 49045 || itemId == 49046 || itemId == 49047) {
 					pc.getInventory().removeItem(item, 1);
 					// XXX 食べ物每の滿腹度(100單位で變動)
-					short foodvolume1 = (short) (item.getItem().getFoodVolume() / 10);
-					short foodvolume2 = 0;
-					if (foodvolume1 <= 0) {
-						foodvolume1 = 5;
-					}
-					if (pc.get_food() >= 225) {
-						pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, (short) pc.get_food()));
-					} else {
-						foodvolume2 = (short) (pc.get_food() + foodvolume1);
-						if (foodvolume2 <= 225) {
-							pc.set_food(foodvolume2);
-							pc
-									.sendPackets(new S_PacketBox(S_PacketBox.FOOD, (short) pc
-											.get_food()));
-						} else {
-							pc.set_food((short) 225);
-							pc
-									.sendPackets(new S_PacketBox(S_PacketBox.FOOD, (short) pc
-											.get_food()));
-						}
-					}
+					int foodvolume1 = (item.getItem().getFoodVolume() / 10);
+					pc.add_food(foodvolume1 <= 0 ? 5 : foodvolume1);
+					pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, pc.get_food()));
 					if (itemId == 40057) { // フローティングアイ肉
 						pc.setSkillEffect(STATUS_FLOATING_EYE, 0);
 					}
