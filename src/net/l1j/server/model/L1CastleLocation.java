@@ -49,10 +49,14 @@ public class L1CastleLocation {
 	public static final int DIAD_CASTLE_ID = 8;
 
 	// →↑がX軸、→↓がY軸
-	// ケント城
-	private static final int KENT_TOWER_X = 33170;
+	// 肯特城
+//	private static final int KENT_TOWER_X = 33170; // 3.0 位置
 
-	private static final int KENT_TOWER_Y = 32774;
+//	private static final int KENT_TOWER_Y = 32774; // 3.0 位置
+
+	private static final int KENT_TOWER_X = 33139; // 3.3 位置
+
+	private static final int KENT_TOWER_Y = 32768; // 3.3 位置
 
 	private static final short KENT_TOWER_MAP = 4;
 
@@ -68,10 +72,14 @@ public class L1CastleLocation {
 
 	private static final short KENT_INNER_CASTLE_MAP = 15;
 
-	// オークの森
-	private static final int OT_TOWER_X = 32800;
+	// 妖魔城堡
+//	private static final int OT_TOWER_X = 32800; // 3.0 位置
 
-	private static final int OT_TOWER_Y = 32290;
+//	private static final int OT_TOWER_Y = 32290; // 3.0 位置
+
+	private static final int OT_TOWER_X = 32798; // 3.3 位置
+
+	private static final int OT_TOWER_Y = 32291; // 3.3 位置
 
 	private static final short OT_TOWER_MAP = 4;
 
@@ -85,10 +93,14 @@ public class L1CastleLocation {
 
 	private static final short OT_MAP = 4;
 
-	// ウィンダウッド城
-	private static final int WW_TOWER_X = 32675;
+	// 風木城
+//	private static final int WW_TOWER_X = 32675; // 3.0 位置
 
-	private static final int WW_TOWER_Y = 33408;
+//	private static final int WW_TOWER_Y = 33408; // 3.0 位置
+
+	private static final int WW_TOWER_X = 32623; // 3.3 位置
+	
+	private static final int WW_TOWER_Y = 33379; // 3.3 位置
 
 	private static final short WW_TOWER_MAP = 4;
 
@@ -104,10 +116,10 @@ public class L1CastleLocation {
 
 	private static final short WW_INNER_CASTLE_MAP = 29;
 
-	// ギラン城
-	private static final int GIRAN_TOWER_X = 33631;
+	// 奇岩城
+	private static final int GIRAN_TOWER_X = 33631; // 3.0 & 3.3位置
 
-	private static final int GIRAN_TOWER_Y = 32678;
+	private static final int GIRAN_TOWER_Y = 32678; // 3.0 &3.3 位置
 
 	private static final short GIRAN_TOWER_MAP = 4;
 
@@ -123,10 +135,10 @@ public class L1CastleLocation {
 
 	private static final short GIRAN_INNER_CASTLE_MAP = 52;
 
-	// ハイネ城
-	private static final int HEINE_TOWER_X = 33524;
+	// 海音城
+	private static final int HEINE_TOWER_X = 33524; // 3.0 & 3.3 位置
 
-	private static final int HEINE_TOWER_Y = 33396;
+	private static final int HEINE_TOWER_Y = 33396; // 3.0 & 3.3 位置
 
 	private static final short HEINE_TOWER_MAP = 4;
 
@@ -142,10 +154,10 @@ public class L1CastleLocation {
 
 	private static final short HEINE_INNER_CASTLE_MAP = 64;
 
-	// ドワーフ城
-	private static final int DOWA_TOWER_X = 32828;
+	// 侏儒城
+	private static final int DOWA_TOWER_X = 32828; // 3.0 & 3.3 位置
 
-	private static final int DOWA_TOWER_Y = 32818;
+	private static final int DOWA_TOWER_Y = 32818; // 3.0 & 3.3 位置
 
 	private static final short DOWA_TOWER_MAP = 66;
 
@@ -159,10 +171,10 @@ public class L1CastleLocation {
 
 	private static final short DOWA_MAP = 66;
 
-	// アデン城
-	private static final int ADEN_TOWER_X = 34090;
+	// 亞丁城
+	private static final int ADEN_TOWER_X = 34090; // 3.0 & 3.3 位置
 
-	private static final int ADEN_TOWER_Y = 33260;
+	private static final int ADEN_TOWER_Y = 33260; // 3.0 & 3.3 位置
 
 	private static final short ADEN_TOWER_MAP = 4;
 
@@ -194,10 +206,10 @@ public class L1CastleLocation {
 
 	private static final int ADEN_SUB_TOWER4_Y = 33230;
 
-	// ディアド要塞
-	private static final int DIAD_TOWER_X = 33033;
+	// 迪亞德要塞
+	private static final int DIAD_TOWER_X = 33033; // 3.0 & 3.3 位置
 
-	private static final int DIAD_TOWER_Y = 32895;
+	private static final int DIAD_TOWER_Y = 32895; // 3.0 & 3.3 位置
 
 	private static final short DIAD_TOWER_MAP = 320;
 
