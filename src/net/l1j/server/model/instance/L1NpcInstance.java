@@ -1404,7 +1404,8 @@ public class L1NpcInstance extends L1Character {
 			}
 			// 恨みに滿ちたソルジャーゴースト、恨みに滿ちたゴースト、恨みに滿ちたハメル將軍
 			if (getNpcTemplate().get_npcId() >= 45912 && getNpcTemplate().get_npcId() <= 45916) {
-				if (getX() >= 32591 && getX() <= 32644 && getY() >= 32643 && getY() <= 32688 && getMapId() == 4) {
+				// if (getX() >= 32591 && getX() <= 32644 && getY() >= 32643 && getY() <= 32688 && getMapId() == 4) {
+			if (getX() <= 32597 || getX() >= 32634 || getY() <= 32651 || getY() >= 32688 && getMapId() == 4) {
 					teleport(getHomeX(), getHomeY(), getHeading());
 				}
 			}

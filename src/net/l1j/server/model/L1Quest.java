@@ -65,7 +65,7 @@ public class L1Quest {
 	public static final int QUEST_TOSCROLL = 39;
 	public static final int QUEST_MOONOFLONGBOW = 40;
 	public static final int QUEST_GENERALHAMELOFRESENTMENT = 41;//哈濛任務
-	public static final int QUEST_TUTOR = 42;
+	public static final int QUEST_TUTOR = 42; // 新手任務
 
 	public static final int QUEST_END = 255; // 終了濟みクエストのステップ
 
