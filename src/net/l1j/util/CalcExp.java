@@ -336,7 +336,8 @@ public class CalcExp {
 		int add_lawful = (int) (lawful * Config.RATE_LA) * -1;
 		pc.addLawful(add_lawful);
 
-		double exppenalty = ExpTable.getPenaltyRate(pc.getLevel());
+		int _nLevel_t = pc.getLevel();
+		double exppenalty = ExpTable.getPenaltyRate(_nLevel_t);
 		double foodBonus = 1.0;
 		double LevelBonus = 1.0;
 		double expposion = 1.0; // 經驗藥水
@@ -351,7 +352,6 @@ public class CalcExp {
 			foodBonus = 1.03;
 		}
 // 經驗值回饋獎勵系統 http://tw.lineage.gamania.com/events/20100209_preview_e3s/b5_2.htm
-		int _nLevel_t = pc.getLevel();
 		if (_nLevel_t >= 49 && _nLevel_t <= 63) {
 			LevelBonus = 1.64 - (_nLevel_t / 100D);
 		} else if (_nLevel_t == 64) {
@@ -366,7 +366,7 @@ public class CalcExp {
 		double _nExpRate = exppenalty * foodBonus * LevelBonus * expposion;
 
 		// 殷海薩加成條件
-		if (pc.getLevel() >= 49) {
+		if (_nLevel_t >= 49) {
 			pc.CalcExpCostAin((int) (exp * _nExpRate));
 			pc.sendPackets(new S_SkillIconExp(pc.getAinPoint()));
 		}
