@@ -314,11 +314,14 @@ public class PacketHandler {
 			break;
 
 			/** 捕捉 */
+			/**
+			 * // 預設關閉。有 開發/測試 需求人，請自行解開註解
 			default:
 				String s = Integer.toHexString(i);
 				_log.warning((new StringBuilder()).append("Opcode:").append(s).toString());
 				_log.warning(new ByteArrayUtil(abyte0).dumpToString());
 			break;
+			 */
 		}
 	}
 }

@@ -38,9 +38,9 @@ public class S_Charshowinit extends ServerBasePacket {
 	private void buildPacket(L1PcInstance pc, int[] _qrowth) {
 		writeC(Opcodes.S_OPCODE_CHARRESET);
 		writeC(0x04);
-		writeC((_qrowth[0x05] << 0x04) + _qrowth[0x00]); // 智力&力量
-		writeC((_qrowth[0x01] << 0x04) + _qrowth[0x03]); // 敏捷&精神
-		writeC((_qrowth[0x04] << 0x04) + _qrowth[0x02]); // 魅力&體質
+		writeC(_qrowth[0x05] << 0x04 | _qrowth[0x00]); // 智力&力量
+		writeC(_qrowth[0x01] << 0x04 | _qrowth[0x03]); // 敏捷&精神
+		writeC(_qrowth[0x04] << 0x04 | _qrowth[0x02]); // 魅力&體質
 		writeC(0x00);
 	}
 
