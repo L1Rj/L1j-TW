@@ -1590,24 +1590,16 @@ public class C_ItemUSe extends ClientBasePacket {
 						}
 						if (castle_id != 0) { // 城主クラン員
 							if (pc.getMap().isEscapable() || pc.isGm()) {
-								int[] loc = new int[3];
-								loc = L1CastleLocation.getCastleLoc(castle_id);
-								int locx = loc[0];
-								int locy = loc[1];
-								short mapid = (short) (loc[2]);
-								L1Teleport.teleport(pc, locx, locy, mapid, 5, true);
+								int[] loc = L1CastleLocation.getCastleLoc(castle_id);
+								L1Teleport.teleport(pc, loc[0], loc[1], (short) (loc[2]), 5, true);
 								pc.getInventory().removeItem(item, 1);
 							} else {
 								pc.sendPackets(new S_ServerMessage(SystemMessageId.$647));
 							}
 						} else if (house_id != 0) { // アジト所有クラン員
 							if (pc.getMap().isEscapable() || pc.isGm()) {
-								int[] loc = new int[3];
-								loc = L1HouseLocation.getHouseLoc(house_id);
-								int locx = loc[0];
-								int locy = loc[1];
-								short mapid = (short) (loc[2]);
-								L1Teleport.teleport(pc, locx, locy, mapid, 5, true);
+								int[] loc = L1HouseLocation.getHouseLoc(house_id);
+								L1Teleport.teleport(pc, loc[0], loc[1], (short) (loc[2]), 5, true);
 								pc.getInventory().removeItem(item, 1);
 							} else {
 								pc.sendPackets(new S_ServerMessage(SystemMessageId.$647));

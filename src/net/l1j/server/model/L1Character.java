@@ -553,7 +553,7 @@ public class L1Character extends L1Object {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_PetGUI(3));
-                                cha.setPetUI(true);
+				cha.setPetUI(true);
 			}
 		}
 	}
@@ -571,7 +571,7 @@ public class L1Character extends L1Object {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_PetGUI(0));
-                                cha.setPetUI(false);
+				cha.setPetUI(false);
 			}
 		} else if (npc instanceof L1SummonInstance) {
 			L1SummonInstance summon = (L1SummonInstance) npc;
@@ -579,7 +579,7 @@ public class L1Character extends L1Object {
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.sendPackets(new S_PetGUI(0));
-                                cha.setPetUI(false);
+				cha.setPetUI(false);
 			}
 		}
 	}
@@ -1272,15 +1272,15 @@ public class L1Character extends L1Object {
 		_isDead = flag;
 	}
 
-        private boolean _petUI;
+	private boolean _petUI;
 
-        public boolean PetUI() {
-                return _petUI;
-        }
+	public boolean PetUI() {
+		return _petUI;
+	}
 
-        public void setPetUI(boolean flag) {
-                _petUI = flag;
-        }
+	public void setPetUI(boolean flag) {
+		_petUI = flag;
+	}
 
 	private int _status; // ● 狀態？
 

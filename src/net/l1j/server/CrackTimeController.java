@@ -156,9 +156,7 @@ public class CrackTimeController extends TimerTask {
 			L1NpcInstance npc = (L1NpcInstance) constructor.newInstance(aobj);
 
 			npc.setId(IdFactory.getInstance().nextId());
-			npc.setX(x);
-			npc.setY(y);
-			npc.setMap(mapId);
+			npc.setLocation(x, y, mapId);
 			npc.setHomeX(npc.getX());
 			npc.setHomeY(npc.getY());
 			npc.setHeading(0);

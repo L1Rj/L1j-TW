@@ -153,7 +153,7 @@ public class L1PetInstance extends L1NpcInstance {
 		}
 		master.addPet(this);
 		_petMaster.sendPackets(new S_PetGUI(3));
-                _petMaster.setPetUI(true);
+		_petMaster.setPetUI(true);
 
 	}
 
@@ -301,7 +301,7 @@ public class L1PetInstance extends L1NpcInstance {
 		monster.setCurrentMpDirect(getCurrentMp());
 
 		_petMaster.sendPackets(new S_PetGUI(0));
-                _petMaster.setPetUI(false);
+		_petMaster.setPetUI(false);
 
 		deleteMe();
 

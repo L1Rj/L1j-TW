@@ -3334,8 +3334,7 @@ public class C_NPCAction extends ClientBasePacket {
 					L1NpcInstance npc = (L1NpcInstance) obj;
 					if (npc.getNpcTemplate().get_npcId() == keeperId) {
 						if (house.isPurchaseBasement()) {
-							int[] loc = new int[3];
-							loc = L1HouseLocation.getBasementLoc(houseId);
+							int[] loc = L1HouseLocation.getBasementLoc(houseId);
 							L1Teleport.teleport(pc, loc[0], loc[1], (short) (loc[2]), 5, true);
 						} else {
 							pc.sendPackets(new S_ServerMessage(SystemMessageId.$1098));
@@ -4175,7 +4174,7 @@ public class C_NPCAction extends ClientBasePacket {
 			return;
 		}
 
-		int[] loc = new int[3];
+		int[] loc = null;
 		for (L1Object object : L1World.getInstance().getObject()) {
 			if (object instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) object;

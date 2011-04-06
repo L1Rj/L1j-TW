@@ -54,6 +54,11 @@ public class L1Location extends Point {
 		_map = map;
 	}
 
+	public void set(int[] loc) {
+		set(loc[0], loc[1]);
+		setMap(loc[2]);
+	}
+
 	public void set(L1Location loc) {
 		_map = loc._map;
 		_x = loc._x;

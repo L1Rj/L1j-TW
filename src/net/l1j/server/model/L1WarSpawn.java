@@ -55,7 +55,7 @@ public class L1WarSpawn {
 
 	private void spawnSubTower() {
 		L1Npc l1npc;
-		int[] loc = new int[3];
+		int[] loc = null;
 		for (int i = 1; i <= 4; i++) {
 			l1npc = NpcTable.getInstance().getTemplate(81189 + i); // サブタワー
 			loc = L1CastleLocation.getSubTowerLoc(i);
@@ -65,8 +65,7 @@ public class L1WarSpawn {
 
 	public void SpawnCrown(int castleId) {
 		L1Npc l1npc = NpcTable.getInstance().getTemplate(81125); // クラウン
-		int[] loc = new int[3];
-		loc = L1CastleLocation.getTowerLoc(castleId);
+		int[] loc = L1CastleLocation.getTowerLoc(castleId);
 		SpawnWarObject(l1npc, loc[0], loc[1], (short) (loc[2]));
 	}
 

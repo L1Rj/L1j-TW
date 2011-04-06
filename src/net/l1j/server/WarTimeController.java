@@ -132,7 +132,7 @@ public class WarTimeController implements Runnable {
 					}
 
 					L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.MSG_WAR_BEGIN, i + 1)); // %sの攻城戰が始まりました。
-					int[] loc = new int[3];
+					int[] loc = null;
 					for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 						int castleId = i + 1;
 						if (L1CastleLocation.checkInWarArea(castleId, pc) && !pc.isGm()) { // 旗內に居る

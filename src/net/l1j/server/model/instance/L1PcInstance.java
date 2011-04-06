@@ -2411,7 +2411,7 @@ public class L1PcInstance extends L1Character {
 		sendPackets(new S_OwnCharStatus(this));
 
 		if (getLevel() >= 13 && getMapId() == 2005 ) {// 等級超過13級傳出隱藏之谷(傳送地點與座標未知 暫依舊資料)
-					L1Teleport.teleport(this, 32580, 32931, (short) 0, 5, true); // 傳送到說話島
+			L1Teleport.teleport(this, 32580, 32931, (short) 0, 5, true); // 傳送到說話島
 		}
 
 		if (getLevel() >= 52) { // 指定レベル

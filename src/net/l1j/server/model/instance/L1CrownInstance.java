@@ -113,17 +113,14 @@ public class L1CrownInstance extends L1NpcInstance {
 		player.broadcastPacket(new S_CastleMaster(castle_id, player.getId()));
 
 		// クラン員以外を街に強制テレポート
-		int[] loc = new int[3];
+		int[] loc = null;
 		for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 			if (pc.getClanid() != player.getClanid() && !pc.isGm()) {
 
 				if (L1CastleLocation.checkInWarArea(castle_id, pc)) {
 					// 旗內に居る
 					loc = L1CastleLocation.getGetBackLoc(castle_id);
-					int locx = loc[0];
-					int locy = loc[1];
-					short mapid = (short) loc[2];
-					L1Teleport.teleport(pc, locx, locy, mapid, 5, true);
+					L1Teleport.teleport(pc, loc[0], loc[1], (short) (loc[2]), 5, true);
 				}
 			}
 		}

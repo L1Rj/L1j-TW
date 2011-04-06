@@ -132,16 +132,16 @@ public class L1Object implements Serializable {
 		return _loc;
 	}
 
+	public void setLocation(int[] loc) {
+		_loc.set(loc);
+	}
+
 	public void setLocation(L1Location loc) {
-		_loc.setX(loc.getX());
-		_loc.setY(loc.getY());
-		_loc.setMap(loc.getMapId());
+		_loc.set(loc);
 	}
 
 	public void setLocation(int x, int y, int mapid) {
-		_loc.setX(x);
-		_loc.setY(y);
-		_loc.setMap(mapid);
+		_loc.set(x, y, mapid);
 	}
 
 	/**

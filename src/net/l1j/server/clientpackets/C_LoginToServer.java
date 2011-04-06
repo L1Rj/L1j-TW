@@ -340,26 +340,14 @@ public class C_LoginToServer extends ClientBasePacket {
 				if (clan != null) {
 					if (clan.getCastleId() != castle_id) {
 						// 城主クランではない
-						int[] loc = new int[3];
-						loc = L1CastleLocation.getGetBackLoc(castle_id);
-						pc.setX(loc[0]);
-						pc.setY(loc[1]);
-						pc.setMap((short) loc[2]);
+						pc.setLocation(L1CastleLocation.getGetBackLoc(castle_id));
 					}
 				} else {
 					// クランに所屬して居ない場合は歸還
-					int[] loc = new int[3];
-					loc = L1CastleLocation.getGetBackLoc(castle_id);
-					pc.setX(loc[0]);
-					pc.setY(loc[1]);
-					pc.setMap((short) loc[2]);
+					pc.setLocation(L1CastleLocation.getGetBackLoc(castle_id));
 				}
 			} else {
-				int[] loc = new int[3];
-				loc = L1CastleLocation.getGetBackLoc(castle_id);
-				pc.setX(loc[0]);
-				pc.setY(loc[1]);
-				pc.setMap((short) loc[2]);
+				pc.setLocation(L1CastleLocation.getGetBackLoc(castle_id));
 			}
 		}
 
