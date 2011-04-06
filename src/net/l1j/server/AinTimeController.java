@@ -64,20 +64,19 @@ public class AinTimeController implements Runnable {
 		int nowTime = Integer.valueOf(tempTime.format(getRealTime().getTime()));
 
 		int ainTime = Config.RATE_AIN_TIME; // 時間比例
-		int ainMaxPercent = Config.RATE_MAX_CHARGE_PERCENT; // 殷海薩的祝福 百分比
-		
+
 		if (nowTime % ainTime == 0) {
-		for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
-			if (pc.getLevel() >= 49) {  // 等級限制
-				if (pc.getAinPoint() < ainMaxPercent && pc.getMap().isSafetyZone(pc.getLocation())) { // 限制最高點數
-					pc.setAinPoint(pc.getAinPoint() + 1); // 安全區域點數 +1
-					pc.setAinZone(1);
-					pc.sendPackets(new S_SkillIconExp(pc.getAinPoint()));
-				} else {
-					pc.setAinZone(0);
+			for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
+				if (pc.getLevel() >= 49) {  // 等級限制
+					if (pc.getMap().isSafetyZone(pc.getLocation())) { // 安全區域
+						pc.addAinPoint(1); // 點數 +1
+						pc.setAinZone(1);
+						pc.sendPackets(new S_SkillIconExp(pc.getAinPoint()));
+					} else {
+						pc.setAinZone(0);
+					}
 				}
 			}
-		}
 		} else {
 			return;
 		} 

@@ -375,11 +375,10 @@ public class C_LoginToServer extends ClientBasePacket {
 		skills(pc);
 		buff(client, pc);
 		pc.turnOnOffLight();
-		
+
 		// 殷海薩的祝福
 		int ainOutTime = Config.RATE_AIN_OUTTIME;
-		int ainMaxPercent = Config.RATE_MAX_CHARGE_PERCENT;
-		
+
 		if (pc.getLevel() >= 49) { // 49級以上 殷海薩的祝福紀錄
 			if(pc.getMap().isSafetyZone(pc.getLocation())){
 				pc.setAinZone(1);
@@ -396,13 +395,8 @@ public class C_LoginToServer extends ClientBasePacket {
 				long startTime = (cal.getTimeInMillis() - pc.getLastActive().getTime()) / 60000;
 
 				if (startTime >= ainOutTime) {
-					long outTime = startTime / ainOutTime;
-					long saveTime = outTime + pc.getAinPoint();
-					if (saveTime >=1 && saveTime <= ainMaxPercent) {
-						pc.setAinPoint((int)saveTime);
-					} else if (saveTime > ainMaxPercent) {
-						pc.setAinPoint(ainMaxPercent);
-					} 
+					int _addPoint = (int) (startTime / ainOutTime);
+					pc.addAinPoint(_addPoint);
 				}
 			}
 		}

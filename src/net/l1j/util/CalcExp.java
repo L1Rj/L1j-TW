@@ -340,7 +340,6 @@ public class CalcExp {
 		double foodBonus = 1.0;
 		double LevelBonus = 1.0;
 		double expposion = 1.0; // 經驗藥水
-		double ainBonus = 1.0; // 殷海薩的祝福
 		
 		if (pc.hasSkillEffect(COOKING_1_7_N) || pc.hasSkillEffect(SkillId.COOKING_1_7_S)) {
 			foodBonus = 1.01;
@@ -405,16 +404,18 @@ public class CalcExp {
 		if (pc.hasSkillEffect(SkillId.EXP_POTION)) {
 			expposion = 1.20;
 		}
-// 殷海薩的祝福 計算公式仍需驗證
-		if (pc.getAinPoint() > 0) {
-			if (!(_npc instanceof L1PetInstance || _npc instanceof L1SummonInstance || _npc instanceof L1ScarecrowInstance)) {// 木人 寵物 召喚 不計算加成
-				pc.setAinPoint(pc.getAinPoint() - 1);
-				pc.sendPackets(new S_SkillIconExp(pc.getAinPoint()));
-				ainBonus = 1.77; // 額外的經驗 77%
-			}
+
+		int add_exp = (int) (exp * exppenalty * Config.RATE_XP * foodBonus * LevelBonus * expposion);
+
+		// 殷海薩加成條件
+		// 寵物,召喚,木人:不計算加成
+		if ((pc.getLevel() >= 49) && !(_npc instanceof L1PetInstance ||
+				_npc instanceof L1SummonInstance || _npc instanceof L1ScarecrowInstance)) {
+			pc.CalcExpCostAin(exp);
+			pc.sendPackets(new S_SkillIconExp(pc.getAinPoint()));
+			add_exp = (int) (add_exp * 1.77); // 額外的經驗 77%
 		}
-//end
-		int add_exp = (int) (exp * exppenalty * Config.RATE_XP * foodBonus * LevelBonus * expposion * ainBonus );
+
 		pc.addExp(add_exp);
 	}
 

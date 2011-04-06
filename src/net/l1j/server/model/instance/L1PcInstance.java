@@ -2210,11 +2210,37 @@ public class L1PcInstance extends L1Character {
 	public int getAinZone() {
 		return _ainZone;
 	}
-	
-	private int _ainPoint = 0;
-	public void setAinPoint(int i) {
+
+	private int _ainPoint = 0;   // 殷海薩的祝福 - %數
+	private int _ain_getExp = 0; // 殷海薩的祝福 - 取得經驗點數的累計
+	private static final int ainMaxPercent = Config.RATE_MAX_CHARGE_PERCENT; // 殷海薩的祝福 百分比的最大值
+
+	// 將打怪所獲得的經驗值做暫時的累積 並提供 置換功能
+	public void CalcExpCostAin(final int i) {
+		// %數大於0才有討論消耗的必要
+		if (_ainPoint > 0) {
+			_ain_getExp += i;
+			if (_ain_getExp > 5000) { // 根據資料約略 5000經驗值 換 1點殷海薩的祝福
+				setAinPoint(- _ain_getExp / 5000);
+				_ain_getExp %= 5000;
+			}
+		} else {
+			_ain_getExp = 0;
+		}
+	}
+
+	public void setAinPoint(final int i) {
 		_ainPoint = i;
 	}
+
+	public void addAinPoint(final int i) {
+		_ainPoint += i;
+		if (_ainPoint > ainMaxPercent)
+			_ainPoint = ainMaxPercent;
+		else if (_ainPoint < 1)
+			_ainPoint = 0;
+	}
+
 	public int getAinPoint() {
 		return _ainPoint;
 	}
