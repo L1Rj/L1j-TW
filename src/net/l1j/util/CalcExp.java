@@ -366,7 +366,7 @@ public class CalcExp {
 		double _nExpRate = exppenalty * foodBonus * LevelBonus * expposion;
 
 		// 殷海薩加成條件
-		if ((pc.getLevel() >= 49) {
+		if (pc.getLevel() >= 49) {
 			pc.CalcExpCostAin((int) (exp * _nExpRate));
 			pc.sendPackets(new S_SkillIconExp(pc.getAinPoint()));
 		}
