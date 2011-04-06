@@ -21,6 +21,7 @@ package net.l1j.server.model.instance;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import net.l1j.server.datatables.ExpTable;
 import net.l1j.server.datatables.NPCTalkDataTable;
 import net.l1j.server.datatables.TownTable;
 import net.l1j.server.model.L1Attack;
@@ -32,10 +33,14 @@ import net.l1j.server.model.L1TownLocation;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.gametime.L1GameTimeClock;
 import net.l1j.server.model.id.SystemMessageId;
+import static net.l1j.server.model.skill.SkillId.*;
+import net.l1j.server.serverpackets.S_ChangeHeading;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
 import net.l1j.server.serverpackets.S_ServerMessage;
+import net.l1j.server.serverpackets.S_SkillHaste;
+import net.l1j.server.serverpackets.S_SkillIconGFX;
+import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.templates.L1Npc;
-import net.l1j.server.serverpackets.S_ChangeHeading;
 
 public class L1MerchantInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
@@ -595,6 +600,11 @@ public class L1MerchantInstance extends L1NpcInstance {
 				if (time < 60 * 60 * 6 || time > 60 * 60 * 20) { // 20:00～6:00
 					htmlid = "shipEvI6";
 				}
+			}  else if (npcid == 70035 || npcid == 70041 || npcid == 70042) {
+			    //STATUS_NONE	    htmlid = "maeno5";
+			    //STATUS_READY	    htmlid = "maeno1";
+			    //STATUS_PLAYING    htmlid = "maeno3";
+			    //STATUS_END	    htmlid = "maeno5";
 			} else if (npcid == 70080) {
 				if (player.isCrown()) {
 					htmlid = "horundk1";
@@ -2684,6 +2694,8 @@ public class L1MerchantInstance extends L1NpcInstance {
 						htmlid = "silrein1";
 					}
 				}
+			} else if (npcid == 80154) {
+				htmlid = talkToAdmin(player);
 			} else if (npcid == 81105) { // 神秘の岩
 				if (player.isWizard()) { // ウィザード
 					int lv45_step = quest.get_step(L1Quest.QUEST_LEVEL45);
@@ -2973,7 +2985,64 @@ public class L1MerchantInstance extends L1NpcInstance {
 		}
 		return htmlid;
 	}
-
+	
+	private String talkToAdmin(L1PcInstance player) {
+		int objId = player.getId();
+		String htmlid = null;
+		if (player.getExp() >= 150 && player.getExp() < 300) {
+			htmlid = "";
+			int addEXP = 0;
+			addEXP = (300 - (player.getExp()));
+			player.addExp(addEXP);
+			player.getQuest().set_step(L1Quest.QUEST_TUTOR, 1);
+		} else if (player.getExp() >= 750 && player.getExp() < 1296) {
+			htmlid = "";
+			int addEXP = 0;
+			addEXP = (1296 - (player.getExp()));
+			player.addExp(addEXP);
+			if (player.getQuest().get_step(L1Quest.QUEST_TUTOR) == 1) {
+				player.getQuest().set_step(L1Quest.QUEST_TUTOR, 2);
+			}
+		} else if (player.getQuest().get_step(L1Quest.QUEST_TUTOR) == 2) {
+			htmlid = "admin3";
+		} else if (player.getLevel() > 0 && player.getLevel() < 5) {
+			if (player.getWeapon() == null) {
+				player.setSkillEffect(SKILL_GREATER_HASTE, 2400 * 1000);
+				player.sendPackets(new S_SkillHaste(objId, 1, 2400));
+				player.broadcastPacket(new S_SkillHaste(objId, 1, 0));
+				player.sendPackets(new S_SkillSound(objId, 3104));
+				player.broadcastPacket(new S_SkillSound(objId, 3104));
+				player.setMoveSpeed(1);
+				htmlid = "admin2";
+			} else {
+				for (L1ItemInstance item : player.getInventory().getItems()) {
+					if (player.getWeapon().equals(item)) {
+						player.sendPackets(new S_ServerMessage(SystemMessageId.$161, item.getLogName(), "$245", "$247"));
+						item.setSkillWeaponEnchant(player, SKILL_BLESS_WEAPON, 1200 * 1000);
+						player.sendPackets(new S_SkillSound(objId, 2176));
+						player.broadcastPacket(new S_SkillSound(objId, 2176));
+						player.setSkillEffect(SKILL_GREATER_HASTE, 2400 * 1000);
+						player.sendPackets(new S_SkillHaste(objId, 1, 2400));
+						player.broadcastPacket(new S_SkillHaste(objId, 1, 0));
+						player.sendPackets(new S_SkillSound(objId, 3104));
+						player.broadcastPacket(new S_SkillSound(objId, 3104));
+						player.setMoveSpeed(1);
+						htmlid = "admin2";
+					}
+				}
+			}
+		} else if (player.getLevel() >= 5) {
+			player.setSkillEffect(SKILL_GREATER_HASTE, 2400 * 1000);
+			player.sendPackets(new S_SkillHaste(objId, 1, 2400));
+			player.broadcastPacket(new S_SkillHaste(objId, 1, 0));
+			player.sendPackets(new S_SkillSound(objId, 3104));
+			player.broadcastPacket(new S_SkillSound(objId, 3104));
+			player.setMoveSpeed(1);
+			htmlid = "admin1";
+		}
+		return htmlid;
+	}
+	
 	private static final long REST_MILLISEC = 10000;
 
 	private static final Timer _restTimer = new Timer(true);
