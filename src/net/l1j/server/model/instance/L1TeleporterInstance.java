@@ -194,6 +194,33 @@ public class L1TeleporterInstance extends L1NpcInstance {
 			    case 80153:
 				htmlid = talkToTutor(player);
 				break;
+			    case 80155:
+				if(player.isIllusionist()) {
+					htmlid = "asha1";
+				} else {
+					htmlid = "asha2";
+				}
+				break;
+			    case 80156:
+				if (player.isDragonKnight()) {
+					htmlid = "feaena1";
+				} else {
+					htmlid = "feaena2";
+				}
+				break;
+			    case 80157:
+				if (player.isDarkelf()) {
+					if (player.getLevel() <= 3) {
+						htmlid = "karen1";
+					} else if (player.getLevel() > 3 && player.getLevel() < 50) {
+						htmlid = "karen3";
+					} else if (player.getLevel() >= 50) {
+					    htmlid = "karen4";
+					}
+				} else {
+				    htmlid = "karen2";
+				}
+				break;
 			}
 			
 			// html表示

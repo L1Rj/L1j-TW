@@ -27,17 +27,17 @@
 	</Action>
 	<!-- 小柯⇒傳送新手村-隱藏之谷地監內 -->
 	<Action Name="teleport dungeon-in" NpcId="50006">
-		<Teleport X="32871" Y="32866" Map="86" Heading="5" Price="0"/>
+		<Teleport X="32872" Y="32862" Map="86" Heading="5" Price="0"/>
 	</Action>
 	<!-- 史蓋⇒傳送新手村-隱藏之谷地監入口 -->
 	<Action Name="teleport dungeon-out" NpcId="50002">
-		<Teleport X="32678" Y="32813" Map="69" Heading="5" Price="0"/>
+		<Teleport X="32677" Y="32815" Map="2005" Heading="5" Price="0"/>
 	</Action>
 	<!-- 隱藏之谷-伊爾卓斯⇒傳送銀騎士村莊 -->
 	<Action Name="teleport hidden-velley-for-newbie" NpcId="50003">
 		<Teleport X="33084" Y="33391" Map="4" Heading="5" Price="0"/>
 	</Action>
-	<!-- 隱藏之谷-卡連⇒傳送沉默洞穴 -->
+	<!-- 隱藏之谷-卡連⇒傳送沉默洞穴  -->
 	<Action Name="teleport dark island-in" NpcId="50005">
 		<Teleport X="32923" Y="32798" Map="304" Heading="5" Price="0"/>
 	</Action>
@@ -55,7 +55,7 @@
 	</Action>
 	<!-- 妖森-魯比恩⇒傳送隱藏之谷 -->
 	<Action Name="teleport valley-in" NpcId="50065">
-		<Teleport X="32695" Y="32852" Map="69" Heading="5" Price="0"/>
+		<Teleport X="32686" Y="32870" Map="2005" Heading="5" Price="0"/>
 	</Action>
 	<!-- waja add end -->
 	<!-- 歌う島⇒話せる島、シルバーナイトタウン、エルフの森、沈黙の洞窟 -->
@@ -1632,6 +1632,17 @@
 	</Action>
 	<Action Name="X" NpcId="80153" LevelMin="8" LevelMax="13">
 		<Teleport X="32803" Y="32789" Map="2005" Heading="5" Price="0"/>
+	</Action>
+	<!-- 隱藏之谷 > 希培利亞 -->
+	<Action Name="teleport illusionist island-in" NpcId="80155">
+	</Action>
+	<!-- 隱藏之谷 > 貝希摩斯 -->
+	<Action Name="teleport dragonknight island-in" NpcId="80156">
+		<Teleport X="32810" Y="32873" Map="1001" Heading="5" Price="0"/>
+	</Action>
+	<!-- 隱藏之谷 > 沉默洞穴 -->
+	<Action Name="teleport dark island-in" NpcId="80157">
+		<Teleport X="32683" Y="32845" Map="304" Heading="5" Price="0"/>
 	</Action>
 	<!-- 退休的侍從長－曼孟 傳送奇岩隱藏宮殿 -->
 	<Action Name="teleport grtel" NpcId="91003">
