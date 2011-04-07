@@ -76,10 +76,10 @@ import static net.l1j.server.model.skill.SkillId.*;
 
 /*
  * 官方的 Class 送出的封包 [備註:這些封包是官方最新的, 舊版請勿使用該封包位址.. 只可參考內容]
- * 
+ *
  * [Length:8] S -> C <S_LoginGame.java>
  * 0000	63 03 5B A4 40 AF BA AC                            c.[.@...
- * 
+ *
  * [Length:496] S -> C <S_InvList.java>
  * 0000	78 14 87 B1 AB 01 00 00 05 00 01 00 02 00 00 00    x...............
  * 0010	24 34 20 28 35 31 32 29 00 00 88 B1 AB 01 06 00    $4 (512)........
@@ -112,132 +112,132 @@ import static net.l1j.server.model.skill.SkillId.*;
  * 01C0	09 00 DA 01 01 04 00 00 00 00 24 33 33 30 33 20    ..........$3303
  * 01D0	28 34 29 00 00 9A B1 AB 01 00 00 FD 09 01 01 00    (4).............
  * 01E0	00 00 00 24 35 38 39 33 00 00 C0 1C CF F1 C5 9F    ...$5893........
- * 
+ *
  * [Length:24] S -> C <S_ItemName.java>
  * 0000	28 8D B1 AB 01 24 31 37 35 37 20 28 24 31 31 37    (....$1757 ($117
  * 0010	29 00 BD FE 7F 83 C0 64                            ).....d
- * 
+ *
  * [Length:24] S -> C <S_ItemName.java>
  * 0000	28 91 B1 AB 01 2B 30 20 24 33 32 38 39 20 28 24    (....+0 $3289 ($
  * 0010	31 31 37 29 00 EF E1 D1                            117)....
- * 
+ *
  * [Length:24] S -> C <S_ItemName.java>
  * 0000	28 92 B1 AB 01 2B 30 20 24 33 32 39 30 20 28 24    (....+0 $3290 ($
  * 0010	31 31 37 29 00 ED A7 BD                            117)....
- * 
+ *
  * [Length:24] S -> C <S_ItemName.java>
  * 0000	28 93 B1 AB 01 2B 30 20 24 33 32 39 31 20 28 24    (....+0 $3291 ($
  * 0010	31 31 37 29 00 28 E9 C9                            117).(..
- * 
+ *
  * [Length:24] S -> C <S_ItemName.java>
  * 0000	28 94 B1 AB 01 24 33 32 39 33 20 28 24 31 31 37    (....$3293 ($117
  * 0010	29 00 ED E6 25 36 A9 B7                            )...%6..
- * 
+ *
  * [Length:24] S -> C <S_ItemName.java>
  * 0000	28 8F B1 AB 01 2B 30 20 24 33 32 38 35 20 28 24    (....+0 $3285 ($
  * 0010	39 29 00 4A 12 8F 08 3A                            9).J...:
- * 
+ *
  * [Length:8] S -> C
  * 0000	5C 01 00 00 9C 01 1B 5F                            \......_
- * 
+ *
  * [Length:72] S -> C <S_PacketBox.java>
  * 0000	77 14 00 00 00 00 00 00 00 00 00 00 00 00 00 00    w...............
  * 0010	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
  * 0020	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
  * 0030	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
  * 0040	00 00 00 00 00 00 B2 FB                            ........
- * 
+ *
  * [Length:16] S -> C <S_Bookmarks.java>
  * 0000	2F 30 30 30 31 00 00 00 57 7F AF 80 93 6C 86 F0    /0001...W...l..
- * 
+ *
  * [Length:16] S -> C <S_Bookmarks.java>
  * 0000	2F 30 30 30 32 00 00 00 57 7F AF 80 B0 CA FC 9A    /0002...W......
- * 
+ *
  * [Length:16] S -> C <S_Bookmarks.java>
  * 0000	2F 30 30 30 33 00 00 00 57 7F AF 80 05 DC 24 6C    /0003...W....$l
- * 
+ *
  * [Length:40] S -> C <S_AddSkill.java>
  * 0000	4C 20 FF FF 37 00 00 00 00 00 00 00 00 00 00 00    L ..7...........
  * 0010	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
  * 0020	00 00 00 14 00 01 08 00                            ........
- * 
+ *
  * [Length:8] S -> C <S_PacketBox.java>
  * 0000	77 0A 2E 7E 32 6A 7C FA                            w..~2j|.
- * 
+ *
  * [Length:40] S -> C <S_OwnCharStatus.java>
  * 0000	5D D7 B0 AB 01 0C 2D 6D 00 00 08 12 12 07 10 08    ].....-m........
  * 0010	84 00 84 00 8D 00 8D 00 FA 8E EF 45 15 50 2E 13    ...........E.P..
  * 0020	01 00 00 00 00 66 43 AE                            .....fC.
- * 
+ *
  * [Length:16] S -> C <S_MapID.java>
  * 0000	10 00 00 00 00 00 00 00 00 00 08 00 02 13 01 AF    ................
- * 
+ *
  * [Length:48] S -> C <S_OwnCharPack.java>
  * 0000	4F 57 7F AF 80 D7 B0 AB 01 DE 02 28 00 00 00 01    OW........(....
  * 0010	00 00 00 13 01 AF C1 A5 A7 AE A6 00 00 04 00 00    ................
  * 0020	00 00 00 00 00 FF 00 00 00 FF FF E9 78 12 AC 8F    ............x...
- * 
+ *
  * [Length:40] S -> C <S_NPCPack.java>
  * 0000	4F 55 7F A6 80 32 18 00 00 2A 09 1C 04 00 00 01    OU..2...*......
  * 0010	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF    ................
  * 0020	00 00 00 FF FF FC AB D2                            ........
- * 
+ *
  * [Length:8] S -> C <S_Door.java>
  * 0000	6B 55 7F A7 80 00 00 A0                            kU.....
- * 
+ *
  * [Length:40] S -> C <S_NPCPack.java>
  * 0000	4F 5C 7F AC 80 C3 2C A4 01 55 00 00 00 0D 00 01    O\...,..U......
  * 0010	00 00 00 FB FF 00 00 00 00 00 00 00 00 00 00 FF    ................
  * 0020	00 01 00 FF FF 00 24 4E                            ......$N
- * 
+ *
  * [Length:48] S -> C <S_NPCPack.java>
  * 0000	4F 5F 7F AD 80 8E B3 51 01 33 00 18 02 0D 00 01    O_....Q.3......
  * 0010	00 00 00 D0 07 24 32 34 30 00 00 00 00 00 00 00    .....$240.......
  * 0020	00 00 00 FF 00 19 00 FF FF E3 7F D6 7F 29 3F 00    ...........)?.
- * 
+ *
  * [Length:40] S -> C <S_NPCPack.java>
  * 0000	4F 5C 7F B3 80 BC 2C A4 01 55 00 00 00 0D 00 01    O\...,..U......
  * 0010	00 00 00 FB FF 00 00 00 00 00 00 00 00 00 00 FF    ................
  * 0020	00 01 00 FF FF FA E4 39                            .......9
- * 
+ *
  * [Length:48] S -> C <S_NPCPack.java>
  * 0000	4F 5F 7F B3 80 41 82 52 01 4F 01 00 02 0D 00 01    O_..A.R.O......
  * 0010	00 00 00 D0 07 24 32 34 30 00 00 00 00 00 00 00    .....$240.......
  * 0020	00 00 00 FF 00 19 00 FF FF 56 1B 05 93 20 06 1B    .........V... ..
- * 
+ *
  * [Length:8] S -> C <S_Weather.java>
  * 0000	62 00 03 C7 6D 08 81 D1                            b...m...
- * 
+ *
  * [Length:8] S -> C <S_CastleMaster.java>
  * 0000	56 01 DB 17 51 01 00 22                            V...Q.."
- * 
+ *
  * [Length:8] S -> C <S_CastleMaster.java>
  * 0000	56 02 F9 0F 2B 01 CF 4C                            V...+..L
- * 
+ *
  * [Length:8] S -> C <S_CastleMaster.java>
  * 0000	56 03 EF BA 1F 00 AB 54                            V......T
- * 
+ *
  * [Length:8] S -> C <S_CastleMaster.java>
  * 0000	56 04 91 70 C3 00 B0 61                            V..p...a
- * 
+ *
  * [Length:8] S -> C <S_CastleMaster.java>
  * 0000	56 05 77 7F 65 01 99 70                            V.we..p
- * 
+ *
  * [Length:8] S -> C <S_CastleMaster.java>
  * 0000	56 06 E9 1D B5 00 84 5C                            V......\
- * 
+ *
  * [Length:8] S -> C <S_CastleMaster.java>
  * 0000	56 07 50 E8 0C 00 53 1D                            V.P...S.
- * 
+ *
  * [Length:8] S -> C
  * 0000	5C 01 01 00 6F 31 3B A9                            \...o1;.
- * 
+ *
  * [Length:8] S -> C
  * 0000	36 08 12 12 07 10 08 2B                            6......+
- * 
+ *
  * [Length:8] S -> C
  * 0000	39 04 60 06 04 00 BB 20                            9.`....
- * 
+ *
  * [Length:216] S -> C
  * 0000	77 29 CC 00 00 00 35 59 44 8B 00 00 01 00 01 00    w)....5YD.......
  * 0010	80 0F 0F 00 FF 7F FF FF FF FF 80 00 00 00 00 00    ...............
@@ -259,7 +259,7 @@ public class C_LoginToServer extends ClientBasePacket {
 
 	/**
 	 * [客戶端] 登入遊戲封包
-	 * 
+	 *
 	 * @param data
 	 * @param client
 	 * @throws Exception
@@ -382,15 +382,7 @@ public class C_LoginToServer extends ClientBasePacket {
 		if (pc.getLevel() >= 49) { // 49級以上 殷海薩的祝福紀錄
 			if(pc.getMap().isSafetyZone(pc.getLocation())){
 				pc.setAinZone(1);
-			} else {
-				pc.setAinZone(0);
-			}
 
-			if (pc.getAinPoint() >= 1) {
-				pc.sendPackets(new S_SkillIconExp(pc.getAinPoint())); // 角色 登入時點數大於1則送出
-			}
-
-			if (pc.getAinZone() == 1) {
 				Calendar cal = Calendar.getInstance();
 				long startTime = (cal.getTimeInMillis() - pc.getLastActive().getTime()) / 60000;
 
@@ -398,6 +390,14 @@ public class C_LoginToServer extends ClientBasePacket {
 					int _addPoint = (int) (startTime / ainOutTime);
 					pc.addAinPoint(_addPoint);
 				}
+			} else {
+				pc.setAinZone(0);
+			}
+
+			if (pc.getAinPoint() >= 1) {
+				pc.sendPackets(new S_SkillIconExp(pc.getAinPoint())); // 角色 登入時點數大於1則送出
+			} else {
+				pc.setAinPoint(0);
 			}
 		}
 

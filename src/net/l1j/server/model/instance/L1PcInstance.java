@@ -2219,7 +2219,7 @@ public class L1PcInstance extends L1Character {
 	public void CalcExpCostAin(final int i) {
 		// %數大於0才有討論消耗的必要
 		if (_ainPoint > 0) {
-			_ain_getExp += (int) (i * 1.77);
+			_ain_getExp += i;
 			if (_ain_getExp > 5000) { // 根據資料約略 5000經驗值 換 1點殷海薩的祝福
 				addAinPoint(-1 * (_ain_getExp / 5000));
 				_ain_getExp %= 5000;

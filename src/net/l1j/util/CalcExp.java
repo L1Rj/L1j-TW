@@ -367,6 +367,7 @@ public class CalcExp {
 
 		// 殷海薩加成條件
 		if (_nLevel_t >= 49) {
+			_nExpRate *= 1.77;
 			pc.CalcExpCostAin((int) (exp * _nExpRate));
 			pc.sendPackets(new S_SkillIconExp(pc.getAinPoint()));
 		}
