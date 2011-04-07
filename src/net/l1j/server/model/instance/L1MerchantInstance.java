@@ -2989,23 +2989,15 @@ public class L1MerchantInstance extends L1NpcInstance {
 	private String talkToAdmin(L1PcInstance player) {
 		int objId = player.getId();
 		String htmlid = null;
-		if (player.getExp() >= 150 && player.getExp() < 300) {
+		if (player.getExp() >= 125 && player.getExp() < 300) {
 			htmlid = "";
 			int addEXP = 0;
 			addEXP = (300 - (player.getExp()));
 			player.addExp(addEXP);
-			player.getQuest().set_step(L1Quest.QUEST_TUTOR, 1);
-		} else if (player.getExp() >= 750 && player.getExp() < 1296) {
-			htmlid = "";
-			int addEXP = 0;
-			addEXP = (1296 - (player.getExp()));
-			player.addExp(addEXP);
-			if (player.getQuest().get_step(L1Quest.QUEST_TUTOR) == 1) {
-				player.getQuest().set_step(L1Quest.QUEST_TUTOR, 2);
-			}
-		} else if (player.getQuest().get_step(L1Quest.QUEST_TUTOR) == 2) {
+			player.getQuest().add_step(L1Quest.QUEST_TUTOR, 1);
+		} else if (player.getQuest().get_step(L1Quest.QUEST_TUTOR) == 4) {
 			htmlid = "admin3";
-		} else if (player.getLevel() > 0 && player.getLevel() < 5) {
+		} else if (player.getLevel() >= 1 && player.getLevel() < 5) {
 			if (player.getWeapon() == null) {
 				player.setSkillEffect(SKILL_GREATER_HASTE, 2400 * 1000);
 				player.sendPackets(new S_SkillHaste(objId, 1, 2400));
@@ -3031,6 +3023,12 @@ public class L1MerchantInstance extends L1NpcInstance {
 					}
 				}
 			}
+		} else if (player.getExp() >= 750 && player.getExp() < 1296) {
+			htmlid = "";
+			int addEXP = 0;
+			addEXP = (1296 - (player.getExp()));
+			player.addExp(addEXP);
+			player.getQuest().add_step(L1Quest.QUEST_TUTOR, 1);
 		} else if (player.getLevel() >= 5) {
 			player.setSkillEffect(SKILL_GREATER_HASTE, 2400 * 1000);
 			player.sendPackets(new S_SkillHaste(objId, 1, 2400));

@@ -27,7 +27,10 @@ import net.l1j.server.model.L1Quest;
 import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.npc.L1NpcHtml;
+import static net.l1j.server.model.skill.SkillId.*;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
+import net.l1j.server.serverpackets.S_SkillHaste;
+import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.templates.L1Npc;
 import net.l1j.thread.ThreadPoolManager;
 import net.l1j.util.RandomArrayList;
@@ -60,136 +63,139 @@ public class L1TeleporterInstance extends L1NpcInstance {
 
 		if (talking != null) {
 			switch (npcid) {
-				case 50014: // ディロン
-					if (player.isWizard()) { // ウィザード
-						if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1 && !player.getInventory().checkItem(40579)) { // アンデッドの骨
-							htmlid = "dilong1";
-						} else {
-							htmlid = "dilong3";
+			    case 50001: // バルニア
+				if (player.isElf()) {
+					htmlid = "barnia3";
+				} else if (player.isKnight() || player.isCrown()) {
+					htmlid = "barnia2";
+				} else if (player.isWizard() || player.isDarkelf()) {
+					htmlid = "barnia1";
+				}
+				break;
+			    case 50005:// 卡連-隱谷
+				if (player.isDarkelf()) {
+					if (player.getLevel() <= 3) {
+						htmlid = "karen1";
+					} else if (player.getLevel() > 3 && player.getLevel() < 50) {
+						htmlid = "karen3";
+					} else if (player.getLevel() >= 50) {
+					    htmlid = "karen4";
+					}
+				} else {
+				    htmlid = "karen2";
+				}
+				break;
+			    case 50014: // ディロン
+				if (player.isWizard()) { // ウィザード
+					if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1 && !player.getInventory().checkItem(40579)) { // アンデッドの骨
+						htmlid = "dilong1";
+					} else {
+						htmlid = "dilong3";
+					}
+				}
+				break;
+			    case 50031:
+				if (player.isElf()) {
+					if (quest.get_step(L1Quest.QUEST_LEVEL45) == 2) {
+						if (!player.getInventory().checkItem(40602)) { // ブルーフルート
+							htmlid = "sepia1";
 						}
 					}
+				}
 				break;
-				case 70779: // ゲートアント
-					if (player.getTempCharGfx() == 1037) { // ジャイアントアント變身
-						htmlid = "ants3";
-					} else if (player.getTempCharGfx() == 1039) {// ジャイアントアントソルジャー變身
-						if (player.isCrown()) { // 君主
-							if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1) {
-								if (player.getInventory().checkItem(40547)) { // 住民たちの遺品
-									htmlid = "antsn";
-								} else {
-									htmlid = "ants1";
-								}
-							} else { // Step1以外
+			    case 50043: // ラムダ
+				if (quest.get_step(L1Quest.QUEST_LEVEL50) == L1Quest.QUEST_END) {
+					htmlid = "ramuda2";
+				} else if (quest.get_step(L1Quest.QUEST_LEVEL50) == 1) { // ディガルディン同意濟み
+					if (player.isCrown()) { // 君主
+						if (_isNowDely) { // テレポートディレイ中
+							htmlid = "ramuda4";
+						} else {
+							htmlid = "ramudap1";
+						}
+					} else { // 君主以外
+						htmlid = "ramuda1";
+					}
+				} else {
+					htmlid = "ramuda3";
+				}
+				break;
+			    case 50082: // 歌う島のテレポーター
+				if (player.getLevel() < 13) {
+					htmlid = "en0221";
+				} else {
+				    if (player.isElf()) {
+					    htmlid = "en0222e";
+				    } else if (player.isDarkelf()) {
+					    htmlid = "en0222d";
+				    } else {
+					    htmlid = "en0222";
+				    }
+				}
+				break;
+			    case 70779: // ゲートアント
+				if (player.getTempCharGfx() == 1037) { // ジャイアントアント變身
+					htmlid = "ants3";
+				} else if (player.getTempCharGfx() == 1039) {// ジャイアントアントソルジャー變身
+					if (player.isCrown()) { // 君主
+						if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1) {
+							if (player.getInventory().checkItem(40547)) { // 住民たちの遺品
 								htmlid = "antsn";
+							} else {
+								htmlid = "ants1";
 							}
-						} else { // 君主以外
+						} else { // Step1以外
 							htmlid = "antsn";
 						}
+					} else { // 君主以外
+						htmlid = "antsn";
 					}
+				}
 				break;
-				case 70853: // フェアリープリンセス
-					int map213pccount = 0;
-					for (L1PcInstance map213pc : L1World.getInstance().getAllPlayers()) {
-						if (map213pc.getMapId()== 213) {
-							map213pccount++;
+			    case 70853: // フェアリープリンセス
+				int map213pccount = 0;
+				for (L1PcInstance map213pc : L1World.getInstance().getAllPlayers()) {
+					if (map213pc.getMapId()== 213) {
+						map213pccount++;
+					}
+				}
+				if (!player.isElf()){
+					htmlid = "";
+				} else if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1 && map213pccount == 0) {
+					if (!player.getInventory().checkItem(40592)) { // 咒われた精靈書
+						if (RandomArrayList.getInc(100, 1) < 50) { // 50%でダークマールダンジョン
+							htmlid = "fairyp2";
+						} else { // ダークエルフダンジョン
+							htmlid = "fairyp1";
 						}
 					}
-					if (!player.isElf()){
-						htmlid = "";
-					} else if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1
-							&& map213pccount == 0) {
-						if (!player.getInventory().checkItem(40592)) { // 咒われた精靈書
-							if (RandomArrayList.getInc(100, 1) < 50) { // 50%でダークマールダンジョン
-								htmlid = "fairyp2";
-							} else { // ダークエルフダンジョン
-								htmlid = "fairyp1";
-							}
-						}
-					} else if (player.isElf()) {
-						htmlid = "fairyp3";
-					}
+				} else if (player.isElf()) {
+					htmlid = "fairyp3";
+				}
 				break;
-				case 50031:
-					if (player.isElf()) {
-						if (quest.get_step(L1Quest.QUEST_LEVEL45) == 2) {
-							if (!player.getInventory().checkItem(40602)) { // ブルーフルート
-								htmlid = "sepia1";
-							}
-						}
-					}
+			    case 80048:// 扭曲的空間
+				if (player.getLevel() >= 52) {
+					htmlid = "entgate";
+				} else if ((player.getLevel() >= 45) && (player.getLevel() <= 51)) {
+					htmlid = "entgate2";
+				} else {
+					htmlid = "entgate3";
+				}
 				break;
-				case 50043: // ラムダ
-					if (quest.get_step(L1Quest.QUEST_LEVEL50) == L1Quest.QUEST_END) {
-						htmlid = "ramuda2";
-					} else if (quest.get_step(L1Quest.QUEST_LEVEL50) == 1) { // ディガルディン同意濟み
-						if (player.isCrown()) { // 君主
-							if (_isNowDely) { // テレポートディレイ中
-								htmlid = "ramuda4";
-							} else {
-								htmlid = "ramudap1";
-							}
-						} else { // 君主以外
-							htmlid = "ramuda1";
-						}
-					} else {
-						htmlid = "ramuda3";
-					}
+			    case 80058:// 次元之門
+				if (player.getLevel() >= 52) {
+					htmlid = "cpass01";
+				} else if ((player.getLevel() >= 45) && (player.getLevel() <= 51)) {
+					htmlid = "cpass02";
+				} else {
+					htmlid = "cpass03";
+				}
 				break;
-				case 50082: // 歌う島のテレポーター
-					if (player.getLevel() < 13) {
-						htmlid = "en0221";
-					} else {
-						if (player.isElf()) {
-							htmlid = "en0222e";
-						} else if (player.isDarkelf()) {
-							htmlid = "en0222d";
-						} else {
-							htmlid = "en0222";
-						}
-					}
-				break;
-				case 50001: // バルニア
-					if (player.isElf()) {
-						htmlid = "barnia3";
-					} else if (player.isKnight() || player.isCrown()) {
-						htmlid = "barnia2";
-					} else if (player.isWizard() || player.isDarkelf()) {
-						htmlid = "barnia1";
-					}
-				break;
-				case 50005:// 卡連-隱谷
-					if (player.isDarkelf()) {
-						if (player.getLevel() <= 3) {
-							htmlid = "karen1";
-						} else if (player.getLevel() > 3 && player.getLevel() < 50) {
-							htmlid = "karen3";
-						} else if (player.getLevel() >= 50) {
-							htmlid = "karen4";
-						}
-					} else {
-						htmlid = "karen2";
-					}
-				break;
-				case 80048:// 扭曲的空間
-					if (player.getLevel() >= 52) {
-						htmlid = "entgate";
-					} else if ((player.getLevel() >= 45) && (player.getLevel() <= 51)) {
-						htmlid = "entgate2";
-					} else {
-						htmlid = "entgate3";
-					}
-				break;
-				case 80058:// 次元之門
-					if (player.getLevel() >= 52) {
-						htmlid = "cpass01";
-					} else if ((player.getLevel() >= 45) && (player.getLevel() <= 51)) {
-						htmlid = "cpass02";
-					} else {
-						htmlid = "cpass03";
-					}
+			    case 80153:
+				htmlid = talkToTutor(player);
 				break;
 			}
+			
 			// html表示
 			if (htmlid != null) { // htmlidが指定されている場合
 				player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
@@ -455,7 +461,7 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				isTeleport = false;
 			}
 		}
-
+		
 		if (isTeleport) { // テレポート實行
 			try {
 				// ミュータントアントダンジョン(君主Lv30クエスト)
@@ -513,7 +519,72 @@ public class L1TeleporterInstance extends L1NpcInstance {
 			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
 		}
 	}
-
+	
+	
+	private String talkToTutor(L1PcInstance player) {
+		String htmlid = null;
+		int objId = player.getId();
+		int hp = RandomArrayList.getInc(21, 70);
+		player.setCurrentHp(player.getCurrentHp() + hp);
+		//player.setCurrentHp(player.getMaxHp());
+		player.setCurrentMp(player.getMaxMp());
+		player.sendPackets(new S_SkillSound(player.getId(), 830));
+		player.setSkillEffect(SKILL_GREATER_HASTE, 2360 * 1000);
+		player.sendPackets(new S_SkillHaste(objId, 1, 2360));
+		player.broadcastPacket(new S_SkillHaste(objId, 1, 0));
+		player.sendPackets(new S_SkillSound(objId, 755));
+		player.broadcastPacket(new S_SkillSound(objId, 755));
+		player.setMoveSpeed(1);
+		if (player.getExp() >= 0 && player.getExp() < 125) {
+			int addEXP = 0;
+			addEXP = (125 - (player.getExp()));
+			player.addExp(addEXP);
+			player.getQuest().add_step(L1Quest.QUEST_TUTOR, 1);
+			htmlid = "";
+		} else if (player.getLevel() >= 2 && player.getLevel() < 5) {
+			if (player.getQuest().get_step(L1Quest.QUEST_TUTOR) == 1) {
+				htmlid = "tutor";
+			} else if (player.isWizard() && player.getExp() >= 500 && player.getExp() < 750) {
+				htmlid = "tutorm2";
+			} else {
+				if (player.isCrown()) {
+					htmlid = "tutorp1";
+				} else if (player.isDarkelf()) {
+					htmlid = "tutord1";
+				} else if (player.isDragonKnight()) {
+					htmlid = "tutordk1";
+				} else if (player.isElf()) {
+					htmlid = "tutore1";
+				} else if (player.isIllusionist()) {
+					htmlid = "tutori1";
+				} else if (player.isKnight()) {
+					htmlid = "tutork1";
+				} else if (player.isWizard()) {
+					htmlid = "tutorm1";
+				}
+			}
+		} else if (player.getLevel() >= 5 && player.getLevel() < 13) {
+			if (player.isCrown()) {
+				htmlid = "tutorp";
+			} else if (player.isDarkelf()) {
+				htmlid = "tutord";
+			} else if (player.isDragonKnight()) {
+				htmlid = "tutordk";
+			} else if (player.isElf()) {
+				htmlid = "tutore";
+			} else if (player.isIllusionist()) {
+				htmlid = "tutori";
+			} else if (player.isKnight()) {
+				htmlid = "tutork";
+			} else if (player.isWizard()) {
+				htmlid = "tutorm";
+			}
+		} else if (player.getLevel() >= 13 || player.getQuest().get_step(L1Quest.QUEST_TUTOR) == 255) {
+			htmlid = "totorend";
+		}
+		return htmlid;
+	}
+	
 	class TeleportDelyTimer implements Runnable {
 
 		public TeleportDelyTimer() {
