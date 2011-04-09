@@ -36,9 +36,6 @@ import net.l1j.server.command.executor.L1HpBar;
 import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.datatables.ExpTable;
 import net.l1j.server.datatables.ItemTable;
-import net.l1j.server.model.id.L1ClassId;
-import net.l1j.server.model.id.SystemMessageId;
-import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.model.AcceleratorChecker;
 import net.l1j.server.model.HpRegeneration;
 import net.l1j.server.model.L1Attack;
@@ -68,7 +65,10 @@ import net.l1j.server.model.MpRegeneration;
 import net.l1j.server.model.MpRegenerationByDoll;
 import net.l1j.server.model.HpRegenerationByDoll;
 import net.l1j.server.model.classes.L1ClassFeature;
+import net.l1j.server.model.id.L1ClassId;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.gametime.L1GameTimeCarrier;
+import net.l1j.server.model.skill.SkillUse;
 import net.l1j.server.serverpackets.S_BlueMessage;
 import net.l1j.server.serverpackets.S_BonusStats;
 import net.l1j.server.serverpackets.S_CastleMaster;
@@ -90,6 +90,7 @@ import net.l1j.server.serverpackets.S_PacketBox;
 import net.l1j.server.serverpackets.S_Poison;
 import net.l1j.server.serverpackets.S_RemoveObject;
 import net.l1j.server.serverpackets.S_ServerMessage;
+import net.l1j.server.serverpackets.S_SkillIconExp;
 import net.l1j.server.serverpackets.S_SkillIconGFX;
 import net.l1j.server.serverpackets.S_SystemMessage;
 import net.l1j.server.serverpackets.ServerBasePacket;
@@ -307,13 +308,14 @@ public class L1PcInstance extends L1Character {
 			// sendPackets(new S_OwnCharStatus(this));
 			sendPackets(new S_Exp(this));
 			return;
-		}
-
-		// レベルが變化した場合
-		if (gap > 0) {
-			levelUp(gap);
-		} else if (gap < 0) {
-			levelDown(gap);
+		} else {
+			// 等級出現變化
+			if (gap > 0) {
+				levelUp(gap);
+			} else {
+				levelDown(gap);
+			}
+			setAinLevel();
 		}
 	}
 
@@ -1607,31 +1609,31 @@ public class L1PcInstance extends L1Character {
 	}
 
 	public boolean isCrown() {
-		return (getType() == L1ClassId.ROYAL || getClassId() == L1ClassId.PRINCE || getClassId() == L1ClassId.PRINCESS);
+		return (getType() == L1ClassId.ROYAL);
 	}
 
 	public boolean isKnight() {
-		return (getType() == L1ClassId.KNIGHT || getClassId() == L1ClassId.KNIGHT_MALE || getClassId() == L1ClassId.KNIGHT_FEMALE);
+		return (getType() == L1ClassId.KNIGHT);
 	}
 
 	public boolean isElf() {
-		return (getType() == L1ClassId.ELF || getClassId() == L1ClassId.ELF_MALE || getClassId() == L1ClassId.ELF_FEMALE);
+		return (getType() == L1ClassId.ELF);
 	}
 
 	public boolean isWizard() {
-		return (getType() == L1ClassId.WIZARD || getClassId() == L1ClassId.WIZARD_MALE || getClassId() == L1ClassId.WIZARD_FEMALE);
+		return (getType() == L1ClassId.WIZARD);
 	}
 
 	public boolean isDarkelf() {
-		return (getType() == L1ClassId.DARK_ELF || getClassId() == L1ClassId.DARK_ELF_MALE || getClassId() == L1ClassId.DARK_ELF_FEMALE);
+		return (getType() == L1ClassId.DARK_ELF);
 	}
 
 	public boolean isDragonKnight() {
-		return (getType() == L1ClassId.DRAGON_KNIGHT || getClassId() == L1ClassId.DRAGON_KNIGHT_MALE || getClassId() == L1ClassId.DRAGON_KNIGHT_FEMALE);
+		return (getType() == L1ClassId.DRAGON_KNIGHT);
 	}
 
 	public boolean isIllusionist() {
-		return (getType() == L1ClassId.ILLUSIONIST || getClassId() == L1ClassId.ILLUSIONIST_MALE || getClassId() == L1ClassId.ILLUSIONIST_FEMALE);
+		return (getType() == L1ClassId.ILLUSIONIST);
 	}
 
 	private final static Logger _log = Logger.getLogger(L1PcInstance.class.getName());
@@ -2203,12 +2205,25 @@ public class L1PcInstance extends L1Character {
 		_lastActive = new Timestamp(System.currentTimeMillis());
 	}
 
-	private int _ainZone=1;
-	public void setAinZone(int i) {
-		_ainZone = i;
+	private boolean _isAinLevel;
+
+	public boolean isAinZone() {
+		return getMap().isSafetyZone(getLocation());
 	}
-	public int getAinZone() {
-		return _ainZone;
+
+	public boolean isAinLevel() {
+		return _isAinLevel;
+	}
+
+	public void setAinLevel() {
+		_isAinLevel = (getLevel() >= 49) ? true : false;
+	}
+
+	public boolean isMatchAinResult() {
+		if (_isAinLevel)
+			return isAinZone();
+		else
+			return false;
 	}
 
 	private int _ainPoint = 0;   // 殷海薩的祝福 - %數
@@ -2217,28 +2232,27 @@ public class L1PcInstance extends L1Character {
 
 	// 將打怪所獲得的經驗值做暫時的累積 並提供 置換功能
 	public void CalcExpCostAin(final int i) {
-		// %數大於0才有討論消耗的必要
-		if (_ainPoint > 0) {
+		if (_ainPoint < 1) {
+			_ain_getExp = 0;
+		} else {
 			_ain_getExp += i;
-			if (_ain_getExp > 5000) { // 根據資料約略 5000經驗值 換 1點殷海薩的祝福
-				addAinPoint(-1 * (_ain_getExp / 5000));
+			if (_ain_getExp > 5000) {
+				addAinPoint(- _ain_getExp / 5000);
 				_ain_getExp %= 5000;
 			}
-		} else {
-			_ain_getExp = 0;
 		}
-	}
-
-	public void setAinPoint(final int i) {
-		_ainPoint = i;
 	}
 
 	public void addAinPoint(final int i) {
 		_ainPoint += i;
-		if (_ainPoint > ainMaxPercent)
-			_ainPoint = ainMaxPercent;
-		else if (_ainPoint < 1)
+		if (_ainPoint < 1) {
 			_ainPoint = 0;
+		} else {
+			if (_ainPoint > ainMaxPercent) {
+				_ainPoint = ainMaxPercent;
+			}
+			sendPackets(new S_SkillIconExp(_ainPoint));
+		}
 	}
 
 	public int getAinPoint() {

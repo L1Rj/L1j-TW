@@ -44,11 +44,7 @@ public class L1ScarecrowInstance extends L1NpcInstance {
 				hateList.add(1);
 				CalcExp.calcExp(player, getId(), targetList, hateList, getExp());
 			}
-			if (getHeading() < 7) { // 今の向きを取得
-				setHeading(getHeading() + 1); // 今の向きを設定
-			} else {
-				setHeading(0); // 今の向きが7 以上になると今の向きを0に戾す
-			}
+			setHeading((getHeading() + 1) & 0x07); // 今の向きを設定
 			broadcastPacket(new S_ChangeHeading(this)); // 向きの變更
 		}
 		attack.action();

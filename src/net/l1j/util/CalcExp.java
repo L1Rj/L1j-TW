@@ -37,7 +37,6 @@ import net.l1j.server.model.instance.L1SummonInstance;
 import net.l1j.server.model.skill.SkillId;
 import net.l1j.server.serverpackets.S_PetPack;
 import net.l1j.server.serverpackets.S_ServerMessage;
-import net.l1j.server.serverpackets.S_SkillIconExp;
 import net.l1j.server.templates.L1Pet;
 
 import static net.l1j.server.model.skill.SkillId.*;
@@ -366,10 +365,9 @@ public class CalcExp {
 		double _nExpRate = exppenalty * foodBonus * LevelBonus * expposion;
 
 		// 殷海薩加成條件
-		if (_nLevel_t >= 49) {
+		if (pc.isAinLevel()) {
 			_nExpRate *= 1.77;
 			pc.CalcExpCostAin((int) (exp * _nExpRate));
-			pc.sendPackets(new S_SkillIconExp(pc.getAinPoint()));
 		}
 		int add_exp = (int) (exp * _nExpRate * Config.RATE_XP);
 

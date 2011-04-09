@@ -36,7 +36,7 @@ public class L1Object implements Serializable {
 	 * @return マップID
 	 */
 	public short getMapId() {
-		return (short) _loc.getMap().getId();
+		return (short) _loc.getMapId();
 	}
 
 	/**

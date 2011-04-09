@@ -18,7 +18,9 @@
  */
 package net.l1j.server.model.classes;
 
+import net.l1j.server.model.L1Location;
 import net.l1j.server.model.id.L1ClassId;
+import net.l1j.util.RandomArrayList;
 
 public abstract class L1ClassFeature {
 	public static L1ClassFeature newClassFeature(int Type) {
@@ -51,7 +53,7 @@ public abstract class L1ClassFeature {
 	}
 
 	/** 角色出生地 */
-	public abstract int[] InitSpawn(int type);
+	public abstract L1Location InitSpawn();
 
 	/** 角色圖象 */
 	public abstract int InitSex(int sex);
@@ -61,9 +63,6 @@ public abstract class L1ClassFeature {
 
 	/** 角色初始魔量 */
 	public abstract int InitMp(int BaseWis);
-
-	/** 角色初始幸運值 */
-	public abstract int InitLucky();
 
 	/** 角色初始能力點數 */
 	public abstract int[] InitPoints();
@@ -116,9 +115,7 @@ public abstract class L1ClassFeature {
 	public int calcLvDex2AC(int level, int dex) {
 		// 當『敏捷』超過17時，一律當作18(受限矩陣大小)
 		int temp_dex = (dex > 17) ? 18 : dex;
-		int base_ac = 10;
-		base_ac -= (int) (level / Dex2AC[temp_dex]);
-		return base_ac;
+		return 10 - level / Dex2AC[temp_dex];
 	}
 
 	/**
@@ -137,4 +134,7 @@ public abstract class L1ClassFeature {
 		return StatMr[temp_wis];
 	}
 
+	public int InitLucky() {
+		return RandomArrayList.getInc(100, 1); // 初始幸運值
+	}
 }

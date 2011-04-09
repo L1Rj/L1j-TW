@@ -29,7 +29,6 @@ public abstract class ServerBasePacket {
 	private final static Logger _log = Logger.getLogger(ServerBasePacket.class.getName());
 
 	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
-	// static final Random random = new Random(); // 填充物要用到的亂數
 
 	ByteArrayOutputStream _bao = new ByteArrayOutputStream();
 
@@ -129,13 +128,10 @@ public abstract class ServerBasePacket {
 	}
 
 	public byte[] getBytes() {
-		int padding = _bao.size() % 4;
+		int padding = _bao.size() & 0x03;
 
-		if (padding != 0) {
-			for (int i = padding; i < 4; i++) {
+		while (padding++ < 4)
 				writeC(0x00);
-			}
-		}
 
 		return _bao.toByteArray();
 	}

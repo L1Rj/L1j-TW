@@ -27,7 +27,6 @@ import java.util.TimeZone;
 import net.l1j.Config;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
-import net.l1j.server.serverpackets.S_SkillIconExp;
 
 public class AinTimeController implements Runnable {
 	private static Logger _log = Logger.getLogger(AinTimeController.class.getName());
@@ -46,7 +45,7 @@ public class AinTimeController implements Runnable {
 		try {
 			while (true) {
 				checkAinTime();
-				Thread.sleep(60000);
+				Thread.sleep(ainTime_ms);
 			}
 		} catch (Exception e1) {
 			_log.warning(e1.getMessage());
@@ -54,31 +53,22 @@ public class AinTimeController implements Runnable {
 	}
 	
 	private Calendar getRealTime() {
-		  TimeZone _tz = TimeZone.getTimeZone(Config.TIME_ZONE);
-		  Calendar cal = Calendar.getInstance(_tz);
-		  return cal;
+		TimeZone _tz = TimeZone.getTimeZone(Config.TIME_ZONE);
+		Calendar cal = Calendar.getInstance(_tz);
+		return cal;
 	}
+
+	private final static int ainTime_min = Config.RATE_AIN_TIME; // 時間比例 單位:分
+	private final static int ainTime_ms = ainTime_min * 60000; // 時間比例 單位毫秒
 
 	private void checkAinTime() {
 		SimpleDateFormat tempTime = new SimpleDateFormat("HHmm");
 		int nowTime = Integer.valueOf(tempTime.format(getRealTime().getTime()));
 
-		int ainTime = Config.RATE_AIN_TIME; // 時間比例
-
-		if (nowTime % ainTime == 0) {
-			for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
-				if (pc.getLevel() >= 49) {  // 等級限制
-					if (pc.getMap().isSafetyZone(pc.getLocation())) { // 安全區域
-						pc.addAinPoint(1); // 點數 +1
-						pc.setAinZone(1);
-						pc.sendPackets(new S_SkillIconExp(pc.getAinPoint()));
-					} else {
-						pc.setAinZone(0);
-					}
-				}
+		for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
+			if (pc.isMatchAinResult()) {
+				pc.addAinPoint(1); // 點數 +1
 			}
-		} else {
-			return;
-		} 
+		}
 	}
 }

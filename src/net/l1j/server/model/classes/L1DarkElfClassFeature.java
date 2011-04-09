@@ -19,15 +19,16 @@
 package net.l1j.server.model.classes;
 
 import net.l1j.Config;
+import net.l1j.server.model.L1Location;
 import net.l1j.server.model.id.L1ClassId;
 import net.l1j.util.RandomArrayList;
 
 class L1DarkElfClassFeature extends L1ClassFeature {
 
+	private final static L1Location spawn = new L1Location( 32679, 32866, 2005 ); // 3.3C 統一改至新版隱藏之谷 舊寫法保留觀察後續變化
+
 	@Override
-	public int[] InitSpawn(int type) {
-//		int spawn[] = { 32714, 32877, 69 };
-		int spawn[] = { 32679, 32866, 2005 }; // 3.3C 統一改至新版隱藏之谷 舊寫法保留觀察後續變化
+	public L1Location InitSpawn() {
 		return spawn;
 	}
 
@@ -57,25 +58,20 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 	}
 
 	@Override
-	public int InitLucky() {
-		int randomLucky = RandomArrayList.getInc(100, 1);
-		return randomLucky; // 初始幸運值
+	public int InitMr() {
+		return 10;
+	}
+
+
+	private final static int points[] = { 13, 11, 14, 12, 8, 11, 6 }; // 力、敏、體、精、魅、智、自由點數
+	@Override
+	public int[] InitPoints() {
+		return points;
 	}
 
 	@Override
 	public int bounsCha() {
 		return 0;
-	}
-
-	@Override
-	public int InitMr() {
-		return 10;
-	}
-
-	@Override
-	public int[] InitPoints() {
-		int points[] = { 12, 15, 8, 10, 9, 11, 10 }; // 力、敏、體、精、魅、智、自由點數
-		return points;
 	}
 
 	@Override
@@ -110,10 +106,8 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 
 	@Override
 	public int calclvUpHp(int baseCon) {
-		int randomhp = 0;
 		int randomadd = RandomArrayList.getInc(5, -2);
-		randomhp += baseCon * 5 / 6 + randomadd + 2; // 初期值分追加 5 <-> 10
-
+		int randomhp = baseCon * 5 / 6 + randomadd + 2; // 初期值分追加 5 <-> 10
 		return randomhp;
 	}
 
@@ -138,19 +132,18 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 	 */
 	@Override
 	public int calclvUpMp(int BaseWis) {
-		int randommp = 0;
 		// 當『精神』超過34時，一律當作35(受限矩陣大小)
 		int temp_BaseWis = (BaseWis > 34) ? 35 : BaseWis;
-		randommp = RandomArrayList.getInc(DE_RandomMp[temp_BaseWis], DE_BaseMp[temp_BaseWis]);
-		return (int) (randommp * 1.5);
+		int randommp = RandomArrayList.getInc(DE_RandomMp[temp_BaseWis], DE_BaseMp[temp_BaseWis]);
+		return randommp * 3 / 2;
 	}
 
-	/** 血量上限 */
+	@Override
 	public int MaxHp() {
 		return Config.DARKELF_MAX_HP;
 	}
 
-	/** 魔量上限 */
+	@Override
 	public int MaxMp() {
 		return Config.DARKELF_MAX_MP;
 	}

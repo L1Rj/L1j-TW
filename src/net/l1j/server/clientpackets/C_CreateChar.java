@@ -31,8 +31,9 @@ import net.l1j.server.datatables.BanNameTable;
 import net.l1j.server.datatables.CharacterTable;
 import net.l1j.server.datatables.SkillsTable;
 import net.l1j.server.model.Beginner;
-import net.l1j.server.model.instance.L1PcInstance;
+import net.l1j.server.model.L1Location;
 import net.l1j.server.model.classes.L1ClassFeature;
+import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_AddSkill;
 import net.l1j.server.serverpackets.S_CharCreateStatus;
 import net.l1j.server.serverpackets.S_NewCharPacket;
@@ -87,7 +88,7 @@ public class C_CreateChar extends ClientBasePacket {
 		pc.addBaseInt(readC());
 		boolean statusError = false;
 
-		classFeature = L1ClassFeature.newClassFeature(pc.getType());
+		classFeature = pc.getClassFeature();
 		int originalpoint[] = classFeature.InitPoints();
 
 		if ((pc.getBaseStr() < originalpoint[0]
@@ -120,17 +121,15 @@ public class C_CreateChar extends ClientBasePacket {
 	}
 
 	private static void initNewChar(ClientThread client, L1PcInstance pc) throws IOException, Exception {
-		L1ClassFeature classFeature = L1ClassFeature.newClassFeature(pc.getType());
+		L1ClassFeature classFeature = pc.getClassFeature();
 		int initHp = classFeature.InitHp();
 		int initMp = classFeature.InitMp(pc.getWis());
 		int initLucky = classFeature.InitLucky();
-		int [] spawn = classFeature.InitSpawn(pc.getType());
+		L1Location spawn = classFeature.InitSpawn();
 
 		pc.setId(IdFactory.getInstance().nextId());
 		pc.setClassId(classFeature.InitSex(pc.get_sex()));
-		pc.setX(spawn[0]);
-		pc.setY(spawn[1]);
-		pc.setMap((short)spawn[2]);
+		pc.setLocation(spawn);
 		pc.setHeading(5);
 		pc.setLawful(0);
 		pc.addBaseMaxHp(initHp);

@@ -60,7 +60,7 @@ public class C_CharReset extends ClientBasePacket {
 		super(abyte0);
 
 		L1PcInstance pc = clientthread.getActiveChar();
-		classFeature = L1ClassFeature.newClassFeature(pc.getType());
+		classFeature = pc.getClassFeature();
 		// waja add 檢查角色素質狀態
 		if (!pc.isInCharReset()) { //如果不是重置狀態
 			return;
@@ -200,7 +200,7 @@ public class C_CharReset extends ClientBasePacket {
 	}
 
 	private void setLevelUp(L1PcInstance pc, int addLv) {
-		classFeature = L1ClassFeature.newClassFeature(pc.getType());
+		classFeature = pc.getClassFeature();
 		pc.setTempLevel(pc.getTempLevel() + addLv);
 		for (int i = 0; i < addLv; i++) {
 			int randomHp = classFeature.calclvUpHp(pc.getCon());

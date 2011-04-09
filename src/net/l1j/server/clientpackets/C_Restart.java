@@ -38,14 +38,6 @@ public class C_Restart extends ClientBasePacket {
 
 		L1PcInstance pc = client.getActiveChar();
 
-		if (pc.getLevel() >= 49) { // 49級以上 殷海薩的祝福安全區域登出紀錄
-			if (pc.getMap().isSafetyZone(pc.getLocation())) {
-				pc.setAinZone(1);
-			} else {
-				pc.setAinZone(0);
-			}
-		}
-
 		// 判斷玩家是否未死亡
 		if (!pc.isDead()) {
 			return; // 中斷程序
@@ -83,6 +75,10 @@ public class C_Restart extends ClientBasePacket {
 		pc.startHpRegeneration();
 		pc.startMpRegeneration();
 		// pc.sendPackets(new S_Weather(L1World.getInstance().getWeather())); 不需要使用
+		pc.setAinLevel();
+		if (pc.isMatchAinResult()) { // 49級以上 殷海薩的祝福紀錄
+			pc.addAinPoint(0);
+		}
 
 		if (pc.getHellTime() > 0) {
 			pc.beginHell(false);

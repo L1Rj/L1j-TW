@@ -19,15 +19,16 @@
 package net.l1j.server.model.classes;
 
 import net.l1j.Config;
+import net.l1j.server.model.L1Location;
 import net.l1j.server.model.id.L1ClassId;
 import net.l1j.util.RandomArrayList;
 
 class L1WizardClassFeature extends L1ClassFeature {
 
+	private final static L1Location spawn = new L1Location( 32679, 32866, 2005 ); // 3.3C 統一改至新版隱藏之谷 舊寫法保留觀察後續變化
+
 	@Override
-	public int[] InitSpawn(int type) {
-//		int spawn[] = { 32780, 32781, 68 };
-		int spawn[] = { 32679, 32866, 2005 }; // 3.3C 統一改至新版隱藏之谷 舊寫法保留觀察後續變化
+	public L1Location InitSpawn() {
 		return spawn;
 	}
 
@@ -57,19 +58,13 @@ class L1WizardClassFeature extends L1ClassFeature {
 	}
 
 	@Override
-	public int InitLucky() {
-		int randomLucky = RandomArrayList.getInc(100, 1);
-		return randomLucky; // 初始幸運值
-	}
-
-	@Override
 	public int InitMr() {
 		return 15; // 初始魔法防禦點數15
 	}
 
+	private final static int points[] = { 8, 7, 12, 12, 8, 12, 16 }; // 力、敏、體、精、魅、智、自由點數
 	@Override
 	public int[] InitPoints() {
-		int points[] = { 8, 7, 12, 12, 8, 12, 16 }; // 力、敏、體、精、魅、智、自由點數
 		return points;
 	}
 
@@ -110,10 +105,8 @@ class L1WizardClassFeature extends L1ClassFeature {
 
 	@Override
 	public int calclvUpHp(int baseCon) {
-		int randomhp = 0;
 		int randomadd = RandomArrayList.getInc(5, -2);
-		randomhp += baseCon * 5 / 6 + randomadd + 1; // 初期值分追加 3 <-> 7
-
+		int randomhp = baseCon * 5 / 6 + randomadd + 1; // 初期值分追加 3 <-> 7
 		return randomhp;
 	}
 
@@ -138,11 +131,10 @@ class L1WizardClassFeature extends L1ClassFeature {
 	 */
 	@Override
 	public int calclvUpMp(int BaseWis) {
-		int randommp = 0;
 		// 當『精神』超過34時，一律當作35(受限矩陣大小)
 		int temp_BaseWis = (BaseWis > 34) ? 35 : BaseWis;
-		randommp = RandomArrayList.getInc(W_RandomMp[temp_BaseWis], W_BaseMp[temp_BaseWis]);
-		return (randommp * 2);
+		int randommp = RandomArrayList.getInc(W_RandomMp[temp_BaseWis], W_BaseMp[temp_BaseWis]);
+		return randommp * 2;
 	}
 
 	@Override

@@ -28,14 +28,14 @@ import static net.l1j.server.Opcodes.S_OPCODE_CHARPACK;
 public class S_NPCPack extends ServerBasePacket {
 	private static final String S_NPC_PACK = "[S] S_NPCPack";
 
-	private static final short STATUS_POISON = 1;
-	private static final short STATUS_INVISIBLE = 2;
-	private static final short STATUS_PC = 4;
-	private static final short STATUS_FREEZE = 8;
-	private static final short STATUS_BRAVE = 16;
-	private static final short STATUS_ELFBRAVE = 32;
-	private static final short STATUS_FASTMOVABLE = 64;
-	private static final short STATUS_GHOST = 128;
+	private static final int STATUS_POISON = 1;
+	private static final int STATUS_INVISIBLE = 2;
+	private static final int STATUS_PC = 4;
+	private static final int STATUS_FREEZE = 8;
+	private static final int STATUS_BRAVE = 16;
+	private static final int STATUS_ELFBRAVE = 32;
+	private static final int STATUS_FASTMOVABLE = 64;
+	private static final int STATUS_GHOST = 128;
 
 	public S_NPCPack(L1NpcInstance npc) {
 		writeC(S_OPCODE_CHARPACK);
@@ -74,9 +74,11 @@ public class S_NPCPack extends ServerBasePacket {
 
 		int status = 0;
 
-		if (npc.getPoison() != null) // 毒狀態
-			if (npc.getPoison().getEffectId() == 1)
+		if (npc.getPoison() != null) { // 毒狀態
+			if (npc.getPoison().getEffectId() == 1) {
 				status |= STATUS_POISON;
+			}
+		}
 
 		// PC屬性だとエヴァの祝福を渡せないためWIZクエストのドッペルは例外
 		if (npc.getNpcTemplate().is_doppel())
