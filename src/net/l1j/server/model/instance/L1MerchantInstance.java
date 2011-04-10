@@ -3028,7 +3028,12 @@ public class L1MerchantInstance extends L1NpcInstance {
 			int addEXP = 0;
 			addEXP = (1296 - (player.getExp()));
 			player.addExp(addEXP);
-			player.getQuest().add_step(L1Quest.QUEST_TUTOR, 1);
+			if (player.getQuest().get_step(L1Quest.QUEST_TUTOR) >= 3) {
+				int addStep = (4 - (player.getQuest().get_step(L1Quest.QUEST_TUTOR)));
+				player.getQuest().add_step(L1Quest.QUEST_TUTOR, addStep);
+			} else {
+				player.getQuest().add_step(L1Quest.QUEST_TUTOR, 4);
+			}
 		} else if (player.getLevel() >= 5) {
 			player.setSkillEffect(SKILL_GREATER_HASTE, 2400 * 1000);
 			player.sendPackets(new S_SkillHaste(objId, 1, 2400));

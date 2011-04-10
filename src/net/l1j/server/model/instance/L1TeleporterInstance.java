@@ -21,14 +21,17 @@ package net.l1j.server.model.instance;
 import java.util.logging.Logger;
 
 import net.l1j.server.datatables.NPCTalkDataTable;
+import net.l1j.server.model.id.SystemMessageId;
 import net.l1j.server.model.L1Attack;
 import net.l1j.server.model.L1NpcTalkData;
+import net.l1j.server.model.L1Object;
 import net.l1j.server.model.L1Quest;
 import net.l1j.server.model.L1Teleport;
 import net.l1j.server.model.L1World;
 import net.l1j.server.model.npc.L1NpcHtml;
 import static net.l1j.server.model.skill.SkillId.*;
 import net.l1j.server.serverpackets.S_NPCTalkReturn;
+import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillHaste;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.templates.L1Npc;
@@ -41,7 +44,7 @@ public class L1TeleporterInstance extends L1NpcInstance {
 	private final static Logger _log = Logger.getLogger(L1TeleporterInstance.class.getName());
 
 	private boolean _isNowDely = false;
-
+	
 	public L1TeleporterInstance(L1Npc template) {
 		super(template);
 	}
@@ -555,9 +558,9 @@ public class L1TeleporterInstance extends L1NpcInstance {
 		player.setCurrentHp(player.getCurrentHp() + hp);
 		//player.setCurrentHp(player.getMaxHp());
 		player.setCurrentMp(player.getMaxMp());
-		player.sendPackets(new S_SkillSound(player.getId(), 830));
-		player.setSkillEffect(SKILL_GREATER_HASTE, 2360 * 1000);
-		player.sendPackets(new S_SkillHaste(objId, 1, 2360));
+		player.sendPackets(new S_SkillSound(objId, 830));
+		player.setSkillEffect(SKILL_HASTE, 1200 * 1000);
+		player.sendPackets(new S_SkillHaste(objId, 1, 1200));
 		player.broadcastPacket(new S_SkillHaste(objId, 1, 0));
 		player.sendPackets(new S_SkillSound(objId, 755));
 		player.broadcastPacket(new S_SkillSound(objId, 755));
@@ -567,6 +570,8 @@ public class L1TeleporterInstance extends L1NpcInstance {
 			addEXP = (125 - (player.getExp()));
 			player.addExp(addEXP);
 			player.getQuest().add_step(L1Quest.QUEST_TUTOR, 1);
+			L1ItemInstance item = player.getInventory().storeItem(40101, 5);
+			player.sendPackets(new S_ServerMessage(SystemMessageId.$143, getNpcTemplate().get_name(), item.getLogName()));
 			htmlid = "";
 		} else if (player.getLevel() >= 2 && player.getLevel() < 5) {
 			if (player.getQuest().get_step(L1Quest.QUEST_TUTOR) == 1) {

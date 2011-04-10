@@ -2574,6 +2574,21 @@ public class C_NPCAction extends ClientBasePacket {
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80154) {
 			L1NpcInstance npc = (L1NpcInstance) obj;
 			htmlid = getTalkAdmin(pc, npc, s);
+		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 80158) {
+			if (s.equalsIgnoreCase("fixFree")) {
+				for (L1ItemInstance item : pc.getInventory().getItems()) {
+					if (pc.getWeapon().equals(item)) {
+						if (pc.getWeapon().get_durability() >= 1) {
+							pc.getWeapon().set_durability(0);
+							pc.getInventory().updateItem(item, L1PcInventory.COL_DURABILITY);
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$464, item.getName()));
+							htmlid = "";
+						} else {
+							htmlid = "cuse3";
+						}
+					}
+				}
+			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 81124) { // ジャック オ ランタン
 			if (s.equalsIgnoreCase("1")) {
 				poly(client, 4002);
@@ -4546,167 +4561,145 @@ public class C_NPCAction extends ClientBasePacket {
 	
 	private String getTalkTutor(L1PcInstance pc, L1NpcInstance npc, String s) {
 		String htmlid = null;
-		if (s.equalsIgnoreCase("A")) {
+		if (s.equals("A")) {
 			if(pc.isCrown()) {
-				if(pc.getLevel() <= 2 && pc.getLevel() > 4) {
+				if(pc.getLevel() >= 2 && pc.getLevel() < 4) {
 					htmlid = "tutorp1";
-				} else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+				} else if (pc.getLevel() >= 5 && pc.getLevel() < 8) {
 					htmlid = "tutorp2";
-				} else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+				} else if (pc.getLevel() >= 8 && pc.getLevel() < 10) {
 					htmlid = "tutorp3";
-				} else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+				} else if (pc.getLevel() >= 10 && pc.getLevel() < 13) {
 					htmlid = "tutorp4";
 				} else {
 					htmlid = "tutorp5";
 				}
 			}
-		} else if (s.equalsIgnoreCase("B")) {
+		} else if (s.equals("B")) {
 			if (pc.isKnight()) {
-				if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+				if(pc.getLevel() >=2 && pc.getLevel() < 4) {
 					htmlid = "tutork1";
-				} else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+				} else if (pc.getLevel() >= 5 && pc.getLevel() < 8) {
 					htmlid = "tutork2";
-				} else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+				} else if (pc.getLevel() >= 8 && pc.getLevel() < 10) {
 					htmlid = "tutork3";
-				} else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+				} else if (pc.getLevel() >= 10 && pc.getLevel() < 13) {
 					htmlid = "tutork4";
 				} else {
 					htmlid = "tutork5";
 				}
 			}
-		} else if (s.equalsIgnoreCase("C")) {
+		} else if (s.equals("C")) {
 			if (pc.isElf()) {
-				if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+				if(pc.getLevel() >=2 && pc.getLevel() < 4) {
 					htmlid = "tutore1";
-				} else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+				} else if (pc.getLevel() >= 5 && pc.getLevel() < 8) {
 					htmlid = "tutore2";
-				} else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+				} else if (pc.getLevel() >= 8 && pc.getLevel() < 10) {
 					htmlid = "tutore3";
-				} else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
-					htmlid = "tutore4";
+				} else if (pc.getLevel() > 10 && pc.getLevel() < 13) {
+					if (pc.getExp() >= 20756 && pc.getExp() < 28581) {
+						htmlid = "tutore5";
+					} else {
+						htmlid = "tutore4";
+					}
 				} else {
 					htmlid = "tutore6";
 				}
 			}
-		} else if (s.equalsIgnoreCase("D")) {
+		} else if (s.equals("D")) {
 			if (pc.isWizard()) {
-				if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+				if(pc.getLevel() >=2 && pc.getLevel() < 4) {
 					htmlid = "tutorm1";
-				} else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+				} else if (pc.getLevel() >= 5 && pc.getLevel() < 8) {
 					htmlid = "tutorm3";
-				} else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+				} else if (pc.getLevel() >= 8 && pc.getLevel() < 10) {
 					htmlid = "tutorm4";
-				} else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+				} else if (pc.getLevel() >= 10 && pc.getLevel() < 13) {
 					htmlid = "tutorm5";
 				} else {
 					htmlid = "tutorm6";
 				}
 			}
-		} else if (s.equalsIgnoreCase("E")) {
+		} else if (s.equals("E")) {
 			if (pc.isDarkelf()) {
-				if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+				if(pc.getLevel() >=2 && pc.getLevel() < 4) {
 					htmlid = "tutord1";
-				} else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+				} else if (pc.getLevel() >= 5 && pc.getLevel() < 8) {
 					htmlid = "tutord2";
-				} else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+				} else if (pc.getLevel() >= 8 && pc.getLevel() < 10) {
 					htmlid = "tutord3";
-				} else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+				} else if (pc.getLevel() > 10 && pc.getLevel() < 12) {
 					htmlid = "tutord4";
+				} else if (pc.getExp() >= 20756 && pc.getExp() < 28581) {
+					htmlid = "tutord5";
 				} else {
 					htmlid = "tutord6";
 				}
 			}
-		} else if (s.equalsIgnoreCase("F")) {
+		} else if (s.equals("F")) {
 			if (pc.isDragonKnight()) {
-				if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+				if(pc.getLevel() >=2 && pc.getLevel() < 4) {
 					htmlid = "tutordk1";
-				} else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+				} else if (pc.getLevel() >= 5 && pc.getLevel() < 8) {
 					htmlid = "tutordk2";
-				} else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+				} else if (pc.getLevel() >= 8 && pc.getLevel() < 10) {
 					htmlid = "tutordk3";
-				} else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+				} else if (pc.getLevel() >= 10 && pc.getLevel() < 13) {
 					htmlid = "tutordk4";
 				} else {
 					htmlid = "tutordk5";
 				}
 			}
-		} else if (s.equalsIgnoreCase("G")) {
+		} else if (s.equals("G")) {
 			if (pc.isIllusionist()) {
-				if(pc.getLevel() <=2 && pc.getLevel() > 4) {
+				if(pc.getLevel() >=2 && pc.getLevel() < 4) {
 					htmlid = "tutori1";
-				} else if (pc.getLevel() <= 5 && pc.getLevel() > 8) {
+				} else if (pc.getLevel() >= 5 && pc.getLevel() < 8) {
 					htmlid = "tutori2";
-				} else if (pc.getLevel() <= 8 && pc.getLevel() > 10) {
+				} else if (pc.getLevel() >= 8 && pc.getLevel() < 10) {
 					htmlid = "tutori3";
-				} else if (pc.getLevel() <= 10 && pc.getLevel() > 12) {
+				} else if (pc.getLevel() >= 10 && pc.getLevel() < 13) {
 					htmlid = "tutori4";
 				} else {
 					htmlid = "tutori5";
 				}
 			}
-		} else if (s.equalsIgnoreCase("H")) {
-			pc.getInventory().storeItem(40101, 1); // 指定傳送卷軸(隱藏之谷)
-		} else if (s.equalsIgnoreCase("J")) {
-			pc.getInventory().storeItem(40101, 1);
-		} else if (s.equalsIgnoreCase("K")) {
-			pc.getInventory().storeItem(40101, 1);
-		} else if (s.equalsIgnoreCase("L")) {
-			pc.getInventory().storeItem(40101, 1);
-		} else if(s.equalsIgnoreCase("l")) {
-			if (pc.getQuest().get_step(L1Quest.QUEST_TUTOR) == 0) {
-				if (pc.isCrown()) {
-					htmlid = "tutorp1";
-				} else if (pc.isDarkelf()) {
-					htmlid = "tutord1";
-				} else if (pc.isDragonKnight()) {
-					htmlid = "tutordk1";
-				} else if (pc.isElf()) {
-					htmlid = "tutore1";
-				} else if (pc.isIllusionist()) {
-					htmlid = "tutori1";
-				} else if (pc.isKnight()) {
-					htmlid = "tutork1";
-				} else if (pc.isWizard()) {
-					htmlid = "tutorm1";
-				}
-			} else {
-				pc.getQuest().set_step(L1Quest.QUEST_TUTOR, 0);
-				if (pc.isCrown()) {
-					htmlid = "tutorp1";
-				} else if (pc.isDarkelf()) {
-					htmlid = "tutord1";
-				} else if (pc.isDragonKnight()) {
-					htmlid = "tutordk1";
-				} else if (pc.isElf()) {
-					htmlid = "tutore1";
-				} else if (pc.isIllusionist()) {
-					htmlid = "tutori1";
-				} else if (pc.isKnight()) {
-					htmlid = "tutork1";
-				} else if (pc.isWizard()) {
-					htmlid = "tutorm1";
-				}
-			}
-		} else if (s.equalsIgnoreCase("M")) {
-			pc.getInventory().storeItem(40101, 1);
-		} else if (s.equalsIgnoreCase("N")) {
-			pc.getInventory().storeItem(40101, 1);
+		} else if (s.equals("H")) {
+			L1ItemInstance item = pc.getInventory().storeItem(40101, 1);
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getName()));
+		} else if (s.equals("J")) {
+			L1ItemInstance item = pc.getInventory().storeItem(40101, 1);
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getName()));
+		} else if (s.equals("K")) {
+			L1ItemInstance item = pc.getInventory().storeItem(40101, 1);
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getName()));
+		} else if (s.equals("l")) {
+			pc.getQuest().add_step(L1Quest.QUEST_TUTOR, 1);
+			htmlid = "";
+		} else if (s.equals("L")) {
+			L1ItemInstance item = pc.getInventory().storeItem(40101, 1);
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getName()));
+		} else if (s.equals("M")) {
+			L1ItemInstance item = pc.getInventory().storeItem(40101, 1);
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getName()));
+		} else if (s.equals("N")) {
+			L1ItemInstance item = pc.getInventory().storeItem(40101, 1);
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getLogName()));
 		}
 		return htmlid;
 	}
 	
 	private String getTalkAdmin(L1PcInstance pc, L1NpcInstance npc, String s) {
 		String htmlid = null;
-		if (s.equalsIgnoreCase("A")) {
-			if (pc.getLevel() > 5) {
-				htmlid = "";
-			} else if (pc.getLevel() <= 5){
-				pc.getQuest().set_step(L1Quest.QUEST_TUTOR, 3);
+		if (s.equals("A")) {
+			if (pc.getQuest().get_step(L1Quest.QUEST_TUTOR) == 4) {
+				pc.getQuest().add_step(L1Quest.QUEST_TUTOR, 1);
 				final int[] item_ids = { 20028, 20126, 20173, 20206, 20232, 40101, 40099, 40098, 40029, 40030,};
 				final int[] item_amounts = { 1, 1, 1, 1, 1, 5, 30, 20, 50, 5,};
 				for (int i = 0; i < item_ids.length; i++) {
 					L1ItemInstance item = pc.getInventory().storeItem(item_ids[i], item_amounts[i]);
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getLogName()));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getName()));
 				}
 				htmlid = "";
 			} else {
@@ -4715,7 +4708,7 @@ public class C_NPCAction extends ClientBasePacket {
 		}
 		return htmlid;
 	}
-
+	
 	// 判斷是否無道具施法(召戒清單、變身清單)
 	private boolean usePolyScroll(L1PcInstance pc, int itemId, String s) {
 		int time = 0;
