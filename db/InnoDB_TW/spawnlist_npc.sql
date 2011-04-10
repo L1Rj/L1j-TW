@@ -19,18 +19,18 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `spawnlist_npc`;
 CREATE TABLE `spawnlist_npc` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(1'0') unsigned NOT NULL AUTO_INCREMENT,
   `location` varchar(19) NOT NULL DEFAULT '',
-  `count` int(10) unsigned NOT NULL DEFAULT '0',
-  `npc_templateid` int(10) unsigned NOT NULL DEFAULT '0',
-  `locx` int(10) unsigned NOT NULL DEFAULT '0',
-  `locy` int(10) unsigned NOT NULL DEFAULT '0',
-  `randomx` int(10) unsigned NOT NULL DEFAULT '0',
-  `randomy` int(10) unsigned NOT NULL DEFAULT '0',
-  `heading` int(10) unsigned NOT NULL DEFAULT '0',
-  `respawn_delay` int(10) unsigned NOT NULL DEFAULT '0',
-  `mapid` int(10) unsigned NOT NULL DEFAULT '0',
-  `movement_distance` int(10) unsigned NOT NULL DEFAULT '0',
+  `count` int(1'0') unsigned NOT NULL DEFAULT '0',
+  `npc_templateid` int(1'0') unsigned NOT NULL DEFAULT '0',
+  `locx` int(1'0') unsigned NOT NULL DEFAULT '0',
+  `locy` int(1'0') unsigned NOT NULL DEFAULT '0',
+  `randomx` int(1'0') unsigned NOT NULL DEFAULT '0',
+  `randomy` int(1'0') unsigned NOT NULL DEFAULT '0',
+  `heading` int(1'0') unsigned NOT NULL DEFAULT '0',
+  `respawn_delay` int(1'0') unsigned NOT NULL DEFAULT '0',
+  `mapid` int(1'0') unsigned NOT NULL DEFAULT '0',
+  `movement_distance` int(1'0') unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -2359,3 +2359,14 @@ INSERT INTO `spawnlist_npc` VALUES ('1310450', '米米', '1', '91061', '33695', 
 INSERT INTO `spawnlist_npc` VALUES ('1310451', '魔法師 梅琳', '1', '91065', '33429', '32824', '0', '0', '4', '0', '4', '0');
 INSERT INTO `spawnlist_npc` VALUES ('1310452', '提卡爾 庫庫爾坎宙斯之石頭高崙', '1', '90520', '32857', '32721', '0', '0', '4', '0', '783', '0');
 INSERT INTO `spawnlist_npc` VALUES ('1310453', '提卡爾 庫庫爾坎祭壇守門人', '1', '90521', '33260', '32743', '0', '0', '6', '0', '783', '0');
+INSERT INTO `spawnlist_npc` VALUES ('1310454', '伊帕奇', '1', '91064', '32684', '32662', '0', '0', '4', '0', '1005', '0');
+INSERT INTO `spawnlist_npc` VALUES ('1310455', '帕利特', '1', '91063', '32681', '32681', '0', '0', '6', '0', '1005', '0');
+INSERT INTO `spawnlist_npc` VALUES ('1310458', '卡瑞', '1', '91062', '32806', '32925', '0', '0', '6', '0', '1005', '0');
+INSERT INTO `spawnlist_npc` VALUES ('1310459', '萊利', '1', '70649', '33603', '32503', '0', '0', '4', '0', '4', '0');
+INSERT INTO `spawnlist_npc` VALUES ('1310461', '萊利的輔佐官', '1', '81119', '33604', '32502', '0', '0', '4', '0', '4', '0');
+INSERT INTO `spawnlist_npc` VALUES ('1310479', '萬酷', '1', '91244', '33723', '32509', '0', '0', '6', '0', '4', '0');
+INSERT INTO `spawnlist_npc` VALUES ('1310483', '韓酷', '1', '91245', '33724', '32503', '0', '0', '6', '0', '4', '0');
+INSERT INTO `spawnlist_npc` VALUES ('1310502', '善良的小孩', '1', '91246', '33704', '32494', '0', '0', '4', '0', '4', '0');
+INSERT INTO `spawnlist_npc` VALUES ('1310503', '善良的小孩', '1', '91246', '33449', '32807', '0', '0', '4', '0', '4', '0');
+INSERT INTO `spawnlist_npc` VALUES ('1310524', '妖精森林(光)', '1', '81166', '33054', '32337', '0', '0', '6', '0', '4', '0');
+INSERT INTO `spawnlist_npc` VALUES ('1310525', '海音噴水池', '1', '71097', '33601', '33245', '0', '0', '5', '0', '4', '0');
