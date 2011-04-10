@@ -406,12 +406,12 @@ public class C_ItemUSe extends ClientBasePacket {
 				}
 			} else if (itemId == 41429 || itemId == 41430 || itemId == 41431 || itemId == 41432) { // 地水火風之武器強化卷軸
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName(), "$245", "$247")); 
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName())); 
 					return;
 				}
 				int safeEnchant = l1iteminstance1.getItem().get_safeenchant();
 				if (safeEnchant < 0) { // 安定值小於0不可強化
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName(), "$245", "$247"));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName()));
 					return;
 				}
 				// 0:無属性 1:地 2:火 4:水 8:風
@@ -425,13 +425,13 @@ public class C_ItemUSe extends ClientBasePacket {
 					isSameAttr = true;
 				}
 				if (isSameAttr && oldAttrEnchantLevel >= 3) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName(), "$245", "$247"));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName()));
 					return;
 				}
 
 				int rnd = RandomArrayList.getInc(100, 1);
 				if (Config.ATTR_ENCHANT_CHANCE >= rnd) {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1410, l1iteminstance1.getLogName(), "$245", "$247"));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1410, l1iteminstance1.getLogName()));
 					int newAttrEnchantKind = 0;
 					int newAttrEnchantLevel = 0;
 					if (isSameAttr) { // 同屬性時+1
@@ -455,7 +455,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					pc.getInventory().updateItem(l1iteminstance1, L1PcInventory.COL_ATTR_ENCHANT_LEVEL);
 					pc.getInventory().saveItem(l1iteminstance1, L1PcInventory.COL_ATTR_ENCHANT_LEVEL);
 				} else {
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName(), "$245", "$247"));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1411, l1iteminstance1.getLogName()));
 				}
 				pc.getInventory().removeItem(item, 1);
 			} else if (itemId == 30001) { // 裝備保護卷軸
@@ -2725,7 +2725,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					if (max < 50) {
 						pc.sendPackets(new S_PacketBox(S_PacketBox.MSG_LEVEL_OVER, max));
 					} else {
-						pc.sendPackets(new S_SystemMessage("等級 " + max + " 以下才可使用此道具。"));
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$673, max));
 					}
 				} else {
 					if (pc.isCrown() && item.getItem().isUseRoyal() || pc.isKnight()
@@ -2758,7 +2758,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						if (max < 50) {
 							pc.sendPackets(new S_PacketBox(S_PacketBox.MSG_LEVEL_OVER, max));
 						} else {
-							pc.sendPackets(new S_SystemMessage("等級 " + max + " 以下才可使用此道具。"));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$673, max));
 						}
 					} else {
 						Armor.use(pc, item);
