@@ -2725,7 +2725,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					if (max < 50) {
 						pc.sendPackets(new S_PacketBox(S_PacketBox.MSG_LEVEL_OVER, max));
 					} else {
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$673, max));
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$673, String.valueOf(max)));
 					}
 				} else {
 					if (pc.isCrown() && item.getItem().isUseRoyal() || pc.isKnight()
@@ -2758,7 +2758,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						if (max < 50) {
 							pc.sendPackets(new S_PacketBox(S_PacketBox.MSG_LEVEL_OVER, max));
 						} else {
-							pc.sendPackets(new S_ServerMessage(SystemMessageId.$673, max));
+							pc.sendPackets(new S_ServerMessage(SystemMessageId.$673, String.valueOf(max)));
 						}
 					} else {
 						Armor.use(pc, item);
