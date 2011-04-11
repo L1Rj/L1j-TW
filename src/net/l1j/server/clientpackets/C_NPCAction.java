@@ -4699,7 +4699,7 @@ public class C_NPCAction extends ClientBasePacket {
 				final int[] item_amounts = { 1, 1, 1, 1, 1, 5, 30, 20, 50, 5,};
 				for (int i = 0; i < item_ids.length; i++) {
 					L1ItemInstance item = pc.getInventory().storeItem(item_ids[i], item_amounts[i]);
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getName()));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getNameWitnCounter(item_amounts[i])));
 				}
 				htmlid = "";
 			} else {

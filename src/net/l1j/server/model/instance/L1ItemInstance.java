@@ -581,6 +581,10 @@ public class L1ItemInstance extends L1Object {
 		return getNumberedName(_count);
 	}
 
+	public String getNameWitnCounter(int count) {
+		return getNumberedName(count);
+	}
+
 	/**
 	 * ログに表示される形式の名前を、個數を指定して取得する。
 	 */
