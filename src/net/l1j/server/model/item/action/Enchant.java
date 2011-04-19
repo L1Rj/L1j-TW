@@ -157,7 +157,7 @@ public class Enchant {
 	}
 
 	public static int randomLevel(L1ItemInstance item, int itemId) {
-		if (itemId == ItemId.B_SCROLL_OF_ENCHANT_ARMOR || itemId == ItemId.B_SCROLL_OF_ENCHANT_WEAPON || itemId == 140129 || itemId == 140130) {
+		if (itemId == ItemId.BLESS_SCROLL_OF_ENCHANT_ARMOR || itemId == ItemId.BLESS_SCROLL_OF_ENCHANT_WEAPON || itemId == 140129 || itemId == 140130) {
 			if (item.getEnchantLevel() <= 2) {
 				/*int j = RandomArrayList.getInc(100, 1);
 				if (j < 33) { // 這範圍擁有 32%機率

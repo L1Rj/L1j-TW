@@ -838,7 +838,7 @@ public class C_ItemUSe extends ClientBasePacket {
 					} else {
 						pc.sendPackets(new S_SkillSound(pc.getId(), 192));
 						pc.broadcastPacket(new S_SkillSound(pc.getId(), 192));
-						if (itemId == POTION_OF_CURE_POISON) {
+						if (itemId == POTION_OF_CURE_POISON ) {
 							pc.getInventory().removeItem(item, 1);
 						} else if (itemId == 40507) {
 							pc.getInventory().removeItem(item, 1);

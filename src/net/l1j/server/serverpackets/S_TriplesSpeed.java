@@ -19,44 +19,39 @@
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
+import net.l1j.server.model.instance.L1PcInstance;
 
-public class S_Poison extends ServerBasePacket {
-	private static final String S_POISON = "[S] S_Poison";
+public class S_TriplesSpeed extends ServerBasePacket {
 
-	/**
-	 * キャラクターの外見を毒状態へ変更する際に送信するパケットを構築する
-	 * 
-	 * @param objId 外見を変えるキャラクターのID
-	 * @param type 外見のタイプ 0 = 通常色, 1 = 緑色, 2 = 灰色
+	private byte[] _byte = null;
+
+	/*
+	 * 【Server】 id:82 size:8 time:1302979157637
+	 * 0000	52 3c 92 08 d7 e0 9e 97  
 	 */
-	public S_Poison(int objId, int type) {
-		writeC(Opcodes.S_OPCODE_POISON);
-		writeD(objId);
-
-		if (type == 0) { // 通常
-			writeC(0);
-			writeC(0);
-		} else if (type == 1) { // 緑色
-			writeC(1);
-			writeC(0);
-		} else if (type == 2) { // 灰色
-			writeC(0);
-			writeC(1);
-		} else if (type == 8) {
-			writeC(8);
-			writeC(0);
-		} else {
-			throw new IllegalArgumentException("參數 type = " + type + " 無效");
-		}
+	public S_TriplesSpeed(int times) {
+		writeC(Opcodes.S_OPCODE_ACTIVESPELLS);
+		writeC(0x3c);
+		writeC(times);
+		writeC(0x08);
 	}
 
 	@Override
 	public byte[] getContent() {
+		if (_byte == null) {
+			_byte = _bao.toByteArray();
+		}
+
+		return _byte;
+	}
+	/*
+	public byte[] getContent() {
 		return getBytes();
 	}
+	 */
 
 	@Override
 	public String getType() {
-		return S_POISON;
+		return "[S] S_TriplesSpeed";
 	}
 }

@@ -580,7 +580,7 @@ public class L1ItemInstance extends L1Object {
 	public String getLogName() {
 		return getNumberedName(_count);
 	}
-
+	
 	public String getNameWitnCounter(int count) {
 		return getNumberedName(count);
 	}

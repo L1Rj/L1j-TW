@@ -300,7 +300,7 @@ public class C_NPCAction extends ClientBasePacket {
 				final int[] item_amounts = { 1, 1, 1, 1, 500, };
 				for (int i = 0; i < item_ids.length; i++) {
 					L1ItemInstance item = pc.getInventory().storeItem(item_ids[i], item_amounts[i]);
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getLogName()));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getNameWitnCounter(item_amounts[i])));
 				}
 				pc.getQuest().set_step(L1Quest.QUEST_DOROMOND, 1);
 				htmlid = "jpe0015";
@@ -312,14 +312,14 @@ public class C_NPCAction extends ClientBasePacket {
 					final int[] item_amounts = { 1, 1, 1, };
 					for (int i = 0; i < item_ids.length; i++) {
 						L1ItemInstance item = pc.getInventory().storeItem(item_ids[i], item_amounts[i]);
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getLogName()));
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getNameWitnCounter(item_amounts[i])));
 					}
 					pc.getQuest().set_step(L1Quest.QUEST_DOROMOND, 2);
 					htmlid = "";
 				}
 			} else if (s.equalsIgnoreCase("2")) {
 				L1ItemInstance item = pc.getInventory().storeItem(41227, 1); // アレックスの紹介状
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getLogName()));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 				pc.getQuest().set_step(L1Quest.QUEST_AREX, L1Quest.QUEST_END);
 				htmlid = "";
 			}
@@ -335,13 +335,14 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("0")) { // アイテムを受け取る
 				if (!pc.getInventory().checkItem(41209)) {
 					L1ItemInstance item = pc.getInventory().storeItem(41209, 1);
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 					htmlid = "";
 				}
 			} else if (s.equalsIgnoreCase("1")) { // アイテムを受け取る
 				if (pc.getInventory().consumeItem(41213, 1)) {
 					L1ItemInstance item = pc.getInventory().storeItem(40029, 20);
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName() + " (" + 20 + ")"));
+					//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName() + " (" + 20 + ")"));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getNameWitnCounter(20)));
 					htmlid = "";
 				}
 			}
@@ -368,7 +369,7 @@ public class C_NPCAction extends ClientBasePacket {
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71025) { // ケスキン(歌う島)
 			if (s.equalsIgnoreCase("0")) {
 				L1ItemInstance item = pc.getInventory().storeItem(41225, 1); // ケスキンの発注書
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 				htmlid = "jpe0083";
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71030) { // 治療師（西部）
@@ -429,9 +430,10 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("A")) { // 「手紙を受け取る」
 				L1NpcInstance npc = (L1NpcInstance) obj;
 				L1ItemInstance item = pc.getInventory().storeItem(41060, 1); // ノナメの推薦書
-				String npcName = npc.getNpcTemplate().get_name();
-				String itemName = item.getItem().getName();
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				//String npcName = npc.getNpcTemplate().get_name();
+				//String itemName = item.getItem().getName();
+				//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 				htmlid = "orcfnoname9";
 			} else if (s.equalsIgnoreCase("Z")) { // 「調查をやめます」
 				if (pc.getInventory().consumeItem(41060, 1)) {
@@ -446,9 +448,10 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("A")) { // 「やってみます」
 				L1NpcInstance npc = (L1NpcInstance) obj;
 				L1ItemInstance item = pc.getInventory().storeItem(41065, 1); // 調查團の証書
-				String npcName = npc.getNpcTemplate().get_name();
-				String itemName = item.getItem().getName();
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				//String npcName = npc.getNpcTemplate().get_name();
+				//String itemName = item.getItem().getName();
+				//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 				htmlid = "orcfnoa4";
 			} else if (s.equalsIgnoreCase("Z")) { // 「調查をやめます」
 				if (pc.getInventory().consumeItem(41065, 1)) {
@@ -459,9 +462,10 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("A")) { // 「調查をします」
 				L1NpcInstance npc = (L1NpcInstance) obj;
 				L1ItemInstance item = pc.getInventory().storeItem(41064, 1); // 調查團の証書
-				String npcName = npc.getNpcTemplate().get_name();
-				String itemName = item.getItem().getName();
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				//String npcName = npc.getNpcTemplate().get_name();
+				//String itemName = item.getItem().getName();
+				//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 				htmlid = "orcfhuwoomo4";
 			} else if (s.equalsIgnoreCase("Z")) { // 「調查をやめます」
 				if (pc.getInventory().consumeItem(41064, 1)) {
@@ -472,9 +476,10 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("A")) { // 「調查をします」
 				L1NpcInstance npc = (L1NpcInstance) obj;
 				L1ItemInstance item = pc.getInventory().storeItem(41062, 1); // 調查團の証書
-				String npcName = npc.getNpcTemplate().get_name();
-				String itemName = item.getItem().getName();
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				//String npcName = npc.getNpcTemplate().get_name();
+				//String itemName = item.getItem().getName();
+				//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 				htmlid = "orcfbakumo4";
 			} else if (s.equalsIgnoreCase("Z")) { // 「調查をやめます」
 				if (pc.getInventory().consumeItem(41062, 1)) {
@@ -485,9 +490,10 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("A")) { // 「調查をします」
 				L1NpcInstance npc = (L1NpcInstance) obj;
 				L1ItemInstance item = pc.getInventory().storeItem(41063, 1); // 調查團の証書
-				String npcName = npc.getNpcTemplate().get_name();
-				String itemName = item.getItem().getName();
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				//String npcName = npc.getNpcTemplate().get_name();
+				//String itemName = item.getItem().getName();
+				//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 				htmlid = "orcfbuka4";
 			} else if (s.equalsIgnoreCase("Z")) { // 「調查をやめます」
 				if (pc.getInventory().consumeItem(41063, 1)) {
@@ -498,9 +504,10 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("A")) { // 「調查をします」
 				L1NpcInstance npc = (L1NpcInstance) obj;
 				L1ItemInstance item = pc.getInventory().storeItem(41061, 1); // 調查團の証書
-				String npcName = npc.getNpcTemplate().get_name();
-				String itemName = item.getItem().getName();
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				//String npcName = npc.getNpcTemplate().get_name();
+				//String itemName = item.getItem().getName();
+				//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 				htmlid = "orcfkame4";
 			} else if (s.equalsIgnoreCase("Z")) { // 「調查をやめます」
 				if (pc.getInventory().consumeItem(41061, 1)) {
@@ -513,7 +520,8 @@ public class C_NPCAction extends ClientBasePacket {
 				final int[] item_amounts = { 1, };
 				for (int i = 0; i < item_ids.length; i++) {
 					L1ItemInstance item = pc.getInventory().storeItem(item_ids[i], item_amounts[i]);
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
+					//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getNameWitnCounter(item_amounts[i])));
 				}
 				pc.getQuest().set_step(L1Quest.QUEST_LUKEIN1, 1);
 				htmlid = "lukein8";
@@ -573,7 +581,8 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("A")) { // ルディアンの頼みを受け入れる
 				htmlid = "rudian6";
 				L1ItemInstance item = pc.getInventory().storeItem(40700, 1);
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
+				//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 				pc.getQuest().set_step(L1Quest.QUEST_RUDIAN, 1);
 			} else if (s.equalsIgnoreCase("B")) {
 				if (pc.getInventory().checkItem(40710)) {
@@ -677,7 +686,8 @@ public class C_NPCAction extends ClientBasePacket {
 			if (s.equalsIgnoreCase("a")) { // カミーラにあなたの潔白を証明しましょう
 				htmlid = "francu10";
 				L1ItemInstance item = pc.getInventory().storeItem(40644, 1);
-				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
+				//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
+				pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 				pc.getQuest().set_step(L1Quest.QUEST_KAMYLA, 2);
 			}
 		} else if (((L1NpcInstance) obj).getNpcTemplate().get_npcId() == 71090) { // 試練のクリスタル2(海賊島)
@@ -687,7 +697,8 @@ public class C_NPCAction extends ClientBasePacket {
 				final int[] item_amounts = { 1, 1, 1, 1, 5 };
 				for (int i = 0; i < item_ids.length; i++) {
 					L1ItemInstance item = pc.getInventory().storeItem(item_ids[i], item_amounts[i]);
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
+					//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getItem().getName()));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, ((L1NpcInstance) obj).getNpcTemplate().get_name(), item.getNameWitnCounter(item_amounts[i])));
 					pc.getQuest().set_step(L1Quest.QUEST_CRYSTAL, 1);
 				}
 			} else if (s.equalsIgnoreCase("b")) {
@@ -752,9 +763,10 @@ public class C_NPCAction extends ClientBasePacket {
 				} else {
 					L1NpcInstance npc = (L1NpcInstance) obj;
 					L1ItemInstance item = pc.getInventory().storeItem(41007, 1);
-					String npcName = npc.getNpcTemplate().get_name();
-					String itemName = item.getItem().getName();
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+					//String npcName = npc.getNpcTemplate().get_name();
+					//String itemName = item.getItem().getName();
+					//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 					htmlid = "eris6";
 				}
 			} else if (s.equalsIgnoreCase("C")) {
@@ -763,9 +775,10 @@ public class C_NPCAction extends ClientBasePacket {
 				} else {
 					L1NpcInstance npc = (L1NpcInstance) obj;
 					L1ItemInstance item = pc.getInventory().storeItem(41009, 1);
-					String npcName = npc.getNpcTemplate().get_name();
-					String itemName = item.getItem().getName();
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+					//String npcName = npc.getNpcTemplate().get_name();
+					//String itemName = item.getItem().getName();
+					//pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getNameWitnCounter(1)));
 					htmlid = "eris8";
 				}
 			} else if (s.equalsIgnoreCase("A")) {
@@ -2432,9 +2445,9 @@ public class C_NPCAction extends ClientBasePacket {
 					} else {
 						L1NpcInstance npc = (L1NpcInstance) obj;
 						L1ItemInstance item = pc.getInventory().storeItem(49220, 1); // オーク密使変身スクロール
-						String npcName = npc.getNpcTemplate().get_name();
-						String itemName = item.getItem().getName();
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+						//String npcName = npc.getNpcTemplate().get_name();
+						//String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getItem().getName()));
 						htmlid = "elas4";
 					}
 				}
@@ -2448,9 +2461,9 @@ public class C_NPCAction extends ClientBasePacket {
 				if (s.equalsIgnoreCase("a") && lv15_step == 0) { // 「プロケルの課題を遂行する」
 					L1NpcInstance npc = (L1NpcInstance) obj;
 					L1ItemInstance item = pc.getInventory().storeItem(49210, 1); // プロケルの1番目の指令書
-					String npcName = npc.getNpcTemplate().get_name();
-					String itemName = item.getItem().getName();
-					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+					//String npcName = npc.getNpcTemplate().get_name();
+					//String itemName = item.getItem().getName();
+					pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getItem().getName()));
 					pc.getQuest().set_step(L1Quest.QUEST_LEVEL15, 1);
 					htmlid = "prokel3";
 				} else if (s.equalsIgnoreCase("c") && lv30_step == 0) { // 「プロケルの2番目の課題を遂行する」
@@ -2468,9 +2481,9 @@ public class C_NPCAction extends ClientBasePacket {
 					} else {
 						L1NpcInstance npc = (L1NpcInstance) obj;
 						L1ItemInstance item = pc.getInventory().storeItem(49215, 1); // プロケルの鉱物の袋
-						String npcName = npc.getNpcTemplate().get_name();
-						String itemName = item.getItem().getName();
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+						//String npcName = npc.getNpcTemplate().get_name();
+						//String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getItem().getName()));
 						htmlid = "prokel13";
 					}
 				} else if (s.equalsIgnoreCase("f") && lv45_step == 0) { // 「プロケルの3番目の課題を遂行する」
@@ -2654,9 +2667,9 @@ public class C_NPCAction extends ClientBasePacket {
 						pc.getInventory().consumeItem(49223, 1); // del
 						L1NpcInstance npc = (L1NpcInstance) obj;
 						L1ItemInstance item = pc.getInventory().storeItem(49222, 1); // オーク密使の笛
-						String npcName = npc.getNpcTemplate().get_name();
-						String itemName = item.getItem().getName();
-						pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npcName, itemName));
+						//String npcName = npc.getNpcTemplate().get_name();
+						//String itemName = item.getItem().getName();
+						pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getItem().getName()));
 						htmlid = "";
 					} else {
 						htmlid = "";
@@ -4561,6 +4574,7 @@ public class C_NPCAction extends ClientBasePacket {
 	
 	private String getTalkTutor(L1PcInstance pc, L1NpcInstance npc, String s) {
 		String htmlid = null;
+		L1ItemInstance item = null;
 		if (s.equals("A")) {
 			if(pc.isCrown()) {
 				if(pc.getLevel() >= 2 && pc.getLevel() < 4) {
@@ -4665,27 +4679,9 @@ public class C_NPCAction extends ClientBasePacket {
 					htmlid = "tutori5";
 				}
 			}
-		} else if (s.equals("H")) {
-			L1ItemInstance item = pc.getInventory().storeItem(40101, 1);
-			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getName()));
-		} else if (s.equals("J")) {
-			L1ItemInstance item = pc.getInventory().storeItem(40101, 1);
-			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getName()));
-		} else if (s.equals("K")) {
-			L1ItemInstance item = pc.getInventory().storeItem(40101, 1);
-			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getName()));
 		} else if (s.equals("l")) {
 			pc.getQuest().add_step(L1Quest.QUEST_TUTOR, 1);
 			htmlid = "";
-		} else if (s.equals("L")) {
-			L1ItemInstance item = pc.getInventory().storeItem(40101, 1);
-			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getName()));
-		} else if (s.equals("M")) {
-			L1ItemInstance item = pc.getInventory().storeItem(40101, 1);
-			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getName()));
-		} else if (s.equals("N")) {
-			L1ItemInstance item = pc.getInventory().storeItem(40101, 1);
-			pc.sendPackets(new S_ServerMessage(SystemMessageId.$143, npc.getNpcTemplate().get_name(), item.getLogName()));
 		}
 		return htmlid;
 	}

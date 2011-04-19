@@ -1619,8 +1619,8 @@ public class L1NpcInstance extends L1Character {
 	// アイテムの使用判定及び使用
 	public static final int USEITEM_HEAL = 0;
 	public static final int USEITEM_HASTE = 1;
-	public static int[] healPotions = { POTION_OF_GREATER_HEALING, POTION_OF_EXTRA_HEALING, POTION_OF_HEALING };
-	public static int[] haestPotions = { 祝福強化自我加速藥水, 強化自我加速藥水, 祝福自我加速藥水, 自我加速藥水 }; // 道具改採ItemID中文對應
+	public static int[] healPotions = { POTION_OF_GREATER_HEAL, POTION_OF_HEAL,  POTION_OF_LESSER_HEAL };
+	public static int[] haestPotions = { BLESS_POTION_OF_GREATER_HASTE, POTION_OF_GREATER_HASTE, BLESS_POTION_OF_HASTE, POTION_OF_HASTE };
 
 	public void useItem(int type, int chance) { // 使用する種類 使用する可能性(％)
 		if (hasSkillEffect(71)) {
@@ -1633,11 +1633,11 @@ public class L1NpcInstance extends L1Character {
 
 		if (type == USEITEM_HEAL) { // 回復系ポーション
 			// 回復量の大きい順
-			if (getInventory().consumeItem(POTION_OF_GREATER_HEALING, 1)) {
+			if (getInventory().consumeItem(POTION_OF_GREATER_HEAL, 1)) {
 				useHealPotion(75, 197);
-			} else if (getInventory().consumeItem(POTION_OF_EXTRA_HEALING, 1)) {
+			} else if (getInventory().consumeItem(POTION_OF_HEAL, 1)) {
 				useHealPotion(45, 194);
-			} else if (getInventory().consumeItem(POTION_OF_HEALING, 1)) {
+			} else if (getInventory().consumeItem(POTION_OF_LESSER_HEAL, 1)) {
 				useHealPotion(15, 189);
 			}
 		} else if (type == USEITEM_HASTE) { // ヘイスト系ポーション
@@ -1646,13 +1646,13 @@ public class L1NpcInstance extends L1Character {
 			}
 
 			// 效果の長い順
-			if (getInventory().consumeItem( 祝福強化自我加速藥水, 1)) {
+			if (getInventory().consumeItem(BLESS_POTION_OF_GREATER_HASTE, 1)) {
 				useHastePotion(2100);
-			} else if (getInventory().consumeItem( 強化自我加速藥水, 1)) {
+			} else if (getInventory().consumeItem(POTION_OF_GREATER_HASTE, 1)) {
 				useHastePotion(1800);
-			} else if (getInventory().consumeItem( 祝福自我加速藥水, 1)) {
+			} else if (getInventory().consumeItem(BLESS_POTION_OF_HASTE, 1)) {
 				useHastePotion(350);
-			} else if (getInventory().consumeItem( 自我加速藥水, 1)) {
+			} else if (getInventory().consumeItem(POTION_OF_HASTE, 1)) {
 				useHastePotion(300);
 			}
 		}

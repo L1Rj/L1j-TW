@@ -455,10 +455,20 @@ public class SkillId {
 	public static final int STATUS_WEAKNESS_EXPOSURE_LV3 = 1028;
 
 	public static final int STATUS_TRIPLES_SPEED = 1029;
+	
+	public static final int STATUS_EXP_BLESS = 1030;
 
-	public static final int STATUS_ANTHARAS_BLOODSTAINS = 1030;
+	public static final int STATUS_ANTHARAS_BLOODSTAINS = 1031;
+	
+	public static final int STATUS_FAFURION_BLOODSTAINS = 1032;
+	
+	public static final int STATUS_VALAKAS_BLOODSTAINS = 1033;
+	
+	public static final int STATUS_LINDVIOR_BLOODSTAINS = 1034;
+	
+	public static final int STATUS_FASTMOVABLE = 1035;
 	/** 輔助狀態結尾 */
-	public static final int STATUS_END = 1030;
+	public static final int STATUS_END = 1035;
 
 	/** 遊戲管理員輔助狀態開頭 */
 	public static final int GMSTATUS_BEGIN = 2000;

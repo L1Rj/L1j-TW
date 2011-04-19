@@ -19,135 +19,606 @@
 package net.l1j.server.model.item;
 
 public class ItemId {
-	/** 紅色藥水 */
-	public static final int POTION_OF_HEALING = 40010;
-	/** 受祝福的紅色藥水 */
-	public static final int B_POTION_OF_HEALING = 140010;
-	/** 受詛咒的紅色藥水 */
-	public static final int C_POTION_OF_HEALING = 240010;
-	/** 橙色藥水 */
-	public static final int POTION_OF_EXTRA_HEALING = 40011;
-	/** 受祝福的橙色藥水 */
-	public static final int B_POTION_OF_EXTRA_HEALING = 140011;
-	/** 白色藥水 */
-	public static final int POTION_OF_GREATER_HEALING = 40012;
-	/** 受祝福的白色藥水 */
-	public static final int B_POTION_OF_GREATER_HEALING = 140012;
-	/** 自我加速藥水 */
-//	public static final int POTION_OF_HASTE_SELF = 40013;
-	/** 受祝福的自我加速藥水 */
-//	public static final int B_POTION_OF_HASTE_SELF = 140013;
-	/** 強化 自我加速藥水 */
-//	public static final int POTION_OF_GREATER_HASTE_SELF = 40018;
-	/** 受祝福的強化 自我加速藥水 */
-//	public static final int B_POTION_OF_GREATER_HASTE_SELF = 140018;
-	/** 勇敢藥水 */
-//	public static final int POTION_OF_EMOTION_BRAVERY = 40014;
-	/** 受祝福的勇敢藥水 */
-//	public static final int B_POTION_OF_EMOTION_BRAVERY = 140014;
-	/** 加速魔力回復藥水 */
-//	public static final int POTION_OF_MANA = 40015;
-	/** 受祝福的加速魔力回復藥水 */
-//	public static final int B_POTION_OF_MANA = 140015;
-	/** 慎重藥水 */
-//	public static final int POTION_OF_EMOTION_WISDOM = 40016;
-	/** 受祝福的慎重藥水 */
-//	public static final int B_POTION_OF_EMOTION_WISDOM = 140016;
-	/** 翡翠藥水 */
-	public static final int POTION_OF_CURE_POISON = 40017;
-	/** 濃縮體力恢復劑 */
-	public static final int CONDENSED_POTION_OF_HEALING = 40019;
-	/** 濃縮強力體力恢復劑 */
-	public static final int CONDENSED_POTION_OF_EXTRA_HEALING = 40020;
-	/** 濃縮終極體力恢復劑 */
-	public static final int CONDENSED_POTION_OF_GREATER_HEALING = 40021;
-	/** 失明藥水 */
-	public static final int POTION_OF_BLINDNESS = 40025;
-	/** 對盔甲施法的卷軸 */
+        public static final int SCROLL_OF_EQUIPMENT_PROTECTION = 30001; //裝備保護捲軸 ?
+	public static final int BIBLE_OF_ATONEMENT = 30002; //贖罪聖書
+	public static final int GIFT_OF_LOVE_BOX = 30101; //愛的禮物盒 period 28d / 1w > 1
+	/* 11週年禮物箱 可開出
+	 * 對武器施法的卷軸(1),對盔甲施法的卷軸(1),受祝福的對武器施法的卷軸(1),受祝福的對盔甲施法的卷軸(1),地之武器強化卷軸(1),水之武器強化卷軸(1),火之武器強化卷軸(1),風之武器強化卷軸(1),
+	 * 古代的卷軸(1),亞克變身卷軸(1),加速袋(1),變身鱗片袋(1),變身石袋(1),濃縮終極體力恢復劑(3)
+	 */
+	//public static final int GIFT_OF_11TH_ANNIVERSARY_CHEST = ?; //11週年禮物箱
+	//public static final int BAG_OF_STONE_POLYMORPH = ?; //變身石袋 > 開出其中一樣 變身石：拉曼斯(3)STONE_OF_LAMIAS_POLYMORPH,變身石：安迪斯(3)STONE_OF_ENDIAS_POLYMORPH,變身石：艾迪爾(3)STONE_OF_EDEA_POLYMORP
+	//public static final int BAG_OF_SCALES_POLYMORPH = ?; //變身鱗片袋 > 開出其中一樣 幻之鱗(3),恨之鱗(3),暗之鱗(3),叛之鱗(3),火之鱗(3)
+	//public static final int BAG_OF_POLYMORPH = ?; //變身袋 > 開出其中一樣 變身石：拉曼斯(3),變身石：安迪斯(3),變身石：艾迪爾(3),變形卷軸(3),恨之鱗(3),暗之鱗(3),叛之鱗(3),火之鱗(3)
+	//public static final int BAG_OF_ACCELERATION = ?; //加速袋 > 開出其中一樣 精靈餅乾(3),強化自我加速藥水(3),勇敢藥水(3),惡魔之血(3),生命之樹果實(3)
+	//public static final int SOCK_OF_CHRISTMAS = ?; //聖誕襪
+	
+	public static final int BOX_OF_BIBLE_ATONEMENT = 30201; //贖罪聖書包 1 > 贖罪聖書 1
+	public static final int BOX_OF_STR_TShirt = 30202; //究極力量T恤箱子
+	public static final int BOX_OF_DEX_TShirt = 30203; //究極敏捷T恤箱子
+	public static final int BOX_OF_CHA_TShirt = 30204; //究極魅力T恤箱子
+	public static final int BOX_OF_INT_TShirt = 30205; //究極智力T恤箱子
+	public static final int BOX_OF_HP_TShirt = 30206; //究極體力T恤箱子
+	public static final int BOX_OF_MP_TShirt = 30207; //究極魔力T恤箱子
+	public static final int BOX_OF_StunResistance_TShirt = 30208; //究極抗昏迷T恤箱子
+	public static final int BOX_OF_HoldResistance_TShirt = 30209; //究極抗支撐T恤箱子
+	public static final int BOX_OF_MAGICResistance_TShirt = 30210; //究極抗魔法T恤箱子
+	public static final int BOX_OF_SEVEN_DYE = 30211; //7色染料箱
+	public static final int RED_DYE_ForTShirts = 30212; //紅色T恤染料
+	public static final int ORANGE_DYE_ForTShirts = 30213; //橙色T恤染料
+	public static final int YELLOW_DYE__ForTShirts = 30214; //黃色T恤染料
+	public static final int GREEN_DYE_ForTShirts = 30215; //綠色T恤染料
+	public static final int BLUE_DYE_ForTShirts = 30216; //藍色T恤染料
+	public static final int NAVY_DYE_ForTShirts = 30217; //深藍色T恤染料
+	public static final int PURPLE_DYE_ForTShirts = 30218; //紫色T恤染料
+	//public static final int ENERGY_SOUP_A_SET = ?; //神力禮盒A > 打開隨機獲得一種 150%神力藥水(2),175%神力藥水(2),200%神力藥水(2),225%神力藥水(2),250%神力藥水(2)
+	//public static final int ENERGY_SOUP_B_SET = ?; //神力禮盒B > 打開隨機獲得一種 150%神力藥水(2),175%神力藥水(2),200%神力藥水(2),225%神力藥水(2),250%神力藥水(2)
+	//public static final int BOX_OF_IRON_OTHERWORLDLY = ?; //異界鐵盒
+	//public static final int MACROSS_CHEST = ?; //超時空寶箱
+	//public static final int GIFT_MAZU = ?; //媽祖禮盒
+	//public static final int GIFT_OF_SURPRISE_CHEST = ; //驚喜禮盒
+	//public static final int LUCKY_POUCH = ?; //福袋
+	
+	/* Matic Doll */
+	public static final int MAGIC_BAG_OF_Arka = 31000; //魔法娃娃的袋子 > 41247
+	public static final int MAGIC_DOLL_OF_SeaDancer = 31001; //魔法娃娃：希爾黛絲
+	public static final int MAGIC_DOLL_OF_Yeti = 31002; //魔法娃娃：雪怪
+	public static final int MAGIC_DOLL_OF_Ramia = 31003; //魔法娃娃：蛇女
+	public static final int MAGIC_DOLL_OF_Cockatrice = 31004; //魔法娃娃：亞力安
+	public static final int MAGIC_DOLL_OF_Scarecrow = 31005; //魔法娃娃：稻草人
+	public static final int MAGIC_DOLL_OF_Spartoi = 31006; //魔法娃娃：史巴托
+	public static final int MAGIC_DOLL_OF_Lich = 31007; //魔法娃娃：巫妖
+	public static final int IRON_GUILD_MAGIC_DOLL_OF_Yeti = 31008; //鐵門公會 魔法娃娃：雪怪
+	public static final int MAGIC_DOLL_OF_Princess = 31009; //魔法娃娃：公主
+	public static final int MAGIC_DOLL_OF_Bugbear = 31010; //魔法娃娃：肥肥 > 41248
+	public static final int MAGIC_DOLL_OF_Succubus = 31011; //魔法娃娃：小思克巴 > 41249
+	public static final int MAGIC_DOLL_OF_Werewolf = 31012; //魔法娃娃：野狼寶寶 > 41250
+	public static final int MAGIC_DOLL_OF_Elder = 31013; //魔法娃娃：長老 > 49037
+	public static final int MAGIC_DOLL_OF_Crustacean = 31014; //魔法娃娃：奎斯坦修 > 49038
+	public static final int MAGIC_DOLL_OF_StoneGolem = 31015; //魔法娃娃：石頭高崙 > 49039
+	public static final int MAGIC_Toy_BOX = 31016; //魔法娃娃收藏盒(new) 隨機：野狼寶寶,肥肥,小思克巴,長老,奎斯坦修,石頭高崙,雪怪,亞力安
+	public static final int BAG_OF_MAGIC_DOLL_SeaDancer = 31017; //魔法娃娃：希爾黛斯包(new) > 魔法娃娃：希爾黛
+	public static final int BOX_OF_MAGIC_DOLL_Spartoi = 31018; //魔法娃娃：史巴托箱子(new) > 魔法娃娃：史巴托
+	public static final int BOX_OF_MAGIC_DOLL_Ramia = 31019; //魔法娃娃：蛇女箱子(new) > 魔法娃娃：蛇女
+	public static final int BOX_OF_MAGIC_DOLL_Scarecrow = 31020; //魔法娃娃：稻草人箱子(new) > 魔法娃娃：稻草人
+	public static final int BOX_OF_MAGIC_DOLL_Ettin = 31021; //魔法娃娃：阿魯巴箱子(new) > 魔法娃娃：阿魯巴
+	public static final int MAGIC_DOLL_OF_Bugbear_ILLUSION = 31022; //幻象食人妖精魔法娃娃(new) 效果時間： 召喚1800秒 可以召喚出肥肥，每次召喚消耗50個魔法結晶體 現有負重 /1.2 中國「魔法娃娃租賃商」的服務道具
+	public static final int MAGIC_DOLL_OF_Werewolf_ILLUSION = 31023; //幻象狼人魔法娃娃(new) 效果時間： 召喚1800秒 可以召喚出野狼寶寶，每次召喚消耗50個魔法結晶體 3%機率，攻擊力+15 中國「魔法娃娃租賃商」的服務道具
+	public static final int MAGIC_DOLL_OF_Succubus_ILLUSION = 31024; //幻象思克巴魔法娃娃(new) 效果時間： 召喚1800秒 可以召喚出小思克巴，每次召喚消耗50個魔法結晶體 每64秒，魔力恢復15 中國「魔法娃娃租賃商」的服務道具
+	
+	public static final int LAMP = 40001;
+	public static final int LANTERN = 40002;
+	public static final int LANTERN_OIL = 40003;
+	public static final int MAGIC_LANTERN = 40004;
+	public static final int CANDLE = 40005;
+	public static final int WAND_OF_ConjureMonster = 40006;
+	public static final int WAND_OF_CALLINGLIGHTNING = 40007;
+	public static final int WAND_OF_POLYMORPH = 40008;
+	public static final int WAND_OF_BLINK = 40009;
+	public static final int POTION_OF_LESSER_HEAL  = 40010; //POTION_OF_HEALING
+	public static final int POTION_OF_HEAL  = 40011; //POTION_OF_EXTRA_HEALING
+	public static final int POTION_OF_GREATER_HEAL = 40012;
+        public static final int POTION_OF_HASTE = 40013; //POTION_OF_HASTE_SELF // 自我加速藥水
+        public static final int POTION_OF_BRAVERY = 40014; //POTION_OF_EMOTION_BRAVERY // 勇敢藥水
+        public static final int POTION_OF_MANA_Recovery = 40015; //POTION_OF_MANA // 加速魔力回復藥水
+        public static final int POTION_OF_WISDOM = 40016; //POTION_OF_EMOTION_WISDOM // 慎重藥水
+	public static final int POTION_OF_CURE_POISON = 40017; //POTION_OF_CURE_POISON
+        public static final int POTION_OF_GREATER_HASTE = 40018; //POTION_OF_GREATER_HASTE_SELF // 強化自我加速藥水
+	public static final int POTION_OF_CONDENSED_LESSER_HEAL = 40019; //CONDENSED_POTION_OF_HEALING
+	public static final int POTION_OF_CONDENSED_HEAL = 40020; //CONDENSED_POTION_OF_EXTRA_HEALING
+	public static final int POTION_OF_CONDENSED_GREATER_HEAL = 40021; //CONDENSED_POTION_OF_GREATER_HEALING
+	public static final int POTION_OF_ANCIENT_LESSER_HEAL = 40022;
+	public static final int POTION_OF_ANCIENT_HEAL = 40023;
+	public static final int POTION_OF_ANCIENT_GREATER_HEAL = 40024;
+	public static final int POTION_OF_Blindness = 40025; //POTION_OF_BLINDNESS
+	public static final int JUICE_OF_BANANA = 40026;
+	public static final int JUICE_OF_ORANGE = 40027;
+	public static final int JUICE_OF_APPLE = 40028;
+	public static final int IT_HEAL_POTION = 40029;
+        public static final int IT_HASTE_POTION = 40030; //POTION_OF_HASTE_IVORY_TOWER // 象牙塔加速藥水
+        public static final int BLOOD_OF_DEVIL = 40031; //惡魔之血
+	public static final int BLESS_OF_EVA = 40032; //伊娃的祝福
+	public static final int Elixir_STR = 40033;
+	public static final int Elixir_CON = 40034;
+	public static final int Elixir_DEX = 40035;
+	public static final int Elixir_INT = 40036;
+	public static final int Elixir_WIS = 40037;
+	public static final int Elixir_CHA = 40038;
+	public static final int WINE = 40039; //紅酒
+	public static final int WHISKEY = 40040; //威士忌
+	public static final int SCALE_OF_Mermaid = 40041; //人魚之鱗
+	public static final int POTION_OF_MentalAbility = 40042;
+	public static final int LIVER_OF_RABBIT = 40043;
+	public static final int DIAMOND = 40044;
+	public static final int RUBY = 40045;
+	public static final int SAPPHIRE = 40046;
+	public static final int EMERALD = 40047;
+	public static final int HIGHTQUALITY_DIAMOND = 40048;
+	public static final int HIGHTQUALITY_RUBY = 40049;
+	public static final int HIGHTQUALITY_SAPPHIRE = 40050;
+	public static final int HIGHTQUALITY_EMERALD = 40051;
+	public static final int HIGHESTQUALITY_DIAMOND = 40052;
+	public static final int HIGHESTQUALITY_RUBY = 40053;
+	public static final int HIGHESTQUALITY_SAPPHIRE = 40054;
+	public static final int HIGHESTQUALITY_EMERALD = 40055;
+	public static final int MEAT = 40056;
+	public static final int MEAT_OF_FLOATING_EYES = 40057;
+	public static final int BROWN_PIECE_OF_BREAD = 40058;
+	public static final int EGG = 40059;
+	public static final int CARROT = 40060;
+	public static final int LEMON = 40061;
+	public static final int BANANA = 40062;
+	public static final int CHOCOLATE_OF_VALENTINES_DAY = 40063;
+	public static final int APPLE = 40064;
+	public static final int CANDY = 40065;
+	public static final int SONGPYON = 40066;
+	public static final int GREENSONGPYON = 40067;
+        public static final int ELVEN_WAFER = 40068; //精靈餅乾
+	public static final int ORANGE = 40069;
+	public static final int FRUIT_OF_Evolution = 40070;
+	public static final int BURNTPIECE_OF_Bread = 40071;
+	public static final int PANCAKE = 40072;
+	public static final int CHOCOLATE_OF_WHITE_VALENTINES_DAY = 40073;
 	public static final int SCROLL_OF_ENCHANT_ARMOR = 40074;
-	/** 受祝福的對盔甲施法的卷軸 */
-	public static final int B_SCROLL_OF_ENCHANT_ARMOR = 140074;
-	/** 受詛咒的對盔甲施法的卷軸 */
-	public static final int C_SCROLL_OF_ENCHANT_ARMOR = 240074;
-	/** 對武器施法的卷軸 */
-	public static final int SCROLL_OF_ENCHANT_WEAPON = 40087;
-	/** 受祝福的對武器施法的卷軸 */
-	public static final int B_SCROLL_OF_ENCHANT_WEAPON = 140087;
-	/** 受詛咒的對武器施法的卷軸 */
-	public static final int C_SCROLL_OF_ENCHANT_WEAPON = 240087;
-	/** 試煉卷軸 */
-	public static final int SCROLL_OF_ENCHANT_QUEST_WEAPON = 40660;
-	/** 金幣 */
+	public static final int SCROLL_OF_DESTROY_ARMOR = 40075;
+	public static final int SCROLL_OF_ANCIENT = 40076;
+	public static final int SCROLL_OF_ANCIENTS_Alchemy = 40077;
+	public static final int SCROLL_OF_ANCIENTS_MAGIC = 40078;
+	public static final int SCROLL_OF_Escape = 40079;
+	public static final int SCROLL_OF_ReturnGludinTown = 40080;
+	public static final int SCROLL_OF_ReturnGiranCity = 40081;
+	public static final int SCROLL_OF_ReturnSingingIsland = 40082;
+	public static final int SCROLL_OF_ReturnCavern = 40083; //大空洞傳送卷軸 跟 大洞穴抵抗軍地區傳送卷軸 位置一樣？
+	public static final int SCROLL_OF_ReturnDiad = 40084;
+	public static final int SCROLL_OF_ReturnTalkingIslandVillage = 40085;
+	public static final int SCROLL_OF_All_Teleport = 40086; //全體傳送術的卷軸 ?
+	public static final int SCROLL_OF_ENCHANT_WEAPON = 40087; //SCROLL_OF_ENCHANT_WEAPON
+	public static final int SCROLL_OF_POLYMORPH = 40088; //變形卷軸
+	public static final int SCROLL_OF_Resurrection = 40089;
+	public static final int BLANK_SCROLL_Level_1 = 40090;
+	public static final int BLANK_SCROLL_Level_2 = 40091;
+	public static final int BLANK_SCROLL_Level_3 = 40092;
+	public static final int BLANK_SCROLL_Level_4 = 40093;
+	public static final int BLANK_SCROLL_Level_5 = 40094;
+	public static final int IT_SCROLL_OF_Escape = 40095;
+        public static final int IT_SCROLL_OF_POLYMORPH = 40096; //象牙塔變形卷軸
+	public static final int IT_SCROLL_OF_CurseRemoval = 40097;
+	public static final int IT_SCROLL_OF_Identify = 40098;
+	public static final int IT_SCROLL_OF_Teleportation = 40099;
+	public static final int SCROLL_OF_Teleportation = 40100;
+	public static final int SCROLL_OF_ReturnHiddenValley = 40101;
+	public static final int SCROLL_OF_ReturnAdenTown = 40102;
+	public static final int SCROLL_OF_ReturnOrenCity = 40103;
+	public static final int SCROLL_OF_TOI_11F = 40104;
+	public static final int SCROLL_OF_TOI_21F = 40105;
+	public static final int SCROLL_OF_TOI_31F = 40106;
+	public static final int SCROLL_OF_TOI_41F = 40107;
+	public static final int SCROLL_OF_TOI_51F = 40108;
+	public static final int SCROLL_OF_TOI_61F = 40109;
+	public static final int SCROLL_OF_TOI_71F = 40110;
+	public static final int SCROLL_OF_TOI_81F = 40111;
+	public static final int SCROLL_OF_TOI_91F = 40112;
+	public static final int SCROLL_OF_TOI_100F = 40113;
+	public static final int SCROLL_OF_ReturnElvenForest = 40114;
+	public static final int SCROLL_OF_ReturnWoodbecVillage = 40115;
+	public static final int SCROLL_OF_ReturnWerldernVillage = 40116;
+	public static final int SCROLL_OF_ReturnSilverKnightTown = 40117;
+	public static final int SCROLL_OF_ReturnRecluseVillage = 40118;
+	public static final int SCROLL_OF_CurseRemoval = 40119;
+	public static final int SCROLL_OF_ReturnResistVillage = 40120;
+	public static final int SCROLL_OF_ReturnMineralCavern = 40121;
+	public static final int SCROLL_OF_ReturnKentVillage = 40122;
+	public static final int SCROLL_OF_ReturnHeineCity = 40123;
+	public static final int SCROLL_OF_EscapeClan = 40124;
+	public static final int SCROLL_OF_ReturnFireField = 40125;
+	public static final int SCROLL_OF_Identify = 40126;
+	public static final int SCROLL_OF_ENCHANT_ARMOR_ILLUSION = 40127;
+	public static final int SCROLL_OF_ENCHANT_WEAPON_ILLUSION = 40128;
+	public static final int SCROLL_OF_Gians = 40129;
+	public static final int SCROLL_OF_Kalbas = 40130;
+	public static final int TOTEM_OF_Gandi = 40131;
+	public static final int TOTEM_OF_Neruga = 40132;
+	public static final int TOTEM_OF_DudaMara = 40133;
+	public static final int TOTEM_OF_Rova = 40134;
+	public static final int TOTEM_OF_Atuba = 40135;
+	public static final int TRIPLESS_Firework = 40136;
+	public static final int SIX_Firework = 40137;
+	public static final int HIGHTQUALITY_SixFirework = 40138;
+	public static final int BLUE_TwoStepFirework = 40139;
+	public static final int BLUE_Sparkler = 40140;
+	public static final int BLUE_Firework = 40141;
+	public static final int BLUE_HeartShapedFirework = 40142;
+	public static final int RED_TwoStepFirework = 40143;
+	public static final int RED_Sparkler = 40144;
+	public static final int RED_Firework = 40145;
+	public static final int RED_HeartShapedFirework = 40146;
+	public static final int GREEN_TwoStepRoundFirework = 40147;
+	public static final int GREEN_TwoStepFirework = 40148;
+	public static final int GREEN_SnowFirework = 40149;
+	public static final int GREEN_Sparkler = 40150;
+	public static final int GREEN_RoundFirework = 40151;
+	public static final int GREEN_Firework = 40152;
+	public static final int GREEN_HeartShapedFirework = 40153;
+	public static final int CHRISTMAS_Firework = 40154;
+	public static final int YELLOW_TwoStepRoundFirework = 40155;
+	public static final int YELLOW_TwoStepFirework = 40156;
+	public static final int YELLOW_SnowFirework = 40157;
+	public static final int YELLOW_Sparkler = 40158;
+	public static final int YELLOW_RoundFirework = 40159;
+	public static final int YELLOW_Firework = 40160;
+	public static final int YELLOW_HeartShapedFirework = 40161;
+	public static final int HEART_OF_GOLEM = 40162;
+	public static final int KEY_OF_GOLDEN = 40163;
+	/*
+	public static final int  = 40164; //技術書(衝擊之暈)
+	public static final int  = 40165; //技術書(增幅防禦)
+	public static final int  = 40166; //技術書(尖刺盔甲)
+	public static final int  = 40167; //古老皮袋
+	public static final int  = 40168; //古老絲袋
+	public static final int HEART_OF_DRAKE = 40169; //飛龍之心
+	public static final int  = 40170; //魔法書 (燃燒的火球)
+	public static final int  = 40171; //魔法書 (通暢氣脈術)
+	public static final int  = 40172; //魔法書 (壞物術)
+	public static final int  = 40173; //魔法書 (吸血鬼之吻)
+	public static final int  = 40174; //魔法書 (緩速術)
+	public static final int  = 40175; //魔法書 (魔法屏障)
+	public static final int  = 40176; //魔法書 (冥想術)
+	public static final int  = 40177; //魔法書 (岩牢)
+	public static final int  = 40178; //魔法書 (木乃伊的詛咒)
+	public static final int  = 40179; //魔法書 (極道落雷)
+	public static final int  = 40180; //魔法書 (高級治癒術)
+	public static final int  = 40181; //魔法書 (迷魅術)
+	public static final int  = 40182; //魔法書 (聖潔之光)
+	public static final int  = 40183; //魔法書 (冰錐)
+	public static final int  = 40184; //魔法書 (魔力奪取)
+	public static final int  = 40185; //魔法書 (黑闇之影)
+	public static final int  = 40186; //魔法書 (造屍術)
+	public static final int  = 40187; //魔法書 (體魄強健術)
+	public static final int  = 40188; //魔法書 (加速術)
+	public static final int  = 40189; //魔法書 (魔法相消術)
+	public static final int  = 40190; //魔法書 (地裂術)
+	public static final int  = 40191; //魔法書 (烈炎術)
+	public static final int  = 40192; //魔法書 (弱化術)
+	public static final int  = 40193; //魔法書 (祝福魔法武器)
+	public static final int  = 40194; //魔法書 (體力回復術)
+	public static final int  = 40195; //魔法書 (冰矛圍籬)
+	public static final int  = 40196; //魔法書 (召喚術)
+	public static final int  = 40197; //魔法書 (神聖疾走)
+	public static final int  = 40198; //魔法書 (龍捲風)
+	public static final int  = 40199; //魔法書 (強力加速術)
+	public static final int  = 40200; //魔法書 (狂暴術)
+	public static final int  = 40201; //魔法書 (疾病術)
+	public static final int  = 40202; //魔法書 (全部治癒術)
+	public static final int  = 40203; //魔法書 (火牢)
+	public static final int  = 40204; //魔法書 (冰雪暴)
+	public static final int  = 40205; //魔法書 (隱身術)
+	public static final int  = 40206; //魔法書 (返生術)
+	public static final int  = 40207; //魔法書 (震裂術)
+	public static final int  = 40208; //魔法書 (治癒能量風暴)
+	public static final int  = 40209; //魔法書 (魔法封印)
+	public static final int  = 40210; //魔法書 (雷霆風暴)
+	public static final int  = 40211; //魔法書 (沉睡之霧)
+	public static final int  = 40212; //魔法書 (變形術)
+	public static final int  = 40213; //魔法書 (聖結界)
+	public static final int  = 40214; //魔法書 (集體傳送術)
+	public static final int  = 40215; //魔法書 (火風暴)
+	public static final int  = 40216; //魔法書 (藥水霜化術)
+	public static final int  = 40217; //魔法書 (強力無所遁形術)
+	public static final int  = 40218; //魔法書 (創造魔法武器)
+	public static final int  = 40219; //魔法書 (流星雨)
+	public static final int  = 40220; //魔法書 (終極返生術)
+	public static final int  = 40221; //魔法書 (集體緩速術)
+	public static final int  = 40222; //魔法書 (究極光裂術)
+	public static final int  = 40223; //魔法書 (絕對屏障)
+	public static final int  = 40224; //魔法書 (靈魂昇華)
+	public static final int  = 40225; //魔法書 (冰雪颶風)
+	public static final int  = 40226; //魔法書 (精準目標)
+	public static final int  = 40227; //魔法書 (激勵士氣)
+	public static final int  = 40228; //魔法書 (呼喚盟友)
+	public static final int  = 40229; //魔法書(鋼鐵士氣)
+	public static final int  = 40230; //魔法書(衝擊士氣)
+	public static final int  = 40231; //魔法書(援護盟友)
+	public static final int  = 40232; //精靈水晶(魔法防禦)
+	public static final int  = 40233; //精靈水晶(心靈轉換)
+	public static final int  = 40234; //精靈水晶(世界樹的呼喚)
+	public static final int  = 40235; //精靈水晶(淨化精神)
+	public static final int  = 40236; //精靈水晶(屬性防禦)
+	public static final int  = 40237; //精靈水晶(釋放元素)
+	public static final int  = 40238; //精靈水晶(魂體轉換)
+	public static final int  = 40239; //精靈水晶(單屬性防禦)
+	public static final int  = 40240; //精靈水晶(三重矢)
+	public static final int  = 40241; //精靈水晶(弱化屬性)
+	public static final int  = 40242; //精靈水晶(魔法消除)
+	public static final int  = 40243; //精靈水晶(召喚屬性精靈)
+	public static final int  = 40244; //精靈水晶(封印禁地)
+	public static final int  = 40245; //精靈水晶(召喚強力屬性精靈)
+	public static final int  = 40246; //精靈水晶(鏡反射)
+	public static final int  = 40247; //精靈水晶(大地防護)
+	public static final int  = 40248; //精靈水晶(地面障礙)
+	public static final int  = 40249; //精靈水晶(大地屏障)
+	public static final int  = 40250; //精靈水晶(大地的祝福)
+	public static final int  = 40251; //精靈水晶(鋼鐵防護)
+	public static final int  = 40252; //精靈水晶(體能激發)
+	public static final int  = 40253; //精靈水晶(水之元氣)
+	public static final int  = 40254; //精靈水晶(生命之泉)
+	public static final int  = 40255; //精靈水晶(生命的祝福)
+	public static final int  = 40256; //精靈水晶(火焰武器)
+	public static final int  = 40257; //精靈水晶(烈炎氣息)
+	public static final int  = 40258; //精靈水晶(烈炎武器)
+	public static final int  = 40259; //精靈水晶(屬性之火)
+	public static final int  = 40260; //精靈水晶(風之神射)
+	public static final int  = 40261; //精靈水晶(風之疾走)
+	public static final int  = 40262; //精靈水晶(暴風之眼)
+	public static final int  = 40263; //精靈水晶(暴風神射)
+	public static final int  = 40264; //精靈水晶(風之枷鎖)
+	public static final int  = 40265; //黑暗精靈水晶(暗隱術)
+	public static final int  = 40266; //黑暗精靈水晶(附加劇毒)
+	public static final int  = 40267; //黑暗精靈水晶(影之防護)
+	public static final int  = 40268; //黑暗精靈水晶(提煉魔石)
+	public static final int  = 40269; //黑暗精靈水晶(力量提升)
+	public static final int  = 40270; //黑暗精靈水晶(行走加速)
+	public static final int  = 40271; //黑暗精靈水晶(燃燒鬥志)
+	public static final int  = 40272; //黑暗精靈水晶(暗黑盲咒)
+	public static final int  = 40273; //黑暗精靈水晶(毒性抵抗)
+	public static final int  = 40274; //黑暗精靈水晶(敏捷提升)
+	public static final int  = 40275; //黑暗精靈水晶(雙重破壞)
+	public static final int  = 40276; //黑暗精靈水晶(暗影閃避)
+	public static final int  = 40277; //黑暗精靈水晶(暗影之牙)
+	public static final int  = 40278; //黑暗精靈水晶(會心一擊)
+	public static final int  = 40279; //黑暗精靈水晶(閃避提升)
+	 */
+	public static final int SEALED_TOI_TELEPORT_CHARM_11F = 40280;
+	public static final int SEALED_TOI_TELEPORT_CHARM_21F = 40281;
+	public static final int SEALED_TOI_TELEPORT_CHARM_31F = 40282;
+	public static final int SEALED_TOI_TELEPORT_CHARM_41F = 40283;
+	public static final int SEALED_TOI_TELEPORT_CHARM_51F = 40284;
+	public static final int SEALED_TOI_TELEPORT_CHARM_61F = 40285;
+	public static final int SEALED_TOI_TELEPORT_CHARM_71F = 40286;
+	public static final int SEALED_TOI_TELEPORT_CHARM_81F = 40287;
+	public static final int SEALED_TOI_TELEPORT_CHARM_91F = 40288;
+	public static final int TOI_TELEPORT_CHARM_11F = 40289;
+	public static final int TOI_TELEPORT_CHARM_21F = 40290;
+	public static final int TOI_TELEPORT_CHARM_31F = 40291;
+	public static final int TOI_TELEPORT_CHARM_41F = 40292;
+	public static final int TOI_TELEPORT_CHARM_51F = 40293;
+	public static final int TOI_TELEPORT_CHARM_61F = 40294;
+	public static final int TOI_TELEPORT_CHARM_71F = 40295;
+	public static final int TOI_TELEPORT_CHARM_81F = 40296;
+	public static final int TOI_TELEPORT_CHARM_91F = 40297;
+	public static final int TICKET_OF_TalkingIsland = 40298;
+	public static final int TICKET_OF_Gludio = 40299;
+	public static final int TICKET_OF_ForgottenIsland = 40300;
+	public static final int TICKET_OF_Heine = 40301;
+	public static final int TICKET_OF_PiratesIsland = 40302;
+	public static final int TICKET_OF_HiddenWharf = 40303;
+	public static final int RELIC_OF_MAPHR = 40304;
+	public static final int RELIC_OF_PAAGRIO = 40305;
+	public static final int RELIC_OF_EVA = 40306;
+	public static final int RELIC_OF_SAYHA = 40307;
 	public static final int ADENA = 40308;
-/* 以下測試使用中文取代 */
-// 加速道具
-	public static final int 自我加速藥水 = 40013;
-	public static final int 祝福自我加速藥水 = 140013;
-	public static final int 強化自我加速藥水 = 40018;
-	public static final int 祝福強化自我加速藥水 = 140018;
-	public static final int 象牙塔加速藥水 = 40030;
-	public static final int 梅杜莎之血 = 41342;
-	public static final int 紅酒 = 40039;
-	public static final int 威士忌 = 40040;
-	public static final int 飯糰 = 41261;
-	public static final int 雞肉串燒 = 41262;
-	public static final int 小比薩 = 41268;
-	public static final int 烤玉米 = 41269;
-	public static final int 爆米花 = 41271;
-	public static final int 甜不辣 = 41272;
-	public static final int 鬆餅 = 41273;
-	public static final int 受祝福的葡萄酒 = 41338; // 資料庫中 bless = 0 ?
-
-// 勇敢藥水
-	public static final int 勇敢藥水 = 40014;
-	public static final int 祝福勇敢藥水 = 140014;
-	public static final int 強化勇氣的藥水 = 41415;
-	public static final int 惡魔之血 = 40031;
-	public static final int 名譽貨幣 = 40733;
-	public static final int 精靈餅乾 = 40068;
-	public static final int 祝福的精靈餅乾 = 140068;
-	public static final int 生命之樹果實 = 49158;
+	public static final int TICKET_RACE = 40309; //食人妖精競賽票
+	public static final int LETTER_PAPER = 40310;
+	public static final int LETTER_PAPER_OF_CLAN = 40311;
+	public static final int KEY_OF_INN_ROOM = 40312;
+	public static final int KEY_OF_SILVER = 40313;
+	public static final int COLLAR = 40314;
+	public static final int DOG_WHISHLE = 40315;
+	public static final int HIGHT_LV_COLLAR = 40316;
+	public static final int WHETSTONE = 40317;
+	/*
+	public static final int MAGIC_GEM = 40318;
+	public static final int SPIRIT_GEM = 40319;
+	public static final int BRING_STONE = 40320;
+	public static final int DARK_STONE = 40321;
+	public static final int BRAVE_STONE = 40322;
+	public static final int WISE_STONE = 40323;
+	public static final int KAISER_STONE = 40324;
+	public static final int  = 40325;
+	public static final int  = 40326;
+	public static final int  = 40327;
+	public static final int  = 40328;
+	public static final int  = 40329;
+	public static final int  = 40330;
+	public static final int SWORD_OF_KENT_SOLDIER = 40331; //肯特勇士之劍
+	public static final int BOW_OF_KENT_ARCHER = 40332; //肯特射手之弓
+	public static final int STAFF_OF_KENT_WIZARD = 40333; //肯特法師魔杖
+	public static final int EDORYU_OF_KENT_ASSASSIN = 40334; //肯特刺客雙刀
+	public static final int AXE_OF_KENT_WARRIOR = 40335; //肯特戰士斧頭
+	public static final int KENT_EMBLEN_BOOTS = 40336; //肯特徽章長靴
+	public static final int KENT_EMBLEN_PLATE = 40337; //肯特徽章盔甲
+	public static final int KENT_EMBLEN_GLOVES = 40338; //肯特徽章手套
+	public static final int KENT_EMBLEN_SHIELD = 40339; //肯特徽章盾牌
+	public static final int KENT_EMBLEN_HELM = 40340; //肯特徽章頭盔
+	public static final int  = 40341;
+	public static final int  = 40342;
+	public static final int  = 40343;
+	public static final int  = 40344;
+	public static final int  = 40345;
+	public static final int  = 40346;
+	public static final int  = 40347;
+	public static final int  = 40348;
+	public static final int  = 40349;
+	public static final int  = 40350;
+	public static final int  = 40351;
+	public static final int  = 40352;
+	public static final int  = 40353;
+	public static final int  = 40354;
+	public static final int  = 40355;
+	public static final int  = 40356;
+	public static final int  = 40357;
+	public static final int  = 40358;
+	public static final int  = 40359;
+	public static final int  = 40360;
+	public static final int  = 40361;
+	public static final int  = 40362;
+	public static final int  = 40363;
+	public static final int  = 40364;
+	public static final int  = 40365;
+	public static final int  = 40366;
+	public static final int  = 40367;
+	public static final int  = 40368;
+	public static final int  = 40369;
+	public static final int  = 40370;
+	public static final int  = 40371;
+	public static final int  = 40372;
+	*/
+	public static final int Map_All_OF_Aden = 40373;
+	public static final int Map_Talking_Island = 40374;
+	public static final int Map_Gludio = 40375;
+	public static final int Map_Kent_Castle = 40376;
+	public static final int Map_Orcish_Fortress = 40377;
+	public static final int Map_Elven_Forest = 40378;
+	public static final int Map_Windawood = 40379;
+	public static final int Map_Silver_Knight_Town = 40380;
+	public static final int Map_Dragon_Valley = 40381;
+	public static final int Map_Giran = 40382;
+	public static final int Map_Singing_Island = 40383;
+	public static final int Map_Hidden_Valley = 40384;
+	public static final int Map_Heine = 40385;
+	public static final int Map_Lair_OF_Valakas = 40386;
+	public static final int Map_Oren = 40387;
+	public static final int Map_Aden = 40388;
+	public static final int Map_Silent_Cavern = 40389;
+	public static final int Map_Pirate_Island = 40390;
+	public static final int CALCULATOR = 40391;
+	/*
+	public static final int  = 40392; //耶誕樹
+	public static final int  = 40393; //火龍鱗
+	public static final int  = 40394; //風龍鱗
+	public static final int  = 40395; //水龍鱗
+	public static final int  = 40396; //地龍鱗
+	public static final int  = 40397; //奇美拉之皮(龍)
+	public static final int  = 40398; //奇美拉之皮(山羊)
+	public static final int  = 40399; //奇美拉之皮(獅子)
+	public static final int  = 40400; //奇美拉之皮(蛇)
+	public static final int  = 40401; //詛咒的皮革(火)
+	public static final int  = 40402; //詛咒的皮革(水)
+	public static final int  = 40403; //詛咒的皮革(風)
+	public static final int  = 40404; //詛咒的皮革(地)
+	public static final int  = 40405; //皮革
+	public static final int  = 40406;
+	public static final int  = 40407;
+	public static final int  = 40408;
+	public static final int HEART_OF_FIREBIRD = 40409;
+	public static final int  = 40410;
+	public static final int  = 40411;
+	public static final int  = 40412;
+	public static final int HEART_OF_ICEQUEEN = 40413;
+	public static final int  = 40414;
+	public static final int  = 40415;
+	public static final int  = 40416;
+	public static final int  = 40417;
+	public static final int  = 40418;
+	public static final int  = 40419;
+	public static final int  = 40420;
+	*/
+	public static final int WIND_TEAR = 40498;
+	public static final int TWIG_OF_ENT = 40507;
+	public static final int BLACK_BLOODSTAIN = 40524;
+	public static final int TEAR_OF_GRANKAIN = 40525;
+	/*
+	public static final int 40556; //暗殺名單之袋
+	public static final int 40557; //暗殺名單(古魯丁村)
+	public static final int 40558; //暗殺名單(奇岩村)
+	public static final int 40559; //暗殺名單(亞丁城鎮)
+	public static final int 40560; //暗殺名單(風木村)
+	public static final int 40561; //暗殺名單(肯特村)
+	public static final int 40562; //暗殺名單(海音村)
+	public static final int 40563; //暗殺名單(燃柳村)
+	public static final int 40564; //生命的卷軸
+	public static final int 40565; //搜索狀
+	*/
+	public static final int SCROLL_OF_ENCHANT_QUEST_WEAPON = 40660;
+	public static final int CALLING_Flute = 41160;
+        public static final int COIN_OF_REPUTATION = 40733; // 名譽貨幣
+        public static final int COIN_OF_WISDOM = 40736; // 智慧貨幣
+	public static final int CRYSTAL_OF_DARKELF_SOUL = 40969;
+	public static final int POLE_OF_MAGIC_FISHING = 41293; //POLE_OF_LONG_FISHING
+	public static final int POLE_OF_SHORT_FISHING = 41294;
+	public static final int BAIT = 41295; //餌
+	public static final int FRUIT_OF_THE_VICTOR = 41310;
+        public static final int POTION_OF_REINFORCED_CASE = 41415; // 強化勇氣的藥水
+	public static final int POTION_OF_SKELETON_PIRATE_BOSS_POLYMORPH = 41143; //海賊骷髏首領變身藥水
+	public static final int POTION_OF_SKELETON_PIRATE_SOLDIER_POLYMORPH = 41144; //海賊骷髏士兵變身藥水
+	public static final int POTION_OF_SKELETON_PIRATE_KNIFE_POLYMORPH = 41145; //海賊骷髏刀手變身藥水
+	public static final int SCALE_OF_DARKNESS = 41154; //暗之鱗
+	public static final int SCALE_OF_FLAMES = 41155; //火之鱗
+	public static final int SCALE_OF_IMMORALITY = 41156; //叛之鱗
+	public static final int SCALE_OF_HATRED = 41157; //恨之鱗
+	public static final int SACRED_WING_FEATHER = 41159;
+	public static final int DULL_WEAPON = 41206;
+	public static final int RICE_BALL = 41261; //飯糰
+	public static final int CHICKEN_SKEWER = 41262; //雞肉串燒
+	public static final int PIZZA_PIECES = 41268; //小比薩
+	public static final int GRILLED_CORN = 41269; //烤玉米
+	public static final int POPRICE = 41271; //爆米花
+	public static final int TEMPURA = 41272; //甜不辣 FISH_CAKE?
+	public static final int WAFFLE = 41273; //鬆餅
+	public static final int BLESSED_WINE = 41338; //受祝福的葡萄酒 資料庫中 bless = 0 ?
+	public static final int BLOOD_OF_MEDUSA = 41342; //梅杜莎之血
+        public static final int ESSENCE_OF_WATER = 41344; //水中的水
+	public static final int HEROS_MARK = 41402;
+	public static final int ANCIENT_GoldCoin = 49026;
+	public static final int KEY_OF_ICE_CASTLE_1 = 49035;
+	public static final int KEY_OF_ICE_CASTLE_2 = 49036;
+	public static final int CANDLE_OF_Reminiscence = 49142;
+	public static final int CRYSTAL_OF_BRAVERY = 49143;
+	public static final int SCROLL_OF_SHARNAS_LV30_POLYMORPH = 49149; //夏納的變身卷軸_等級30
+	public static final int SCROLL_OF_SHARNAS_LV40_POLYMORPH = 49150; //夏納的變身卷軸_等級40
+	public static final int SCROLL_OF_SHARNAS_LV52_POLYMORPH = 49151; //夏納的變身卷軸_等級52
+	public static final int SCROLL_OF_SHARNAS_LV55_POLYMORPH = 49152; //夏納的變身卷軸_等級55
+	public static final int SCROLL_OF_SHARNAS_LV60_POLYMORPH = 49153; //夏納的變身卷軸_等級60
+	public static final int SCROLL_OF_SHARNAS_LV65_POLYMORPH = 49154; //夏納的變身卷軸_等級65
+	public static final int SCROLL_OF_SHARNAS_LV70_POLYMORPH = 49155; //夏納的變身卷軸_等級70
+        public static final int FORBIDDEN_FRUIT = 49158; // 生命之樹果實
+        public static final int SCROLL_OF_ORC_EMISSARYS_POLYMORPH = 49220; //妖魔密使變形卷軸
+        public static final int POTION_OF_HASTE_WELFARE  = 49501;// 福利加速藥水
+        public static final int POTION_OF_BREATHE_WELFARE = 49502; // 福利呼吸藥水
+        public static final int POTION_OF_FOREST_WELFARE = 49503; // 福利森林藥水
+        public static final int POTION_OF_EMOTION_BRAVERY_WELFARE = 49504; // 福利勇敢藥水
+        public static final int POTION_OF_MANA_WELFARE = 49505; // 福利藍色藥水
+	public static final int POTION_OF_EMOTION_WISDOM_WELFARE = 49506; // 福利慎重藥水
+        public static final int POTION_OF_POLY_WELFARE = 49507; // 福利變形藥水
 	
-// 加速魔力恢復道具
-	public static final int 加速魔力回復藥水 = 40015;
-	public static final int 祝福加速魔力回復藥水 = 140015;
-	public static final int 智慧貨幣 = 40736;
+	public static final int KEY_OF_DRAGON = 50501;
+	public static final int DEATHMATCH_WIN_FRAGMENT = 50515;
+	public static final int GHOSTHOUSE_WIN_FRAGMENT = 50516;
+	public static final int PETRACING_WIN_FRAGMENT = 50517;
+	public static final int PETMATCH_WIN_FRAGMENT = 50518;
+	public static final int UNLIMITEDBATTLE_WIN_FRAGMENT = 50519;
+	public static final int KEY_OF_BANDITS_TREASURE_CHEST = 50531;
+	//public static final int KEY_OF_WAREHOUSEMANAGER = ?; //角色專用倉庫鑰匙
+	//public static final int STONE_OF_LAMIAS_POLYMORPH = ?; //變身石：拉曼斯
+	//public static final int STONE_OF_ENDIAS_POLYMORPH = ?; //變身石：安迪斯
+	//public static final int STONE_OF_EDEA_POLYMORP = ?; //變身石：艾迪爾
+	public static final int BLESS_POTION_OF_HEALING = 140010;
+	public static final int BLESS_POTION_OF_EXTRA_HEALING = 140011;
+	public static final int BLESS_POTION_OF_GREATER_HEAL = 140012;
+        public static final int BLESS_POTION_OF_HASTE = 140013; //B_POTION_OF_HASTE_SELF 祝福自我加速藥水
+        public static final int BLESS_POTION_OF_EMOTION_BRAVERY = 140014;
+        public static final int BLESS_POTION_OF_MANA_Recovery = 140015; // 祝福加速魔力回復藥水
+        public static final int BLESS_POTION_OF_EMOTION_WISDOM = 140016; // 祝福慎重藥水
+        public static final int BLESS_POTION_OF_GREATER_HASTE = 140018; //B_POTION_OF_GREATER_HASTE_SELF 祝福強化自我加速藥水
+        public static final int BLESS_OF_ELVEN_WAFER = 140068; // 祝福的精靈餅乾
+	public static final int BLESS_SCROLL_OF_ENCHANT_ARMOR = 140074;
+	public static final int BLESS_SCROLL_OF_ENCHANT_WEAPON = 140087;
+	public static final int BLESS_SCROLL_OF_POLYMORPH = 140088; //祝福變形卷軸
+	public static final int CURSE_POTION_OF_HEALING = 240010;
+	public static final int CURSE_SCROLL_OF_ENCHANT_ARMOR = 240074;
+	public static final int CURSE_SCROLL_OF_ENCHANT_WEAPON = 240087;
+	//public static final int SCROLL_OF_ENCHANT_WEAPON_EARTH = ?; //地之武器強化卷軸
+	//public static final int SCROLL_OF_ENCHANT_WEAPON_WATER = ?; //水之武器強化卷軸
+	//public static final int SCROLL_OF_ENCHANT_WEAPON_FIRE = ?; //火之武器強化卷軸
+	//public static final int SCROLL_OF_ENCHANT_WEAPON_WIND = ?; //風之武器強化卷軸
+	//public static final int GINSENG = ?; //人蔘
+	//public static final int BOTTLE = ?; //藥瓶
+	//public static final int KEY_OF_MACROSS = ?; //時空之鑰
+	//public static final int SCROLL_OF_ENCHANT_BATTLE = ?; //強化戰鬥卷軸
+	//public static final int SCROLL_OF_STRENGTHENING_POWER = ?; //體力增強卷軸
+	//public static final int SCROLL_OF_STRENGTHENING_MAGIC_POWER = ?; //魔力增強卷軸
+	//public static final int SCALE_OF_OBLIVION = ?;//幻之鱗
+	//public static final int SCROLL_OF_ARCH_POLYMORPH = ?; //亞克變身卷軸
+	//public static final int BOOK_OF_WEAPON_ENCHANT = ?; //武器強化書
+	//public static final int BOOK_OF_ANCIENT_WEAPON_ENCHANT = ?; //古代武器強化書
 	
-// 慎重藥水
-	public static final int 慎重藥水 = 40016;
-	public static final int 祝福慎重藥水 = 140016;
-	
-// 伊娃的祝福
-	public static final int 伊娃的祝福 = 40032;
-	public static final int 人魚之鱗 = 40041;
-	public static final int 水中的水 = 41344;
-	
-// 變形道具
-	public static final int 變形卷軸 = 40088;
-	public static final int 祝福變形卷軸 = 140088;
-	public static final int 象牙塔變形卷軸 = 40096;
-	public static final int 暗之鱗 = 41154;
-	public static final int 火之鱗 = 41155;
-	public static final int 叛之鱗 = 41156;
-	public static final int 恨之鱗 = 41157;
-	public static final int 妖魔密使變形卷軸 = 49220;
-	public static final int 海賊骷髏首領變身藥水 = 41143;
-	public static final int 海賊骷髏士兵變身藥水 = 41144;
-	public static final int 海賊骷髏刀手變身藥水 = 41145;
-	public static final int 夏納的變身卷軸_等級30 = 49149;
-	public static final int 夏納的變身卷軸_等級40 = 49150;
-	public static final int 夏納的變身卷軸_等級52 = 49151;
-	public static final int 夏納的變身卷軸_等級55 = 49152;
-	public static final int 夏納的變身卷軸_等級60 = 49153;
-	public static final int 夏納的變身卷軸_等級65 = 49154;
-	public static final int 夏納的變身卷軸_等級70 = 49155;
-
-// 3.3C
-	public static final int 福利加速藥水 = 49501;
-	public static final int 福利呼吸藥水 = 49502;
-	public static final int 福利森林藥水 = 49503;
-	public static final int 福利勇敢藥水 = 49504;
-	public static final int 福利藍色藥水 = 49505;
-	public static final int 福利慎重藥水 = 49506;
-	public static final int 福利變形藥水 = 49507;
 }

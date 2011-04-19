@@ -614,6 +614,9 @@ class SkillStop {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$185));
 				pc.sendPackets(new S_Liquor(pc.getId(), 0x00));
 			}
+		} else if (skillId == STATUS_ANTHARAS_BLOODSTAINS) {
+			if (cha instanceof L1PcInstance) {
+			}
 		/* POISON */
 		} else if (skillId == STATUS_POISON) { // ダメージ毒
 			cha.curePoison();

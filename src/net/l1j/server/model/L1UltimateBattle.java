@@ -108,23 +108,23 @@ public class L1UltimateBattle {
 		if (curRound == 1) {
 			spawnGroundItem(ItemId.ADENA, 1000, 60);
 			spawnGroundItem(ItemId.POTION_OF_CURE_POISON, 3, 20);
-			spawnGroundItem(ItemId.POTION_OF_EXTRA_HEALING, 5, 20);
-			spawnGroundItem(ItemId.POTION_OF_GREATER_HEALING, 3, 20);
+			spawnGroundItem(ItemId.POTION_OF_HEAL, 5, 20);
+			spawnGroundItem(ItemId.POTION_OF_GREATER_HASTE, 3, 20);
 			spawnGroundItem(40317, 1, 5); // 砥石
 			spawnGroundItem(40079, 1, 20); // 歸還スク
 		} else if (curRound == 2) {
 			spawnGroundItem(ItemId.ADENA, 5000, 50);
 			spawnGroundItem(ItemId.POTION_OF_CURE_POISON, 5, 20);
-			spawnGroundItem(ItemId.POTION_OF_EXTRA_HEALING, 10, 20);
-			spawnGroundItem(ItemId.POTION_OF_GREATER_HEALING, 5, 20);
+			spawnGroundItem(ItemId.POTION_OF_HEAL, 10, 20);
+			spawnGroundItem(ItemId.POTION_OF_GREATER_HASTE, 5, 20);
 			spawnGroundItem(40317, 1, 7); // 砥石
 			spawnGroundItem(40093, 1, 10); // ブランクスク(Lv4)
 			spawnGroundItem(40079, 1, 5); // 歸還スク
 		} else if (curRound == 3) {
 			spawnGroundItem(ItemId.ADENA, 10000, 30);
 			spawnGroundItem(ItemId.POTION_OF_CURE_POISON, 7, 20);
-			spawnGroundItem(ItemId.POTION_OF_EXTRA_HEALING, 20, 20);
-			spawnGroundItem(ItemId.POTION_OF_GREATER_HEALING, 10, 20);
+			spawnGroundItem(ItemId.POTION_OF_HEAL, 20, 20);
+			spawnGroundItem(ItemId.POTION_OF_GREATER_HASTE, 10, 20);
 			spawnGroundItem(40317, 1, 10); // 砥石
 			spawnGroundItem(40094, 1, 10); // ブランクスク(Lv5)
 		}

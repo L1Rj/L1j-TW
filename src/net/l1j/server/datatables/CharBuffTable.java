@@ -32,27 +32,24 @@ import static net.l1j.server.model.skill.SkillId.*;
 public class CharBuffTable {
 	private final static Logger _log = Logger.getLogger(CharBuffTable.class.getName());
 
-	private static final int[] buffSkill = { 2, 67, // ライト、シェイプチェンジ
-			3, 99, 151, 159, 168, // シールド、シャドウアーマー、アーススキン、アースブレス、アイアンスキン
-			43, 54, 1000, 1001, // ヘイスト、グレーターヘイスト、ブレイブポーション、グリーンポーション
-			52, 101, 150, // ホーリーウォーク、ムービングアクセレーション、ウィンドウォーク
-			26, 42, 109, 110, // PE:DEX、PE:STR、ドレスマイティー、ドレスデクスタリティー
-			114, 115, 117, // グローウィングオーラ、シャイニングオーラ、ブレイブオーラ
-			148, 155, 163, // ファイアーウェポン、ファイアーブレス、バーニングウェポン
-			149, 156, 166, // ウィンドショット、ストームアイ、ストームショット
-			1002, 1005, 1016, 1017, // ブルーポーション、チャット禁止、エルヴンワッフル、生命之樹果實
-			1910, 1911, 1912, 1913, 1914, 1915, //waja add 租旅館退旅館
-			COOKING_1_0_N, COOKING_1_0_S, COOKING_1_1_N, COOKING_1_1_S, // 料理(デザートは除く)
-			COOKING_1_2_N, COOKING_1_2_S, COOKING_1_3_N, COOKING_1_3_S,
-			COOKING_1_4_N, COOKING_1_4_S, COOKING_1_5_N, COOKING_1_5_S,
-			COOKING_1_6_N, COOKING_1_6_S, COOKING_2_0_N, COOKING_2_0_S,
-			COOKING_2_1_N, COOKING_2_1_S, COOKING_2_2_N, COOKING_2_2_S,
-			COOKING_2_3_N, COOKING_2_3_S, COOKING_2_4_N, COOKING_2_4_S,
-			COOKING_2_5_N, COOKING_2_5_S, COOKING_2_6_N, COOKING_2_6_S,
-			COOKING_3_0_N, COOKING_3_0_S, COOKING_3_1_N, COOKING_3_1_S,
-			COOKING_3_2_N, COOKING_3_2_S, COOKING_3_3_N, COOKING_3_3_S,
-			COOKING_3_4_N, COOKING_3_4_S, COOKING_3_5_N, COOKING_3_5_S,
-			COOKING_3_6_N, COOKING_3_6_S, GMSTATUS_CRAZY };
+	private static final int[] buffSkill = {
+		2, 3, 26, 42, 43, 52, 54, 67, 99, 101,
+		109, 110, 114, 115, 117, 148, 149, 150,
+		151, 155, 156, 159, 163, 166, 168,
+		1000, 1001, 1002, 1005, 1016, 1017,
+		1029, 1030, 1031, 1032, 1033, 1034,
+		1910, 1911, 1912, 1913, 1914, 1915, //waja add 租旅館退旅館
+		COOKING_1_0_N, COOKING_1_0_S, COOKING_1_1_N, COOKING_1_1_S, // 料理(デザートは除く)
+		COOKING_1_2_N, COOKING_1_2_S, COOKING_1_3_N, COOKING_1_3_S,
+		COOKING_1_4_N, COOKING_1_4_S, COOKING_1_5_N, COOKING_1_5_S,
+		COOKING_1_6_N, COOKING_1_6_S, COOKING_2_0_N, COOKING_2_0_S,
+		COOKING_2_1_N, COOKING_2_1_S, COOKING_2_2_N, COOKING_2_2_S,
+		COOKING_2_3_N, COOKING_2_3_S, COOKING_2_4_N, COOKING_2_4_S,
+		COOKING_2_5_N, COOKING_2_5_S, COOKING_2_6_N, COOKING_2_6_S,
+		COOKING_3_0_N, COOKING_3_0_S, COOKING_3_1_N, COOKING_3_1_S,
+		COOKING_3_2_N, COOKING_3_2_S, COOKING_3_3_N, COOKING_3_3_S,
+		COOKING_3_4_N, COOKING_3_4_S, COOKING_3_5_N, COOKING_3_5_S,
+		COOKING_3_6_N, COOKING_3_6_S, GMSTATUS_CRAZY };
 
 	private static void StoreBuff(int objId, int skillId, int time, int polyId) {
 		Connection con = null;

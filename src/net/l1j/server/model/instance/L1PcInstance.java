@@ -2336,11 +2336,31 @@ public class L1PcInstance extends L1Character {
 	public boolean isRiBrave() {
 		return hasSkillEffect(STATUS_RIBRAVE);
 	}
-
+	
+	public boolean isExpBless() {
+		return hasSkillEffect(STATUS_EXP_BLESS);
+	}
+	
 	public boolean isTriplesSpeed() {
 		return hasSkillEffect(STATUS_TRIPLES_SPEED);
 	}
-
+	
+	public boolean isAntharasBloodstains() {
+		return hasSkillEffect(STATUS_ANTHARAS_BLOODSTAINS);
+	}
+	
+	public boolean isFafurionBloodstains() {
+		return hasSkillEffect(STATUS_FAFURION_BLOODSTAINS);
+	}
+	
+	public boolean isValakasBloodstains() {
+		return hasSkillEffect(STATUS_VALAKAS_BLOODSTAINS);
+	}
+	
+	public boolean isLindviorBloodstains() {
+		return hasSkillEffect(STATUS_LINDVIOR_BLOODSTAINS);
+	}
+	
 	public boolean isHaste() {
 		return (hasSkillEffect(STATUS_HASTE)
 				|| hasSkillEffect(SKILL_HASTE)
