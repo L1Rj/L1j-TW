@@ -66,12 +66,12 @@ public class C_AuthLogin extends ClientBasePacket {
 			String _NullMSG = null;
 			if (Config.AUTO_CREATE_ACCOUNTS) {
 				account = Account.create(accountName, password, ip, host);
-				_NullMSG = "【訊息】使用者帳號：【" + accountName"】 申請通過。";
+				_NullMSG = "【訊息】使用者帳號：【" + accountName + "】 申請通過。";
 			} else {
 				// client.sendPacket(new S_LoginResult(S_LoginResult.REASON_ACCESS_FAILED));
-				_NullMSG = "【訊息】使用者帳號：【" + accountName"】 並不存在。";
+				_NullMSG = "【訊息】使用者帳號：【" + accountName + "】 並不存在。";
 			}
-			_log.warning(_NullMSG);
+			_log.info(_NullMSG);
 			client.sendPacket(new S_CommonNews(_NullMSG));
 			return;
 		}
