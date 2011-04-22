@@ -40,8 +40,12 @@ public class C_AuthLogin extends ClientBasePacket {
 		super(decrypt);
 
 		String accountName = readS().toLowerCase();
-		String password = readS();
+		if (accountName.matches("\\s")) {
+			client.sendPacket(new S_CommonNews("帳號不能含有空白字元"));
+			return;
+		}
 
+		String password = readS();
 		String ip = client.getIp();
 		String host = client.getHostname();
 
@@ -59,12 +63,16 @@ public class C_AuthLogin extends ClientBasePacket {
 
 		Account account = Account.load(accountName);
 		if (account == null) {
-			_log.warning("【警告】使用者帳號：【" + accountName + "】 不存在。");
+			StringBuilder _NullMSG = new StringBuilder(64).append("【訊息】使用者帳號：【" + accountName);
 			if (Config.AUTO_CREATE_ACCOUNTS) {
 				account = Account.create(accountName, password, ip, host);
+				_NullMSG.append("】 申請通過。");
 			} else {
-				client.sendPacket(new S_LoginResult(S_LoginResult.REASON_ACCESS_FAILED));
+				// client.sendPacket(new S_LoginResult(S_LoginResult.REASON_ACCESS_FAILED));
+				_NullMSG.append("】 不存在。");
 			}
+			_log.warning(_NullMSG.toString());
+			client.sendPacket(new S_CommonNews(_NullMSG.toString()));
 			return;
 		}
 
