@@ -24,9 +24,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.util.List;
-import java.util.StringTokenizer;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.StringTokenizer;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javolution.util.FastList;
 
@@ -39,43 +42,55 @@ import net.l1j.util.StreamUtil;
 public class Announcements {
 	private final static Logger _log = Logger.getLogger(Announcements.class.getName());
 
-	private List<String> _messages = new FastList<String>();
+	private final String Name;
+	private String LastDate;
+	private final static DateFormat dateFormat = new SimpleDateFormat("[修訂日期] yyyy/MM/dd, hh:mm \n");
+	private StringBuilder MSG;
+	private List<String> messages = new FastList<String>();
+	private final File file;
+	private long lastchang = 0L;
 
-	private Announcements() {
-		loadAnnouncements();
+	public Announcements() {
+		Name = "SystemUse";
+		file = null;
 	}
 
-	public static Announcements getInstance() {
-		return SingletonHolder._instance;
+	public Announcements(String filePath) {
+		file = new File(filePath);
+		Name = filePath;
 	}
 
-	private void loadAnnouncements() {
-		_messages.clear();
-		File file = new File("data/announcements.txt");
-		if (file.exists()) {
-			readFromDisk(file);
-		} else {
-			_log.config("data/announcements.txt doesn't exist");
+	public final void loadAnnouncements() {
+		long t_diffTime_L = file.lastModified();
+		if (lastchang != t_diffTime_L) {
+			lastchang = t_diffTime_L;
+			readFromDisk();
 		}
 	}
 
-	private void readFromDisk(File file) {
+	public final String getSMG() {
+		loadAnnouncements();
+		return MSG.toString();
+	}
+
+	public final String getDatePlusSMG() {
+		loadAnnouncements();
+		return dateFormat.format(new Date(lastchang)) + MSG.toString();
+	}
+
+	private void readFromDisk() {
+		MSG.setLength(0);
+		messages.clear();
 		LineNumberReader lnr = null;
+		String line = null;
 		try {
-			int i = 0;
-			String line = null;
 			lnr = new LineNumberReader(new FileReader(file));
-			while ((line = lnr.readLine()) != null) {
-				StringTokenizer st = new StringTokenizer(line, "\n\r");
-				if (st.hasMoreTokens()) {
-					String announcement = st.nextToken();
-					_messages.add(announcement);
-					i++;
-				}
-			}
-			if (Config.DEBUG) {
-				_log.config("Announcements: Loaded " + i + " Announcements.");
-			}
+			int i = 0;
+			do {
+				messages.add(line);
+				MSG.append(line + "\n");
+				line = lnr.readLine();
+			} while (++i < 20 || line != null);
 		} catch (IOException e) {
 			_log.log(Level.SEVERE, "Error reading announcements: ", e);
 		} finally {
@@ -83,31 +98,42 @@ public class Announcements {
 		}
 	}
 
+	public final static Announcements getInstance4Login() {
+		return SingletonHolder._instanceLogin;
+	}
+
+	public final static Announcements getInstance4ToAll() {
+		return SingletonHolder._instanceToAll;
+	}
+
+	public final static Announcements getInstance() {
+		return SingletonHolder._instance;
+	}
+
 	public void showAnnouncements(L1PcInstance pc) {
-		for (int i = 0; i < _messages.size(); i++) {
-			S_SystemMessage s_sm = new S_SystemMessage(_messages.get(i));
+		for (int i = 0; i < messages.size(); i++) {
+			S_SystemMessage s_sm = new S_SystemMessage(messages.get(i));
 			pc.sendPackets(s_sm);
 		}
 	}
 
 	public void addAnnouncement(String text) {
-		_messages.add(text);
+		messages.add(text);
 		saveToDisk();
 	}
 
 	public void delAnnouncement(int line) {
-		_messages.remove(line);
+		messages.remove(line);
 		saveToDisk();
 	}
 
 	private void saveToDisk() {
-		File file = new File("data/announcements.txt");
 		FileWriter save = null;
 
 		try {
 			save = new FileWriter(file);
-			for (int i = 0; i < _messages.size(); i++) {
-				save.write(_messages.get(i));
+			for (int i = 0; i < messages.size(); i++) {
+				save.write(messages.get(i));
 				save.write("\r\n");
 			}
 		} catch (IOException e) {
@@ -123,6 +149,10 @@ public class Announcements {
 
 	@SuppressWarnings("synthetic-access")
 	private static class SingletonHolder {
-		protected static final Announcements _instance = new Announcements();
+		private static final Announcements _instanceLogin =
+				new Announcements("data/announcements.txt");
+		private static final Announcements _instanceToAll =
+				new Announcements("data/toall.txt");
+		private static final Announcements _instance = new Announcements();
 	}
 }

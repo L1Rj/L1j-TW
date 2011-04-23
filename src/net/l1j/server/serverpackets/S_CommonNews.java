@@ -18,61 +18,23 @@
  */
 package net.l1j.server.serverpackets;
 
-import java.io.*;
-import java.util.StringTokenizer;
-
-import javolution.util.FastTable;
-
+import net.l1j.server.Announcements;
 import net.l1j.server.Opcodes;
 
 public class S_CommonNews extends ServerBasePacket {
-	private static final String S_COMMON_NEWS = "[S] S_CommonNews";
 
-	private FastTable<String> _announcements;
+	private final static Announcements LoginAnnouncement = Announcements.getInstance4Login();
+
+	private final static String S_COMMON_NEWS = "[S] S_CommonNews";
 
 	public S_CommonNews() {
-		_announcements = new FastTable<String>();
-		loadAnnouncements();
 		writeC(Opcodes.S_OPCODE_COMMONNEWS);
-		String message = "";
-		for (int i = 0; i < _announcements.size(); i++) {
-			message = (new StringBuilder()).append(message).append(_announcements.get(i).toString()).append("\n").toString();
-		}
-		writeS(message);
+		writeS(LoginAnnouncement.getSMG());
 	}
 
 	public S_CommonNews(String s) {
 		writeC(Opcodes.S_OPCODE_COMMONNEWS);
 		writeS(s);
-	}
-
-	private void loadAnnouncements() {
-		_announcements.clear();
-		File file = new File("data/announcements.txt");
-		if (file.exists()) {
-			readFromDisk(file);
-		}
-	}
-
-	private void readFromDisk(File file) {
-		LineNumberReader lnr = null;
-		try {
-			String line = null;
-			lnr = new LineNumberReader(new FileReader(file));
-			do {
-				if ((line = lnr.readLine()) == null) {
-					break;
-				}
-				StringTokenizer st = new StringTokenizer(line, "\n\r");
-				if (st.hasMoreTokens()) {
-					String announcement = st.nextToken();
-					_announcements.add(announcement);
-				} else {
-					_announcements.add(" ");
-				}
-			} while (true);
-		} catch (Exception e) {
-		}
 	}
 
 	@Override
