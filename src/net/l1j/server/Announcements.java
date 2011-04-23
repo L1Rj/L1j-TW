@@ -44,7 +44,7 @@ public class Announcements {
 
 	private final String Name;
 	private String LastDate;
-	private final static DateFormat dateFormat = new SimpleDateFormat("[修訂日期] yyyy/MM/dd, hh:mm \n");
+	private final static DateFormat dateFormat = new SimpleDateFormat("[修訂於 yyyy/MM/dd, hh:mm ]\n");
 	private StringBuilder MSG;
 	private List<String> messages = new FastList<String>();
 	private final File file;
@@ -79,7 +79,7 @@ public class Announcements {
 	}
 
 	private void readFromDisk() {
-		MSG.setLength(0);
+		MSG = new StringBuilder(128);
 		messages.clear();
 		LineNumberReader lnr = null;
 		String line = null;
@@ -90,9 +90,9 @@ public class Announcements {
 				messages.add(line);
 				MSG.append(line + "\n");
 				line = lnr.readLine();
-			} while (++i < 20 || line != null);
+			} while (++i < 20 && line != null);
 		} catch (IOException e) {
-			_log.log(Level.SEVERE, "Error reading announcements: ", e);
+			_log.log(Level.SEVERE, "Error reading @ " + Name, e);
 		} finally {
 			StreamUtil.close(lnr);
 		}

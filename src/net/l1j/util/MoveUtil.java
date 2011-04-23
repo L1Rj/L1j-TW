@@ -20,32 +20,32 @@ package net.l1j.util;
 
 public class MoveUtil {
 
-	private static final int[] HEADING_TABLE_X = { 0, 1, 1, 1, 0, -1, -1, -1 }; /** 角色方向-X */
-	private static final int[] HEADING_TABLE_Y = { -1, -1, 0, 1, 1, 1, 0, -1 }; /** 角色方向-Y */
+	private final static int[] HEADING_TABLE_X = { 0, 1, 1, 1, 0, -1, -1, -1 }; /** 角色方向-X */
+	private final static int[] HEADING_TABLE_Y = { -1, -1, 0, 1, 1, 1, 0, -1 }; /** 角色方向-Y */
 
-	public static void MoveLoc(int[] loc, final int heading) {
+	public final static void MoveLoc(int[] loc, final int heading) {
 		loc[0] += MoveX(heading);
 		loc[1] += MoveY(heading);
 	}
 
-	public static void MoveLoc(int[] loc) {
+	public final static void MoveLoc(int[] loc) {
 		loc[0] += MoveX(loc[2]);
 		loc[1] += MoveY(loc[2]);
 	}
 
-	public static int MoveX(final int heading) {
+	public final static int MoveX(final int heading) {
 		return HEADING_TABLE_X[heading];
 	}
 
-	public static int MoveLocX(final int x, final int heading) {
+	public final static int MoveLocX(final int x, final int heading) {
 		return x + MoveX(heading);
 	}
 
-	public static int MoveY(final int heading) {
+	public final static int MoveY(final int heading) {
 		return HEADING_TABLE_Y[heading];
 	}
 
-	public static int MoveLocY(final int y, final int heading) {
+	public final static int MoveLocY(final int y, final int heading) {
 		return y + MoveY(heading);
 	}
 
