@@ -1,5 +1,8 @@
 以下為目前仍有的錯誤訊息紀錄
 
+以下為舊紀錄 僅供參考
+------------------------------------------------------------------------------------------------------------------
+
 20100330
 
 NpcAI發生例外的錯誤。
@@ -14,10 +17,6 @@ java.lang.NullPointerException
         at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
         at java.lang.Thread.run(Unknown Source)
-
-
-以下為舊紀錄 僅供參考
-------------------------------------------------------------------------------------------------------------------
 
 20100507
 
