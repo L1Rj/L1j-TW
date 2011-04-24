@@ -26,27 +26,27 @@ import net.l1j.util.PropertyUtil;
 import net.l1j.util.StreamUtil;
 
 public final class Config {
-	protected static final Logger _log = Logger.getLogger(Config.class.getName());
+	protected final static Logger _log = Logger.getLogger(Config.class.getName());
 
 	// --------------------------------------------------
 	// L1J-TW 設定檔
 	// --------------------------------------------------
 	/** 資料庫設定檔 */
-	public static final String DATABASE_CONFIG_FILE = "./config/database.properties";
+	public final static String DATABASE_CONFIG_FILE = "./config/database.properties";
 	/** 伺服器設定檔 */
-	public static final String SERVER_CONFIG_FILE = "./config/server.properties";
+	public final static String SERVER_CONFIG_FILE = "./config/server.properties";
 	/** 一般設定檔 */
-	public static final String GENERAL_SETTINGS_FILE = "./config/general.properties";
+	public final static String GENERAL_SETTINGS_FILE = "./config/general.properties";
 	/** 進階設定檔 */
-	public static final String ALT_SETTINGS_FILE = "./config/altsettings.properties";
+	public final static String ALT_SETTINGS_FILE = "./config/altsettings.properties";
 	/** 角色設定檔 */
-	public static final String CHAR_SETTINGS_CONFIG_FILE = "./config/charsettings.properties";
+	public final static String CHAR_SETTINGS_CONFIG_FILE = "./config/charsettings.properties";
 	/** 倍率設定檔 */
-	public static final String RATES_CONFIG_FILE = "./config/rates.properties";
+	public final static String RATES_CONFIG_FILE = "./config/rates.properties";
 	/** 線程設定檔 */
-	public static final String THREAD_CONFIG_FILE = "./config/thread.properties";
+	public final static String THREAD_CONFIG_FILE = "./config/thread.properties";
 	/** 版本設定檔 */
-	public static final String VERSION_CONFIG_FILE = "./config/version.properties";
+	public final static String VERSION_CONFIG_FILE = "./config/version.properties";
 
 	// --------------------------------------------------
 	// 資料庫設定
@@ -81,13 +81,13 @@ public final class Config {
 	public static boolean HOSTNAME_LOOKUPS;
 	public static int AUTOMATIC_KICK;
 	public static boolean AUTO_CREATE_ACCOUNTS;
-	public static short MAX_ONLINE_USERS;
+	public static int MAX_ONLINE_USERS;
 	public static boolean CACHE_MAP_FILES;
 	public static boolean LOAD_V2_MAP_FILES;
 	public static boolean CHECK_MOVE_INTERVAL;
 	public static boolean CHECK_ATTACK_INTERVAL;
 	public static boolean CHECK_SPELL_INTERVAL;
-	public static short INJUSTICE_COUNT;
+	public static int INJUSTICE_COUNT;
 	public static int JUSTICE_COUNT;
 	public static int CHECK_STRICTNESS;
 	public static int AUTOSAVE_INTERVAL;
@@ -120,6 +120,8 @@ public final class Config {
 	/** 記錄組隊頻道訊息 */
 	public static boolean LOGGING_CHAT_PARTY;
 	/** 記錄聯盟頻道訊息 */
+	public static boolean LOGGING_CHAT_TRADE;
+	/** 記錄聯盟頻道訊息 */
 	public static boolean LOGGING_CHAT_ALLIANCE;
 	/** 記錄聊天隊伍頻道訊息 */
 	public static boolean LOGGING_CHAT_CHAT_PARTY;
@@ -149,8 +151,8 @@ public final class Config {
 	// --------------------------------------------------
 	// 進階設定
 	// --------------------------------------------------
-	public static short GLOBAL_CHAT_LEVEL;
-	public static short WHISPER_CHAT_LEVEL;
+	public static int GLOBAL_CHAT_LEVEL;
+	public static int WHISPER_CHAT_LEVEL;
 	public static byte AUTO_LOOT;
 	public static int LOOTING_RANGE;
 	public static boolean ALT_NONPVP;
@@ -323,9 +325,9 @@ public final class Config {
 	// 其他設定
 	// --------------------------------------------------
 	/** NPCから吸えるMP限界 */
-	public static final int MANA_DRAIN_LIMIT_PER_NPC = 40;
+	public final static int MANA_DRAIN_LIMIT_PER_NPC = 40;
 	/** 一回の攻擊で吸えるMP限界(SOM、鋼鐵SOM） */
-	public static final int MANA_DRAIN_LIMIT_PER_SOM_ATTACK = 9;
+	public final static int MANA_DRAIN_LIMIT_PER_SOM_ATTACK = 9;
 
 	/**
 	 * This class initializes all global variables for configuration.<br>
@@ -419,6 +421,7 @@ public final class Config {
 					LOGGING_CHAT_WORLD = Boolean.parseBoolean(generalSettings.getProperty("LoggingChatWorld", "false"));
 					LOGGING_CHAT_CLAN = Boolean.parseBoolean(generalSettings.getProperty("LoggingChatClan", "false"));
 					LOGGING_CHAT_PARTY = Boolean.parseBoolean(generalSettings.getProperty("LoggingChatParty", "false"));
+					LOGGING_CHAT_TRADE = Boolean.parseBoolean(generalSettings.getProperty("LoggingChatTrade", "false"));
 					LOGGING_CHAT_ALLIANCE = Boolean.parseBoolean(generalSettings.getProperty("LoggingChatAlliance", "false"));
 					LOGGING_CHAT_CHAT_PARTY = Boolean.parseBoolean(generalSettings.getProperty("LoggingChatChatParty", "false"));
 					LOGGING_ITEM_ENCHANT = Boolean.parseBoolean(generalSettings.getProperty("LoggingItemEnchant", "false"));

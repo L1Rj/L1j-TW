@@ -86,11 +86,10 @@ public class Announcements {
 		try {
 			lnr = new LineNumberReader(new FileReader(file));
 			int i = 0;
-			do {
-				line = lnr.readLine();
+			while (++i < 20 && (line = lnr.readLine()) != null) {
 				messages.add(line);
 				MSG.append(line + "\n");
-			} while (++i < 20 && line != null);
+			}
 		} catch (IOException e) {
 			_log.log(Level.SEVERE, "Error reading @ " + Name, e);
 		} finally {
@@ -110,6 +109,20 @@ public class Announcements {
 		return SingletonHolder._instance;
 	}
 
+	public void announceToAll(String text) {
+		L1World.getInstance().broadcastServerMessage(text);
+	}
+
+	@SuppressWarnings("synthetic-access")
+	private static class SingletonHolder {
+		private static final Announcements _instanceLogin =
+				new Announcements("data/announcements.txt");
+		private static final Announcements _instanceToAll =
+				new Announcements("data/toall.txt");
+		private static final Announcements _instance = new Announcements();
+	}
+
+	/**
 	public void showAnnouncements(L1PcInstance pc) {
 		for (int i = 0; i < messages.size(); i++) {
 			S_SystemMessage s_sm = new S_SystemMessage(messages.get(i));
@@ -142,17 +155,5 @@ public class Announcements {
 			StreamUtil.close(save);
 		}
 	}
-
-	public void announceToAll(String text) {
-		L1World.getInstance().broadcastServerMessage(text);
-	}
-
-	@SuppressWarnings("synthetic-access")
-	private static class SingletonHolder {
-		private static final Announcements _instanceLogin =
-				new Announcements("data/announcements.txt");
-		private static final Announcements _instanceToAll =
-				new Announcements("data/toall.txt");
-		private static final Announcements _instance = new Announcements();
-	}
+	 */
 }

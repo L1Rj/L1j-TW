@@ -33,6 +33,7 @@ public class Shutdown extends Thread {
 	private static Logger _log = Logger.getLogger(Shutdown.class.getName());
 
 	private static Shutdown _instance;
+	private final static Announcements _an = Announcements.getInstance();
 
 	private static Shutdown _counterInstance = null;
 
@@ -140,7 +141,6 @@ public class Shutdown extends Thread {
 	 * @param restart true if the server will restart after shutdown
 	 */
 	public void startShutdown(L1PcInstance activeChar, int seconds, boolean restart) {
-		Announcements _an = Announcements.getInstance();
 		_log.warning("『遊戲管理員』: " + activeChar.getId() + " 使用關機指令. " + _modeText[shutdownMode] + " 在 " + seconds + " 秒!");
 		_an.announceToAll("伺服器 是 " + _modeText[shutdownMode] + " ，在 " + seconds + " 秒!");
 
@@ -160,7 +160,6 @@ public class Shutdown extends Thread {
 	 * @param activeChar GM who issued the abort command
 	 */
 	public void abort(L1PcInstance activeChar) {
-		Announcements _an = Announcements.getInstance();
 		_log.warning("『遊戲管理員』: " + activeChar.getName() + "使用指令中斷之前的行為. ");
 		_an.announceToAll("伺服器【中斷關機】 並維持正常運作!");
 
@@ -199,7 +198,6 @@ public class Shutdown extends Thread {
 	 * aborted if mode changes to ABORT
 	 */
 	private void countdown() {
-		Announcements _an = Announcements.getInstance();
 
 		try {
 			while (secondsShut > 0) {
@@ -258,7 +256,6 @@ public class Shutdown extends Thread {
 	 * this sends a last byebye, disconnects all players and saves data
 	 */
 	private void saveData() {
-		Announcements _an = Announcements.getInstance();
 
 		switch (shutdownMode) {
 			case SIGTERM:
@@ -287,7 +284,6 @@ public class Shutdown extends Thread {
 	}
 
 	public void startTelnetShutdown(String IP, int seconds, boolean restart) {
-		Announcements _an = Announcements.getInstance();
 		_log.warning("IP: " + IP + " 使用關閉指令. " + _modeText[shutdownMode] + " in " + seconds + " 秒!");
 		_an.announceToAll("服務器 是 " + _modeText[shutdownMode] + "，在 " + seconds + " 秒!");
 
@@ -304,7 +300,6 @@ public class Shutdown extends Thread {
 	 * @param IP IP Which Issued shutdown command
 	 */
 	public void Telnetabort(String IP) {
-		Announcements _an = Announcements.getInstance();
 		_log.warning("IP: " + IP + "使用中斷關閉指令 " + _modeText[shutdownMode] + "將被停止!");
 		_an.announceToAll("伺服器中斷了 " + _modeText[shutdownMode] + " 並維持正常運作!");
 
