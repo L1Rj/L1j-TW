@@ -87,9 +87,9 @@ public class Announcements {
 			lnr = new LineNumberReader(new FileReader(file));
 			int i = 0;
 			do {
+				line = lnr.readLine();
 				messages.add(line);
 				MSG.append(line + "\n");
-				line = lnr.readLine();
 			} while (++i < 20 && line != null);
 		} catch (IOException e) {
 			_log.log(Level.SEVERE, "Error reading @ " + Name, e);
