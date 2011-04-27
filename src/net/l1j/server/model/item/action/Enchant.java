@@ -85,13 +85,14 @@ public class Enchant {
 		if (itemType == 2) {
 			if (item.isEquipped()) {
 				pc.addAc(-enchantLvl);
-				int i2 = item.getItem().getItemId();/* waja 註:21208-21211 林德拜爾的xx 21309究極抗魔法T恤 21318特製究極抗魔法T恤 魔防隨防禦力+1  */
-				if (i2 == 20011 || i2 == 20110 || i2 == 21108 || i2 == 120011 || i2 == 21208 || i2 == 21209 || i2 == 21210 || i2 == 21211 || i2 == 21309 || i2 == 21318) {
+				int i2 = item.getItem().getItemId() % 100000;
+				/* waja 註:21208-21211 林德拜爾的xx 21309究極抗魔法T恤 21318特製究極抗魔法T恤 魔防隨防禦力+1  */
+				if (i2 == 20011 || i2 == 20110 || i2 == 21108 || i2 == 21208 || i2 == 21209 || i2 == 21210 || i2 == 21211 || i2 == 21309 || i2 == 21318) {
 
 					pc.addMr(enchantLvl);
 					pc.sendPackets(new S_SPMR(pc));
 				}
-				if (i2 == 20056 || i2 == 120056 || i2 == 220056 || i2 == 21535) { // 抗魔法斗篷 強化抗魔斗篷
+				if (i2 == 20056 || i2 == 21535) { // 抗魔法斗篷 強化抗魔斗篷
 					pc.addMr(enchantLvl * 2);
 					pc.sendPackets(new S_SPMR(pc));
 				}
@@ -147,7 +148,7 @@ public class Enchant {
 
 	private static int chance(L1ItemInstance l1iteminstance) {
 						/*    0  1  2  3  4  5  6  7  8  9 10*/
-		byte[][] byte0 = {  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		int[][] byte0 = {  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 							{50,33,25,25,25,20,33,33,33,25,20},
 							{50,33,25,25,25,20,17,14,12,11, 0}};
 		int i = l1iteminstance.getEnchantLevel();
@@ -184,22 +185,22 @@ public class Enchant {
 	}
 	// 飾品強化卷軸 - use
 	public static void doDecorationEnchant(L1PcInstance pc,
-			L1ItemInstance item,ClientThread client){
-		if (item == null){
+			L1ItemInstance item,ClientThread client) {
+		if (item == null) {
 			return;
 		}
 		/**8:amulet, 9:ring, 10:belt, 11:ring2, 12:earring*/
 
-		if(item.getItem().getType2() != 2){
+		if(item.getItem().getType2() != 2) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 			return;
 		}
 		// 非飾品 就return 不執行下面的判斷
-		if(item.getItem().getType() < 8 || item.getItem().getType() > 12){
+		if(item.getItem().getType() < 8 || item.getItem().getType() > 12) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 			return;
 		}
-		if (item.getItem().get_safeenchant() >= 0){
+		if (item.getItem().get_safeenchant() >= 0) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 			return;
 		}
@@ -207,18 +208,18 @@ public class Enchant {
 		int enchantLv = item.getEnchantLevel();
 
 		//強化度 超過10 return
-		if(enchantLv >= 10){
+		if(enchantLv >= 10) {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$79));
 			return;
 		}
 
 		//成功
-		if(RandomArrayList.getInc(100, 1) <= succhance){
+		if(RandomArrayList.getInc(100, 1) <= succhance) {
 
 			//item.setEnchantLevel(enchantLv + 1);
 			addDecorationAbility(item);
 			pc.sendPackets(new S_ItemStatus(item));
-			/*if(item.isEquipped()){
+			/*if(item.isEquipped()) {
 				pc.addAc(-1);
 				pc.addEarth(1);
 				pc.addWind(1);
@@ -226,7 +227,7 @@ public class Enchant {
 				pc.addFire(1);
 				pc.addMaxHp(2);
 				pc.addMaxMp(1);
-				if(enchantLv >= 5 && enchantLv <=9){
+				if(enchantLv >= 5 && enchantLv <=9) {
 					pc.addSp(1);
 					pc.sendPackets(new S_SPMR(pc));
 				}
@@ -246,9 +247,9 @@ public class Enchant {
 	}
 
 	//飾品強化卷軸-在item物件產生時 依照強化度給予屬性
-	public static L1ItemInstance addDecorationAbility(L1ItemInstance item){
+	public static L1ItemInstance addDecorationAbility(L1ItemInstance item) {
 		if(item.getItem().getType2() == 2 && item.getItem().getType() >= 8
-				&& item.getItem().getType() <= 12){
+				&& item.getItem().getType() <= 12) {
 			int itemId = item.getItemId();
 			int enchantLv = item.getEnchantLevel();
 			int[] highclass = new int[] {
@@ -262,52 +263,55 @@ public class Enchant {
 			};
 			int[] middleclass = new int[] {
 					20254, 20256, 20257, 20258, 20264, 20265, 20266,
-					20267, 20268, 20269, 20280, 20285, 20287, 20289,
-					20291, 20293, 20294, 20295, 20296, 20298, 20300,
-					20302, 20303, 20304, 20312, 20313, 20315, 20317,
-					20318, 20319, 20413, 20414, 20415, 20416, 20417,
-					20418, 20421, 20422, 20426, 20427, 20428, 20429,
-					20430, 20431, 20432, 20433, 20434, 20439, 20440,
-					20441, 20442, 20443, 20444, 20445, 20446, 20451,
-					20460, 21003, 21004, 21005, 21006, 21007, 21008,
-					21009, 21010, 21011, 21012, 21013, 21014, 21015,
-					21016, 21017, 21018, 21034, 21043, 21044, 21045,
-					21046, 21047, 21048, 21049, 21050, 21074, 21075,
-					21076, 21077, 21078, 21079, 21080, 21084, 21085,
-					21086, 21087
+					20267, 20268, 20269, 20285, 20287, 20289, 20291,
+					20293, 20294, 20295, 20296, 20298, 20300, 20302,
+					20303, 20304, 20312, 20313, 20315, 20317, 20318,
+					20319, 20413, 20414, 20415, 20416, 20417, 20418,
+					20421, 20422, 20426, 20427, 20428, 20429, 20430,
+					20431, 20432, 20433, 20434, 20439, 20440, 20441,
+					20442, 20443, 20444, 20445, 20446, 20451, 20460,
+					21003, 21004, 21005, 21006, 21007, 21008, 21009,
+					21010, 21011, 21012, 21013, 21014, 21015, 21016,
+					21017, 21018, 21034, 21043, 21044, 21045, 21046,
+					21047, 21048, 21049, 21050, 21074, 21075, 21076,
+					21077, 21078, 21079, 21080, 21084, 21085, 21086,
+					21087
 			};
 			int[] lowclass = new int[] {
 					20243, 20244, 20245, 20246, 20247, 20248, 20249,
-					20251, 20259, 20262, 20263, 20270, 20282, 20286,
-					20297, 20299, 20301, 20305, 20306, 20307, 20308,
-					20321, 20345, 20346, 20349, 20350, 20376, 20377,
-					20378, 20379, 20423, 20424, 20425, 20435, 20436,
-					20437, 20438, 20459, 21000, 21001, 21002, 21019,
-					21069, 21070, 21071, 21072, 21073, 21081, 21082,
-					21083
+					20251, 20259, 20262, 20263, 20270, 20280, 20282,
+					20286, 20297, 20299, 20301, 20305, 20306, 20307,
+					20308, 20321, 20345, 20346, 20349, 20350, 20376,
+					20377, 20378, 20379, 20423, 20424, 20425, 20435,
+					20436, 20437, 20438, 20459, 21000, 21001, 21002,
+					21019, 21069, 21070, 21071, 21072, 21073, 21081,
+					21082, 21083
 			};
-			for (int i=0; i < highclass.length; i++){
-				if (itemId == highclass[i]){
+			for (int i = highclass.length - 1; i >= 0; i--) {
+				if (itemId == highclass[i]) {
 					item.setAllElementDef(enchantLv);
-					if(enchantLv >= 6 && enchantLv <= 10){
+					if(enchantLv >= 6 && enchantLv <= 10) {
 						item.setAddHpr(item.getAddHpr() + 1);
 						item.setAddMpr(item.getAddMpr() + 1);
+						return item;
 					}
 				}
 			}
-			for (int i=0; i < middleclass.length; i++){
-				if (itemId == middleclass[i]){
+			for (int i = middleclass.length - 1; i >= 0; i--) {
+				if (itemId == middleclass[i]) {
 					item.setAddHp(item.getAddHp() + enchantLv * 2);
-					if(enchantLv >= 6 && enchantLv <= 10){
+					if(enchantLv >= 6 && enchantLv <= 10) {
 						item.setAddMr(item.getAddMr() + 1);
+						return item;
 					}
 				}
 			}
-			for (int i=0; i < lowclass.length; i++){
-				if (itemId == lowclass[i]){
+			for (int i = lowclass.length - 1; i >= 0; i--) {
+				if (itemId == lowclass[i]) {
 					item.setAddMp(item.getAddMp() + enchantLv);
-					if(enchantLv >= 6 && enchantLv <= 10){
+					if(enchantLv >= 6 && enchantLv <= 10) {
 						item.setAddSp(item.getAddSp() + 1);
+						return item;
 					}
 				}
 			}
