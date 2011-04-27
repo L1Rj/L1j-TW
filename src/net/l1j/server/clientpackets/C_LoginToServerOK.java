@@ -22,7 +22,6 @@ import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class C_LoginToServerOK extends ClientBasePacket {
-	private static final String C_LOGIN_TO_SERVER_OK = "[C] C_LoginToServerOK";
 
 	public C_LoginToServerOK(byte[] decrypt, ClientThread client) {
 		super(decrypt);
@@ -77,10 +76,5 @@ public class C_LoginToServerOK extends ClientBasePacket {
 				pc.setShowPartyChat(true);
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_LOGIN_TO_SERVER_OK;
 	}
 }

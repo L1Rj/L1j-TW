@@ -22,7 +22,6 @@ import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class C_LeaveParty extends ClientBasePacket {
-	private static final String C_LEAVE_PARTY = "[C] C_LeaveParty";
 
 	public C_LeaveParty(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
@@ -31,10 +30,5 @@ public class C_LeaveParty extends ClientBasePacket {
 		if (player.isInParty()) { // パーティー中
 			player.getParty().leaveMember(player);
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_LEAVE_PARTY;
 	}
 }

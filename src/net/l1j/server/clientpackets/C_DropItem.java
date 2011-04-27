@@ -27,7 +27,6 @@ import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_DropItem extends ClientBasePacket {
-	private static final String C_DROP_ITEM = "[C] C_DropItem";
 
 	private static final Logger _log = Logger.getLogger("item");
 
@@ -91,10 +90,5 @@ public class C_DropItem extends ClientBasePacket {
 				_log.log(record);
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_DROP_ITEM;
 	}
 }

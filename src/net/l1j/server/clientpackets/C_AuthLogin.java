@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.Config;
 import net.l1j.server.Account;
 import net.l1j.server.ClientThread;
@@ -31,10 +29,6 @@ import net.l1j.server.serverpackets.S_LoginResult;
 public class C_AuthLogin extends ClientBasePacket {
 
 	private static LoginController _login = LoginController.getInstance();
-
-	private static final String C_AUTH_LOGIN = "[C] C_AuthLogin";
-
-	private static Logger _log = Logger.getLogger(C_AuthLogin.class.getName());
 
 	public C_AuthLogin(byte[] decrypt, ClientThread client) {
 		super(decrypt);
@@ -96,10 +90,5 @@ public class C_AuthLogin extends ClientBasePacket {
 			_log.info(e.getMessage() + "\n\r問題帳號：" + accountName + " 來源：" + host);
 			return;
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_AUTH_LOGIN;
 	}
 }

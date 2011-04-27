@@ -29,7 +29,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1CharName;
 
 public class C_AddBuddy extends ClientBasePacket {
-	private static final String C_ADD_BUDDY = "[C] C_AddBuddy";
 
 	public C_AddBuddy(byte[] decrypt, ClientThread client) {
 		super(decrypt);
@@ -56,10 +55,5 @@ public class C_AddBuddy extends ClientBasePacket {
 			}
 		}
 		pc.sendPackets(new S_ServerMessage(SystemMessageId.$109, charName));
-	}
-
-	@Override
-	public String getType() {
-		return C_ADD_BUDDY;
 	}
 }

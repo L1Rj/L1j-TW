@@ -25,7 +25,6 @@ import net.l1j.server.serverpackets.S_DoActionGFX;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class C_ExtraCommand extends ClientBasePacket {
-	private static final String C_EXTRA_COMMAND = "[C] C_ExtraCommand";
 
 	public C_ExtraCommand(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
@@ -49,10 +48,5 @@ public class C_ExtraCommand extends ClientBasePacket {
 		}
 		S_DoActionGFX gfx = new S_DoActionGFX(pc.getId(), actionId);
 		pc.broadcastPacket(gfx); // 周りのプレイヤーに送信
-	}
-
-	@Override
-	public String getType() {
-		return C_EXTRA_COMMAND;
 	}
 }

@@ -31,7 +31,6 @@ import net.l1j.server.serverpackets.S_WarTime;
 import net.l1j.server.templates.L1Castle;
 
 public class C_SelectWarTime extends ClientBasePacket {
-	private static final String C_SELECT_WAR_TIME = "[C] C_SelectWarTime";
 
 	public C_SelectWarTime(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -50,10 +49,5 @@ public class C_SelectWarTime extends ClientBasePacket {
 				}
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_SELECT_WAR_TIME;
 	}
 }

@@ -27,7 +27,6 @@ import net.l1j.server.model.id.L1ClassId;
 import net.l1j.server.serverpackets.S_DeleteCharOK;
 
 public class C_DeleteChar extends ClientBasePacket {
-	private static final String C_DELETE_CHAR = "[C] RequestDeleteChar";
 
 	private final static Logger _log = Logger.getLogger("character");
 
@@ -119,10 +118,5 @@ public class C_DeleteChar extends ClientBasePacket {
 			return;
 		}
 		client.sendPacket(new S_DeleteCharOK(S_DeleteCharOK.DELETE_CHAR_NOW));
-	}
-
-	@Override
-	public String getType() {
-		return C_DELETE_CHAR;
 	}
 }

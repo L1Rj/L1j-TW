@@ -40,7 +40,6 @@ import net.l1j.server.serverpackets.S_NewCharPacket;
 import net.l1j.server.templates.L1Skills;
 
 public class C_CreateChar extends ClientBasePacket {
-	private static final String C_CREATE_CHAR = "[C] C_CreateChar";
 
 	private final static Logger _log = Logger.getLogger("character");
 
@@ -210,10 +209,5 @@ public class C_CreateChar extends ClientBasePacket {
 			return false;
 		}
 		return true;
-	}
-
-	@Override
-	public String getType() {
-		return C_CREATE_CHAR;
 	}
 }

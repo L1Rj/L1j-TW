@@ -30,7 +30,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1PetItem;
 
 public class C_UsePetItem extends ClientBasePacket {
-	private static final String C_USE_PET_ITEM = "[C] C_UsePetItem";
 
 	public C_UsePetItem(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -181,10 +180,5 @@ public class C_UsePetItem extends ClientBasePacket {
 
 		pet.setArmor(null);
 		armor.setEquipped(false);
-	}
-
-	@Override
-	public String getType() {
-		return C_USE_PET_ITEM;
 	}
 }

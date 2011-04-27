@@ -18,16 +18,11 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ChangeHeading;
 
 public class C_ChangeHeading extends ClientBasePacket {
-	private static final String C_CHANGE_HEADING = "[C] C_ChangeHeading";
-
-	private final static Logger _log = Logger.getLogger(C_ChangeHeading.class.getName());
 
 	public C_ChangeHeading(byte[] decrypt, ClientThread client) {
 		super(decrypt);
@@ -46,10 +41,5 @@ public class C_ChangeHeading extends ClientBasePacket {
 		} else {
 			pc.broadcastPacket(new S_ChangeHeading(pc));
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_CHANGE_HEADING;
 	}
 }

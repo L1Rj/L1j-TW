@@ -20,7 +20,6 @@ package net.l1j.server.clientpackets;
 
 import java.io.File;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
@@ -62,9 +61,6 @@ import net.l1j.server.templates.L1Pet;
 import net.l1j.util.MoveUtil;
 
 public class C_Attr extends ClientBasePacket {
-	private static final String C_ATTR = "[C] C_Attr";
-
-	private static final Logger _log = Logger.getLogger(C_Attr.class.getName());
 
 	public C_Attr(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -636,10 +632,5 @@ public class C_Attr extends ClientBasePacket {
 			return;
 		}
 		L1Teleport.teleport(pc, locX, locY, mapId, heading, true, L1Teleport.CALL_CLAN);
-	}
-
-	@Override
-	public String getType() {
-		return C_ATTR;
 	}
 }

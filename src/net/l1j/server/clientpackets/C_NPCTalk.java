@@ -18,8 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
-
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.ExpTable;
 import net.l1j.server.datatables.NpcActionTable;
@@ -41,9 +39,7 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Skills;
 
 public class C_NPCTalk extends ClientBasePacket {
-	private static final String C_NPC_TALK = "[C] C_NPCTalk";
 
-	private final static Logger _log = Logger.getLogger(C_NPCTalk.class.getName());
 	private L1Skills _skill;
 	private int skillid;
 
@@ -72,10 +68,10 @@ public class C_NPCTalk extends ClientBasePacket {
 			L1NpcInstance npc = (L1NpcInstance) obj;
 			int difflocx = Math.abs(pc.getX() - npc.getX());
 			int difflocy = Math.abs(pc.getY() - npc.getY());
-                        if (npc.getNpcId() == 91051) {
-                                if (difflocx > 1 || difflocy > 1) {
-                                        return;
-                                }
+			if (npc.getNpcId() == 91051) {
+				if (difflocx > 1 || difflocy > 1) {
+					return;
+				}
 				/** $1626 遊戲訊息: 龍之血痕已穿透全身，在血痕的氣味消失之前，無法再進入龍之門扉。 */
 				if (pc.hasSkillEffect(STATUS_ANTHARAS_BLOODSTAINS)) {
 					pc.sendPackets(new S_ServerMessage(SystemMessageId.$1626));
@@ -99,10 +95,5 @@ public class C_NPCTalk extends ClientBasePacket {
 	} else {
 		_log.severe("找不到對應物件 objid=" + objid);
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_NPC_TALK;
 	}
 }

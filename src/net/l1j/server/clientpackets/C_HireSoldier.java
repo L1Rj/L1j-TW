@@ -21,7 +21,6 @@ package net.l1j.server.clientpackets;
 import net.l1j.server.ClientThread;
 
 public class C_HireSoldier extends ClientBasePacket {
-	private static final String C_HIRE_SOLDIER = "[C] C_HireSoldier";
 
 	// S_HireSoldierを送ると表示される雇用ウィンドウでOKを押すとこのパケットが送られる
 	public C_HireSoldier(byte[] decrypt, ClientThread client) {
@@ -34,10 +33,5 @@ public class C_HireSoldier extends ClientBasePacket {
 		int number = readH(); // 雇用する數
 
 		// < 傭兵雇用處理
-	}
-
-	@Override
-	public String getType() {
-		return C_HIRE_SOLDIER;
 	}
 }

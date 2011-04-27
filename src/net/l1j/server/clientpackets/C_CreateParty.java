@@ -27,7 +27,6 @@ import net.l1j.server.serverpackets.S_Message_YN;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_CreateParty extends ClientBasePacket {
-	private static final String C_CREATE_PARTY = "[C] C_CreateParty";
 
 	public C_CreateParty(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
@@ -91,10 +90,5 @@ public class C_CreateParty extends ClientBasePacket {
 			}
 		}
 
-	}
-
-	@Override
-	public String getType() {
-		return C_CREATE_PARTY;
 	}
 }

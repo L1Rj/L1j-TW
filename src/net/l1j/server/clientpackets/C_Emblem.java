@@ -20,7 +20,6 @@ package net.l1j.server.clientpackets;
 
 import java.io.FileOutputStream;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.model.L1World;
@@ -28,9 +27,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Emblem;
 
 public class C_Emblem extends ClientBasePacket {
-	private static final String C_EMBLEM = "[C] C_Emblem";
-
-	private final static Logger _log = Logger.getLogger(C_Emblem.class.getName());
 
 	public C_Emblem(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -58,10 +54,5 @@ public class C_Emblem extends ClientBasePacket {
 			// player.broadcastPacket(new S_Emblem(player.getClanid()));
 			L1World.getInstance().broadcastPacketToAll(new S_Emblem(player.getClanid()));
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_EMBLEM;
 	}
 }

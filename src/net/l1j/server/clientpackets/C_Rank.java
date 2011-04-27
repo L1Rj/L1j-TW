@@ -19,7 +19,6 @@
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.CharacterTable;
@@ -30,9 +29,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_Rank extends ClientBasePacket {
-	private static final String C_RANK = "[C] C_Rank";
-
-	private final static Logger _log = Logger.getLogger(C_Rank.class.getName());
 
 	public C_Rank(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -102,10 +98,5 @@ public class C_Rank extends ClientBasePacket {
 				return;
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_RANK;
 	}
 }

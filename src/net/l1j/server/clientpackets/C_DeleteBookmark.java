@@ -23,7 +23,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1BookMark;
 
 public class C_DeleteBookmark extends ClientBasePacket {
-	private static final String C_DETELE_BOOKMARK = "[C] C_DeleteBookmark";
 
 	public C_DeleteBookmark(byte[] decrypt, ClientThread client) {
 		super(decrypt);
@@ -31,10 +30,5 @@ public class C_DeleteBookmark extends ClientBasePacket {
 		String bookmarkname = readS();
 		L1PcInstance pc = client.getActiveChar();
 		L1BookMark.deleteBookmark(pc, bookmarkname);
-	}
-
-	@Override
-	public String getType() {
-		return C_DETELE_BOOKMARK;
 	}
 }

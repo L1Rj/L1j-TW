@@ -24,17 +24,11 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_CheckPK extends ClientBasePacket {
-	private static final String C_CHECK_PK = "[C] C_CheckPK";
 
 	public C_CheckPK(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		L1PcInstance player = clientthread.getActiveChar();
 		player.sendPackets(new S_ServerMessage(SystemMessageId.$562, String.valueOf(player.get_PKcount())));
-	}
-
-	@Override
-	public String getType() {
-		return C_CHECK_PK;
 	}
 }

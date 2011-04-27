@@ -35,7 +35,6 @@ import net.l1j.server.templates.L1Npc;
 import net.l1j.server.templates.L1Pet;
 
 public class C_SelectList extends ClientBasePacket {
-	private static final String C_SELECT_LIST = "[C] C_SelectList";
 
 	public C_SelectList(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -110,10 +109,5 @@ public class C_SelectList extends ClientBasePacket {
 				pet.setPetcost(divisor);
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_SELECT_LIST;
 	}
 }

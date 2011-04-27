@@ -25,7 +25,6 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1BoardInstance;
 
 public class C_BoardDelete extends ClientBasePacket {
-	private static final String C_BOARD_DELETE = "[C] C_BoardDelete";
 
 	public C_BoardDelete(byte decrypt[], ClientThread client) {
 		super(decrypt);
@@ -37,10 +36,5 @@ public class C_BoardDelete extends ClientBasePacket {
 		if (board != null) {
 			BoardTable.getInstance().deleteTopic(topicId);
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_BOARD_DELETE;
 	}
 }

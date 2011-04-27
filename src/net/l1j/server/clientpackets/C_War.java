@@ -33,7 +33,6 @@ import net.l1j.server.serverpackets.S_Message_YN;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_War extends ClientBasePacket {
-	private static final String C_WAR = "[C] C_War";
 
 	public C_War(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -203,10 +202,5 @@ public class C_War extends ClientBasePacket {
 				enemyLeader.sendPackets(new S_Message_YN(SystemMessageId.$222, clanName));
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_WAR;
 	}
 }

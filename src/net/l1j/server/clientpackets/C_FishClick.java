@@ -34,7 +34,6 @@ import net.l1j.util.MoveUtil;
 import net.l1j.util.RandomArrayList;
 
 public class C_FishClick extends ClientBasePacket {
-	private static final String C_FISHCLICK = "[C] C_FishClick";
 
 	private static final int TOTAL_SIZE = 400;   // 釣魚的總樣本大小
 	private static final int SUCCESS_SIZE = 170; // 釣魚成功的樣本
@@ -147,10 +146,5 @@ public class C_FishClick extends ClientBasePacket {
 			L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(item);
 		}
 		pc.sendPackets(new S_ServerMessage(SystemMessageId.$1185, message));
-	}
-
-	@Override
-	public String getType() {
-		return C_FISHCLICK;
 	}
 }

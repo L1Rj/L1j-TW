@@ -31,7 +31,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1House;
 
 public class C_Door extends ClientBasePacket {
-	private static final String C_DOOR = "[C] C_Door";
 
 	public C_Door(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
@@ -152,10 +151,5 @@ public class C_Door extends ClientBasePacket {
 			Timer timer = new Timer();
 			timer.schedule(this, 5 * 1000);
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_DOOR;
 	}
 }

@@ -20,7 +20,6 @@ package net.l1j.server.clientpackets;
 
 import java.util.Calendar;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.TimeZone;
 
 import net.l1j.Config;
@@ -111,9 +110,6 @@ import net.l1j.util.RandomArrayList;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class C_NPCAction extends ClientBasePacket {
-	private static final String C_NPC_ACTION = "[C] C_NPCAction";
-
-	private final static Logger _log = Logger.getLogger(C_NPCAction.class.getName());
 
 	public C_NPCAction(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
@@ -4740,10 +4736,5 @@ public class C_NPCAction extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$181));
 		}
 		return isUseItem;
-	}
-
-	@Override
-	public String getType() {
-		return C_NPC_ACTION;
 	}
 }

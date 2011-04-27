@@ -30,7 +30,6 @@ import net.l1j.server.serverpackets.S_AttackPacket;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_PickUpItem extends ClientBasePacket {
-	private static final String C_PICK_UP_ITEM = "[C] C_PickUpItem";
 
 	private static final Logger _log = Logger.getLogger("item");
 
@@ -98,10 +97,5 @@ public class C_PickUpItem extends ClientBasePacket {
 				}
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_PICK_UP_ITEM;
 	}
 }

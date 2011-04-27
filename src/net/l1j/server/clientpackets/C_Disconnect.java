@@ -19,19 +19,27 @@
 package net.l1j.server.clientpackets;
 
 import net.l1j.server.ClientThread;
-import net.l1j.server.model.L1Object;
-import net.l1j.server.model.L1World;
-import net.l1j.server.model.instance.L1BoardInstance;
+import net.l1j.server.model.instance.L1PcInstance;
 
-public class C_BoardBack extends ClientBasePacket {
+public class C_Disconnect extends ClientBasePacket {
 
-	public C_BoardBack(byte abyte0[], ClientThread client) {
-		super(abyte0);
+	public C_Disconnect(byte[] decrypt, ClientThread client) {
+		super(decrypt);
+		client.CharReStart(true);
+		L1PcInstance pc = client.getActiveChar();
+		if (pc != null) {
 
-		int objId = readD();
-		int topicNumber = readD();
-		L1Object obj = L1World.getInstance().findObject(objId);
-		L1BoardInstance board = (L1BoardInstance) obj;
-		board.onAction(client.getActiveChar(), topicNumber);
+			_log.fine("Disconnect from: " + pc.getName());
+
+			ClientThread.quitGame(pc);
+
+			synchronized (pc) {
+				pc.logout();
+				client.setActiveChar(null);
+			}
+		} else {
+			_log.fine("Disconnect Request from Account : "
+					+ client.getAccountName());
+		}
 	}
 }

@@ -18,11 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import static net.l1j.server.model.skill.SkillId.*;
-import static net.l1j.server.model.skill.SkillId.*;
-import static net.l1j.server.model.skill.SkillId.*;
-import static net.l1j.server.model.skill.SkillId.*;
-
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
@@ -42,8 +37,9 @@ import net.l1j.server.serverpackets.S_NpcChatPacket;
 import net.l1j.server.serverpackets.S_PacketBox;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
+import static net.l1j.server.model.skill.SkillId.*;
+
 public class C_Chat extends ClientBasePacket {
-	private static final String C_CHAT = "[C] C_Chat";
 
 	private static final int NORMAL = 0;
 	private static final int SHOUT = 2;
@@ -332,10 +328,5 @@ public class C_Chat extends ClientBasePacket {
 		if (!pc.isGm()) {
 			pc.checkChatInterval();
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_CHAT;
 	}
 }

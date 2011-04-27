@@ -23,7 +23,6 @@ import net.l1j.server.model.L1Trade;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class C_TradeCancel extends ClientBasePacket {
-	private static final String C_TRADE_CANCEL = "[C] C_TradeCancel";
 
 	public C_TradeCancel(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -31,10 +30,5 @@ public class C_TradeCancel extends ClientBasePacket {
 		L1PcInstance player = clientthread.getActiveChar();
 		L1Trade trade = new L1Trade();
 		trade.TradeCancel(player);
-	}
-
-	@Override
-	public String getType() {
-		return C_TRADE_CANCEL;
 	}
 }

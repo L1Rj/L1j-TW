@@ -19,7 +19,6 @@
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javolution.util.FastTable;
 
@@ -35,9 +34,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Mail;
 
 public class C_Mail extends ClientBasePacket {
-	private static final String C_MAIL = "[C] C_Mail";
-
-	private final static Logger _log = Logger.getLogger(C_Mail.class.getName());
 
 	private static int TYPE_NORMAL_MAIL = 0; // 一般
 	private static int TYPE_CLAN_MAIL = 1; // 血盟
@@ -135,10 +131,5 @@ public class C_Mail extends ClientBasePacket {
 			}
 		}
 		return mails.size();
-	}
-
-	@Override
-	public String getType() {
-		return C_MAIL;
 	}
 }

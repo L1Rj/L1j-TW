@@ -27,7 +27,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1BookMark;
 
 public class C_AddBookmark extends ClientBasePacket {
-	private static final String C_ADD_BOOKMARK = "[C] C_AddBookmark";
 
 	public C_AddBookmark(byte[] decrypt, ClientThread client) {
 		super(decrypt);
@@ -58,10 +57,5 @@ public class C_AddBookmark extends ClientBasePacket {
 		} else {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$214));
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_ADD_BOOKMARK;
 	}
 }

@@ -23,7 +23,6 @@ import net.l1j.server.model.Dungeon;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class C_EnterPortal extends ClientBasePacket {
-	private static final String C_ENTER_PORTAL = "[C] C_EnterPortal";
 
 	public C_EnterPortal(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
@@ -36,10 +35,5 @@ public class C_EnterPortal extends ClientBasePacket {
 		}
 		// ダンジョンにテレポート
 		Dungeon.getInstance().dg(locx, locy, pc.getMap().getId(), pc);
-	}
-
-	@Override
-	public String getType() {
-		return C_ENTER_PORTAL;
 	}
 }

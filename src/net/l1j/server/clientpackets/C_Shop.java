@@ -34,7 +34,6 @@ import net.l1j.server.templates.L1PrivateShopBuyList;
 import net.l1j.server.templates.L1PrivateShopSellList;
 
 public class C_Shop extends ClientBasePacket {
-	private static final String C_SHOP = "[C] C_Shop";
 
 	public C_Shop(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -166,10 +165,5 @@ public class C_Shop extends ClientBasePacket {
 			pc.sendPackets(new S_DoActionGFX(pc.getId(), ActionCodes.ACTION_Idle));
 			pc.broadcastPacket(new S_DoActionGFX(pc.getId(), ActionCodes.ACTION_Idle));
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_SHOP;
 	}
 }

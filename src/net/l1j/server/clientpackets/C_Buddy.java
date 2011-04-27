@@ -26,7 +26,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Buddy;
 
 public class C_Buddy extends ClientBasePacket {
-	private static final String C_BUDDY = "[C] C_Buddy";
 
 	public C_Buddy(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -34,10 +33,5 @@ public class C_Buddy extends ClientBasePacket {
 		L1PcInstance pc = clientthread.getActiveChar();
 		L1Buddy buddy = BuddyTable.getInstance().getBuddyTable(pc.getId());
 		pc.sendPackets(new S_Buddy(pc.getId(), buddy));
-	}
-
-	@Override
-	public String getType() {
-		return C_BUDDY;
 	}
 }

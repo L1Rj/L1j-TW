@@ -24,7 +24,6 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1BoardInstance;
 
 public class C_BoardRead extends ClientBasePacket {
-	private static final String C_BOARD_READ = "[C] C_BoardRead";
 
 	public C_BoardRead(byte decrypt[], ClientThread client) {
 		super(decrypt);
@@ -34,10 +33,5 @@ public class C_BoardRead extends ClientBasePacket {
 		L1Object obj = L1World.getInstance().findObject(objId);
 		L1BoardInstance board = (L1BoardInstance) obj;
 		board.onActionRead(client.getActiveChar(), topicNumber);
-	}
-
-	@Override
-	public String getType() {
-		return C_BOARD_READ;
 	}
 }

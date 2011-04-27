@@ -20,7 +20,6 @@ package net.l1j.server.clientpackets;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.Account;
@@ -104,9 +103,6 @@ import static net.l1j.server.model.item.ItemId.*;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class C_ItemUSe extends ClientBasePacket {
-	private static final String C_ITEM_USE = "[C] C_ItemUSe";
-
-	private final static Logger _log = Logger.getLogger(C_ItemUSe.class.getName());
 
 	private L1PcInstance pc;
 	private L1ItemInstance item;
@@ -2778,10 +2774,5 @@ public class C_ItemUSe extends ClientBasePacket {
 
 			L1ItemDelay.onItemUse(client, item); // アイテムディレイ開始
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_ITEM_USE;
 	}
 }

@@ -31,7 +31,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.model.L1CheckPcItem;
 
 public class C_TradeAddItem extends ClientBasePacket {
-	private static final String C_TRADE_ADD_ITEM = "[C] C_TradeAddItem";
 
 	public C_TradeAddItem(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
@@ -97,10 +96,5 @@ public class C_TradeAddItem extends ClientBasePacket {
 		}
 
 		trade.TradeAddItem(pc, itemid, itemcount);
-	}
-
-	@Override
-	public String getType() {
-		return C_TRADE_ADD_ITEM;
 	}
 }

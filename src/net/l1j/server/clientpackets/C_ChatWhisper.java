@@ -32,7 +32,6 @@ import net.l1j.server.serverpackets.S_ChatPacket;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_ChatWhisper extends ClientBasePacket {
-	private static final String C_CHAT_WHISPER = "[C] C_ChatWhisper";
 
 	private final static Logger _log = Logger.getLogger("chat");
 
@@ -84,10 +83,5 @@ public class C_ChatWhisper extends ClientBasePacket {
 
 		whisperFrom.sendPackets(new S_ChatPacket(whisperTo, text, Opcodes.S_OPCODE_GLOBALCHAT, 9));
 		whisperTo.sendPackets(new S_ChatPacket(whisperFrom, text, Opcodes.S_OPCODE_WHISPERCHAT, 16));
-	}
-
-	@Override
-	public String getType() {
-		return C_CHAT_WHISPER;
 	}
 }

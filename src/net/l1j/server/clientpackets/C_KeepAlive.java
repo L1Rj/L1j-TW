@@ -21,7 +21,6 @@ package net.l1j.server.clientpackets;
 import net.l1j.server.ClientThread;
 
 public class C_KeepAlive extends ClientBasePacket {
-	private static final String C_KEEP_ALIVE = "[C] C_KeepAlive";
 
 	public C_KeepAlive(byte decrypt[], ClientThread client) {
 		super(decrypt);
@@ -29,10 +28,5 @@ public class C_KeepAlive extends ClientBasePacket {
 		// XXX:GameTimeを送信（3バイトのデータを送って來ているのでそれを何かに利用しないといけないかもしれない）
 		// L1PcInstance pc = client.getActiveChar();
 		// pc.sendPackets(new S_GameTime());
-	}
-
-	@Override
-	public String getType() {
-		return C_KEEP_ALIVE;
 	}
 }

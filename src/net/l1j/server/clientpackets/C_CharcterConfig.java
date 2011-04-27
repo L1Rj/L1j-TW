@@ -24,7 +24,6 @@ import net.l1j.server.datatables.CharacterConfigTable;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class C_CharcterConfig extends ClientBasePacket {
-	private static final String C_CHARCTER_CONFIG = "[C] C_CharcterConfig";
 
 	public C_CharcterConfig(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
@@ -40,10 +39,5 @@ public class C_CharcterConfig extends ClientBasePacket {
 				CharacterConfigTable.getInstance().updateCharacterConfig(pc.getId(), length, data);
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_CHARCTER_CONFIG;
 	}
 }

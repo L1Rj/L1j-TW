@@ -24,7 +24,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_SystemMessage;
 
 public class C_ClientReport extends ClientBasePacket {
-	private static final String C_CLIENT_REPORT = "[C] C_ClientReport";
 
 	private final static Announcements ToAll = Announcements.getInstance4ToAll();
 
@@ -34,10 +33,5 @@ public class C_ClientReport extends ClientBasePacket {
 		L1PcInstance pc = clientthread.getActiveChar();
 
 		pc.sendPackets(new S_SystemMessage(ToAll.getSMG()));
-	}
-
-	@Override
-	public String getType() {
-		return C_CLIENT_REPORT;
 	}
 }

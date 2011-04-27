@@ -44,7 +44,6 @@ import net.l1j.server.templates.L1AuctionBoard;
 import net.l1j.server.templates.L1House;
 
 public class C_Amount extends ClientBasePacket {
-	private static final String C_AMOUNT = "[C] C_Amount";
 
 	public C_Amount(byte[] decrypt, ClientThread client) throws Exception {
 		super(decrypt);
@@ -145,10 +144,5 @@ public class C_Amount extends ClientBasePacket {
 				return;
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_AMOUNT;
 	}
 }

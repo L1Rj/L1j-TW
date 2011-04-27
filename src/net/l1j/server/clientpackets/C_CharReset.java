@@ -19,7 +19,6 @@
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.CharacterTable;
@@ -33,9 +32,6 @@ import net.l1j.server.serverpackets.S_Disconnect;
 import net.l1j.server.serverpackets.S_OwnCharStatus;
 
 public class C_CharReset extends ClientBasePacket {
-	private static final String C_CHAR_RESET = "[C] C_CharReset";
-
-	private final static Logger _log = Logger.getLogger(C_CharReset.class.getName());
 
 	private L1ClassFeature classFeature = null;
 
@@ -217,10 +213,5 @@ public class C_CharReset extends ClientBasePacket {
 		int newAc = classFeature.calcLvDex2AC(pc.getTempLevel(), pc.getDex());
 		pc.sendPackets(new S_CharReset(pc, pc.getTempLevel(), pc.getBaseMaxHp(), pc.getBaseMaxMp(), newAc,
 				pc.getBaseStr(), pc.getBaseInt(), pc.getBaseWis(), pc.getBaseDex(), pc.getBaseCon(), pc.getBaseCha()));
-	}
-
-	@Override
-	public String getType() {
-		return C_CHAR_RESET;
 	}
 }

@@ -32,7 +32,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Castle;
 
 public class C_Drawal extends ClientBasePacket {
-	private static final String C_DRAWAL = "[C] C_Drawal";
 
 	public C_Drawal(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -61,10 +60,5 @@ public class C_Drawal extends ClientBasePacket {
 				}
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_DRAWAL;
 	}
 }

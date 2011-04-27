@@ -26,7 +26,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_TradeOK extends ClientBasePacket {
-	private static final String C_TRADE_CANCEL = "[C] C_TradeOK";
 
 	public C_TradeOK(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -50,10 +49,5 @@ public class C_TradeOK extends ClientBasePacket {
 				}
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_TRADE_CANCEL;
 	}
 }

@@ -21,13 +21,14 @@ package net.l1j.util;
 // 全部staticにしてもいいかもしれない
 public class ByteArrayUtil {
 	private final byte[] _byteArray;
+	private StringBuilder sb = new StringBuilder();
 
 	public ByteArrayUtil(byte[] byteArray) {
 		_byteArray = byteArray;
 	}
 
 	public String getTerminatedString(int i) {
-		StringBuilder sb = new StringBuilder();
+		sb.setLength(0);
 		for (int j = i; j < _byteArray.length && _byteArray[j] != (byte) 0; j++) {
 			sb.append((char) _byteArray[j]);
 		}
@@ -36,13 +37,13 @@ public class ByteArrayUtil {
 	}
 
 	public String dumpToString() {
-		StringBuilder sb = new StringBuilder();
+		sb.setLength(0);
 		int j = 0;
 		for (int k = 0; k < _byteArray.length; k++) {
 			if ((j & 0x0f) == 0) {
-				sb.append((new StringBuilder()).append(fillHex(k, 4)).append(": ").toString());
+				sb.append(fillHex(k, 4)).append(": ");
 			}
-			sb.append((new StringBuilder()).append(fillHex(_byteArray[k] & 0xff, 2)).append(" ").toString());
+			sb.append(fillHex(_byteArray[k] & 0xff, 2)).append(" ");
 			if (++j != 16) {
 				continue;
 			}
@@ -63,7 +64,8 @@ public class ByteArrayUtil {
 
 		int l = _byteArray.length & 0x0f;
 		if (l > 0) {
-			for (int j1 = 0; j1 < 17 - l; j1++) {
+			int tempSize = 17 - l;
+			for (int j1 = 0; j1 < tempSize; j1++) {
 				sb.append("   ");
 			}
 
@@ -83,11 +85,11 @@ public class ByteArrayUtil {
 	}
 
 	private String fillHex(int i, int j) {
-		String s = Integer.toHexString(i);
+		StringBuilder s = new StringBuilder(Integer.toHexString(i));
 		for (int k = s.length(); k < j; k++) {
-			s = (new StringBuilder()).append("0").append(s).toString();
+			s.append("0");
 		}
 
-		return s;
+		return s.toString();
 	}
 }

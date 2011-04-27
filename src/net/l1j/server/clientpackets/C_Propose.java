@@ -26,7 +26,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.util.FaceToFace;
 
 public class C_Propose extends ClientBasePacket {
-	private static final String C_PROPOSE = "[C] C_Propose";
 
 	public C_Propose(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -68,10 +67,5 @@ public class C_Propose extends ClientBasePacket {
 			}
 			pc.sendPackets(new S_Message_YN(SystemMessageId.$653, ""));
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_PROPOSE;
 	}
 }

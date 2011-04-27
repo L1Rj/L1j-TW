@@ -26,7 +26,6 @@ import net.l1j.server.serverpackets.S_WhoAmount;
 import net.l1j.server.serverpackets.S_WhoCharinfo;
 
 public class C_Who extends ClientBasePacket {
-	private static final String C_WHO = "[C] C_Who";
 
 	public C_Who(byte[] decrypt, ClientThread client) {
 		super(decrypt);
@@ -46,10 +45,5 @@ public class C_Who extends ClientBasePacket {
 			}
 			// 對象が居ない場合はメッセージ表示する？わかる方修正お願いします。
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_WHO;
 	}
 }

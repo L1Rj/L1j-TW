@@ -37,7 +37,6 @@ import net.l1j.server.types.Base;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class C_UseSkill extends ClientBasePacket {
-	private static final String C_USE_SKILL = "[C] C_UseSkill";
 
 	private final static Logger _log = Logger.getLogger("speedhack");
 
@@ -154,10 +153,5 @@ public class C_UseSkill extends ClientBasePacket {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_USE_SKILL;
 	}
 }

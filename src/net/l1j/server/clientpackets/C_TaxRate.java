@@ -26,7 +26,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.templates.L1Castle;
 
 public class C_TaxRate extends ClientBasePacket {
-	private static final String C_TAX_RATE = "[C] C_TaxRate";
 
 	public C_TaxRate(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -48,10 +47,5 @@ public class C_TaxRate extends ClientBasePacket {
 				}
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_TAX_RATE;
 	}
 }

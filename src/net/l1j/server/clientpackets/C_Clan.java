@@ -25,7 +25,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_Emblem;
 
 public class C_Clan extends ClientBasePacket {
-	private static final String C_CLAN = "[C] C_Clan";
 
 	public C_Clan(byte abyte0[], ClientThread client) {
 		super(abyte0);
@@ -36,10 +35,5 @@ public class C_Clan extends ClientBasePacket {
 		L1Clan clan = ClanTable.getInstance().getTemplate(clanId);
 		String name = clan.getClanName();
 		pc.sendPackets(new S_Emblem(clan.getClanId()));
-	}
-
-	@Override
-	public String getType() {
-		return C_CLAN;
 	}
 }

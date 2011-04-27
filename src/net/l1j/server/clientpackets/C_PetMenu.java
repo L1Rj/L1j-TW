@@ -25,7 +25,6 @@ import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.serverpackets.S_PetInventory;
 
 public class C_PetMenu extends ClientBasePacket {
-	private static final String C_PET_MENU = "[C] C_PetMenu";
 
 	public C_PetMenu(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -38,10 +37,5 @@ public class C_PetMenu extends ClientBasePacket {
 		if (pet != null && pc != null) {
 			pc.sendPackets(new S_PetInventory(pet));
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_PET_MENU;
 	}
 }

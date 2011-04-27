@@ -19,7 +19,6 @@
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.CharacterTable;
@@ -30,9 +29,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_BanClan extends ClientBasePacket {
-	private static final String C_BAN_CLAN = "[C] C_BanClan";
-
-	private final static Logger _log = Logger.getLogger(C_BanClan.class.getName());
 
 	public C_BanClan(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -84,10 +80,5 @@ public class C_BanClan extends ClientBasePacket {
 				pc.sendPackets(new S_ServerMessage(SystemMessageId.$518));
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_BAN_CLAN;
 	}
 }

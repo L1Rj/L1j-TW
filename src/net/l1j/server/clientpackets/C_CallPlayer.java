@@ -25,7 +25,6 @@ import net.l1j.server.model.L1World;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class C_CallPlayer extends ClientBasePacket {
-	private static final String C_CALL = "[C] C_Call";
 
 	public C_CallPlayer(byte[] decrypt, ClientThread client) {
 		super(decrypt);
@@ -49,10 +48,5 @@ public class C_CallPlayer extends ClientBasePacket {
 
 		L1Location loc = L1Location.randomLocation(target.getLocation(), 1, 2, false);
 		L1Teleport.teleport(pc, loc.getX(), loc.getY(), target.getMapId(), pc.getHeading(), false);
-	}
-
-	@Override
-	public String getType() {
-		return C_CALL;
 	}
 }

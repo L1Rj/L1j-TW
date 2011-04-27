@@ -25,7 +25,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 
 public class C_SelectTarget extends ClientBasePacket {
-	private static final String C_SELECT_TARGET = "[C] C_SelectTarget";
 
 	public C_SelectTarget(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -46,10 +45,5 @@ public class C_SelectTarget extends ClientBasePacket {
 			}
 			pet.setMasterTarget(target);
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_SELECT_TARGET;
 	}
 }

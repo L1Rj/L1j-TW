@@ -32,7 +32,6 @@ import net.l1j.server.model.instance.L1PetInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_DeleteInventoryItem extends ClientBasePacket {
-	private static final String C_DELETE_INVENTORY_ITEM = "[C] C_DeleteInventoryItem";
 
 	private static final Logger _log = Logger.getLogger("item");
 
@@ -94,10 +93,5 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 
 		pc.getInventory().removeItem(item, item.getCount());
 		pc.turnOnOffLight();
-	}
-
-	@Override
-	public String getType() {
-		return C_DELETE_INVENTORY_ITEM;
 	}
 }

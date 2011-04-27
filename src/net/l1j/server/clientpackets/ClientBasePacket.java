@@ -26,103 +26,95 @@ import net.l1j.Config;
 import net.l1j.server.ClientThread;
 
 public abstract class ClientBasePacket {
-	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE; // 5.06
+	protected final static String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
+	protected final static int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE;
 
-	private final static Logger _log = Logger.getLogger(ClientBasePacket.class.getName());
+	protected final static Logger _log = Logger.getLogger(ClientBasePacket.class.getName());
 
-	private byte _decrypt[];
+	protected byte _decrypt[];
+	protected int _decryptLength;
 
-	private int _off;
+	protected int _idx;
 
-	public ClientBasePacket(byte abyte0[]) {
-		_log.finest("type=" + getType() + ", len=" + abyte0.length);
-		_decrypt = abyte0;
-		_off = 1;
+	public ClientBasePacket(byte decrypt[]) {
+		_decrypt = decrypt;
+		_decryptLength = _decrypt.length;
+		_idx = 1;
 	}
 
-	public ClientBasePacket(ByteBuffer bytebuffer, ClientThread clientthread) {
+	protected final int readC() {
+		return _decrypt[_idx++];
 	}
 
-	public int readD() {
-		int i = _decrypt[_off++] & 0xff;
-		i |= _decrypt[_off++] << 8 & 0xff00;
-		i |= _decrypt[_off++] << 16 & 0xff0000;
-		i |= _decrypt[_off++] << 24 & 0xff000000;
-		return i;
+	protected final int readH() {
+		return     (_decrypt[_idx++] & 0xFF)
+				| ((_decrypt[_idx++] & 0xFF) <<  8);
 	}
 
-	public int readC() {
-		int i = _decrypt[_off++] & 0xff;
-		return i;
+	protected final int readCH() {
+		return     (_decrypt[_idx++] & 0xFF)
+				| ((_decrypt[_idx++] & 0xFF) <<  8)
+				| ((_decrypt[_idx++] & 0xFF) << 16);
 	}
 
-	public int readH() {
-		int i = _decrypt[_off++] & 0xff;
-		i |= _decrypt[_off++] << 8 & 0xff00;
-		return i;
+	protected final int readD() {
+		return     (_decrypt[_idx++] & 0xFF)
+				| ((_decrypt[_idx++] & 0xFF) <<  8)
+				| ((_decrypt[_idx++] & 0xFF) << 16)
+				| ((_decrypt[_idx++] & 0xFF) << 24);
 	}
 
-	public int readCH() {
-		int i = _decrypt[_off++] & 0xff;
-		i |= _decrypt[_off++] << 8 & 0xff00;
-		i |= _decrypt[_off++] << 16 & 0xff0000;
-		return i;
-	}
-
-	public double readF() {
-		long l = _decrypt[_off++] & 0xff;
-		l |= _decrypt[_off++] << 8 & 0xff00;
-		l |= _decrypt[_off++] << 16 & 0xff0000;
-		l |= _decrypt[_off++] << 24 & 0xff000000;
-		l |= (long) _decrypt[_off++] << 32 & 0xff00000000L;
-		l |= (long) _decrypt[_off++] << 40 & 0xff0000000000L;
-		l |= (long) _decrypt[_off++] << 48 & 0xff000000000000L;
-		l |= (long) _decrypt[_off++] << 56 & 0xff00000000000000L;
-		return Double.longBitsToDouble(l);
-	}
-
-	public String readS() {
+	protected final String readS() {
 		String s = null;
 		try {
-			s = new String(_decrypt, _off, _decrypt.length - _off, CLIENT_LANGUAGE_CODE);
+			s = new String(_decrypt, _idx, _decryptLength - _idx, CLIENT_LANGUAGE_CODE);
 			s = s.substring(0, s.indexOf('\0'));
-			_off += s.getBytes(CLIENT_LANGUAGE_CODE).length + 1;
+			_idx += s.getBytes(CLIENT_LANGUAGE_CODE).length + 1;
 		} catch (Exception e) {
-			_log.log(Level.SEVERE, "OpCode=" + (_decrypt[0] & 0xff), e);
+			_log.log(Level.SEVERE, "OpCode=" + (_decrypt[0] & 0xFF), e);
 		}
 		return s;
 	}
 
-	public String readChars() {
-		String s = "";
-		while (_off < _decrypt.length) {
+	protected final String readChars() {
+		StringBuilder s = new StringBuilder(60);
+		while (_idx < _decryptLength) {
 			char c = (char) readH(); // 讀取 16 位元的數值 並轉換成 字元
 
 			// 判斷值是否等於 0 (0 代表結束的意思)
 			if (c == 0) {
-				return s;
+				break;
 			} else {
-				s += c;
+				s.append(c);
 			}
 		}
-		return s;
+		return s.toString();
 	}
 
-	public byte[] readByte() {
-		byte[] result = new byte[_decrypt.length - _off];
+	protected final byte[] readByte() {
+		byte[] result = new byte[_decryptLength - _idx];
 		try {
-			System.arraycopy(_decrypt, _off, result, 0, _decrypt.length - _off);
-			_off = _decrypt.length;
+			System.arraycopy(_decrypt, _idx, result, 0, _decryptLength - _idx);
+			_idx = _decryptLength;
 		} catch (Exception e) {
-			_log.log(Level.SEVERE, "OpCode=" + (_decrypt[0] & 0xff), e);
+			_log.log(Level.SEVERE, "OpCode=" + (_decrypt[0] & 0xFF), e);
 		}
 		return result;
 	}
 
 	/**
-	 * クライアントパケットの種類を表す文字列を返す。("[C] C_DropItem" 等)
+	 * 返回類別種類(EX:[C] CreateChar)
 	 */
-	public String getType() {
-		return "[C] " + this.getClass().getSimpleName();
+	protected final String getType() {
+		return (new StringBuilder(50))
+				.append("[C] ").append(this.getClass().getSimpleName())
+				.toString();
+	}
+
+	public final String toString() {
+		return (new StringBuilder(50))
+				.append("type=").append(this.getType())
+				.append(", len=").append(_decrypt.length)
+				.toString();
 	}
 }

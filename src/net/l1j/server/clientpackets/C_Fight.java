@@ -26,7 +26,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.util.FaceToFace;
 
 public class C_Fight extends ClientBasePacket {
-	private static final String C_FIGHT = "[C] C_Fight";
 
 	public C_Fight(byte abyte0[], ClientThread client) throws Exception {
 		super(abyte0);
@@ -50,10 +49,5 @@ public class C_Fight extends ClientBasePacket {
 				target.sendPackets(new S_Message_YN(SystemMessageId.$630, pc.getName()));
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_FIGHT;
 	}
 }

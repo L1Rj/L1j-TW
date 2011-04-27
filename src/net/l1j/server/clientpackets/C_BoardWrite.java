@@ -20,7 +20,6 @@ package net.l1j.server.clientpackets;
 
 import java.util.Calendar;
 import java.util.TimeZone;
-import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
@@ -31,9 +30,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.item.ItemId;
 
 public class C_BoardWrite extends ClientBasePacket {
-	private static final String C_BOARD_WRITE = "[C] C_BoardWrite";
-
-	private final static Logger _log = Logger.getLogger(C_BoardWrite.class.getName());
 
 	public C_BoardWrite(byte decrypt[], ClientThread client) {
 		super(decrypt);
@@ -79,10 +75,5 @@ public class C_BoardWrite extends ClientBasePacket {
 			date2 = Integer.toString(date);
 		}
 		return year2 + "/" + Month2 + "/" + date2;
-	}
-
-	@Override
-	public String getType() {
-		return C_BOARD_WRITE;
 	}
 }

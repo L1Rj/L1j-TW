@@ -27,7 +27,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_CreateClan extends ClientBasePacket {
-	private static final String C_CREATE_CLAN = "[C] C_CreateClan";
 
 	public C_CreateClan(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -54,10 +53,5 @@ public class C_CreateClan extends ClientBasePacket {
 		} else {
 			l1pcinstance.sendPackets(new S_ServerMessage(SystemMessageId.$85));
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_CREATE_CLAN;
 	}
 }

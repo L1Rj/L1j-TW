@@ -45,7 +45,6 @@ import net.l1j.server.templates.L1PetType;
 import net.l1j.util.RandomArrayList;
 
 public class C_GiveItem extends ClientBasePacket {
-	private static final String C_GIVE_ITEM = "[C] C_GiveItem";
 
 	private static final Logger _log = Logger.getLogger("item");
 
@@ -249,10 +248,5 @@ public class C_GiveItem extends ClientBasePacket {
 		}
 
 		return isSuccess;
-	}
-
-	@Override
-	public String getType() {
-		return C_GIVE_ITEM;
 	}
 }

@@ -25,7 +25,6 @@ import net.l1j.server.model.instance.L1AuctionBoardInstance;
 import net.l1j.server.model.instance.L1BoardInstance;
 
 public class C_Board extends ClientBasePacket {
-	private static final String C_BOARD = "[C] C_Board";
 
 	private boolean isBoardInstance(L1Object obj) {
 		return (obj instanceof L1BoardInstance || obj instanceof L1AuctionBoardInstance);
@@ -40,10 +39,5 @@ public class C_Board extends ClientBasePacket {
 			return; // 不正クライアントでなければあり得ないが‧‧‧
 		}
 		obj.onAction(client.getActiveChar());
-	}
-
-	@Override
-	public String getType() {
-		return C_BOARD;
 	}
 }

@@ -25,7 +25,6 @@ import net.l1j.server.serverpackets.S_Message_YN;
 import net.l1j.util.FaceToFace;
 
 public class C_Trade extends ClientBasePacket {
-	private static final String C_TRADE = "[C] C_Trade";
 
 	public C_Trade(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -42,10 +41,5 @@ public class C_Trade extends ClientBasePacket {
 				target.sendPackets(new S_Message_YN(SystemMessageId.$252, player.getName()));
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_TRADE;
 	}
 }

@@ -24,7 +24,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_BanParty extends ClientBasePacket {
-	private static final String C_BAN_PARTY = "[C] C_BanParty";
 
 	public C_BanParty(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
@@ -46,10 +45,5 @@ public class C_BanParty extends ClientBasePacket {
 		}
 		// 見つからなかった
 		player.sendPackets(new S_ServerMessage(SystemMessageId.$426, s));
-	}
-
-	@Override
-	public String getType() {
-		return C_BAN_PARTY;
 	}
 }

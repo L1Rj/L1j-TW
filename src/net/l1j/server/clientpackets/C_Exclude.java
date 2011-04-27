@@ -18,7 +18,6 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import net.l1j.server.ClientThread;
@@ -29,9 +28,6 @@ import net.l1j.server.serverpackets.S_PacketBox;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_Exclude extends ClientBasePacket {
-	private static final String C_EXCLUDE = "[C] C_Exclude";
-
-	private final static Logger _log = Logger.getLogger(C_Exclude.class.getName());
 
 	/**
 	 * C_1 /exclude コマンドを打った時に送られる
@@ -59,10 +55,5 @@ public class C_Exclude extends ClientBasePacket {
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_EXCLUDE;
 	}
 }

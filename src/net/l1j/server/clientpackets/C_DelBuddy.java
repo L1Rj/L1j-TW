@@ -24,7 +24,6 @@ import net.l1j.server.datatables.BuddyTable;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class C_DelBuddy extends ClientBasePacket {
-	private static final String C_DEL_BUDDY = "[C] C_DelBuddy";
 
 	public C_DelBuddy(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -32,10 +31,5 @@ public class C_DelBuddy extends ClientBasePacket {
 		L1PcInstance pc = clientthread.getActiveChar();
 		String charName = readS();
 		BuddyTable.getInstance().removeBuddy(pc.getId(), charName);
-	}
-
-	@Override
-	public String getType() {
-		return C_DEL_BUDDY;
 	}
 }

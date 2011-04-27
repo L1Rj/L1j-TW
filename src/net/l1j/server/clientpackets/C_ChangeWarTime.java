@@ -31,7 +31,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.templates.L1Castle;
 
 public class C_ChangeWarTime extends ClientBasePacket {
-	private static final String C_CHANGE_WAR_TIME = "[C] C_ChangeWarTime";
 
 	public C_ChangeWarTime(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -63,10 +62,5 @@ public class C_ChangeWarTime extends ClientBasePacket {
 						nextWarTime.get(12) + "分"));
 			}
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_CHANGE_WAR_TIME;
 	}
 }

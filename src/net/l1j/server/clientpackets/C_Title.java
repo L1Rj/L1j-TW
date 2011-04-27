@@ -19,7 +19,6 @@
 package net.l1j.server.clientpackets;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import net.l1j.Config;
 import net.l1j.server.ClientThread;
@@ -31,9 +30,6 @@ import net.l1j.server.serverpackets.S_CharTitle;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_Title extends ClientBasePacket {
-	private static final String C_TITLE = "[C] C_Title";
-
-	private final static Logger _log = Logger.getLogger(C_Title.class.getName());
 
 	public C_Title(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -125,10 +121,5 @@ public class C_Title extends ClientBasePacket {
 			}
 		}
 		return isClanLeader;
-	}
-
-	@Override
-	public String getType() {
-		return C_TITLE;
 	}
 }

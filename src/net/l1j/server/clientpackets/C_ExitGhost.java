@@ -22,7 +22,6 @@ import net.l1j.server.ClientThread;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class C_ExitGhost extends ClientBasePacket {
-	private static final String C_EXIT_GHOST = "[C] C_ExitGhost";
 
 	// 移動
 	public C_ExitGhost(byte decrypt[], ClientThread client) throws Exception {
@@ -35,10 +34,5 @@ public class C_ExitGhost extends ClientBasePacket {
 		}
 
 		pc.makeReadyEndGhost();
-	}
-
-	@Override
-	public String getType() {
-		return C_EXIT_GHOST;
 	}
 }

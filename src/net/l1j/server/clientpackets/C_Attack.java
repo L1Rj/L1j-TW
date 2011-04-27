@@ -36,10 +36,8 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 
 import static net.l1j.server.model.instance.L1PcInstance.REGENSTATE_ATTACK;
 import static net.l1j.server.model.skill.SkillId.*;
-import static net.l1j.server.model.skill.SkillId.*;
 
 public class C_Attack extends ClientBasePacket {
-	private static final String C_ATTACK = "[C] C_Attack";
 
 	private final static Logger _log = Logger.getLogger("speedhack");
 
@@ -114,10 +112,5 @@ public class C_Attack extends ClientBasePacket {
 			L1Attack atk = new L1Attack(pc, cha);
 			atk.actionPc();
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_ATTACK;
 	}
 }

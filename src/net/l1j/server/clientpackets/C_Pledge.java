@@ -28,7 +28,6 @@ import net.l1j.server.serverpackets.S_Pledge;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_Pledge extends ClientBasePacket {
-	private static final String C_PLEDGE = "[C] C_Pledge";
 
 	public C_Pledge(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -46,10 +45,5 @@ public class C_Pledge extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$1064));
 //			pc.sendPackets(new S_Pledge("pledge", pc.getId()));
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_PLEDGE;
 	}
 }

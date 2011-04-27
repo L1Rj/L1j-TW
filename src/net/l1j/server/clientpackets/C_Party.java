@@ -26,7 +26,6 @@ import net.l1j.server.serverpackets.S_Party;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_Party extends ClientBasePacket {
-	private static final String C_PARTY = "[C] C_Party";
 
 	public C_Party(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -42,10 +41,5 @@ public class C_Party extends ClientBasePacket {
 			pc.sendPackets(new S_ServerMessage(SystemMessageId.$425));
 //			pc.sendPackets(new S_Party("party", pc.getId()));
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_PARTY;
 	}
 }

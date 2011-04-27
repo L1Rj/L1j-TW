@@ -31,7 +31,6 @@ import net.l1j.server.serverpackets.S_RemoveObject;
 import static net.l1j.server.serverpackets.S_PacketBox.MSG_FEEL_GOOD;
 
 public class C_Restart extends ClientBasePacket {
-	private static final String C_RESTART = "[C] C_Restart";
 
 	public C_Restart(byte[] data, ClientThread client) throws Exception {
 		super(data);
@@ -83,10 +82,5 @@ public class C_Restart extends ClientBasePacket {
 		if (pc.getHellTime() > 0) {
 			pc.beginHell(false);
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_RESTART;
 	}
 }

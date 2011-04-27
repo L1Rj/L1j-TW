@@ -18,14 +18,10 @@
  */
 package net.l1j.server.clientpackets;
 
-import java.util.logging.Logger;
 import net.l1j.server.ClientThread;
 import net.l1j.server.LoginController;
 
 public class C_ReturnToLogin extends ClientBasePacket {
-	private static final String C_RETURN_TO_LOGIN = "[C] C_ReturnToLogin";
-
-	private final static Logger _log = Logger.getLogger(C_ReturnToLogin.class.getName());
 
 	public C_ReturnToLogin(byte decrypt[], ClientThread client) throws Exception {
 		super(decrypt);
@@ -33,10 +29,5 @@ public class C_ReturnToLogin extends ClientBasePacket {
 		String account = client.getAccountName();
 		_log.finest((new StringBuilder()).append("account : ").append(account).toString());
 		LoginController.getInstance().logout(client);
-	}
-
-	@Override
-	public String getType() {
-		return C_RETURN_TO_LOGIN;
 	}
 }

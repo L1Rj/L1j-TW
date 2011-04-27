@@ -24,7 +24,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_OwnCharPack;
 
 public class C_Ship extends ClientBasePacket {
-	private static final String C_SHIP = "[C] C_Ship";
 
 	public C_Ship(byte abyte0[], ClientThread client) {
 		super(abyte0);
@@ -51,10 +50,5 @@ public class C_Ship extends ClientBasePacket {
 		}
 		pc.sendPackets(new S_OwnCharPack(pc));
 		L1Teleport.teleport(pc, locX, locY, (short) shipMapId, 0, false);
-	}
-
-	@Override
-	public String getType() {
-		return C_SHIP;
 	}
 }

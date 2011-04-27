@@ -23,7 +23,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.serverpackets.S_PrivateShop;
 
 public class C_ShopList extends ClientBasePacket {
-	private static final String C_SHOP_LIST = "[C] C_ShopList";
 
 	public C_ShopList(byte abyte0[], ClientThread clientthread) {
 		super(abyte0);
@@ -37,10 +36,5 @@ public class C_ShopList extends ClientBasePacket {
 		}
 
 		pc.sendPackets(new S_PrivateShop(pc, objectId, type));
-	}
-
-	@Override
-	public String getType() {
-		return C_SHOP_LIST;
 	}
 }

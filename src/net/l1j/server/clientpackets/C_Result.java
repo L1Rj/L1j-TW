@@ -46,7 +46,6 @@ import net.l1j.server.templates.L1PrivateShopBuyList;
 import net.l1j.server.templates.L1PrivateShopSellList;
 
 public class C_Result extends ClientBasePacket {
-	private static final String C_RESULT = "[C] C_Result";
 
 	private final static Logger _log = Logger.getLogger("warehouse");
 
@@ -538,10 +537,5 @@ public class C_Result extends ClientBasePacket {
 			}
 			targetPc.setTradingInPrivateShop(false);
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_RESULT;
 	}
 }

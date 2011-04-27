@@ -20,7 +20,6 @@ package net.l1j.server.clientpackets;
 
 import java.io.File;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import net.l1j.server.ClientThread;
 import net.l1j.server.datatables.CharacterTable;
@@ -34,9 +33,6 @@ import net.l1j.server.serverpackets.S_CharTitle;
 import net.l1j.server.serverpackets.S_ServerMessage;
 
 public class C_LeaveClan extends ClientBasePacket {
-	private static final String C_LEAVE_CLAN = "[C] C_LeaveClan";
-
-	private final static Logger _log = Logger.getLogger(C_LeaveClan.class.getName());
 
 	public C_LeaveClan(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -122,10 +118,5 @@ public class C_LeaveClan extends ClientBasePacket {
 			player.save(); // DBにキャラクター情報を書き⑸む
 			player.sendPackets(new S_ServerMessage(SystemMessageId.$178, player_name, clan_name));
 		}
-	}
-
-	@Override
-	public String getType() {
-		return C_LEAVE_CLAN;
 	}
 }

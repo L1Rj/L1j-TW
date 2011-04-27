@@ -28,7 +28,6 @@ import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.util.FaceToFace;
 
 public class C_JoinClan extends ClientBasePacket {
-	private static final String C_JOIN_CLAN = "[C] C_JoinClan";
 
 	public C_JoinClan(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
@@ -92,10 +91,5 @@ public class C_JoinClan extends ClientBasePacket {
 
 		target.setTempID(player.getId()); // 相手のオブジェクトIDを保存しておく
 		target.sendPackets(new S_Message_YN(SystemMessageId.$97, player.getName()));
-	}
-
-	@Override
-	public String getType() {
-		return C_JOIN_CLAN;
 	}
 }

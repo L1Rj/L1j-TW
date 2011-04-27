@@ -23,17 +23,11 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.util.Teleportation;
 
 public class C_Teleport extends ClientBasePacket {
-	private static final String C_TELEPORT = "[C] C_Teleport";
 
 	public C_Teleport(byte abyte0[], ClientThread clientthread) throws Exception {
 		super(abyte0);
 
 		L1PcInstance pc = clientthread.getActiveChar();
 		Teleportation.Teleportation(pc);
-	}
-
-	@Override
-	public String getType() {
-		return C_TELEPORT;
 	}
 }
