@@ -184,7 +184,7 @@ public class Potion {
 				pc.setBraveSpeed(0);
 			}
 			if ( item_id == ItemId.ELVEN_WAFER ) {
-				time = 600;
+				time = 480; // 精靈餅乾秒數修正為480秒
 			} else if ( item_id == ItemId.BLESS_OF_ELVEN_WAFER ) {
 				time = 700;
 			} else if ( item_id == ItemId.POTION_OF_FOREST_WELFARE ) {

@@ -195,7 +195,7 @@ public class L1PcInstance extends L1Character {
 
 	/** 開始娃娃恢復玩家體力 */
 	public void startHpRegenerationByDoll() {
-		final int INTERVAL_BY_DOLL = 60000;
+		final int INTERVAL_BY_DOLL = 64000;
 		boolean isExistHprDoll = false;
 		Object[] dollList = getDollList().values().toArray();
 		for (Object dollObject : dollList) {
@@ -222,7 +222,7 @@ public class L1PcInstance extends L1Character {
 
 	/** 開始娃娃恢復玩家魔力 */
 	public void startMpRegenerationByDoll() {
-		final int INTERVAL_BY_DOLL = 60000;
+		final int INTERVAL_BY_DOLL = 64000;
 		boolean isExistMprDoll = false;
 		Object[] dollList = getDollList().values().toArray();
 		for (Object dollObject : dollList) {
