@@ -163,6 +163,7 @@ public class Potion {
 			}
 			if (pc.hasSkillEffect(STATUS_RIBRAVE)) { // 生命之樹果實
 				pc.killSkillEffectTimer(STATUS_RIBRAVE);
+				//pc.sendPackets(new S_SkillIconForbiddenFruit(0));
 			}
 			if (pc.hasSkillEffect(SKILL_BLOODLUST)) { // ブラッドラストとは重複しない
 				pc.killSkillEffectTimer(SKILL_BLOODLUST);
@@ -234,6 +235,11 @@ public class Potion {
 		} else {
 			return;
 		}
+		
+		if (pc.hasSkillEffect(STATUS_BLUE_POTION)) {
+			pc.killSkillEffectTimer(STATUS_BLUE_POTION);
+		}
+		
 		pc.sendPackets(new S_PacketBox(S_PacketBox.ICON_BLUEPOTION, time));
 		pc.sendPackets(new S_SkillSound(pc.getId(), 190));
 		pc.broadcastPacket(new S_SkillSound(pc.getId(), 190));
@@ -327,7 +333,11 @@ public class Potion {
 	}
 
 	/* 三段式加速 */
-	public static void Triplesspeed(L1PcInstance pc) {
+	public static void Cakes(L1PcInstance pc) {
+		if (pc.hasSkillEffect(SKILL_DECAY_POTION)) {
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
+			return;
+		}
 	    /* 
 	     * 【Server】 id:97 size:8 time:1302979137940
 	     * 0000	61 3b fd 11 01 08 b9 2c                            a;.....,
@@ -339,14 +349,37 @@ public class Potion {
 	     * 0000	0f 3b fd 11 01 5f 1f 94                            .;..._..
 	     * 
 	     */
+	    if (pc.hasSkillEffect(STATUS_TRIPLES_SPEED)) {
+			pc.killSkillEffectTimer(STATUS_TRIPLES_SPEED);
+	    }
 		int time = 0;
 		time = 600;
-		    pc.sendPackets(new S_Liquor(pc.getId(), 0x08));
-		    pc.sendPackets(new S_ServerMessage(SystemMessageId.$1065));
-		    pc.setSkillEffect(STATUS_TRIPLES_SPEED, (time / 4) * 1000);
-		    pc.sendPackets(new S_TriplesSpeed(time * 4));
-		    pc.sendPackets(new S_SkillSound(pc.getId(), 0x1f5f, 94));
-		    pc.broadcastPacket(new S_SkillSound(pc.getId(), 0x1f5f, 94));
+		
+		pc.sendPackets(new S_Liquor(pc.getId(), 0x08));
+		pc.sendPackets(new S_ServerMessage(SystemMessageId.$1065));
+		pc.setSkillEffect(STATUS_TRIPLES_SPEED, time * 1000);
+		pc.sendPackets(new S_TriplesSpeed(time / 4));
+		pc.sendPackets(new S_SkillSound(pc.getId(), 0x1f5f, 94));
+		pc.broadcastPacket(new S_SkillSound(pc.getId(), 0x1f5f, 94));
+	}
+	
+	/* WONDER DRUG */
+	public static void WonderDrug(L1PcInstance pc, int item_id) {
+		if (pc.hasSkillEffect(SKILL_DECAY_POTION)) {
+			pc.sendPackets(new S_ServerMessage(SystemMessageId.$698));
+			return;
+		}
+		int time = 0;
+		/* IT_OF_WONDER_DRUG */
+		if (item_id == ItemId.IT_OF_WONDER_DRUG) {
+			time = 900;
+			if (pc.hasSkillEffect(STATUS_IT_OF_WONDER_DRUG)) {
+				pc.killSkillEffectTimer(STATUS_IT_OF_WONDER_DRUG);
+			}
+			
+			pc.sendPackets(new S_PacketBox(53, 54, time));
+			pc.setSkillEffect(STATUS_IT_OF_WONDER_DRUG, time);
+		}
 	}
 
 }

@@ -50,11 +50,14 @@ import net.l1j.server.serverpackets.S_AddSkill;
 import net.l1j.server.serverpackets.S_BonusStats;
 import net.l1j.server.serverpackets.S_Bookmarks;
 import net.l1j.server.serverpackets.S_CharacterConfig;
+import net.l1j.server.serverpackets.S_Charshowinit;
 import net.l1j.server.serverpackets.S_InvList;
+import net.l1j.server.serverpackets.S_Liquor;
 import net.l1j.server.serverpackets.S_LoginGame;
 import net.l1j.server.serverpackets.S_MapID;
 import net.l1j.server.serverpackets.S_OwnCharPack;
 import net.l1j.server.serverpackets.S_OwnCharStatus;
+import net.l1j.server.serverpackets.S_PacketBox;
 import net.l1j.server.serverpackets.S_SPMR;
 import net.l1j.server.serverpackets.S_ServerMessage;
 import net.l1j.server.serverpackets.S_SkillBrave;
@@ -63,7 +66,7 @@ import net.l1j.server.serverpackets.S_SkillIconExp;
 import net.l1j.server.serverpackets.S_SkillIconGFX;
 import net.l1j.server.serverpackets.S_SkillSound;
 import net.l1j.server.serverpackets.S_SummonPack;
-import net.l1j.server.serverpackets.S_Charshowinit;
+import net.l1j.server.serverpackets.S_SkillIconThirdStepSpeed;
 import net.l1j.server.serverpackets.S_War;
 import net.l1j.server.serverpackets.S_Weather;
 import net.l1j.server.templates.L1BookMark;
@@ -618,6 +621,11 @@ public class C_LoginToServer extends ClientBasePacket {
 					pc.broadcastPacket(new S_SkillBrave(pc.getId(), 5, 0));
 					pc.setBraveSpeed(5);
 					pc.setSkillEffect(skillid, remaining_time * 1000);
+				} else if (skillid == STATUS_TRIPLES_SPEED) {
+					pc.sendPackets(new S_Liquor(pc.getId(), 0x08));
+					pc.broadcastPacket(new S_Liquor(pc.getId(), 0x08));
+					pc.sendPackets(new S_SkillIconThirdStepSpeed(remaining_time / 4));
+					pc.setSkillEffect(STATUS_TRIPLES_SPEED, remaining_time * 1000);
 				} else {
 					SkillUse skilluse = new SkillUse();
 					skilluse.handleCommands(clientthread.getActiveChar(), skillid, pc.getId(), pc.getX(), pc.getY(), null, remaining_time, Base.SKILL_TYPE[1]);

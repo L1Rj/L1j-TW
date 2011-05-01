@@ -467,8 +467,14 @@ public class SkillId {
 	public static final int STATUS_LINDVIOR_BLOODSTAINS = 1034;
 	
 	public static final int STATUS_FASTMOVABLE = 1035;
+	
+	public static final int STATUS_IT_OF_WONDER_DRUG = 1036;	
+	/** 擊敗火焰之影的力量 */
+	public static final int STATUS_CURSE_YAHEE = 1037;
+	/** 擊敗炎魔的力量 */
+	public static final int STATUS_CURSE_BARLOG = 1038;
 	/** 輔助狀態結尾 */
-	public static final int STATUS_END = 1035;
+	public static final int STATUS_END = 1038;
 
 	/** 遊戲管理員輔助狀態開頭 */
 	public static final int GMSTATUS_BEGIN = 2000;
@@ -591,15 +597,12 @@ public class SkillId {
 	public static final int COOKING_END = 3047;
 
 	/** 其他 */
-	public static final int STATUS_FREEZE = 10071;
-
 	public static final int EXP_POTION = 7013;   // 經驗藥水?
-
-	public static final int CURSE_PARALYZE2 = 10101;
-	/** 擊敗火焰之影的力量 */
-	public static final int STATUS_CURSE_YAHEE = 1014;
-	/** 擊敗炎魔的力量 */
-	public static final int STATUS_CURSE_BARLOG = 1015;
+	
+	public static final int STATUS_FREEZE = 10071;
+	
+	public static final int CURSE_PARALYZE2 = 10101;	
+	
 //	/** 修正施法過快造成玩家座標錯誤 */
 //	public static final int STATUS_YOUAREACCLERATOR = 1026;
 

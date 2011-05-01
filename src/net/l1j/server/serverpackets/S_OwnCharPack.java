@@ -67,7 +67,7 @@ public class S_OwnCharPack extends ServerBasePacket {
 		if (pc.isGhost()) {
 			status |= STATUS_GHOST;
 		}
-		if (pc.isTriplesSpeed()) {
+		if (pc.isThirdStepSpeed()) {
 			status |= STATUS_TRIPLES_SPEED;
 		}
 

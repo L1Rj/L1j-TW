@@ -398,16 +398,19 @@ public class L1PcInstance extends L1Character {
 
 	private void sendVisualEffect() {
 		int poisonId = 0;
-		if (getPoison() != null) { // 毒狀態
+		if (getPoison() != null) { //STATUS : POISON ?
 			poisonId = getPoison().getEffectId();
 		}
-		if (getParalysis() != null) { // 麻痺狀態
+		if (getParalysis() != null) { //STATUS : PARALYSIS
 			// 麻痺エフェクトを優先して送りたい為、poisonIdを上書き。
 			poisonId = getParalysis().getEffectId();
 		}
 		if (poisonId != 0) { // このifはいらないかもしれない
-			sendPackets(new S_Poison(getId(), poisonId));
-			broadcastPacket(new S_Poison(getId(), poisonId));
+		    if (isThirdStepSpeed()) {
+		    } else {
+			    sendPackets(new S_Poison(getId(), poisonId));
+			    broadcastPacket(new S_Poison(getId(), poisonId));
+		    }
 		}
 	}
 
@@ -1412,8 +1415,13 @@ public class L1PcInstance extends L1Character {
 			L1ItemInstance item = getInventory().CaoPenalty();
 
 			if (item != null) {
-				getInventory().tradeItem(item, item.isStackable() ? item.getCount() : 1, L1World.getInstance().getInventory(getX(), getY(), getMapId()));
-				sendPackets(new S_ServerMessage(SystemMessageId.$638, item.getLogName()));
+				if(item.getBless() >= 128 && item.getBless() <= 131) {
+					getInventory().deleteItem(item);
+					sendPackets(new S_ServerMessage(SystemMessageId.$638, item.getLogName()));
+				} else {
+					getInventory().tradeItem(item, item.isStackable() ? item.getCount() : 1, L1World.getInstance().getInventory(getX(), getY(), getMapId()));
+					sendPackets(new S_ServerMessage(SystemMessageId.$638, item.getLogName()));
+				}
 			} else {
 			}
 		}
@@ -2341,7 +2349,7 @@ public class L1PcInstance extends L1Character {
 		return hasSkillEffect(STATUS_EXP_BLESS);
 	}
 	
-	public boolean isTriplesSpeed() {
+	public boolean isThirdStepSpeed() {
 		return hasSkillEffect(STATUS_TRIPLES_SPEED);
 	}
 	

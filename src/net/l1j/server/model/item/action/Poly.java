@@ -347,18 +347,20 @@ public class Poly {
 	/** 變形鱗片動作 */
 	public static void Scale(L1PcInstance pc, int itemId) {
 		int polyId = 0;
-		if ( itemId == ItemId.SCALE_OF_DARKNESS ) {
-			polyId = 3101;
-		} else if ( itemId == ItemId.SCALE_OF_FLAMES ) {
+		if (itemId == ItemId.SCALE_OF_DARKNESS) {
+			polyId = 3881;
+		} else if (itemId == ItemId.SCALE_OF_FLAMES) {
 			polyId = 3126;
-		} else if ( itemId == ItemId.SCALE_OF_IMMORALITY ) {
+		} else if (itemId == ItemId.SCALE_OF_IMMORALITY) {
 			polyId = 3888;
-		} else if ( itemId == ItemId.SCALE_OF_HATRED ) {
+		} else if (itemId == ItemId.SCALE_OF_HATRED) {
 			polyId = 3784;
-		} else if ( itemId == ItemId.SCROLL_OF_ORC_EMISSARYS_POLYMORPH ) {
+		} else if (itemId == ItemId.SCROLL_OF_ORC_EMISSARYS_POLYMORPH) {
 			polyId = 6984;
+		} else if (itemId == ItemId.SCALE_OF_OBLIVION) {
+			polyId = 3101;
 		}
-		L1PolyMorph.doPoly(pc, polyId, 600, L1PolyMorph.MORPH_BY_ITEMMAGIC);
+		L1PolyMorph.doPoly(pc, polyId, 900, L1PolyMorph.MORPH_BY_ITEMMAGIC);
 	}
 
 }

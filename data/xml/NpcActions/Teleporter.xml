@@ -1601,8 +1601,10 @@
 		<Teleport X="32748" Y="32849" Map="76" Heading="5" Price="0"/>
 	</Action>
 	<Action Name="M" NpcId="80153" LevelMin="8" LevelMax="13">
+		<Teleport X="32873" Y="32906" Map="304" Heading="5" Price="0"/>
 	</Action>
 	<Action Name="N" NpcId="80153" LevelMin="8" LevelMax="13">
+		<Teleport X="32757" Y="32880" Map="1000" Heading="5" Price="0"/>
 	</Action>
 	<Action Name="O" NpcId="80153" LevelMin="5" LevelMax="7">
 		<Teleport X="32605" Y="32837" Map="2005" Heading="5" Price="0"/>

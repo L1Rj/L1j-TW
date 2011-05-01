@@ -19,6 +19,8 @@
 package net.l1j.server.serverpackets;
 
 import net.l1j.server.Opcodes;
+import net.l1j.server.model.instance.L1MonsterInstance;
+import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_OtherCharPacks extends ServerBasePacket {
@@ -69,7 +71,7 @@ public class S_OtherCharPacks extends ServerBasePacket {
 		if (pc.isFastMovable()) {
 			status |= STATUS_FASTMOVABLE;
 		}
-		if (pc.isTriplesSpeed()) {
+		if (pc.isThirdStepSpeed()) {
 			status |= STATUS_TRIPLES_SPEED;
 		}
 		// int addbyte = 0;
