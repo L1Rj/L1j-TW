@@ -19,7 +19,7 @@
 package net.l1j.server.model.item;
 
 public class ItemId {
-        public static final int SCROLL_OF_EQUIPMENT_PROTECTION = 30001; //裝備保護捲軸 ?
+	public static final int SCROLL_OF_EQUIPMENT_PROTECTION = 30001; //裝備保護捲軸 ?
 	public static final int BIBLE_OF_ATONEMENT = 30002; //贖罪聖書
 	public static final int GIFT_OF_LOVE_BOX = 30101; //愛的禮物盒 period 28d / 1w > 1
 	/* 11週年禮物箱 可開出
@@ -98,12 +98,12 @@ public class ItemId {
 	public static final int POTION_OF_LESSER_HEAL  = 40010; //POTION_OF_HEALING
 	public static final int POTION_OF_HEAL  = 40011; //POTION_OF_EXTRA_HEALING
 	public static final int POTION_OF_GREATER_HEAL = 40012;
-        public static final int POTION_OF_HASTE = 40013; //POTION_OF_HASTE_SELF // 自我加速藥水
-        public static final int POTION_OF_BRAVERY = 40014; //POTION_OF_EMOTION_BRAVERY // 勇敢藥水
-        public static final int POTION_OF_MANA_Recovery = 40015; //POTION_OF_MANA // 加速魔力回復藥水
-        public static final int POTION_OF_WISDOM = 40016; //POTION_OF_EMOTION_WISDOM // 慎重藥水
+	public static final int POTION_OF_HASTE = 40013; //POTION_OF_HASTE_SELF // 自我加速藥水
+	public static final int POTION_OF_BRAVERY = 40014; //POTION_OF_EMOTION_BRAVERY // 勇敢藥水
+	public static final int POTION_OF_MANA_Recovery = 40015; //POTION_OF_MANA // 加速魔力回復藥水
+	public static final int POTION_OF_WISDOM = 40016; //POTION_OF_EMOTION_WISDOM // 慎重藥水
 	public static final int POTION_OF_CURE_POISON = 40017; //POTION_OF_CURE_POISON
-        public static final int POTION_OF_GREATER_HASTE = 40018; //POTION_OF_GREATER_HASTE_SELF // 強化自我加速藥水
+	public static final int POTION_OF_GREATER_HASTE = 40018; //POTION_OF_GREATER_HASTE_SELF // 強化自我加速藥水
 	public static final int POTION_OF_CONDENSED_LESSER_HEAL = 40019; //CONDENSED_POTION_OF_HEALING
 	public static final int POTION_OF_CONDENSED_HEAL = 40020; //CONDENSED_POTION_OF_EXTRA_HEALING
 	public static final int POTION_OF_CONDENSED_GREATER_HEAL = 40021; //CONDENSED_POTION_OF_GREATER_HEALING
@@ -115,8 +115,8 @@ public class ItemId {
 	public static final int JUICE_OF_ORANGE = 40027;
 	public static final int JUICE_OF_APPLE = 40028;
 	public static final int IT_HEAL_POTION = 40029;
-        public static final int IT_HASTE_POTION = 40030; //POTION_OF_HASTE_IVORY_TOWER // 象牙塔加速藥水
-        public static final int BLOOD_OF_DEVIL = 40031; //惡魔之血
+	public static final int IT_HASTE_POTION = 40030; //POTION_OF_HASTE_IVORY_TOWER // 象牙塔加速藥水
+	public static final int BLOOD_OF_DEVIL = 40031; //惡魔之血
 	public static final int BLESS_OF_EVA = 40032; //伊娃的祝福
 	public static final int Elixir_STR = 40033;
 	public static final int Elixir_CON = 40034;
@@ -181,7 +181,7 @@ public class ItemId {
 	public static final int BLANK_SCROLL_Level_4 = 40093;
 	public static final int BLANK_SCROLL_Level_5 = 40094;
 	public static final int IT_SCROLL_OF_Escape = 40095;
-        public static final int IT_SCROLL_OF_POLYMORPH = 40096; //象牙塔變形卷軸
+	public static final int IT_SCROLL_OF_POLYMORPH = 40096; //象牙塔變形卷軸
 	public static final int IT_SCROLL_OF_CurseRemoval = 40097;
 	public static final int IT_SCROLL_OF_Identify = 40098;
 	public static final int IT_SCROLL_OF_Teleportation = 40099;
