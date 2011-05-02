@@ -45,8 +45,6 @@ import static net.l1j.server.model.skill.SkillId.*;
 public class C_MoveChar extends ClientBasePacket {
 	private final static Logger _log = Logger.getLogger("speedhack");
 
-	private static final int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE; // 5.10
-
 	// マップタイル調查用
 	private void sendMapTileLog(L1PcInstance pc) {
 		pc.sendPackets(new S_SystemMessage(pc.getMap().toString(pc.getLocation())));

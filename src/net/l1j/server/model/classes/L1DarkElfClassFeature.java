@@ -63,7 +63,7 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 	}
 
 
-	private final static int points[] = { 13, 11, 14, 12, 8, 11, 6 }; // 力、敏、體、精、魅、智、自由點數
+	private final static int points[] = { 12, 15, 8, 10, 9, 11, 10 }; // 力、敏、體、精、魅、智、自由點數
 	@Override
 	public int[] InitPoints() {
 		return points;

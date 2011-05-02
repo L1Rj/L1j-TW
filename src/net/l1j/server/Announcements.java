@@ -45,7 +45,7 @@ public class Announcements {
 	private final String Name;
 	private String LastDate;
 	private final static DateFormat dateFormat = new SimpleDateFormat("[修訂於 yyyy/MM/dd, hh:mm ]\n");
-	private StringBuilder MSG;
+	private StringBuilder MSG = new StringBuilder(128);;
 	private List<String> messages = new FastList<String>();
 	private final File file;
 	private long lastchang = 0L;
@@ -79,7 +79,7 @@ public class Announcements {
 	}
 
 	private void readFromDisk() {
-		MSG = new StringBuilder(128);
+		MSG.setLength(0);
 		messages.clear();
 		LineNumberReader lnr = null;
 		String line = null;
