@@ -1079,3 +1079,13 @@ INSERT INTO `npcaction` VALUES ('91063', 'familyed', 'familyedl', 'pfamilyed', '
 INSERT INTO `npcaction` VALUES ('91064', 'ilbakiel', 'ilbakiel', '', '');
 INSERT INTO `npcaction` VALUES ('91065', 'merlin1', 'merlin1', 'merlin2', '');
 INSERT INTO `npcaction` VALUES ('91066', 'dsecret1', 'dsecret2', 'dsecret3', '');
+INSERT INTO `npcaction` VALUES ('80159', 'lowlvS1', 'lowlvS1', '', '');
+INSERT INTO `npcaction` VALUES ('80163', 'lowlvS1', 'lowlvS1', '', '');
+INSERT INTO `npcaction` VALUES ('80164', 'lowlvS1', 'lowlvS1', '', '');
+INSERT INTO `npcaction` VALUES ('80165', 'lowlvS1', 'lowlvS1', '', '');
+INSERT INTO `npcaction` VALUES ('80166', 'lowlvS1', 'lowlvS1', '', '');
+INSERT INTO `npcaction` VALUES ('80167', 'lowlvS1', 'lowlvS1', '', '');
+INSERT INTO `npcaction` VALUES ('80168', 'lowlvS1', 'lowlvS1', '', '');
+INSERT INTO `npcaction` VALUES ('80169', 'lowlvS1', 'lowlvS1', '', '');
+INSERT INTO `npcaction` VALUES ('80170', 'lowlvS1', 'lowlvS1', '', '');
+INSERT INTO `npcaction` VALUES ('80171', 'lowlvS1', 'lowlvS1', '', '');

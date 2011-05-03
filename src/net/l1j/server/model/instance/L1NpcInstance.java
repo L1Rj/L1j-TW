@@ -1045,12 +1045,15 @@ public class L1NpcInstance extends L1Character {
 	// ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
 	public L1NpcInstance(L1Npc template) {
+		int _npcgfxId = template.get_gfxid();
 		setStatus(0);
 		setMoveSpeed(0);
 		setDead(false);
 		setStatus(0);
 		setreSpawn(false);
-
+		if (_npcgfxId == 51 || _npcgfxId == 110 || _npcgfxId == 148) {
+		    setStatus(24);
+		}
 		if (template != null)
 			setting_template(template);
 	}
