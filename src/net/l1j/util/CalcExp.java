@@ -50,8 +50,6 @@ public class CalcExp {
 
 	private CalcExp() {
 	}
-	
-	private static L1NpcInstance _npc = null;
 
 	public static void calcExp(L1PcInstance l1pcinstance, int targetid, FastTable acquisitorList, FastTable hateList, int exp) {
 		int i = 0;

@@ -25,8 +25,8 @@ public class SystemUtil {
 	 * 
 	 * @return 記憶體使用量
 	 */
-	public static long getUsedMemoryMB() {
-		return (runTime.totalMemory() - runTime.freeMemory()) / 1024L / 1024L;
+	public final static long getUsedMemoryMB() {
+		return (runTime.totalMemory() - runTime.freeMemory()) >> 20;
 	}
 
 	/**
@@ -34,8 +34,8 @@ public class SystemUtil {
 	 * 
 	 * @return 記憶體最大可用量
 	 */
-	public static long getTotalMemoryMB() {
-		return runTime.totalMemory() / 1024L;
+	public final static long getTotalMemoryMB() {
+		return runTime.totalMemory() >> 10;
 	}
 
 	/**
@@ -43,11 +43,11 @@ public class SystemUtil {
 	 * 
 	 * @return 記憶體尚未使用量
 	 */
-	public static long getFreeMemoryMB() {
-		return runTime.freeMemory() / 1024L;
+	public final static long getFreeMemoryMB() {
+		return runTime.freeMemory() >> 10;
 	}
 
-	public static String getStackTrace(Throwable t) {
+	public final static String getStackTrace(Throwable t) {
 		StringWriter sw = new StringWriter();
 		t.printStackTrace(new PrintWriter(sw));
 		return sw.toString();

@@ -27,14 +27,14 @@ public class PerformanceTimer {
 	/**
 	 * <font color=#00800>重設執行時間</font>
 	 */
-	public void reset() {
+	public final void reset() {
 		_begin = System.currentTimeMillis();
 	}
 
 	/**
 	 * @return <font color=#00800>執行時間</font>
 	 */
-	public long get() {
+	public final long get() {
 		return System.currentTimeMillis() - _begin;
 	}
 }
