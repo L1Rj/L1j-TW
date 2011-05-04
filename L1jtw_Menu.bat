@@ -49,18 +49,22 @@ goto askfirst
 REM ##############################################
 REM 編譯
 :build
+cls
 call %buiderpath%\Compiler.bat
+pause
 goto main
 
 REM ##############################################
 REM 運行 l1jserver.jar
 :start
+cls
 call %l1jtwpath%\ServerStart.bat
 goto main
 
 REM ##############################################
 REM 設定 伺服器選項
 :config
+cls
 call %l1jtwpath%\ServerConfig.bat
 goto main
 
@@ -74,3 +78,5 @@ REM ##########################################
 REM 結束程序
 :end
 cls
+pause
+exit 0

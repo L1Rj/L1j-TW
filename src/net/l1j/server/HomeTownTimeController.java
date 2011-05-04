@@ -133,13 +133,13 @@ public class HomeTownTimeController {
 	private static String totalContribution(int townId) {
 		Connection con = null;
 		PreparedStatement pstm1 = null;
-		ResultSet rs1 = null;
 		PreparedStatement pstm2 = null;
-		ResultSet rs2 = null;
 		PreparedStatement pstm3 = null;
-		ResultSet rs3 = null;
 		PreparedStatement pstm4 = null;
 		PreparedStatement pstm5 = null;
+		ResultSet rs1 = null;
+		ResultSet rs2 = null;
+		ResultSet rs3 = null;
 
 		int leaderId = 0;
 		String leaderName = null;
@@ -189,14 +189,8 @@ public class HomeTownTimeController {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs1);
-			SQLUtil.close(rs2);
-			SQLUtil.close(rs3);
-			SQLUtil.close(pstm1);
-			SQLUtil.close(pstm2);
-			SQLUtil.close(pstm3);
-			SQLUtil.close(pstm4);
-			SQLUtil.close(pstm5);
+			SQLUtil.close(rs1, rs2, rs3);
+			SQLUtil.close(pstm1, pstm2, pstm3, pstm4, pstm5);
 			SQLUtil.close(con);
 		}
 
@@ -227,7 +221,7 @@ public class HomeTownTimeController {
 		Connection con = null;
 		PreparedStatement pstm1 = null;
 		PreparedStatement pstm2 = null;
-		ResultSet rs1 = null;
+		ResultSet rs = null;
 		int pay = 0;
 
 		try {
@@ -235,10 +229,10 @@ public class HomeTownTimeController {
 			pstm1 = con.prepareStatement("SELECT Pay FROM characters WHERE objid = ? FOR UPDATE");
 
 			pstm1.setInt(1, objid);
-			rs1 = pstm1.executeQuery();
+			rs = pstm1.executeQuery();
 
-			if (rs1.next()) {
-				pay = rs1.getInt("Pay");
+			if (rs.next()) {
+				pay = rs.getInt("Pay");
 			}
 
 			pstm2 = con.prepareStatement("UPDATE characters SET Pay = 0 WHERE objid = ?");
@@ -247,10 +241,8 @@ public class HomeTownTimeController {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs1);
-			SQLUtil.close(pstm1);
-			SQLUtil.close(pstm2);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm1);
+			SQLUtil.close(pstm2, con);
 		}
 
 		return pay;

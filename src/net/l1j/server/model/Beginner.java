@@ -53,6 +53,7 @@ public class Beginner {
 	public int GiveItem(L1PcInstance pc) {
 		Connection con = null;
 		PreparedStatement pstm1 = null;
+		PreparedStatement pstm2 = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
@@ -79,7 +80,6 @@ public class Beginner {
 			rs = pstm1.executeQuery();
 
 			while (rs.next()) {
-				PreparedStatement pstm2 = null;
 				try {
 					pstm2 = con.prepareStatement("INSERT INTO character_items SET id=?, item_id=?, char_id=?, item_name=?, count=?, is_equipped=?, enchantlvl=?, is_id=?, durability=?, charge_count=?, remaining_time=?, last_used=?, bless=?");
 					pstm2.setInt(1, IdFactory.getInstance().nextId());
@@ -98,14 +98,13 @@ public class Beginner {
 					pstm2.execute();
 				} catch (SQLException e2) {
 					_log.log(Level.SEVERE, e2.getLocalizedMessage(), e2);
-				} finally {
-					SQLUtil.close(pstm2);
 				}
 			}
 		} catch (SQLException e1) {
 			_log.log(Level.SEVERE, e1.getLocalizedMessage(), e1);
 		} finally {
 			SQLUtil.close(rs, pstm1, con);
+			SQLUtil.close(pstm2);
 		}
 		return 0;
 	}

@@ -10,4 +10,5 @@ REM
 REM 如果你是大台的伺服器和許多的記憶體，可以嘗試下列範例 (jdk\jre\bin目錄下可找到client與server目錄,需將server複製到jre的bin目錄下方可執行)
 REM java -Djava.util.logging.manager=net.l1j.L1LogManager -server -Xmx1536m -Xms1024m -Xmn512m -XX:PermSize=256m -XX:SurvivorRatio=8 -Xnoclassgc -XX:+AggressiveOpts -cp ./lib/*;l1jserver.jar net.l1j.server.GameServer
 REM -------------------------------------
-pause
+
+exit 0

@@ -87,8 +87,7 @@ public class UBTable {
 		} catch (SQLException e) {
 			_log.warning("ubsettings couldnt be initialized:" + e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
+			SQLUtil.close(rs, pstm);
 		}
 
 		// ub_managers load
@@ -104,8 +103,7 @@ public class UBTable {
 		} catch (SQLException e) {
 			_log.warning("ub_managers couldnt be initialized:" + e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm);
+			SQLUtil.close(rs, pstm);
 		}
 
 		// ub_times load

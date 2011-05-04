@@ -1,3 +1,4 @@
 @echo off
 start javaw -cp lib\*;l1jserver.jar net.l1j.gui.ServerConfig
-cls
+
+exit 0

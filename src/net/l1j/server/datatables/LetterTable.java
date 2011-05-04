@@ -60,8 +60,8 @@ public class LetterTable {
 	public void writeLetter(int itemObjectId, int code, String sender, String receiver, String date, int templateId, byte[] subject, byte[] content) {
 		Connection con = null;
 		PreparedStatement pstm1 = null;
-		ResultSet rs = null;
 		PreparedStatement pstm2 = null;
+		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm1 = con.prepareStatement("SELECT * FROM letter ORDER BY item_object_id");
@@ -79,10 +79,8 @@ public class LetterTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm1);
-			SQLUtil.close(pstm2);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm1);
+			SQLUtil.close(pstm2, con);
 		}
 	}
 

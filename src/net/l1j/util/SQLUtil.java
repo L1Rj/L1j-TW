@@ -21,33 +21,45 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLUtil {
-	public static void close(ResultSet rs, PreparedStatement pstm, Connection con) {
+
+	public final static void close(ResultSet rs, PreparedStatement pstm, Connection con) {
 		close(rs);
 		close(pstm);
 		close(con);
 	}
 
-	public static void close(ResultSet rs, Statement ps, Connection con) {
+	public final static void close(ResultSet rs, Statement ps, Connection con) {
 		close(rs);
 		close(ps);
 		close(con);
 	}
 
-	public static void close(PreparedStatement pstm, Connection con) {
+	public final static void close(ResultSet rs, PreparedStatement pstm) {
+		close(rs);
+		close(pstm);
+	}
+
+	public final static void close(PreparedStatement pstm, Connection con) {
 		close(pstm);
 		close(con);
 	}
 
-	public static void close(Statement ps, Connection con) {
+	public final static void close(Statement ps, Connection con) {
 		close(ps);
 		close(con);
 	}
 
-	public static SQLException close(Connection con) {
+	public final static void close(ResultSet... rs) {
+		for (ResultSet _rs : rs) close(_rs);
+	}
+
+	public final static void close(PreparedStatement... pstm) {
+		for (PreparedStatement _pstm : pstm) close(_pstm);
+	}
+
+	public static SQLException close(ResultSet rs) {
 		try {
-			if (con != null) {
-				con.close();
-			}
+			if (rs != null) rs.close();
 		} catch (SQLException e) {
 			return e;
 		}
@@ -56,9 +68,7 @@ public class SQLUtil {
 
 	public static SQLException close(PreparedStatement pstm) {
 		try {
-			if (pstm != null) {
-				pstm.close();
-			}
+			if (pstm != null) pstm.close();
 		} catch (SQLException e) {
 			return e;
 		}
@@ -67,20 +77,16 @@ public class SQLUtil {
 
 	public static SQLException close(Statement ps) {
 		try {
-			if (ps != null) {
-				ps.close();
-			}
+			if (ps != null) ps.close();
 		} catch (SQLException e) {
 			return e;
 		}
 		return null;
 	}
 
-	public static SQLException close(ResultSet rs) {
+	public static SQLException close(Connection con) {
 		try {
-			if (rs != null) {
-				rs.close();
-			}
+			if (con != null) con.close();
 		} catch (SQLException e) {
 			return e;
 		}

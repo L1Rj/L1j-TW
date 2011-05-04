@@ -63,6 +63,8 @@ public class MobSkillTable {
 		PreparedStatement pstm1 = null;
 		PreparedStatement pstm2 = null;
 		ResultSet rs1 = null;
+		ResultSet rs2 = null;
+
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm1 = con.prepareStatement("SELECT mobid,count(*) as cnt FROM mobskill group by mobid");
@@ -76,8 +78,6 @@ public class MobSkillTable {
 			for (rs1 = pstm1.executeQuery(); rs1.next();) {
 				mobid = rs1.getInt("mobid");
 				count = rs1.getInt("cnt");
-
-				ResultSet rs2 = null;
 
 				try {
 					pstm2.setInt(1, mobid);
@@ -111,9 +111,6 @@ public class MobSkillTable {
 					_mobskills.put(new Integer(mobid), mobskill);
 				} catch (SQLException e1) {
 					_log.log(Level.SEVERE, e1.getLocalizedMessage(), e1);
-
-				} finally {
-					SQLUtil.close(rs2);
 				}
 			}
 
@@ -121,10 +118,8 @@ public class MobSkillTable {
 			_log.log(Level.SEVERE, "error while creating mobskill table", e2);
 
 		} finally {
-			SQLUtil.close(rs1);
-			SQLUtil.close(pstm1);
-			SQLUtil.close(pstm2);
-			SQLUtil.close(con);
+			SQLUtil.close(rs1, pstm1, con);
+			SQLUtil.close(rs2, pstm2);
 		}
 	}
 

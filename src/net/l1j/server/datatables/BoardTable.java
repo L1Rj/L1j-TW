@@ -46,8 +46,8 @@ public class BoardTable {
 
 		Connection con = null;
 		PreparedStatement pstm1 = null;
-		ResultSet rs = null;
 		PreparedStatement pstm2 = null;
+		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm1 = con.prepareStatement("SELECT * FROM board ORDER BY id DESC");
@@ -67,10 +67,8 @@ public class BoardTable {
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
-			SQLUtil.close(rs);
-			SQLUtil.close(pstm1);
-			SQLUtil.close(pstm2);
-			SQLUtil.close(con);
+			SQLUtil.close(rs, pstm1);
+			SQLUtil.close(pstm2, con);
 		}
 	}
 
