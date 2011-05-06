@@ -2898,10 +2898,10 @@ public class SkillUse {
 								cha.broadcastPacket(new S_SkillSound(cha.getId(), 2169));
 							}
 							if ((weakAttr & 2) == 2) { // 火
-								cha.broadcastPacket(new S_SkillSound(cha.getId(), 2167));
+								cha.broadcastPacket(new S_SkillSound(cha.getId(), 2166));
 							}
 							if ((weakAttr & 4) == 4) { // 水
-								cha.broadcastPacket(new S_SkillSound(cha.getId(), 2166));
+								cha.broadcastPacket(new S_SkillSound(cha.getId(), 2167));
 							}
 							if ((weakAttr & 8) == 8) { // 風
 								cha.broadcastPacket(new S_SkillSound(cha.getId(), 2168));
