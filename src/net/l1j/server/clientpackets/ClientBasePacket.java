@@ -26,6 +26,7 @@ import net.l1j.Config;
 import net.l1j.server.ClientThread;
 
 public abstract class ClientBasePacket {
+	protected final static String CLASSNAME = "[C] " + ClientBasePacket.class.getName();
 	protected final static String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
 	protected final static int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE;
 
@@ -77,7 +78,7 @@ public abstract class ClientBasePacket {
 	}
 
 	protected final String readChars() {
-		StringBuilder s = new StringBuilder(60);
+		StringBuilder s = new StringBuilder(64);
 		while (_idx < _decryptLength) {
 			char c = (char) readH(); // 讀取 16 位元的數值 並轉換成 字元
 
@@ -106,15 +107,10 @@ public abstract class ClientBasePacket {
 	 * 返回類別種類(EX:[C] CreateChar)
 	 */
 	protected final String getType() {
-		return (new StringBuilder(50))
-				.append("[C] ").append(this.getClass().getSimpleName())
-				.toString();
+		return CLASSNAME;
 	}
 
 	public final String toString() {
-		return (new StringBuilder(50))
-				.append("type=").append(this.getType())
-				.append(", len=").append(_decrypt.length)
-				.toString();
+		return "type=" + this.getType() + ", len=" + _decrypt.length;
 	}
 }

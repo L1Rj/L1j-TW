@@ -20,7 +20,6 @@ import static net.l1j.server.Opcodes.S_OPCODE_INITPACKET;
 import net.l1j.util.RandomArrayList;
 
 public class S_InitPacket extends ServerBasePacket {
-	private static final String S_INIT_PACKET = "[S] S_InitPacket";
 
 	private byte[] key = new byte[4]; // 金鑰匙
 	private byte[] data = new byte[11]; // 填充物
@@ -45,10 +44,5 @@ public class S_InitPacket extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_INIT_PACKET;
 	}
 }

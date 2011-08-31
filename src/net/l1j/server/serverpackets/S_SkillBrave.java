@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_SkillBrave extends ServerBasePacket {
-	private static final String S_SKILL_BRAVE = "[S] S_SkillBrave";
 
 	public S_SkillBrave(int i, int j, int k) {
 		writeC(Opcodes.S_OPCODE_SKILLBRAVE);
@@ -33,10 +32,5 @@ public class S_SkillBrave extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_SKILL_BRAVE;
 	}
 }

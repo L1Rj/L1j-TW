@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_WhoAmount extends ServerBasePacket {
-	private static final String S_WHO_AMOUNT = "[S] S_WhoAmount";
 
 	public S_WhoAmount(String amount) {
 		writeC(Opcodes.S_OPCODE_SERVERMSG);
@@ -33,10 +32,5 @@ public class S_WhoAmount extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_WHO_AMOUNT;
 	}
 }

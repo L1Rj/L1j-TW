@@ -23,7 +23,6 @@ import java.io.*;
 import net.l1j.server.Opcodes;
 
 public class S_Emblem extends ServerBasePacket {
-	private static final String S_EMBLEM = "[S] S_Emblem";
 
 	public S_Emblem(int clanid) {
 		BufferedInputStream bis = null;
@@ -54,10 +53,5 @@ public class S_Emblem extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_EMBLEM;
 	}
 }

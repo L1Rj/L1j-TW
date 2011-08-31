@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_LoginResult extends ServerBasePacket {
-	public static final String S_LOGIN_RESULT = "[S] S_LoginResult";
 
 	/** 登入伺服器成功 ( 無訊息 )*/
 	public static final int REASON_LOGIN_OK = 0x00;
@@ -101,10 +100,5 @@ public class S_LoginResult extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_LOGIN_RESULT;
 	}
 }

@@ -24,7 +24,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class S_SPMR extends ServerBasePacket {
-	private static final String S_SPMR = "[S] S_SPMR";
 
 	private byte[] _byte = null;
 
@@ -49,10 +48,5 @@ public class S_SPMR extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_SPMR;
 	}
 }

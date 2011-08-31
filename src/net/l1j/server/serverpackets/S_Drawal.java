@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_Drawal extends ServerBasePacket {
-	private static final String S_DRAWAL = "[S] S_Drawal";
 
 	public S_Drawal(int objectId, int count) {
 		writeC(Opcodes.S_OPCODE_DRAWAL);
@@ -32,10 +31,5 @@ public class S_Drawal extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_DRAWAL;
 	}
 }

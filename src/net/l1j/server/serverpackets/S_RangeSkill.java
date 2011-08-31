@@ -25,7 +25,6 @@ import net.l1j.server.model.basisfunction.FaceInto;
 import net.l1j.server.model.L1Character;
 
 public class S_RangeSkill extends ServerBasePacket {
-	private static final String S_RANGE_SKILL = "[S] S_RangeSkill";
 
 	private static AtomicInteger _sequentialNumber = new AtomicInteger(0);
 
@@ -70,10 +69,5 @@ public class S_RangeSkill extends ServerBasePacket {
 			_byte = _bao.toByteArray();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_RANGE_SKILL;
 	}
 }

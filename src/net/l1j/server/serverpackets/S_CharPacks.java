@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_CharPacks extends ServerBasePacket {
-	private static final String S_CHAR_PACKS = "[S] S_CharPacks";
 
 	public S_CharPacks(String name, String clanName, int type, int sex, int lawful, int hp, int mp, int ac, int lv, int str, int dex, int con, int wis, int cha, int intel, int accessLevel) {
 		writeC(Opcodes.S_OPCODE_CHARLIST);
@@ -57,10 +56,5 @@ public class S_CharPacks extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_CHAR_PACKS;
 	}
 }

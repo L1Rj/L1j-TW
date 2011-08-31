@@ -23,7 +23,6 @@ import static net.l1j.server.Opcodes.S_OPCODE_NPCSHOUT;
 import net.l1j.server.model.L1Character;
 
 public class S_NpcChatPacket extends ServerBasePacket {
-	private static final String S_NPC_CHAT_PACKET = "[S] S_NpcChatPacket";
 
 	public S_NpcChatPacket(L1Character cha, String chat, int type) {
 		writeC(S_OPCODE_NPCSHOUT);
@@ -35,10 +34,5 @@ public class S_NpcChatPacket extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_NPC_CHAT_PACKET;
 	}
 }

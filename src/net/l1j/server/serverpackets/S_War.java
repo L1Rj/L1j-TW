@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_War extends ServerBasePacket {
-	private static final String S_WAR = "[S] S_War";
 
 	private byte[] _byte = null;
 
@@ -50,10 +49,5 @@ public class S_War extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_WAR;
 	}
 }

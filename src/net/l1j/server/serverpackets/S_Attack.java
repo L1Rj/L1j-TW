@@ -6,7 +6,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;;
 
 public class S_Attack extends ServerBasePacket {
-	private static final String S_ATTACK = "[S] S_Attack";
 
 	private static AtomicInteger aInteger = new AtomicInteger(0);
 
@@ -63,10 +62,5 @@ public class S_Attack extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_ATTACK;
 	}
 }

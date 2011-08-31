@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_Trade extends ServerBasePacket {
-	private static final String S_TRADE = "[S] S_Trade";
 
 	public S_Trade(String name) {
 		writeC(Opcodes.S_OPCODE_TRADE);
@@ -31,10 +30,5 @@ public class S_Trade extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_TRADE;
 	}
 }

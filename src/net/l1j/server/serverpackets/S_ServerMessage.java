@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.id.SystemMessageId;
 
 public class S_ServerMessage extends ServerBasePacket {
-	private static final String S_SERVER_MESSAGE = "[S] S_ServerMessage";
 
 	public static final int NO_PLEDGE = 208;
 
@@ -114,10 +113,5 @@ public class S_ServerMessage extends ServerBasePacket {
 		}
 
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_SERVER_MESSAGE;
 	}
 }

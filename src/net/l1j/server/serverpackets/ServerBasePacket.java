@@ -26,9 +26,10 @@ import java.util.logging.Logger;
 import net.l1j.Config;
 
 public abstract class ServerBasePacket {
-	private final static Logger _log = Logger.getLogger(ServerBasePacket.class.getName());
+	protected final static String CLASSNAME = "[C] " + ServerBasePacket.class.getName();
+	protected final static Logger _log = Logger.getLogger(ServerBasePacket.class.getName());
 
-	private static final String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
+	private final static String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
 
 	ByteArrayOutputStream _bao = new ByteArrayOutputStream();
 
@@ -141,7 +142,11 @@ public abstract class ServerBasePacket {
 	/**
 	 * サーバーパケットの種類を表す文字列を返す。("[S] S_WhoAmount" 等)
 	 */
-	public String getType() {
-		return "[S] " + this.getClass().getSimpleName();
+
+	/**
+	 * 返回類別種類(EX:[S] WhoAmount)
+	 */
+	protected final String getType() {
+		return CLASSNAME;
 	}
 }

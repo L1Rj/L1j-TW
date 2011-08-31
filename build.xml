@@ -76,6 +76,7 @@ ServerBuildDate = ${build.tstamp}
 LatestInfo = 
 </concat>
 		<concat destfile="./config/version.properties" append="true">
+			<filelist dir="${src}/../_svn/" files="entries" />
 			<filelist dir="${src}/../.svn/" files="entries" />
 			<filterchain>
 				<headfilter lines="6" skip="6" />

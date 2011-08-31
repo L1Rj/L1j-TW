@@ -25,7 +25,6 @@ import net.l1j.server.model.instance.L1PetInstance;
  * @author DarkNight (Kiusbt) [K] 寵物屬性更新封包
  */
 public class S_PetAttr extends ServerBasePacket {
-	private static final String S_PET_ATTR = "[S] S_PetAttr";
 
 	private static final int POS_PetAttr = 0x25;
 
@@ -52,10 +51,5 @@ public class S_PetAttr extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_PET_ATTR;
 	}
 }

@@ -27,9 +27,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.util.SQLUtil;
 
 public class S_BoardRead extends ServerBasePacket {
-	private static final String S_BOARD_READ = "[C] S_BoardRead";
-
-	private final static Logger _log = Logger.getLogger(S_BoardRead.class.getName());
 
 	private byte[] _byte = null;
 
@@ -67,10 +64,5 @@ public class S_BoardRead extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_BOARD_READ;
 	}
 }

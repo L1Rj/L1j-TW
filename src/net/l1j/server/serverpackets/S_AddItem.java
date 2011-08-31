@@ -20,7 +20,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class S_AddItem extends ServerBasePacket {
-	private static final String S_ADD_ITEM = "[S] S_AddItem";
 
 	/**
 	 * インベントリにアイテムを一つ追加する。
@@ -50,10 +49,5 @@ public class S_AddItem extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return _bao.toByteArray();
-	}
-
-	@Override
-	public String getType() {
-		return S_ADD_ITEM;
 	}
 }

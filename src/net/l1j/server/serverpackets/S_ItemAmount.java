@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class S_ItemAmount extends ServerBasePacket {
-	private static final String S_ITEM_AMOUNT = "[S] S_ItemAmount";
 
 	public S_ItemAmount(L1ItemInstance item) {
 		if (item == null) {
@@ -58,10 +57,5 @@ public class S_ItemAmount extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_ITEM_AMOUNT;
 	}
 }

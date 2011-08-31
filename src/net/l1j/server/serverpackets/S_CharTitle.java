@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import static net.l1j.server.Opcodes.S_OPCODE_CHARTITLE;
 
 public class S_CharTitle extends ServerBasePacket {
-	private static final String S_CHAR_TITLE = "[S] S_CharTitle";
 
 	public S_CharTitle(int objid, String title) {
 		writeC(S_OPCODE_CHARTITLE);
@@ -32,10 +31,5 @@ public class S_CharTitle extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_CHAR_TITLE;
 	}
 }

@@ -26,7 +26,6 @@ import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_RetrieveList extends ServerBasePacket {
-	private static final String S_RETRIEVE_LIST = "[S] S_RetrieveList";
 
 	public S_RetrieveList(int objid, L1PcInstance pc) {
 		if (pc.getInventory().getSize() < 180) {
@@ -60,10 +59,5 @@ public class S_RetrieveList extends ServerBasePacket {
 	@Override
 	public byte[] getContent() throws IOException {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_RETRIEVE_LIST;
 	}
 }

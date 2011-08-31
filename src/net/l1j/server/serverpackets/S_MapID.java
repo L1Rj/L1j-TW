@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_MapID extends ServerBasePacket {
-	private static final String S_MAP_ID = "[S] S_MapID";
 
 
 	public S_MapID(int mapid, boolean isUnderwater) {
@@ -37,10 +36,5 @@ public class S_MapID extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_MAP_ID;
 	}
 }

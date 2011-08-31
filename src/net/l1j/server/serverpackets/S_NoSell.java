@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1NpcInstance;
 
 public class S_NoSell extends ServerBasePacket {
-	private static final String S_NO_SELL = "[S] S_NoSell";
 
 	private byte[] _byte = null;
 
@@ -43,10 +42,5 @@ public class S_NoSell extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_NO_SELL;
 	}
 }

@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_CastleMaster extends ServerBasePacket {
-	private static final String S_CASTLE_MASTER = "[S] S_CastleMaster";
 
 	private byte[] _byte = null;
 
@@ -41,10 +40,5 @@ public class S_CastleMaster extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_CASTLE_MASTER;
 	}
 }

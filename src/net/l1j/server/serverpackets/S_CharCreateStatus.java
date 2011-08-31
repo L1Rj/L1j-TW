@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_CharCreateStatus extends ServerBasePacket {
-	private static final String S_CHAR_CREATE_STATUS = "[S] S_CharCreateStatus";
 
 	public static final int REASON_OK = 0x02;
 
@@ -41,10 +40,5 @@ public class S_CharCreateStatus extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_CHAR_CREATE_STATUS;
 	}
 }

@@ -23,7 +23,6 @@ import net.l1j.server.model.L1NpcTalkData;
 import net.l1j.server.model.npc.L1NpcHtml;
 
 public class S_NPCTalkReturn extends ServerBasePacket {
-	private static final String S_NPC_TALK_RETURN = "[S] S_NPCTalkReturn";
 
 	private byte[] _byte = null;
 
@@ -88,10 +87,5 @@ public class S_NPCTalkReturn extends ServerBasePacket {
 			_byte = _bao.toByteArray();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_NPC_TALK_RETURN;
 	}
 }

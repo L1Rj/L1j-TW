@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
 
 public class S_AttackPacketForNpc extends ServerBasePacket {
-	private static final String S_ATTACK_PACKET_FOR_NPC = "[S] S_AttackPacketForNpc";
 
 	private byte[] _byte = null;
 
@@ -49,10 +48,5 @@ public class S_AttackPacketForNpc extends ServerBasePacket {
 		}
 
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_ATTACK_PACKET_FOR_NPC;
 	}
 }

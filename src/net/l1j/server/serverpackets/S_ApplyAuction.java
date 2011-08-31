@@ -27,9 +27,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.util.SQLUtil;
 
 public class S_ApplyAuction extends ServerBasePacket {
-	private static final String S_APPLY_AUCTION = "[S] S_ApplyAuction";
-
-	private final static Logger _log = Logger.getLogger(S_ApplyAuction.class.getName());
 
 	private byte[] _byte = null;
 
@@ -78,10 +75,5 @@ public class S_ApplyAuction extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_APPLY_AUCTION;
 	}
 }

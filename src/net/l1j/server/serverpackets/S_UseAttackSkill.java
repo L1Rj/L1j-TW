@@ -29,7 +29,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import static net.l1j.server.model.skill.SkillId.*;
 
 public class S_UseAttackSkill extends ServerBasePacket {
-	private static final String S_USE_ATTACK_SKILL = "[S] S_UseAttackSkill";
 
 	private static AtomicInteger _sequentialNumber = new AtomicInteger(0);
 
@@ -116,10 +115,5 @@ public class S_UseAttackSkill extends ServerBasePacket {
 		}
 
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_USE_ATTACK_SKILL;
 	}
 }

@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Object;
 
 public class S_RemoveObject extends ServerBasePacket {
-	private static final String S_REMOVE_OBJECT = "[S] S_RemoveObject";
 
 	private byte[] _byte = null;
 
@@ -37,10 +36,5 @@ public class S_RemoveObject extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_REMOVE_OBJECT;
 	}
 }

@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_UseMap extends ServerBasePacket {
-	private static final String S_USE_MAP = "[S] S_UseMap";
 
 	public S_UseMap(L1PcInstance pc, int objid, int itemid) {
 
@@ -90,10 +89,5 @@ public class S_UseMap extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_USE_MAP;
 	}
 }

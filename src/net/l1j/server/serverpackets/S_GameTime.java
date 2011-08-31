@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.gametime.L1GameTimeClock;
 
 public class S_GameTime extends ServerBasePacket {
-	private static final String S_GAME_TIME = "[S] S_GameTime";
 
 	public S_GameTime(int time) {
 		buildPacket(time);
@@ -41,10 +40,5 @@ public class S_GameTime extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_GAME_TIME;
 	}
 }

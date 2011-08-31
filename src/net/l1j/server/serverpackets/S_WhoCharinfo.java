@@ -24,9 +24,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_WhoCharinfo extends ServerBasePacket {
-	private static final String S_WHO_CHARINFO = "[S] S_WhoCharinfo";
-
-	private static Logger _log = Logger.getLogger(S_WhoCharinfo.class.getName());
 
 	private byte[] _byte = null;
 
@@ -68,10 +65,5 @@ public class S_WhoCharinfo extends ServerBasePacket {
 			_byte = _bao.toByteArray();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_WHO_CHARINFO;
 	}
 }

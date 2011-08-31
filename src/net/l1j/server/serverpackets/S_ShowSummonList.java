@@ -22,7 +22,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_ShowSummonList extends ServerBasePacket {
-	private static final String S_SHOW_SUMMON_LIST = "[S] S_ShowSummonList";
 
 	public S_ShowSummonList(int objid) {
 		writeC(Opcodes.S_OPCODE_SHOWHTML);
@@ -33,10 +32,5 @@ public class S_ShowSummonList extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return _bao.toByteArray();
-	}
-
-	@Override
-	public String getType() {
-		return S_SHOW_SUMMON_LIST;
 	}
 }

@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1DoorInstance;
 
 public class S_Door extends ServerBasePacket {
-	private static final String S_DOOR = "[S] S_Door";
 
 	private byte[] _byte = null;
 
@@ -48,10 +47,5 @@ public class S_Door extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_DOOR;
 	}
 }

@@ -24,7 +24,6 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_OtherCharPacks extends ServerBasePacket {
-	private static final String S_OTHER_CHAR_PACKS = "[S] S_OtherCharPacks";
 
 	private static final int STATUS_POISON = 1;
 	private static final int STATUS_INVISIBLE = 2;
@@ -124,10 +123,5 @@ public class S_OtherCharPacks extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_OTHER_CHAR_PACKS;
 	}
 }

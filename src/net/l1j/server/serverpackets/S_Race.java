@@ -29,7 +29,6 @@ import net.l1j.server.model.instance.L1PcInstance;
  * GameEnd		離開賽跑的畫面
  */
 public class S_Race extends ServerBasePacket {
-	private static final String S_RACE = "[S] S_Race";
 
 	private byte[] _byte = null;
 
@@ -83,10 +82,5 @@ public class S_Race extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_RACE;
 	}
 }

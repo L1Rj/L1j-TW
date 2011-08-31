@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_Bookmarks extends ServerBasePacket {
-	private static final String S_BOOKMARKS = "[S] S_Bookmarks";
 
 	private byte[] _byte = null;
 
@@ -42,10 +41,5 @@ public class S_Bookmarks extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_BOOKMARKS;
 	}
 }

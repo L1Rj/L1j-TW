@@ -35,7 +35,6 @@ import net.l1j.server.templates.L1Item;
 import net.l1j.server.templates.L1ShopItem;
 
 public class S_ShopSellList extends ServerBasePacket {
-	private static final String S_SHOP_SELL_LIST = "[S] S_ShopSellList";
 
 	/**
 	 * 店の品物リストを表示する。キャラクターがBUYボタンを押した時に送る。
@@ -90,10 +89,5 @@ public class S_ShopSellList extends ServerBasePacket {
 	@Override
 	public byte[] getContent() throws IOException {
 		return _bao.toByteArray();
-	}
-
-	@Override
-	public String getType() {
-		return S_SHOP_SELL_LIST;
 	}
 }

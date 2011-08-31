@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1SignboardInstance;
 
 public class S_SignboardPack extends ServerBasePacket {
-	private static final String S_SIGNBOARD_PACK = "[S] S_SignboardPack";
 
 	private static final int STATUS_POISON = 1;
 	private static final int STATUS_INVISIBLE = 2;
@@ -98,10 +97,4 @@ public class S_SignboardPack extends ServerBasePacket {
 
 		return _byte;
 	}
-
-	@Override
-	public String getType() {
-		return S_SIGNBOARD_PACK;
-	}
-
 }

@@ -23,7 +23,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1DoorInstance;
 
 public class S_DoorPack extends ServerBasePacket {
-	private static final String S_DOOR_PACK = "[S] S_DoorPack";
 
 	private static final int STATUS_POISON = 1;
 	private static final int STATUS_INVISIBLE = 2;
@@ -89,10 +88,5 @@ public class S_DoorPack extends ServerBasePacket {
 			_byte = _bao.toByteArray();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_DOOR_PACK;
 	}
 }

@@ -24,7 +24,6 @@ import net.l1j.Config;
 import net.l1j.server.Opcodes;
 
 public class S_WarTime extends ServerBasePacket {
-	private static final String S_WAR_TIME = "[S] S_WarTime";
 
 	public S_WarTime(Calendar cal) {
 		// 設定 1997/01/01 17:00 為時間基準點
@@ -67,10 +66,5 @@ public class S_WarTime extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_WAR_TIME;
 	}
 }

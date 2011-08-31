@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_StrUp extends ServerBasePacket {
-	private static final String S_STR_Up = "[S] S_StrUp";
 
 	public S_StrUp(L1PcInstance pc, int type, int time) {
 		writeC(Opcodes.S_OPCODE_STRUP);
@@ -36,10 +35,5 @@ public class S_StrUp extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_STR_Up;
 	}
 }

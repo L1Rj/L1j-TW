@@ -23,7 +23,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.gametime.L1GameTimeClock;
 
 public class S_OwnCharStatus extends ServerBasePacket {
-	private static final String S_OWB_CHAR_STATUS = "[S] S_OwnCharStatus";
 
 	private byte[] _byte = null;
 
@@ -71,10 +70,5 @@ public class S_OwnCharStatus extends ServerBasePacket {
 			_byte = _bao.toByteArray();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_OWB_CHAR_STATUS;
 	}
 }

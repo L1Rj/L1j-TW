@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_DoActionGFX extends ServerBasePacket {
-	private static final String S_DO_ACTION_GFX = "[S] S_SkillGFX";
 
 	public static int ACTION_MAGIC = 0x16;
 
@@ -39,10 +38,5 @@ public class S_DoActionGFX extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_DO_ACTION_GFX;
 	}
 }

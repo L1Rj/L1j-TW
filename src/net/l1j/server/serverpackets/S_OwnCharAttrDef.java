@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_OwnCharAttrDef extends ServerBasePacket {
-	private static final String S_OWN_CHAR_ATTR_DEF = "[S] S_OwnCharAttrDef";
 
 	private byte[] _byte = null;
 
@@ -45,10 +44,5 @@ public class S_OwnCharAttrDef extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_OWN_CHAR_ATTR_DEF;
 	}
 }

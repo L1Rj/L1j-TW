@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_ChangeName extends ServerBasePacket {
-	private static final String S_CHANGE_NAME = "[S] S_ChangeName";
 
 	private byte[] _byte = null;
 
@@ -37,10 +36,5 @@ public class S_ChangeName extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_CHANGE_NAME;
 	}
 }

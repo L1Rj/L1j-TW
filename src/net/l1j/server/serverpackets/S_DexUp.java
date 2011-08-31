@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_DexUp extends ServerBasePacket {
-	private static final String S_DEX_UP = "[S] S_DexUp";
 
 	public S_DexUp(L1PcInstance pc, int type, int time) {
 		writeC(Opcodes.S_OPCODE_DEXUP);
@@ -35,10 +34,5 @@ public class S_DexUp extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_DEX_UP;
 	}
 }

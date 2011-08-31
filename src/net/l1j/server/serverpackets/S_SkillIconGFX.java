@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_SkillIconGFX extends ServerBasePacket {
-	private static final String S_SKILL_ICON_GFX = "[S] S_SkillIconGFX";
 
 	public S_SkillIconGFX(int i, int j) {
 		writeC(Opcodes.S_OPCODE_SKILLICONGFX);
@@ -32,10 +31,5 @@ public class S_SkillIconGFX extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_SKILL_ICON_GFX;
 	}
 }

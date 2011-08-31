@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_Charshowinit extends ServerBasePacket {
-	private static final String S_CHARSHOWINIT = "[S] S_Charshowinit";
 
 	public S_Charshowinit(L1PcInstance pc, int[] _initValue) {
 		int[] _qrowth = { pc.getOriginalStr(), pc.getOriginalDex(), // 力量, 敏捷
@@ -47,10 +46,5 @@ public class S_Charshowinit extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_CHARSHOWINIT;
 	}
 }

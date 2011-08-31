@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_Underwater extends ServerBasePacket {
-	private static final String S_UNDERWATER = "[S] S_Underwater";
 
 	public S_Underwater(int playerobjecId, int type) {
 		writeC(Opcodes.S_OPCODE_UNDERWATER);
@@ -32,10 +31,5 @@ public class S_Underwater extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_UNDERWATER;
 	}
 }

@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_OwnCharStatus2 extends ServerBasePacket {
-	private static final String S_OWN_CHRA_STATUS2 = "[S] S_OwnCharStatus2";
 
 	private L1PcInstance cha = null;
 
@@ -46,10 +45,5 @@ public class S_OwnCharStatus2 extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_OWN_CHRA_STATUS2;
 	}
 }

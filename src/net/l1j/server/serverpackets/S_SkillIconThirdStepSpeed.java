@@ -61,9 +61,4 @@ public class S_SkillIconThirdStepSpeed extends ServerBasePacket {
 
 		return _byte;
 	}
-
-	@Override
-	public String getType() {
-		return "[S] S_SkillIconThirdStepSpeed";
-	}
 }

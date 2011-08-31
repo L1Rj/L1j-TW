@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.id.SystemMessageId;
 
 public class S_Message_YN extends ServerBasePacket {
-	private static final String S_MESSAGE_YN = "[S] S_Message_YN";
 
 	private byte[] _byte = null;
 
@@ -64,10 +63,5 @@ public class S_Message_YN extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_MESSAGE_YN;
 	}
 }

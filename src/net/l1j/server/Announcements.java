@@ -45,17 +45,16 @@ public class Announcements {
 	private final String Name;
 	private String LastDate;
 	private final static DateFormat dateFormat = new SimpleDateFormat("[修訂於 yyyy/MM/dd, hh:mm ]\n");
-	private StringBuilder MSG = new StringBuilder(128);;
-	private List<String> messages = new FastList<String>();
+	private StringBuilder MSG = new StringBuilder(128);
 	private final File file;
 	private long lastchang = 0L;
 
-	public Announcements() {
+	private Announcements() {
 		Name = "SystemUse";
 		file = null;
 	}
 
-	public Announcements(String filePath) {
+	private Announcements(String filePath) {
 		file = new File(filePath);
 		Name = filePath;
 	}
@@ -80,14 +79,12 @@ public class Announcements {
 
 	private void readFromDisk() {
 		MSG.setLength(0);
-		messages.clear();
 		LineNumberReader lnr = null;
 		String line = null;
 		try {
 			lnr = new LineNumberReader(new FileReader(file));
 			int i = 0;
 			while (++i < 20 && (line = lnr.readLine()) != null) {
-				messages.add(line);
 				MSG.append(line + "\n");
 			}
 		} catch (IOException e) {
@@ -121,39 +118,4 @@ public class Announcements {
 				new Announcements("data/toall.txt");
 		private static final Announcements _instance = new Announcements();
 	}
-
-	/**
-	public void showAnnouncements(L1PcInstance pc) {
-		for (int i = 0; i < messages.size(); i++) {
-			S_SystemMessage s_sm = new S_SystemMessage(messages.get(i));
-			pc.sendPackets(s_sm);
-		}
-	}
-
-	public void addAnnouncement(String text) {
-		messages.add(text);
-		saveToDisk();
-	}
-
-	public void delAnnouncement(int line) {
-		messages.remove(line);
-		saveToDisk();
-	}
-
-	private void saveToDisk() {
-		FileWriter save = null;
-
-		try {
-			save = new FileWriter(file);
-			for (int i = 0; i < messages.size(); i++) {
-				save.write(messages.get(i));
-				save.write("\r\n");
-			}
-		} catch (IOException e) {
-			_log.log(Level.SEVERE, "Saving to the announcements file has failed: ", e);
-		} finally {
-			StreamUtil.close(save);
-		}
-	}
-	 */
 }

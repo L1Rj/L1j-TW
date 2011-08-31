@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_OwnCharPack extends ServerBasePacket {
-	private static final String S_OWN_CHAR_PACK = "[S] S_OwnCharPack";
 
 	private static final int STATUS_POISON = 1;
 	private static final int STATUS_INVISIBLE = 2;
@@ -109,10 +108,5 @@ public class S_OwnCharPack extends ServerBasePacket {
 			_byte = _bao.toByteArray();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_OWN_CHAR_PACK;
 	}
 }

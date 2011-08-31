@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class S_Letter extends ServerBasePacket {
-	private static final String S_LETTER = "[S] S_Letter";
 
 	private byte[] _byte = null;
 
@@ -53,10 +52,5 @@ public class S_Letter extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_LETTER;
 	}
 }

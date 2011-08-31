@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_Liquor extends ServerBasePacket {
-	private static final String S_LIQUOR = "[S] S_Liquor";
 
 	public S_Liquor(int objecId, int j) {
 		writeC(Opcodes.S_OPCODE_LIQUOR);
@@ -32,10 +31,5 @@ public class S_Liquor extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_LIQUOR;
 	}
 }

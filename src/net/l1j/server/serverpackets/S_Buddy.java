@@ -23,7 +23,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Buddy;
 
 public class S_Buddy extends ServerBasePacket {
-	private static final String S_BUDDY = "[S] _S_Buddy";
 
 	private static final String _HTMLID = "buddy";
 
@@ -50,10 +49,5 @@ public class S_Buddy extends ServerBasePacket {
 			_byte = _bao.toByteArray();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_BUDDY;
 	}
 }

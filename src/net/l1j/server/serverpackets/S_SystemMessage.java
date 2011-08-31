@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_SystemMessage extends ServerBasePacket {
-	private static final String S_SYSTEM_MESSAGE = "[S] S_SystemMessage";
 
 	private byte[] _byte = null;
 
@@ -62,14 +61,9 @@ public class S_SystemMessage extends ServerBasePacket {
 		}
 		return _byte;
 	}
-
+/*
 	@Override
 	public String toString() {
 		return String.format("%s: %s", S_SYSTEM_MESSAGE, _msg);
-	}
-
-	@Override
-	public String getType() {
-		return S_SYSTEM_MESSAGE;
-	}
+	}*/
 }

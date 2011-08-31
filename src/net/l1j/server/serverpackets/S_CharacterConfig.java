@@ -31,9 +31,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.util.SQLUtil;
 
 public class S_CharacterConfig extends ServerBasePacket {
-	private static final String S_CHARACTER_CONFIG = "[S] S_CharacterConfig";
-
-	private final static Logger _log = Logger.getLogger(S_CharacterConfig.class.getName());
 
 	private byte[] _byte = null;
 
@@ -76,10 +73,5 @@ public class S_CharacterConfig extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_CHARACTER_CONFIG;
 	}
 }

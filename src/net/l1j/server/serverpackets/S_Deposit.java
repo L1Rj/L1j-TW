@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_Deposit extends ServerBasePacket {
-	private static final String S_DEPOSIT = "[S] S_Deposit";
 
 	public S_Deposit(int objecId) {
 		writeC(Opcodes.S_OPCODE_DEPOSIT);
@@ -31,10 +30,5 @@ public class S_Deposit extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_DEPOSIT;
 	}
 }

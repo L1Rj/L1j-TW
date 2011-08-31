@@ -27,7 +27,6 @@ import net.l1j.server.templates.L1PrivateShopBuyList;
 import net.l1j.server.templates.L1PrivateShopSellList;
 
 public class S_PrivateShop extends ServerBasePacket {
-	private static final String S_PRIVATE_SHOP = "[S] S_PrivateShop";
 
 	public S_PrivateShop(L1PcInstance pc, int objectId, int type) {
 		L1PcInstance shopPc = (L1PcInstance) L1World.getInstance().findObject(objectId);
@@ -86,10 +85,5 @@ public class S_PrivateShop extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_PRIVATE_SHOP;
 	}
 }

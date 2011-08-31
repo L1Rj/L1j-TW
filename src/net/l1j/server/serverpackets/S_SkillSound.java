@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_SkillSound extends ServerBasePacket {
-	private static final String S_SKILL_SOUND = "[S] S_SkillSound";
 
 	private byte[] _byte = null;
 
@@ -50,10 +49,5 @@ public class S_SkillSound extends ServerBasePacket {
 		}
 
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_SKILL_SOUND;
 	}
 }

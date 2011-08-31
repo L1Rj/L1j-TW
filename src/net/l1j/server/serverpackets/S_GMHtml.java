@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_GMHtml extends ServerBasePacket {
-	private static final String S_GM_HTML = "[S] S_GMHtml";
 
 	public S_GMHtml(int _objid, String html) {
 		writeC(Opcodes.S_OPCODE_SHOWHTML);
@@ -33,10 +32,5 @@ public class S_GMHtml extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_GM_HTML;
 	}
 }

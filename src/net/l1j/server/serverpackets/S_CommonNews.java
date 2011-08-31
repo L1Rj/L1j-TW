@@ -25,8 +25,6 @@ public class S_CommonNews extends ServerBasePacket {
 
 	private final static Announcements LoginAnnouncement = Announcements.getInstance4Login();
 
-	private final static String S_COMMON_NEWS = "[S] S_CommonNews";
-
 	public S_CommonNews() {
 		writeC(Opcodes.S_OPCODE_COMMONNEWS);
 		writeS(LoginAnnouncement.getSMG());
@@ -40,10 +38,5 @@ public class S_CommonNews extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_COMMON_NEWS;
 	}
 }

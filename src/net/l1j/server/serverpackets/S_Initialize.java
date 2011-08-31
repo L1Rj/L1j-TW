@@ -30,6 +30,7 @@ import net.l1j.util.RandomArrayList;
  * 初始化封包
  */
 public class S_Initialize extends ServerBasePacket {
+
 	private byte[] bs = new byte[15];
 
 	public S_Initialize() {

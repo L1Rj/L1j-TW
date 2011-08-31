@@ -28,7 +28,6 @@ import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_RetrievePledgeList extends ServerBasePacket {
-	private static final String S_RETRIEVE_PLEDGE_LIST = "[S] S_RetrievePledgeList";
 
 	public S_RetrievePledgeList(int objid, L1PcInstance pc) {
 		L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
@@ -69,10 +68,5 @@ public class S_RetrievePledgeList extends ServerBasePacket {
 	@Override
 	public byte[] getContent() throws IOException {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_RETRIEVE_PLEDGE_LIST;
 	}
 }

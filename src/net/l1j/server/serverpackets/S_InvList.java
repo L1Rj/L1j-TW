@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class S_InvList extends ServerBasePacket {
-	private static final String S_INV_LIST = "[S] S_InvList";
 
 	/**
 	 * インベントリにアイテムを複数個まとめて追加する。
@@ -56,10 +55,5 @@ public class S_InvList extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return _bao.toByteArray();
-	}
-
-	@Override
-	public String getType() {
-		return S_INV_LIST;
 	}
 }

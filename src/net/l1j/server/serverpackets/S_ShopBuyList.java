@@ -31,7 +31,6 @@ import net.l1j.server.model.shop.L1Shop;
 import net.l1j.server.serverpackets.S_NoSell;
 
 public class S_ShopBuyList extends ServerBasePacket {
-	private static final String S_SHOP_BUY_LIST = "[S] S_ShopBuyList";
 
 	public S_ShopBuyList(int objid, L1PcInstance pc) {
 		L1Object object = L1World.getInstance().findObject(objid);
@@ -65,10 +64,5 @@ public class S_ShopBuyList extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_SHOP_BUY_LIST;
 	}
 }

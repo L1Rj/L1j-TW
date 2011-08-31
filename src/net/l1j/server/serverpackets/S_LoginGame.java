@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import static net.l1j.server.Opcodes.S_OPCODE_LOGINTOGAME;
 
 public class S_LoginGame extends ServerBasePacket {
-	private static final String S_LOGIN_GAME = "[S] S_LoginGame";
 
 	public S_LoginGame() {
 		writeC(S_OPCODE_LOGINTOGAME);
@@ -37,10 +36,5 @@ public class S_LoginGame extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_LOGIN_GAME;
 	}
 }

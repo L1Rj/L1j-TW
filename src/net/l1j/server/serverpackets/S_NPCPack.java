@@ -26,7 +26,6 @@ import net.l1j.server.model.instance.L1NpcInstance;
 import static net.l1j.server.Opcodes.S_OPCODE_CHARPACK;
 
 public class S_NPCPack extends ServerBasePacket {
-	private static final String S_NPC_PACK = "[S] S_NPCPack";
 
 	private static final int STATUS_POISON = 1;
 	private static final int STATUS_INVISIBLE = 2;
@@ -100,10 +99,5 @@ public class S_NPCPack extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_NPC_PACK;
 	}
 }

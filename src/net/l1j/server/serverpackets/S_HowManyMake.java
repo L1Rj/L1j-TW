@@ -23,7 +23,6 @@ import java.io.IOException;
 import net.l1j.server.Opcodes;
 
 public class S_HowManyMake extends ServerBasePacket {
-	private static final String S_HOW_MANY_MAKE = "[S] S_HowManyMake";
 
 	public S_HowManyMake(int objId, int max, String htmlId) {
 		writeC(Opcodes.S_OPCODE_INPUTAMOUNT);
@@ -40,10 +39,5 @@ public class S_HowManyMake extends ServerBasePacket {
 	@Override
 	public byte[] getContent() throws IOException {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_HOW_MANY_MAKE;
 	}
 }

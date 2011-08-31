@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_AttackPacket extends ServerBasePacket {
-	private static final String S_ATTACK_PACKET = "[S] S_AttackPacket";
 
 	private byte[] _byte = null;
 
@@ -49,10 +48,5 @@ public class S_AttackPacket extends ServerBasePacket {
 		}
 
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_ATTACK_PACKET;
 	}
 }

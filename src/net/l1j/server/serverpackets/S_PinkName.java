@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_PinkName extends ServerBasePacket {
-	private static final String S_PINK_NAME = "[S] S_PinkName";
 
 	public S_PinkName(int objecId, int time) {
 		writeC(Opcodes.S_OPCODE_PINKNAME);
@@ -32,10 +31,5 @@ public class S_PinkName extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_PINK_NAME;
 	}
 }

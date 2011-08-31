@@ -27,7 +27,6 @@ import net.l1j.server.datatables.MailTable;
 import net.l1j.server.templates.L1Mail;
 
 public class S_Mail extends ServerBasePacket {
-	private static final String S_MAIL = "[S] S_Mail";
 
 	private byte[] _byte = null;
 
@@ -116,10 +115,5 @@ public class S_Mail extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_MAIL;
 	}
 }

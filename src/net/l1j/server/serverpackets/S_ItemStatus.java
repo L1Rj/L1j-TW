@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class S_ItemStatus extends ServerBasePacket {
-	private static final String S_ITEM_STATUS = "[S] S_ItemStatus";
 
 	/**
 	 * アイテムの名前、狀態、特性、重量などの表示を變更する
@@ -47,10 +46,5 @@ public class S_ItemStatus extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return _bao.toByteArray();
-	}
-
-	@Override
-	public String getType() {
-		return S_ITEM_STATUS;
 	}
 }

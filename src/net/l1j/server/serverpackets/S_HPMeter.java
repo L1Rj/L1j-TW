@@ -4,7 +4,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
 
 public class S_HPMeter extends ServerBasePacket {
-	private static final String S_HP_METER = "[S] S_HPMeter";
 
 	private byte[] _byte = null;
 
@@ -34,10 +33,5 @@ public class S_HPMeter extends ServerBasePacket {
 			_byte = _bao.toByteArray();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_HP_METER;
 	}
 }

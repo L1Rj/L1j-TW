@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_Poison extends ServerBasePacket {
-	private static final String S_POISON = "[S] S_Poison";
 
 	/**
 	 * キャラクターの外見を毒状態へ変更する際に送信するパケットを構築する
@@ -53,10 +52,5 @@ public class S_Poison extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_POISON;
 	}
 }

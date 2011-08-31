@@ -23,7 +23,6 @@ import net.l1j.server.clientpackets.C_SkillBuyOK;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_SkillBuy extends ServerBasePacket {
-	private static final String S_SKILL_BUY = "[S] S_SkillBuy";
 
 	public S_SkillBuy(int objid, L1PcInstance Pc) {
 		int SkillAmount = 0;
@@ -47,10 +46,5 @@ public class S_SkillBuy extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_SKILL_BUY;
 	}
 }

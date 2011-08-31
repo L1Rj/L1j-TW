@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1NpcTalkData;
 
 public class S_NPCTalkActionTPUrl extends ServerBasePacket {
-	private static final String S_NPC_TALK_ACTION_TPURL = "[S] S_NPCTalkActionTPUrl";
 
 	private byte[] _byte = null;
 
@@ -50,10 +49,5 @@ public class S_NPCTalkActionTPUrl extends ServerBasePacket {
 			_byte = _bao.toByteArray();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_NPC_TALK_ACTION_TPURL;
 	}
 }

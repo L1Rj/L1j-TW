@@ -23,7 +23,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1SummonInstance;
 
 public class S_SummonPack extends ServerBasePacket {
-	private static final String S_SUMMON_PACK = "[S] S_SummonPack";
 
 	private static final int STATUS_POISON = 1;
 	private static final int STATUS_INVISIBLE = 2;
@@ -93,10 +92,5 @@ public class S_SummonPack extends ServerBasePacket {
 			_byte = _bao.toByteArray();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_SUMMON_PACK;
 	}
 }

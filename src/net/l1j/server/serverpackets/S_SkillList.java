@@ -24,7 +24,6 @@ import static net.l1j.server.Opcodes.S_OPCODE_DELSKILL;
 import net.l1j.server.templates.L1Skills;
 
 public class S_SkillList extends ServerBasePacket {
-	private static final String S_SKILL_LIST = "[S] S_SkillList";
 
 	/*
 	 * [Length:40] S -> C
@@ -57,10 +56,5 @@ public class S_SkillList extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_SKILL_LIST;
 	}
 }

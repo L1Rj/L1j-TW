@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_SellHouse extends ServerBasePacket {
-	private static final String S_SELL_HOUSE = "[S] S_SellHouse";
 
 	private byte[] _byte = null;
 
@@ -47,10 +46,5 @@ public class S_SellHouse extends ServerBasePacket {
 			_byte = getBytes();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_SELL_HOUSE;
 	}
 }

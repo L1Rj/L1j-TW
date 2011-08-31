@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_DeleteCharOK extends ServerBasePacket {
-	private static final String S_DELETE_CHAR_OK = "[S] S_DeleteCharOK";
 
 	public static final int DELETE_CHAR_NOW = 0x05;
 	public static final int DELETE_CHAR_AFTER_7DAYS = 0x51;
@@ -34,10 +33,5 @@ public class S_DeleteCharOK extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_DELETE_CHAR_OK;
 	}
 }

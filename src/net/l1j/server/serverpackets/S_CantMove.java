@@ -19,7 +19,6 @@
 package net.l1j.server.serverpackets;
 
 public class S_CantMove extends ServerBasePacket {
-	private static final String S_CANT_MOVE = "[S] S_CantMove";
 
 	private byte[] _byte = null;
 
@@ -37,10 +36,5 @@ public class S_CantMove extends ServerBasePacket {
 		}
 
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_CANT_MOVE;
 	}
 }

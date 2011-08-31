@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class S_CharVisualUpdate extends ServerBasePacket {
-	private static final String S_CHAR_VISUAL_UPDATE = "[C] S_CharVisualUpdate";
 
 	private final L1PcInstance _cha;
 
@@ -37,10 +36,5 @@ public class S_CharVisualUpdate extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_CHAR_VISUAL_UPDATE;
 	}
 }

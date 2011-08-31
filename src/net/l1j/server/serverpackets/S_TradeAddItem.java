@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class S_TradeAddItem extends ServerBasePacket {
-	private static final String S_TRADE_ADD_ITEM = "[S] S_TradeAddItem";
 
 	public S_TradeAddItem(L1ItemInstance item, int count, int type) {
 		writeC(Opcodes.S_OPCODE_TRADEADDITEM);
@@ -38,10 +37,5 @@ public class S_TradeAddItem extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_TRADE_ADD_ITEM;
 	}
 }

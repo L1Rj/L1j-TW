@@ -24,7 +24,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.L1Character;
 
 public class S_UseArrowSkill extends ServerBasePacket {
-	private static final String S_USE_ARROW_SKILL = "[S] S_UseArrowSkill";
 
 	private static AtomicInteger _sequentialNumber = new AtomicInteger(0);
 
@@ -75,10 +74,5 @@ public class S_UseArrowSkill extends ServerBasePacket {
 			_byte[15] = (byte) (seq >> 24 & 0xff);
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_USE_ARROW_SKILL;
 	}
 }

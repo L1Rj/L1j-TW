@@ -22,7 +22,6 @@ import net.l1j.server.Opcodes;
 import net.l1j.server.model.instance.L1ItemInstance;
 
 public class S_DeleteInventoryItem extends ServerBasePacket {
-	private static final String S_DELETE_INVENTORY_ITEM = "[S] S_DeleteInventoryItem";
 
 	/**
 	 * インベントリからアイテムを削除する。
@@ -39,10 +38,5 @@ public class S_DeleteInventoryItem extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_DELETE_INVENTORY_ITEM;
 	}
 }

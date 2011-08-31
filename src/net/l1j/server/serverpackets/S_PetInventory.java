@@ -26,7 +26,6 @@ import net.l1j.server.model.instance.L1ItemInstance;
 import net.l1j.server.model.instance.L1PetInstance;
 
 public class S_PetInventory extends ServerBasePacket {
-	private static final String S_PET_INVENTORY = "[S] S_PetInventory";
 
 	public S_PetInventory(L1PetInstance pet) {
 		List<L1ItemInstance> itemList = pet.getInventory().getItems();
@@ -67,10 +66,5 @@ public class S_PetInventory extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_PET_INVENTORY;
 	}
 }

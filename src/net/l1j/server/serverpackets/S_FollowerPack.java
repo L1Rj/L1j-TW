@@ -23,7 +23,6 @@ import net.l1j.server.model.instance.L1PcInstance;
 import net.l1j.server.model.instance.L1FollowerInstance;
 
 public class S_FollowerPack extends ServerBasePacket {
-	private static final String S_FOLLOWER_PACK = "[S] S_FollowerPack";
 
 	private static final int STATUS_POISON = 1;
 	private static final int STATUS_INVISIBLE = 2;
@@ -75,10 +74,5 @@ public class S_FollowerPack extends ServerBasePacket {
 			_byte = _bao.toByteArray();
 		}
 		return _byte;
-	}
-
-	@Override
-	public String getType() {
-		return S_FOLLOWER_PACK;
 	}
 }

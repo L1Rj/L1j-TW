@@ -21,7 +21,6 @@ package net.l1j.server.serverpackets;
 import net.l1j.server.Opcodes;
 
 public class S_SkillIconShield extends ServerBasePacket {
-	private static final String S_SKILL_ICON_SHIELD = "[S] S_SkillIconShield";
 
 	public S_SkillIconShield(int type, int time) {
 		writeC(Opcodes.S_OPCODE_SKILLICONSHIELD);
@@ -33,10 +32,5 @@ public class S_SkillIconShield extends ServerBasePacket {
 	@Override
 	public byte[] getContent() {
 		return getBytes();
-	}
-
-	@Override
-	public String getType() {
-		return S_SKILL_ICON_SHIELD;
 	}
 }
