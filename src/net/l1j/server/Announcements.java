@@ -46,6 +46,7 @@ public class Announcements {
 	private String LastDate;
 	private final static DateFormat dateFormat = new SimpleDateFormat("[修訂於 yyyy/MM/dd, hh:mm ]\n");
 	private StringBuilder MSG = new StringBuilder(128);
+	private String lastMessages;
 	private final File file;
 	private long lastchang = 0L;
 
@@ -63,18 +64,19 @@ public class Announcements {
 		long t_diffTime_L = file.lastModified();
 		if (lastchang != t_diffTime_L) {
 			lastchang = t_diffTime_L;
+			LastDate = dateFormat.format(new Date(lastchang));
 			readFromDisk();
 		}
 	}
 
 	public final String getSMG() {
 		loadAnnouncements();
-		return MSG.toString();
+		return lastMessages;
 	}
 
 	public final String getDatePlusSMG() {
 		loadAnnouncements();
-		return dateFormat.format(new Date(lastchang)) + MSG.toString();
+		return LastDate + lastMessages;
 	}
 
 	private void readFromDisk() {
@@ -87,6 +89,7 @@ public class Announcements {
 			while (++i < 20 && (line = lnr.readLine()) != null) {
 				MSG.append(line + "\n");
 			}
+			lastMessages = MSG.toString();
 		} catch (IOException e) {
 			_log.log(Level.SEVERE, "Error reading @ " + Name, e);
 		} finally {

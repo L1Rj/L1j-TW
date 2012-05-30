@@ -30,7 +30,7 @@ public abstract class ClientBasePacket {
 	protected final static String CLIENT_LANGUAGE_CODE = Config.CLIENT_LANGUAGE_CODE;
 	protected final static int CLIENT_LANGUAGE = Config.CLIENT_LANGUAGE;
 
-	protected final static Logger _log = Logger.getLogger(ClientBasePacket.class.getName());
+	protected final static Logger _log = Logger.getLogger(CLASSNAME);
 
 	protected byte _decrypt[];
 	protected int _decryptLength;

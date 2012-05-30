@@ -25,7 +25,7 @@ public class ConsoleLogFormatter extends Formatter {
 
 	@Override
 	public String format(LogRecord record) {
-		final StringBuilder output = new StringBuilder(500);
+		final StringBuilder output = new StringBuilder(512);
 		StringUtil.append(output, record.getMessage(), NEXT_LINE);
 
 		if (record.getThrown() != null) {
