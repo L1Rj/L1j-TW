@@ -1,0 +1,15 @@
+
+# /
+/bin
+/build
+/l1jserver.jar
+
+# /config/
+/config/version.properties
+
+# /log/
+/log/*.log
+/log/game
+
+# /map/
+/map/cache
