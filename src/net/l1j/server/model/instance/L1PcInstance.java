@@ -374,7 +374,7 @@ public class L1PcInstance extends L1Character {
 	public void updateObject() {
 		removeOutOfRangeObjects();
 
-		// 認識範圍內のオブジェクトリストを作成
+		// 認識範圍內のオブジェクトリストを作成 (NPC/Item/etc)
 		for (L1Object visible : L1World.getInstance().getVisibleObjects(this, Config.PC_RECOGNIZE_RANGE)) {
 			if (!knownsObject(visible)) {
 				visible.onPerceive(this);
@@ -392,6 +392,18 @@ public class L1PcInstance extends L1Character {
 			} else if (Config.SHOW_HP_BAR && L1HpBar.isHpBarTarget(visible) && visible instanceof L1MonsterInstance) {
 				sendPackets(new S_HPMeter((L1Character) visible));
 				// add end
+			}
+		}
+
+		// FIX v303/v305: 玩家互相感知 - 直接掃描 _allPlayers（繞過 WorldMap.getObjects()）
+		// 診斷：若兩玩家 objId 相同 → 連到了不同的 Java 伺服器！
+		FastTable<L1PcInstance> nearbyPcList = L1World.getInstance().getVisiblePlayer(this, Config.PC_RECOGNIZE_RANGE);
+		for (L1PcInstance visiblePc : nearbyPcList) {
+			if (!knownsObject(visiblePc)) {
+				System.out.println("[v305] " + getName() + "(0x" + Integer.toHexString(getId())
+					+ ") 感知到 " + visiblePc.getName() + "(0x" + Integer.toHexString(visiblePc.getId())
+					+ ") map=" + visiblePc.getMapId());
+				visiblePc.onPerceive(this);
 			}
 		}
 	}
