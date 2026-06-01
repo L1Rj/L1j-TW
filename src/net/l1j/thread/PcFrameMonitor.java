@@ -18,12 +18,15 @@
  */
 package net.l1j.thread;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.l1j.server.model.instance.L1PcInstance;
 
 public class PcFrameMonitor implements Runnable {
+	private static final Logger _log = Logger.getLogger(PcFrameMonitor.class.getName());
 	private final static ThreadGroup threadGroup = new ThreadGroup("PcFrameMonitor");
 
-	private boolean isCancelled;
+	private volatile boolean isCancelled;
 
 	private final L1PcInstance pc;
 
@@ -34,27 +37,28 @@ public class PcFrameMonitor implements Runnable {
 
 	@Override
 	public void run() {
+		_log.info("[v307 PcFrameMonitor] START for player=" + pc.getName() + " objId=0x" + Integer.toHexString(pc.getId()));
 		while (!isCancelled) {
 			try {
-				pc.updateObject(); // 更新玩家畫面
-				Thread.sleep(300); // 延遲 0.300 毫秒
-			} catch (Exception e) {
-				e.fillInStackTrace(); // 錯誤訊息
+				pc.updateObject();
+				Thread.sleep(300);
+			} catch (InterruptedException ie) {
+				// 被中斷代表真的要停止
+				_log.info("[v307 PcFrameMonitor] INTERRUPTED for player=" + pc.getName() + ", stopping.");
 				break;
+			} catch (Exception e) {
+				// FIX v307: 不再 break！改為記錄錯誤並繼續，避免靜默殺死線程
+				_log.log(Level.WARNING, "[v307 PcFrameMonitor] updateObject exception for player=" + pc.getName() + ": " + e.getMessage(), e);
+				// 繼續循環，不 break
 			}
 		}
+		_log.info("[v307 PcFrameMonitor] STOPPED for player=" + pc.getName());
 	}
 
-	/**
-	 * @return the isCancelled
-	 */
 	public boolean isCancelled() {
 		return isCancelled;
 	}
 
-	/**
-	 * @param isCancelled the isCancelled to set
-	 */
 	public void cancel(boolean isCancelled) {
 		this.isCancelled = isCancelled;
 	}
