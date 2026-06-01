@@ -17,45 +17,40 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 package net.l1j.thread;
-
+import java.util.logging.Logger;
 import net.l1j.server.model.instance.L1PcInstance;
-
 public class PcFrameMonitor implements Runnable {
-	private final static ThreadGroup threadGroup = new ThreadGroup("PcFrameMonitor");
-
-	private boolean isCancelled;
-
-	private final L1PcInstance pc;
-
-	public PcFrameMonitor(L1PcInstance pc) {
-		this.pc = pc;
-		new Thread(threadGroup, this, this.getClass().getSimpleName()).start();
-	}
-
-	@Override
-	public void run() {
-		while (!isCancelled) {
-			try {
-				pc.updateObject(); // 更新玩家畫面
-				Thread.sleep(300); // 延遲 0.300 毫秒
-			} catch (Exception e) {
-				e.fillInStackTrace(); // 錯誤訊息
-				break;
-			}
-		}
-	}
-
-	/**
-	 * @return the isCancelled
-	 */
-	public boolean isCancelled() {
-		return isCancelled;
-	}
-
-	/**
-	 * @param isCancelled the isCancelled to set
-	 */
-	public void cancel(boolean isCancelled) {
-		this.isCancelled = isCancelled;
-	}
+    private static final Logger _log = Logger.getLogger(PcFrameMonitor.class.getName());
+    private final static ThreadGroup threadGroup = new ThreadGroup("PcFrameMonitor");
+    private boolean isCancelled;
+    private final L1PcInstance pc;
+    public PcFrameMonitor(L1PcInstance pc) {
+        this.pc = pc;
+        new Thread(threadGroup, this, this.getClass().getSimpleName()).start();
+    }
+    @Override
+    public void run() {
+        while (!isCancelled) {
+            try {
+                pc.updateObject(); // 更新玩家畫面
+                Thread.sleep(300); // 延遲 0.300 毫秒
+            } catch (Exception e) {
+                _log.warning("PcFrameMonitor error for " + pc.getName() + ": " + e.getMessage());
+                e.printStackTrace(); // 錯誤訊息
+                // 不 break，線程繼續跑，避免靜默死亡導致其他玩家不顯示
+            }
+        }
+    }
+    /**
+     * @return the isCancelled
+     */
+    public boolean isCancelled() {
+        return isCancelled;
+    }
+    /**
+     * @param isCancelled the isCancelled to set
+     */
+    public void cancel(boolean isCancelled) {
+        this.isCancelled = isCancelled;
+    }
 }
